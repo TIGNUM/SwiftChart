@@ -22,14 +22,14 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     private let audioViewController: LearnContentItemViewController
     private var viewModel: LearnContentItemViewModel
     private var presentationManager: ContentItemAnimator?
-    private weak var topBarDelegate: TopNavigationBarDelegate?
+    private weak var topBarDelegate: NavigationItemDelegate?
     private let rootViewController: UIViewController
     private let headerView: LearnContentItemHeaderView
     private let presentOnStart: Bool
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
 
-    init(root: UIViewController, eventTracker: EventTracker, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: ContentItemAnimator? = nil, topBarDelegate: TopNavigationBarDelegate? = nil, presentOnStart: Bool = true) {
+    init(root: UIViewController, eventTracker: EventTracker, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: ContentItemAnimator? = nil, topBarDelegate: NavigationItemDelegate? = nil, presentOnStart: Bool = true) {
         self.rootViewController = root
         self.eventTracker = eventTracker
         self.services = services
@@ -72,19 +72,8 @@ final class LearnContentItemCoordinator: ParentCoordinator {
                                                      pageDelegate: self,
                                                      backgroundColor: .white,
                                                      backgroundImage: nil,
-                                                     titleSelectedColor: .black,
-                                                     titleNormalColor: .black40,
-                                                     leftButton: leftButton)
-        if let navigationBar = topTabBarController.navigationBar as? TopNavigationBar {
-            navigationBar.setStyle(selectedColor: .black, normalColor: .black40, backgroundColor: .white)
-            leftButton.tintColor = .black40
-
-            if pages.count <= 1 {
-                navigationBar.setMiddleButtons([])
-                navigationBar.topItem?.titleView = nil
-            }
-        }
-
+                                                     leftButton: leftButton,
+                                                     navigationItemStyle: .light)
         fullViewController.delegate = self
         bulletViewController.delegate = self
         audioViewController.delegate = self
@@ -116,9 +105,9 @@ final class LearnContentItemCoordinator: ParentCoordinator {
 
 // MARK: - TopNavigationBarDelegate
 
-extension LearnContentItemCoordinator: TopNavigationBarDelegate {
+extension LearnContentItemCoordinator: NavigationItemDelegate {
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismiss(animated: true, completion: nil)
         if AppCoordinator.currentStatusBarStyle != nil {
             AppCoordinator.updateStatusBarStyleIfNeeded()
@@ -127,7 +116,7 @@ extension LearnContentItemCoordinator: TopNavigationBarDelegate {
         }
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
         guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else {
             return
         }
@@ -135,7 +124,7 @@ extension LearnContentItemCoordinator: TopNavigationBarDelegate {
         pageViewController.setPageIndex(index, animated: true)
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         log("did select book mark")
     }
 }
@@ -200,9 +189,7 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
 extension LearnContentItemCoordinator: PageViewControllerDelegate {
 
     func pageViewController(_ controller: UIPageViewController, didSelectPageIndex index: Int) {
-        guard let navigationController = controller.navigationController, let topNavigationBar = navigationController.navigationBar as? TopNavigationBar else {
-            return
-        }
-        topNavigationBar.setIndicatorToButtonIndex(index)
+        guard let navItem = controller.navigationItem as? NavigationItem else { return }
+        navItem.setIndicatorToButtonIndex(index)
     }
 }

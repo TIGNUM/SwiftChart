@@ -349,9 +349,9 @@ extension AppCoordinator {
     }
 }
 
-extension AppCoordinator: TopNavigationBarDelegate {
+extension AppCoordinator: NavigationItemDelegate {
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController?.dismiss(animated: true) {
             self.windowManager.resignWindow(atLevel: .priority)
         }
@@ -359,15 +359,12 @@ extension AppCoordinator: TopNavigationBarDelegate {
         AppCoordinator.updateStatusBarStyleIfNeeded()
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar,
-                          middleButtonPressed button: UIButton,
-                          withIndex index: Int,
-                          ofTotal total: Int) {
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
         guard let pageViewController = topTabBarController?.viewControllers.first as? PageViewController else { return }
         pageViewController.setPageIndex(index, animated: true)
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         log("did select book mark")
     }
 }
@@ -636,9 +633,9 @@ extension AppCoordinator {
             case coach
             case myPrep
 
-            var index: Index {
+            var index: Index? {
                 switch self {
-                case .guide: return 0
+                case .guide: return nil
                 case .strategies: return 0
                 case .whatsHot: return 1
                 case .myData: return 0
@@ -646,15 +643,6 @@ extension AppCoordinator {
                 case .coach: return 0
                 case .myPrep: return 1
                 }
-            }
-
-            func middleButton(_ topNavigationBar: TopNavigationBar?) -> UIButton? {
-                if self == .guide { return nil }
-                return (topNavigationBar?.middleButtons?.filter { $0.tag == index })?.first
-            }
-
-            func topNavigationBar(_ tabBarCoordinator: TabBarCoordinator?) -> TopNavigationBar? {
-                return (tabBarCoordinator?.topTabBarControllerPrepare.navigationBar as? TopNavigationBar)
             }
         }
     }
@@ -751,25 +739,19 @@ extension AppCoordinator {
 
         guard let viewControllers = tabBarController.viewControllers else { return }
         let tabBarIndex = destination.tabBar.rawValue
-        let topTabBarIndex = destination.topTabBar.index
         tabBarController.selectedViewController = viewControllers[tabBarIndex]
 
         if let destinationViewController = tabBarController.selectedViewController {
             tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
             currentPresentedController = tabBarController.selectedViewController
-        }
 
-        if
-            let topNavigationBar = destination.topTabBar.topNavigationBar(tabBarCoordinator),
-            let middleButton = destination.topTabBar.middleButton(topNavigationBar) {
-            tabBarCoordinator?.topNavigationBar(topNavigationBar,
-                                                middleButtonPressed: middleButton,
-                                                withIndex: topTabBarIndex,
-                                                ofTotal: 2)
-            topNavigationBar.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
-            topNavigationBar.setIndicatorToButton(middleButton, animated: true)
-            topNavigationBar.setIsSelected(middleButton)
-            currentPresentedController = tabBarController.selectedViewController
+            if let topTabBarIndex = destination.topTabBar.index,
+                let navigationItem = destinationViewController.navigationItem as? NavigationItem {
+                tabBarController.tabBarController(tabBarController, didSelect: destinationViewController)
+                tabBarCoordinator?.navigationItem(navigationItem, middleButtonPressedAtIndex: topTabBarIndex, ofTotal: 2)
+                navigationItem.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
+                currentPresentedController = tabBarController.selectedViewController
+            }
         }
     }
 

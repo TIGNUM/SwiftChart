@@ -12,8 +12,9 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyUniverseViewController" customModule="QOT" customModuleProvider="target">
             <connections>
+                <outlet property="navBar" destination="e6W-4G-Rh6" id="Fka-5w-Q0P"/>
+                <outlet property="navItem" destination="qog-FT-IFL" id="afF-wf-6Dw"/>
                 <outlet property="scrollView" destination="ymA-DW-uuH" id="f0q-ce-kHW"/>
-                <outlet property="topBar" destination="e6W-4G-Rh6" id="6KQ-R5-e8Y"/>
                 <outlet property="view" destination="sGc-Zi-A5C" id="jr1-hW-tbG"/>
             </connections>
         </placeholder>
@@ -28,10 +29,11 @@
                         <outlet property="delegate" destination="-1" id="PxT-72-nRx"/>
                     </connections>
                 </scrollView>
-                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6W-4G-Rh6" customClass="TopNavigationBar" customModule="QOT" customModuleProvider="target">
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e6W-4G-Rh6">
                     <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <items>
-                        <navigationItem id="qog-FT-IFL"/>
+                        <navigationItem id="qog-FT-IFL" customClass="NavigationItem" customModule="QOT" customModuleProvider="target"/>
                     </items>
                 </navigationBar>
             </subviews>

@@ -111,14 +111,14 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
 
 // MARK: - TopNavigationBarDelegate
 
-extension SidebarCoordinator: TopNavigationBarDelegate {
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+extension SidebarCoordinator: NavigationItemDelegate {
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         topTabBarController?.dismiss(animated: true, completion: nil)
         removeChild(child: self)
     }

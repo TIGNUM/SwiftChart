@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,20 +22,20 @@
                     <view clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQf-uA-Ojo" userLabel="Container">
                         <rect key="frame" x="28" y="0.0" width="319" height="555"/>
                         <subviews>
-                            <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLD-e2-afr" userLabel="Container">
-                                <rect key="frame" x="0.0" y="20" width="319" height="440"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLD-e2-afr" userLabel="Container">
+                                <rect key="frame" x="0.0" y="20" width="319" height="395"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="onboarding_prompt_circles" translatesAutoresizingMaskIntoConstraints="NO" id="cor-ZY-udV">
-                                        <rect key="frame" x="10" y="66.5" width="298" height="307"/>
+                                        <rect key="frame" x="10" y="44" width="298" height="307"/>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJm-bH-pdT">
-                                        <rect key="frame" x="83" y="242.5" width="154" height="21"/>
+                                        <rect key="frame" x="83" y="220" width="154" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Rx-6f-x90">
-                                        <rect key="frame" x="82.5" y="209.5" width="154" height="21"/>
+                                        <rect key="frame" x="82.5" y="187" width="154" height="21"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="154" id="C7C-na-pmO"/>
                                         </constraints>
@@ -47,8 +47,10 @@
                                 <constraints>
                                     <constraint firstItem="8Rx-6f-x90" firstAttribute="centerX" secondItem="FLD-e2-afr" secondAttribute="centerX" id="3DR-go-vFr"/>
                                     <constraint firstItem="bJm-bH-pdT" firstAttribute="centerX" secondItem="FLD-e2-afr" secondAttribute="centerX" id="9xe-R7-lmR"/>
-                                    <constraint firstItem="8Rx-6f-x90" firstAttribute="centerY" secondItem="FLD-e2-afr" secondAttribute="centerY" id="Iw3-oP-pwp"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="bJm-bH-pdT" secondAttribute="bottom" constant="10" id="AaI-1k-zNo"/>
+                                    <constraint firstItem="8Rx-6f-x90" firstAttribute="centerY" secondItem="FLD-e2-afr" secondAttribute="centerY" priority="500" id="Iw3-oP-pwp"/>
                                     <constraint firstItem="bJm-bH-pdT" firstAttribute="width" secondItem="8Rx-6f-x90" secondAttribute="width" id="R5E-c2-5lS"/>
+                                    <constraint firstItem="8Rx-6f-x90" firstAttribute="top" relation="greaterThanOrEqual" secondItem="FLD-e2-afr" secondAttribute="top" constant="10" id="RcL-6g-oPf"/>
                                     <constraint firstItem="cor-ZY-udV" firstAttribute="centerX" secondItem="FLD-e2-afr" secondAttribute="centerX" id="iAa-Nj-jwu"/>
                                     <constraint firstItem="bJm-bH-pdT" firstAttribute="top" secondItem="8Rx-6f-x90" secondAttribute="bottom" constant="12" id="oqZ-Ay-fNU"/>
                                     <constraint firstItem="cor-ZY-udV" firstAttribute="centerY" secondItem="FLD-e2-afr" secondAttribute="centerY" id="pl5-jy-f8P"/>
@@ -59,6 +61,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Umm-vN-DP4"/>
                                 </constraints>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <state key="normal" title="More"/>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OQc-XI-dcx">
@@ -66,6 +69,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="45" id="Rur-MW-AOd"/>
                                 </constraints>
+                                <inset key="titleEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                 <state key="normal" title="Start"/>
                             </button>
                         </subviews>
@@ -77,7 +81,7 @@
                             <constraint firstItem="FLD-e2-afr" firstAttribute="top" secondItem="pgj-TO-Bgp" secondAttribute="top" id="Nbc-bH-yeV"/>
                             <constraint firstItem="HxB-fi-OU3" firstAttribute="leading" secondItem="OQc-XI-dcx" secondAttribute="leading" id="UAe-Q3-Dc3"/>
                             <constraint firstItem="HxB-fi-OU3" firstAttribute="leading" secondItem="pgj-TO-Bgp" secondAttribute="leading" constant="38" id="VEf-pK-Wtv"/>
-                            <constraint firstItem="OQc-XI-dcx" firstAttribute="bottom" secondItem="FLD-e2-afr" secondAttribute="bottom" id="XsS-RB-Wx1"/>
+                            <constraint firstItem="OQc-XI-dcx" firstAttribute="top" secondItem="FLD-e2-afr" secondAttribute="bottom" id="XsS-RB-Wx1"/>
                             <constraint firstItem="HxB-fi-OU3" firstAttribute="trailing" secondItem="OQc-XI-dcx" secondAttribute="trailing" id="vOy-j5-jMv"/>
                             <constraint firstItem="HxB-fi-OU3" firstAttribute="top" secondItem="OQc-XI-dcx" secondAttribute="bottom" constant="16" id="xc7-tm-ktH"/>
                             <constraint firstItem="pgj-TO-Bgp" firstAttribute="bottom" secondItem="HxB-fi-OU3" secondAttribute="bottom" constant="34" id="z7q-Ot-Ebs"/>

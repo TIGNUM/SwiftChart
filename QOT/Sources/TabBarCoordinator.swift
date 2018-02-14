@@ -1,4 +1,4 @@
-//
+ //
 //  TabBarCoordinator.swift
 //  QOT
 //
@@ -109,8 +109,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         config.title = R.string.localized.tabBarItemLearn()
         config.tag = 1
         topTabBarController.tabBarItem = TabBarItem(config: config)
-        guard let whatsHotButton = topTabBarController.button(at: 1) else {
-            assertionFailure("expected what's hot button")
+        guard let whatsHotButton = topTabBarController.middleButton(at: 1) else {
+//            assertionFailure("expected what's hot button")
             return topTabBarController
         }
         whatsHotBadgeManager.whatsHotButton = whatsHotButton
@@ -324,12 +324,12 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapLeftBarButtonItem buttonItem: UIBarButtonItem, in topNavigationBar: TopNavigationBar) {
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapLeftBarButtonItem buttonItem: UIBarButtonItem, in topnavigationBar: NavigationItem) {
         showHelp(.me)
     }
 
-    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapRightBarButtonItem buttonItem: UIBarButtonItem, in topNavigationBar: TopNavigationBar) {
-        self.topNavigationBar(topNavigationBar, rightButtonPressed: buttonItem)
+    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapRightBarButtonItem buttonItem: UIBarButtonItem, in topnavigationBar: NavigationItem) {
+        self.navigationItem(topnavigationBar, rightButtonPressed: buttonItem)
     }
 }
 
@@ -360,9 +360,9 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 
 // MARK: - TopNavigationBarDelegate
 
-extension TabBarCoordinator: TopNavigationBarDelegate {
+extension TabBarCoordinator: NavigationItemDelegate {
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         switch selectedIndex.value {
         case 0:
             showHelp(.guide)
@@ -375,7 +375,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
         }
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
         guard
             let navigationController = tabBarController.viewControllers?[selectedIndex.value] as? UINavigationController,
             let pageViewController = navigationController.viewControllers.first as? PageViewController else {
@@ -385,7 +385,7 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
         pageViewController.setPageIndex(index, animated: true)
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         let coordinator = SidebarCoordinator(root: tabBarController,
                                              services: services,
                                              syncManager: syncManager,
@@ -401,13 +401,8 @@ extension TabBarCoordinator: TopNavigationBarDelegate {
 extension TabBarCoordinator: PageViewControllerDelegate {
 
     func pageViewController(_ controller: UIPageViewController, didSelectPageIndex index: Int) {
-        guard
-            let navigationController = controller.navigationController,
-            let topNavigationBar = navigationController.navigationBar as? TopNavigationBar else {
-                return
-        }
-
-        topNavigationBar.setIndicatorToButtonIndex(index)
+        guard let navItem = controller.navigationItem as? NavigationItem else { return }
+        navItem.setIndicatorToButtonIndex(index)
 
         if selectedIndex.value == 0 && index == 1 {
             whatsHotBadgeManager.didScrollToWhatsHotPage()

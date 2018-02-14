@@ -137,7 +137,7 @@
 		7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */; };
 		7FE38DC11F28D2940061E98F /* PassthroughView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DC01F28D2940061E98F /* PassthroughView.swift */; };
 		7FE38DC71F2A14160061E98F /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DC61F2A14160061E98F /* PageViewController.swift */; };
-		7FE38DCF1F2A48480061E98F /* TopNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DCE1F2A48480061E98F /* TopNavigationBar.swift */; };
+		7FE38DCF1F2A48480061E98F /* NavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DCE1F2A48480061E98F /* NavigationItem.swift */; };
 		7FE38DD31F2B2E230061E98F /* UINavigationController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DD21F2B2E230061E98F /* UINavigationController+Convenience.swift */; };
 		7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */; };
 		7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */; };
@@ -681,7 +681,7 @@
 		7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WaitBlockOperation.swift; sourceTree = "<group>"; };
 		7FE38DC01F28D2940061E98F /* PassthroughView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PassthroughView.swift; sourceTree = "<group>"; };
 		7FE38DC61F2A14160061E98F /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
-		7FE38DCE1F2A48480061E98F /* TopNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopNavigationBar.swift; sourceTree = "<group>"; };
+		7FE38DCE1F2A48480061E98F /* NavigationItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NavigationItem.swift; sourceTree = "<group>"; };
 		7FE38DD21F2B2E230061E98F /* UINavigationController+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationController+Convenience.swift"; sourceTree = "<group>"; };
 		7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIBarButtonItem+Convenience.swift"; sourceTree = "<group>"; };
 		7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UINavigationBar+Style.swift"; sourceTree = "<group>"; };
@@ -2230,7 +2230,7 @@
 				7FE38DC01F28D2940061E98F /* PassthroughView.swift */,
 				7F691C5D1F0D30C800E2C180 /* PlaceholderTextView.swift */,
 				D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */,
-				7FE38DCE1F2A48480061E98F /* TopNavigationBar.swift */,
+				7FE38DCE1F2A48480061E98F /* NavigationItem.swift */,
 				7F1711EC1FB3161C00ED08D8 /* Badge.swift */,
 				7F3277941FB4B22E00C7717C /* BlurLoadingView.swift */,
 				7F708E9F1FBAFAF8008A3856 /* FullScreenLoadable.swift */,
@@ -3418,7 +3418,7 @@
 				D5485F261ED583BC00A08D1A /* SearchTableCell.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* StatisticsService.swift in Sources */,
 				CB34376B1EFE799D00D89D4F /* ContentCategory+Convenience.swift in Sources */,
-				7FE38DCF1F2A48480061E98F /* TopNavigationBar.swift in Sources */,
+				7FE38DCF1F2A48480061E98F /* NavigationItem.swift in Sources */,
 				7F3A9CCE1FCEFF05000F1744 /* MyUniverseProvider.swift in Sources */,
 				7FDFF3691F18FF0B00F7A7EC /* NotificationTokenHandler.swift in Sources */,
 				CBB017B41F96084A00CC1048 /* Syncable.swift in Sources */,

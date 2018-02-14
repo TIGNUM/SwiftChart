@@ -22,11 +22,11 @@ protocol MyUniverseViewControllerDelegate: class {
 
     func myUniverseViewController(_ viewController: MyUniverseViewController,
                                   didTapLeftBarButtonItem buttonItem: UIBarButtonItem,
-                                  in topNavigationBar: TopNavigationBar)
+                                  in topnavigationBar: NavigationItem)
 
     func myUniverseViewController(_ viewController: MyUniverseViewController,
                                   didTapRightBarButtonItem buttonItem: UIBarButtonItem,
-                                  in topNavigationBar: TopNavigationBar)
+                                  in topnavigationBar: NavigationItem)
 }
 
 extension MyUniverseViewController {
@@ -72,7 +72,8 @@ extension MyUniverseViewController {
 
 final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
-    @IBOutlet private weak var topBar: TopNavigationBar!
+    @IBOutlet private weak var navBar: UINavigationBar! // FIXME: Remove nav bar from xib and place self in UINavigationController
+    @IBOutlet private weak var navItem: NavigationItem!
     @IBOutlet private weak var scrollView: UIScrollView!
     private var config: Config
     private let pageTracker: PageTracker
@@ -203,10 +204,12 @@ private extension MyUniverseViewController {
         contentView.visionTypeLabel.text = config.myToBeVisionTitle
 
         // top bar
-        topBar.topNavigationBarDelegate = self
-        topBar.setMiddleButtons(config.pages.map { button(with: $0.pageTitle) })
-        topBar.setLeftButton(UIBarButtonItem.info)
-        topBar.setRightButton(UIBarButtonItem(withImage: R.image.ic_menu()))
+        navBar.applyDefaultStyle()
+        navItem.delegate = self
+        navItem.configure(leftButton: UIBarButtonItem.info,
+                          rightButton: UIBarButtonItem(withImage: R.image.ic_menu()),
+                          tabTitles: config.pages.map { $0.pageTitle },
+                          style: .dark)
     }
 
     func setupScrollViewContent() {
@@ -228,16 +231,6 @@ private extension MyUniverseViewController {
             contentView.frame = frame
             contentView.layoutIfNeeded()
         }
-    }
-
-    func button(with title: String) -> UIButton {
-        let button = UIButton(type: .custom)
-        button.setTitle(title, for: .normal)
-        button.setTitleColor(.white, for: .selected)
-        button.setTitleColor(.gray, for: .normal)
-        button.titleLabel?.font = Font.H5SecondaryHeadline
-        button.backgroundColor = .clear
-        return button
     }
 
     func scrollToPageNumber(_ number: Int, animated: Bool) {
@@ -319,7 +312,7 @@ extension MyUniverseViewController: UIScrollViewDelegate {
     }
 
     func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        topBar.setIndicatorToButtonIndex(pageNumber)
+        navItem.setIndicatorToButtonIndex(pageNumber)
         pageTracker.track(self)
     }
 
@@ -330,20 +323,18 @@ extension MyUniverseViewController: UIScrollViewDelegate {
 
 // MARK: - TopNavigationBarDelegate
 
-extension MyUniverseViewController: TopNavigationBarDelegate {
+extension MyUniverseViewController: NavigationItemDelegate {
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
-        delegate?.myUniverseViewController(self, didTapLeftBarButtonItem: button, in: navigationBar)
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
+        delegate?.myUniverseViewController(self, didTapLeftBarButtonItem: button, in: navigationItem)
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar,
-                          middleButtonPressed button: UIButton,
-                          withIndex index: Int, ofTotal total: Int) {
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
         scrollToPageNumber(index, animated: true)
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
-        delegate?.myUniverseViewController(self, didTapRightBarButtonItem: button, in: navigationBar)
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
+        delegate?.myUniverseViewController(self, didTapRightBarButtonItem: button, in: navigationItem)
     }
 }
 

@@ -20,6 +20,7 @@ final class ChartViewController: UIViewController {
 
     // MARK: - Properties
 
+    private let topPadding: CGFloat = 20
     private let viewModel: ChartViewModel
     private var pageControls = [PageControl]()
     private let headerHeight: CGFloat = 20
@@ -27,6 +28,7 @@ final class ChartViewController: UIViewController {
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped,
+                           contentInsets: .zero,
                            delegate: self,
                            dataSource: self,
                            dequeables: ChartTableViewCell.self)
@@ -59,6 +61,19 @@ final class ChartViewController: UIViewController {
         chartViews.keys.forEach { chartViews[$0] = nil }
         tableView.reloadData()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        configureContentInset(inset: UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0), scrollView: tableView)
+    }
+
+    @available(iOS 11.0, *)
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+
+        configureContentInset(inset: UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0), scrollView: tableView)
+    }
 }
 
 // MARK: - Private
@@ -69,14 +84,7 @@ private extension ChartViewController {
         view.addSubview(tableView)
         view.setFadeMask(at: .top)
 
-        if #available(iOS 11.0, *) {
-            tableView.edgeAnchors == view.edgeAnchors
-        } else {
-            tableView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.paddingTop
-            tableView.bottomAnchor == view.bottomAnchor
-            tableView.leadingAnchor == view.leadingAnchor
-            tableView.trailingAnchor == view.trailingAnchor
-        }
+        tableView.edgeAnchors == view.edgeAnchors
     }
 
     func createPageControls() {
@@ -88,6 +96,11 @@ private extension ChartViewController {
             pageControl.size(forNumberOfPages: sectionType.chartTypes.count)
             pageControls.append(pageControl)
         }
+    }
+
+    func cellHeight() -> CGFloat {
+        return ((view.frame.width - ChartViewModel.chartViewPadding) * ChartViewModel.chartRatio) +
+            ChartViewModel.chartCellOffset
     }
 }
 
@@ -104,8 +117,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return ((view.frame.width - ChartViewModel.chartViewPadding) * ChartViewModel.chartRatio) +
-            ChartViewModel.chartCellOffset
+        return cellHeight()
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -180,22 +192,17 @@ extension ChartViewController: UIScrollViewDelegate {
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,
                                    withVelocity velocity: CGPoint,
                                    targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        enum ScrollDirection {
-            case up
-            case stationary
-            case down
-        }
-        let cellHeight = ChartViewModel.chartCellSize(frameWidth: view.frame.width).height + headerHeight + footerHeight
-        let originalTargetPage = targetContentOffset.pointee.y / cellHeight
-        let scrollDirection: ScrollDirection = (velocity.y < 0) ? .up : (velocity.y > 0) ? .down : .stationary
-        let targetPage: Int
-        switch scrollDirection {
-        case .stationary: targetPage = Int(round(originalTargetPage))
-        case .up: targetPage = Int(floor(originalTargetPage))
-        case .down: targetPage = Int(ceil(originalTargetPage))
-        }
+        let targetPage = max(0, round(page(offset: targetContentOffset.pointee)))
+        let y = (targetPage * pageHeight()) - tableView.contentInset.top
+        targetContentOffset.pointee.y = y
+    }
 
-        targetContentOffset.pointee.y = (CGFloat(targetPage) * cellHeight) - (tableView.contentInset.top + headerHeight)
+    func page(offset: CGPoint) -> CGFloat {
+        return (offset.y + tableView.contentInset.top) / pageHeight()
+    }
+
+    private func pageHeight() -> CGFloat {
+        return cellHeight() + headerHeight + footerHeight
     }
 }
 

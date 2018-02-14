@@ -124,5 +124,7 @@ private extension UIButton {
                                                  textColor: color,
                                                  alignment: .center)
         setAttributedTitle(attributedTitle, for: .normal)
+        titleLabel?.adjustsFontSizeToFitWidth = true
+        titleLabel?.minimumScaleFactor = 0.5
     }
 }

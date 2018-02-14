@@ -42,7 +42,12 @@ final class PageViewController: UIPageViewController {
     private var headerViewTopConstraint: NSLayoutConstraint?
     private var direction: UIPageViewControllerNavigationDirection
     private var isPaging: Bool
+    private let navItem: NavigationItem
     weak var pageDelegate: PageViewControllerDelegate?
+
+    override var navigationItem: UINavigationItem {
+        return navItem
+    }
 
     var currentPage: UIViewController? {
         guard let data = data, currentPageIndex >= data.startIndex, currentPageIndex < data.endIndex else {
@@ -56,37 +61,38 @@ final class PageViewController: UIPageViewController {
          pageDelegate: PageViewControllerDelegate?,
          transitionStyle style: UIPageViewControllerTransitionStyle,
          navigationOrientation: UIPageViewControllerNavigationOrientation,
-         options: [String: Any]? = nil) {
-            self.headerView = headerView
-            backgroundImageView = UIImageView(image: backgroundImage)
-            self.pageDelegate = pageDelegate
-            currentPageIndex = 0
-            direction = .forward
-            isPaging = false
+         options: [String: Any]? = nil,
+         navigationItem: NavigationItem) {
+        self.headerView = headerView
+        self.backgroundImageView = UIImageView(image: backgroundImage)
+        self.pageDelegate = pageDelegate
+        self.currentPageIndex = 0
+        self.direction = .forward
+        self.isPaging = false
+        self.navItem = navigationItem
+        super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
 
-            super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
+        delegate = self
+        dataSource = self
 
-            delegate = self
-            dataSource = self
-
-            if let headerView = headerView {
-                // @warning moved here instead of viewDidLoad - in iOS11, the first page loads before PageViewController viewDidLoad called, which causes `pageDidLoad(_ controller: UIViewController, scrollView: UIScrollView)` to be executed before `headerView` is laid out, messing up the top inset calculation. Perhaps here is the best place to accomodate the edge case, but it feels somewhat unsafe to add constraints before the view has loaded
-                edgesForExtendedLayout = []
-                view.addSubview(headerView)
-                headerViewTopConstraint = NSLayoutConstraint(
-                    item: headerView,
-                    attribute: .top,
-                    relatedBy: .equal,
-                    toItem: view,
-                    attribute: .top,
-                    multiplier: 1.0,
-                    constant: 0.0
-                )
-                view.addConstraint(headerViewTopConstraint!)
-                headerView.leftAnchor == view.leftAnchor
-                headerView.rightAnchor == (view.rightAnchor - 10.0)
-                headerView.layoutIfNeeded()
-            }
+        if let headerView = headerView {
+            // @warning moved here instead of viewDidLoad - in iOS11, the first page loads before PageViewController viewDidLoad called, which causes `pageDidLoad(_ controller: UIViewController, scrollView: UIScrollView)` to be executed before `headerView` is laid out, messing up the top inset calculation. Perhaps here is the best place to accomodate the edge case, but it feels somewhat unsafe to add constraints before the view has loaded
+            edgesForExtendedLayout = []
+            view.addSubview(headerView)
+            headerViewTopConstraint = NSLayoutConstraint(
+                item: headerView,
+                attribute: .top,
+                relatedBy: .equal,
+                toItem: view,
+                attribute: .top,
+                multiplier: 1.0,
+                constant: 0.0
+            )
+            view.addConstraint(headerViewTopConstraint!)
+            headerView.leftAnchor == view.leftAnchor
+            headerView.rightAnchor == (view.rightAnchor - 10.0)
+            headerView.layoutIfNeeded()
+        }
     }
 
     override func viewDidLoad() {
@@ -118,6 +124,8 @@ final class PageViewController: UIPageViewController {
     }
 
     func setPageIndex(_ pageIndex: Int, animated: Bool) {
+        print(self.delegate)
+
         guard let data = data, pageIndex >= data.startIndex, pageIndex < data.endIndex else { return }
         let page = data[pageIndex]
         setViewControllers([page], direction: (pageIndex < currentPageIndex) ? .reverse : .forward, animated: animated, completion: nil)

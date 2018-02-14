@@ -42,7 +42,8 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
             statisticsViewController.title = R.string.localized.meMyStatisticsNavigationBarTitle()
             topTabBarController = UINavigationController(withPages: [statisticsViewController],
                                                          topBarDelegate: self,
-                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
+                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_minimize())
+            )
             topTabBarController.modalPresentationStyle = .custom
             topTabBarController.transitioningDelegate = transitioningDelegate
             rootViewController.present(topTabBarController, animated: true)
@@ -54,15 +55,15 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
 
 // MARK: - TopNavigationBarDelegate
 
-extension StatisticsCoordinator: TopNavigationBarDelegate {
+extension StatisticsCoordinator: NavigationItemDelegate {
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismiss(animated: true, completion: nil)
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
     }
 }

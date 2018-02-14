@@ -28,7 +28,7 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
     init(root: UIViewController,
          services: Services,
          transitioningDelegate: UIViewControllerTransitioningDelegate?,
-         topBarDelegate: TopNavigationBarDelegate?) {
+         topBarDelegate: NavigationItemDelegate?) {
         self.rootViewController = root
         self.services = services
         self.transitioningDelegate = transitioningDelegate
@@ -77,16 +77,16 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
 
 // MARK: - TopNavigationBarDelegate
 
-extension WeeklyChoicesCoordinator: TopNavigationBarDelegate {
+extension WeeklyChoicesCoordinator: NavigationItemDelegate {
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         weeklyChoicesViewController.dismiss(animated: true, completion: nil)
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         launchHandler.weeklyChoiches { [unowned self] in
             self.weeklyChoicesViewController.viewData = self.provider.provideViewData()
         }

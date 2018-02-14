@@ -721,3 +721,12 @@ extension Comparable {
         return max(minimum, min(self, maximum))
     }
 }
+
+// MARK: - CGSize
+
+extension CGSize {
+
+    var ceiled: CGSize {
+        return CGSize(width: ceil(width), height: ceil(height))
+    }
+}

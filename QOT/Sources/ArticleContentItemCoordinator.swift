@@ -84,15 +84,15 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
 
 // MARK: - TopNavigationBarDelegate
 
-extension ArticleContentItemCoordinator: TopNavigationBarDelegate {
+extension ArticleContentItemCoordinator: NavigationItemDelegate {
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, leftButtonPressed button: UIBarButtonItem) {
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController?.dismiss(animated: true, completion: nil)
     }
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, middleButtonPressed button: UIButton, withIndex index: Int, ofTotal total: Int) {}
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {}
 
-    func topNavigationBar(_ navigationBar: TopNavigationBar, rightButtonPressed button: UIBarButtonItem) {}
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {}
 }
 
 // MARK: - ArticleItemViewControllerDelegate

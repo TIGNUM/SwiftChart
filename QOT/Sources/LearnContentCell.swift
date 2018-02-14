@@ -105,7 +105,7 @@ private extension LearnContentCell {
         indexLabel.bottomAnchor == titleLabel.topAnchor
 
         videoDurationLabel.leadingAnchor == titleLabel.leadingAnchor
-        videoDurationLabel.trailingAnchor == titleLabel.trailingAnchor
+        videoDurationLabel.trailingAnchor == titleLabel.trailingAnchor - 10
         videoDurationLabel.topAnchor == titleLabel.bottomAnchor + 4
         videoDurationLabel.heightAnchor == 14
     }
