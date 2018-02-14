@@ -69,7 +69,7 @@ final class AddSensorViewController: UIViewController {
         let label = UILabel()
         label.textColor = .white
         label.font = Font.H3Subtitle
-        label.addCharactersSpacing(spacing: 2, text: viewModel.heading, uppercased: true)
+        label.addCharactersSpacing(spacing: 2, text: viewModel.headLine ?? "", uppercased: true)
         label.numberOfLines = 0
 
         return label
@@ -78,7 +78,7 @@ final class AddSensorViewController: UIViewController {
     private lazy var textLabel: UILabel = {
         let label = UILabel()
         label.textColor = .white
-        label.setAttrText(text: viewModel.text, font: Font.DPText, alignment: .left, lineSpacing: 13)
+        label.setAttrText(text: viewModel.content ?? "", font: Font.DPText, alignment: .left, lineSpacing: 13)
         label.numberOfLines = 0
 
         return label

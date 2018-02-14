@@ -38,8 +38,7 @@ final class AddSensorViewModel {
 
     private let sensors: [Sensor] = [.fitbit, .requestDevice]
     private let userService: UserService
-    let heading = mockHeading()
-    let text = mockText()
+    private let sensorCollection: ContentCollection?
 
     var itemCount: Int {
         return sensors.count
@@ -49,12 +48,23 @@ final class AddSensorViewModel {
         return userService.fitbitState
     }
 
+    var headLine: String? {
+        guard let collection = sensorCollection else { return nil }
+        return Array(collection.articleItems).filter { $0.format == ContentItemTextStyle.h2.rawValue }.first?.valueText
+    }
+
+    var content: String? {
+        guard let collection = sensorCollection else { return nil }
+        return Array(collection.articleItems).filter { $0.format == ContentItemTextStyle.paragraph.rawValue }.first?.valueText
+    }
+
     func item(at index: Index) -> Sensor {
         return sensors[index]
     }
 
-    init(userService: UserService) {
+    init(userService: UserService, sensorCollection: ContentCollection?) {
         self.userService = userService
+        self.sensorCollection = sensorCollection
     }
 }
 
@@ -73,12 +83,4 @@ private extension UIColor {
 
         return image
     }
-}
-
-private func mockHeading() -> String {
-    return "SYNC YOUR WEARABLE"
-}
-
-private func mockText() -> String {
-    return "Connecting a wearable to QOT® will help enhance your awareness of how your current habits impact your Sustainable High Performance. We integrate your sleep quantity/quality, movement, and recovery data with subjective feedback that you provide to help you identify the habits and learnings you can leverage most to be at your best when you need to be. We recommend wearing the device during sprints (critical or predetermined periods). Using your wearable during these sprints will allow you to focus your awareness and limit your long-term dependence on your wearable. Your data is used for one purpose: maximizing your QOT®. Data security is our top priority. We will never share, sell, or license your personal information or data with third-parties, including your employer, marketers, consumer groups, etc. At QOT®, you Rule your Data."
 }

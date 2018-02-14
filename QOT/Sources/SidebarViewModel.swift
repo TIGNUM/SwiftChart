@@ -97,7 +97,7 @@ final class SidebarViewModel {
             case .library: return 0
             case .benefits: return 100101
             case .settings: return 0
-            case .sensor: return 0
+            case .sensor: return 100935
             case .placeholder: return 0
             case .about: return 100092
             case .privacy: return 100163
@@ -110,7 +110,7 @@ final class SidebarViewModel {
             case .library: return nil
             case .benefits: return service.contentCollection(id: primaryKey)
             case .settings: return nil
-            case .sensor: return nil
+            case .sensor: return service.contentCollection(id: primaryKey)
             case .placeholder: return nil
             case .about: return service.contentCollection(id: primaryKey)
             case .privacy: return service.contentCollection(id: primaryKey)

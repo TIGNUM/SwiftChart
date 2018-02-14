@@ -20,15 +20,19 @@ final class AddSensorCoordinator: ParentCoordinator {
     private let rootViewController: UIViewController
     private var webViewController: WebViewController?
     private let notificationHandler: NotificationHandler
+    private let sidebarViewModel: SidebarViewModel
     var children = [Coordinator]()
     let addSensorViewController: AddSensorViewController
 
     // MARK: - Init
 
     init(root: UIViewController, services: Services) {
+        self.sidebarViewModel = SidebarViewModel(services: services)
         self.rootViewController = root
         self.services = services
-        addSensorViewController = AddSensorViewController(viewModel: AddSensorViewModel(userService: services.userService))
+        let sensorCollection = sidebarViewModel.contentCollection(.sensor)
+        let sensorViewModel = AddSensorViewModel(userService: services.userService, sensorCollection: sensorCollection)
+        addSensorViewController = AddSensorViewController(viewModel: sensorViewModel)
         addSensorViewController.title = R.string.localized.sidebarTitleSensor().uppercased()
         notificationHandler = NotificationHandler(center: .default, name: .fitbitAccessTokenReceivedNotification)
         notificationHandler.handler = { [unowned self] notification in

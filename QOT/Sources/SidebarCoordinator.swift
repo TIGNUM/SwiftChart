@@ -17,6 +17,7 @@ final class SidebarCoordinator: ParentCoordinator {
     private let syncManager: SyncManager
     private let permissionsManager: PermissionsManager
     private let destination: AppCoordinator.Router.Destination?
+    private let sidebarViewModel: SidebarViewModel
     let sideBarViewController: SidebarViewController!
     var addSensorCoordinator: AddSensorCoordinator?
     var topTabBarController: UINavigationController?
@@ -36,8 +37,8 @@ final class SidebarCoordinator: ParentCoordinator {
         self.permissionsManager = permissionsManager
         self.destination = destination
 
-        let viewModel = SidebarViewModel(services: services)
-        sideBarViewController = SidebarViewController(viewModel: viewModel)
+        sidebarViewModel = SidebarViewModel(services: services)
+        sideBarViewController = SidebarViewController(viewModel: sidebarViewModel)
         topTabBarController = UINavigationController(withPages: [sideBarViewController],
                                                      topBarDelegate: self,
                                                      backgroundImage: R.image.sidebar(),

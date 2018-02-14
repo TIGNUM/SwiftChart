@@ -9,14 +9,17 @@
 #if BUILD_DATABASE
     import Foundation
     import RealmSwift
+    import Alamofire
 
     var databaseBuilder: DatabaseBuilder!
 
     extension AppDelegate {
         func __buildDatabase() {
             let realmProvider = BuilderRealmProvider()
+            let authenticator = Authenticator(sessionManager: SessionManager.default,
+                                              requestBuilder: URLRequestBuilder(deviceID: deviceID))
             databaseBuilder = DatabaseBuilder(
-                networkManager: NetworkManager(),
+                networkManager: NetworkManager(authenticator: authenticator),
                 syncRecordService: SyncRecordService(realmProvider: realmProvider),
                 realmProvider: realmProvider,
                 deviceID: deviceID
