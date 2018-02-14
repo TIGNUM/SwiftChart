@@ -34,7 +34,7 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
     private func setupCell() {
         backgroundColor = .clear
         let selectedBackground = UIView()
-        selectedBackground.backgroundColor = UIColor.black15
+        selectedBackground.backgroundColor = .black15
         self.selectedBackgroundView = selectedBackground
     }
 
@@ -45,7 +45,7 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
             string: header.uppercased(),
             letterSpacing: 2,
             font: Font.PTextSubtitle,
-            textColor: Color.whiteish
+            textColor: .white60
         )
         mainTextLabel.attributedText = NSMutableAttributedString(
             string: text.uppercased(),
@@ -57,8 +57,8 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
             string: footer.uppercased(),
             letterSpacing: 2,
             font: Font.PTextSubtitle,
-            textColor: Color.whiteLight,
-            lineBreakMode: NSLineBreakMode.byTruncatingTail
+            textColor: .white60,
+            lineBreakMode: .byTruncatingTail
         )
         prepCount.attributedText = NSMutableAttributedString(
             string: count,

@@ -253,7 +253,6 @@ extension Statistics {
                 }
             }
         }
-
         return trips
     }
 }
@@ -326,14 +325,10 @@ extension Statistics {
 extension Statistics {
 
     func color(value: Double) -> UIColor {
-        let color = thresholdColor(value: value)
-        switch color {
-        case .critical:
-            return .cherryRed
-        case .normal:
-            return .white90
-        case .low:
-            return .gray
+        switch thresholdColor(value: value) {
+        case .critical: return .cherryRed
+        case .normal: return .white90
+        case .low: return .gray
         }
     }
 
@@ -359,10 +354,7 @@ extension Statistics {
 
     func averageValue(average: Double) -> CGFloat {
         let average = min(average, maximum)
-        guard maximum > 0 else {
-            return 0
-        }
-
+        guard maximum > 0 else { return 0 }
         return average.toFloat / maximum.toFloat
     }
 

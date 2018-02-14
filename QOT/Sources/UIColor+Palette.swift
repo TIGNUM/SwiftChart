@@ -70,9 +70,19 @@ extension UIColor {
         return UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 1)
     }
 
+    /// UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.9)
+    class var cherryRed90: UIColor {
+        return UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.9)
+    }
+
+    /// UIColor(red: 1, green: 0, blue: 34/255, alpha: 0.2)
+    class var cherryRed20: UIColor {
+        return UIColor(red: 1, green: 0, blue: 34/255, alpha: 0.2)
+    }
+
     /// UIColor(red: 255/255, green: 0, blue: 38/255, alpha: 1)
     class var cherryRedTwo: UIColor {
-        return UIColor(red: 255/255, green: 0, blue: 38/255, alpha: 1)
+        return UIColor(red: 1, green: 0, blue: 38/255, alpha: 1)
     }
 
     /// UIColor(red: 3/255, green: 6/255, blue: 15/255, alpha: 1)

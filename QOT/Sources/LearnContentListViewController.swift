@@ -13,7 +13,9 @@ import Bond
 
 protocol LearnContentListViewControllerDelegate: class {
 
-    func didSelectContent(_ content: ContentCollection, category: ContentCategory, originFrame: CGRect, in viewController: LearnContentListViewController)
+    func didSelectContent(_ content: ContentCollection,
+                          category: ContentCategory,
+                          originFrame: CGRect, in viewController: LearnContentListViewController)
 
     func didTapBack(in viewController: LearnContentListViewController)
 }
@@ -29,7 +31,6 @@ final class LearnContentListViewController: UIViewController {
     private let disposeBag = DisposeBag()
     private lazy var collectionViewLayout = LearnStrategyListLayout()
     private var firstLaunch = true
-
     let viewModel: LearnContentCollectionViewModel
     var selectedCategoryIndex: Index
     weak var delegate: LearnContentListViewControllerDelegate?
@@ -61,9 +62,11 @@ final class LearnContentListViewController: UIViewController {
 
     private lazy var getBackButton: UIButton = {
         let viewFrame = self.view.bounds
-        let button = UIButton(frame: CGRect(x: 0, y: viewFrame.height - Layout.TabBarView.height, width: viewFrame.width, height: Layout.TabBarView.height))
+        let button = UIButton(frame: CGRect(x: 0, y: viewFrame.height - Layout.TabBarView.height,
+                                            width: viewFrame.width,
+                                            height: Layout.TabBarView.height))
         button.setTitle(R.string.localized.learnContentTapToGetBack(), for: .normal)
-        button.setTitleColor(Color.whiteMedium, for: .normal)
+        button.setTitleColor(.white40, for: .normal)
         button.titleLabel?.font = Font.H5SecondaryHeadline
         button.addTarget(self, action: #selector(didTapGetBack), for: .touchUpInside)
 

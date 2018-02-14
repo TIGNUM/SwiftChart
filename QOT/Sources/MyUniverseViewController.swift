@@ -244,10 +244,8 @@ private extension MyUniverseViewController {
         guard number < config.pages.count else { return }
         let offset: CGFloat
         switch number {
-        case 0:
-            offset = 0
-        case 1:
-            offset = config.pages[1].widthPercentage * scrollView.bounds.width
+        case 0: offset = 0
+        case 1: offset = config.pages[1].widthPercentage * scrollView.bounds.width
         default:
             assertionFailure("more than 2 pages is unhandled / untested / unexpected")
             offset = config.pages[1..<number].reduce(0, {
@@ -264,6 +262,9 @@ private extension MyUniverseViewController {
         let alpha = scrollView.contentOffset.x / (scrollView.contentSize.width - scrollView.bounds.width)
         let inverseAlpha = 1 - alpha
         let normalizedAlpha = max(inverseAlpha, 0.45)
+        contentView.visionLine.opacity = Float(alpha)
+        contentView.weeklyChoicesLine.opacity = Float(alpha)
+        contentView.partnersLine.opacity = Float(alpha)
         contentView.profileButtonOverlay.alpha = inverseAlpha
         contentView.visionWrapperView.alpha = alpha
         contentView.partnersWrapperView.alpha = alpha
