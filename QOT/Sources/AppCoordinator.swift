@@ -751,6 +751,12 @@ extension AppCoordinator {
                 tabBarCoordinator?.navigationItem(navigationItem, middleButtonPressedAtIndex: topTabBarIndex, ofTotal: 2)
                 navigationItem.setIndicatorToButtonIndex(topTabBarIndex, animated: true)
                 currentPresentedController = tabBarController.selectedViewController
+            } else if
+                let topTabBarIndex = destination.topTabBar.index,
+                let universeController = destinationViewController as? MyUniverseViewController {
+                    universeController.scrollToPageNumber(topTabBarIndex, animated: true)
+                    universeController.navItem.setIndicatorToButtonIndex(topTabBarIndex)
+                    pageTracker.track(universeController)
             }
         }
     }

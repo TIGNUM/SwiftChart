@@ -73,10 +73,10 @@ extension MyUniverseViewController {
 final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
     @IBOutlet private weak var navBar: UINavigationBar! // FIXME: Remove nav bar from xib and place self in UINavigationController
-    @IBOutlet private weak var navItem: NavigationItem!
     @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet weak var navItem: NavigationItem!
     private var config: Config
-    private let pageTracker: PageTracker
+    let pageTracker: PageTracker
     private var pageNumber: Int {
         var pageNumber = 0
         var pageOffset: CGFloat = 0
@@ -139,6 +139,24 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
         setupScrollViewContent()
         updateAlphaValues()
         contentView.setupMyData(for: viewData.sectors)
+    }
+
+    func scrollToPageNumber(_ number: Int, animated: Bool) {
+        guard number < config.pages.count else { return }
+        let offset: CGFloat
+        switch number {
+        case 0: offset = 0
+        case 1: offset = config.pages[1].widthPercentage * scrollView.bounds.width
+        default:
+            assertionFailure("more than 2 pages is unhandled / untested / unexpected")
+            offset = config.pages[1..<number].reduce(0, {
+                $0 + $1.widthPercentage * scrollView.bounds.width
+            })
+        }
+        scrollView.setContentOffset(CGPoint(
+            x: offset,
+            y: scrollView.contentOffset.y
+        ), animated: animated)
     }
 }
 
@@ -231,24 +249,6 @@ private extension MyUniverseViewController {
             contentView.frame = frame
             contentView.layoutIfNeeded()
         }
-    }
-
-    func scrollToPageNumber(_ number: Int, animated: Bool) {
-        guard number < config.pages.count else { return }
-        let offset: CGFloat
-        switch number {
-        case 0: offset = 0
-        case 1: offset = config.pages[1].widthPercentage * scrollView.bounds.width
-        default:
-            assertionFailure("more than 2 pages is unhandled / untested / unexpected")
-            offset = config.pages[1..<number].reduce(0, {
-                $0 + $1.widthPercentage * scrollView.bounds.width
-            })
-        }
-        scrollView.setContentOffset(CGPoint(
-            x: offset,
-            y: scrollView.contentOffset.y
-        ), animated: animated)
     }
 
     func updateAlphaValues() {
