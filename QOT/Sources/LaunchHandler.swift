@@ -148,6 +148,13 @@ extension LaunchHandler {
         let hud = MBProgressHUD.showAdded(to: window, animated: true, title: type.title, message: type.message)
         hud.hide(animated: true, afterDelay: 3.0)
     }
+
+    private func notificationIsCompleted(remotID: Int) throws -> Bool {
+        let realmProvider = RealmProvider()
+        let realm = try realmProvider.realm()
+        let type = RealmGuideItemNotification.self
+        return realm.syncableObject(ofType: type, remoteID: remotID)?.completedAt != nil
+    }
 }
 
 // MARK: - Morning Interview
@@ -157,13 +164,20 @@ extension LaunchHandler {
     func dailyPrep(groupID: String?, notificationID: String, guideItem: Guide.Item?) {
         let notiRemoteID = (try? GuideItemID(stringRepresentation: notificationID).remoteID) ?? Int(notificationID)
 
-        guard let group = groupID, let groupIDIntValue = Int(group), let notificationRemoteID = notiRemoteID else {
+        guard let group = groupID,
+            let groupIDIntValue = Int(group),
+            let notificationRemoteID = notiRemoteID,
+            let alreadyCompleted = try? notificationIsCompleted(remotID: notificationRemoteID) else {
             let groupIDString = groupID.debugDescription
             log("Cannot show daily prep - groupID: \(groupIDString) notificationID: \(notificationID)", level: .error)
             return
         }
-        let coordinator = appDelegate.appCoordinator
-        coordinator.presentMorningInterview(groupID: groupIDIntValue, notificationRemoteID: notificationRemoteID)
+        if alreadyCompleted == true {
+            navigate(to: URLScheme.guide.destination)
+        } else {
+            let coordinator = appDelegate.appCoordinator
+            coordinator.presentMorningInterview(groupID: groupIDIntValue, notificationRemoteID: notificationRemoteID)
+        }
     }
 }
 
