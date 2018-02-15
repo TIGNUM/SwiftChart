@@ -1,4 +1,4 @@
- //
+//
 //  TabBarCoordinator.swift
 //  QOT
 //
@@ -360,7 +360,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 
 // MARK: - TopNavigationBarDelegate
 
-extension TabBarCoordinator: NavigationItemDelegate {
+ extension TabBarCoordinator: NavigationItemDelegate {
 
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         switch selectedIndex.value {
@@ -403,9 +403,5 @@ extension TabBarCoordinator: PageViewControllerDelegate {
     func pageViewController(_ controller: UIPageViewController, didSelectPageIndex index: Int) {
         guard let navItem = controller.navigationItem as? NavigationItem else { return }
         navItem.setIndicatorToButtonIndex(index)
-
-        if selectedIndex.value == 0 && index == 1 {
-            whatsHotBadgeManager.didScrollToWhatsHotPage()
-        }
     }
 }

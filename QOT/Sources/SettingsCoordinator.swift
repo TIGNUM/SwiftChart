@@ -103,7 +103,8 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
             root: viewController,
             services: services,
             contentCollection: contentCollection,
-            topTabBarTitle: contentCollection?.title.uppercased(), backgroundImage: nil) else {
+            topTabBarTitle: contentCollection?.title.uppercased(),
+            backgroundImage: nil) else {
                 return
         }
 

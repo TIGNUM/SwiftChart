@@ -66,6 +66,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
         }
+        updateWhatsHotBadgeIfNeeded(content: contentCollection)
     }
 
     func start() {
@@ -79,6 +80,12 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         }
 
         // FIXME: Add page tracking
+    }
+
+    private func updateWhatsHotBadgeIfNeeded(content: ContentCollection?) {
+        if pageName == .whatsHotArticle && content?.items.isEmpty == false && content?.contentRead == nil {
+            UserDefault.newWhatsHotArticle.setBoolValue(value: false)
+        }
     }
 }
 

@@ -336,6 +336,7 @@ extension AppCoordinator {
     func logout() {
         permissionsManager.reset()
         credentialsManager.clear()
+        UserDefault.clearAllData()
         baseURL = URL(string: "https://esb.tignum.com")!
         do {
             syncManager.stop()
@@ -830,8 +831,7 @@ extension AppCoordinator {
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
             let content = services.contentService.whatsHotArticles().first else { return }
 
-        tabBarCoordinator?.didTapItem(articleHeader: ArticleCollectionHeader(content: content),
-                                      in: rootViewController)
+        tabBarCoordinator?.didTapItem(articleHeader: ArticleCollectionHeader(content: content), in: rootViewController)
     }
 
     func presentPreparationCheckList(localID: String) {
