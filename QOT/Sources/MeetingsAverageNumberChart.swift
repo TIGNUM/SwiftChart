@@ -52,13 +52,9 @@ private extension MeetingsAverageNumberChart {
     }
 
     func xPosition(_ index: Int) -> CGFloat {
-        guard labelContentView.subviews.count >= index else {
-            return 0
-        }
-
+        guard labelContentView.subviews.count >= index else { return 0 }
         let labelFrame = labelContentView.subviews[index].frame
-
-        return (labelFrame.origin.x + labelFrame.width * 0.5)
+        return labelFrame.origin.x + labelFrame.width * 0.5
     }
 
     func yPosition(_ value: CGFloat) -> CGFloat {
@@ -93,22 +89,7 @@ private extension MeetingsAverageNumberChart {
         addSubview(captionLabel)
     }
 
-    func updateLabelFrames() {
-        labelContentView.subviews.forEach { (subView: UIView) in
-            if subView is UILabel {
-                let frame = subView.frame
-                subView.sizeToFit()
-                let fittedFrame = subView.frame
-                subView.frame = CGRect(x: frame.origin.x + yAxisOffset,
-                                       y: frame.origin.y,
-                                       width: fittedFrame.width,
-                                       height: frame.height)
-            }
-        }
-    }
-
     func setupView() {
-        updateLabelFrames()
         addAverageLines()
 
         let maxValue = statistics.maximum.toFloat
@@ -123,7 +104,11 @@ private extension MeetingsAverageNumberChart {
         for (index, dataPoint) in statistics.dataPointObjects.enumerated() {
             let xPos = xPosition(index)
             let yPos = yPosition(dataPoint.percentageValue)
-            drawCapRoundLine(xPos: xPos, startYPos: bottomPosition, endYPos: yPos, strokeColor: dataPoint.color, hasShadow: hasShadow(dataPoint))
+            drawCapRoundLine(xPos: xPos,
+                             startYPos: bottomPosition,
+                             endYPos: yPos,
+                             strokeColor: dataPoint.color,
+                             hasShadow: hasShadow(dataPoint))
         }
     }
 

@@ -250,12 +250,12 @@ private extension ChartCell {
     }
 
     func setLabel(text: String,
-                          color: UIColor,
-                          label: UILabel,
-                          lineSpacing: CGFloat = 1,
-                          characterSpacing: CGFloat = 2,
-                          font: UIFont = Font.H7Tag,
-                          alignment: NSTextAlignment = .natural) {
+                  color: UIColor,
+                  label: UILabel,
+                  lineSpacing: CGFloat = 1,
+                  characterSpacing: CGFloat = 2,
+                  font: UIFont = Font.H7Tag,
+                  alignment: NSTextAlignment = .natural) {
         label.setAttrText(text: text,
                           font: font,
                           alignment: alignment,
