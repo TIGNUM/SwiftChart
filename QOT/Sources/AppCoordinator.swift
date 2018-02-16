@@ -835,10 +835,51 @@ extension AppCoordinator {
     }
 
     func presentPreparationCheckList(localID: String) {
-        if services != nil {
-            tabBarCoordinator?.showPreparationCheckList(localID: localID)
+        navigateDownToTabBar {
+            if self.services != nil {
+                self.tabBarCoordinator?.showPreparationCheckList(localID: localID)
+            } else {
+                self.checkListIDToPresent = localID
+            }
+        }
+    }
+
+    func navigateDownToTabBar(_ completion: (() -> Void)?) {
+        dismissCurrentPresentedControllers()
+        guard let topViewController = AppDelegate.topViewController() else { return }
+
+        if topViewController is TabBarController {
+            completion?()
+        } else if let pageViewController = topViewController as? PageViewController {
+            if pageViewController.tabBarController is TabBarController {
+                completion?()
+            } else {
+                pageViewController.viewControllers?.forEach { (viewController: UIViewController) in
+                    if windowManager.presentedViewController(atLevel: .priority) == viewController {
+                        dismiss(viewController, level: .priority) {
+                            self.navigateDownToTabBar(completion)
+                        }
+                    } else if windowManager.presentedViewController(atLevel: .normal) == viewController {
+                        dismiss(viewController, level: .normal) {
+                            self.navigateDownToTabBar(completion)
+                        }
+                    } else {
+                        viewController.dismiss(animated: true) {
+                            self.navigateDownToTabBar(completion)
+                        }
+                    }
+                }
+            }
+        } else if (topViewController as? MyUniverseViewController)?.parent is TabBarController {
+            completion?()
+        } else if (topViewController as? LearnCategoryListViewController)?.parent is TabBarController {
+            completion?()
+        } else if (topViewController as? GuideViewController)?.parent is TabBarController {
+            completion?()
         } else {
-            checkListIDToPresent = localID
+            topViewController.dismiss(animated: true) {
+                self.navigateDownToTabBar(completion)
+            }
         }
     }
 
