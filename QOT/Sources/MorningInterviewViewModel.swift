@@ -86,16 +86,17 @@ final class MorningInterviewViewModel: NSObject {
 
     func createUserAnswers() -> [UserAnswer] {
         var userAnswers = [UserAnswer]()
+        let notificationItem = services.guideService.notificationItem(remoteID: notificationRemoteID)
 
         questions.forEach { (question: InterviewQuestion) in
             let answer = question.currentAnswer
             guard let answerID = answer.remoteID else { return }
             let userAnswer = UserAnswer(questionID: question.remoteID,
-                                        questionGroupID: self.questionGroupID,
+                                        questionGroupID: questionGroupID,
                                         answerID: answerID,
                                         userAnswer: answer.title,
-                                        notificationID: notificationRemoteID
-            )
+                                        notificationID: notificationRemoteID,
+                                        notificationIssueDate: notificationItem?.issueDate ?? Date())
             userAnswers.append(userAnswer)
         }
         return userAnswers

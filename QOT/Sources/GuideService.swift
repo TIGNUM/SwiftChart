@@ -23,9 +23,14 @@ final class GuideService {
         return GuideService(realm: try realmProvider.realm(), realmProvider: realmProvider)
     }
 
-    func setNotificationItemComplete(remoteID: Int, date: Date) throws {
+    func notificationItem(remoteID: Int) -> RealmGuideItemNotification? {
         let type = RealmGuideItemNotification.self
-        guard let item = realm.syncableObject(ofType: type, remoteID: remoteID) else { return }
+        guard let item = realm.syncableObject(ofType: type, remoteID: remoteID) else { return nil }
+        return item
+    }
+
+    func setNotificationItemComplete(remoteID: Int, date: Date) throws {
+        guard let item = notificationItem(remoteID: remoteID) else { return }
 
         try realm.write {
             item.completedAt = date

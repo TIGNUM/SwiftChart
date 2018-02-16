@@ -53,7 +53,7 @@ extension LearnStrategyPlaylistAudioCell {
 
     func getAudioTitle() -> String {
         guard let title = titleLabel.text else { return "" }
-        
+
         return title
     }
 }

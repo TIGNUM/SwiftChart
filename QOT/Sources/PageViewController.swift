@@ -124,8 +124,6 @@ final class PageViewController: UIPageViewController {
     }
 
     func setPageIndex(_ pageIndex: Int, animated: Bool) {
-        print(self.delegate)
-
         guard let data = data, pageIndex >= data.startIndex, pageIndex < data.endIndex else { return }
         let page = data[pageIndex]
         setViewControllers([page], direction: (pageIndex < currentPageIndex) ? .reverse : .forward, animated: animated, completion: nil)
