@@ -1,9 +1,8 @@
 //
-//  ViewController.swift
-//  QOT
+//  MorningInterviewViewController.swift
 //
-//  Created by Aamir Suhial Mir on 6/28/17.
-//  Copyright © 2017 Tignum. All rights reserved.
+//  Created by Javier Sanz Rozalen on 15/12/2017.
+//  Copyright © 2017 Javier Sanz Rozalen. All rights reserved.
 //
 
 import UIKit
@@ -14,23 +13,23 @@ protocol MorningInterviewViewControllerDelegate: class {
     func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer], notificationRemoteID: Int)
 }
 
-final class MorningInterviewViewController: UIViewController {
-
-    // MARK: - Properties
+class MorningInterviewViewController: UIViewController {
 
     weak var delegate: MorningInterviewViewControllerDelegate?
     private var currentIndex: Int = 0
     private let viewModel: MorningInterviewViewModel
-    private let topView = UIView()
-    private let bottomView = UIView()
-    private var headerLabel = UILabel()
+    private var question: InterviewQuestion?
+    private var userAnswers: [UserAnswer]?
 
-    private lazy var blurView: UIVisualEffectView = {
-        var blurEffectView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
-        blurEffectView.frame = self.view.frame
-
-        return blurEffectView
-    }()
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var closeButton: UIButton!
+    @IBOutlet weak var previousButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
+    @IBOutlet weak var questionLabel: UILabel!
+    @IBOutlet weak var headerLabel: UILabel!
+    @IBOutlet weak var dialPlaceholder: UIView!
+    @IBOutlet weak var leftAnswerLabel: UILabel!
+    @IBOutlet weak var rightAnswerLabel: UILabel!
 
     private var isFirstPage: Bool {
         return currentIndex <= 0
@@ -40,87 +39,88 @@ final class MorningInterviewViewController: UIViewController {
         return currentIndex >= viewModel.questionsCount - 1
     }
 
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-
-        return UICollectionView(
-            layout: layout,
-            delegate: self,
-            dataSource: self,
-            dequeables: MorningInterviewCell.self
-        )
-    }()
-
-    private var nextButton: UIButton = {
-        let button = UIButton()
-        button.setTitle(R.string.localized.morningControllerNextButton(), for: UIControlState.normal)
-        button.titleLabel?.font = Font.DPText
-        button.addTarget(self, action: #selector(didTapNext(_:)), for: .touchUpInside)
-        button.setTitleColor(.white40, for: .normal)
-
-        return button
-    }()
-
-    private var leftButton: UIButton = {
-        let button = UIButton()
-        button.setImage(R.image.ic_back(), for: UIControlState.normal)
-        button.addTarget(self, action: #selector(didTapPrevious(_:)), for: .touchUpInside)
-        button.setTitleColor(.white, for: .normal)
-        button.isHidden = true
-
-        return button
-    }()
-
-    private var closeButton: UIButton = {
-        let button = UIButton()
-        button.setImage(R.image.ic_close(), for: UIControlState.normal)
-        button.addTarget(self, action: #selector(didTapClose(_:)), for: .touchUpInside)
-        button.setTitleColor(.white, for: .normal)
-
-        return button
-    }()
-
-    @objc func didTapNext(_ sender: UIButton) {
-        if isLastPage == true {
-            let userAnswers = viewModel.createUserAnswers()
-            try? viewModel.save(userAnswers: userAnswers)
-            delegate?.didTapClose(viewController: self, userAnswers: userAnswers, notificationRemoteID: viewModel.notificationRemoteID)
-        } else {
-            currentIndex += 1
-            syncViews(animated: true)
-        }
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        collectionView.registerDequeueable(MorningInterviewCell.self)
+        collectionView.isScrollEnabled = false
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        setupLayout()
+        syncViews()
     }
 
-    @objc func didTapPrevious(_ sender: UIButton) {
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+
+    init(viewModel: MorningInterviewViewModel) {
+        self.viewModel = viewModel
+
+        super.init(nibName: nil, bundle: nil)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    @IBAction func didTapClose(_ sender: UIButton) {
+        delegate?.didTapClose(viewController: self,
+                              userAnswers: [],
+                              notificationRemoteID: viewModel.notificationRemoteID)
+    }
+
+    @IBAction func didTapPrevious(_ sender: UIButton) {
         guard isFirstPage == false else {
             assertionFailure("Tried to go back from first page")
             return
         }
 
         currentIndex -= 1
-        syncViews(animated: true)
+        syncViews()
     }
 
-    @objc func didTapClose(_ sender: UIButton) {
-        delegate?.didTapClose(viewController: self, userAnswers: [], notificationRemoteID: viewModel.notificationRemoteID)
-    }
-
-    func syncViews(animated: Bool) {
-        scrollToCurrentQuestion(animated: animated)
-        updateHeaderLabel()
+    func syncViews() {
+        scrollToCurrentQuestion()
         updateButtons()
+        updateQuestion()
+        updateLabels()
     }
 
-    func scrollToCurrentQuestion(animated: Bool) {
-        let indexPath = IndexPath(item: currentIndex, section: 0)
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+    func scrollToCurrentQuestion() {
+        let index = IndexPath(item: currentIndex, section: 0)
+        collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
     }
 
-    func updateHeaderLabel() {
-        let text = R.string.localized.morningControllerTitleLabel()
+    @IBAction func didTapDone(_ sender: UIButton) {
+        if isLastPage == true {
+            userAnswers = viewModel.createUserAnswers()
+            if let answers = userAnswers {
+                try? viewModel.save(userAnswers: answers)
+                delegate?.didTapClose(viewController: self,
+                                      userAnswers: answers,
+                                      notificationRemoteID: viewModel.notificationRemoteID)
+            }
+        } else {
+            currentIndex += 1
+            syncViews()
+        }
+    }
+
+    func updateLabels() {
+        let headerLabelText = R.string.localized.morningControllerTitleLabel()
         let attributedTitle = NSMutableAttributedString(
-            string: text,
+            string: headerLabelText,
             letterSpacing: 1.1,
             font: Font.H5SecondaryHeadline,
             textColor: .white,
@@ -136,51 +136,23 @@ final class MorningInterviewViewController: UIViewController {
         )
         attributedTitle.append(progressTitle)
         headerLabel.attributedText = attributedTitle
-        headerLabel.textAlignment = .center
+        leftAnswerLabel.text = question?.answers.first?.subtitle
+        rightAnswerLabel.text = question?.answers.last?.subtitle
     }
 
     func updateButtons() {
-        let nextButtonTitle = isLastPage ? R.string.localized.morningControllerDoneButton() : R.string.localized.morningControllerNextButton()
-        nextButton.setTitle(nextButtonTitle, for: .normal)
-        leftButton.isHidden = currentIndex <= 0
+        let doneButtonTitle = isLastPage ? R.string.localized.morningControllerDoneButton() : R.string.localized.morningControllerNextButton()
+        doneButton.setTitle(doneButtonTitle, for: .normal)
+        previousButton.isHidden = isFirstPage
     }
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-        collectionView.isScrollEnabled = false
-        setupHierarchy()
-        setupLayout()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-
-        UIApplication.shared.statusBarStyle = .lightContent
-        syncViews(animated: false)
-    }
-
-    init(viewModel: MorningInterviewViewModel) {
-        self.viewModel = viewModel
-
-        super.init(nibName: nil, bundle: nil)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    func updateQuestion() {
+        question = viewModel.question(at: currentIndex)
+        questionLabel.text = question?.title
     }
 }
 
-extension MorningInterviewViewController: UICollectionViewDelegateFlowLayout {
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
-    }
-}
-
-// MARK: Public CollectionView data source
-
-extension MorningInterviewViewController: UICollectionViewDataSource {
+extension MorningInterviewViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return viewModel.questionsCount
@@ -189,56 +161,61 @@ extension MorningInterviewViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let question = viewModel.question(at: indexPath.item)
         let cell: MorningInterviewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(question: question)
+        cell.configure(centerLabelText: question.currentAnswer.subtitle ?? "")
+        cell.setSelected(index: question.answerIndex)
+        cell.indexDidChange = { [unowned cell] (index) in
+            question.answerIndex = index
+            cell.configure(centerLabelText: question.currentAnswer.subtitle ?? "")
+        }
         return cell
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return cellSize()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        return 0
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return sectionInsets()
+    }
+
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return sectionInsets().horizontal
+    }
+
+    private func sectionInsets() -> UIEdgeInsets {
+        let padding = floor((collectionView.bounds.width - cellSize().width) / 2)
+        return UIEdgeInsets(top: 0, left: padding, bottom: 0, right: padding)
+    }
+
+    private func cellSize() -> CGSize {
+        let length = floor(collectionView.bounds.height)
+        return CGSize(width: length, height: length)
     }
 }
 
 private extension MorningInterviewViewController {
 
-    func setupHierarchy() {
-        view.addSubview(blurView)
-        blurView.contentView.addSubview(topView)
-        topView.addSubview(leftButton)
-        topView.addSubview(closeButton)
-        topView.addSubview(headerLabel)
-        blurView.contentView.addSubview(collectionView)
-        blurView.contentView.addSubview(bottomView)
-        bottomView.addSubview(nextButton)
-    }
-
     func setupLayout() {
-        topView.topAnchor == view.safeTopAnchor + 24
-        topView.horizontalAnchors == view.horizontalAnchors
-        topView.heightAnchor == 30
-
-        leftButton.verticalAnchors == topView.verticalAnchors
-        leftButton.leftAnchor == topView.leftAnchor + 5
-        leftButton.widthAnchor == 36
-
-        headerLabel.leftAnchor == leftButton.rightAnchor
-        headerLabel.rightAnchor == closeButton.leftAnchor
-        headerLabel.verticalAnchors == topView.verticalAnchors
-
-        closeButton.verticalAnchors == topView.verticalAnchors
-        closeButton.rightAnchor == topView.rightAnchor
-        closeButton.widthAnchor == 36
-        closeButton.leftAnchor == headerLabel.rightAnchor
-
-        collectionView.topAnchor == topView.bottomAnchor
-        collectionView.horizontalAnchors == view.horizontalAnchors
-        collectionView.bottomAnchor == view.bottomAnchor - 69
-
-        bottomView.topAnchor == collectionView.bottomAnchor
-        bottomView.bottomAnchor == view.bottomAnchor
-        bottomView.leadingAnchor == view.leadingAnchor
-        bottomView.trailingAnchor == view.trailingAnchor
-
-        nextButton.leadingAnchor == bottomView.leadingAnchor
-        nextButton.trailingAnchor == bottomView.trailingAnchor
-        nextButton.topAnchor == bottomView.topAnchor
-        nextButton.bottomAnchor == bottomView.bottomAnchor
-
-        view.layoutIfNeeded()
+        previousButton.isHidden = true
+        
+        
+//        answerLabel.font = Font.H5SecondaryHeadlinex
+//        oneLabel.font = Font.H5SecondaryHeadline
+//        tenLabel.font = Font.H5SecondaryHeadline
+//        qualityTitleLabel.font = Font.H5SecondaryHeadline
+//        qualityTitleLabel.text = "QUALITY"
+//        qualityTitleLabel.isHidden = true
+//
+//        answerLabel.numberOfLines = 0
+//        answerLabel.layer.cornerRadius = 2
+//        answerLabel.layer.shadowOffset = CGSize(width: 0.5, height: 0.4)
+//        answerLabel.layer.shadowOpacity = 0.7
+//        answerLabel.layer.masksToBounds = false
     }
 }

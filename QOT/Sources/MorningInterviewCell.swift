@@ -2,168 +2,66 @@
 //  MorningInterviewCell.swift
 //  QOT
 //
-//  Created by Aamir Suhial Mir on 6/28/17.
-//  Copyright © 2017 Tignum. All rights reserved.
+//  Created by Javier Sanz Rozalen on 16/02/2018.
+//  Copyright © 2018 Tignum. All rights reserved.
 //
 
 import UIKit
-import Anchorage
 
-final class MorningInterviewCell: UICollectionViewCell, Dequeueable {
+class MorningInterviewCell: UICollectionViewCell, DialSelectionDelegate, Dequeueable {
 
-    // MARK: - Properties
+    @IBOutlet private weak var dialView: InterviewDialView!
+    let centerLabel = UILabel()
+    var indexDidChange: ((_ index: Int) -> Void)?
 
-    private var topview: UIView = UIView()
-    private var centerView: UIView = UIView()
-    private var bottomView: UIView = UIView()
-    private var numberlabel: UILabel = UILabel()
-    private var subTitleLabel: UILabel = UILabel()
-    private var maxLabel: UILabel = UILabel()
-    private var question: InterviewQuestion?
-
-    private var titlelabel: UILabel = {
-        let label = UILabel()
-        label.numberOfLines = 0
-        label.minimumScaleFactor = 0.5
-
-        return label
-    }()
-
-    private var slider: UISlider = {
-        let slider = UISlider()
-        slider.minimumTrackTintColor = .white
-        slider.maximumTrackTintColor = .gray
-        slider.isContinuous = true
-
-        return slider
-    }()
-
-    @objc func valueChanged(sender: UISlider) {
-        setAnswer()
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        setup()
     }
 
-    private func setAnswer() {
-        let index = Int(slider.value.rounded())
-        guard let question = question, question.answerIndex != index else {
-            return
-        }
-
-        question.answerIndex = index
-        let answer = question.currentAnswer
-        numberlabel.attributedText = Style.num(String(index), .white60).attributedString(lineSpacing: -3.3)
-        setup(answer: answer)
+    private func setup() {
+        dialView.selectionDelegate = self
+        centerLabel.backgroundColor = .clear
+        centerLabel.numberOfLines = 0
+        centerLabel.minimumScaleFactor = 0.5
+        centerLabel.adjustsFontSizeToFitWidth = true
+        centerLabel.textAlignment = .center
+        addSubview(centerLabel)
     }
 
-    private var minLabel: UILabel = {
-        let label = UILabel()
-        label.textColor = .white60
-        label.font = .bentonBookFont(ofSize: 11)
-        label.textAlignment = .center
-        return label
-    }()
+    override func layoutSubviews() {
+        super.layoutSubviews()
 
-    func configure(question: InterviewQuestion) {
-        setupHierarchy()
-        setupLayout()
-
-        self.question = question
-        let startIndex = question.answers.startIndex
-        minLabel.attributedText = Style.tag("\(startIndex + 1)", .white60).attributedString()
-        slider.minimumValue = Float(startIndex)
-        slider.addTarget (self, action: #selector(valueChanged), for: .valueChanged)
-
-        let endIndex = question.answers.endIndex
-        slider.maximumValue = Float(endIndex - 1)
-        maxLabel.attributedText = Style.tag("\(endIndex)", .white60).attributedString()
-
-        let answer = question.currentAnswer
-        setCurrentAnswerLabels(answer: answer)
-        slider.value = Float(question.answerIndex)
-
-        titlelabel.attributedText = NSMutableAttributedString(
-            string: question.title,
-            letterSpacing: 1.1,
-            font: Font.H9Title,
-            lineSpacing: 10.0,
-            textColor: .white90,
-            alignment: .center
-        )
+        let ringWidth: CGFloat = (bounds.width * 0.2)
+        let innerRadius = (bounds.width - (2 * ringWidth)) / 2
+        let centerLabelLength = lengthOfSquareFittingCircle(radius: innerRadius)
+        dialView.updateConfig(InterviewDialView.Config(ringWidth: ringWidth))
+        let centerLabelSize = CGSize(width: centerLabelLength, height: centerLabelLength)
+        centerLabel.frame = CGRect(center: bounds.center, size: centerLabelSize).integral
     }
 
-    private func setCurrentAnswerLabels(answer: InterviewQuestion.Answer) {
-        subTitleLabel.numberOfLines = 0
-        numberlabel.attributedText = NSMutableAttributedString(
-            string: answer.title,
-            letterSpacing: -3.3,
-            font: Font.H0Number,
-            textColor: .white,
-            alignment: .center
-        )
-        subTitleLabel.attributedText = NSMutableAttributedString(
-            string: answer.subtitle ?? "",
-            letterSpacing: 3.3,
-            font: Font.H8Subtitle,
-            lineSpacing: 2.9,
-            textColor: .white60,
-            alignment: .center
-        )
-    }
-}
+    func configure(centerLabelText: String) {
+        let shadow = NSShadow()
+        shadow.shadowBlurRadius = 10
+        shadow.shadowColor = UIColor.white
 
-private extension MorningInterviewCell {
-
-    func setupHierarchy() {
-        addSubview(topview)
-        topview.addSubview(titlelabel)
-        addSubview(centerView)
-        centerView.addSubview(numberlabel)
-        centerView.addSubview(subTitleLabel)
-        addSubview(bottomView)
-        bottomView.addSubview(slider)
-        bottomView.addSubview(minLabel)
-        bottomView.addSubview(maxLabel)
+        let attributes: [NSAttributedStringKey: Any] = [.foregroundColor: UIColor.white,
+                                                        .font: Font.H5SecondaryHeadline,
+                                                        .shadow: shadow]
+        centerLabel.attributedText = NSAttributedString(string: centerLabelText, attributes: attributes)
     }
 
-    func setupLayout() {
-        topview.topAnchor == topAnchor
-        topview.leftAnchor == leftAnchor + 40
-        topview.rightAnchor == rightAnchor - 40
-        topview.heightAnchor == bottomView.heightAnchor
-
-        titlelabel.topAnchor == topview.topAnchor + 20
-        titlelabel.horizontalAnchors == topview.horizontalAnchors
-        titlelabel.bottomAnchor == topview.bottomAnchor
-
-        centerView.topAnchor == topview.bottomAnchor
-        centerView.horizontalAnchors == horizontalAnchors
-        centerView.heightAnchor == 150
-
-        numberlabel.topAnchor == centerView.topAnchor + 10
-        numberlabel.horizontalAnchors == centerView.horizontalAnchors
-        numberlabel.heightAnchor == 110
-
-        subTitleLabel.topAnchor == numberlabel.bottomAnchor - 25
-        subTitleLabel.leftAnchor == leftAnchor + 16
-        subTitleLabel.rightAnchor == rightAnchor - 16
-        subTitleLabel.bottomAnchor == centerView.bottomAnchor
-
-        bottomView.topAnchor == centerView.bottomAnchor
-        bottomView.horizontalAnchors == horizontalAnchors
-        bottomView.bottomAnchor == bottomAnchor
-
-        slider.leftAnchor == minLabel.rightAnchor + 25
-        slider.topAnchor == bottomView.topAnchor - 10
-        slider.bottomAnchor == bottomView.bottomAnchor
-        slider.rightAnchor == maxLabel.leftAnchor - 18
-
-        minLabel.leftAnchor == bottomView.leftAnchor + 35
-        minLabel.centerYAnchor == slider.centerYAnchor
-
-        maxLabel.rightAnchor == bottomView.rightAnchor - 32
-        maxLabel.centerYAnchor == slider.centerYAnchor
+    func lengthOfSquareFittingCircle(radius: CGFloat) -> CGFloat {
+        return sqrt(pow(radius, 2) / 2) * 2
     }
 
-    func setup(answer: InterviewQuestion.Answer ) {
-        setCurrentAnswerLabels(answer: answer)
+    func setSelected(index: Int) {
+        dialView.setSelected(index: index)
+    }
+
+    func selectedIndexDidChange(_ index: Int?, view: InterviewDialView) {
+        guard let index = index else { return }
+
+        indexDidChange?(index)
     }
 }

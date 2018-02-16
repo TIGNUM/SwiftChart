@@ -84,6 +84,27 @@ extension UIBezierPath {
         return path
     }
 
+    class func horseshoe(center: CGPoint,
+                          innerRadius: CGFloat,
+                          outerRadius: CGFloat,
+                          startAngle: CGFloat,
+                          endAngle: CGFloat) -> UIBezierPath {
+        let start = startAngle.degreesToRadians
+        let end = endAngle.degreesToRadians
+        let path = UIBezierPath(arcCenter: center,
+                                radius: outerRadius,
+                                startAngle: start,
+                                endAngle: end,
+                                clockwise: true)
+        path.addArc(withCenter: center,
+                    radius: innerRadius,
+                    startAngle: end,
+                    endAngle: start,
+                    clockwise: false)
+        path.close()
+        return path
+    }
+
     // @see adapted from https://stackoverflow.com/questions/24767978/how-to-round-corners-of-uiimage-with-hexagon-mask
     /// Create UIBezierPath for regular polygon with rounded corners
     ///
