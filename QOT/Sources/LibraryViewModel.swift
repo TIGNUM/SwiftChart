@@ -38,9 +38,7 @@ extension LibraryViewModel {
 
     func titleForSection(_ section: Int) -> NSAttributedString {
         let title = categories[section].title.uppercased()
-        let headline = Style.subTitle(title, .white).attributedString()
-        let smallHeadline = Style.headlineSmall(title, .white).attributedString()
-        return (section == 0 ? smallHeadline : headline)
+        return Style.subTitle(title, .white).attributedString()
     }
 
     func contentCollection(at indexPath: IndexPath) -> [ContentCollection] {
@@ -48,7 +46,7 @@ extension LibraryViewModel {
     }
 
     func contentCollectionType(at indexPath: IndexPath) -> LibraryTableViewCell.CollectionViewCellType {
-        return (indexPath.section == 0) ? .latestPost : .category
+        return .category
     }
 
     func contentCount(at indexPath: IndexPath) -> Int {
@@ -56,6 +54,6 @@ extension LibraryViewModel {
     }
 
     func heightForRowAt(_ indexPath: IndexPath) -> CGFloat {
-        return indexPath.section == 0 ? 316 : 313
+        return 313
     }
 }

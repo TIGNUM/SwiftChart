@@ -13,7 +13,7 @@ import RealmSwift
 final class SidebarViewModel {
 
     enum SidebbarItem: Int {
-        case library = 0
+        case tools = 0
         case settings
         case sensor
         case placeholder
@@ -23,7 +23,7 @@ final class SidebarViewModel {
         case privacy
 
         static var allValues: [SidebbarItem] {
-            return [.library,
+            return [.tools,
                     .settings,
                     .sensor,
                     .placeholder,
@@ -35,7 +35,7 @@ final class SidebarViewModel {
 
         var title: String? {
             switch self {
-            case .library: return R.string.localized.sidebarTitleLibrary()
+            case .tools: return R.string.localized.sidebarTitleTools()
             case .benefits: return R.string.localized.sidebarTitleBenefits()
             case .settings: return R.string.localized.sidebarTitleSettings()
             case .sensor: return R.string.localized.sidebarTitleSensor()
@@ -55,7 +55,7 @@ final class SidebarViewModel {
 
         func font(screenType: UIViewController.ScreenType) -> UIFont? {
             switch self {
-            case .library,
+            case .tools,
                  .settings,
                  .sensor: return screenType == .small ? Font.H3Subtitle : Font.H2SecondaryTitle
             case .placeholder: return nil
@@ -68,7 +68,7 @@ final class SidebarViewModel {
 
         var fontColor: UIColor? {
             switch self {
-            case .library,
+            case .tools,
                  .settings,
                  .sensor: return .white
             case .placeholder: return nil
@@ -81,7 +81,7 @@ final class SidebarViewModel {
 
         func cellHeight(screenType: UIViewController.ScreenType) -> CGFloat {
             switch self {
-            case .library,
+            case .tools,
                  .settings,
                  .sensor: return screenType == .small ? 60 : screenType == .medium ? 70 : 80
             case .placeholder: return 40
@@ -94,7 +94,7 @@ final class SidebarViewModel {
 
         var primaryKey: Int {
             switch self {
-            case .library: return 0
+            case .tools: return 0
             case .benefits: return 100101
             case .settings: return 0
             case .sensor: return 100935
@@ -107,7 +107,7 @@ final class SidebarViewModel {
 
         func contentCollection(for service: ContentService) -> ContentCollection? {
             switch self {
-            case .library: return nil
+            case .tools: return nil
             case .benefits: return service.contentCollection(id: primaryKey)
             case .settings: return nil
             case .sensor: return service.contentCollection(id: primaryKey)

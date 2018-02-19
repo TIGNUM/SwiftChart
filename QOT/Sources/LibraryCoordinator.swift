@@ -16,6 +16,7 @@ final class LibraryCoordinator: ParentCoordinator {
     private let services: Services
     private let rootViewController: UIViewController
     private let libraryViewController: LibraryViewController
+    private let sideTitle = R.string.localized.sidebarTitleTools().uppercased()
     var children = [Coordinator]()
 
     // MARK: - Init
@@ -23,8 +24,9 @@ final class LibraryCoordinator: ParentCoordinator {
     init(root: UIViewController, services: Services) {
         self.rootViewController = root
         self.services = services
-        libraryViewController = LibraryViewController(viewModel: LibraryViewModel(services: services), fadeMaskLocation: .top)
-        libraryViewController.title = R.string.localized.sidebarTitleLibrary().uppercased()
+        libraryViewController = LibraryViewController(viewModel: LibraryViewModel(services: services),
+                                                      fadeMaskLocation: .top)
+        libraryViewController.title = sideTitle
         libraryViewController.delegate = self
     }
 
@@ -57,7 +59,7 @@ extension LibraryCoordinator: LibraryViewControllerDelegate {
             services: services,
             contentCollection: item,
             articleHeader: articleHeader,
-            topTabBarTitle: R.string.localized.sidebarTitleLibrary().uppercased(),
+            topTabBarTitle: sideTitle,
             contentInsets: UIEdgeInsets(top: 46, left: 0, bottom: 0, right: 0)) else {
                 return
         }

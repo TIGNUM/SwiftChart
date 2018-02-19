@@ -50,7 +50,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        navigationItem.title = R.string.localized.sidebarTitleLibrary().uppercased()
+        navigationItem.title = R.string.localized.sidebarTitleTools().uppercased()
     }
 
     // MARK: - private
@@ -104,13 +104,10 @@ extension LibraryViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: LibraryTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.setUp(
-            delegate: delegate,
-            title: viewModel.titleForSection(indexPath.section),
-            contentCollection: viewModel.contentCollection(at: indexPath),
-            collectionViewCellType: viewModel.contentCollectionType(at: indexPath)
-        )
-
+        cell.setUp(delegate: delegate,
+                   title: viewModel.titleForSection(indexPath.section),
+                   contentCollection: viewModel.contentCollection(at: indexPath),
+                   collectionViewCellType: viewModel.contentCollectionType(at: indexPath))
         return cell
     }
 }
