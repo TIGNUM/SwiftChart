@@ -832,6 +832,7 @@ extension AppCoordinator {
             let content = services.contentService.whatsHotArticles().first else { return }
 
         tabBarCoordinator?.didTapItem(articleHeader: ArticleCollectionHeader(content: content), in: rootViewController)
+        destination = nil
     }
 
     func presentPreparationCheckList(localID: String) {
