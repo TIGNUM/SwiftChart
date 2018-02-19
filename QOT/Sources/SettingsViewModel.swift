@@ -336,7 +336,7 @@ private func notificationsSettingsSection(services: Services) -> [SettingsSectio
 
 private func generalSettingsSection(for user: User?, services: Services) -> [SettingsSection] {
     var sections = [
-        Sections(title: "Company", rows: companyRows(for: user)),
+        Sections(title: "Contact", rows: companyRows(for: user)),
         Sections(title: "Personal", rows: personalRows(for: user)),
         Sections(title: "Location", rows: locationRows),
         Sections(title: "Calendar", rows: calendarRows)

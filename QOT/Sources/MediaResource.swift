@@ -19,7 +19,7 @@ class MediaResource: SyncableObject {
         case content = "CONTENT"
         case user = "USER"
         case contentItem = "CONTENTITEM"
-        case company = "COMPANY"
+        case company = "CONTACT"
         case tignumEmployee = "TIGNUMEMPLOYEE"
     }
     enum Format: String {
