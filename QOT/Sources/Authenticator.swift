@@ -104,6 +104,11 @@ private extension Authenticator {
                 }
             case .failure(let error):
                 if error.isUnauthenticated {
+                    if let savedCredentials = self.loginCredentials(), savedCredentials == (username, password) {
+                        // Login failed with saved credentials which might be a bug
+                        log("authentication unexpectedly failed: \(error)", level: .error)
+                    }
+
                     self.clearLoginCredentialsAndAuthToken()
                 }
             }
