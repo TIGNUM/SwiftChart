@@ -58,6 +58,11 @@ final class SidebarCoordinator: ParentCoordinator {
 
 extension SidebarCoordinator: SidebarViewControllerDelegate {
 
+    func didTapIntroSlidersCell(in viewController: SidebarViewController) {
+        let slideShowViewController = SlideShowViewController(configure: SlideShowConfigurator.make())
+        viewController.present(slideShowViewController, animated: true, completion: nil)
+    }
+
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
         let coordinator = AddSensorCoordinator(root: viewController, services: services)
         startChild(child: coordinator)

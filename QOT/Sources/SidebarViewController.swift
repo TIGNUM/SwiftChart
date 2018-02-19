@@ -25,6 +25,8 @@ protocol SidebarViewControllerDelegate: class {
     func didTapAboutCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
 
     func didTapFAQCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
+
+    func didTapIntroSlidersCell(in viewController: SidebarViewController)
 }
 
 final class SidebarViewController: UIViewController {
@@ -131,6 +133,7 @@ private extension SidebarViewController {
         case .settings: delegate?.didTapSettingsMenuCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .placeholder: return
         case .faq: delegate?.didTapFAQCell(with: viewModel.contentCollection(sidebarItem), in: self)
+        case .introSliders: delegate?.didTapIntroSlidersCell(in: self)
         }
     }
 }

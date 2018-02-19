@@ -18,6 +18,7 @@ final class SidebarViewModel {
         case sensor
         case placeholder
         case benefits
+        case introSliders
         case about
         case faq
         case privacy
@@ -28,6 +29,7 @@ final class SidebarViewModel {
                     .sensor,
                     .placeholder,
                     .benefits,
+                    .introSliders,
                     .about,
                     .privacy,
                     .faq]
@@ -41,6 +43,7 @@ final class SidebarViewModel {
             case .sensor: return R.string.localized.sidebarTitleSensor()
             case .placeholder: return nil
             case .about: return R.string.localized.sidebarTitleAbout()
+            case .introSliders: return R.string.localized.sidebarTitleIntroSliders()
             case .privacy: return R.string.localized.settingsSecurityPrivacyPolicyTitle()
             case .faq: return R.string.localized.sidebarTitleFAQ()
             }
@@ -62,6 +65,7 @@ final class SidebarViewModel {
             case .about,
                  .privacy,
                  .benefits,
+                 .introSliders,
                  .faq: return screenType == .small ? Font.H6NavigationTitle : Font.H5SecondaryHeadline
             }
         }
@@ -75,6 +79,7 @@ final class SidebarViewModel {
             case .about,
                  .privacy,
                  .benefits,
+                 .introSliders,
                  .faq: return .white40
             }
         }
@@ -88,6 +93,7 @@ final class SidebarViewModel {
             case .about,
                  .privacy,
                  .benefits,
+                 .introSliders,
                  .faq: return screenType == .small ? 50 : screenType == .medium ? 60 : 70
             }
         }
@@ -102,6 +108,7 @@ final class SidebarViewModel {
             case .about: return 100092
             case .privacy: return 100163
             case .faq: return 100704
+            case .introSliders: return 0
             }
         }
 
@@ -115,6 +122,7 @@ final class SidebarViewModel {
             case .about: return service.contentCollection(id: primaryKey)
             case .privacy: return service.contentCollection(id: primaryKey)
             case .faq: return service.contentCollection(id: primaryKey)
+            case .introSliders: return nil
             }
         }
     }
