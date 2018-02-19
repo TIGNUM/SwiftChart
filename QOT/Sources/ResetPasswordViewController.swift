@@ -201,11 +201,9 @@ final class ResetPasswordViewController: UIViewController {
                 return
             }
 
-            UIView.transition(with: self.resetPasswordButton, duration: 0.5, options: .transitionCrossDissolve, animations: {
-                self.resetPasswordButton.titleLabel?.addCharactersSpacing(spacing: 1, text: R.string.localized.resetPasswordEmailSent())
-            }, completion: { success in
+            self.showAlert(type: .resetPassword, handler: {
                 self.navigationController?.popViewController(animated: true)
-            })
+            }, handlerDestructive: nil)
         }
     }
 

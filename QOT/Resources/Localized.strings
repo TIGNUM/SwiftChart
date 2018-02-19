@@ -227,7 +227,8 @@
 "Alert.CameraNotAvailable.Message" = "The camera is not currently available on this device";
 "Alert.PermissionNotGranted.Message" = "Please open your settings to enable permissions for this action";
 "Alert.NotSynced.Message" = "QOT needs to download more data. Please try again later";
-
+"Alert.Title.Reset.Password" = "Reset Password";
+"Alert.Message.Reset.Password" = "We have sent you an email with instructions on how to reset your password.";
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
 "ImagePicker.Options.Button.Camera" = "Take a Picture";

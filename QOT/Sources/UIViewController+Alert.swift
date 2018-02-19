@@ -32,6 +32,7 @@ enum AlertType {
     case permissionNotGranted
     case imagePicker
     case notSynced
+    case resetPassword
 
     var title: String? {
         switch self {
@@ -51,6 +52,7 @@ enum AlertType {
         case .settingsCalendars: return R.string.localized.alertTitleCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
         case .cameraNotAvailable, .permissionNotGranted: return R.string.localized.alertTitleCustom()
+        case .resetPassword: return R.string.localized.alertTitleResetPassword()
         default: return nil
         }
     }
@@ -72,6 +74,7 @@ enum AlertType {
         case .permissionNotGranted: return R.string.localized.alertPermissionNotGrantedMessage()
         case .notSynced: return R.string.localized.alertNotSyncedMessage()
         case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedMessage()
+        case .resetPassword: return R.string.localized.alertMessageResetPassword()
         default: return nil
         }
     }
