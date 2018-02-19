@@ -14,7 +14,6 @@ protocol DialSelectionDelegate: class {
 struct Segment {
     let centerAngle: CGFloat
     let deltaAngle: CGFloat
-    let label: UILabel
 
     var startAngle: CGFloat {
         return centerAngle - (deltaAngle / 2)
@@ -30,13 +29,7 @@ struct Segment {
         var segments: [Segment] = []
         for i in 0...9 {
             let centerAngle = (startAngle + (deltaAngle / 2)) + (deltaAngle * CGFloat(i))
-            let label = UILabel()
-            label.text = String(i + 1)
-            let segment = Segment(
-                centerAngle: centerAngle,
-                deltaAngle: 27,
-                label: label
-            )
+            let segment = Segment(centerAngle: centerAngle, deltaAngle: 27)
             segments.append(segment)
         }
         return segments
@@ -49,6 +42,9 @@ class InterviewDialView: UIView {
         let ringWidth: CGFloat
     }
 
+    private var segmentLabels: [Index: UILabel] = [:]
+    private let selectedLayer = SelectedLayer()
+
     weak var selectionDelegate: DialSelectionDelegate!
     var config = Config(ringWidth: 64)
     var segments = Segment.makeSegments()
@@ -56,14 +52,10 @@ class InterviewDialView: UIView {
     let horseshoeLayer = CAShapeLayer()
     let partitionsLayer = CAShapeLayer()
     let internalRingLayer = CAShapeLayer()
-    let selectedSegementGradientLayer = CAGradientLayer()
-    let selectedSegementBorderLayer = CAShapeLayer()
-    let gradientLayerContainer = CAShapeLayer()
     let linesLayer = CAShapeLayer()
-    var centerLabel = UILabel()
     var selectedIndex: Int?
 
-    fileprivate let grad = RadialGradientLayer()
+
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -84,10 +76,11 @@ class InterviewDialView: UIView {
         setupBottomRingLayer()
         setupHorseshoeLayer()
         setupInternalRing()
-        segments.forEach { (segment) in
-            addSubview(segment.label)
+        for i in 0..<segments.count {
+            let label = segmentLabel(index: i)
+            label.text = String(i + 1)
         }
-        layer.addSublayer(grad)
+        layer.addSublayer(selectedLayer)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -103,7 +96,7 @@ class InterviewDialView: UIView {
         layoutInternalRing()
         layoutLabels(center: centerPoint)
         segmentDivision()
-        grad.frame = bounds
+        selectedLayer.frame = bounds
         syncSelectedSegmentLayer()
     }
 
@@ -148,7 +141,7 @@ class InterviewDialView: UIView {
 
     private func syncSelectedSegmentLayer() {
         if let index = selectedIndex {
-            grad.isHidden = false
+            selectedLayer.isHidden = false
             let segment = segments[index]
             let segmentGradientPath = UIBezierPath.horseshoe(center: centerPoint,
                                                              innerRadius: (bounds.width / 2) - config.ringWidth,
@@ -156,10 +149,12 @@ class InterviewDialView: UIView {
                                                              startAngle: segment.startAngle,
                                                              endAngle: segment.endAngle)
             segmentGradientPath.close()
-            gradientLayerContainer.path = segmentGradientPath.cgPath
-            grad.mask = gradientLayerContainer
+
+            let mask = CAShapeLayer()
+            mask.path = segmentGradientPath.cgPath
+            selectedLayer.mask = mask
         } else {
-            grad.isHidden = true
+            selectedLayer.isHidden = true
         }
     }
 
@@ -209,11 +204,10 @@ class InterviewDialView: UIView {
     }
 
     private func layoutLabels(center: CGPoint) {
-        segments.forEach { (segment) in
-            segment.label.textColor = .white
-            segment.label.font = Font.H5SecondaryHeadline
-            segment.label.sizeToFit()
-            segment.label.center = center.shifted(centerRadius, with: segment.centerAngle)
+        for (index, segment) in segments.enumerated() {
+            let label = segmentLabel(index: index)
+            label.sizeToFit()
+            label.center = center.shifted(centerRadius, with: segment.centerAngle)
         }
     }
 
@@ -239,15 +233,12 @@ class InterviewDialView: UIView {
 
     private func segmentDivision() {
         let totalLinesPath = UIBezierPath()
-        segments.forEach { (segment) in
-            if segments[segments.count - 1].label != segment.label {
-                let currentPoint = centerPoint.shifted(interRadius + 20, with: segment.endAngle)
-                let endPoint = currentPoint.shifted(config.ringWidth - 35, with: segment.endAngle)
-                let linePath = UIBezierPath.linePath(from: currentPoint, to: endPoint)
-                totalLinesPath.append(linePath)
-            }
+        segments.dropLast().forEach { (segment) in
+            let currentPoint = centerPoint.shifted(interRadius + 20, with: segment.endAngle)
+            let endPoint = currentPoint.shifted(config.ringWidth - 35, with: segment.endAngle)
+            let linePath = UIBezierPath.linePath(from: currentPoint, to: endPoint)
+            totalLinesPath.append(linePath)
         }
-
         linesLayer.strokeColor = UIColor.white.cgColor
         linesLayer.fillColor = UIColor.clear.cgColor
         linesLayer.lineWidth = 0.6
@@ -257,15 +248,35 @@ class InterviewDialView: UIView {
     }
 }
 
-private class RadialGradientLayer: CALayer {
+private extension InterviewDialView {
 
-    override init(layer: Any) {
-        super.init(layer: layer)
-        setup()
+    func segmentLabel(index: Int) -> UILabel {
+        if let label = segmentLabels[index] {
+            return label
+        } else {
+            let label = UILabel()
+            label.textColor = .white
+            label.font = Font.H5SecondaryHeadline
+            addSubview(label)
+            segmentLabels[index] = label
+            return label
+        }
     }
+}
+
+private class SelectedLayer: CALayer {
+
+    let borderLayer = CAShapeLayer()
+    let colors = [UIColor.white.withAlphaComponent(0.4).cgColor, UIColor.white.withAlphaComponent(0).cgColor]
+    let locations: [CGFloat] = [0, 1]
 
     required override init() {
         super.init()
+        setup()
+    }
+
+    override init(layer: Any) {
+        super.init(layer: layer)
         setup()
     }
 
@@ -284,17 +295,12 @@ private class RadialGradientLayer: CALayer {
         backgroundColor = UIColor.clear.cgColor
     }
 
-    let borderLayer = CAShapeLayer()
-
     override func layoutSublayers() {
         super.layoutSublayers()
 
         let borderPath = UIBezierPath.circlePath(center: bounds.center, radius: (bounds.width / 2) - 0.5)
         borderLayer.path = borderPath.cgPath
     }
-
-    let colors = [UIColor.white.withAlphaComponent(0.4).cgColor, UIColor.white.withAlphaComponent(0).cgColor]
-    let locations: [CGFloat] = [0, 1]
 
     override func draw(in ctx: CGContext) {
         ctx.saveGState()

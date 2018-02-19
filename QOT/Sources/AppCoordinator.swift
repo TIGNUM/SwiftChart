@@ -24,7 +24,11 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     var children = [Coordinator]()
     lazy var logoutNotificationHandler: NotificationHandler = NotificationHandler(name: .logoutNotification)
     lazy var apnsDeviceTokenRegistrar: APNSDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: self.networkManager, credentialsManager: self.credentialsManager)
-    lazy var networkManager: NetworkManager = NetworkManager(delegate: self, authenticator: authenticator)
+    lazy var networkManager: NetworkManager = {
+        let manager = NetworkManager(delegate: self, authenticator: authenticator)
+        AppCoordinator.appState.networkManager = manager
+        return manager
+    }()
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
@@ -415,51 +419,6 @@ extension AppCoordinator: NetworkManagerDelegate {
 
     func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager) {
         restart()
-    }
-}
-
-// MARK: - MorningInterviewViewControllerDelegate
-
-extension AppCoordinator: MorningInterviewViewControllerDelegate {
-
-    func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer], notificationRemoteID: Int) {
-        if userAnswers.isEmpty == false {
-            sendMorningInterviewResults(userAnswers, viewController: viewController, notificationRemoteID: notificationRemoteID)
-        } else {
-            dismiss(viewController, level: .priority)
-        }
-    }
-
-    private func sendMorningInterviewResults(_ userAnswers: [UserAnswer],
-                                             viewController: MorningInterviewViewController,
-                                             notificationRemoteID: Int) {
-        self.dismiss(viewController, level: .priority)
-        if let destination = URLScheme.guide.destination {
-            self.navigate(to: destination)
-        }
-
-        networkManager.performUserAnswerFeedbackRequest(userAnswers: userAnswers) { result in
-            switch result {
-            case .success(let value):
-                self.save(feedback: value, notificationRemoteID: notificationRemoteID) {}
-            case .failure(let error):
-                log("error: \(error)")
-            }
-        }
-    }
-
-    private func save(feedback: UserAnswerFeedback, notificationRemoteID: Int, completion: (() -> Void)?) {
-        do {
-            let realm = try RealmProvider().realm()
-            if let interviewResult = realm.object(ofType: RealmInterviewResult.self, forPrimaryKey: notificationRemoteID) {
-                try realm.write {
-                    interviewResult.feedback = feedback.body
-                }
-            }
-        } catch {
-            log(error, level: .error)
-            completion?()
-        }
     }
 }
 
@@ -892,13 +851,10 @@ extension AppCoordinator {
     }
 
     func presentMorningInterview(groupID: Int, notificationRemoteID: Int) {
-        guard let services = services else { return }
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let viewModel = MorningInterviewViewModel(services: services,
-                                                  questionGroupID: groupID,
-                                                  notificationRemoteID: notificationRemoteID)
-        let morningInterViewController = MorningInterviewViewController(viewModel: viewModel)
-        morningInterViewController.delegate = self
+        let configurator = MorningInterviewConfigurator.make(questionGroupID: groupID,
+                                                             notificationRemoteID: notificationRemoteID)
+        let morningInterViewController = MorningInterviewViewController(configurator: configurator)
         windowManager.showPriority(morningInterViewController, animated: true, completion: nil)
         currentPresentedController = morningInterViewController
     }

@@ -222,6 +222,13 @@
 		CB2880221E7050EB0067890A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880211E7050EB0067890A /* Coordinator.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
+		CB2C308F203B086A0041044F /* MorningInterviewConfiguator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C308E203B086A0041044F /* MorningInterviewConfiguator.swift */; };
+		CB2C3091203B087C0041044F /* MorningInterviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3090203B087C0041044F /* MorningInterviewInteractor.swift */; };
+		CB2C3093203B08890041044F /* MorningInterviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3092203B08890041044F /* MorningInterviewModels.swift */; };
+		CB2C3095203B089A0041044F /* MorningInterviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3094203B089A0041044F /* MorningInterviewPresenter.swift */; };
+		CB2C3097203B08A70041044F /* MorningInterviewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3096203B08A70041044F /* MorningInterviewProtocols.swift */; };
+		CB2C3099203B08B00041044F /* MorningInterviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3098203B08B00041044F /* MorningInterviewRouter.swift */; };
+		CB2C309B203B08BC0041044F /* MorningInterviewWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */; };
 		CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437521EFAC8F500D89D4F /* UpSyncResultParser.swift */; };
 		CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437541EFD1C2600D89D4F /* PrepareChatDecisionManager.swift */; };
 		CB34375B1EFD652800D89D4F /* Question.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34375A1EFD652800D89D4F /* Question.swift */; };
@@ -532,7 +539,6 @@
 		D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */; };
 		D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */; };
 		D5A64D941EE801970095D01C /* SleepChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5A64D931EE801970095D01C /* SleepChart.swift */; };
-		D5B707261F03A2BF00C812EB /* MorningInterviewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */; };
 		D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */; };
 		D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC34AA1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift */; };
 		D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */; };
@@ -774,6 +780,13 @@
 		CB2880211E7050EB0067890A /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
+		CB2C308E203B086A0041044F /* MorningInterviewConfiguator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewConfiguator.swift; sourceTree = "<group>"; };
+		CB2C3090203B087C0041044F /* MorningInterviewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewInteractor.swift; sourceTree = "<group>"; };
+		CB2C3092203B08890041044F /* MorningInterviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewModels.swift; sourceTree = "<group>"; };
+		CB2C3094203B089A0041044F /* MorningInterviewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewPresenter.swift; sourceTree = "<group>"; };
+		CB2C3096203B08A70041044F /* MorningInterviewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewProtocols.swift; sourceTree = "<group>"; };
+		CB2C3098203B08B00041044F /* MorningInterviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewRouter.swift; sourceTree = "<group>"; };
+		CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewWorker.swift; sourceTree = "<group>"; };
 		CB3437521EFAC8F500D89D4F /* UpSyncResultParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncResultParser.swift; sourceTree = "<group>"; };
 		CB3437541EFD1C2600D89D4F /* PrepareChatDecisionManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareChatDecisionManager.swift; sourceTree = "<group>"; };
 		CB34375A1EFD652800D89D4F /* Question.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Question.swift; sourceTree = "<group>"; };
@@ -1093,7 +1106,6 @@
 		D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleCollectionCell.swift; sourceTree = "<group>"; };
 		D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleCollectionCell.xib; sourceTree = "<group>"; };
 		D5A64D931EE801970095D01C /* SleepChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SleepChart.swift; sourceTree = "<group>"; };
-		D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewModel.swift; sourceTree = "<group>"; };
 		D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpacingInLabel.swift; sourceTree = "<group>"; };
 		D5EC34AA1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyAudioPlayerView.swift; sourceTree = "<group>"; };
 		D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyAudioPlayerView.xib; sourceTree = "<group>"; };
@@ -1477,6 +1489,32 @@
 			name = ContentItem;
 			sourceTree = "<group>";
 		};
+		CB2C308D203B08370041044F /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				CB2C308E203B086A0041044F /* MorningInterviewConfiguator.swift */,
+				CB2C3090203B087C0041044F /* MorningInterviewInteractor.swift */,
+				CB2C3092203B08890041044F /* MorningInterviewModels.swift */,
+				CB2C3094203B089A0041044F /* MorningInterviewPresenter.swift */,
+				CB2C3096203B08A70041044F /* MorningInterviewProtocols.swift */,
+				CB2C3098203B08B00041044F /* MorningInterviewRouter.swift */,
+				CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */,
+				91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */,
+				91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		CB2C309C203B08D10041044F /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				91C262B61FED0B2C0075664E /* InterviewDialView.swift */,
+				91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */,
+				91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
 		CB3437591EFD651600D89D4F /* Question */ = {
 			isa = PBXGroup;
 			children = (
@@ -1612,6 +1650,7 @@
 			isa = PBXGroup;
 			children = (
 				CBE8808B1FE4368300670C10 /* Guide */,
+				D5B707241F03A21E00C812EB /* Morning Interview */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
 				CB9442261FD963B200E2B122 /* SlideShow */,
 			);
@@ -1832,7 +1871,6 @@
 				CCDCE7321EEFE63600BD019C /* Learn Content Item */,
 				CBB4DD3C1EE08D7F0071494A /* Library */,
 				D554CD9B1F0CEC6D007731DB /* Log In */,
-				D5B707241F03A21E00C812EB /* Morning Interview */,
 				CBB4DD321EE089FD0071494A /* My Prep */,
 				CBB4DD331EE08A230071494A /* My Statistics */,
 				CBB4DD2A1EE088480071494A /* My To Be Vision */,
@@ -2646,12 +2684,8 @@
 		D5B707241F03A21E00C812EB /* Morning Interview */ = {
 			isa = PBXGroup;
 			children = (
-				91C262B61FED0B2C0075664E /* InterviewDialView.swift */,
-				91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */,
-				91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */,
-				D5B707251F03A2BF00C812EB /* MorningInterviewViewModel.swift */,
-				91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */,
-				91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */,
+				CB2C308D203B08370041044F /* Core */,
+				CB2C309C203B08D10041044F /* Other */,
 			);
 			name = "Morning Interview";
 			sourceTree = "<group>";
@@ -3120,6 +3154,7 @@
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
+				CB2C3091203B087C0041044F /* MorningInterviewInteractor.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
@@ -3197,6 +3232,7 @@
 				CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */,
 				CBB98B00201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift in Sources */,
 				CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */,
+				CB2C3095203B089A0041044F /* MorningInterviewPresenter.swift in Sources */,
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
 				85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */,
 				CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */,
@@ -3219,6 +3255,7 @@
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,
 				CC37831C1F5EA91F007A16A3 /* ChartType.swift in Sources */,
 				7F0F02F21F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift in Sources */,
+				CB2C309B203B08BC0041044F /* MorningInterviewWorker.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				CB1E4F981E7FE22200287613 /* SettingsViewModel.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
@@ -3247,6 +3284,7 @@
 				7FE674B71F8F5CA600FC7407 /* LogInfo.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
+				CB2C3097203B08A70041044F /* MorningInterviewProtocols.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionsManager.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
@@ -3286,6 +3324,7 @@
 				CB48814B1EF7B1EA00389C88 /* Data+Convenience.swift in Sources */,
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				CBD4BEA02018BF32008A0E9E /* GuideRouter.swift in Sources */,
+				CB2C3099203B08B00041044F /* MorningInterviewRouter.swift in Sources */,
 				CBD4BEA62018D30B008A0E9E /* GuideObserver.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
@@ -3299,6 +3338,7 @@
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
 				CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */,
 				CBC1DC171F0F690A00F6D056 /* SystemSettingIntermediary.swift in Sources */,
+				CB2C308F203B086A0041044F /* MorningInterviewConfiguator.swift in Sources */,
 				362632471FD6A4210024C626 /* GuideTableViewCell.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				CB9442251FD80B5700E2B122 /* AppState.swift in Sources */,
@@ -3370,7 +3410,6 @@
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
 				CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */,
-				D5B707261F03A2BF00C812EB /* MorningInterviewViewModel.swift in Sources */,
 				CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */,
 				CCE6CD7E1F15260D00B66DA3 /* Statistics.swift in Sources */,
 				7F4B98AE1FA22851000B402C /* ChartAnimation.swift in Sources */,
@@ -3449,6 +3488,7 @@
 				CBFED33A1F7938970006270D /* ChatItemQueue.swift in Sources */,
 				CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */,
 				7F1D3D221F8E24620071D322 /* Log.swift in Sources */,
+				CB2C3093203B08890041044F /* MorningInterviewModels.swift in Sources */,
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				CBFD47CC200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift in Sources */,
 				7FBC3E801F385135005BD772 /* MediaService.swift in Sources */,

@@ -8,45 +8,51 @@
 import UIKit
 import Anchorage
 
-protocol MorningInterviewViewControllerDelegate: class {
+class MorningInterviewViewController: UIViewController, MorningInterviewViewControllerInterface {
 
-    func didTapClose(viewController: MorningInterviewViewController, userAnswers: [UserAnswer], notificationRemoteID: Int)
-}
-
-class MorningInterviewViewController: UIViewController {
-
-    weak var delegate: MorningInterviewViewControllerDelegate?
     private var currentIndex: Int = 0
-    private let viewModel: MorningInterviewViewModel
-    private var question: InterviewQuestion?
-    private var userAnswers: [UserAnswer]?
+    private var questions: [MorningInterview.Question] = []
+    var interactor: MorningInterviewInteractorInterface?
+    var router: MorningInterviewRouterInterface?
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet weak var closeButton: UIButton!
-    @IBOutlet weak var previousButton: UIButton!
-    @IBOutlet weak var doneButton: UIButton!
-    @IBOutlet weak var questionLabel: UILabel!
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var dialPlaceholder: UIView!
-    @IBOutlet weak var leftAnswerLabel: UILabel!
-    @IBOutlet weak var rightAnswerLabel: UILabel!
+    @IBOutlet private weak var closeButton: UIButton!
+    @IBOutlet private weak var previousButton: UIButton!
+    @IBOutlet private weak var doneButton: UIButton!
+    @IBOutlet private weak var questionLabel: UILabel!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var dialPlaceholder: UIView!
+    @IBOutlet private weak var leftAnswerLabel: UILabel!
+    @IBOutlet private weak var rightAnswerLabel: UILabel!
 
     private var isFirstPage: Bool {
         return currentIndex <= 0
     }
 
     private var isLastPage: Bool {
-        return currentIndex >= viewModel.questionsCount - 1
+        return currentIndex >= questions.count - 1
+    }
+
+    init(configurator: Configurator<MorningInterviewViewController>) {
+        super.init(nibName: nil, bundle: nil)
+        configurator(self)
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
         collectionView.registerDequeueable(MorningInterviewCell.self)
         collectionView.isScrollEnabled = false
         collectionView.delegate = self
         collectionView.dataSource = self
         setupLayout()
         syncViews()
+        interactor?.viewDidLoad()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        collectionView.collectionViewLayout.invalidateLayout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,29 +61,12 @@ class MorningInterviewViewController: UIViewController {
         UIApplication.shared.statusBarStyle = .lightContent
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
-        collectionView.collectionViewLayout.invalidateLayout()
-    }
-
-    init(viewModel: MorningInterviewViewModel) {
-        self.viewModel = viewModel
-
-        super.init(nibName: nil, bundle: nil)
-    }
-
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
     @IBAction func didTapClose(_ sender: UIButton) {
-        delegate?.didTapClose(viewController: self,
-                              userAnswers: [],
-                              notificationRemoteID: viewModel.notificationRemoteID)
+        router?.close()
     }
 
     @IBAction func didTapPrevious(_ sender: UIButton) {
@@ -90,7 +79,15 @@ class MorningInterviewViewController: UIViewController {
         syncViews()
     }
 
+    func setQuestions(_ questions: [MorningInterview.Question]) {
+        self.questions = questions
+        currentIndex = 0
+        collectionView.reloadData()
+        syncViews()
+    }
+
     func syncViews() {
+        guard questions.count > 0 else { return }
         scrollToCurrentQuestion()
         updateButtons()
         updateQuestion()
@@ -104,13 +101,8 @@ class MorningInterviewViewController: UIViewController {
 
     @IBAction func didTapDone(_ sender: UIButton) {
         if isLastPage == true {
-            userAnswers = viewModel.createUserAnswers()
-            if let answers = userAnswers {
-                try? viewModel.save(userAnswers: answers)
-                delegate?.didTapClose(viewController: self,
-                                      userAnswers: answers,
-                                      notificationRemoteID: viewModel.notificationRemoteID)
-            }
+            interactor?.saveAnswers(questions: questions)
+            router?.close()
         } else {
             currentIndex += 1
             syncViews()
@@ -126,7 +118,7 @@ class MorningInterviewViewController: UIViewController {
             textColor: .white,
             alignment: .center
         )
-        let progress =  " \(currentIndex + 1)\("/")\(viewModel.questionsCount ) "
+        let progress =  " \(currentIndex + 1)\("/")\(questions.count ) "
         let progressTitle = NSMutableAttributedString(
             string: progress,
             letterSpacing: 0,
@@ -136,8 +128,8 @@ class MorningInterviewViewController: UIViewController {
         )
         attributedTitle.append(progressTitle)
         headerLabel.attributedText = attributedTitle
-        leftAnswerLabel.text = question?.answers.first?.subtitle
-        rightAnswerLabel.text = question?.answers.last?.subtitle
+        leftAnswerLabel.text = currentQuestion?.answers.first?.subtitle
+        rightAnswerLabel.text = currentQuestion?.answers.last?.subtitle
     }
 
     func updateButtons() {
@@ -147,25 +139,32 @@ class MorningInterviewViewController: UIViewController {
     }
 
     func updateQuestion() {
-        question = viewModel.question(at: currentIndex)
-        questionLabel.text = question?.title
+        questionLabel.text = currentQuestion?.title
+    }
+
+    private var currentQuestion: MorningInterview.Question? {
+        guard currentIndex >= 0 && currentIndex < questions.count else { return nil }
+        return questions[currentIndex]
     }
 }
 
 extension MorningInterviewViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.questionsCount
+        return questions.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let question = viewModel.question(at: indexPath.item)
+        let question = questions[indexPath.item]
+        let answer = question.answers[question.selectedAnswerIndex]
+
         let cell: MorningInterviewCell = collectionView.dequeueCell(for: indexPath)
-        cell.configure(centerLabelText: question.currentAnswer.subtitle ?? "")
-        cell.setSelected(index: question.answerIndex)
+        cell.configure(centerLabelText: answer.subtitle ?? "")
+        cell.setSelected(index: question.selectedAnswerIndex)
         cell.indexDidChange = { [unowned cell] (index) in
-            question.answerIndex = index
-            cell.configure(centerLabelText: question.currentAnswer.subtitle ?? "")
+            question.selectedAnswerIndex = index
+            let answer = question.answers[question.selectedAnswerIndex]
+            cell.configure(centerLabelText: answer.subtitle ?? "")
         }
         return cell
     }
@@ -203,19 +202,5 @@ private extension MorningInterviewViewController {
 
     func setupLayout() {
         previousButton.isHidden = true
-        
-        
-//        answerLabel.font = Font.H5SecondaryHeadlinex
-//        oneLabel.font = Font.H5SecondaryHeadline
-//        tenLabel.font = Font.H5SecondaryHeadline
-//        qualityTitleLabel.font = Font.H5SecondaryHeadline
-//        qualityTitleLabel.text = "QUALITY"
-//        qualityTitleLabel.isHidden = true
-//
-//        answerLabel.numberOfLines = 0
-//        answerLabel.layer.cornerRadius = 2
-//        answerLabel.layer.shadowOffset = CGSize(width: 0.5, height: 0.4)
-//        answerLabel.layer.shadowOpacity = 0.7
-//        answerLabel.layer.masksToBounds = false
     }
 }
