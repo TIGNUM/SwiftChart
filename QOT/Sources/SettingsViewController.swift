@@ -286,8 +286,14 @@ private extension SettingsViewController {
     }
 
     func setupPickerButtons(picker: AbstractActionSheetPicker) {
-        picker.setDoneButton(UIBarButtonItem(title: "Done", style: .done, target: self, action: nil))
-        picker.setCancelButton(UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: nil))
+        // Refactor when library bug is fixed https://github.com/skywinder/ActionSheetPicker-3.0/issues/22
+        let doneButton = UIButton(type: .system)
+        doneButton.setTitle("Done", for: .normal)
+        picker.setDoneButton(UIBarButtonItem(customView: doneButton))
+
+        let cancelButton = UIButton(type: .system)
+        cancelButton.setTitle("Cancel", for: .normal)
+        picker.setCancelButton(UIBarButtonItem(customView: cancelButton))
     }
 }
 
