@@ -20,7 +20,6 @@ final class LocationManager: CLLocationManager {
     override init() {
         super.init()
 
-        allowsBackgroundLocationUpdates = true
         pausesLocationUpdatesAutomatically = true
     }
 
