@@ -20,7 +20,7 @@ final class MyToBeVision: SyncableObject {
 
     @objc dynamic var text: String?
 
-    @objc dynamic var date: Date = Date.distantPast // We need distantPast so that setData works correctly
+    @objc dynamic var date: Date?
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
 
@@ -32,12 +32,12 @@ final class MyToBeVision: SyncableObject {
 extension MyToBeVision: TwoWaySyncableUniqueObject {
 
     func setData(_ data: MyToBeVisionIntermediary, objectStore: ObjectStore) throws {
-        /*
-         FIXME: HACK!!!! API accepts a dictionary of MyToBeVision properties for upload but returns an array of all
-         previous my to be visions on download rather than the most recent version. So we will only set the data if the
-         data is later then the current data. DISCUSS WITH BACKEND
-         */
-        guard data.validFrom > date else {
+        if let date = date, date > data.validFrom {
+            /*
+             FIXME: HACK!!!! API accepts a dictionary of MyToBeVision properties for upload but returns an array of all
+             previous my to be visions on download rather than the most recent version. So we will only set the data if
+             the data is later then the current data. DISCUSS WITH BACKEND
+             */
             return
         }
 
@@ -57,7 +57,7 @@ extension MyToBeVision: TwoWaySyncableUniqueObject {
     }
 
     func toJson() -> JSON? {
-        guard syncStatus != .clean else { return nil }
+        guard syncStatus != .clean, let date = date else { return nil }
 
         let dict: [JsonKey: JSONEncodable] = [
             .syncStatus: syncStatus.rawValue,
