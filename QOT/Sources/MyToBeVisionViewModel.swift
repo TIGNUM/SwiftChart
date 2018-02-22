@@ -16,9 +16,6 @@ final class MyToBeVisionViewModel {
     private var userService: UserService {
         return services.userService
     }
-    private var mediaService: MediaService {
-        return services.mediaService
-    }
     private(set) var item: MyToBeVision?
     var headline: String? {
         return item?.headline
@@ -65,11 +62,10 @@ final class MyToBeVisionViewModel {
     }
 
     func updateLocalProfileImageURL(_ url: URL) {
-        guard let resource = profileImageResource else { return }
+        guard let item = item else { return }
 
-        mediaService.updateMediaResource(resource) { (resource) in
-            resource.setEntity(.toBeVision)
-            resource.setLocalURL(localURL: url, mediaFormat: .jpg)
+        userService.updateMyToBeVision(item) {
+            $0.profileImageResource?.setLocalURL(url, format: .jpg, entity: .toBeVision, entitiyLocalID: $0.localID)
         }
     }
 

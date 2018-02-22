@@ -171,7 +171,7 @@ final class DatabaseManager {
 private extension URL {
 
     static var mainRealmDirectory: URL {
-        return URL.documentsDirectory.appendingPathComponent("database")
+        return URL.documentDirectory.appendingPathComponent("database")
     }
 
     static var mainRealm: URL {

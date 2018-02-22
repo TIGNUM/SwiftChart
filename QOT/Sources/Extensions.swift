@@ -546,16 +546,19 @@ extension UIImageView {
     }
 
     func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
-        if let localURL = resource.localURL {
-            image = UIImage(dataUrl: localURL)
-            completion?(image, nil)
-        } else if let remoteURL = resource.remoteURL {
-            let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
-            kf.setImage(with: remoteURL,
-                        placeholder: defaultImage,
-                        options: options,
-                        progressBlock: nil) { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
-                completion?(image, error)
+        if let url = resource.url {
+            if url.isFileURL {
+                let image = UIImage(dataUrl: url)
+                self.image = image
+                completion?(image, nil)
+            } else {
+                let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
+                kf.setImage(with: url,
+                            placeholder: defaultImage,
+                            options: options,
+                            progressBlock: nil) { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
+                                completion?(image, error)
+                }
             }
         } else if let defaultImage = defaultImage {
             image = defaultImage
@@ -581,15 +584,17 @@ extension UIButton {
     }
 
     func setImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
-        if let localURL = resource.localURL {
-            let image = UIImage(dataUrl: localURL)
-            setImage(image, for: .normal)
-            completion?(image, nil)
-        } else if let remoteURL = resource.remoteURL {
-            let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
-            kf.setImage(with: remoteURL, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
-                completion?(image, error)
-            })
+        if let url = resource.url {
+            if url.isFileURL {
+                let image = UIImage(dataUrl: url)
+                setImage(image, for: .normal)
+                completion?(image, nil)
+            } else {
+                let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
+                kf.setImage(with: url, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
+                    completion?(image, error)
+                })
+            }
         } else if let defaultImage = defaultImage {
             setImage(defaultImage, for: .normal)
             completion?(defaultImage, nil)
@@ -599,15 +604,17 @@ extension UIButton {
     }
 
     func setBackgroundImageFromResource(_ resource: MediaResource, defaultImage: UIImage? = nil, completion: ((UIImage?, Error?) -> Void)? = nil) {
-        if let localURL = resource.localURL {
-            let image = UIImage(dataUrl: localURL)
-            setBackgroundImage(image, for: .normal)
-            completion?(image, nil)
-        } else if let remoteURL = resource.remoteURL {
-            let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
-            kf.setBackgroundImage(with: remoteURL, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
-                completion?(image, error)
-            })
+        if let url = resource.url {
+            if url.isFileURL {
+                let image = UIImage(dataUrl: url)
+                setBackgroundImage(image, for: .normal)
+                completion?(image, nil)
+            } else {
+                let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
+                kf.setBackgroundImage(with: url, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
+                    completion?(image, error)
+                })
+            }
         } else if let defaultImage = defaultImage {
             setBackgroundImage(defaultImage, for: .normal)
             completion?(defaultImage, nil)

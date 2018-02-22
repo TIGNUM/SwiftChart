@@ -22,7 +22,6 @@ final class Services {
     let eventsService: EventsService
     let settingsService: SettingsService
     let statisticsService: StatisticsService
-    let mediaService: MediaService
     let feedbackService: FeedbackService
     let guideService: GuideService
     let userNotificationsManager: UserNotificationsManager
@@ -40,7 +39,6 @@ final class Services {
         self.eventsService = EventsService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.settingsService = SettingsService(realm: mainRealm)
         self.statisticsService = StatisticsService(mainRealm: mainRealm, realmProvider: realmProvider)
-        self.mediaService = MediaService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.feedbackService = FeedbackService(mainRealm: mainRealm, realmProvider: realmProvider)
         self.guideService = GuideService(realm: mainRealm, realmProvider: realmProvider)
         self.userNotificationsManager = UserNotificationsManager(realmProvider: realmProvider)

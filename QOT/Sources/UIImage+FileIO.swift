@@ -11,54 +11,48 @@ import UIKit
 extension UIImage {
     enum Format {
         case png
-        case jpg
+        case jpg(compressionQuality: CGFloat)
+
+        var pathExtension: String {
+            switch self {
+            case .png:
+                return "png"
+            case .jpg:
+                return "jpg"
+            }
+        }
     }
 
     enum ImageError: Error {
-        case directoryNotFound
         case imageConvertionError
     }
 
-    /// Saves image to ...(lib)/image directory
-    func save(withName name: String, format: Format = .jpg) throws -> URL {
-        let paths = NSSearchPathForDirectoriesInDomains(.libraryDirectory, .userDomainMask, true)
-        guard let directory = paths.first else {
-            log("couldn't find directory", level: .error)
-            throw ImageError.directoryNotFound
-        }
-        let data: Data
+    func data(format: Format) throws -> Data {
+        let data: Data?
         switch format {
         case .png:
-            guard let pngData = UIImagePNGRepresentation(self) else {
-                log("problem converting image data", level: .error)
-                throw ImageError.imageConvertionError
-            }
-            data = pngData
-        case .jpg:
-            guard let jpgData = UIImageJPEGRepresentation(self, 1.0) else {
-                log("problem converting image data", level: .error)
-                throw ImageError.imageConvertionError
-            }
-            data = jpgData
+            data = UIImagePNGRepresentation(self)
+        case .jpg(let compressionQuality):
+            data = UIImageJPEGRepresentation(self, compressionQuality)
         }
+        if let data = data {
+            return data
+        } else {
+            log("problem converting image data", level: .error)
+            throw ImageError.imageConvertionError
+        }
+    }
 
-        var path = directory.appending("/images")
-        if !FileManager.default.fileExists(atPath: path) {
-            do {
-                try FileManager.default.createDirectory(atPath: path, withIntermediateDirectories: false, attributes: nil)
-            } catch {
-                throw error
-            }
-        }
-
-        path = path.appendingFormat("/%@.jpg", name)
-        let url = URL(fileURLWithPath: path)
-        do {
-            try data.write(to: url)
-            return url
-        } catch {
-            log(error, level: .error)
-            throw error
-        }
+    /**
+     Saves image to `URL.imageDirectory`.
+     - returns: The image name including path extension.
+    */
+    func save(withName name: String, format: Format = .jpg(compressionQuality: 0.5)) throws -> URL {
+        let path = "\(name).\(format.pathExtension)"
+        let url = URL(fileURLWithPath: path, relativeTo: URL.imageDirectory)
+        let fileManager = FileManager.default
+        try fileManager.createDirectory(at: URL.imageDirectory, withIntermediateDirectories: true)
+        try data(format: format).write(to: url, options: [])
+        return url
     }
 }

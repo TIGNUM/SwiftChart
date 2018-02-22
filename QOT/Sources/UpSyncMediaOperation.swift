@@ -54,8 +54,8 @@ final class UpSyncMediaOperation: ConcurrentOperation {
     private func fetchData(syncToken: String) {
         do {
             let realm = try realmProvider.realm()
-            if let resource = realm.syncableObject(ofType: MediaResource.self, localID: localID),
-                let data = try resource.upSyncData(realm: realmProvider),
+            if let resource = realm.object(ofType: MediaResource.self, forPrimaryKey: localID),
+                let data = try resource.json()?.serialize(),
                 let localURL = resource.localURL {
                 sendData(data, syncToken: syncToken, localURL: localURL)
             } else {
@@ -66,13 +66,13 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         }
     }
 
-    private func sendData(_ data: UpSyncMediaData, syncToken: String, localURL: URL) {
+    private func sendData(_ data: Data, syncToken: String, localURL: URL) {
         guard isCancelled == false else {
             finish(error: .didCancel)
             return
         }
 
-        let request = UpSyncRequest(endpoint: MediaResource.endpoint, body: data.body, syncToken: syncToken)
+        let request = UpSyncRequest(endpoint: .media, body: data, syncToken: syncToken)
         currentRequest = networkManager.request(request, parser: UpSyncMediaResultParser.parse) { [weak self] (result) in
             switch result {
             case .success(let upSyncResult):
@@ -89,16 +89,14 @@ final class UpSyncMediaOperation: ConcurrentOperation {
             return
         }
 
-        let cacheKey = result.remoteURLString
+        let cacheKey = result.remoteURL.path
         do {
             try cacheImage(withURL: localURL, key: cacheKey, completion: { [unowned self] in
                 do {
                     let realm = try self.realmProvider.realm()
-                    let resource = realm.syncableObject(ofType: MediaResource.self, localID: self.localID)
+                    let resource = realm.object(ofType: MediaResource.self, forPrimaryKey: self.localID)
                     try realm.write {
-                        resource?.remoteID.value = result.remoteID
-                        resource?.localURLString = nil
-                        resource?.remoteURLString = result.remoteURLString
+                        resource?.uploadComplete(remoteURL: result.remoteURL)
                     }
                     try FileManager.default.removeItem(at: localURL)
                     self.finish(error: nil)

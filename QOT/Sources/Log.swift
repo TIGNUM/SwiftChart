@@ -72,7 +72,7 @@ struct Log {
          #if DEBUG
         let file = FileDestination()
         file.minLevel = .debug
-        file.logFileURL = URL.documentsDirectory.appendingPathComponent("daily_prep_notification.log")
+        file.logFileURL = URL.documentDirectory.appendingPathComponent("daily_prep_notification.log")
 
         Log.main.addDestination(file)
         #endif

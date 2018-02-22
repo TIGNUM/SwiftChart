@@ -20,9 +20,6 @@ final class PartnersViewModel {
     private var partnerService: PartnerService {
         return services.partnerService
     }
-    private var mediaService: MediaService {
-        return services.mediaService
-    }
     private(set) var selectedIndex: Index
     private var currentEditPartner: Partner?
 
@@ -85,13 +82,9 @@ final class PartnersViewModel {
         }
         do {
             let url = try image.save(withName: currentEditPartner.localID)
-            if let imageResource = currentEditPartner.profileImageResource {
-                mediaService.updateMediaResource(imageResource) { (resource) in
-                    resource.setEntity(.qotPartner)
-                    resource.setLocalURL(localURL: url, mediaFormat: .jpg)
-                }
+            partnerService.updatePartner(currentEditPartner) {
+                $0.profileImageResource?.setLocalURL(url, format: .jpg, entity: .partner, entitiyLocalID: $0.localID)
             }
-
             NotificationCenter.default.post(name: .startSyncAllNotification, object: nil)
             return nil
         } catch {

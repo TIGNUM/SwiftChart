@@ -12,14 +12,17 @@ import Freddy
 struct UpSyncMediaResult {
 
     let remoteID: Int
-    let remoteURLString: String
+    let remoteURL: URL
 
     init(json: JSON) throws {
         guard let result = try json.getArray(at: .resultList, fallback: []).first else {
             throw SimpleError(localizedDescription: "missing resultList[0]")
         }
+        guard let url = URL(string: try result.getItemValue(at: .mediaUrl)) else {
+            throw SimpleError(localizedDescription: "Invalid remote url for json: \(json)")
+        }
         self.remoteID = try result.getItemValue(at: .id)
-        self.remoteURLString = try result.getItemValue(at: .mediaUrl)
+        self.remoteURL = url
     }
 }
 

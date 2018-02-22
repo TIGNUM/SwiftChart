@@ -13,4 +13,3 @@ typealias TwoWaySyncable = DownSyncable & UpSyncableWithLocalAndRemoteIDs
 typealias OneWaySyncableDown = DownSyncable
 typealias OneWaySyncableUp = UpSyncableDeleting
 typealias TwoWaySyncableUniqueObject = DownSyncable & UpsyncableUnique
-typealias OneWayMediaSyncableUp = UpSyncableMedia

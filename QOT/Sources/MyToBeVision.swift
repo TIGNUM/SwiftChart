@@ -23,10 +23,6 @@ final class MyToBeVision: SyncableObject {
     @objc dynamic var date: Date?
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
-
-    override func didSetRemoteID() {
-        profileImageResource?.relatedEntityID.value = remoteID.value
-    }
 }
 
 extension MyToBeVision: TwoWaySyncableUniqueObject {
@@ -45,7 +41,7 @@ extension MyToBeVision: TwoWaySyncableUniqueObject {
         subHeadline = data.subHeadline
         text = data.text
         date = data.validFrom
-        profileImageResource?.remoteURLString = data.remoteProfileImageURL
+        profileImageResource?.setRemoteURL(data.remoteProfileImageURL.flatMap({ URL(string: $0) }))
     }
 
     static func object(remoteID: Int, store: ObjectStore) throws -> MyToBeVision? {

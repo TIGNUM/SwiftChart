@@ -10,8 +10,16 @@ import Foundation
 
 extension URL {
 
-    static var documentsDirectory: URL {
+    static var documentDirectory: URL {
         return FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0]
+    }
+
+    static var libraryDirectory: URL {
+        return FileManager.default.urls(for: .libraryDirectory, in: .userDomainMask)[0]
+    }
+
+    static var imageDirectory: URL {
+        return libraryDirectory.appendingPathComponent("image")
     }
 
     var groupID: Int? {

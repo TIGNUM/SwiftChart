@@ -252,7 +252,7 @@ private extension SyncManager {
 
     func uploadMediaOperations(context: SyncContext) throws -> [Operation] {
         let realm = try realmProvider.realm()
-        let itemsToUpload = realm.objects(MediaResource.self).filter(MediaResource.dirtyPredicate)
+        let itemsToUpload = realm.objects(MediaResource.self).filter("localFileName != nil")
         return itemsToUpload.map { (resource: MediaResource) -> Operation in
             return upSyncMediaOperation(localID: resource.localID, context: context)
         }

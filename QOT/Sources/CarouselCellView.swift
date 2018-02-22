@@ -56,7 +56,7 @@ extension CarouselCellView {
         if let profileImageResource = profileImageResource {
             imageView.setImageFromResource(profileImageResource)
         }
-        let isAvailable = profileImageResource?.isAvailable ?? false
+        let isAvailable = profileImageResource?.url != nil
         if isAvailable {
             editPictureButton.setTitle(R.string.localized.meSectorMyWhyPartnersAddPhoto(), for: .normal)
         } else {

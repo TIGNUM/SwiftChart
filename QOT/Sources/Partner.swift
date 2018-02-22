@@ -31,10 +31,6 @@ final class Partner: SyncableObject {
     @objc dynamic var deleted: Bool = false
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
-
-    override func didSetRemoteID() {
-        profileImageResource?.relatedEntityID.value = remoteID.value
-    }
 }
 
 extension Partner: TwoWaySyncable {
@@ -44,7 +40,7 @@ extension Partner: TwoWaySyncable {
         surname = data.surname
         relationship = data.relationship
         email = data.email
-        profileImageResource?.remoteURLString = data.remoteProfileImageURL
+        profileImageResource?.setRemoteURL(data.remoteProfileImageURL.flatMap({ URL(string: $0) }))
     }
 
     func toJson() -> JSON? {

@@ -180,7 +180,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     }
 
     private var appFilePath: String {
-        let url = URL.documentsDirectory.deletingLastPathComponent()
+        let url = URL.documentDirectory.deletingLastPathComponent()
         return url.absoluteString.removeFilePrefix
     }
 

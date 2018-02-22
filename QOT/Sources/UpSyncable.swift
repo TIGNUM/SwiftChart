@@ -205,47 +205,6 @@ extension UpsyncableUnique where Self: Object {
     }
 }
 
-// MARK: UpSyncableMedia
-
-protocol UpSyncableMedia: class {
-
-    var localURLString: String? { get set }
-
-    var remoteURLString: String? { get set }
-
-    var syncStatus: UpSyncStatus { get }
-
-    func toJson() -> JSON?
-
-    static var endpoint: Endpoint { get }
-
-    static var dirtyPredicate: NSPredicate { get }
-
-    func upSyncData(realm: RealmProvider) throws -> UpSyncMediaData?
-}
-
-extension UpSyncableMedia where Self: SyncableObject {
-    var syncStatus: UpSyncStatus {
-        if localURLString == nil {
-            return .clean
-        } else {
-            return .updatedLocally
-        }
-    }
-
-    static var dirtyPredicate: NSPredicate {
-        return NSPredicate(format: "localURLString != nil")
-    }
-
-    func upSyncData(realm: RealmProvider) throws -> UpSyncMediaData? {
-        if let json = toJson(), syncStatus != .clean {
-            return UpSyncMediaData(body: try json.serialize())
-        } else {
-            return nil
-        }
-    }
-}
-
 // MARK: UpsyncableUpdateOnly
 
 protocol UpsyncableUpdateOnly: UpSyncable, Dirty {}
