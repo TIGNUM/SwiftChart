@@ -123,7 +123,10 @@ extension SettingsChangePasswordViewController {
 private extension SettingsChangePasswordViewController {
 
     func setupNavigationItem() {
-        navigationItem.leftBarButtonItem? = UIBarButtonItem(image: R.image.ic_back(), style: .done, target: self, action: #selector(closeView))
+        navigationItem.leftBarButtonItem? = UIBarButtonItem(image: R.image.ic_back(),
+                                                            style: .done,
+                                                            target: self,
+                                                            action: #selector(closeView))
         navigationController?.navigationBar.tintColor = .white
     }
 
