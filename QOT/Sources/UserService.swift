@@ -25,7 +25,7 @@ final class UserService {
         return mainRealm.objects(User.self).first
     }
 
-    func updateJobTitle(user: User, title: String) {
+    func updateUserJobTitle(user: User, title: String) {
         updateUser(user: user) {
             $0.jobTitle = title
         }

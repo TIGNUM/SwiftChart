@@ -216,7 +216,7 @@ final class SettingsViewModel {
     }
 
     func updateJobTitle(title: String) {
-        services.userService.updateJobTitle(user: user, title: title)
+        services.userService.updateUserJobTitle(user: user, title: title)
     }
 
     func updateEmail(email: String) {

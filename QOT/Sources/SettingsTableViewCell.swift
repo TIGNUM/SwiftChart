@@ -140,7 +140,6 @@ private extension SettingsTableViewCell {
         textField.isSecureTextEntry = secure
         textField.delegate = self
         setTitle(title: title)
-
     }
 
     func setTitle(title: String) {

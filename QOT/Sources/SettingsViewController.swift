@@ -342,12 +342,9 @@ extension SettingsViewController: SettingsViewControllerDelegate {
 
     func didTextFieldChanged(at indexPath: IndexPath, text: String) {
         switch indexPath.row {
-        case 1:
-            if !text.isEmpty { viewModel.updateJobTitle(title: text) }
-        case 2:
-            if text.isEmail { viewModel.updateEmail(email: text) }
-        case 3:
-            if text.isNumber { viewModel.updateTelephone(telephone: text) }
+        case 1: if text.isEmpty == false { viewModel.updateJobTitle(title: text) }
+        case 2: if text.isEmail { viewModel.updateEmail(email: text) }
+        case 3: if text.isPhoneNumber { viewModel.updateTelephone(telephone: text) }
         default: return
         }
 
@@ -406,13 +403,15 @@ extension SettingsViewController: SettingsViewControllerDelegate {
 
 private extension String {
 
-    var isNumber: Bool {
-        return !isEmpty && rangeOfCharacter(from: CharacterSet.decimalDigits.inverted) == nil
+    var isPhoneNumber: Bool {
+        let phoneRegex = "^((\\+)|(00))[0-9]{6,14}$"
+        let phonePredicate = NSPredicate(format: "SELF MATCHES %@", phoneRegex)
+        return phonePredicate.evaluate(with: self)
     }
 
     var isEmail: Bool {
-        let emailFormat = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
-        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailFormat)
+        let emailRegex = "[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,64}"
+        let emailPredicate = NSPredicate(format: "SELF MATCHES %@", emailRegex)
         return emailPredicate.evaluate(with: self)
     }
 }
