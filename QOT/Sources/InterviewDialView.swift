@@ -29,7 +29,7 @@ struct Segment {
         var segments: [Segment] = []
         for i in 0...9 {
             let centerAngle = (startAngle + (deltaAngle / 2)) + (deltaAngle * CGFloat(i))
-            let segment = Segment(centerAngle: centerAngle, deltaAngle: 27)
+            let segment = Segment(centerAngle: centerAngle, deltaAngle: deltaAngle)
             segments.append(segment)
         }
         return segments
@@ -44,18 +44,31 @@ class InterviewDialView: UIView {
 
     private var segmentLabels: [Index: UILabel] = [:]
     private let selectedLayer = SelectedLayer()
-
+    private var config = Config(ringWidth: 64)
+    private var segments = Segment.makeSegments()
+    private let bottomRingLayer = CAShapeLayer()
+    private let horseshoeLayer = CAShapeLayer()
+    private let partitionsLayer = CAShapeLayer()
+    private let internalRingLayer = CAShapeLayer()
+    private let linesLayer = CAShapeLayer()
+    private var selectedIndex: Int?
     weak var selectionDelegate: DialSelectionDelegate!
-    var config = Config(ringWidth: 64)
-    var segments = Segment.makeSegments()
-    let bottomRingLayer = CAShapeLayer()
-    let horseshoeLayer = CAShapeLayer()
-    let partitionsLayer = CAShapeLayer()
-    let internalRingLayer = CAShapeLayer()
-    let linesLayer = CAShapeLayer()
-    var selectedIndex: Int?
 
+    private var interRadius: CGFloat {
+        return outerRadius - config.ringWidth
+    }
 
+    private var outerRadius: CGFloat {
+        return bounds.width / 2
+    }
+
+    private var centerRadius: CGFloat {
+        return outerRadius - (config.ringWidth / 2)
+    }
+
+    private var centerPoint: CGPoint {
+        return bounds.center
+    }
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -65,22 +78,6 @@ class InterviewDialView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         setup()
-    }
-
-    private func setup() {
-        let tapGestureRecognizer = UITapGestureRecognizer()
-        tapGestureRecognizer.addTarget(self, action: #selector(handleTap(recognizer:)))
-        addGestureRecognizer(tapGestureRecognizer)
-
-        partitionsLayer.addSublayer(linesLayer)
-        setupBottomRingLayer()
-        setupHorseshoeLayer()
-        setupInternalRing()
-        for i in 0..<segments.count {
-            let label = segmentLabel(index: i)
-            label.text = String(i + 1)
-        }
-        layer.addSublayer(selectedLayer)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -95,9 +92,106 @@ class InterviewDialView: UIView {
         layoutHorseshoeLayer()
         layoutInternalRing()
         layoutLabels(center: centerPoint)
-        segmentDivision()
+        layoutSegmentDivision()
         selectedLayer.frame = bounds
         syncSelectedSegmentLayer()
+    }
+
+    // MARK: - Layers setup
+
+    private func setup() {
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(handleTap(recognizer:)))
+        addGestureRecognizer(tapGestureRecognizer)
+
+        partitionsLayer.addSublayer(linesLayer)
+        setupBottomRingLayer()
+        setupHorseshoeLayer()
+        setupInternalRing()
+        for i in 0..<segments.count {
+            let label = segmentLabel(index: i)
+            label.text = String(i + 1)
+        }
+        setupLinesLayer()
+        layer.addSublayer(selectedLayer)
+    }
+
+    private func setupHorseshoeLayer() {
+        layer.addSublayer(horseshoeLayer)
+        horseshoeLayer.fillColor = UIColor(red: 0.15, green: 0.18, blue: 0.22, alpha: 1.0).cgColor
+        horseshoeLayer.opacity = 0.6
+    }
+    private func setupInternalRing() {
+        layer.addSublayer(internalRingLayer)
+        internalRingLayer.fillColor = UIColor.clear.cgColor
+        internalRingLayer.strokeColor = UIColor.white.cgColor
+        internalRingLayer.opacity = 0.08
+    }
+    private func setupBottomRingLayer() {
+        layer.addSublayer(bottomRingLayer)
+        bottomRingLayer.fillColor = UIColor(red: 0.10, green: 0.11, blue: 0.14, alpha: 1.0).cgColor
+        bottomRingLayer.fillRule = kCAFillRuleEvenOdd
+        bottomRingLayer.opacity = 0.65
+    }
+
+    private func setupCircleLayers() {
+        bottomRingLayer.fillColor = UIColor(red: 0.00, green: 0.11, blue: 0.19, alpha: 1.0).cgColor
+        partitionsLayer.fillColor = UIColor(red: 0.52, green: 0.49, blue: 0.41, alpha: 1.0).cgColor
+    }
+
+    private func setupLinesLayer() {
+        linesLayer.strokeColor = UIColor.white.cgColor
+        linesLayer.fillColor = UIColor.clear.cgColor
+        linesLayer.lineWidth = 0.6
+        linesLayer.opacity = 0.3
+    }
+
+    // MARK: - Layers configuration
+
+    private func layoutHorseshoeLayer() {
+        let outer = bounds.width / 2
+        let inner = outer - config.ringWidth
+        horseshoeLayer.path = UIBezierPath.horseshoe(center: centerPoint,
+                                                     innerRadius: inner,
+                                                     outerRadius: outer,
+                                                     startAngle: 135,
+                                                     endAngle: 45).cgPath
+    }
+
+    private func layoutInternalRing() {
+        let outer = (bounds.width / 2) - config.ringWidth
+        internalRingLayer.path = UIBezierPath.circlePath(center: centerPoint, radius: outer).cgPath
+    }
+
+    private func layoutBottomRingLayer() {
+        let outer = bounds.width / 2
+        let inner = outer - config.ringWidth
+        bottomRingLayer.path = UIBezierPath.horseshoe(center: centerPoint,
+                                                      innerRadius: inner,
+                                                      outerRadius: outer,
+                                                      startAngle: 45,
+                                                      endAngle: 135).cgPath
+    }
+
+    private func layoutLabels(center: CGPoint) {
+        for (index, segment) in segments.enumerated() {
+            let label = segmentLabel(index: index)
+            label.sizeToFit()
+            label.center = center.shifted(centerRadius, with: segment.centerAngle)
+        }
+    }
+
+    private func layoutSegmentDivision() {
+        let totalLinesPath = UIBezierPath()
+        segments.dropLast().forEach { (segment) in
+            let currentPoint = centerPoint.shifted(interRadius + 20, with: segment.endAngle)
+            let endPoint = currentPoint.shifted(config.ringWidth - 35, with: segment.endAngle)
+            let linePath = UIBezierPath.linePath(from: currentPoint, to: endPoint)
+            totalLinesPath.append(linePath)
+        }
+
+        linesLayer.path = totalLinesPath.cgPath
+        layer.addSublayer(linesLayer)
     }
 
     func updateConfig(_ config: Config) {
@@ -105,21 +199,7 @@ class InterviewDialView: UIView {
         setNeedsLayout()
     }
 
-    var interRadius: CGFloat {
-        return outerRadius - config.ringWidth
-    }
-
-    var outerRadius: CGFloat {
-        return bounds.width / 2
-    }
-
-    var centerRadius: CGFloat {
-        return outerRadius - (config.ringWidth / 2)
-    }
-
-    var centerPoint: CGPoint {
-        return bounds.center
-    }
+    // MARK: - Tap event handling
 
     @objc func handleTap(recognizer: UITapGestureRecognizer) {
         guard recognizer.state == .recognized else { return }
@@ -158,95 +238,23 @@ class InterviewDialView: UIView {
         }
     }
 
-    private func setupHorseshoeLayer() {
-        layer.addSublayer(horseshoeLayer)
-        horseshoeLayer.fillColor = UIColor(red: 0.15, green: 0.18, blue: 0.22, alpha: 1.0).cgColor
-        horseshoeLayer.opacity = 0.6
-    }
-
-    private func layoutHorseshoeLayer() {
-        let outer = bounds.width / 2
-        let inner = outer - config.ringWidth
-        horseshoeLayer.path = UIBezierPath.horseshoe(center: centerPoint,
-                                                     innerRadius: inner,
-                                                     outerRadius: outer,
-                                                     startAngle: 135,
-                                                     endAngle: 45).cgPath
-    }
-
-    private func setupInternalRing() {
-        layer.addSublayer(internalRingLayer)
-        internalRingLayer.fillColor = UIColor.clear.cgColor
-        internalRingLayer.strokeColor = UIColor.white.cgColor
-        internalRingLayer.opacity = 0.08
-    }
-
-    private func layoutInternalRing() {
-        let outer = (bounds.width / 2) - config.ringWidth
-        internalRingLayer.path = UIBezierPath.circlePath(center: centerPoint, radius: outer).cgPath
-    }
-
-    private func setupBottomRingLayer() {
-        layer.addSublayer(bottomRingLayer)
-        bottomRingLayer.fillColor = UIColor(red: 0.10, green: 0.11, blue: 0.14, alpha: 1.0).cgColor
-        bottomRingLayer.fillRule = kCAFillRuleEvenOdd
-        bottomRingLayer.opacity = 0.65
-    }
-
-    private func layoutBottomRingLayer() {
-        let outer = bounds.width / 2
-        let inner = outer - config.ringWidth
-        bottomRingLayer.path = UIBezierPath.horseshoe(center: centerPoint,
-                                                      innerRadius: inner,
-                                                      outerRadius: outer,
-                                                      startAngle: 45,
-                                                      endAngle: 135).cgPath
-    }
-
-    private func layoutLabels(center: CGPoint) {
-        for (index, segment) in segments.enumerated() {
-            let label = segmentLabel(index: index)
-            label.sizeToFit()
-            label.center = center.shifted(centerRadius, with: segment.centerAngle)
-        }
-    }
-
-    func segmentIndex(at point: CGPoint) -> Int? {
+    private func segmentIndex(at point: CGPoint) -> Int? {
 
         for (index, segment) in segments.enumerated() {
             let segmentPath = UIBezierPath.horseshoe(center: centerPoint,
-                                                             innerRadius: (bounds.width / 2) - config.ringWidth,
-                                                             outerRadius: bounds.width / 2,
-                                                             startAngle: segment.startAngle,
-                                                             endAngle: segment.endAngle)
+                                                     innerRadius: (bounds.width / 2) - config.ringWidth,
+                                                     outerRadius: bounds.width / 2,
+                                                     startAngle: segment.startAngle,
+                                                     endAngle: segment.endAngle)
             if segmentPath.contains(point) {
                 return index
             }
         }
         return nil
     }
-
-    private func setupCircleLayers() {
-        bottomRingLayer.fillColor = UIColor(red: 0.00, green: 0.11, blue: 0.19, alpha: 1.0).cgColor
-        partitionsLayer.fillColor = UIColor(red: 0.52, green: 0.49, blue: 0.41, alpha: 1.0).cgColor
-    }
-
-    private func segmentDivision() {
-        let totalLinesPath = UIBezierPath()
-        segments.dropLast().forEach { (segment) in
-            let currentPoint = centerPoint.shifted(interRadius + 20, with: segment.endAngle)
-            let endPoint = currentPoint.shifted(config.ringWidth - 35, with: segment.endAngle)
-            let linePath = UIBezierPath.linePath(from: currentPoint, to: endPoint)
-            totalLinesPath.append(linePath)
-        }
-        linesLayer.strokeColor = UIColor.white.cgColor
-        linesLayer.fillColor = UIColor.clear.cgColor
-        linesLayer.lineWidth = 0.6
-        linesLayer.opacity = 0.3
-        linesLayer.path = totalLinesPath.cgPath
-        layer.addSublayer(linesLayer)
-    }
 }
+
+// MARK: - Private
 
 private extension InterviewDialView {
 
@@ -263,6 +271,8 @@ private extension InterviewDialView {
         }
     }
 }
+
+// MARK: - Private class for drawing a gradient circular shape
 
 private class SelectedLayer: CALayer {
 
@@ -306,15 +316,16 @@ private class SelectedLayer: CALayer {
         ctx.saveGState()
 
         let colorSpace = CGColorSpaceCreateDeviceRGB()
-        let gradient = CGGradient(colorsSpace: colorSpace, colors: colors as CFArray, locations: locations)
         let center = CGPoint(x: bounds.width / 2.0, y: bounds.height / 2.0)
         let radius = min(bounds.width / 2.0, bounds.height / 2.0)
-        ctx.drawRadialGradient(gradient!,
+        guard let gradient = CGGradient(colorsSpace: colorSpace,
+                                        colors: colors as CFArray,
+                                        locations: locations) else { return }
+        ctx.drawRadialGradient(gradient,
                                startCenter: center,
                                startRadius: 0.0,
                                endCenter: center,
                                endRadius: radius,
                                options: CGGradientDrawingOptions(rawValue: 0))
-
     }
 }
