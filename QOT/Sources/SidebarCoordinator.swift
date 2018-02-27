@@ -59,7 +59,7 @@ final class SidebarCoordinator: ParentCoordinator {
 extension SidebarCoordinator: SidebarViewControllerDelegate {
 
     func didTapIntroSlidersCell(in viewController: SidebarViewController) {
-        let slideShowViewController = SlideShowViewController(configure: SlideShowConfigurator.make())
+        let slideShowViewController = SlideShowViewController(configure: SlideShowConfigurator.makeModal())
         viewController.present(slideShowViewController, animated: true, completion: nil)
     }
 

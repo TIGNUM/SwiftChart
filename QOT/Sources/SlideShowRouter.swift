@@ -8,19 +8,29 @@
 
 import UIKit
 
-final class SlideShowRouter {
+final class InitialSlideShowRouter: SlideShowRouterInterface {
 
     // FIXME: Remove AppCoordinator when we have migrated to a VIP architecture.
-    let appCoordinator: AppCoordinator
+    private let appCoordinator: AppCoordinator
 
     init(appCoordinator: AppCoordinator) {
         self.appCoordinator = appCoordinator
     }
-}
-
-extension SlideShowRouter: SlideShowRouterInterface {
 
     func dismissSlideShow() {
         appCoordinator.showApp(loginViewController: nil)
+    }
+}
+
+final class ModalSlideShowRouter: SlideShowRouterInterface {
+
+    private let viewController: UIViewController
+
+    init(viewController: UIViewController) {
+        self.viewController = viewController
+    }
+
+    func dismissSlideShow() {
+        viewController.dismiss(animated: true, completion: nil)
     }
 }
