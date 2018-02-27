@@ -44,14 +44,20 @@ final class SettingsMenuViewController: UIViewController {
     @IBOutlet private weak var logoutButton: UIButton!
     private let disposeBag = DisposeBag()
     private let viewModel: SettingsMenuViewModel
+    private let imagePickerController: ImagePickerController
+    private var imageTapRecogniser: UITapGestureRecognizer!
     private var destination: AppCoordinator.Router.Destination?
     weak var delegate: SettingsMenuViewControllerDelegate?
 
     // MARK: - Init
 
-    init(viewModel: SettingsMenuViewModel, destination: AppCoordinator.Router.Destination?) {
+    init(viewModel: SettingsMenuViewModel, destination: AppCoordinator.Router.Destination?, permissionsManager: PermissionsManager) {
         self.viewModel = viewModel
         self.destination = destination
+        imagePickerController = ImagePickerController(cropShape: .circle,
+                                                      imageQuality: .low,
+                                                      imageSize: .small,
+                                                      permissionsManager: permissionsManager)
 
         super.init(nibName: nil, bundle: nil)
     }
@@ -165,19 +171,27 @@ private extension SettingsMenuViewController {
     }
 
     private func setupImageView() {
+        imagePickerController.delegate = self
+        imageTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(editImageAction))
+        imgeView.isUserInteractionEnabled = true
         imgeView.layer.cornerRadius = 10
         imgeView.layer.masksToBounds = true
-        var url: URL? = nil
-        if let urlString = viewModel.userProfileImagePath {
-            url = URL(string: urlString)
-        }
-        imgeView.kf.setImage(with: url, placeholder: R.image.placeholder_user(), options: nil, progressBlock: nil, completionHandler: nil)
+        imgeView.addGestureRecognizer(imageTapRecogniser)
+        imgeView.kf.setImage(with: viewModel.userProfileImageResource?.url,
+                             placeholder: R.image.placeholder_user(),
+                             options: nil,
+                             progressBlock: nil,
+                             completionHandler: nil)
     }
 }
 
 // MARK: - Actions
 
 private extension SettingsMenuViewController {
+
+    @objc func editImageAction() {
+        imagePickerController.show(in: self)
+    }
 
     @IBAction func generalAction(_ sender: Any) {
         delegate?.didTapGeneral(in: self)
@@ -227,5 +241,28 @@ extension SettingsMenuViewController: UICollectionViewDelegate, UICollectionView
         cell.setup(with: item.title, subTitle: item.subtitle)
 
         return cell
+    }
+}
+
+// MARK: - ImagePickerDelegate
+
+extension SettingsMenuViewController: ImagePickerControllerDelegate {
+
+    func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
+        let error = viewModel.updateProfileImage(image)
+        guard error == nil else {
+            let alertController = UIAlertController(
+                title: R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle(),
+                message: R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage(),
+                preferredStyle: .alert)
+            let alertAction = UIAlertAction(
+                title: R.string.localized.meSectorMyWhyPartnersPhotoErrorOKButton(),
+                style: .default)
+            alertController.addAction(alertAction)
+            present(alertController, animated: true, completion: nil)
+            return
+        }
+
+        imgeView.image = image
     }
 }

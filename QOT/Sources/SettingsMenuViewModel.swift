@@ -11,6 +11,11 @@ import ReactiveKit
 
 final class SettingsMenuViewModel {
 
+    private var services: Services
+    private var userService: UserService {
+        return services.userService
+    }
+
     struct Tile {
         let title: String
         let subtitle: String
@@ -36,8 +41,8 @@ final class SettingsMenuViewModel {
         return user.jobTitle?.uppercased()
     }
 
-    var userProfileImagePath: String? {
-        return user.userImageURLString
+    var userProfileImageResource: MediaResource? {
+        return user.userImage
     }
 
     var settingsCount: Int {
@@ -52,11 +57,22 @@ final class SettingsMenuViewModel {
         return settingTitles[row]
     }
 
+    func updateProfileImage(_ image: UIImage) -> Error? {
+        do {
+            let url = try image.save(withName: user.localID)
+            updateProfileImageURL(url)
+            return nil
+        } catch {
+            return error
+        }
+    }
+
     init?(services: Services) {
         guard let user = services.userService.user() else {
             return nil
         }
 
+        self.services = services
         self.timer = QOTUsageTimer.sharedInstance
         self.user = user
     }
@@ -68,16 +84,26 @@ private extension SettingsMenuViewModel {
 
     func userTiles(user: User) -> [SettingsMenuViewModel.Tile] {
         return [
-            SettingsMenuViewModel.Tile(title: daysBetweenDates(startDate: user.memberSince), subtitle: R.string.localized.sidebarUserTitlesMemberSince()),
-            SettingsMenuViewModel.Tile(title: usageTimeString(), subtitle: R.string.localized.sidebarUserTitlesMemberQOTUsage())
+            SettingsMenuViewModel.Tile(title: daysBetweenDates(startDate: user.memberSince),
+                                       subtitle: R.string.localized.sidebarUserTitlesMemberSince()),
+            SettingsMenuViewModel.Tile(title: usageTimeString(),
+                                       subtitle: R.string.localized.sidebarUserTitlesMemberQOTUsage())
         ]
     }
 
     private func daysBetweenDates(startDate: Date) -> String {
-        return DateComponentsFormatter.timeIntervalToString(-startDate.timeIntervalSinceNow, isShort: true)?.replacingOccurrences(of: ", ", with: "\n").uppercased() ?? R.string.localized.qotUsageTimerDefault()
+        return DateComponentsFormatter.timeIntervalToString(-startDate.timeIntervalSinceNow, isShort: true)?
+            .replacingOccurrences(of: ", ", with: "\n")
+            .uppercased() ?? R.string.localized.qotUsageTimerDefault()
     }
 
     private func usageTimeString() -> String {
         return timer.totalTimeString(timer.totalSeconds)
+    }
+
+    private func updateProfileImageURL(_ url: URL) {
+        services.userService.updateUser(user: user) { (user) in
+            user.userImage?.setLocalURL(url, format: .jpg, entity: .user, entitiyLocalID: user.localID)
+        }
     }
 }

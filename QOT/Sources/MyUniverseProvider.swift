@@ -67,7 +67,7 @@ final class MyUniverseProvider {
             Partner.comingSoon(image: R.image.partner_comingSoon_03(), imageName: "partner_comingSoon_03")
         ]
         let userChoices = self.userChoices.sorted { $0.startDate > $1.startDate }
-        let weeklyChices = userChoices.prefix(Layout.MeSection.maxWeeklyPage).map { choice -> WeeklyChoice in
+        let weeklyChoices = userChoices.prefix(Layout.MeSection.maxWeeklyPage).map { choice -> WeeklyChoice in
             return WeeklyChoice(
                 localID: choice.localID,
                 contentCollectionID: choice.contentCollectionID ?? 0,
@@ -87,11 +87,10 @@ final class MyUniverseProvider {
             sector(for: .sleep, startAngle: 125, endAngle: 135),
             sector(for: .activity, startAngle: 105, endAngle: 115)
         ]
-
         return MyUniverseViewData(
             profileImageURL: myToBeVision?.profileImageResource?.url,
             partners: partners,
-            weeklyChoices: weeklyChices,
+            weeklyChoices: weeklyChoices,
             myToBeVisionHeadline: myToBeVision?.headline ?? R.string.localized.meSectorMyWhyVisionTitle(),
             myToBeVisionText: myToBeVision?.text ?? R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
             sectors: sectors,

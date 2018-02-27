@@ -43,6 +43,8 @@ final class User: SyncableObject {
 
     @objc dynamic var weightUnit: String?
 
+    @objc dynamic var userImage: MediaResource? = MediaResource()
+
     // MARK: Data
 
     @objc private(set) dynamic var givenName: String = ""
@@ -64,8 +66,6 @@ final class User: SyncableObject {
     @objc private(set) dynamic var zoneID: Int = 0
 
     @objc private(set) dynamic var zoneName: String = ""
-
-    @objc private(set) dynamic var userImageURLString: String?
 
     let height = RealmOptional<Double>()
 
@@ -107,7 +107,7 @@ extension User: TwoWaySyncableUniqueObject {
         countryName = data.countryName
         zoneID = data.zoneID
         zoneName = data.zoneName
-        userImageURLString = data.userImageURLString
+        userImage?.setRemoteURL(data.userImageURLString.flatMap({ URL(string: $0) }))
         height.value = data.height
         heightUnit = data.heightUnit
         heightUnitsJSON = data.heightUnitsJSON
@@ -168,7 +168,6 @@ extension User: TwoWaySyncableUniqueObject {
             .streetNumber: streetNumber.toJSONEncodable,
             .country: JSON.dictionary(country.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
             .zone: JSON.dictionary(zone.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
-            .userImageURL: userImageURLString.toJSONEncodable,
             .memberSince: memberSince,
             .totalUsageTime: QOTUsageTimer.sharedInstance.totalSeconds.toInt,
             .employment: JSON.dictionary(employment.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),

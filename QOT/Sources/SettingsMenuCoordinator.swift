@@ -34,7 +34,7 @@ final class SettingsMenuCoordinator: ParentCoordinator {
         self.syncManager = syncManager
         self.permissionsManager = permissionsManager
         self.destination = destination
-        settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel, destination: destination)
+        settingsMenuViewController = SettingsMenuViewController(viewModel: viewModel, destination: destination, permissionsManager: permissionsManager)
         settingsMenuViewController.title = R.string.localized.settingsTitle().uppercased()
         settingsMenuViewController.delegate = self
     }
