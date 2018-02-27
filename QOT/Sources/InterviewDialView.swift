@@ -100,10 +100,7 @@ class InterviewDialView: UIView {
     // MARK: - Layers setup
 
     private func setup() {
-        let tapGestureRecognizer = UITapGestureRecognizer()
-        tapGestureRecognizer.addTarget(self, action: #selector(handleTap(recognizer:)))
-        addGestureRecognizer(tapGestureRecognizer)
-
+        setupGestureRecognizers()
         partitionsLayer.addSublayer(linesLayer)
         setupBottomRingLayer()
         setupHorseshoeLayer()
@@ -114,6 +111,16 @@ class InterviewDialView: UIView {
         }
         setupLinesLayer()
         layer.addSublayer(selectedLayer)
+    }
+
+    private func setupGestureRecognizers() {
+        let tapGestureRecognizer = UITapGestureRecognizer()
+        tapGestureRecognizer.addTarget(self, action: #selector(handleGesture(recognizer:)))
+        addGestureRecognizer(tapGestureRecognizer)
+
+        let panGestureRecognizer = UIPanGestureRecognizer()
+        panGestureRecognizer.addTarget(self, action: #selector(handleGesture(recognizer:)))
+        addGestureRecognizer(panGestureRecognizer)
     }
 
     private func setupHorseshoeLayer() {
@@ -201,8 +208,7 @@ class InterviewDialView: UIView {
 
     // MARK: - Tap event handling
 
-    @objc func handleTap(recognizer: UITapGestureRecognizer) {
-        guard recognizer.state == .recognized else { return }
+    @objc func handleGesture(recognizer: UIGestureRecognizer) {
         let point = recognizer.location(in: self)
         let newSelectedIndex = segmentIndex(at: point)
         if newSelectedIndex != selectedIndex {
@@ -233,8 +239,6 @@ class InterviewDialView: UIView {
             let mask = CAShapeLayer()
             mask.path = segmentGradientPath.cgPath
             selectedLayer.mask = mask
-        } else {
-            selectedLayer.isHidden = true
         }
     }
 
