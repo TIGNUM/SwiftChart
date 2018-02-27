@@ -21,6 +21,7 @@ final class AppState {
     var appCoordinator: AppCoordinator!
     var launchHandler: LaunchHandler!
     var networkManager: NetworkManager!
+    var permissionsManager: PermissionsManager!
 
     private init() {}
 }

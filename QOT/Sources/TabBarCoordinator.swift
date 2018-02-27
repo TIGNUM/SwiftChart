@@ -295,8 +295,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         let coordinator = MyToBeVisionCoordinator(
             root: topTabBarControllerMe,
             transitioningDelegate: transitioningDelegate,
-            services: services,
-            permissionsManager: permissionsManager
+            services: services
         )
         startChild(child: coordinator)
     }

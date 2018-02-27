@@ -9,12 +9,7 @@
 import UIKit
 import Anchorage
 
-protocol MyToBeVisionViewControllerDelegate: class {
-
-    func didTapClose(in viewController: MyToBeVisionViewController)
-}
-
-final class MyToBeVisionViewController: UIViewController {
+final class MyToBeVisionViewController: UIViewController, MyToBeVisionViewControllerInterface {
 
     // MARK: - Properties
 
@@ -22,20 +17,23 @@ final class MyToBeVisionViewController: UIViewController {
     @IBOutlet weak var editButton: UIBarButtonItem!
     @IBOutlet weak var minimiseButton: UIBarButtonItem!
     @IBOutlet weak var headlineTextView: PlaceholderTextView!
-    @IBOutlet weak var headlineTextViewHightConstrant: NSLayoutConstraint!
+    @IBOutlet weak var headlineConstraint: NSLayoutConstraint!
     @IBOutlet weak var messageTextView: PlaceholderTextView!
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var imageViewPlaceholder: UIImageView!
     @IBOutlet weak var imageViewContainer: UIView!
-    @IBOutlet weak var imageButton: UIButton!
+    @IBOutlet weak var imageButton: UIButton! // FIXME: Make UIImageView
     @IBOutlet weak var imageEditLabel: UILabel!
     @IBOutlet weak var circleContainerView: UIView!
     @IBOutlet weak var gradientView: UIView!
-    private let imagePickerController: ImagePickerController
+    private var imagePickerController: ImagePickerController!
     private var imageTapRecogniser: UITapGestureRecognizer!
-    let viewModel: MyToBeVisionViewModel
-    weak var delegate: MyToBeVisionViewControllerDelegate?
+
+    private var toBeVision: MyToBeVisionModel.Model?
+    var interactor: MyToBeVisionInteractor?
+    var router: MyToBeVisionRouter?
+    var permissionsManager: PermissionsManager!
 
     private lazy var gradientLayer: CAGradientLayer = {
         let layer = CAGradientLayer()
@@ -45,15 +43,13 @@ final class MyToBeVisionViewController: UIViewController {
 
     // MARK: - Init
 
-    init(viewModel: MyToBeVisionViewModel, permissionsManager: PermissionsManager) {
-        self.viewModel = viewModel
+    init(configurator: Configurator<MyToBeVisionViewController>) {
+        super.init(nibName: nil, bundle: nil)
+        configurator(self)
         imagePickerController = ImagePickerController(cropShape: .circle,
                                                       imageQuality: .low,
                                                       imageSize: .small,
                                                       permissionsManager: permissionsManager)
-
-        super.init(nibName: nil, bundle: nil)
-
         imagePickerController.delegate = self
         imageTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(imageButtonPressed(_:)))
     }
@@ -67,6 +63,7 @@ final class MyToBeVisionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        interactor?.viewDidLoad()
         setupView()
     }
 
@@ -90,6 +87,7 @@ final class MyToBeVisionViewController: UIViewController {
         }
 
         headlineTextView.setContentOffset(.zero, animated: false)
+        setHeadlineHeight()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -113,13 +111,37 @@ final class MyToBeVisionViewController: UIViewController {
         isEditing = !isEditing
         edit(isEditing)
     }
+
+    // MARK: - MyToBeVision View Contoller Interface
+
+    func setup(with toBeVision: MyToBeVisionModel.Model) {
+        self.toBeVision = toBeVision
+        toBeVisionDidUpdate()
+    }
+
+    func update(with toBeVision: MyToBeVisionModel.Model) {
+        if toBeVision != self.toBeVision {
+            self.toBeVision = toBeVision
+        }
+    }
+
+    func displayImageError() {
+        let alertController = UIAlertController(title: R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle(),
+                                                message: R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage(),
+                                                preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: R.string.localized.meSectorMyWhyPartnersPhotoErrorOKButton(),
+                                        style: .default)
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+    }
 }
 
-// MARK: - Private
+// MARK: - Private drawing
 
 private extension MyToBeVisionViewController {
 
     func drawCircles() {
+        // FIXME: We should try to avoid removing sublayers
         circleContainerView.removeSubLayers()
         var center = view.center; center.x *= 0.2; center.y *= 1.1
         let circleLayer1 = CAShapeLayer.circle(center: center,
@@ -135,45 +157,32 @@ private extension MyToBeVisionViewController {
         circleContainerView.layer.addSublayer(circleLayer2)
     }
 
-    func edit(_ isEditing: Bool) {
-        headlineTextView.isEditable = isEditing
-        messageTextView.isEditable = isEditing
-        editButton.tintColor = isEditing ? .white : .white40
-        imageView.alpha = isEditing ? 0.25 : 1
-        setupMessageText(editing: isEditing)
+    func maskImageView(imageView: UIImageView) {
+        let clippingBorderPath = UIBezierPath()
+        clippingBorderPath.move(to: CGPoint(x: 0, y: 56))
+        clippingBorderPath.addCurve(to: CGPoint(x: view.bounds.size.width, y: 56),
+                                    controlPoint1: CGPoint(x: view.bounds.size.width/2 - 50, y: 0),
+                                    controlPoint2: CGPoint(x: view.bounds.size.width/2 + 50, y: 0))
+        clippingBorderPath.addLine(to: CGPoint(x: view.bounds.size.width, y: view.bounds.size.height + 30))
+        clippingBorderPath.addLine(to: CGPoint(x: 0, y: view.bounds.size.height + 30))
+        clippingBorderPath.close()
 
-        UIView.animate(withDuration: 0.5) {
-            self.setImageButton(isEditing: isEditing)
-        }
+        let borderMask = CAShapeLayer()
+        borderMask.path = clippingBorderPath.cgPath
+        imageView.layer.mask = borderMask
     }
+}
+
+// MARK: - Setup
+
+private extension MyToBeVisionViewController {
 
     func setupView() {
         setupNavigation()
         setupLabels()
-
-        if let profileImageResource = viewModel.profileImageResource {
-            imageView.setImageFromResource(profileImageResource)
-        }
-
-        setImageButton(isEditing: false)
+        syncImageControls(animated: false)
         imageView.addGestureRecognizer(imageTapRecogniser)
         editButton.tintColor = .white40
-    }
-
-    func setImageButton(isEditing: Bool) {
-        if imageView.image == nil {
-            imageViewPlaceholder.isHidden = false
-            imageButton.alpha = isEditing == true ? 1 : 0.3
-            imageButton.isEnabled = true
-            imageEditLabel.alpha = isEditing == true ? 1 : 0.3
-            imageTapRecogniser.isEnabled = true
-        } else {
-            imageViewPlaceholder.isHidden = true
-            imageButton.alpha = isEditing == true ? 1 : 0
-            imageButton.isEnabled = isEditing == true
-            imageEditLabel.alpha = isEditing == true ? 1 : 0
-            imageTapRecogniser.isEnabled = isEditing
-        }
     }
 
     func setupNavigation() {
@@ -188,46 +197,21 @@ private extension MyToBeVisionViewController {
     func setupLabels() {
         setupHeadlineText(editing: false)
         setupMessageText(editing: false)
-        subtitleLabel.attributedText = NSMutableAttributedString(
-            string: viewModel.dateText,
-            letterSpacing: 2,
-            font: Font.H7Tag,
-            lineSpacing: 0,
-            textColor: .white30)
         imageEditLabel.font = Font.DPText
         imageEditLabel.textColor = .white
     }
 
-    func updateHeadlineHeight(_ textView: PlaceholderTextView) {
-        headlineTextViewHightConstrant.constant = textView.numberOfLines == 1 ? 50 : 100
-    }
-
     func setupHeadlineText(editing: Bool) {
-        let pleaceholderText = (editing ? "" : R.string.localized.meSectorMyWhyVisionMessagePlaceholder())
         headlineTextView.autocapitalizationType = .allCharacters
         headlineTextView.alpha = 1
-        headlineTextView.placeholderDelegate = self
-        headlineTextView.attributedText = NSMutableAttributedString(
-            string: viewModel.headline?.uppercased() ?? pleaceholderText,
-            letterSpacing: 2,
-            font: Font.H1MainTitle,
-            lineSpacing: 3,
-            textColor: .white)
-        headlineTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
+        headlineTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder().uppercased(),
                              placeholdeColor: .white)
         headlineTextView.textContainer.lineFragmentPadding = 0
-        updateHeadlineHeight(headlineTextView)
+        setHeadlineHeight()
     }
 
     func setupMessageText(editing: Bool) {
         messageTextView.alpha = 1
-        messageTextView.placeholderDelegate = self
-        messageTextView.attributedText = NSMutableAttributedString(
-            string: viewModel.text ?? (editing ? "" : R.string.localized.meSectorMyWhyVisionMessagePlaceholder()),
-            letterSpacing: -0.4,
-            font: Font.DPText,
-            lineSpacing: 10.0,
-            textColor: .white)
         messageTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
                             placeholdeColor: .white)
         messageTextView.textContainer.lineFragmentPadding = 0
@@ -240,20 +224,49 @@ private extension MyToBeVisionViewController {
         gradientLayer.startPoint = CGPoint(x: 0, y: 0)
         gradientLayer.endPoint = CGPoint(x: 0, y: 0.2)
     }
+}
 
-    func maskImageView(imageView: UIImageView) {
-        let clippingBorderPath = UIBezierPath()
-        clippingBorderPath.move(to: CGPoint(x: 0, y: 56))
-        clippingBorderPath.addCurve(
-            to: CGPoint(x: view.bounds.size.width, y: 56),
-            controlPoint1: CGPoint(x: view.bounds.size.width/2 - 50, y: 0),
-            controlPoint2: CGPoint(x: view.bounds.size.width/2 + 50, y: 0))
-        clippingBorderPath.addLine(to: CGPoint(x: view.bounds.size.width, y: view.bounds.size.height + 30))
-        clippingBorderPath.addLine(to: CGPoint(x: 0, y: view.bounds.size.height + 30))
-        clippingBorderPath.close()
-        let borderMask = CAShapeLayer()
-        borderMask.path = clippingBorderPath.cgPath
-        imageView.layer.mask = borderMask
+// MARK: - Sync
+
+private extension MyToBeVisionViewController {
+
+    func toBeVisionDidUpdate() {
+        if headlineTextView.attributedText != toBeVision?.formattedHeadline {
+            headlineTextView.attributedText = toBeVision?.formattedHeadline
+        }
+        if messageTextView.attributedText != toBeVision?.formattedVision {
+            messageTextView.attributedText = toBeVision?.formattedVision
+        }
+
+        subtitleLabel.attributedText = toBeVision?.formattedSubtitle
+        imageView.kf.setImage(with: toBeVision?.imageURL)
+    }
+
+    func syncImageControls(animated: Bool) {
+        let hasImage = toBeVision?.imageURL != nil
+        imageView.isHidden = !hasImage
+        imageViewPlaceholder.isHidden = hasImage
+        let buttonAlpha: CGFloat
+        if hasImage {
+            buttonAlpha = isEditing == true ? 1 : 0
+        } else {
+            buttonAlpha = isEditing == true ? 1 : 0.3
+        }
+        imageTapRecogniser.isEnabled = !hasImage || isEditing
+        UIView.animate(withDuration: animated ? 0.5 : 0) {
+            self.imageButton.alpha = buttonAlpha
+            self.imageEditLabel.alpha = buttonAlpha
+            self.imageView.alpha = self.isEditing ? 0.25 : 1
+        }
+    }
+
+    func edit(_ isEditing: Bool) {
+        self.isEditing = isEditing
+        headlineTextView.isEditable = isEditing
+        messageTextView.isEditable = isEditing
+        editButton.tintColor = isEditing ? .white : .white40
+        setupMessageText(editing: isEditing)
+        syncImageControls(animated: true)
     }
 }
 
@@ -262,7 +275,8 @@ private extension MyToBeVisionViewController {
 private extension MyToBeVisionViewController {
 
     @IBAction func closeAction(_ sender: Any) {
-        delegate?.didTapClose(in: self)
+        visionDidChange()
+        router?.close()
     }
 
     @IBAction func editTapped(_ sender: Any) {
@@ -271,6 +285,18 @@ private extension MyToBeVisionViewController {
 
     @IBAction func imageButtonPressed(_ sender: UIButton) {
         imagePickerController.show(in: self)
+    }
+
+    private func visionDidChange() {
+        guard var toBeVision = toBeVision else { return }
+
+        if toBeVision.headLine != headlineTextView.text { toBeVision.headLine = headlineTextView.text }
+        if toBeVision.text != messageTextView.text { toBeVision.text = messageTextView.text }
+        if toBeVision.text != headlineTextView.text || toBeVision.text != messageTextView.text {
+            toBeVision.lastUpdated = Date()
+            interactor?.saveToBeVision(toBeVision: toBeVision)
+            interactor?.viewDidLoad()
+        }
     }
 }
 
@@ -304,19 +330,14 @@ extension MyToBeVisionViewController: UITextViewDelegate {
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
+        // FIXME: The textView should update itself!
         if let textView = textView as? PlaceholderTextView {
             textView.didBeginEditing()
         }
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
-        if textView == headlineTextView {
-            viewModel.updateHeadline(headlineTextView.text)
-            setupLabels()
-        } else if textView == messageTextView {
-            viewModel.updateText(messageTextView.text)
-            setupLabels()
-        }
+        // FIXME: The textView should update itself!
         if let textView = textView as? PlaceholderTextView {
             textView.didEndEditing()
         }
@@ -332,17 +353,12 @@ extension MyToBeVisionViewController: UITextViewDelegate {
 
     func textViewDidChange(_ textView: UITextView) {
         if textView == headlineTextView {
-            updateHeadlineHeight(headlineTextView)
+            setHeadlineHeight()
         }
     }
-}
 
-// MARK: - MyToBeVisionViewController: Place
-
-extension MyToBeVisionViewController: PlaceholderTextViewDelegate {
-
-    func placeholderDidChange(_ placeholderTextView: PlaceholderTextView) {
-        textViewDidChange(placeholderTextView)
+    func setHeadlineHeight() {
+        headlineConstraint.constant = headlineTextView.numberOfLines() == 1 ? 50 : 100
     }
 }
 
@@ -351,22 +367,54 @@ extension MyToBeVisionViewController: PlaceholderTextViewDelegate {
 extension MyToBeVisionViewController: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
-        let error = viewModel.updateProfileImage(image)
-        guard error == nil else {
-            let alertController = UIAlertController(
-                title: R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle(),
-                message: R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage(),
-                preferredStyle: .alert)
-            let alertAction = UIAlertAction(
-                title: R.string.localized.meSectorMyWhyPartnersPhotoErrorOKButton(),
-                style: .default)
-            alertController.addAction(alertAction)
-            present(alertController, animated: true, completion: nil)
-            return
-        }
+        guard let toBeVision = toBeVision else { return }
 
-        imageView.image = image
-        setupLabels()
-        setImageButton(isEditing: isEditing)
+        interactor?.updateToBeVisionImage(image: image, toBeVision: toBeVision)
+        toBeVisionDidUpdate()
+    }
+}
+
+private extension MyToBeVisionModel.Model {
+
+    var formattedHeadline: NSAttributedString? {
+        guard let headLine = headLine else { return nil }
+
+        return NSAttributedString(string: headLine.uppercased(),
+                                  letterSpacing: 2,
+                                  font: Font.H1MainTitle,
+                                  lineSpacing: 3,
+                                  textColor: .white)
+    }
+
+    var formattedSubtitle: NSAttributedString? {
+        guard
+            let date = lastUpdated,
+            let timeInterval = DateComponentsFormatter.timeIntervalToString(-date.timeIntervalSinceNow, isShort: true)
+            else { return nil }
+
+        let text = R.string.localized.meSectorMyWhyVisionWriteDate(timeInterval).uppercased()
+        return NSAttributedString(string: text, letterSpacing: 2, font: Font.H7Tag, lineSpacing: 0, textColor: .white30)
+    }
+
+    var formattedVision: NSAttributedString? {
+        guard let text = text else { return nil }
+
+        return NSAttributedString(string: text,
+                                  letterSpacing: -0.4,
+                                  font: Font.DPText,
+                                  lineSpacing: 10.0,
+                                  textColor: .white)
+    }
+}
+
+// MARK: - UITextView private
+
+private extension UITextView {
+
+    func numberOfLines() -> Int {
+        if let fontUnwrapped = self.font {
+            return Int(self.contentSize.height / fontUnwrapped.lineHeight)
+        }
+        return 0
     }
 }

@@ -33,7 +33,11 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
     private var services: Services?
-    private lazy var permissionsManager: PermissionsManager = PermissionsManager(delegate: self)
+    private lazy var permissionsManager: PermissionsManager = {
+        let manager = PermissionsManager(delegate: self)
+        AppCoordinator.appState.permissionsManager = manager
+        return manager
+    }()
     private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
     private lazy var authenticator: Authenticator = Authenticator(sessionManager: SessionManager.default, requestBuilder: URLRequestBuilder(deviceID: deviceID))
     private var canProcessRemoteNotifications = false
@@ -478,15 +482,6 @@ extension AppCoordinator: ShortcutHandlerDelegate {
     }
 }
 
-// MARK: - MyToBeVisionViewControllerDelegate
-
-extension AppCoordinator: MyToBeVisionViewControllerDelegate {
-
-    func didTapClose(in viewController: MyToBeVisionViewController) {
-        dismiss(viewController, level: .priority)
-    }
-}
-
 // MARK: - PermissionDelegate
 
 extension AppCoordinator: PermissionManagerDelegate {
@@ -775,11 +770,9 @@ extension AppCoordinator {
     }
 
     func presentToBeVision() {
-        guard let services = services else { return }
-        let viewModel = MyToBeVisionViewModel(services: services)
-        let myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel,
-                                                                    permissionsManager: permissionsManager)
-        myToBeVisionViewController.delegate = self
+        let configurator = MyToBeVisionConfigurator.make()
+        let myToBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
+
         windowManager.showPriority(myToBeVisionViewController, animated: true, completion: nil)
         currentPresentedController = myToBeVisionViewController
     }

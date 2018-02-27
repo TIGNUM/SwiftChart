@@ -24,8 +24,8 @@
                 <outlet property="circleContainerView" destination="8Ht-Mn-n41" id="NCL-Rb-Sz5"/>
                 <outlet property="editButton" destination="Zz7-dR-bqc" id="D81-CD-QhJ"/>
                 <outlet property="gradientView" destination="Eea-Nk-yaf" id="t8M-TN-6uc"/>
+                <outlet property="headlineConstraint" destination="Hzn-z9-l2c" id="Eko-tY-2ut"/>
                 <outlet property="headlineTextView" destination="uuS-Dz-bUg" id="RBI-XE-pRQ"/>
-                <outlet property="headlineTextViewHightConstrant" destination="Hzn-z9-l2c" id="fKu-cv-ekc"/>
                 <outlet property="imageButton" destination="RJI-t0-ZYc" id="itt-et-1k1"/>
                 <outlet property="imageEditLabel" destination="3Ik-TR-2gA" id="4aR-6W-GVE"/>
                 <outlet property="imageView" destination="bfh-6q-eoT" id="hcV-JT-FHR"/>

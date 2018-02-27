@@ -187,6 +187,13 @@
 		85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */; };
 		85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */; };
 		85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */; };
+		912C9E37203C713F00C1AA76 /* MyToBeVisionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E36203C713F00C1AA76 /* MyToBeVisionConfigurator.swift */; };
+		912C9E39203C716400C1AA76 /* MyToBeVisionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E38203C716400C1AA76 /* MyToBeVisionInteractor.swift */; };
+		912C9E3B203C718100C1AA76 /* MyToBeVisionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E3A203C718100C1AA76 /* MyToBeVisionModels.swift */; };
+		912C9E3D203C71F900C1AA76 /* MyToBeVisionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E3C203C71F900C1AA76 /* MyToBeVisionPresenter.swift */; };
+		912C9E3F203C721300C1AA76 /* MyToBeVisionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */; };
+		912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */; };
+		912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */; };
 		91C262B91FED0B2D0075664E /* InterviewDialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B61FED0B2C0075664E /* InterviewDialView.swift */; };
 		91C262BA1FED0B2D0075664E /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */; };
 		91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */; };
@@ -495,7 +502,6 @@
 		CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */; };
 		CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */; };
 		CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */; };
-		CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */; };
 		CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */; };
 		CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */; };
 		CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCE06FDF1E8D44FC009C5AD2 /* LibraryCoordinator.swift */; };
@@ -741,6 +747,13 @@
 		85E0A6A01EE6AF130076169D /* MockingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MockingProtocol.swift; sourceTree = "<group>"; };
 		85E0A6A21EE6B1610076169D /* Mocks.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mocks.swift; sourceTree = "<group>"; };
 		85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnListAnimation.swift; sourceTree = "<group>"; };
+		912C9E36203C713F00C1AA76 /* MyToBeVisionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionConfigurator.swift; sourceTree = "<group>"; };
+		912C9E38203C716400C1AA76 /* MyToBeVisionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionInteractor.swift; sourceTree = "<group>"; };
+		912C9E3A203C718100C1AA76 /* MyToBeVisionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionModels.swift; sourceTree = "<group>"; };
+		912C9E3C203C71F900C1AA76 /* MyToBeVisionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionPresenter.swift; sourceTree = "<group>"; };
+		912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionProtocols.swift; sourceTree = "<group>"; };
+		912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRouter.swift; sourceTree = "<group>"; };
+		912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionWorker.swift; sourceTree = "<group>"; };
 		91C262B61FED0B2C0075664E /* InterviewDialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDialView.swift; sourceTree = "<group>"; };
 		91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
 		91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorningInterviewViewController.xib; sourceTree = "<group>"; };
@@ -1060,7 +1073,6 @@
 		CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentViewModel.swift; sourceTree = "<group>"; };
 		CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Transition.swift"; sourceTree = "<group>"; };
 		CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Calendar+Convenience.swift"; sourceTree = "<group>"; };
-		CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionViewModel.swift; sourceTree = "<group>"; };
 		CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionViewController.swift; sourceTree = "<group>"; };
 		CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+StreamVideo.swift"; sourceTree = "<group>"; };
 		CCE06FDF1E8D44FC009C5AD2 /* LibraryCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCoordinator.swift; sourceTree = "<group>"; };
@@ -1431,6 +1443,22 @@
 			name = Tutorial;
 			sourceTree = "<group>";
 		};
+		912C9E32203C701300C1AA76 /* My To Be Vision */ = {
+			isa = PBXGroup;
+			children = (
+				912C9E36203C713F00C1AA76 /* MyToBeVisionConfigurator.swift */,
+				912C9E38203C716400C1AA76 /* MyToBeVisionInteractor.swift */,
+				912C9E3A203C718100C1AA76 /* MyToBeVisionModels.swift */,
+				912C9E3C203C71F900C1AA76 /* MyToBeVisionPresenter.swift */,
+				912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */,
+				912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */,
+				912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */,
+				CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */,
+				CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */,
+			);
+			name = "My To Be Vision";
+			sourceTree = "<group>";
+		};
 		B1B85C4C58D59EA1163CE83B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1645,6 +1673,7 @@
 		CB94423A1FDFE4B400E2B122 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				912C9E32203C701300C1AA76 /* My To Be Vision */,
 				CBE8808B1FE4368300670C10 /* Guide */,
 				D5B707241F03A21E00C812EB /* Morning Interview */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
@@ -1869,7 +1898,6 @@
 				D554CD9B1F0CEC6D007731DB /* Log In */,
 				CBB4DD321EE089FD0071494A /* My Prep */,
 				CBB4DD331EE08A230071494A /* My Statistics */,
-				CBB4DD2A1EE088480071494A /* My To Be Vision */,
 				7F3A9CCA1FCEFED9000F1744 /* My Universe */,
 				CBB4DD2B1EE088670071494A /* Partners */,
 				CBB4DD3E1EE08EB50071494A /* Prepare Chat */,
@@ -1991,16 +2019,6 @@
 				CB38DBDE1EF52D5C000E0F92 /* LearnStrategyListLayout.swift */,
 			);
 			name = "Learn Content";
-			sourceTree = "<group>";
-		};
-		CBB4DD2A1EE088480071494A /* My To Be Vision */ = {
-			isa = PBXGroup;
-			children = (
-				CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */,
-				CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */,
-				CCCE09CB1EA67C78008730F1 /* MyToBeVisionViewModel.swift */,
-			);
-			name = "My To Be Vision";
 			sourceTree = "<group>";
 		};
 		CBB4DD2B1EE088670071494A /* Partners */ = {
@@ -3070,6 +3088,7 @@
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
 				7F2B77D31FC5C3E800203D90 /* LibraryViewModelInterface.swift in Sources */,
+				912C9E3B203C718100C1AA76 /* MyToBeVisionModels.swift in Sources */,
 				7F4B98A81FA21FD3000B402C /* WeeklyChoicesAnimation.swift in Sources */,
 				8514A48C1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift in Sources */,
 				CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */,
@@ -3111,6 +3130,7 @@
 				0B2CA37B1ED2BC93006B355F /* SensorCollectionViewCell.swift in Sources */,
 				D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */,
 				7FE38DD31F2B2E230061E98F /* UINavigationController+Convenience.swift in Sources */,
+				912C9E37203C713F00C1AA76 /* MyToBeVisionConfigurator.swift in Sources */,
 				CBB4DCF51EDC10FA0071494A /* SyncRecordService.swift in Sources */,
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
 				8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */,
@@ -3157,7 +3177,6 @@
 				36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */,
 				CBFECCA81F31D7480076ACE6 /* SyncTypes.swift in Sources */,
 				CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */,
-				CCCE09CC1EA67C78008730F1 /* MyToBeVisionViewModel.swift in Sources */,
 				CB9442301FD97DE200E2B122 /* SlideShowRouter.swift in Sources */,
 				855C4FC51F25F7D10068DDE3 /* Tutorial.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
@@ -3178,6 +3197,8 @@
 				CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */,
 				7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */,
 				7F3A9CBB1FCDB8FF000F1744 /* UserFeedback.swift in Sources */,
+				912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */,
+				912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */,
 				7F1711EB1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift in Sources */,
 				CB6637B1201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift in Sources */,
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,
@@ -3234,6 +3255,7 @@
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
 				CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */,
 				CB3437701EFE937000D89D4F /* ContentService.swift in Sources */,
+				912C9E3D203C71F900C1AA76 /* MyToBeVisionPresenter.swift in Sources */,
 				CBFD47CE200E146200A91899 /* CalendarSyncSettingsManager.swift in Sources */,
 				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
 				CC7D21B01EFC1348007A062E /* WeeklyChoicesCell.swift in Sources */,
@@ -3289,6 +3311,7 @@
 				7F65673C1FE2895B00A6CB7F /* ScreenHelpModels.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
 				CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */,
+				912C9E3F203C721300C1AA76 /* MyToBeVisionProtocols.swift in Sources */,
 				CBC1DC191F0F7E0200F6D056 /* SettingFormat.swift in Sources */,
 				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,
 				7F0888811F0A4B96005CE966 /* Partner.swift in Sources */,
@@ -3364,6 +3387,7 @@
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
 				CB5134141FAB735E00FBDD66 /* ContentReadIntermediary.swift in Sources */,
 				7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */,
+				912C9E39203C716400C1AA76 /* MyToBeVisionInteractor.swift in Sources */,
 				7F3277951FB4B22E00C7717C /* BlurLoadingView.swift in Sources */,
 				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */,
 				CC944DB81EE8096100B8423C /* ChartCell.swift in Sources */,

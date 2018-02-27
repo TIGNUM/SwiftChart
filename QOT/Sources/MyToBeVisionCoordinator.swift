@@ -15,39 +15,26 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
 
     private let services: Services
     private var myToBeVisionViewController: MyToBeVisionViewController!
-    private let viewModel: MyToBeVisionViewModel
     private let rootViewController: UIViewController
     private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, transitioningDelegate: UIViewControllerTransitioningDelegate, services: Services, permissionsManager: PermissionsManager) {
+    init(root: UIViewController, transitioningDelegate: UIViewControllerTransitioningDelegate, services: Services) {
         self.rootViewController = root
         self.transitioningDelegate = transitioningDelegate
         self.services = services
-        self.viewModel = MyToBeVisionViewModel(services: services)
-        myToBeVisionViewController = MyToBeVisionViewController(viewModel: viewModel, permissionsManager: permissionsManager)
+
+        let configurator = MyToBeVisionConfigurator.make()
+        myToBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
         myToBeVisionViewController.modalPresentationStyle = .custom
 
         super.init()
-
         myToBeVisionViewController.transitioningDelegate = transitioningDelegate
-        myToBeVisionViewController.delegate = self
     }
 
     func start() {
         rootViewController.present(myToBeVisionViewController, animated: true)
-    }
-}
-
-// MARK: - MyToBeVisionViewControllerDelegate
-
-extension MyToBeVisionCoordinator: MyToBeVisionViewControllerDelegate {
-
-    func didTapClose(in viewController: MyToBeVisionViewController) {
-        viewController.dismiss(animated: true) {
-            self.removeChild(child: self)
-        }
     }
 }

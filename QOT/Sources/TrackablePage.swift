@@ -230,10 +230,7 @@ extension MyToBeVisionViewController: TrackablePage {
         return .myToBeVision
     }
     var pageAssociatedObject: PageObject? {
-        guard let myToBeVision = viewModel.item else {
-            return nil
-        }
-        return PageObject(object: myToBeVision, identifier: .myToBeVision)
+        return interactor?.trackablePageObject
     }
 }
 
