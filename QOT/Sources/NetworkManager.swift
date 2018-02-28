@@ -193,14 +193,18 @@ final class NetworkManager {
                     case .failure(let error):
                         completion(.failure(error))
                         if error.isUnauthenticated && notifyDelegateOfFailure {
-                            self.delegate?.networkManagerFailedToAuthenticate(self)
+                            DispatchQueue.main.async {
+                                self.delegate?.networkManagerFailedToAuthenticate(self)
+                            }
                         }
                     }
                 }
             case .failure(let error):
                 completion(.failure(error))
                 if error.isUnauthenticated && notifyDelegateOfFailure {
-                    self.delegate?.networkManagerFailedToAuthenticate(self)
+                    DispatchQueue.main.async {
+                        self.delegate?.networkManagerFailedToAuthenticate(self)
+                    }
                 }
             }
         }
