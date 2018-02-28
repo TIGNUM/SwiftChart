@@ -25,7 +25,7 @@ final class SyncOperation: ConcurrentOperation {
     }
 
     override func execute() {
-        log(">>>> DID START SYNC: \(debugIdentifier)", enabled: Log.Toggle.Sync.syncOperation)
+        log(">>>> DID START SYNC: \(debugIdentifier)", level: .debug)
         let startDate = Date()
 
         if let upSyncTask = upSyncTask {
@@ -56,9 +56,9 @@ final class SyncOperation: ConcurrentOperation {
 
     private func finish(startDate: Date, error: SyncError?) {
         let seconds = startDate.timeIntervalToNow
-        log(">>>> DID FINISH SYNC: \(debugIdentifier) IN \(seconds) SECONDS", enabled: Log.Toggle.Sync.syncOperation)
+        log(">>>> DID FINISH SYNC: \(debugIdentifier) IN \(seconds) SECONDS", level: .debug)
         if let error = error {
-            log(">>>>>>>>>>>>>> ERROR: \(error)", enabled: Log.Toggle.Sync.syncOperation)
+            log(">>>>>>>>>>>>>> ERROR: \(error)", level: .debug)
         }
 
         if let error = error {

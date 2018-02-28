@@ -84,7 +84,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return true
         #endif
 
-        Log.setup()
+        Logger.shared.setup()
         Fabric.with([Crashlytics.self])
         Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
         Buglife.shared().delegate = self
@@ -96,8 +96,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
         #if DEBUG
             log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
-            logAppLocation()
-            logAvailableFonts()
         #endif
 
         return true
@@ -182,19 +180,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     private var appFilePath: String {
         let url = URL.documentDirectory.deletingLastPathComponent()
         return url.absoluteString.removeFilePrefix
-    }
-
-    private func logAppLocation() {
-        log("App location: \(appFilePath)", enabled: Log.Toggle.Manager.FileManager)
-    }
-
-    private func logAvailableFonts() {
-        for family: String in UIFont.familyNames {
-            log("\(family)", enabled: Log.Toggle.Manager.Font)
-            for names: String in UIFont.fontNames(forFamilyName: family) {
-                log("== \(names)", enabled: Log.Toggle.Manager.Font)
-            }
-        }
     }
 }
 

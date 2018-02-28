@@ -152,10 +152,7 @@ private extension SettingsAdminViewController {
 
     @IBAction private func loggLevelChanged(sender: UISegmentedControl) {
         guard let logLevel = SwiftyBeaver.Level(rawValue: sender.selectedSegmentIndex) else { return }
-        let remoteLog = RemoteLogDestination()
-        remoteLog.minLevel = logLevel
-        Log.remoteLogLevel = logLevel
-        Log.main.addDestination(remoteLog)
+        Logger.shared.remote.minLevel = logLevel
     }
 
     @IBAction private func baseURLChanged(sender: UISegmentedControl) {
@@ -190,10 +187,7 @@ private extension SettingsAdminViewController {
 
     @IBAction private func resetToDefaultTapped(sender: UIButton) {
         baseURL = URL(string: BaseURL.live.stringValue)!
-        let remoteLog = RemoteLogDestination()
-        remoteLog.minLevel = .error
-        Log.remoteLogLevel = .error
-        Log.main.addDestination(remoteLog)
+        Logger.shared.remote.minLevel = .error
         autoSyncSwitch.isEnabled = true
         dataBaseTouched = false
         setupDefaultValues()
@@ -267,7 +261,7 @@ private extension SettingsAdminViewController {
     func setupDefaultValues() {
         baseURLSegmentedControl.selectedSegmentIndex = baseURL.absoluteString.contains("staging") == true ? 1 : 0
         baseURLTextField.text = ""
-        logLevelSegmentedControl.selectedSegmentIndex = Log.remoteLogLevel.rawValue
+        logLevelSegmentedControl.selectedSegmentIndex = Logger.shared.remote.minLevel.rawValue
         autoSyncSwitch.setOn(true, animated: true)
     }
 }
