@@ -96,7 +96,10 @@ extension RealmGuideItemLearn: OneWaySyncableDown {
         contentID = data.contentID
         priority = data.priority
         block = data.block
-        completedAt = data.completedAt
+
+        if data.completedAt != nil {
+            completedAt = data.completedAt
+        }
 
         if let displayTime = data.displayTime {
             self.displayTime = RealmGuideTime(displayTime)

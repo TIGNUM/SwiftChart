@@ -66,5 +66,6 @@ final class GuideWorker {
     private var hasSyncedNecessaryItems: Bool {
         return syncStateObserver.hasSynced(RealmGuideItemLearn.self)
             && syncStateObserver.hasSynced(RealmGuideItemNotification.self)
+            && syncStateObserver.hasSynced(UserAnswer.self)
     }
 }

@@ -55,10 +55,8 @@ private extension GuideItemFactory {
         let content: Guide.Item.Content
         if isDailyPrep {
             let questions = notification.questionsFor(services: services)
-            let results = notification.myPrepResults()
-            let items = dailyPrepItems(questions: questions, results: results, services: services)
-            let feedback = notification.interviewResult?.feedback
-            content = .dailyPrep(items: items, feedback: feedback)
+            let items = dailyPrepItems(questions: questions, notification: notification, services: services)
+            content = .dailyPrep(items: items, feedback: notification.dailyPrepFeedback)
         } else {
             content = .text(notification.body)
         }
@@ -76,10 +74,10 @@ private extension GuideItemFactory {
                           createdAt: notification.createdAt)
     }
 
-    func dailyPrepItems(questions: [Question], results: [Int], services: Services) -> [Guide.DailyPrepItem] {
+    func dailyPrepItems(questions: [Question], notification: RealmGuideItemNotification, services: Services) -> [Guide.DailyPrepItem] {
         var items: [Guide.DailyPrepItem] = []
-        for (index, question) in questions.enumerated() {
-            let result: Int? = index < results.count ? results[index] : nil
+        for question in questions {
+            let result = question.userAnswer(notification: notification).flatMap { Int($0.userAnswer) }
             let color = resultColor(question: question, resultValue: result, services: services)
             let title = question.dailyPrepTitle.replacingOccurrences(of: "#", with: "\n")
             let item = Guide.DailyPrepItem(result: result, resultColor: color, title: title)
@@ -101,16 +99,18 @@ private extension GuideItemFactory {
 
 private extension RealmGuideItemNotification {
 
-    func myPrepResults() -> [Int] {
-        guard let interviewResults = interviewResult else {
-            return []
-        }
-        return interviewResults.results.map { $0.value }
-    }
-
     func questionsFor(services: Services) -> [Question] {
         guard let groupID = URL(string: link)?.groupID else { return [] }
         let questions = services.questionsService.morningInterviewQuestions(questionGroupID: groupID)
         return Array(questions)
+    }
+}
+
+private extension Question {
+
+    func userAnswer(notification: RealmGuideItemNotification) -> UserAnswer? {
+        guard let questionID = remoteID.value, let notificationID = notification.remoteID.value else { return nil }
+        let predicate = "questionID == \(questionID) AND notificationID == \(notificationID)"
+        return realm?.objects(UserAnswer.self).filter(predicate).first
     }
 }

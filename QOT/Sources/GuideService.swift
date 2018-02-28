@@ -56,6 +56,10 @@ final class GuideService {
         return realm.objects(RealmGuideItemNotification.self)
     }
 
+    func userAnswers() -> Results<UserAnswer> {
+        return realm.objects(UserAnswer.self)
+    }
+
     func eraseGuide() throws {
         try realm.write {
             realm.delete(realm.objects(RealmGuideItem.self))

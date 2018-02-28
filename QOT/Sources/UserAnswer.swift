@@ -21,43 +21,55 @@ final class UserAnswer: SyncableObject {
 
     @objc dynamic var notificationID: Int = 0
 
-    private var notificationIssueDate: Date = Date()
+    @objc dynamic var deleted: Bool = false
+
+    @objc dynamic var changeStamp: String?
 
     convenience init(questionID: Int,
                      questionGroupID: Int,
                      answerID: Int,
                      userAnswer: String,
-                     notificationID: Int,
-                     notificationIssueDate: Date) {
+                     notificationID: Int) {
         self.init()
         self.questionID = questionID
         self.questionGroupID = questionGroupID
         self.answerID = answerID
         self.userAnswer = userAnswer
         self.notificationID = notificationID
-        self.notificationIssueDate = notificationIssueDate
+        didUpdate()
     }
 }
 
-// MARK: - OneWaySyncableUp
+// MARK: - TwoWaySyncable
 
-extension UserAnswer: OneWaySyncableUp {
+extension UserAnswer: TwoWaySyncable {
 
     static var endpoint: Endpoint {
         return .userAnswer
     }
 
+    func setData(_ data: UserAnswerIntermediary, objectStore: ObjectStore) throws {
+        questionID = data.questionID
+        questionGroupID = data.questionGroupID
+        answerID = data.answerID
+        userAnswer = data.userAnswer
+        notificationID = data.notificationID ?? 0
+    }
+
     func toJson() -> JSON? {
         let dateFormatter = DateFormatter.iso8601
         let dict: [JsonKey: JSONEncodable] = [
+            .id: remoteID.value.toJSONEncodable,
+            .createdAt: dateFormatter.string(from: createdAt),
+            .modifiedAt: dateFormatter.string(from: modifiedAt),
             .qotId: localID,
             .questionGroupId: questionGroupID,
             .answerId: answerID,
             .questionId: questionID,
             .userAnswer: userAnswer,
             .notificationId: notificationID,
-            .validFrom: dateFormatter.string(from: notificationIssueDate.startOfDay),
-            .validUntil: dateFormatter.string(from: notificationIssueDate.endOfDay)
+            .validFrom: JSON.null,
+            .validUntil: JSON.null
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }

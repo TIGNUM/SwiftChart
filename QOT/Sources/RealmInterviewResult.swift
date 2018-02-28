@@ -15,16 +15,13 @@ final class RealmInterviewResult: Object {
 
     @objc dynamic var feedback: String?
 
-    let results = List<IntObject>()
-
     override class func primaryKey() -> String? {
         return "notificationRemoteID"
     }
 
-    convenience init(notificationRemoteID: Int, results: [Int]) {
+    convenience init(notificationRemoteID: Int) {
         self.init()
 
         self.notificationRemoteID = notificationRemoteID
-        self.results.append(objectsIn: results.map({ IntObject(int: $0) }))
     }
 }

@@ -203,6 +203,7 @@
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
 		CB026FCE1F6C013600FC5076 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FCD1F6C013600FC5076 /* CarouselView.swift */; };
+		CB04F851204013A900C6FCC7 /* UserAnswerIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB04F850204013A900C6FCC7 /* UserAnswerIntermediary.swift */; };
 		CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */; };
 		CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */; };
 		CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */; };
@@ -765,6 +766,7 @@
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrar.swift; sourceTree = "<group>"; };
 		CB026FCD1F6C013600FC5076 /* CarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
+		CB04F850204013A900C6FCC7 /* UserAnswerIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserAnswerIntermediary.swift; sourceTree = "<group>"; };
 		CB0A4A571ECC4C25006A2D85 /* AddSensorCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorCoordinator.swift; sourceTree = "<group>"; };
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
 		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
@@ -1300,6 +1302,7 @@
 			isa = PBXGroup;
 			children = (
 				7F507BA21F3B4DEC0091742D /* UserAnswer.swift */,
+				CB04F850204013A900C6FCC7 /* UserAnswerIntermediary.swift */,
 				CC309C061F73ADED00A32759 /* UserAnswerFeedback.swift */,
 			);
 			name = UserAnswer;
@@ -3522,6 +3525,7 @@
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,
+				CB04F851204013A900C6FCC7 /* UserAnswerIntermediary.swift in Sources */,
 				CBC191131F603055009E483B /* URL+Convenience.swift in Sources */,
 				CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */,
 				CB94423D1FDFE55E00E2B122 /* SlideShowViewController.swift in Sources */,

@@ -230,6 +230,7 @@ enum JsonKey: String {
     case value
     case verticalAccuracy
     case viewed
+    case visited
     case waveformData
     case weekend
     case weekNumber

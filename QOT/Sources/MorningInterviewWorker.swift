@@ -53,15 +53,13 @@ final class MorningInterviewWorker {
 
     func saveAnswers(questions: [MorningInterview.Question]) {
         let notificationRemoteID = self.notificationRemoteID
-        let notificationItem = services.guideService.notificationItem(remoteID: notificationRemoteID)
         let answers = questions.map { (question) -> UserAnswer in
             let answer = question.selectedAnswer
             return UserAnswer(questionID: question.remoteID,
                               questionGroupID: questionGroupID,
                               answerID: answer.remoteID,
                               userAnswer: answer.title,
-                              notificationID: notificationRemoteID,
-                              notificationIssueDate: notificationItem?.issueDate ?? Date())
+                              notificationID: notificationRemoteID)
         }
 
         let realmProvider = services.realmProvider
@@ -70,8 +68,7 @@ final class MorningInterviewWorker {
             try realm.write {
                 realm.add(answers)
 
-                let results = answers.map { Int($0.userAnswer) ?? 0 }
-                let result = RealmInterviewResult(notificationRemoteID: notificationRemoteID, results: results)
+                let result = RealmInterviewResult(notificationRemoteID: notificationRemoteID)
                 realm.add(result)
 
                 // Set results on notification if it exists. Otherwise we will set it during sync

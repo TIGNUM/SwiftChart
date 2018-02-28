@@ -22,6 +22,8 @@ struct GuideItemNotificationIntermediary: DownSyncIntermediary {
     let issueDate: Date?
     let displayTime: GuideTimeIntermediary?
     let reminderTime: GuideTimeIntermediary?
+    let feedback: String?
+    let completedAt: Date?
 
     init(json: JSON) throws {
         title = try json.getItemValue(at: .title, alongPath: .nullBecomesNil)
@@ -35,5 +37,7 @@ struct GuideItemNotificationIntermediary: DownSyncIntermediary {
         issueDate = try json.getDate(at: .issueDate, alongPath: .nullBecomesNil)
         displayTime = try json.getItemValue(at: .displayTime, alongPath: .nullBecomesNil)
         reminderTime = try json.getItemValue(at: .reminderTime, alongPath: .nullBecomesNil)
+        feedback = try json.getItemValue(at: .feedback, alongPath: .nullBecomesNil)
+        completedAt = try json.getDate(at: .visited, alongPath: .nullBecomesNil)
     }
 }

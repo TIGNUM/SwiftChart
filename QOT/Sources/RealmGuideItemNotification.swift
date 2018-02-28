@@ -24,6 +24,8 @@ extension RealmGuideItemNotification {
 
 final class RealmGuideItemNotification: SyncableObject {
 
+    @objc private dynamic var _dailyPrepFeedback: String?
+
     @objc private(set) dynamic var title: String?
 
     @objc private(set) dynamic var body: String = ""
@@ -60,6 +62,10 @@ final class RealmGuideItemNotification: SyncableObject {
 
     func didUpdate() {
         guideItem?.didUpdate()
+    }
+
+    var dailyPrepFeedback: String? {
+        return interviewResult?.feedback ?? _dailyPrepFeedback
     }
 }
 
@@ -108,6 +114,14 @@ extension RealmGuideItemNotification: OneWaySyncableDown {
         sound = data.sound
         priority = data.priority
         issueDate = data.issueDate
+
+        if data.completedAt != nil {
+            completedAt = data.completedAt
+        }
+
+        if data.feedback != nil {
+            _dailyPrepFeedback = data.feedback
+        }
 
         if let displayTime = data.displayTime {
             self.displayTime = RealmGuideTime(displayTime)

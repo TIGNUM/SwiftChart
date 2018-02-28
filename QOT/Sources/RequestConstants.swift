@@ -46,7 +46,6 @@ enum Endpoint: String {
     case guideItemsLearn = "/personal/p/qot/guide/learnItem/v2"
     case guideItemsNotification = "/personal/p/qot/guide/notificationItem"
     case guide = "/personal/p/qot/guide"
-    case guideNotification = "/personal/p/qot/notification"
     case device = "/personal/p/qot/device"
 
     func url(baseURL: URL) -> URL {
