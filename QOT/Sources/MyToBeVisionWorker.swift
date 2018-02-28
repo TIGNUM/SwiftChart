@@ -11,9 +11,11 @@ import UIKit
 final class MyToBeVisionWorker {
 
     private let services: Services
+    private let syncManager: SyncManager
 
-    init(services: Services) {
+    init(services: Services, syncManager: SyncManager) {
         self.services = services
+        self.syncManager = syncManager
     }
 
     func myToBeVision() -> MyToBeVisionModel.Model? {
@@ -37,6 +39,7 @@ final class MyToBeVisionWorker {
                                                      entitiyLocalID: $0.localID)
             }
         }
+        syncManager.syncAll(shouldDownload: false)
     }
 
     func saveImage(_ image: UIImage) throws -> URL {

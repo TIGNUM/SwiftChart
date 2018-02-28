@@ -13,7 +13,7 @@ final class MyToBeVisionConfigurator: AppStateAccess {
         return { viewController in
             let router = MyToBeVisionRouter(viewController: viewController, appCoordinator: appState.appCoordinator)
             let presenter = MyToBeVisionPresenter(viewController: viewController)
-            let worker = MyToBeVisionWorker(services: appState.services)
+            let worker = MyToBeVisionWorker(services: appState.services, syncManager: appState.appCoordinator.syncManager)
             let interactor = MyToBeVisionInteractor(presenter: presenter, worker: worker)
             viewController.interactor = interactor
             viewController.router = router
