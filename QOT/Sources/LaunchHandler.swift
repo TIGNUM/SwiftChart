@@ -20,11 +20,7 @@ final class LaunchHandler {
     }
 
     func process(url: URL, notificationID: String = "", guideItem: Guide.Item? = nil) {
-        log("dailyPrep://LaunchHandler, process url:: \(url), notificationID: \(notificationID), guideItem: \(String(describing: guideItem))")
-        guard
-            let host = url.host,
-            let scheme = URLScheme(rawValue: host) else { return }
-        logPushNotificationID(urlScheme: scheme, url: url)
+        guard let host = url.host, let scheme = URLScheme(rawValue: host) else { return }
 
         switch scheme {
         case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url), notificationID: notificationID, guideItem: guideItem)
@@ -75,11 +71,6 @@ final class LaunchHandler {
     func navigateToPrepare(_ destination: AppCoordinator.Router.Destination?) {
         guard let destination = destination else { return }
         appDelegate.appCoordinator.presentPrepare(destination)
-    }
-
-    func logPushNotificationID(urlScheme: URLScheme, url: URL) {
-        guard let pushNotificationID = urlScheme.pushNotificationID(url: url) else { return }
-        log("nid: \(pushNotificationID)", enabled: true, level: .error)
     }
 }
 
