@@ -237,7 +237,7 @@ private extension MyToBeVisionViewController {
         if messageTextView.attributedText != toBeVision?.formattedVision {
             messageTextView.attributedText = toBeVision?.formattedVision
         }
-
+        
         subtitleLabel.attributedText = toBeVision?.formattedSubtitle
         imageView.kf.setImage(with: toBeVision?.imageURL)
     }
@@ -275,7 +275,7 @@ private extension MyToBeVisionViewController {
 private extension MyToBeVisionViewController {
 
     @IBAction func closeAction(_ sender: Any) {
-        visionDidChange()
+        saveToBeVisison()
         router?.close()
     }
 
@@ -287,16 +287,20 @@ private extension MyToBeVisionViewController {
         imagePickerController.show(in: self)
     }
 
-    private func visionDidChange() {
+    private func saveToBeVisison() {
         guard var toBeVision = toBeVision else { return }
 
-        if toBeVision.headLine != headlineTextView.text { toBeVision.headLine = headlineTextView.text }
-        if toBeVision.text != messageTextView.text { toBeVision.text = messageTextView.text }
-        if toBeVision.text != headlineTextView.text || toBeVision.text != messageTextView.text {
-            toBeVision.lastUpdated = Date()
-            interactor?.saveToBeVision(toBeVision: toBeVision)
-            interactor?.viewDidLoad()
+        let currentDate = Date()
+        if toBeVision.headLine != headlineTextView.text {
+            toBeVision.lastUpdated = currentDate
+            toBeVision.headLine = headlineTextView.text
         }
+        if toBeVision.text != messageTextView.text {
+            toBeVision.lastUpdated = currentDate
+            toBeVision.text = messageTextView.text
+        }
+
+        interactor?.saveToBeVision(toBeVision: toBeVision)
     }
 }
 
