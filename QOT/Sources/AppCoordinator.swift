@@ -258,6 +258,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     func sendLocationUpdate(location: CLLocation) {
         timeZoneDidChange()
+        guard authenticator.hasLoginCredentials() else { return }
+
         networkManager.performUserLocationUpdateRequest(location: location) { (error: NetworkError?) in
             if let error = error {
                 log("Error while trying to update user location: \(error)")

@@ -193,20 +193,27 @@ final class NetworkManager {
                     case .failure(let error):
                         completion(.failure(error))
                         if error.isUnauthenticated && notifyDelegateOfFailure {
-                            DispatchQueue.main.async {
-                                self.delegate?.networkManagerFailedToAuthenticate(self)
-                            }
+                            self.notifyDelegateOfAuthenticationFailure(error)
                         }
                     }
                 }
             case .failure(let error):
                 completion(.failure(error))
                 if error.isUnauthenticated && notifyDelegateOfFailure {
-                    DispatchQueue.main.async {
-                        self.delegate?.networkManagerFailedToAuthenticate(self)
-                    }
+                    self.notifyDelegateOfAuthenticationFailure(error)
                 }
             }
+        }
+    }
+
+    private func notifyDelegateOfAuthenticationFailure(_ error: NetworkError) {
+        #if DEBUG
+            // Log to file on debug builds BEFORE notifying delegate.
+            let token = String(describing: CredentialsManager.shared.authToken())
+            log("AUTH ERROR: \(error), TOKEN: \(token)", level: .debug)
+        #endif
+        DispatchQueue.main.async {
+            self.delegate?.networkManagerFailedToAuthenticate(self)
         }
     }
 }
