@@ -8,18 +8,13 @@
 
 import Foundation
 import Alamofire
-import JWT
 
 typealias AuthenticationCompletion = (Result<String, NetworkError>) -> Void
 
 final class Authenticator {
 
-    struct Config {
-        let expiryLeaway = TimeInterval(minutes: 10)
-    }
-
     private let queue = DispatchQueue(label: "Authenticator", qos: .background)
-    private let config = Config()
+    private let authTokenValidator: AuthTokenValidator
     private let sessionManager: SessionManager
     private let requestBuilder: URLRequestBuilder
     private let store = CredentialsManager.shared
@@ -29,10 +24,12 @@ final class Authenticator {
 
     init(sessionManager: SessionManager,
          requestBuilder: URLRequestBuilder,
-         notificationCenter: NotificationCenter = NotificationCenter.default) {
+         notificationCenter: NotificationCenter = NotificationCenter.default,
+         authTokenValidator: AuthTokenValidator = AuthTokenValidator()) {
         self.sessionManager = sessionManager
         self.requestBuilder = requestBuilder
         self.notificationCenter = notificationCenter
+        self.authTokenValidator = authTokenValidator
     }
 
     func authenticate(username: String, password: String, completion: @escaping AuthenticationCompletion) {
@@ -62,10 +59,9 @@ private extension Authenticator {
     func _fetchAuthToken(now: Date, completion: @escaping AuthenticationCompletion) {
         dispatchPrecondition(condition: .onQueue(queue))
 
-        let minExpirationDate = now.addingTimeInterval(-config.expiryLeaway)
         if currentRequest != nil {
             completions.append(completion)
-        } else if let existingAuthToken = validAuthToken(minExpiry: minExpirationDate) {
+        } else if let existingAuthToken = validAuthToken(now: now) {
             completion(.success(existingAuthToken))
         } else if let (username, password) = loginCredentials() {
             completions.append(completion)
@@ -147,24 +143,14 @@ private extension Authenticator {
         completions = []
     }
 
-    private func validAuthToken(minExpiry: Date) -> String? {
+    private func validAuthToken(now: Date) -> String? {
         dispatchPrecondition(condition: .onQueue(queue))
 
         guard let existingToken = store.authToken() else { return nil }
-        do {
-            let claims: ClaimSet = try JWT.decode(existingToken, algorithm: .none, verify: false)
-            if let expiration = claims.expiration {
-                return expiration >= minExpiry ? existingToken : nil
-            } else {
-                assertionFailure("ASSUMPTION - Auth tokens MUST have an expiration")
-                log("Authentication token has no expiration: \(existingToken)", level: .error)
-                return nil
-            }
-        } catch {
-            log("Failed to decode authentication token: \(existingToken), error: \(error)", level: .error)
-            return nil
-        }
+        let isValid = authTokenValidator.isValid(token: existingToken, now: now)
+        return isValid ? existingToken : nil
     }
+
 
     private func loginCredentials() -> (username: String, password: String)? {
         dispatchPrecondition(condition: .onQueue(queue))
