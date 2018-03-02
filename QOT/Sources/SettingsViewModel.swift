@@ -18,7 +18,6 @@ enum SettingsType: Int {
     case dateOfBirth
     case weight
     case height
-    case location
     case calendar
     case tutorial
     case interview
@@ -43,7 +42,6 @@ enum SettingsType: Int {
         case .dateOfBirth: return R.string.localized.settingsGeneralDateOfBirthTitle()
         case .weight: return R.string.localized.settingsGeneralWeightTitle()
         case .height: return R.string.localized.settingsGeneralHeightTitle()
-        case .location: return R.string.localized.settingsGeneralLocationTitle()
         case .calendar: return R.string.localized.settingsGeneralCalendarTitle()
         case .tutorial: return R.string.localized.settingsGeneralTutorialTitle()
         case .interview: return R.string.localized.settingsGeneralInterviewTitle()
@@ -338,7 +336,6 @@ private func generalSettingsSection(for user: User?, services: Services) -> [Set
     var sections = [
         Sections(title: "Contact", rows: companyRows(for: user)),
         Sections(title: "Personal", rows: personalRows(for: user)),
-        Sections(title: "Location", rows: locationRows),
         Sections(title: "Calendar", rows: calendarRows)
     ]
 
@@ -402,15 +399,6 @@ private func personalRows(for user: User?) -> [SettingsRow] {
         .datePicker(title: SettingsType.dateOfBirth.title, selectedDate: date, settingsType: .dateOfBirth),
         .multipleStringPicker(title: SettingsType.weight.title, rows: user.weightPickerItems, initialSelection: [selectedWeightIndex, selectedWeightUnitIndex], settingsType: .weight),
         .multipleStringPicker(title: SettingsType.height.title, rows: user.heightPickerItems, initialSelection: [selectedHeightIndex, selectedHeightUnitIndex], settingsType: .height)
-    ]
-}
-
-private var locationRows: [SettingsRow] {
-    let authorizationStatus = LocationManager.authorizationStatus == .authorizedAlways || LocationManager.authorizationStatus == .authorizedWhenInUse
-    let canShareLocation = authorizationStatus == true && UserDefault.locationService.boolValue == true
-
-    return [
-        .control(title: SettingsType.location.title, isOn: canShareLocation, settingsType: .location, key: UserDefault.locationService.rawValue)
     ]
 }
 

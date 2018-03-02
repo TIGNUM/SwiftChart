@@ -94,10 +94,6 @@ final class OnboardingCoordinator: ParentCoordinator {
         switch choice.type {
         case .yes:
             permissionsManager.askPermission(for: identifiers, completion: { status in
-                guard let locationStatus = status[.remoteNotification] else { return }
-                // persist location result
-                UserDefault.locationService.setBoolValue(value: locationStatus == .granted)
-
                 // decide what message to show, based on if everything was granted
                 let isAllGranted = status.filter({ $0.value == .denied }).count == 0
                 if isAllGranted {

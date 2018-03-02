@@ -23,8 +23,6 @@ protocol SettingsViewControllerDelegate: class {
 
     func didTapButton(at indexPath: IndexPath, settingsType: SettingsType)
 
-    func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell)
-
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?)
 }
 
@@ -373,29 +371,6 @@ extension SettingsViewController: SettingsViewControllerDelegate {
         }
 
         viewModel.updateNotificationSetting(key: key, value: sender.isOn)
-    }
-
-    func didChangeLocationValue(sender: UISwitch, settingsCell: SettingsTableViewCell) {
-        if LocationManager.authorizationStatus == .notDetermined {
-            // TODO: Connect with PremissionManager and requesst for the very first time.            
-            resetLocationSwitch(sender: sender, settingsCell: settingsCell)
-            locationManager.requestWhenInUseAuthorization()
-        } else if LocationManager.authorizationStatus == .denied || LocationManager.authorizationStatus == .restricted {
-            resetLocationSwitch(sender: sender, settingsCell: settingsCell)
-            showAlert(type: .settingsLoccationService, handler: {
-                UIApplication.openAppSettings()
-            }, handlerDestructive: nil)
-        } else {
-            UserDefault.locationService.setBoolValue(value: sender.isOn)
-            settingsCell.controlUpdate = false
-            settingsCell.setSwitchState(switchControl: sender)
-        }
-    }
-
-    private func resetLocationSwitch(sender: UISwitch, settingsCell: SettingsTableViewCell) {
-        sender.isOn = false
-        settingsCell.setSwitchState(switchControl: sender)
-        settingsCell.controlUpdate = false
     }
 }
 

@@ -9,7 +9,6 @@
 import Foundation
 
 enum UserDefault: String {
-    case locationService = "qot.userdefault.key.location.service"
     case calendarDictionary = "qot.userdefault.key.calendar.dictionary"
     case newWhatsHotArticle = "qot.userdefault.key.new.whats.hot.article"
     case lastInstaledAppVersion = "qot.userdefault.key.last.installed.app.version"
@@ -19,7 +18,7 @@ enum UserDefault: String {
 extension UserDefault {
 
     static func objectsToClearOnLogout() -> [UserDefault] {
-        return [.locationService, .calendarDictionary, .newWhatsHotArticle]
+        return [.calendarDictionary, .newWhatsHotArticle]
     }
 
     var boolValue: Bool {

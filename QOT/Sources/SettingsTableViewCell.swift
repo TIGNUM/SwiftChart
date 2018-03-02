@@ -52,14 +52,7 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
             setupButtonCell(title: title, value: value)
         case .control(let title, let enabled, let settingsType, _):
             self.settingsType = settingsType
-
-            if settingsType == .location {
-                let authorizationStatus = LocationManager.authorizationStatus == .authorizedAlways || LocationManager.authorizationStatus == .authorizedWhenInUse
-                let enabled = authorizationStatus == true && UserDefault.locationService.boolValue == true
-                setupControlCell(title: title, isOn: enabled)
-            } else {
-                setupControlCell(title: title, isOn: enabled)
-            }
+            setupControlCell(title: title, isOn: enabled)
         case .datePicker(let title, let selectedDate, let settingsType):
             self.settingsType = settingsType
             setupDateCell(title: title, selectedDate: selectedDate)
@@ -162,7 +155,6 @@ extension SettingsTableViewCell {
 
     @objc func valueChanged(sender: UISwitch) {
         switch settingsType {
-        case .location: updateLocationSettings(sender)
         case .calendar: updateCalendarSettings(sender)
         case .strategies,
              .dailyPrep,
@@ -179,13 +171,6 @@ extension SettingsTableViewCell {
     private func updateNotificationSettings(_ sender: UISwitch) {
         settingsDelegate?.didChangeNotificationValue(sender: sender, settingsCell: self, key: settingsType.notificationKey)
         setSwitchState(switchControl: sender)
-    }
-
-    private func updateLocationSettings(_ sender: UISwitch) {
-        if controlUpdate == false {
-            controlUpdate = true
-            settingsDelegate?.didChangeLocationValue(sender: sender, settingsCell: self)
-        }
     }
 
     private func updateCalendarSettings(_ sender: UISwitch) {
