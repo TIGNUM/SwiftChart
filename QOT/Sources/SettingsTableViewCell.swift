@@ -66,7 +66,9 @@ class SettingsTableViewCell: UITableViewCell, Dequeueable {
             self.settingsType = settingsType
             let valueIndex = initialSelection[0]
             let unitIndex = initialSelection[1]
-            let displayableValue = String(format: "%@ %@", rows[0][valueIndex], rows[1][unitIndex])
+            let unit = Array(rows.keys)[unitIndex]
+            let value = rows[unit].map { $0[valueIndex].displayValue } ?? ""
+            let displayableValue = String(format: "%@ %@", value, unit)
             setupLabelCell(title: title, value: displayableValue)
         case .textField(let title, let value, let secure, let settingsType):
             self.settingsType = settingsType

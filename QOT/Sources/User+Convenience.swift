@@ -43,26 +43,57 @@ extension User {
         }
     }
 
-    var weightPickerItems: [[String]] {
+    var weightPickerItems: [String: [(value: Double, displayValue: String)]] {
         return [
-            items,
-            weightUnitItems
+            "kg": kiloItems,
+            "lbs": poundItems
         ]
     }
 
-    var heightPickerItems: [[String]] {
+    var heightPickerItems: [String: [(value: Double, displayValue: String)]] {
         return [
-            items,
-            heightUnitItems
+            "cm": centimeterItems,
+            "ft": feetItems
         ]
     }
 
-    private var items: [String] {
-        var items = [String]()
-        for weight in 0...634 {
-            items.append(String(format: "%d", weight))
+    private var centimeterItems: [(value: Double, displayValue: String)] {
+        var items = [(value: Double, displayValue: String)]()
+
+        for value in stride(from: 0.0, to: 300.0, by: 1.0) {
+            let item = (value, String(format: "%.0f", value))
+            items.append(item)
         }
+        return items
+    }
 
+    private var feetItems: [(value: Double, displayValue: String)] {
+        var items = [(value: Double, displayValue: String)]()
+        for feet in stride(from: 0, to: 100, by: 1.0) {
+            for inch in stride(from: 0, to: 11, by: 1.0) {
+                let item = (inch, String(format: "%.0f'%.0f''", feet, inch))
+                items.append(item)
+            }
+        }
+        return items
+    }
+
+    private var kiloItems: [(value: Double, displayValue: String)] {
+        var items = [(value: Double, displayValue: String)]()
+        for value in stride(from: 0.0, to: 300.0, by: 1.0) {
+            let item = (value, String(format: "%.0f", value))
+            items.append(item)
+        }
+        return items
+    }
+
+    private var poundItems: [(value: Double, displayValue: String)] {
+        var items = [(value: Double, displayValue: String)]()
+        for value in stride(from: 0.0, to: 300.0, by: 1.0) {
+            let item = (value, String(format: "%.0f", value))
+            items.append(item)
+            print(item)
+        }
         return items
     }
 

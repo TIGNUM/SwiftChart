@@ -32,11 +32,47 @@ final class SettingsViewController: UIViewController {
 
     private var viewModel: SettingsViewModel
     private let services: Services
+    private var tableView: UITableView!
     private let locationManager = CLLocationManager()
+    private var pickerViewHeight: NSLayoutConstraint?
     private var destination: AppCoordinator.Router.Destination?
+    private var pickerItems = [String: [(value: Double, displayValue: String)]]()
+    private var pickerInitialSelection = [Index]()
+    private var pickerIndexPath = IndexPath(item: 0, section: 0)
+    private var currentUnit = String()
+    private var currentUserValue = Double()
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
-    var tableView: UITableView!
+
+    lazy var pickerContentView: UIView = {
+        let pickerContentView = UIView()
+        pickerContentView.backgroundColor = .white
+        return pickerContentView
+    }()
+
+    lazy var pickerToolBar: UIToolbar = {
+        let toolBar = UIToolbar()
+        toolBar.barTintColor = .white
+        let cancelButton = UIBarButtonItem(title: R.string.localized.alertButtonTitleCancel(),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(pickerViewCancelButtonTapped))
+        let doneButton = UIBarButtonItem(title: R.string.localized.morningControllerDoneButton(),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(pickerViewDoneButtonTapped))
+        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
+        toolBar.setItems([cancelButton, flexibleSpace, doneButton], animated: false)
+        return toolBar
+    }()
+
+    lazy var pickerView: UIPickerView = {
+        let pickerView = UIPickerView()
+        pickerView.showsSelectionIndicator = true
+        pickerView.delegate = self
+        pickerView.dataSource = self
+        return pickerView
+    }()
 
     // MARK: - Init
 
@@ -106,6 +142,52 @@ final class SettingsViewController: UIViewController {
     }
 }
 
+private extension SettingsViewController {
+
+    @objc func pickerViewCancelButtonTapped(_ sender: UIBarButtonItem) {
+        hidePickerView()
+    }
+
+    @objc func pickerViewDoneButtonTapped(_ sender: UIBarButtonItem) {
+        updateUser()
+        hidePickerView()
+    }
+
+    func hidePickerView() {
+        UIView.animate(withDuration: 0.6) {
+            self.pickerViewHeight?.constant = 0
+        }
+    }
+
+    func showPickerView() {
+        UIView.animate(withDuration: 0.6, animations: {
+            self.pickerViewHeight?.constant = self.view.frame.height * 0.3
+        }, completion: { finished in
+            print("pickerInitialSelection[0]", self.pickerInitialSelection[0], self.pickerInitialSelection[1], "pickerInitialSelection[1]")
+            print("pickerView.numberOfComponents", self.pickerView.numberOfComponents)
+            print("self.pickerView.numberOfRows(inComponent: 0)", self.pickerView.numberOfRows(inComponent: 0), "self.pickerView.numberOfRows(inComponent: 1)", self.pickerView.numberOfRows(inComponent: 1))
+            self.pickerView.selectRow(self.pickerInitialSelection[0],
+                                      inComponent: self.pickerInitialSelection[1],
+                                      animated: true)
+        })
+    }
+
+    func updateUser() {
+        if pickerIndexPath.section == 1 {
+            let unit = currentUnit // FIXME: No garentee of order
+            let value = currentUserValue
+            if pickerIndexPath.row == 2 {
+                viewModel.updateWeight(weight: value)
+                viewModel.updateWeightUnit(weightUnit: unit)
+            } else if pickerIndexPath.row == 3 {
+                viewModel.updateHeight(height: value)
+                viewModel.updateHeightUnit(heightUnit: unit)
+            }
+        }
+        updateViewModelAndReloadTableView()
+    }
+}
+
 // MARK: - Layout
 
 private extension SettingsViewController {
@@ -119,6 +201,9 @@ private extension SettingsViewController {
         }
         view.backgroundColor = .black
         view.addSubview(tableView)
+        view.addSubview(pickerContentView)
+        pickerContentView.addSubview(pickerToolBar)
+        pickerContentView.addSubview(pickerView)
         tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
         tableView.delegate = self
         tableView.dataSource = self
@@ -131,6 +216,19 @@ private extension SettingsViewController {
         tableView.allowsSelection = true
         tableView.rowHeight = 44
         tableView.edgeAnchors == view.edgeAnchors
+
+        pickerContentView.trailingAnchor == view.trailingAnchor
+        pickerContentView.leadingAnchor == view.leadingAnchor
+        pickerContentView.bottomAnchor == view.safeBottomAnchor
+        pickerViewHeight = pickerContentView.heightAnchor == 0
+        pickerToolBar.topAnchor == pickerContentView.topAnchor
+        pickerToolBar.leadingAnchor == pickerContentView.leadingAnchor
+        pickerToolBar.trailingAnchor == pickerContentView.trailingAnchor
+        pickerToolBar.heightAnchor == 45
+        pickerView.topAnchor == pickerToolBar.bottomAnchor
+        pickerView.leadingAnchor == pickerContentView.leadingAnchor
+        pickerView.trailingAnchor == pickerContentView.trailingAnchor
+        pickerView.bottomAnchor == pickerContentView.bottomAnchor
         view.setFadeMask(at: .top)
     }
 
@@ -242,24 +340,18 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
 private extension SettingsViewController {
 
     func showDatePicker(title: String, selectedDate: Date, indexPath: IndexPath) {
-        let picker = createDatePicker(with: title, selectedDate: selectedDate, indexPath: indexPath)
-        self.setupPickerButtons(picker: picker)
-        picker.show()
-    }
-
-    private func createDatePicker(with title: String, selectedDate: Date, indexPath: IndexPath) -> ActionSheetDatePicker {
-        return ActionSheetDatePicker(title: title, datePickerMode: .date,
-            selectedDate: selectedDate,
-            doneBlock: { [unowned self] (_, value, _) in
-                if indexPath.section == 1 && indexPath.row == 1,
-                    let date = value as? Date {
-                        let dateOfBirth = DateFormatter.settingsUser.string(from: date)
-                        self.viewModel.updateDateOfBirth(dateOfBirth: dateOfBirth)
-                        self.updateViewModelAndReloadTableView()
-                }
+        ActionSheetDatePicker(title: title, datePickerMode: .date,
+                              selectedDate: selectedDate,
+                              doneBlock: { [unowned self] (_, value, _) in
+                                if indexPath.section == 1 && indexPath.row == 1,
+                                    let date = value as? Date {
+                                    let dateOfBirth = DateFormatter.settingsUser.string(from: date)
+                                    self.viewModel.updateDateOfBirth(dateOfBirth: dateOfBirth)
+                                    self.updateViewModelAndReloadTableView()
+                                }
             }, cancel: { (_) in
                 return
-        }, origin: view)
+        }, origin: view).show()
     }
 }
 
@@ -267,37 +359,17 @@ private extension SettingsViewController {
 
 private extension SettingsViewController {
 
+    // FIXME: IS THIS USED
     func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
-        let picker = createStringPicker(with: title, items: items, selectedIndex: selectedIndex, indexPath: indexPath)
-        self.setupPickerButtons(picker: picker)
-        picker.show()
-    }
-
-    private func createStringPicker(with title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) -> ActionSheetStringPicker {
-        return ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { [unowned self] (_, index, _) in
+        ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { [unowned self] (_, index, _) in
             if indexPath.section == 1 && indexPath.row == 0 {
                 self.viewModel.updateGender(gender: items[index])
-            } else if indexPath.section == 1 && indexPath.row == 2 {
-                self.viewModel.updateWeight(weight: items[index])
-            } else if indexPath.section == 1 && indexPath.row == 3 {
-                self.viewModel.updateHeight(height: items[index])
             }
 
             self.updateViewModelAndReloadTableView()
-        }, cancel: { (_) in
-            return
-        }, origin: view)
-    }
-
-    func setupPickerButtons(picker: AbstractActionSheetPicker) {
-        // Refactor when library bug is fixed https://github.com/skywinder/ActionSheetPicker-3.0/issues/22
-        let doneButton = UIButton(type: .system)
-        doneButton.setTitle("Done", for: .normal)
-        picker.setDoneButton(UIBarButtonItem(customView: doneButton))
-
-        let cancelButton = UIButton(type: .system)
-        cancelButton.setTitle("Cancel", for: .normal)
-        picker.setCancelButton(UIBarButtonItem(customView: cancelButton))
+            }, cancel: { (_) in
+                return
+        }, origin: view).show()
     }
 }
 
@@ -305,32 +377,15 @@ private extension SettingsViewController {
 
 private extension SettingsViewController {
 
-    func showMultiplePicker(title: String, rows: [[String]], initialSelection: [Index], indexPath: IndexPath) {
-        let picker = multipleStringPicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
-        self.setupPickerButtons(picker: picker)
-        picker.show()
-    }
-
-    private func multipleStringPicker(title: String, rows: [[String]], initialSelection: [Index], indexPath: IndexPath) -> ActionSheetMultipleStringPicker {
-        return ActionSheetMultipleStringPicker(title: title, rows: rows, initialSelection: initialSelection, doneBlock: { (_, _, value) in
-            if indexPath.section == 1 {
-                if indexPath.row == 2,
-                    let weightComponents = value as? [String] {
-                        let weight = String(format: "%@", weightComponents[0])
-                        self.viewModel.updateWeight(weight: weight)
-                        self.viewModel.updateWeightUnit(weightUnit: weightComponents[1])
-                } else if indexPath.row == 3,
-                    let heightComponents = value as? [String] {
-                        let height = String(format: "%@", heightComponents[0])
-                        self.viewModel.updateHeight(height: height)
-                        self.viewModel.updateHeightUnit(heightUnit: heightComponents[1])
-                }
-            }
-
-            self.updateViewModelAndReloadTableView()
-        }, cancel: { (_) in
-            return
-        }, origin: view)
+    func showMultiplePicker(title: String,
+                            rows: [String: [(value: Double, displayValue: String)]],
+                            initialSelection: [Index],
+                            indexPath: IndexPath) {
+        pickerItems = rows
+        pickerInitialSelection = initialSelection
+        pickerIndexPath = indexPath
+        print("pickerInitialSelection", pickerInitialSelection)
+        showPickerView()
     }
 }
 
@@ -371,6 +426,67 @@ extension SettingsViewController: SettingsViewControllerDelegate {
         }
 
         viewModel.updateNotificationSetting(key: key, value: sender.isOn)
+    }
+}
+
+// MARK: - PickerViewDelegate, PickerViewDataSource
+
+extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return pickerItems.count
+    }
+
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        let unit = Array(pickerItems.keys)[pickerInitialSelection[1]]
+        switch component {
+        case 0: return pickerItems[unit]?.count ?? 0
+        case 1: return pickerItems.keys.count
+        default: return 0
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        let unit = Array(pickerItems.keys)[pickerInitialSelection[1]]
+        switch component {
+        case 0:
+            if let value = pickerItems[unit].map ({ $0[row].displayValue })?.components(separatedBy: ".") {
+                return value[0]
+            }
+            return nil
+        case 1: return Array(pickerItems.keys)[row]
+        default: return nil
+        }
+    }
+
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        pickerInitialSelection = [pickerView.selectedRow(inComponent: 0), pickerView.selectedRow(inComponent: 1)]
+        if component == 1 {
+            let unit = Array(pickerItems.keys)[pickerView.selectedRow(inComponent: 1)]
+            let value = pickerItems.values.map { $0[pickerView.selectedRow(inComponent: 0)].value }[0]
+            let convertedValue = convertValue(unit: unit, value: value).rounded(.toNearestOrAwayFromZero)
+            if let convertedValueRow = pickerItems.values.map ({ $0.index { $0.value == convertedValue} })[0] {
+                currentUnit = unit
+                currentUserValue = value
+                pickerView.selectRow(convertedValueRow, inComponent: 0, animated: true)
+                pickerView.reloadAllComponents()
+            }
+        }
+    }
+
+    private func convertValue(unit: String, value: Double) -> Double {
+        switch unit {
+        case "kg":
+            return Measurement(value: value, unit: UnitMass.pounds).converted(to: .kilograms).value
+        case "lbs":
+            return Measurement(value: value, unit: UnitMass.kilograms).converted(to: .pounds).value
+        case "cm":
+            return Measurement(value: value, unit: UnitLength.feet).converted(to: .centimeters).value
+        case "ft":
+            return Measurement(value: value, unit: UnitLength.centimeters).converted(to: .feet).value
+        default:
+            return value
+        }
     }
 }
 

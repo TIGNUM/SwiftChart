@@ -2323,13 +2323,13 @@
 		CBB4DD431EE090130071494A /* Settings */ = {
 			isa = PBXGroup;
 			children = (
+				CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */,
+				CCAF03221E801B0E00015125 /* SettingsViewController.swift */,
+				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
 				CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */,
 				CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */,
 				CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */,
-				CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */,
 				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
-				CCAF03221E801B0E00015125 /* SettingsViewController.swift */,
-				CB1E4F971E7FE22200287613 /* SettingsViewModel.swift */,
 			);
 			name = Settings;
 			sourceTree = "<group>";

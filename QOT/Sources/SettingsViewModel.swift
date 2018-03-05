@@ -138,40 +138,24 @@ enum PersonalData {
         }
     }
 
-    var pickerItems: [[String]] {
+    func selectedIndex(user: User, items: [Double]) -> Index {
         switch self {
-        case .weight: return []
-        case .height: return []
-        }
-    }
-
-    func selectedIndex(user: User) -> Index {
-        switch self {
-        case .weight: return selectedIndex(value: user.weight.value)
-        case .height: return selectedIndex(value: user.height.value)
+        case .weight: return selectedIndex(value: user.weight.value, items: items)
+        case .height: return selectedIndex(value: user.height.value, items: items)
         }
     }
 
     func selectedUnitIndex(user: User) -> Index {
         switch self {
-        case .weight: return selectedUnitIndex(unit: user.weightUnit, units: user.weightUnitItems)
-        case .height: return selectedUnitIndex(unit: user.heightUnit, units: user.heightUnitItems)
+        case .weight: return selectedUnitIndex(unit: user.weightUnit, units: ["kg", "lbs"])
+        case .height: return selectedUnitIndex(unit: user.heightUnit, units: ["cm", "ft"])
         }
     }
 
-    private var items: [String] {
-        var items = [String]()
-        for weight in 0...634 {
-            items.append(String(format: "%d.0", weight))
-        }
-
-        return items
-    }
-
-    private func selectedIndex(value: Double?) -> Index {
+    private func selectedIndex(value: Double?, items: [Double]) -> Index {
         var index = 0
         if let value = value {
-            index = items.index(of: "\(value)") ?? 0
+            index = items.index(of: value) ?? 0
         }
 
         return index
@@ -233,14 +217,12 @@ final class SettingsViewModel {
         services.userService.updateUserGender(user: user, gender: gender.uppercased())
     }
 
-    func updateHeight(height: String) {
-        let userHeight = (height.replacingOccurrences(of: ",", with: ".") as NSString).doubleValue
-        services.userService.updateUserHeight(user: user, height: userHeight)
+    func updateHeight(height: Double) {
+        services.userService.updateUserHeight(user: user, height: height)
     }
 
-    func updateWeight(weight: String) {
-        let userWeight = (weight.replacingOccurrences(of: ",", with: ".") as NSString).doubleValue
-        services.userService.updateUserWeight(user: user, weight: userWeight)
+    func updateWeight(weight: Double) {
+        services.userService.updateUserWeight(user: user, weight: weight)
     }
 
     func updateWeightUnit(weightUnit: String) {
@@ -295,11 +277,11 @@ enum SettingsRow {
 
     case label(title: String, value: String?, settingsType: SettingsType)
     case stringPicker(title: String, pickerItems: [String], selectedIndex: Index, settingsType: SettingsType)
-    case multipleStringPicker(title: String, rows: [[String]], initialSelection: [Index], settingsType: SettingsType)
     case datePicker(title: String, selectedDate: Date, settingsType: SettingsType)
     case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?)
     case button(title: String, value: String, settingsType: SettingsType)
     case textField(title: String, value: String, secure: Bool, settingsType: SettingsType)
+    case multipleStringPicker(title: String, rows: [String: [(value: Double, displayValue: String)]], initialSelection: [Index], settingsType: SettingsType)
 
     var identifier: String {
         switch self {
@@ -367,17 +349,19 @@ private func companyRows(for user: User?) -> [SettingsRow] {
 }
 
 private func personalRows(for user: User?) -> [SettingsRow] {
-    guard let user = user else {
-        return []
-    }
+    guard let user = user else { return [] }
 
     var date = Date()
     if let dateOfBirth = user.dateOfBirth {
         date = DateFormatter.settingsUser.date(from: dateOfBirth) ?? Date()
     }
 
-    var selectedHeightIndex = PersonalData.height.selectedIndex(user: user)
-    var selectedWeightIndex = PersonalData.weight.selectedIndex(user: user)
+    let weightUnit = user.weightUnit ?? "kg"
+    let heightUnit = user.heightUnit ?? "cm"
+    let heightItems = user.heightPickerItems[heightUnit].map { $0.map { $0.value } } ?? []
+    let weightItems = user.weightPickerItems[weightUnit].map { $0.map { $0.value } } ?? []
+    var selectedHeightIndex = PersonalData.height.selectedIndex(user: user, items: heightItems)
+    var selectedWeightIndex = PersonalData.weight.selectedIndex(user: user, items: weightItems)
     let selectedHeightUnitIndex = PersonalData.height.selectedUnitIndex(user: user)
     let selectedWeightUnitIndex = PersonalData.weight.selectedUnitIndex(user: user)
     let selectedGenderIndex = Gender(rawValue: user.gender.lowercased())?.selectedIndex ?? 0
@@ -395,10 +379,21 @@ private func personalRows(for user: User?) -> [SettingsRow] {
     }
 
     return [
-        .stringPicker(title: SettingsType.gender.title, pickerItems: Gender.allValuesAsStrings, selectedIndex: selectedGenderIndex, settingsType: .gender),
-        .datePicker(title: SettingsType.dateOfBirth.title, selectedDate: date, settingsType: .dateOfBirth),
-        .multipleStringPicker(title: SettingsType.weight.title, rows: user.weightPickerItems, initialSelection: [selectedWeightIndex, selectedWeightUnitIndex], settingsType: .weight),
-        .multipleStringPicker(title: SettingsType.height.title, rows: user.heightPickerItems, initialSelection: [selectedHeightIndex, selectedHeightUnitIndex], settingsType: .height)
+        .stringPicker(title: SettingsType.gender.title,
+                      pickerItems: Gender.allValuesAsStrings,
+                      selectedIndex: selectedGenderIndex,
+                      settingsType: .gender),
+        .datePicker(title: SettingsType.dateOfBirth.title,
+                    selectedDate: date,
+                    settingsType: .dateOfBirth),
+        .multipleStringPicker(title: SettingsType.weight.title.components(separatedBy: ".")[0],
+                              rows: user.weightPickerItems,
+                              initialSelection: [selectedWeightIndex, selectedWeightUnitIndex],
+                              settingsType: .weight),
+        .multipleStringPicker(title: SettingsType.height.title.components(separatedBy: ".")[0],
+                              rows: user.heightPickerItems,
+                              initialSelection: [selectedHeightIndex, selectedHeightUnitIndex],
+                              settingsType: .height)
     ]
 }
 
