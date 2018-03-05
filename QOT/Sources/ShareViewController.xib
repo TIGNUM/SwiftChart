@@ -58,7 +58,7 @@
                                 <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="wpg-OS-NWw"/>
                             </connections>
                         </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-0z-lbg">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-0z-lbg">
                             <rect key="frame" x="52" y="158" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="24" id="JU7-jm-DMh"/>
@@ -76,14 +76,14 @@
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Weekly choices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3g6-7E-Wpb">
+                        <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Weekly choices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3g6-7E-Wpb">
                             <rect key="frame" x="92" y="160" width="231" height="19.5"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-TR-UAU">
-                            <rect key="frame" x="52" y="222" width="271" height="44"/>
+                            <rect key="frame" x="52" y="178" width="271" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="7bh-Nd-c1H"/>
                             </constraints>
@@ -97,6 +97,7 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="3g6-7E-Wpb" firstAttribute="leading" secondItem="3Le-0z-lbg" secondAttribute="trailing" constant="16" id="3ZR-mm-Naj"/>
+                        <constraint firstItem="IB3-TR-UAU" firstAttribute="bottom" secondItem="3Le-0z-lbg" secondAttribute="bottom" constant="40" id="Ab3-Eb-TlL"/>
                         <constraint firstItem="hc7-uH-oDV" firstAttribute="top" secondItem="b4U-iA-UEC" secondAttribute="bottom" constant="40" id="DAv-fu-uPR"/>
                         <constraint firstItem="3Le-0z-lbg" firstAttribute="top" secondItem="hc7-uH-oDV" secondAttribute="bottom" constant="32" id="Egu-rR-wla"/>
                         <constraint firstAttribute="trailing" secondItem="3g6-7E-Wpb" secondAttribute="trailing" constant="52" id="LmH-xB-e2S"/>
@@ -113,6 +114,11 @@
                         <constraint firstItem="3Le-0z-lbg" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="52" id="wfN-Lb-rFH"/>
                         <constraint firstItem="Wwd-gk-q1L" firstAttribute="leading" secondItem="hc7-uH-oDV" secondAttribute="trailing" constant="16" id="xuQ-VH-g3N"/>
                     </constraints>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="ks9-9P-TfJ"/>
+                        </mask>
+                    </variation>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
