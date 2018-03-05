@@ -57,15 +57,11 @@ final class MyUniverseProvider {
 
     private func fetchViewData() -> MyUniverseViewData {
         let myToBeVision = services.userService.myToBeVision()
-        // TODO: uncomment and re-implement when available. Also delete FIXME at bottom
-//        let partners = self.partners.prefix(Layout.MeSection.maxPartners).map {
-//            return MyUniverseViewData.Partner(imageURL: $0.profileImageResource?.url, initials: $0.initials.uppercased())
-//        }
-        let partners = [
-            Partner.comingSoon(image: R.image.partner_comingSoon_01(), imageName: "partner_comingSoon_01"),
-            Partner.comingSoon(image: R.image.partner_comingSoon_02(), imageName: "partner_comingSoon_02"),
-            Partner.comingSoon(image: R.image.partner_comingSoon_03(), imageName: "partner_comingSoon_03")
-        ]
+        let realmPartners = services.partnerService.lastModifiedPartnersSortedByCreatedAtAscending(maxCount: 3)
+        let dataPartners = realmPartners.map { (realmPartner) -> MyUniverseViewData.Partner in
+            let url = realmPartner.profileImageResource?.url
+            return MyUniverseViewData.Partner(imageURL: url, initials: realmPartner.initials.uppercased())
+        }
         let userChoices = self.userChoices.sorted { $0.startDate > $1.startDate }
         let weeklyChoices = userChoices.prefix(Layout.MeSection.maxWeeklyPage).map { choice -> WeeklyChoice in
             return WeeklyChoice(
@@ -89,7 +85,7 @@ final class MyUniverseProvider {
         ]
         return MyUniverseViewData(
             profileImageURL: myToBeVision?.profileImageResource?.url,
-            partners: partners,
+            partners: dataPartners  ,
             weeklyChoices: weeklyChoices,
             myToBeVisionHeadline: myToBeVision?.headline ?? R.string.localized.meSectorMyWhyVisionTitle(),
             myToBeVisionText: myToBeVision?.text ?? R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
@@ -182,17 +178,5 @@ final class MyUniverseProvider {
 
     private func statistics(_ chartType: ChartType) -> Statistics? {
         return services.statisticsService.chart(key: chartType.rawValue)
-    }
-}
-
-// FIXME: remove when feature is available
-
-extension Partner {
-
-    static func comingSoon(image: UIImage?, imageName: String) -> MyUniverseViewData.Partner {
-        guard let image = image, let url = try? image.save(withName: imageName, format: .png) else {
-            return MyUniverseViewData.Partner(imageURL: nil, initials: "")
-        }
-        return MyUniverseViewData.Partner(imageURL: url, initials: "")
     }
 }

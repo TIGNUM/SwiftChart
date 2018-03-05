@@ -96,10 +96,8 @@ extension ImageCropper: RSKImageCropViewControllerDataSource {
             return UIBezierPath()
         }
         switch shape {
-        case .circle:
-            return UIBezierPath.circlePath(center: view.center, radius: view.bounds.width / 4.0)
-        case .hexagon:
-            return UIBezierPath.hexagonPath(forRect: controller.maskRect)
+        case .circle: return UIBezierPath.circlePath(center: view.center, radius: view.bounds.width / 4)
+        case .hexagon: return UIBezierPath.hexagonPath(forRect: controller.maskRect)
         }
     }
 }

@@ -14,10 +14,6 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
     // MARK: - Properties
 
     private let services: Services
-    private let selectedIndex: Index
-    private let viewModel: PartnersViewModel
-    private var topTabBarController: UINavigationController!
-    private let partnersViewController: PartnersViewController
     private let rootViewController: UIViewController
     private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     var children: [Coordinator] = []
@@ -28,37 +24,18 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
         self.rootViewController = root
         self.services = services
         self.transitioningDelegate = transitioningDelegate
-        self.selectedIndex = selectedIndex
-        viewModel = PartnersViewModel(services: services, selectedIndex: selectedIndex, headline: "Lore ipsum impsum plus")
-        partnersViewController = PartnersViewController(viewModel: viewModel, permissionsManager: permissionsManager)
-        partnersViewController.title = R.string.localized.meSectorMyWhyPartnersTitle()
 
         super.init()
-
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
-        let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
-        rightButton.tintColor = .white40
-        topTabBarController = UINavigationController(withPages: [partnersViewController], topBarDelegate: self, leftButton: leftButton, rightButton: rightButton)
-        topTabBarController.modalPresentationStyle = .custom
-        topTabBarController.transitioningDelegate = transitioningDelegate
     }
 
     func start() {
-        rootViewController.present(topTabBarController, animated: true)
-    }
-}
-
-// MARK: - TopTabBarDelegate
-
-extension PartnersCoordinator: NavigationItemDelegate {
-    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)
-    }
-
-    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
-    }
-
-    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-        partnersViewController.editCurrentItem()
+        let configurator = PartnersConfigurator.make()
+        let partnersViewController = PartnersViewController(configure: configurator)
+        partnersViewController.title = R.string.localized.meSectorMyWhyPartnersTitle()
+        let navController = UINavigationController(rootViewController: partnersViewController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.modalPresentationStyle = .custom
+        navController.transitioningDelegate = transitioningDelegate
+        rootViewController.present(navController, animated: true, completion: nil)
     }
 }

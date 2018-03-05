@@ -41,7 +41,7 @@ final class MediaResource: Object {
     }
 
     var url: URL? {
-        return localURL ?? remoteURL
+        return remoteURL ?? localURL
     }
 
     func setLocalURL(_ localURL: URL, format: Format, entity: Entity, entitiyLocalID: String) {

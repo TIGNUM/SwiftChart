@@ -13,6 +13,7 @@ final class PartnerService {
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
 
+    // FIXME: Delete me when possible
     var partners: AnyRealmCollection<Partner> {
         let results = mainRealm.objects(Partner.self)
         return AnyRealmCollection(results)
@@ -23,8 +24,16 @@ final class PartnerService {
         self.realmProvider = realmProvider
     }
 
+    func lastModifiedPartnersSortedByCreatedAtAscending(maxCount: Int) -> [Partner] {
+        let unsorted = mainRealm.objects(Partner.self).sorted(byKeyPath: "modifiedAt").suffix(maxCount)
+        return unsorted.sorted { (first, second) -> Bool in
+            return first.createdAt < second.createdAt
+        }
+    }
+
     func createPartner() throws -> Partner {
         let partner = Partner()
+        partner.didUpdate()
         try mainRealm.write {
             mainRealm.add(partner)
         }

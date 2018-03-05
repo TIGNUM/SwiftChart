@@ -8,32 +8,31 @@
 
 import UIKit
 
+protocol CarouselCellViewDelegate: class {
+
+    func didTapChangePicture(cell: CarouselCellView)
+}
+
 final class CarouselCellView: UIView {
 
     // MARK: - Properties
 
     @IBOutlet private weak var view: UIView!
     @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var textFieldName: UITextField!
-    @IBOutlet private weak var textFieldSurname: UITextField!
-    @IBOutlet private weak var textFieldSubtitle: UITextField!
-    @IBOutlet private weak var textFieldMail: UITextField!
+    @IBOutlet weak var textFieldName: UITextField!
+    @IBOutlet weak var textFieldSurname: UITextField!
+    @IBOutlet weak var textFieldSubtitle: UITextField!
+    @IBOutlet weak var textFieldMail: UITextField!
     @IBOutlet private weak var initialsLabel: UILabel!
     @IBOutlet private weak var editPictureButton: UIButton!
     @IBOutlet private weak var editImageViewName: UIImageView!
     @IBOutlet private weak var editImageViewRelationship: UIImageView!
     @IBOutlet private weak var editImageViewEmail: UIImageView!
-    private var index: Index = 0
-    weak var partnersViewControllerDelegate: PartnersViewControllerDelegate?
+    private(set) var partner: Partners.Partner?
+    weak var delegate: CarouselCellViewDelegate?
     private(set) var isEditing: Bool
 
     // MARK: - Init
-
-    convenience init(frame: CGRect, index: Index) {
-        self.init(frame: frame)
-
-        self.index = index
-    }
 
     override init(frame: CGRect) {
         isEditing = false
@@ -46,71 +45,85 @@ final class CarouselCellView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    @IBAction func didEditRelationship(_ sender: UITextField) {
+        partner?.relationship = sender.text
+    }
+    @IBAction func didEditEmail(_ sender: UITextField) {
+        partner?.email = sender.text
+    }
+    @IBAction func didEditName(_ sender: UITextField) {
+        partner?.name = sender.text
+    }
+    @IBAction func didEditSurname(_ sender: UITextField) {
+        partner?.surname = sender.text
+    }
 }
 
 // MARK: - Public
 
 extension CarouselCellView {
 
-    func setup(with name: String?, surename: String?, email: String?, relationship: String?, initials: String?, profileImageResource: MediaResource?) {
-        if let profileImageResource = profileImageResource {
-            imageView.setImageFromResource(profileImageResource)
-        }
-        let isAvailable = profileImageResource?.url != nil
-        if isAvailable {
+    func configure(partner: Partners.Partner) {
+        self.partner = partner
+        imageView.kf.setImage(with: partner.imageURL)
+        if partner.imageURL == nil {
             editPictureButton.setTitle(R.string.localized.meSectorMyWhyPartnersAddPhoto(), for: .normal)
         } else {
             editPictureButton.setTitle(R.string.localized.meSectorMyWhyPartnersChangePhoto(), for: .normal)
         }
         textFieldName.autocapitalizationType = .allCharacters
-        textFieldName.attributedText = NSMutableAttributedString(
-            string: name ?? "",
+        textFieldName.attributedText = partner.name.map { NSAttributedString(
+            string: $0,
             letterSpacing: -1.1,
             font: Font.H3Subtitle
-        )
-        textFieldName.attributedPlaceholder = NSMutableAttributedString(
+            )
+        }
+        textFieldName.attributedPlaceholder = NSAttributedString(
             string: R.string.localized.meSectorMyWhyPartnersName().uppercased(),
             letterSpacing: -1.1,
             font: Font.H3Subtitle
         )
         textFieldSurname.autocapitalizationType = .allCharacters
-        textFieldSurname.attributedText = NSMutableAttributedString(
-            string: surename ?? "",
+        textFieldSurname.attributedText = partner.surname.map { NSAttributedString(
+            string: $0,
             letterSpacing: -1.1,
             font: Font.H3Subtitle
-        )
-        textFieldSurname.attributedPlaceholder = NSMutableAttributedString(
+            )
+        }
+        textFieldSurname.attributedPlaceholder = NSAttributedString(
             string: R.string.localized.meSectorMyWhyPartnersSurname().uppercased(),
             letterSpacing: -1.1,
             font: Font.H3Subtitle
         )
 
         let grey = UIColor.white60
-        textFieldMail.attributedText = NSMutableAttributedString(
-            string: email ?? "",
+        textFieldMail.attributedText = partner.email.map { NSAttributedString(
+            string: $0,
             letterSpacing: 0,
             font: Font.H8Title,
             textColor: grey
-        )
-        textFieldMail.attributedPlaceholder = NSMutableAttributedString(
+            )
+        }
+        textFieldMail.attributedPlaceholder = NSAttributedString(
             string: R.string.localized.meSectorMyWhyPartnersEmail(),
             letterSpacing: 0,
             font: Font.H7Title,
             textColor: grey
         )
-        textFieldSubtitle.attributedText = NSMutableAttributedString(
-            string: relationship ?? "",
+        textFieldSubtitle.attributedText = partner.relationship.map { NSAttributedString(
+            string: $0,
             letterSpacing: 2, font: Font.H7Tag,
             textColor: grey
-        )
-        textFieldSubtitle.attributedPlaceholder = NSMutableAttributedString(
+            )
+        }
+        textFieldSubtitle.attributedPlaceholder = NSAttributedString(
             string: R.string.localized.meSectorMyWhyPartnersRelationship(),
             letterSpacing: 2,
             font: Font.H7Tag,
             textColor: grey
         )
-        initialsLabel.attributedText = NSMutableAttributedString(
-            string: initials?.uppercased() ?? "",
+        initialsLabel.attributedText = NSAttributedString(
+            string: partner.initials.uppercased(),
             letterSpacing: 2,
             font: Font.H1MainTitle,
             lineSpacing: 0,
@@ -118,14 +131,6 @@ extension CarouselCellView {
             alignment: .center
         )
         setupEditPictureButton()
-    }
-
-    func update(viewModel: PartnersViewModel) {
-        viewModel.updateName(name: textFieldName.text!)
-        viewModel.updateSurname(surname: textFieldSurname.text!)
-        viewModel.updateRelationship(relationship: textFieldSubtitle.text!)
-        viewModel.updateEmail(email: textFieldMail.text!)
-        viewModel.save()
     }
 
     func edit(isEnabled: Bool) {
@@ -164,7 +169,7 @@ extension CarouselCellView {
 private extension CarouselCellView {
 
     @IBAction func didTapChangePicture(sender: UIButton) {
-        partnersViewControllerDelegate?.didTapChangeImage(at: index)
+        delegate?.didTapChangePicture(cell: self)
     }
 }
 

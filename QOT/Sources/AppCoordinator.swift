@@ -73,9 +73,11 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }()
 
     lazy var syncManager: SyncManager = {
-        return SyncManager(networkManager: self.networkManager,
+        let manager = SyncManager(networkManager: self.networkManager,
                            syncRecordService: self.syncRecordService,
                            realmProvider: self.realmProvider)
+        AppCoordinator.appState.syncManager = manager
+        return manager
     }()
 
     private lazy var calendarImportManager: CalendarImportManger = {

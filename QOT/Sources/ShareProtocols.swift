@@ -1,0 +1,29 @@
+//
+//  ShareProtocols.swift
+//  QOT
+//
+//  Created by Sam Wyndham on 01/03/2018.
+//  Copyright © 2018 Tignum. All rights reserved.
+//
+
+import Foundation
+
+protocol ShareViewControllerInterface: class {
+    func setHeader(_ header: String)
+}
+
+protocol SharePresenterInterface {
+    func setup(name: String)
+}
+
+protocol ShareInteractorInterface: Interactor {
+    func didTapClose()
+    func didTapShareToBeVision()
+    func didTapShareWeeklyChoices()
+}
+
+protocol ShareRouterInterface {
+    func dismiss()
+    func showAlert(_ alert: AlertType)
+    func showMailComposer(email: String, subject: String, messageBody: String)
+}

@@ -10,34 +10,29 @@ import UIKit
 import iCarousel
 import RSKImageCropper
 
-protocol PartnersViewControllerDelegate: class {
-    func didTapChangeImage(at index: Index)
-}
-
-class PartnersViewController: UIViewController {
+final class PartnersViewController: UIViewController, PartnersViewControllerInterface, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
 
+    @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private weak var bigLabel: UILabel!
+    @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var carousel: iCarousel! = iCarousel()
     @IBOutlet weak var scrollView: UIScrollView!
-    private let viewModel: PartnersViewModel
-    private let imagePickerController: ImagePickerController
     private var valueEditing: Bool = false
     private var editButton: UIBarButtonItem? {
-        return navigationController?.navigationBar.topItem?.rightBarButtonItem
+        return navigationItem.rightBarButtonItem
     }
-    weak var delegate: PartnersViewControllerDelegate?
+    private var partners: [Partners.Partner] = []
+    private var selectedIndex: Int = 0
+    var interactor: PartnersInteractorInterface?
+    var imagePickerController: ImagePickerController?
 
     // MARK: - Init
 
-    init(viewModel: PartnersViewModel, permissionsManager: PermissionsManager) {
-        self.viewModel = viewModel
-        imagePickerController = ImagePickerController(cropShape: .hexagon, imageQuality: .low, imageSize: .small, permissionsManager: permissionsManager)
-
+    init(configure: Configurator<PartnersViewController>) {
         super.init(nibName: nil, bundle: nil)
-
-        imagePickerController.delegate = self
+        configure(self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -49,9 +44,41 @@ class PartnersViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        leftButton.target = self
+        leftButton.action = #selector(didTapClose(_ :))
+        navigationItem.leftBarButtonItem = leftButton
+
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
+        rightButton.target = self
+        rightButton.action = #selector(didTapEdit(_ :))
+        navigationItem.rightBarButtonItem = rightButton
+
+        interactor?.viewDidLoad()
         setBackgroundColor()
         setupCarousel()
         setupHeadline()
+
+        editButton?.tintColor = .white40
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        syncShareButton()
+    }
+
+    func setup(partners: [Partners.Partner]) {
+        self.partners = partners
+        carousel.reloadData()
+    }
+
+    func reload(partner: Partners.Partner) {
+        guard let index = partners.index(where: { $0.localID == partner.localID }) else {
+            assertionFailure("Trying to reload a partner that doesn't exist.")
+            return
+        }
+        carousel.reloadItem(at: index, animated: false)
     }
 }
 
@@ -59,33 +86,53 @@ class PartnersViewController: UIViewController {
 
 private extension PartnersViewController {
 
+    @objc private func didTapClose(_ sender: UIBarButtonItem) {
+        interactor?.didTapClose(partners: partners)
+    }
+
+    @objc private func didTapEdit(_ sender: UIBarButtonItem) {
+        editCurrentItem()
+    }
+
+    var selectedPartner: Partners.Partner {
+        return partners[selectedIndex]
+    }
+
+    func syncShareButton() {
+        let partnersAvailable = selectedPartner.email?.isEmpty == false && selectedPartner.name?.isEmpty == false
+        shareButton.isHidden = !partnersAvailable
+    }
+
     func setBackgroundColor() {
-        view.backgroundColor = .clear
+        backgroundImageView.image = R.image._1Learn()
         view.addFadeView(at: .top)
         scrollView.backgroundColor = .clear
     }
 
     func setupHeadline() {
         bigLabel.attributedText = NSMutableAttributedString(
-            string: viewModel.headline,
+            string: R.string.localized.meSectorMyWhyPartnersHeader(),
             letterSpacing: 2,
             font: Font.H1MainTitle,
             alignment: .left
         )
-        bigLabel.text = R.string.localized.meSectorMyWhyPartnersHeader()
     }
 
     func setupCarousel() {
         carousel.type = .linear
         carousel.isPagingEnabled = true
         carousel.contentOffset = CGSize(width: -Layout.TabBarView.height, height: 0)
-        viewModel.updateIndex(index: carousel.currentItemIndex)
+        selectedIndex = carousel.currentItemIndex
     }
 
     func scrollAnimated(topInset: CGFloat) {
         UIView.animate(withDuration: 0.3) {
             self.scrollView.contentInset.top = topInset
         }
+    }
+
+    func showShareView() {
+        interactor?.didTapShare(partner: selectedPartner)
     }
 }
 
@@ -109,7 +156,7 @@ extension PartnersViewController {
         valueEditing = true
         title = R.string.localized.meSectorMyWhyPartnersEditTitle()
         bigLabel.text = nil
-        viewModel.updateIndex(index: carousel.currentItemIndex)
+        selectedIndex = carousel.currentItemIndex
         view.edit(isEnabled: true)
     }
 
@@ -121,11 +168,14 @@ extension PartnersViewController {
         valueEditing = false
         title = R.string.localized.meSectorMyWhyPartnersTitle()
         bigLabel.text = R.string.localized.meSectorMyWhyPartnersHeader()
-        view.update(viewModel: viewModel)
         view.edit(isEnabled: false)
         carousel.reloadItem(at: carousel.currentItemIndex, animated: false) // flush ui changes
         scrollAnimated(topInset: 0)
         view.hideKeyboard()
+    }
+
+    @IBAction private func shareButtonTapped(_ sender: UIButton) {
+        showShareView()
     }
 }
 
@@ -134,21 +184,16 @@ extension PartnersViewController {
 extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
 
     func numberOfItems(in carousel: iCarousel) -> Int {
-        return viewModel.itemCount
+        return partners.count
     }
 
     func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        let frame = CGRect(x: carousel.frame.origin.x, y: carousel.frame.origin.y, width: 186.0, height: 424.0)
-        let view = CarouselCellView(frame: frame)
-        let item = viewModel.item(at: index)
+        let view = (view as? CarouselCellView) ?? CarouselCellView()
+        view.frame = CGRect(x: carousel.frame.origin.x, y: carousel.frame.origin.y, width: 186.0, height: 424.0)
+        let item = partners.item(at: index)
         view.setViewsTextFieldsDelegate(delegate: self)
-        view.partnersViewControllerDelegate = self
-        view.setup(with: item?.name,
-                   surename: item?.surname,
-                   email: item?.email,
-                   relationship: item?.relationship,
-                   initials: item?.initials,
-                   profileImageResource: item?.profileImageResource)
+        view.delegate = self
+        view.configure(partner: item)
         return view
     }
 
@@ -157,7 +202,8 @@ extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
     }
 
     func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
-        viewModel.updateIndex(index: carousel.currentItemIndex)
+        selectedIndex = carousel.currentItemIndex
+        syncShareButton()
     }
 
     func carouselDidEndDecelerating(_ carousel: iCarousel) {
@@ -178,6 +224,7 @@ extension PartnersViewController: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         scrollAnimated(topInset: 0)
+        syncShareButton()
     }
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
@@ -195,35 +242,20 @@ extension PartnersViewController: UITextFieldDelegate {
     }
 }
 
-// MARK: - PartnersViewControllerDelegate
-
-extension PartnersViewController: PartnersViewControllerDelegate {
-
-    func didTapChangeImage(at index: Index) {
-        imagePickerController.show(in: self)
-    }
-}
-
 // MARK: - ImagePickerDelegate
 
 extension PartnersViewController: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
-        let error = viewModel.updateProfileImage(image: image)
-        guard error == nil else {
-            let alertController = UIAlertController(
-                title: R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle(),
-                message: R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage(),
-                preferredStyle: .alert)
-            let alertAction = UIAlertAction(
-                title: R.string.localized.meSectorMyWhyPartnersPhotoErrorOKButton(),
-                style: .default)
-            alertController.addAction(alertAction)
-            present(alertController, animated: true, completion: nil)
-            return
-        }
-
-        viewModel.save()
+        let partner = partners[selectedIndex]
+        interactor?.updateImage(image, partner: partner)
         carousel.reloadData()
+    }
+}
+
+extension PartnersViewController: CarouselCellViewDelegate {
+
+    func didTapChangePicture(cell: CarouselCellView) {
+        imagePickerController?.show(in: self)
     }
 }

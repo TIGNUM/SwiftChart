@@ -61,7 +61,6 @@ final class MyUniverseContentView: UIView {
     @IBOutlet var weeklyChoiceButtons: [UIButton]!
     @IBOutlet weak var partnersWrapperView: UIView!
     @IBOutlet weak var partnersTitleLabel: UILabel!
-    @IBOutlet weak var partnersComingSoonLabel: UILabel! // FIXME: remove when feature is available
     @IBOutlet var partnerButtons: [UIButton]!
     weak var delegate: MyUniverseContentViewDelegate?
     var sectors = [Sector]()

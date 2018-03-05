@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Simple-Regular.ttf">
+            <string>Simple-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="headerLabel" destination="b4U-iA-UEC" id="KbU-rk-2QS"/>
+                <outlet property="shareButton" destination="IB3-TR-UAU" id="0LM-xA-gm0"/>
+                <outlet property="toBeVisionButton" destination="hc7-uH-oDV" id="rcd-do-yYA"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+                <outlet property="weeklyChoicesButton" destination="3Le-0z-lbg" id="7mQ-78-yVQ"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCX-Tg-4vc">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OT6-dZ-csq">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    </view>
+                    <blurEffect style="dark"/>
+                </visualEffectView>
+                <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwW-7o-BTV" userLabel="Container">
+                    <rect key="frame" x="0.0" y="40" width="375" height="627"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would you like to share with" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4U-iA-UEC">
+                            <rect key="frame" x="32" y="0.0" width="311" height="62"/>
+                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="26"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc7-uH-oDV">
+                            <rect key="frame" x="52" y="102" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="K9g-cq-gg3"/>
+                                <constraint firstAttribute="width" constant="24" id="dOZ-DO-UMx"/>
+                            </constraints>
+                            <state key="normal" image="checkbox_unchecked"/>
+                            <state key="selected" image="checkbox_checked"/>
+                            <connections>
+                                <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="wpg-OS-NWw"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-0z-lbg">
+                            <rect key="frame" x="52" y="158" width="24" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="JU7-jm-DMh"/>
+                                <constraint firstAttribute="width" constant="24" id="MNn-Zn-yTM"/>
+                            </constraints>
+                            <state key="normal" image="checkbox_unchecked"/>
+                            <state key="selected" image="checkbox_checked"/>
+                            <connections>
+                                <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="rfd-Dp-cHw"/>
+                            </connections>
+                        </button>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My to be Vision" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwd-gk-q1L">
+                            <rect key="frame" x="92" y="105" width="231" height="19.5"/>
+                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Weekly choices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3g6-7E-Wpb">
+                            <rect key="frame" x="92" y="160" width="231" height="19.5"/>
+                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-TR-UAU">
+                            <rect key="frame" x="52" y="222" width="271" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="7bh-Nd-c1H"/>
+                            </constraints>
+                            <state key="normal" title="Share">
+                                <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="didTapShareButton:" destination="-1" eventType="touchUpInside" id="z7m-kd-2RU"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstItem="3g6-7E-Wpb" firstAttribute="leading" secondItem="3Le-0z-lbg" secondAttribute="trailing" constant="16" id="3ZR-mm-Naj"/>
+                        <constraint firstItem="hc7-uH-oDV" firstAttribute="top" secondItem="b4U-iA-UEC" secondAttribute="bottom" constant="40" id="DAv-fu-uPR"/>
+                        <constraint firstItem="3Le-0z-lbg" firstAttribute="top" secondItem="hc7-uH-oDV" secondAttribute="bottom" constant="32" id="Egu-rR-wla"/>
+                        <constraint firstAttribute="trailing" secondItem="3g6-7E-Wpb" secondAttribute="trailing" constant="52" id="LmH-xB-e2S"/>
+                        <constraint firstAttribute="trailing" secondItem="b4U-iA-UEC" secondAttribute="trailing" constant="32" id="Mfy-0w-RqR"/>
+                        <constraint firstItem="hc7-uH-oDV" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="52" id="QbL-Y4-u9l"/>
+                        <constraint firstAttribute="trailing" secondItem="Wwd-gk-q1L" secondAttribute="trailing" constant="52" id="WCD-d6-R3v"/>
+                        <constraint firstItem="Wwd-gk-q1L" firstAttribute="centerY" secondItem="hc7-uH-oDV" secondAttribute="centerY" id="bNw-Ea-YH2"/>
+                        <constraint firstItem="3g6-7E-Wpb" firstAttribute="centerY" secondItem="3Le-0z-lbg" secondAttribute="centerY" id="eAL-F7-Jcg"/>
+                        <constraint firstItem="b4U-iA-UEC" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="32" id="gyH-KK-7Jc"/>
+                        <constraint firstAttribute="trailing" secondItem="IB3-TR-UAU" secondAttribute="trailing" constant="52" id="iQe-mt-fAp"/>
+                        <constraint firstItem="b4U-iA-UEC" firstAttribute="top" secondItem="OwW-7o-BTV" secondAttribute="top" id="jUf-u6-v8a"/>
+                        <constraint firstItem="IB3-TR-UAU" firstAttribute="top" secondItem="3Le-0z-lbg" secondAttribute="bottom" constant="40" id="ks9-9P-TfJ"/>
+                        <constraint firstItem="IB3-TR-UAU" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="52" id="na7-jF-Icv"/>
+                        <constraint firstItem="3Le-0z-lbg" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="52" id="wfN-Lb-rFH"/>
+                        <constraint firstItem="Wwd-gk-q1L" firstAttribute="leading" secondItem="hc7-uH-oDV" secondAttribute="trailing" constant="16" id="xuQ-VH-g3N"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="OwW-7o-BTV" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="1jm-Kd-oa1"/>
+                <constraint firstItem="kCX-Tg-4vc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9GJ-3F-atR"/>
+                <constraint firstItem="OwW-7o-BTV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rhn-qC-RZy"/>
+                <constraint firstItem="kCX-Tg-4vc" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="ZhH-sh-WD2"/>
+                <constraint firstItem="OwW-7o-BTV" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="iST-27-Jgx"/>
+                <constraint firstItem="OwW-7o-BTV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="kDY-Cu-oH9"/>
+                <constraint firstAttribute="trailing" secondItem="kCX-Tg-4vc" secondAttribute="trailing" id="uUX-2q-bCY"/>
+                <constraint firstItem="kCX-Tg-4vc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wKi-Ih-Aez"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="33.5" y="54.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="checkbox_checked" width="24" height="24"/>
+        <image name="checkbox_unchecked" width="24" height="24"/>
+    </resources>
+</document>

@@ -231,7 +231,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
     func tabBarController(_ tabBarController: TabBarController,
                           didSelect viewController: UIViewController,
                           at index: Int) {
-    
+
         selectedIndex.value = index
         whatsHotBadgeManager.isShowingLearnTab = (index == 1)
 

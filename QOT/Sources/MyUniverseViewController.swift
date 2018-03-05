@@ -62,7 +62,7 @@ extension MyUniverseViewController {
             loadingText: R.string.localized.meMyUniverseLoading(),
             backgroundImage: R.image.backgroundMyUniverse(),
             profileImagePlaceholder: R.image.universe_2state(),
-            partnerImagePlaceholder: nil,
+            partnerImagePlaceholder: R.image.partnerPlaceholder(),
             partnersTitle: R.string.localized.meSectorMyWhyPartnersTitle().uppercased(),
             weeklyChoicesTitle: R.string.localized.meSectorMyWhyWeeklyChoicesTitle().uppercased(),
             myToBeVisionTitle: R.string.localized.meSectorMyWhyVisionTitle().uppercased()
@@ -178,14 +178,17 @@ private extension MyUniverseViewController {
                     }
                 }
         }
+
         for (index, partner) in viewData.partners.enumerated() {
             guard let partnerButtons = contentView.partnerButtons,
+                index < contentView.partnerButtons.count,
                 index >= partnerButtons.startIndex,
                 index <= partnerButtons.endIndex else {
                     break
             }
             contentView.partnerButtons[index].configure(for: partner, placeholder: config.partnerImagePlaceholder)
         }
+
         for (index, weeklyChoice) in viewData.weeklyChoices.enumerated() {
             guard let weeklyChoiceButtons = contentView.weeklyChoiceButtons,
                 index >= weeklyChoiceButtons.startIndex,
@@ -214,7 +217,6 @@ private extension MyUniverseViewController {
         )
         contentView.backgroundImageView.image = config.backgroundImage
         contentView.partnersTitleLabel.text = config.partnersTitle
-        contentView.partnersComingSoonLabel.text = R.string.localized.meChartCommingSoon().uppercased()
         contentView.weeklyChoiceButtons.forEach {
             $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
         }
@@ -228,6 +230,8 @@ private extension MyUniverseViewController {
                           rightButton: UIBarButtonItem(withImage: R.image.ic_menu()),
                           tabTitles: config.pages.map { $0.pageTitle },
                           style: .dark)
+        contentView.partnerButtons.forEach { $0.applyHexagonMask() }
+        contentView.partnerButtons.forEach { $0.setBackgroundImage(config.partnerImagePlaceholder, for: .normal) }
     }
 
     func setupScrollViewContent() {
@@ -297,9 +301,7 @@ extension MyUniverseViewController: MyUniverseContentViewDelegate {
     }
 
     func myUniverseContentViewDidTapPartner(_ viewController: MyUniverseContentView, at index: Int) {
-        print("partner feature not available yet")
-        // FIXME: comment in when feature available
-        //delegate?.myUniverseViewController(self, didTapQOTPartnerAt: index)
+        delegate?.myUniverseViewController(self, didTapQOTPartnerAt: index)
     }
 }
 
@@ -346,9 +348,12 @@ private extension UIButton {
         if let url = partner.imageURL {
             setTitle(nil, for: .normal)
             kf.setBackgroundImage(with: url, for: .normal, placeholder: placeholder)
-        } else {
+        } else if partner.initials.isEmpty == false {
+            setBackgroundImage(R.image.partnerEmpty(), for: .normal)
             setTitle(partner.initials, for: .normal)
-            setImage(nil, for: .normal)
+        } else {
+            setTitle(nil, for: .normal)
+            setBackgroundImage(placeholder, for: .normal)
         }
     }
 

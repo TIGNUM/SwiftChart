@@ -22,6 +22,7 @@ final class AppState {
     var launchHandler: LaunchHandler!
     var networkManager: NetworkManager!
     var permissionsManager: PermissionsManager!
+    var syncManager: SyncManager!
 
     private init() {}
 }

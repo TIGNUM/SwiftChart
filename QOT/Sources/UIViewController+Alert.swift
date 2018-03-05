@@ -33,6 +33,7 @@ enum AlertType {
     case imagePicker
     case notSynced
     case resetPassword
+    case canNotSendMail
 
     var title: String? {
         switch self {
@@ -53,6 +54,7 @@ enum AlertType {
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
         case .cameraNotAvailable, .permissionNotGranted: return R.string.localized.alertTitleCustom()
         case .resetPassword: return R.string.localized.alertTitleResetPassword()
+        case .canNotSendMail: return R.string.localized.alertTitleCouldNotSendEmail()
         default: return nil
         }
     }
@@ -75,6 +77,7 @@ enum AlertType {
         case .notSynced: return R.string.localized.alertNotSyncedMessage()
         case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedMessage()
         case .resetPassword: return R.string.localized.alertMessageResetPassword()
+        case .canNotSendMail: return R.string.localized.alertMessageCouldNotSendEmail()
         default: return nil
         }
     }
@@ -140,29 +143,48 @@ enum AlertType {
 
 extension UIViewController {
 
-    class func alert(forType type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) -> UIAlertController {
+    class func alert(forType type: AlertType,
+                     handler: (() -> Void)? = nil,
+                     handlerDestructive: (() -> Void)? = nil) -> UIAlertController {
         let alertController = UIViewController.alertController(type: type)
-        addActions(type: type, alertController: alertController, handler: handler, handlerDestructive: handlerDestructive)
+        addActions(type: type,
+                   alertController: alertController,
+                   handler: handler,
+                   handlerDestructive: handlerDestructive)
         return alertController
     }
 
     func showAlert(type: AlertType, handler: (() -> Void)? = nil, handlerDestructive: (() -> Void)? = nil) {
         let alertController = UIViewController.alertController(type: type)
-        UIViewController.addActions(type: type, alertController: alertController, handler: handler, handlerDestructive: handlerDestructive)
+        UIViewController.addActions(type: type,
+                                    alertController: alertController,
+                                    handler: handler,
+                                    handlerDestructive: handlerDestructive)
         self.present(alertController, animated: true, completion: nil)
     }
 
-    private class func addActions(type: AlertType, alertController: UIAlertController, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
+    private class func addActions(type: AlertType,
+                                  alertController: UIAlertController,
+                                  handler: (() -> Void)?,
+                                  handlerDestructive: (() -> Void)?) {
         for style in type.actionStyle {
-            self.addActionStyle(style: style, alertController: alertController, type: type, handler: handler, handlerDestructive: handlerDestructive)
+            self.addActionStyle(style: style,
+                                alertController: alertController,
+                                type: type,
+                                handler: handler,
+                                handlerDestructive: handlerDestructive)
         }
     }
 
-    private class func addActionStyle(style: UIAlertActionStyle, alertController: UIAlertController, type: AlertType, handler: (() -> Void)?, handlerDestructive: (() -> Void)?) {
+    private class func addActionStyle(style: UIAlertActionStyle,
+                                      alertController: UIAlertController,
+                                      type: AlertType, handler: (() -> Void)?,
+                                      handlerDestructive: (() -> Void)?) {
         switch style {
         case .cancel: alertController.addAction(UIViewController.cancelAction(type: type))
         case .default: alertController.addAction(UIViewController.defaultAction(type: type, handler: handler))
-        case .destructive: alertController.addAction(UIViewController.destructiveAction(type: type, handler: handlerDestructive))
+        case .destructive: alertController.addAction(UIViewController.destructiveAction(type: type,
+                                                                                        handler: handlerDestructive))
         }
     }
 

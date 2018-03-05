@@ -59,9 +59,7 @@ extension NSAttributedString {
 extension UIBezierPath {
 
     class func hexagonPath(forRect rect: CGRect) -> UIBezierPath {
-        let cornerRadius = max(rect.width, rect.height) * 0.1
-        let path = UIBezierPath(polygonIn: rect, sides: 6, lineWidth: 0, cornerRadius: cornerRadius, rotateByDegs: 180 / 6)
-        return path
+        return UIBezierPath(polygonIn: rect, sides: 6, lineWidth: 0, cornerRadius: 1, rotateByDegs: 180 / 6)
     }
 
     class func circlePath(center: CGPoint, radius: CGFloat) -> UIBezierPath {

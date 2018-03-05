@@ -94,6 +94,7 @@
 "Me.Sector.My.Why.Partners.Title" = "QOT Partners";
 "Me.Sector.My.Why.Partners.Edit.Title" = "Edit QOT Partner";
 "Me.Sector.My.Why.Partners.Header" = "MY SUPPORT\nTEAM";
+"Me.Sector.My.Why.Partners.Share.Header" = "What would you like to share with %@?";
 "Me.Sector.My.Why.Partners.Name" = "Name";
 "Me.Sector.My.Why.Partners.Surname" = "Surname";
 "Me.Sector.My.Why.Partners.Relationship" = "Relationship";
@@ -228,6 +229,8 @@
 "Alert.NotSynced.Message" = "QOT needs to download more data. Please try again later";
 "Alert.Title.Reset.Password" = "Reset Password";
 "Alert.Message.Reset.Password" = "We have sent you an email with instructions on how to reset your password.";
+"Alert.Title.Could.Not.Send.Email" = "Could not send email";
+"Alert.Message.Could.Not.Send.Email" = "Your device could not send email";
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
 "ImagePicker.Options.Button.Camera" = "Take a Picture";

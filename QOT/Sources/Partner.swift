@@ -30,7 +30,12 @@ final class Partner: SyncableObject {
 
     @objc dynamic var deleted: Bool = false
 
-    @objc dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String?
+
+    func didUpdate() {
+        dirty = true
+        modifiedAt = Date()
+    }
 }
 
 extension Partner: TwoWaySyncable {
@@ -62,14 +67,8 @@ extension Partner: TwoWaySyncable {
 }
 
 extension Partner {
+
     var initials: String {
-        var initials = ""
-        if let initial = name.first {
-            initials += String(initial)
-        }
-        if let initial = surname.first {
-            initials += String(initial)
-        }
-        return initials
+        return [name.first, surname.first].flatMap { $0 }.map { String($0) }.joined()
     }
 }
