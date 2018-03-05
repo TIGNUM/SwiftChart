@@ -12,6 +12,7 @@ import RealmSwift
 final class QOTUsageTimer {
 
     private var started: Date?
+    private var timer: Timer?
 
     static let sharedInstance = QOTUsageTimer()
     var userService: UserService?
@@ -22,10 +23,20 @@ final class QOTUsageTimer {
 
     func startTimer() {
         self.started = Date()
+        timer = .scheduledTimer(timeInterval: 60.0,
+                                target: self,
+                                selector: #selector(update),
+                                userInfo: nil,
+                                repeats: true)
     }
 
     func stopTimer() {
         self.started = nil
+        timer?.invalidate()
+    }
+
+    @objc func update() {
+        userService?.updateTotalUsageTime(totalSeconds)
     }
 
     var totalSeconds: TimeInterval {

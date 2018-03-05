@@ -74,6 +74,8 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
         NotificationHandler.postNotification(withName: .logoutNotification)
     }
 
+    // MARK: - Private
+
     private func startSettingsCoordinator(settingsType: SettingsType.SectionType,
                                           root: SettingsMenuViewController,
                                           destination: AppCoordinator.Router.Destination?) {

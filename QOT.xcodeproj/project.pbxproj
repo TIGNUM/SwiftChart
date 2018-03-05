@@ -390,7 +390,7 @@
 		CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */; };
 		CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */; };
 		CBC5ACC61F17C58F007E1E9C /* UpdateRelationsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC51F17C58F007E1E9C /* UpdateRelationsOperation.swift */; };
-		CBC5ACCA1F18EF96007E1E9C /* QOTUsageTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */; };
+		CBC5ACCA1F18EF96007E1E9C /* QOTUsageTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC91F18EF96007E1E9C /* QOTUsageTimer.swift */; };
 		CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933041F05253000C00007 /* JSON+Convenience.swift */; };
 		CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */; };
 		CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */; };
@@ -978,7 +978,7 @@
 		CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoice.swift; sourceTree = "<group>"; };
 		CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoiceIntermediary.swift; sourceTree = "<group>"; };
 		CBC5ACC51F17C58F007E1E9C /* UpdateRelationsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRelationsOperation.swift; sourceTree = "<group>"; };
-		CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTUsageTime.swift; sourceTree = "<group>"; };
+		CBC5ACC91F18EF96007E1E9C /* QOTUsageTimer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTUsageTimer.swift; sourceTree = "<group>"; };
 		CBC933041F05253000C00007 /* JSON+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "JSON+Convenience.swift"; sourceTree = "<group>"; };
 		CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareCoordinator.swift; sourceTree = "<group>"; };
 		CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsViewController.swift; sourceTree = "<group>"; };
@@ -2441,7 +2441,7 @@
 				852DADC51EEEE63500A10882 /* Math.swift */,
 				CBDB98F31E7B000A003EC73F /* NotificationHandler.swift */,
 				7FDFF3681F18FF0B00F7A7EC /* NotificationTokenHandler.swift */,
-				CBC5ACC91F18EF96007E1E9C /* QOTUsageTime.swift */,
+				CBC5ACC91F18EF96007E1E9C /* QOTUsageTimer.swift */,
 				7F42767A1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift */,
 				CB27D59A1ECCB67300F2B76C /* Result.swift */,
 				7F5A25B11F3C515800A11466 /* Swizzle.swift */,
@@ -3629,7 +3629,7 @@
 				36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */,
 				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,
 				859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */,
-				CBC5ACCA1F18EF96007E1E9C /* QOTUsageTime.swift in Sources */,
+				CBC5ACCA1F18EF96007E1E9C /* QOTUsageTimer.swift in Sources */,
 				CB9442341FD97F8D00E2B122 /* SlideShowInteractor.swift in Sources */,
 				CB53F0DA20237507007C624B /* Keychain.swift in Sources */,
 				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
