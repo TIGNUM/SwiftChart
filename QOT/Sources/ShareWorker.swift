@@ -39,13 +39,16 @@ final class ShareWorker {
         }
 
         var content = try String(contentsOf: url)
-        content = content.replacingOccurrences(of: "*|UPPER:FIRSTNAME|*", with: partnerName)
+        content = content.replacingOccurrences(of: "*|PARTNER:FIRSTNAME|*", with: partnerName)
         if let toBeVision = services.userService.myToBeVision()?.text {
             content = content.replacingOccurrences(of: "*|MTBV|*", with: toBeVision)
         }
-        if let userName = services.userService.user()?.givenName {
-            content = content.replacingOccurrences(of: "*|USERNAME|*", with: userName)
+        if let user = services.userService.user() {
+            let fullName = "\(user.givenName) \(user.familyName)"
+            content = content.replacingOccurrences(of: "*|FULL USER NAME|*", with: fullName)
+            content = content.replacingOccurrences(of: "*|USERNAME|*", with: user.givenName)
         }
+
         return content
     }
 
