@@ -28,7 +28,6 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
             reload()
         }
     }
-    private lazy var dateLabel: UILabel = UILabel()
     private weak var circleLayer: CALayer?
     private lazy var layout = WeeklyChoicesLayout()
     private lazy var collectionView: UICollectionView = {
@@ -105,7 +104,7 @@ private extension WeeklyChoicesViewController {
         )
         layout.itemSize = CGSize(
             width: collectionView.bounds.width,
-            height: collectionView.bounds.height / CGFloat(viewData.itemsPerPage)
+            height: collectionView.bounds.height / CGFloat(5)
         )
         layout.invalidateLayout()
 
@@ -118,12 +117,8 @@ private extension WeeklyChoicesViewController {
         coverView.contentMode = .scaleAspectFill
         view.addSubview(coverView)
         view.addSubview(collectionView)
-        view.addSubview(dateLabel)
         view.backgroundColor = .clear
-        dateLabel.topAnchor == view.safeTopAnchor
-        dateLabel.horizontalAnchors == view.horizontalAnchors
-        dateLabel.heightAnchor == 14
-        collectionView.topAnchor == dateLabel.bottomAnchor + 15
+        collectionView.topAnchor == view.safeTopAnchor + 20
         collectionView.bottomAnchor == view.bottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
@@ -133,13 +128,12 @@ private extension WeeklyChoicesViewController {
         }
         coverView.edgeAnchors == view.edgeAnchors
         setNoContentLabel()
-        configureDateLabel(dateLabel)
 
         view.layoutIfNeeded()
     }
 
     func setNoContentLabel() {
-        if viewData.pages.count == 0 {
+        if viewData.items.count == 0 {
             view.addSubview(emptyLabel)
             emptyLabel.edgeAnchors == view.edgeAnchors
             circleLayer?.removeFromSuperlayer()
@@ -152,16 +146,6 @@ private extension WeeklyChoicesViewController {
         }
     }
 
-    func configureDateLabel(_ dateLabel: UILabel) {
-        dateLabel.backgroundColor = .clear
-        dateLabel.font = Font.H7Title
-        dateLabel.textColor = .white50
-        dateLabel.textAlignment = .center
-        if let text = viewData.pages.first?.dateString {
-            updateDate(text)
-        }
-    }
-
     func draw(_ circle: WeeklyChoicesLayout.Circle) -> CALayer? {
         return view.drawSolidCircle(
             arcCenter: circle.center,
@@ -169,45 +153,19 @@ private extension WeeklyChoicesViewController {
             strokeColor: .white20
         )
     }
-
-    func snapPage(scrollView: UIScrollView) {
-        let pageHeight = layout.itemSize.height * CGFloat(viewData.itemsPerPage)
-        let index = snapIndex()
-        scrollView.setContentOffset(CGPoint(
-            x: scrollView.contentOffset.x,
-            y: pageHeight * CGFloat(index)), animated: true)
-        updateDate(viewData.pages[index].dateString)
-    }
-
-    func snapIndex() -> Int {
-        let pageHeight = layout.itemSize.height * CGFloat(viewData.itemsPerPage)
-        let currentOffset = collectionView.contentOffset.y
-        var snapIndex = Int(roundf(Float(currentOffset / pageHeight)))
-        snapIndex = max(snapIndex, viewData.pages.startIndex)
-        snapIndex = min(snapIndex, viewData.pages.endIndex-1)
-        return snapIndex
-    }
-
-    func updateDate(_ text: String) {
-        dateLabel.addCharactersSpacing(spacing: 2, text: text)
-    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
 
 extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return viewData.pages.count
-    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewData.pages[section].items.count
+        return viewData.items.count
     }
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: WeeklyChoicesCell = collectionView.dequeueCell(for: indexPath)
-        let item = viewData.pages[indexPath.section].items[indexPath.row]
+        let item = viewData.items[indexPath.row]
         cell.setUp(
             title: item.title ?? R.string.localized.meSectorMyWhyWeeklyChoicesNoChoiceTitle(),
             subTitle: item.categoryName ?? "",
@@ -217,29 +175,10 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let item = viewData.pages[indexPath.section].items[indexPath.row]
+        let item = viewData.items[indexPath.row]
         guard let contentCollectionID = item.contentCollectionID, let categoryID = item.categoryID else {
             return
         }
         AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentCollectionID, categoryID: categoryID)
-    }
-}
-
-// MARK: - UIScrollViewDelegate
-
-extension WeeklyChoicesViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        updateDate(viewData.pages[snapIndex()].dateString)
-    }
-
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        if !decelerate {
-            snapPage(scrollView: scrollView)
-        }
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        snapPage(scrollView: scrollView)
     }
 }

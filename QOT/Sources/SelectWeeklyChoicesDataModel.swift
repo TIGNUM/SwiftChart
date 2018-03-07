@@ -9,7 +9,7 @@
 import UIKit
 import RealmSwift
 
-class SelectWeeklyChoicesDataModel {
+final class SelectWeeklyChoicesDataModel {
 
     private var services: Services
     private let rawData: AnyRealmCollection<ContentCategory>
