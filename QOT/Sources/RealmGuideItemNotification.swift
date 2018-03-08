@@ -83,7 +83,12 @@ extension RealmGuideItemNotification {
     var notificationRequest: UNNotificationRequest? {
         guard let triggerDate = localNotificationDate else { return nil }
 
-        let content =  UNMutableNotificationContent(title: title, body: body, soundName: sound, link: link)
+        let content = UNMutableNotificationContent(title: title, body: body, soundName: sound, link: link)
+
+        if sound.isEmpty == true {
+            content.sound = nil
+        }
+
         let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
         return UNNotificationRequest(identifier: guideItemID.stringRepresentation, content: content, trigger: trigger)
     }
