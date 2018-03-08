@@ -7,6 +7,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -20,7 +21,7 @@
                 <outlet property="doneButton" destination="1A3-F3-i1M" id="nup-ve-gly"/>
                 <outlet property="headerLabel" destination="mz6-zP-rT7" id="g4X-AE-w8P"/>
                 <outlet property="leftAnswerLabel" destination="pcO-UT-df7" id="uBl-wU-ald"/>
-                <outlet property="previousButton" destination="E7H-3Y-Ccn" id="Inv-6X-9fI"/>
+                <outlet property="previousButton" destination="9fE-qq-caQ" id="fzW-gT-rv9"/>
                 <outlet property="questionLabel" destination="PEM-dv-ugZ" id="bg9-yN-D5R"/>
                 <outlet property="rightAnswerLabel" destination="eHF-f9-ghn" id="6DI-Ag-8EC"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -45,19 +46,6 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="28Q-Hq-caC" userLabel="Top Bar">
                             <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E7H-3Y-Ccn" userLabel="Back Button">
-                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="Llf-o1-MOZ"/>
-                                        <constraint firstAttribute="width" constant="44" id="R8q-GZ-ZgB"/>
-                                    </constraints>
-                                    <state key="normal" image="ic_back">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="didTapPrevious:" destination="-1" eventType="touchUpInside" id="Bb3-YW-2jv"/>
-                                    </connections>
-                                </button>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILY PREP MINUTE 1/5" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="mz6-zP-rT7">
                                     <rect key="frame" x="44" y="11" width="232" height="21"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -77,14 +65,12 @@
                                 </button>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="E7H-3Y-Ccn" firstAttribute="leading" secondItem="28Q-Hq-caC" secondAttribute="leading" id="4Fc-JK-Zfy"/>
                                 <constraint firstItem="quf-Z2-jD9" firstAttribute="leading" secondItem="mz6-zP-rT7" secondAttribute="trailing" id="Be6-eO-l2r"/>
+                                <constraint firstItem="mz6-zP-rT7" firstAttribute="centerX" secondItem="28Q-Hq-caC" secondAttribute="centerX" id="C40-Re-guj"/>
                                 <constraint firstItem="mz6-zP-rT7" firstAttribute="centerY" secondItem="28Q-Hq-caC" secondAttribute="centerY" id="CGr-9q-REK"/>
                                 <constraint firstAttribute="height" constant="44" id="YqK-Va-pfi"/>
-                                <constraint firstItem="mz6-zP-rT7" firstAttribute="leading" secondItem="E7H-3Y-Ccn" secondAttribute="trailing" id="dEM-TZ-w2S"/>
                                 <constraint firstAttribute="trailing" secondItem="quf-Z2-jD9" secondAttribute="trailing" id="jyj-P8-cPI"/>
                                 <constraint firstItem="quf-Z2-jD9" firstAttribute="centerY" secondItem="28Q-Hq-caC" secondAttribute="centerY" id="oeb-3M-cKB"/>
-                                <constraint firstItem="E7H-3Y-Ccn" firstAttribute="centerY" secondItem="28Q-Hq-caC" secondAttribute="centerY" id="peC-Kd-jZy"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How would you rate the quality of your sleep last night ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PEM-dv-ugZ">
@@ -117,13 +103,13 @@
                                     <rect key="frame" x="0.0" y="0.0" width="121" height="62"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uCq-vv-tj8">
-                                            <rect key="frame" x="56.5" y="0.0" width="8" height="20"/>
+                                            <rect key="frame" x="57" y="0.0" width="8" height="20"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.41176470590000003" green="0.41960784309999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feel exhausted" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pcO-UT-df7">
-                                            <rect key="frame" x="21" y="27" width="79.5" height="13.5"/>
+                                            <rect key="frame" x="21" y="27" width="80" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.41176470590000003" green="0.41960784309999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -150,7 +136,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Some text" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eHF-f9-ghn">
-                                            <rect key="frame" x="34" y="28" width="53" height="13.5"/>
+                                            <rect key="frame" x="34" y="28" width="53" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.41176470590000003" green="0.41960784309999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -182,15 +168,27 @@
                             </constraints>
                         </view>
                         <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1A3-F3-i1M">
-                            <rect key="frame" x="267" y="504" width="37" height="44"/>
+                            <rect key="frame" x="274" y="504" width="30" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="b8l-4b-cNg"/>
                             </constraints>
-                            <state key="normal" title="Done">
+                            <state key="normal">
                                 <color key="titleColor" red="0.41176470590000003" green="0.41960784309999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
                                 <action selector="didTapDone:" destination="-1" eventType="touchUpInside" id="Viu-8Z-L6v"/>
+                            </connections>
+                        </button>
+                        <button opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9fE-qq-caQ" userLabel="Previous Button">
+                            <rect key="frame" x="16" y="496" width="59" height="44"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="RWa-Rn-MrL"/>
+                            </constraints>
+                            <state key="normal" title="Previous">
+                                <color key="titleColor" red="0.41176470590000003" green="0.41960784309999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                            </state>
+                            <connections>
+                                <action selector="didTapPrevious:" destination="-1" eventType="touchUpInside" id="KQg-7f-Iwr"/>
                             </connections>
                         </button>
                     </subviews>
@@ -198,6 +196,7 @@
                         <constraint firstItem="nd9-uk-BNa" firstAttribute="bottom" secondItem="dw2-RP-6be" secondAttribute="bottom" id="6ud-pW-Hjg"/>
                         <constraint firstItem="HCn-td-mg8" firstAttribute="top" relation="greaterThanOrEqual" secondItem="dw2-RP-6be" secondAttribute="bottom" constant="5" id="83H-rh-czh"/>
                         <constraint firstItem="HCn-td-mg8" firstAttribute="centerX" secondItem="Zvf-X5-0mr" secondAttribute="centerX" id="Bgg-IB-N5t"/>
+                        <constraint firstItem="9fE-qq-caQ" firstAttribute="bottom" secondItem="Zvf-X5-0mr" secondAttribute="bottomMargin" id="Fo3-zT-oir"/>
                         <constraint firstItem="dw2-RP-6be" firstAttribute="centerX" secondItem="Zvf-X5-0mr" secondAttribute="centerX" id="Gk9-SP-Shy"/>
                         <constraint firstAttribute="trailing" secondItem="nd9-uk-BNa" secondAttribute="trailing" id="K2s-5E-SLQ"/>
                         <constraint firstItem="nd9-uk-BNa" firstAttribute="top" secondItem="dw2-RP-6be" secondAttribute="top" id="RGF-Xv-wC5"/>
@@ -207,6 +206,7 @@
                         <constraint firstItem="HCn-td-mg8" firstAttribute="width" secondItem="Zvf-X5-0mr" secondAttribute="width" multiplier="2:3" priority="999" id="Yk5-h3-sid"/>
                         <constraint firstItem="1A3-F3-i1M" firstAttribute="top" secondItem="HCn-td-mg8" secondAttribute="bottom" id="Zfk-9j-aWR"/>
                         <constraint firstItem="dw2-RP-6be" firstAttribute="leading" secondItem="Zvf-X5-0mr" secondAttribute="leading" constant="36" id="ggn-Fi-KVu"/>
+                        <constraint firstItem="9fE-qq-caQ" firstAttribute="leading" secondItem="Zvf-X5-0mr" secondAttribute="leading" constant="16" id="iHp-Bd-q1D"/>
                         <constraint firstItem="PEM-dv-ugZ" firstAttribute="leading" secondItem="Zvf-X5-0mr" secondAttribute="leading" constant="10" id="iLf-iv-Pg2"/>
                         <constraint firstItem="HCn-td-mg8" firstAttribute="top" secondItem="dw2-RP-6be" secondAttribute="bottom" priority="500" constant="44" id="knd-DP-uwR"/>
                         <constraint firstAttribute="trailing" secondItem="1A3-F3-i1M" secondAttribute="trailing" constant="16" id="m5h-6p-6ag"/>
@@ -235,7 +235,6 @@
         </view>
     </objects>
     <resources>
-        <image name="ic_back" width="12" height="22"/>
         <image name="ic_close" width="18" height="18"/>
     </resources>
 </document>

@@ -13,6 +13,7 @@ class MorningInterviewCell: UICollectionViewCell, DialSelectionDelegate, Dequeue
     @IBOutlet private weak var dialView: InterviewDialView!
     let centerLabel = UILabel()
     var indexDidChange: ((_ index: Int) -> Void)?
+    var didTouchUp: ((_ index: Int) -> Void)?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,7 +21,7 @@ class MorningInterviewCell: UICollectionViewCell, DialSelectionDelegate, Dequeue
     }
 
     private func setup() {
-        dialView.selectionDelegate = self
+        dialView.delegate = self
         centerLabel.backgroundColor = .clear
         centerLabel.numberOfLines = 0
         centerLabel.minimumScaleFactor = 0.5
@@ -59,9 +60,17 @@ class MorningInterviewCell: UICollectionViewCell, DialSelectionDelegate, Dequeue
         dialView.setSelected(index: index)
     }
 
+    // MARK: - DialSelectionDelegate
+
     func selectedIndexDidChange(_ index: Int?, view: InterviewDialView) {
         guard let index = index else { return }
 
         indexDidChange?(index)
+    }
+
+    func didTouchUp(index: Int?, view: InterviewDialView) {
+        guard let index = index else { return }
+
+        didTouchUp?(index)
     }
 }

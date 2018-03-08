@@ -12,11 +12,12 @@ class MorningInterviewViewController: UIViewController, MorningInterviewViewCont
 
     private var currentIndex: Int = 0
     private var questions: [MorningInterview.Question] = []
+    private var previousCounter: Int = 0
     var interactor: MorningInterviewInteractorInterface?
     var router: MorningInterviewRouterInterface?
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var closeButton: UIButton!
+    @IBOutlet private weak var closeButton: UIButton! 
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var doneButton: UIButton!
     @IBOutlet private weak var questionLabel: UILabel!
@@ -69,20 +70,21 @@ class MorningInterviewViewController: UIViewController, MorningInterviewViewCont
         router?.close()
     }
 
+    func setQuestions(_ questions: [MorningInterview.Question]) {
+        self.questions = questions
+        currentIndex = 0
+        collectionView.reloadData()
+        syncViews()
+    }
+
     @IBAction func didTapPrevious(_ sender: UIButton) {
         guard isFirstPage == false else {
             assertionFailure("Tried to go back from first page")
             return
         }
-
+        doneButton.isHidden = false
+        previousCounter += 1
         currentIndex -= 1
-        syncViews()
-    }
-
-    func setQuestions(_ questions: [MorningInterview.Question]) {
-        self.questions = questions
-        currentIndex = 0
-        collectionView.reloadData()
         syncViews()
     }
 
@@ -94,6 +96,15 @@ class MorningInterviewViewController: UIViewController, MorningInterviewViewCont
         updateLabels()
     }
 
+    @objc func nextQuestion() {
+        currentIndex += 1
+        if previousCounter > 0 {
+            previousCounter -= 1
+        }
+        syncViews()
+
+    }
+
     func scrollToCurrentQuestion() {
         let index = IndexPath(item: currentIndex, section: 0)
         collectionView.scrollToItem(at: index, at: .centeredHorizontally, animated: true)
@@ -103,29 +114,22 @@ class MorningInterviewViewController: UIViewController, MorningInterviewViewCont
         if isLastPage == true {
             interactor?.saveAnswers(questions: questions)
             router?.close()
-        } else {
-            currentIndex += 1
-            syncViews()
         }
     }
 
     func updateLabels() {
         let headerLabelText = R.string.localized.morningControllerTitleLabel()
-        let attributedTitle = NSMutableAttributedString(
-            string: headerLabelText,
-            letterSpacing: 1.1,
-            font: Font.H5SecondaryHeadline,
-            textColor: .white,
-            alignment: .center
-        )
+        let attributedTitle = NSMutableAttributedString(string: headerLabelText,
+                                                        letterSpacing: 1.1,
+                                                        font: Font.H5SecondaryHeadline,
+                                                        textColor: .white,
+                                                        alignment: .center)
         let progress =  " \(currentIndex + 1)\("/")\(questions.count ) "
-        let progressTitle = NSMutableAttributedString(
-            string: progress,
-            letterSpacing: 0,
-            font: Font.H5SecondaryHeadline,
-            textColor: .white,
-            alignment: .center
-        )
+        let progressTitle = NSMutableAttributedString(string: progress,
+                                                      letterSpacing: 0,
+                                                      font: Font.H5SecondaryHeadline,
+                                                      textColor: .white,
+                                                      alignment: .center)
         attributedTitle.append(progressTitle)
         headerLabel.attributedText = attributedTitle
         leftAnswerLabel.text = currentQuestion?.answers.first?.subtitle
@@ -133,9 +137,22 @@ class MorningInterviewViewController: UIViewController, MorningInterviewViewCont
     }
 
     func updateButtons() {
-        let doneButtonTitle = isLastPage ? R.string.localized.morningControllerDoneButton() : R.string.localized.morningControllerNextButton()
-        doneButton.setTitle(doneButtonTitle, for: .normal)
         previousButton.isHidden = isFirstPage
+        if previousCounter > 0 && isLastPage == false {
+            doneButton.setTitle("Next", for: .normal)
+            doneButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
+            doneButton.removeTarget(self, action: #selector(didTapDone(_:)), for: .touchUpInside)
+            doneButton.addTarget(self, action: #selector(nextQuestion), for: .touchUpInside)
+            doneButton.isHidden = false
+        } else if isLastPage == true {
+            doneButton.setTitle("Done", for: .normal)
+            doneButton.titleLabel?.font = UIFont.boldSystemFont(ofSize: 15)
+            doneButton.removeTarget(self, action: #selector(nextQuestion), for: .touchUpInside)
+            doneButton.addTarget(self, action: #selector(didTapDone(_:)), for: .touchUpInside)
+            doneButton.isHidden = false
+        } else if previousCounter == 0 && isLastPage == false {
+            doneButton.isHidden = true
+        }
     }
 
     func updateQuestion() {
@@ -165,6 +182,16 @@ extension MorningInterviewViewController: UICollectionViewDelegateFlowLayout, UI
             question.selectedAnswerIndex = index
             let answer = question.answers[question.selectedAnswerIndex]
             cell.configure(centerLabelText: answer.subtitle ?? "")
+        }
+
+        cell.didTouchUp = { (index) in
+            if self.isLastPage == false {
+                cell.isUserInteractionEnabled = false
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.4) {
+                    cell.isUserInteractionEnabled = true
+                    self.nextQuestion()
+                }
+            }
         }
         return cell
     }
@@ -202,5 +229,6 @@ private extension MorningInterviewViewController {
 
     func setupLayout() {
         previousButton.isHidden = true
+        doneButton.isHidden = true
     }
 }

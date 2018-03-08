@@ -9,6 +9,7 @@ import UIKit
 
 protocol DialSelectionDelegate: class {
     func selectedIndexDidChange(_ index: Int?, view: InterviewDialView)
+    func didTouchUp(index: Int?, view: InterviewDialView)
 }
 
 struct Segment {
@@ -52,7 +53,9 @@ class InterviewDialView: UIView {
     private let internalRingLayer = CAShapeLayer()
     private let linesLayer = CAShapeLayer()
     private var selectedIndex: Int?
-    weak var selectionDelegate: DialSelectionDelegate!
+    weak var delegate: DialSelectionDelegate!
+    let tapGestureRecognizer = UITapGestureRecognizer()
+    let panGestureRecognizer = UIPanGestureRecognizer()
 
     private var interRadius: CGFloat {
         return outerRadius - config.ringWidth
@@ -114,11 +117,9 @@ class InterviewDialView: UIView {
     }
 
     private func setupGestureRecognizers() {
-        let tapGestureRecognizer = UITapGestureRecognizer()
         tapGestureRecognizer.addTarget(self, action: #selector(handleGesture(recognizer:)))
         addGestureRecognizer(tapGestureRecognizer)
 
-        let panGestureRecognizer = UIPanGestureRecognizer()
         panGestureRecognizer.addTarget(self, action: #selector(handleGesture(recognizer:)))
         addGestureRecognizer(panGestureRecognizer)
     }
@@ -214,7 +215,12 @@ class InterviewDialView: UIView {
         if newSelectedIndex != selectedIndex {
             selectedIndex = newSelectedIndex
             syncSelectedSegmentLayer()
-            selectionDelegate?.selectedIndexDidChange(newSelectedIndex, view: self)
+            delegate?.selectedIndexDidChange(newSelectedIndex, view: self)
+        }
+        if recognizer.state == .ended {
+            let endPoint = recognizer.location(in: self)
+            let endIndex = segmentIndex(at: endPoint)
+            delegate?.didTouchUp(index: endIndex, view: self)
         }
     }
 
