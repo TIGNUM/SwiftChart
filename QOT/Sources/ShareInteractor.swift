@@ -21,7 +21,7 @@ final class ShareInteractor: ShareInteractorInterface {
     }
 
     func viewDidLoad() {
-        presenter.setup(name: worker.partnerName)
+        presenter.setup(name: worker.name)
     }
 
     func didTapClose() {
@@ -29,20 +29,27 @@ final class ShareInteractor: ShareInteractorInterface {
     }
 
     func didTapShareToBeVision() {
-        do {
-            let content = try worker.shareToBeVisionEmailContent()
-            router.showMailComposer(email: content.email, subject: content.subject, messageBody: content.body)
-        } catch {
-            router.showAlert(.canNotSendMail)
+        presenter.setLoading(loading: true)
+        worker.shareToBeVisionEmailContent { [weak self] (result) in
+            self?.presenter.setLoading(loading: false)
+            self?.handleResult(result)
         }
     }
 
     func didTapShareWeeklyChoices() {
-        do {
-            let content = try worker.shareWeeklyChoicesEmailContent()
-            router.showMailComposer(email: content.email, subject: content.subject, messageBody: content.body)
-        } catch {
-            router.showAlert(.canNotSendMail)
+        presenter.setLoading(loading: true)
+        worker.shareWeeklyChoicesEmailContent { [weak self] (result) in
+            self?.presenter.setLoading(loading: false)
+            self?.handleResult(result)
+        }
+    }
+
+    private func handleResult(_ result: ShareWorker.Result) {
+        switch result {
+        case .success(let content):
+            self.router.showMailComposer(email: content.email, subject: content.subject, messageBody: content.body)
+        case .failure:
+            self.router.showAlert(.canNotSendMail)
         }
     }
 }

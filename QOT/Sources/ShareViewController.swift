@@ -8,12 +8,13 @@
 
 import UIKit
 
-class ShareViewController: UIViewController, ShareViewControllerInterface {
+final class ShareViewController: UIViewController, ShareViewControllerInterface {
 
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var toBeVisionButton: UIButton!
     @IBOutlet private weak var weeklyChoicesButton: UIButton!
     @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
 
     var interactor: ShareInteractorInterface?
 
@@ -42,6 +43,13 @@ class ShareViewController: UIViewController, ShareViewControllerInterface {
 
     func setHeader(_ header: String) {
         headerLabel.text = header
+    }
+
+    func setLoading(loading: Bool) {
+        toBeVisionButton.isEnabled = !loading
+        weeklyChoicesButton.isEnabled = !loading
+        shareButton.isHidden = loading
+        activityIndicator.isHidden = !loading
     }
 }
 

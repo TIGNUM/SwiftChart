@@ -10,8 +10,13 @@ import Foundation
 
 struct Partners {
 
-    class Partner: Equatable {
+    enum SharingType: String {
+        case toBeVision = "TOBEVISION"
+        case weeklyChoices = "WEEKLYCHOICES"
+        case invite = "INVITE_PARTNER"
+    }
 
+    class Partner: Equatable {
         let localID: String
         var name: String?
         var surname: String?
@@ -19,7 +24,12 @@ struct Partners {
         var email: String?
         var imageURL: URL?
 
-        init(localID: String, name: String?, surname: String?, relationship: String?, email: String?, imageURL: URL?) {
+        init(localID: String,
+             name: String?,
+             surname: String?,
+             relationship: String?,
+             email: String?,
+             imageURL: URL?) {
             self.localID = localID
             self.name = name
             self.surname = surname

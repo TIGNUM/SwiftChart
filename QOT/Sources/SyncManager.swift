@@ -110,7 +110,7 @@ final class SyncManager {
         operationQueue.cancelAllOperations()
     }
 
-    func syncAll(shouldDownload: Bool) {
+    func syncAll(shouldDownload: Bool, completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
 
         let startOperation = BlockOperation {
@@ -129,6 +129,7 @@ final class SyncManager {
                 errors.forEach { (error: SyncError) in
                     log(error, level: .debug)
                 }
+                completion?(errors.first)
             }
         }
 

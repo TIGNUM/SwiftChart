@@ -19,4 +19,8 @@ final class SharePresenter: SharePresenterInterface {
     func setup(name: String) {
         viewController?.setHeader(R.string.localized.meSectorMyWhyPartnersShareHeader(name))
     }
+
+    func setLoading(loading: Bool) {
+        viewController?.setLoading(loading: loading)
+    }
 }

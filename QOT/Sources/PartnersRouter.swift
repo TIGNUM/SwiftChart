@@ -28,7 +28,9 @@ final class PartnersRouter: NSObject, PartnersRouterInterface {
             return
         }
 
-        let configurator = ShareConfigurator.make(partnerName: name, partnerEmail: email)
+        let configurator = ShareConfigurator.make(partnerLocalID: partner.localID,
+                                                  partnerName: name,
+                                                  partnerEmail: email)
         let shareViewController = ShareViewController(configure: configurator)
         let navController = UINavigationController(rootViewController: shareViewController)
         navController.navigationBar.applyDefaultStyle()

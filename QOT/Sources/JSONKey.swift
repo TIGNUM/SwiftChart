@@ -188,6 +188,7 @@ enum JsonKey: String {
     case status
     case street
     case streetNumber
+    case subject
     case subtitle
     case syncEnabled
     case syncStatus

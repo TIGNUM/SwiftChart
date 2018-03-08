@@ -104,6 +104,18 @@ final class NetworkManager {
         return current
     }
 
+    @discardableResult func performPartnerSharingRequest(partnerID: Int,
+                                                         sharingType: Partners.SharingType,
+                                                         completion: @escaping (Result<PartnerSharingEmail, NetworkError>) -> Void) -> SerialRequest {
+        let current = SerialRequest()
+        performAuthenticatingRequest(PartnerSharingRequest(partnerID: partnerID, sharingType: sharingType),
+                                     parser: PartnerSharingEmail.parse,
+                                     notifyDelegateOfFailure: false,
+                                     current: current,
+                                     completion: completion)
+        return current
+    }
+
     @discardableResult func performDeviceRequest() -> SerialRequest {
         let serialRequest = SerialRequest()
         guard authenticator.hasLoginCredentials() else { return serialRequest }

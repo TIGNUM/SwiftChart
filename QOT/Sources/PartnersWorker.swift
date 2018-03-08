@@ -59,7 +59,12 @@ final class PartnersWorker {
 private extension Partners.Partner {
 
     convenience init() {
-        self.init(localID: UUID().uuidString, name: nil, surname: nil, relationship: nil, email: nil, imageURL: nil)
+        self.init(localID: UUID().uuidString,
+                  name: nil,
+                  surname: nil,
+                  relationship: nil,
+                  email: nil,
+                  imageURL: nil)
     }
 
     convenience init(_ realmPartner: Partner) {

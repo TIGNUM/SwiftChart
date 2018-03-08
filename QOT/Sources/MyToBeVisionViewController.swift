@@ -237,7 +237,7 @@ private extension MyToBeVisionViewController {
         if messageTextView.attributedText != toBeVision?.formattedVision {
             messageTextView.attributedText = toBeVision?.formattedVision
         }
-        
+
         subtitleLabel.attributedText = toBeVision?.formattedSubtitle
         imageView.kf.setImage(with: toBeVision?.imageURL)
     }

@@ -47,6 +47,7 @@ enum Endpoint: String {
     case guideItemsNotification = "/personal/p/qot/guide/notificationItem"
     case guide = "/personal/p/qot/guide"
     case device = "/personal/p/qot/device"
+    case partnerSharing = "/personal/p/qot/qotpartnersharing"
 
     func url(baseURL: URL) -> URL {
         if let url = URL(string: rawValue), url.host != nil { return url }
@@ -62,6 +63,8 @@ enum RequestParameter: String {
     case notificationEnvironmentType
     case notificationToken
     case appKey
+    case qotPartnerId
+    case qotpartnersharingtype
 }
 
 enum HTTPHeader: String {

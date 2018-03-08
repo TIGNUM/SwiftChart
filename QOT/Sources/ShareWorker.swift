@@ -10,46 +10,63 @@ import Foundation
 
 final class ShareWorker {
 
-    enum Error: Swift.Error {
-        case missingHTMLFile
-
+    enum Result {
+        case success(Share.EmailContent)
+        case failure(Error)
     }
 
     let services: Services
-    let partnerName: String
-    let partnerEmail: String
+    let partnerLocalID: String
+    let networkManager: NetworkManager
+    let syncManager: SyncManager
+    let name: String
 
-    init(services: Services, partnerName: String, partnerEmail: String) {
+    init(services: Services,
+         partnerLocalID: String,
+         networkManager: NetworkManager,
+         syncManager: SyncManager,
+         name: String) {
         self.services = services
-        self.partnerName = partnerName
-        self.partnerEmail = partnerEmail
+        self.partnerLocalID = partnerLocalID
+        self.networkManager = networkManager
+        self.syncManager = syncManager
+        self.name = name
     }
 
-    func shareToBeVisionEmailContent() throws -> Share.EmailContent {
-        return Share.EmailContent(email: partnerEmail, subject: "Hello", body: try html(fileName: "to_be_vision"))
+    func shareToBeVisionEmailContent(completion: @escaping ((_ emailContent: Result) -> Void)) {
+        emailContent(sharingType: .toBeVision, completion: completion)
     }
 
-    func shareWeeklyChoicesEmailContent() throws -> Share.EmailContent {
-        return Share.EmailContent(email: partnerEmail, subject: "Hello", body: try html(fileName: "weekly_choices"))
+    func shareWeeklyChoicesEmailContent(completion: @escaping ((_ emailContent: Result) -> Void)) {
+        emailContent(sharingType: .weeklyChoices, completion: completion)
     }
 
-    private func html(fileName: String) throws -> String {
-        guard let url = Bundle.main.url(forResource: fileName, withExtension: "html") else {
-            throw SimpleError(localizedDescription: "Failed to fetch HTML for resource \(fileName)")
+    private func emailContent(sharingType: Partners.SharingType,
+                              completion: @escaping ((Result) -> Void)) {
+        syncManager.syncAll(shouldDownload: false) { [weak self] (error) in
+            if let error = error {
+                completion(.failure(error))
+            } else {
+                guard let `self` = self else { return }
+                let realm = self.services.mainRealm
+                if let partner = realm.syncableObject(ofType: Partner.self, localID: self.partnerLocalID),
+                    let remoteID = partner.remoteID.value {
+                    self.networkManager.performPartnerSharingRequest(partnerID: remoteID,
+                                                                     sharingType: sharingType) { (result) in
+                        switch result {
+                        case .success(let value):
+                            let content = Share.EmailContent(email: partner.email,
+                                                             subject: value.subject,
+                                                             body: value.body)
+                            completion(.success(content))
+                        case .failure(let error):
+                            completion(.failure(error))
+                        }
+                    }
+                } else {
+                    completion(.failure(SimpleError(localizedDescription: "Partner has no remote ID")))
+                }
+            }
         }
-
-        var content = try String(contentsOf: url)
-        content = content.replacingOccurrences(of: "*|PARTNER:FIRSTNAME|*", with: partnerName)
-        if let toBeVision = services.userService.myToBeVision()?.text {
-            content = content.replacingOccurrences(of: "*|MTBV|*", with: toBeVision)
-        }
-        if let user = services.userService.user() {
-            let fullName = "\(user.givenName) \(user.familyName)"
-            content = content.replacingOccurrences(of: "*|FULL USER NAME|*", with: fullName)
-            content = content.replacingOccurrences(of: "*|USERNAME|*", with: user.givenName)
-        }
-
-        return content
     }
-
 }

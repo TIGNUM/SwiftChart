@@ -107,14 +107,14 @@ enum Gender: String {
     case female
     case male
     case neutral
-    case unkown
+    case unknown
 
     static var allValues: [Gender] {
         return [
             .female,
             .male,
             .neutral,
-            .unkown
+            .unknown
         ]
     }
 

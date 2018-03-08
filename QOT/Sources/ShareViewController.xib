@@ -17,6 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareViewController" customModule="QOT" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="isb-94-hiD" id="Ru1-va-7Tm"/>
                 <outlet property="headerLabel" destination="b4U-iA-UEC" id="KbU-rk-2QS"/>
                 <outlet property="shareButton" destination="IB3-TR-UAU" id="0LM-xA-gm0"/>
                 <outlet property="toBeVisionButton" destination="hc7-uH-oDV" id="rcd-do-yYA"/>
@@ -94,6 +95,9 @@
                                 <action selector="didTapShareButton:" destination="-1" eventType="touchUpInside" id="z7m-kd-2RU"/>
                             </connections>
                         </button>
+                        <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="isb-94-hiD">
+                            <rect key="frame" x="169" y="226" width="37" height="37"/>
+                        </activityIndicatorView>
                     </subviews>
                     <constraints>
                         <constraint firstItem="3g6-7E-Wpb" firstAttribute="leading" secondItem="3Le-0z-lbg" secondAttribute="trailing" constant="16" id="3ZR-mm-Naj"/>
@@ -104,7 +108,9 @@
                         <constraint firstItem="hc7-uH-oDV" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="52" id="QbL-Y4-u9l"/>
                         <constraint firstAttribute="trailing" secondItem="Wwd-gk-q1L" secondAttribute="trailing" constant="52" id="WCD-d6-R3v"/>
                         <constraint firstItem="Wwd-gk-q1L" firstAttribute="centerY" secondItem="hc7-uH-oDV" secondAttribute="centerY" id="bNw-Ea-YH2"/>
+                        <constraint firstItem="isb-94-hiD" firstAttribute="centerY" secondItem="IB3-TR-UAU" secondAttribute="centerY" id="dUo-Zv-KIK"/>
                         <constraint firstItem="3g6-7E-Wpb" firstAttribute="centerY" secondItem="3Le-0z-lbg" secondAttribute="centerY" id="eAL-F7-Jcg"/>
+                        <constraint firstItem="isb-94-hiD" firstAttribute="centerX" secondItem="IB3-TR-UAU" secondAttribute="centerX" id="el2-8J-6wn"/>
                         <constraint firstItem="b4U-iA-UEC" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="32" id="gyH-KK-7Jc"/>
                         <constraint firstAttribute="trailing" secondItem="IB3-TR-UAU" secondAttribute="trailing" constant="52" id="iQe-mt-fAp"/>
                         <constraint firstItem="b4U-iA-UEC" firstAttribute="top" secondItem="OwW-7o-BTV" secondAttribute="top" id="jUf-u6-v8a"/>

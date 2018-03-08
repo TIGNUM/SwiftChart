@@ -11,7 +11,6 @@ import Foundation
 struct Share {
 
     struct EmailContent {
-
         let email: String
         let subject: String
         let body: String

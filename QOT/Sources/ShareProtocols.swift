@@ -10,10 +10,12 @@ import Foundation
 
 protocol ShareViewControllerInterface: class {
     func setHeader(_ header: String)
+    func setLoading(loading: Bool)
 }
 
 protocol SharePresenterInterface {
     func setup(name: String)
+    func setLoading(loading: Bool)
 }
 
 protocol ShareInteractorInterface: Interactor {

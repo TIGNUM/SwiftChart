@@ -113,6 +113,19 @@ struct UserAnswerFeedbackRequest: URLRequestBuildable {
     }
 }
 
+struct PartnerSharingRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .partnerSharing
+    let httpMethod: HTTPMethod = .post
+    let paramaters: [RequestParameter: Any]
+
+    init(partnerID: Int, sharingType: Partners.SharingType) {
+        self.paramaters = [
+            .qotPartnerId: partnerID,
+            .qotpartnersharingtype: sharingType.rawValue
+        ]
+    }
+}
+
 struct UserLocationUpdateRequest: URLRequestBuildable {
     let endpoint: Endpoint = .userLocationUpdate
     let httpMethod: HTTPMethod = .put
