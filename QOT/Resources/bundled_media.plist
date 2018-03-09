@@ -6,7 +6,7 @@
 		<key>mediaID</key>
 		<integer>100600</integer>
 		<key>fileName</key>
-		<string>15_min_power_nap_with_voice.m4a</string>
+		<string>15_min_power_nap_no_voice.m4a</string>
 	</dict>
 	<dict>
 		<key>mediaID</key>
@@ -16,9 +16,9 @@
 	</dict>
 	<dict>
 		<key>mediaID</key>
-		<integer>100602</integer>
+		<real>100602</real>
 		<key>fileName</key>
-		<string>15_min_power_nap_no_voice.m4a</string>
+		<string>15_min_power_nap_with_voice.m4a</string>
 	</dict>
 	<dict>
 		<key>mediaID</key>
@@ -38,41 +38,41 @@
 		<key>fileName</key>
 		<string>10_min_power_nap_with_voice.m4a</string>
 	</dict>
-    <dict>
-        <key>mediaID</key>
-        <integer>100892</integer>
-        <key>fileName</key>
-        <string>15_min_power_nap_with_voice.m4a</string>
-    </dict>
-    <dict>
-        <key>mediaID</key>
-        <integer>100890</integer>
-        <key>fileName</key>
-        <string>90_min_power_nap.m4a</string>
-    </dict>
-    <dict>
-        <key>mediaID</key>
-        <integer>100893</integer>
-        <key>fileName</key>
-        <string>15_min_power_nap_no_voice.m4a</string>
-    </dict>
-    <dict>
-        <key>mediaID</key>
-        <integer>101396</integer>
-        <key>fileName</key>
-        <string>20_min_power_nap_with_voice_A.m4a</string>
-    </dict>
-    <dict>
-        <key>mediaID</key>
-        <integer>100891</integer>
-        <key>fileName</key>
-        <string>20_min_power_nap_with_voice_B.m4a</string>
-    </dict>
-    <dict>
-        <key>mediaID</key>
-        <integer>100894</integer>
-        <key>fileName</key>
-        <string>10_min_power_nap_with_voice.m4a</string>
-    </dict>
+	<dict>
+		<key>mediaID</key>
+		<integer>100892</integer>
+		<key>fileName</key>
+		<string>15_min_power_nap_with_voice.m4a</string>
+	</dict>
+	<dict>
+		<key>mediaID</key>
+		<integer>100890</integer>
+		<key>fileName</key>
+		<string>90_min_power_nap.m4a</string>
+	</dict>
+	<dict>
+		<key>mediaID</key>
+		<integer>100893</integer>
+		<key>fileName</key>
+		<string>15_min_power_nap_no_voice.m4a</string>
+	</dict>
+	<dict>
+		<key>mediaID</key>
+		<integer>101396</integer>
+		<key>fileName</key>
+		<string>20_min_power_nap_with_voice_A.m4a</string>
+	</dict>
+	<dict>
+		<key>mediaID</key>
+		<integer>100891</integer>
+		<key>fileName</key>
+		<string>20_min_power_nap_with_voice_B.m4a</string>
+	</dict>
+	<dict>
+		<key>mediaID</key>
+		<integer>100894</integer>
+		<key>fileName</key>
+		<string>10_min_power_nap_with_voice.m4a</string>
+	</dict>
 </array>
 </plist>
