@@ -83,6 +83,10 @@ final class CarouselView: UIView {
         return collectionView.cellForItem(at: indexPath)?.contentView.subviews.first
     }
 
+    func reloadData() {
+        collectionView.reloadData()
+    }
+
     private var layout: UICollectionViewFlowLayout {
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             preconditionFailure("Wrong layout type")

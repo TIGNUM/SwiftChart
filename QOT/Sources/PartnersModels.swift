@@ -42,6 +42,15 @@ struct Partners {
             return [name?.first, surname?.first].flatMap { $0 }.map { String($0) }.joined()
         }
 
+        var isValid: Bool {
+            return [name, surname, email].filter { $0?.isEmpty == false }.count == 3
+        }
+
+        var isEmpty: Bool {
+            let nonEmptyStrings = [name, surname, relationship, email].flatMap { $0 }.filter { $0.isEmpty == false }
+            return nonEmptyStrings.isEmpty && imageURL == nil
+        }
+
         public static func == (lhs: Partner, rhs: Partner) -> Bool {
             return lhs.localID == rhs.localID
                 && lhs.name == rhs.name

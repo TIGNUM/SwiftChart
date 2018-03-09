@@ -290,6 +290,11 @@ extension Collection {
 
 extension UIView {
 
+    var isVisible: Bool {
+        get { return !isHidden }
+        set { isHidden = !newValue }
+    }
+
     enum FadeViewLocation {
         case top
         case bottom

@@ -49,7 +49,7 @@ extension Partner: TwoWaySyncable {
     }
 
     func toJson() -> JSON? {
-        guard syncStatus != .clean else { return nil }
+        guard syncStatus != .clean, isValid == true else { return nil }
 
         let dict: [JsonKey: JSONEncodable] = [
             .id: remoteID.value.toJSONEncodable,
@@ -70,5 +70,9 @@ extension Partner {
 
     var initials: String {
         return [name.first, surname.first].flatMap { $0 }.map { String($0) }.joined()
+    }
+
+    var isValid: Bool {
+        return [name, surname, email].filter { $0.isEmpty == false }.count == 3
     }
 }
