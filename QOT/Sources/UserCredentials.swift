@@ -13,6 +13,7 @@ final class CredentialsManager {
     // MARK: - Properties
 
     private let keychain = Keychain()
+    private let _authToken = Atomic<String?>(nil)
     private var credentialDidChangeHandlers: [((username: String, password: String)?) -> Void] = []
     static let shared = CredentialsManager()
 
@@ -26,7 +27,7 @@ final class CredentialsManager {
     }
 
     func authToken() -> String? {
-        return keychain[string: .authToken]
+        return _authToken.value
     }
 
     var hasLoginCredentials: Bool {
@@ -41,13 +42,13 @@ final class CredentialsManager {
     }
 
     func save(authToken: String) {
-        keychain[string: .authToken] = authToken
+        _authToken.value = authToken
     }
 
     func clear() {
         keychain[string: .username] = nil
         keychain[string: .password] = nil
-        keychain[string: .authToken] = nil
+        _authToken.value = nil
         loginCredentialsDidChange(credentials: nil)
     }
 

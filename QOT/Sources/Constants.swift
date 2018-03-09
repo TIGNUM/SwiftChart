@@ -53,7 +53,6 @@ struct Layout {
 enum KeychainConstant: String {
     case username = "com.tignum.qot.username"
     case password = "com.tignum.qot.password"
-    case authToken = "com.tignum.qot.token"
     case deviceID = "com.tignum.qot.device-identifier"
     case databaseKey = "com.tignum.qot.database.key"
 }

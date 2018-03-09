@@ -16,11 +16,24 @@ struct AuthenticationRequest: URLRequestBuildable {
     let headers: [HTTPHeader: String]
     let requiresAuthentication = false
 
-    init(username: String, password: String) {
-        headers = [
+    init(username: String, password: String, location: CLLocation?) {
+        var headers: [HTTPHeader: String] = [
             .Authorization: "Basic " + "\(username):\(password)".toBase64(),
             .authUser: "qot"
         ]
+        if let location = location {
+            let dateFormatter = DateFormatter.iso8601
+            headers[.altitude] = String(location.altitude)
+            headers[.latitude] = String(location.coordinate.latitude)
+            headers[.longitude] = String(location.coordinate.longitude)
+            headers[.verticalAccuracy] = String(location.verticalAccuracy)
+            headers[.horizontalAccuracy] = String(location.horizontalAccuracy)
+            headers[.createdOnDevice] = dateFormatter.string(from: location.timestamp)
+            if let floor = location.floor {
+                headers[.floor] = String(floor.level)
+            }
+        }
+        self.headers = headers
     }
 }
 
