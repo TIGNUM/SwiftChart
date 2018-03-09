@@ -20,7 +20,7 @@ final class PartnersWorker {
 
     func partners() -> [Partners.Partner] {
         let realmPartners = services.partnerService.lastModifiedPartnersSortedByCreatedAtAscending(maxCount: 3)
-        var partners = realmPartners.map { Partners.Partner($0) }
+        var partners = realmPartners.filter { $0.isValid }.map { Partners.Partner($0) }
         for _ in partners.count..<3 {
             // Pad with empty partners
             partners.append(Partners.Partner())
@@ -32,6 +32,7 @@ final class PartnersWorker {
         do {
             let realm = try services.realmProvider.realm()
             for partner in partners {
+                guard partner.isValid else { continue }
                 if let existing = realm.syncableObject(ofType: Partner.self, localID: partner.localID) {
                     try realm.write {
                         existing.update(partner)

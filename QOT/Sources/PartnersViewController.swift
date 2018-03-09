@@ -7,28 +7,28 @@
 //
 
 import UIKit
-import iCarousel
 import RSKImageCropper
 
 final class PartnersViewController: UIViewController, PartnersViewControllerInterface, PageViewControllerNotSwipeable {
 
-    // MARK: - Properties
-
     @IBOutlet private weak var backgroundImageView: UIImageView!
-    @IBOutlet private weak var bigLabel: UILabel!
+    @IBOutlet private(set) weak var scrollView: UIScrollView!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var scrollViewContentHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var shareButton: UIButton!
-    @IBOutlet private weak var carousel: iCarousel! = iCarousel()
-    @IBOutlet weak var scrollView: UIScrollView!
-    private var valueEditing: Bool = false
-    private var editButton: UIBarButtonItem? {
-        return navigationItem.rightBarButtonItem
-    }
+    private let cellWidth: CGFloat = 186
+    private let cellSpacing: CGFloat = 4
+    private let leftMargin: CGFloat = 26
+    private let keyboardListner = KeyboardListener()
     private var partners: [Partners.Partner] = []
-    private var selectedIndex: Int = 0
+    private var editingIndex: Int?
     var interactor: PartnersInteractorInterface?
     var imagePickerController: ImagePickerController?
 
-    // MARK: - Init
+    private var editButton: UIBarButtonItem? {
+        return navigationItem.rightBarButtonItem
+    }
 
     init(configure: Configurator<PartnersViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -39,10 +39,10 @@ final class PartnersViewController: UIViewController, PartnersViewControllerInte
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        collectionView.registerDequeueable(PartnerCell.self)
 
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
         leftButton.target = self
@@ -52,25 +52,58 @@ final class PartnersViewController: UIViewController, PartnersViewControllerInte
         let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
         rightButton.target = self
         rightButton.action = #selector(didTapEdit(_ :))
+        rightButton.tintColor = .white40
         navigationItem.rightBarButtonItem = rightButton
 
         interactor?.viewDidLoad()
         setBackgroundColor()
-        setupCarousel()
         setupHeadline()
 
-        editButton?.tintColor = .white40
+        keyboardListner.onStateChange { [unowned self] (state) in
+            self.handleKeyboardChange(state: state)
+        }
+
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
+    }
+
+    @available(iOS 11.0, *)
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+
+        syncScrollViewLayout()
+    }
+
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+
+        let rightInset = ceil(view.bounds.width - leftMargin - cellWidth)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: leftMargin, bottom: 0, right: rightInset)
+        collectionView.reloadData()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        syncScrollViewLayout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        syncShareButton()
+        keyboardListner.startObserving()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        keyboardListner.stopObserving()
     }
 
     func setup(partners: [Partners.Partner]) {
         self.partners = partners
-        carousel.reloadData()
+        collectionView.reloadData()
     }
 
     func reload(partner: Partners.Partner) {
@@ -78,7 +111,7 @@ final class PartnersViewController: UIViewController, PartnersViewControllerInte
             assertionFailure("Trying to reload a partner that doesn't exist.")
             return
         }
-        carousel.reloadItem(at: index, animated: false)
+        collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
     }
 }
 
@@ -86,21 +119,81 @@ final class PartnersViewController: UIViewController, PartnersViewControllerInte
 
 private extension PartnersViewController {
 
-    @objc private func didTapClose(_ sender: UIBarButtonItem) {
+    @objc func didTapClose(_ sender: UIBarButtonItem) {
         interactor?.didTapClose(partners: partners)
     }
 
-    @objc private func didTapEdit(_ sender: UIBarButtonItem) {
-        editCurrentItem()
+    @objc func didTapEdit(_ sender: UIBarButtonItem) {
+        if editingIndex == nil, let index = page(contentOffset: collectionView.contentOffset) {
+            startEditing(index: index)
+        } else {
+            stopEditing()
+        }
     }
 
-    var selectedPartner: Partners.Partner {
-        return partners[selectedIndex]
+    @objc func shareButtonTapped(_ sender: UIButton) {
+        guard let partner = selectedPartner else { return }
+        interactor?.didTapShare(partner: partner, in: partners)
+    }
+
+    func syncScrollViewLayout() {
+        let contentHeight = view.bounds.height - safeAreaInsets.top - safeAreaInsets.bottom
+        scrollViewContentHeightConstraint.constant = contentHeight
+        scrollView.contentInset.top = safeAreaInsets.top
+        let spaceBellowCollectionView = contentHeight - collectionView.frame.maxY
+        let bottomInset = max(keyboardListner.state.height - spaceBellowCollectionView, safeAreaInsets.bottom)
+        scrollView.contentInset.bottom = bottomInset
+    }
+
+    func handleKeyboardChange(state: KeyboardListener.State) {
+        switch state {
+        case .idle:
+            break
+        case .willChange(_, _, let duration, let curve):
+            syncScrollViewLayout()
+            let options = UIViewAnimationOptions(curve: curve)
+            let contentHeight = scrollViewContentHeightConstraint.constant
+            let minY = scrollView.contentInset.top
+            let yPos = max(contentHeight - scrollView.bounds.height + scrollView.contentInset.bottom, -minY)
+            UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+                self.scrollView.contentOffset.y = yPos
+            })
+        }
+    }
+
+    func startEditing(index: Int) {
+        editingIndex = index
+        (collectionView.visibleCells as? [PartnerCell])?.forEach { (cell) in
+            if let indexPath = collectionView.indexPath(for: cell), indexPath.item == index {
+                cell.setEditing(true)
+            } else {
+                cell.setEditing(false)
+            }
+        }
+        syncEditButton()
+    }
+
+    func stopEditing() {
+        editingIndex = nil
+        (collectionView.visibleCells as? [PartnerCell])?.forEach { $0.setEditing(false) }
+        syncEditButton()
+        didEditPartners()
+    }
+
+    func didEditPartners() {
+        syncShareButton()
+    }
+
+    func syncEditButton() {
+        editButton?.tintColor = editingIndex == nil ? .white40 : .white
+    }
+
+    var selectedPartner: Partners.Partner? {
+        return page(contentOffset: collectionView.contentOffset).map { partners[$0] }
     }
 
     func syncShareButton() {
-        let partnersAvailable = selectedPartner.email?.isEmpty == false && selectedPartner.name?.isEmpty == false
-        shareButton.isHidden = !partnersAvailable
+        shareButton.isVisible = selectedPartner?.isValid == true
     }
 
     func setBackgroundColor() {
@@ -110,152 +203,138 @@ private extension PartnersViewController {
     }
 
     func setupHeadline() {
-        bigLabel.attributedText = NSMutableAttributedString(
+        titleLabel.attributedText = NSMutableAttributedString(
             string: R.string.localized.meSectorMyWhyPartnersHeader(),
             letterSpacing: 2,
             font: Font.H1MainTitle,
             alignment: .left
         )
     }
-
-    func setupCarousel() {
-        carousel.type = .linear
-        carousel.isPagingEnabled = true
-        carousel.contentOffset = CGSize(width: -Layout.TabBarView.height, height: 0)
-        selectedIndex = carousel.currentItemIndex
-    }
-
-    func scrollAnimated(topInset: CGFloat) {
-        UIView.animate(withDuration: 0.3) {
-            self.scrollView.contentInset.top = topInset
-        }
-    }
-
-    func showShareView() {
-        interactor?.didTapShare(partner: selectedPartner)
-    }
 }
 
-// MARK: - Actions
+extension PartnersViewController: UICollectionViewDataSource {
 
-extension PartnersViewController {
-
-    func editCurrentItem() {
-        if valueEditing == true {
-            stopEditing()
-        } else {
-            startEditing()
-        }
-    }
-
-    func startEditing() {
-        guard let view = carousel.currentItemView as? CarouselCellView else {
-            return
-        }
-        editButton?.tintColor = .white
-        valueEditing = true
-        title = R.string.localized.meSectorMyWhyPartnersEditTitle()
-        bigLabel.text = nil
-        selectedIndex = carousel.currentItemIndex
-        view.edit(isEnabled: true)
-    }
-
-    func stopEditing() {
-        guard let view = carousel.currentItemView as? CarouselCellView else {
-            return
-        }
-        editButton?.tintColor = .white40
-        valueEditing = false
-        title = R.string.localized.meSectorMyWhyPartnersTitle()
-        bigLabel.text = R.string.localized.meSectorMyWhyPartnersHeader()
-        view.edit(isEnabled: false)
-        carousel.reloadItem(at: carousel.currentItemIndex, animated: false) // flush ui changes
-        scrollAnimated(topInset: 0)
-        view.hideKeyboard()
-    }
-
-    @IBAction private func shareButtonTapped(_ sender: UIButton) {
-        showShareView()
-    }
-}
-
-// MARK: - iCarousel
-
-extension PartnersViewController: iCarouselDataSource, iCarouselDelegate {
-
-    func numberOfItems(in carousel: iCarousel) -> Int {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return partners.count
     }
 
-    func carousel(_ carousel: iCarousel, viewForItemAt index: Int, reusing view: UIView?) -> UIView {
-        let view = (view as? CarouselCellView) ?? CarouselCellView()
-        view.frame = CGRect(x: carousel.frame.origin.x, y: carousel.frame.origin.y, width: 186.0, height: 424.0)
-        let item = partners.item(at: index)
-        view.setViewsTextFieldsDelegate(delegate: self)
-        view.delegate = self
-        view.configure(partner: item)
-        return view
-    }
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let partner = partners[indexPath.row]
+        let cell: PartnerCell = collectionView.dequeueCell(for: indexPath)
+        cell.configure(with: partner, isEditing: editingIndex == indexPath.row)
+        cell.delegate = self
 
-    func carousel(_ carousel: iCarousel, valueFor option: iCarouselOption, withDefault value: CGFloat) -> CGFloat {
-        return option == .spacing ? value * 1.1 : value
-    }
-
-    func carouselCurrentItemIndexDidChange(_ carousel: iCarousel) {
-        selectedIndex = carousel.currentItemIndex
-        syncShareButton()
-    }
-
-    func carouselDidEndDecelerating(_ carousel: iCarousel) {
-        // FIXME: seems like iCarousel dismisses keyboard on each right swipe. so if we're editing, we bring the keyboard back up by triggering startEditing() again
-        if valueEditing {
-            startEditing()
-        }
+        return cell
     }
 }
 
-// MARK: - UITextFieldDelegate
+extension PartnersViewController: UICollectionViewDelegateFlowLayout {
 
-extension PartnersViewController: UITextFieldDelegate {
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        scrollAnimated(topInset: -120.0)
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+        return .zero
     }
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        scrollAnimated(topInset: 0)
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+
+        let height = floor(collectionView.frame.height - collectionView.contentInset.vertical)
+        return CGSize(width: cellWidth, height: height)
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        return cellSpacing
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        scrollToItemAtIndex(indexPath.row)
+    }
+
+    // PAGING
+
+    private func scrollToItemAtIndex(_ index: Int) {
+        guard index != page(contentOffset: collectionView.contentOffset) else { return }
+
+        let newOffset = contentOffsetForItem(at: index, scrollView: collectionView)
+        collectionView.setContentOffset(newOffset, animated: true)
+    }
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if let page = page(contentOffset: targetContentOffset.pointee) {
+            targetContentOffset.pointee.x = contentOffsetForItem(at: page, scrollView: scrollView).x
+        }
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
         syncShareButton()
     }
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        if valueEditing == true {
-            stopEditing()
+    private func page(contentOffset: CGPoint) -> Int? {
+        let itemCount = collectionView.numberOfItems(inSection: 0)
+        let itemAndSpaceWidth = cellWidth + cellSpacing
+
+        guard itemCount > 0, itemAndSpaceWidth > 0 else {
+            return nil
         }
-        return false
+
+        let x = contentOffset.x + collectionView.contentInset.left
+        var page = Int(x / itemAndSpaceWidth)
+
+        let remainder = x - (CGFloat(page) * itemAndSpaceWidth)
+        if remainder > (cellWidth / 2) + cellSpacing {
+            page += 1
+        }
+        page = min(max(0, page), itemCount - 1)
+
+        return page
     }
 
-    func textFieldShouldBeginEditing(_ textField: UITextField) -> Bool {
-        if valueEditing == false {
-            startEditing()
-        }
-        return true
+    private func contentOffsetForItem(at index: Index, scrollView: UIScrollView) -> CGPoint {
+        let x = -collectionView.contentInset.left + (CGFloat(index) * (cellWidth + cellSpacing))
+        let y = -collectionView.contentInset.top
+        return CGPoint(x: x, y: y)
     }
 }
 
-// MARK: - ImagePickerDelegate
+extension PartnersViewController: PartnerCellDelegate {
+
+    func willStartEditing(in cell: PartnerCell) {
+        guard let index = collectionView.indexPath(for: cell)?.item else { return }
+        scrollToItemAtIndex(index)
+    }
+
+    func didStartEditing(in cell: PartnerCell) {
+        guard let index = collectionView.indexPath(for: cell)?.item else { return }
+        startEditing(index: index)
+    }
+
+    func didTapDone(in cell: PartnerCell) {
+        stopEditing()
+    }
+
+    func didTapEditPhoto(in cell: PartnerCell) {
+        imagePickerController?.show(in: self)
+    }
+}
 
 extension PartnersViewController: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
-        let partner = partners[selectedIndex]
+        guard let index = page(contentOffset: collectionView.contentOffset) else { return }
+        let partner = partners[index]
         interactor?.updateImage(image, partner: partner)
-        carousel.reloadData()
     }
 }
 
-extension PartnersViewController: CarouselCellViewDelegate {
+/*
+ We use this in the xib. It stops the collection view from auto scrolling to visible when a UITextField becomes first
+ responder and from randomly hiding the keyboard.\
+ */
+final class PartnersCollectionView: UICollectionView {
 
-    func didTapChangePicture(cell: CarouselCellView) {
-        imagePickerController?.show(in: self)
+    override func scrollRectToVisible(_ rect: CGRect, animated: Bool) {
+        // Do nothing
     }
 }

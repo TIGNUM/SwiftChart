@@ -22,6 +22,10 @@ final class PartnersRouter: NSObject, PartnersRouterInterface {
         viewController.showAlert(type: alert)
     }
 
+    func showAlert(_ alert: UIAlertController) {
+        viewController.present(alert, animated: true)
+    }
+
     func showShare(partner: Partners.Partner) {
         guard let name = partner.name, let email = partner.email else {
             assertionFailure("partner must have name and email if this method is called")
@@ -43,4 +47,3 @@ final class PartnersRouter: NSObject, PartnersRouterInterface {
         viewController.dismiss(animated: true, completion: nil)
     }
 }
-

@@ -34,12 +34,30 @@ final class PartnersInteractor: PartnersInteractorInterface {
         }
     }
 
-    func didTapShare(partner: Partners.Partner) {
+    func didTapShare(partner: Partners.Partner, in partners: [Partners.Partner]) {
+        worker.savePartners(partners)
         router.showShare(partner: partner)
     }
 
     func didTapClose(partners: [Partners.Partner]) {
-        worker.savePartners(partners)
-        router.dismiss()
+        let incompletePartners = partners.filter({ $0.isValid == false && $0.isEmpty == false })
+        if incompletePartners.isEmpty {
+            worker.savePartners(partners)
+            router.dismiss()
+        } else {
+            let title = R.string.localized.partnersAlertImcompleteTitle()
+            let message = R.string.localized.partnersAlertImcompleteMessage()
+            let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+            let cancelTitle = R.string.localized.alertButtonTitleCancel()
+            let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel, handler: nil)
+            let continueTitle = R.string.localized.alertButtonTitleContinue()
+            let continueAction = UIAlertAction(title: continueTitle, style: .destructive) { [weak self] (action) in
+                self?.worker.savePartners(partners)
+                self?.router.dismiss()
+            }
+            alert.addAction(cancelAction)
+            alert.addAction(continueAction)
+            router.showAlert(alert)
+        }
     }
 }

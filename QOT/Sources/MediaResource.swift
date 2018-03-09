@@ -41,7 +41,8 @@ final class MediaResource: Object {
     }
 
     var url: URL? {
-        return remoteURL ?? localURL
+        // We must always prefer localURL over remtoteURL. Once a local image has been uploaded localURL is set to nil.
+        return localURL ?? remoteURL
     }
 
     func setLocalURL(_ localURL: URL, format: Format, entity: Entity, entitiyLocalID: String) {

@@ -12,7 +12,6 @@ target 'QOT' do
   pod 'R.swift'
   pod 'Kingfisher', '~> 3.6'
   pod 'LoremIpsum'
-  pod 'iCarousel'
   pod 'RealmSwift'
   pod 'Freddy'
   pod 'Alamofire'

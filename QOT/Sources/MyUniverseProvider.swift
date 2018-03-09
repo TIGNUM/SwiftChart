@@ -57,7 +57,8 @@ final class MyUniverseProvider {
 
     private func fetchViewData() -> MyUniverseViewData {
         let myToBeVision = services.userService.myToBeVision()
-        let realmPartners = services.partnerService.lastModifiedPartnersSortedByCreatedAtAscending(maxCount: 3)
+        let realmPartners =
+            services.partnerService.lastModifiedPartnersSortedByCreatedAtAscending(maxCount: 3).filter { $0.isValid }
         let dataPartners = realmPartners.map { (realmPartner) -> MyUniverseViewData.Partner in
             let url = realmPartner.profileImageResource?.url
             return MyUniverseViewData.Partner(imageURL: url, initials: realmPartner.initials.uppercased())

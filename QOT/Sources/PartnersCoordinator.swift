@@ -31,7 +31,7 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
     func start() {
         let configurator = PartnersConfigurator.make()
         let partnersViewController = PartnersViewController(configure: configurator)
-        partnersViewController.title = R.string.localized.meSectorMyWhyPartnersTitle()
+        partnersViewController.title = R.string.localized.meSectorMyWhyPartnersTitle().uppercased()
         let navController = UINavigationController(rootViewController: partnersViewController)
         navController.navigationBar.applyDefaultStyle()
         navController.modalPresentationStyle = .custom

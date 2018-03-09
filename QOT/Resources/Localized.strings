@@ -216,6 +216,7 @@
 "Alert.Message.Unknown" = "An unexpected error has occured. Please try again later.";
 "Alert.Button.Title.Ok" = "OK";
 "Alert.Button.Title.Cancel" = "Cancel";
+"Alert.Button.Title.Continue" = "Continue";
 "Alert.Button.Title.Save" = "Save";
 "Alert.Button.Title.Open.Settings" = "Open Settings";
 "Alert.Title.LocationServices" = "Location Services";
@@ -309,3 +310,6 @@
 
 "SlideShow.CompletePrompt.Title" = "Great job! You have finished the on-boarding.";
 "SlideShow.CompletePrompt.DoneButtonTitle" = "Start QOT";
+
+"Partners.Alert.Imcomplete.Title" = "Incomplete Partners";
+"Partners.Alert.Imcomplete.Message" = "Every partner requires a 'Name', 'Surname' and 'Email. Continue and discard changes to incomplete partners?";

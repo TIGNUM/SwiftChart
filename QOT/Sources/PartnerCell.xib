@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="PartnerCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="189" height="264"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="189" height="264"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JZJ-qe-M9b">
+                        <rect key="frame" x="0.0" y="144" width="175" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="J2J-Ik-fn3"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done" textContentType="given-name"/>
+                        <connections>
+                            <action selector="didEditTextField:" destination="gTV-IL-0wX" eventType="editingChanged" id="Xwk-fM-tTg"/>
+                            <outlet property="delegate" destination="gTV-IL-0wX" id="xWE-bB-86M"/>
+                        </connections>
+                    </textField>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0XX-9E-sHW">
+                        <rect key="frame" x="0.0" y="169" width="175" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="DPx-BV-FxQ"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done" textContentType="family-name"/>
+                        <connections>
+                            <action selector="didEditTextField:" destination="gTV-IL-0wX" eventType="editingChanged" id="r2k-Kl-5J5"/>
+                            <outlet property="delegate" destination="gTV-IL-0wX" id="vbV-ca-YRA"/>
+                        </connections>
+                    </textField>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ORj-ah-vq0">
+                        <rect key="frame" x="0.0" y="204" width="175" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="FvP-YH-TK5"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
+                        <connections>
+                            <action selector="didEditTextField:" destination="gTV-IL-0wX" eventType="editingChanged" id="5y3-Q1-y4b"/>
+                            <outlet property="delegate" destination="gTV-IL-0wX" id="Cuc-AC-6sQ"/>
+                        </connections>
+                    </textField>
+                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Y6t-2o-FNL">
+                        <rect key="frame" x="0.0" y="239" width="175" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="25" id="muc-io-DcN"/>
+                        </constraints>
+                        <nil key="textColor"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <textInputTraits key="textInputTraits" returnKeyType="done" textContentType="email"/>
+                        <connections>
+                            <action selector="didEditTextField:" destination="gTV-IL-0wX" eventType="editingChanged" id="DGS-2D-PlJ"/>
+                            <outlet property="delegate" destination="gTV-IL-0wX" id="ECb-tu-97a"/>
+                        </connections>
+                    </textField>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_edit" translatesAutoresizingMaskIntoConstraints="NO" id="ec3-gF-j2q">
+                        <rect key="frame" x="179" y="151.5" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="a6k-BS-zET"/>
+                            <constraint firstAttribute="height" constant="10" id="aIZ-9H-byp"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_edit" translatesAutoresizingMaskIntoConstraints="NO" id="k3j-eK-wHK">
+                        <rect key="frame" x="179" y="176.5" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="4Pu-ik-doN"/>
+                            <constraint firstAttribute="height" constant="10" id="eMP-TG-U6r"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_edit" translatesAutoresizingMaskIntoConstraints="NO" id="8fe-eG-13W">
+                        <rect key="frame" x="179" y="211.5" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="WBh-g8-GKg"/>
+                            <constraint firstAttribute="height" constant="10" id="fRs-LH-8KN"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_edit" translatesAutoresizingMaskIntoConstraints="NO" id="BtJ-21-AhG">
+                        <rect key="frame" x="179" y="246.5" width="10" height="10"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="10" id="3iu-Y3-fA4"/>
+                            <constraint firstAttribute="height" constant="10" id="Lze-Ej-lA4"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ayR-Gr-ekI" customClass="PartnerProfileView" customModule="QOT" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="111" height="129"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="width" secondItem="ayR-Gr-ekI" secondAttribute="height" multiplier="0.86" id="EMd-cq-KzM"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAG-b8-1Gt">
+                        <rect key="frame" x="55.5" y="64.5" width="0.0" height="0.0"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wce-DI-AVv">
+                        <rect key="frame" x="0.0" y="0.0" width="111" height="129"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                        <state key="normal" title="Add Photo">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="didTapEditProfileImage:" destination="gTV-IL-0wX" eventType="touchUpInside" id="cek-MO-nfY"/>
+                        </connections>
+                    </button>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="wce-DI-AVv" firstAttribute="top" secondItem="ayR-Gr-ekI" secondAttribute="top" id="1T9-k7-0T5"/>
+                <constraint firstItem="BtJ-21-AhG" firstAttribute="centerY" secondItem="Y6t-2o-FNL" secondAttribute="centerY" id="1bY-9l-jkc"/>
+                <constraint firstItem="JZJ-qe-M9b" firstAttribute="top" secondItem="ayR-Gr-ekI" secondAttribute="bottom" constant="15" id="2l8-r3-4oa"/>
+                <constraint firstAttribute="trailing" secondItem="ORj-ah-vq0" secondAttribute="trailing" constant="14" id="5Sq-7Q-VRZ"/>
+                <constraint firstItem="k3j-eK-wHK" firstAttribute="centerY" secondItem="0XX-9E-sHW" secondAttribute="centerY" id="6c5-y3-Myc"/>
+                <constraint firstItem="wce-DI-AVv" firstAttribute="leading" secondItem="ayR-Gr-ekI" secondAttribute="leading" id="8Lc-gW-CvV"/>
+                <constraint firstItem="ayR-Gr-ekI" firstAttribute="top" relation="greaterThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="top" id="AhO-n8-QFm"/>
+                <constraint firstAttribute="trailing" secondItem="Y6t-2o-FNL" secondAttribute="trailing" constant="14" id="C8a-5e-SB5"/>
+                <constraint firstItem="wce-DI-AVv" firstAttribute="bottom" secondItem="ayR-Gr-ekI" secondAttribute="bottom" id="CXJ-OY-5EG"/>
+                <constraint firstAttribute="trailing" secondItem="JZJ-qe-M9b" secondAttribute="trailing" constant="14" id="DvD-qf-MFN"/>
+                <constraint firstItem="JZJ-qe-M9b" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="IyS-vO-4c6"/>
+                <constraint firstItem="bAG-b8-1Gt" firstAttribute="centerX" secondItem="ayR-Gr-ekI" secondAttribute="centerX" id="JIX-0j-JEo"/>
+                <constraint firstAttribute="bottom" secondItem="Y6t-2o-FNL" secondAttribute="bottom" id="Jqc-9c-Q73"/>
+                <constraint firstAttribute="trailing" secondItem="ayR-Gr-ekI" secondAttribute="trailing" priority="750" constant="14" id="KZU-R3-VL1"/>
+                <constraint firstAttribute="trailing" secondItem="k3j-eK-wHK" secondAttribute="trailing" id="Lhl-W6-9DW"/>
+                <constraint firstItem="ORj-ah-vq0" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="QrC-nJ-vWf"/>
+                <constraint firstItem="ORj-ah-vq0" firstAttribute="top" secondItem="0XX-9E-sHW" secondAttribute="bottom" constant="10" id="RXt-is-9a9"/>
+                <constraint firstItem="0XX-9E-sHW" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="SOf-or-x3a"/>
+                <constraint firstAttribute="trailing" secondItem="0XX-9E-sHW" secondAttribute="trailing" constant="14" id="SwG-u4-viE"/>
+                <constraint firstAttribute="trailing" secondItem="ec3-gF-j2q" secondAttribute="trailing" id="TFI-cH-HSV"/>
+                <constraint firstAttribute="trailing" secondItem="8fe-eG-13W" secondAttribute="trailing" id="TTI-ws-LcC"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="ayR-Gr-ekI" secondAttribute="trailing" constant="14" id="UlB-xZ-9kK"/>
+                <constraint firstItem="Y6t-2o-FNL" firstAttribute="top" secondItem="ORj-ah-vq0" secondAttribute="bottom" constant="10" id="Yg5-F3-vhL"/>
+                <constraint firstItem="Y6t-2o-FNL" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="ctk-Bn-OSR"/>
+                <constraint firstItem="0XX-9E-sHW" firstAttribute="top" secondItem="JZJ-qe-M9b" secondAttribute="bottom" id="eJC-Fv-udG"/>
+                <constraint firstItem="8fe-eG-13W" firstAttribute="centerY" secondItem="ORj-ah-vq0" secondAttribute="centerY" id="kaa-Fj-hdf"/>
+                <constraint firstItem="ayR-Gr-ekI" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="nu9-EW-TDU"/>
+                <constraint firstItem="ec3-gF-j2q" firstAttribute="centerY" secondItem="JZJ-qe-M9b" secondAttribute="centerY" id="oDW-aY-RTg"/>
+                <constraint firstAttribute="trailing" secondItem="BtJ-21-AhG" secondAttribute="trailing" id="qwJ-0Q-9SW"/>
+                <constraint firstItem="bAG-b8-1Gt" firstAttribute="centerY" secondItem="ayR-Gr-ekI" secondAttribute="centerY" id="tMW-V9-DZs"/>
+                <constraint firstItem="wce-DI-AVv" firstAttribute="trailing" secondItem="ayR-Gr-ekI" secondAttribute="trailing" id="yv1-5E-BKs"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="189" height="264"/>
+            <connections>
+                <outlet property="editProfileImageButton" destination="wce-DI-AVv" id="Zx8-9S-Z1j"/>
+                <outlet property="emailTextField" destination="Y6t-2o-FNL" id="pH6-wt-76N"/>
+                <outlet property="familyNameTextField" destination="0XX-9E-sHW" id="JYJ-mp-73Y"/>
+                <outlet property="givenNameTextField" destination="JZJ-qe-M9b" id="JtK-2V-Tyo"/>
+                <outlet property="initialsLabel" destination="bAG-b8-1Gt" id="8gt-77-aEU"/>
+                <outlet property="profileImageView" destination="ayR-Gr-ekI" id="0pX-cF-S25"/>
+                <outlet property="relationshipTextField" destination="ORj-ah-vq0" id="nNg-h0-hoX"/>
+                <outletCollection property="editIconImageViews" destination="ec3-gF-j2q" collectionClass="NSMutableArray" id="8NX-O4-bGv"/>
+                <outletCollection property="editIconImageViews" destination="8fe-eG-13W" collectionClass="NSMutableArray" id="3QN-mW-UW6"/>
+                <outletCollection property="editIconImageViews" destination="BtJ-21-AhG" collectionClass="NSMutableArray" id="Utx-us-NOz"/>
+                <outletCollection property="editIconImageViews" destination="k3j-eK-wHK" collectionClass="NSMutableArray" id="yAC-l9-dCo"/>
+            </connections>
+            <point key="canvasLocation" x="-138.5" y="-77"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_edit" width="23" height="22"/>
+    </resources>
+</document>
