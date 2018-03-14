@@ -42,6 +42,7 @@ enum URLScheme: String {
     case library = "library"
     case guide = "guide"
     case latestWhatsHotArticle = "latest-whats-hot-article"
+    case contentItem = "contentItem"
 
     var queryName: String {
         switch self {
@@ -49,6 +50,7 @@ enum URLScheme: String {
         case .dailyPrep: return "groupID"
         case .preparation: return "#"
         case .randomContent,
+             .contentItem,
              .featureExplainer: return "contentID"
         case .contentCategory: return "collectionID"
         case .weeklyChoices,

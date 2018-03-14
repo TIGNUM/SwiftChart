@@ -899,6 +899,24 @@ extension AppCoordinator {
 
     }
 
+    func presentContentItem(contentID: Int, searchViewController: SearchViewController?) {
+        guard
+            let searchViewController = searchViewController,
+            let services = services,
+            let content = services.contentService.contentCollection(id: contentID),
+            let coordinator = ArticleContentItemCoordinator(pageName: .featureExplainer,
+                                                            root: searchViewController,
+                                                            services: services,
+                                                            contentCollection: content,
+                                                            articleHeader: ArticleCollectionHeader(content: content),
+                                                            topTabBarTitle: nil,
+                                                            shouldPush: false,
+                                                            isSearch: true) else { return }
+        startChild(child: coordinator)
+        topTabBarController = coordinator.topTabBarController
+        currentPresentedNavigationController = coordinator.topTabBarController
+    }
+
     func presentLearnContentCollection(collectionID: String?) {
         guard
             let rootViewController = windowManager.rootViewController(atLevel: .normal),

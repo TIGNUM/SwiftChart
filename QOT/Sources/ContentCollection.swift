@@ -73,7 +73,7 @@ final class ContentCollection: SyncableObject {
             let min = String(Int(total))
             durationString = R.string.localized.learnContentListViewMinutesLabelWatch(min)
         } else {
-            let min = String(minutesToRead)
+            let min = String(max(minutesToRead, 1))
             durationString = R.string.localized.learnContentListViewMinutesLabel(min)
         }
 

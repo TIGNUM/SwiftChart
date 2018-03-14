@@ -10,6 +10,7 @@
 "learn.category-list-view.title" = "Categories";
 "learn.content-list-view.minutes-label" = "%@ MIN TO READ";
 "learn.content-list-view.minutes-label-watch" = "%@ MIN TO WATCH";
+"learn.content-list-view.minutes-label-listen" = "%@ MIN TO LISTEN";
 
 "Settings.Tutorial.Reset.Title" = "Tutorial reset";
 
@@ -43,6 +44,7 @@
 "Settings.Security.Copyrights.Title" = "Content And Copyrights";
 "Settings.Security.Privacy.Policy.Title" = "Privacy Policy";
 
+"Sidebar.Title.Search" = "Search";
 "Sidebar.Title.Tools" = "QOT TOOLS";
 "Sidebar.Title.Benefits" = "QOT Benefits";
 "Sidebar.Title.Settings" = "Settings";

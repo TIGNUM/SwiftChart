@@ -38,6 +38,26 @@ final class ContentService {
         }
     }
 
+    func searchContentCollections() -> Results<ContentCollection> {
+        let library = Database.Section.library.rawValue
+        let tools = Database.Section.tools.rawValue
+        let learnStrategy = Database.Section.learnStrategy.rawValue
+        let whatsHot = Database.Section.learnWhatsHot.rawValue
+
+        let predicate = NSPredicate(format: "section == %@ || section == %@ || section == %@ || section == %@", library, tools, learnStrategy, whatsHot)
+        return mainRealm.objects(ContentCollection.self).filter(predicate)
+    }
+
+    func contentItemsAudio() -> Results<ContentItem> {
+        let audioFormat = "audio"
+        return mainRealm.objects(ContentItem.self).filter(NSPredicate(format: "format == %@", audioFormat))
+    }
+
+    func contentItemsVideo() -> Results<ContentItem> {
+        let videoFormat = "video"
+        return mainRealm.objects(ContentItem.self).filter(NSPredicate(format: "format == %@", videoFormat))
+    }
+
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
         return mainRealm.contentCategories(section: .library)
     }

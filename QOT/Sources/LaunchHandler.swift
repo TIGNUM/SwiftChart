@@ -19,7 +19,10 @@ final class LaunchHandler {
         return URLScheme.isSupportedURL(url)
     }
 
-    func process(url: URL, notificationID: String = "", guideItem: Guide.Item? = nil) {
+    func process(url: URL,
+                 notificationID: String = "",
+                 guideItem: Guide.Item? = nil,
+                 searchViewController: SearchViewController? = nil) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else { return }
 
         switch scheme {
@@ -56,6 +59,7 @@ final class LaunchHandler {
         case .library: appDelegate.appCoordinator.presentLibrary()
         case .guide: navigate(to: scheme.destination)
         case .latestWhatsHotArticle: navigate(to: scheme.destination)
+        case .contentItem: contentItem(url: url, scheme: scheme, searchViewController: searchViewController)
         }
     }
 
@@ -237,6 +241,13 @@ extension LaunchHandler {
             let guideItem = guideItem,
             let contentIDString = scheme.queryParametter(url: url),
             let contentID = Int(contentIDString) else { return }
-        appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID, guideItem: guideItem)
+                appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID, guideItem: guideItem)
+    }
+
+    func contentItem(url: URL, scheme: URLScheme, searchViewController: SearchViewController?) {
+        guard
+            let contentIDString = scheme.queryParametter(url: url),
+            let contentID = Int(contentIDString) else { return }
+        appDelegate.appCoordinator.presentContentItem(contentID: contentID, searchViewController: searchViewController)
     }
 }

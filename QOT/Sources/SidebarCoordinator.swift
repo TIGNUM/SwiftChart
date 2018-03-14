@@ -58,6 +58,16 @@ final class SidebarCoordinator: ParentCoordinator {
 
 extension SidebarCoordinator: SidebarViewControllerDelegate {
 
+    func didTapSearchCell(in viewController: SidebarViewController) {
+        let configurator = SearchConfigurator.make()
+        let searchViewController = SearchViewController(configure: configurator)
+        let navController = UINavigationController(rootViewController: searchViewController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .custom
+        viewController.pushToStart(childViewController: searchViewController)
+    }
+
     func didTapIntroSlidersCell(in viewController: SidebarViewController) {
         let slideShowViewController = SlideShowViewController(configure: SlideShowConfigurator.makeModal())
         viewController.present(slideShowViewController, animated: true, completion: nil)

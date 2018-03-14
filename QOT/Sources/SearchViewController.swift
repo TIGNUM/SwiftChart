@@ -7,39 +7,50 @@
 //
 
 import UIKit
-import Anchorage
 
-final class SearchViewController: UIViewController {
+final class SearchViewController: UIViewController, SearchViewControllerInterface {
 
-    private let viewModel = SearchViewModel()
+    var interactor: SearchInteractorInterface?
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    private var searchBar = UISearchBar()
+    private var searchResults = [Search.Result]()
+    private var searchFilter = Search.Filter.all
+    private var searchText = ""
 
-    private lazy var collectionView: UICollectionView = {
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.sectionInset = UIEdgeInsets(top: 0, left: 55, bottom: 10, right: 0)
+    init(configure: Configurator<SearchViewController>) {
+        super.init(nibName: nil, bundle: nil)
+        configure(self)
+    }
 
-        return UICollectionView(
-            layout: layout,
-            delegate: self,
-            dataSource: self,
-            dequeables: SearchCollectionCell.self
-        )
-    }()
-
-    private lazy var tableView: UITableView = {
-        return UITableView(
-            estimatedRowHeight: 85,
-            delegate: self,
-            dataSource: self,
-            dequeables: SearchTableCell.self
-        )
-    }()
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setUpHierarchy()
-        setupLayout()
+        setupSegementedControl()
+        setupSearchBar()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        searchBar.alpha = 1
+        searchBar.becomeFirstResponder()
+        tableView.register(R.nib.searchTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.searchTableViewCell_Identifier.identifier)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        searchBar.alpha = 0
+    }
+
+    func reload(_ searchResults: [Search.Result]) {
+        self.searchResults = searchResults
+        tableView.isUserInteractionEnabled = searchResults.isEmpty == false
+        tableView.reloadData()
     }
 }
 
@@ -47,58 +58,130 @@ final class SearchViewController: UIViewController {
 
 private extension SearchViewController {
 
-    func setUpHierarchy() {
-        view.addSubview(collectionView)
-        view.addSubview(tableView)
+    func setupSegementedControl() {
+        segmentedControl.tintColor = .clear
+        segmentedControl.backgroundColor = .clear
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: Font.H8Title,
+                                                 NSAttributedStringKey.foregroundColor: UIColor.white60],
+                                                for: .normal)
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: Font.H8Title,
+                                                 NSAttributedStringKey.foregroundColor: UIColor.white90],
+                                                for: .selected)
     }
 
-    func setupLayout() {
-        collectionView.topAnchor == view.topAnchor + 60
-        collectionView.heightAnchor == 90
-        collectionView.horizontalAnchors == view.horizontalAnchors
-
-        tableView.leftAnchor == collectionView.leftAnchor + 53
-        tableView.rightAnchor == collectionView.rightAnchor
-        tableView.bottomAnchor == view.bottomAnchor + 26
-        tableView.topAnchor == view.topAnchor + 100
-
-        view.layoutIfNeeded()
-    }
-}
-
-// MARK: Delegate and DataSource For Collection View
-
-extension SearchViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDataSource {
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return viewModel.headerItems.count
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel.headerItems[indexPath.item]
-        let cell: SearchCollectionCell = collectionView.dequeueCell(for: indexPath)
-        cell.backgroundColor = .clear
-        cell.setUp(title: item)
-        return cell
-    }
-
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 60, height: 80)
+    func setupSearchBar() {
+        let searchBar = UISearchBar()
+        searchBar.sizeToFit()
+        searchBar.tintColor = .white
+        searchBar.keyboardAppearance = .dark
+        searchBar.barTintColor = .clear
+        searchBar.changeSearchBarColor(color: .clear)
+        searchBar.delegate = self
+        navigationItem.titleView = searchBar
+        self.searchBar = searchBar
     }
 }
 
-// MARK: Delegate and DataSource For Table View
+// MARK: - Actions
+
+extension SearchViewController {
+
+    @IBAction func close(_ sender: UIButton) {
+        interactor?.didTapClose()
+    }
+
+    @IBAction func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
+        searchFilter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
+        updateSearchResults()
+    }
+}
+
+// MARK: - UISearchBarDelegate
+
+extension SearchViewController: UISearchBarDelegate {
+
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        self.searchText = searchText
+        updateSearchResults()
+    }
+
+    func updateSearchResults() {
+        interactor?.didChangeSearchText(searchText: searchText, searchFilter: searchFilter)
+    }
+
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        guard searchBar.text?.isEmpty == false else { return }
+        searchBar.endEditing(true)
+    }
+}
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.data.count
+        if searchResults.isEmpty == false {
+            return searchResults.count
+        } else if searchResults.isEmpty == true && searchText.isEmpty == false {
+            return 1
+        }
+
+        return 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.data[indexPath.item]
-        let cell: SearchTableCell = tableView.dequeueCell(for: indexPath)
-        cell.backgroundColor = .clear
-        cell.setUp(title: item.title, media: item.subtitle, duration: item.duration)
-        return cell
+        let identifier = R.reuseIdentifier.searchTableViewCell_Identifier.identifier
+        guard let searchCell = tableView.dequeueReusableCell(withIdentifier: identifier,
+                                                             for: indexPath) as? SearchTableViewCell else {
+            fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
+        }
+
+        if searchResults.isEmpty == true && searchText.isEmpty == false {
+            searchCell.configure(title: R.string.localized.alertTitleNoContent(), contentType: nil, duration: nil)
+        } else {
+            let result = searchResults[indexPath.row]
+            searchCell.configure(title: result.title, contentType: result.displayType.rawValue, duration: result.duration)
+        }
+        return searchCell
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 80
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let selectedSearchResult = searchResults[indexPath.row]
+        switch selectedSearchResult.type {
+        case .all: interactor?.handleSelection(searchResult: selectedSearchResult)
+        case .audio,
+             .video:
+            if let url = selectedSearchResult.mediaURL {
+                streamVideo(videoURL: url)
+            }
+        }
+    }
+}
+
+private extension UISearchBar {
+
+    func changeSearchBarColor(color: UIColor) {
+        UIGraphicsBeginImageContext(frame.size)
+        color.setFill()
+        UIBezierPath(rect: frame).fill()
+        let bgImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
+
+        setSearchFieldBackgroundImage(bgImage, for: .normal)
+        setBackgroundImage(bgImage, for: .any, barMetrics: .default)
+
+        for view in subviews {
+            for subview in view.subviews {
+                if let textField = subview as? UITextField {
+                    textField.backgroundColor = color
+                    textField.textColor = .white
+                }
+            }
+        }
     }
 }

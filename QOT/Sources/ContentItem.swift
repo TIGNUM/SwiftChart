@@ -45,6 +45,17 @@ final class ContentItem: SyncableObject {
         return Int(valueDuration.value ?? 0.0)
     }
 
+    var durationString: String {
+        let min = (secondsRequired / 60)
+        if format == "video" {
+            return R.string.localized.learnContentListViewMinutesLabelWatch(String(format: "%d", max(min, 1)))
+        }
+        if format == "audio" {
+            return R.string.localized.learnContentListViewMinutesLabelListen(String(format: "%d", max(min, 1)))
+        }
+        return ""
+    }
+
     // MARK: Relationships
 
     @objc private(set) dynamic var contentCollection: ContentCollection?

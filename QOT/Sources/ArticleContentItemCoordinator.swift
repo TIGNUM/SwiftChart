@@ -21,6 +21,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     private var viewModel: ArticleItemViewModel
     private let rootViewController: UIViewController
     private let shouldPush: Bool
+    private let isSearch: Bool
     private let guideItem: Guide.Item?
     let pageName: PageName
     var children: [Coordinator] = []
@@ -35,6 +36,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
           topTabBarTitle: String?,
           backgroundImage: UIImage? = nil,
           shouldPush: Bool = true,
+          isSearch: Bool = false,
           contentInsets: UIEdgeInsets = UIEdgeInsets(top: 53, left: 0, bottom: 0, right: 0),
           guideItem: Guide.Item? = nil) {
         guard let contentCollection = contentCollection else { return nil }
@@ -46,6 +48,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         self.selectedContent = contentCollection
         self.topTabBarTitle = topTabBarTitle
         self.shouldPush = shouldPush
+        self.isSearch = isSearch
         self.guideItem = guideItem
         let articleItems = Array(contentCollection.articleItems)
         viewModel = ArticleItemViewModel(services: services,
@@ -71,10 +74,10 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
 
     func start() {
         guard selectedContent != nil else { return }
-
-        if shouldPush == false,
-            let navigationController = topTabBarController {
-                rootViewController.present(navigationController, animated: true)
+        if isSearch == true {
+            rootViewController.pushToStart(childViewController: fullViewController)
+        } else if shouldPush == false, let navigationController = topTabBarController {
+            rootViewController.present(navigationController, animated: true)
         } else {
             rootViewController.pushToStart(childViewController: fullViewController)
         }

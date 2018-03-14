@@ -12,6 +12,8 @@ import Anchorage
 
 protocol SidebarViewControllerDelegate: class {
 
+    func didTapSearchCell(in viewController: SidebarViewController)
+
     func didTapLibraryCell(in viewController: SidebarViewController)
 
     func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
@@ -78,7 +80,6 @@ private extension SidebarViewController {
     func setupView() {
         view.addSubview(tableView)
         view.addSubview(versionLabel)
-        tableView.bounces = false
         tableView.topAnchor == view.topAnchor + 50
         tableView.bottomAnchor == view.bottomAnchor - 20
         tableView.horizontalAnchors == view.horizontalAnchors
@@ -125,6 +126,7 @@ private extension SidebarViewController {
         guard let sidebarItem = sidebarItem else { return }
 
         switch sidebarItem {
+        case .search: delegate?.didTapSearchCell(in: self)
         case .about: delegate?.didTapAboutCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .benefits: delegate?.didTapBenefitsCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .tools: delegate?.didTapLibraryCell(in: self)
