@@ -101,6 +101,7 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var infoScrollBottomFadeView: UIVisualEffectView!
     @IBOutlet private weak var infoViewTextLabel: UILabel!
     @IBOutlet private weak var infoViewCloseButton: UIButton!
+    @IBOutlet private weak var infoVieNavigationButton: UIButton!
     @IBOutlet private weak var addSenorView: UIView!
     @IBOutlet private weak var addSenorViewLabel: UILabel!
     @IBOutlet private weak var overlayView: UIView!
@@ -112,6 +113,7 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var headerLabelTrailingConstraint: NSLayoutConstraint!
     weak var delegate: ChartCellDelegate?
     private var selectedButtonTag = 0
+    private var infoViewDestination: AppCoordinator.Router.Destination?
     private var chartTypes = [ChartType]()
     private var statistics: Statistics?
     private var charts: [Statistics] = []
@@ -225,6 +227,7 @@ private extension ChartCell {
         setupLabels(headerTitle: headerTitle, statistics: statistics, charts: charts)
         addCharts(statistics: statistics, allCards: charts)
         setupInfoView()
+        setupInfoViewNavigationButton()
     }
 
     func setupSegmentedView(_ cardType: ChartType) {
@@ -442,6 +445,10 @@ private extension ChartCell {
         }
     }
 
+    @IBAction func infoNavigationButtonPressed(_ sender: UIButton) {
+        LaunchHandler().navigatToSideBar(with: infoViewDestination)
+    }
+
     @IBAction func closeInfoView() {
         UIView.animate(withDuration: 0.5) {
             self.infoView.alpha = 0
@@ -513,10 +520,29 @@ private extension ChartCell {
         let font = configuration.infoFont
         let lineSpacing = configuration.infoLineSpacing
         let characterSpacing = configuration.infoCharacterSpacing
-        infoViewTextLabel.setAttrText(text: infoText, font: font, lineSpacing: lineSpacing, characterSpacing: characterSpacing, color: .white)
-        infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white30).attributedString(lineSpacing: 2), for: .normal)
-        infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white50).attributedString(lineSpacing: 2), for: .selected)
+        infoViewTextLabel.setAttrText(text: infoText,
+                                      font: font,
+                                      lineSpacing: lineSpacing,
+                                      characterSpacing: characterSpacing,
+                                      color: .white)
+        infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white30).attributedString(lineSpacing: 2),
+                                               for: .normal)
+        infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white50).attributedString(lineSpacing: 2),
+                                               for: .selected)
         infoScrollBottomFadeView.setFadeMask(at: .top, height: infoScrollBottomFadeView.bounds.height/3)
+    }
+
+    func setupInfoViewNavigationButton() {
+        infoVieNavigationButton.isHidden = true
+        guard
+            let destination = statistics?.chartType.infoViewNavigation,
+            let buttonTitle = statistics?.chartType.infoViewNavigationButtonTitle?.uppercased() else { return }
+        infoVieNavigationButton.isHidden = false
+        infoVieNavigationButton.setAttributedTitle(Style.tag(buttonTitle, .white30).attributedString(lineSpacing: 2),
+                                                   for: .normal)
+        infoVieNavigationButton.setAttributedTitle(Style.tag(buttonTitle, .white50).attributedString(lineSpacing: 2),
+                                                   for: .selected)
+        infoViewDestination = destination
     }
 }
 

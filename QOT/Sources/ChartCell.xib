@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -34,7 +34,7 @@
                         <rect key="frame" x="11" y="0.0" width="278" height="42"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7E-AJ-iMP">
-                                <rect key="frame" x="0.0" y="12" width="254" height="33"/>
+                                <rect key="frame" x="0.0" y="12" width="254" height="26.5"/>
                                 <string key="text">sleep quantity average
 for the last 5 days</string>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="14"/>
@@ -400,7 +400,7 @@ Label</string>
                                     </view>
                                     <blurEffect style="dark"/>
                                 </visualEffectView>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0e-fo-1y6">
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Y0e-fo-1y6">
                                     <rect key="frame" x="16" y="394" width="46" height="28"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="28" id="Dt7-CH-9HI"/>
@@ -410,14 +410,28 @@ Label</string>
                                         <action selector="closeInfoView" destination="3zg-UQ-ju6" eventType="touchUpInside" id="ZTm-zb-E0p"/>
                                     </connections>
                                 </button>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aTn-lN-P5r">
+                                    <rect key="frame" x="94" y="394" width="193" height="28"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="28" id="gNt-Ak-SQp"/>
+                                    </constraints>
+                                    <state key="normal" title="Button"/>
+                                    <connections>
+                                        <action selector="closeInfoView" destination="3zg-UQ-ju6" eventType="touchUpInside" id="J81-ST-qWZ"/>
+                                        <action selector="infoNavigationButtonPressed:" destination="3zg-UQ-ju6" eventType="touchUpInside" id="o5t-6J-641"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="bottom" secondItem="wsq-50-Ng3" secondAttribute="bottom" id="2wU-xR-hUf"/>
                                 <constraint firstAttribute="bottom" secondItem="Y0e-fo-1y6" secondAttribute="bottom" constant="8" id="BnH-Z2-5c9"/>
                                 <constraint firstItem="JgH-G2-kve" firstAttribute="leading" secondItem="wsq-50-Ng3" secondAttribute="leading" id="CZL-n6-Z06"/>
+                                <constraint firstAttribute="bottom" secondItem="aTn-lN-P5r" secondAttribute="bottom" constant="8" id="EcP-5j-NAP"/>
                                 <constraint firstItem="wsq-50-Ng3" firstAttribute="top" secondItem="Icu-aw-L2S" secondAttribute="top" id="FUN-5s-oRq"/>
                                 <constraint firstItem="JgH-G2-kve" firstAttribute="bottom" secondItem="wsq-50-Ng3" secondAttribute="bottom" id="JDg-kz-dBG"/>
                                 <constraint firstAttribute="trailing" secondItem="wsq-50-Ng3" secondAttribute="trailing" id="NR1-9J-rbi"/>
+                                <constraint firstItem="aTn-lN-P5r" firstAttribute="leading" secondItem="Y0e-fo-1y6" secondAttribute="trailing" constant="32" id="OIY-WH-esy"/>
+                                <constraint firstAttribute="trailing" secondItem="aTn-lN-P5r" secondAttribute="trailing" constant="32" id="Qi8-oY-402"/>
                                 <constraint firstItem="JgH-G2-kve" firstAttribute="trailing" secondItem="wsq-50-Ng3" secondAttribute="trailing" id="hqs-VA-x9s"/>
                                 <constraint firstItem="wsq-50-Ng3" firstAttribute="leading" secondItem="Icu-aw-L2S" secondAttribute="leading" id="obI-8a-deo"/>
                                 <constraint firstItem="Y0e-fo-1y6" firstAttribute="leading" secondItem="Icu-aw-L2S" secondAttribute="leading" constant="16" id="rl6-IU-oJl"/>
@@ -436,7 +450,7 @@ Label</string>
                                 <rect key="frame" x="0.0" y="0.0" width="319" height="430"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMING SOON" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGM-Rk-USG">
-                                        <rect key="frame" x="61.5" y="200.5" width="195.5" height="28"/>
+                                        <rect key="frame" x="80" y="200" width="158.5" height="29"/>
                                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -535,6 +549,7 @@ see this card</string>
                 <outlet property="headerLabelTrailingConstraint" destination="4pm-nc-x13" id="UCV-to-EW3"/>
                 <outlet property="infoScrollBottomFadeView" destination="JgH-G2-kve" id="lbX-ae-nPE"/>
                 <outlet property="infoScrollView" destination="wsq-50-Ng3" id="lfX-Sb-Fq6"/>
+                <outlet property="infoVieNavigationButton" destination="aTn-lN-P5r" id="a8x-WM-vT5"/>
                 <outlet property="infoView" destination="jAq-yR-icS" id="LT7-ky-9M5"/>
                 <outlet property="infoViewCloseButton" destination="Y0e-fo-1y6" id="Yr2-T6-PBB"/>
                 <outlet property="infoViewTextLabel" destination="Vd6-hn-7my" id="EVo-xf-TA3"/>

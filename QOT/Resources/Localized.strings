@@ -157,6 +157,7 @@
 "Me.Chart.Add.Calendar" = "Allow QOT to access the\ncalendar to see this card.";
 "Me.Chart.Add.Sensor" = "Add sensor to\nsee this card.";
 "Me.Chart.Add.Sensor.Pending" = "Sensor connection state is pending.\nPlease try again in a few minutes.";
+"Me.Chart.Info.Button.Title.Navigate.To.Calendar" = "Set your calendar";
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewEvent" = "Add new event";

@@ -40,8 +40,8 @@ final class LaunchHandler {
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
         case .strategies: navigate(to: scheme.destination)
         case .meUniverse: navigate(to: scheme.destination)
-        case .preferencesSyncCalendar: appDelegate.appCoordinator.presentSideBarWithDestination(scheme.destination)
-        case .preferencesNotification: appDelegate.appCoordinator.presentSideBarWithDestination(scheme.destination)
+        case .preferencesSyncCalendar: navigatToSideBar(with: scheme.destination)
+        case .preferencesNotification: navigatToSideBar(with: scheme.destination)
         case .addSensor: _ = appDelegate.appCoordinator.presentAddSensor()
         case .fitbitAuthrefresh: appDelegate.appCoordinator.presentFitbitAuthRefresh()
         case .meMyWhy: navigate(to: scheme.destination) // TODO the middleButtons are different here.
@@ -61,6 +61,11 @@ final class LaunchHandler {
         case .latestWhatsHotArticle: navigate(to: scheme.destination)
         case .contentItem: contentItem(url: url, scheme: scheme, searchViewController: searchViewController)
         }
+    }
+
+    func navigatToSideBar(with destination: AppCoordinator.Router.Destination?) {
+        guard let destination = destination else { return }
+        appDelegate.appCoordinator.presentSideBarWithDestination(destination)
     }
 
     func navigate(to destination: AppCoordinator.Router.Destination?) {

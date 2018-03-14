@@ -34,6 +34,26 @@ enum ChartType: String, EnumCollection {
     case intensityRecoveryWeek = "intensity.recovery.week"
     case intensityRecoveryMonth = "intensity.recovery.month"
 
+    var infoViewNavigation: AppCoordinator.Router.Destination? {
+        switch self {
+        case .meetingAverageDay,
+             .meetingAverageWeek,
+             .meetingLength,
+             .meetingTimeBetween: return AppCoordinator.Router.Destination(preferences: .calendarSync)
+        default: return nil
+        }
+    }
+
+    var infoViewNavigationButtonTitle: String? {
+        switch self {
+        case .meetingAverageDay,
+             .meetingAverageWeek,
+             .meetingLength,
+             .meetingTimeBetween: return R.string.localized.meChartInfoButtonTitleNavigateToCalendar()
+        default: return nil
+        }
+    }
+
     var isBodyBrain: Bool {
         switch self {
         case .meetingAverageDay,
