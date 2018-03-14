@@ -35,13 +35,17 @@ final class WeeklyChoicesProvider {
         var items = [WeeklyChoicesViewData.Item]()
         userChoices.forEach { (userChoice: UserChoice) in
             var title: String?
+            var contentCollection: ContentCollection?
             if let contentCollectionID = userChoice.contentCollectionID {
-                title = services.contentService.contentCollection(id: contentCollectionID)?.title
+                contentCollection = services.contentService.contentCollection(id: contentCollectionID)
+                title = contentCollection?.title
             }
 
             var categoryName: String?
             if let contentCategoryID = userChoice.contentCategoryID {
                 categoryName = services.contentService.contentCategory(id: contentCategoryID)?.title
+            } else {
+                categoryName = contentCollection?.contentCategories.first?.title
             }
 
             let item = WeeklyChoicesViewData.Item(title: title,

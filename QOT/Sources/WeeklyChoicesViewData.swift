@@ -9,6 +9,7 @@
 import Foundation
 
 struct WeeklyChoicesViewData {
+
     struct Item {
         let title: String?
         var subtitle: String?

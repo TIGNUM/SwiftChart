@@ -620,7 +620,7 @@ extension AppCoordinator {
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
-            let category = services.contentService.contentCategory(id: categoryID) else { return }
+            let category = content.contentCategories.first else { return }
         startLearnContentItemCoordinator(services: services, content: content, category: category)
     }
 

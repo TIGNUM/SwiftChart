@@ -176,9 +176,8 @@ extension WeeklyChoicesViewController: UICollectionViewDataSource, UICollectionV
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = viewData.items[indexPath.row]
-        guard let contentCollectionID = item.contentCollectionID, let categoryID = item.categoryID else {
-            return
+        if let contentCollectionID = item.contentCollectionID {
+            AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentCollectionID)
         }
-        AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentCollectionID, categoryID: categoryID)
     }
 }
