@@ -20,15 +20,19 @@ final class CalendarSyncSettingsManager {
 
     private let eventStore: EKEventStore
     private let realmProvider: RealmProvider
+    private let syncManager: SyncManager
 
     init(eventStore: EKEventStore = EKEventStore.shared, realmProvider: RealmProvider) {
         self.eventStore = eventStore
         self.realmProvider = realmProvider
+        self.syncManager = AppDelegate.current.appCoordinator.syncManager
     }
 
     var syncEnabledCalendars: [EKCalendar] {
         do {
-            return try eventStore.calendars(for: .event).filter(syncEnabled)
+            return try eventStore.calendars(for: .event).filter {
+                try syncEnabled(toggleIdentifier: $0.toggleIdentifier, title: $0.title)
+            }
         } catch {
             assertionFailure("Failed to fetch syncEnabledCalendars: \(error)")
             return []
@@ -37,11 +41,15 @@ final class CalendarSyncSettingsManager {
 
     var calendarSyncSettings: [CalendarSyncSetting] {
         do {
-            return try eventStore.calendars(for: .event).map { (calendar) in
-                return CalendarSyncSetting(identifier: calendar.calendarIdentifier,
-                                           title: calendar.title,
-                                           syncEnabled: try syncEnabled(for: calendar))
+            var settings: [String: CalendarSyncSetting] = [:]
+            for calendar in eventStore.calendars(for: .event) {
+                let id = calendar.toggleIdentifier
+                let title = calendar.title
+                let enabled = try syncEnabled(toggleIdentifier: id, title: title)
+                let setting = CalendarSyncSetting(identifier: id, title: title, syncEnabled: enabled)
+                settings[id] = setting
             }
+            return settings.values.map { $0 }
         } catch {
             assertionFailure("Failed to fetch calendarSyncSettings: \(error)")
             return []
@@ -49,15 +57,22 @@ final class CalendarSyncSettingsManager {
     }
 
     func setSyncEnabled(enabled: Bool, calendarIdentifier: String) {
-        guard let calendar = eventStore.calendar(withIdentifier: calendarIdentifier) else { return }
+        var calendarToSync: EKCalendar?
+
+        for calendar in eventStore.calendars(for: .event) where calendar.toggleIdentifier == calendarIdentifier {
+            calendarToSync = calendar
+        }
+
+        guard let calendar = calendarToSync else { return }
         do {
             let realm = try realmProvider.realm()
-            let setting = try calendarSyncSetting(for: calendar)
+            let setting = try calendarSyncSetting(toggleIdentifier: calendar.toggleIdentifier, title: calendar.title)
             if setting.syncEnabled != enabled {
                 try realm.transactionSafeWrite {
                     setting.syncEnabled = enabled
                     setting.didUpdate()
                 }
+                syncManager.syncAll(shouldDownload: false)
             }
         } catch {
             assertionFailure("Failed ot set calendar sync enabled: \(error)")
@@ -68,7 +83,8 @@ final class CalendarSyncSettingsManager {
         let realm = try realmProvider.realm()
         try realm.transactionSafeWrite {
             for calendar in eventStore.calendars(for: .event) {
-                _ = try calendarSyncSetting(for: calendar) // The this function will create and update objects as needed
+                // The this function will create and update objects as needed
+                _ = try calendarSyncSetting(toggleIdentifier: calendar.toggleIdentifier, title: calendar.title)
             }
         }
     }
@@ -76,30 +92,33 @@ final class CalendarSyncSettingsManager {
 
 private extension CalendarSyncSettingsManager {
 
-    func syncEnabled(for calendar: EKCalendar) throws -> Bool {
-        return try calendarSyncSetting(for: calendar).syncEnabled
+    func syncEnabled(toggleIdentifier: String, title: String) throws -> Bool {
+        return try calendarSyncSetting(toggleIdentifier: toggleIdentifier, title: title).syncEnabled
     }
 
-    func calendarSyncSetting(for calendar: EKCalendar) throws -> RealmCalendarSyncSetting {
+    func calendarSyncSetting(toggleIdentifier: String, title: String) throws -> RealmCalendarSyncSetting {
         let realm = try realmProvider.realm()
-        let id = calendar.calendarIdentifier
+        let id = toggleIdentifier
+        let result: RealmCalendarSyncSetting
         if let existing = realm.object(ofType: RealmCalendarSyncSetting.self, forPrimaryKey: id) {
-            if existing.title != calendar.title {
+            if existing.title != title {
                 try realm.transactionSafeWrite {
-                    existing.title = calendar.title
+                    existing.title = title
                     existing.didUpdate()
                 }
             }
-            return existing
+            result = existing
         } else {
-            let isDefaultCalendar = id == eventStore.defaultCalendarForNewEvents?.calendarIdentifier
-            let new = RealmCalendarSyncSetting(calendarIdentifier: calendar.calendarIdentifier,
-                                               title: calendar.title,
+            let isDefaultCalendar = id == eventStore.defaultCalendarForNewEvents?.toggleIdentifier
+            let new = RealmCalendarSyncSetting(calendarIdentifier: toggleIdentifier,
+                                               title: title,
                                                syncEnabled: isDefaultCalendar)
             try realm.transactionSafeWrite {
                 realm.addObject(new)
             }
-            return new
+            result = new
         }
+        syncManager.syncAll(shouldDownload: false)
+        return result
     }
 }

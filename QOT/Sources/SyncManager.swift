@@ -9,7 +9,6 @@
 import Foundation
 import Freddy
 import RealmSwift
-import EventKit
 import Alamofire
 
 // Callback notifications

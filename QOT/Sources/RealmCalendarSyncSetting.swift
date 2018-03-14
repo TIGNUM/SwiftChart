@@ -42,9 +42,7 @@ extension RealmCalendarSyncSetting: TwoWaySyncable {
     }
 
     func toJson() -> JSON? {
-        guard syncStatus != .clean else {
-            return nil
-        }
+        guard syncStatus != .clean else { return nil }
         let dateFormatter = DateFormatter.iso8601
         var dict: [JsonKey: JSONEncodable] = [
             .id: remoteID.value.toJSONEncodable,

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SettingsTableViewCell: UITableViewCell, Dequeueable {
+final class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Outlets / Properties
 

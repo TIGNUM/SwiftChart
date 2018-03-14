@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import EventKit
 
 final class SettingsCalendarListViewModel {
 

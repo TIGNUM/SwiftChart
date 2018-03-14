@@ -8,6 +8,10 @@
 import Foundation
 import UIKit
 
+struct Toggle {
+    static let seperator = "{toggle:seperator}"
+}
+
 struct Animation {
     static let duration: TimeInterval = 0.3
 }

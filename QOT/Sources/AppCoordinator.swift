@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import EventKit
 import Alamofire
 import UserNotifications
 import AirshipKit
