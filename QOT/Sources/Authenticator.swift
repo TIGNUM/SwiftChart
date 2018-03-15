@@ -166,7 +166,6 @@ private extension Authenticator {
         return isValid ? existingToken : nil
     }
 
-
     private func loginCredentials() -> (username: String, password: String)? {
         dispatchPrecondition(condition: .onQueue(queue))
 

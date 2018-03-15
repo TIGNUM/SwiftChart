@@ -11,9 +11,14 @@ import UIKit
 protocol PartnerCellDelegate: class {
 
     func willStartEditing(in cell: PartnerCell)
+
     func didStartEditing(in cell: PartnerCell)
+
     func didTapDone(in cell: PartnerCell)
+
     func didTapEditPhoto(in cell: PartnerCell)
+
+    func didTapShareButton(at partner: Partners.Partner?)
 }
 
 class PartnerCell: UICollectionViewCell, Dequeueable {
@@ -29,6 +34,7 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var familyNameTextField: UITextField!
     @IBOutlet private weak var relationshipTextField: UITextField!
     @IBOutlet private weak var emailTextField: UITextField!
+    @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private var editIconImageViews: [UIImageView]!
     private var partner: Partners.Partner?
     private var isEditing = false
@@ -47,6 +53,7 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
         familyNameTextField.text = partner.surname
         relationshipTextField.text = partner.relationship
         emailTextField.text = partner.email
+        shareButton.isVisible = false
 
         syncViews()
 
@@ -57,7 +64,7 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
             letterSpacing: 2,
             font: Font.H1MainTitle,
             lineSpacing: 0,
-            textColor: UIColor.white60,
+            textColor: .white60,
             alignment: .center
         )
     }
@@ -74,6 +81,11 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
         isEditing = editing
         syncViews()
     }
+
+    func updateShareButton(_ isVisible: Bool) {
+        shareButton.isVisible = isVisible
+    }
+
     @IBAction func didTapEditProfileImage(_ sender: UIButton) {
         delegate?.didTapEditPhoto(in: self)
     }
@@ -92,6 +104,10 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
             break
         }
         initialsLabel.text = partner?.initials
+    }
+
+    @IBAction func didTapShareButton(_ sender: UIButton) {
+        delegate?.didTapShareButton(at: partner)
     }
 }
 

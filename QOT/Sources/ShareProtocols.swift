@@ -10,11 +10,12 @@ import Foundation
 
 protocol ShareViewControllerInterface: class {
     func setHeader(_ header: String)
+    func setPartnerProfileImage(_ imageURL: URL?, initials: String)
     func setLoading(loading: Bool)
 }
 
 protocol SharePresenterInterface {
-    func setup(name: String)
+    func setup(name: String, imageURL: URL?, initials: String)
     func setLoading(loading: Bool)
 }
 

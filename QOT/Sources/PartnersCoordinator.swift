@@ -20,7 +20,10 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, services: Services, transitioningDelegate: UIViewControllerTransitioningDelegate, selectedIndex: Index, permissionsManager: PermissionsManager) {
+    init(root: UIViewController, services: Services,
+         transitioningDelegate: UIViewControllerTransitioningDelegate,
+         selectedIndex: Index,
+         permissionsManager: PermissionsManager) {
         self.rootViewController = root
         self.services = services
         self.transitioningDelegate = transitioningDelegate

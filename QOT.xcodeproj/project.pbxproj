@@ -33,14 +33,11 @@
 		363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */; };
 		363178E71FDEECDE00833958 /* RealmGuideItemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */; };
 		36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F1F1FCEB90B004E9034 /* GuideViewController.swift */; };
-		36433D19203EBFA60043F853 /* to_be_vision.html in Resources */ = {isa = PBXBuildFile; fileRef = 36433D17203EBFA50043F853 /* to_be_vision.html */; };
-		36433D1A203EBFA60043F853 /* weekly_choices.html in Resources */ = {isa = PBXBuildFile; fileRef = 36433D18203EBFA50043F853 /* weekly_choices.html */; };
 		3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0321FE323EE001F4249 /* RealmGuideTime.swift */; };
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
 		36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
-		368243992046E82C00FBA690 /* invite_partner.html in Resources */ = {isa = PBXBuildFile; fileRef = 368243982046E82C00FBA690 /* invite_partner.html */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
 		36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */; };
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
@@ -619,14 +616,11 @@
 		363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmGuideItemLearn.swift; sourceTree = "<group>"; };
 		363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItemNotification.swift; sourceTree = "<group>"; };
 		36328F1F1FCEB90B004E9034 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
-		36433D17203EBFA50043F853 /* to_be_vision.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = to_be_vision.html; sourceTree = "<group>"; };
-		36433D18203EBFA50043F853 /* weekly_choices.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = weekly_choices.html; sourceTree = "<group>"; };
 		3649C0321FE323EE001F4249 /* RealmGuideTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideTime.swift; sourceTree = "<group>"; };
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSharingEmail.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
-		368243982046E82C00FBA690 /* invite_partner.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = invite_partner.html; sourceTree = "<group>"; };
 		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
 		36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDailyPrepTableViewCell.swift; sourceTree = "<group>"; };
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
@@ -1240,9 +1234,6 @@
 		36433D1B203EBFB30043F853 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
-				368243982046E82C00FBA690 /* invite_partner.html */,
-				36433D17203EBFA50043F853 /* to_be_vision.html */,
-				36433D18203EBFA50043F853 /* weekly_choices.html */,
 				CB8C34551EAF7F200003AB65 /* styles.css */,
 			);
 			name = HTML;
@@ -1638,18 +1629,18 @@
 		CB3333F8204978BA009480DF /* Partners */ = {
 			isa = PBXGroup;
 			children = (
+				CB7BC426204EB319006A40D5 /* PartnerCell.swift */,
+				CB2E50C3204EE3350070C706 /* PartnerProfileView.swift */,
 				CB3333FE204978DD009480DF /* PartnersConfigurator.swift */,
 				CB3333FD204978DD009480DF /* PartnersInteractor.swift */,
 				CB3333FB204978DC009480DF /* PartnersModels.swift */,
 				CB3333FF204978DE009480DF /* PartnersPresenter.swift */,
 				CB3333FC204978DC009480DF /* PartnersProtocols.swift */,
 				CB3333FA204978DC009480DF /* PartnersRouter.swift */,
-				CB3333F9204978DC009480DF /* PartnersWorker.swift */,
-				CB7BC426204EB319006A40D5 /* PartnerCell.swift */,
-				CB7BC427204EB319006A40D5 /* PartnerCell.xib */,
 				CC0FF8D31EA788350028D64F /* PartnersViewController.swift */,
+				CB3333F9204978DC009480DF /* PartnersWorker.swift */,
+				CB7BC427204EB319006A40D5 /* PartnerCell.xib */,
 				0BB099CA1EBC6323006B2FB7 /* PartnersViewController.xib */,
-				CB2E50C3204EE3350070C706 /* PartnerProfileView.swift */,
 			);
 			name = Partners;
 			sourceTree = "<group>";
@@ -2924,7 +2915,6 @@
 			files = (
 				CB8C34501EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib in Resources */,
 				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
-				368243992046E82C00FBA690 /* invite_partner.html in Resources */,
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
 				CCAE22D01F6BD7F80017C9EF /* ChartCell.xib in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
@@ -2980,7 +2970,6 @@
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				8514A48A1EE93D640086C70E /* PrepareContentFooterTableViewCell.xib in Resources */,
 				CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */,
-				36433D19203EBFA60043F853 /* to_be_vision.html in Resources */,
 				36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */,
 				CB3333F120480E50009480DF /* ShareViewController.xib in Resources */,
 				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
@@ -2998,7 +2987,6 @@
 				CBC5A57C1FA08077007B9A5B /* 20_min_power_nap_with_voice_B.m4a in Resources */,
 				851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
-				36433D1A203EBFA60043F853 /* weekly_choices.html in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 				D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */,
 			);

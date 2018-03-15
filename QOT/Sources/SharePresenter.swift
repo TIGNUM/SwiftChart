@@ -8,16 +8,22 @@
 
 import Foundation
 
-final class SharePresenter: SharePresenterInterface {
+final class SharePresenter {
 
     private weak var viewController: ShareViewControllerInterface?
 
     init(viewController: ShareViewControllerInterface) {
         self.viewController = viewController
     }
+}
 
-    func setup(name: String) {
+// MARK: - SharePresenterInterface
+
+extension SharePresenter: SharePresenterInterface {
+
+    func setup(name: String, imageURL: URL?, initials: String) {
         viewController?.setHeader(R.string.localized.meSectorMyWhyPartnersShareHeader(name))
+        viewController?.setPartnerProfileImage(imageURL, initials: initials)
     }
 
     func setLoading(loading: Bool) {

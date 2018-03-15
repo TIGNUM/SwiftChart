@@ -16,7 +16,6 @@ final class PartnersViewController: UIViewController, PartnersViewControllerInte
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var scrollViewContentHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var shareButton: UIButton!
     private let cellWidth: CGFloat = 186
     private let cellSpacing: CGFloat = 4
     private let leftMargin: CGFloat = 26
@@ -95,6 +94,12 @@ final class PartnersViewController: UIViewController, PartnersViewControllerInte
         keyboardListner.startObserving()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+
+        updateCurrentCell(at: 0)
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
 
@@ -129,11 +134,6 @@ private extension PartnersViewController {
         } else {
             stopEditing()
         }
-    }
-
-    @objc func shareButtonTapped(_ sender: UIButton) {
-        guard let partner = selectedPartner else { return }
-        interactor?.didTapShare(partner: partner, in: partners)
     }
 
     func syncScrollViewLayout() {
@@ -177,11 +177,9 @@ private extension PartnersViewController {
         editingIndex = nil
         (collectionView.visibleCells as? [PartnerCell])?.forEach { $0.setEditing(false) }
         syncEditButton()
-        didEditPartners()
-    }
 
-    func didEditPartners() {
-        syncShareButton()
+        guard let page = page(contentOffset: collectionView.contentOffset) else { return }
+        updateCurrentCell(at: page)
     }
 
     func syncEditButton() {
@@ -190,10 +188,6 @@ private extension PartnersViewController {
 
     var selectedPartner: Partners.Partner? {
         return page(contentOffset: collectionView.contentOffset).map { partners[$0] }
-    }
-
-    func syncShareButton() {
-        shareButton.isVisible = selectedPartner?.isValid == true
     }
 
     func setBackgroundColor() {
@@ -230,7 +224,9 @@ extension PartnersViewController: UICollectionViewDataSource {
 
 extension PartnersViewController: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return .zero
     }
 
@@ -259,16 +255,6 @@ extension PartnersViewController: UICollectionViewDelegateFlowLayout {
 
         let newOffset = contentOffsetForItem(at: index, scrollView: collectionView)
         collectionView.setContentOffset(newOffset, animated: true)
-    }
-
-    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
-        if let page = page(contentOffset: targetContentOffset.pointee) {
-            targetContentOffset.pointee.x = contentOffsetForItem(at: page, scrollView: scrollView).x
-        }
-    }
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        syncShareButton()
     }
 
     private func page(contentOffset: CGPoint) -> Int? {
@@ -300,6 +286,11 @@ extension PartnersViewController: UICollectionViewDelegateFlowLayout {
 
 extension PartnersViewController: PartnerCellDelegate {
 
+    func didTapShareButton(at partner: Partners.Partner?) {
+        guard let partner = selectedPartner else { return }
+        interactor?.didTapShare(partner: partner, in: partners)
+    }
+
     func willStartEditing(in cell: PartnerCell) {
         guard let index = collectionView.indexPath(for: cell)?.item else { return }
         scrollToItemAtIndex(index)
@@ -325,6 +316,34 @@ extension PartnersViewController: ImagePickerControllerDelegate {
         guard let index = page(contentOffset: collectionView.contentOffset) else { return }
         let partner = partners[index]
         interactor?.updateImage(image, partner: partner)
+    }
+}
+
+// MARK: - UIScrollViewDelegate
+
+extension PartnersViewController: UIScrollViewDelegate {
+
+    func scrollViewWillEndDragging(_ scrollView: UIScrollView, withVelocity velocity: CGPoint, targetContentOffset: UnsafeMutablePointer<CGPoint>) {
+        if let page = page(contentOffset: targetContentOffset.pointee) {
+            targetContentOffset.pointee.x = contentOffsetForItem(at: page, scrollView: scrollView).x
+            updateCurrentCell(at: page)
+        }
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        self.scrollViewDidScroll(scrollView)
+    }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if let page = page(contentOffset: scrollView.contentOffset) {
+            updateCurrentCell(at: page)
+        }
+    }
+
+    func updateCurrentCell(at page: Index) {
+        collectionView.visibleCells.forEach { ($0 as? PartnerCell)?.updateShareButton(false) }
+        let partnerCell = collectionView.cellForItem(at: IndexPath(item: page, section: 0)) as? PartnerCell
+        partnerCell?.updateShareButton(selectedPartner?.isValid ?? false)
     }
 }
 

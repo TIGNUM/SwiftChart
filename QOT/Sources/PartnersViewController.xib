@@ -21,7 +21,6 @@
                 <outlet property="collectionView" destination="bo2-gv-Dx9" id="FJO-HL-T6k"/>
                 <outlet property="scrollView" destination="G8t-uY-VhO" id="DRZ-9I-zFd"/>
                 <outlet property="scrollViewContentHeightConstraint" destination="c8h-mi-ddb" id="fix-q5-uxg"/>
-                <outlet property="shareButton" destination="gcI-17-pEU" id="cUy-5b-yc9"/>
                 <outlet property="titleLabel" destination="y2n-30-ma0" id="kgX-qJ-Roi"/>
                 <outlet property="view" destination="iN0-l3-epB" id="oLy-x7-jlD"/>
             </connections>
@@ -46,20 +45,6 @@
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gcI-17-pEU">
-                                    <rect key="frame" x="29" y="613" width="100" height="44"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="44" id="igu-e8-g9e"/>
-                                        <constraint firstAttribute="width" constant="100" id="xuS-04-uPy"/>
-                                    </constraints>
-                                    <inset key="titleEdgeInsets" minX="20" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                    <state key="normal" title="Share" image="ic_share">
-                                        <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="shareButtonTapped:" destination="-1" eventType="touchUpInside" id="0M1-vu-bLR"/>
-                                    </connections>
-                                </button>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bo2-gv-Dx9" customClass="PartnersCollectionView" customModule="QOT" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="53" width="375" height="340"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -79,16 +64,13 @@
                                 </collectionView>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="gcI-17-pEU" firstAttribute="top" relation="greaterThanOrEqual" secondItem="bo2-gv-Dx9" secondAttribute="bottom" constant="10" id="1FL-oe-ejK"/>
                                 <constraint firstAttribute="trailing" secondItem="bo2-gv-Dx9" secondAttribute="trailing" id="38c-Gc-mUY"/>
                                 <constraint firstItem="bo2-gv-Dx9" firstAttribute="top" secondItem="y2n-30-ma0" secondAttribute="bottom" constant="10" id="Vhe-hK-J3A"/>
                                 <constraint firstItem="y2n-30-ma0" firstAttribute="leading" secondItem="1nz-kz-98h" secondAttribute="leading" constant="26" id="WVY-Br-pyf"/>
                                 <constraint firstAttribute="height" constant="667" id="c8h-mi-ddb"/>
                                 <constraint firstItem="bo2-gv-Dx9" firstAttribute="leading" secondItem="1nz-kz-98h" secondAttribute="leading" id="foC-59-zgN"/>
-                                <constraint firstItem="gcI-17-pEU" firstAttribute="leading" secondItem="1nz-kz-98h" secondAttribute="leading" constant="29" id="hQY-zP-EAY"/>
                                 <constraint firstAttribute="trailing" secondItem="y2n-30-ma0" secondAttribute="trailing" constant="26" id="mat-pb-FOM"/>
                                 <constraint firstItem="y2n-30-ma0" firstAttribute="top" secondItem="1nz-kz-98h" secondAttribute="top" id="tpm-8F-UYx"/>
-                                <constraint firstAttribute="bottom" secondItem="gcI-17-pEU" secondAttribute="bottom" constant="10" id="zcc-9C-8pF"/>
                             </constraints>
                         </view>
                     </subviews>
@@ -116,7 +98,4 @@
             <point key="canvasLocation" x="34.5" y="54.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="ic_share" width="20" height="28"/>
-    </resources>
 </document>

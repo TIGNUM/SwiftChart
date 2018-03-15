@@ -20,17 +20,23 @@ final class ShareWorker {
     let networkManager: NetworkManager
     let syncManager: SyncManager
     let name: String
+    let imageURL: URL?
+    let initials: String
 
     init(services: Services,
          partnerLocalID: String,
          networkManager: NetworkManager,
          syncManager: SyncManager,
-         name: String) {
+         name: String,
+         imageURL: URL?,
+         initials: String) {
         self.services = services
         self.partnerLocalID = partnerLocalID
         self.networkManager = networkManager
         self.syncManager = syncManager
         self.name = name
+        self.imageURL = imageURL
+        self.initials = initials
     }
 
     func shareToBeVisionEmailContent(completion: @escaping ((_ emailContent: Result) -> Void)) {

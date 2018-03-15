@@ -17,7 +17,7 @@ class MorningInterviewViewController: UIViewController, MorningInterviewViewCont
     var router: MorningInterviewRouterInterface?
 
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var closeButton: UIButton! 
+    @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var doneButton: UIButton!
     @IBOutlet private weak var questionLabel: UILabel!

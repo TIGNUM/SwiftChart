@@ -21,7 +21,7 @@ final class ShareInteractor: ShareInteractorInterface {
     }
 
     func viewDidLoad() {
-        presenter.setup(name: worker.name)
+        presenter.setup(name: worker.name, imageURL: worker.imageURL, initials: worker.initials)
     }
 
     func didTapClose() {

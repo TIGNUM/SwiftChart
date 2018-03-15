@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,6 +20,8 @@
             <connections>
                 <outlet property="activityIndicator" destination="isb-94-hiD" id="Ru1-va-7Tm"/>
                 <outlet property="headerLabel" destination="b4U-iA-UEC" id="KbU-rk-2QS"/>
+                <outlet property="partnerImageView" destination="wSi-OY-Do8" id="rrR-H4-nTX"/>
+                <outlet property="partnerInitialsLabel" destination="lji-ky-tt8" id="Hxa-2D-3OW"/>
                 <outlet property="shareButton" destination="IB3-TR-UAU" id="0LM-xA-gm0"/>
                 <outlet property="toBeVisionButton" destination="hc7-uH-oDV" id="rcd-do-yYA"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -41,50 +44,104 @@
                 <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwW-7o-BTV" userLabel="Container">
                     <rect key="frame" x="0.0" y="40" width="375" height="627"/>
                     <subviews>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would you like to share with" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4U-iA-UEC">
-                            <rect key="frame" x="32" y="0.0" width="311" height="62"/>
-                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="26"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc7-uH-oDV">
-                            <rect key="frame" x="52" y="102" width="24" height="24"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQr-2M-W45" userLabel="topView">
+                            <rect key="frame" x="8" y="8" width="359" height="186"/>
+                            <subviews>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSi-OY-Do8">
+                                    <rect key="frame" x="86" y="0.0" width="186" height="186"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="186" id="98b-aP-AU4"/>
+                                        <constraint firstAttribute="width" constant="186" id="Otn-og-o5T"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lji-ky-tt8">
+                                    <rect key="frame" x="179.5" y="93" width="0.0" height="0.0"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="36"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="24" id="K9g-cq-gg3"/>
-                                <constraint firstAttribute="width" constant="24" id="dOZ-DO-UMx"/>
+                                <constraint firstItem="wSi-OY-Do8" firstAttribute="centerX" secondItem="yQr-2M-W45" secondAttribute="centerX" id="4EC-kJ-lac"/>
+                                <constraint firstItem="wSi-OY-Do8" firstAttribute="centerY" secondItem="yQr-2M-W45" secondAttribute="centerY" id="6ax-b2-xYg"/>
+                                <constraint firstItem="wSi-OY-Do8" firstAttribute="top" secondItem="yQr-2M-W45" secondAttribute="top" id="Xk1-Jc-bCx"/>
+                                <constraint firstItem="lji-ky-tt8" firstAttribute="centerX" secondItem="yQr-2M-W45" secondAttribute="centerX" id="bFC-wE-Rx2"/>
+                                <constraint firstItem="lji-ky-tt8" firstAttribute="centerY" secondItem="yQr-2M-W45" secondAttribute="centerY" id="oMU-he-B8I"/>
+                                <constraint firstAttribute="bottom" secondItem="wSi-OY-Do8" secondAttribute="bottom" id="ymd-Ue-AZR"/>
                             </constraints>
-                            <state key="normal" image="checkbox_unchecked"/>
-                            <state key="selected" image="checkbox_checked"/>
-                            <connections>
-                                <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="wpg-OS-NWw"/>
-                            </connections>
-                        </button>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-0z-lbg">
-                            <rect key="frame" x="52" y="158" width="24" height="24"/>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Lyj-zX-ikJ" userLabel="middleView">
+                            <rect key="frame" x="28" y="275.5" width="319" height="170"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What would you like to share with" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4U-iA-UEC">
+                                    <rect key="frame" x="0.0" y="0.0" width="319" height="62"/>
+                                    <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="26"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc7-uH-oDV">
+                                    <rect key="frame" x="32" y="102" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="K9g-cq-gg3"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="Zw7-Bb-od1"/>
+                                        <constraint firstAttribute="width" constant="24" id="dOZ-DO-UMx"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="hQH-Hw-b2a"/>
+                                    </constraints>
+                                    <state key="normal" image="ic_radio_unselected"/>
+                                    <state key="selected" image="ic_radio_selected"/>
+                                    <connections>
+                                        <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="wpg-OS-NWw"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My to be Vision" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwd-gk-q1L">
+                                    <rect key="frame" x="72" y="105" width="247" height="19.5"/>
+                                    <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-0z-lbg">
+                                    <rect key="frame" x="32" y="146" width="24" height="24"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="24" id="JU7-jm-DMh"/>
+                                        <constraint firstAttribute="width" constant="24" id="MNn-Zn-yTM"/>
+                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="24" id="arl-kU-ipE"/>
+                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="ook-Mj-uwy"/>
+                                    </constraints>
+                                    <state key="normal" image="ic_radio_unselected"/>
+                                    <state key="selected" image="ic_radio_selected"/>
+                                    <connections>
+                                        <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="rfd-Dp-cHw"/>
+                                    </connections>
+                                </button>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Weekly choices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3g6-7E-Wpb">
+                                    <rect key="frame" x="72" y="147.5" width="247" height="22.5"/>
+                                    <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
+                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="24" id="JU7-jm-DMh"/>
-                                <constraint firstAttribute="width" constant="24" id="MNn-Zn-yTM"/>
+                                <constraint firstItem="hc7-uH-oDV" firstAttribute="leading" secondItem="Lyj-zX-ikJ" secondAttribute="leading" constant="32" id="3ww-z8-A2T"/>
+                                <constraint firstItem="b4U-iA-UEC" firstAttribute="top" secondItem="Lyj-zX-ikJ" secondAttribute="top" id="5Om-PK-fXE"/>
+                                <constraint firstItem="Wwd-gk-q1L" firstAttribute="leading" secondItem="hc7-uH-oDV" secondAttribute="trailing" constant="16" id="CUz-FC-hES"/>
+                                <constraint firstItem="Wwd-gk-q1L" firstAttribute="centerY" secondItem="hc7-uH-oDV" secondAttribute="centerY" id="DE8-aZ-V0v"/>
+                                <constraint firstAttribute="trailing" secondItem="3g6-7E-Wpb" secondAttribute="trailing" id="PRu-Rs-UG3"/>
+                                <constraint firstItem="3g6-7E-Wpb" firstAttribute="leading" secondItem="3Le-0z-lbg" secondAttribute="trailing" constant="16" id="R3p-Rh-1I8"/>
+                                <constraint firstAttribute="bottom" secondItem="3Le-0z-lbg" secondAttribute="bottom" id="SBt-1o-HNz"/>
+                                <constraint firstAttribute="trailing" secondItem="b4U-iA-UEC" secondAttribute="trailing" id="bu4-pC-mjM"/>
+                                <constraint firstItem="hc7-uH-oDV" firstAttribute="top" secondItem="b4U-iA-UEC" secondAttribute="bottom" constant="40" id="fbM-u2-8BY"/>
+                                <constraint firstItem="3g6-7E-Wpb" firstAttribute="centerY" secondItem="3Le-0z-lbg" secondAttribute="centerY" id="jhW-y6-Dph"/>
+                                <constraint firstItem="3Le-0z-lbg" firstAttribute="top" secondItem="hc7-uH-oDV" secondAttribute="bottom" constant="20" id="kAw-Gx-bXe"/>
+                                <constraint firstAttribute="bottom" secondItem="3g6-7E-Wpb" secondAttribute="bottom" id="np9-ZH-RfL"/>
+                                <constraint firstItem="b4U-iA-UEC" firstAttribute="leading" secondItem="Lyj-zX-ikJ" secondAttribute="leading" id="soC-sF-cbU"/>
+                                <constraint firstItem="3Le-0z-lbg" firstAttribute="leading" secondItem="Lyj-zX-ikJ" secondAttribute="leading" constant="32" id="xTR-I3-Oru"/>
+                                <constraint firstAttribute="trailing" secondItem="Wwd-gk-q1L" secondAttribute="trailing" id="yHb-ER-HYs"/>
                             </constraints>
-                            <state key="normal" image="checkbox_unchecked"/>
-                            <state key="selected" image="checkbox_checked"/>
-                            <connections>
-                                <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="rfd-Dp-cHw"/>
-                            </connections>
-                        </button>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="My to be Vision" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwd-gk-q1L">
-                            <rect key="frame" x="92" y="105" width="231" height="19.5"/>
-                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="5 Weekly choices" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3g6-7E-Wpb">
-                            <rect key="frame" x="92" y="160" width="231" height="19.5"/>
-                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
-                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        </view>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-TR-UAU">
-                            <rect key="frame" x="52" y="222" width="271" height="44"/>
+                            <rect key="frame" x="52" y="543" width="271" height="44"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="44" id="7bh-Nd-c1H"/>
                             </constraints>
@@ -96,28 +153,21 @@
                             </connections>
                         </button>
                         <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="isb-94-hiD">
-                            <rect key="frame" x="169" y="226" width="37" height="37"/>
+                            <rect key="frame" x="169" y="547" width="37" height="37"/>
                         </activityIndicatorView>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="3g6-7E-Wpb" firstAttribute="leading" secondItem="3Le-0z-lbg" secondAttribute="trailing" constant="16" id="3ZR-mm-Naj"/>
-                        <constraint firstItem="hc7-uH-oDV" firstAttribute="top" secondItem="b4U-iA-UEC" secondAttribute="bottom" constant="40" id="DAv-fu-uPR"/>
-                        <constraint firstItem="3Le-0z-lbg" firstAttribute="top" secondItem="hc7-uH-oDV" secondAttribute="bottom" constant="32" id="Egu-rR-wla"/>
-                        <constraint firstAttribute="trailing" secondItem="3g6-7E-Wpb" secondAttribute="trailing" constant="52" id="LmH-xB-e2S"/>
-                        <constraint firstAttribute="trailing" secondItem="b4U-iA-UEC" secondAttribute="trailing" constant="32" id="Mfy-0w-RqR"/>
-                        <constraint firstItem="hc7-uH-oDV" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="52" id="QbL-Y4-u9l"/>
-                        <constraint firstAttribute="trailing" secondItem="Wwd-gk-q1L" secondAttribute="trailing" constant="52" id="WCD-d6-R3v"/>
-                        <constraint firstItem="Wwd-gk-q1L" firstAttribute="centerY" secondItem="hc7-uH-oDV" secondAttribute="centerY" id="bNw-Ea-YH2"/>
+                        <constraint firstItem="yQr-2M-W45" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="8" id="9Pk-yY-wSk"/>
+                        <constraint firstItem="yQr-2M-W45" firstAttribute="top" secondItem="OwW-7o-BTV" secondAttribute="top" constant="8" id="C2k-eF-h3V"/>
+                        <constraint firstItem="Lyj-zX-ikJ" firstAttribute="centerY" secondItem="OwW-7o-BTV" secondAttribute="centerY" multiplier="1.15" id="Mr5-GV-hAh"/>
+                        <constraint firstItem="Lyj-zX-ikJ" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="28" id="OzS-vh-Bet"/>
                         <constraint firstItem="isb-94-hiD" firstAttribute="centerY" secondItem="IB3-TR-UAU" secondAttribute="centerY" id="dUo-Zv-KIK"/>
-                        <constraint firstItem="3g6-7E-Wpb" firstAttribute="centerY" secondItem="3Le-0z-lbg" secondAttribute="centerY" id="eAL-F7-Jcg"/>
+                        <constraint firstAttribute="trailing" secondItem="Lyj-zX-ikJ" secondAttribute="trailing" constant="28" id="dbw-Wl-qJQ"/>
                         <constraint firstItem="isb-94-hiD" firstAttribute="centerX" secondItem="IB3-TR-UAU" secondAttribute="centerX" id="el2-8J-6wn"/>
-                        <constraint firstItem="b4U-iA-UEC" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="32" id="gyH-KK-7Jc"/>
                         <constraint firstAttribute="trailing" secondItem="IB3-TR-UAU" secondAttribute="trailing" constant="52" id="iQe-mt-fAp"/>
-                        <constraint firstItem="b4U-iA-UEC" firstAttribute="top" secondItem="OwW-7o-BTV" secondAttribute="top" id="jUf-u6-v8a"/>
-                        <constraint firstItem="IB3-TR-UAU" firstAttribute="top" secondItem="3Le-0z-lbg" secondAttribute="bottom" constant="40" id="ks9-9P-TfJ"/>
+                        <constraint firstAttribute="trailing" secondItem="yQr-2M-W45" secondAttribute="trailing" constant="8" id="nSF-dd-y6f"/>
                         <constraint firstItem="IB3-TR-UAU" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="52" id="na7-jF-Icv"/>
-                        <constraint firstItem="3Le-0z-lbg" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="52" id="wfN-Lb-rFH"/>
-                        <constraint firstItem="Wwd-gk-q1L" firstAttribute="leading" secondItem="hc7-uH-oDV" secondAttribute="trailing" constant="16" id="xuQ-VH-g3N"/>
+                        <constraint firstAttribute="bottom" secondItem="IB3-TR-UAU" secondAttribute="bottom" constant="40" id="rp1-G9-UoV"/>
                     </constraints>
                 </view>
             </subviews>
@@ -137,7 +187,7 @@
         </view>
     </objects>
     <resources>
-        <image name="checkbox_checked" width="24" height="24"/>
-        <image name="checkbox_unchecked" width="24" height="24"/>
+        <image name="ic_radio_selected" width="24" height="24"/>
+        <image name="ic_radio_unselected" width="24" height="24"/>
     </resources>
 </document>

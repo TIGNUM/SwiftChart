@@ -34,6 +34,8 @@ final class PartnersRouter: NSObject, PartnersRouterInterface {
 
         let configurator = ShareConfigurator.make(partnerLocalID: partner.localID,
                                                   partnerName: name,
+                                                  partnerImageURL: partner.imageURL,
+                                                  partnerInitials: partner.initials,
                                                   partnerEmail: email)
         let shareViewController = ShareViewController(configure: configurator)
         let navController = UINavigationController(rootViewController: shareViewController)
