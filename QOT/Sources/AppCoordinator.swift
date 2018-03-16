@@ -738,14 +738,18 @@ extension AppCoordinator {
     }
 
     func presentSideBarWithDestination(_ destination: AppCoordinator.Router.Destination?) {
-        navigateDownToTabBar { [weak self] in
-            guard let sidebarCoordinator = self?.presentSideBar(destination: destination) else { return }
-            sidebarCoordinator.didTapSettingsMenuCell(with: nil, in: sidebarCoordinator.sideBarViewController)
-            guard let settingsMenuCoordinator = sidebarCoordinator.settingsMenuCoordinator else { return }
-            let settingsMenuViewController = settingsMenuCoordinator.settingsMenuViewController
-            settingsMenuCoordinator.didTapNotifications(in: settingsMenuViewController)
-            guard let settingsCoordinator = settingsMenuCoordinator.settingsCoordinator else { return }
-            self?.startChild(child: settingsCoordinator)
+        guard let sidebarCoordinator = presentSideBar(destination: destination) else { return }
+        sidebarCoordinator.didTapSettingsMenuCell(with: nil, in: sidebarCoordinator.sideBarViewController)
+        guard let settingsMenuCoordinator = sidebarCoordinator.settingsMenuCoordinator else { return }
+        let settingsMenuViewController = settingsMenuCoordinator.settingsMenuViewController
+        settingsMenuCoordinator.didTapNotifications(in: settingsMenuViewController)
+        guard let settingsCoordinator = settingsMenuCoordinator.settingsCoordinator else { return }
+        startChild(child: settingsCoordinator)
+    }
+
+    func presentCalendarSettings(_ destination: AppCoordinator.Router.Destination?) {
+        navigateDownToTabBar {
+            self.presentSideBarWithDestination(destination)
         }
     }
 
