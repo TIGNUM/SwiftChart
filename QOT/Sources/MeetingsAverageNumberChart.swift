@@ -101,7 +101,7 @@ private extension MeetingsAverageNumberChart {
     }
 
     func drawCharts() {
-        for (index, dataPoint) in statistics.dataPointObjects.enumerated() {
+        for (index, dataPoint) in statistics.dataPointObjects.enumerated() where dataPoint.percentageValue > 0 {
             let xPos = xPosition(index)
             let yPos = yPosition(dataPoint.percentageValue)
             drawCapRoundLine(xPos: xPos,
