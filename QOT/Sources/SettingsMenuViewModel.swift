@@ -98,6 +98,9 @@ private extension SettingsMenuViewModel {
     }
 
     private func usageTimeString() -> String {
+        if let totalUsageTime = userService.user()?.totalUsageTime {
+            return timer.totalTimeString(TimeInterval(totalUsageTime))
+        }
         return timer.totalTimeString(timer.totalSeconds)
     }
 
