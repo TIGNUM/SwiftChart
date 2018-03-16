@@ -314,6 +314,9 @@ private extension LearnContentItemViewController {
         let formatter = DateComponentsFormatter()
         formatter.zeroFormattingBehavior = .pad
         formatter.allowedUnits = [.minute, .second]
+        if interval >= 3600 {
+            formatter.allowedUnits = [.hour, .minute, .second]
+        }
         let time = formatter.string(from: interval)
 
         return time ?? "00:00"
