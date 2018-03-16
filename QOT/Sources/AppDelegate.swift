@@ -98,11 +98,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
         #endif
 
+        sendAppEvent(.start)
         return true
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         UAirship.push().resetBadge()
+        sendAppEvent(.foreground)
+    }
+
+    func applicationWillTerminate(_ application: UIApplication) {
+        sendAppEvent(.termination)
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        sendAppEvent(.background)
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
@@ -155,10 +165,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             unhandledShortCuts.removeAll()
         }
     }
+}
 
-    // MARK: - private
+// MARK: - private
 
-    private func incomingLocationEvent(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+private extension AppDelegate {
+
+    func sendAppEvent(_ event: AppEventRequest.EventType) {
+        appCoordinator.networkManager.performAppEventRequest(appEvent: event) { (error) in
+            if error != nil {
+                log("Failed to performAppEventRequest for event: \(event.rawValue) with: \(String(describing: error))",
+                    level: .error)
+            }
+        }
+    }
+
+    func incomingLocationEvent(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
 
         if locationEvent.boolValue == true {
@@ -167,7 +189,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         }
     }
 
-    private func setupUAirship() {
+    func setupUAirship() {
         guard let path = Bundle.main.path(forResource: "AirshipConfig", ofType: "plist") else { return }
         let config = UAConfig(contentsOfFile: path)
         config.developmentLogLevel = .error
@@ -177,7 +199,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         UAirship.shared().analytics.isEnabled = true
     }
 
-    private var appFilePath: String {
+    var appFilePath: String {
         let url = URL.documentDirectory.deletingLastPathComponent()
         return url.absoluteString.removeFilePrefix
     }

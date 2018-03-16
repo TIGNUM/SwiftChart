@@ -116,6 +116,18 @@ final class NetworkManager {
         return current
     }
 
+    @discardableResult func performAppEventRequest(appEvent: AppEventRequest.EventType,
+                                                   completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
+        let current = SerialRequest()
+        performAuthenticatingRequest(AppEventRequest(eventType: appEvent),
+                                     parser: GenericParser.parse,
+                                     notifyDelegateOfFailure: false,
+                                     current: current) { (result) in
+                                        completion(result.error)
+        }
+        return current
+    }
+
     @discardableResult func performDeviceRequest() -> SerialRequest {
         let serialRequest = SerialRequest()
         guard authenticator.hasLoginCredentials() else { return serialRequest }

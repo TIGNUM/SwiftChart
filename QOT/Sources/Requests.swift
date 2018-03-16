@@ -179,3 +179,24 @@ struct DeviceRequest: URLRequestBuildable {
         self.headers = [.syncToken: syncToken]
     }
 }
+
+struct AppEventRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .appEvent
+    let httpMethod: HTTPMethod = .put
+    let paramaters: [RequestParameter: Any]
+
+    enum EventType: String {
+        case start = "APP_START"
+        case background = "BACKGROUND"
+        case foreground = "FOREGROUND"
+        case termination = "TERMINATION"
+    }
+
+    init(eventType: EventType) {
+        self.paramaters = [
+            .eventDate: DateFormatter.iso8601.string(from: Date()),
+            .qotAppEventType: eventType.rawValue,
+            .deviceDto: [RequestParameter.id.rawValue: deviceID]
+        ]
+    }
+}
