@@ -64,7 +64,8 @@ final class OnboardingCoordinator: ParentCoordinator {
         let navigationBar = navigationController.navigationBar
         navigationBar.applyDefaultStyle()
         navigationBar.topItem?.title = R.string.localized.topTabBarItemTitlePerpareCoach().uppercased()
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline, NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline,
+                                             NSAttributedStringKey.foregroundColor: UIColor.white]
 
         startOnboarding() // must be called before adding chat vc to window, else chat won't animate
 

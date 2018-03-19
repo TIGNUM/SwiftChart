@@ -14,6 +14,7 @@
             <connections>
                 <outlet property="collectionView" destination="BXl-bt-w6B" id="uNw-hW-wys"/>
                 <outlet property="doneButton" destination="dmQ-eQ-hYM" id="MuE-5u-XMm"/>
+                <outlet property="navigationBar" destination="81f-T6-ujZ" id="pzy-WJ-yw2"/>
                 <outlet property="pageControl" destination="aMN-z7-kqa" id="l2D-uA-PKf"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -26,8 +27,22 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="1_1 learn" translatesAutoresizingMaskIntoConstraints="NO" id="2yf-D2-tqH">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
+                <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81f-T6-ujZ">
+                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <textAttributes key="titleTextAttributes">
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </textAttributes>
+                    <textAttributes key="largeTitleTextAttributes">
+                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </textAttributes>
+                    <items>
+                        <navigationItem title="Tutorial" id="MoY-em-eiY"/>
+                    </items>
+                </navigationBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BXl-bt-w6B">
-                    <rect key="frame" x="0.0" y="42" width="375" height="555"/>
+                    <rect key="frame" x="0.0" y="64" width="375" height="533"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tNQ-sX-8Oy">
                         <size key="itemSize" width="50" height="50"/>
@@ -58,21 +73,26 @@
             </subviews>
             <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="BXl-bt-w6B" firstAttribute="top" secondItem="81f-T6-ujZ" secondAttribute="bottom" id="304-zq-icE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BXl-bt-w6B" secondAttribute="trailing" id="532-hI-AZN"/>
+                <constraint firstItem="81f-T6-ujZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8a8-yL-GXG"/>
                 <constraint firstItem="2yf-D2-tqH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Hap-ga-b3S"/>
+                <constraint firstItem="81f-T6-ujZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="L7J-po-g4l"/>
+                <constraint firstItem="81f-T6-ujZ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="QiC-TN-i6x"/>
                 <constraint firstItem="aMN-z7-kqa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RrT-BK-IyC"/>
                 <constraint firstItem="2yf-D2-tqH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nx9-b4-35d"/>
                 <constraint firstAttribute="bottom" secondItem="2yf-D2-tqH" secondAttribute="bottom" id="oHc-DB-bWY"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dmQ-eQ-hYM" secondAttribute="trailing" constant="28" id="okc-WF-MQ5"/>
                 <constraint firstItem="aMN-z7-kqa" firstAttribute="top" secondItem="BXl-bt-w6B" secondAttribute="bottom" constant="5" id="pt4-2g-SEh"/>
                 <constraint firstItem="BXl-bt-w6B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qqI-QU-vIg"/>
+                <constraint firstItem="81f-T6-ujZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tks-hY-lwW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BXl-bt-w6B" secondAttribute="bottom" constant="70" id="wXG-uw-RWU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dmQ-eQ-hYM" secondAttribute="bottom" constant="5" id="yUy-iW-HW1"/>
-                <constraint firstItem="BXl-bt-w6B" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="22" id="ypj-DZ-wvh"/>
                 <constraint firstAttribute="trailing" secondItem="2yf-D2-tqH" secondAttribute="trailing" id="zm9-IY-zye"/>
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <point key="canvasLocation" x="50.5" y="54.5"/>
         </view>
     </objects>
     <resources>

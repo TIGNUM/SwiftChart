@@ -15,6 +15,7 @@ final class SlideShowViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet private weak var doneButton: UIButton!
+    @IBOutlet private weak var navigationBar: UINavigationBar!
     private var pages: [SlideShow.Page] = []
 
     var interactor: SlideShowInteractorInterface!
@@ -32,6 +33,9 @@ final class SlideShowViewController: UIViewController {
         collectionView.registerDequeueable(SlideShowTitleOnlySlideCell.self)
         collectionView.registerDequeueable(SlideShowMorePromptCell.self)
         collectionView.registerDequeueable(SlideShowCompletePromptCell.self)
+        navigationBar.topItem?.title = R.string.localized.sidebarTitleIntroSliders().uppercased()
+        navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline,
+                                             NSAttributedStringKey.foregroundColor: UIColor.white]
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -56,9 +60,7 @@ extension SlideShowViewController: SlideShowViewControllerInterface {
     }
 
     func updatePages(_ pages: [SlideShow.Page]) {
-        let oldPages = self.pages
         setPagesAndSyncControls(pages: pages)
-        collectionView.animateItemChanges(oldData: oldPages, newData: pages)
     }
 }
 
@@ -133,7 +135,7 @@ private extension SlideShowViewController {
 
     func syncDoneButton(page: Int) {
         let isLastPage = pageControl.numberOfPages == page + 1
-        let title = isLastPage ? "Start" : "Skip"
+        let title = isLastPage ? "Start" : "Close"
         doneButton.setTitle(title, for: .normal)
     }
 

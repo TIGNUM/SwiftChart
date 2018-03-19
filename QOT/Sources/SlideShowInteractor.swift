@@ -25,6 +25,7 @@ extension SlideShowInteractor: SlideShowInteractorInterface {
 
     func viewDidLoad() {
         presenter.loadBasicSlides(slides: worker.basicSlides)
+        didTapLoadMore()
     }
 
     func didTapLoadMore() {
