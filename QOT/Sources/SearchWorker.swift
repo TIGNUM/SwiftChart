@@ -12,18 +12,21 @@ import RealmSwift
 final class SearchWorker {
 
     private let services: Services
+    private let networkManager: NetworkManager
 
-    init(services: Services) {
+    init(services: Services, networkManager: NetworkManager) {
         self.services = services
+        self.networkManager = networkManager
     }
 
     private lazy var contentCollectionsAll: [Search.Result] = {
         let contentCollections = Array(services.contentService.searchContentCollections())
         var allResults = [Search.Result]()
         contentCollections.forEach { (content) in
-            let searchResult = Search.Result(type: .all,
+            let searchResult = Search.Result(filter: .all,
                                              title: content.title,
                                              contentID: content.remoteID.value ?? 0,
+                                             contentItemID: nil,
                                              createdAt: content.createdAt,
                                              searchTags: content.searchTags,
                                              section: Database.Section(rawValue: content.section),
@@ -49,9 +52,10 @@ final class SearchWorker {
                 mediaURL = URL(string: urlString)
             }
 
-            let searchResult = Search.Result(type: .video,
+            let searchResult = Search.Result(filter: .video,
                                              title: item.valueText ?? "",
-                                             contentID: item.remoteID.value ?? 0,
+                                             contentID: nil,
+                                             contentItemID: item.remoteID.value,
                                              createdAt: item.createdAt,
                                              searchTags: item.searchTags,
                                              section: nil,
@@ -73,9 +77,10 @@ final class SearchWorker {
                 mediaURL = URL(string: urlString)
             }
 
-            let searchResult = Search.Result(type: .audio,
+            let searchResult = Search.Result(filter: .audio,
                                              title: item.valueText ?? "",
-                                             contentID: item.remoteID.value ?? 0,
+                                             contentID: nil,
+                                             contentItemID: item.remoteID.value,
                                              createdAt: item.createdAt,
                                              searchTags: item.searchTags,
                                              section: nil,
@@ -98,6 +103,18 @@ final class SearchWorker {
         return searchArray.filter { (item) -> Bool in
             return item.title.lowercased().contains(searchText.lowercased())
                 || item.searchTags.lowercased().contains(searchText.lowercased())
+        }
+    }
+
+    func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String) {
+        networkManager.performUserSearchResultRequest(contentId: contentId,
+                                                      contentItemId: contentItemId,
+                                                      filter: filter,
+                                                      query: query) { (error) in
+                                                        if error != nil {
+                                                            log("UserSearchResult ERROR: \(String(describing: error))",
+                                                                level: .error)
+                                                        }
         }
     }
 }

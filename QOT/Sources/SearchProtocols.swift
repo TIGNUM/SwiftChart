@@ -20,6 +20,7 @@ protocol SearchInteractorInterface: Interactor {
     func didTapClose()
     func didChangeSearchText(searchText: String, searchFilter: Search.Filter)
     func handleSelection(searchResult: Search.Result)
+    func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String)
 }
 
 protocol SearchRouterInterface {

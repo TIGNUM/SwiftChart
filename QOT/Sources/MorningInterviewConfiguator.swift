@@ -14,7 +14,11 @@ final class MorningInterviewConfigurator: AppStateAccess {
             let router = MorningInterviewRouter(viewController: viewController, appCoordinator: appState.appCoordinator)
             let presenter = MorningInterviewPresenter(viewController: viewController)
             let guideWorker = GuideWorker(services: appState.services) // FIXME: Shouldn't couple this to guide
-            let worker = MorningInterviewWorker(services: appState.services, questionGroupID: questionGroupID, notificationRemoteID: notificationRemoteID, guideWorker: guideWorker, networkManager: appState.networkManager)
+            let worker = MorningInterviewWorker(services: appState.services,
+                                                questionGroupID: questionGroupID,
+                                                notificationRemoteID: notificationRemoteID,
+                                                guideWorker: guideWorker,
+                                                networkManager: appState.networkManager)
             let interactor = MorningInterviewInteractor(presenter: presenter, worker: worker)
             viewController.interactor = interactor
             viewController.router = router

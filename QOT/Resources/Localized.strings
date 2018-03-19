@@ -316,3 +316,7 @@
 
 "Partners.Alert.Imcomplete.Title" = "Incomplete Partners";
 "Partners.Alert.Imcomplete.Message" = "Every partner requires a 'Name', 'Surname' and 'Email. Continue and discard changes to incomplete partners?";
+
+"Search.Filter.All" = "ALL";
+"Search.Filter.Audio" = "AUDIO";
+"Search.Filter.Video" = "VIDEO";

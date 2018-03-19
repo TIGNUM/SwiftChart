@@ -25,14 +25,14 @@ extension SearchRouter: SearchRouterInterface {
         guard let section = searchResult.section else { return }
         switch section {
         case .learnStrategy:
-            if let url = URL(string: String(format: "qot://random-content?contentID=%d", searchResult.contentID)) {
-                LaunchHandler().process(url: url)
+            if let link = link(with: searchResult.contentID, urlFormat: "qot://random-content?contentID=%d") {
+                presentArticle(with: link)
             }
         case .learnWhatsHot,
              .library,
              .tools:
-            if let url = URL(string: String(format: "qot://contentItem?contentID=%d", searchResult.contentID)) {
-                LaunchHandler().process(url: url, searchViewController: searchViewController)
+            if let link = link(with: searchResult.contentID, urlFormat: "qot://contentItem?contentID=%d") {
+                presentArticle(with: link)
             }
         default: return
         }
@@ -40,5 +40,19 @@ extension SearchRouter: SearchRouterInterface {
 
     func dismiss() {
         searchViewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Private
+
+private extension SearchRouter {
+
+    func link(with identifier: Int?, urlFormat: String) -> URL? {
+        guard let identifier = identifier else { return nil }
+        return URL(string: String(format: urlFormat, identifier))
+    }
+
+    func presentArticle(with link: URL) {
+        LaunchHandler().process(url: link, searchViewController: searchViewController)
     }
 }

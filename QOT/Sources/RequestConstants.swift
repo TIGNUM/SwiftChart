@@ -48,6 +48,7 @@ enum Endpoint: String {
     case guide = "/personal/p/qot/guide"
     case device = "/personal/p/qot/device"
     case partnerSharing = "/personal/p/qot/qotpartnersharing"
+    case userSearchResult = "/personal/p/qot/usersearch"
     case appEvent = "/personal/p/qot/qotappevent"
 
     func url(baseURL: URL) -> URL {
@@ -66,6 +67,10 @@ enum RequestParameter: String {
     case appKey
     case qotPartnerId
     case qotpartnersharingtype
+    case contentItemId
+    case contentId
+    case filter
+    case query
     case eventDate
     case qotAppEventType
     case deviceDto

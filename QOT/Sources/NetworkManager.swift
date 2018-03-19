@@ -99,7 +99,7 @@ final class NetworkManager {
                                      parser: GenericParser.parse,
                                      notifyDelegateOfFailure: false,
                                      current: current) { (result) in
-            completion(result.error)
+                                        completion(result.error)
         }
         return current
     }
@@ -114,6 +114,24 @@ final class NetworkManager {
                                      current: current,
                                      completion: completion)
         return current
+    }
+
+    @discardableResult func performUserSearchResultRequest(contentId: Int?,
+                                                           contentItemId: Int?,
+                                                           filter: Search.Filter,
+                                                           query: String,
+                                                           completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
+        let current = SerialRequest()
+        performAuthenticatingRequest(UserSearchResultRequest(contentId: contentId,
+                                                             contentItemId: contentItemId,
+                                                             filter: filter,
+                                                             query: query),
+                                     parser: PartnerSharingEmail.parse,
+                                     notifyDelegateOfFailure: false,
+                                     current: current) { (result) in
+                                        completion(result.error)
+            }
+            return current
     }
 
     @discardableResult func performAppEventRequest(appEvent: AppEventRequest.EventType,

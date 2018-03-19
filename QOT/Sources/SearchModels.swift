@@ -12,8 +12,16 @@ struct Search {
 
     enum Filter: Int {
         case all = 0
-        case video
         case audio
+        case video
+
+        var title: String {
+            switch self {
+            case .all: return R.string.localized.searchFilterAll()
+            case .video: return R.string.localized.searchFilterVideo()
+            case .audio: return R.string.localized.searchFilterAudio()
+            }
+        }
     }
 
     enum DisplayType: String {
@@ -23,9 +31,10 @@ struct Search {
     }
 
     struct Result {
-        let type: Filter
+        let filter: Filter
         let title: String
-        let contentID: Int
+        let contentID: Int?
+        let contentItemID: Int?
         let createdAt: Date
         let searchTags: String
         let section: Database.Section?

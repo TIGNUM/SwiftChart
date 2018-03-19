@@ -16,7 +16,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     private var searchBar = UISearchBar()
     private var searchResults = [Search.Result]()
     private var searchFilter = Search.Filter.all
-    private var searchText = ""
+    private var searchQuery = ""
 
     init(configure: Configurator<SearchViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -51,6 +51,14 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         self.searchResults = searchResults
         tableView.isUserInteractionEnabled = searchResults.isEmpty == false
         tableView.reloadData()
+
+        if searchResults.isEmpty == true {
+            let filter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
+            interactor?.sendUserSearchResult(contentId: nil,
+                                             contentItemId: nil,
+                                             filter: filter,
+                                             query: searchQuery)
+        }
     }
 }
 
@@ -101,12 +109,12 @@ extension SearchViewController {
 extension SearchViewController: UISearchBarDelegate {
 
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchText = searchText
+        self.searchQuery = searchText
         updateSearchResults()
     }
 
     func updateSearchResults() {
-        interactor?.didChangeSearchText(searchText: searchText, searchFilter: searchFilter)
+        interactor?.didChangeSearchText(searchText: searchQuery, searchFilter: searchFilter)
     }
 
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
@@ -122,7 +130,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if searchResults.isEmpty == false {
             return searchResults.count
-        } else if searchResults.isEmpty == true && searchText.isEmpty == false {
+        } else if searchResults.isEmpty == true && searchQuery.isEmpty == false {
             return 1
         }
 
@@ -136,7 +144,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
         }
 
-        if searchResults.isEmpty == true && searchText.isEmpty == false {
+        if searchResults.isEmpty == true && searchQuery.isEmpty == false {
             searchCell.configure(title: R.string.localized.alertTitleNoContent(), contentType: nil, duration: nil)
         } else {
             let result = searchResults[indexPath.row]
@@ -152,7 +160,11 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let selectedSearchResult = searchResults[indexPath.row]
-        switch selectedSearchResult.type {
+        interactor?.sendUserSearchResult(contentId: selectedSearchResult.contentID,
+                                         contentItemId: selectedSearchResult.contentItemID,
+                                         filter: selectedSearchResult.filter,
+                                         query: searchQuery)
+        switch selectedSearchResult.filter {
         case .all: interactor?.handleSelection(searchResult: selectedSearchResult)
         case .audio,
              .video:
@@ -173,7 +185,7 @@ private extension UISearchBar {
         UIGraphicsEndImageContext()
 
         setSearchFieldBackgroundImage(bgImage, for: .normal)
-        setBackgroundImage(bgImage, for: .any, barMetrics: .default)
+        setBackgroundImage(bgImage, for: .top, barMetrics: .defaultPrompt)
 
         for view in subviews {
             for subview in view.subviews {

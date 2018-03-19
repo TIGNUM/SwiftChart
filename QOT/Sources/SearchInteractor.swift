@@ -25,6 +25,13 @@ final class SearchInteractor {
 
 extension SearchInteractor: SearchInteractorInterface {
 
+    func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String) {
+        worker.sendUserSearchResult(contentId: contentId,
+                                    contentItemId: contentItemId,
+                                    filter: filter,
+                                    query: query)
+    }
+
     func handleSelection(searchResult: Search.Result) {
         router.handleSelection(searchResult: searchResult)
     }
