@@ -11,9 +11,15 @@ import Foundation
 final class SettingsCalendarListViewModel {
 
     private let manager: CalendarSyncSettingsManager
+    let syncStateObserver: SyncStateObserver
+
+    var isSyncFinished: Bool {
+        return syncStateObserver.hasSynced(RealmCalendarSyncSetting.self)
+    }
 
     init(services: Services) {
         self.manager = CalendarSyncSettingsManager(realmProvider: services.realmProvider)
+        self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
     }
 
     var calendarCount: Int {

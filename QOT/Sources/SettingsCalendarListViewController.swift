@@ -41,6 +41,9 @@ final class SettingsCalendarListViewController: UITableViewController {
 
         addEventStoreNotificationHandler()
         setupView()
+        viewModel.syncStateObserver.onUpdate { [unowned self] _ in
+            self.tableView.reloadData()
+        }
     }
 }
 
@@ -84,7 +87,7 @@ extension SettingsCalendarListViewController {
         }
 
         settingsCell.calendarSyncDelegate = self
-        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath, calendarIdentifier: calendarIdentifier)
+        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath, calendarIdentifier: calendarIdentifier, isSyncFinished: viewModel.isSyncFinished)
 
         return settingsCell
     }

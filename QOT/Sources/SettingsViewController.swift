@@ -84,7 +84,6 @@ final class SettingsViewController: UIViewController {
         self.settingsType = settingsType
         self.services = services
         self.destination = destination
-
         super.init(nibName: nil, bundle: nil)
 
         NotificationCenter.default.addObserver(self,
@@ -273,7 +272,7 @@ extension SettingsViewController: UITableViewDataSource, UITableViewDelegate {
         }
 
         settingsCell.settingsDelegate = self
-        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath)
+        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath, isSyncFinished: true)
 
         return settingsCell
     }

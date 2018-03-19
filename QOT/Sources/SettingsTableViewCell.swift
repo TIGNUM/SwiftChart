@@ -15,6 +15,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var valueLabel: UILabel!
     @IBOutlet private weak var switchControl: UISwitch!
+    @IBOutlet private weak var loadingIndicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var button: UIButton!
     @IBOutlet private weak var textField: UITextField!
     private lazy var pickerItems = [String]()
@@ -42,7 +43,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Setup
 
-    func setup(settingsRow: SettingsRow, indexPath: IndexPath, calendarIdentifier: String? = nil) {
+    func setup(settingsRow: SettingsRow, indexPath: IndexPath, calendarIdentifier: String? = nil, isSyncFinished: Bool) {
         self.indexPath = indexPath
         self.calendarIdentifier = calendarIdentifier
 
@@ -53,6 +54,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
         case .control(let title, let enabled, let settingsType, _):
             self.settingsType = settingsType
             setupControlCell(title: title, isOn: enabled)
+            setupControls(isSyncFinished: isSyncFinished)
         case .datePicker(let title, let selectedDate, let settingsType):
             self.settingsType = settingsType
             setupDateCell(title: title, selectedDate: selectedDate)
@@ -82,6 +84,18 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     func setupHeaderCell(title: String) {
         setupLabelCell(title: title, value: nil)
+    }
+
+    func setupControls(isSyncFinished: Bool) {
+        if isSyncFinished == true {
+            switchControl.isHidden = false
+            loadingIndicatorView.isHidden = true
+            loadingIndicatorView.stopAnimating()
+        } else {
+            switchControl.isHidden = true
+            loadingIndicatorView.isHidden = false
+            loadingIndicatorView.startAnimating()
+        }
     }
 }
 
