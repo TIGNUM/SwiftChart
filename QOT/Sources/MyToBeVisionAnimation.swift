@@ -30,8 +30,10 @@ final class MyToBeVisionAnimation: NSObject {
     }
 
     private func getMyToBeVisionViewController(_ viewController: UIViewController) -> MyToBeVisionViewController? {
-        if let viewController = viewController as? MyToBeVisionViewController {
-            return viewController
+        if
+            let navigationController = viewController as? UINavigationController,
+            let childViewController = navigationController.viewControllers.first as? MyToBeVisionViewController {
+            return childViewController
         }
         return nil
     }

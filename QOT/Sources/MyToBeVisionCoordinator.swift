@@ -14,7 +14,6 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
     // MARK: - Properties
 
     private let services: Services
-    private var myToBeVisionViewController: MyToBeVisionViewController!
     private let rootViewController: UIViewController
     private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     var children: [Coordinator] = []
@@ -25,16 +24,17 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
         self.rootViewController = root
         self.transitioningDelegate = transitioningDelegate
         self.services = services
-
-        let configurator = MyToBeVisionConfigurator.make()
-        myToBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
-        myToBeVisionViewController.modalPresentationStyle = .custom
-
         super.init()
-        myToBeVisionViewController.transitioningDelegate = transitioningDelegate
     }
 
     func start() {
-        rootViewController.present(myToBeVisionViewController, animated: true)
+        let configurator = MyToBeVisionConfigurator.make()
+        let myToBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
+        let navController = UINavigationController(rootViewController: myToBeVisionViewController)
+
+        navController.navigationBar.applyDefaultStyle()
+        navController.modalPresentationStyle = .custom
+        navController.transitioningDelegate = transitioningDelegate
+        rootViewController.present(navController, animated: true)
     }
 }

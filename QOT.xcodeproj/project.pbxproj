@@ -287,6 +287,7 @@
 		CB53F0DA20237507007C624B /* Keychain.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB53F0D920237507007C624B /* Keychain.swift */; };
 		CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */; };
 		CB55A2E11E9FDF1D00D721CE /* SettingsMenuViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */; };
+		CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57589D205FD22E00EDC028 /* FadeContainerView.swift */; };
 		CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5891791F7B95B200D63C5E /* ChatViewCell.swift */; };
 		CB6637AD201A323200A995D6 /* UserNotificationsScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637AC201A323200A995D6 /* UserNotificationsScheduler.swift */; };
 		CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */; };
@@ -877,6 +878,7 @@
 		CB53F0D920237507007C624B /* Keychain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keychain.swift; sourceTree = "<group>"; };
 		CB55A2DE1E9FDF0A00D721CE /* SettingsMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewController.swift; sourceTree = "<group>"; };
 		CB55A2E01E9FDF1D00D721CE /* SettingsMenuViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuViewModel.swift; sourceTree = "<group>"; };
+		CB57589D205FD22E00EDC028 /* FadeContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeContainerView.swift; sourceTree = "<group>"; };
 		CB5891791F7B95B200D63C5E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
 		CB6637AC201A323200A995D6 /* UserNotificationsScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsScheduler.swift; sourceTree = "<group>"; };
 		CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsManager.swift; sourceTree = "<group>"; };
@@ -2468,6 +2470,7 @@
 			isa = PBXGroup;
 			children = (
 				CB53F0D720235A9C007C624B /* Atomic.swift */,
+				CB57589D205FD22E00EDC028 /* FadeContainerView.swift */,
 				CB3029E72050335A00DD4440 /* KeyboardListener.swift */,
 				CB53F0D920237507007C624B /* Keychain.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
@@ -3194,6 +3197,7 @@
 				CB333401204978DE009480DF /* PartnersRouter.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
+				CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */,
 				7F2B77D31FC5C3E800203D90 /* LibraryViewModelInterface.swift in Sources */,
 				912C9E3B203C718100C1AA76 /* MyToBeVisionModels.swift in Sources */,
 				7F4B98A81FA21FD3000B402C /* WeeklyChoicesAnimation.swift in Sources */,

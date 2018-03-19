@@ -2,46 +2,45 @@
 //  MyToBeVisionViewController.swift
 //  QOT
 //
-//  Created by karmic on 18.04.17.
-//  Copyright © 2017 Tignum. All rights reserved.
+//  Created by Javier Sanz Rozalen on 07/03/2018.
+//  Copyright © 2018 Tignum. All rights reserved.
 //
 
 import UIKit
-import Anchorage
+import AVKit
+import AVFoundation
 
-final class MyToBeVisionViewController: UIViewController, MyToBeVisionViewControllerInterface {
+class MyToBeVisionViewController: UIViewController {
 
-    // MARK: - Properties
+    @IBOutlet private weak var scrollView: UIScrollView!
+    @IBOutlet private weak var headlineTextView: UITextView!
+    @IBOutlet private weak var messageTextView: UITextView!
+    @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var editImageLabel: UILabel!
+    @IBOutlet private weak var imageView: UIImageView!
+    @IBOutlet private weak var placeholderImageView: UIImageView!
+    @IBOutlet private weak var darkBackgroundImageView: UIImageView!
+    @IBOutlet private weak var editIconImageView: UIImageView!
+    @IBOutlet private weak var headlineHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var messageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var imageContainerBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var imageContainerView: UIView!
+    @IBOutlet private weak var instructionsButton: UIButton!
+    @IBOutlet private weak var fadeContainerView: FadeContainerView!
+    @IBOutlet private weak var minScrollViewContentHeight: NSLayoutConstraint!
 
-    @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var editButton: UIBarButtonItem!
-    @IBOutlet weak var minimiseButton: UIBarButtonItem!
-    @IBOutlet weak var headlineTextView: PlaceholderTextView!
-    @IBOutlet weak var headlineConstraint: NSLayoutConstraint!
-    @IBOutlet weak var messageTextView: PlaceholderTextView!
-    @IBOutlet weak var subtitleLabel: UILabel!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var imageViewPlaceholder: UIImageView!
-    @IBOutlet weak var imageViewContainer: UIView!
-    @IBOutlet weak var imageButton: UIButton! // FIXME: Make UIImageView
-    @IBOutlet weak var imageEditLabel: UILabel!
-    @IBOutlet weak var circleContainerView: UIView!
-    @IBOutlet weak var gradientView: UIView!
+    private let keyboardListener = KeyboardListener()
+    private let navItem = NavigationItem(title: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
     private var imagePickerController: ImagePickerController!
-    private var imageTapRecogniser: UITapGestureRecognizer!
-
+    private var imageRecognizer: UITapGestureRecognizer!
     private var toBeVision: MyToBeVisionModel.Model?
+    private var imageTapRecognizer = UITapGestureRecognizer()
+    private var imageIsHidden = false
     var interactor: MyToBeVisionInteractor?
     var router: MyToBeVisionRouter?
     var permissionsManager: PermissionsManager!
 
-    private lazy var gradientLayer: CAGradientLayer = {
-        let layer = CAGradientLayer()
-        gradientView.layer.addSublayer(layer)
-        return layer
-    }()
-
-    // MARK: - Init
+    // MARK: - Lifecycle
 
     init(configurator: Configurator<MyToBeVisionViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -51,49 +50,53 @@ final class MyToBeVisionViewController: UIViewController, MyToBeVisionViewContro
                                                       imageSize: .small,
                                                       permissionsManager: permissionsManager)
         imagePickerController.delegate = self
-        imageTapRecogniser = UITapGestureRecognizer(target: self, action: #selector(imageButtonPressed(_:)))
+        imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
     }
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    // MARK: - Life Cycle
+    override var navigationItem: UINavigationItem {
+        return navItem
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         interactor?.viewDidLoad()
         setupView()
+
+        keyboardListener.onStateChange { [weak self] (state) in
+            self?.syncScrollViewInsets()
+        }
     }
 
-    override func viewWillLayoutSubviews() {
-        super.viewWillLayoutSubviews()
+    @available(iOS 11.0, *)
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
 
-        setupMessageTextGradientLayer()
-        maskImageView(imageView: imageView)
-        drawCircles()
+        syncScrollViewInsets()
+        resizeTextViewsHeight()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
 
-        if messageTextView.contentInset.bottom == 0 {
-            messageTextView.contentInset.bottom = imageViewContainer.bounds.height
-        }
+        syncScrollViewInsets()
+        resizeTextViewsHeight()
+    }
 
-        if headlineTextView.numberOfLines > 1 {
-            headlineTextView.flashScrollIndicators()
-        }
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
 
-        headlineTextView.setContentOffset(.zero, animated: false)
-        setHeadlineHeight()
+        maskImage()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        startObservingKeyboard()
+        keyboardListener.startObserving()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -102,17 +105,28 @@ final class MyToBeVisionViewController: UIViewController, MyToBeVisionViewContro
         if isBeingDismissed == true {
             edit(false)
         }
-        stopObservingKeyboard()
     }
 
-    // MARK: - Internal
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
 
-    func edit() {
-        isEditing = !isEditing
-        edit(isEditing)
+        keyboardListener.stopObserving()
     }
 
-    // MARK: - MyToBeVision View Contoller Interface
+    func syncScrollViewInsets() {
+        let topInset = safeAreaInsets.top
+        let bottomeInset = max(safeAreaInsets.bottom, keyboardListener.state.height)
+
+        scrollView.contentInset.top = topInset
+        scrollView.contentInset.bottom = bottomeInset
+        fadeContainerView.setFade(top: safeAreaInsets.top, bottom: 0)
+        minScrollViewContentHeight.constant = scrollView.bounds.height - topInset - bottomeInset  + 31
+    }
+}
+
+// MARK: - MyToBeVisionViewContollerInterface
+
+extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
 
     func setup(with toBeVision: MyToBeVisionModel.Model) {
         self.toBeVision = toBeVision
@@ -122,6 +136,7 @@ final class MyToBeVisionViewController: UIViewController, MyToBeVisionViewContro
     func update(with toBeVision: MyToBeVisionModel.Model) {
         if toBeVision != self.toBeVision {
             self.toBeVision = toBeVision
+            toBeVisionDidUpdate()
         }
     }
 
@@ -136,93 +151,146 @@ final class MyToBeVisionViewController: UIViewController, MyToBeVisionViewContro
     }
 }
 
+// MARK: - Setup
+
+extension MyToBeVisionViewController {
+
+    func setupView() {
+        automaticallyAdjustsScrollViewInsets = false
+        if #available(iOS 11.0, *) {
+            scrollView.contentInsetAdjustmentBehavior = .never
+        }
+        setupNavigation()
+        setupInstructionsButton()
+        setupTextViews()
+        drawCircles()
+        setupImage()
+    }
+
+    func setupNavigation() {
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        leftButton.target = self
+        leftButton.action = #selector(didTapClose(_ :))
+        navItem.leftBarButtonItem = leftButton
+
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
+        rightButton.target = self
+        rightButton.action = #selector(didTapEdit(_ :))
+        rightButton.tintColor = .white40
+        navItem.rightBarButtonItem = rightButton
+    }
+
+    func setupTextViews() {
+        headlineTextView.autocapitalizationType = .allCharacters
+        headlineTextView.textContainer.lineBreakMode = .byTruncatingTail
+        headlineTextView.textContainer.lineFragmentPadding = 0
+
+        messageTextView.alpha = 1
+        messageTextView.textContainer.lineFragmentPadding = 0
+        messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 10.0, right: 0.0)
+        checkIfPlaceholdersNeeded()
+    }
+
+    func setupInstructionsButton() {
+        instructionsButton.layer.borderWidth = 1
+        instructionsButton.layer.borderColor = UIColor.gray.cgColor
+        instructionsButton.layer.cornerRadius = instructionsButton.bounds.height * 0.5
+    }
+
+    func setupImage() {
+        editImageLabel.alpha = 0
+        editIconImageView.alpha = 0
+        imageView.addGestureRecognizer(imageTapRecognizer)
+    }
+
+    func resizeTextViewsHeight() {
+        let headlineSize = headlineTextView.sizeThatFits(CGSize(width: headlineTextView.frame.size.width,
+                                                                height: CGFloat(MAXFLOAT)))
+        headlineHeightConstraint.constant = headlineSize.height
+
+        let messageSize = messageTextView.sizeThatFits(CGSize(width: messageTextView.frame.size.width,
+                                                              height: CGFloat(MAXFLOAT)))
+        messageHeightConstraint.constant = messageSize.height
+    }
+
+    func checkIfPlaceholdersNeeded() {
+        if headlineTextView.text.trimmingCharacters(in: CharacterSet.newlines).components(separatedBy: .whitespaces)[0] == "" {
+            headlineTextView.text = R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder().uppercased()
+        }
+        if messageTextView.text.trimmingCharacters(in: CharacterSet.newlines).components(separatedBy: .whitespaces)[0] == "" {
+            messageTextView.text = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
+        }
+        resizeTextViewsHeight()
+    }
+
+    func syncInstructionsButton() {
+        instructionsButton.isHidden = isEditing || messageTextView.text != R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
+    }
+}
+
 // MARK: - Private drawing
 
 private extension MyToBeVisionViewController {
 
     func drawCircles() {
-        // FIXME: We should try to avoid removing sublayers
-        circleContainerView.removeSubLayers()
         var center = view.center; center.x *= 0.2; center.y *= 1.1
         let circleLayer1 = CAShapeLayer.circle(center: center,
                                                radius: view.bounds.width * 0.55,
                                                fillColor: .clear,
                                                strokeColor: .whiteLight8)
         circleLayer1.lineDashPattern = [1, 2]
-        circleContainerView.layer.addSublayer(circleLayer1)
+        view.layer.insertSublayer(circleLayer1, below: scrollView.layer)
         let circleLayer2 = CAShapeLayer.circle(center: center,
                                                radius: view.bounds.width * 0.9,
                                                fillColor: .clear,
                                                strokeColor: .whiteLight8)
-        circleContainerView.layer.addSublayer(circleLayer2)
+        view.layer.insertSublayer(circleLayer2, below: scrollView.layer)
+
     }
 
-    func maskImageView(imageView: UIImageView) {
-        let clippingBorderPath = UIBezierPath()
-        clippingBorderPath.move(to: CGPoint(x: 0, y: 56))
-        clippingBorderPath.addCurve(to: CGPoint(x: view.bounds.size.width, y: 56),
-                                    controlPoint1: CGPoint(x: view.bounds.size.width/2 - 50, y: 0),
-                                    controlPoint2: CGPoint(x: view.bounds.size.width/2 + 50, y: 0))
-        clippingBorderPath.addLine(to: CGPoint(x: view.bounds.size.width, y: view.bounds.size.height + 30))
-        clippingBorderPath.addLine(to: CGPoint(x: 0, y: view.bounds.size.height + 30))
-        clippingBorderPath.close()
-
+    func maskImage() {
+        let bounds = imageContainerView.bounds
+        let radius = bounds.height * 2 // Magic number matching placeholder radius
+        let center = CGPoint(x: bounds.midX, y: radius)
+        let path = UIBezierPath.circlePath(center: center, radius: radius)
         let borderMask = CAShapeLayer()
-        borderMask.path = clippingBorderPath.cgPath
+        let borderMask2 = CAShapeLayer()
+        borderMask.path = path.cgPath
+        borderMask2.path = path.cgPath
         imageView.layer.mask = borderMask
+        darkBackgroundImageView.layer.mask = borderMask2
     }
 }
 
-// MARK: - Setup
+// MARK: - Actions
 
-private extension MyToBeVisionViewController {
+extension MyToBeVisionViewController {
 
-    func setupView() {
-        setupNavigation()
-        setupLabels()
-        syncImageControls(animated: false)
-        imageView.addGestureRecognizer(imageTapRecogniser)
-        editButton.tintColor = .white40
+    @objc func didTapClose(_ sender: UIBarButtonItem) {
+        saveToBeVisison()
+        router?.close()
     }
 
-    func setupNavigation() {
-        navigationBar.topItem?.title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
-        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: Font.H6NavigationTitle]
-        let dummyImage = UIImage()
-        navigationBar.setBackgroundImage(dummyImage, for: .default)
-        navigationBar.shadowImage = dummyImage
-        navigationBar.isTranslucent = true
+    @objc func didTapEdit(_ sender: UIBarButtonItem) {
+        isEditing = !isEditing
+        edit(isEditing)
     }
 
-    func setupLabels() {
-        setupHeadlineText(editing: false)
-        setupMessageText(editing: false)
-        imageEditLabel.font = Font.DPText
-        imageEditLabel.textColor = .white
+    @objc func didTapImage() {
+        imagePickerController.show(in: self)
     }
 
-    func setupHeadlineText(editing: Bool) {
-        headlineTextView.autocapitalizationType = .allCharacters
-        headlineTextView.alpha = 1
-        headlineTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder().uppercased(),
-                             placeholdeColor: .white)
-        headlineTextView.textContainer.lineFragmentPadding = 0
-        setHeadlineHeight()
-    }
+    @IBAction func didTapViewInstructions(_ sender: UIButton) {
+        let stringURL = "https://s3.eu-central-1.amazonaws.com/tignum-content/videos/On-boarding/TO_BE_VISION.mp4"
+        guard let videoURL = URL(string: stringURL) else { return }
 
-    func setupMessageText(editing: Bool) {
-        messageTextView.alpha = 1
-        messageTextView.set(placeholderText: R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
-                            placeholdeColor: .white)
-        messageTextView.textContainer.lineFragmentPadding = 0
-        messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 10.0, right: 0.0)
-    }
-
-    func setupMessageTextGradientLayer() {
-        gradientLayer.frame = gradientView.frame
-        gradientLayer.colors = [UIColor.clear.cgColor, UIColor.black.cgColor]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0, y: 0.2)
+        let playerItem = AVPlayerItem(url: videoURL)
+        let player = AVPlayer(playerItem: playerItem)
+        let playerVC = AVPlayerViewController()
+        player.volume = 1.0
+        player.play()
+        playerVC.player = player
+        present(playerVC, animated: true, completion: nil)
     }
 }
 
@@ -231,63 +299,22 @@ private extension MyToBeVisionViewController {
 private extension MyToBeVisionViewController {
 
     func toBeVisionDidUpdate() {
+        subtitleLabel.attributedText = toBeVision?.formattedSubtitle
         if headlineTextView.attributedText != toBeVision?.formattedHeadline {
             headlineTextView.attributedText = toBeVision?.formattedHeadline
         }
         if messageTextView.attributedText != toBeVision?.formattedVision {
             messageTextView.attributedText = toBeVision?.formattedVision
         }
-
-        subtitleLabel.attributedText = toBeVision?.formattedSubtitle
+        if toBeVision?.imageURL == nil {
+            placeholderImageView.isVisible = true
+            return
+        }
         imageView.kf.setImage(with: toBeVision?.imageURL)
+        syncInstructionsButton()
     }
 
-    func syncImageControls(animated: Bool) {
-        let hasImage = toBeVision?.imageURL != nil
-        imageView.isHidden = !hasImage
-        imageViewPlaceholder.isHidden = hasImage
-        let buttonAlpha: CGFloat
-        if hasImage {
-            buttonAlpha = isEditing == true ? 1 : 0
-        } else {
-            buttonAlpha = isEditing == true ? 1 : 0.3
-        }
-        imageTapRecogniser.isEnabled = !hasImage || isEditing
-        UIView.animate(withDuration: animated ? 0.5 : 0) {
-            self.imageButton.alpha = buttonAlpha
-            self.imageEditLabel.alpha = buttonAlpha
-            self.imageView.alpha = self.isEditing ? 0.25 : 1
-        }
-    }
-
-    func edit(_ isEditing: Bool) {
-        self.isEditing = isEditing
-        headlineTextView.isEditable = isEditing
-        messageTextView.isEditable = isEditing
-        editButton.tintColor = isEditing ? .white : .white40
-        setupMessageText(editing: isEditing)
-        syncImageControls(animated: true)
-    }
-}
-
-// MARK: - Actions
-
-private extension MyToBeVisionViewController {
-
-    @IBAction func closeAction(_ sender: Any) {
-        saveToBeVisison()
-        router?.close()
-    }
-
-    @IBAction func editTapped(_ sender: Any) {
-        edit()
-    }
-
-    @IBAction func imageButtonPressed(_ sender: UIButton) {
-        imagePickerController.show(in: self)
-    }
-
-    private func saveToBeVisison() {
+    func saveToBeVisison() {
         guard var toBeVision = toBeVision else { return }
 
         let currentDate = Date()
@@ -302,9 +329,38 @@ private extension MyToBeVisionViewController {
 
         interactor?.saveToBeVision(toBeVision: toBeVision)
     }
+
+    func edit(_ isEditing: Bool) {
+        self.isEditing = isEditing
+        headlineTextView.isEditable = isEditing
+        messageTextView.isEditable = isEditing
+        imageView.isUserInteractionEnabled = isEditing
+        navItem.rightBarButtonItem?.tintColor = isEditing ? .white : .white40
+        syncImageControls(animated: isEditing)
+        syncInstructionsButton()
+    }
+
+    func syncImageControls(animated: Bool) {
+        let hasImage = toBeVision?.imageURL != nil
+        imageView.isHidden = !hasImage
+        let buttonAlpha: CGFloat
+        if hasImage {
+            buttonAlpha = isEditing == true ? 1 : 0
+        } else {
+            buttonAlpha = isEditing == true ? 1 : 0.3
+        }
+        imageTapRecognizer.isEnabled = !hasImage || isEditing
+        UIView.animate(withDuration: animated ? 0.5 : 0) {
+            if self.imageIsHidden == false {
+                self.editImageLabel.alpha = buttonAlpha
+                self.editIconImageView.alpha = buttonAlpha
+            }
+            self.imageView.alpha = self.isEditing ? 0.25 : 1
+        }
+    }
 }
 
-// MARK: - Notifications 
+// MARK: - Notifications
 
 extension MyToBeVisionViewController {
 
@@ -312,57 +368,57 @@ extension MyToBeVisionViewController {
         guard
             let userInfo = notification.userInfo,
             let rect = userInfo[UIKeyboardFrameEndUserInfoKey] as? CGRect else { return }
-        messageTextView.contentInset.bottom = rect.height
+        scrollView.contentInset.bottom = rect.height
     }
 
     override internal func keyboardWillDisappear(notification: NSNotification) {
-        messageTextView.contentInset.bottom = imageViewContainer.bounds.height
-        messageTextView.setContentOffset(.zero, animated: true)
-        headlineTextView.setContentOffset(.zero, animated: true)
+        resizeTextViewsHeight()
     }
 }
 
-// MARK: - UITextViewDelegate
+// MARK: - UIScrollViewDelegate
+
+extension MyToBeVisionViewController: UIScrollViewDelegate {
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let adjustOffsetY = scrollView.contentOffset.y + scrollView.contentInset.top
+        let hideImage = adjustOffsetY >= 30
+        setImageViewHidden(hideImage)
+    }
+
+    private func setImageViewHidden(_ hidden: Bool) {
+        guard imageIsHidden != hidden else { return }
+
+        imageIsHidden = hidden
+        let constant = hidden ? imageContainerView.bounds.height : 0
+        imageContainerBottomConstraint.constant = constant
+        UIView.animate(withDuration: 0.3) {
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
+// MARK: - UITextViewDelegate, UITextView private extension
 
 extension MyToBeVisionViewController: UITextViewDelegate {
 
     func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
         if isEditing == false {
-            edit()
+            edit(isEditing)
         }
         return true
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
-        // FIXME: The textView should update itself!
-        if let textView = textView as? PlaceholderTextView {
-            textView.didBeginEditing()
-        }
+        resizeTextViewsHeight()
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
-        // FIXME: The textView should update itself!
-        if let textView = textView as? PlaceholderTextView {
-            textView.didEndEditing()
-        }
-    }
-
-    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        if textView == headlineTextView, text == "\n" {
-            textView.resignFirstResponder()
-            return false
-        }
-        return true
+        checkIfPlaceholdersNeeded()
     }
 
     func textViewDidChange(_ textView: UITextView) {
-        if textView == headlineTextView {
-            setHeadlineHeight()
-        }
-    }
-
-    func setHeadlineHeight() {
-        headlineConstraint.constant = headlineTextView.numberOfLines() == 1 ? 50 : 100
+        resizeTextViewsHeight()
     }
 }
 
@@ -374,9 +430,10 @@ extension MyToBeVisionViewController: ImagePickerControllerDelegate {
         guard let toBeVision = toBeVision else { return }
 
         interactor?.updateToBeVisionImage(image: image, toBeVision: toBeVision)
-        toBeVisionDidUpdate()
     }
 }
+
+// MARK: - NSAttributedString
 
 private extension MyToBeVisionModel.Model {
 
@@ -408,17 +465,5 @@ private extension MyToBeVisionModel.Model {
                                   font: Font.DPText,
                                   lineSpacing: 10.0,
                                   textColor: .white)
-    }
-}
-
-// MARK: - UITextView private
-
-private extension UITextView {
-
-    func numberOfLines() -> Int {
-        if let fontUnwrapped = self.font {
-            return Int(self.contentSize.height / fontUnwrapped.lineHeight)
-        }
-        return 0
     }
 }
