@@ -135,15 +135,15 @@
 		</dict>
 		<dict>
 			<key>UIApplicationShortcutItemIconFile</key>
-			<string>shortcutItem-my-to-be-vision</string>
+			<string>shortcutItem-tools</string>
 			<key>UIApplicationShortcutItemTitle</key>
-			<string>Review To Be Vision</string>
+			<string>Tools</string>
 			<key>UIApplicationShortcutItemType</key>
-			<string>to-be-vision</string>
+			<string>library</string>
 			<key>UIApplicationShortcutItemUserInfo</key>
 			<dict>
 				<key>link</key>
-				<string>qot://to-be-vision</string>
+				<string>qot://library</string>
 			</dict>
 		</dict>
 		<dict>
