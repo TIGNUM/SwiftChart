@@ -306,6 +306,8 @@ extension PartnersViewController: PartnerCellDelegate {
     }
 
     func didTapEditPhoto(in cell: PartnerCell) {
+        guard let index = collectionView.indexPath(for: cell)?.item else { return }
+        startEditing(index: index)
         imagePickerController?.show(in: self)
     }
 }
