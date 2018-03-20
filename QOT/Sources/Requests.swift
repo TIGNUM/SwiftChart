@@ -183,13 +183,19 @@ struct DeviceRequest: URLRequestBuildable {
 struct UserSearchResultRequest: URLRequestBuildable {
     let endpoint: Endpoint = .userSearchResult
     let httpMethod: HTTPMethod = .put
-    let paramaters: [RequestParameter: Any?]
+    var paramaters: [RequestParameter: Any]
 
     init(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String) {
-        self.paramaters = [.contentItemId: contentItemId,
-                           .contentId: contentId,
-                           .filter: filter.title.uppercased(),
+        self.paramaters = [.filter: filter.title.uppercased(),
                            .query: query]
+
+        if let contentId = contentId {
+            self.paramaters[.contentId] = contentId
+        }
+
+        if let contentItemId = contentItemId {
+            self.paramaters[.contentItemId] = contentItemId
+        }
     }
 }
 
@@ -207,7 +213,6 @@ struct AppEventRequest: URLRequestBuildable {
 
     init(eventType: EventType) {
         self.paramaters = [.eventDate: DateFormatter.iso8601.string(from: Date()),
-                           .qotAppEventType: eventType.rawValue,
-                           .deviceDto: [RequestParameter.id.rawValue: deviceID]]
+                           .qotAppEventType: eventType.rawValue]
     }
 }

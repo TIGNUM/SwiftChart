@@ -478,7 +478,6 @@
 		CC37831C1F5EA91F007A16A3 /* ChartType.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37831B1F5EA91F007A16A3 /* ChartType.swift */; };
 		CC37831E1F5ED306007A16A3 /* EnumCollection+Hashable.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC37831D1F5ED306007A16A3 /* EnumCollection+Hashable.swift */; };
 		CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */ = {isa = PBXBuildFile; fileRef = CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */; };
-		CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC3DFB651E83C19C00FF28DF /* Defines.swift */; };
 		CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3E5D4B1F0109B700B9E11F /* ArticleRelatedCell.xib */; };
 		CC41A5411EFD241100B9AE8E /* ArticleRelatedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41A5401EFD241100B9AE8E /* ArticleRelatedCell.swift */; };
 		CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC41A5481EFD59FC00B9AE8E /* ArticleItemHeaderView.swift */; };
@@ -1082,7 +1081,6 @@
 		CC37B1301E93CDD600651C46 /* QOTDatabase.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QOTDatabase.framework; path = "Pods/../build/Release-iphoneos/QOTDatabase/QOTDatabase.framework"; sourceTree = "<group>"; };
 		CC38B11E1F29E60000C2BB87 /* QOT.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QOT.entitlements; sourceTree = "<group>"; };
 		CC38B11F1F29EDA900C2BB87 /* AirshipConfig.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = AirshipConfig.plist; sourceTree = "<group>"; };
-		CC3DFB651E83C19C00FF28DF /* Defines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Defines.swift; sourceTree = "<group>"; };
 		CC3E5D4B1F0109B700B9E11F /* ArticleRelatedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ArticleRelatedCell.xib; sourceTree = "<group>"; };
 		CC41A5401EFD241100B9AE8E /* ArticleRelatedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleRelatedCell.swift; sourceTree = "<group>"; };
 		CC41A5481EFD59FC00B9AE8E /* ArticleItemHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ArticleItemHeaderView.swift; sourceTree = "<group>"; };
@@ -2330,7 +2328,6 @@
 				CB9442241FD80B5700E2B122 /* AppState.swift */,
 				7F6567431FE28FBC00A6CB7F /* Clean.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
-				CC3DFB651E83C19C00FF28DF /* Defines.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -3434,7 +3431,6 @@
 				CBABB3801FDFF3E0007B5B5C /* SlideShowTitleSubtitleSlideCell.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
 				36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */,
-				CC3DFB661E83C19C00FF28DF /* Defines.swift in Sources */,
 				CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
