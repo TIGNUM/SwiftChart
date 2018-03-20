@@ -250,7 +250,10 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
                 return
         }
 
-        let notificationID = notification.request.identifier
+        var notificationID = notification.request.identifier
+        if notificationID.starts(with: "daily-prep") {
+            notificationID = NotificationID.dailyPrep(date: Calendar.current.isoDate(from: notification.date)).string
+        }
         launchHandler.process(url: link, notificationID: notificationID)
         guard
             let host = link.host,

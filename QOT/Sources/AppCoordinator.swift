@@ -852,10 +852,9 @@ extension AppCoordinator {
         chatViewController.routerDelegate = self
     }
 
-    func presentMorningInterview(groupID: Int, notificationRemoteID: Int) {
+    func presentMorningInterview(groupID: Int, date: ISODate) {
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let configurator = MorningInterviewConfigurator.make(questionGroupID: groupID,
-                                                             notificationRemoteID: notificationRemoteID)
+        let configurator = MorningInterviewConfigurator.make(questionGroupID: groupID, date: date)
         let morningInterViewController = MorningInterviewViewController(configurator: configurator)
         windowManager.showPriority(morningInterViewController, animated: true, completion: nil)
         currentPresentedController = morningInterViewController

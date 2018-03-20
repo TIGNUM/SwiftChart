@@ -22,4 +22,10 @@ extension Calendar {
 
         return calendar
     }
+
+    func isoDate(from date: Date) -> ISODate {
+        return ISODate(year: component(.year, from: date),
+                       month: component(.month, from: date),
+                       day: component(.day, from: date))
+    }
 }

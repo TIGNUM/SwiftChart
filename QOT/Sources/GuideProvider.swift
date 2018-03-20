@@ -28,3 +28,28 @@ extension RealmGuideItemLearn: GuideLearnItem {
         return (hour: hour, minute: minute)
     }
 }
+
+extension NotificationConfigurationObject: GuideNotificationConfiguration {
+
+    var displayAt: (weekday: Int, hour: Int, minute: Int) {
+        return (weekday, hour, minute)
+    }
+
+    var priority: Int {
+        return 10000 // FIXME: Dont hard code
+    }
+}
+
+extension DailyPrepResultObject: GuideDailyPrepResult {
+
+    var displayAt: (date: ISODate, hour: Int, minute: Int)? {
+        guard let date = ISODate(string: isoDate) else { return nil }
+
+        // FIXME: Dont hard code hour and minute
+        return (date: date, hour: 5, minute: 0)
+    }
+
+    var priority: Int {
+        return 10000 // FIXME: Dont hard code
+    }
+}

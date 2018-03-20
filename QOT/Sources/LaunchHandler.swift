@@ -155,6 +155,12 @@ extension LaunchHandler {
         let type = RealmGuideItemNotification.self
         return realm.syncableObject(ofType: type, remoteID: remotID)?.completedAt != nil
     }
+
+    private func dailyPrepIsCompleted(date: ISODate) throws -> Bool {
+        let realmProvider = RealmProvider()
+        let realm = try realmProvider.realm()
+        return realm.objects(DailyPrepResultObject.self).filter("isoDate == %@", date.string).count > 0
+    }
 }
 
 // MARK: - Morning Interview
@@ -162,12 +168,10 @@ extension LaunchHandler {
 extension LaunchHandler {
 
     func dailyPrep(groupID: String?, notificationID: String, guideItem: Guide.Item?) {
-        let notiRemoteID = (try? GuideItemID(stringRepresentation: notificationID).remoteID) ?? Int(notificationID)
-
         guard let group = groupID,
             let groupIDIntValue = Int(group),
-            let notificationRemoteID = notiRemoteID,
-            let alreadyCompleted = try? notificationIsCompleted(remotID: notificationRemoteID) else {
+            let date = NotificationID(string: notificationID).dailyPrepContent,
+            let alreadyCompleted = try? dailyPrepIsCompleted(date: date) else {
             let groupIDString = groupID.debugDescription
             log("Cannot show daily prep - groupID: \(groupIDString) notificationID: \(notificationID)", level: .error)
             return
@@ -176,7 +180,7 @@ extension LaunchHandler {
             navigate(to: URLScheme.guide.destination)
         } else {
             let coordinator = appDelegate.appCoordinator
-            coordinator.presentMorningInterview(groupID: groupIDIntValue, notificationRemoteID: notificationRemoteID)
+            coordinator.presentMorningInterview(groupID: groupIDIntValue, date: date)
         }
     }
 }

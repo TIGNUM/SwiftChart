@@ -37,11 +37,13 @@ final class UserNotificationsManager {
             let learnItems = realm.objects(RealmGuideItemLearn.self)
             let featureItems = todaysLearnItems(from: learnItems, type: .feature, now: now)
             let strategyItems = todaysLearnItems(from: learnItems, type: .strategy, now: now)
+            let noficationConfigurations = NotificationConfigurationObject.all()
 
             var requests: [UNNotificationRequest] = []
             requests.append(contentsOf: notificationItems.flatMap({ $0.notificationRequest }))
             requests.append(contentsOf: featureItems.flatMap({ $0.notificationRequest }))
             requests.append(contentsOf: strategyItems.flatMap({ $0.notificationRequest }))
+            requests.append(contentsOf: noficationConfigurations.flatMap({ $0.notificationRequest }))
             scheduler.scheduleNotifications(requests)
         } catch {
             log("Error scheduling notifications: \(error)", level: .error)

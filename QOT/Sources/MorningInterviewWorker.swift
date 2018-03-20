@@ -13,20 +13,23 @@ final class MorningInterviewWorker {
 
     private let services: Services
     private let questionGroupID: Int
-    private let notificationRemoteID: Int
+    private let date: ISODate
     private let guideWorker: GuideWorker
     private let networkManager: NetworkManager
+    private let syncManager: SyncManager
 
     init(services: Services,
          questionGroupID: Int,
-         notificationRemoteID: Int,
+         date: ISODate,
          guideWorker: GuideWorker,
-         networkManager: NetworkManager) {
+         networkManager: NetworkManager,
+         syncManager: SyncManager) {
         self.services = services
         self.questionGroupID = questionGroupID
-        self.notificationRemoteID = notificationRemoteID
+        self.date = date
         self.guideWorker = guideWorker
         self.networkManager = networkManager
+        self.syncManager = syncManager
     }
 
     func questions() -> [MorningInterview.Question] {
@@ -52,46 +55,35 @@ final class MorningInterviewWorker {
     }
 
     func saveAnswers(questions: [MorningInterview.Question]) {
-        let notificationRemoteID = self.notificationRemoteID
-        let answers = questions.map { (question) -> UserAnswer in
-            let answer = question.selectedAnswer
-            return UserAnswer(questionID: question.remoteID,
-                              questionGroupID: questionGroupID,
-                              answerID: answer.remoteID,
-                              userAnswer: answer.title,
-                              notificationID: notificationRemoteID)
-        }
-
         let realmProvider = services.realmProvider
         do {
             let realm = try realmProvider.realm()
+
+            // User answers
+            let userAnswers = questions.map { (question) -> UserAnswer in
+                let answer = question.selectedAnswer
+                return UserAnswer(questionID: question.remoteID,
+                                  questionGroupID: questionGroupID,
+                                  answerID: answer.remoteID,
+                                  userAnswer: answer.title,
+                                  date: date)
+            }
+
+            // Daily prep result
+            let dailyPrepAnwsers = questions.map { (question) -> DailyPrepAnswerObject in
+                let questionObject = realm.syncableObject(ofType: Question.self, remoteID: question.remoteID)
+                let title = questionObject?.dailyPrepTitle ?? ""
+                let value = Int(question.selectedAnswer.title) ?? 0
+                return DailyPrepAnswerObject(title: title, value: value)
+            }
+            let title = "DAILY PREP MINUTE" // FIXME: Somehow we need to pass the NotificationConfigurationObject though
+            let result = DailyPrepResultObject(date: date, title: title, answers: dailyPrepAnwsers)
+
             try realm.write {
-                realm.add(answers)
-
-                let result = RealmInterviewResult(notificationRemoteID: notificationRemoteID)
+                realm.add(userAnswers)
                 realm.add(result)
-
-                // Set results on notification if it exists. Otherwise we will set it during sync
-                if let notification = realm.syncableObject(ofType: RealmGuideItemNotification.self,
-                                                           remoteID: notificationRemoteID) {
-                    notification.interviewResult = result
-                }
             }
-            let guideID = GuideItemID(kind: .notification, remoteID: notificationRemoteID)
-            GuideWorker(services: services).setItemCompleted(id: guideID)
-
-            networkManager.performUserAnswerFeedbackRequest(userAnswers: answers) { (result) in
-                switch result {
-                case .success(let value):
-                    do {
-                        try realmProvider.realm().saveFeedback(value, notificationRemoteID: notificationRemoteID)
-                    } catch {
-                        log("Saving morning interview answers failed: \(error)", level: .error)
-                    }
-                case .failure(let error):
-                    log("Saving morning interview answers failed: \(error)", level: .error)
-                }
-            }
+            syncManager.syncAll(shouldDownload: true)
         } catch {
             log("Saving morning interview answers failed: \(error)", level: .error)
         }

@@ -48,18 +48,11 @@ struct Guide {
         let title: String
         let content: Content
         let subtitle: String
-        let type: String
+        let isDailyPrep: Bool
         let link: URL?
         let featureLink: URL?
         let featureButton: String?
         let identifier: String
-        let greeting: String
-        let createdAt: Date
-
-        var isDailyPrep: Bool {
-            return RealmGuideItemNotification.ItemType.morningInterview.rawValue == type ||
-                    RealmGuideItemNotification.ItemType.weeklyInterview.rawValue == type
-        }
 
         var isDailyPrepCompleted: Bool {
             return isDailyPrep == true && status == .done
@@ -109,18 +102,15 @@ extension Guide.Item: Equatable {
 
     static func == (lhs: Guide.Item, rhs: Guide.Item) -> Bool {
         return lhs.content == rhs.content
-            && lhs.createdAt == rhs.createdAt
             && lhs.featureButton == rhs.featureButton
             && lhs.featureLink == rhs.featureLink
-            && lhs.greeting == rhs.greeting
-            && lhs.identifier == rhs.greeting
+            && lhs.identifier == rhs.identifier
             && lhs.isDailyPrep == rhs.isDailyPrep
             && lhs.isDailyPrepCompleted == rhs.isDailyPrepCompleted
             && lhs.link == rhs.link
             && lhs.status == rhs.status
             && lhs.subtitle == rhs.subtitle
             && lhs.title == rhs.title
-            && lhs.type == rhs.type
     }
 }
 

@@ -48,15 +48,34 @@ final class GuideWorker {
         // FIXME: We don't really want to do this on the main thread but the objects we use are using main thread
         let itemFactory = GuideItemFactory(services: services)
         let learnItems = services.guideService.learnItems()
-        let notificationItems = services.guideService.notificationItems()
+        let allNotificationItems = services.guideService.notificationItems()
+        // FIXME: Remove filter when server no longer returns daily prep type notification items
+        let notificationItems = allNotificationItems.filter("type != 'MORNING_INTERVIEW' AND type != 'WEEKLY_INTERVIEW'")
         let featureItems = learnItems.filter { $0.type == RealmGuideItemLearn.ItemType.feature.rawValue }
         let strategyItems = learnItems.filter { $0.type == RealmGuideItemLearn.ItemType.strategy.rawValue }
         let guideGenerator = GuideGenerator(maxDays: 3, factory: itemFactory)
+        let notificationConfigurations = NotificationConfigurationObject.all()
+
+        // Filter daily prep results so there is only one for each day
+        let dailyPrepResults = services.mainRealm.objects(DailyPrepResultObject.self)
+            .reduce([:]) { (results, object) -> [String: DailyPrepResultObject] in
+            var results = results
+            if let existing = results[object.isoDate] {
+                if existing.remoteID.value == nil {
+                    results[object.isoDate] = object
+                }
+            } else {
+                results[object.isoDate] = object
+            }
+            return results
+        }
 
         do {
             let guide = try guideGenerator.generateGuide(notificationItems: Array(notificationItems),
                                                          featureItems: Array(featureItems),
-                                                         strategyItems: Array(strategyItems))
+                                                         strategyItems: Array(strategyItems),
+                                                         notificationConfigurations: notificationConfigurations,
+                                                         dailyPrepResults: Array(dailyPrepResults.values))
             completion(guide)
         } catch {
             log("Unable to generate guide: \(error)", level: .error)
@@ -66,6 +85,7 @@ final class GuideWorker {
     private var hasSyncedNecessaryItems: Bool {
         return syncStateObserver.hasSynced(RealmGuideItemLearn.self)
             && syncStateObserver.hasSynced(RealmGuideItemNotification.self)
-            && syncStateObserver.hasSynced(UserAnswer.self)
+            && syncStateObserver.hasSynced(Question.self)
+            && syncStateObserver.hasSynced(DailyPrepResultObject.self)
     }
 }

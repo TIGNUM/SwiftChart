@@ -49,10 +49,8 @@ final class ScheduledNotificationsTableViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduledNotificationTableViewCell_ID",
                                                  for: indexPath) as? ScheduledNotificationTableViewCell
         let notification = pendingNotifications[indexPath.row]
-        let d = (notification.trigger as? UNCalendarNotificationTrigger)?.dateComponents
-        let displayDate = String(format: "%d/%d/%d %d:%d", d?.year ?? 0, d?.month ?? 0, d?.day ?? 0, d?.hour ?? 0, d?.minute ?? 0)
-        cell?.configure(title: notification.content.title,
-                        subtitle: displayDate)
+        let displayDate = notification.nextTriggerDate().map { String(describing: $0) } ?? "No Date"
+        cell?.configure(title: notification.content.title, subtitle: displayDate)
 
         return cell ?? UITableViewCell()
     }

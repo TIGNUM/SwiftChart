@@ -8,11 +8,23 @@
 
 import Foundation
 
+protocol GuideNotificationConfiguration {
+
+    var localID: String { get }
+    var displayAt: (weekday: Int, hour: Int, minute: Int) { get }
+    var priority: Int { get }
+}
+
+protocol GuideDailyPrepResult {
+
+    var localID: String { get }
+    var displayAt: (date: ISODate, hour: Int, minute: Int)? { get }
+    var priority: Int { get }
+}
+
 protocol GuideNotificationItem {
 
     var localID: String { get }
-    var type: String { get }
-    var completedAt: Date? { get }
     var displayAt: (utcDate: Date, hour: Int, minute: Int)? { get }
     var priority: Int { get }
 }
@@ -20,7 +32,6 @@ protocol GuideNotificationItem {
 protocol GuideLearnItem {
 
     var localID: String { get }
-    var type: String { get }
     var completedAt: Date? { get }
     var displayAt: (hour: Int, minute: Int)? { get }
     var block: Int { get }
@@ -31,6 +42,8 @@ protocol GuideItemFactoryProtocol {
 
     func makeItem(with item: GuideLearnItem) -> Guide.Item?
     func makeItem(with item: GuideNotificationItem) -> Guide.Item?
+    func makeItem(with item: GuideNotificationConfiguration, date: ISODate) -> Guide.Item?
+    func makeItem(with item: GuideDailyPrepResult) -> Guide.Item?
     func makeMessageText(with greeting: Guide.Message) -> String
     func userName() -> String?
 }
@@ -52,6 +65,8 @@ struct GuideGenerator {
     func generateGuide(notificationItems: [GuideNotificationItem],
                        featureItems: [GuideLearnItem],
                        strategyItems: [GuideLearnItem],
+                       notificationConfigurations: [GuideNotificationConfiguration],
+                       dailyPrepResults: [GuideDailyPrepResult],
                        now: Date = Date()) throws -> Guide.Model {
         guard maxDays > 0 else { throw SimpleError(localizedDescription: "Incorrect maxDays: \(maxDays)") }
 
@@ -64,6 +79,11 @@ struct GuideGenerator {
         addIncompleteLearnItems(from: featureItems, to: &days, now: now, todayLocalStartOfDay: todaylocalStartOfDay)
         addCompleteLearnItems(from: strategyItems, to: &days, minDate: minDate, now: now)
         addIncompleteLearnItems(from: strategyItems, to: &days, now: now, todayLocalStartOfDay: todaylocalStartOfDay)
+        addItems(configurations: notificationConfigurations,
+                 dailyPrepResults: dailyPrepResults,
+                 to: &days,
+                 minDate: minDate,
+                 now: now)
 
         let guideDays: [Date: Guide.Day] = days.mapKeyValues { ($0, guideDayBySortingItems(from: $1)) }
         let sortedDays = guideDays.sorted { $0.key > $1.key }.map { $0.value }
@@ -133,11 +153,15 @@ private extension GuideGenerator {
                                                           second: 0,
                                                           of: displayAt.utcDate),
                 localDisplayDate <= now,
-                localDisplayDate >= localMinDate
+                localDisplayDate >= localMinDate,
+                let guideItem = factory.makeItem(with: item)
                 else { continue }
 
-            let localStartOfDay = localCalendar.startOfDay(for: displayAt.utcDate)
-            days.appendItem(item, localStartOfDay: localStartOfDay, factory: factory)
+            days.appendItem(guideItem,
+                       hour: displayAt.hour,
+                       minute: displayAt.minute,
+                       priority: item.priority,
+                       localStartOfDay: localCalendar.startOfDay(for: displayAt.utcDate))
         }
     }
 
@@ -156,7 +180,13 @@ private extension GuideGenerator {
             $0.block == block && $0.completedAt == nil && $0.displayAt != nil
         }
         for item in items {
-            days.appendItem(item, localStartOfDay: todayLocalStartOfDay, factory: factory)
+            guard let guideItem = factory.makeItem(with: item), let displayAt = item.displayAt else { continue }
+
+            days.appendItem(guideItem,
+                            hour: displayAt.hour,
+                            minute: displayAt.minute,
+                            priority: item.priority,
+                            localStartOfDay: todayLocalStartOfDay)
         }
     }
 
@@ -169,13 +199,74 @@ private extension GuideGenerator {
                                now: Date) {
         for item in learnItems {
             if let completedAt = item.completedAt, item.displayAt != nil {
-                guard completedAt >= minDate, completedAt <= now else { continue }
+                guard completedAt >= minDate,
+                    completedAt <= now,
+                    let guideItem = factory.makeItem(with: item),
+                    let displayAt = item.displayAt else { continue }
 
-                let localStartOfDay = localCalendar.startOfDay(for: completedAt)
-                days.appendItem(item, localStartOfDay: localStartOfDay, factory: factory)
+                days.appendItem(guideItem,
+                                hour: displayAt.hour,
+                                minute: displayAt.minute,
+                                priority: item.priority,
+                                localStartOfDay: localCalendar.startOfDay(for: completedAt))
             }
         }
 
+    }
+
+    func addItems(configurations: [GuideNotificationConfiguration],
+                  dailyPrepResults: [GuideDailyPrepResult],
+                  to days: inout [Date: Day],
+                  minDate: Date,
+                  now: Date) {
+        var date = now
+        while date >= minDate {
+            // FIXME: This currently only works when all GuideNotificationConfiguration are for daily preps.
+            let localStartOfDay = localCalendar.startOfDay(for: date)
+            var existsDailyPrepResult = false
+            for dailyPrepResult in dailyPrepResults {
+                let day = localCalendar.component(.day, from: date)
+                let month = localCalendar.component(.month, from: date)
+                let year = localCalendar.component(.year, from: date)
+
+                if let displayAt = dailyPrepResult.displayAt,
+                    day == displayAt.date.day,
+                    month == displayAt.date.month,
+                    year == displayAt.date.year {
+                    if let item = factory.makeItem(with: dailyPrepResult) {
+                        days.appendItem(item,
+                                        hour: displayAt.hour,
+                                        minute: displayAt.minute,
+                                        priority: dailyPrepResult.priority,
+                                        localStartOfDay: localStartOfDay)
+                        existsDailyPrepResult = true
+                    }
+                }
+            }
+
+            if existsDailyPrepResult == false {
+                for configuration in configurations {
+                    let displayAt = configuration.displayAt
+                    guard displayAt.weekday == localCalendar.component(.weekday, from: date) else { continue }
+
+                    let displayAtDate = localCalendar.date(bySettingHour: displayAt.hour,
+                                                           minute: displayAt.minute,
+                                                           second: 0,
+                                                           of: date)
+                    let isoDate = localCalendar.isoDate(from: date)
+                    if let displayAtDate = displayAtDate, now >= displayAtDate,
+                        let guideItem = factory.makeItem(with: configuration, date: isoDate) {
+
+                        days.appendItem(guideItem,
+                                        hour: displayAt.hour,
+                                        minute: displayAt.minute,
+                                        priority: configuration.priority,
+                                        localStartOfDay: localStartOfDay)
+                    }
+                }
+            }
+            date.addTimeInterval(TimeInterval(days: -1))
+        }
     }
 
     /**
@@ -218,26 +309,6 @@ private extension GuideGenerator {
 }
 
 private extension Dictionary where Key == Date, Value == GuideGenerator.Day {
-
-    mutating func appendItem(_ item: GuideLearnItem, localStartOfDay: Date, factory: GuideItemFactoryProtocol) {
-        guard let guideItem = factory.makeItem(with: item), let displayAt = item.displayAt else { return }
-
-        appendItem(guideItem,
-                   hour: displayAt.hour,
-                   minute: displayAt.minute,
-                   priority: item.priority,
-                   localStartOfDay: localStartOfDay)
-    }
-
-    mutating func appendItem(_ item: GuideNotificationItem, localStartOfDay: Date, factory: GuideItemFactoryProtocol) {
-        guard let guideItem = factory.makeItem(with: item), let displayAt = item.displayAt else { return }
-
-        appendItem(guideItem,
-                   hour: displayAt.hour,
-                   minute: displayAt.minute,
-                   priority: item.priority,
-                   localStartOfDay: localStartOfDay)
-    }
 
     mutating func appendItem(_ item: Guide.Item, hour: Int, minute: Int, priority: Int, localStartOfDay: Date) {
         let id = item.identifier

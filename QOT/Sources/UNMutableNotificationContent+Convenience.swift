@@ -10,11 +10,11 @@ import UserNotifications
 
 extension UNMutableNotificationContent {
 
-    convenience init(title: String?, body: String, soundName: String, link: String) {
+    convenience init(title: String?, body: String, soundName: String?, link: String) {
         self.init()
         title.map { self.title = $0 }
         self.body = body
-        self.sound = UNNotificationSound(named: soundName)
+        self.sound = soundName.map { UNNotificationSound(named: $0) }
         self.userInfo = ["link": link]
     }
 }

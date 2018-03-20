@@ -13,7 +13,7 @@ final class GuideObserver {
     private let syncStateObserver: SyncStateObserver
     private let notificationItems: Results<RealmGuideItemNotification>
     private let learnItems: Results<RealmGuideItemLearn>
-    private let userAnswers: Results<UserAnswer>
+    private let dailyPrepResults: Results<DailyPrepResultObject>
     private let becomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
     private var tokenBin = TokenBin()
 
@@ -23,7 +23,7 @@ final class GuideObserver {
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         self.notificationItems = services.guideService.notificationItems()
         self.learnItems = services.guideService.learnItems()
-        self.userAnswers = services.guideService.userAnswers()
+        self.dailyPrepResults = services.mainRealm.objects(DailyPrepResultObject.self)
 
         syncStateObserver.onUpdate { [unowned self] _ in
             self.guideDidChange?()
@@ -37,7 +37,7 @@ final class GuideObserver {
         learnItems.addNotificationBlock { [unowned self] _ in
             self.guideDidChange?()
             }.addTo(tokenBin)
-        userAnswers.addNotificationBlock { [unowned self] _ in
+        dailyPrepResults.addNotificationBlock { [unowned self] _ in
             self.guideDidChange?()
             }.addTo(tokenBin)
     }

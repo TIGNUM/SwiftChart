@@ -12,6 +12,12 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
 
     let services: Services
 
+    func makeItem(with item: GuideDailyPrepResult) -> Guide.Item? {
+        guard let item = item as? DailyPrepResultObject else { return nil }
+
+        return guideItem(with: item)
+    }
+
     func makeItem(with item: GuideLearnItem) -> Guide.Item? {
         guard let item = item as? RealmGuideItemLearn else { return nil }
 
@@ -22,6 +28,12 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
         guard let item = item as? RealmGuideItemNotification else { return nil }
 
         return guideItem(with: item)
+    }
+
+    func makeItem(with item: GuideNotificationConfiguration, date: ISODate) -> Guide.Item? {
+        guard let item = item as? NotificationConfigurationObject else { return nil }
+
+        return guideItem(with: item, date: date)
     }
 
     func makeMessageText(with greeting: Guide.Message) -> String {
@@ -35,18 +47,47 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
 
 private extension GuideItemFactory {
 
+    func guideItem(with result: DailyPrepResultObject) -> Guide.Item? {
+        let items = dailyPrepItems(answers: Array(result.answers))
+        let content: Guide.Item.Content = .dailyPrep(items: items, feedback: result.feedback)
+
+        return Guide.Item(status: .done,
+                          title: result.title,
+                          content: content,
+                          subtitle: "",
+                          isDailyPrep: true,
+                          link: nil,
+                          featureLink: nil,
+                          featureButton: nil,
+                          identifier: "Not important")
+    }
+
+    func guideItem(with item: NotificationConfigurationObject, date: ISODate) -> Guide.Item? {
+        let questions = item.questionsFor(services: services)
+        let items = dailyPrepItems(questions: questions, notification: item, services: services)
+        let content: Guide.Item.Content = .dailyPrep(items: items, feedback: nil)
+
+        return Guide.Item(status: .todo,
+                          title: item.title,
+                          content: content,
+                          subtitle: "",
+                          isDailyPrep: true,
+                          link: URL(string: item.link),
+                          featureLink: nil,
+                          featureButton: nil,
+                          identifier: NotificationID.dailyPrep(date: date).string)
+    }
+
     func guideItem(with item: RealmGuideItemLearn) -> Guide.Item? {
         return Guide.Item(status: item.completedAt == nil ? .todo : .done,
                           title: item.title,
                           content: .text(item.body),
                           subtitle: item.displayType ?? "",
-                          type: item.type,
+                          isDailyPrep: false,
                           link: URL(string: item.link),
                           featureLink: item.featureLink.flatMap { URL(string: $0) },
                           featureButton: item.featureButton,
-                          identifier: GuideItemID(item: item).stringRepresentation,
-                          greeting: item.greeting,
-                          createdAt: item.createdAt)
+                          identifier: GuideItemID(item: item).stringRepresentation)
     }
 
     func guideItem(with notification: RealmGuideItemNotification) -> Guide.Item? {
@@ -65,13 +106,33 @@ private extension GuideItemFactory {
                           title: notification.title ?? "",
                           content: content,
                           subtitle: notification.displayType,
-                          type: notification.type,
+                          isDailyPrep: isDailyPrep,
                           link: URL(string: notification.link),
                           featureLink: nil,
                           featureButton: nil,
-                          identifier: GuideItemID(item: notification).stringRepresentation,
-                          greeting: notification.greeting,
-                          createdAt: notification.createdAt)
+                          identifier: GuideItemID(item: notification).stringRepresentation)
+    }
+
+    func dailyPrepItems(questions: [Question], notification: NotificationConfigurationObject, services: Services) -> [Guide.DailyPrepItem] {
+        var items: [Guide.DailyPrepItem] = []
+        for question in questions {
+            let color = resultColor(question: question, resultValue: nil, services: services)
+            let title = question.dailyPrepTitle.replacingOccurrences(of: "#", with: "\n")
+            let item = Guide.DailyPrepItem(result: nil, resultColor: color, title: title)
+            items.append(item)
+        }
+        return items
+    }
+
+    func dailyPrepItems(answers: [DailyPrepAnswerObject]) -> [Guide.DailyPrepItem] {
+        var items: [Guide.DailyPrepItem] = []
+        for answer in answers {
+            let color = answer.color
+            let title = answer.title.replacingOccurrences(of: "#", with: "\n")
+            let item = Guide.DailyPrepItem(result: answer.value, resultColor: color, title: title)
+            items.append(item)
+        }
+        return items
     }
 
     func dailyPrepItems(questions: [Question], notification: RealmGuideItemNotification, services: Services) -> [Guide.DailyPrepItem] {
@@ -98,6 +159,15 @@ private extension GuideItemFactory {
 }
 
 private extension RealmGuideItemNotification {
+
+    func questionsFor(services: Services) -> [Question] {
+        guard let groupID = URL(string: link)?.groupID else { return [] }
+        let questions = services.questionsService.morningInterviewQuestions(questionGroupID: groupID)
+        return Array(questions)
+    }
+}
+
+private extension NotificationConfigurationObject {
 
     func questionsFor(services: Services) -> [Question] {
         guard let groupID = URL(string: link)?.groupID else { return [] }

@@ -19,41 +19,28 @@ final class UserAnswer: SyncableObject {
 
     @objc dynamic var userAnswer: String = ""
 
-    @objc dynamic var notificationID: Int = 0
-
-    @objc dynamic var deleted: Bool = false
-
-    @objc dynamic var changeStamp: String?
+    @objc dynamic var isoDate: String = "" // Eg. "2018-01-31"
 
     convenience init(questionID: Int,
                      questionGroupID: Int,
                      answerID: Int,
                      userAnswer: String,
-                     notificationID: Int) {
+                     date: ISODate) {
         self.init()
         self.questionID = questionID
         self.questionGroupID = questionGroupID
         self.answerID = answerID
         self.userAnswer = userAnswer
-        self.notificationID = notificationID
-        didUpdate()
+        self.isoDate = date.string
     }
 }
 
 // MARK: - TwoWaySyncable
 
-extension UserAnswer: TwoWaySyncable {
+extension UserAnswer: OneWaySyncableUp {
 
     static var endpoint: Endpoint {
         return .userAnswer
-    }
-
-    func setData(_ data: UserAnswerIntermediary, objectStore: ObjectStore) throws {
-        questionID = data.questionID
-        questionGroupID = data.questionGroupID
-        answerID = data.answerID
-        userAnswer = data.userAnswer
-        notificationID = data.notificationID ?? 0
     }
 
     func toJson() -> JSON? {
@@ -67,9 +54,7 @@ extension UserAnswer: TwoWaySyncable {
             .answerId: answerID,
             .questionId: questionID,
             .userAnswer: userAnswer,
-            .notificationId: notificationID,
-            .validFrom: JSON.null,
-            .validUntil: JSON.null
+            .isodate: isoDate
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }

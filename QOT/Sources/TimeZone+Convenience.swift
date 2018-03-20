@@ -10,6 +10,10 @@ import Foundation
 
 extension TimeZone {
 
+    static var utc: TimeZone {
+        return TimeZone(identifier: "UTC")!
+    }
+
     static var currentName: String {
         return TimeZone.current.localizedName(for: .shortStandard, locale: Locale.posix)!
     }

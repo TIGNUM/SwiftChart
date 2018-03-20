@@ -73,7 +73,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         }
 
         valueViews.filter { $0.tag > dailyPrepItems.count }.forEach { $0.isHidden = true }
-        for (index, item) in dailyPrepItems.enumerated() {
+        for (index, item) in dailyPrepItems.prefix(5).enumerated() {
             let resultText = item.result.map { String($0) } ?? "_"
             valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
                                                                text: resultText,

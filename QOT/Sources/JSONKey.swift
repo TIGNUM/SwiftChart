@@ -92,6 +92,7 @@ enum JsonKey: String {
     case isAllDay
     case isCurrentUser
     case isDetached
+    case isodate
     case issueDate
     case jobTitle
     case key
@@ -151,6 +152,7 @@ enum JsonKey: String {
     case questionDescription
     case questionGroupId
     case questionGroups
+    case questionTitle
     case radius
     case recurranceEnd
     case recurrenceRules
@@ -220,6 +222,7 @@ enum JsonKey: String {
     case urbanAirshipTags
     case url
     case userAnswer
+    case userAnswers
     case userAverage
     case userId
     case userImageURL
@@ -240,6 +243,7 @@ enum JsonKey: String {
     case weightUnit
     case weightUnits
     case workingDays
+    case yearMonthDay
     case zip
     case zone
     case maxValueOf

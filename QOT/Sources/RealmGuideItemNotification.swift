@@ -71,6 +71,12 @@ final class RealmGuideItemNotification: SyncableObject {
 
 extension RealmGuideItemNotification {
 
+    var isDailyPrep: Bool {
+        guard let itemType = ItemType(rawValue: type) else { return false }
+
+        return itemType == .morningInterview || itemType == .weeklyInterview
+    }
+
     var guideItemID: GuideItemID {
         return GuideItemID(item: self)
     }
@@ -81,7 +87,7 @@ extension RealmGuideItemNotification {
     }
 
     var notificationRequest: UNNotificationRequest? {
-        guard let triggerDate = localNotificationDate else { return nil }
+        guard let triggerDate = localNotificationDate, isDailyPrep == false else { return nil }
 
         let content = UNMutableNotificationContent(title: title, body: body, soundName: sound, link: link)
 

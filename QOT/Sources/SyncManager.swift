@@ -223,6 +223,7 @@ private extension SyncManager {
             syncOperation(RealmGuideItemLearn.self, context: context, shouldDownload: shouldDownload),
             syncOperation(RealmGuideItemNotification.self, context: context, shouldDownload: shouldDownload),
             syncOperation(RealmGuideItem.self, context: context, shouldDownload: shouldDownload),
+            syncOperation(DailyPrepResultObject.self, context: context, shouldDownload: shouldDownload),
             syncOperation(UserAnswer.self, context: context, shouldDownload: shouldDownload),
             createLocalNotificationsOperation,
             syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
