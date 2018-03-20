@@ -213,7 +213,6 @@ struct AppEventRequest: URLRequestBuildable {
 
     init(eventType: EventType) {
         self.paramaters = [.eventDate: DateFormatter.iso8601.string(from: Date()),
-                           .qotAppEventType: eventType.rawValue,
-                           .deviceDto: [RequestParameter.id.rawValue: deviceID]]
+                           .qotAppEventType: eventType.rawValue]
     }
 }
