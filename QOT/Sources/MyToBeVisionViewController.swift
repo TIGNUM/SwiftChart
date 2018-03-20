@@ -221,6 +221,7 @@ extension MyToBeVisionViewController {
             messageTextView.text = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
         }
         resizeTextViewsHeight()
+        syncInstructionsButton()
     }
 
     func syncInstructionsButton() {
