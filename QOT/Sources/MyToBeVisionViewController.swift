@@ -198,9 +198,7 @@ extension MyToBeVisionViewController {
     }
 
     func setupImage() {
-        editImageLabel.alpha = 0
-        editIconImageView.alpha = 0
-        imageView.addGestureRecognizer(imageTapRecognizer)
+        imageContainerView.addGestureRecognizer(imageTapRecognizer)
     }
 
     func resizeTextViewsHeight() {
@@ -307,12 +305,11 @@ private extension MyToBeVisionViewController {
         if messageTextView.attributedText != toBeVision?.formattedVision {
             messageTextView.attributedText = toBeVision?.formattedVision
         }
-        if toBeVision?.imageURL == nil {
-            placeholderImageView.isVisible = true
-            return
-        }
+
+        placeholderImageView.isVisible = toBeVision?.imageURL == nil
         imageView.kf.setImage(with: toBeVision?.imageURL)
         syncInstructionsButton()
+        syncImageControls(animated: false)
     }
 
     func saveToBeVisison() {
@@ -352,10 +349,8 @@ private extension MyToBeVisionViewController {
         }
         imageTapRecognizer.isEnabled = !hasImage || isEditing
         UIView.animate(withDuration: animated ? 0.5 : 0) {
-            if self.imageIsHidden == false {
-                self.editImageLabel.alpha = buttonAlpha
-                self.editIconImageView.alpha = buttonAlpha
-            }
+            self.editImageLabel.alpha = buttonAlpha
+            self.editIconImageView.alpha = buttonAlpha
             self.imageView.alpha = self.isEditing ? 0.25 : 1
         }
     }
