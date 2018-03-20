@@ -188,7 +188,7 @@ struct UserSearchResultRequest: URLRequestBuildable {
     init(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String) {
         self.paramaters = [.contentItemId: contentItemId,
                            .contentId: contentId,
-                           .filter: filter.title,
+                           .filter: filter.title.uppercased(),
                            .query: query]
     }
 }
