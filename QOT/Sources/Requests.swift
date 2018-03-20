@@ -183,13 +183,19 @@ struct DeviceRequest: URLRequestBuildable {
 struct UserSearchResultRequest: URLRequestBuildable {
     let endpoint: Endpoint = .userSearchResult
     let httpMethod: HTTPMethod = .put
-    let paramaters: [RequestParameter: Any?]
+    var paramaters: [RequestParameter: Any]
 
     init(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String) {
-        self.paramaters = [.contentItemId: contentItemId,
-                           .contentId: contentId,
-                           .filter: filter.title,
+        self.paramaters = [.filter: filter.title.uppercased(),
                            .query: query]
+
+        if let contentId = contentId {
+            self.paramaters[.contentId] = contentId
+        }
+
+        if let contentItemId = contentItemId {
+            self.paramaters[.contentItemId] = contentItemId
+        }
     }
 }
 
