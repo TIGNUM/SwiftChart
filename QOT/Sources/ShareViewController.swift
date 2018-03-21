@@ -32,6 +32,7 @@ final class ShareViewController: UIViewController, ShareViewControllerInterface 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        toBeVisionButton.isSelected = true
         setupCloseButton()
         setupShareButton()
         syncShareButton()
@@ -41,7 +42,6 @@ final class ShareViewController: UIViewController, ShareViewControllerInterface 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
-        toBeVisionButton.isSelected = true
         syncShareButton()
     }
 
