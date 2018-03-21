@@ -781,9 +781,11 @@ extension AppCoordinator {
     func presentToBeVision() {
         let configurator = MyToBeVisionConfigurator.make()
         let myToBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
+        let navController = UINavigationController(rootViewController: myToBeVisionViewController)
+        navController.navigationBar.applyDefaultStyle()
 
-        windowManager.showPriority(myToBeVisionViewController, animated: true, completion: nil)
-        currentPresentedController = myToBeVisionViewController
+        windowManager.showPriority(navController, animated: true, completion: nil)
+        currentPresentedController = navController
     }
 
     func presentWhatsHotArticle() {

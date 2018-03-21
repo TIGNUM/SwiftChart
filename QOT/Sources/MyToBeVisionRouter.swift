@@ -24,8 +24,5 @@ extension MyToBeVisionRouter: MyToBeVisionRouterInterface {
 
     func close() {
         appCoordinator.dismiss(viewController, level: .priority)
-        if let destination = URLScheme.meMyWhy.destination {
-            appCoordinator.navigate(to: destination)
-        }
     }
 }
