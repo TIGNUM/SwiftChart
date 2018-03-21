@@ -40,6 +40,7 @@ final class SyncManager {
         queue.maxConcurrentOperationCount = 1
         return queue
     }()
+    private let priorityUpSyncQueue = OperationQueue()
 
     var userNotificationsManager: UserNotificationsManager?
 
@@ -136,6 +137,26 @@ final class SyncManager {
         operations.append(contentsOf: syncOperations(context: context, shouldDownload: shouldDownload))
         operations.append(finishOperation)
         operationQueue.addOperations(operations, waitUntilFinished: false)
+    }
+
+    func upSync<T>(_ type: T.Type, completion: ((Error?) -> Void)? = nil) where T: UpSyncable, T: SyncableObject {
+        let context = SyncContext()
+        let upSyncTask = UpSyncTask<T>(networkManager: networkManager, realmProvider: realmProvider)
+        let syncOp = SyncOperation(upSyncTask: upSyncTask,
+                             downSyncTask: nil,
+                             syncContext: context,
+                             debugIdentifier: String(describing: type))
+        var operations: [Operation] = [syncOp]
+        if let completion = completion {
+            let finishOperation = BlockOperation {
+                DispatchQueue.main.async {
+                    let errors = context.errors
+                    completion(errors.first)
+                }
+            }
+            operations.append(finishOperation)
+        }
+        priorityUpSyncQueue.addOperations(operations, waitUntilFinished: false)
     }
 
     func uploadMedia() {

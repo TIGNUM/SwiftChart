@@ -47,9 +47,42 @@ final class ShareWorker {
         emailContent(sharingType: .weeklyChoices, completion: completion)
     }
 
-    private func emailContent(sharingType: Partners.SharingType,
-                              completion: @escaping ((Result) -> Void)) {
-        syncManager.syncAll(shouldDownload: false) { [weak self] (error) in
+    func preUpSyncData() {
+        preUpSyncData(syncToBeVision: true, syncWeeklyChoices: true, completion: nil)
+    }
+
+    private func preUpSyncData(syncToBeVision: Bool, syncWeeklyChoices: Bool, completion: ((Error?) -> Void)?) {
+        let dispatchGroup =  DispatchGroup()
+        var errors: [Error] = []
+
+        if syncToBeVision == true {
+            dispatchGroup.enter()
+            syncManager.upSync(MyToBeVision.self) { (error) in
+                error.map { errors.append($0) }
+                dispatchGroup.leave()
+            }
+        }
+        if syncWeeklyChoices == true {
+            dispatchGroup.enter()
+            syncManager.upSync(UserChoice.self) { (error) in
+                error.map { errors.append($0) }
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.enter()
+        syncManager.upSync(Partner.self) { (error) in
+            error.map { errors.append($0) }
+            dispatchGroup.leave()
+        }
+        dispatchGroup.notify(queue: .main) {
+            completion?(errors.first)
+        }
+    }
+
+    private func emailContent(sharingType: Partners.SharingType, completion: @escaping ((Result) -> Void)) {
+        let syncToBeVision = sharingType == .toBeVision
+        let syncWeeklyChoices = sharingType == .weeklyChoices
+        preUpSyncData(syncToBeVision: syncToBeVision, syncWeeklyChoices: syncWeeklyChoices) { [weak self] (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -57,8 +90,8 @@ final class ShareWorker {
                 let realm = self.services.mainRealm
                 if let partner = realm.syncableObject(ofType: Partner.self, localID: self.partnerLocalID),
                     let remoteID = partner.remoteID.value {
-                    self.networkManager.performPartnerSharingRequest(partnerID: remoteID,
-                                                                     sharingType: sharingType) { (result) in
+                    self.networkManager
+                        .performPartnerSharingRequest(partnerID: remoteID, sharingType: sharingType) { (result) in
                         switch result {
                         case .success(let value):
                             let content = Share.EmailContent(email: partner.email,

@@ -21,6 +21,7 @@ final class ShareInteractor: ShareInteractorInterface {
     }
 
     func viewDidLoad() {
+        worker.preUpSyncData()
         presenter.setup(name: worker.name, imageURL: worker.imageURL, initials: worker.initials)
     }
 
