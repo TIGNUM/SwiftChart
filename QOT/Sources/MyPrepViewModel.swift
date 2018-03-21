@@ -18,6 +18,7 @@ final class MyPrepViewModel {
         case reload
         case update(deletions: [IndexPath], insertions: [IndexPath], modifications: [IndexPath])
     }
+
     struct Item {
         let localID: String
         let header: String

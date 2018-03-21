@@ -163,8 +163,8 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
             count = String(format: "%02d/%02d", item.finishedPreparationCount, item.totalPreparationCount)
         }
         var footer = ""
-        if let startDate = item.startDate, let timeToEvent = DateComponentsFormatter.timeIntervalToString(startDate.timeIntervalSinceNow, isShort: true) {
-            footer = R.string.localized.prepareMyPrepTimeToEvent(timeToEvent)
+        if let startDate = item.startDate {
+            footer = startDate.longDateShortTime
         }
 
         cell.setup(with: item.header, text: item.text, footer: footer, count: count)

@@ -10,6 +10,16 @@ import Foundation
 
 extension Date {
 
+    /// dateFormatter.dateStyle = .long
+    /// dateFormatter.timeStyle = .short
+    /// March 30. 2018 at 12:00 AM
+    var longDateShortTime: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateStyle = .long
+        dateFormatter.timeStyle = .short
+        return dateFormatter.string(from: self)
+    }
+
     var startOfDay: Date {
         return Calendar.sharedUTC.startOfDay(for: self)
     }

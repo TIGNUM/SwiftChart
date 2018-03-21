@@ -31,13 +31,6 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
         setupCell()
     }
 
-    private func setupCell() {
-        backgroundColor = .clear
-        let selectedBackground = UIView()
-        selectedBackground.backgroundColor = .black15
-        self.selectedBackgroundView = selectedBackground
-    }
-
     // MARK: - Setup
 
     func setup(with header: String, text: String, footer: String, count: String) {
@@ -54,7 +47,7 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
             lineSpacing: 2
         )
         footerLabel.attributedText = NSMutableAttributedString(
-            string: footer.uppercased(),
+            string: footer,
             letterSpacing: 2,
             font: Font.PTextSubtitle,
             textColor: .white60,
@@ -65,5 +58,17 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
             letterSpacing: -0.8,
             font: Font.H4Headline
         )
+    }
+}
+
+// MARK: - Private
+
+private extension MyPrepTableViewCell {
+
+    func setupCell() {
+        backgroundColor = .clear
+        let selectedBackground = UIView()
+        selectedBackground.backgroundColor = .black15
+        self.selectedBackgroundView = selectedBackground
     }
 }
