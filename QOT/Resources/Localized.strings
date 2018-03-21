@@ -235,6 +235,8 @@
 "Alert.Message.Reset.Password" = "We have sent you an email with instructions on how to reset your password.";
 "Alert.Title.Could.Not.Send.Email" = "Could not send email";
 "Alert.Message.Could.Not.Send.Email" = "Your device could not send email";
+"Alert.Title.Partner.Invite" = "Send Notification?";
+"Alert.Message.Partner.Invite" = "Do you like to tell your partner more abput QOT and how a partner can help?";
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
 "ImagePicker.Options.Button.Camera" = "Take a Picture";

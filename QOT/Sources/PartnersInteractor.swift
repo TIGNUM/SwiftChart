@@ -9,6 +9,7 @@
 import UIKit
 
 final class PartnersInteractor: PartnersInteractorInterface {
+
     let worker: PartnersWorker
     let router: PartnersRouterInterface
     let presenter: PartnersPresenterInterface
@@ -39,6 +40,14 @@ final class PartnersInteractor: PartnersInteractorInterface {
         router.showShare(partner: partner)
     }
 
+    func didTapSendInvite(partner: Partners.Partner) {
+        router.showPartnerInviteNotification(partner: partner) {
+            self.worker.invitePartner(partner: partner) { (result) in
+                self.handleResult(result)
+            }
+        }
+    }
+
     func didTapClose(partners: [Partners.Partner]) {
         let incompletePartners = partners.filter({ $0.isValid == false && $0.isEmpty == false })
         if incompletePartners.isEmpty {
@@ -58,6 +67,20 @@ final class PartnersInteractor: PartnersInteractorInterface {
             alert.addAction(cancelAction)
             alert.addAction(continueAction)
             router.showAlert(alert)
+        }
+    }
+}
+
+// MARK: - Private
+
+private extension PartnersInteractor {
+
+    func handleResult(_ result: PartnersWorker.Result) {
+        switch result {
+        case .success(let content):
+            self.router.showMailComposer(email: content.email, subject: content.subject, messageBody: content.body)
+        case .failure:
+            self.router.showAlert(.canNotSendMail)
         }
     }
 }

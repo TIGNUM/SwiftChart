@@ -286,6 +286,11 @@ extension PartnersViewController: UICollectionViewDelegateFlowLayout {
 
 extension PartnersViewController: PartnerCellDelegate {
 
+    func didTapSendInviteButton(at partner: Partners.Partner?) {
+        guard let partner = selectedPartner else { return }
+        interactor?.didTapSendInvite(partner: partner)
+    }
+
     func didTapShareButton(at partner: Partners.Partner?) {
         guard let partner = selectedPartner else { return }
         interactor?.didTapShare(partner: partner, in: partners)
@@ -343,9 +348,9 @@ extension PartnersViewController: UIScrollViewDelegate {
     }
 
     func updateCurrentCell(at page: Index) {
-        collectionView.visibleCells.forEach { ($0 as? PartnerCell)?.updateShareButton(false) }
+        collectionView.visibleCells.forEach { ($0 as? PartnerCell)?.updateActionButtons(false) }
         let partnerCell = collectionView.cellForItem(at: IndexPath(item: page, section: 0)) as? PartnerCell
-        partnerCell?.updateShareButton(selectedPartner?.isValid ?? false)
+        partnerCell?.updateActionButtons(selectedPartner?.isValid ?? false)
     }
 }
 

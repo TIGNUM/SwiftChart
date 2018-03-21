@@ -1,5 +1,5 @@
 //
-//  ShareRouter.swift
+//  PartnersRouter.swift
 //  QOT
 //
 //  Created by Sam Wyndham on 01/03/2018.
@@ -11,9 +11,9 @@ import MessageUI
 
 final class PartnersRouter: NSObject, PartnersRouterInterface {
 
-    private let viewController: UIViewController
+    private let viewController: PartnersViewController
 
-    init(viewController: UIViewController) {
+    init(viewController: PartnersViewController) {
         self.viewController = viewController
         super.init()
     }
@@ -31,7 +31,6 @@ final class PartnersRouter: NSObject, PartnersRouterInterface {
             assertionFailure("partner must have name and email if this method is called")
             return
         }
-
         let configurator = ShareConfigurator.make(partnerLocalID: partner.localID,
                                                   partnerName: name,
                                                   partnerImageURL: partner.imageURL,
@@ -47,5 +46,39 @@ final class PartnersRouter: NSObject, PartnersRouterInterface {
 
     func dismiss() {
         viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func showPartnerInviteNotification(partner: Partners.Partner, completion: @escaping (() -> Void)) {
+        viewController.showAlert(type: .partnerInvite, handler: {
+            completion()
+        })
+    }
+
+    func showMailComposer(email: String, subject: String, messageBody: String) {
+        guard MFMailComposeViewController.canSendMail() == true else {
+            showAlert(.message("Email is not setup on your device"))
+            return
+        }
+
+        let composer = MFMailComposeViewController()
+        composer.setToRecipients([email])
+        composer.setSubject(subject)
+        composer.setMessageBody(messageBody, isHTML: true)
+        composer.mailComposeDelegate = self
+        viewController.present(composer, animated: true, completion: nil)
+    }
+}
+
+// MARK: - MFMailComposeViewControllerDelegate
+
+extension PartnersRouter: MFMailComposeViewControllerDelegate {
+
+    func mailComposeController(_ controller: MFMailComposeViewController,
+                               didFinishWith result: MFMailComposeResult,
+                               error: Error?) {
+        controller.dismiss(animated: true, completion: nil)
+        if let error = error {
+            showAlert(.message(error.localizedDescription))
+        }
     }
 }

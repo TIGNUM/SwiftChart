@@ -21,6 +21,7 @@ protocol PartnersPresenterInterface {
 protocol PartnersInteractorInterface: Interactor {
     func didTapClose(partners: [Partners.Partner])
     func didTapShare(partner: Partners.Partner, in partners: [Partners.Partner])
+    func didTapSendInvite(partner: Partners.Partner)
     func updateImage(_ image: UIImage, partner: Partners.Partner)
 }
 
@@ -29,4 +30,6 @@ protocol PartnersRouterInterface {
     func showAlert(_ alert: AlertType)
     func showAlert(_ alert: UIAlertController)
     func showShare(partner: Partners.Partner)
+    func showPartnerInviteNotification(partner: Partners.Partner, completion: @escaping (() -> Void))
+    func showMailComposer(email: String, subject: String, messageBody: String)
 }

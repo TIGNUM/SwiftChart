@@ -19,9 +19,11 @@ protocol PartnerCellDelegate: class {
     func didTapEditPhoto(in cell: PartnerCell)
 
     func didTapShareButton(at partner: Partners.Partner?)
+
+    func didTapSendInviteButton(at partner: Partners.Partner?)
 }
 
-class PartnerCell: UICollectionViewCell, Dequeueable {
+final class PartnerCell: UICollectionViewCell, Dequeueable {
 
     /*
      NOTE: In the xib `profileImageView` has a ratio constraint of `0.86`. This approximates the ratio of a hexigon
@@ -35,10 +37,10 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var relationshipTextField: UITextField!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet private weak var inviteButton: UIButton!
     @IBOutlet private var editIconImageViews: [UIImageView]!
     private var partner: Partners.Partner?
     private var isEditing = false
-
     weak var delegate: PartnerCellDelegate?
 
     override func awakeFromNib() {
@@ -54,6 +56,7 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
         relationshipTextField.text = partner.relationship
         emailTextField.text = partner.email
         shareButton.isVisible = false
+        inviteButton.isVisible = false
 
         syncViews()
 
@@ -82,8 +85,9 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
         syncViews()
     }
 
-    func updateShareButton(_ isVisible: Bool) {
+    func updateActionButtons(_ isVisible: Bool) {
         shareButton.isVisible = isVisible
+        inviteButton.isVisible = isVisible
     }
 
     @IBAction func didTapEditProfileImage(_ sender: UIButton) {
@@ -93,6 +97,8 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
     @IBAction func didEditTextField(_ sender: UITextField) {
         switch sender {
         case givenNameTextField:
+            
+
             partner?.name = sender.text
         case familyNameTextField:
             partner?.surname = sender.text
@@ -109,7 +115,13 @@ class PartnerCell: UICollectionViewCell, Dequeueable {
     @IBAction func didTapShareButton(_ sender: UIButton) {
         delegate?.didTapShareButton(at: partner)
     }
+
+    @IBAction func didTapSendInviteButton(_ sender: UIButton) {
+        delegate?.didTapSendInviteButton(at: partner)
+    }
 }
+
+// MARK: - Private
 
 private extension PartnerCell {
 

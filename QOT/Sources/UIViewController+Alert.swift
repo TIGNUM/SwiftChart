@@ -34,6 +34,7 @@ enum AlertType {
     case notSynced
     case resetPassword
     case canNotSendMail
+    case partnerInvite
 
     var title: String? {
         switch self {
@@ -55,6 +56,7 @@ enum AlertType {
         case .cameraNotAvailable, .permissionNotGranted: return R.string.localized.alertTitleCustom()
         case .resetPassword: return R.string.localized.alertTitleResetPassword()
         case .canNotSendMail: return R.string.localized.alertTitleCouldNotSendEmail()
+        case .partnerInvite: return R.string.localized.alertTitlePartnerInvite()
         default: return nil
         }
     }
@@ -78,6 +80,7 @@ enum AlertType {
         case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedMessage()
         case .resetPassword: return R.string.localized.alertMessageResetPassword()
         case .canNotSendMail: return R.string.localized.alertMessageCouldNotSendEmail()
+        case .partnerInvite: return R.string.localized.alertMessagePartnerInvite()
         default: return nil
         }
     }
@@ -87,7 +90,8 @@ enum AlertType {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
              .settingsCalendars,
-             .imagePicker: return R.string.localized.alertButtonTitleCancel()
+             .imagePicker,
+             .partnerInvite: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
     }
@@ -98,6 +102,7 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars: return R.string.localized.alertButtonTitleOpenSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
+        case .partnerInvite: return R.string.localized.addSensorViewAlertSend()
         default: return R.string.localized.alertButtonTitleOk()
         }
     }
@@ -115,13 +120,15 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars: return [.cancel, .default]
         case .imagePicker: return [.cancel]
+        case .partnerInvite: return [.default, .cancel]
         default: return [.default]
         }
     }
 
     var alertStyle: UIAlertControllerStyle {
         switch self {
-        case .imagePicker: return .actionSheet
+        case .imagePicker,
+             .partnerInvite: return .actionSheet
         default: return .alert
         }
     }

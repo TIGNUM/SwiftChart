@@ -41,6 +41,8 @@ final class ShareRouter: NSObject, ShareRouterInterface {
     }
 }
 
+// MARK: - MFMailComposeViewControllerDelegate
+
 extension ShareRouter: MFMailComposeViewControllerDelegate {
 
     func mailComposeController(_ controller: MFMailComposeViewController,

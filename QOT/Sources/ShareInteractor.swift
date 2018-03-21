@@ -44,8 +44,13 @@ final class ShareInteractor: ShareInteractorInterface {
             self?.handleResult(result)
         }
     }
+}
 
-    private func handleResult(_ result: ShareWorker.Result) {
+// MARK: - Private
+
+private extension ShareInteractor {
+
+    func handleResult(_ result: ShareWorker.Result) {
         switch result {
         case .success(let content):
             self.router.showMailComposer(email: content.email, subject: content.subject, messageBody: content.body)

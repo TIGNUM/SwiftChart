@@ -20,7 +20,9 @@ final class PartnersConfigurator: AppStateAccess {
             imagePickerController.delegate = viewController
             viewController.imagePickerController = imagePickerController
             let router = PartnersRouter(viewController: viewController)
-            let worker = PartnersWorker(services: appState.services, syncManager: appState.syncManager)
+            let worker = PartnersWorker(services: appState.services,
+                                        syncManager: appState.syncManager,
+                                        networkManager: appState.networkManager)
             let presenter = PartnersPresenter(viewController: viewController)
             let interactor = PartnersInteractor(worker: worker, router: router, presenter: presenter)
             viewController.interactor = interactor
