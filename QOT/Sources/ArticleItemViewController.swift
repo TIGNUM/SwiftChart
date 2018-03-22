@@ -28,6 +28,7 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
     private let contentInsets: UIEdgeInsets
     private let fadeMaskLocation: UIView.FadeMaskLocation
     private let guideItem: Guide.Item?
+    private var avPlayerObserver: AVPlayerObserver?
     let pageName: PageName
     var viewModel: ArticleItemViewModel
     weak var delegate: ArticleItemViewControllerDelegate?
@@ -375,7 +376,17 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
             case .audio(_, _, _, let remoteURL, _, _):
                 let url = item.bundledAudioURL ?? remoteURL
                 delegate?.didTapMedia(withURL: url, in: self)
-            case .video(_, _, _, let videoURL, _): streamVideo(videoURL: videoURL)
+            case .video(_, _, _, let videoURL, _):
+                let playerViewController = stream(videoURL: videoURL)
+                if let playerItem = playerViewController.player?.currentItem {
+                    avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+                    avPlayerObserver?.onStatusUpdate { (player) in
+                        if playerItem.status == .failed {
+                            playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
+                            playerViewController.dismiss(animated: true, completion: nil)
+                        }
+                    }
+                }
             default: return
             }
         case 1:

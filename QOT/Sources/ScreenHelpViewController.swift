@@ -17,6 +17,7 @@ final class ScreenHelpViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    private var avPlayerObserver: AVPlayerObserver?
     var interactor: ScreenHelpInteractorInterface!
     var helpItem: ScreenHelp.Item?
 
@@ -71,6 +72,19 @@ final class ScreenHelpViewController: UIViewController {
 // MARK: - ScreenHelpViewControllerInterface
 
 extension ScreenHelpViewController: ScreenHelpViewControllerInterface {
+
+    func streamVideo(videoURL: URL) {
+        let playerViewController = stream(videoURL: videoURL)
+        if let playerItem = playerViewController.player?.currentItem {
+            avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+            avPlayerObserver?.onStatusUpdate { (player) in
+                if playerItem.status == .failed {
+                    playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
+                    playerViewController.dismiss(animated: true, completion: nil)
+                }
+            }
+        }
+    }
 
     func updateHelpItem(_ helpItem: ScreenHelp.Item?) {
         self.helpItem = helpItem

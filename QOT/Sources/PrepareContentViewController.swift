@@ -295,7 +295,7 @@ extension PrepareContentViewController: PrepareContentMainHeaderTableViewCellDel
 
     func didTapVideo(videoURL: URL?, cell: UITableViewCell) {
         if let videoURL = videoURL {
-            streamVideo(videoURL: videoURL)
+            stream(videoURL: videoURL)
         } else {
             log("didTapVideo: videoURL is nil")
         }

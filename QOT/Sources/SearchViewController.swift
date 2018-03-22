@@ -169,7 +169,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case .audio,
              .video:
             if let url = selectedSearchResult.mediaURL {
-                streamVideo(videoURL: url)
+                stream(videoURL: url)
             }
         }
     }

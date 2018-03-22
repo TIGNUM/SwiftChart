@@ -211,8 +211,9 @@
 "Alert.Title.Custom" = "Error";
 "Alert.Title.Unauthenticated" = "User not authenticated";
 "Alert.Message.Unauthenticated" = "Unable to authenticated";
-"Alert.Title.NoNetworkConnection" = "No network connection";
+"Alert.Title.NoNetworkConnection" = "No Internet Connection";
 "Alert.Message.NoNetworkConnection" = "No network connection";
+"Alert.Message.NoNetworkConnectionFile" = "Please ensure your device is connected to the internet to access this file.";
 "Alert.Message.ComingSoon" = "This feature is coming soon";
 "Alert.Message.EditPreparationName" = "Please edit the name and press save";
 "Alert.Title.Unknown" = "Error";

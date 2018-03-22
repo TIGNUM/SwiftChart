@@ -39,6 +39,7 @@ final class LearnContentItemViewController: UIViewController {
     private var audioPlayerTopView: LearnStrategyAudioPlayerView?
     private let disposeBag = DisposeBag()
     private var soundPattern = Property([Float(0)])
+    private var avPlayerObserver: AVPlayerObserver?
 
     private lazy var itemTableView: UITableView = {
         return UITableView(style: .grouped,
@@ -228,7 +229,16 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         case .audio:
             prepareAndPlay(at: indexPath)
         case .video(_, _, _, let videoURL, _):
-            streamVideo(videoURL: videoURL)
+            let playerViewController = stream(videoURL: videoURL)
+            if let playerItem = playerViewController.player?.currentItem {
+                avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+                avPlayerObserver?.onStatusUpdate { (player) in
+                    if playerItem.status == .failed {
+                        playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
+                        playerViewController.dismiss(animated: true, completion: nil)
+                    }
+                }
+            }
         case .pdf(_, _, let pdfURL):
             delegate?.didTapPDF(withURL: pdfURL, in: self)
         default:
