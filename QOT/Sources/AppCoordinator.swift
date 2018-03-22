@@ -717,6 +717,7 @@ extension AppCoordinator {
                     pageTracker.track(universeController)
             }
         }
+        self.destination = nil
     }
 
     func presentSideBar(destination: AppCoordinator.Router.Destination?) -> SidebarCoordinator? {

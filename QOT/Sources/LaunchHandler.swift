@@ -195,7 +195,9 @@ extension LaunchHandler {
 
     func weeklyChoiches(completion: (() -> Void)? = nil) {
         let dates = startEndDate()
-        appDelegate.appCoordinator.presentWeeklyChoices(forStartDate: dates.startDate, endDate: dates.endDate, completion: completion)
+        appDelegate.appCoordinator.presentWeeklyChoices(forStartDate: dates.startDate,
+                                                        endDate: dates.endDate,
+                                                        completion: completion)
     }
 
     private func startEndDate() -> (startDate: Date, endDate: Date) {

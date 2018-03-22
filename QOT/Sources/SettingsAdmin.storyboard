@@ -503,6 +503,36 @@
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
+                            <tableViewSection headerTitle="Guide Max Days" id="K5d-8J-Pw3">
+                                <cells>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="dRQ-Cg-hse">
+                                        <rect key="frame" x="0.0" y="943" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="dRQ-Cg-hse" id="0dM-Hv-yGo">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="KkM-VN-cS0">
+                                                    <rect key="frame" x="8" y="8" width="359" height="29"/>
+                                                    <segments>
+                                                        <segment title="3"/>
+                                                        <segment title="100"/>
+                                                    </segments>
+                                                    <connections>
+                                                        <action selector="didUpdateValue:" destination="jq0-LF-1Lc" eventType="valueChanged" id="VWI-6g-WAk"/>
+                                                    </connections>
+                                                </segmentedControl>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KkM-VN-cS0" firstAttribute="centerX" secondItem="0dM-Hv-yGo" secondAttribute="centerX" id="DKM-eP-2Ov"/>
+                                                <constraint firstItem="KkM-VN-cS0" firstAttribute="centerY" secondItem="0dM-Hv-yGo" secondAttribute="centerY" id="f21-5D-EhZ"/>
+                                                <constraint firstAttribute="trailing" secondItem="KkM-VN-cS0" secondAttribute="trailing" constant="8" id="gmC-Dt-qGL"/>
+                                                <constraint firstItem="KkM-VN-cS0" firstAttribute="leading" secondItem="0dM-Hv-yGo" secondAttribute="leading" constant="8" id="uRJ-lH-dVj"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </cells>
+                            </tableViewSection>
                         </sections>
                         <connections>
                             <outlet property="dataSource" destination="jq0-LF-1Lc" id="64C-il-Wij"/>
@@ -516,6 +546,7 @@
                         <outlet property="baseURLSegmentedControl" destination="dxv-W1-xjD" id="5xe-F0-nz3"/>
                         <outlet property="baseURLTextField" destination="d6b-SA-V0G" id="lhQ-QZ-3ph"/>
                         <outlet property="baseURLUpdateButton" destination="mo4-kq-Q08" id="fM7-VX-gb2"/>
+                        <outlet property="guideMaxItemsSegmentedControl" destination="KkM-VN-cS0" id="72n-GR-YEt"/>
                         <outlet property="logLevelSegmentedControl" destination="65B-1A-cDd" id="1b6-Mn-3fq"/>
                     </connections>
                 </tableViewController>
