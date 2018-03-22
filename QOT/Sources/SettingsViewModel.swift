@@ -221,16 +221,35 @@ final class SettingsViewModel {
         services.userService.updateUserHeight(user: user, height: height)
     }
 
-    func updateWeight(weight: Double) {
-        services.userService.updateUserWeight(user: user, weight: weight)
+    func updateWeight(weight: Double, unit: String) {
+        let convertedWeight: Double
+        if unit == "kg" {
+            convertedWeight = weight
+        } else if unit == "lbs" {
+            let kilograms = Measurement(value: weight, unit: UnitMass.kilograms)
+            let pounds = kilograms.converted(to: .pounds)
+            convertedWeight = pounds.value
+        } else {
+            fatalError("Invalid unit")
+        }
+        services.userService.updateUserWeight(user: user, weight: convertedWeight)
+        services.userService.updateUserWeightUnit(user: user, weightUnit: unit)
     }
 
-    func updateWeightUnit(weightUnit: String) {
-        services.userService.updateUserWeightUnit(user: user, weightUnit: weightUnit)
-    }
-
-    func updateHeightUnit(heightUnit: String) {
-        services.userService.updateUserHeightUnit(user: user, heightUnit: heightUnit)
+    func updateHeight(meters: Double, unit: String) {
+        let meters = Measurement(value: meters, unit: UnitLength.meters)
+        let convertedHeight: Double
+        if unit == "cm" {
+            let centimeters = meters.converted(to: .centimeters)
+            convertedHeight = centimeters.value
+        } else if unit == "ft" {
+            let feet = meters.converted(to: .feet)
+            convertedHeight = feet.value
+        } else {
+            fatalError("Invalid unit")
+        }
+        services.userService.updateUserHeight(user: user, height: convertedHeight)
+        services.userService.updateUserHeightUnit(user: user, heightUnit: unit)
     }
 
     func updateNotificationSetting(key: String, value: Bool) {
@@ -281,7 +300,7 @@ enum SettingsRow {
     case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?)
     case button(title: String, value: String, settingsType: SettingsType)
     case textField(title: String, value: String, secure: Bool, settingsType: SettingsType)
-    case multipleStringPicker(title: String, rows: [String: [(value: Double, displayValue: String)]], initialSelection: [Index], settingsType: SettingsType)
+    case multipleStringPicker(title: String, rows: UserMeasurement, initialSelection: [Index], settingsType: SettingsType)
 
     var identifier: String {
         switch self {
@@ -355,22 +374,14 @@ private func personalRows(for user: User?) -> [SettingsRow] {
     if let dateOfBirth = user.dateOfBirth {
         date = DateFormatter.settingsUser.date(from: dateOfBirth) ?? Date()
     }
-
-    let weightUnit = user.weightUnit ?? "kg"
-    let heightUnit = user.heightUnit ?? "cm"
-    let heightItems = user.heightPickerItems[heightUnit].map { $0.map { $0.value } } ?? []
-    let weightItems = user.weightPickerItems[weightUnit].map { $0.map { $0.value } } ?? []
-    var selectedHeightIndex = PersonalData.height.selectedIndex(user: user, items: heightItems)
-    var selectedWeightIndex = PersonalData.weight.selectedIndex(user: user, items: weightItems)
-    let selectedHeightUnitIndex = PersonalData.height.selectedUnitIndex(user: user)
-    let selectedWeightUnitIndex = PersonalData.weight.selectedUnitIndex(user: user)
+    
+    let heightItems = user.heightPickerItems
+    let weightItems = user.weightPickerItems
+    let selectedHeightIndex = heightItems.valueIndex
+    let selectedHeightUnitIndex = heightItems.unitIndex
+    var selectedWeightIndex = weightItems.valueIndex
+    let selectedWeightUnitIndex = weightItems.unitIndex
     let selectedGenderIndex = Gender(rawValue: user.gender.lowercased())?.selectedIndex ?? 0
-
-    if selectedHeightIndex == 0 && selectedHeightUnitIndex == 0 {
-        selectedHeightIndex = 150
-    } else if selectedHeightIndex == 0 && selectedHeightUnitIndex == 1 {
-        selectedHeightIndex = 66
-    }
 
     if selectedWeightIndex == 0 && selectedWeightUnitIndex == 0 {
         selectedWeightIndex = 70

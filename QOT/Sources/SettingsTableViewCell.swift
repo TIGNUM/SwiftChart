@@ -64,13 +64,9 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
         case .stringPicker(let title, let pickerItems, let selectedIndex, let settingsType):
             self.settingsType = settingsType
             setupLabelCell(title: title, value: pickerItems[selectedIndex])
-        case .multipleStringPicker(let title, let rows, let initialSelection, let settingsType):
+        case .multipleStringPicker(let title, let userMeasurement, _, let settingsType):
             self.settingsType = settingsType
-            let valueIndex = initialSelection[0]
-            let unitIndex = initialSelection[1]
-            let unit = Array(rows.keys)[unitIndex]
-            let value = rows[unit].map { $0[valueIndex].displayValue } ?? ""
-            let displayableValue = String(format: "%@ %@", value, unit)
+            let displayableValue = userMeasurement.currentTitle()
             setupLabelCell(title: title, value: displayableValue)
         case .textField(let title, let value, let secure, let settingsType):
             self.settingsType = settingsType

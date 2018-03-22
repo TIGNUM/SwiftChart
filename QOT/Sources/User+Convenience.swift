@@ -11,103 +11,39 @@ import Freddy
 
 extension User {
 
-    var weightUnitItems: [String] {
-        do {
-            return try unitItems(for: weightUnitsJSON, jsonKey: .name)
-        } catch {
-            return []
-        }
-    }
-
-    var weightIncrementItems: [Double] {
-        do {
-            return try incrementItems(for: weightUnitsJSON, jsonKey: .increment)
-        } catch {
-            return []
-        }
-    }
-
-    var heightUnitItems: [String] {
-        do {
-            return try unitItems(for: heightUnitsJSON, jsonKey: .name)
-        } catch {
-            return []
-        }
-    }
-
-    var heightIncrementItems: [Double] {
-        do {
-            return try incrementItems(for: heightUnitsJSON, jsonKey: .increment)
-        } catch {
-            return []
-        }
-    }
-
-    var weightPickerItems: [String: [(value: Double, displayValue: String)]] {
-        return [
-            "kg": kiloItems,
-            "lbs": poundItems
-        ]
-    }
-
-    var heightPickerItems: [String: [(value: Double, displayValue: String)]] {
-        return [
-            "cm": centimeterItems,
-            "ft": feetItems
-        ]
-    }
-
-    private var centimeterItems: [(value: Double, displayValue: String)] {
-        var items = [(value: Double, displayValue: String)]()
-
-        for value in stride(from: 0.0, to: 300.0, by: 1.0) {
-            let item = (value, String(format: "%.0f", value))
-            items.append(item)
-        }
-        return items
-    }
-
-    private var feetItems: [(value: Double, displayValue: String)] {
-        var items = [(value: Double, displayValue: String)]()
-        for feet in stride(from: 0, to: 100, by: 1.0) {
-            for inch in stride(from: 0, to: 11, by: 1.0) {
-                let item = (inch, String(format: "%.0f'%.0f''", feet, inch))
-                items.append(item)
+    var weightPickerItems: UserMeasurement {
+        if let weight = weight.value, let unit = weightUnit {
+            switch unit {
+            case "kg":
+                return UserMeasurement.weight(kilograms: weight, unit: "kg")
+            case "lbs":
+                let lbs = Measurement(value: weight, unit: UnitMass.pounds)
+                let kilos = lbs.converted(to: .kilograms)
+                return UserMeasurement.weight(kilograms: kilos.value, unit: "lbs")
+            default:
+                return UserMeasurement.weight(kilograms: 60, unit: "kg")
             }
+        } else {
+            return UserMeasurement.weight(kilograms: 60, unit: "kg")
         }
-        return items
     }
 
-    private var kiloItems: [(value: Double, displayValue: String)] {
-        var items = [(value: Double, displayValue: String)]()
-        for value in stride(from: 0.0, to: 300.0, by: 1.0) {
-            let item = (value, String(format: "%.0f", value))
-            items.append(item)
+    var heightPickerItems: UserMeasurement {
+        if let height = height.value, let unit = heightUnit {
+            switch unit {
+            case "cm":
+                let centimeters = Measurement(value: height, unit: UnitLength.centimeters)
+                let meters = centimeters.converted(to: .meters)
+                return UserMeasurement.height(meters: meters.value, unit: "cm")
+            case "ft":
+                let feet = Measurement(value: height, unit: UnitLength.feet)
+                let meters = feet.converted(to: .meters)
+                return UserMeasurement.height(meters: meters.value, unit: "ft")
+            default:
+                return UserMeasurement.height(meters: 1.7, unit: "cm")
+            }
+        } else {
+            return UserMeasurement.height(meters: 1.7, unit: "cm")
         }
-        return items
-    }
-
-    private var poundItems: [(value: Double, displayValue: String)] {
-        var items = [(value: Double, displayValue: String)]()
-        for value in stride(from: 0.0, to: 300.0, by: 1.0) {
-            let item = (value, String(format: "%.0f", value))
-            items.append(item)
-            print(item)
-        }
-        return items
-    }
-
-    private func incrementItems(for jsonString: String, jsonKey: JsonKey) throws -> [Double] {
-        let json = try JSON(jsonString: jsonString)
-        let units = try json.getArray()
-
-        return try units.map { try $0.getItemValue(at: jsonKey) }
-    }
-
-    private func unitItems(for jsonString: String, jsonKey: JsonKey) throws -> [String] {
-        let json = try JSON(jsonString: jsonString)
-        let units = try json.getArray()
-
-        return try units.map { try $0.getItemValue(at: jsonKey) }
     }
 }

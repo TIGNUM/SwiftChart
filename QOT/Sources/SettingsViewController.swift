@@ -36,11 +36,9 @@ final class SettingsViewController: UIViewController {
     private let locationManager = CLLocationManager()
     private var pickerViewHeight: NSLayoutConstraint?
     private var destination: AppCoordinator.Router.Destination?
-    private var pickerItems = [String: [(value: Double, displayValue: String)]]()
+    private var pickerItems: UserMeasurement?
     private var pickerInitialSelection = [Index]()
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
-    private var currentUnit = String()
-    private var currentUserValue = Double()
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
 
@@ -162,25 +160,19 @@ private extension SettingsViewController {
         UIView.animate(withDuration: 0.6, animations: {
             self.pickerViewHeight?.constant = self.view.frame.height * 0.3
         }, completion: { finished in
-            print("pickerInitialSelection[0]", self.pickerInitialSelection[0], self.pickerInitialSelection[1], "pickerInitialSelection[1]")
-            print("pickerView.numberOfComponents", self.pickerView.numberOfComponents)
-            print("self.pickerView.numberOfRows(inComponent: 0)", self.pickerView.numberOfRows(inComponent: 0), "self.pickerView.numberOfRows(inComponent: 1)", self.pickerView.numberOfRows(inComponent: 1))
-            self.pickerView.selectRow(self.pickerInitialSelection[0],
-                                      inComponent: self.pickerInitialSelection[1],
-                                      animated: true)
+            self.pickerView.selectRow(self.pickerInitialSelection[0], inComponent: 0, animated: false)
+            self.pickerView.selectRow(self.pickerInitialSelection[1], inComponent: 1, animated: false)
         })
     }
 
     func updateUser() {
+        guard let userMeasurement = pickerItems else { return }
+
         if pickerIndexPath.section == 1 {
-            let unit = currentUnit // FIXME: No garentee of order
-            let value = currentUserValue
             if pickerIndexPath.row == 2 {
-                viewModel.updateWeight(weight: value)
-                viewModel.updateWeightUnit(weightUnit: unit)
+                viewModel.updateWeight(weight: userMeasurement.selectedValue, unit: userMeasurement.selectedUnit)
             } else if pickerIndexPath.row == 3 {
-                viewModel.updateHeight(height: value)
-                viewModel.updateHeightUnit(heightUnit: unit)
+                viewModel.updateHeight(meters: userMeasurement.selectedValue, unit: userMeasurement.selectedUnit)
             }
         }
         updateViewModelAndReloadTableView()
@@ -377,13 +369,12 @@ private extension SettingsViewController {
 private extension SettingsViewController {
 
     func showMultiplePicker(title: String,
-                            rows: [String: [(value: Double, displayValue: String)]],
+                            rows: UserMeasurement,
                             initialSelection: [Index],
                             indexPath: IndexPath) {
         pickerItems = rows
         pickerInitialSelection = initialSelection
         pickerIndexPath = indexPath
-        print("pickerInitialSelection", pickerInitialSelection)
         showPickerView()
     }
 }
@@ -433,58 +424,36 @@ extension SettingsViewController: SettingsViewControllerDelegate {
 extension SettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return pickerItems.count
+        guard let pickerItems = pickerItems else { return 0 }
+        return pickerItems.columnCount
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        let unit = Array(pickerItems.keys)[pickerInitialSelection[1]]
-        switch component {
-        case 0: return pickerItems[unit]?.count ?? 0
-        case 1: return pickerItems.keys.count
-        default: return 0
-        }
+        guard let pickerItems = pickerItems else { return 0 }
+        return pickerItems.rowCount(column: component)
     }
 
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        let unit = Array(pickerItems.keys)[pickerInitialSelection[1]]
-        switch component {
-        case 0:
-            if let value = pickerItems[unit].map ({ $0[row].displayValue })?.components(separatedBy: ".") {
-                return value[0]
-            }
-            return nil
-        case 1: return Array(pickerItems.keys)[row]
-        default: return nil
-        }
+        guard let pickerItems = pickerItems else { return "" }
+        return pickerItems.title(row: row, column: component)
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         pickerInitialSelection = [pickerView.selectedRow(inComponent: 0), pickerView.selectedRow(inComponent: 1)]
-        if component == 1 {
-            let unit = Array(pickerItems.keys)[pickerView.selectedRow(inComponent: 1)]
-            let value = pickerItems.values.map { $0[pickerView.selectedRow(inComponent: 0)].value }[0]
-            let convertedValue = convertValue(unit: unit, value: value).rounded(.toNearestOrAwayFromZero)
-            if let convertedValueRow = pickerItems.values.map ({ $0.index { $0.value == convertedValue} })[0] {
-                currentUnit = unit
-                currentUserValue = value
-                pickerView.selectRow(convertedValueRow, inComponent: 0, animated: true)
-                pickerView.reloadAllComponents()
-            }
-        }
-    }
+        guard let pickerItems = pickerItems else { return }
 
-    private func convertValue(unit: String, value: Double) -> Double {
-        switch unit {
-        case "kg":
-            return Measurement(value: value, unit: UnitMass.pounds).converted(to: .kilograms).value
-        case "lbs":
-            return Measurement(value: value, unit: UnitMass.kilograms).converted(to: .pounds).value
-        case "cm":
-            return Measurement(value: value, unit: UnitLength.feet).converted(to: .centimeters).value
-        case "ft":
-            return Measurement(value: value, unit: UnitLength.centimeters).converted(to: .feet).value
+        let optionIndex = pickerView.selectedRow(inComponent: 1)
+        let unit = pickerItems.options[optionIndex].unit
+
+        switch component {
+        case 0:
+            pickerItems.update(valueIndex: row)
+        case 1:
+            pickerItems.update(unit: unit)
+            pickerView.reloadAllComponents()
+            pickerView.selectRow(pickerItems.valueIndex, inComponent: 0, animated: false)
         default:
-            return value
+            break
         }
     }
 }
