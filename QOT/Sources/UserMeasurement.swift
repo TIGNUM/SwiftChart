@@ -76,7 +76,8 @@ final class UserMeasurement {
     }
 
     func currentTitle() -> String {
-        return title(row: valueIndex, column: 0) ?? ""
+        let value = title(row: valueIndex, column: 0) ?? "0"
+        return "\(value) \(options[unitIndex].unit)"
     }
 
     private func indexOfClosestValue(to searchValue: Double, in values: [Double]) -> Int? {
@@ -97,24 +98,19 @@ final class UserMeasurement {
     }
 
     static func weight(kilograms: Double, unit: String) -> UserMeasurement {
-        let formatter = MeasurementFormatter()
-        formatter.unitOptions = .providedUnit
-
         var kilogramsValues: [(value: Double, title: String)] = []
         for weight in stride(from: 0.0, to: 1000.0, by: 0.5) {
-            formatter.numberFormatter.maximumFractionDigits = 1
             let kilograms = Measurement(value: weight, unit: UnitMass.kilograms)
-            let displayValue = formatter.string(from: kilograms)
+            let displayValue = String(format: "%.1f", weight)
             kilogramsValues.append((kilograms.value, displayValue))
         }
         let kilogramsOption = Option(unit: "kg", values: kilogramsValues)
 
         var poundsValues: [(value: Double, title: String)] = []
         for weight in stride(from: 0.0, to: 2000.0, by: 1.0) {
-            formatter.numberFormatter.maximumFractionDigits = 0
             let pounds = Measurement(value: weight, unit: UnitMass.pounds)
             let kilograms = pounds.converted(to: .kilograms)
-            let displayValue = String(format: "%d lbs", Int(weight))
+            let displayValue = String(format: "%d", Int(weight))
             poundsValues.append((kilograms.value, displayValue))
         }
         let poundsOption = Option(unit: "lbs", values: poundsValues)
@@ -138,12 +134,11 @@ final class UserMeasurement {
         }
         let feetOption = Option(unit: "ft", values: feetValues)
 
-        formatter.numberFormatter.locale = Locale(identifier: "de_DE")
         var centimeterValues: [(value: Double, title: String)] = []
-        for centimeters in stride(from: 0.0, to: 300.0, by: 1.0) {
-            let centimeters = Measurement(value: centimeters, unit: UnitLength.centimeters)
+        for height in stride(from: 0.0, to: 300.0, by: 1.0) {
+            let centimeters = Measurement(value: height, unit: UnitLength.centimeters)
             let meters = centimeters.converted(to: .meters).value
-            let displayValue = formatter.string(fromMeters: meters)
+            let displayValue = String(format: "%d", Int(height))
             centimeterValues.append((meters, displayValue))
         }
         let meterOption = Option(unit: "cm", values: centimeterValues)
