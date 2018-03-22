@@ -10,6 +10,8 @@ import UIKit
 import SwiftyBeaver
 import MBProgressHUD
 
+var guideMaxDays = 3
+
 final class SettingsAdminViewController: UITableViewController {
 
     enum Sections: Int {
@@ -19,6 +21,7 @@ final class SettingsAdminViewController: UITableViewController {
         case dataBase = 3
         case reset = 4
         case notifications = 5
+        case guideItems = 6
     }
 
     enum BaseURL: Int {
@@ -50,6 +53,7 @@ final class SettingsAdminViewController: UITableViewController {
     @IBOutlet private weak var baseURLSegmentedControl: UISegmentedControl!
     @IBOutlet private weak var autoSyncSwitch: UISwitch!
     @IBOutlet private weak var logLevelSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var guideMaxItemsSegmentedControl: UISegmentedControl!
     private var dataBaseTouched = false
     private let userName = CredentialsManager.shared.loginCredentials()?.username
     private let password = CredentialsManager.shared.loginCredentials()?.password
@@ -85,6 +89,7 @@ extension SettingsAdminViewController {
         case .dataBase: return "dataBase: an erase will turn off autoSync"
         case .reset: return "reset changes back to default:\n - baseURL\n - sync\n - loglevel\n - downSync fresh data"
         case .notifications: return "Guide\nScheduled Local Notifications"
+        case .guideItems: return "Guide Max Days"
         }
     }
 
@@ -194,6 +199,10 @@ private extension SettingsAdminViewController {
         syncData(shouldDownload: true)
         tableView.reloadData()
     }
+
+    @IBAction private func didUpdateValue(_ sender: UISegmentedControl) {
+        guideMaxDays = Int(sender.titleForSegment(at: sender.selectedSegmentIndex) ?? "3") ?? 3
+    }
 }
 
 private extension SettingsAdminViewController {
@@ -263,5 +272,6 @@ private extension SettingsAdminViewController {
         baseURLTextField.text = ""
         logLevelSegmentedControl.selectedSegmentIndex = Logger.shared.remote.minLevel.rawValue
         autoSyncSwitch.setOn(true, animated: true)
+        guideMaxItemsSegmentedControl.selectedSegmentIndex = guideMaxDays == 3 ? 0 : 1
     }
 }
