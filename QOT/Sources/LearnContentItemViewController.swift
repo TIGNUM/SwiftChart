@@ -235,7 +235,6 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                 avPlayerObserver?.onStatusUpdate { (player) in
                     if playerItem.status == .failed {
                         playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
-                        playerViewController.dismiss(animated: true, completion: nil)
                     }
                 }
             }
