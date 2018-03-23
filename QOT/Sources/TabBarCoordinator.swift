@@ -25,7 +25,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     private let articleCollectionProvider: ArticleCollectionProvider
-    private let whatsHotBadgeManager = WhatsHotBadgeManager()
+    private let badgeManager = BadgeManager()
     var children = [Coordinator]()
 
     lazy var prepareCoordinator: PrepareCoordinator = {
@@ -68,8 +68,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                             topTabBarControllerLearn,
                                             topTabBarControllerMe,
                                             topTabBarControllerPrepare]
-        whatsHotBadgeManager.tabBarController = tabBarController
-        whatsHotBadgeManager.isShowingLearnTab = false
+        badgeManager.tabBarController = tabBarController
+        badgeManager.tabDisplayed = .guide
         return tabBarController
     }()
 
@@ -113,7 +113,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 //            assertionFailure("expected what's hot button")
             return topTabBarController
         }
-        whatsHotBadgeManager.whatsHotButton = whatsHotButton
+        badgeManager.tabButton = whatsHotButton
         return topTabBarController
     }()
 
@@ -233,7 +233,9 @@ extension TabBarCoordinator: TabBarControllerDelegate {
                           at index: Int) {
 
         selectedIndex.value = index
-        whatsHotBadgeManager.isShowingLearnTab = (index == 1)
+        if let tabBarIndex = TabBar(rawValue: index) {
+            badgeManager.tabDisplayed = tabBarIndex
+        }
 
         if index == 3 {
             prepareCoordinator.focus()

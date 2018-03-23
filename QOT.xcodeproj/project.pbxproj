@@ -68,7 +68,6 @@
 		7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */; };
 		7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03071F14FE9800007D50 /* CollapsableNode.swift */; };
 		7F0F45B81FE922D400293942 /* MeetingsAverageNumberChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F45B71FE922D400293942 /* MeetingsAverageNumberChart.swift */; };
-		7F1711EB1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1711EA1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift */; };
 		7F1711ED1FB3161C00ED08D8 /* Badge.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1711EC1FB3161C00ED08D8 /* Badge.swift */; };
 		7F1D3D221F8E24620071D322 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D3D211F8E24620071D322 /* Log.swift */; };
 		7F1D3D251F8E29050071D322 /* RemoteLogDestination.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F1D3D241F8E29050071D322 /* RemoteLogDestination.swift */; };
@@ -205,6 +204,7 @@
 		91C262B91FED0B2D0075664E /* InterviewDialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B61FED0B2C0075664E /* InterviewDialView.swift */; };
 		91C262BA1FED0B2D0075664E /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */; };
 		91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */; };
+		91CC8E842063DE11005A7D17 /* BadgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC8E832063DE11005A7D17 /* BadgeManager.swift */; };
 		91CD12ED2036F6F300E27822 /* MorningInterviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */; };
 		91CD12EE2036F6F300E27822 /* MorningInterviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */; };
 		91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EF2037168900E27822 /* CGRect+Convenience.swift */; };
@@ -659,7 +659,6 @@
 		7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollapsableContentCell.xib; sourceTree = "<group>"; };
 		7F0F03071F14FE9800007D50 /* CollapsableNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableNode.swift; sourceTree = "<group>"; };
 		7F0F45B71FE922D400293942 /* MeetingsAverageNumberChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingsAverageNumberChart.swift; sourceTree = "<group>"; };
-		7F1711EA1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotBadgeManager.swift; sourceTree = "<group>"; };
 		7F1711EC1FB3161C00ED08D8 /* Badge.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Badge.swift; sourceTree = "<group>"; };
 		7F1D3D211F8E24620071D322 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		7F1D3D241F8E29050071D322 /* RemoteLogDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLogDestination.swift; sourceTree = "<group>"; };
@@ -798,6 +797,7 @@
 		91C262B61FED0B2C0075664E /* InterviewDialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDialView.swift; sourceTree = "<group>"; };
 		91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
 		91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorningInterviewViewController.xib; sourceTree = "<group>"; };
+		91CC8E832063DE11005A7D17 /* BadgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeManager.swift; sourceTree = "<group>"; };
 		91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewCell.swift; sourceTree = "<group>"; };
 		91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MorningInterviewCell.xib; sourceTree = "<group>"; };
 		91CD12EF2037168900E27822 /* CGRect+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Convenience.swift"; sourceTree = "<group>"; };
@@ -2517,7 +2517,7 @@
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				7F42767C1F58665100AEE3D7 /* URLScheme.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
-				7F1711EA1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift */,
+				91CC8E832063DE11005A7D17 /* BadgeManager.swift */,
 				7F4276761F570DB600AEE3D7 /* WindowManager.swift */,
 				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 				7F9217B31FD01BF400CAE9E0 /* Permissions */,
@@ -3302,6 +3302,7 @@
 				7F904F661FBF1A550040EF11 /* TabBarController.swift in Sources */,
 				CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
+				91CC8E842063DE11005A7D17 /* BadgeManager.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
 				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
 				CB3437721F00ED3200D89D4F /* RealmObserver.swift in Sources */,
@@ -3347,7 +3348,6 @@
 				7F3A9CBB1FCDB8FF000F1744 /* UserFeedback.swift in Sources */,
 				912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */,
 				912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */,
-				7F1711EB1FB30E0100ED08D8 /* WhatsHotBadgeManager.swift in Sources */,
 				CB6637B1201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift in Sources */,
 				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,

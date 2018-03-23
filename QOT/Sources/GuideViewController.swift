@@ -61,6 +61,11 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
         interactor?.reload()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        updateBadgeIfNeeded()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         sizeHeaderViewToFit()
@@ -81,6 +86,15 @@ extension GuideViewController: GuideViewControllerInterface {
     func updateDays(days: [Guide.Day]) {
         self.days = days
         tableView.reloadData()
+    }
+
+    func updateBadgeIfNeeded() {
+        let incompletedItems = days.map { $0.items.filter { $0.status == .todo }.count > 0 }.filter { $0 == true }.count
+        if incompletedItems > 0 {
+            UserDefault.newGuideItem.setBoolValue(value: true)
+        } else {
+            UserDefault.newGuideItem.setBoolValue(value: false)
+        }
     }
 }
 
