@@ -24,6 +24,7 @@ final class MyPrepViewModel {
         let header: String
         let text: String
         let startDate: Date?
+        let endDate: Date?
         let totalPreparationCount: Int
         let finishedPreparationCount: Int
     }
@@ -122,6 +123,7 @@ final class MyPrepViewModel {
                                   header: preparation.subtitle,
                                   text: preparation.name,
                                   startDate: preparation.calendarEvent?.event?.startDate,
+                                  endDate: preparation.calendarEvent?.event?.endDate,
                                   totalPreparationCount: contentItemIDs.count,
                                   finishedPreparationCount: finishedPreparationCount))
             })

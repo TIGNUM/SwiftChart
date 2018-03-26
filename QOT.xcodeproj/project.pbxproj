@@ -205,6 +205,7 @@
 		91C262BA1FED0B2D0075664E /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */; };
 		91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */; };
 		91CC8E842063DE11005A7D17 /* BadgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC8E832063DE11005A7D17 /* BadgeManager.swift */; };
+		91CCC996206938EE00E0C251 /* EventDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCC995206938EE00E0C251 /* EventDate.swift */; };
 		91CD12ED2036F6F300E27822 /* MorningInterviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */; };
 		91CD12EE2036F6F300E27822 /* MorningInterviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */; };
 		91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EF2037168900E27822 /* CGRect+Convenience.swift */; };
@@ -798,6 +799,7 @@
 		91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
 		91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorningInterviewViewController.xib; sourceTree = "<group>"; };
 		91CC8E832063DE11005A7D17 /* BadgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeManager.swift; sourceTree = "<group>"; };
+		91CCC995206938EE00E0C251 /* EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDate.swift; sourceTree = "<group>"; };
 		91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewCell.swift; sourceTree = "<group>"; };
 		91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MorningInterviewCell.xib; sourceTree = "<group>"; };
 		91CD12EF2037168900E27822 /* CGRect+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Convenience.swift"; sourceTree = "<group>"; };
@@ -2289,6 +2291,7 @@
 				CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */,
 				85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */,
 				85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */,
+				91CCC995206938EE00E0C251 /* EventDate.swift */,
 			);
 			name = "Prepare Events";
 			sourceTree = "<group>";
@@ -3666,6 +3669,7 @@
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
+				91CCC996206938EE00E0C251 /* EventDate.swift in Sources */,
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
 				7F0F45B81FE922D400293942 /* MeetingsAverageNumberChart.swift in Sources */,
 				CCF19C591F6048600020D7B6 /* WebViewController.swift in Sources */,

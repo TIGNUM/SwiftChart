@@ -19,12 +19,8 @@ class PrepareEventsUpcomingTripTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func setup(event: EKEvent) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
-        dateFormatter.locale = Locale.current
-
+        let date = event.startDate.eventStringDate(endDate: event.endDate)
         titleLabel.addCharactersSpacing(spacing: 1, text: event.title, uppercased: true)
-        let date = "\(dateFormatter.string(from: event.startDate)) // \(dateFormatter.string(from: event.startDate))"
         dateLabel.addCharactersSpacing(spacing: 2, text: date, uppercased: true)
     }
 }
