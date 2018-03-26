@@ -42,6 +42,7 @@ final class SettingsMenuViewController: UIViewController {
     @IBOutlet private weak var notificationsButton: UIButton!
     @IBOutlet private weak var securityButton: UIButton!
     @IBOutlet private weak var logoutButton: UIButton!
+    @IBOutlet private weak var fadeContainerView: FadeContainerView!
     private let disposeBag = DisposeBag()
     private let viewModel: SettingsMenuViewModel
     private let imagePickerController: ImagePickerController
@@ -72,6 +73,12 @@ final class SettingsMenuViewController: UIViewController {
         super.viewDidLoad()
 
         setupView()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+
+        fadeContainerView.setFade(top: safeAreaInsets.top, bottom: 0)
     }
 
     override func viewWillAppear(_ animated: Bool) {

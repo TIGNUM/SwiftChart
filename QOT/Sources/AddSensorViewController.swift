@@ -21,6 +21,7 @@ final class AddSensorViewController: UIViewController {
     // MARK: - Properties
 
     private let viewModel: AddSensorViewModel
+    private let fadeContainerView = FadeContainerView()
     let updates = PublishSubject<CollectionUpdate, NoError>()
     weak var delegate: AddSensorViewControllerDelegate?
 
@@ -154,7 +155,7 @@ private extension AddSensorViewController {
         let backgroundImageView = UIImageView(frame: view.frame)
         backgroundImageView.image = R.image.backgroundSidebar()
         view.addSubview(backgroundImageView)
-        view.addSubview(scrollView)
+        view.addSubview(fadeContainerView)
     }
 
     func setUpLayout() {
@@ -162,8 +163,14 @@ private extension AddSensorViewController {
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         }
-        scrollView.verticalAnchors == view.verticalAnchors
-        scrollView.horizontalAnchors == view.horizontalAnchors
+
+        view.addSubview(fadeContainerView)
+        fadeContainerView.verticalAnchors == view.verticalAnchors
+        fadeContainerView.horizontalAnchors == view.horizontalAnchors
+
+        fadeContainerView.addSubview(scrollView)
+        scrollView.verticalAnchors == fadeContainerView.verticalAnchors
+        scrollView.horizontalAnchors == fadeContainerView.horizontalAnchors
 
         contentView.leftAnchor == scrollView.leftAnchor
         contentView.rightAnchor == scrollView.rightAnchor
@@ -187,7 +194,10 @@ private extension AddSensorViewController {
         textLabel.horizontalAnchors == titleLabel.horizontalAnchors
         textLabel.bottomAnchor == contentView.bottomAnchor - 12
 
-        view.setFadeMask(at: .top)
+        if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
+            fadeContainerView.setFade(top: navigationBarHeight * 1.5, bottom: 0)
+        }
+
         view.layoutIfNeeded()
     }
 }

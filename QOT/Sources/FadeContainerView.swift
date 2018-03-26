@@ -14,6 +14,16 @@ final class FadeContainerView: UIView {
     private var topFade: CGFloat = 0
     private var bottomFade: CGFloat = 0
 
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
+        setup()
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 

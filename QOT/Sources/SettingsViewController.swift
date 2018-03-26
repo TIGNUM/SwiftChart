@@ -39,6 +39,7 @@ final class SettingsViewController: UIViewController {
     private var pickerItems: UserMeasurement?
     private var pickerInitialSelection = [Index]()
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
+    private let fadeContainerView = FadeContainerView()
     weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
 
@@ -190,9 +191,12 @@ private extension SettingsViewController {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.paddingTop
         }
-        view.backgroundColor = .black
-        view.addSubview(tableView)
-        view.addSubview(pickerContentView)
+
+        view.addSubview(fadeContainerView)
+        fadeContainerView.edgeAnchors == view.edgeAnchors
+        fadeContainerView.addSubview(tableView)
+        fadeContainerView.addSubview(pickerContentView)
+
         pickerContentView.addSubview(pickerToolBar)
         pickerContentView.addSubview(pickerView)
         tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
@@ -206,11 +210,11 @@ private extension SettingsViewController {
         tableView.separatorColor = .clear
         tableView.allowsSelection = true
         tableView.rowHeight = 44
-        tableView.edgeAnchors == view.edgeAnchors
+        tableView.edgeAnchors == fadeContainerView.edgeAnchors
 
-        pickerContentView.trailingAnchor == view.trailingAnchor
-        pickerContentView.leadingAnchor == view.leadingAnchor
-        pickerContentView.bottomAnchor == view.safeBottomAnchor
+        pickerContentView.trailingAnchor == fadeContainerView.trailingAnchor
+        pickerContentView.leadingAnchor == fadeContainerView.leadingAnchor
+        pickerContentView.bottomAnchor == fadeContainerView.safeBottomAnchor
         pickerViewHeight = pickerContentView.heightAnchor == 0
         pickerToolBar.topAnchor == pickerContentView.topAnchor
         pickerToolBar.leadingAnchor == pickerContentView.leadingAnchor
@@ -220,7 +224,10 @@ private extension SettingsViewController {
         pickerView.leadingAnchor == pickerContentView.leadingAnchor
         pickerView.trailingAnchor == pickerContentView.trailingAnchor
         pickerView.bottomAnchor == pickerContentView.bottomAnchor
-        view.setFadeMask(at: .top)
+
+        if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
+            fadeContainerView.setFade(top: navigationBarHeight * 1.5, bottom: 0)
+        }
     }
 
     func registerCells() {

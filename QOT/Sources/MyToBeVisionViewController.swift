@@ -119,7 +119,7 @@ class MyToBeVisionViewController: UIViewController {
 
         scrollView.contentInset.top = topInset
         scrollView.contentInset.bottom = bottomeInset
-        fadeContainerView.setFade(top: safeAreaInsets.top, bottom: 0)
+        fadeContainerView.setFade(top: safeAreaInsets.top * 1.5, bottom: 0)
         minScrollViewContentHeight.constant = scrollView.bounds.height - topInset - bottomeInset  + 31
     }
 }
