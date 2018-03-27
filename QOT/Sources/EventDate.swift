@@ -14,9 +14,9 @@ extension Date {
         let dateFormatter = DateFormatter()
         dateFormatter.setLocalizedDateFormatFromTemplate("h:mm a")
 
-        if isSameDay(Date()) {
+        if NSCalendar.current.isDateInToday(self) {
             return "Today at \(dateFormatter.string(from: self))"
-        } else if isNextDay(date: Date()) {
+        } else if NSCalendar.current.isDateInTomorrow(self) {
             return "Tomorrow at \(dateFormatter.string(from: self))"
         } else {
             dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")

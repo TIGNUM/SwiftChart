@@ -78,6 +78,10 @@ final class MyPrepViewModel {
         refresh()
     }
 
+    var initialItem: Int? {
+        return items.filter { $0.startDate?.timeIntervalSinceNow.sign == .plus }.count - 1
+    }
+
     var itemCount: Int {
         return items.count
     }
@@ -95,8 +99,6 @@ final class MyPrepViewModel {
         return syncStateObserver.hasSynced(Preparation.self) && syncStateObserver.hasSynced(PreparationCheck.self)
     }
 
-    // MARK: - private
-
     private func refresh() {
         guard let preparations = preparations else {
             return
@@ -113,7 +115,7 @@ final class MyPrepViewModel {
                     default:
                         return false
                     }
-                }.map { $0.remoteID }
+                    }.map { $0.remoteID }
 
                 let preparationChecks = try self.services.preparationService.preparationChecksOnBackground(preparationID: preparation.localID)
                 let finishedPreparationCount = preparationChecks.reduce(0, { (result: Int, check: PreparationCheck) -> Int in
@@ -127,7 +129,14 @@ final class MyPrepViewModel {
                                   totalPreparationCount: contentItemIDs.count,
                                   finishedPreparationCount: finishedPreparationCount))
             })
-            self.items = items
+
+            self.items = items.sorted(by: {
+                if let firstStartDate = $0.startDate, let nextStartDate = $1.startDate {
+                    return firstStartDate > nextStartDate
+                }
+                return true
+            })
+
             itemCountUpdate.next(itemCount)
         } catch let error {
             log("Failed to update MyPrepViewModel: \(error)", level: .error)

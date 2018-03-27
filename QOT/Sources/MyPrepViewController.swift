@@ -22,6 +22,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
 
     private let syncManager: SyncManager
     let viewModel: MyPrepViewModel
+    let fadeContainerView = FadeContainerView()
     weak var delegate: MyPrepViewControllerDelegate?
     var loadingView: BlurLoadingView?
     var isLoading: Bool = false {
@@ -87,6 +88,10 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateReadyState()
+        if let initialItem = viewModel.initialItem, viewModel.itemCount > 0 {
+            tableView.scrollToRow(at: IndexPath(row: initialItem, section: 0), at: .top, animated: true)
+            viewDidLayoutSubviews()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -99,7 +104,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         super.viewLayoutMarginsDidChange()
         tableView.contentInset.top = view.safeMargins.top
         tableView.contentInset.bottom = view.safeMargins.bottom
-        view.setFadeMask(at: .topAndBottom)
+        fadeContainerView.setFade(top: safeAreaInsets.top + 32, bottom: safeAreaInsets.bottom + 32)
     }
 }
 
@@ -127,22 +132,24 @@ private extension MyPrepViewController {
 
     func setupView() {
         view.backgroundColor = .clear
-        view.addSubview(tableView)
+        view.addSubview(fadeContainerView)
+        fadeContainerView.edgeAnchors == view.edgeAnchors
+        fadeContainerView.addSubview(tableView)
 
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-            tableView.edgeAnchors == view.edgeAnchors
-            tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
-            tableView.contentInset.bottom = view.safeMargins.bottom
+            tableView.edgeAnchors == fadeContainerView.edgeAnchors
+            tableView.contentInset.top = fadeContainerView.safeMargins.top + Layout.paddingTop
+            tableView.contentInset.bottom = fadeContainerView.safeMargins.bottom
         } else {
-            tableView.topAnchor == view.topAnchor + Layout.paddingTop
-            tableView.bottomAnchor == view.bottomAnchor
-            tableView.leadingAnchor == view.leadingAnchor
-            tableView.trailingAnchor == view.trailingAnchor
+            tableView.topAnchor == fadeContainerView.topAnchor + Layout.paddingTop
+            tableView.bottomAnchor == fadeContainerView.bottomAnchor
+            tableView.leadingAnchor == fadeContainerView.leadingAnchor
+            tableView.trailingAnchor == fadeContainerView.trailingAnchor
         }
 
-        view.setFadeMask(at: .topAndBottom)
+        fadeContainerView.setFade(top: safeAreaInsets.top + 32, bottom: safeAreaInsets.bottom + 32)
     }
 
     func updateView() {
@@ -163,12 +170,15 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
             count = String(format: "%02d/%02d", item.finishedPreparationCount, item.totalPreparationCount)
         }
         var footer = ""
+        var lineColor = UIColor.white
         if let startDate = item.startDate, let endDate = item.endDate {
             footer = startDate.eventStringDate(endDate: endDate)
+            if item.startDate?.timeIntervalSinceNow.sign == .minus {
+                lineColor = .gray
+            }
         }
 
-        cell.setup(with: item.header, text: item.text, footer: footer, count: count)
-
+        cell.setup(with: item.header, text: item.text, footer: footer, count: count, lineColor: lineColor)
         return cell
     }
 

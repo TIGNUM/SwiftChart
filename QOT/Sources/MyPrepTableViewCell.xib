@@ -83,6 +83,7 @@
             <connections>
                 <outlet property="footerLabel" destination="zyf-RO-er1" id="IqE-LY-FIu"/>
                 <outlet property="headerLabel" destination="Tqf-Jf-zVi" id="H9c-d2-u3F"/>
+                <outlet property="lineIndicatorView" destination="MQn-MN-TpR" id="qPo-F6-SwW"/>
                 <outlet property="mainTextLabel" destination="9IB-x5-JfZ" id="iJb-Es-Cbs"/>
                 <outlet property="prepCount" destination="jVg-5h-wKJ" id="do1-Wd-hE6"/>
             </connections>

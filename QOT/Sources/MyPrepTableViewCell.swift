@@ -12,6 +12,7 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
 
+    @IBOutlet private weak var lineIndicatorView: UIView!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var mainTextLabel: UILabel!
     @IBOutlet private weak var footerLabel: UILabel!
@@ -33,7 +34,7 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Setup
 
-    func setup(with header: String, text: String, footer: String, count: String) {
+    func setup(with header: String, text: String, footer: String, count: String, lineColor: UIColor) {
         headerLabel.attributedText = NSMutableAttributedString(
             string: header.uppercased(),
             letterSpacing: 2,
@@ -58,6 +59,7 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
             letterSpacing: -0.8,
             font: Font.H4Headline
         )
+        lineIndicatorView.backgroundColor = lineColor
     }
 }
 
