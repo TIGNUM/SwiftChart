@@ -195,7 +195,7 @@ private extension AddSensorViewController {
         textLabel.bottomAnchor == contentView.bottomAnchor - 12
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
-            fadeContainerView.setFade(top: navigationBarHeight * 1.5, bottom: 0)
+            fadeContainerView.setFade(top: navigationBarHeight + 32, bottom: 0)
         }
 
         view.layoutIfNeeded()
