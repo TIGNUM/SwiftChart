@@ -9,6 +9,17 @@
 import Foundation
 import RealmSwift
 
+extension Preparation: GuidePreparation {
+
+    var eventStartDate: Date? {
+        return calendarEvent?.event?.startDate
+    }
+
+    var priority: Int {
+        return 9999 // FIXME: Dont hard code
+    }
+}
+
 extension RealmGuideItemNotification: GuideNotificationItem {
 
     var displayAt: (utcDate: Date, hour: Int, minute: Int)? {

@@ -417,6 +417,7 @@
 		CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CBC9330E1F0AA47800C00007 /* PrepareEventsViewController.xib */; };
 		CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933111F0B9B3100C00007 /* ContentRelation.swift */; };
 		CBC933151F0B9CC200C00007 /* ContentRelationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC933141F0B9CC200C00007 /* ContentRelationIntermediary.swift */; };
+		CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCB555F2069386C00B422BE /* StringResource+Convenience.swift */; };
 		CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCCF3911F7D3195000E4440 /* ChatViewAnimator.swift */; };
 		CBCCF3941F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCCF3931F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift */; };
 		CBCCF3961F7E43EF000E4440 /* ChatViewHeaderFooter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBCCF3951F7E43EF000E4440 /* ChatViewHeaderFooter.swift */; };
@@ -1020,6 +1021,7 @@
 		CBC9330E1F0AA47800C00007 /* PrepareEventsViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsViewController.xib; sourceTree = "<group>"; };
 		CBC933111F0B9B3100C00007 /* ContentRelation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentRelation.swift; sourceTree = "<group>"; };
 		CBC933141F0B9CC200C00007 /* ContentRelationIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentRelationIntermediary.swift; sourceTree = "<group>"; };
+		CBCB555F2069386C00B422BE /* StringResource+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "StringResource+Convenience.swift"; sourceTree = "<group>"; };
 		CBCCF3911F7D3195000E4440 /* ChatViewAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewAnimator.swift; sourceTree = "<group>"; };
 		CBCCF3931F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewLayoutAttibutes.swift; sourceTree = "<group>"; };
 		CBCCF3951F7E43EF000E4440 /* ChatViewHeaderFooter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewHeaderFooter.swift; sourceTree = "<group>"; };
@@ -2201,6 +2203,7 @@
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
 				7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */,
 				851676C91F39AA9C007A1DD6 /* String+Extensions.swift */,
+				CBCB555F2069386C00B422BE /* StringResource+Convenience.swift */,
 				CB9BB0C11F0CD13E009067D7 /* TimeInterval+Convenience.swift */,
 				CBFECCAC1F388B500076ACE6 /* TimeZone+Convenience.swift */,
 				CCE6CD741F1390AD00B66DA3 /* UIApplication+Convenience.swift */,
@@ -3495,6 +3498,7 @@
 				8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */,
 				36B67B9C1FE1D9C90066A515 /* RealmGuideItem.swift in Sources */,
 				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
+				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
 				CB6637AD201A323200A995D6 /* UserNotificationsScheduler.swift in Sources */,
 				CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,

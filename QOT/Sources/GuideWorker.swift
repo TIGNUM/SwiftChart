@@ -55,6 +55,7 @@ final class GuideWorker {
         let strategyItems = learnItems.filter { $0.type == RealmGuideItemLearn.ItemType.strategy.rawValue }
         let guideGenerator = GuideGenerator(maxDays: guideMaxDays, factory: itemFactory)
         let notificationConfigurations = NotificationConfigurationObject.all()
+        let preparations = services.preparationService.preparations()
 
         // Filter daily prep results so there is only one for each day
         let dailyPrepResults = services.mainRealm.objects(DailyPrepResultObject.self)
@@ -75,7 +76,8 @@ final class GuideWorker {
                                                          featureItems: Array(featureItems),
                                                          strategyItems: Array(strategyItems),
                                                          notificationConfigurations: notificationConfigurations,
-                                                         dailyPrepResults: Array(dailyPrepResults.values))
+                                                         dailyPrepResults: Array(dailyPrepResults.values),
+                                                         preparations: Array(preparations))
             completion(guide)
         } catch {
             log("Unable to generate guide: \(error)", level: .error)

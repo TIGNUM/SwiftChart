@@ -39,6 +39,17 @@ extension SettingsService {
         return nil
     }
 
+    func string(key: String) -> String? {
+        guard let value = settingValue(key: key) else { return nil }
+
+        switch value {
+        case .text(let text):
+            return text
+        default:
+            return nil
+        }
+    }
+
     func allowAdminSettings() -> Bool {
         if let systemSetting = systemSetting(key: "system.developmentmode") {
             let seetingValue = userSetting(systemSetting: systemSetting)?.value ?? systemSetting.value

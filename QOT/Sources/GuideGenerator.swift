@@ -8,6 +8,13 @@
 
 import Foundation
 
+protocol GuidePreparation {
+
+    var localID: String { get }
+    var eventStartDate: Date? { get }
+    var priority: Int { get }
+}
+
 protocol GuideNotificationConfiguration {
 
     var localID: String { get }
@@ -40,6 +47,10 @@ protocol GuideLearnItem {
 
 protocol GuideItemFactoryProtocol {
 
+    func makePreparationItem(status: Guide.Item.Status,
+                             representsMultiple: Bool,
+                             startsTomorrow: Bool,
+                             preparationLocalID: String?) -> Guide.Item?
     func makeItem(with item: GuideLearnItem) -> Guide.Item?
     func makeItem(with item: GuideNotificationItem) -> Guide.Item?
     func makeItem(with item: GuideNotificationConfiguration, date: ISODate) -> Guide.Item?
@@ -67,6 +78,7 @@ struct GuideGenerator {
                        strategyItems: [GuideLearnItem],
                        notificationConfigurations: [GuideNotificationConfiguration],
                        dailyPrepResults: [GuideDailyPrepResult],
+                       preparations: [GuidePreparation],
                        now: Date = Date()) throws -> Guide.Model {
         guard maxDays > 0 else { throw SimpleError(localizedDescription: "Incorrect maxDays: \(maxDays)") }
 
@@ -84,6 +96,7 @@ struct GuideGenerator {
                  to: &days,
                  minDate: minDate,
                  now: now)
+        addPreparations(from: preparations, to: &days, now: now, minDate: minDate)
 
         let guideDays: [Date: Guide.Day] = days.mapKeyValues { ($0, guideDayBySortingItems(from: $1)) }
         let sortedDays = guideDays.sorted { $0.key > $1.key }.map { $0.value }
@@ -265,7 +278,65 @@ private extension GuideGenerator {
                     }
                 }
             }
-            date.addTimeInterval(TimeInterval(days: -1))
+            guard let dayBefore = localCalendar.date(byAdding: .day, value: -1, to: date) else { break }
+            date = dayBefore
+        }
+    }
+
+    func addPreparations(from preparations: [GuidePreparation], to days: inout [Date: Day], now: Date, minDate: Date) {
+        var date = now
+        while date >= minDate {
+            guard let nextDay = localCalendar.date(byAdding: .day, value: 1, to: date) else { break }
+
+            var preparationsStartingTomorrow: [GuidePreparation] = []
+            var preparationsStartingToday: [GuidePreparation] = []
+            var preparationsStartedToday: [GuidePreparation] = []
+            for preparation in preparations {
+                guard let eventStart = preparation.eventStartDate else { continue }
+
+                let nowIsAfter3PM = localCalendar.component(.hour, from: now) >= 15
+                if localCalendar.isDate(eventStart, inSameDayAs: nextDay) && date == now && nowIsAfter3PM {
+                    preparationsStartingTomorrow.append(preparation)
+                } else if localCalendar.isDate(eventStart, inSameDayAs: date) {
+                    if eventStart < now {
+                        preparationsStartedToday.append(preparation)
+                    } else {
+                        preparationsStartingToday.append(preparation)
+                    }
+                }
+            }
+
+            var item: Guide.Item?
+            if preparationsStartingToday.isEmpty == false {
+                let multiple = preparationsStartingToday.count > 1
+                let localID = preparationsStartingToday.count == 1 ? preparationsStartingToday[0].localID : nil
+                item = factory.makePreparationItem(status: .todo,
+                                                   representsMultiple: multiple,
+                                                   startsTomorrow: false,
+                                                   preparationLocalID: localID)
+            } else if preparationsStartingTomorrow.isEmpty == false {
+                let multiple = preparationsStartingTomorrow.count > 1
+                let localID = preparationsStartingTomorrow.count == 1 ? preparationsStartingTomorrow[0].localID : nil
+                item = factory.makePreparationItem(status: .todo,
+                                                   representsMultiple: multiple,
+                                                   startsTomorrow: true,
+                                                   preparationLocalID: localID)
+            } else if preparationsStartedToday.isEmpty == false {
+                let multiple = preparationsStartedToday.count > 1
+                let localID = preparationsStartedToday.count == 1 ? preparationsStartedToday[0].localID : nil
+                item = factory.makePreparationItem(status: .done,
+                                                   representsMultiple: multiple,
+                                                   startsTomorrow: false,
+                                                   preparationLocalID: localID)
+            }
+            let priority = 9999
+            let startOfDay = localCalendar.startOfDay(for: date)
+            if let item = item {
+                days.appendItem(item, hour: 0, minute: 0, priority: priority, localStartOfDay: startOfDay)
+            }
+
+            guard let dayBefore = localCalendar.date(byAdding: .day, value: -1, to: date) else { break }
+            date = dayBefore
         }
     }
 

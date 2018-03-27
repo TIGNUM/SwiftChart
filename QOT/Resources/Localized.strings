@@ -323,3 +323,17 @@
 "Search.Filter.All" = "ALL";
 "Search.Filter.Audio" = "AUDIO";
 "Search.Filter.Video" = "VIDEO";
+
+"guide.card.preparation.subtitle" = "PREPARE";
+"guide.card.preparation.single-unstarted-today.title" = "Prepare for your upcoming event";
+"guide.card.preparation.single-unstarted-today.content" = "You've got an event coming up today. Tap on the card to prepare.";
+"guide.card.preparation.multiple-unstarted-today.title" = "Prepare for your upcoming events";
+"guide.card.preparation.multiple-unstarted-today.content" = "You've got some events coming up today. Tap on the card to prepare.";
+"guide.card.preparation.single-unstarted-tomorrow.title" = "Prepare for your upcoming event";
+"guide.card.preparation.single-unstarted-tomorrow.content" = "Looks like you have an event coming up tomorrow. Tap on the card to prepare.";
+"guide.card.preparation.multiple-unstarted-tomorrow.title" = "Prepare for your upcoming events";
+"guide.card.preparation.multiple-unstarted-tomorrow.content" = "Looks like you have several events coming up tomorrow. Tap on the card to prepare.";
+"guide.card.preparation.single-started-today.title" = "Prepare for your upcoming event";
+"guide.card.preparation.single-started-today.content" = "You've got an event coming up today. Tap on the card to prepare.";
+"guide.card.preparation.multiple-started-today.title" = "Prepare for your upcoming events";
+"guide.card.preparation.multiple-started-today.content" = "You've got some events coming up today. Tap on the card to prepare.";

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Rswift
 
 struct GuideItemFactory: GuideItemFactoryProtocol {
 
@@ -42,6 +43,30 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
 
     func userName() -> String? {
         return services.mainRealm.objects(User.self).first?.givenName
+    }
+
+    func makePreparationItem(status: Guide.Item.Status,
+                             representsMultiple: Bool,
+                             startsTomorrow: Bool,
+                             preparationLocalID: String?) -> Guide.Item? {
+        guard let (title, content) = preparationItemStrings(status: status,
+                                                            representsMultiple: representsMultiple,
+                                                            startsTomorrow: startsTomorrow) else { return nil }
+        let link: URL?
+        if let localID = preparationLocalID {
+            link = URL(string: "qot://preparation#\(localID)")
+        } else {
+            link = URL(string: "qot://prepare-my-preps")
+        }
+        return Guide.Item(status: status,
+                          title: title,
+                          content: .text(content),
+                          subtitle: R.string.localized.guideCardPreparationSubtitle(),
+                          isDailyPrep: false,
+                          link: link,
+                          featureLink: nil,
+                          featureButton: nil,
+                          identifier: "")
     }
 }
 
@@ -155,6 +180,37 @@ private extension GuideItemFactory {
         let color = statistics.color(value: Double(resultValue) * 0.1)
 
         return color == .gray ? .white90 : color
+    }
+
+    func preparationItemStrings(status: Guide.Item.Status,
+                                representsMultiple: Bool,
+                                startsTomorrow: Bool) -> (title: String, content: String)? {
+        var titleResource: StringResource
+        var contentResource: StringResource
+        switch (status, representsMultiple, startsTomorrow) {
+        case (.todo, false, false):
+            titleResource = R.string.localized.guideCardPreparationSingleUnstartedTodayTitle
+            contentResource = R.string.localized.guideCardPreparationSingleUnstartedTodayContent
+        case (.todo, true, false):
+            titleResource = R.string.localized.guideCardPreparationMultipleUnstartedTodayTitle
+            contentResource = R.string.localized.guideCardPreparationMultipleUnstartedTodayContent
+        case (.todo, false, true):
+            titleResource = R.string.localized.guideCardPreparationSingleUnstartedTomorrowTitle
+            contentResource = R.string.localized.guideCardPreparationSingleUnstartedTomorrowContent
+        case (.todo, true, true):
+            titleResource = R.string.localized.guideCardPreparationMultipleUnstartedTomorrowTitle
+            contentResource = R.string.localized.guideCardPreparationMultipleUnstartedTomorrowContent
+        case (.done, false, false):
+            titleResource = R.string.localized.guideCardPreparationSingleStartedTodayTitle
+            contentResource = R.string.localized.guideCardPreparationSingleStartedTodayContent
+        case (.done, true, false):
+            titleResource = R.string.localized.guideCardPreparationMultipleStartedTodayTitle
+            contentResource = R.string.localized.guideCardPreparationMultipleStartedTodayContent
+        default:
+            return nil
+        }
+        return (title: services.settingsService.string(key: titleResource.key) ?? titleResource.localized,
+                content: services.settingsService.string(key: contentResource.key) ?? contentResource.localized)
     }
 }
 
