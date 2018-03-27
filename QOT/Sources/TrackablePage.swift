@@ -18,7 +18,8 @@ protocol TrackablePage: class {
 
 extension TrackablePage {
     func associatedPage(realm: Realm) -> Page? {
-        return realm.objects(Page.self).filter({ $0.name == self.pageName.rawValue }).first
+        let name = self.pageName.rawValue
+        return realm.objects(Page.self).filter("name == %@", name).first
     }
 }
 
