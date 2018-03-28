@@ -154,6 +154,32 @@ final class SyncManager {
                     completion(errors.first)
                 }
             }
+            finishOperation.addDependency(syncOp)
+            operations.append(finishOperation)
+        }
+        priorityUpSyncQueue.addOperations(operations, waitUntilFinished: false)
+    }
+
+    func downSync<T>(_ type: T.Type, completion: ((Error?) -> Void)? = nil)
+        where T: DownSyncable, T: SyncableObject, T.Data: DownSyncIntermediary {
+
+        let context = SyncContext()
+        let downSyncTask = DownSyncTask<T>(networkManager: networkManager,
+                                           realmProvider: realmProvider,
+                                           syncRecordService: syncRecordService)
+        let syncOp = SyncOperation(upSyncTask: nil,
+                                   downSyncTask: downSyncTask,
+                                   syncContext: context,
+                                   debugIdentifier: String(describing: type))
+        var operations: [Operation] = [syncOp]
+        if let completion = completion {
+            let finishOperation = BlockOperation {
+                DispatchQueue.main.async {
+                    let errors = context.errors
+                    completion(errors.first)
+                }
+            }
+            finishOperation.addDependency(syncOp)
             operations.append(finishOperation)
         }
         priorityUpSyncQueue.addOperations(operations, waitUntilFinished: false)
