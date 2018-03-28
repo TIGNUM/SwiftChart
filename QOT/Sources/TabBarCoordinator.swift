@@ -69,7 +69,6 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                             topTabBarControllerMe,
                                             topTabBarControllerPrepare]
         badgeManager.tabBarController = tabBarController
-        badgeManager.tabDisplayed = .guide
         return tabBarController
     }()
 
@@ -109,10 +108,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         config.title = R.string.localized.tabBarItemLearn()
         config.tag = 1
         topTabBarController.tabBarItem = TabBarItem(config: config)
-        guard let whatsHotButton = topTabBarController.middleButton(at: 1) else {
-//            assertionFailure("expected what's hot button")
-            return topTabBarController
-        }
+        guard let whatsHotButton = topTabBarController.middleButton(at: 1) else { return topTabBarController }
         badgeManager.tabButton = whatsHotButton
         return topTabBarController
     }()

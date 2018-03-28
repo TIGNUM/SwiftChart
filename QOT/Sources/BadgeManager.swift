@@ -12,6 +12,8 @@ enum TabBar: Int {
 
     case guide = 0
     case learn = 1
+    case me = 2
+    case prepare = 3
 }
 
 final class BadgeManager {
@@ -33,6 +35,7 @@ final class BadgeManager {
     }
 
     private func update() {
+        badge?.removeFromSuperview()
         checkIfNewItemWasAdded()
         hideCurrentTabBadge()
         let topOffset = (tabButton?.bounds.height ?? 0) * 0.1
@@ -46,6 +49,7 @@ final class BadgeManager {
             tabBarController?.mark(isRead: true, at: tabDisplayed.rawValue)
         case .learn:
             tabBarController?.mark(isRead: true, at: tabDisplayed.rawValue)
+        case .me, .prepare: return
         }
     }
 
