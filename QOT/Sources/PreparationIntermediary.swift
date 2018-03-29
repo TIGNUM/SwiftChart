@@ -13,11 +13,13 @@ struct PreparationIntermediary: DownSyncIntermediary {
 
     let name: String
     let subtitle: String
+    let notes: String
     let calendarEventRemoteID: Int?
 
     init(json: JSON) throws {
         self.name = try json.getItemValue(at: .name, fallback: "")
         self.subtitle = try json.getItemValue(at: .subtitle, fallback: "")
+        self.notes = try json.getItemValue(at: .note, fallback: "")
         self.calendarEventRemoteID = try json.getItemValue(at: .eventId)
     }
 }

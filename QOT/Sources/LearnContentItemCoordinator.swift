@@ -120,7 +120,6 @@ extension LearnContentItemCoordinator: NavigationItemDelegate {
         guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else {
             return
         }
-
         pageViewController.setPageIndex(index, animated: true)
     }
 

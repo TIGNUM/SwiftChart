@@ -13,7 +13,7 @@ protocol PrepareContentHeaderTableViewCellDelegate: class {
     func didTapCheckbox(cell: UITableViewCell)
 }
 
-class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
+final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var bottomSeparator: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
@@ -43,20 +43,22 @@ class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         super.layoutSubviews()
     }
 
-    func setCell(title: String, contentText: String, readMoreID: Int?, position: Int, isExpanded: Bool, displayMode: PrepareContentViewModel.DisplayMode = .normal, isChecked: Bool = false) {
+    func setCell(title: String,
+                 contentText: String,
+                 readMoreID: Int?,
+                 position: Int,
+                 isExpanded: Bool,
+                 displayMode: PrepareContentViewModel.DisplayMode = .normal,
+                 isChecked: Bool = false) {
 
         bottomSeparator.backgroundColor = .black30
-
         headerLabel.setAttrText(text: title.uppercased(), font: Font.H4Headline, lineSpacing: 3, characterSpacing: -0.8)
         headerLabel.textColor = .black
-
         positionLabel.text = (position > 9 ? "." : ".0") + "\(position)"
         positionLabel.font = Font.H4Headline
-
         self.readMoreID = readMoreID
         self.contentText = contentText
         self.displayMode = displayMode
-
         iconImageView.image = isExpanded ? R.image.prepareContentMinusIcon() : R.image.prepareContentPlusIcon()
 
         switch displayMode {

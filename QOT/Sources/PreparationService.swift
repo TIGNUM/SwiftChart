@@ -47,7 +47,10 @@ final class PreparationService {
         return try realmProvider.realm().preparationChecks(preparationID: preparationID)
     }
 
-    func createPreparation(contentCollectionID: Int, event: EKEvent?, name: String, subtitle: String) throws -> String {
+    func createPreparation(contentCollectionID: Int,
+                           event: EKEvent?,
+                           name: String,
+                           subtitle: String) throws -> String {
         let realm = try self.realmProvider.realm()
         guard let contentCollection = realm.syncableObject(ofType: ContentCollection.self, remoteID: contentCollectionID) else {
             throw SimpleError(localizedDescription: "No content collection for contentCollectionID: \(contentCollectionID)")
@@ -66,6 +69,14 @@ final class PreparationService {
             realm.add(preparation)
         }
         return preparation.localID
+    }
+
+    func saveNotes(_ notes: String, preparationID: String) throws {
+        guard let preparation = preparation(localID: preparationID) else { return }
+        let realm = try self.realmProvider.realm()
+        try realm.write {
+            preparation.notes = notes
+        }
     }
 
     func deletePreparation(withLocalID localID: String) throws {
@@ -122,17 +133,34 @@ final class PreparationService {
         event.notes = (notes as NSString).replacingCharacters(in: regexMatch.range, with: "")
     }
 
-    /// Updates `PreparationCheck`s for a `Preparation.localID`. `checks` is a map of `ContentItem.remoteID` to check date.
-    func updateChecks(preparationID: String, checks: [Int: Date?]) throws {
+    // `checks` is a map of `ContentItem.remoteID` to check date.
+    func updatePreparation(localID: String,
+                           checks: [Int: Date?],
+                           notes: String,
+                           intentionNotesPerceiving: String,
+                           intentionNotesKnowing: String,
+                           intentionNotesFeeling: String,
+                           reflectionNotes: String,
+                           reflectionNotesVision: String) throws {
         let realm = try self.realmProvider.realm()
-        let checkObjects = preparationChecks(preparationID: preparationID)
+        guard let preparation = realm.syncableObject(ofType: Preparation.self, localID: localID) else { return }
+
+        let checkObjects = preparationChecks(preparationID: localID)
         try realm.write {
+            preparation.notes = notes
+            preparation.intentionNotesPerceiving = intentionNotesPerceiving
+            preparation.intentionNotesKnowing = intentionNotesKnowing
+            preparation.intentionNotesFeeling = intentionNotesFeeling
+            preparation.reflectionNotes = reflectionNotes
+            preparation.reflectionNotesVision = reflectionNotesVision
+            preparation.didUpdate()
+
             checkObjects.forEach({ (checkObject: PreparationCheck) in
                 guard let covered: Date? = checks[checkObject.contentItemID],
                     // guards state did change
                     ((covered == nil && checkObject.covered != nil) ||
-                     (covered != nil && checkObject.covered == nil)) else {
-                        return
+                        (covered != nil && checkObject.covered == nil)) else {
+                            return
                 }
                 checkObject.covered = covered
                 checkObject.didUpdate()

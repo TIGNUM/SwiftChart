@@ -28,10 +28,12 @@ final class PrepareCoordinator: ParentCoordinator {
     private let eventTracker: EventTracker
     private let permissionsManager: PermissionsManager
     private let tabBarController: TabBarController
-    private let topTabBarController: UINavigationController
+    private var topTabBarController: UINavigationController
     private let chatViewController: ChatViewController<PrepareAnswer>
     private let myPrepViewController: MyPrepViewController
     private let chatDecisionManager: PrepareChatDecisionManager
+    private let rightBarButtonItem = UIBarButtonItem(withImage: R.image.ic_edit())
+    private var prepareContentNoteController: PrepareContentNotesViewController?
     private var context: Context?
     private weak var prepareListViewController: PrepareContentViewController?
     var children: [Coordinator] = []
@@ -98,7 +100,10 @@ extension PrepareCoordinator {
                 let value = item.contentItemValue
                 switch value {
                 case .prepareStep(let title, let description, let relatedContentID):
-                    items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: relatedContentID))
+                    items.append(PrepareItem(id: item.forcedRemoteID,
+                                             title: title,
+                                             subTitle: description,
+                                             readMoreID: relatedContentID))
                 case .video(_, _, let placeholderURL, let videoURL, _):
                     video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
                 case .text(let text, let style):
@@ -144,7 +149,10 @@ extension PrepareCoordinator {
                 let value = item.contentItemValue
                 switch value {
                 case .prepareStep(let title, let description, let relatedContentID):
-                    items.append(PrepareItem(id: item.forcedRemoteID, title: title, subTitle: description, readMoreID: relatedContentID))
+                    items.append(PrepareItem(id: item.forcedRemoteID,
+                                             title: title,
+                                             subTitle: description,
+                                             readMoreID: relatedContentID))
                 case .video(_, _, let placeholderURL, let videoURL, _):
                     video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
                 case .text(let text, let style):
@@ -169,12 +177,32 @@ extension PrepareCoordinator {
                                                     description: description ?? "",
                                                     items: items,
                                                     checkedIDs: checkedIDs,
-                                                    preparationID: preparationID)
+                                                    preparationID: preparationID,
+                                                    notes: preparation.notes,
+                                                    intentionNotesPerceiving: preparation.intentionNotesPerceiving,
+                                                    intentionNotesKnowing: preparation.intentionNotesKnowing,
+                                                    intentionNotesFeeling: preparation.intentionNotesFeeling,
+                                                    reflectionNotes: preparation.reflectionNotes,
+                                                    reflectionNotesVision: preparation.reflectionNotesVision)
 
-            let viewController = PrepareContentViewController(pageName: .prepareCheckList, viewModel: viewModel)
-            viewController.delegate = self
-            tabBarController.present(viewController, animated: true)
-            prepareListViewController = viewController
+            let prepareController = PrepareContentViewController(pageName: .prepareCheckList, viewModel: viewModel)
+            prepareController.delegate = self
+            prepareController.title = R.string.localized.topTabBarItemTitlePerparePreparation()
+            let storyboard = R.storyboard.prepareContentNotesViewController()
+            guard let noteController = storyboard.instantiateInitialViewController() as?
+                PrepareContentNotesViewController  else { return }
+            noteController.text = viewModel.notes
+            noteController.notesType = .notes
+            noteController.delegate = viewModel
+            noteController.title = R.string.localized.topTabBarItemTitlePerpareNotes()
+            topTabBarController = UINavigationController(withPages: [prepareController, noteController],
+                                                         topBarDelegate: self,
+                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()),
+                                                         rightButton: nil/*rightBarButtonItem*/,
+                                                         navigationItemStyle: .light)
+            tabBarController.present(topTabBarController, animated: true)
+            prepareListViewController = prepareController
+            prepareContentNoteController = noteController
         } else {
             tabBarController.showAlert(type: .noContent, handler: { [weak self] in
                 self?.chatDecisionManager.start()
@@ -200,7 +228,10 @@ extension PrepareCoordinator {
 
         let localID: String
         do {
-            localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID, event: event, name: name, subtitle: context.listTitle)
+            localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID,
+                                                                        event: event,
+                                                                        name: name,
+                                                                        subtitle: context.listTitle)
         } catch {
             log(error, level: .error)
             return
@@ -238,6 +269,27 @@ extension PrepareCoordinator {
 
 extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
+    func didTapReviewNotesButton(sender: UIButton,
+                                 reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType,
+                                 viewModel: PrepareContentViewModel?) {
+        let storyboard = R.storyboard.reviewNotesViewController()
+        guard
+            let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController,
+            let reviewNotesViewController = navigationController.viewControllers.first as? ReviewNotesViewController
+            else { return }
+        reviewNotesViewController.configure(viewModel: viewModel,
+                                            reviewNotesType: reviewNotesType)
+        prepareListViewController?.pushToStart(childViewController: reviewNotesViewController)
+    }
+
+    func saveNotes(notes: String, preparationID: String) {
+        do {
+            try services.preparationService.saveNotes(notes, preparationID: preparationID)
+        } catch {
+            log("saveNotes - failed: \(error.localizedDescription)", level: .error)
+        }
+    }
+
     func didTapSavePreparation(in viewController: PrepareContentViewController) {
         showCreatePreparation(from: viewController)
     }
@@ -246,11 +298,6 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
         viewController.dismiss(animated: true, completion: nil)
         UIApplication.shared.statusBarStyle = .lightContent
         chatDecisionManager.addQuestions()
-
-        if let preparationID = viewController.viewModel.preparationID {
-            let checks = viewController.viewModel.checkedIDs
-            try? services.preparationService.updateChecks(preparationID: preparationID, checks: checks)
-        }
     }
 
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController) {
@@ -272,7 +319,11 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
         //TODO: Show error for above guards
 
-        let coordinator = LearnContentItemCoordinator(root: viewController, eventTracker: eventTracker, services: services, content: content, category: category)
+        let coordinator = LearnContentItemCoordinator(root: viewController,
+                                                      eventTracker: eventTracker,
+                                                      services: services,
+                                                      content: content,
+                                                      category: category)
         startChild(child: coordinator)
     }
 
@@ -367,7 +418,55 @@ private class EditEventHandler: NSObject, EKEventEditViewDelegate {
 
     var handler: ((EKEventEditViewController, EKEventEditViewAction) -> Void)?
 
-    func eventEditViewController(_ controller: EKEventEditViewController, didCompleteWith action: EKEventEditViewAction) {
+    func eventEditViewController(_ controller: EKEventEditViewController,
+                                 didCompleteWith action: EKEventEditViewAction) {
         handler?(controller, action)
+    }
+}
+
+// MARK: - TopNavigationBarDelegate
+
+extension PrepareCoordinator: NavigationItemDelegate {
+
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController.dismiss(animated: true, completion: nil)
+
+        guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController,
+            let viewControllers = pageViewController.data,
+            viewControllers.count >= 1,
+            let prepareContentViewController = viewControllers[0] as?  PrepareContentViewController else {
+                return
+        }
+
+        let viewModel = prepareContentViewController.viewModel
+        if let preparationID = viewModel.preparationID {
+            let checks = viewModel.checkedIDs
+            try? services.preparationService
+                .updatePreparation(localID: preparationID,
+                                   checks: checks,
+                                   notes: viewModel.notes,
+                                   intentionNotesPerceiving: viewModel.intentionNotesPerceiving,
+                                   intentionNotesKnowing: viewModel.intentionNotesKnowing,
+                                   intentionNotesFeeling: viewModel.intentionNotesFeeling,
+                                   reflectionNotes: viewModel.reflectionNotes,
+                                   reflectionNotesVision: viewModel.reflectionNotesVision)
+        }
+    }
+
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
+        guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else {
+            return
+        }
+
+        pageViewController.setPageIndex(index, animated: true)
+        pageViewController.navigationItem.rightBarButtonItem = (index == 0 ? rightBarButtonItem : nil)
+    }
+
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
+        prepareListViewController?.showAlert(type: .prepareEditStrategy, handler: {
+            print("Add Strategies")
+        }, handlerDestructive: {
+            print("Remove Strategies")
+        })
     }
 }

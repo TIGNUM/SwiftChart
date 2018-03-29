@@ -79,7 +79,7 @@ final class MyPrepViewModel {
     }
 
     var initialItem: Int? {
-        return items.filter { $0.startDate?.timeIntervalSinceNow.sign == .plus }.count - 1
+        return max(items.filter { $0.startDate?.timeIntervalSinceNow.sign == .plus }.count - 1, 0)
     }
 
     var itemCount: Int {

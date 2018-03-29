@@ -18,9 +18,15 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapSavePreparation(in viewController: PrepareContentViewController)
 
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController)
+
+    func saveNotes(notes: String, preparationID: String)
+
+    func didTapReviewNotesButton(sender: UIButton,
+                                 reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType,
+                                 viewModel: PrepareContentViewModel?)
 }
 
-final class PrepareContentViewController: UIViewController {
+final class PrepareContentViewController: UIViewController, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
 
@@ -36,8 +42,10 @@ final class PrepareContentViewController: UIViewController {
             dataSource: self,
             dequeables:
             PrepareContentHeaderTableViewCell.self,
+            PrepareContentReviewNotesTableViewCell.self,
             PrepareContentFooterTableViewCell.self,
-            PrepareContentMainHeaderTableViewCell.self
+            PrepareContentMainHeaderTableViewCell.self,
+            PrepareContentSubHeaderTableViewCell.self
         )
     }()
 
@@ -77,6 +85,7 @@ final class PrepareContentViewController: UIViewController {
         super.viewWillAppear(animated)
 
         UIApplication.shared.statusBarStyle = .default
+        tableView.reloadData()
     }
 
     func fixTableViewInsets() {
@@ -101,14 +110,21 @@ private extension PrepareContentViewController {
 
     func setupView() {
         view.backgroundColor = .white
-        view.addSubview(topBarView)
-        view.addSubview(tableView)
-        topBarView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
-        topBarView.horizontalAnchors == view.horizontalAnchors
-        topBarView.heightAnchor == Layout.TabBarView.height
-        tableView.topAnchor == topBarView.bottomAnchor
-        tableView.bottomAnchor == view.bottomAnchor
-        tableView.horizontalAnchors == view.horizontalAnchors
+        if pageName == .prepareContent {
+            view.addSubview(topBarView)
+            view.addSubview(tableView)
+            topBarView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
+            topBarView.horizontalAnchors == view.horizontalAnchors
+            topBarView.heightAnchor == Layout.TabBarView.height
+            tableView.topAnchor == topBarView.bottomAnchor
+            tableView.bottomAnchor == view.safeBottomAnchor - 16
+            tableView.horizontalAnchors == view.horizontalAnchors
+        } else if pageName == .prepareCheckList {
+            view.addSubview(tableView)
+            tableView.topAnchor == view.safeTopAnchor + 16
+            tableView.bottomAnchor == view.safeBottomAnchor - 16
+            tableView.horizontalAnchors == view.horizontalAnchors
+        }
     }
 
     @discardableResult func configure(cell: UITableViewCell, forIndexPath indexPath: IndexPath) -> UITableViewCell {
@@ -127,10 +143,28 @@ private extension PrepareContentViewController {
                                contentText: contentText,
                                videoPlaceholder: placeholderURL,
                                videoURL: videoURL,
-                               isExpanded: isExpanded)
+                               isExpanded: isExpanded,
+                               displayMode: pageName == .prepareCheckList ? .checkbox : .normal)
             castedCell.contentView.layoutIfNeeded()
 
             return castedCell
+        case .reviewNotesHeader(let title):
+            guard let subHeaderCell = cell as? PrepareContentSubHeaderTableViewCell else { return cell }
+            subHeaderCell.configure(title: title)
+            return subHeaderCell
+        case .reviewNotesItem(let title, let buttonTitle, let reviewNotesType):
+            guard let reviewNotesCell = cell as? PrepareContentReviewNotesTableViewCell else { return cell }
+            let buttonTitle = viewModel.hasContent(noteType: reviewNotesType) ? "Review" : buttonTitle
+            reviewNotesCell.configure(title: title,
+                                      buttonTitle: buttonTitle,
+                                      reviewNotesType: reviewNotesType,
+                                      delegate: delegate,
+                                      viewModel: viewModel)
+            return reviewNotesCell
+        case .checkItemsHeader(let title):
+            guard let subHeaderCell = cell as? PrepareContentSubHeaderTableViewCell else { return cell }
+            subHeaderCell.configure(title: title)
+            return subHeaderCell
         case .item(let id, let title, let subTitle, let readMoreID):
             guard let castedCell = cell as? PrepareContentHeaderTableViewCell else {
                 return cell
@@ -176,6 +210,15 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
         case .titleItem:
             let cell: PrepareContentMainHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             return configure(cell: cell, forIndexPath: indexPath)
+        case .reviewNotesHeader:
+            let cell: PrepareContentSubHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
+            return configure(cell: cell, forIndexPath: indexPath)
+        case .reviewNotesItem:
+            let cell: PrepareContentReviewNotesTableViewCell = tableView.dequeueCell(for: indexPath)
+            return configure(cell: cell, forIndexPath: indexPath)
+        case .checkItemsHeader:
+            let cell: PrepareContentSubHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
+            return configure(cell: cell, forIndexPath: indexPath)
         case .item:
             let cell: PrepareContentHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             return configure(cell: cell, forIndexPath: indexPath)
@@ -198,7 +241,10 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             tableView.beginUpdates()
             configure(cell: cell, forIndexPath: indexPath)
             tableView.endUpdates()
-        case .tableFooter:
+        case .tableFooter,
+             .reviewNotesItem,
+             .reviewNotesHeader,
+             .checkItemsHeader:
             break
         }
     }
@@ -223,6 +269,11 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             }
             // return image button yPos, - an offset
             return cell.previewImageButton.frame.origin.y - 10
+        case .reviewNotesItem:
+            return 60
+        case .reviewNotesHeader,
+             .checkItemsHeader:
+            return 56
         case .item(_, _, _, let readMoreID):
             guard let cell = Bundle.main.loadNibNamed("\(PrepareContentHeaderTableViewCell.self)", owner: self, options: [:])?.first as? PrepareContentHeaderTableViewCell else {
                 return UITableViewAutomaticDimension

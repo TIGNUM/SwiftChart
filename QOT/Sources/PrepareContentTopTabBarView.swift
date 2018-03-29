@@ -13,7 +13,7 @@ protocol PrepareContentTopTabBarViewDelegate: class {
     func didTapRightButton()
 }
 
-class PrepareContentTopTabBarView: UIView {
+final class PrepareContentTopTabBarView: UIView {
 
     @IBOutlet weak var leftButton: UIButton!
     @IBOutlet weak var rightButton: UIButton!
