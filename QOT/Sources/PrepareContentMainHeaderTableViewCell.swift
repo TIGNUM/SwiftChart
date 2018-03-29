@@ -46,11 +46,18 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
         previewImageButton.contentMode = .scaleAspectFill
     }
 
-    func setCell(title: String, subTitle: String, contentText: String, videoPlaceholder: URL?, videoURL: URL?, isExpanded: Bool) {
+    func setCell(title: String,
+                 subTitle: String,
+                 contentText: String,
+                 videoPlaceholder: URL?,
+                 videoURL: URL?,
+                 isExpanded: Bool,
+                 displayMode: PrepareContentViewModel.DisplayMode = .normal) {
         previewImageURL = videoPlaceholder
         self.videoURL = videoURL
         content = contentText
         iconImageView.isHidden = contentText.isEmpty && videoURL == nil
+        bottomSeparator.isHidden = displayMode == .checkbox
         setupLabels(title, subTitle)
         setExpandImageState(isExpanded: isExpanded)
         updateContent(isExpanded: isExpanded)

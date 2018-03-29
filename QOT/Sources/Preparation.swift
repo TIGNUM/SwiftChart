@@ -19,6 +19,18 @@ final class Preparation: SyncableObject {
 
     @objc private(set) dynamic var subtitle: String = ""
 
+    @objc dynamic var notes: String = ""
+
+    @objc dynamic var intentionNotesPerceiving: String = ""
+
+    @objc dynamic var intentionNotesKnowing: String = ""
+
+    @objc dynamic var intentionNotesFeeling: String = ""
+
+    @objc dynamic var reflectionNotes: String = ""
+
+    @objc dynamic var reflectionNotesVision: String = ""
+
     let calendarEventRemoteID = RealmOptional<Int>(nil)
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
@@ -65,6 +77,7 @@ extension Preparation: TwoWaySyncable {
     func setData(_ data: PreparationIntermediary, objectStore: ObjectStore) throws {
         name = data.name
         subtitle = data.subtitle
+        notes = data.notes
         calendarEventRemoteID.value = data.calendarEventRemoteID
     }
 
@@ -90,6 +103,7 @@ extension Preparation: TwoWaySyncable {
             .name: name,
             .syncStatus: syncStatus.rawValue,
             .subtitle: subtitle,
+            .note: notes,
             .eventId: (calendarEvent?.remoteID.value ?? nil).toJSONEncodable
         ]
         if let calendarEvent = calendarEvent {
