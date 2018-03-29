@@ -97,8 +97,6 @@ final class PartnerCell: UICollectionViewCell, Dequeueable {
     @IBAction func didEditTextField(_ sender: UITextField) {
         switch sender {
         case givenNameTextField:
-            
-
             partner?.name = sender.text
         case familyNameTextField:
             partner?.surname = sender.text

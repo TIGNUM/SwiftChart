@@ -77,6 +77,4 @@ final class ScheduledNotificationsTableViewController: UITableViewController {
         return UNCalendarNotificationTrigger(dateMatching: triggerDate,
                                              repeats: false)
     }
-
-    
 }

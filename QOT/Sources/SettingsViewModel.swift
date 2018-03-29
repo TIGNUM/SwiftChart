@@ -374,7 +374,7 @@ private func personalRows(for user: User?) -> [SettingsRow] {
     if let dateOfBirth = user.dateOfBirth {
         date = DateFormatter.settingsUser.date(from: dateOfBirth) ?? Date()
     }
-    
+
     let heightItems = user.heightPickerItems
     let weightItems = user.weightPickerItems
     let selectedHeightIndex = heightItems.valueIndex
