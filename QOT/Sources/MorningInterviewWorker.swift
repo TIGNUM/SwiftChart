@@ -34,7 +34,7 @@ final class MorningInterviewWorker {
 
     func questions() -> [MorningInterview.Question] {
         let realmQuestions = services.questionsService.morningInterviewQuestions(questionGroupID: questionGroupID)
-        return realmQuestions.flatMap { (question) -> MorningInterview.Question? in
+        return realmQuestions.compactMap { (question) -> MorningInterview.Question? in
             guard let remoteID = question.remoteID.value else { return nil }
             // FIXME: This assumes answer title will be 1 ... 10. Use sortOrder when fixed on server
             let answers = question.answers.flatMap { (answer) -> MorningInterview.Answer? in

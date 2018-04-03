@@ -122,7 +122,7 @@ final class ContentService {
     func defaultMessage(_ itemID: Int) -> String {
         let welcomeMessageCollection = contentCollection(id: 100708)
         let predicate = NSPredicate(remoteID: itemID)
-        return welcomeMessageCollection?.contentItems.filter(predicate).flatMap { $0.valueText }.first ?? ""
+        return welcomeMessageCollection?.contentItems.filter(predicate).compactMap { $0.valueText }.first ?? ""
     }
 
     func relatedArticles(for articleCollection: ContentCollection) -> [ContentCollection] {

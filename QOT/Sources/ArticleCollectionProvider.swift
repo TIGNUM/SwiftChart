@@ -30,7 +30,7 @@ final class ArticleCollectionProvider {
     }
 
     func provideViewData() -> ArticleCollectionViewData {
-        let items = Array(contentCollections).flatMap { contentCollection -> ArticleCollectionViewData.Item? in
+        let items = Array(contentCollections).compactMap { contentCollection -> ArticleCollectionViewData.Item? in
             guard contentCollection.articleItems.count > 0 else { return nil }
             return ArticleCollectionViewData.Item(
                 title: contentCollection.contentCategories.first?.title ?? "",

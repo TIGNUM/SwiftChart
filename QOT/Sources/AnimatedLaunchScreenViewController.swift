@@ -86,6 +86,6 @@ private extension AnimatedLaunchScreenViewController {
             let imageName = "\(String(format: "%05d", index))_QOT_LOGO"
             images.append(UIImage(named: imageName))
         }
-        return images.flatMap { $0 }
+        return images.compactMap { $0 }
     }
 }

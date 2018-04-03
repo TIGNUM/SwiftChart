@@ -184,7 +184,7 @@ extension Statistics {
     }
 
     private var travelTripsLastYear: [TravelTrip] {
-        let monthNumbers = chartType.labels.flatMap { Int($0) }
+        let monthNumbers = chartType.labels.compactMap { Int($0) }
         var trips = [TravelTrip]()
 
         periods.forEach { (period: StatisticsPeriod) in
@@ -221,7 +221,7 @@ extension Statistics {
     }
 
     private var travelTripsFourWeeks: [TravelTrip] {
-        let weekNumbers = chartType.labels.flatMap { Int($0) }
+        let weekNumbers = chartType.labels.compactMap { Int($0) }
         var trips = [TravelTrip]()
 
         periods.forEach { (period: StatisticsPeriod) in

@@ -58,7 +58,7 @@ final class UserNotificationsScheduler {
     }
 
     private func _scheduleNotifications(_ requests: [UNNotificationRequest], now: Date) {
-        let futureRequests: [(request: UNNotificationRequest, triggerDate: Date)] = requests.flatMap { request in
+        let futureRequests: [(request: UNNotificationRequest, triggerDate: Date)] = requests.compactMap { request in
             guard let triggerDate = request.nextTriggerDate(), triggerDate >= now else { return nil }
             return (request, triggerDate)
         }

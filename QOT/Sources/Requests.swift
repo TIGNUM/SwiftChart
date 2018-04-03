@@ -122,7 +122,7 @@ struct UserAnswerFeedbackRequest: URLRequestBuildable {
     let body: Data?
 
     init(_ userAnswers: [UserAnswer]) {
-        self.body = try? (userAnswers.flatMap { $0.toJson() }).toJSON().serialize()
+        self.body = try? (userAnswers.compactMap { $0.toJson() }).toJSON().serialize()
     }
 }
 

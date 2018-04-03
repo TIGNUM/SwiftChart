@@ -443,7 +443,7 @@ private func categoryNotifications(services: Services) -> [SettingsRow] {
         }
         return nil
     }
-    return settingsRows.flatMap { $0 }
+    return settingsRows.compactMap { $0 }
 }
 
 private var accountRows: [SettingsRow] {

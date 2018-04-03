@@ -28,7 +28,7 @@ final class DailyPrepResultObject: SyncableObject {
     }
 
     var dateComponants: (year: Int, month: Int, day: Int)? {
-        let componants = isoDate.components(separatedBy: "-").flatMap { Int($0) }
+        let componants = isoDate.components(separatedBy: "-").compactMap { Int($0) }
         guard componants.count == 3 else { return nil }
 
         return (year: componants[0], month: componants[1], day: componants[2])

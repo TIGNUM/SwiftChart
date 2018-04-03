@@ -117,13 +117,13 @@ private extension ChartViewModel {
         var criticalSectionTypes = [StatisticsSectionType: CGFloat]()
 
         StatisticsSectionType.allValues.forEach { (sectionType: StatisticsSectionType) in
-            let universeValue = (sectionType.universeChartTypes.flatMap {
+            let universeValue = (sectionType.universeChartTypes.compactMap {
                 $0.statistics(allCharts)?.universeValue
             }).reduce(0, +)
             criticalSectionTypes[sectionType] = universeValue
         }
 
-        sortedSections = criticalSectionTypes.sorted { $0.value > $1.value }.flatMap { $0.key }
+        sortedSections = criticalSectionTypes.sorted { $0.value > $1.value }.compactMap { $0.key }
         sortedSections.remove(object: startingSection)
         sortedSections.insert(startingSection, at: 0)
     }

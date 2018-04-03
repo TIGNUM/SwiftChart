@@ -69,7 +69,7 @@ extension Partner: TwoWaySyncable {
 extension Partner {
 
     var initials: String {
-        return [name.first, surname.first].flatMap { $0 }.map { String($0) }.joined()
+        return [name.first, surname.first].compactMap { $0 }.map { String($0) }.joined()
     }
 
     var isValid: Bool {

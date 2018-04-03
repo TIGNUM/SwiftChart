@@ -292,7 +292,7 @@ private extension SyncManager {
             syncOperation(ContentItem.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         ]
-        return operations.flatMap({ $0 })
+        return operations.compactMap({ $0 })
     }
 
     func uploadMediaOperations(context: SyncContext) throws -> [Operation] {

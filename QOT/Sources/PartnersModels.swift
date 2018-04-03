@@ -39,7 +39,7 @@ struct Partners {
         }
 
         var initials: String {
-            return [name?.first, surname?.first].flatMap { $0 }.map { String($0) }.joined()
+            return [name?.first, surname?.first].compactMap { $0 }.map { String($0) }.joined()
         }
 
         var isValid: Bool {
@@ -47,7 +47,7 @@ struct Partners {
         }
 
         var isEmpty: Bool {
-            let nonEmptyStrings = [name, surname, relationship, email].flatMap { $0 }.filter { $0.isEmpty == false }
+            let nonEmptyStrings = [name, surname, relationship, email].compactMap { $0 }.filter { $0.isEmpty == false }
             return nonEmptyStrings.isEmpty && imageURL == nil
         }
 

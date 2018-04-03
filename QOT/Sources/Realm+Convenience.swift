@@ -37,7 +37,7 @@ extension Realm {
     }
 
     func syncableObjects<T: SyncableObject>(ofType type: T.Type, remoteIDs: [Int]) -> [T] {
-        return remoteIDs.flatMap { (remoteIDs) -> T? in
+        return remoteIDs.compactMap { (remoteIDs) -> T? in
             return syncableObject(ofType: T.self, remoteID: remoteIDs)
         }
     }

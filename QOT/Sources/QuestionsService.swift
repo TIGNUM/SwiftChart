@@ -38,7 +38,7 @@ final class QuestionsService {
 
     func morningInterviewTitles(questionGroupID: Int) -> [String] {
         let questions = morningInterviewQuestions(questionGroupID: questionGroupID)
-        return Array(questions).flatMap { $0.title }
+        return Array(questions).compactMap { $0.title }
     }
 
     func target(answer: Answer, questionGroupID id: Int) -> AnswerDecision.Target? {

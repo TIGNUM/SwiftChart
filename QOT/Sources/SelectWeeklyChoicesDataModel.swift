@@ -17,7 +17,7 @@ final class SelectWeeklyChoicesDataModel {
 
     var selected: [WeeklyChoice] {
         return dataSource.flatMap({ (node: CollapsableNode) -> [WeeklyChoice] in
-            return node.children.flatMap({ (choice: WeeklyChoice) -> WeeklyChoice? in
+            return node.children.compactMap({ (choice: WeeklyChoice) -> WeeklyChoice? in
                 if choice.selected {
                     return choice
                 }

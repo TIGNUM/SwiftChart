@@ -41,9 +41,9 @@ final class UserNotificationsManager {
 
             var requests: [UNNotificationRequest] = []
             requests.append(contentsOf: notificationItems.flatMap({ $0.notificationRequest }))
-            requests.append(contentsOf: featureItems.flatMap({ $0.notificationRequest }))
-            requests.append(contentsOf: strategyItems.flatMap({ $0.notificationRequest }))
-            requests.append(contentsOf: noficationConfigurations.flatMap({ $0.notificationRequest }))
+            requests.append(contentsOf: featureItems.compactMap({ $0.notificationRequest }))
+            requests.append(contentsOf: strategyItems.compactMap({ $0.notificationRequest }))
+            requests.append(contentsOf: noficationConfigurations.compactMap({ $0.notificationRequest }))
             scheduler.scheduleNotifications(requests)
         } catch {
             log("Error scheduling notifications: \(error)", level: .error)
@@ -55,7 +55,7 @@ final class UserNotificationsManager {
     }
 
     private func updateScheduledStates(pendingNofiticationIDs: Set<String>) {
-        let scheduledIDs: [Int] = pendingNofiticationIDs.flatMap {
+        let scheduledIDs: [Int] = pendingNofiticationIDs.compactMap {
             if let id = try? GuideItemID(stringRepresentation: $0), id.kind == .notification {
                 return id.remoteID
             }
