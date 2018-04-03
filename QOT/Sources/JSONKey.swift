@@ -145,6 +145,7 @@ enum JsonKey: String {
     case planItemID
     case publicHolidays
     case preparationId
+    case prepareAnswers
     case priority
     case qotId
     case qotPartnerUserId

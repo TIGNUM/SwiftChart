@@ -81,6 +81,10 @@ extension Preparation: TwoWaySyncable {
         subtitle = data.subtitle
         notes = data.notes
         calendarEventRemoteID.value = data.calendarEventRemoteID
+
+        objectStore.delete(answers)
+        let newAnswers = data.answers.map { PreparationAnswer(answer: $0.answer, contentItemID: $0.contentItemID) }
+        answers.append(objectsIn: newAnswers)
     }
 
     static var endpoint: Endpoint {
@@ -96,6 +100,7 @@ extension Preparation: TwoWaySyncable {
         }
 
         let dateFormatter = DateFormatter.iso8601
+        let prepareAnswers = Array(answers).map { $0.toJSON() }
         var dict: [JsonKey: JSONEncodable] = [
             .id: remoteID.value.toJSONEncodable,
             .createdAt: dateFormatter.string(from: createdAt),
@@ -106,7 +111,8 @@ extension Preparation: TwoWaySyncable {
             .syncStatus: syncStatus.rawValue,
             .subtitle: subtitle,
             .note: notes,
-            .eventId: (calendarEvent?.remoteID.value ?? nil).toJSONEncodable
+            .eventId: (calendarEvent?.remoteID.value ?? nil).toJSONEncodable,
+            .prepareAnswers: JSON.array(prepareAnswers)
         ]
         if let calendarEvent = calendarEvent {
             dict[.eventId] = calendarEvent.remoteID.value.toJSONEncodable
