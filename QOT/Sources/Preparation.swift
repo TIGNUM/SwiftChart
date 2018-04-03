@@ -37,6 +37,8 @@ final class Preparation: SyncableObject {
 
     @objc dynamic var deleted: Bool = false
 
+    let answers = List<PreparationAnswer>()
+
     // FIXME: This is a hack. The API must change to allow for storing this ID
     var contentCollectionID: Int {
         return checks.first?.contentItem?.collectionID.value ?? 0

@@ -59,6 +59,7 @@
 		36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */; };
 		36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */; };
 		36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */; };
+		36E3AD562073783400FB27F1 /* PreparationAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E3AD552073783400FB27F1 /* PreparationAnswer.swift */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
 		36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */; };
 		36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */; };
@@ -657,6 +658,7 @@
 		36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationTableViewCell.swift; sourceTree = "<group>"; };
 		36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminCoordinator.swift; sourceTree = "<group>"; };
 		36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminViewController.swift; sourceTree = "<group>"; };
+		36E3AD552073783400FB27F1 /* PreparationAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationAnswer.swift; sourceTree = "<group>"; };
 		36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKCalendar+Convenience.swift"; sourceTree = "<group>"; };
 		36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemLearnIntermediary.swift; sourceTree = "<group>"; };
 		36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemNotificationIntermediary.swift; sourceTree = "<group>"; };
@@ -1850,6 +1852,7 @@
 			isa = PBXGroup;
 			children = (
 				CB9AFD101F014AED00D067F2 /* Preparation.swift */,
+				36E3AD552073783400FB27F1 /* PreparationAnswer.swift */,
 				CB9AFD161F014BF800D067F2 /* PreparationIntermediary.swift */,
 			);
 			name = Preparation;
@@ -3248,6 +3251,7 @@
 				CB333405204978DE009480DF /* PartnersConfigurator.swift in Sources */,
 				7FBFBC111FC7320B007B6D2D /* WeeklyChoicesViewData.swift in Sources */,
 				855C4FCA1F262B290068DDE3 /* TutorialViewModel.swift in Sources */,
+				36E3AD562073783400FB27F1 /* PreparationAnswer.swift in Sources */,
 				CB333401204978DE009480DF /* PartnersRouter.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
