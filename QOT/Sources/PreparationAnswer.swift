@@ -16,10 +16,13 @@ final class PreparationAnswer: Object {
 
     @objc dynamic var contentItemID: Int = 0
 
-    convenience init(answer: String, contentItemID: Int) {
+    @objc dynamic var preparationID: String = ""
+
+    convenience init(answer: String, contentItemID: Int, preparationID: String) {
         self.init()
         self.answer = answer
         self.contentItemID = contentItemID
+        self.preparationID = preparationID
     }
 }
 

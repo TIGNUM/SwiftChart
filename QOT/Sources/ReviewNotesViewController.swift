@@ -38,19 +38,19 @@ final class ReviewNotesViewController: UIViewController {
         switch (reviewNotesType, row) {
         case (.intentions, 0):
             notesType = .intentionPerceiving
-            text = viewModel.intentionNotesPerceiving
+            text = viewModel.notesDictionary[notesType.contentItemID]
         case (.intentions, 1):
             notesType = .intentionKnowing
-            text = viewModel.intentionNotesKnowing
+            text = viewModel.notesDictionary[notesType.contentItemID]
         case (.intentions, 2):
             notesType = .intentionFeeling
-            text = viewModel.intentionNotesFeeling
+            text = viewModel.notesDictionary[notesType.contentItemID]
         case (.reflection, 0):
             notesType = .reflectionNotes
-            text = viewModel.reflectionNotes
+            text = viewModel.notesDictionary[notesType.contentItemID]
         case (.reflection, 1):
             notesType = .reflectionVision
-            text = viewModel.reflectionNotesVision
+            text = viewModel.notesDictionary[notesType.contentItemID]
         default: fatalError("Invalid setup")
         }
         noteViewController.text = text
@@ -93,28 +93,20 @@ extension ReviewNotesViewController: UITableViewDelegate, UITableViewDataSource 
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
-                                                       for: indexPath) as? ReviewNotesTableViewCell else {
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier,
+                                                       for: indexPath) as? ReviewNotesTableViewCell,
+            let headline = viewModel.notesHeadline(with: reviewNotesType.contentItemID(at: indexPath.row)) else {
                 fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
         }
-        let notes: String
-        switch (reviewNotesType, indexPath.row) {
-        case (.intentions, 0): notes = viewModel.intentionNotesPerceiving
-        case (.intentions, 1): notes = viewModel.intentionNotesKnowing
-        case (.intentions, 2): notes = viewModel.intentionNotesFeeling
-        case (.reflection, 0): notes = viewModel.reflectionNotes
-        case (.reflection, 1): notes = viewModel.reflectionNotesVision
-        default: fatalError("Invalid")
-        }
-
-        cell.configure(title: reviewNotesType.title(at: indexPath.row),
-                       notes: notes,
+        let contentItemID = reviewNotesType.contentItemID(at: indexPath.row)
+        cell.configure(title: headline,
+                       notes: viewModel.notesDictionary[contentItemID],
                        reviewNotesType: reviewNotesType)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        print("didSelectRowAt", indexPath)
     }
 }

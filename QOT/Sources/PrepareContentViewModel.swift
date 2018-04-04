@@ -12,7 +12,8 @@ import ReactiveKit
 enum PrepareContentItemType {
     case titleItem(title: String, subTitle: String, contentText: String, placeholderURL: URL?, videoURL: URL?)
     case reviewNotesHeader(title: String)
-    case reviewNotesItem(title: String, buttonTitle: String, reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType)
+    case reviewNotesItem(title: String, buttonTitle: String,
+        reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType)
     case checkItemsHeader(title: String)
     case item(id: Int, title: String, subTitle: String, readMoreID: Int?)
     case tableFooter(preparationID: Int)
@@ -57,12 +58,9 @@ final class PrepareContentViewModel {
     var items: [PrepareContentItemType] = []
     var preparationID: String?
     var notes: String = ""
-    var intentionNotesPerceiving: String = ""
-    var intentionNotesKnowing: String = ""
-    var intentionNotesFeeling: String = ""
-    var reflectionNotes: String = ""
-    var reflectionNotesVision: String = ""
+    var notesDictionary: [Int: String] = [:]
     private let prepareItems: [PrepareItem]
+    private let services: Services
 
     var checkedCount: Int {
         return checkedIDs.reduce(0) { (result: Int, check: (key: Int, value: Date?)) -> Int in
@@ -72,7 +70,12 @@ final class PrepareContentViewModel {
 
     // MARK: - Initialisation
 
-    init(title: String, subtitle: String, video: Video?, description: String, items: [PrepareItem]) {
+    init(title: String,
+         subtitle: String,
+         video: Video?,
+         description: String,
+         items: [PrepareItem],
+         services: Services) {
         self.prepareItems = items
         self.title = title
         self.subTitle = subtitle
@@ -81,6 +84,7 @@ final class PrepareContentViewModel {
         self.contentText = description
         self.checkedIDs = [:]
         self.displayMode = .normal
+        self.services = services
         makeItems(items)
     }
 
@@ -91,11 +95,8 @@ final class PrepareContentViewModel {
          checkedIDs: [Int: Date?],
          preparationID: String,
          notes: String,
-         intentionNotesPerceiving: String,
-         intentionNotesKnowing: String,
-         intentionNotesFeeling: String,
-         reflectionNotes: String,
-         reflectionNotesVision: String) {
+         notesDictionary: [Int: String],
+         services: Services) {
         self.prepareItems = items
         self.title = title
         self.video = video?.url
@@ -105,11 +106,9 @@ final class PrepareContentViewModel {
         self.displayMode = .checkbox
         self.preparationID = preparationID
         self.notes = notes
-        self.intentionNotesPerceiving = intentionNotesPerceiving
-        self.intentionNotesKnowing = intentionNotesKnowing
-        self.intentionNotesFeeling = intentionNotesFeeling
-        self.reflectionNotes = reflectionNotes
-        self.reflectionNotesVision = reflectionNotesVision
+        self.notesDictionary = notesDictionary
+        self.services = services
+
         makeItems(items)
 
         if displayMode == .checkbox {
@@ -118,9 +117,15 @@ final class PrepareContentViewModel {
     }
 
     private func setSubtitle() {
-        subTitle = String(format: "%02d/%02d ", checkedCount, items.count - 1) + R.string.localized.prepareContentTasks()
+        subTitle = String(format: "%02d/%02d ",
+                          checkedCount,
+                          items.count - 1) + R.string.localized.prepareContentTasks()
         items.remove(at: 0)
-        items.insert(.titleItem(title: title, subTitle: subTitle, contentText: contentText, placeholderURL: videoPlaceholder, videoURL: video), at: 0)
+        items.insert(.titleItem(title: title,
+                                subTitle: subTitle,
+                                contentText: contentText,
+                                placeholderURL: videoPlaceholder,
+                                videoURL: video), at: 0)
     }
 
     private func dateForID(_ id: Int) -> Date? {
@@ -132,6 +137,10 @@ final class PrepareContentViewModel {
     }
 
     // MARK: - Public
+
+    func notesHeadline(with contentItemID: Int) -> String? {
+        return services.contentService.contentItem(id: contentItemID)?.valueText
+    }
 
     func isChecked(id: Int) -> Bool {
         if displayMode != .checkbox {
@@ -157,7 +166,9 @@ final class PrepareContentViewModel {
     }
 
     var hasIntentionItems: Bool {
-        let results = (prepareItems.map { $0.title }).filter { $0.contains("Set clear intentions (create event To Be Vision)") }
+        let results = (prepareItems.map { $0.title }).filter {
+            $0.contains("Set clear intentions (create event To Be Vision)")
+        }
         return results.isEmpty == false
     }
 
@@ -181,10 +192,11 @@ final class PrepareContentViewModel {
     func hasContent(noteType: PrepareContentReviewNotesTableViewCell.ReviewNotesType) -> Bool {
         let content: [String]
         switch noteType {
-        case .intentions:
-            content = [intentionNotesPerceiving, intentionNotesKnowing, intentionNotesFeeling]
-        case .reflection:
-            content = [reflectionNotesVision, reflectionNotes]
+        case .intentions: content = [notesDictionary[103432] ?? "",
+                                     notesDictionary[103433] ?? "",
+                                     notesDictionary[103434] ?? ""]
+        case .reflection: content = [notesDictionary[103435] ?? "",
+                                     notesDictionary[103436] ?? ""]
         }
         return content.joined().isEmpty == false
     }
@@ -213,11 +225,15 @@ private extension PrepareContentViewModel {
             }
 
             if hasIntentionItems == true {
-                self.items.append(.reviewNotesItem(title: "YOUR INTENTIONS", buttonTitle: "Add", reviewNotesType: .intentions))
+                self.items.append(.reviewNotesItem(title: "YOUR INTENTIONS",
+                                                   buttonTitle: "Add",
+                                                   reviewNotesType: .intentions))
             }
 
             if hasRefelctionItems == true {
-                self.items.append(.reviewNotesItem(title: "REFLECT ON SUCCESS", buttonTitle: "Add", reviewNotesType: .reflection))
+                self.items.append(.reviewNotesItem(title: "REFLECT ON SUCCESS",
+                                                   buttonTitle: "Add",
+                                                   reviewNotesType: .reflection))
             }
         }
 
@@ -246,18 +262,12 @@ extension PrepareContentViewModel: PrepareContentNotesViewControllerDelegate {
         guard let notesType = viewController.notesType else { return }
         let text = text ?? ""
         switch notesType {
-        case .notes:
-            notes = text
-        case .intentionPerceiving:
-            intentionNotesPerceiving = text
-        case .intentionKnowing:
-            intentionNotesKnowing = text
-        case .intentionFeeling:
-            intentionNotesFeeling = text
-        case .reflectionNotes:
-            reflectionNotes = text
-        case .reflectionVision:
-            reflectionNotesVision = text
+        case .notes: notes = text
+        case .intentionPerceiving: notesDictionary[notesType.contentItemID] = text
+        case .intentionKnowing: notesDictionary[notesType.contentItemID] = text
+        case .intentionFeeling: notesDictionary[notesType.contentItemID] = text
+        case .reflectionNotes: notesDictionary[notesType.contentItemID] = text
+        case .reflectionVision: notesDictionary[notesType.contentItemID] = text
         }
     }
 }

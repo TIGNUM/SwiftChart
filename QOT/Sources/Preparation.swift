@@ -58,6 +58,15 @@ final class Preparation: SyncableObject {
         self.name = name
         self.subtitle = subtitle
     }
+
+    var notesDictionary: [Int: String] {
+        var notes = [Int: String]()
+        answers.forEach { (preparationAnswer) in
+            notes[preparationAnswer.contentItemID] = preparationAnswer.answer
+        }
+
+        return notes
+    }
 }
 
 // MARK: - BuildRelations
@@ -83,7 +92,9 @@ extension Preparation: TwoWaySyncable {
         calendarEventRemoteID.value = data.calendarEventRemoteID
 
         objectStore.delete(answers)
-        let newAnswers = data.answers.map { PreparationAnswer(answer: $0.answer, contentItemID: $0.contentItemID) }
+        let newAnswers = data.answers.map { PreparationAnswer(answer: $0.answer,
+                                                              contentItemID: $0.contentItemID,
+                                                              preparationID: localID) }
         answers.append(objectsIn: newAnswers)
     }
 

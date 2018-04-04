@@ -119,6 +119,10 @@ final class ContentService {
         return try realmProvider.realm().anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentCollectionID))
     }
 
+    func contentItem(id: Int) -> ContentItem? {
+        return mainRealm.syncableObject(ofType: ContentItem.self, remoteID: id)
+    }
+
     func defaultMessage(_ itemID: Int) -> String {
         let welcomeMessageCollection = contentCollection(id: 100708)
         let predicate = NSPredicate(remoteID: itemID)

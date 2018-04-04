@@ -28,6 +28,17 @@ final class PrepareContentReviewNotesTableViewCell: UITableViewCell, Dequeueable
             case .notes: return 0
             }
         }
+
+        var contentItemID: Int {
+            switch self {
+            case .intentionPerceiving: return 103432
+            case .intentionKnowing: return 103433
+            case .intentionFeeling: return 103434
+            case .reflectionNotes: return 103435
+            case .reflectionVision: return 103436
+            case .notes: return 0
+            }
+        }
     }
 
     enum ReviewNotesType {
@@ -55,20 +66,20 @@ final class PrepareContentReviewNotesTableViewCell: UITableViewCell, Dequeueable
             }
         }
 
-        func title(at row: Int) -> String {
+        func contentItemID(at row: Int) -> Int {
             switch self {
             case .intentions:
                 switch row {
-                case 0: return R.string.localized.prepareReviewNotesIntentionPreceivingTitle()
-                case 1: return R.string.localized.prepareReviewNotesIntentionKnowingTitle()
-                case 2: return R.string.localized.prepareReviewNotesIntentionFeelingTitle()
-                default: return ""
+                case 0: return NotesType.intentionPerceiving.contentItemID
+                case 1: return NotesType.intentionKnowing.contentItemID
+                case 2: return NotesType.intentionFeeling.contentItemID
+                default: return 0
                 }
             case .reflection:
                 switch row {
-                case 0: return R.string.localized.prepareReviewNotesReflectionPositiveTitle()
-                case 1: return R.string.localized.prepareReviewNotesReflectionImproveTitle()
-                default: return ""
+                case 0: return NotesType.reflectionNotes.contentItemID
+                case 1: return NotesType.reflectionVision.contentItemID
+                default: return 0
                 }
             }
         }

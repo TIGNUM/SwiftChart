@@ -248,9 +248,9 @@
 "Alert.Title.Could.Not.Send.Email" = "Could not send email";
 "Alert.Message.Could.Not.Send.Email" = "Your device could not send email";
 "Alert.Title.Partner.Invite" = "Send Notification?";
-"Alert.Message.Partner.Invite" = "Do you like to tell your partner more abput QOT and how a partner can help?";
+"Alert.Message.Partner.Invite" = "Would you like to tell your partner more about QOT and how they can help you?";
 "Alert.Title.Preparation.Add.Strategy" = "Add strategy";
-"Alert.Title.Preparation.Remove.Strategy" = "Remove strategy";
+"Alert.Title.Preparation.Remove.Strategy" = "Remove strategy";  
 "Alert.Title.Preparation.Edit.Strategy" = "Customize your preparation";
 "Alert.Message.Preparation.Edit.Strategy" = "You can tailor your preparation. Add strategies that fit best or remove those you dont like.";
 

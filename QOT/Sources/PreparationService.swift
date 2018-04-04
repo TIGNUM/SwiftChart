@@ -137,22 +137,16 @@ final class PreparationService {
     func updatePreparation(localID: String,
                            checks: [Int: Date?],
                            notes: String,
-                           intentionNotesPerceiving: String,
-                           intentionNotesKnowing: String,
-                           intentionNotesFeeling: String,
-                           reflectionNotes: String,
-                           reflectionNotesVision: String) throws {
+                           notesDictionary: [Int: String]) throws {
         let realm = try self.realmProvider.realm()
         guard let preparation = realm.syncableObject(ofType: Preparation.self, localID: localID) else { return }
 
         let checkObjects = preparationChecks(preparationID: localID)
         try realm.write {
             preparation.notes = notes
-            preparation.intentionNotesPerceiving = intentionNotesPerceiving
-            preparation.intentionNotesKnowing = intentionNotesKnowing
-            preparation.intentionNotesFeeling = intentionNotesFeeling
-            preparation.reflectionNotes = reflectionNotes
-            preparation.reflectionNotesVision = reflectionNotesVision
+            preparation.answers.removeAll()
+            let answers = createPreparationAnswers(notesDictionary, preparationID: preparation.localID, realm: realm)
+            preparation.answers.append(objectsIn: answers)
             preparation.didUpdate()
 
             checkObjects.forEach({ (checkObject: PreparationCheck) in
@@ -166,6 +160,28 @@ final class PreparationService {
                 checkObject.didUpdate()
             })
         }
+    }
+
+    private func createPreparationAnswers(_ notesDictionary: [Int: String],
+                                          preparationID: String,
+                                          realm: Realm) -> [PreparationAnswer] {
+        var answers = [PreparationAnswer]()
+        notesDictionary.forEach { (contentItemID: Int, answer: String) in
+            if let prepAnswer = preparationAnswer(preparationID, contentItemID) {
+                prepAnswer.answer = answer
+                answers.append(prepAnswer)
+            } else {
+                answers.append(PreparationAnswer(answer: answer,
+                                                 contentItemID: contentItemID,
+                                                 preparationID: preparationID))
+            }
+        }
+        return answers
+    }
+
+    private func preparationAnswer(_ preparationID: String, _ contentItemID: Int) -> PreparationAnswer? {
+        let predicate = NSPredicate(format: "preparationID == %@ AND contentItemID == %d", preparationID, contentItemID)
+        return mainRealm.objects(PreparationAnswer.self).filter(predicate).first
     }
 }
 

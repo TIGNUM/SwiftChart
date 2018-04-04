@@ -121,7 +121,8 @@ extension PrepareCoordinator {
                                                     subtitle: "",
                                                     video: video,
                                                     description: description ?? "",
-                                                    items: items)
+                                                    items: items,
+                                                    services: services)
 
             let viewController = PrepareContentViewController(pageName: .prepareContent, viewModel: viewModel)
             viewController.delegate = self
@@ -179,11 +180,8 @@ extension PrepareCoordinator {
                                                     checkedIDs: checkedIDs,
                                                     preparationID: preparationID,
                                                     notes: preparation.notes,
-                                                    intentionNotesPerceiving: preparation.intentionNotesPerceiving,
-                                                    intentionNotesKnowing: preparation.intentionNotesKnowing,
-                                                    intentionNotesFeeling: preparation.intentionNotesFeeling,
-                                                    reflectionNotes: preparation.reflectionNotes,
-                                                    reflectionNotesVision: preparation.reflectionNotesVision)
+                                                    notesDictionary: preparation.notesDictionary,
+                                                    services: services)
 
             let prepareController = PrepareContentViewController(pageName: .prepareCheckList, viewModel: viewModel)
             prepareController.delegate = self
@@ -445,11 +443,7 @@ extension PrepareCoordinator: NavigationItemDelegate {
                 .updatePreparation(localID: preparationID,
                                    checks: checks,
                                    notes: viewModel.notes,
-                                   intentionNotesPerceiving: viewModel.intentionNotesPerceiving,
-                                   intentionNotesKnowing: viewModel.intentionNotesKnowing,
-                                   intentionNotesFeeling: viewModel.intentionNotesFeeling,
-                                   reflectionNotes: viewModel.reflectionNotes,
-                                   reflectionNotesVision: viewModel.reflectionNotesVision)
+                                   notesDictionary: viewModel.notesDictionary)
         }
     }
 

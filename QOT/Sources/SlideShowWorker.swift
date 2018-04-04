@@ -72,7 +72,6 @@ final class SlideShowWorker {
             assertionFailure("Failed to load extended slides: \(error)")
             return []
         }
-
     }
 }
 
