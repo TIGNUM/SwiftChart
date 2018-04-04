@@ -14,6 +14,8 @@ import Bond
 protocol ArticleCollectionViewControllerDelegate: class {
 
     func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: UIViewController)
+    func viewWillAppear(in viewController: ArticleCollectionViewController)
+    func viewDidDisappear(in viewController: ArticleCollectionViewController)
 }
 
 final class ArticleCollectionViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
@@ -22,6 +24,8 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     private let backgroundImageView: UIImageView
     private let fadeMaskLocation: UIView.FadeMaskLocation
+
+    private(set) var isShowing = false
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let pageName: PageName
     var loadingView: BlurLoadingView?
@@ -71,9 +75,21 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
         setupLayout()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        isShowing = true
+        delegate?.viewWillAppear(in: self)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateReadyState()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        isShowing = false
+        delegate?.viewDidDisappear(in: self)
     }
 
     @available(iOS 11.0, *)

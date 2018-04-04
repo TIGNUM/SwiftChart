@@ -26,6 +26,9 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let syncManager: SyncManager
     private let articleCollectionProvider: ArticleCollectionProvider
     private let badgeManager = BadgeManager()
+    private let whatsHotBadgeState: WhatsHotBadgeState
+    private let tokenBin = TokenBin()
+
     var children = [Coordinator]()
 
     lazy var prepareCoordinator: PrepareCoordinator = {
@@ -99,7 +102,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
-        let topTabBarController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController],
+        let navController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          leftButton: UIBarButtonItem.info,
@@ -107,10 +110,17 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         var config = TabBarItem.Config.default
         config.title = R.string.localized.tabBarItemLearn()
         config.tag = 1
-        topTabBarController.tabBarItem = TabBarItem(config: config)
-        guard let whatsHotButton = topTabBarController.middleButton(at: 1) else { return topTabBarController }
-        badgeManager.tabButton = whatsHotButton
-        return topTabBarController
+        navController.tabBarItem = TabBarItem(config: config)
+
+        guard let pageViewController = navController.viewControllers.first as? PageViewController,
+            let navItem = pageViewController.navigationItem as? NavigationItem else { return navController }
+
+        whatsHotBadgeState.onChange { [weak navItem, weak articleCollectionViewController] (state) in
+            let showingArticlesList = articleCollectionViewController?.isShowing ?? false
+            let hidden = showingArticlesList || state == .hidden
+            navItem?.setBadge(index: 1, hidden: hidden)
+        }.addTo(tokenBin)
+        return navController
     }()
 
     private lazy var myUniverseProvider = MyUniverseProvider(services: services)
@@ -172,6 +182,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         self.pageTracker = pageTracker
         self.syncManager = syncManager
         self.networkManager = networkManager
+        self.whatsHotBadgeState = WhatsHotBadgeState(realm: services.mainRealm)
         articleCollectionProvider = ArticleCollectionProvider(services: services)
 
         super.init()
@@ -179,6 +190,9 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         articleCollectionProvider.updateBlock = { [unowned self] viewData in
             self.articleCollectionViewController.viewData = viewData
         }
+        whatsHotBadgeState.onChange { [weak self] (state) in
+            self?.syncLearnTabBadge()
+        }.addTo(tokenBin)
     }
 
     // MARK: -
@@ -218,6 +232,12 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let viewController = ScreenHelpViewController(configurator: ScreenHelpConfigurator.make(section))
         windowManager.showPriority(viewController, animated: true, completion: nil)
     }
+
+    private func syncLearnTabBadge() {
+        let learnTabIndex = 1
+        let showBadge = tabBarController.selectedIndex != learnTabIndex && whatsHotBadgeState.state == .visible
+        tabBarController.mark(isRead: !showBadge, at: learnTabIndex)
+    }
 }
 
 // MARK: - TabBarControllerDelegate
@@ -236,6 +256,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         if index == 3 {
             prepareCoordinator.focus()
         }
+        syncLearnTabBadge()
 
         guard let tutorial = Tutorial(rawValue: index) else { return }
         showTutorial(tutorial)
@@ -353,6 +374,14 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
                                                                 return
         }
         startChild(child: coordinator)
+    }
+
+    func viewWillAppear(in viewController: ArticleCollectionViewController) {
+        whatsHotBadgeState.updateVisited()
+    }
+
+    func viewDidDisappear(in viewController: ArticleCollectionViewController) {
+        whatsHotBadgeState.updateVisited()
     }
 }
 

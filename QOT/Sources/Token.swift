@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import ReactiveKit
 
 protocol TokenProtocol: class {
 
@@ -35,6 +36,19 @@ final class Token: TokenProtocol {
     }
 }
 
+final class BlockToken: TokenProtocol {
+
+    private let closure: () -> Void
+
+    init(invalidation: @escaping () -> Void) {
+        self.closure = invalidation
+    }
+
+    func invalidate() {
+        closure()
+    }
+}
+
 final class TokenBin {
 
     private var tokens: [ObjectIdentifier: TokenProtocol] = [:]
@@ -59,6 +73,13 @@ final class TokenBin {
 }
 
 extension NSKeyValueObservation: TokenProtocol {}
+
+extension CompositeDisposable: TokenProtocol {
+    
+    func invalidate() {
+        dispose()
+    }
+}
 
 extension NotificationToken: TokenProtocol {
 

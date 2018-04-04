@@ -78,6 +78,10 @@ final class NavigationItem: UINavigationItem {
         tabMenuView.setSelectedIndex(index, animated: animated)
     }
 
+    func setBadge(index: Int, hidden: Bool) {
+        tabMenuView.setBadge(index: index, hidden: hidden)
+    }
+
     @objc private func didTapLeftButton(_ sender: UIBarButtonItem) {
         delegate?.navigationItem(self, leftButtonPressed: sender)
     }
@@ -94,6 +98,7 @@ private class TabMenuView: UIView {
     private let indicatorView = UIView()
 
     private(set) var buttons: [UIButton] = []
+    private(set) var badges: [Int: Badge] = [:]
     private(set) var style: NavigationItem.Style = .dark
     private(set) var selectedIndex: Int?
     private(set) var titles: [String] = []
@@ -115,6 +120,7 @@ private class TabMenuView: UIView {
         super.layoutSubviews()
 
         layoutButtons()
+        layoutBadges()
         layoutIndicatorView(animated: false)
     }
 
@@ -132,6 +138,7 @@ private class TabMenuView: UIView {
         syncButtons(titles: titles)
         syncAppearance()
         layoutButtons()
+        layoutBadges()
         layoutIndicatorView(animated: false)
     }
 
@@ -141,6 +148,18 @@ private class TabMenuView: UIView {
         selectedIndex = index
         syncAppearance()
         layoutIndicatorView(animated: animated)
+    }
+
+    func setBadge(index: Int, hidden: Bool) {
+        if let badge = badges[index] {
+            badge.isHidden = hidden
+        } else if hidden == false {
+            let newBadge =  Badge()
+            newBadge.backgroundColor = .cherryRed
+            badges[index] = newBadge
+            addSubview(newBadge)
+        }
+        layoutBadges()
     }
 
     private func validateSelectedIndex() {
@@ -228,6 +247,20 @@ private class TabMenuView: UIView {
         for (index, button) in buttons.enumerated() {
             button.titleLabel?.font = layout.font
             button.frame = layout.frames[index]
+        }
+    }
+
+    private func layoutBadges() {
+        for (index, badge) in badges {
+            guard index < buttons.count, let label = buttons[index].titleLabel else { continue }
+
+            let button = buttons[index]
+            button.setNeedsLayout()
+            button.layoutIfNeeded()
+            let labelFrame = button.convert(label.frame, to: self)
+            let size = CGSize(width: 6, height: 6)
+            let origin = CGPoint(x: labelFrame.maxX, y: labelFrame.minY - size.height)
+            badge.frame = CGRect(origin: origin, size: size)
         }
     }
 

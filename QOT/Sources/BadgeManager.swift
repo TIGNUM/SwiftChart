@@ -17,10 +17,7 @@ enum TabBar: Int {
 }
 
 final class BadgeManager {
-
-    private weak var badge: Badge?
     weak var tabBarController: TabBarController?
-    weak var tabButton: UIButton?
 
     var tabDisplayed: TabBar = .guide {
         didSet {
@@ -35,12 +32,8 @@ final class BadgeManager {
     }
 
     private func update() {
-        badge?.removeFromSuperview()
         checkIfNewItemWasAdded()
         hideCurrentTabBadge()
-        let topOffset = (tabButton?.bounds.height ?? 0) * 0.1
-        let rightOffset = (tabButton?.bounds.width ?? 0) * 0.08
-        badge = tabButton?.addBadge(topAnchorOffset: topOffset, rightAnchorOffset: rightOffset)
     }
 
     func hideCurrentTabBadge() {
@@ -56,9 +49,6 @@ final class BadgeManager {
     func checkIfNewItemWasAdded() {
         if UserDefault.newGuideItem.boolValue == true {
             tabBarController?.mark(isRead: false, at: 0)
-        }
-        if UserDefault.newWhatsHotArticle.boolValue == true {
-            tabBarController?.mark(isRead: false, at: 1)
         }
     }
 

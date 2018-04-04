@@ -253,6 +253,7 @@
 		CB2C3099203B08B00041044F /* MorningInterviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3098203B08B00041044F /* MorningInterviewRouter.swift */; };
 		CB2C309B203B08BC0041044F /* MorningInterviewWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */; };
 		CB2E50C4204EE3350070C706 /* PartnerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E50C3204EE3350070C706 /* PartnerProfileView.swift */; };
+		CB2EF5002073A77600CD6DB4 /* WhatsHotBadgeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2EF4FF2073A77600CD6DB4 /* WhatsHotBadgeState.swift */; };
 		CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */; };
 		CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E72050335A00DD4440 /* KeyboardListener.swift */; };
 		CB3333E120480DDF009480DF /* ShareConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3333E020480DDF009480DF /* ShareConfigurator.swift */; };
@@ -858,6 +859,7 @@
 		CB2C3098203B08B00041044F /* MorningInterviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewRouter.swift; sourceTree = "<group>"; };
 		CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewWorker.swift; sourceTree = "<group>"; };
 		CB2E50C3204EE3350070C706 /* PartnerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerProfileView.swift; sourceTree = "<group>"; };
+		CB2EF4FF2073A77600CD6DB4 /* WhatsHotBadgeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotBadgeState.swift; sourceTree = "<group>"; };
 		CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewAnimationOptions+Convenience.swift"; sourceTree = "<group>"; };
 		CB3029E72050335A00DD4440 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 		CB3333E020480DDF009480DF /* ShareConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareConfigurator.swift; sourceTree = "<group>"; };
@@ -2522,8 +2524,9 @@
 			isa = PBXGroup;
 			children = (
 				CB53F0D720235A9C007C624B /* Atomic.swift */,
-				CB8AA2C4205A850A0033F573 /* ISODate.swift */,
+				91CC8E832063DE11005A7D17 /* BadgeManager.swift */,
 				CB57589D205FD22E00EDC028 /* FadeContainerView.swift */,
+				CB8AA2C4205A850A0033F573 /* ISODate.swift */,
 				CB3029E72050335A00DD4440 /* KeyboardListener.swift */,
 				CB53F0D920237507007C624B /* Keychain.swift */,
 				8548BBDF1F0D4BF900AC7C06 /* LaunchHandler.swift */,
@@ -2539,7 +2542,7 @@
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				7F42767C1F58665100AEE3D7 /* URLScheme.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
-				91CC8E832063DE11005A7D17 /* BadgeManager.swift */,
+				CB2EF4FF2073A77600CD6DB4 /* WhatsHotBadgeState.swift */,
 				7F4276761F570DB600AEE3D7 /* WindowManager.swift */,
 				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 				7F9217B31FD01BF400CAE9E0 /* Permissions */,
@@ -3629,6 +3632,7 @@
 				7F4B98AE1FA22851000B402C /* ChartAnimation.swift in Sources */,
 				CB94422E1FD96D9700E2B122 /* SlideShowConfigurator.swift in Sources */,
 				3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */,
+				CB2EF5002073A77600CD6DB4 /* WhatsHotBadgeState.swift in Sources */,
 				CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */,
 				91C262BA1FED0B2D0075664E /* MorningInterviewViewController.swift in Sources */,
 				CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */,
