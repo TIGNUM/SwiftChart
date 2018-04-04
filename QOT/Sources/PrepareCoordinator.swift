@@ -32,7 +32,7 @@ final class PrepareCoordinator: ParentCoordinator {
     private let chatViewController: ChatViewController<PrepareAnswer>
     private let myPrepViewController: MyPrepViewController
     private let chatDecisionManager: PrepareChatDecisionManager
-    private let rightBarButtonItem = UIBarButtonItem(withImage: R.image.ic_edit())
+    private let rightBarButtonItem = UIBarButtonItem(withImage: R.image.add_remove())
     private var prepareContentNoteController: PrepareContentNotesViewController?
     private var context: Context?
     private weak var prepareListViewController: PrepareContentViewController?
@@ -198,7 +198,7 @@ extension PrepareCoordinator {
             topTabBarController = UINavigationController(withPages: [prepareController, noteController],
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()),
-                                                         rightButton: nil/*rightBarButtonItem*/,
+                                                         rightButton: rightBarButtonItem,
                                                          navigationItemStyle: .light)
             tabBarController.present(topTabBarController, animated: true)
             prepareListViewController = prepareController
