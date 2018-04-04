@@ -49,10 +49,12 @@ final class LearnContentItemViewModel: NSObject {
     private var player: AVPlayer? = AVPlayer()
     private let eventTracker: EventTracker
     private var playerItem: AVPlayerItem?
+    private var avPlayerObserver: AVPlayerObserver?
     private let commandCenter = MPRemoteCommandCenter.shared()
     private(set) var isPlaying = false
     private var currentPlayingCell: LearnStrategyPlaylistAudioCell?
     weak var audioPlayerViewDelegate: AudioPlayerViewLabelDelegate?
+    weak var audioConnectionDelegate: AudioConnectionDelegate?
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
     let updates = PublishSubject<CollectionUpdate, NoError>()
@@ -362,6 +364,7 @@ extension LearnContentItemViewModel {
         currentPosition.value = 0
         playingIndexPath = nil
         isPlaying = false
+        audioPlayerViewDelegate?.stopBlinking()
     }
 
     func forward(value: Float) {
@@ -396,6 +399,13 @@ extension LearnContentItemViewModel {
         isPlaying = true
         observePlayerTime()
         observePlayerItem()
+        avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+        avPlayerObserver?.onStatusUpdate({ (player) in
+            if playerItem.status == .failed {
+                cell?.updateItem(buffering: false, playing: false)
+                self.audioConnectionDelegate?.presentNoConnectionAlert()
+            }
+        })
 
         let audioTitle = cell?.getAudioTitle() == "" ? "Strategy Audio" : cell?.getAudioTitle()
         MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle: audioTitle,

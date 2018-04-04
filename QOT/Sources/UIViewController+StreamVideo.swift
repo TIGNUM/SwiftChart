@@ -26,15 +26,9 @@ extension UIViewController {
     }
 
     func presentNoInternetConnectionAlert(in playerViewController: AVPlayerViewController) {
-        let title = R.string.localized.alertTitleNoNetworkConnection()
-        let message = R.string.localized.alertMessageNoNetworkConnectionFile()
-        let buttonTitle = R.string.localized.alertButtonTitleOk()
-        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: buttonTitle, style: .default) { action in
+        showAlert(type: .noNetworkConnection, handler: {
             playerViewController.dismiss(animated: true, completion: nil)
         })
-
-        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -54,7 +48,10 @@ class AVPlayerObserver: NSObject {
         playerItem.removeObserver(self, forKeyPath: "status")
     }
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+    override func observeValue(forKeyPath keyPath: String?,
+                               of object: Any?,
+                               change: [NSKeyValueChangeKey: Any]?,
+                               context: UnsafeMutableRawPointer?) {
         if keyPath == "status" {
             updateHandler?(playerItem)
         }

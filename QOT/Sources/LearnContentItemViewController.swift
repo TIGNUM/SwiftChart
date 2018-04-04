@@ -29,6 +29,11 @@ protocol LearnContentItemViewControllerDelegate: class {
     func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController)
 }
 
+protocol AudioConnectionDelegate: class {
+
+    func presentNoConnectionAlert()
+}
+
 final class LearnContentItemViewController: UIViewController {
 
     // MARK: properties
@@ -67,6 +72,7 @@ final class LearnContentItemViewController: UIViewController {
 
         if tabType == .audio {
             observeViewModelPlayerUpdates()
+            viewModel.audioConnectionDelegate = self
         }
     }
 
@@ -488,5 +494,16 @@ extension LearnContentItemViewController: PageScrollView {
 
     func scrollView() -> UIScrollView {
         return itemTableView
+    }
+}
+
+// MARK: - Audio Connection Delegate
+
+extension LearnContentItemViewController: AudioConnectionDelegate {
+
+    func presentNoConnectionAlert() {
+        showAlert(type: .noNetworkConnection, handler: {
+            self.viewModel.stopPlayback()
+        })
     }
 }
