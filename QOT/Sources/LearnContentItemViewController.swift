@@ -444,7 +444,10 @@ private extension LearnContentItemViewController {
 
     func PDFTableViewCell(tableView: UITableView, indexPath: IndexPath, attributedString: NSAttributedString, timeToReadSeconds: Int) -> LearnPDFCell {
         let cell: LearnPDFCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(titleText: attributedString, timeToReadSeconds: timeToReadSeconds)
+        cell.configure(titleText: attributedString,
+                       timeToReadSeconds: timeToReadSeconds,
+                       titleColor: .black,
+                       timeColor: .black30)
 
         return cell
     }

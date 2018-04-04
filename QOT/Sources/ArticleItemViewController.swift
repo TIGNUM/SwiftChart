@@ -42,6 +42,7 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
                             ContentItemTextTableViewCell.self,
                             ImageSubtitleTableViewCell.self,
                             ArticleRelatedCell.self,
+                            LearnPDFCell.self,
                             ErrorCell.self)
     }()
 
@@ -252,6 +253,17 @@ private extension ArticleItemViewController {
         return imageCell
     }
 
+    func PDFTableViewCell(tableView: UITableView, indexPath: IndexPath, attributedString: NSAttributedString, timeToReadSeconds: Int) -> LearnPDFCell {
+        let cell: LearnPDFCell = tableView.dequeueCell(for: indexPath)
+        cell.backgroundColor = .clear
+        cell.configure(titleText: attributedString,
+                       timeToReadSeconds: timeToReadSeconds,
+                       titleColor: .white,
+                       timeColor: .gray)
+
+        return cell
+    }
+
     func invalidContentCell(tableView: UITableView, indexPath: IndexPath, item: ContentItem) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
         cell.configure(text: R.string.localized.commonInvalidContent(), item: item)
@@ -342,6 +354,11 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
                     canStream: true
                 )
+            case .pdf(let title, _, _):
+                return PDFTableViewCell(tableView: tableView,
+                                        indexPath: indexPath,
+                                        attributedString: item.contentItemValue.style(textStyle: .h4, text: title, textColor: .white).attributedString(),
+                                        timeToReadSeconds: item.secondsRequired)
             default:
                 return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
             }
@@ -386,6 +403,8 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                         }
                     }
                 }
+            case .pdf(_, _, let pdfURL):
+                delegate?.didTapLink(pdfURL, in: self)
             default: return
             }
         case 1:

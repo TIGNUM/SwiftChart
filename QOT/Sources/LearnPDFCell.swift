@@ -15,12 +15,12 @@ class LearnPDFCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var title: UILabel!
     @IBOutlet weak var timeToRead: UILabel!
-
+    
     // MARK: - Methods
 
-    func configure(titleText: NSAttributedString, timeToReadSeconds: Int) {
+    func configure(titleText: NSAttributedString, timeToReadSeconds: Int, titleColor: UIColor, timeColor: UIColor) {
         title.attributedText = titleText
-        title.textColor = .black
+        title.textColor = titleColor
         title.lineBreakMode = .byTruncatingTail
 
         let date = Date().addingTimeInterval(TimeInterval(timeToReadSeconds))
@@ -29,6 +29,6 @@ class LearnPDFCell: UITableViewCell, Dequeueable {
             timeToReadText = "\(timeString)  \(R.string.localized.learnContentItemToRead())".uppercased()
         }
         timeToRead.setAttrText(text: timeToReadText, font: Font.H7Tag, characterSpacing: 2)
-        timeToRead.textColor = .black30
+        timeToRead.textColor = timeColor
     }
 }
