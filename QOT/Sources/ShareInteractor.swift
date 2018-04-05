@@ -31,6 +31,7 @@ final class ShareInteractor: ShareInteractorInterface {
 
     func didTapShareToBeVision() {
         presenter.setLoading(loading: true)
+        worker.sharingType = .toBeVision
         worker.shareToBeVisionEmailContent { [weak self] (result) in
             self?.presenter.setLoading(loading: false)
             self?.handleResult(result)
@@ -39,6 +40,7 @@ final class ShareInteractor: ShareInteractorInterface {
 
     func didTapShareWeeklyChoices() {
         presenter.setLoading(loading: true)
+        worker.sharingType = .weeklyChoices
         worker.shareWeeklyChoicesEmailContent { [weak self] (result) in
             self?.presenter.setLoading(loading: false)
             self?.handleResult(result)
@@ -55,7 +57,11 @@ private extension ShareInteractor {
         case .success(let content):
             self.router.showMailComposer(email: content.email, subject: content.subject, messageBody: content.body)
         case .failure:
-            self.router.showAlert(.canNotSendMail)
+            if worker.sharingType == .toBeVision {
+                self.router.showAlert(.canNotSendEmailToBeVision)
+            } else {
+                self.router.showAlert(.canNotSendEmailWeeklyChoices)
+            }
         }
     }
 }

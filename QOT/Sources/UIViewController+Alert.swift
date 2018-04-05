@@ -34,6 +34,8 @@ enum AlertType {
     case notSynced
     case resetPassword
     case canNotSendMail
+    case canNotSendEmailToBeVision
+    case canNotSendEmailWeeklyChoices
     case partnerInvite
     case prepareEditStrategy
 
@@ -56,7 +58,9 @@ enum AlertType {
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
         case .cameraNotAvailable, .permissionNotGranted: return R.string.localized.alertTitleCustom()
         case .resetPassword: return R.string.localized.alertTitleResetPassword()
-        case .canNotSendMail: return R.string.localized.alertTitleCouldNotSendEmail()
+        case .canNotSendMail,
+             .canNotSendEmailToBeVision,
+             .canNotSendEmailWeeklyChoices: return R.string.localized.alertTitleCouldNotSendEmail()
         case .partnerInvite: return R.string.localized.alertTitlePartnerInvite()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationEditStrategy()
         default: return nil
@@ -82,6 +86,8 @@ enum AlertType {
         case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedMessage()
         case .resetPassword: return R.string.localized.alertMessageResetPassword()
         case .canNotSendMail: return R.string.localized.alertMessageCouldNotSendEmail()
+        case .canNotSendEmailToBeVision: return R.string.localized.alertMessageCouldNotSendEmailToBeVision()
+        case .canNotSendEmailWeeklyChoices: return R.string.localized.alertMessageCouldNotSendEmailWeeklyChoices()
         case .partnerInvite: return R.string.localized.alertMessagePartnerInvite()
         case .prepareEditStrategy: return R.string.localized.alertMessagePreparationEditStrategy()
         default: return nil

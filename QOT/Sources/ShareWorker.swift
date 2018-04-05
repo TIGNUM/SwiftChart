@@ -22,6 +22,7 @@ final class ShareWorker {
     let name: String
     let imageURL: URL?
     let initials: String
+    var sharingType: Partners.SharingType?
 
     init(services: Services,
          partnerLocalID: String,
