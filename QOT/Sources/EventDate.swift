@@ -12,15 +12,17 @@ extension Date {
 
     func eventStringDate(endDate: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("h:mm a")
+        dateFormatter.locale = Locale(identifier: "en_US_POSIX")
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.dateFormat = "h:mm a"
 
         if NSCalendar.current.isDateInToday(self) {
             return "Today at \(dateFormatter.string(from: self))"
         } else if NSCalendar.current.isDateInTomorrow(self) {
             return "Tomorrow at \(dateFormatter.string(from: self))"
         } else {
-            dateFormatter.setLocalizedDateFormatFromTemplate("MMMd")
-            return "\(dateFormatter.string(from: self)) // \(dateFormatter.string(from: endDate))"
+            dateFormatter.dateFormat = "dd MMMM yyy 'at' h:mm a"
+            return dateFormatter.string(from: self)
         }
     }
 }
