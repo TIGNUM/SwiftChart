@@ -254,6 +254,7 @@
 		CB2C309B203B08BC0041044F /* MorningInterviewWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */; };
 		CB2E50C4204EE3350070C706 /* PartnerProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2E50C3204EE3350070C706 /* PartnerProfileView.swift */; };
 		CB2EF5002073A77600CD6DB4 /* WhatsHotBadgeState.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2EF4FF2073A77600CD6DB4 /* WhatsHotBadgeState.swift */; };
+		CB2FA0E820762914007F21D1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA0E720762914007F21D1 /* Environment.swift */; };
 		CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */; };
 		CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E72050335A00DD4440 /* KeyboardListener.swift */; };
 		CB3333E120480DDF009480DF /* ShareConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3333E020480DDF009480DF /* ShareConfigurator.swift */; };
@@ -860,6 +861,7 @@
 		CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewWorker.swift; sourceTree = "<group>"; };
 		CB2E50C3204EE3350070C706 /* PartnerProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerProfileView.swift; sourceTree = "<group>"; };
 		CB2EF4FF2073A77600CD6DB4 /* WhatsHotBadgeState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotBadgeState.swift; sourceTree = "<group>"; };
+		CB2FA0E720762914007F21D1 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewAnimationOptions+Convenience.swift"; sourceTree = "<group>"; };
 		CB3029E72050335A00DD4440 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
 		CB3333E020480DDF009480DF /* ShareConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareConfigurator.swift; sourceTree = "<group>"; };
@@ -2356,6 +2358,7 @@
 				CB9442241FD80B5700E2B122 /* AppState.swift */,
 				7F6567431FE28FBC00A6CB7F /* Clean.swift */,
 				CC6B3A301E81713200E7FDFD /* Constants.swift */,
+				CB2FA0E720762914007F21D1 /* Environment.swift */,
 			);
 			name = App;
 			sourceTree = "<group>";
@@ -3721,6 +3724,7 @@
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
 				CB873294202AEDA80081F522 /* GradientView.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
+				CB2FA0E820762914007F21D1 /* Environment.swift in Sources */,
 				85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,

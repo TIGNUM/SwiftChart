@@ -162,7 +162,7 @@ struct APNSDeviceTokenRequest: URLRequestBuildable {
     init(token: String, urbanAirshipAppKey: String) {
         self.paramaters = [
             .notificationToken: token,
-            .notificationEnvironmentType: Environment.name,
+            .notificationEnvironmentType: environment.name,
             .appKey: urbanAirshipAppKey
         ]
     }

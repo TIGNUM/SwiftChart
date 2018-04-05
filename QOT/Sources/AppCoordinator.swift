@@ -348,7 +348,7 @@ extension AppCoordinator {
         permissionsManager.reset()
         credentialsManager.clear()
         UserDefault.clearAllData()
-        baseURL = URL(string: "https://esb.tignum.com")!
+        environment.dynamicBaseURL = nil
         do {
             syncManager.stop()
             try DatabaseManager.shared.resetDatabase(syncRecordService: syncRecordService)

@@ -8,8 +8,6 @@
 
 import Alamofire
 
-var baseURL = URL(string: "https://esb.tignum.com")!
-
 enum Endpoint: String {
     case authentication = "/service/auth"
     case startSync = "/personal/p/qot/start"

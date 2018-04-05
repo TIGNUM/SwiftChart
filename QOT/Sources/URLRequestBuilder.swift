@@ -33,7 +33,7 @@ final class URLRequestBuilder {
         httpHeaders[.build] = build
         httpHeaders[.os] = "iOS \(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
 
-        let url = buildable.endpoint.url(baseURL: baseURL)
+        let url = buildable.endpoint.url(baseURL: environment.baseURL)
         let method = buildable.httpMethod
         let headers = httpHeaders.mapKeys { $0.rawValue }
         let params = buildable.paramaters.mapKeys { $0.rawValue }

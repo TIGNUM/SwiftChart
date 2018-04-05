@@ -23,14 +23,6 @@ enum FontName: String {
     case bentonSansCondLight = "BentonSans-CondensedLight"
 }
 
-struct Environment {
-    #if DEBUG
-    static let name = "DEVELOPMENT"
-    #else
-    static let name = "PRODUCTION"
-    #endif
-}
-
 struct Layout {
 
     static let statusBarHeight: CGFloat = 64

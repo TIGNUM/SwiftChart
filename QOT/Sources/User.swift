@@ -119,7 +119,7 @@ extension User: TwoWaySyncableUniqueObject {
         memberSince = data.memberSince
         totalUsageTime = data.totalUsageTime
         timeZone = TimeZone.hoursFromGMT // We never want to update the timezone based on remote timezone
-        baseURL = URL(string: data.esbDomain) ?? baseURL
+        environment.dynamicBaseURL = URL(string: data.esbDomain)
         fitbitStateValue = data.fitbitState
         updateUAirshipTags(data.urbanAirshipTags + [data.email])
     }

@@ -83,7 +83,7 @@ extension SettingsAdminViewController {
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         guard let section = Sections(rawValue: section) else { return nil }
         switch section {
-        case .baseURL: return networkError == nil ? String(format: "Current baseURL: %@", baseURL.absoluteString) : networkError?.localizedDescription
+        case .baseURL: return networkError == nil ? String(format: "Current baseURL: %@", environment.baseURL.absoluteString) : networkError?.localizedDescription
         case .sync: return dataBaseTouched == false ? "sync" : "autoSync is disabled because the dataBase was touched -> U allways can do a reset"
         case .logLevel: return "logLevel: error == default"
         case .dataBase: return "dataBase: an erase will turn off autoSync"
@@ -125,14 +125,14 @@ private extension SettingsAdminViewController {
                 return
         }
 
-        baseURL = newBaseURL
+        environment.dynamicBaseURL = newBaseURL
         reloginUser { [unowned self] in
             self.tableView.reloadData()
         }
     }
 
     @IBAction private func resetBaseURLTapped(sender: UIButton) {
-        baseURL = URL(string: BaseURL.live.stringValue) ?? baseURL
+        environment.dynamicBaseURL = nil
         reloginUser { [unowned self] in
             self.tableView.reloadData()
         }
@@ -167,7 +167,7 @@ private extension SettingsAdminViewController {
                 return
         }
 
-        baseURL = url
+        environment.dynamicBaseURL = url
         reloginUser { [unowned self] in
             self.tableView.reloadData()
         }
@@ -191,7 +191,7 @@ private extension SettingsAdminViewController {
     }
 
     @IBAction private func resetToDefaultTapped(sender: UIButton) {
-        baseURL = URL(string: BaseURL.live.stringValue)!
+        environment.dynamicBaseURL = nil
         Logger.shared.remote.minLevel = .error
         autoSyncSwitch.isEnabled = true
         dataBaseTouched = false
@@ -268,7 +268,8 @@ private extension SettingsAdminViewController {
     }
 
     func setupDefaultValues() {
-        baseURLSegmentedControl.selectedSegmentIndex = baseURL.absoluteString.contains("staging") == true ? 1 : 0
+        let stagingBaseURLSelected = environment.baseURL.absoluteString.contains("staging")
+        baseURLSegmentedControl.selectedSegmentIndex = stagingBaseURLSelected == true ? 1 : 0
         baseURLTextField.text = ""
         logLevelSegmentedControl.selectedSegmentIndex = Logger.shared.remote.minLevel.rawValue
         autoSyncSwitch.setOn(true, animated: true)
