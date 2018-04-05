@@ -120,58 +120,7 @@
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>shortcutItem-whats-hot-article</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Latest What's Hot Article</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>whats-hot-article</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>link</key>
-				<string>qot://latest-whats-hot-article</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>shortcutItem-tools</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Tools</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>library</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>link</key>
-				<string>qot://library</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>shortcutItem-my-data</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Review My Data</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>me-universe</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>link</key>
-				<string>qot://me-universe</string>
-			</dict>
-		</dict>
-		<dict>
-			<key>UIApplicationShortcutItemIconFile</key>
-			<string>shortcutItem-prepare</string>
-			<key>UIApplicationShortcutItemTitle</key>
-			<string>Prepare for an event</string>
-			<key>UIApplicationShortcutItemType</key>
-			<string>prepare</string>
-			<key>UIApplicationShortcutItemUserInfo</key>
-			<dict>
-				<key>link</key>
-				<string>qot://prepare</string>
-			</dict>
-		</dict>
+		
 	</array>
 	<key>UIBackgroundModes</key>
 	<array>

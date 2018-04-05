@@ -65,6 +65,7 @@ extension LoginCoordinator: LoginViewControllerDelegate {
                     } else {
                         hud.hide(animated: true)
                         self.delegate?.loginCoordinatorDidLogin(self, loginViewController: self.loginViewController)
+                        self.add3DTouchShortcuts()
                     }
                 }
             }
@@ -89,5 +90,31 @@ extension LoginCoordinator: LoginViewControllerDelegate {
         } else {
             viewController.showAlert(type: .unknown)
         }
+    }
+}
+
+private extension LoginCoordinator {
+
+    func add3DTouchShortcuts() {
+        UIApplication.shared.shortcutItems?.append(UIMutableApplicationShortcutItem(type: "whats-hot-article",
+                                                                                    localizedTitle: "Latest What's Hot Article",
+                                                                                    localizedSubtitle: nil,
+                                                                                    icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-whats-hot-article"),
+                                                                                    userInfo: ["link": "qot://latest-whats-hot-article"]))
+        UIApplication.shared.shortcutItems?.append(UIMutableApplicationShortcutItem(type: "library",
+                                                                                    localizedTitle: "Tools",
+                                                                                    localizedSubtitle: nil,
+                                                                                    icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-tools"),
+                                                                                    userInfo: ["link": "qot://library"]))
+        UIApplication.shared.shortcutItems?.append(UIMutableApplicationShortcutItem(type: "me-universe",
+                                                                                    localizedTitle: "Review My Data",
+                                                                                    localizedSubtitle: nil,
+                                                                                    icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-my-data"),
+                                                                                    userInfo: ["link": "qot://me-universe"]))
+        UIApplication.shared.shortcutItems?.append(UIMutableApplicationShortcutItem(type: "prepare",
+                                                                                    localizedTitle: "Prepare for an event",
+                                                                                    localizedSubtitle: nil,
+                                                                                    icon: UIApplicationShortcutIcon(templateImageName: "shortcutItem-prepare"),
+                                                                                    userInfo: ["link": "qot://prepare"]))
     }
 }

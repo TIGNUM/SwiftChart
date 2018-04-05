@@ -71,6 +71,7 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
     }
 
     func didTapLogout(in viewController: SettingsMenuViewController) {
+        UIApplication.shared.shortcutItems?.removeAll()
         NotificationHandler.postNotification(withName: .logoutNotification)
     }
 
