@@ -66,7 +66,8 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
                           link: link,
                           featureLink: nil,
                           featureButton: nil,
-                          identifier: "")
+                          identifier: "",
+                          affectsTabBarBadge: false)
     }
 }
 
@@ -84,7 +85,8 @@ private extension GuideItemFactory {
                           link: nil,
                           featureLink: nil,
                           featureButton: nil,
-                          identifier: "Not important")
+                          identifier: "Not important",
+                          affectsTabBarBadge: true)
     }
 
     func guideItem(with item: NotificationConfigurationObject, date: ISODate) -> Guide.Item? {
@@ -100,7 +102,8 @@ private extension GuideItemFactory {
                           link: URL(string: item.link),
                           featureLink: nil,
                           featureButton: nil,
-                          identifier: NotificationID.dailyPrep(date: date).string)
+                          identifier: NotificationID.dailyPrep(date: date).string,
+                          affectsTabBarBadge: true)
     }
 
     func guideItem(with item: RealmGuideItemLearn) -> Guide.Item? {
@@ -112,7 +115,8 @@ private extension GuideItemFactory {
                           link: URL(string: item.link),
                           featureLink: item.featureLink.flatMap { URL(string: $0) },
                           featureButton: item.featureButton,
-                          identifier: GuideItemID(item: item).stringRepresentation)
+                          identifier: GuideItemID(item: item).stringRepresentation,
+                          affectsTabBarBadge: true)
     }
 
     func guideItem(with notification: RealmGuideItemNotification) -> Guide.Item? {
@@ -135,7 +139,8 @@ private extension GuideItemFactory {
                           link: URL(string: notification.link),
                           featureLink: nil,
                           featureButton: nil,
-                          identifier: GuideItemID(item: notification).stringRepresentation)
+                          identifier: GuideItemID(item: notification).stringRepresentation,
+                          affectsTabBarBadge: true)
     }
 
     func dailyPrepItems(questions: [Question], notification: NotificationConfigurationObject, services: Services) -> [Guide.DailyPrepItem] {

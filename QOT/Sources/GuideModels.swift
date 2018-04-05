@@ -53,6 +53,7 @@ struct Guide {
         let featureLink: URL?
         let featureButton: String?
         let identifier: String
+        let affectsTabBarBadge: Bool
 
         var isDailyPrepCompleted: Bool {
             return isDailyPrep == true && status == .done

@@ -85,16 +85,15 @@ extension GuideViewController: GuideViewControllerInterface {
     func updateDays(days: [Guide.Day]) {
         self.days = days
         tableView.reloadData()
-        updateBadgeIfNeeded()
+        updateTabBarBadge()
     }
 
-    func updateBadgeIfNeeded() {
-        guard let incompletedItems = days.first.map ({ $0.items.filter { $0.status == .todo }.count }) else { return }
-        if incompletedItems > 0 {
-            UserDefault.newGuideItem.setBoolValue(value: true)
-        } else {
-            UserDefault.newGuideItem.setBoolValue(value: false)
-        }
+    func updateTabBarBadge() {
+        guard let today = days.first else { return }
+
+        let incompletedItems = today.items.filter { $0.status == .todo && $0.affectsTabBarBadge == true }
+        let showBadge = incompletedItems.count > 0
+        UserDefault.newGuideItem.setBoolValue(value: showBadge)
     }
 }
 
