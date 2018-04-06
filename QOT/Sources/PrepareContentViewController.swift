@@ -30,7 +30,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     // MARK: - Properties
 
-    let viewModel: PrepareContentViewModel
+    var viewModel: PrepareContentViewModel
     private let disposeBag = DisposeBag()
     weak var delegate: PrepareContentViewControllerDelegate?
     let pageName: PageName
@@ -88,12 +88,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
         tableView.reloadData()
     }
 
-    func fixTableViewInsets() {
-        let zContentInsets = UIEdgeInsets.zero
-        tableView.contentInset = zContentInsets
-        tableView.scrollIndicatorInsets = zContentInsets
-    }
-
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         fixTableViewInsets()
@@ -101,6 +95,17 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+
+    func fixTableViewInsets() {
+        let zContentInsets = UIEdgeInsets.zero
+        tableView.contentInset = zContentInsets
+        tableView.scrollIndicatorInsets = zContentInsets
+    }
+
+    func updateViewModel(viewModel: PrepareContentViewModel) {
+        self.viewModel = viewModel
+        tableView.reloadData()
     }
 }
 

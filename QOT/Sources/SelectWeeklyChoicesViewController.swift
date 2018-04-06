@@ -13,7 +13,11 @@ protocol SelectWeeklyChoicesViewControllerDelegate: class {
 
     func dismiss(viewController: SelectWeeklyChoicesViewController)
 
-    func didTapRow(_ viewController: SelectWeeklyChoicesViewController, contentCollection: ContentCollection, contentCategory: ContentCategory)
+    func dismiss(viewController: SelectWeeklyChoicesViewController, selectedContent: [WeeklyChoice])
+
+    func didTapRow(_ viewController: SelectWeeklyChoicesViewController,
+                   contentCollection: ContentCollection,
+                   contentCategory: ContentCategory)
 }
 
 final class SelectWeeklyChoicesViewController: UIViewController {
@@ -39,7 +43,9 @@ final class SelectWeeklyChoicesViewController: UIViewController {
 
     // MARK: - Init
 
-    init(delegate: SelectWeeklyChoicesViewControllerDelegate, viewModel: SelectWeeklyChoicesDataModel, backgroundImage: UIImage?) {
+    init(delegate: SelectWeeklyChoicesViewControllerDelegate,
+         viewModel: SelectWeeklyChoicesDataModel,
+         backgroundImage: UIImage?) {
         self.delegate = delegate
         self.viewModel = viewModel
         self.backgroundImage = backgroundImage
@@ -56,18 +62,46 @@ final class SelectWeeklyChoicesViewController: UIViewController {
 
         setupView()
     }
+}
 
-    // MARK: - private
+// MARK: - Actions
 
-    private func setupView() {
-        tableView.tableHeaderView = tableHeaderView
-        var nib = UINib(nibName: CollapsableCell.nibName, bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: CellReuseIdentifiers.CollapsableCell)
-        nib = UINib(nibName: CollapsableContentCell.nibName, bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: CellReuseIdentifiers.CollapsableContentCell)
-        tableView.layoutMargins = .zero
-        tableView.separatorInset = .zero
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 20.0))
+private extension SelectWeeklyChoicesViewController {
+
+    @IBAction func closePressed(_ sender: UIBarButtonItem) {
+        delegate?.dismiss(viewController: self)
+    }
+
+    @IBAction func donePressed(_ sender: UIBarButtonItem) {
+        switch viewModel.selectionType {
+        case .weeklyChoices: handleWeeklyChoicesSelection()
+        case .prepareStrategies: handlePrepareStrategySelection()
+        }
+    }
+
+    func handleWeeklyChoicesSelection() {
+        _ = MBProgressHUD.showAdded(to: view, animated: true)
+        DispatchQueue.main.async { [unowned self] in
+            self.viewModel.createUsersWeeklyChoices()
+        }
+        delegate?.dismiss(viewController: self)
+    }
+
+    func handlePrepareStrategySelection() {
+        delegate?.dismiss(viewController: self, selectedContent: viewModel.selected)
+    }
+}
+
+// MARK: - Private
+
+private extension SelectWeeklyChoicesViewController {
+
+    func setupView() {
+        setupTableView()
+        setupNavigationBar()
+    }
+
+    func setupNavigationBar() {
         backgroundImageView.image = backgroundImage
         backgroundBlurView.alpha = 0.85 // changing blur view alpha is not recommended, but it looks better...
         setSelected(viewModel.numOfItemsSelected)
@@ -76,23 +110,39 @@ final class SelectWeeklyChoicesViewController: UIViewController {
         navigationBar.setBackgroundImage(dummyImage, for: .default)
         navigationBar.shadowImage = dummyImage
         navigationBar.isTranslucent = true
-
-        tableHeaderViewLabel.attributedText = NSMutableAttributedString(
-            string: R.string.localized.meSectorMyWhySelectWeeklyChoicesHeader("\(viewModel.maxSelectionCount)"),
-            letterSpacing: 2,
-            font: UIFont.bentonRegularFont(ofSize: 15.0),
-            lineSpacing: 12.0,
-            textColor: UIColor.white,
-            alignment: .center)
     }
 
-    private func setSelected(_ selected: Int) {
+    func setupTableView() {
+        tableView.tableHeaderView = tableHeaderView
+        var nib = UINib(nibName: CollapsableCell.nibName, bundle: Bundle.main)
+        tableView.register(nib, forCellReuseIdentifier: CellReuseIdentifiers.CollapsableCell)
+        nib = UINib(nibName: CollapsableContentCell.nibName, bundle: Bundle.main)
+        tableView.register(nib, forCellReuseIdentifier: CellReuseIdentifiers.CollapsableContentCell)
+        tableView.layoutMargins = .zero
+        tableView.separatorInset = .zero
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 20.0))
+
+        if viewModel.selectionType == .weeklyChoices {
+            tableHeaderViewLabel.attributedText = NSMutableAttributedString(
+                string: R.string.localized.meSectorMyWhySelectWeeklyChoicesHeader("\(viewModel.maxSelectionCount)"),
+                letterSpacing: 2,
+                font: UIFont.bentonRegularFont(ofSize: 15.0),
+                lineSpacing: 12.0,
+                textColor: UIColor.white,
+                alignment: .center)
+        }
+    }
+
+    func setSelected(_ selected: Int) {
         let maxSelectionCount = viewModel.maxSelectionCount
-        navigationBar.topItem?.title = R.string.localized.meSectorMyWhySelectWeeklyChoicesNavigation("\(maxSelectionCount)", "\(selected)", "\(viewModel.maxSelectionCount)").uppercased()
-        doneButton.isEnabled = selected == maxSelectionCount
+        let title = R.string.localized.meSectorMyWhySelectWeeklyChoicesNavigation("\(maxSelectionCount)",
+            "\(selected)",
+            "\(viewModel.maxSelectionCount)").uppercased()
+        navigationBar.topItem?.title = title
+        doneButton.isEnabled = viewModel.selectionType == .prepareStrategies || selected == maxSelectionCount
     }
 
-    private func showMaxSelectionCountAlert() {
+    func showMaxSelectionCountAlert() {
         let alert = UIAlertController(
             title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertTitle(),
             message: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertMessage(),
@@ -105,25 +155,12 @@ final class SelectWeeklyChoicesViewController: UIViewController {
         )
         present(alert, animated: true, completion: nil)
     }
-
-    // MARK: - actions
-
-    @IBAction private func closePressed(_ sender: UIBarButtonItem) {
-        delegate?.dismiss(viewController: self)
-    }
-
-    @IBAction private func donePressed(_ sender: UIBarButtonItem) {
-        _ = MBProgressHUD.showAdded(to: view, animated: true)
-        DispatchQueue.main.async { [unowned self] in
-            self.viewModel.createUsersWeeklyChoices()
-        }
-        delegate?.dismiss(viewController: self)
-    }
 }
 
 // MARK: - UITableViewDelegate
 
 extension SelectWeeklyChoicesViewController: UITableViewDelegate {
+
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 64//viewModel.rowHeight(forIndexPath: indexPath)
     }
@@ -148,6 +185,7 @@ extension SelectWeeklyChoicesViewController: UITableViewDelegate {
 // MARK: - UITableViewDataSource
 
 extension SelectWeeklyChoicesViewController: UITableViewDataSource {
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return viewModel.numberOfSections
     }
@@ -158,9 +196,8 @@ extension SelectWeeklyChoicesViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if viewModel.isParentNode(atIndexPath: indexPath) {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableCell) as? CollapsableCell else {
-                return UITableViewCell() // shouldnt happen...
-            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableCell)
+                as? CollapsableCell else { return UITableViewCell() } // shouldnt happen...
             let node = viewModel.node(forSection: indexPath.section)
             cell.setTitleText(node.title)
             cell.delegate = self
@@ -168,9 +205,8 @@ extension SelectWeeklyChoicesViewController: UITableViewDataSource {
             cell.isOpen = node.isOpen
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableContentCell) as? CollapsableContentCell else {
-                return UITableViewCell() // shouldnt happen...
-            }
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableContentCell)
+                as? CollapsableContentCell else { return UITableViewCell() } // shouldnt happen...
             let item = viewModel.item(forIndexPath: indexPath)
             cell.setTitleText(item.title)
             cell.delegate = self
@@ -184,10 +220,9 @@ extension SelectWeeklyChoicesViewController: UITableViewDataSource {
 // MARK: - CollapsableCellDelegate
 
 extension SelectWeeklyChoicesViewController: CollapsableCellDelegate {
+
     func collapsableCell(_ cell: CollapsableCell, didPressCollapseButtonForIndexPath indexPath: IndexPath) {
-        guard let isOpen = cell.isOpen else {
-            return
-        }
+        guard let isOpen = cell.isOpen else { return }
         viewModel.setIsOpen(!isOpen, forNodeAtSection: indexPath.section)
         tableView.reloadDataWithAnimation()
     }
@@ -196,9 +231,10 @@ extension SelectWeeklyChoicesViewController: CollapsableCellDelegate {
 // MARK: - CollapsableContentCellDelegate
 
 extension SelectWeeklyChoicesViewController: CollapsableContentCellDelegate {
+
     func collapsableContentCell(_ cell: CollapsableContentCell, didPressCheckButtonForIndexPath indexPath: IndexPath) {
         var item = viewModel.item(forIndexPath: indexPath)
-        if !item.selected {
+        if !item.selected && viewModel.selectionType == .weeklyChoices {
             guard viewModel.numOfItemsSelected < viewModel.maxSelectionCount else {
                 showMaxSelectionCountAlert()
                 return

@@ -110,6 +110,27 @@ final class PreparationService {
         }
     }
 
+    func updatePreparationChecks(preparationID: String, selectedStrategies: [WeeklyChoice]) throws {
+        guard let preparation = preparation(localID: preparationID) else { return }
+        try deletePreparationChecks(preparation.checks)
+
+        if selectedStrategies.isEmpty == false {
+            var checks = [PreparationCheck]()
+            selectedStrategies.forEach { (weeklyChoice: WeeklyChoice) in
+                let content = mainRealm.syncableObject(ofType: ContentCollection.self,
+                                                       remoteID: weeklyChoice.contentCollectionID)
+                checks.append(PreparationCheck(preparation: preparation,
+                                               contentItem: content?.items.first,
+                                               covered: nil))
+            }
+
+            let realm = try self.realmProvider.realm()
+            try realm.write {
+                preparation.checks.append(objectsIn: checks)
+            }
+        }
+    }
+
     func eraseData() {
         do {
             try mainRealm.write {

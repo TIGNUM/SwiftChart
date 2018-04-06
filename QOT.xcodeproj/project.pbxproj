@@ -1323,15 +1323,15 @@
 		7F0F02FC1F13D5D500007D50 /* Select Weekly Choices */ = {
 			isa = PBXGroup;
 			children = (
-				7F0F02F11F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift */,
-				7F0F02F31F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib */,
-				7F0F02FA1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift */,
-				7FBFBC121FC73F18007B6D2D /* WeeklyChoice.swift */,
-				7F0F03071F14FE9800007D50 /* CollapsableNode.swift */,
 				7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */,
-				7F0F03031F14CE2300007D50 /* CollapsableCell.xib */,
 				7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */,
+				7F0F03071F14FE9800007D50 /* CollapsableNode.swift */,
+				7F0F02FA1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift */,
+				7F0F02F11F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift */,
+				7FBFBC121FC73F18007B6D2D /* WeeklyChoice.swift */,
+				7F0F03031F14CE2300007D50 /* CollapsableCell.xib */,
 				7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */,
+				7F0F02F31F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib */,
 			);
 			name = "Select Weekly Choices";
 			sourceTree = "<group>";
@@ -2250,9 +2250,9 @@
 			isa = PBXGroup;
 			children = (
 				0BD6F6B61EA0E81E001EBC4D /* MyPrepTableViewCell.swift */,
-				0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */,
 				CCE372FC1E8D2AD100B79352 /* MyPrepViewController.swift */,
 				CCE372FE1E8D2AE700B79352 /* MyPrepViewModel.swift */,
+				0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */,
 			);
 			name = "My Prep";
 			sourceTree = "<group>";
@@ -2767,11 +2767,11 @@
 			isa = PBXGroup;
 			children = (
 				CC7D21AB1EFC1348007A062E /* WeeklyChoicesCell.swift */,
-				CC7D21AC1EFC1348007A062E /* WeeklyChoicesCell.xib */,
 				CC7D21AD1EFC1348007A062E /* WeeklyChoicesLayout.swift */,
-				CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */,
 				7FBFBC0E1FC731FB007B6D2D /* WeeklyChoicesProvider.swift */,
+				CC7D21AE1EFC1348007A062E /* WeeklyChoicesViewController.swift */,
 				7FBFBC101FC7320B007B6D2D /* WeeklyChoicesViewData.swift */,
+				CC7D21AC1EFC1348007A062E /* WeeklyChoicesCell.xib */,
 			);
 			name = "Weekly Choices";
 			sourceTree = "<group>";

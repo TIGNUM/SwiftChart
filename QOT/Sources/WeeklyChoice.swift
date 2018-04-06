@@ -14,6 +14,7 @@ struct WeeklyChoice {
     let categoryID: Int
     let categoryName: String?
     let title: String?
+    let covered: Date?
     let startDate: Date
     let endDate: Date
     var selected: Bool

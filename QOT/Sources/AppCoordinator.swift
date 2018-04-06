@@ -43,6 +43,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private var canProcessLocalNotifications = false
     private var isRestart = false
     private var onDismiss: (() -> Void)?
+    private var onDismissWithResults: ((_ results: [WeeklyChoice], _ syncManager: SyncManager) -> Void)?
     private var destination: AppCoordinator.Router.Destination?
     private let userIsLoggingIn = Atomic(false)
 
@@ -433,6 +434,11 @@ extension AppCoordinator: NetworkManagerDelegate {
 
 extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
 
+    func dismiss(viewController: SelectWeeklyChoicesViewController, selectedContent: [WeeklyChoice]) {
+        dismiss(viewController: viewController)
+        onDismissWithResults?(selectedContent, syncManager)
+    }
+
     func dismiss(viewController: SelectWeeklyChoicesViewController) {
         dismiss(viewController, level: .priority)
     }
@@ -489,7 +495,8 @@ extension AppCoordinator: ShortcutHandlerDelegate {
 
 extension AppCoordinator: PermissionManagerDelegate {
 
-    func permissionManager(_ manager: PermissionsManager, didUpdatePermissions permissions: [PermissionsManager.Permission]) {
+    func permissionManager(_ manager: PermissionsManager,
+                            didUpdatePermissions permissions: [PermissionsManager.Permission]) {
         reportPermissions(permissions)
     }
 
@@ -888,9 +895,31 @@ extension AppCoordinator {
         guard let services = services else { return }
         onDismiss = completion
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let viewModel = SelectWeeklyChoicesDataModel(services: services, maxSelectionCount: Layout.MeSection.maxWeeklyPage, startDate: startDate, endDate: endDate)
+        let viewModel = SelectWeeklyChoicesDataModel(services: services,
+                                                     maxSelectionCount: Layout.MeSection.maxWeeklyPage,
+                                                     startDate: startDate,
+                                                     endDate: endDate)
         let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
-        let viewController = SelectWeeklyChoicesViewController(delegate: self, viewModel: viewModel, backgroundImage: image)
+        let viewController = SelectWeeklyChoicesViewController(delegate: self,
+                                                               viewModel: viewModel,
+                                                               backgroundImage: image)
+        windowManager.showPriority(viewController, animated: true, completion: nil)
+        currentPresentedController = viewController
+    }
+
+    func presentRelatedStrategies(relatedStrategies: [ContentCollection],
+                                  selectedIDs: [Int],
+                                  prepareContentController: PrepareContentViewController,
+                                  completion: ((_ selectedStrategies: [WeeklyChoice], _ syncManager: SyncManager) -> Void)?) {
+        guard let services = services else { return }
+        onDismissWithResults = completion
+        let viewModel = SelectWeeklyChoicesDataModel(services: services,
+                                                     relatedContent: relatedStrategies,
+                                                     selectedIDs: selectedIDs)
+        let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
+        let viewController = SelectWeeklyChoicesViewController(delegate: self,
+                                                               viewModel: viewModel,
+                                                               backgroundImage: image)
         windowManager.showPriority(viewController, animated: true, completion: nil)
         currentPresentedController = viewController
     }

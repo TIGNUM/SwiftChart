@@ -200,6 +200,16 @@ extension LaunchHandler {
                                                         completion: completion)
     }
 
+    func selectStrategies(relatedStrategies: [ContentCollection],
+                          selectedIDs: [Int],
+                          prepareContentController: PrepareContentViewController,
+                          completion: ((_ selectedStrategies: [WeeklyChoice], _ syncManager: SyncManager) -> Void)?) {
+        appDelegate.appCoordinator.presentRelatedStrategies(relatedStrategies: relatedStrategies,
+                                                            selectedIDs: selectedIDs,
+                                                            prepareContentController: prepareContentController,
+                                                            completion: completion)
+    }
+
     private func startEndDate() -> (startDate: Date, endDate: Date) {
         let calendar = Calendar.sharedUTC
         var dateComponents = calendar.dateComponents([.year, .month, .weekOfYear, .weekday], from: Date())

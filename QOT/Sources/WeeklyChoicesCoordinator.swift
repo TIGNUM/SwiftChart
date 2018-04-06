@@ -44,7 +44,7 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
         topTabBarController = UINavigationController(withPages: [weeklyChoicesViewController],
                                                      topBarDelegate: topBarDelegate ?? self,
                                                      leftButton: leftButton,
-                                                     rightButton: (viewData.items.count == 0) ? rightButton : nil)
+                                                     rightButton: rightButton)//(viewData.items.count == 0) ? rightButton : nil)
         topTabBarController.modalPresentationStyle = .custom
         if transitioningDelegate != nil {
             topTabBarController.transitioningDelegate = transitioningDelegate
@@ -70,8 +70,9 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
         removeChild(child: self)
     }
 
-    func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController, didUpdateListWithViewData viewData: WeeklyChoicesViewData) {
-        topTabBarController.navigationBar.topItem?.rightBarButtonItem = (viewData.items.count == 0) ? rightButton : nil
+    func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController,
+                                     didUpdateListWithViewData viewData: WeeklyChoicesViewData) {
+        topTabBarController.navigationBar.topItem?.rightBarButtonItem = rightButton//(viewData.items.count == 0) ? rightButton : nil
     }
 }
 

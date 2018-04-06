@@ -21,16 +21,6 @@ final class Preparation: SyncableObject {
 
     @objc dynamic var notes: String = ""
 
-    @objc dynamic var intentionNotesPerceiving: String = ""
-
-    @objc dynamic var intentionNotesKnowing: String = ""
-
-    @objc dynamic var intentionNotesFeeling: String = ""
-
-    @objc dynamic var reflectionNotes: String = ""
-
-    @objc dynamic var reflectionNotesVision: String = ""
-
     let calendarEventRemoteID = RealmOptional<Int>(nil)
 
     @objc dynamic var changeStamp: String? = UUID().uuidString
@@ -71,7 +61,7 @@ final class Preparation: SyncableObject {
 
 // MARK: - BuildRelations
 
-extension Preparation: BuildRelations {
+extension Preparation: BuildRelations { 
 
     func buildInverseRelations(realm: Realm) {
         let predicate = NSPredicate(format: "preparation == %@", self)

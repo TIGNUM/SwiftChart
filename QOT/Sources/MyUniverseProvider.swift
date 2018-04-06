@@ -71,6 +71,7 @@ final class MyUniverseProvider {
                 categoryID: choice.contentCategoryID ?? 0,
                 categoryName: "",
                 title: choice.contentCollection?.title,
+                covered: nil,
                 startDate: choice.startDate,
                 endDate: choice.endDate,
                 selected: true

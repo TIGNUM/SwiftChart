@@ -59,6 +59,7 @@ final class PrepareContentViewModel {
     var preparationID: String?
     var notes: String = ""
     var notesDictionary: [Int: String] = [:]
+    var relatedPrepareStrategies = [ContentCollection]()
     private let prepareItems: [PrepareItem]
     private let services: Services
 
@@ -94,6 +95,7 @@ final class PrepareContentViewModel {
          items: [PrepareItem],
          checkedIDs: [Int: Date?],
          preparationID: String,
+         contentCollectionTitle: String,
          notes: String,
          notesDictionary: [Int: String],
          services: Services) {
@@ -112,31 +114,35 @@ final class PrepareContentViewModel {
         makeItems(items)
 
         if displayMode == .checkbox {
+            relatedPrepareStrategies = relatedStrategies(for: contentCollectionTitle)
             setSubtitle()
         }
     }
+}
 
-    private func setSubtitle() {
-        subTitle = String(format: "%02d/%02d ",
-                          checkedCount,
-                          items.count - 1) + R.string.localized.prepareContentTasks()
-        items.remove(at: 0)
-        items.insert(.titleItem(title: title,
-                                subTitle: subTitle,
-                                contentText: contentText,
-                                placeholderURL: videoPlaceholder,
-                                videoURL: video), at: 0)
+// MARK: - Public
+
+extension PrepareContentViewModel {
+
+    var selectedIDs: [Int] {
+        return prepareItems.compactMap { $0.readMoreID }
     }
 
-    private func dateForID(_ id: Int) -> Date? {
-        guard let date: Date? = checkedIDs[id] else {
-            assertionFailure("date shouldnt be missing")
-            return nil
+    var itemCount: Int {
+        return items.count
+    }
+
+    var hasIntentionItems: Bool {
+        let results = (prepareItems.map { $0.title }).filter {
+            $0.contains("Set clear intentions (create event To Be Vision)")
         }
-        return date
+        return results.isEmpty == false
     }
 
-    // MARK: - Public
+    var hasRefelctionItems: Bool {
+        let results = (prepareItems.map { $0.title }).filter { $0.contains("Mentally visualize success") }
+        return results.isEmpty == false
+    }
 
     func notesHeadline(with contentItemID: Int) -> String? {
         return services.contentService.contentItem(id: contentItemID)?.valueText
@@ -159,22 +165,6 @@ final class PrepareContentViewModel {
             checkedIDs.updateValue(nil, forKey: id)
         }
         setSubtitle()
-    }
-
-    var itemCount: Int {
-        return items.count
-    }
-
-    var hasIntentionItems: Bool {
-        let results = (prepareItems.map { $0.title }).filter {
-            $0.contains("Set clear intentions (create event To Be Vision)")
-        }
-        return results.isEmpty == false
-    }
-
-    var hasRefelctionItems: Bool {
-        let results = (prepareItems.map { $0.title }).filter { $0.contains("Mentally visualize success") }
-        return results.isEmpty == false
     }
 
     func item(at index: Int) -> PrepareContentItemType {
@@ -200,11 +190,34 @@ final class PrepareContentViewModel {
         }
         return content.joined().isEmpty == false
     }
+
+    func relatedStrategies(for contentCollectionTitle: String) -> [ContentCollection] {
+        return services.contentService.relatedPrepareStrategies(contentCollectionTitle)
+    }
 }
 
 // MARK: - Private
 
 private extension PrepareContentViewModel {
+
+    func setSubtitle() {
+        subTitle = String(format: "%02d/%02d ",
+                          checkedCount,
+                          items.count - 1) + R.string.localized.prepareContentTasks()
+        items.remove(at: 0)
+        items.insert(.titleItem(title: title,
+                                subTitle: subTitle,
+                                contentText: contentText,
+                                placeholderURL: videoPlaceholder,
+                                videoURL: video), at: 0)
+    }
+
+    func dateForID(_ id: Int) -> Date? {
+        guard let date: Date? = checkedIDs[id] else {
+            return nil
+        }
+        return date
+    }
 
     func fillHeaderStatus() {
         for _ in 0...items.count {

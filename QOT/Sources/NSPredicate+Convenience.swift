@@ -38,6 +38,10 @@ extension NSPredicate {
         self.init(format: "section == %@", section)
     }
 
+    convenience init(section: String, title: String) {
+        self.init(format: "section == %@ AND title == %@", section, title)
+    }
+
     convenience init(remoteIDs: [Int]) {
         self.init(format: "remoteID IN %@", remoteIDs)
     }

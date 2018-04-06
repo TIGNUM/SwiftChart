@@ -9,6 +9,7 @@
 import UIKit
 import EventKit
 import EventKitUI
+import MBProgressHUD
 
 final class PrepareCoordinator: ParentCoordinator {
 
@@ -35,7 +36,10 @@ final class PrepareCoordinator: ParentCoordinator {
     private let rightBarButtonItem = UIBarButtonItem(withImage: R.image.add_remove())
     private var prepareContentNoteController: PrepareContentNotesViewController?
     private var context: Context?
+    private var contentTitle = ""
+    private var preparationID = ""
     private weak var prepareListViewController: PrepareContentViewController?
+    private var viewModel: PrepareContentViewModel?
     var children: [Coordinator] = []
 
     private lazy var editEventHandler: EditEventHandler = {
@@ -139,50 +143,53 @@ extension PrepareCoordinator {
 
     func showPrepareCheckList(preparationID: String) {
         guard let preparation = services.preparationService.preparation(localID: preparationID) else { return }
-        var title: String? = nil
-        var video: PrepareContentViewModel.Video? = nil
-        var description: String?
-        var items: [PrepareItem] = []
-
-        if let content = services.contentService.contentCollection(id: preparation.contentCollectionID) {
-            title = content.title
-            for item in content.contentItems {
-                let value = item.contentItemValue
-                switch value {
-                case .prepareStep(let title, let description, let relatedContentID):
-                    items.append(PrepareItem(id: item.forcedRemoteID,
-                                             title: title,
-                                             subTitle: description,
-                                             readMoreID: relatedContentID))
-                case .video(_, _, let placeholderURL, let videoURL, _):
-                    video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
-                case .text(let text, let style):
-                    if style == .paragraph {
-                        description = text
-                    }
-                default:
-                    break
-                }
-            }
-        }
-
-        let preparationChecks = services.preparationService.preparationChecks(preparationID: preparationID)
-        var checkedIDs: [Int: Date?] = [:]
-        for preparationCheck in preparationChecks {
-            checkedIDs[preparationCheck.contentItemID] = preparationCheck.covered
-        }
-
-        if let title = title {
-            let viewModel = PrepareContentViewModel(title: title,
-                                                    video: video,
-                                                    description: description ?? "",
-                                                    items: items,
-                                                    checkedIDs: checkedIDs,
-                                                    preparationID: preparationID,
-                                                    notes: preparation.notes,
-                                                    notesDictionary: preparation.notesDictionary,
-                                                    services: services)
-
+        self.preparationID = preparationID
+//        var title: String? = nil
+//        var video: PrepareContentViewModel.Video? = nil
+//        var description: String?
+//        var items: [PrepareItem] = []
+//
+//        if let content = services.contentService.contentCollection(id: preparation.contentCollectionID) {
+//            title = content.title
+//            for item in content.contentItems {
+//                let value = item.contentItemValue
+//                switch value {
+//                case .prepareStep(let title, let description, let relatedContentID):
+//                    items.append(PrepareItem(id: item.forcedRemoteID,
+//                                             title: title,
+//                                             subTitle: description,
+//                                             readMoreID: relatedContentID))
+//                case .video(_, _, let placeholderURL, let videoURL, _):
+//                    video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
+//                case .text(let text, let style):
+//                    if style == .paragraph {
+//                        description = text
+//                    }
+//                default:
+//                    break
+//                }
+//            }
+//        }
+//
+//        let preparationChecks = services.preparationService.preparationChecks(preparationID: preparationID)
+//        var checkedIDs: [Int: Date?] = [:]
+//        for preparationCheck in preparationChecks {
+//            checkedIDs[preparationCheck.contentItemID] = preparationCheck.covered
+//        }
+//
+//        if let title = title {
+//            contentTitle = title
+//            let viewModel = PrepareContentViewModel(title: title,
+//                                                    video: video,
+//                                                    description: description ?? "",
+//                                                    items: items,
+//                                                    checkedIDs: checkedIDs,
+//                                                    preparationID: preparationID,
+//                                                    contentCollectionTitle: preparation.subtitle,
+//                                                    notes: preparation.notes,
+//                                                    notesDictionary: preparation.notesDictionary,
+//                                                    services: services)
+        if let viewModel = prepareChecklistViewModel(preparation: preparation) {
             let prepareController = PrepareContentViewController(pageName: .prepareCheckList, viewModel: viewModel)
             prepareController.delegate = self
             prepareController.title = R.string.localized.topTabBarItemTitlePerparePreparation()
@@ -193,14 +200,16 @@ extension PrepareCoordinator {
             noteController.notesType = .notes
             noteController.delegate = viewModel
             noteController.title = R.string.localized.topTabBarItemTitlePerpareNotes()
+            let rightButton = viewModel.relatedPrepareStrategies.isEmpty == false ? rightBarButtonItem : nil
             topTabBarController = UINavigationController(withPages: [prepareController, noteController],
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()),
-                                                         rightButton: rightBarButtonItem,
+                                                         rightButton: nil,//rightButton,
                                                          navigationItemStyle: .light)
             tabBarController.present(topTabBarController, animated: true)
             prepareListViewController = prepareController
             prepareContentNoteController = noteController
+            self.viewModel = viewModel
         } else {
             tabBarController.showAlert(type: .noContent, handler: { [weak self] in
                 self?.chatDecisionManager.start()
@@ -260,6 +269,64 @@ extension PrepareCoordinator {
                 break
             }
         })
+    }
+}
+
+// MARK: - Private
+
+private extension PrepareCoordinator {
+
+    func prepareChecklistViewModel(preparation: Preparation) -> PrepareContentViewModel? {
+        var title: String? = nil
+        var video: PrepareContentViewModel.Video? = nil
+        var description: String?
+        var items: [PrepareItem] = []
+
+        if let content = services.contentService.contentCollection(id: preparation.contentCollectionID) {
+            title = content.title
+            for item in content.contentItems {
+                let value = item.contentItemValue
+                switch value {
+                case .prepareStep(let title, let description, let relatedContentID):
+                    items.append(PrepareItem(id: item.forcedRemoteID,
+                                             title: title,
+                                             subTitle: description,
+                                             readMoreID: relatedContentID))
+                case .video(_, _, let placeholderURL, let videoURL, _):
+                    video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
+                case .text(let text, let style):
+                    if style == .paragraph {
+                        description = text
+                    }
+                default:
+                    items.append(PrepareItem(id: item.forcedRemoteID,
+                                             title: item.contentCollection?.title ?? "",
+                                             subTitle: item.contentCollection?.description ?? "",
+                                             readMoreID: item.relatedContent.first?.contentID))
+                }
+            }
+        }
+
+        let preparationChecks = services.preparationService.preparationChecks(preparationID: preparationID)
+        var checkedIDs: [Int: Date?] = [:]
+        for preparationCheck in preparationChecks {
+            checkedIDs[preparationCheck.contentItemID] = preparationCheck.covered
+        }
+
+        if let title = title {
+            contentTitle = title
+            return PrepareContentViewModel(title: title,
+                                           video: video,
+                                           description: description ?? "",
+                                           items: items,
+                                           checkedIDs: checkedIDs,
+                                           preparationID: preparationID,
+                                           contentCollectionTitle: preparation.subtitle,
+                                           notes: preparation.notes,
+                                           notesDictionary: preparation.notesDictionary,
+                                           services: services)
+        }
+        return nil
     }
 }
 
@@ -457,10 +524,28 @@ extension PrepareCoordinator: NavigationItemDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-        prepareListViewController?.showAlert(type: .prepareEditStrategy, handler: {
-            print("Add Strategies")
-        }, handlerDestructive: {
-            print("Remove Strategies")
+        guard
+            let prepareContentController = prepareListViewController,
+            let preparation = services.preparationService.preparation(localID: preparationID) else { return }
+        let relatedStrategies = self.services.contentService.relatedPrepareStrategies(self.contentTitle)
+        LaunchHandler().selectStrategies(relatedStrategies: relatedStrategies,
+                                         selectedIDs: self.viewModel?.selectedIDs ?? [],
+                                         prepareContentController: prepareContentController,
+                                         completion: { (selectedContent, syncManager) in
+                                            print("selectedContent: ", selectedContent.count)
+                                            do {
+                                                try self.services.preparationService.updatePreparationChecks(preparationID: self.preparationID,
+                                                                                                             selectedStrategies: selectedContent)
+                                            } catch {
+                                                log("Error while updating preparationChecks: \(error)", level: .error)
+                                            }
+                                            let hud = MBProgressHUD.showAdded(to: prepareContentController.view, animated: true)
+                                            syncManager.syncAll(shouldDownload: true) { _ in
+                                                if let viewModel = self.prepareChecklistViewModel(preparation: preparation) {
+                                                    prepareContentController.updateViewModel(viewModel: viewModel)
+                                                }
+                                                hud.hide(animated: true)
+                                            }
         })
     }
 }

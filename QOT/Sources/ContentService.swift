@@ -136,6 +136,16 @@ final class ContentService {
         return Array(AnyRealmCollection<ContentCollection>(results))
     }
 
+    func relatedPrepareStrategies(_ contentTitle: String) -> [ContentCollection] {
+        let contentPredicate = NSPredicate(section: Database.Section.prepare.rawValue, title: contentTitle)
+        guard let content = Array(mainRealm.objects(ContentCollection.self).filter(contentPredicate)).first else {
+            return []
+        }
+        let predicate = NSPredicate(remoteIDs: content.relatedContentIDs)
+        let results = mainRealm.objects(ContentCollection.self).filter(predicate)
+        return Array(AnyRealmCollection<ContentCollection>(results))
+    }
+
     func setContentCollectionViewed(localID: String) {
         DispatchQueue.global().async {
             do {

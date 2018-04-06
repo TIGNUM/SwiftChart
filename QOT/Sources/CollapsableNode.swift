@@ -7,12 +7,13 @@
 //
 
 struct CollapsableNode {
+
     let title: String?
     var children: [WeeklyChoice]
     var isOpen: Bool
 
     var numberOfRows: Int {
-        if isOpen {
+        if isOpen == true {
             return children.count
         }
         return 0
