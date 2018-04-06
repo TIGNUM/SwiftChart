@@ -26,7 +26,7 @@ extension UIViewController {
     }
 
     func presentNoInternetConnectionAlert(in playerViewController: AVPlayerViewController) {
-        showAlert(type: .noNetworkConnection, handler: {
+        showAlert(type: .noNetworkConnectionFile, handler: {
             playerViewController.dismiss(animated: true, completion: nil)
         })
     }
@@ -59,5 +59,17 @@ class AVPlayerObserver: NSObject {
 
     func onStatusUpdate(_ closure: @escaping (AVPlayerItem) -> Void) {
         updateHandler = closure
+    }
+}
+
+extension NSError {
+
+    var isNoNetworkError: Bool {
+        switch (code, domain) {
+        case (NSURLErrorNotConnectedToInternet, NSURLErrorDomain):
+            return true
+        default:
+            return false
+        }
     }
 }

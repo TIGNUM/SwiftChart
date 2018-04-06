@@ -13,6 +13,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     var interactor: SearchInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
+    private var avPlayerObserver: AVPlayerObserver?
     private var searchBar = UISearchBar()
     private var searchResults = [Search.Result]()
     private var searchFilter = Search.Filter.all
@@ -169,7 +170,19 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case .audio,
              .video:
             if let url = selectedSearchResult.mediaURL {
-                stream(videoURL: url)
+                let playerViewController = stream(videoURL: url)
+                if let playerItem = playerViewController.player?.currentItem {
+                    avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+                    avPlayerObserver?.onStatusUpdate { (player) in
+                        if let error = playerItem.error {
+                            if (error as NSError).isNoNetworkError {
+                                playerViewController.showAlert(type: .message(error.localizedDescription))
+                            } else {
+                                playerViewController.showAlert(type: .unknown)
+                            }
+                        }
+                    }
+                }
             }
         }
     }
