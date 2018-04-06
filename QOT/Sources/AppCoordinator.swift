@@ -563,7 +563,7 @@ extension AppCoordinator {
             var indexPath: IndexPath {
                 switch self {
                 case .problem: return IndexPath(item: 0, section: 1)
-                case .event: return IndexPath(item: 1, section: 1)
+                case .event: return IndexPath(item: 0, section: 1)
                 case .none: return IndexPath(item: 0, section: 0)
                 }
             }
