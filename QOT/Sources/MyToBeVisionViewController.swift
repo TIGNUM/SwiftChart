@@ -35,6 +35,7 @@ class MyToBeVisionViewController: UIViewController {
     private var imageRecognizer: UITapGestureRecognizer!
     private var toBeVision: MyToBeVisionModel.Model?
     private var imageTapRecognizer = UITapGestureRecognizer()
+    private var avPlayerObserver: AVPlayerObserver?
     private var imageIsHidden = false
     var interactor: MyToBeVisionInteractor?
     var router: MyToBeVisionRouter?
@@ -283,13 +284,19 @@ extension MyToBeVisionViewController {
         let stringURL = "https://s3.eu-central-1.amazonaws.com/tignum-content/videos/On-boarding/TO_BE_VISION.mp4"
         guard let videoURL = URL(string: stringURL) else { return }
 
-        let playerItem = AVPlayerItem(url: videoURL)
-        let player = AVPlayer(playerItem: playerItem)
-        let playerVC = AVPlayerViewController()
-        player.volume = 1.0
-        player.play()
-        playerVC.player = player
-        present(playerVC, animated: true, completion: nil)
+        let playerViewController = stream(videoURL: videoURL)
+        if let playerItem = playerViewController.player?.currentItem {
+            avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+            avPlayerObserver?.onStatusUpdate { (player) in
+                if let error = playerItem.error {
+                    if (error as NSError).isNoNetworkError {
+                        playerViewController.showAlert(type: .message(error.localizedDescription))
+                    } else {
+                        playerViewController.showAlert(type: .unknown)
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -247,7 +247,7 @@
 "Alert.Message.Reset.Password" = "We have sent you an email with instructions on how to reset your password.";
 "Alert.Title.Could.Not.Send.Email" = "Could not send email";
 "Alert.Message.Could.Not.Send.Email.ToBeVision" = "Please define your 'To Be Vision' first";
-"Alert.Message.Could.Not.Send.Email.WeeklyChoices" = "Please select your 'Weekly Choices' first";
+"Alert.Message.Could.Not.Send.Email.WeeklyChoices" = "No Weekly Choices selected.";
 "Alert.Message.Could.Not.Send.Email" = "Your device could not send email";
 "Alert.Title.Partner.Invite" = "Send Notification?";
 "Alert.Message.Partner.Invite" = "Would you like to tell your partner more about QOT and how they can help you?";
