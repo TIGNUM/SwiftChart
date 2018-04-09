@@ -43,7 +43,6 @@ extension DailyPrepResultObject: OneWaySyncableDown {
 
     func setData(_ data: DailyPrepResultIntermediary, objectStore: ObjectStore) throws {
         isoDate = data.isoDate
-        title = data.title
         feedback = data.feedback
 
         let newAnswers = data.answers.map {
