@@ -250,6 +250,7 @@ extension LearnContentListViewController: UICollectionViewDelegate {
         guard var originFrame = collectionView.cellForItem(at: indexPath)?.frame else { return }
         originFrame = collectionView.convert(originFrame, to: view)
         delegate?.didSelectContent(content, category: category, originFrame: originFrame, in: self)
+        generateFeedback()
     }
 }
 

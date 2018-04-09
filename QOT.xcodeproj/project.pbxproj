@@ -209,6 +209,7 @@
 		912C9E3F203C721300C1AA76 /* MyToBeVisionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */; };
 		912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */; };
 		912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */; };
+		915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */; };
 		91C262B91FED0B2D0075664E /* InterviewDialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B61FED0B2C0075664E /* InterviewDialView.swift */; };
 		91C262BA1FED0B2D0075664E /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */; };
 		91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */; };
@@ -814,6 +815,7 @@
 		912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionProtocols.swift; sourceTree = "<group>"; };
 		912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRouter.swift; sourceTree = "<group>"; };
 		912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionWorker.swift; sourceTree = "<group>"; };
+		915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewcontroller+UIImpactFeedbackGenerator.swift"; sourceTree = "<group>"; };
 		91C262B61FED0B2C0075664E /* InterviewDialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDialView.swift; sourceTree = "<group>"; };
 		91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
 		91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorningInterviewViewController.xib; sourceTree = "<group>"; };
@@ -2242,6 +2244,7 @@
 				CBB98AFF201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift */,
 				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
+				915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3569,6 +3572,7 @@
 				CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */,
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
 				91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */,
+				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
 				CC02E1461F27996800134574 /* SettingsCalendarListCoordinator.swift in Sources */,
 				CC90EC9B1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift in Sources */,
 				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,

@@ -133,8 +133,8 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCate
         guard let attributes = collectionView.layoutAttributesForItem(at: indexPath) else { return }
 
         let cellFrame = collectionView.convert(attributes.frame, to: view)
-
         delegate?.didSelectCategory(at: indexPath.row, withFrame: cellFrame, in: self)
+        generateFeedback()
     }
 
     func bubbleLayoutInfo(layout: LearnCategoryLayout, index: Index) -> BubbleLayoutInfo {
