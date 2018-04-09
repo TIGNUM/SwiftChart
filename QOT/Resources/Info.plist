@@ -34,7 +34,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>2</string>
 	<key>Fabric</key>
 	<dict>
 		<key>APIKey</key>
@@ -119,9 +119,7 @@
 		<string>BentonSans_Book.otf</string>
 	</array>
 	<key>UIApplicationShortcutItems</key>
-	<array>
-		
-	</array>
+	<array/>
 	<key>UIBackgroundModes</key>
 	<array>
 		<string>audio</string>
