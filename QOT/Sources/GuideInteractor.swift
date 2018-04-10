@@ -32,7 +32,8 @@ final class GuideInteractor: GuideInteractorInterface {
     func reload() {
         worker.makeGuide { [weak self] (guide) in
             if let guide = guide {
-                self?.presenter.present(model: guide)
+                let image = worker.services.userService.myToBeVision()?.profileImageResource?.remoteURL
+                self?.presenter.present(model: guide, headerImage: image)
             } else {
                 self?.presenter.presentLoading()
             }

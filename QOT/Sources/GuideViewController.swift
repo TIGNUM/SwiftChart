@@ -17,6 +17,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     // MARK: - Properties
 
     private let sectionHeaderHeight: CGFloat = 24
+    private let fadeContainerView = FadeContainerView()
     private let disposeBag = DisposeBag()
     private var days: [Guide.Day] = []
     private let loadingView = BlurLoadingView(lodingText: R.string.localized.guideLoading(),
@@ -24,6 +25,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     private var greetingView = GuideGreetingView.instantiateFromNib()
     var interactor: GuideInteractorInterface?
     var router: GuideRouterInterface?
+    var isImageVisible: Bool = false
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .plain,
@@ -67,7 +69,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        sizeHeaderViewToFit()
+        syncHeaderView()
     }
 }
 
@@ -77,9 +79,10 @@ extension GuideViewController: GuideViewControllerInterface {
         loadingView.animateHidden(!loading)
     }
 
-    func updateHeader(greeting: String, message: String) {
-        greetingView.configure(message: message, greeting: greeting)
-        sizeHeaderViewToFit()
+    func updateHeader(greeting: String, message: String, image: URL?) {
+        isImageVisible = (image != nil)
+        greetingView.configure(message: message, greeting: greeting, userImage: image)
+        syncHeaderView()
     }
 
     func updateDays(days: [Guide.Day]) {
@@ -101,27 +104,14 @@ extension GuideViewController: GuideViewControllerInterface {
 
 private extension GuideViewController {
 
-    func sizeHeaderViewToFit() {
-        let header = greetingView
-        header.bounds = CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: 1000)
-        header.setNeedsLayout()
-        header.layoutIfNeeded()
-
-        let height = header.systemLayoutSizeFitting(UILayoutFittingCompressedSize).height
-        var frame = header.frame
-        frame.size.height = height
-        header.frame = frame
-
-        tableView.tableHeaderView = header
-    }
-
     func setupView() {
         tableView.tableHeaderView = greetingView
 
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
-        view.addSubview(backgroundImageView)
-        view.addSubview(tableView)
-        view.addSubview(loadingView)
+        view.addSubview(fadeContainerView)
+        fadeContainerView.addSubview(backgroundImageView)
+        fadeContainerView.addSubview(tableView)
+        fadeContainerView.addSubview(loadingView)
 
         if #available(iOS 11.0, *) {
 
@@ -130,12 +120,27 @@ private extension GuideViewController {
             tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 80, right: 0)
         }
 
-        tableView.edgeAnchors == view.edgeAnchors
-        backgroundImageView.edgeAnchors == view.edgeAnchors
-        loadingView.edgeAnchors == view.edgeAnchors
-        view.addFadeView(at: .top)
-        view.addFadeView(at: .bottom, height: 120)
+        fadeContainerView.verticalAnchors == view.verticalAnchors
+        fadeContainerView.horizontalAnchors == view.horizontalAnchors
+        tableView.edgeAnchors == fadeContainerView.edgeAnchors
+        backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
+        loadingView.edgeAnchors == fadeContainerView.edgeAnchors
+
+        fadeContainerView.setFade(top: 100, bottom: 60)
         view.layoutIfNeeded()
+    }
+
+    func syncHeaderView() {
+        let header = greetingView
+        let height = isImageVisible ? 230 : 130
+        header.bounds = CGRect(x: 0, y: 0, width: Int(tableView.contentSize.width), height: height)
+        header.setNeedsLayout()
+        header.layoutIfNeeded()
+
+        var frame = header.frame
+        frame.size.height = header.bounds.height
+        header.frame = frame
+        tableView.tableHeaderView = header
     }
 }
 

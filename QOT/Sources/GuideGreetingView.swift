@@ -18,6 +18,8 @@ final class GuideGreetingView: UIView {
         return view
     }
 
+    @IBOutlet private weak var fadeView: UIView!
+    @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var greetingLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
 
@@ -27,7 +29,7 @@ final class GuideGreetingView: UIView {
         backgroundColor = .clear
     }
 
-    func configure(message: String, greeting: String) {
+    func configure(message: String, greeting: String, userImage: URL?) {
         greetingLabel.attributedText = attributedText(letterSpacing: -0.8,
                                                      text: greeting.uppercased(),
                                                      font: Font.H4Headline,
@@ -38,6 +40,12 @@ final class GuideGreetingView: UIView {
                                                       font: Font.H4Headline,
                                                       textColor: .white,
                                                       alignment: .left)
+        if let imageURL = userImage {
+            fadeView.alpha = 0.8
+            userImageView.kf.setImage(with: imageURL)
+            return
+        }
+        fadeView.alpha = 0
     }
 
     override func layoutSubviews() {
