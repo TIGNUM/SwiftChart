@@ -55,12 +55,21 @@ private extension ShareInteractor {
     func handleResult(_ result: ShareWorker.Result) {
         switch result {
         case .success(let content):
-            self.router.showMailComposer(email: content.email, subject: content.subject, messageBody: content.body)
-        case .failure:
-            if worker.sharingType == .toBeVision {
-                self.router.showAlert(.canNotSendEmailToBeVision)
+            router.showMailComposer(email: content.email, subject: content.subject, messageBody: content.body)
+        case .failure(let error):
+            if error is SyncError || error is NetworkError {
+                router.showAlert(.noNetworkConnection)
             } else {
-                self.router.showAlert(.canNotSendEmailWeeklyChoices)
+                switch worker.sharingType {
+                case .toBeVision?:
+                    router.showAlert(.canNotSendEmailToBeVision)
+                case .weeklyChoices?:
+                    router.showAlert(.canNotSendEmailWeeklyChoices)
+                case .invite?:
+                    router.showAlert(.partnerInvite)
+                default:
+                    router.showAlert(.unknown)
+                }
             }
         }
     }

@@ -25,13 +25,13 @@ struct DailyPrepResultIntermediary: DownSyncIntermediary {
     }
 
     let isoDate: String
-    let title: String
+    let title: String?
     let feedback: String?
     let answers: [Answer]
 
     init(json: JSON) throws {
         isoDate = try json.getItemValue(at: .yearMonthDay)
-        title = try json.getItemValue(at: .title)
+        title = try json.getItemValue(at: .title, alongPath: .nullBecomesNil)
         feedback = try json.getItemValue(at: .body)
         answers = try json.getArray(at: .userAnswers)
     }
