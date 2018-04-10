@@ -13,8 +13,6 @@ protocol PrepareEventsViewControllerDelegate: class {
 
     func didTapClose(viewController: PrepareEventsViewController)
 
-    func didTapAddToPrepList(viewController: PrepareEventsViewController)
-
     func didTapEvent(event: EKEvent, viewController: PrepareEventsViewController)
 
     func didTapSavePrepToDevice(viewController: PrepareEventsViewController)
@@ -27,8 +25,6 @@ final class PrepareEventsViewController: UIViewController {
     // MARK: - Properties
 
     @IBOutlet weak var viewTitleLabel: UILabel!
-    @IBOutlet weak var myPrepListTitleLabel: UILabel!
-    @IBOutlet weak var addToPreparationButton: UIButton!
     @IBOutlet weak var upcomingEventsTitleLabel: UILabel!
     @IBOutlet weak var eventsTableView: UITableView!
     @IBOutlet weak var yourDeviceTitleLabel: UILabel!
@@ -66,10 +62,6 @@ final class PrepareEventsViewController: UIViewController {
         delegate?.didTapClose(viewController: self)
     }
 
-    @IBAction func didTapAddToPreparationList(_ sender: Any) {
-        delegate?.didTapAddToPrepList(viewController: self)
-    }
-
     @IBAction func didTapSavePreparation(_ sender: Any) {
         delegate?.didTapSavePrepToDevice(viewController: self)
     }
@@ -77,11 +69,8 @@ final class PrepareEventsViewController: UIViewController {
     // MARK: - Private
 
     private func setupUI() {
-        myPrepListTitleLabel.addCharactersSpacing(spacing: 2, text: R.string.localized.preparePrepareEventsMyPrepList(), uppercased: true)
         upcomingEventsTitleLabel.addCharactersSpacing(spacing: 2, text: R.string.localized.preparePrepareEventsUpcomingEvents(), uppercased: true)
         yourDeviceTitleLabel.addCharactersSpacing(spacing: 2, text: R.string.localized.preparePrepareEventsYourDevice(), uppercased: true)
-        addToPreparationButton.setTitle(viewModel.preparationTitle.uppercased(), for: .normal)
-        addToPreparationButton.titleLabel?.addCharactersSpacing(spacing: 0.6, text: viewModel.preparationTitle, uppercased: true)
         viewTitleLabel.addCharactersSpacing(spacing: 1, text: R.string.localized.preparePrepareEventsAddPreparation(), uppercased: true)
     }
 }

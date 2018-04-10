@@ -435,31 +435,6 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
         viewController.dismiss(animated: true)
     }
 
-    func didTapAddToPrepList(viewController: PrepareEventsViewController) {
-        let name = viewController.viewModel.preparationTitle
-        let message = R.string.localized.alertMessageEditPreparationName()
-
-        let alertController = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alertController.addTextField { (textField) in
-            textField.text = name
-        }
-
-        let saveTitle = R.string.localized.alertButtonTitleSave()
-        let saveAction = UIAlertAction(title: saveTitle, style: .default) { [weak self] (_) in
-            let name = alertController.textFields?.first?.text ?? ""
-            self?.createPreparation(name: name, event: nil)
-            self?.topTabBarController.dismiss(animated: true)
-            self?.chatDecisionManager.preparationSaved()
-        }
-        let cancelTitle = R.string.localized.alertButtonTitleCancel()
-        let cancelAction = UIAlertAction(title: cancelTitle, style: .cancel)
-
-        alertController.addAction(saveAction)
-        alertController.addAction(cancelAction)
-
-        viewController.present(alertController, animated: true)
-    }
-
     func didTapEvent(event: EKEvent, viewController: PrepareEventsViewController) {
         createPreparation(name: event.title, event: event)
         tabBarController.dismiss(animated: true)
