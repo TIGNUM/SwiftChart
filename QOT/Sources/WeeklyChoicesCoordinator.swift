@@ -20,6 +20,7 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
     private let launchHandler = LaunchHandler()
     private let rightButton: UIBarButtonItem = UIBarButtonItem(withImage: R.image.prepareContentPlusIcon())
     private let provider: WeeklyChoicesProvider
+    private let learnCategoryListViewModel: LearnCategoryListViewModel?
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
 
@@ -33,6 +34,7 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
         self.services = services
         self.transitioningDelegate = transitioningDelegate
         self.provider = WeeklyChoicesProvider(services: services, itemsPerPage: Layout.MeSection.maxWeeklyPage)
+        self.learnCategoryListViewModel = LearnCategoryListViewModel(services: services)
 
         let viewData = provider.provideViewData()
         weeklyChoicesViewController = WeeklyChoicesViewController(viewData: viewData)
@@ -41,10 +43,11 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
         super.init()
 
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        let rightButton = learnCategoryListViewModel?.areAllCompleted == true ? self.rightButton : nil
         topTabBarController = UINavigationController(withPages: [weeklyChoicesViewController],
                                                      topBarDelegate: topBarDelegate ?? self,
                                                      leftButton: leftButton,
-                                                     rightButton: rightButton)//(viewData.items.count == 0) ? rightButton : nil)
+                                                     rightButton: rightButton)
         topTabBarController.modalPresentationStyle = .custom
         if transitioningDelegate != nil {
             topTabBarController.transitioningDelegate = transitioningDelegate
@@ -72,7 +75,8 @@ extension WeeklyChoicesCoordinator: WeeklyChoicesViewControllerDelegate {
 
     func weeklyChoicesViewController(_ viewController: WeeklyChoicesViewController,
                                      didUpdateListWithViewData viewData: WeeklyChoicesViewData) {
-        topTabBarController.navigationBar.topItem?.rightBarButtonItem = rightButton//(viewData.items.count == 0) ? rightButton : nil
+        let button = learnCategoryListViewModel?.areAllCompleted == true ? rightButton : nil
+        topTabBarController.navigationBar.topItem?.rightBarButtonItem = button
     }
 }
 

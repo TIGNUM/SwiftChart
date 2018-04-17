@@ -46,6 +46,13 @@ final class LearnCategoryListViewModel {
         return categories.count
     }
 
+    var areAllCompleted: Bool {
+        for category in categories {
+            if Item(category: category).percentageLearned < 1.0 { return false }
+        }
+        return true
+    }
+
     func item(at index: Index) -> Item {
         return Item(category: categories[index])
     }
