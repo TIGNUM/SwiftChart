@@ -19,8 +19,6 @@ protocol PartnerCellDelegate: class {
     func didTapEditPhoto(in cell: PartnerCell)
 
     func didTapShareButton(at partner: Partners.Partner?)
-
-    func didTapSendInviteButton(at partner: Partners.Partner?)
 }
 
 final class PartnerCell: UICollectionViewCell, Dequeueable {
@@ -37,7 +35,6 @@ final class PartnerCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var relationshipTextField: UITextField!
     @IBOutlet private weak var emailTextField: UITextField!
     @IBOutlet private weak var shareButton: UIButton!
-    @IBOutlet private weak var inviteButton: UIButton!
     @IBOutlet private var editIconImageViews: [UIImageView]!
     private var partner: Partners.Partner?
     private var isEditing = false
@@ -56,7 +53,6 @@ final class PartnerCell: UICollectionViewCell, Dequeueable {
         relationshipTextField.text = partner.relationship
         emailTextField.text = partner.email
         shareButton.isVisible = false
-        inviteButton.isVisible = false
 
         syncViews()
 
@@ -87,7 +83,6 @@ final class PartnerCell: UICollectionViewCell, Dequeueable {
 
     func updateActionButtons(_ isVisible: Bool) {
         shareButton.isVisible = isVisible
-        inviteButton.isVisible = isVisible
     }
 
     @IBAction func didTapEditProfileImage(_ sender: UIButton) {
@@ -112,10 +107,6 @@ final class PartnerCell: UICollectionViewCell, Dequeueable {
 
     @IBAction func didTapShareButton(_ sender: UIButton) {
         delegate?.didTapShareButton(at: partner)
-    }
-
-    @IBAction func didTapSendInviteButton(_ sender: UIButton) {
-        delegate?.didTapSendInviteButton(at: partner)
     }
 }
 

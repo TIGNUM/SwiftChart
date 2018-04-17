@@ -62,10 +62,6 @@ final class PartnersWorker {
     func saveImage(_ image: UIImage) throws -> URL {
         return try image.save(withName: UUID().uuidString)
     }
-
-    func invitePartner(partner: Partners.Partner, completion: @escaping ((_ emailContent: Result) -> Void)) {
-        emailContent(sharingType: .invite, partner: partner, completion: completion)
-    }
 }
 
 // MARK: - Private

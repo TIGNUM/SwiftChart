@@ -13,7 +13,6 @@ struct Partners {
     enum SharingType: String {
         case toBeVision = "TOBEVISION"
         case weeklyChoices = "WEEKLYCHOICES"
-        case invite = "INVITE_PARTNER"
     }
 
     class Partner: Equatable {

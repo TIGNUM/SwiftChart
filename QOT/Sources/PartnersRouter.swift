@@ -48,12 +48,6 @@ final class PartnersRouter: NSObject, PartnersRouterInterface {
         viewController.dismiss(animated: true, completion: nil)
     }
 
-    func showPartnerInviteNotification(partner: Partners.Partner, completion: @escaping (() -> Void)) {
-        viewController.showAlert(type: .partnerInvite, handler: {
-            completion()
-        })
-    }
-
     func showMailComposer(email: String, subject: String, messageBody: String) {
         guard MFMailComposeViewController.canSendMail() == true else {
             showAlert(.message("Email is not setup on your device"))

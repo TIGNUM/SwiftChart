@@ -65,8 +65,6 @@ private extension ShareInteractor {
                     router.showAlert(.canNotSendEmailToBeVision)
                 case .weeklyChoices?:
                     router.showAlert(.canNotSendEmailWeeklyChoices)
-                case .invite?:
-                    router.showAlert(.partnerInvite)
                 default:
                     router.showAlert(.unknown)
                 }

@@ -40,14 +40,6 @@ final class PartnersInteractor: PartnersInteractorInterface {
         router.showShare(partner: partner)
     }
 
-    func didTapSendInvite(partner: Partners.Partner) {
-        router.showPartnerInviteNotification(partner: partner) {
-            self.worker.invitePartner(partner: partner) { (result) in
-                self.handleResult(result)
-            }
-        }
-    }
-
     func didTapClose(partners: [Partners.Partner]) {
         let incompletePartners = partners.filter({ $0.isValid == false && $0.isEmpty == false })
         if incompletePartners.isEmpty {

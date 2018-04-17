@@ -286,11 +286,6 @@ extension PartnersViewController: UICollectionViewDelegateFlowLayout {
 
 extension PartnersViewController: PartnerCellDelegate {
 
-    func didTapSendInviteButton(at partner: Partners.Partner?) {
-        guard let partner = selectedPartner else { return }
-        interactor?.didTapSendInvite(partner: partner)
-    }
-
     func didTapShareButton(at partner: Partners.Partner?) {
         guard let partner = selectedPartner else { return }
         interactor?.didTapShare(partner: partner, in: partners)

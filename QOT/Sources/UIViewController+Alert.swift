@@ -37,7 +37,6 @@ enum AlertType {
     case canNotSendMail
     case canNotSendEmailToBeVision
     case canNotSendEmailWeeklyChoices
-    case partnerInvite
     case prepareEditStrategy
 
     var title: String? {
@@ -63,7 +62,6 @@ enum AlertType {
         case .canNotSendMail,
              .canNotSendEmailToBeVision,
              .canNotSendEmailWeeklyChoices: return R.string.localized.alertTitleCouldNotSendEmail()
-        case .partnerInvite: return R.string.localized.alertTitlePartnerInvite()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationEditStrategy()
         default: return nil
         }
@@ -91,7 +89,6 @@ enum AlertType {
         case .canNotSendMail: return R.string.localized.alertMessageCouldNotSendEmail()
         case .canNotSendEmailToBeVision: return R.string.localized.alertMessageCouldNotSendEmailToBeVision()
         case .canNotSendEmailWeeklyChoices: return R.string.localized.alertMessageCouldNotSendEmailWeeklyChoices()
-        case .partnerInvite: return R.string.localized.alertMessagePartnerInvite()
         case .prepareEditStrategy: return R.string.localized.alertMessagePreparationEditStrategy()
         default: return nil
         }
@@ -103,7 +100,6 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars,
              .imagePicker,
-             .partnerInvite,
              .prepareEditStrategy: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
@@ -115,7 +111,6 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars: return R.string.localized.alertButtonTitleOpenSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
-        case .partnerInvite: return R.string.localized.addSensorViewAlertSend()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
         default: return R.string.localized.alertButtonTitleOk()
         }
@@ -135,7 +130,6 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars: return [.cancel, .default]
         case .imagePicker: return [.cancel]
-        case .partnerInvite: return [.default, .cancel]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
         default: return [.default]
         }
@@ -144,7 +138,6 @@ enum AlertType {
     var alertStyle: UIAlertControllerStyle {
         switch self {
         case .imagePicker,
-             .partnerInvite,
              .prepareEditStrategy: return .actionSheet
         default: return .alert
         }
