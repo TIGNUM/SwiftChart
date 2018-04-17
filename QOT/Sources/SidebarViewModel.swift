@@ -15,47 +15,27 @@ final class SidebarViewModel {
     enum SidebbarItem: Int {
         case search = 0
         case tools
-        case settings
         case sensor
+        case profile
         case placeholder
-        case benefits
-        case introSliders
+        case support
         case about
-        case faq
-        case privacy
+        case logout
 
         static var allValues: [SidebbarItem] {
-            return [.search,
-                    .tools,
-                    .settings,
-                    .sensor,
-                    .placeholder,
-                    .benefits,
-                    .introSliders,
-                    .about,
-                    .privacy,
-                    .faq]
+            return [.search, .tools, .sensor, .profile, .placeholder, .support, .about, .logout]
         }
 
         var title: String? {
             switch self {
             case .search: return R.string.localized.sidebarTitleSearch()
             case .tools: return R.string.localized.sidebarTitleTools()
-            case .benefits: return R.string.localized.sidebarTitleBenefits()
-            case .settings: return R.string.localized.sidebarTitleSettings()
+            case .profile: return R.string.localized.sidebarTitleProfile()
             case .sensor: return R.string.localized.sidebarTitleSensor()
             case .placeholder: return nil
+            case .support: return R.string.localized.sidebarTitleSupport()
             case .about: return R.string.localized.sidebarTitleAbout()
-            case .introSliders: return R.string.localized.sidebarTitleIntroSliders()
-            case .privacy: return R.string.localized.settingsSecurityPrivacyPolicyTitle()
-            case .faq: return R.string.localized.sidebarTitleFAQ()
-            }
-        }
-
-        var backgroundImage: UIImage? {
-            switch self {
-            case .benefits, .privacy: return R.image.sidebar()
-            default: return nil
+            case .logout: return R.string.localized.sidebarTitleLogout()
             }
         }
 
@@ -63,14 +43,12 @@ final class SidebarViewModel {
             switch self {
             case .search,
                  .tools,
-                 .settings,
+                 .profile,
                  .sensor: return screenType == .small ? Font.H3Subtitle : Font.H2SecondaryTitle
             case .placeholder: return nil
-            case .about,
-                 .privacy,
-                 .benefits,
-                 .introSliders,
-                 .faq: return screenType == .small ? Font.H6NavigationTitle : Font.H5SecondaryHeadline
+            case .support,
+                 .about,
+                 .logout: return screenType == .small ? Font.H6NavigationTitle : Font.H5SecondaryHeadline
             }
         }
 
@@ -78,14 +56,12 @@ final class SidebarViewModel {
             switch self {
             case .search,
                  .tools,
-                 .settings,
+                 .profile,
                  .sensor: return .white
             case .placeholder: return nil
-            case .about,
-                 .privacy,
-                 .benefits,
-                 .introSliders,
-                 .faq: return .white40
+            case .support,
+                 .about,
+                 .logout: return .white40
             }
         }
 
@@ -93,14 +69,12 @@ final class SidebarViewModel {
             switch self {
             case .search,
                  .tools,
-                 .settings,
+                 .profile,
                  .sensor: return screenType == .small ? 60 : screenType == .medium ? 70 : 80
             case .placeholder: return 40
-            case .about,
-                 .privacy,
-                 .benefits,
-                 .introSliders,
-                 .faq: return screenType == .small ? 50 : screenType == .medium ? 60 : 70
+            case .support,
+                 .about,
+                 .logout: return screenType == .small ? 50 : screenType == .medium ? 60 : 70
             }
         }
 
@@ -108,14 +82,12 @@ final class SidebarViewModel {
             switch self {
             case .search: return 0
             case .tools: return 0
-            case .benefits: return 100101
-            case .settings: return 0
+            case .profile: return 0
             case .sensor: return 100935
             case .placeholder: return 0
+            case .support: return 0
             case .about: return 100092
-            case .privacy: return 100163
-            case .faq: return 100704
-            case .introSliders: return 0
+            case .logout: return 0
             }
         }
 
@@ -123,14 +95,12 @@ final class SidebarViewModel {
             switch self {
             case .search: return nil
             case .tools: return nil
-            case .benefits: return service.contentCollection(id: primaryKey)
-            case .settings: return nil
+            case .profile: return nil
             case .sensor: return service.contentCollection(id: primaryKey)
             case .placeholder: return nil
+            case .support: return nil
             case .about: return service.contentCollection(id: primaryKey)
-            case .privacy: return service.contentCollection(id: primaryKey)
-            case .faq: return service.contentCollection(id: primaryKey)
-            case .introSliders: return nil
+            case .logout: return nil
             }
         }
     }

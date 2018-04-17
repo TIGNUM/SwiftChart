@@ -20,8 +20,6 @@ protocol SettingsMenuViewControllerDelegate: class {
 
     func didTapSecurity(in viewController: SettingsMenuViewController)
 
-    func didTapLogout(in viewController: SettingsMenuViewController)
-
     func goToGeneralSettings(from viewController: SettingsMenuViewController,
                              destination: AppCoordinator.Router.Destination)
 
@@ -41,7 +39,6 @@ final class SettingsMenuViewController: UIViewController {
     @IBOutlet private weak var generalButton: UIButton!
     @IBOutlet private weak var notificationsButton: UIButton!
     @IBOutlet private weak var securityButton: UIButton!
-    @IBOutlet private weak var logoutButton: UIButton!
     @IBOutlet private weak var fadeContainerView: FadeContainerView!
     private let disposeBag = DisposeBag()
     private let viewModel: SettingsMenuViewModel
@@ -162,13 +159,6 @@ private extension SettingsMenuViewController {
                 font: Font.H4Headline
             ), for: .normal
         )
-        logoutButton.setAttributedTitle(
-            NSMutableAttributedString(
-                string: R.string.localized.sidebarSettingsMenuLogoutButton().uppercased(),
-                letterSpacing: -0.8,
-                font: Font.H4Headline
-            ), for: .normal
-        )
     }
 
     private func setupCollectionView() {
@@ -210,10 +200,6 @@ private extension SettingsMenuViewController {
 
     @IBAction func securityAction(_ sender: Any) {
         delegate?.didTapSecurity(in: self)
-    }
-
-    @IBAction func logoutAction(_ sender: Any) {
-        delegate?.didTapLogout(in: self)
     }
 }
 

@@ -27,7 +27,7 @@
 "Settings.General.Weight.Title" = "Weight";
 "Settings.General.Height.Title" = "Height";
 "Settings.General.Calendar.Title" = "Synchronized Calendars";
-"Settings.General.Tutorial.Title" = "Tutorial";
+"Settings.General.Tutorial.Title" = "TUTORIAL";
 "Settings.General.Interview.Title" = "Initial Interview";
 "Settings.General.Support.Title" = "Support";
 "Settings.General.Admin.Title" = "Settings";
@@ -40,17 +40,22 @@
 
 "Settings.Security.Password.Title" = "Change Password";
 "Settings.Security.Confirm.Title" = "Confirm";
-"Settings.Security.Terms.Title" = "Terms And Conditions";
-"Settings.Security.Copyrights.Title" = "Content And Copyrights";
-"Settings.Security.Privacy.Policy.Title" = "Privacy Policy";
+"Settings.Security.Terms.Title" = "TERMS\nAND\nCONDITIONS";
+"Settings.Security.Copyrights.Title" = "CONTENT\nAND\nCOPYRIGHTS";
+"Settings.Security.Privacy.Policy.Title" = "PRIVACY\nPOLICY";
 
 "Sidebar.Title.Search" = "Search";
 "Sidebar.Title.Tools" = "QOT TOOLS";
-"Sidebar.Title.Benefits" = "QOT Benefits";
-"Sidebar.Title.Settings" = "Settings";
+"Sidebar.Title.Benefits" = "QOT\nBENEFITS";
+"Sidebar.Title.Profile" = "Profile";
 "Sidebar.Title.Sensor" = "Add Sensor";
-"Sidebar.Title.About" = "About Tignum";
+"Sidebar.Title.Support" = "Support";
+"Sidebar.Title.About" = "ABOUT US";
+
+"Sidebar.Title.Logout" = "Logout";
 "Sidebar.Title.FAQ" = "FAQ";
+"Sidebar.Title.ContactSupport" = "CONTACT\nSUPPORT";
+"Sidebar.Title.FeatureRequest" = "FEATURE\nREQUEST";
 "Sidebar.Title.Intro.Sliders" = "TUTORIAL";
 "Sidebar.User.Titles.Member.Since" = "MEMBER SINCE";
 "Sidebar.User.Titles.Member.QOT.Usage" = "QOT USAGE";

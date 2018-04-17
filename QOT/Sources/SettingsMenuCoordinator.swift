@@ -70,11 +70,6 @@ extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
         startSettingsCoordinator(settingsType: .notifications, root: viewController, destination: nil)
     }
 
-    func didTapLogout(in viewController: SettingsMenuViewController) {
-        UIApplication.shared.shortcutItems?.removeAll()
-        NotificationHandler.postNotification(withName: .logoutNotification)
-    }
-
     // MARK: - Private
 
     private func startSettingsCoordinator(settingsType: SettingsType.SectionType,

@@ -755,7 +755,7 @@ extension AppCoordinator {
 
     func presentSideBarWithDestination(_ destination: AppCoordinator.Router.Destination?) {
         guard let sidebarCoordinator = presentSideBar(destination: destination) else { return }
-        sidebarCoordinator.didTapSettingsMenuCell(with: nil, in: sidebarCoordinator.sideBarViewController)
+        sidebarCoordinator.didTapProfileCell(with: nil, in: sidebarCoordinator.sideBarViewController)
         guard let settingsMenuCoordinator = sidebarCoordinator.settingsMenuCoordinator else { return }
         let settingsMenuViewController = settingsMenuCoordinator.settingsMenuViewController
         settingsMenuCoordinator.didTapNotifications(in: settingsMenuViewController)
@@ -942,6 +942,24 @@ extension AppCoordinator {
         currentPresentedController = coordinator.fullViewController
 
     }
+
+	func presentContentItemSettings(contentID: Int, settingsViewController: SettingsBubblesViewController?) {
+		guard
+			let settingsViewController = settingsViewController,
+			let services = services,
+			let content = services.contentService.contentCollection(id: contentID),
+			let coordinator = ArticleContentItemCoordinator(pageName: .featureExplainer,
+															root: settingsViewController,
+															services: services,
+															contentCollection: content,
+															articleHeader: nil,
+															topTabBarTitle: nil,
+															shouldPush: false,
+															isSearch: false) else { return }
+		startChild(child: coordinator)
+		topTabBarController = coordinator.topTabBarController
+		currentPresentedNavigationController = coordinator.topTabBarController
+	}
 
     func presentContentItem(contentID: Int, searchViewController: SearchViewController?) {
         guard

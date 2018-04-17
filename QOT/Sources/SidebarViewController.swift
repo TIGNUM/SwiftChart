@@ -16,19 +16,15 @@ protocol SidebarViewControllerDelegate: class {
 
     func didTapLibraryCell(in viewController: SidebarViewController)
 
-    func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
+    func didTapSupportCell(in viewController: SidebarViewController)
 
-    func didTapBenefitsCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
+    func didTapLogoutCell(in viewController: SidebarViewController)
+
+    func didTapProfileCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
 
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
 
-    func didTapPrivacyCell(with contentCollection: ContentCollection?, backgroundImage: UIImage?, in viewController: SidebarViewController)
-
-    func didTapAboutCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
-
-    func didTapFAQCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
-
-    func didTapIntroSlidersCell(in viewController: SidebarViewController)
+    func didTapAboutCell(in viewController: SidebarViewController)
 }
 
 final class SidebarViewController: UIViewController {
@@ -127,15 +123,13 @@ private extension SidebarViewController {
 
         switch sidebarItem {
         case .search: delegate?.didTapSearchCell(in: self)
-        case .about: delegate?.didTapAboutCell(with: viewModel.contentCollection(sidebarItem), in: self)
-        case .benefits: delegate?.didTapBenefitsCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .tools: delegate?.didTapLibraryCell(in: self)
-        case .privacy: delegate?.didTapPrivacyCell(with: viewModel.contentCollection(sidebarItem), backgroundImage: sidebarItem.backgroundImage, in: self)
         case .sensor: delegate?.didTapAddSensorCell(with: viewModel.contentCollection(sidebarItem), in: self)
-        case .settings: delegate?.didTapSettingsMenuCell(with: viewModel.contentCollection(sidebarItem), in: self)
+        case .profile: delegate?.didTapProfileCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .placeholder: return
-        case .faq: delegate?.didTapFAQCell(with: viewModel.contentCollection(sidebarItem), in: self)
-        case .introSliders: delegate?.didTapIntroSlidersCell(in: self)
+        case .support: delegate?.didTapSupportCell(in: self)
+        case .about: delegate?.didTapAboutCell(in: self)
+        case .logout: delegate?.didTapLogoutCell(in: self)
         }
     }
 }

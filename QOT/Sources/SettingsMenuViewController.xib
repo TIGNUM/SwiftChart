@@ -1,18 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="HelveticaNeue.ttc">
-            <string>HelveticaNeue</string>
-        </array>
         <array key="Simple-Regular.ttf">
             <string>Simple-Regular</string>
         </array>
@@ -25,7 +22,6 @@
                 <outlet property="fadeContainerView" destination="XS9-MN-hH5" id="2bb-A8-KWo"/>
                 <outlet property="generalButton" destination="u4X-Qg-MQg" id="BZI-CY-rIi"/>
                 <outlet property="imgeView" destination="4Gs-35-h8r" id="jz9-Rd-Qe4"/>
-                <outlet property="logoutButton" destination="pMm-Bl-3Nk" id="7Ti-NY-vT0"/>
                 <outlet property="notificationsButton" destination="ChG-hv-eBQ" id="XxF-1R-Uoi"/>
                 <outlet property="positionLabel" destination="BGu-1Y-eaK" id="rEV-xd-ne8"/>
                 <outlet property="securityButton" destination="Vgu-qp-3FG" id="NYL-aa-GfP"/>
@@ -130,34 +126,20 @@
                                         <action selector="securityAction:" destination="-1" eventType="touchUpInside" id="wLo-rM-UjI"/>
                                     </connections>
                                 </button>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pMm-Bl-3Nk">
-                                    <rect key="frame" x="28" y="144" width="276" height="30"/>
-                                    <state key="normal" title="LOGOUT">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="logoutAction:" destination="-1" eventType="touchUpInside" id="ANj-ot-y9M"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
                                 <constraint firstItem="u4X-Qg-MQg" firstAttribute="leading" secondItem="DWU-51-Y5O" secondAttribute="leading" constant="28" id="0rC-Rp-E9L"/>
-                                <constraint firstAttribute="trailing" secondItem="pMm-Bl-3Nk" secondAttribute="trailing" constant="16" id="3ny-L4-6KC"/>
                                 <constraint firstItem="u4X-Qg-MQg" firstAttribute="top" secondItem="DWU-51-Y5O" secondAttribute="top" constant="30" id="AJG-Um-g2R"/>
                                 <constraint firstItem="Vgu-qp-3FG" firstAttribute="top" secondItem="ChG-hv-eBQ" secondAttribute="bottom" constant="8" id="CG2-i4-4wW"/>
                                 <constraint firstItem="ChG-hv-eBQ" firstAttribute="height" secondItem="u4X-Qg-MQg" secondAttribute="height" id="CYZ-qT-7nL"/>
                                 <constraint firstItem="ChG-hv-eBQ" firstAttribute="top" secondItem="u4X-Qg-MQg" secondAttribute="bottom" constant="8" id="JEK-b1-uWf"/>
                                 <constraint firstAttribute="trailing" secondItem="Vgu-qp-3FG" secondAttribute="trailing" constant="16" id="PQZ-to-gAE"/>
-                                <constraint firstItem="pMm-Bl-3Nk" firstAttribute="height" secondItem="u4X-Qg-MQg" secondAttribute="height" id="Q8d-bA-gxp"/>
-                                <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="pMm-Bl-3Nk" secondAttribute="bottom" constant="10" id="YIv-jh-6rK"/>
                                 <constraint firstItem="Vgu-qp-3FG" firstAttribute="leading" secondItem="DWU-51-Y5O" secondAttribute="leading" constant="28" id="d4f-bh-YtC"/>
-                                <constraint firstItem="pMm-Bl-3Nk" firstAttribute="top" secondItem="Vgu-qp-3FG" secondAttribute="bottom" constant="8" id="dyh-gh-izm"/>
                                 <constraint firstItem="Vgu-qp-3FG" firstAttribute="height" secondItem="u4X-Qg-MQg" secondAttribute="height" id="fmI-wX-skx"/>
                                 <constraint firstAttribute="trailing" secondItem="u4X-Qg-MQg" secondAttribute="trailing" constant="16" id="hhc-QJ-Be2"/>
                                 <constraint firstAttribute="trailing" secondItem="ChG-hv-eBQ" secondAttribute="trailing" constant="16" id="k3K-mc-fIJ"/>
                                 <constraint firstItem="ChG-hv-eBQ" firstAttribute="leading" secondItem="DWU-51-Y5O" secondAttribute="leading" constant="28" id="obe-Pg-vZ9"/>
-                                <constraint firstItem="pMm-Bl-3Nk" firstAttribute="leading" secondItem="DWU-51-Y5O" secondAttribute="leading" constant="28" id="zzI-aX-dGa"/>
                             </constraints>
                         </view>
                     </subviews>

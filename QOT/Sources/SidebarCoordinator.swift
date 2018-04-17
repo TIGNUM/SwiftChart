@@ -68,18 +68,28 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         viewController.pushToStart(childViewController: searchViewController)
     }
 
-    func didTapIntroSlidersCell(in viewController: SidebarViewController) {
-        let slideShowViewController = SlideShowViewController(configure: SlideShowConfigurator.makeModal())
-        viewController.present(slideShowViewController, animated: true, completion: nil)
-    }
-
     func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
         let coordinator = AddSensorCoordinator(root: viewController, services: services)
         startChild(child: coordinator)
         addSensorCoordinator = coordinator
     }
 
-    func didTapSettingsMenuCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
+    func didTapSupportCell(in viewController: SidebarViewController) {
+        let configurator = SettingsBubblesConfigurator.make(type: .support)
+        let bubblesViewController = SettingsBubblesViewController(configurator: configurator, settingsType: .support)
+        let navController = UINavigationController(rootViewController: bubblesViewController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .custom
+        viewController.pushToStart(childViewController: bubblesViewController)
+    }
+
+    func didTapLogoutCell(in viewController: SidebarViewController) {
+        UIApplication.shared.shortcutItems?.removeAll()
+        NotificationHandler.postNotification(withName: .logoutNotification)
+    }
+
+    func didTapProfileCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
         guard let coordinator = SettingsMenuCoordinator(root: viewController,
                                                         services: services,
                                                         syncManager: syncManager,
@@ -97,23 +107,17 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func didTapBenefitsCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(pageName: .benefits, contentCollection: contentCollection, viewController: viewController)
+    func didTapAboutCell(in viewController: SidebarViewController) {
+        let configurator = SettingsBubblesConfigurator.make(type: .about)
+        let bubblesViewController = SettingsBubblesViewController(configurator: configurator, settingsType: .about)
+        let navController = UINavigationController(rootViewController: bubblesViewController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .custom
+        viewController.pushToStart(childViewController: bubblesViewController)
     }
 
-    func didTapAboutCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(pageName: .about, contentCollection: contentCollection, viewController: viewController)
-    }
-
-    func didTapPrivacyCell(with contentCollection: ContentCollection?, backgroundImage: UIImage?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(pageName: .privacy, contentCollection: contentCollection, viewController: viewController, backgroundImage: backgroundImage)
-    }
-
-    func didTapFAQCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        startSidebarItemCoordinator(pageName: .faq, contentCollection: contentCollection, viewController: viewController)
-    }
-
-    private func startSidebarItemCoordinator(pageName: PageName, contentCollection: ContentCollection?, viewController: SidebarViewController, topTabBarTitle: String? = nil, backgroundImage: UIImage? = nil) {
+    private func startSidebarItemCoordinator(pageName: PageName, contentCollection: ContentCollection?, viewController: UIViewController, topTabBarTitle: String? = nil, backgroundImage: UIImage? = nil) {
         guard let coordinator = ArticleContentItemCoordinator(pageName: pageName,
                                                               root: viewController,
                                                               services: services,

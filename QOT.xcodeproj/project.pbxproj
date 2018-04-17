@@ -209,7 +209,17 @@
 		912C9E3F203C721300C1AA76 /* MyToBeVisionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */; };
 		912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */; };
 		912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */; };
+		914A5E1B207FB33200092121 /* SettingsBubblesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E1A207FB33200092121 /* SettingsBubblesRouter.swift */; };
+		914A5E1D207FB35600092121 /* SettingsBubblesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E1C207FB35600092121 /* SettingsBubblesWorker.swift */; };
+		914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E1E207FB37100092121 /* SettingsBubblesConfigurator.swift */; };
+		914A5E21207FB38500092121 /* SettingsBubblesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E20207FB38500092121 /* SettingsBubblesInteractor.swift */; };
+		914A5E23207FB3A200092121 /* SettingsBubblesModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E22207FB3A200092121 /* SettingsBubblesModels.swift */; };
+		914A5E25207FB3AF00092121 /* SettingsBubblesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E24207FB3AF00092121 /* SettingsBubblesPresenter.swift */; };
+		914A5E27207FB3BD00092121 /* SettingsBubblesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E26207FB3BD00092121 /* SettingsBubblesProtocols.swift */; };
+		914A5E29207FB54A00092121 /* BubblesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E28207FB54A00092121 /* BubblesView.swift */; };
 		915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */; };
+		91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B339DF207F5F5E00F54A62 /* SettingsBubblesViewController.xib */; };
+		91B339E2207F5F7400F54A62 /* SettingsBubblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B339E1207F5F7400F54A62 /* SettingsBubblesViewController.swift */; };
 		91C262B91FED0B2D0075664E /* InterviewDialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B61FED0B2C0075664E /* InterviewDialView.swift */; };
 		91C262BA1FED0B2D0075664E /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */; };
 		91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */; };
@@ -219,6 +229,7 @@
 		91CD12EE2036F6F300E27822 /* MorningInterviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */; };
 		91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EF2037168900E27822 /* CGRect+Convenience.swift */; };
 		91E59F2D2057D23700396225 /* UserMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E59F2C2057D23700396225 /* UserMeasurement.swift */; };
+		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
 		CB026FCE1F6C013600FC5076 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FCD1F6C013600FC5076 /* CarouselView.swift */; };
@@ -815,7 +826,17 @@
 		912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionProtocols.swift; sourceTree = "<group>"; };
 		912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRouter.swift; sourceTree = "<group>"; };
 		912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionWorker.swift; sourceTree = "<group>"; };
+		914A5E1A207FB33200092121 /* SettingsBubblesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesRouter.swift; sourceTree = "<group>"; };
+		914A5E1C207FB35600092121 /* SettingsBubblesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesWorker.swift; sourceTree = "<group>"; };
+		914A5E1E207FB37100092121 /* SettingsBubblesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesConfigurator.swift; sourceTree = "<group>"; };
+		914A5E20207FB38500092121 /* SettingsBubblesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesInteractor.swift; sourceTree = "<group>"; };
+		914A5E22207FB3A200092121 /* SettingsBubblesModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesModels.swift; sourceTree = "<group>"; };
+		914A5E24207FB3AF00092121 /* SettingsBubblesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesPresenter.swift; sourceTree = "<group>"; };
+		914A5E26207FB3BD00092121 /* SettingsBubblesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesProtocols.swift; sourceTree = "<group>"; };
+		914A5E28207FB54A00092121 /* BubblesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubblesView.swift; sourceTree = "<group>"; };
 		915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewcontroller+UIImpactFeedbackGenerator.swift"; sourceTree = "<group>"; };
+		91B339DF207F5F5E00F54A62 /* SettingsBubblesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsBubblesViewController.xib; sourceTree = "<group>"; };
+		91B339E1207F5F7400F54A62 /* SettingsBubblesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesViewController.swift; sourceTree = "<group>"; };
 		91C262B61FED0B2C0075664E /* InterviewDialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDialView.swift; sourceTree = "<group>"; };
 		91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
 		91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorningInterviewViewController.xib; sourceTree = "<group>"; };
@@ -825,6 +846,7 @@
 		91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MorningInterviewCell.xib; sourceTree = "<group>"; };
 		91CD12EF2037168900E27822 /* CGRect+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Convenience.swift"; sourceTree = "<group>"; };
 		91E59F2C2057D23700396225 /* UserMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMeasurement.swift; sourceTree = "<group>"; };
+		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1560,6 +1582,23 @@
 			name = "My To Be Vision";
 			sourceTree = "<group>";
 		};
+		91FF8FD4207F38CC00FCD999 /* Settings Bubbles */ = {
+			isa = PBXGroup;
+			children = (
+				91B339DF207F5F5E00F54A62 /* SettingsBubblesViewController.xib */,
+				91B339E1207F5F7400F54A62 /* SettingsBubblesViewController.swift */,
+				914A5E1A207FB33200092121 /* SettingsBubblesRouter.swift */,
+				914A5E1C207FB35600092121 /* SettingsBubblesWorker.swift */,
+				914A5E1E207FB37100092121 /* SettingsBubblesConfigurator.swift */,
+				914A5E20207FB38500092121 /* SettingsBubblesInteractor.swift */,
+				914A5E22207FB3A200092121 /* SettingsBubblesModels.swift */,
+				914A5E24207FB3AF00092121 /* SettingsBubblesPresenter.swift */,
+				914A5E26207FB3BD00092121 /* SettingsBubblesProtocols.swift */,
+				914A5E28207FB54A00092121 /* BubblesView.swift */,
+			);
+			name = "Settings Bubbles";
+			sourceTree = "<group>";
+		};
 		B1B85C4C58D59EA1163CE83B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -1835,6 +1874,7 @@
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
 				CBB4DD361EE08A5C0071494A /* Search */,
 				CB3333DD20480DA2009480DF /* Share */,
+				91FF8FD4207F38CC00FCD999 /* Settings Bubbles */,
 				CB9442261FD963B200E2B122 /* SlideShow */,
 			);
 			name = Scenes;
@@ -2245,6 +2285,7 @@
 				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */,
+				91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -2996,6 +3037,7 @@
 				36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
+				91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				CB94423E1FDFE55E00E2B122 /* SlideShowViewController.xib in Resources */,
 				8548BBDE1F0D264800AC7C06 /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
@@ -3283,7 +3325,9 @@
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
 				CB3333E320480DE8009480DF /* ShareModels.swift in Sources */,
 				CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */,
+				91B339E2207F5F7400F54A62 /* SettingsBubblesViewController.swift in Sources */,
 				363178E71FDEECDE00833958 /* RealmGuideItemNotification.swift in Sources */,
+				914A5E23207FB3A200092121 /* SettingsBubblesModels.swift in Sources */,
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
 				CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */,
 				CBB017BB1F9741F200CC1048 /* SyncTask.swift in Sources */,
@@ -3331,7 +3375,9 @@
 				850312ED1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift in Sources */,
 				7FBFBC0F1FC731FB007B6D2D /* WeeklyChoicesProvider.swift in Sources */,
 				CC37831E1F5ED306007A16A3 /* EnumCollection+Hashable.swift in Sources */,
+				914A5E27207FB3BD00092121 /* SettingsBubblesProtocols.swift in Sources */,
 				CB0A4A581ECC4C25006A2D85 /* AddSensorCoordinator.swift in Sources */,
+				914A5E25207FB3AF00092121 /* SettingsBubblesPresenter.swift in Sources */,
 				CBB4DD121EDEAD050071494A /* RequestConstants.swift in Sources */,
 				7F904F661FBF1A550040EF11 /* TabBarController.swift in Sources */,
 				CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */,
@@ -3340,6 +3386,7 @@
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
 				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
 				CB3437721F00ED3200D89D4F /* RealmObserver.swift in Sources */,
+				914A5E1B207FB33200092121 /* SettingsBubblesRouter.swift in Sources */,
 				CBE880931FE9153200670C10 /* GuideItemID.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
@@ -3349,6 +3396,7 @@
 				363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */,
 				CCAF03251E801B0E00015125 /* SettingsViewController.swift in Sources */,
 				CB2C3091203B087C0041044F /* MorningInterviewInteractor.swift in Sources */,
+				914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
@@ -3368,6 +3416,7 @@
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
+				914A5E29207FB54A00092121 /* BubblesView.swift in Sources */,
 				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
 				7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */,
 				36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */,
@@ -3452,6 +3501,7 @@
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				7F2B77D11FC5C33700203D90 /* ToolsViewModel.swift in Sources */,
 				CCE6CD881F15357600B66DA3 /* StatisticsPeriodIntermediary.swift in Sources */,
+				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
@@ -3484,6 +3534,7 @@
 				854708E21F306628007AB971 /* ContentItemAnimation.swift in Sources */,
 				CBC1DC1D1F0F988E00F6D056 /* SettingsService.swift in Sources */,
 				7F65672F1FE13BCA00A6CB7F /* ScreenHelpViewController.swift in Sources */,
+				914A5E1D207FB35600092121 /* SettingsBubblesWorker.swift in Sources */,
 				CB369CE21E8D5E3D00522293 /* Services.swift in Sources */,
 				CC8D6D051EC316BF007AE687 /* LearnContentItemViewModel.swift in Sources */,
 				CC7A91121F0F978E00F791B9 /* UIViewController+ScreenType.swift in Sources */,
@@ -3725,6 +3776,7 @@
 				7F3A9CBE1FCDBA51000F1744 /* FeedbackService.swift in Sources */,
 				CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */,
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,
+				914A5E21207FB38500092121 /* SettingsBubblesInteractor.swift in Sources */,
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
 				CB873294202AEDA80081F522 /* GradientView.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
