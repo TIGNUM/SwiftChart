@@ -126,7 +126,7 @@ private extension GuideViewController {
         backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
         loadingView.edgeAnchors == fadeContainerView.edgeAnchors
 
-        fadeContainerView.setFade(top: 100, bottom: 60)
+        fadeContainerView.setFade(top: 100, bottom: 85)
         view.layoutIfNeeded()
     }
 
