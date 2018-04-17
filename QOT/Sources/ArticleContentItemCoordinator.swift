@@ -23,6 +23,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
     private let shouldPush: Bool
     private let isSearch: Bool
     private let guideItem: Guide.Item?
+    private var avPlayerObserver: AVPlayerObserver?
     let pageName: PageName
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController?
@@ -144,12 +145,18 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
             log("Error while trying to set catgeory for AVAudioSession: \(error)", level: .error)
         }
 
-        let playerItem = AVPlayerItem(url: url)
-        let player = AVPlayer(playerItem: playerItem)
-        player.volume = 1.0
-        player.play()
-        let playerVC = AVPlayerViewController()
-        playerVC.player = player
-        viewController.present(playerVC, animated: true, completion: nil)
+        let playerViewController = viewController.stream(videoURL: url)
+        if let playerItem = playerViewController.player?.currentItem {
+            avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+            avPlayerObserver?.onStatusUpdate { (player) in
+                if let error = playerItem.error {
+                    if (error as NSError).isNoNetworkError {
+                        playerViewController.showAlert(type: .message(error.localizedDescription))
+                    } else {
+                        playerViewController.showAlert(type: .unknown)
+                    }
+                }
+            }
+        }
     }
 }

@@ -32,6 +32,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     var viewModel: PrepareContentViewModel
     private let disposeBag = DisposeBag()
+    private var avPlayerObserver: AVPlayerObserver?
     weak var delegate: PrepareContentViewControllerDelegate?
     let pageName: PageName
 
@@ -351,9 +352,19 @@ extension PrepareContentViewController: PrepareContentMainHeaderTableViewCellDel
 
     func didTapVideo(videoURL: URL?, cell: UITableViewCell) {
         if let videoURL = videoURL {
-            stream(videoURL: videoURL)
-        } else {
-            log("didTapVideo: videoURL is nil")
+            let playerViewController = stream(videoURL: videoURL)
+            if let playerItem = playerViewController.player?.currentItem {
+                avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+                avPlayerObserver?.onStatusUpdate { (player) in
+                    if let error = playerItem.error {
+                        if (error as NSError).isNoNetworkError {
+                            playerViewController.showAlert(type: .message(error.localizedDescription))
+                        } else {
+                            playerViewController.showAlert(type: .unknown)
+                        }
+                    }
+                }
+            }
         }
     }
 }
