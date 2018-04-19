@@ -77,6 +77,8 @@ final class User: SyncableObject {
 
     @objc private(set) dynamic var company: String?
 
+    @objc private(set) dynamic var firstLevelSupportEmail: String = ""
+
     @objc private(set) dynamic var memberSince: Date = Date()
 
     @objc dynamic var totalUsageTime: Int = 0
@@ -116,6 +118,7 @@ extension User: TwoWaySyncableUniqueObject {
         weightUnitsJSON = data.weightUnitsJSON
         company = data.company
         jobTitle = data.jobTitle
+        firstLevelSupportEmail = data.firstLevelSupportEmail
         memberSince = data.memberSince
         totalUsageTime = data.totalUsageTime
         timeZone = TimeZone.hoursFromGMT // We never want to update the timezone based on remote timezone
@@ -145,7 +148,8 @@ extension User: TwoWaySyncableUniqueObject {
 
         let employment: [JsonKey: JSONEncodable] = [
             .company: company.toJSONEncodable,
-            .jobTitle: jobTitle.toJSONEncodable
+            .jobTitle: jobTitle.toJSONEncodable,
+            .firstLevelSupportEmail: firstLevelSupportEmail
         ]
 
         let userInfo: [JsonKey: JSONEncodable] = [

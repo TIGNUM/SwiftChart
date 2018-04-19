@@ -95,6 +95,7 @@ enum JsonKey: String {
     case isodate
     case issueDate
     case jobTitle
+    case firstLevelSupportEmail
     case key
     case keypathID
     case lastName

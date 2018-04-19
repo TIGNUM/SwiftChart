@@ -12,7 +12,7 @@ final class SettingsBubblesConfigurator: AppStateAccess {
 
     static func make(type: SettingsBubblesType) -> (SettingsBubblesViewController) -> Void {
         return { (settingsBubblesViewController) in
-            let router = SettingsBubblesRouter(viewController: settingsBubblesViewController)
+            let router = SettingsBubblesRouter(viewController: settingsBubblesViewController, services: appState.services)
             let worker = SettingsBubblesWorker(services: appState.services, type: type)
             let presenter = SettingsBubblesPresenter(viewController: settingsBubblesViewController)
             let interactor = SettingsBubblesInteractor(worker: worker, router: router, presenter: presenter)

@@ -12,9 +12,11 @@ import MessageUI
 final class SettingsBubblesRouter: NSObject {
 
     private let viewController: SettingsBubblesViewController
+    private let services: Services
 
-    init(viewController: SettingsBubblesViewController) {
+    init(viewController: SettingsBubblesViewController, services: Services) {
         self.viewController = viewController
+        self.services = services
     }
 }
 
@@ -29,7 +31,7 @@ extension SettingsBubblesRouter: SettingsBubblesRouterInterface {
         case .privacy: presentContentItem(id: bubbleTapped.primaryKey)
         case .terms: presentContentItem(id: bubbleTapped.primaryKey)
         case .copyright: presentContentItem(id: bubbleTapped.primaryKey)
-        case .contactSupport: presentMailComposer(recipients: ["support@qot.io"], subject: "ID: Support")
+        case .contactSupport: presentMailComposer(recipients: [supportEmail()], subject: "ID: Support")
         case .featureRequest: presentMailComposer(recipients: ["feature@qot.io"], subject: "ID: Feature")
         case .tutorial: presentTutorial()
         case .faq: presentContentItem(id: bubbleTapped.primaryKey)
@@ -57,6 +59,13 @@ private extension SettingsBubblesRouter {
         composer.setSubject(subject)
         composer.mailComposeDelegate = self
         viewController.present(composer, animated: true, completion: nil)
+    }
+
+    func supportEmail() -> String {
+        if let supportEmail = services.userService.user()?.firstLevelSupportEmail {
+            return supportEmail
+        }
+        return "support@qot.io"
     }
 }
 
