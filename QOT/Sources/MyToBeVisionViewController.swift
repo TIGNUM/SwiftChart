@@ -288,12 +288,8 @@ extension MyToBeVisionViewController {
         if let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
             avPlayerObserver?.onStatusUpdate { (player) in
-                if let error = playerItem.error {
-                    if (error as NSError).isNoNetworkError {
-                        playerViewController.showAlert(type: .message(error.localizedDescription))
-                    } else {
-                        playerViewController.showAlert(type: .unknown)
-                    }
+                if playerItem.error != nil {
+                    playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
                 }
             }
         }

@@ -502,7 +502,7 @@ extension LearnContentItemViewController: PageScrollView {
 extension LearnContentItemViewController: AudioConnectionDelegate {
 
     func presentNoConnectionAlert() {
-        showAlert(type: .noNetworkConnection, handler: {
+        showAlert(type: .noNetworkConnectionFile, handler: {
             self.viewModel.stopPlayback()
         })
     }

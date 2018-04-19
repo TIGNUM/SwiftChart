@@ -61,15 +61,3 @@ class AVPlayerObserver: NSObject {
         updateHandler = closure
     }
 }
-
-extension NSError {
-
-    var isNoNetworkError: Bool {
-        switch (code, domain) {
-        case (NSURLErrorNotConnectedToInternet, NSURLErrorDomain):
-            return true
-        default:
-            return false
-        }
-    }
-}
