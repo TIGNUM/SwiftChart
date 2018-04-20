@@ -113,6 +113,12 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         }.dispose(in: disposeBag)
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
+
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()

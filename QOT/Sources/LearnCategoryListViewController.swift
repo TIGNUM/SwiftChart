@@ -72,6 +72,12 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
             }
         }.dispose(in: disposeBag)
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        UIApplication.shared.statusBarStyle = .lightContent
+    }
 }
 
 // MARK: - Private

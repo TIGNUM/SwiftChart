@@ -42,6 +42,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         searchBar.becomeFirstResponder()
         tableView.register(R.nib.searchTableViewCell(),
                            forCellReuseIdentifier: R.reuseIdentifier.searchTableViewCell_Identifier.identifier)
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 
     override func viewWillDisappear(_ animated: Bool) {

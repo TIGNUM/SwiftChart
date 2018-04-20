@@ -65,6 +65,8 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
+
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 
     override func viewDidLayoutSubviews() {

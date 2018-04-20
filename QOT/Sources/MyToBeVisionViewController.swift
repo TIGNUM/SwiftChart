@@ -98,6 +98,7 @@ class MyToBeVisionViewController: UIViewController {
         super.viewDidAppear(animated)
 
         keyboardListener.startObserving()
+        UIApplication.shared.statusBarStyle = .lightContent
     }
 
     override func viewWillDisappear(_ animated: Bool) {
