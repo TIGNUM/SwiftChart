@@ -182,12 +182,19 @@
 "Prepare.Review.Notes.Intention.Preceiving.Title" = "How do you want to be perceived during the event?";
 "Prepare.Review.Notes.Intention.Knowing.Title" = "What do you want the person/group to know after the event?";
 "Prepare.Review.Notes.Intention.Feeling.Title" = "How do you want the person/group to feel after the event?";
-"Prepare.Review.Notes.Reflection.Positive.Title" = "5 minutes is all you need to rewire your brain for future success. What did you do well in this event?";
+"Prepare.Review.Notes.Reflection.Positive.Title" = "Reflecting on what you did well will rewire your brain for future success. What did you do well in this event?";
 "Prepare.Review.Notes.Reflection.Improve.Title" = "If there is something you wish you would have done better, what would you look like if you had done it exactly the way you envisioned?";
 "Prepare.Review.Notes.Intentions.Placeholder" = "Write your intentions here";
 "Prepare.Review.Notes.Reflections.Placeholder" = "Write your reflection notes here";
 "Prepare.Review.Notes.Reflections.Navbar.Title" = "YOUR REFLECTIONS";
 "Prepare.Review.Notes.Intentions.Navbar.Title" = "YOUR INTENTIONS";
+
+"Prepare.Review.Notes.Intentions.Perceived.Placeholder" = "Tap here to put your thoughts into writing (i.e. calm, engaged, confident, empathetic).";
+"Prepare.Review.Notes.Intentions.PersonGroup.Placeholder" = "Tap here to put your thoughts into writing (i.e. I'm not perfect; your opinion matters; I'm committed to excellence).";
+"Prepare.Review.Notes.Reflection.BrainSuccess.Placeholder" = "Tap here to put your thoughts into writing (i.e. I listened well; I was calm; I answered questions clearly).";
+"Prepare.Review.Notes.Reflection.Wish.Placeholder" = "Tap here to put your thoughts into writing (i.e. I listened well; I didn't overreact; I was prepared).";
+
+
 
 "Weekly.Choices.No.Content" = "No weekly choices\nhave been saved yet.";
 

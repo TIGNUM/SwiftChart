@@ -59,10 +59,14 @@ final class PrepareContentReviewNotesTableViewCell: UITableViewCell, Dequeueable
             }
         }
 
-        var placeholder: String {
-            switch self {
-            case .intentions: return R.string.localized.prepareReviewNotesIntentionsPlaceholder()
-            case .reflection: return R.string.localized.prepareReviewNotesReflectionsPlaceholder()
+        func placeholder(at row: Int) -> String {
+            switch (self, row) {
+            case (.intentions, 0): return R.string.localized.prepareReviewNotesIntentionsPerceivedPlaceholder()
+            case (.intentions, 1): return R.string.localized.prepareReviewNotesIntentionsPersonGroupPlaceholder()
+            case (.intentions, 2): return R.string.localized.prepareReviewNotesIntentionsPlaceholder()
+            case (.reflection, 0): return R.string.localized.prepareReviewNotesReflectionBrainSuccessPlaceholder()
+            case (.reflection, 1): return R.string.localized.prepareReviewNotesReflectionWishPlaceholder()
+            default: return R.string.localized.prepareReviewNotesIntentionsPlaceholder()
             }
         }
 

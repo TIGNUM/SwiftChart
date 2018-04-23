@@ -24,6 +24,7 @@ final class PrepareContentNotesViewController: UIViewController {
     weak var delegate: PrepareContentNotesViewControllerDelegate?
     var notesType: PrepareContentReviewNotesTableViewCell.NotesType?
     var text: String?
+    var placeholder: String?
 
      // MARK: - Life Cycle
 
@@ -90,7 +91,7 @@ private extension PrepareContentNotesViewController {
         textView.attributedText = NSAttributedString(string: text ?? "", attributes: textViewAttributes)
         textView.contentInset = .zero
 
-        placeholderTextView.attributedText = NSAttributedString(string: R.string.localized.prepareNotesPlaceholder(),
+        placeholderTextView.attributedText = NSAttributedString(string: placeholder ?? "",
                                                                 attributes: placeholderAttibutes)
         syncPlaceholder()
         syncLayout()

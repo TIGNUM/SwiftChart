@@ -19,14 +19,15 @@ final class ReviewNotesTableViewCell: UITableViewCell {
 
     func configure(title: String,
                    notes: String?,
-                   reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType) {
+                   reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType,
+                   row: Int) {
         titleLabel.attributedText = NSMutableAttributedString(string: title,
                                                               letterSpacing: 2,
                                                               font: Font.PText,
                                                               lineSpacing: 10,
                                                               textColor: .black,
                                                               alignment: .left)
-        var notesText = reviewNotesType.placeholder
+        var notesText = reviewNotesType.placeholder(at: row)
         var font = Font.H7Tag
         if let notes = notes, notes.isEmpty == false {
             notesText = notes

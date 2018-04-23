@@ -54,6 +54,7 @@ final class ReviewNotesViewController: UIViewController {
         default: fatalError("Invalid setup")
         }
         noteViewController.text = text
+        noteViewController.placeholder = reviewNotesType.placeholder(at: row)
         noteViewController.notesType = notesType
         noteViewController.delegate = viewModel
     }
@@ -102,7 +103,8 @@ extension ReviewNotesViewController: UITableViewDelegate, UITableViewDataSource 
         let contentItemID = reviewNotesType.contentItemID(at: indexPath.row)
         cell.configure(title: headline,
                        notes: viewModel.notesDictionary[contentItemID],
-                       reviewNotesType: reviewNotesType)
+                       reviewNotesType: reviewNotesType,
+                       row: indexPath.row)
         return cell
     }
 
