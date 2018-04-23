@@ -134,8 +134,8 @@ private extension GuideViewController {
 
     func syncHeaderView() {
         let header = greetingView
-        let height = isImageVisible ? 230 : 130
-        header.bounds = CGRect(x: 0, y: 0, width: Int(tableView.contentSize.width), height: height)
+        let height = isImageVisible ? 230 : greetingView.labelsHeight
+        header.bounds = CGRect(x: 0, y: 0, width: Int(tableView.contentSize.width), height: Int(height))
         header.setNeedsLayout()
         header.layoutIfNeeded()
 

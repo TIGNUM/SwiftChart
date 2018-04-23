@@ -23,6 +23,10 @@ final class GuideGreetingView: UIView {
     @IBOutlet private weak var greetingLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
 
+    var labelsHeight: CGFloat {
+        return greetingLabel.bounds.height + messageLabel.bounds.height + 40
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
