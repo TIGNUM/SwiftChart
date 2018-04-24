@@ -28,7 +28,7 @@ struct Environment {
 extension Environment {
 
     static var development = Environment(name: "DEVELOPMENT",
-                                         initialBaseURL: URL(string: "https://esb-staging.tignum.com")!,
+                                         initialBaseURL: URL(string: "https://esb.tignum.com")!,//initialBaseURL: URL(string: "https://esb-staging.tignum.com")!,
                                          dynamicBaseURL: nil)
 
     static var production = Environment(name: "PRODUCTION",

@@ -1,17 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BentonSans_Book.otf">
+        <array key="BentonSans_Regular.otf">
             <string>BentonSans</string>
         </array>
         <array key="Simple-Regular.ttf">
@@ -30,13 +31,13 @@
                 <outlet property="imageContainerBottomConstraint" destination="eag-Td-VKP" id="gz8-BZ-1wE"/>
                 <outlet property="imageContainerView" destination="JQh-vj-gsy" id="Vye-42-g4e"/>
                 <outlet property="imageView" destination="EfY-KJ-VgG" id="ojj-iV-jnk"/>
-                <outlet property="instructionsButton" destination="6p5-sN-5bd" id="XCX-WR-LHV"/>
                 <outlet property="messageHeightConstraint" destination="SUq-W3-KE8" id="QAl-RK-HcW"/>
                 <outlet property="messageTextView" destination="HYG-f5-Phv" id="hwV-p1-UNr"/>
                 <outlet property="minScrollViewContentHeight" destination="i0a-rO-K7F" id="Vn1-Dg-DtY"/>
                 <outlet property="placeholderImageView" destination="qBI-s2-B4h" id="DTk-vG-kRb"/>
                 <outlet property="scrollView" destination="uD0-d0-kIf" id="HL6-6n-fcm"/>
                 <outlet property="subtitleLabel" destination="3Lt-fd-bdx" id="TvC-tj-f6W"/>
+                <outlet property="tbvGeneratorButton" destination="6p5-sN-5bd" id="XCX-WR-LHV"/>
                 <outlet property="view" destination="iN0-l3-epB" id="QvS-N9-vPB"/>
             </connections>
         </placeholder>
@@ -72,13 +73,13 @@
                                             </connections>
                                         </textView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="20 YEARS AGO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Lt-fd-bdx" userLabel="Subtitle">
-                                            <rect key="frame" x="0.0" y="78" width="315" height="11"/>
+                                            <rect key="frame" x="0.0" y="78" width="315" height="10.5"/>
                                             <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
                                             <color key="textColor" red="0.41176470590000003" green="0.41960784309999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="This is my to be vision." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HYG-f5-Phv" userLabel="Message">
-                                            <rect key="frame" x="0.0" y="111" width="315" height="400"/>
+                                            <rect key="frame" x="0.0" y="110.5" width="315" height="400"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
@@ -92,16 +93,16 @@
                                             </connections>
                                         </textView>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6p5-sN-5bd">
-                                            <rect key="frame" x="44.5" y="209" width="225" height="45"/>
+                                            <rect key="frame" x="45" y="223.5" width="225" height="45"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" constant="225" id="WiS-1t-dtK"/>
                                                 <constraint firstAttribute="height" constant="45" id="kJz-va-ie5"/>
                                             </constraints>
-                                            <state key="normal" title="View Instructions">
-                                                <color key="titleColor" red="0.41176470590000003" green="0.41960784309999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="Create my vision">
+                                                <color key="titleColor" red="0.0" green="0.58431372549019611" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             </state>
                                             <connections>
-                                                <action selector="didTapViewInstructions:" destination="-1" eventType="touchUpInside" id="49K-1F-DSg"/>
+                                                <action selector="didTapCreateVision" destination="-1" eventType="touchUpInside" id="cce-ge-mqG"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -111,6 +112,7 @@
                                         <constraint firstItem="HYG-f5-Phv" firstAttribute="top" secondItem="3Lt-fd-bdx" secondAttribute="bottom" constant="22" id="6Cg-d3-Dnn"/>
                                         <constraint firstItem="3Lt-fd-bdx" firstAttribute="top" secondItem="7Sy-gJ-ovl" secondAttribute="bottom" constant="18" id="71H-Nn-eDH"/>
                                         <constraint firstItem="6p5-sN-5bd" firstAttribute="centerX" secondItem="tCL-zM-DF7" secondAttribute="centerX" id="A6D-CP-7ZV"/>
+                                        <constraint firstItem="6p5-sN-5bd" firstAttribute="centerY" secondItem="tCL-zM-DF7" secondAttribute="centerY" multiplier="0.9" id="AtA-nS-URv"/>
                                         <constraint firstAttribute="trailing" secondItem="7Sy-gJ-ovl" secondAttribute="trailing" id="NV5-7I-cHl"/>
                                         <constraint firstAttribute="trailing" secondItem="HYG-f5-Phv" secondAttribute="trailing" id="OAh-ZP-cxz"/>
                                         <constraint firstItem="3Lt-fd-bdx" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" id="P98-iY-BgA"/>
@@ -118,7 +120,6 @@
                                         <constraint firstItem="HYG-f5-Phv" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" id="caW-AE-iPt"/>
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="547" id="i0a-rO-K7F"/>
                                         <constraint firstAttribute="bottom" secondItem="HYG-f5-Phv" secondAttribute="bottom" priority="750" id="kej-oX-u3y"/>
-                                        <constraint firstItem="6p5-sN-5bd" firstAttribute="top" secondItem="3Lt-fd-bdx" secondAttribute="bottom" constant="120" id="l0j-xe-GD4"/>
                                         <constraint firstItem="7Sy-gJ-ovl" firstAttribute="top" secondItem="tCL-zM-DF7" secondAttribute="top" constant="10" id="nwB-5y-pdH"/>
                                         <constraint firstAttribute="trailing" secondItem="3Lt-fd-bdx" secondAttribute="trailing" id="xD6-GP-Fgt"/>
                                     </constraints>

@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class MyToBeVisionViewController: UIViewController {
+final class MyToBeVisionViewController: UIViewController {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var headlineTextView: UITextView!
@@ -25,10 +25,9 @@ class MyToBeVisionViewController: UIViewController {
     @IBOutlet private weak var messageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var imageContainerBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var imageContainerView: UIView!
-    @IBOutlet private weak var instructionsButton: UIButton!
+    @IBOutlet private weak var tbvGeneratorButton: UIButton!
     @IBOutlet private weak var fadeContainerView: FadeContainerView!
     @IBOutlet private weak var minScrollViewContentHeight: NSLayoutConstraint!
-
     private let keyboardListener = KeyboardListener()
     private let navItem = NavigationItem(title: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
     private var imagePickerController: ImagePickerController!
@@ -37,9 +36,35 @@ class MyToBeVisionViewController: UIViewController {
     private var imageTapRecognizer = UITapGestureRecognizer()
     private var avPlayerObserver: AVPlayerObserver?
     private var imageIsHidden = false
+    private var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] = [:]
     var interactor: MyToBeVisionInteractor?
     var router: MyToBeVisionRouter?
     var permissionsManager: PermissionsManager!
+
+    private lazy var editAlertController: UIAlertController = {
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
+        let editAction = UIAlertAction(title: R.string.localized.alertButtonTitleEditVision(),
+                                       style: .default) { [unowned self] (alertAction: UIAlertAction) in
+                                        self.isEditing = true
+                                        self.edit(true)
+        }
+
+        let generatorAction = UIAlertAction(title: R.string.localized.alertButtonTitleCreateVision(),
+                                            style: .default) { [unowned self] (alertAction: UIAlertAction) in
+                                                self.interactor?.makeVisionGeneratorAndPresent()
+        }
+
+        let cancelAction = UIAlertAction(title: R.string.localized.alertButtonTitleCancel(),
+                                         style: .cancel) { [unowned self] (alertAction: UIAlertAction) in
+                                            self.isEditing = false
+                                            self.edit(false)
+        }
+
+        alertController.addAction(editAction)
+        alertController.addAction(generatorAction)
+        alertController.addAction(cancelAction)
+        return alertController
+    }()
 
     // MARK: - Lifecycle
 
@@ -52,6 +77,7 @@ class MyToBeVisionViewController: UIViewController {
                                                       permissionsManager: permissionsManager)
         imagePickerController.delegate = self
         imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
+        visionChatItems = interactor?.visionChatItems ?? [:]
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -103,7 +129,6 @@ class MyToBeVisionViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         if isBeingDismissed == true {
             edit(false)
         }
@@ -111,7 +136,6 @@ class MyToBeVisionViewController: UIViewController {
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
         keyboardListener.stopObserving()
     }
 
@@ -129,6 +153,23 @@ class MyToBeVisionViewController: UIViewController {
 // MARK: - MyToBeVisionViewContollerInterface
 
 extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
+
+    func showVisionGenerator() {
+        let chatViewModel = ChatViewModel<VisionGeneratorChoice>(items: [])
+        let configurator = VisionGeneratorConfigurator.make(chatViewModel,
+                                                            visionController: self,
+                                                            visionChatItems: visionChatItems)
+        let chatViewController = ChatViewController(pageName: .visionGenerator,
+                                                    viewModel: chatViewModel,
+                                                    backgroundImage: R.image.backgroundChatBot(),
+                                                    configure: configurator)
+        chatViewController.title = "CREATE A TO BE VISION"
+        let navController = UINavigationController(rootViewController: chatViewController)
+        navController.navigationBar.applyDarkBluryStyle()
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .custom
+        pushToStart(childViewController: chatViewController)
+    }
 
     func setup(with toBeVision: MyToBeVisionModel.Model) {
         self.toBeVision = toBeVision
@@ -194,9 +235,9 @@ extension MyToBeVisionViewController {
     }
 
     func setupInstructionsButton() {
-        instructionsButton.layer.borderWidth = 1
-        instructionsButton.layer.borderColor = UIColor.gray.cgColor
-        instructionsButton.layer.cornerRadius = instructionsButton.bounds.height * 0.5
+        tbvGeneratorButton.layer.borderWidth = 1
+        tbvGeneratorButton.layer.borderColor = UIColor.azure.cgColor
+        tbvGeneratorButton.layer.cornerRadius = tbvGeneratorButton.bounds.height * 0.5
     }
 
     func setupImage() {
@@ -207,7 +248,6 @@ extension MyToBeVisionViewController {
         let headlineSize = headlineTextView.sizeThatFits(CGSize(width: headlineTextView.frame.size.width,
                                                                 height: CGFloat(MAXFLOAT)))
         headlineHeightConstraint.constant = headlineSize.height
-
         let messageSize = messageTextView.sizeThatFits(CGSize(width: messageTextView.frame.size.width,
                                                               height: CGFloat(MAXFLOAT)))
         messageHeightConstraint.constant = messageSize.height
@@ -225,7 +265,7 @@ extension MyToBeVisionViewController {
     }
 
     func syncInstructionsButton() {
-        instructionsButton.isHidden = isEditing || messageTextView.text != R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
+        tbvGeneratorButton.isHidden = isEditing || messageTextView.text != R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
     }
 }
 
@@ -273,12 +313,21 @@ extension MyToBeVisionViewController {
     }
 
     @objc func didTapEdit(_ sender: UIBarButtonItem) {
-        isEditing = !isEditing
-        edit(isEditing)
+        if isEditing == true {
+            editAlertController.dismiss(animated: true, completion: nil)
+            self.isEditing = false
+            self.edit(false)
+        } else {
+            showEditActionSheet()
+        }
     }
 
     @objc func didTapImage() {
         imagePickerController.show(in: self)
+    }
+
+    @IBAction private func didTapCreateVision() {
+        interactor?.makeVisionGeneratorAndPresent()
     }
 
     @IBAction func didTapViewInstructions(_ sender: UIButton) {
@@ -300,6 +349,10 @@ extension MyToBeVisionViewController {
 // MARK: - Sync
 
 private extension MyToBeVisionViewController {
+
+    func showEditActionSheet() {
+        present(editAlertController, animated: true, completion: nil)
+    }
 
     func toBeVisionDidUpdate() {
         subtitleLabel.attributedText = toBeVision?.formattedSubtitle

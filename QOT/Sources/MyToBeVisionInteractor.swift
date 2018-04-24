@@ -41,4 +41,17 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
     var trackablePageObject: PageObject? {
         return worker.trackablePageObject
     }
+
+    var visionChatItems: [VisionGeneratorChoice.QuestionType : [ChatItem<VisionGeneratorChoice>]] {
+        return worker.visionChatItems
+    }
+}
+
+// MARK: - Vision Generator
+
+extension MyToBeVisionInteractor {
+
+    func makeVisionGeneratorAndPresent() {
+        presenter.presentVisionGenerator()
+    }
 }

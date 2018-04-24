@@ -31,7 +31,7 @@ final class OnboardingCoordinator: ParentCoordinator {
 
     private static let isOnboardingCompleteKey = "qot_onboarding_complete"
     var children: [Coordinator] = [Coordinator]()
-    weak var delegate: OnboardingCoordinatorDelegate?
+    private weak var delegate: OnboardingCoordinatorDelegate?
     private let windowManager: WindowManager
     private let chatViewModel = ChatViewModel<Choice>(items: [])
     private let permissionsManager: PermissionsManager
@@ -46,7 +46,10 @@ final class OnboardingCoordinator: ParentCoordinator {
         }
     }
 
-    init(windowManager: WindowManager, delegate: OnboardingCoordinatorDelegate, permissionsManager: PermissionsManager, userName: String) {
+    init(windowManager: WindowManager,
+         delegate: OnboardingCoordinatorDelegate,
+         permissionsManager: PermissionsManager,
+         userName: String) {
         self.windowManager = windowManager
         self.delegate = delegate
         self.permissionsManager = permissionsManager
@@ -54,7 +57,10 @@ final class OnboardingCoordinator: ParentCoordinator {
     }
 
     func start() {
-        let chatViewController = ChatViewController(pageName: .onboardingChat, viewModel: chatViewModel, backgroundImage: R.image.backgroundChatBot(), fadeMaskLocation: .top)
+        let chatViewController = ChatViewController(pageName: .onboardingChat,
+                                                    viewModel: chatViewModel,
+                                                    backgroundImage: R.image.backgroundChatBot(),
+                                                    fadeMaskLocation: .top)
         chatViewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
         chatViewController.didSelectChoice = { [unowned self] (choice, viewController) in
             self.handleChoice(choice)
@@ -68,7 +74,6 @@ final class OnboardingCoordinator: ParentCoordinator {
                                              NSAttributedStringKey.foregroundColor: UIColor.white]
 
         startOnboarding() // must be called before adding chat vc to window, else chat won't animate
-
         windowManager.show(navigationController, animated: true, completion: nil)
     }
 
@@ -153,25 +158,23 @@ final class OnboardingCoordinator: ParentCoordinator {
         delegate?.onboardingCoordinatorDidFinish(self)
     }
 
-    private func messageChatItem(text: String, date: Date, includeFooter: Bool, isAutoscrollSnapable: Bool) -> ChatItem<Choice> {
-        var footer: String?
-        if includeFooter == true {
-            let time = DateFormatter.displayTime.string(from: date)
-            footer = R.string.localized.prepareChatFooterDeliveredTime(time)
-        }
+    private func messageChatItem(text: String,
+                                 date: Date,
+                                 includeFooter: Bool,
+                                 isAutoscrollSnapable: Bool) -> ChatItem<Choice> {
         return ChatItem<Choice>(type: .message(text),
-                                 alignment: .left,
-                                 timestamp: date,
-                                 footer: footer,
-                                 isAutoscrollSnapable: isAutoscrollSnapable)
+                                chatType: .onBoarding,
+                                alignment: .left,
+                                timestamp: date,
+                                showFooter: includeFooter,
+                                isAutoscrollSnapable: isAutoscrollSnapable)
     }
 
     private func choiceListChatItem(choices: [Choice], date: Date, includeFooter: Bool) -> ChatItem<Choice> {
-        var footer: String?
-        if includeFooter == true {
-            let time = DateFormatter.displayTime.string(from: date)
-            footer = R.string.localized.prepareChatFooterDeliveredTime(time)
-        }
-        return ChatItem<Choice>(type: .choiceList(choices), alignment: .right, timestamp: date, footer: footer)
+        return ChatItem<Choice>(type: .choiceList(choices),
+                                chatType: .onBoarding,
+                                alignment: .right,
+                                timestamp: date,
+                                showFooter: includeFooter)
     }
 }

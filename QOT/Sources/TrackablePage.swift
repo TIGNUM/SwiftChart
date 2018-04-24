@@ -65,6 +65,7 @@ enum PageName: String {
     case sideBar = "sidebar"
     case sidebarLibrary = "sidebar.library"
     case tutorial = "tutorial"
+    case visionGenerator = "vision.generator"
     case weeklyChoices = "me.mywhy.weeklychoices"
     case whatsHot = "learn.whatshot.articlelist"
     case whatsHotArticle = "learn.whatshot.article"

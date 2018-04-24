@@ -17,4 +17,10 @@ extension UINavigationBar {
         shadowImage = dummyImage
         isTranslucent = true
     }
+
+    func applyDarkBluryStyle() {
+        titleTextAttributes = [.foregroundColor: UIColor.white, .font: Font.H6NavigationTitle]
+        isTranslucent = true
+        barStyle = .black
+    }
 }

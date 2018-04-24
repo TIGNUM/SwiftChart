@@ -29,7 +29,14 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
 
-    init(root: UIViewController, eventTracker: EventTracker, services: Services, content: ContentCollection, category: ContentCategory, presentationManager: ContentItemAnimator? = nil, topBarDelegate: NavigationItemDelegate? = nil, presentOnStart: Bool = true) {
+    init(root: UIViewController,
+         eventTracker: EventTracker,
+         services: Services,
+         content: ContentCollection,
+         category: ContentCategory,
+         presentationManager: ContentItemAnimator? = nil,
+         topBarDelegate: NavigationItemDelegate? = nil,
+         presentOnStart: Bool = true) {
         self.rootViewController = root
         self.eventTracker = eventTracker
         self.services = services
@@ -46,7 +53,8 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             categoryID: category.forcedRemoteID
         )
 
-        headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized, categoryTitle: categoryTitle.capitalized)
+        headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized,
+                                                        categoryTitle: categoryTitle.capitalized)
         fullViewController = LearnContentItemViewController(viewModel: viewModel, tabType: .full)
         fullViewController.title = R.string.localized.learnContentItemTitleFull()
         bulletViewController = LearnContentItemViewController(viewModel: viewModel, tabType: .bullets)

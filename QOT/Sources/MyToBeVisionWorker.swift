@@ -18,6 +18,14 @@ final class MyToBeVisionWorker {
         self.syncManager = syncManager
     }
 
+    var trackablePageObject: PageObject? {
+        return services.userService.myToBeVision().map { PageObject(object: $0, identifier: .myToBeVision) }
+    }
+
+    var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] {
+        return services.questionsService.visionChatItems
+    }
+
     func myToBeVision() -> MyToBeVisionModel.Model? {
         return services.userService.myToBeVision()?.model
     }
@@ -45,11 +53,9 @@ final class MyToBeVisionWorker {
     func saveImage(_ image: UIImage) throws -> URL {
         return try image.save(withName: UUID().uuidString)
     }
-
-    var trackablePageObject: PageObject? {
-        return services.userService.myToBeVision().map { PageObject(object: $0, identifier: .myToBeVision) }
-    }
 }
+
+// MARK: - Private extension MyToBeVision
 
 private extension MyToBeVision {
 

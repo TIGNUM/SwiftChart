@@ -27,4 +27,8 @@ final class MyToBeVisionPresenter: MyToBeVisionPresenterInterface {
     func presentImageError(_ error: Error) {
         viewController?.displayImageError()
     }
+
+    func presentVisionGenerator() {
+        viewController?.showVisionGenerator()
+    }
 }

@@ -89,6 +89,10 @@ final class ContentService {
         return sortedResults(for: NSPredicate(remoteIDs: ids))
     }
 
+    func visionGeneratorCategories() -> AnyRealmCollection<ContentCategory> {
+        return mainRealm.contentCategories(section: .visionGenerator)
+    }
+
     // MARK: - Collections
 
     func tools() -> AnyRealmCollection<ContentCollection> {

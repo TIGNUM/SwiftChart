@@ -336,7 +336,6 @@ extension AppCoordinator {
 
     func showLogin() {
         guard userIsLoggingIn.value == false else { return }
-
         userIsLoggingIn.value = true
         let loginCoordinator = LoginCoordinator(windowManager: windowManager,
                                                 delegate: self,
@@ -365,6 +364,8 @@ extension AppCoordinator {
 extension AppCoordinator: NavigationItemDelegate {
 
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
+        self.onDismiss?()
+        self.onDismiss = nil
         topTabBarController?.dismiss(animated: true) {
             self.windowManager.resignWindow(atLevel: .priority)
         }
@@ -615,11 +616,12 @@ extension AppCoordinator {
 
 extension AppCoordinator {
 
-    func presentLearnContentItems(contentID: Int) {
+    func presentLearnContentItems(contentID: Int, onDismiss: (() -> Void)? = nil) {
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
             let category = content.contentCategories.first else { return }
+        self.onDismiss = onDismiss
         startLearnContentItemCoordinator(services: services, content: content, category: category)
     }
 

@@ -38,6 +38,13 @@
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
 		36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
+		36667692207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36667691207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift */; };
+		36667694207CF62700D2F5AD /* VisionGeneratorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36667693207CF62700D2F5AD /* VisionGeneratorInteractor.swift */; };
+		36667696207CF64000D2F5AD /* VisionGeneratorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36667695207CF64000D2F5AD /* VisionGeneratorModels.swift */; };
+		36667698207CF65000D2F5AD /* VisionGeneratorPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36667697207CF65000D2F5AD /* VisionGeneratorPresenter.swift */; };
+		3666769A207CF66600D2F5AD /* VisionGeneratorProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36667699207CF66600D2F5AD /* VisionGeneratorProtocols.swift */; };
+		3666769C207CF68500D2F5AD /* VisionGeneratorRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666769B207CF68500D2F5AD /* VisionGeneratorRouter.swift */; };
+		3666769E207CF69800D2F5AD /* VisionGeneratorWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3666769D207CF69800D2F5AD /* VisionGeneratorWorker.swift */; };
 		3666EFAC2062A2100020F63E /* PrepareContentReviewNotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3666EFAA2062A2100020F63E /* PrepareContentReviewNotesTableViewCell.xib */; };
 		367564A720695922008D1F71 /* ReviewNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367564A620695922008D1F71 /* ReviewNotesViewController.swift */; };
 		367564AD206A4420008D1F71 /* PrepareContentNotesViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367564AC206A4420008D1F71 /* PrepareContentNotesViewController.storyboard */; };
@@ -651,6 +658,13 @@
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSharingEmail.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
+		36667691207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorConfigurator.swift; sourceTree = "<group>"; };
+		36667693207CF62700D2F5AD /* VisionGeneratorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorInteractor.swift; sourceTree = "<group>"; };
+		36667695207CF64000D2F5AD /* VisionGeneratorModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorModels.swift; sourceTree = "<group>"; };
+		36667697207CF65000D2F5AD /* VisionGeneratorPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorPresenter.swift; sourceTree = "<group>"; };
+		36667699207CF66600D2F5AD /* VisionGeneratorProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorProtocols.swift; sourceTree = "<group>"; };
+		3666769B207CF68500D2F5AD /* VisionGeneratorRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorRouter.swift; sourceTree = "<group>"; };
+		3666769D207CF69800D2F5AD /* VisionGeneratorWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorWorker.swift; sourceTree = "<group>"; };
 		3666EFAA2062A2100020F63E /* PrepareContentReviewNotesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareContentReviewNotesTableViewCell.xib; sourceTree = "<group>"; };
 		367564A620695922008D1F71 /* ReviewNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReviewNotesViewController.swift; sourceTree = "<group>"; };
 		367564AC206A4420008D1F71 /* PrepareContentNotesViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PrepareContentNotesViewController.storyboard; sourceTree = "<group>"; };
@@ -1300,6 +1314,20 @@
 			name = CLTypingLabel;
 			sourceTree = "<group>";
 		};
+		36667690207CF5BF00D2F5AD /* Vision Generator */ = {
+			isa = PBXGroup;
+			children = (
+				36667691207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift */,
+				36667693207CF62700D2F5AD /* VisionGeneratorInteractor.swift */,
+				36667695207CF64000D2F5AD /* VisionGeneratorModels.swift */,
+				36667697207CF65000D2F5AD /* VisionGeneratorPresenter.swift */,
+				36667699207CF66600D2F5AD /* VisionGeneratorProtocols.swift */,
+				3666769B207CF68500D2F5AD /* VisionGeneratorRouter.swift */,
+				3666769D207CF69800D2F5AD /* VisionGeneratorWorker.swift */,
+			);
+			name = "Vision Generator";
+			sourceTree = "<group>";
+		};
 		36DADE771FA7869000EB00D4 /* SettingsAdmin */ = {
 			isa = PBXGroup;
 			children = (
@@ -1857,8 +1885,8 @@
 				CBC2A8191FE2B755003AB1A4 /* SlideShowProtocols.swift */,
 				CB94422F1FD97DE200E2B122 /* SlideShowRouter.swift */,
 				CB94423B1FDFE55E00E2B122 /* SlideShowViewController.swift */,
-				CB94423C1FDFE55E00E2B122 /* SlideShowViewController.xib */,
 				CB9442351FD97FAE00E2B122 /* SlideShowWorker.swift */,
+				CB94423C1FDFE55E00E2B122 /* SlideShowViewController.xib */,
 				CB96B7E21FED222800ED8015 /* Cells */,
 			);
 			name = SlideShow;
@@ -1876,6 +1904,7 @@
 				CB3333DD20480DA2009480DF /* Share */,
 				91FF8FD4207F38CC00FCD999 /* Settings Bubbles */,
 				CB9442261FD963B200E2B122 /* SlideShow */,
+				36667690207CF5BF00D2F5AD /* Vision Generator */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -1883,13 +1912,13 @@
 		CB96B7E21FED222800ED8015 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
-				CBABB37E1FDFF3E0007B5B5C /* SlideShowTitleSubtitleSlideCell.swift */,
-				CBABB37F1FDFF3E0007B5B5C /* SlideShowTitleSubtitleSlideCell.xib */,
-				CB96B7DE1FED21A300ED8015 /* SlideShowTitleOnlySlideCell.swift */,
-				CB96B7DF1FED21A400ED8015 /* SlideShowTitleOnlySlideCell.xib */,
 				CBABB3821FE017CA007B5B5C /* SlideShowPromptCells.swift */,
-				CB96B7E61FED349400ED8015 /* SlideShowMorePromptCell.xib */,
+				CB96B7DE1FED21A300ED8015 /* SlideShowTitleOnlySlideCell.swift */,
+				CBABB37E1FDFF3E0007B5B5C /* SlideShowTitleSubtitleSlideCell.swift */,
 				CB96B7EC1FED462600ED8015 /* SlideShowCompletePromptCell.xib */,
+				CB96B7E61FED349400ED8015 /* SlideShowMorePromptCell.xib */,
+				CB96B7DF1FED21A400ED8015 /* SlideShowTitleOnlySlideCell.xib */,
+				CBABB37F1FDFF3E0007B5B5C /* SlideShowTitleSubtitleSlideCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -2323,11 +2352,11 @@
 				360256E52051838600862B0E /* SearchPresenter.swift */,
 				360256E9205183B300862B0E /* SearchProtocols.swift */,
 				360256E12051836200862B0E /* SearchRouter.swift */,
+				360256EF20528DBD00862B0E /* SearchTableViewCell.swift */,
 				D5485F211ED57AE200A08D1A /* SearchViewController.swift */,
 				360256E32051837300862B0E /* SearchWorker.swift */,
-				360256ED205197AB00862B0E /* SearchViewController.xib */,
-				360256EF20528DBD00862B0E /* SearchTableViewCell.swift */,
 				360256F120528E9F00862B0E /* SearchTableViewCell.xib */,
+				360256ED205197AB00862B0E /* SearchViewController.xib */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -3428,6 +3457,7 @@
 				CCFCCB141F31C8E8004A4D7E /* R.generated.swift in Sources */,
 				CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */,
 				7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */,
+				36667698207CF65000D2F5AD /* VisionGeneratorPresenter.swift in Sources */,
 				7F3A9CBB1FCDB8FF000F1744 /* UserFeedback.swift in Sources */,
 				912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */,
 				912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */,
@@ -3570,6 +3600,7 @@
 				CB2E50C4204EE3350070C706 /* PartnerProfileView.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
+				36667696207CF64000D2F5AD /* VisionGeneratorModels.swift in Sources */,
 				7FBFBC131FC73F18007B6D2D /* WeeklyChoice.swift in Sources */,
 				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
@@ -3602,6 +3633,7 @@
 				7F47E8401F8E4FE000ED4446 /* UIDevice+Utility.swift in Sources */,
 				CC33CA301EC60447008E6B33 /* DatabaseConstants.swift in Sources */,
 				CBC1DC2B1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift in Sources */,
+				3666769C207CF68500D2F5AD /* VisionGeneratorRouter.swift in Sources */,
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
 				CB35504320597D44000ECAFA /* DailyPrepAnswerObject.swift in Sources */,
 				CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */,
@@ -3654,6 +3686,7 @@
 				CBB98B04201F850100B8EAD7 /* UNCalendarNotificationTrigger+Convenience.swift in Sources */,
 				CB333402204978DE009480DF /* PartnersModels.swift in Sources */,
 				CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */,
+				36667694207CF62700D2F5AD /* VisionGeneratorInteractor.swift in Sources */,
 				CB333404204978DE009480DF /* PartnersInteractor.swift in Sources */,
 				7FB9AD0B1F39BD1400E0D621 /* UpSyncMediaResultParser.swift in Sources */,
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
@@ -3728,11 +3761,13 @@
 				0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */,
 				7F08887F1F0A4101005CE966 /* PartnerService.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
+				36667692207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */,
 				CBD4BEAA2018E7D4008A0E9E /* GuideConfigurator.swift in Sources */,
 				36B07E8D2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift in Sources */,
 				7F8DB4AB1FA2047D00DFE006 /* PartnersAnimation.swift in Sources */,
+				3666769E207CF69800D2F5AD /* VisionGeneratorWorker.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */,
 				7F5A25BF1F3CB71100A11466 /* DatabaseManager.swift in Sources */,
@@ -3792,6 +3827,7 @@
 				CB84CDF71FA2345D00970E71 /* SyncStateObserver.swift in Sources */,
 				CB5134121FAB721000FBDD66 /* ContentRead.swift in Sources */,
 				852DADC41EEED5D600A10882 /* MeetingsAverageChart.swift in Sources */,
+				3666769A207CF66600D2F5AD /* VisionGeneratorProtocols.swift in Sources */,
 				360256F020528DBD00862B0E /* SearchTableViewCell.swift in Sources */,
 				CBD4BEA82018DFD9008A0E9E /* GuidePresenter.swift in Sources */,
 				7F3A9CC01FCDC894000F1744 /* ArticleCollectionProvider.swift in Sources */,

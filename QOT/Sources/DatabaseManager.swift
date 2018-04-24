@@ -109,7 +109,6 @@ final class DatabaseManager {
         do {
             let seedRealm = try Realm(configuration: .seed())
             try seedRealm.writeCopy(toFile: URL.mainRealm, encryptionKey: encryptionKey)
-            log("copied seed database to \(URL.mainRealm)")
         } catch {
             // Just log the errors. The app will still work
             log("failed to copy seed database to \(URL.mainRealm), error: \(error)")
@@ -166,7 +165,7 @@ final class DatabaseManager {
     }
 }
 
-// MARK: Helpers
+// MARK: Helpers 
 
 private extension URL {
 

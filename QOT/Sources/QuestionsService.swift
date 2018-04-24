@@ -20,9 +20,7 @@ final class QuestionsService {
     }
 
     func prepareQuestions(questionGroupID: Int) -> AnyRealmCollection<Question> {
-        let predicate = NSPredicate(format: "ANY answers.decisions.questionGroupID == %d", questionGroupID)
-        let results = mainRealm.objects(Question.self).sorted(by: [.sortOrder()]).filter(predicate)
-        return AnyRealmCollection(results)
+        return questions(for: questionGroupID)
     }
 
     func question(id: Int) -> Question? {
@@ -54,9 +52,180 @@ final class QuestionsService {
                     if question(id: id) != nil {
                         return target
                     }
+                default: break
                 }
             }
         }
         return nil
+    }
+
+    private lazy var questions: [Question] = {
+        return Array(visionQuestions())
+    }()
+
+    private lazy var introChatItems: [ChatItem<VisionGeneratorChoice>] = {
+        guard let question = questionFor(.intro) else { return [] }
+        return chatItems(for: question)
+    }()
+
+    private lazy var instructionChatItems: [ChatItem<VisionGeneratorChoice>] = {
+        guard let question = questionFor(.instructions) else { return [] }
+        return chatItems(for: question)
+    }()
+
+    private lazy var workChatItems: [ChatItem<VisionGeneratorChoice>] = {
+        guard let question = questionFor(.work) else { return [] }
+        return chatItems(for: question)
+    }()
+
+    private lazy var homeChatItems: [ChatItem<VisionGeneratorChoice>] = {
+        guard let question = questionFor(.home) else { return [] }
+        return chatItems(for: question)
+    }()
+
+    private lazy var createChatItems: [ChatItem<VisionGeneratorChoice>] = {
+        guard let question = questionFor(.create) else { return [] }
+        return chatItems(for: question)
+    }()
+
+    private lazy var pictureChatItems: [ChatItem<VisionGeneratorChoice>] = {
+        guard let question = questionFor(.picture) else { return [] }
+        return chatItems(for: question)
+    }()
+
+    private lazy var reviewChatItems: [ChatItem<VisionGeneratorChoice>] = {
+        guard let question = questionFor(.review) else { return [] }
+        return chatItems(for: question)
+    }()
+}
+
+// MARK: - TBV Generator
+
+extension QuestionsService {
+
+    func visionQuestions() -> AnyRealmCollection<Question> {
+        return questions(for: 100041)
+    }
+
+    func visionQuestion(for type: VisionGeneratorChoice.QuestionType) -> Question? {
+        return (Array(visionQuestions()).filter { $0.key == type.rawValue }).first
+    }
+
+    func visonIntroQuestion() -> Question? {
+        return visionQuestion(for: .intro)
+    }
+
+    func visionLastQuestion() -> Question? {
+        return visionQuestion(for: .review)
+    }
+
+    func visionQuestion(for targetID: Int) -> Question? {
+        return question(id: targetID)
+    }
+
+    func visionAnswers() -> [Answer] {
+        var answers = [Answer]()
+        visionQuestions().forEach { (question: Question) in
+            answers.append(contentsOf: question.answers)
+        }
+        return answers
+    }
+
+    var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] {
+        return [VisionGeneratorChoice.QuestionType.intro: introChatItems,
+                VisionGeneratorChoice.QuestionType.instructions: instructionChatItems,
+                VisionGeneratorChoice.QuestionType.work: workChatItems,
+                VisionGeneratorChoice.QuestionType.home: homeChatItems,
+                VisionGeneratorChoice.QuestionType.create: createChatItems,
+                VisionGeneratorChoice.QuestionType.review: reviewChatItems]
+    }
+
+    func questionFor(_ type: VisionGeneratorChoice.QuestionType) -> Question? {
+        return (questions.filter { $0.key == type.key }).first
+    }
+
+    func chatItems(for question: Question) -> [ChatItem<VisionGeneratorChoice>] {
+        return generateItems(visionGeneratorMessages(question),
+                             followedByChoices: visionGeneratorChoices(question),
+                             choiceType: choiceType(for: question))
+    }
+
+    func visionGeneratorMessages(_ question: Question) -> [String] {
+        return [question.title]
+    }
+
+    func visionGeneratorChoices(_ question: Question?) -> [VisionGeneratorChoice] {
+        guard let question = question else { return [] }
+        var choices = [VisionGeneratorChoice]()
+        question.answers.forEach { (answer) in
+            choices.append(VisionGeneratorChoice(title: answer.title,
+                                                 type: choiceType(for: question),
+                                                 targetID: answer.decisions.first?.targetID,
+                                                 target: answer.decisions.first?.target))
+        }
+        return choices
+    }
+
+    func generateItems(_ messages: [String],
+                       followedByChoices choices: [VisionGeneratorChoice],
+                       choiceType: VisionGeneratorChoice.QuestionType) -> [ChatItem<VisionGeneratorChoice>] {
+        var items: [ChatItem<VisionGeneratorChoice>] = []
+        let now = Date()
+        for (index, message) in messages.enumerated() {
+            let date = now.addingTimeInterval(TimeInterval(index))
+            let item = messageChatItem(text: message,
+                                       date: date,
+                                       includeFooter: index == messages.count - 1,
+                                       isAutoscrollSnapable: index == 0)
+            items.append(item)
+        }
+        let choiceListDate = now.addingTimeInterval(TimeInterval(choices.count))
+        items.append(choiceListChatItem(choices: choices,
+                                        date: choiceListDate,
+                                        includeFooter: true,
+                                        choiceType: choiceType))
+        return items
+    }
+
+    func messageChatItem(text: String,
+                         date: Date,
+                         includeFooter: Bool,
+                         isAutoscrollSnapable: Bool) -> ChatItem<VisionGeneratorChoice> {
+        return ChatItem<VisionGeneratorChoice>(type: .message(text),
+                                               chatType: .visionGenerator,
+                                               alignment: .left,
+                                               timestamp: date,
+                                               showFooter: includeFooter,
+                                               isAutoscrollSnapable: isAutoscrollSnapable)
+    }
+
+    func choiceListChatItem(choices: [VisionGeneratorChoice],
+                            date: Date,
+                            includeFooter: Bool,
+                            choiceType: VisionGeneratorChoice.QuestionType) -> ChatItem<VisionGeneratorChoice> {
+        return ChatItem<VisionGeneratorChoice>(type: .choiceList(choices),
+                                               chatType: .visionGenerator,
+                                               alignment: .right,
+                                               timestamp: date,
+                                               showFooter: includeFooter,
+                                               allowsMultipleSelection: choiceType.multiSelection)
+    }
+
+    func choiceType(for question: Question?) -> VisionGeneratorChoice.QuestionType {
+        if let question = question, let type = VisionGeneratorChoice.QuestionType(rawValue: question.key ?? "") {
+            return type
+        }
+        return VisionGeneratorChoice.QuestionType.intro
+    }
+}
+
+// MARK: - Private
+
+private extension QuestionsService {
+
+    func questions(for questionGroupID: Int) -> AnyRealmCollection<Question> {
+        let predicate = NSPredicate(format: "ANY groups.id == %d", questionGroupID)
+        let results = mainRealm.objects(Question.self).sorted(by: [.sortOrder()]).filter(predicate)
+        return AnyRealmCollection(results)
     }
 }

@@ -46,6 +46,15 @@ final class ChatViewCell: UICollectionViewCell {
                          textAttributes: Style.attributes(font: .bentonBookFont(ofSize: 17), textColor: .white))
         }()
 
+        static let visionChoiceSelected: Style = {
+            return Style(identifier: "choiceSelected",
+                         backgroundColor: .azure,
+                         dashedLineColor: .greyish20,
+                         dashedLineWidth: 1,
+                         dashedLinePattern: nil,
+                         textAttributes: Style.attributes(font: .bentonBookFont(ofSize: 17), textColor: .white))
+        }()
+
         static func attributes(font: UIFont, textColor: UIColor, lineSpacing: CGFloat = 7)
             -> [NSAttributedStringKey: Any] {
                 let style = NSMutableParagraphStyle()

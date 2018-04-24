@@ -75,7 +75,7 @@ final class TokenBin {
 extension NSKeyValueObservation: TokenProtocol {}
 
 extension CompositeDisposable: TokenProtocol {
-    
+
     func invalidate() {
         dispose()
     }

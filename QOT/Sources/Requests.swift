@@ -68,6 +68,7 @@ struct DownSyncConfirmRequest: URLRequestBuildable {
     init(endpoint: Endpoint, syncToken: String) {
         self.endpoint = endpoint
         self.headers = [.syncToken: syncToken]
+
     }
 }
 

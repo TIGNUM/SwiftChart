@@ -268,6 +268,8 @@
 "Alert.Title.Preparation.Remove.Strategy" = "Remove strategy";  
 "Alert.Title.Preparation.Edit.Strategy" = "Customize your preparation";
 "Alert.Message.Preparation.Edit.Strategy" = "You can tailor your preparation. Add strategies that fit best or remove those you dont like.";
+"Alert.Button.Title.Edit.Vision" = "Edit To Be Vision";
+"Alert.Button.Title.Create.Vision" = "Create a new To Be Vision";
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
 "ImagePicker.Options.Button.Camera" = "Take a Picture";

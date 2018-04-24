@@ -23,6 +23,7 @@ enum Database {
         case help = "HELP"
         case slideShowShort = "SLIDESHOW_SHORT"
         case slideShowLong = "SLIDESHOW_LONG"
+        case visionGenerator = "TBV_GENERATOR"
 
         var value: String {
             return rawValue

@@ -132,7 +132,6 @@ extension PrepareCoordinator {
             viewController.delegate = self
             tabBarController.present(viewController, animated: true)
             prepareListViewController = viewController
-
             context = Context(contentCollectionID: contentCollectionID, listTitle: title)
         } else {
             tabBarController.showAlert(type: .noContent, handler: { [weak self] in
@@ -144,51 +143,6 @@ extension PrepareCoordinator {
     func showPrepareCheckList(preparationID: String) {
         guard let preparation = services.preparationService.preparation(localID: preparationID) else { return }
         self.preparationID = preparationID
-//        var title: String? = nil
-//        var video: PrepareContentViewModel.Video? = nil
-//        var description: String?
-//        var items: [PrepareItem] = []
-//
-//        if let content = services.contentService.contentCollection(id: preparation.contentCollectionID) {
-//            title = content.title
-//            for item in content.contentItems {
-//                let value = item.contentItemValue
-//                switch value {
-//                case .prepareStep(let title, let description, let relatedContentID):
-//                    items.append(PrepareItem(id: item.forcedRemoteID,
-//                                             title: title,
-//                                             subTitle: description,
-//                                             readMoreID: relatedContentID))
-//                case .video(_, _, let placeholderURL, let videoURL, _):
-//                    video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
-//                case .text(let text, let style):
-//                    if style == .paragraph {
-//                        description = text
-//                    }
-//                default:
-//                    break
-//                }
-//            }
-//        }
-//
-//        let preparationChecks = services.preparationService.preparationChecks(preparationID: preparationID)
-//        var checkedIDs: [Int: Date?] = [:]
-//        for preparationCheck in preparationChecks {
-//            checkedIDs[preparationCheck.contentItemID] = preparationCheck.covered
-//        }
-//
-//        if let title = title {
-//            contentTitle = title
-//            let viewModel = PrepareContentViewModel(title: title,
-//                                                    video: video,
-//                                                    description: description ?? "",
-//                                                    items: items,
-//                                                    checkedIDs: checkedIDs,
-//                                                    preparationID: preparationID,
-//                                                    contentCollectionTitle: preparation.subtitle,
-//                                                    notes: preparation.notes,
-//                                                    notesDictionary: preparation.notesDictionary,
-//                                                    services: services)
         if let viewModel = prepareChecklistViewModel(preparation: preparation) {
             let prepareController = PrepareContentViewController(pageName: .prepareCheckList, viewModel: viewModel)
             prepareController.delegate = self
@@ -204,7 +158,7 @@ extension PrepareCoordinator {
             topTabBarController = UINavigationController(withPages: [prepareController, noteController],
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()),
-                                                         rightButton: nil,//rightButton,
+                                                         rightButton: nil, //rightButton,
                                                          navigationItemStyle: .light)
             tabBarController.present(topTabBarController, animated: true)
             prepareListViewController = prepareController

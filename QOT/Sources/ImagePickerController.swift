@@ -27,7 +27,10 @@ final class ImagePickerController {
     weak var viewController: UIViewController?
     weak var delegate: ImagePickerControllerDelegate?
 
-    init(cropShape: ImageCropper.Shape, imageQuality: ImageQuality, imageSize: ImageSize, permissionsManager: PermissionsManager) {
+    init(cropShape: ImageCropper.Shape,
+         imageQuality: ImageQuality,
+         imageSize: ImageSize,
+         permissionsManager: PermissionsManager) {
         self.imageQuality = imageQuality
         self.imageSize = imageSize
         self.permissionsManager = permissionsManager

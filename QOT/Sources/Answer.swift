@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class Answer: Object {
+final class Answer: Object {
 
     let remoteID = RealmOptional<Int>(nil)
 

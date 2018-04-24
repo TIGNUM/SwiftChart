@@ -207,6 +207,7 @@ enum JsonKey: String {
     case teamAverage
     case telephone
     case telephoneNumber
+    case terms
     case text
     case textValue
     case thumbnail

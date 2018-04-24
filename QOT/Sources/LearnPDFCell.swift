@@ -15,7 +15,7 @@ class LearnPDFCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var title: UILabel!
     @IBOutlet weak var timeToRead: UILabel!
-    
+
     // MARK: - Methods
 
     func configure(titleText: NSAttributedString, timeToReadSeconds: Int, titleColor: UIColor, timeColor: UIColor) {

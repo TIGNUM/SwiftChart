@@ -38,6 +38,7 @@ enum AlertType {
     case canNotSendEmailToBeVision
     case canNotSendEmailWeeklyChoices
     case prepareEditStrategy
+    case toBeVisionActionSheet
 
     var title: String? {
         switch self {
@@ -100,6 +101,7 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars,
              .imagePicker,
+             .toBeVisionActionSheet,
              .prepareEditStrategy: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
@@ -129,7 +131,8 @@ enum AlertType {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
              .settingsCalendars: return [.cancel, .default]
-        case .imagePicker: return [.cancel]
+        case .imagePicker,
+             .toBeVisionActionSheet: return [.cancel]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
         default: return [.default]
         }
@@ -138,7 +141,8 @@ enum AlertType {
     var alertStyle: UIAlertControllerStyle {
         switch self {
         case .imagePicker,
-             .prepareEditStrategy: return .actionSheet
+             .prepareEditStrategy,
+             .toBeVisionActionSheet: return .actionSheet
         default: return .alert
         }
     }

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class WindowManager {
+final class WindowManager {
     enum Level {
         case alert
         case priority

@@ -190,15 +190,21 @@ final class NetworkManager {
      If the user has no token, first authenticates before performing the request.
      If the users token is not accepted by the server, trys to reauthenticate before reperforming the request.
     */
-    @discardableResult func request<T>(_ urlRequest: URLRequestBuildable, parser: @escaping (Data) throws -> T, completion: @escaping (Result<T, NetworkError>) -> Void) -> SerialRequest {
+    @discardableResult func request<T>(_ urlRequest: URLRequestBuildable,
+                                       parser: @escaping (Data) throws -> T,
+                                       completion: @escaping (Result<T, NetworkError>) -> Void) -> SerialRequest {
         let serialRequest = SerialRequest()
         performAuthenticatingRequest(urlRequest, parser: parser, current: serialRequest, completion: completion)
         return serialRequest
     }
 
-    @discardableResult func request<T: DownSyncIntermediary>(token: String, endpoint: Endpoint, page: Int, accumulator: [DownSyncChange<T>] = [], serialRequest: SerialRequest? = nil, completion: @escaping (Result<([DownSyncChange<T>], String), NetworkError>) -> Void) -> SerialRequest {
+    @discardableResult func request<T: DownSyncIntermediary>(token: String,
+                                                             endpoint: Endpoint,
+                                                             page: Int,
+                                                             accumulator: [DownSyncChange<T>] = [],
+                                                             serialRequest: SerialRequest? = nil,
+                                                             completion: @escaping (Result<([DownSyncChange<T>], String), NetworkError>) -> Void) -> SerialRequest {
         let serialRequest = serialRequest ?? SerialRequest()
-
         let urlRequest = DownSyncRequest(endpoint: endpoint, syncToken: token, page: page)
         serialRequest.request = self.request(urlRequest, parser: DownSyncResultParser<T>.parse) { [weak self] (result) in
             switch result {
@@ -208,7 +214,12 @@ final class NetworkManager {
                     completion(.success((changes, value.nextSyncToken)))
                 } else {
                     let page = page + 1
-                    self?.request(token: value.nextSyncToken, endpoint: endpoint, page: page, accumulator: changes, serialRequest: serialRequest, completion: completion)
+                    self?.request(token: value.nextSyncToken,
+                                  endpoint: endpoint,
+                                  page: page,
+                                  accumulator: changes,
+                                  serialRequest: serialRequest,
+                                  completion: completion)
                 }
             case .failure(let error):
                 completion(.failure(error))
@@ -279,6 +290,7 @@ extension SessionManager {
         return self.request(urlRequest)
             .validate(statusCode: 200..<300)
             .responseData(queue: completionQueue) { response in
+                log("REQUEST URLRequest URL: \(String(describing: urlRequest.urlRequest?.url))", level: .verbose)
                 log("REQUEST BODY DATA: \(response.request?.httpBody?.utf8String ?? "No request body data")", level: .verbose)
                 log("RESPONSE BODY DATA: \(response.data?.utf8String ?? "No response data")", level: .verbose)
 
@@ -292,7 +304,10 @@ extension SessionManager {
                         result = .failure(networkError)
                     }
                 case .failure(let error):
-                    let networkError = NetworkError(error: error as NSError, request: response.request, response: response.response, data: response.data)
+                    let networkError = NetworkError(error: error as NSError,
+                                                    request: response.request,
+                                                    response: response.response,
+                                                    data: response.data)
                     result = .failure(networkError)
                 }
                 completion(response, result)

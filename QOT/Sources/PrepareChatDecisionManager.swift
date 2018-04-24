@@ -12,7 +12,6 @@ import RealmSwift
 extension Answer: ChatChoice {}
 
 protocol PrepareChatDecisionManagerDelegate: class {
-
     func setItems(_ items: [ChatItem<PrepareAnswer>], manager: PrepareChatDecisionManager)
     func appendItems(_ items: [ChatItem<PrepareAnswer>], manager: PrepareChatDecisionManager)
     func showContent(id: Int, manager: PrepareChatDecisionManager)
@@ -36,12 +35,10 @@ final class PrepareChatDecisionManager {
 
     func start() {
         delegate?.setItems([], manager: self)
-
         addQuestions()
     }
 
     func preparationSaved() {
-
         let now = Date()
         addMessage(R.string.localized.prepareChatPreparationSaved(), timestamp: now, showDeliveredFooter: false)
         addQuestions(timestamp: now.addingTimeInterval(1), isAutoscrollSnapable: false)
@@ -66,28 +63,28 @@ final class PrepareChatDecisionManager {
             if let question = questionsService.question(id: id) {
                 process(question: question, timestamp: Date(), isAutoscrollSnapable: true)
             }
+        default: return
         }
     }
 
     func addMessage(_ message: String, timestamp: Date, showDeliveredFooter: Bool) {
-        let footer = showDeliveredFooter ? deliveredFooter(date: timestamp) : nil
         let item: ChatItem<PrepareAnswer> = ChatItem(type: .message(message),
-                                                alignment: .left,
-                                                timestamp: timestamp,
-                                                header: nil,
-                                                footer: footer,
-                                                isAutoscrollSnapable: true)
+                                                     chatType: .prepare,
+                                                     alignment: .left,
+                                                     timestamp: timestamp,
+                                                     showFooter: showDeliveredFooter,
+                                                     isAutoscrollSnapable: true)
         delegate?.appendItems([item], manager: self)
     }
 
     private func process(question: Question, timestamp: Date, isAutoscrollSnapable: Bool) {
         var items: [ChatItem<PrepareAnswer>] = []
         let botMessage: ChatItem<PrepareAnswer> = ChatItem(type: .message(question.title),
-                                                      alignment: .left,
-                                                      timestamp: timestamp,
-                                                      header: nil,
-                                                      footer: deliveredFooter(date: timestamp),
-                                                      isAutoscrollSnapable: isAutoscrollSnapable)
+                                                           chatType: .prepare,
+                                                           alignment: .left,
+                                                           timestamp: timestamp,
+                                                           showFooter: true,
+                                                           isAutoscrollSnapable: isAutoscrollSnapable)
         items.append(botMessage)
 
         let answers = Array(question.prepareChatAnswers(groupID: questionGroupID))
@@ -96,10 +93,10 @@ final class PrepareChatDecisionManager {
             return PrepareAnswer(title: $0.title, target: target)
         }
         let item = ChatItem(type: .choiceList(prepareAnswers),
+                            chatType: .prepare,
                             alignment: .right,
                             timestamp: timestamp.addingTimeInterval(0.8),
-                            header: nil,
-                            footer: deliveredFooter(date: timestamp),
+                            showFooter: true,
                             allowsMultipleSelection: true)
         items.append(item)
 

@@ -61,7 +61,7 @@ final class Preparation: SyncableObject {
 
 // MARK: - BuildRelations
 
-extension Preparation: BuildRelations { 
+extension Preparation: BuildRelations {
 
     func buildInverseRelations(realm: Realm) {
         let predicate = NSPredicate(format: "preparation == %@", self)

@@ -10,17 +10,17 @@ import UIKit
 
 protocol ChatViewLayoutDelegate: class {
 
-    func chartViewLayout(_ layout: ChatViewLayout, alignmentForSectionAt section: Int) -> ChatViewAlignment
-    func chartViewLayout(_ layout: ChatViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
-    func chartViewLayout(_ layout: ChatViewLayout, horizontalInteritemSpacingForSectionAt section: Int) -> CGFloat
-    func chartViewLayout(_ layout: ChatViewLayout, verticalInteritemSpacingForSectionAt section: Int) -> CGFloat
-    func chartViewLayout(_ layout: ChatViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
-    func chartViewLayout(_ layout: ChatViewLayout, sizeForHeaderAt section: Int) -> CGSize?
-    func chartViewLayout(_ layout: ChatViewLayout, sizeForFooterAt section: Int) -> CGSize?
-    func chartViewLayout(_ layout: ChatViewLayout, showAvatarInSection section: Int) -> Bool
-    func chartViewLayout(_ layout: ChatViewLayout,
+    func chatViewLayout(_ layout: ChatViewLayout, alignmentForSectionAt section: Int) -> ChatViewAlignment
+    func chatViewLayout(_ layout: ChatViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize
+    func chatViewLayout(_ layout: ChatViewLayout, horizontalInteritemSpacingForSectionAt section: Int) -> CGFloat
+    func chatViewLayout(_ layout: ChatViewLayout, verticalInteritemSpacingForSectionAt section: Int) -> CGFloat
+    func chatViewLayout(_ layout: ChatViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets
+    func chatViewLayout(_ layout: ChatViewLayout, sizeForHeaderAt section: Int) -> CGSize?
+    func chatViewLayout(_ layout: ChatViewLayout, sizeForFooterAt section: Int) -> CGSize?
+    func chatViewLayout(_ layout: ChatViewLayout, showAvatarInSection section: Int) -> Bool
+    func chatViewLayout(_ layout: ChatViewLayout,
                          animatorForLayoutAttributes: UICollectionViewLayoutAttributes) -> ChatViewAnimator?
-    func chartViewLayout(_ layout: ChatViewLayout, snapToTopOffsetInSection section: Int) -> CGFloat?
+    func chatViewLayout(_ layout: ChatViewLayout, snapToTopOffsetInSection section: Int) -> CGFloat?
 }
 
 enum ChatViewAlignment {
@@ -34,7 +34,6 @@ final class ChatViewLayout: UICollectionViewLayout {
     private var contentSize: CGSize = .zero
     private var sectionInsertionTimes: [Int: Date] = [:]
     private var insertedSections: [Int] = []
-
     weak var delegate: ChatViewLayoutDelegate?
 
     override class var layoutAttributesClass: AnyClass {
@@ -53,20 +52,20 @@ final class ChatViewLayout: UICollectionViewLayout {
         var originY: CGFloat = 0
         for sectionIndex in 0..<collectionView.numberOfSections {
             let itemCount = collectionView.numberOfItems(inSection: sectionIndex)
-            let horizontalSpacing = delegate.chartViewLayout(self, horizontalInteritemSpacingForSectionAt: sectionIndex)
-            let verticalSpacing = delegate.chartViewLayout(self, verticalInteritemSpacingForSectionAt: sectionIndex)
-            let inset = delegate.chartViewLayout(self, insetForSectionAt: sectionIndex)
-            let alignment = delegate.chartViewLayout(self, alignmentForSectionAt: sectionIndex)
+            let horizontalSpacing = delegate.chatViewLayout(self, horizontalInteritemSpacingForSectionAt: sectionIndex)
+            let verticalSpacing = delegate.chatViewLayout(self, verticalInteritemSpacingForSectionAt: sectionIndex)
+            let inset = delegate.chatViewLayout(self, insetForSectionAt: sectionIndex)
+            let alignment = delegate.chatViewLayout(self, alignmentForSectionAt: sectionIndex)
             let origin = CGPoint(x: originX, y: originY)
             let width = collectionView.bounds.width - collectionView.contentInset.horizontal
             let itemSizes = Array(0..<itemCount).map { (itemIndex) -> CGSize in
                 let indexPath = IndexPath(item: itemIndex, section: sectionIndex)
-                return delegate.chartViewLayout(self, sizeForItemAt: indexPath)
+                return delegate.chatViewLayout(self, sizeForItemAt: indexPath)
             }
-            let headerSize = delegate.chartViewLayout(self, sizeForHeaderAt: sectionIndex)
-            let footerSize = delegate.chartViewLayout(self, sizeForFooterAt: sectionIndex)
-            let showAvatar = delegate.chartViewLayout(self, showAvatarInSection: sectionIndex)
-            let snapOffset = delegate.chartViewLayout(self, snapToTopOffsetInSection: sectionIndex)
+            let headerSize = delegate.chatViewLayout(self, sizeForHeaderAt: sectionIndex)
+            let footerSize = delegate.chatViewLayout(self, sizeForFooterAt: sectionIndex)
+            let showAvatar = delegate.chatViewLayout(self, showAvatarInSection: sectionIndex)
+            let snapOffset = delegate.chatViewLayout(self, snapToTopOffsetInSection: sectionIndex)
 
             let section = Section(section: sectionIndex,
                                   itemSizes: itemSizes,
@@ -325,7 +324,7 @@ private class Section {
         let allAttrs = [attributes, Array(supplementaryViewAttributes.values)].flatMap { $0 }
         allAttrs.forEach { (attrs) in
             attrs.insertedAt = now
-            attrs.animator = delegate.chartViewLayout(layout, animatorForLayoutAttributes: attrs)
+            attrs.animator = delegate.chatViewLayout(layout, animatorForLayoutAttributes: attrs)
         }
     }
 }
