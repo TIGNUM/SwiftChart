@@ -59,44 +59,49 @@ final class QuestionsService {
         return nil
     }
 
-    private lazy var questions: [Question] = {
+    private var questions: [Question] {
         return Array(visionQuestions())
-    }()
+    }
 
-    private lazy var introChatItems: [ChatItem<VisionGeneratorChoice>] = {
+    private var introChatItems: [ChatItem<VisionGeneratorChoice>] {
         guard let question = questionFor(.intro) else { return [] }
         return chatItems(for: question)
-    }()
+    }
 
-    private lazy var instructionChatItems: [ChatItem<VisionGeneratorChoice>] = {
+    private var instructionChatItems: [ChatItem<VisionGeneratorChoice>] {
         guard let question = questionFor(.instructions) else { return [] }
         return chatItems(for: question)
-    }()
+    }
 
-    private lazy var workChatItems: [ChatItem<VisionGeneratorChoice>] = {
+    private var workChatItems: [ChatItem<VisionGeneratorChoice>] {
         guard let question = questionFor(.work) else { return [] }
         return chatItems(for: question)
-    }()
+    }
 
-    private lazy var homeChatItems: [ChatItem<VisionGeneratorChoice>] = {
+    private var homeChatItems: [ChatItem<VisionGeneratorChoice>] {
         guard let question = questionFor(.home) else { return [] }
         return chatItems(for: question)
-    }()
+    }
 
-    private lazy var createChatItems: [ChatItem<VisionGeneratorChoice>] = {
+    private var nextChatItems: [ChatItem<VisionGeneratorChoice>] {
+        guard let question = questionFor(.next) else { return [] }
+        return chatItems(for: question)
+    }
+
+    private var createChatItems: [ChatItem<VisionGeneratorChoice>] {
         guard let question = questionFor(.create) else { return [] }
         return chatItems(for: question)
-    }()
+    }
 
-    private lazy var pictureChatItems: [ChatItem<VisionGeneratorChoice>] = {
+    private var pictureChatItems: [ChatItem<VisionGeneratorChoice>] {
         guard let question = questionFor(.picture) else { return [] }
         return chatItems(for: question)
-    }()
+    }
 
-    private lazy var reviewChatItems: [ChatItem<VisionGeneratorChoice>] = {
+    private var reviewChatItems: [ChatItem<VisionGeneratorChoice>] {
         guard let question = questionFor(.review) else { return [] }
         return chatItems(for: question)
-    }()
+    }
 }
 
 // MARK: - TBV Generator
@@ -136,6 +141,8 @@ extension QuestionsService {
                 VisionGeneratorChoice.QuestionType.instructions: instructionChatItems,
                 VisionGeneratorChoice.QuestionType.work: workChatItems,
                 VisionGeneratorChoice.QuestionType.home: homeChatItems,
+                VisionGeneratorChoice.QuestionType.next: nextChatItems,
+                VisionGeneratorChoice.QuestionType.picture: pictureChatItems,
                 VisionGeneratorChoice.QuestionType.create: createChatItems,
                 VisionGeneratorChoice.QuestionType.review: reviewChatItems]
     }

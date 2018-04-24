@@ -315,7 +315,7 @@ private extension ChatViewController {
         view.addSubview(bottomButton)
         bottomButton.centerXAnchor == view.centerXAnchor
         bottomButton.heightAnchor == 44
-        bottomButton.widthAnchor == view.widthAnchor - view.frame.width * 0.5
+        bottomButton.widthAnchor == view.widthAnchor - view.frame.width * 0.25
         bottomButton.isHidden = true
 
         automaticallyAdjustsScrollViewInsets = false

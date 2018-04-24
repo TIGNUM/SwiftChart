@@ -15,6 +15,7 @@ struct VisionGeneratorChoice: ChatChoice {
         case instructions = "tbv-generator-key-instructions"
         case home = "tbv-generator-key-home"
         case work = "tbv-generator-key-work"
+        case next = "tbv-generator-key-next"
         case create = "tbv-generator-key-create"
         case picture = "tbv-generator-key-picture"
         case review = "tbv-generator-key-review"
@@ -27,6 +28,7 @@ struct VisionGeneratorChoice: ChatChoice {
             switch self {
             case .intro,
                  .review,
+                 .next,
                  .create: return false
             case .instructions,
                  .home,
@@ -41,7 +43,8 @@ struct VisionGeneratorChoice: ChatChoice {
             case .instructions: return .work
             case .work: return .home
             case .home: return .create
-            case .create: return .picture
+            case .create: return .next
+            case .next: return .picture
             case .picture,
                  .review: return .review
             }

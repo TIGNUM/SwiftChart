@@ -52,7 +52,8 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
     func handleChoice(_ choice: VisionGeneratorChoice) {
         switch choice.type {
         case .intro,
-             .instructions: handleChoiceTargets(choice)
+             .instructions,
+             .next: handleChoiceTargets(choice)
         case .work,
              .home: handleChoiceDecision(choice)
         case .picture:

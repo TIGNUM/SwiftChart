@@ -122,9 +122,11 @@ extension VisionGeneratorWorker {
     }
 
     func chatItems(for targetID: Int) -> [ChatItem<VisionGeneratorChoice>] {
-        guard let question = questionService.visionQuestion(for: targetID) else { return [] }
-        setCurrentQuestionType(question)
-        return questionService.chatItems(for: question)
+        if let question = questionService.visionQuestion(for: targetID) {
+            setCurrentQuestionType(question)
+        }
+        guard let type = currentQuestionType else { return [] }
+        return allChatItems[type] ?? []
     }
 
     func fetchMediaURL(contentItemID: Int) -> URL? {
@@ -151,7 +153,7 @@ private extension VisionGeneratorWorker {
         }
 
         if let nextQuestion = questionService.visionQuestion(for: questionType.nextType) {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 10) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 20) {
                 self.updateViewModel(with: self.questionService.chatItems(for: nextQuestion))
             }
         }
