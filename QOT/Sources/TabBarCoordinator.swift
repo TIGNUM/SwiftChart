@@ -86,6 +86,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
     lazy var topTabBarControllerGuide: UINavigationController = {
         let guideViewController = GuideViewController(configurator: GuideConfigurator.make())
+        guideViewController.title = R.string.localized.topTabBarItemTitleGuide()
+
         let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [guideViewController],
                                                          topBarDelegate: self,
