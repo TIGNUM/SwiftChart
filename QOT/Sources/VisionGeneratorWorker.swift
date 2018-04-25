@@ -39,8 +39,8 @@ final class VisionGeneratorWorker {
         updateViewModel(with: allChatItems[.intro] ?? [])
     }
 
-    var visionSelectionCount: Int {
-        return visionSelections.filter { $0.type == currentQuestionType }.count
+    func visionSelectionCount(for questionType: VisionGeneratorChoice.QuestionType) -> Int {
+        return visionSelections.filter { $0.type == questionType }.count
     }
 
     var questionType: VisionGeneratorChoice.QuestionType {
@@ -90,10 +90,10 @@ extension VisionGeneratorWorker {
 
     func bottomButtonTitle(_ choice: VisionGeneratorChoice) -> String {
         guard let type = currentQuestionType else { return "" }
-        switch (type, visionSelectionCount) {
-        case (.work, 0..<4): return type.bottomButtonTitle(selectedItemCount: visionSelectionCount)
+        switch (type, visionSelectionCount(for: type)) {
+        case (.work, 0..<4): return type.bottomButtonTitle(selectedItemCount: visionSelectionCount(for: .work))
         case (.work, 4): return "Continue"
-        case (.home, 0..<4): return type.bottomButtonTitle(selectedItemCount: visionSelectionCount)
+        case (.home, 0..<4): return type.bottomButtonTitle(selectedItemCount: visionSelectionCount(for: .home))
         case (.home, 4): return "Create my To Be Vision"
         default: return ""
         }

@@ -26,14 +26,9 @@ struct VisionGeneratorChoice: ChatChoice {
 
         var multiSelection: Bool {
             switch self {
-            case .intro,
-                 .review,
-                 .next,
-                 .create: return false
-            case .instructions,
-                 .home,
-                 .work,
-                 .picture: return true
+            case .home,
+                 .work: return true
+            default: return false
             }
         }
 

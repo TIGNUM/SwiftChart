@@ -503,7 +503,7 @@ extension ChatViewController: ChatViewControllerInterface {
     func updateBottomButton(_ choice: VisionGeneratorChoice, questionType: VisionGeneratorChoice.QuestionType) {
         visionChoice = choice
         bottomButton.isHidden = questionType.bottomButtonIsHidden
-        let itemCount = visionGeneratorInteractor?.visionSelectionCount ?? 0
+        let itemCount = visionGeneratorInteractor?.visionSelectionCount(for: questionType) ?? 0
         let title = visionGeneratorInteractor?.bottomButtonTitle(choice) ?? ""
         let textColor: UIColor = itemCount < 4 ? .white60 : .white
         let backgroundColor: UIColor = itemCount < 4 ? .clear : .lightGray

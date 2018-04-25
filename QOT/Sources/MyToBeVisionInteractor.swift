@@ -42,7 +42,7 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         return worker.trackablePageObject
     }
 
-    var visionChatItems: [VisionGeneratorChoice.QuestionType : [ChatItem<VisionGeneratorChoice>]] {
+    var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] {
         return worker.visionChatItems
     }
 }

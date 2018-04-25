@@ -27,7 +27,7 @@ protocol VisionGeneratorPresenterInterface {
 }
 
 protocol VisionGeneratorInteractorInterface: Interactor {
-    var visionSelectionCount: Int { get }
+    func visionSelectionCount(for questionType: VisionGeneratorChoice.QuestionType) -> Int
     func handleChoice(_ choice: VisionGeneratorChoice)
     func loadNextQuestions(_ choice: VisionGeneratorChoice)
     func laodLastQuestion()

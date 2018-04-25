@@ -22,15 +22,15 @@ final class VisionGeneratorInteractor {
         self.router = router
         self.presenter = presenter
     }
-
-    var visionSelectionCount: Int {
-        return worker.visionSelectionCount
-    }
 }
 
 // MARK: - VisionGeneratorInteractor
 
 extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
+
+    func visionSelectionCount(for questionType: VisionGeneratorChoice.QuestionType) -> Int {
+        return worker.visionSelectionCount(for: questionType)
+    }
 
     func laodLastQuestion() {
         worker.updateViewModel(for: .review)

@@ -84,7 +84,6 @@ final class ChatViewModel<T: ChatChoice> {
     private var selected: [String: Int] = [:]
     private var selectedVisionChoices = [String]()
     var visionGeneratorInteractor: VisionGeneratorInteractorInterface?
-
     let updates = PublishSubject<Update, NoError>()
 
     init(items: [ChatItem<T>]) {
@@ -107,10 +106,16 @@ final class ChatViewModel<T: ChatChoice> {
         switch item.type {
         case .choiceList(let choices):
             let choice = choices[indexPath.item]
-            if selectedVisionChoices.contains(choice.title + item.identifier) == true {
-                selectedVisionChoices.remove(object: choice.title + item.identifier)
+            if item.allowsMultipleSelection == true {
+                if selectedVisionChoices.contains(item.identifier + choice.title) == true {
+                    selectedVisionChoices.remove(object: item.identifier + choice.title)
+                } else {
+                    selectedVisionChoices.append(item.identifier + choice.title)
+                }
             } else {
-                selectedVisionChoices.append(choice.title + item.identifier)
+                if (selectedVisionChoices.filter { $0.starts(with: item.identifier) }).count == 0 {
+                    selectedVisionChoices.append(item.identifier + choice.title)
+                }
             }
         default:
             assertionFailure("This is not a choiceList")
@@ -125,7 +130,7 @@ final class ChatViewModel<T: ChatChoice> {
             switch item.type {
             case .choiceList(let choices):
                 let choice = choices[indexPath.item]
-                return selectedVisionChoices.contains(choice.title  + item.identifier)
+                return selectedVisionChoices.contains(item.identifier + choice.title)
             default: return false
             }
         }
@@ -134,17 +139,24 @@ final class ChatViewModel<T: ChatChoice> {
     func canSelectItem(at indexPath: IndexPath) -> Bool {
         let item = items[indexPath.section]
         switch item.type {
-        case .choiceList(let choices) where item.allowsMultipleSelection:
+        case .choiceList(let choices) where item.allowsMultipleSelection == true:
             if item.chatType != .visionGenerator {
                 return true
             }
-            guard let selectionCount = visionGeneratorInteractor?.visionSelectionCount else { return true }
-            let choice = choices[indexPath.item]
-            return selectionCount < 4 || selectedVisionChoices.contains(choice.title  + item.identifier)
-        case .choiceList:
+
+            guard
+                let choice = choices[indexPath.item] as? VisionGeneratorChoice,
+                let selectionCount = visionGeneratorInteractor?.visionSelectionCount(for: choice.type) else { return true }
+            return selectionCount < 4 || selectedVisionChoices.contains(choice.title + item.identifier)
+        case .choiceList(let choices):            
+            if item.chatType == .visionGenerator {
+                if item.allowsMultipleSelection == false {
+                    return (selectedVisionChoices.filter { $0.starts(with: item.identifier) }).count == 0
+                }
+                return true
+            }
             return selected[item.identifier] == nil
-        default:
-            return false
+        default: return false
         }
     }
 
