@@ -10,6 +10,7 @@ import UIKit
 import ReactiveKit
 import Bond
 import Anchorage
+import MBProgressHUD
 
 protocol ChatViewControllerDelegate: class {
 
@@ -487,6 +488,10 @@ extension ChatViewController: ChatViewLayoutDelegate {
 // MARK: - ChatViewControllerInterface
 
 extension ChatViewController: ChatViewControllerInterface {
+
+    func showLoadingIndicator() {
+        _ = MBProgressHUD.showAdded(to: view, animated: true)
+    }
 
     func dismiss() {
         navigationController?.popViewController(animated: true)

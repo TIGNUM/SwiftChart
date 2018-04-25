@@ -23,6 +23,10 @@ final class VisionGeneratorPresenter {
 
 extension VisionGeneratorPresenter: VisionGeneratorPresenterInterface {
 
+    func showLoadingIndicator() {
+        viewController?.showLoadingIndicator()
+    }
+
     func updateVisionControllerModel(_ model: MyToBeVisionModel.Model) {
         visionController?.update(with: model)
     }

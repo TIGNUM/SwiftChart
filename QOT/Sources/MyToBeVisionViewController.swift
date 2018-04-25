@@ -356,7 +356,7 @@ private extension MyToBeVisionViewController {
 
     func toBeVisionDidUpdate() {
         subtitleLabel.attributedText = toBeVision?.formattedSubtitle
-        if headlineTextView.attributedText != toBeVision?.formattedHeadline {
+        if headlineTextView.attributedText != toBeVision?.formattedHeadline && toBeVision?.headLine != nil {
             headlineTextView.attributedText = toBeVision?.formattedHeadline
         }
         if messageTextView.attributedText != toBeVision?.formattedVision {
@@ -364,7 +364,9 @@ private extension MyToBeVisionViewController {
         }
 
         placeholderImageView.isVisible = toBeVision?.imageURL == nil
-        imageView.kf.setImage(with: toBeVision?.imageURL)
+        if toBeVision?.imageURL != nil {
+            imageView.kf.setImage(with: toBeVision?.imageURL)
+        }
         syncInstructionsButton()
         syncImageControls(animated: false)
     }

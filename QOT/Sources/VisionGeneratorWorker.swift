@@ -21,10 +21,6 @@ final class VisionGeneratorWorker {
     private var visionModel: MyToBeVisionModel.Model?
     private let allChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]]
 
-    private lazy var visionAnswers: [Answer] = {
-        return questionService.visionAnswers()
-    }()
-
     init(services: Services,
          networkManager: NetworkManager,
          chatViewModel: ChatViewModel<VisionGeneratorChoice>,
@@ -54,14 +50,15 @@ final class VisionGeneratorWorker {
 
 extension VisionGeneratorWorker {
 
-    func saveVision() {
+    func saveVision(completion: (() -> Void)?) {
         guard
             let visionModel = self.visionModel,
             let old = services.userService.myToBeVision()  else { return }
         services.userService.updateMyToBeVision(old) {
-            $0.headline = visionModel.headLine
+            let headLine = $0.headline
+            $0.headline = headLine
             $0.text = visionModel.text
-            $0.date = visionModel.lastUpdated
+            $0.date = Date()
             if let newImageURL = visionModel.imageURL,
                 let resource = $0.profileImageResource,
                 resource.url == URL.imageDirectory {
@@ -74,6 +71,7 @@ extension VisionGeneratorWorker {
         let manager = syncManager
         manager.upSync(MyToBeVision.self) { (_) in
             manager.downSync(MyToBeVision.self)
+            completion?()
         }
     }
 
@@ -82,7 +80,7 @@ extension VisionGeneratorWorker {
             let imageURL = try image.save(withName: UUID().uuidString)
             visionModel?.imageURL = imageURL
             visionModel?.lastUpdated = Date()
-            saveVision()
+            saveVision(completion: nil)
         } catch {
             log("Error while saving TBV image: \(error.localizedDescription)")
         }
@@ -109,7 +107,7 @@ extension VisionGeneratorWorker {
 
     func updateViewModel(with items: [ChatItem<VisionGeneratorChoice>]) {
         guard items.isEmpty == false else { return }
-        chatViewModel.appendItems(items)
+        chatViewModel.appendItems(items, shouldPop: currentQuestionType == .work || currentQuestionType == .home)
     }
 
     func updateViewModel(for questionType: VisionGeneratorChoice.QuestionType) {

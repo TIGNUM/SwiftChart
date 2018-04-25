@@ -63,8 +63,12 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
                 handleChoiceTargets(choice)
             }
         case .review:
-            worker.saveVision()
-            presenter.dismiss()
+            presenter.showLoadingIndicator()
+            worker.saveVision { [weak self] in
+                guard let model = self?.worker.model else { return }
+                self?.presenter.updateVisionControllerModel(model)
+                self?.presenter.dismiss()
+            }
         default: return
         }
     }

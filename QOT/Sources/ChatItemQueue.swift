@@ -22,11 +22,11 @@ final class ChatItemQueue<T: ChatChoice> {
         invalidate()
     }
 
-    func push(_ item: ChatItem<T>) {
+    func push(_ item: ChatItem<T>, shouldPop: Bool) {
         items.append(item)
 
         if items.count == 1 {
-            scheduleFirstItem()
+            scheduleFirstItem(shouldPop: shouldPop)
         }
     }
 
@@ -38,17 +38,21 @@ final class ChatItemQueue<T: ChatChoice> {
 
     // MARK: Private
 
-    private func scheduleFirstItem() {
+    private func scheduleFirstItem(shouldPop: Bool = false) {
         guard let item = items.first else {
             return
         }
 
-        let timeInterval = item.timestamp.timeIntervalSince(Date())
-        if timeInterval < 0 {
+        if shouldPop == true {
             popFirst()
         } else {
-            timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { [unowned self] (_) in
-                self.popFirst()
+            let timeInterval = item.timestamp.timeIntervalSince(Date())
+            if timeInterval < 0 {
+                popFirst()
+            } else {
+                timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { [unowned self] (_) in
+                    self.popFirst()
+                }
             }
         }
     }

@@ -147,8 +147,8 @@ final class ChatViewModel<T: ChatChoice> {
             guard
                 let choice = choices[indexPath.item] as? VisionGeneratorChoice,
                 let selectionCount = visionGeneratorInteractor?.visionSelectionCount(for: choice.type) else { return true }
-            return selectionCount < 4 || selectedVisionChoices.contains(choice.title + item.identifier)
-        case .choiceList(let choices):            
+            return selectionCount < 4 || selectedVisionChoices.contains(item.identifier + choice.title)
+        case .choiceList:
             if item.chatType == .visionGenerator {
                 if item.allowsMultipleSelection == false {
                     return (selectedVisionChoices.filter { $0.starts(with: item.identifier) }).count == 0
@@ -167,9 +167,9 @@ final class ChatViewModel<T: ChatChoice> {
         setupQueue()
     }
 
-    func appendItems(_ items: [ChatItem<T>]) {
+    func appendItems(_ items: [ChatItem<T>], shouldPop: Bool = false) {
         for item in items {
-            queue?.push(item)
+            queue?.push(item, shouldPop: shouldPop)
         }
     }
 
