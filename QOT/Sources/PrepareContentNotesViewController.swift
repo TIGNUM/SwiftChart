@@ -91,7 +91,7 @@ private extension PrepareContentNotesViewController {
         textView.attributedText = NSAttributedString(string: text ?? "", attributes: textViewAttributes)
         textView.contentInset = .zero
 
-        placeholderTextView.attributedText = NSAttributedString(string: placeholder ?? "",
+        placeholderTextView.attributedText = NSAttributedString(string: placeholder ?? R.string.localized.prepareNotesPlaceholder(),
                                                                 attributes: placeholderAttibutes)
         syncPlaceholder()
         syncLayout()
