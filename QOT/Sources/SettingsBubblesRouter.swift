@@ -62,7 +62,7 @@ private extension SettingsBubblesRouter {
     }
 
     func supportEmail() -> String {
-        if let supportEmail = services.userService.user()?.firstLevelSupportEmail {
+        if let supportEmail = services.userService.user()?.firstLevelSupportEmail, supportEmail.isEmpty == false {
             return supportEmail
         }
         return "support@qot.io"
