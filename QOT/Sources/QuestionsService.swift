@@ -183,7 +183,8 @@ extension QuestionsService {
             let item = messageChatItem(text: message,
                                        date: date,
                                        includeFooter: index == messages.count - 1,
-                                       isAutoscrollSnapable: index == 0)
+                                       isAutoscrollSnapable: index == 0,
+                                       questionType: choiceType)
             items.append(item)
         }
         let choiceListDate = now.addingTimeInterval(TimeInterval(choices.count))
@@ -197,13 +198,14 @@ extension QuestionsService {
     func messageChatItem(text: String,
                          date: Date,
                          includeFooter: Bool,
-                         isAutoscrollSnapable: Bool) -> ChatItem<VisionGeneratorChoice> {
+                         isAutoscrollSnapable: Bool,
+                         questionType: VisionGeneratorChoice.QuestionType) -> ChatItem<VisionGeneratorChoice> {
         return ChatItem<VisionGeneratorChoice>(type: .message(text),
                                                chatType: .visionGenerator,
                                                alignment: .left,
                                                timestamp: date,
                                                showFooter: includeFooter,
-                                               isAutoscrollSnapable: isAutoscrollSnapable)
+                                               isAutoscrollSnapable: questionType.isAutoscrollSnapable)
     }
 
     func choiceListChatItem(choices: [VisionGeneratorChoice],

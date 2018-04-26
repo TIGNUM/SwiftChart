@@ -32,6 +32,13 @@ struct VisionGeneratorChoice: ChatChoice {
             }
         }
 
+        var isAutoscrollSnapable: Bool {
+            switch self {
+            case .work: return false
+            default: return true
+            }
+        }
+
         var nextType: QuestionType {
             switch self {
             case .intro: return .instructions

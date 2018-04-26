@@ -142,12 +142,14 @@ private extension VisionGeneratorWorker {
         updateViewModel(with: [questionService.messageChatItem(text: createQuestion?.title ?? "",
                                                                date: Date(),
                                                                includeFooter: false,
-                                                               isAutoscrollSnapable: true)])
+                                                               isAutoscrollSnapable: true,
+                                                               questionType: questionType)])
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
             self.updateViewModel(with: [self.questionService.messageChatItem(text: self.createVision(),
                                                                              date: Date(),
                                                                              includeFooter: false,
-                                                                             isAutoscrollSnapable: false)])
+                                                                             isAutoscrollSnapable: false,
+                                                                             questionType: questionType)])
         }
 
         if let nextQuestion = questionService.visionQuestion(for: questionType.nextType) {
@@ -162,7 +164,13 @@ private extension VisionGeneratorWorker {
         let targetIDs = visionSelections.compactMap { $0.targetID }
         targetIDs.forEach { (targetID: Int) in
             let contentItems = services.contentService.contentItems(contentCollectionID: targetID)
-            if let randomItemText = contentItems.first?.valueText {
+            var userGender = (services.userService.user()?.gender ?? "NEUTRAL").uppercased()
+            if userGender == "UNKNOWN" {
+                userGender = "NEUTRAL"
+            }
+            let genderQuery = String(format: "GENDER_%@", userGender)
+            let filteredItems = contentItems.filter { $0.searchTags.contains(genderQuery) }
+            if let randomItemText = filteredItems.first?.valueText {
                 visionList.append(randomItemText)
             }
         }
