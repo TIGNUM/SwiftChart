@@ -29,4 +29,8 @@ extension Array where Element: Equatable {
         }
         return uniqueValues
     }
+
+    var randomIndex: Int {
+        return Int(arc4random_uniform(UInt32(count)))
+    }
 }

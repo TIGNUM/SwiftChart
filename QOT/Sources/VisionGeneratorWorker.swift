@@ -164,13 +164,11 @@ private extension VisionGeneratorWorker {
         let targetIDs = visionSelections.compactMap { $0.targetID }
         targetIDs.forEach { (targetID: Int) in
             let contentItems = services.contentService.contentItems(contentCollectionID: targetID)
-            var userGender = (services.userService.user()?.gender ?? "NEUTRAL").uppercased()
-            if userGender == "UNKNOWN" {
-                userGender = "NEUTRAL"
-            }
+            let userGender = (services.userService.user()?.gender ?? "NEUTRAL").uppercased()
+            let genderQueryNeutral = "GENDER_NEUTRAL"
             let genderQuery = String(format: "GENDER_%@", userGender)
-            let filteredItems = contentItems.filter { $0.searchTags.contains(genderQuery) }
-            if let randomItemText = filteredItems.first?.valueText {
+            let filteredItems = Array(contentItems.filter { $0.searchTags.contains(genderQuery) || $0.searchTags.contains(genderQueryNeutral) })
+            if let randomItemText = filteredItems[filteredItems.randomIndex].valueText {
                 visionList.append(randomItemText)
             }
         }

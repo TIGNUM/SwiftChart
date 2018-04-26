@@ -254,18 +254,15 @@ extension MyToBeVisionViewController {
     }
 
     func checkIfPlaceholdersNeeded() {
-        if headlineTextView.text.trimmingCharacters(in: CharacterSet.newlines).components(separatedBy: .whitespaces)[0] == "" {
+        if headlineTextView.text.trimmingCharacters(in: .newlines).components(separatedBy: .whitespaces)[0] == "" {
             headlineTextView.text = R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder().uppercased()
-        }
-        if messageTextView.text.trimmingCharacters(in: CharacterSet.newlines).components(separatedBy: .whitespaces)[0] == "" {
-            messageTextView.text = R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
         }
         resizeTextViewsHeight()
         syncInstructionsButton()
     }
 
     func syncInstructionsButton() {
-        tbvGeneratorButton.isHidden = isEditing || messageTextView.text != R.string.localized.meSectorMyWhyVisionMessagePlaceholder()
+        tbvGeneratorButton.isHidden = isEditing || messageTextView.text.trimmingCharacters(in: .newlines).components(separatedBy: .whitespaces)[0].isEmpty == false
     }
 }
 
