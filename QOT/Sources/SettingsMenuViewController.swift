@@ -241,6 +241,8 @@ extension SettingsMenuViewController: UICollectionViewDelegate, UICollectionView
 
 extension SettingsMenuViewController: ImagePickerControllerDelegate {
 
+    func cancelSelection() {}
+
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         let error = viewModel.updateProfileImage(image)
         guard error == nil else {

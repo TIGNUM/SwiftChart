@@ -471,7 +471,6 @@ extension ChatViewController: ChatViewLayoutDelegate {
 
     func chatViewLayout(_ layout: ChatViewLayout, snapToTopOffsetInSection section: Int) -> CGFloat? {
         let item = items[section]
-        
         return item.isAutoscrollSnapable ? 0 : nil
     }
 

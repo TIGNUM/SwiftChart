@@ -79,7 +79,6 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
 private extension VisionGeneratorInteractor {
 
     func handleChoiceDecision(_ choice: VisionGeneratorChoice) {
-        worker.updateVisionSelections(choice)
         presenter.updateBottomButton(choice, questionType: worker.questionType)
     }
 
@@ -111,6 +110,10 @@ private extension VisionGeneratorInteractor {
 // MARK: - ImagePickerControllerDelegate
 
 extension VisionGeneratorInteractor: ImagePickerControllerDelegate {
+
+    func cancelSelection() {
+        router.loadLastQuestion()
+    }
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         do {

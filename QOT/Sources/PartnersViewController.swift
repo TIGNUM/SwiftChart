@@ -314,6 +314,8 @@ extension PartnersViewController: PartnerCellDelegate {
 
 extension PartnersViewController: ImagePickerControllerDelegate {
 
+    func cancelSelection() {}
+
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         guard let index = page(contentOffset: collectionView.contentOffset) else { return }
         let partner = partners[index]

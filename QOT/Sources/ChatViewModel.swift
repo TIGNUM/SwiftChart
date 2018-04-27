@@ -82,9 +82,14 @@ final class ChatViewModel<T: ChatChoice> {
     private var items: [ChatItem<T>]
     private var queue: ChatItemQueue<T>?
     private var selected: [String: Int] = [:]
-    private var selectedVisionChoices = [String]()
+    private var selectedVisionChoicesIDs = [String]()
+    private var visionSelections = [VisionGeneratorChoice]()
     var visionGeneratorInteractor: VisionGeneratorInteractorInterface?
     let updates = PublishSubject<Update, NoError>()
+
+    var visionChoiceSelections: [VisionGeneratorChoice] {
+        return visionSelections
+    }
 
     init(items: [ChatItem<T>]) {
         self.items = items
@@ -101,20 +106,35 @@ final class ChatViewModel<T: ChatChoice> {
         }
     }
 
+    func visionSelectionCount(for questionType: VisionGeneratorChoice.QuestionType) -> Int {
+        return visionSelections.filter { $0.type == questionType }.count
+    }
+
+    func updateVisionSelections(_ choice: VisionGeneratorChoice) {
+        if (visionSelections.filter { $0.targetID == choice.targetID }).isEmpty == true {
+            visionSelections.append(choice)
+        } else {
+            visionSelections = visionSelections.filter { $0.targetID != choice.targetID }
+        }
+    }
+
     func selectOrDeSelectItem(at indexPath: IndexPath) {
         let item = items[indexPath.section]
         switch item.type {
         case .choiceList(let choices):
             let choice = choices[indexPath.item]
             if item.allowsMultipleSelection == true {
-                if selectedVisionChoices.contains(item.identifier + choice.title) == true {
-                    selectedVisionChoices.remove(object: item.identifier + choice.title)
+                if let visionChoice = choice as? VisionGeneratorChoice {
+                    updateVisionSelections(visionChoice)
+                }
+                if selectedVisionChoicesIDs.contains(item.identifier + choice.title) == true {
+                    selectedVisionChoicesIDs.remove(object: item.identifier + choice.title)
                 } else {
-                    selectedVisionChoices.append(item.identifier + choice.title)
+                    selectedVisionChoicesIDs.append(item.identifier + choice.title)
                 }
             } else {
-                if (selectedVisionChoices.filter { $0.starts(with: item.identifier) }).count == 0 {
-                    selectedVisionChoices.append(item.identifier + choice.title)
+                if (selectedVisionChoicesIDs.filter { $0.starts(with: item.identifier) }).count == 0 {
+                    selectedVisionChoicesIDs.append(item.identifier + choice.title)
                 }
             }
         default:
@@ -130,7 +150,7 @@ final class ChatViewModel<T: ChatChoice> {
             switch item.type {
             case .choiceList(let choices):
                 let choice = choices[indexPath.item]
-                return selectedVisionChoices.contains(item.identifier + choice.title)
+                return selectedVisionChoicesIDs.contains(item.identifier + choice.title)
             default: return false
             }
         }
@@ -144,14 +164,13 @@ final class ChatViewModel<T: ChatChoice> {
                 return true
             }
 
-            guard
-                let choice = choices[indexPath.item] as? VisionGeneratorChoice,
-                let selectionCount = visionGeneratorInteractor?.visionSelectionCount(for: choice.type) else { return true }
-            return selectionCount < 4 || selectedVisionChoices.contains(item.identifier + choice.title)
+            guard let choice = choices[indexPath.item] as? VisionGeneratorChoice else { return true }
+            let selectionCount = selectedVisionChoicesIDs.filter { $0.contains(item.identifier) }.count
+            return selectionCount < 4 || selectedVisionChoicesIDs.contains(item.identifier + choice.title)
         case .choiceList:
             if item.chatType == .visionGenerator {
                 if item.allowsMultipleSelection == false {
-                    return (selectedVisionChoices.filter { $0.starts(with: item.identifier) }).count == 0
+                    return (selectedVisionChoicesIDs.filter { $0.starts(with: item.identifier) }).count == 0
                 }
                 return true
             }

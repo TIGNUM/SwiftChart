@@ -11,6 +11,8 @@ import UIKit
 protocol ImagePickerControllerDelegate: class {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage)
+
+    func cancelSelection()
 }
 
 final class ImagePickerController {
@@ -42,7 +44,7 @@ final class ImagePickerController {
 
     func show(in viewController: UIViewController, completion: (() -> Void)? = nil) {
         self.viewController = viewController
-        let alertController = UIViewController.alert(forType: .imagePicker)
+        let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let photoAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonPhoto(),
                                         style: .default) { [unowned self] (alertAction: UIAlertAction) in
             self.handleOption(.photo)
@@ -53,8 +55,14 @@ final class ImagePickerController {
             self.handleOption(.camera)
         }
 
+        let cancelAction = UIAlertAction(title: R.string.localized.alertButtonTitleCancel(),
+                                         style: .cancel) { [unowned self] (alertAction: UIAlertAction) in
+                                            self.delegate?.cancelSelection()
+        }
+
         alertController.addAction(photoAction)
         alertController.addAction(cameraAction)
+        alertController.addAction(cancelAction)
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
 
@@ -124,9 +132,11 @@ final class ImagePickerController {
 // MARK: - ImageCropperDelegate
 
 extension ImagePickerController: ImageCropperDelegate {
+
     func imageCropper(_ imageCropper: ImageCropper, croppedImage image: UIImage) {
         imageCropper.dismiss {
             self.finish()
+            self.delegate?.cancelSelection()
         }
         delegate?.imagePickerController(self, selectedImage: image)
     }
@@ -134,6 +144,7 @@ extension ImagePickerController: ImageCropperDelegate {
     func imageCropperDidPressCancel(_ imageCropper: ImageCropper) {
         imageCropper.dismiss {
             self.finish()
+            self.delegate?.cancelSelection()
         }
     }
 }
@@ -141,6 +152,7 @@ extension ImagePickerController: ImageCropperDelegate {
 // MARK: - ImagePickerDelegate
 
 extension ImagePickerController: ImagePickerDelegate {
+
     func imagePicker(_ imagePicker: ImagePicker, didSelectImage image: UIImage) {
         imagePicker.dismiss {
             guard
@@ -155,6 +167,7 @@ extension ImagePickerController: ImagePickerDelegate {
     func imagePickerDidPressCancel(_ imagePicker: ImagePicker) {
         imagePicker.dismiss {
             self.finish()
+            self.delegate?.cancelSelection()
         }
     }
 }

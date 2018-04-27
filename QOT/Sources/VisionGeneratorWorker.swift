@@ -16,27 +16,31 @@ final class VisionGeneratorWorker {
     private let networkManager: NetworkManager
     private let chatViewModel: ChatViewModel<VisionGeneratorChoice>
     private let syncManager: SyncManager
-    private var visionSelections = [VisionGeneratorChoice]()
     private var currentQuestionType: VisionGeneratorChoice.QuestionType?
     private var visionModel: MyToBeVisionModel.Model?
+    private var currentVisionModel: MyToBeVisionModel.Model?
     private let allChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]]
+    private var didLoadLastQuestion = false
 
     init(services: Services,
          networkManager: NetworkManager,
          chatViewModel: ChatViewModel<VisionGeneratorChoice>,
+         visionModel: MyToBeVisionModel.Model?,
          syncManager: SyncManager,
          allChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]]) {
         self.services = services
         self.questionService = services.questionsService
         self.networkManager = networkManager
         self.chatViewModel = chatViewModel
+        self.visionModel = visionModel
+        self.currentVisionModel = visionModel
         self.syncManager = syncManager
         self.allChatItems = allChatItems
         updateViewModel(with: allChatItems[.intro] ?? [])
     }
 
     func visionSelectionCount(for questionType: VisionGeneratorChoice.QuestionType) -> Int {
-        return visionSelections.filter { $0.type == questionType }.count
+        return chatViewModel.visionSelectionCount(for: questionType)
     }
 
     var questionType: VisionGeneratorChoice.QuestionType {
@@ -52,22 +56,25 @@ extension VisionGeneratorWorker {
 
     func saveVision(completion: (() -> Void)?) {
         guard
-            let visionModel = self.visionModel,
-            let old = services.userService.myToBeVision()  else { return }
+            var currentVisionModel = self.currentVisionModel,
+            let old = services.userService.myToBeVision() else { return }
         services.userService.updateMyToBeVision(old) {
             let headLine = $0.headline
             $0.headline = headLine
-            $0.text = visionModel.text
+            $0.text = currentVisionModel.text
             $0.date = Date()
-            if let newImageURL = visionModel.imageURL,
+            if let newImageURL = currentVisionModel.imageURL,
                 let resource = $0.profileImageResource,
                 resource.url == URL.imageDirectory {
                 $0.profileImageResource?.setLocalURL(newImageURL,
                                                        format: .jpg,
                                                        entity: .toBeVision,
                                                        entitiyLocalID: $0.localID)
+            } else if let remoteURL = old.profileImageResource?.remoteURL, currentVisionModel.imageURL == nil {
+                currentVisionModel.imageURL = remoteURL
             }
         }
+        visionModel = currentVisionModel
         let manager = syncManager
         manager.upSync(MyToBeVision.self) { (_) in
             manager.downSync(MyToBeVision.self)
@@ -78,9 +85,9 @@ extension VisionGeneratorWorker {
     func saveImage(_ image: UIImage) throws {
         do {
             let imageURL = try image.save(withName: UUID().uuidString)
+            currentVisionModel?.imageURL = imageURL
+            currentVisionModel?.lastUpdated = Date()
             visionModel?.imageURL = imageURL
-            visionModel?.lastUpdated = Date()
-            saveVision(completion: nil)
         } catch {
             log("Error while saving TBV image: \(error.localizedDescription)")
         }
@@ -97,16 +104,11 @@ extension VisionGeneratorWorker {
         }
     }
 
-    func updateVisionSelections(_ choice: VisionGeneratorChoice) {
-        if (visionSelections.filter { $0.targetID == choice.targetID }).isEmpty == true {
-            visionSelections.append(choice)
-        } else {
-            visionSelections = visionSelections.filter { $0.targetID != choice.targetID }
-        }
-    }
-
     func updateViewModel(with items: [ChatItem<VisionGeneratorChoice>]) {
-        guard items.isEmpty == false else { return }
+        guard items.isEmpty == false, didLoadLastQuestion == false else { return }
+        if currentQuestionType == .review {
+            didLoadLastQuestion = true
+        }
         chatViewModel.appendItems(items, shouldPop: currentQuestionType == .work || currentQuestionType == .home)
     }
 
@@ -161,7 +163,7 @@ private extension VisionGeneratorWorker {
 
     func createVision() -> String {
         var visionList = [String]()
-        let targetIDs = visionSelections.compactMap { $0.targetID }
+        let targetIDs = chatViewModel.visionChoiceSelections.compactMap { $0.targetID }
         targetIDs.forEach { (targetID: Int) in
             let contentItems = services.contentService.contentItems(contentCollectionID: targetID)
             let userGender = (services.userService.user()?.gender ?? "NEUTRAL").uppercased()
@@ -173,7 +175,8 @@ private extension VisionGeneratorWorker {
             }
         }
         let vision = visionList.joined(separator: " ")
-        visionModel = MyToBeVisionModel.Model(headLine: nil, imageURL: nil, lastUpdated: Date(), text: vision)
+        currentVisionModel?.text = vision
+        currentVisionModel?.lastUpdated = Date()
         return vision
     }
 

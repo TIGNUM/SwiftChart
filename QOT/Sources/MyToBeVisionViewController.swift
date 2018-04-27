@@ -157,6 +157,7 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
     func showVisionGenerator() {
         let chatViewModel = ChatViewModel<VisionGeneratorChoice>(items: [])
         let configurator = VisionGeneratorConfigurator.make(chatViewModel,
+                                                            visionModel: toBeVision,
                                                             visionController: self,
                                                             visionChatItems: visionChatItems)
         let chatViewController = ChatViewController(pageName: .visionGenerator,
@@ -479,6 +480,8 @@ extension MyToBeVisionViewController: UITextViewDelegate {
 // MARK: - ImagePickerDelegate
 
 extension MyToBeVisionViewController: ImagePickerControllerDelegate {
+
+    func cancelSelection() {}
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         guard let toBeVision = toBeVision else { return }

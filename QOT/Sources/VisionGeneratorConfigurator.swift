@@ -11,6 +11,7 @@ import Foundation
 final class VisionGeneratorConfigurator: AppStateAccess {
 
     static func make(_ chatViewModel: ChatViewModel<VisionGeneratorChoice>,
+                     visionModel: MyToBeVisionModel.Model?,
                      visionController: MyToBeVisionViewController,
                      visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]])
         -> (ChatViewController<VisionGeneratorChoice>) -> Void {
@@ -20,6 +21,7 @@ final class VisionGeneratorConfigurator: AppStateAccess {
             let worker = VisionGeneratorWorker(services: appState.services,
                                                networkManager: appState.networkManager,
                                                chatViewModel: chatViewModel,
+                                               visionModel: visionModel,
                                                syncManager: appState.syncManager,
                                                allChatItems: visionChatItems)
             let presenter = VisionGeneratorPresenter(viewController: chatViewController,
