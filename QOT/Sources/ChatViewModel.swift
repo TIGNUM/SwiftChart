@@ -110,7 +110,7 @@ final class ChatViewModel<T: ChatChoice> {
         return visionSelections.filter { $0.type == questionType }.count
     }
 
-    func updateVisionSelections(_ choice: VisionGeneratorChoice) {
+    private func updateVisionSelections(_ choice: VisionGeneratorChoice) {
         if (visionSelections.filter { $0.targetID == choice.targetID }).isEmpty == true {
             visionSelections.append(choice)
         } else {
