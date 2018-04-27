@@ -42,8 +42,8 @@ final class MyToBeVisionWorker {
         guard let old = services.userService.myToBeVision(), old.model != new else { return }
 
         services.userService.updateMyToBeVision(old) {
-            $0.headline = new.headLine?.isTrimmedTextEmpty == true ? headlinePlaceholder : new.headLine
-            $0.text = new.text?.isTrimmedTextEmpty == true ? messagePlaceholder : new.text
+            $0.headline = new.headLine
+            $0.text = new.text
             $0.date = new.lastUpdated
             if let newImageURL = new.imageURL,
                 let resource = $0.profileImageResource,
