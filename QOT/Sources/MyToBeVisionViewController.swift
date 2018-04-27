@@ -231,7 +231,7 @@ extension MyToBeVisionViewController {
         messageTextView.alpha = 1
         messageTextView.textContainer.lineFragmentPadding = 0
         messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 10.0, right: 0.0)
-        checkIfPlaceholdersNeeded()
+        syncTextViews()
     }
 
     func setupInstructionsButton() {
@@ -253,16 +253,13 @@ extension MyToBeVisionViewController {
         messageHeightConstraint.constant = messageSize.height
     }
 
-    func checkIfPlaceholdersNeeded() {
-        if headlineTextView.text.trimmingCharacters(in: .newlines).components(separatedBy: .whitespaces)[0] == "" {
-            headlineTextView.text = R.string.localized.meSectorMyWhyVisionHeadlinePlaceholder().uppercased()
-        }
+    func syncTextViews() {
         resizeTextViewsHeight()
         syncInstructionsButton()
     }
 
     func syncInstructionsButton() {
-        tbvGeneratorButton.isHidden = isEditing || messageTextView.text.trimmingCharacters(in: .newlines).components(separatedBy: .whitespaces)[0].isEmpty == false
+        tbvGeneratorButton.isHidden = isEditing || messageTextView.text.isTrimmedTextEmpty == false
     }
 }
 
@@ -466,7 +463,12 @@ extension MyToBeVisionViewController: UITextViewDelegate {
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
-        checkIfPlaceholdersNeeded()
+        switch textView {
+        case headlineTextView: textView.text = interactor?.headlinePlaceholderNeeded(headlineEdited: textView.text)
+        case messageTextView: textView.text = interactor?.messagePlaceholderNeeded(messageEdited: textView.text)
+        default: return
+        }
+        syncTextViews()
     }
 
     func textViewDidChange(_ textView: UITextView) {

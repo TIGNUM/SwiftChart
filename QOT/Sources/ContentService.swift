@@ -193,3 +193,14 @@ private extension ContentService {
         return mainRealm.anyCollection(.sortOrder(), predicates: predicate)
     }
 }
+
+extension ContentService {
+
+    func toBeVisionHeadlinePlaceholder() -> String? {
+        return contentCollection(id: 101080)?.contentItems.first?.valueText
+    }
+
+    func toBeVisionMessagePlaceholder() -> String? {
+        return contentCollection(id: 101079)?.contentItems.first?.valueText
+    }
+}

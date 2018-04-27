@@ -23,6 +23,20 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         presenter.loadToBeVision(toBeVision)
     }
 
+    func headlinePlaceholderNeeded(headlineEdited: String) -> String? {
+        if headlineEdited.isTrimmedTextEmpty == true {
+            return worker.headlinePlaceholder
+        }
+        return headlineEdited
+    }
+
+    func messagePlaceholderNeeded(messageEdited: String) -> String? {
+        if messageEdited.isTrimmedTextEmpty == true {
+            return worker.messagePlaceholder
+        }
+        return messageEdited
+    }
+
     func saveToBeVision(toBeVision: MyToBeVisionModel.Model) {
         worker.updateMyToBeVision(toBeVision)
     }

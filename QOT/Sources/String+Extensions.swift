@@ -70,6 +70,10 @@ extension String {
         let trimmed = trimmingCharacters(in: .whitespacesAndNewlines)
         return trimmed.isEmpty ? nil : trimmed
     }
+
+    var isTrimmedTextEmpty: Bool? {
+        return self.trimmingCharacters(in: .newlines).components(separatedBy: .whitespaces)[0].isEmpty
+    }
 }
 
 // MARK: - Attributed Button Title - Charts SegmentedView
