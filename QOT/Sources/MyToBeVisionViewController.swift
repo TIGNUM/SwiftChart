@@ -260,6 +260,8 @@ extension MyToBeVisionViewController {
     }
 
     func syncInstructionsButton() {
+        headlineTextView.text = interactor?.headlinePlaceholderNeeded(headlineEdited: headlineTextView.text)
+        messageTextView.text = interactor?.messagePlaceholderNeeded(messageEdited: messageTextView.text)
         tbvGeneratorButton.isHidden = isEditing || messageTextView.text.isTrimmedTextEmpty == false
     }
 }

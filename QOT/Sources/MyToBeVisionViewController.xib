@@ -58,7 +58,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tCL-zM-DF7" userLabel="Container">
                                     <rect key="frame" x="0.0" y="0.0" width="315" height="547"/>
                                     <subviews>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" text="Headline" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7Sy-gJ-ovl" userLabel="Headline">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="7Sy-gJ-ovl" userLabel="Headline">
                                             <rect key="frame" x="0.0" y="10" width="315" height="50"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
