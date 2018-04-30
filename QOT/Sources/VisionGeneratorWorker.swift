@@ -50,6 +50,13 @@ final class VisionGeneratorWorker {
     var model: MyToBeVisionModel.Model? {
         return visionModel
     }
+
+    private var headlinePlaceholder: String? {
+        if services.userService.myToBeVision()?.headline == services.contentService.toBeVisionHeadlinePlaceholder() {
+            return services.contentService.toBeVisionToolingHeadlinePlaceholder()?.uppercased()
+        }
+        return services.userService.myToBeVision()?.headline?.uppercased()
+    }
 }
 
 extension VisionGeneratorWorker {
@@ -59,8 +66,7 @@ extension VisionGeneratorWorker {
             var currentVisionModel = self.currentVisionModel,
             let old = services.userService.myToBeVision() else { return }
         services.userService.updateMyToBeVision(old) {
-            let headLine = $0.headline
-            $0.headline = headLine
+            $0.headline = headlinePlaceholder
             $0.text = currentVisionModel.text
             $0.date = Date()
             if let newImageURL = currentVisionModel.imageURL,
@@ -175,6 +181,7 @@ private extension VisionGeneratorWorker {
             }
         }
         let vision = visionList.joined(separator: " ")
+        currentVisionModel?.headLine = headlinePlaceholder
         currentVisionModel?.text = vision
         currentVisionModel?.lastUpdated = Date()
         return vision

@@ -196,6 +196,10 @@ private extension ContentService {
 
 extension ContentService {
 
+    func toBeVisionToolingHeadlinePlaceholder() -> String? {
+        return contentCollection(id: 101080)?.contentItems[1].valueText
+    }
+
     func toBeVisionHeadlinePlaceholder() -> String? {
         return contentCollection(id: 101080)?.contentItems.first?.valueText
     }
