@@ -38,7 +38,6 @@ final class UserNotificationsManager {
             let featureItems = todaysLearnItems(from: learnItems, type: .feature, now: now)
             let strategyItems = todaysLearnItems(from: learnItems, type: .strategy, now: now)
             let noficationConfigurations = NotificationConfigurationObject.all()
-
             var requests: [UNNotificationRequest] = []
             requests.append(contentsOf: notificationItems.flatMap({ $0.notificationRequest }))
             requests.append(contentsOf: featureItems.compactMap({ $0.notificationRequest }))

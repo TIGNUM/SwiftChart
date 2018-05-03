@@ -36,14 +36,10 @@ class ClickableLabel: UILabel, UIGestureRecognizerDelegate {
                 super.attributedText = newValue
                 return
             }
-
             links.removeAll()
-
             let mutableAttributedText = NSMutableAttributedString(attributedString: text)
-
             replaceLinks(in: mutableAttributedText)
             changeLinkAspect(in: mutableAttributedText)
-
             super.attributedText = mutableAttributedText
         }
     }
@@ -77,9 +73,7 @@ class ClickableLabel: UILabel, UIGestureRecognizerDelegate {
 private extension ClickableLabel {
 
     func setup() {
-
         self.isUserInteractionEnabled = true
-
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(linkTapped(_:)))
         gestureRecognizer.delegate = self
         addGestureRecognizer(gestureRecognizer)
@@ -88,7 +82,6 @@ private extension ClickableLabel {
     @objc func linkTapped(_ gesture: UITapGestureRecognizer) {
         if let link = gesture.didTapAttributedTextInLabel(label: self),
             let url = URL(string: link) {
-
             self.delegate?.openLink(withURL: url)
         }
     }
@@ -100,31 +93,22 @@ private extension ClickableLabel {
     }
 
     func replaceLinks(in mutableAttributedText: NSMutableAttributedString) {
-
         matches(for: "\\[.*?\\]\\(.*?(?=\\))\\)", in: mutableAttributedText.string).reversed().forEach { range in
-
             let linkSubstring = mutableAttributedText.mutableString.substring(with: range)
             let linkTitle = getString(for: "\\[.*\\]", in: linkSubstring).trimmingCharacters(in: ["[", "]"])
             let link = getString(for: "\\(.*\\)", in: linkSubstring).trimmingCharacters(in: ["(", ")"])
-
             let additionalCharactersCount = linkSubstring.count - linkTitle.count
-
             let newRange =  NSRange(location: range.location, length: linkTitle.count)
-
             let mdLink = MarkdownLink(range: newRange, link: link, title: linkTitle)
-
             self.updateLinksLocations(with: additionalCharactersCount)
             self.links.append(mdLink)
-
             mutableAttributedText.mutableString.replaceCharacters(in: range, with: linkTitle)
         }
     }
 
     func updateLinksLocations(with additionalCharactersCount: Int) {
-
         for i in 0..<links.count {
             let link = links[i]
-
             let newRange = NSRange(location: link.range.location - additionalCharactersCount, length: link.range.length)
             links[i] = MarkdownLink(range: newRange, link: link.link, title: link.title)
         }
@@ -147,7 +131,6 @@ private extension ClickableLabel {
             let regex = try NSRegularExpression(pattern: regex)
             let nsString = text as NSString
             let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
-
             return results.count > 0 ? nsString.substring(with: results[0].range) : ""
         } catch let error {
             log("invalid regex: \(error.localizedDescription)")
