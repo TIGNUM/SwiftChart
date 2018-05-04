@@ -84,9 +84,7 @@ extension RealmGuideItem: UpSyncable, Dirty {
             dict[.id] = notificationItem.forcedRemoteID
             dict[.createdAt] = dateFormatter.string(from: notificationItem.createdAt)
             dict[.completedAt] = completedAtString.toJSONEncodable
-            if notificationItem.completedAt != nil || notificationItem.displayTime != nil {
-                dict[.serverPush] = false
-            }
+            dict[.serverPush] = (notificationItem.localNofiticationScheduled == false || notificationItem.completedAt != nil)
         } else if let learnItem = learnItems.first {// There should always be one item  {
             let completedAtString = learnItem.completedAt.map { dateFormatter.string(from: $0) }
             dict[.id] = learnItem.forcedRemoteID

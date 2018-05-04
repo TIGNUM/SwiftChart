@@ -35,14 +35,10 @@ final class ClickableLabel: UILabel, UIGestureRecognizerDelegate {
                 super.attributedText = newValue
                 return
             }
-
             links.removeAll()
-
             let mutableAttributedText = NSMutableAttributedString(attributedString: text)
-
             replaceLinks(in: mutableAttributedText)
             changeLinkAspect(in: mutableAttributedText)
-
             super.attributedText = mutableAttributedText
         }
     }
@@ -98,9 +94,7 @@ private extension ClickableLabel {
     }
 
     func replaceLinks(in mutableAttributedText: NSMutableAttributedString) {
-
         matches(for: "\\[.*?\\]\\(.*?(?=\\))\\)", in: mutableAttributedText.string).reversed().forEach { range in
-
             let linkSubstring = mutableAttributedText.mutableString.substring(with: range)
             let linkTitle = getString(for: "\\[.*\\]", in: linkSubstring).trimmingCharacters(in: ["[", "]"])
             let link = getString(for: "\\(.*\\)", in: linkSubstring).trimmingCharacters(in: ["(", ")"])

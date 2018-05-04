@@ -129,7 +129,7 @@ platform :ios do
     )
 
     # Release to hockey app
-    hockey(api_token: ENV["APP_STORE_HOCKEYAPP_API_TOKEN"])
+    # hockey(api_token: ENV["APP_STORE_HOCKEYAPP_API_TOKEN"])
   end
 
 
