@@ -51,6 +51,7 @@ extension ShareRouter: MFMailComposeViewControllerDelegate {
         controller.dismiss(animated: true, completion: nil)
         if let error = error {
             showAlert(.message(error.localizedDescription))
+            log("Failed to open mail with error: \(error.localizedDescription))", level: .error)
         }
     }
 }

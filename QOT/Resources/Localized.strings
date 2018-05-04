@@ -242,6 +242,7 @@
 "Alert.Message.EditPreparationName" = "Please edit the name and press save";
 "Alert.Title.Unknown" = "Error";
 "Alert.Message.Unknown" = "An unexpected error has occured. Please try again later.";
+"Alert.Message.Unknown.Type" = "An unexpected error has occured.\n(%@)\nPlease try again later.";
 "Alert.Button.Title.Ok" = "OK";
 "Alert.Button.Title.Cancel" = "Cancel";
 "Alert.Button.Title.Continue" = "Continue";

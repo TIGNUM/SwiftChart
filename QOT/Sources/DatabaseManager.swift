@@ -22,7 +22,6 @@ final class DatabaseManager {
     private var _state: State = .starting
     private var _onSetupCompleteClosures: [(Error?) -> Void] = []
     private var _configuration: Realm.Configuration?
-
     private let lockQueue = DispatchQueue(label: "com.tignum.qot.databaseManager.lock", qos: .default)
     private let setupQueue = DispatchQueue(label: "com.tignum.qot.databaseManager.setup", qos: .userInitiated)
     static let shared = DatabaseManager()

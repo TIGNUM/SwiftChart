@@ -401,6 +401,7 @@ extension AppCoordinator: CalendarImportMangerDelegate {
 
     func calendarImportDidFail(error: Error) {
         // FIXME: Handle error
+        log("Calendar import failed: with error: \(error.localizedDescription))", level: .error)
         assertionFailure("Calendar import failed: \(error)")
     }
 }

@@ -79,6 +79,7 @@ extension SettingsBubblesRouter: MFMailComposeViewControllerDelegate {
         controller.dismiss(animated: true, completion: nil)
         if let error = error {
             viewController.showAlert(type: .message(error.localizedDescription))
+            log("Failed to open mail with error: \(error.localizedDescription))", level: .error)
         }
     }
 }

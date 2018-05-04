@@ -26,6 +26,7 @@ final class MyToBeVisionPresenter: MyToBeVisionPresenterInterface {
 
     func presentImageError(_ error: Error) {
         viewController?.displayImageError()
+        log("Failed to load TBV image with error: \(error.localizedDescription))", level: .error)
     }
 
     func presentVisionGenerator() {
