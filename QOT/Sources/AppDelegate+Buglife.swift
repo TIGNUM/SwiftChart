@@ -16,10 +16,8 @@ extension AppDelegate: BuglifeDelegate {
         // A slight hack. Rather than updating Bulife on logout and login etc we intecept it just before it's shown.
         let username = CredentialsManager.shared.loginCredentials()?.username ?? "No username"
         let apnsDeviceToken = UAirship.push().deviceToken ?? "No token"
-
         buglife.setUserEmail(username)
         buglife.setStringValue(apnsDeviceToken, forAttribute: "APNS Devive Token")
-
         return nil
     }
 }

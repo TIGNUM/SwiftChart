@@ -14,6 +14,7 @@ import AirshipKit
 import Crashlytics
 import ReactiveKit
 import Bond
+import Buglife
 
 final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
@@ -21,24 +22,10 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     var checkListIDToPresent: String?
     var children = [Coordinator]()
-    lazy var logoutNotificationHandler: NotificationHandler = NotificationHandler(name: .logoutNotification)
-    lazy var apnsDeviceTokenRegistrar: APNSDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: self.networkManager, credentialsManager: self.credentialsManager)
-    lazy var networkManager: NetworkManager = {
-        let manager = NetworkManager(delegate: self, authenticator: authenticator)
-        AppCoordinator.appState.networkManager = manager
-        return manager
-    }()
     private let windowManager: WindowManager
     private let remoteNotificationHandler: RemoteNotificationHandler
     private let locationManager: LocationManager
     private var services: Services?
-    private lazy var permissionsManager: PermissionsManager = {
-        let manager = PermissionsManager(delegate: self)
-        AppCoordinator.appState.permissionsManager = manager
-        return manager
-    }()
-    private lazy var credentialsManager: CredentialsManager = CredentialsManager.shared
-    private lazy var authenticator: Authenticator = Authenticator(sessionManager: SessionManager.default, requestBuilder: URLRequestBuilder(deviceID: deviceID))
     private var canProcessRemoteNotifications = false
     private var canProcessLocalNotifications = false
     private var isRestart = false
@@ -46,13 +33,27 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private var onDismissWithResults: ((_ results: [WeeklyChoice], _ syncManager: SyncManager) -> Void)?
     private var destination: AppCoordinator.Router.Destination?
     private let userIsLoggingIn = Atomic(false)
-
-    // current state
     private weak var tabBarCoordinator: TabBarCoordinator?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
     static var currentStatusBarStyle: UIStatusBarStyle?
+    lazy var logoutNotificationHandler = NotificationHandler(name: .logoutNotification)
+    lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: networkManager,
+                                                                 credentialsManager: credentialsManager)
+    lazy var networkManager: NetworkManager = {
+        let manager = NetworkManager(delegate: self, authenticator: authenticator)
+        AppCoordinator.appState.networkManager = manager
+        return manager
+    }()
+    private lazy var permissionsManager: PermissionsManager = {
+        let manager = PermissionsManager(delegate: self)
+        AppCoordinator.appState.permissionsManager = manager
+        return manager
+    }()
+    private lazy var credentialsManager = CredentialsManager.shared
+    private lazy var authenticator = Authenticator(sessionManager: SessionManager.default,
+                                                   requestBuilder: URLRequestBuilder(deviceID: deviceID))
 
     private lazy var realmProvider: RealmProvider = {
         return RealmProvider()
@@ -100,7 +101,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         self.windowManager = windowManager
         self.remoteNotificationHandler = remoteNotificationHandler
         self.locationManager = locationManager
-
         AppDelegate.current.localNotificationHandlerDelegate = self
         AppDelegate.current.shortcutHandlerDelegate = self
         AppCoordinator.appState.appCoordinator = self
@@ -108,7 +108,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
         }
-
         locationManager.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
     }
 
@@ -117,10 +116,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             self.credentialsManager.clear()
         }
         UserDefault.lastInstaledAppVersion.setStringValue(value: Bundle.main.versionNumber)
-
         pageTracker.start()
         observeTimeZoneChange()
-
         let dispatchGroup = DispatchGroup()
         let viewController = AnimatedLaunchScreenViewController()
         dispatchGroup.enter()
@@ -135,9 +132,10 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
         dispatchGroup.enter()
         var setupError: Error?
-        setupApp { (error) in
+        setupApp { [unowned self] (error) in
             setupError = error
             dispatchGroup.leave()
+            self.setupBugLife()
         }
 
         dispatchGroup.notify(queue: .main) {
@@ -167,7 +165,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                     let services = try Services()
                     self.services = services
                     self.syncManager.userNotificationsManager = services.userNotificationsManager
-
                     AppCoordinator.appState.services = services
                     QOTUsageTimer.sharedInstance.userService = services.userService
                     completion(nil)
@@ -273,6 +270,12 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 // MARK: - private
 
 private extension AppCoordinator {
+
+    func setupBugLife() {
+        guard AppCoordinator.appState.services.userService.user()?.company?.contains("Tignum") == true else { return }
+        Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
+        Buglife.shared().delegate = AppDelegate.current
+    }
 
     func observeTimeZoneChange() {
         NotificationCenter.default.addObserver(self, selector: #selector(timeZoneDidChange), name: .NSSystemTimeZoneDidChange, object: nil)

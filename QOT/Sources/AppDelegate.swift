@@ -86,8 +86,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
         Logger.shared.setup()
         Fabric.with([Crashlytics.self])
-        Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
-        Buglife.shared().delegate = self
         appCoordinator.start()
         UIApplication.shared.statusBarStyle = .lightContent
         UNUserNotificationCenter.current().delegate = self
