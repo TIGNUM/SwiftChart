@@ -62,7 +62,13 @@ final class RemoteLogDestination: BaseDestination {
         reachabilityManager?.startListening()
     }
 
-    override public func send(_ level: SwiftyBeaver.Level, msg: String, thread: String, file: String, function: String, line: Int, context: Any? = nil) -> String? {
+    override public func send(_ level: SwiftyBeaver.Level,
+                              msg: String,
+                              thread: String,
+                              file: String,
+                              function: String,
+                              line: Int,
+                              context: Any? = nil) -> String? {
         guard level.rawValue >= minLevel.rawValue else {
             return nil
         }
@@ -89,7 +95,10 @@ final class RemoteLogDestination: BaseDestination {
 
     private func send(_ logInfo: LogInfo) {
         guard let remoteURL = remoteURL else { return }
-        Alamofire.request(remoteURL, method: .put, parameters: logInfo.json, encoding: JSONEncoding.default, headers: headers).responseJSON { response in
+        Alamofire.request(remoteURL, method: .put,
+                          parameters: logInfo.json,
+                          encoding: JSONEncoding.default,
+                          headers: headers).responseJSON { response in
             if let error = response.result.error {
                 print(error)
             }

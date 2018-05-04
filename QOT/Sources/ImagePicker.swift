@@ -16,6 +16,7 @@ protocol ImagePickerDelegate: class {
 }
 
 class ImagePicker: NSObject {
+    
     enum ImagePickerError: Error {
         case sourceNotAvailable
         case notAuthorized

@@ -154,7 +154,7 @@ extension PrepareCoordinator {
             noteController.notesType = .notes
             noteController.delegate = viewModel
             noteController.title = R.string.localized.topTabBarItemTitlePerpareNotes()
-            let rightButton = viewModel.relatedPrepareStrategies.isEmpty == false ? rightBarButtonItem : nil
+//            let rightButton = viewModel.relatedPrepareStrategies.isEmpty == false ? rightBarButtonItem : nil
             topTabBarController = UINavigationController(withPages: [prepareController, noteController],
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()),

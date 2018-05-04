@@ -19,6 +19,7 @@ struct NetworkError: Error {
     enum NetworkErrorType {
         case failedToParseData(Data, error: Error)
         case unknown(error: Error, statusCode: Int?)
+        case unknownError
         case noNetworkConnection
         case cancelled
         case unauthenticated
@@ -84,6 +85,7 @@ extension Error {
         guard let error = self as? NetworkError else {
             return NetworkError(type: .unknown(error: self, statusCode: nil))
         }
+        log("NetworkError: \(error.localizedDescription))", level: .error)
         return error
     }
 }
@@ -103,6 +105,8 @@ extension NetworkError.NetworkErrorType: CustomDebugStringConvertible {
             return "Unauthenticated"
         case .unknown(let error, let statusCode):
             return "Unknow error: \(error), status code: \(String(describing: statusCode))"
+        case .unknownError:
+            return "Unknow Error"
         case .notFound:
             return "404 Not Found"
         }

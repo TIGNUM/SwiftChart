@@ -59,9 +59,11 @@ enum SyncStatus: Int, JSONDecodable {
             if let status = SyncStatus(rawValue: int) {
                 self = status
             } else {
+                log("JSON valueNotConvertible json: \(json.description))", level: .error)
                 throw JSON.Error.valueNotConvertible(value: json, to: SyncStatus.self)
             }
         default:
+            log("JSON valueNotConvertible json: \(json.description))", level: .error)
             throw JSON.Error.valueNotConvertible(value: json, to: SyncStatus.self)
         }
     }
