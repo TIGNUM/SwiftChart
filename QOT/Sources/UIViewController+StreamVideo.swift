@@ -19,7 +19,15 @@ extension UIViewController {
         let playerController = AVPlayerViewController()
         playerController.player = player
 
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setActive(true)
+        } catch {
+            print(error.localizedDescription)
+        }
+
         present(playerController, animated: true) {
+            player.volume = 1
             player.play()
         }
         return playerController
