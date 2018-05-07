@@ -125,6 +125,7 @@ extension User: TwoWaySyncableUniqueObject {
         environment.dynamicBaseURL = URL(string: data.esbDomain)
         fitbitStateValue = data.fitbitState
         updateUAirshipTags(data.urbanAirshipTags + [data.email])
+        AppDelegate.current.appCoordinator.setupBugLife()
     }
 
     private func updateUAirshipTags(_ tags: [String]) {

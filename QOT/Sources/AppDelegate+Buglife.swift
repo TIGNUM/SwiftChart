@@ -14,6 +14,7 @@ extension AppDelegate: BuglifeDelegate {
 
     func buglife(_ buglife: Buglife, titleForPromptWithInvocation invocation: LIFEInvocationOptions = []) -> String? {
         // A slight hack. Rather than updating Bulife on logout and login etc we intecept it just before it's shown.
+
         let username = CredentialsManager.shared.loginCredentials()?.username ?? "No username"
         let apnsDeviceToken = UAirship.push().deviceToken ?? "No token"
         buglife.setUserEmail(username)

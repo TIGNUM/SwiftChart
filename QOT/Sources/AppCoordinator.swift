@@ -156,6 +156,17 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         showLogin()
     }
 
+    func setupBugLife() {
+        if AppCoordinator.appState.services.userService.user()?.email.contains("@tignum.com") == true {
+            Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
+            Buglife.shared().delegate = AppDelegate.current
+            Buglife.shared().invocationOptions = [.shake]
+        } else {
+            Buglife.shared().delegate = nil
+            Buglife.shared().invocationOptions = [.init(rawValue: 0)]
+        }
+    }
+
     private func setupApp(completion: @escaping (Error?) -> Void) {
         DatabaseManager.shared.onSetupComplete { (error) in
             if let error = error {
@@ -270,12 +281,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 // MARK: - private
 
 private extension AppCoordinator {
-
-    func setupBugLife() {
-        guard AppCoordinator.appState.services.userService.user()?.company?.contains("Tignum") == true else { return }
-        Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
-        Buglife.shared().delegate = AppDelegate.current
-    }
 
     func observeTimeZoneChange() {
         NotificationCenter.default.addObserver(self, selector: #selector(timeZoneDidChange), name: .NSSystemTimeZoneDidChange, object: nil)
