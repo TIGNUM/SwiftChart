@@ -8,6 +8,11 @@
 import Foundation
 import UIKit
 
+struct Defaults {
+    static let firstLevelSupportEmail = "support@qot.io"
+    static let firstLevelFeatureEmail = "feature@qot.io"
+}
+
 struct Toggle {
     static let seperator = "{toggle:seperator}"
 }

@@ -32,7 +32,7 @@ extension SettingsBubblesRouter: SettingsBubblesRouterInterface {
         case .terms: presentContentItem(id: bubbleTapped.primaryKey)
         case .copyright: presentContentItem(id: bubbleTapped.primaryKey)
         case .contactSupport: presentMailComposer(recipients: [supportEmail()], subject: "ID: Support")
-        case .featureRequest: presentMailComposer(recipients: ["feature@qot.io"], subject: "ID: Feature")
+        case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail], subject: "ID: Feature")
         case .tutorial: presentTutorial()
         case .faq: presentContentItem(id: bubbleTapped.primaryKey)
         }
@@ -65,7 +65,7 @@ private extension SettingsBubblesRouter {
         if let supportEmail = services.userService.user()?.firstLevelSupportEmail, supportEmail.isEmpty == false {
             return supportEmail
         }
-        return "support@qot.io"
+        return Defaults.firstLevelSupportEmail
     }
 }
 

@@ -118,7 +118,7 @@ extension User: TwoWaySyncableUniqueObject {
         weightUnitsJSON = data.weightUnitsJSON
         company = data.company
         jobTitle = data.jobTitle
-        firstLevelSupportEmail = data.firstLevelSupportEmail
+        firstLevelSupportEmail = data.firstLevelSupportEmail ?? Defaults.firstLevelSupportEmail
         memberSince = data.memberSince
         totalUsageTime = data.totalUsageTime
         timeZone = TimeZone.hoursFromGMT // We never want to update the timezone based on remote timezone
