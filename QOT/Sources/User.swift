@@ -160,7 +160,7 @@ extension User: TwoWaySyncableUniqueObject {
         ]
 
         let dict: [JsonKey: JSONEncodable] = [
-            .gender: gender,
+            .gender: gender.uppercased(),
             .firstName: givenName,
             .lastName: familyName,
             .birthdate: dateOfBirth.toJSONEncodable,

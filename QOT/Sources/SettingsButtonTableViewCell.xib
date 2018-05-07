@@ -25,7 +25,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="301" height="43.5"/>
                                 <state key="normal" title="Button"/>
                                 <connections>
-                                    <action selector="didTapButtonWithSender:" destination="Rhc-Fu-dZk" eventType="touchUpInside" id="RNq-fs-rtn"/>
+                                    <action selector="didPressButton" destination="Rhc-Fu-dZk" eventType="touchUpInside" id="hUo-Qm-dn2"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aRV-zL-WS9">

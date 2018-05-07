@@ -48,6 +48,13 @@ final class SettingsMenuCoordinator: ParentCoordinator {
 
 extension SettingsMenuCoordinator: SettingsMenuViewControllerDelegate {
 
+    func openChangePasswordViewController(viewController: SettingsMenuViewController) {
+        let coordinator = ResetPasswordCoordinator(rootVC: viewController,
+                                                   parentCoordinator: self,
+                                                   networkManager: networkManager)
+        startChild(child: coordinator)
+    }
+
     func goToNotificationsSettings(from viewController: SettingsMenuViewController,
                                    destination: AppCoordinator.Router.Destination) {
         didTapNotifications(in: viewController)

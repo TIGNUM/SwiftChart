@@ -43,7 +43,10 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Setup
 
-    func setup(settingsRow: SettingsRow, indexPath: IndexPath, calendarIdentifier: String? = nil, isSyncFinished: Bool) {
+    func setup(settingsRow: SettingsRow,
+               indexPath: IndexPath,
+               calendarIdentifier: String? = nil,
+               isSyncFinished: Bool) {
         self.indexPath = indexPath
         self.calendarIdentifier = calendarIdentifier
 
@@ -199,6 +202,10 @@ extension SettingsTableViewCell {
         } else {
             switchControl.layer.removeGlowEffect()
         }
+    }
+
+    @IBAction func didPressButton() {
+        settingsDelegate?.presentResetPasswordController()
     }
 }
 

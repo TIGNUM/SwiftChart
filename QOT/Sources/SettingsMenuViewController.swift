@@ -25,6 +25,8 @@ protocol SettingsMenuViewControllerDelegate: class {
 
     func goToNotificationsSettings(from viewController: SettingsMenuViewController,
                                    destination: AppCoordinator.Router.Destination)
+
+    func openChangePasswordViewController(viewController: SettingsMenuViewController)
 }
 
 final class SettingsMenuViewController: UIViewController {
@@ -202,6 +204,10 @@ private extension SettingsMenuViewController {
 
     @IBAction func securityAction(_ sender: Any) {
         delegate?.didTapSecurity(in: self)
+    }
+
+    @IBAction func resetPasswordAction() {
+        delegate?.openChangePasswordViewController(viewController: self)
     }
 }
 

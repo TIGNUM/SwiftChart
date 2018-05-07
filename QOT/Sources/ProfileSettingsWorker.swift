@@ -21,20 +21,20 @@ final class ProfileSettingsWorker {
     }
 
     func profile() -> ProfileSettingsModel? {
-        let model = ProfileSettingsModel(imageURL: user?.userImage?.remoteURL ?? user?.userImage?.localURL,
-                                                 givenName: user?.givenName,
-                                                 familyName: user?.familyName,
-                                                 position: user?.jobTitle,
-                                                 memberSince: user?.totalUsageTime ?? 0,
-                                                 company: user?.company,
-                                                 email: user?.email,
-                                                 telephone: user?.telephone,
-                                                 gender: user?.gender,
-                                                 height: user?.height.value ?? 150,
-                                                 heightUnit: user?.heightUnit ?? "",
-                                                 weight: user?.weight.value ?? 60,
-                                                 weightUnit: user?.weightUnit ?? "",
-                                                 birthday: user?.dateOfBirth ?? "")
+        let model = ProfileSettingsModel(imageURL: user?.userImage?.localURL ?? user?.userImage?.remoteURL,
+                                         givenName: user?.givenName,
+                                         familyName: user?.familyName,
+                                         position: user?.jobTitle,
+                                         memberSince: user?.totalUsageTime ?? 0,
+                                         company: user?.company,
+                                         email: user?.email,
+                                         telephone: user?.telephone,
+                                         gender: user?.gender,
+                                         height: user?.height.value ?? 150,
+                                         heightUnit: user?.heightUnit ?? "",
+                                         weight: user?.weight.value ?? 60,
+                                         weightUnit: user?.weightUnit ?? "",
+                                         birthday: user?.dateOfBirth ?? "")
         return model
     }
 
@@ -44,8 +44,8 @@ final class ProfileSettingsWorker {
             let old = profile(),
             old != new else { return }
 
-        if old.imageURL != new.imageURL {
-            guard let imageURL = new.imageURL else { return }
+        if old.imageURL != new.imageURL,
+        let imageURL = new.imageURL, imageURL.baseURL == URL.imageDirectory {
             services.userService.updateUser(user: user) { (user) in
                 user.userImage?.setLocalURL(imageURL, format: .jpg, entity: .user, entitiyLocalID: user.localID)
             }

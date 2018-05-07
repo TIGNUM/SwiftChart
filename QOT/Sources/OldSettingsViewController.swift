@@ -16,7 +16,10 @@ import CoreLocation
 protocol SettingsViewControllerDelegate: class {
 
     func didTextFieldChanged(at indexPath: IndexPath, text: String)
+
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?)
+
+    func presentResetPasswordController()
 }
 
 final class OldSettingsViewController: UIViewController {
@@ -176,7 +179,7 @@ private extension OldSettingsViewController {
 		fadeContainerView.addSubview(pickerContentView)
 		pickerContentView.addSubview(pickerToolBar)
         pickerContentView.addSubview(pickerView)
-		
+
 		fadeContainerView.edgeAnchors == view.edgeAnchors
         tableView.edgeAnchors == fadeContainerView.edgeAnchors
         tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
@@ -362,6 +365,10 @@ private extension OldSettingsViewController {
 // MARK: - SettingsViewControllerDelegate
 
 extension OldSettingsViewController: SettingsViewControllerDelegate {
+
+    func presentResetPasswordController() {
+        delegate?.openChangePasswordViewController(settingsViewController: self)
+    }
 
     func didTextFieldChanged(at indexPath: IndexPath, text: String) {
         switch indexPath.row {

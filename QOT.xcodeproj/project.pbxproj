@@ -219,7 +219,6 @@
 		91086E48209202740035DA1F /* SettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E47209202740035DA1F /* SettingsPresenter.swift */; };
 		91086E4A209202800035DA1F /* SettingsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E49209202800035DA1F /* SettingsProtocols.swift */; };
 		91086E4C209202CC0035DA1F /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E4B209202CC0035DA1F /* SettingsViewController.swift */; };
-		91086E4E209202EE0035DA1F /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91086E4D209202EE0035DA1F /* SettingsViewController.xib */; };
 		91086E502092044C0035DA1F /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91086E4F2092044C0035DA1F /* SettingsCell.xib */; };
 		91086E52209204670035DA1F /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E51209204670035DA1F /* SettingsCell.swift */; };
 		91086E5620920ABF0035DA1F /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E5520920ABF0035DA1F /* SettingsModel.swift */; };
@@ -872,7 +871,6 @@
 		91086E47209202740035DA1F /* SettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsPresenter.swift; sourceTree = "<group>"; };
 		91086E49209202800035DA1F /* SettingsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsProtocols.swift; sourceTree = "<group>"; };
 		91086E4B209202CC0035DA1F /* SettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		91086E4D209202EE0035DA1F /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		91086E4F2092044C0035DA1F /* SettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsCell.xib; sourceTree = "<group>"; };
 		91086E51209204670035DA1F /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		91086E5520920ABF0035DA1F /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
@@ -1671,7 +1669,6 @@
 				91086E47209202740035DA1F /* SettingsPresenter.swift */,
 				91086E49209202800035DA1F /* SettingsProtocols.swift */,
 				91086E4B209202CC0035DA1F /* SettingsViewController.swift */,
-				91086E4D209202EE0035DA1F /* SettingsViewController.xib */,
 				91086E5520920ABF0035DA1F /* SettingsModel.swift */,
 			);
 			name = Core;
@@ -3236,7 +3233,6 @@
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */,
-				91086E4E209202EE0035DA1F /* SettingsViewController.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */,
 				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */,
@@ -4116,7 +4112,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -4201,7 +4197,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80E075CE42B2191C23DED0F8 /* Pods-QOT.appstore.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
@@ -4336,7 +4332,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -4361,7 +4357,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
 				CODE_SIGN_IDENTITY = "iPhone Developer";

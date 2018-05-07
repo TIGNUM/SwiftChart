@@ -366,9 +366,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         case .button(_, _, let settingsType):
             switch settingsType {
             case .password:
-                let resetPasswordViewController = ResetPasswordViewController()
-                resetPasswordViewController.delegate = self
-                pushToStart(childViewController: resetPasswordViewController)
+                presentResetPasswordController()
             default: return
             }
         }
@@ -391,6 +389,12 @@ extension ProfileSettingsViewController: ResetPasswordViewControllerDelegate {
 
 extension ProfileSettingsViewController: SettingsViewControllerDelegate {
 
+    func presentResetPasswordController() {
+        let resetPasswordViewController = ResetPasswordViewController()
+        resetPasswordViewController.delegate = self
+        pushToStart(childViewController: resetPasswordViewController)
+    }
+
     func didTextFieldChanged(at indexPath: IndexPath, text: String) {
         switch indexPath.row {
         case 1: if text.isEmpty == false { profile?.position = text }
@@ -404,7 +408,6 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
 
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
         guard let key = key else { return }
-
         settingsViewModel.updateNotificationSetting(key: key, value: sender.isOn)
     }
 }
