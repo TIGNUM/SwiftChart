@@ -123,6 +123,7 @@ extension SettingsChangePasswordViewController {
 private extension SettingsChangePasswordViewController {
 
     func setupNavigationItem() {
+        navigationItem.title = R.string.localized.settingsSecurityPasswordTitle().uppercased()
         navigationItem.leftBarButtonItem? = UIBarButtonItem(image: R.image.ic_back(),
                                                             style: .done,
                                                             target: self,

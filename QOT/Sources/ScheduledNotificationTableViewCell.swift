@@ -8,10 +8,18 @@
 
 import UIKit
 
-final class ScheduledNotificationTableViewCell: UITableViewCell {
+final class ScheduledNotificationTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+    }
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+    }
 
     func configure(title: String, subtitle: String) {
         titleLabel.text = title

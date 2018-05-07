@@ -19,7 +19,6 @@ final class SidebarCoordinator: ParentCoordinator {
     private let destination: AppCoordinator.Router.Destination?
     private let sidebarViewModel: SidebarViewModel
     let sideBarViewController: SidebarViewController!
-    var addSensorCoordinator: AddSensorCoordinator?
     var topTabBarController: UINavigationController?
     var settingsMenuCoordinator: SettingsMenuCoordinator?
     var children = [Coordinator]()
@@ -58,6 +57,24 @@ final class SidebarCoordinator: ParentCoordinator {
 
 extension SidebarCoordinator: SidebarViewControllerDelegate {
 
+    func didTapSettingsCell(in viewController: SidebarViewController) {
+        let configurator = SettingsConfigurator.make()
+		let settingsViewController = SettingsViewController(configure: configurator, services: services)
+        let navController = UINavigationController(rootViewController: settingsViewController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .custom
+        viewController.pushToStart(childViewController: settingsViewController)
+    }
+
+    func didTapAdminCell(in viewController: SidebarViewController) {
+        let coordinator = SettingsAdminCoordinator(root: viewController,
+                                                   services: services,
+                                                   syncManager: syncManager,
+                                                   networkManager: networkManager)
+        startChild(child: coordinator)
+    }
+
     func didTapSearchCell(in viewController: SidebarViewController) {
         let configurator = SearchConfigurator.make()
         let searchViewController = SearchViewController(configure: configurator)
@@ -66,12 +83,6 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         navController.modalTransitionStyle = .crossDissolve
         navController.modalPresentationStyle = .custom
         viewController.pushToStart(childViewController: searchViewController)
-    }
-
-    func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        let coordinator = AddSensorCoordinator(root: viewController, services: services)
-        startChild(child: coordinator)
-        addSensorCoordinator = coordinator
     }
 
     func didTapSupportCell(in viewController: SidebarViewController) {
@@ -84,22 +95,22 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         viewController.pushToStart(childViewController: bubblesViewController)
     }
 
-    func didTapLogoutCell(in viewController: SidebarViewController) {
-        UIApplication.shared.shortcutItems?.removeAll()
-        NotificationHandler.postNotification(withName: .logoutNotification)
-    }
-
     func didTapProfileCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
-        guard let coordinator = SettingsMenuCoordinator(root: viewController,
-                                                        services: services,
-                                                        syncManager: syncManager,
-                                                        networkManager: networkManager,
-                                                        permissionsManager: permissionsManager,
-                                                        destination: destination) else {
-                                                            log("could not init \(SettingsMenuCoordinator.self)")
-                                                            return }
-        startChild(child: coordinator)
-        settingsMenuCoordinator = coordinator
+        let configurator = ProfileSettingsConfigurator.make()
+        guard
+            let menuViewModel = SettingsMenuViewModel(services: services),
+            let settingsViewModel = SettingsViewModel(services: services, settingsType: .profile) else { return }
+        let profileViewController = ProfileSettingsViewController(configurator: configurator,
+                                                                  services: services,
+                                                                  permissionsManager: permissionsManager,
+                                                                  networkManager: networkManager,
+                                                                  settingsMenuViewModel: menuViewModel,
+                                                                  settingsViewModel: settingsViewModel)
+        let navController = UINavigationController(rootViewController: profileViewController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .custom
+        viewController.pushToStart(childViewController: profileViewController)
     }
 
     func didTapLibraryCell(in viewController: SidebarViewController) {

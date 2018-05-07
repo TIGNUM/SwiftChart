@@ -185,13 +185,7 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
     }
 
     func displayImageError() {
-        let alertController = UIAlertController(title: R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle(),
-                                                message: R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage(),
-                                                preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: R.string.localized.meSectorMyWhyPartnersPhotoErrorOKButton(),
-                                        style: .default)
-        alertController.addAction(alertAction)
-        present(alertController, animated: true, completion: nil)
+        showAlert(type: .canNotUploadPhoto)
     }
 }
 

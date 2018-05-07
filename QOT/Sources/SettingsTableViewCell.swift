@@ -194,16 +194,11 @@ extension SettingsTableViewCell {
 
     func setSwitchState(switchControl: UISwitch) {
         switchControl.alpha = switchControl.isOn == true ? 1 : 0.5
-
         if switchControl.isOn == true {
             switchControl.layer.addGlowEffect(color: .white, shadowRadius: 4)
         } else {
             switchControl.layer.removeGlowEffect()
         }
-    }
-
-    @IBAction private func didTapButton(sender: UIButton) {
-        settingsDelegate?.didTapButton(at: indexPath, settingsType: .calendar)
     }
 }
 
@@ -227,7 +222,6 @@ extension SettingsTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
         let selectedValue = pickerItems[row]
         valueLabel.text = selectedValue
         selectedIndex = row
-        settingsDelegate?.didTapPickerCell(at: indexPath, selectedValue: selectedValue)
     }
 }
 

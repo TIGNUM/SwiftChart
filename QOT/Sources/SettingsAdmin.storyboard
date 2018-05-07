@@ -555,10 +555,10 @@
             </objects>
             <point key="canvasLocation" x="-170.40000000000001" y="106.59670164917542"/>
         </scene>
-        <!--Scheduled Notifications Table View Controller-->
+        <!--Notifications View Controller-->
         <scene sceneID="3g5-jE-Swb">
             <objects>
-                <tableViewController id="IM9-9v-zxB" customClass="ScheduledNotificationsTableViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="NotificationsVC" id="IM9-9v-zxB" customClass="NotificationsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="p5H-5g-Lyh">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -598,8 +598,8 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="subtitleLabel" destination="LIX-IL-I1k" id="sA7-f7-ETe"/>
-                                    <outlet property="titleLabel" destination="i0t-zL-taW" id="qre-mj-Ne3"/>
+                                    <outlet property="subtitleLabel" destination="LIX-IL-I1k" id="PW9-oa-woS"/>
+                                    <outlet property="titleLabel" destination="i0t-zL-taW" id="QEG-uH-deD"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -608,6 +608,9 @@
                             <outlet property="delegate" destination="IM9-9v-zxB" id="wRl-2p-XFA"/>
                         </connections>
                     </tableView>
+                    <connections>
+                        <outlet property="tableView" destination="p5H-5g-Lyh" id="OUZ-0p-BPY"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xcK-fe-uFL" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

@@ -37,15 +37,22 @@ final class AddSensorViewModel {
     // MARK: - Properties
 
     private let sensors: [Sensor] = [.fitbit, .requestDevice]
-    private let userService: UserService
-    private let sensorCollection: ContentCollection?
+    private let services: Services
+
+    private var sensorCollection: ContentCollection? {
+        return services.contentService.contentCollection(id: 100935)
+    }
 
     var itemCount: Int {
         return sensors.count
     }
 
     var fitbitState: User.FitbitState {
-        return userService.fitbitState
+        return services.userService.fitbitState
+    }
+
+    var settingValue: SettingValue? {
+        return services.settingsService.settingValue(key: "b2b.fitbit.authorizationurl")
     }
 
     var headLine: String? {
@@ -62,9 +69,16 @@ final class AddSensorViewModel {
         return sensors[index]
     }
 
-    init(userService: UserService, sensorCollection: ContentCollection?) {
-        self.userService = userService
-        self.sensorCollection = sensorCollection
+    func recordFeedback(message: String) {
+        do {
+            try self.services.feedbackService.recordFeedback(message: message)
+        } catch {
+            log(error.localizedDescription)
+        }
+    }
+
+    init(services: Services) {
+        self.services = services
     }
 }
 

@@ -104,10 +104,98 @@ final class AddSensorViewController: UIViewController {
 
         setUpHierarchy()
         setUpLayout()
+        delegate = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.title = R.string.localized.sidebarSensorsMenuSensors().uppercased()
     }
 
     func reloadCollectionView() {
         collectionView.reloadData()
+    }
+}
+
+extension AddSensorViewController: AddSensorViewControllerDelegate {
+
+    func didTapSensor(_ sensor: AddSensorViewModel.Sensor, in viewController: UIViewController) {
+        switch sensor {
+        case .fitbit:
+            if (viewModel.fitbitState == .connected || viewModel.fitbitState == .pending),
+                let url = URL(string: "https://www.fitbit.com/user/profile/apps") {
+                presentSafariViewController(url: url, viewController: viewController)
+            } else {
+                presentFitBitWebView(in: viewController)
+            }
+        case .requestDevice:
+            presentAddSensorAlert(in: viewController, sendAction: { text in
+                self.viewModel.recordFeedback(message: text)
+                self.presentFeedbackCompletionAlert(in: viewController)
+            })
+        default:
+            log("sensor not yet implemented")
+        }
+    }
+
+    func presentAddSensorAlert(in viewController: UIViewController, sendAction: ((String) -> Void)?) {
+        let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertTitle(), message: R.string.localized.addSensorViewAlertMessage(), preferredStyle: .alert)
+        let sendAction = UIAlertAction(title: R.string.localized.addSensorViewAlertSend(), style: .default) { [unowned alertController] _ in
+            guard let text = alertController.textFields?.first?.text, text.count > 0 else {
+                return
+            }
+            sendAction?(text)
+        }
+
+        let cancelAction = UIAlertAction(title: R.string.localized.addSensorViewAlertCancel(), style: .cancel)
+        alertController.addTextField { textField in
+            textField.placeholder = R.string.localized.addSensorViewAlertPlaceholder()
+        }
+
+        alertController.addAction(sendAction)
+        alertController.addAction(cancelAction)
+        present(alertController, animated: true, completion: nil)
+    }
+
+    func presentFeedbackCompletionAlert(in viewController: UIViewController) {
+        let alertController = UIAlertController(title: R.string.localized.addSensorViewAlertFeedbackTitle(), message: nil, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: R.string.localized.addSensorViewAlertFeedbackSuccessOK(), style: .default)
+        alertController.addAction(okAction)
+        viewController.present(alertController, animated: true, completion: nil)
+    }
+}
+
+// MARK: - private
+
+private extension AddSensorViewController {
+
+    func presentFitBitWebView(in viewController: UIViewController) {
+        guard
+            let settingValue = viewModel.settingValue,
+            case .text(let urlString) = settingValue,
+            let url = URL(string: urlString) else { return }
+        presentSafariViewController(url: url, viewController: viewController)
+    }
+
+    func presentSafariViewController(url: URL, viewController: UIViewController) {
+        do {
+            let webViewController = try WebViewController(url)
+            viewController.present(webViewController, animated: true)
+            NotificationCenter.default.addObserver(self,
+                                                   selector: #selector(reloadAddSensorViewController),
+                                                   name: .syncAllDidFinishNotification,
+                                                   object: nil)
+
+        } catch {
+            log("Failed to open url. Error: \(error)", level: .error)
+            viewController.showAlert(type: .message(error.localizedDescription))
+        }
+    }
+
+    @objc func reloadAddSensorViewController() {
+        reloadCollectionView()
+        NotificationCenter.default.removeObserver(self, name: .syncAllDidFinishNotification, object: nil)
     }
 }
 
@@ -159,6 +247,7 @@ private extension AddSensorViewController {
     }
 
     func setUpLayout() {
+        navigationItem.title = R.string.localized.sidebarTitleSensor()
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never

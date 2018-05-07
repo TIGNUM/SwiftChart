@@ -1,13 +1,115 @@
 //
-//  SettingsViewModel.swift
+//  SettingsMenuViewModel.swift
 //  QOT
 //
-//  Created by Sam Wyndham on 20/03/2017.
+//  Created by Sam Wyndham on 13/04/2017.
 //  Copyright © 2017 Tignum. All rights reserved.
 //
 
 import Foundation
 import ReactiveKit
+
+final class SettingsMenuViewModel {
+
+    private var services: Services
+    private var userService: UserService {
+        return services.userService
+    }
+
+    struct Tile {
+        let title: String
+        let subtitle: String
+    }
+
+    private lazy var tiles: [Tile] = userTiles(user: self.user)
+    private let user: User
+    let tileUpdates = PublishSubject<CollectionUpdate, NoError>()
+    private let settingTitles = [R.string.localized.sidebarSettingsMenuGeneralButton(),
+                                 R.string.localized.sidebarSettingsMenuNotificationsButton(),
+                                 R.string.localized.sidebarSettingsMenuSecurityButton()]
+    private let timer: QOTUsageTimer
+
+    var tileCount: Int {
+        return tiles.count
+    }
+
+    var userName: String {
+        return String(format: "%@\n%@", user.givenName, user.familyName).uppercased()
+    }
+
+    var userJobTitle: String? {
+        return user.jobTitle?.uppercased()
+    }
+
+    var userProfileImageResource: MediaResource? {
+        return user.userImage
+    }
+
+    var settingsCount: Int {
+        return settingTitles.count
+    }
+
+    func tile(at row: Index) -> Tile {
+        return tiles[row]
+    }
+
+    func settingTitle(at row: Index) -> String {
+        return settingTitles[row]
+    }
+
+    func updateProfileImage(_ image: UIImage) -> Error? {
+        do {
+            let url = try image.save(withName: user.localID)
+            updateProfileImageURL(url)
+            return nil
+        } catch {
+            return error
+        }
+    }
+
+    init?(services: Services) {
+        guard let user = services.userService.user() else {
+            return nil
+        }
+
+        self.services = services
+        self.timer = QOTUsageTimer.sharedInstance
+        self.user = user
+    }
+}
+
+// MARK: Private
+
+private extension SettingsMenuViewModel {
+
+    func userTiles(user: User) -> [SettingsMenuViewModel.Tile] {
+        return [
+            SettingsMenuViewModel.Tile(title: daysBetweenDates(startDate: user.memberSince),
+                                       subtitle: R.string.localized.sidebarUserTitlesMemberSince()),
+            SettingsMenuViewModel.Tile(title: usageTimeString(),
+                                       subtitle: R.string.localized.sidebarUserTitlesMemberQOTUsage())
+        ]
+    }
+
+    private func daysBetweenDates(startDate: Date) -> String {
+        return DateComponentsFormatter.timeIntervalToString(-startDate.timeIntervalSinceNow, isShort: true)?
+            .replacingOccurrences(of: ", ", with: "\n")
+            .uppercased() ?? R.string.localized.qotUsageTimerDefault()
+    }
+
+    private func usageTimeString() -> String {
+        if let totalUsageTime = userService.user()?.totalUsageTime {
+            return timer.totalTimeString(TimeInterval(totalUsageTime))
+        }
+        return timer.totalTimeString(timer.totalSeconds)
+    }
+
+    private func updateProfileImageURL(_ url: URL) {
+        services.userService.updateUser(user: user) { (user) in
+            user.userImage?.setLocalURL(url, format: .jpg, entity: .user, entitiyLocalID: user.localID)
+        }
+    }
+}
 
 enum SettingsType: Int {
     case company = 0
@@ -26,6 +128,7 @@ enum SettingsType: Int {
     case dailyPrep
     case weeklyChoices
     case password
+    case logout
     case confirm
     case terms
     case copyrights
@@ -50,6 +153,7 @@ enum SettingsType: Int {
         case .dailyPrep: return R.string.localized.settingsNotificationsDailyPrepTitle()
         case .weeklyChoices: return R.string.localized.settingsNotificationsWeeklyChoicesTitle()
         case .password: return R.string.localized.settingsSecurityPasswordTitle()
+        case .logout: return R.string.localized.sidebarTitleLogout()
         case .confirm: return R.string.localized.settingsSecurityConfirmTitle()
         case .terms: return R.string.localized.settingsSecurityTermsTitle()
         case .copyrights: return R.string.localized.settingsSecurityCopyrightsTitle()
@@ -93,11 +197,16 @@ enum SettingsType: Int {
         case notifications
         case security
 
+        case profile
+        case settings
+
         var title: String {
             switch self {
             case .general: return R.string.localized.settingsTitleGeneral()
             case .notifications: return R.string.localized.settingsTitleNotifications()
             case .security: return R.string.localized.settingsTitleSecurity()
+            case .profile: return "profile"
+            case .settings: return "settings"
             }
         }
     }
@@ -201,10 +310,6 @@ final class SettingsViewModel {
         services.userService.updateUserJobTitle(user: user, title: title)
     }
 
-    func updateEmail(email: String) {
-        services.userService.updateUserEmail(user: user, email: email)
-    }
-
     func updateTelephone(telephone: String) {
         services.userService.updateUserTelephone(user: user, telephone: telephone)
     }
@@ -219,37 +324,6 @@ final class SettingsViewModel {
 
     func updateHeight(height: Double) {
         services.userService.updateUserHeight(user: user, height: height)
-    }
-
-    func updateWeight(weight: Double, unit: String) {
-        let convertedWeight: Double
-        if unit == "kg" {
-            convertedWeight = weight
-        } else if unit == "lbs" {
-            let kilograms = Measurement(value: weight, unit: UnitMass.kilograms)
-            let pounds = kilograms.converted(to: .pounds)
-            convertedWeight = pounds.value
-        } else {
-            fatalError("Invalid unit")
-        }
-        services.userService.updateUserWeight(user: user, weight: convertedWeight)
-        services.userService.updateUserWeightUnit(user: user, weightUnit: unit)
-    }
-
-    func updateHeight(meters: Double, unit: String) {
-        let meters = Measurement(value: meters, unit: UnitLength.meters)
-        let convertedHeight: Double
-        if unit == "cm" {
-            let centimeters = meters.converted(to: .centimeters)
-            convertedHeight = centimeters.value
-        } else if unit == "ft" {
-            let feet = meters.converted(to: .feet)
-            convertedHeight = feet.value
-        } else {
-            fatalError("Invalid unit")
-        }
-        services.userService.updateUserHeight(user: user, height: convertedHeight)
-        services.userService.updateUserHeightUnit(user: user, heightUnit: unit)
     }
 
     func updateNotificationSetting(key: String, value: Bool) {
@@ -269,6 +343,8 @@ final class SettingsViewModel {
         case .general: return generalSettingsSection(for: user, services: services)
         case .notifications: return notificationsSettingsSection(services: services)
         case .security: return securitySettingsSection
+        case .profile: return generalSettingsSection(for: user, services: services)
+        case .settings: return generalSettingsSection(for: user, services: services)
         }
     }
 
@@ -286,6 +362,8 @@ final class SettingsViewModel {
         self.settingsSections = settingSections(user: user, settingsType: settingsType)
     }
 }
+
+// MARK: - Form
 
 protocol SettingsSection {
     var title: String { get }
@@ -334,17 +412,11 @@ private func notificationsSettingsSection(services: Services) -> [SettingsSectio
 }
 
 private func generalSettingsSection(for user: User?, services: Services) -> [SettingsSection] {
-    var sections = [
+    return [
         Sections(title: "Contact", rows: companyRows(for: user)),
         Sections(title: "Personal", rows: personalRows(for: user)),
-        Sections(title: "Calendar", rows: calendarRows)
+        Sections(title: "Account", rows: accountRows(for: user))
     ]
-
-    if services.settingsService.allowAdminSettings() == true {
-        sections.append(Sections(title: "Admin", rows: adminRows))
-    }
-
-    return sections
 }
 
 private func companyRows(for user: User?) -> [SettingsRow] {
@@ -362,8 +434,15 @@ private func companyRows(for user: User?) -> [SettingsRow] {
     return [
         .label(title: SettingsType.company.title, value: user.company, settingsType: .company),
         .textField(title: SettingsType.jobTitle.title, value: jobTitle, secure: false, settingsType: .jobTitle),
-        .textField(title: SettingsType.email.title, value: user.email, secure: false, settingsType: .email),
+        .label(title: SettingsType.email.title, value: user.email, settingsType: .email),
         .textField(title: SettingsType.phone.title, value: telephone, secure: false, settingsType: .phone)
+    ]
+}
+
+private func accountRows(for user: User?) -> [SettingsRow] {
+    return [
+        .button(title: "Change password", value: "", settingsType: .password),
+        .label(title: "Log out", value: "", settingsType: .logout)
     ]
 }
 
@@ -411,12 +490,6 @@ private func personalRows(for user: User?) -> [SettingsRow] {
 private var calendarRows: [SettingsRow] {
     return [
         .label(title: SettingsType.calendar.title, value: "", settingsType: .calendar)
-    ]
-}
-
-private var adminRows: [SettingsRow] {
-    return [
-        .label(title: SettingsType.adminSettings.title, value: "", settingsType: .adminSettings)
     ]
 }
 

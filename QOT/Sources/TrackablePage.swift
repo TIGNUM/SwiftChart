@@ -293,7 +293,7 @@ extension SelectWeeklyChoicesViewController: TrackablePage {
     }
 }
 
-extension SettingsViewController: TrackablePage {
+extension OldSettingsViewController: TrackablePage {
     var pageName: PageName {
         switch settingsType {
         case .general:
@@ -302,6 +302,10 @@ extension SettingsViewController: TrackablePage {
             return .settingsNotifications
         case .security:
             return .settingsSecurity
+        case .profile:
+            return .settingsGeneral
+        case .settings:
+            return .settingsGeneral
         }
     }
     var pageAssociatedObject: PageObject? {

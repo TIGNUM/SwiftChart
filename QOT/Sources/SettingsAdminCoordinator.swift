@@ -17,7 +17,7 @@ final class SettingsAdminCoordinator: ParentCoordinator {
     private let networkManager: NetworkManager
     var children = [Coordinator]()
 
-    init(root: SettingsViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager) {
+    init(root: SidebarViewController, services: Services, syncManager: SyncManager, networkManager: NetworkManager) {
         self.rootViewController = root
         self.services = services
         self.networkManager = networkManager

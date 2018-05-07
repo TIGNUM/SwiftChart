@@ -16,7 +16,7 @@ final class SettingsCalendarListCoordinator: ParentCoordinator {
     private let rootViewController: UIViewController
     var children = [Coordinator]()
 
-    init(root: SettingsViewController, services: Services) {
+    init(root: OldSettingsViewController, services: Services) {
         self.rootViewController = root
         self.services = services
         let viewModel = SettingsCalendarListViewModel(services: services)

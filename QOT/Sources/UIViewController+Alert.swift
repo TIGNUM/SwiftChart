@@ -34,10 +34,12 @@ enum AlertType {
     case imagePicker
     case notSynced
     case resetPassword
+    case canNotUploadPhoto
     case canNotSendMail
     case canNotSendEmailToBeVision
     case canNotSendEmailWeeklyChoices
     case prepareEditStrategy
+    case changePermissions
     case toBeVisionActionSheet
 
     var title: String? {
@@ -60,10 +62,12 @@ enum AlertType {
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
         case .cameraNotAvailable, .permissionNotGranted: return R.string.localized.alertTitleCustom()
         case .resetPassword: return R.string.localized.alertTitleResetPassword()
+        case .canNotUploadPhoto: return R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle()
         case .canNotSendMail,
              .canNotSendEmailToBeVision,
              .canNotSendEmailWeeklyChoices: return R.string.localized.alertTitleCouldNotSendEmail()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationEditStrategy()
+        case .changePermissions: return R.string.localized.alertTitleSettingsChangePermission()
         default: return nil
         }
     }
@@ -87,10 +91,12 @@ enum AlertType {
         case .notSynced: return R.string.localized.alertNotSyncedMessage()
         case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedMessage()
         case .resetPassword: return R.string.localized.alertMessageResetPassword()
+        case .canNotUploadPhoto: return R.string.localized.meSectorMyWhyPartnersPhotoErrorMessage()
         case .canNotSendMail: return R.string.localized.alertMessageCouldNotSendEmail()
         case .canNotSendEmailToBeVision: return R.string.localized.alertMessageCouldNotSendEmailToBeVision()
         case .canNotSendEmailWeeklyChoices: return R.string.localized.alertMessageCouldNotSendEmailWeeklyChoices()
         case .prepareEditStrategy: return R.string.localized.alertMessagePreparationEditStrategy()
+        case .changePermissions: return R.string.localized.alertMessageSettingsChangePermission()
         default: return nil
         }
     }
@@ -101,6 +107,7 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars,
              .imagePicker,
+             .changePermissions,
              .toBeVisionActionSheet,
              .prepareEditStrategy: return R.string.localized.alertButtonTitleCancel()
         default: return nil
@@ -111,7 +118,8 @@ enum AlertType {
         switch self {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
-             .settingsCalendars: return R.string.localized.alertButtonTitleOpenSettings()
+             .settingsCalendars,
+             .changePermissions: return R.string.localized.alertButtonTitleOpenSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
         default: return R.string.localized.alertButtonTitleOk()
@@ -120,6 +128,7 @@ enum AlertType {
 
     var buttonTitleDestructive: String? {
         switch self {
+        case .changePermissions: return R.string.localized.alertButtonTitleCancel()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonCamera()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationRemoveStrategy()
         default: return nil
@@ -134,6 +143,7 @@ enum AlertType {
         case .imagePicker,
              .toBeVisionActionSheet: return [.cancel]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
+        case .changePermissions: return [.destructive, .default]
         default: return [.default]
         }
     }

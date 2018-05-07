@@ -781,23 +781,15 @@ extension AppCoordinator {
         currentPresentedController = sidebarCoordinator.sideBarViewController
     }
 
-    func presentAddSensorView(viewController: UIViewController) {
+    func presentAddSensor() {
         guard let services = services else { return }
-        let coordinator = AddSensorCoordinator(root: viewController, services: services)
-        startChild(child: coordinator)
-        currentPresentedController = coordinator.addSensorViewController
-    }
+        let model = AddSensorViewModel(services: services)
+        let addSensorViewController = AddSensorViewController(viewModel: model)
+        let navController = UINavigationController(rootViewController: addSensorViewController)
+        navController.navigationBar.applyDefaultStyle()
 
-    func presentAddSensor() -> AddSensorCoordinator? {
-        guard let sidebarCoordinator = presentSideBar(destination: nil) else { return nil }
-        sidebarCoordinator.didTapAddSensorCell(with: nil, in: sidebarCoordinator.sideBarViewController)
-        currentPresentedController = sidebarCoordinator.sideBarViewController
-        return sidebarCoordinator.addSensorCoordinator
-    }
-
-    func presentFitbitAuthRefresh() {
-        guard let addSensorCoordinator = presentAddSensor() else { return }
-        addSensorCoordinator.didTapSensor(.fitbit, in: currentPresentedController ?? addSensorCoordinator.addSensorViewController)
+        windowManager.showPriority(navController, animated: true, completion: nil)
+        currentPresentedController = navController
     }
 
     func presentToBeVision() {

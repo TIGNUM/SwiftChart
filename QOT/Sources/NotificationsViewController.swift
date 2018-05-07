@@ -8,8 +8,9 @@
 
 import UIKit
 import UserNotifications
+import Anchorage
 
-final class ScheduledNotificationsTableViewController: UITableViewController {
+final class NotificationsViewController: UITableViewController {
 
     private var pendingNotifications: [UNNotificationRequest] = []
     var realmProvider: RealmProvider?

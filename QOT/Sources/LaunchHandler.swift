@@ -43,7 +43,7 @@ final class LaunchHandler {
         case .preferencesSyncCalendar: navigatToSideBar(with: scheme.destination)
         case .preferencesNotification: navigatToSideBar(with: scheme.destination)
         case .addSensor: _ = appDelegate.appCoordinator.presentAddSensor()
-        case .fitbitAuthrefresh: appDelegate.appCoordinator.presentFitbitAuthRefresh()
+        case .fitbitAuthrefresh: appDelegate.appCoordinator.presentAddSensor()
         case .meMyWhy: navigate(to: scheme.destination) // TODO the middleButtons are different here.
         case .meActivity: navigateToMeCharts(sector: .activity)
         case .meIntensity: navigateToMeCharts(sector: .intensity)

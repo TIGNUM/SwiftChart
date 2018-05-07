@@ -13,17 +13,11 @@ import Anchorage
 protocol SidebarViewControllerDelegate: class {
 
     func didTapSearchCell(in viewController: SidebarViewController)
-
     func didTapLibraryCell(in viewController: SidebarViewController)
-
     func didTapSupportCell(in viewController: SidebarViewController)
-
-    func didTapLogoutCell(in viewController: SidebarViewController)
-
+    func didTapSettingsCell(in viewController: SidebarViewController)
+    func didTapAdminCell(in viewController: SidebarViewController)
     func didTapProfileCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
-
-    func didTapAddSensorCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
-
     func didTapAboutCell(in viewController: SidebarViewController)
 }
 
@@ -41,7 +35,7 @@ final class SidebarViewController: UIViewController {
     }()
 
     private lazy var versionLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 20))
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 25))
         let text = Bundle.main.versionAndBuildNumber
         label.attributedText = Style.tag(text, .white20).attributedString(alignment: .center)
 
@@ -77,9 +71,9 @@ private extension SidebarViewController {
         view.addSubview(tableView)
         view.addSubview(versionLabel)
         tableView.topAnchor == view.topAnchor + 50
-        tableView.bottomAnchor == view.bottomAnchor - 20
+        tableView.bottomAnchor == view.bottomAnchor - 25
         tableView.horizontalAnchors == view.horizontalAnchors
-        versionLabel.bottomAnchor == view.bottomAnchor
+        versionLabel.bottomAnchor == view.bottomAnchor - 15
         versionLabel.horizontalAnchors == view.horizontalAnchors
         versionLabel.topAnchor == tableView.bottomAnchor
     }
@@ -124,12 +118,12 @@ private extension SidebarViewController {
         switch sidebarItem {
         case .search: delegate?.didTapSearchCell(in: self)
         case .tools: delegate?.didTapLibraryCell(in: self)
-        case .sensor: delegate?.didTapAddSensorCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .profile: delegate?.didTapProfileCell(with: viewModel.contentCollection(sidebarItem), in: self)
         case .placeholder: return
         case .support: delegate?.didTapSupportCell(in: self)
         case .about: delegate?.didTapAboutCell(in: self)
-        case .logout: delegate?.didTapLogoutCell(in: self)
+        case .settings: delegate?.didTapSettingsCell(in: self)
+        case .admin: delegate?.didTapAdminCell(in: self)
         }
     }
 }

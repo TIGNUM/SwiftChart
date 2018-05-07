@@ -13,17 +13,21 @@ import RealmSwift
 final class SidebarViewModel {
 
     enum SidebbarItem: Int {
-        case search = 0
+        case profile = 0
         case tools
-        case sensor
-        case profile
+        case search
+        case settings
+        case admin
         case placeholder
         case support
         case about
-        case logout
 
         static var allValues: [SidebbarItem] {
-            return [.search, .tools, .sensor, .profile, .placeholder, .support, .about, .logout]
+            return [.profile, .tools, .search, .settings, .admin, .placeholder, .support, .about]
+        }
+
+        static var restrictedValues: [SidebbarItem] {
+            return [.profile, .tools, .search, .settings, .placeholder, .support, .about]
         }
 
         var title: String? {
@@ -31,11 +35,11 @@ final class SidebarViewModel {
             case .search: return R.string.localized.sidebarTitleSearch()
             case .tools: return R.string.localized.sidebarTitleTools()
             case .profile: return R.string.localized.sidebarTitleProfile()
-            case .sensor: return R.string.localized.sidebarTitleSensor()
+            case .settings: return R.string.localized.settingsTitle()
+            case .admin: return R.string.localized.settingsGeneralAdminTitle()
             case .placeholder: return nil
             case .support: return R.string.localized.sidebarTitleSupport()
             case .about: return R.string.localized.sidebarTitleAbout()
-            case .logout: return R.string.localized.sidebarTitleLogout()
             }
         }
 
@@ -44,11 +48,11 @@ final class SidebarViewModel {
             case .search,
                  .tools,
                  .profile,
-                 .sensor: return screenType == .small ? Font.H3Subtitle : Font.H2SecondaryTitle
+                 .settings,
+                 .admin: return screenType == .small ? Font.H3Subtitle : Font.H2SecondaryTitle
             case .placeholder: return nil
             case .support,
-                 .about,
-                 .logout: return screenType == .small ? Font.H6NavigationTitle : Font.H5SecondaryHeadline
+                 .about: return screenType == .small ? Font.H6NavigationTitle : Font.H5SecondaryHeadline
             }
         }
 
@@ -57,11 +61,11 @@ final class SidebarViewModel {
             case .search,
                  .tools,
                  .profile,
-                 .sensor: return .white
+                 .settings,
+                 .admin: return .white
             case .placeholder: return nil
             case .support,
-                 .about,
-                 .logout: return .white40
+                 .about: return .white40
             }
         }
 
@@ -70,11 +74,11 @@ final class SidebarViewModel {
             case .search,
                  .tools,
                  .profile,
-                 .sensor: return screenType == .small ? 60 : screenType == .medium ? 70 : 80
+                 .settings,
+                 .admin: return screenType == .small ? 60 : screenType == .medium ? 70 : 80
             case .placeholder: return 40
             case .support,
-                 .about,
-                 .logout: return screenType == .small ? 50 : screenType == .medium ? 60 : 70
+                 .about: return screenType == .small ? 50 : screenType == .medium ? 60 : 70
             }
         }
 
@@ -83,11 +87,11 @@ final class SidebarViewModel {
             case .search: return 0
             case .tools: return 0
             case .profile: return 0
-            case .sensor: return 100935
+            case .settings: return 0
+            case .admin: return 0
             case .placeholder: return 0
             case .support: return 0
             case .about: return 100092
-            case .logout: return 0
             }
         }
 
@@ -96,11 +100,11 @@ final class SidebarViewModel {
             case .search: return nil
             case .tools: return nil
             case .profile: return nil
-            case .sensor: return service.contentCollection(id: primaryKey)
+            case .settings: return nil
+            case .admin: return nil
             case .placeholder: return nil
             case .support: return nil
             case .about: return service.contentCollection(id: primaryKey)
-            case .logout: return nil
             }
         }
     }
@@ -115,11 +119,19 @@ final class SidebarViewModel {
     }
 
     var itemCount: Int {
-        return SidebbarItem.allValues.count
+        if services.settingsService.allowAdminSettings() == true {
+            return SidebbarItem.allValues.count
+        } else {
+            return SidebbarItem.restrictedValues.count
+        }
     }
 
     func sidebarItem(at indexPath: IndexPath) -> SidebbarItem? {
-        return SidebbarItem(rawValue: indexPath.row)
+        if services.settingsService.allowAdminSettings() == true {
+            return SidebbarItem.allValues.item(at: indexPath.row)
+        } else {
+            return SidebbarItem.restrictedValues.item(at: indexPath.row)
+        }
     }
 
     func contentCollection(_ sidebarItem: SidebbarItem) -> ContentCollection? {

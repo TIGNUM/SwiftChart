@@ -11,16 +11,14 @@ import UIKit
 
 protocol SettingsCoordinatorDelegate: class {
 
-    func goToCalendarListViewController(settingsViewController: SettingsViewController,
+    func goToCalendarListViewController(settingsViewController: OldSettingsViewController,
                                         destination: AppCoordinator.Router.Destination?)
 
-    func openCalendarListViewController(settingsViewController: SettingsViewController)
+    func openCalendarListViewController(settingsViewController: OldSettingsViewController)
 
-    func openChangePasswordViewController(settingsViewController: SettingsViewController)
+    func openChangePasswordViewController(settingsViewController: OldSettingsViewController)
 
-    func openArticleViewController(viewController: SettingsViewController, settingsType: SettingsType)
-
-    func openAdminSettingsViewController(settingsViewController: SettingsViewController)
+    func openArticleViewController(viewController: OldSettingsViewController, settingsType: SettingsType)
 }
 
 final class SettingsCoordinator: ParentCoordinator {
@@ -33,7 +31,7 @@ final class SettingsCoordinator: ParentCoordinator {
     private let destination: AppCoordinator.Router.Destination?
     var children = [Coordinator]()
     let settingsType: SettingsType.SectionType
-    let settingsViewController: SettingsViewController
+    let settingsViewController: OldSettingsViewController
 
     init?(root: SettingsMenuViewController,
           services: Services,
@@ -50,7 +48,7 @@ final class SettingsCoordinator: ParentCoordinator {
         self.syncManager = syncManager
         self.permissionsManager = permissionsManager
         self.destination = destination
-        settingsViewController = SettingsViewController(viewModel: viewModel,
+        settingsViewController = OldSettingsViewController(viewModel: viewModel,
                                                         services: services,
                                                         settingsType: settingsType,
                                                         destination: destination)
@@ -67,12 +65,12 @@ final class SettingsCoordinator: ParentCoordinator {
 
 extension SettingsCoordinator: SettingsCoordinatorDelegate {
 
-    func goToCalendarListViewController(settingsViewController: SettingsViewController,
+    func goToCalendarListViewController(settingsViewController: OldSettingsViewController,
                                         destination: AppCoordinator.Router.Destination?) {
         openCalendarListViewController(settingsViewController: settingsViewController)
     }
 
-    func openCalendarListViewController(settingsViewController: SettingsViewController) {
+    func openCalendarListViewController(settingsViewController: OldSettingsViewController) {
         permissionsManager.askPermission(for: [.calendar], completion: { [unowned self] status in
             guard let status = status[.calendar] else { return }
 
@@ -91,12 +89,12 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
         })
     }
 
-    func openChangePasswordViewController(settingsViewController: SettingsViewController) {
+    func openChangePasswordViewController(settingsViewController: OldSettingsViewController) {
         let coordinator = ResetPasswordCoordinator(rootVC: settingsViewController, parentCoordinator: self, networkManager: networkManager)
         startChild(child: coordinator)
     }
 
-    func openArticleViewController(viewController: SettingsViewController, settingsType: SettingsType) {
+    func openArticleViewController(viewController: OldSettingsViewController, settingsType: SettingsType) {
         let contentCollection = settingsType.contentCollection(service: services.contentService)
         guard let coordinator = ArticleContentItemCoordinator(
             pageName: .settings, // FIXME: fix
@@ -108,11 +106,6 @@ extension SettingsCoordinator: SettingsCoordinatorDelegate {
                 return
         }
 
-        startChild(child: coordinator)
-    }
-
-    func openAdminSettingsViewController(settingsViewController: SettingsViewController) {
-        let coordinator = SettingsAdminCoordinator(root: settingsViewController, services: services, syncManager: syncManager, networkManager: networkManager)
         startChild(child: coordinator)
     }
 }

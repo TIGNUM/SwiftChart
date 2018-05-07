@@ -8,16 +8,18 @@
 
 import UIKit
 import EventKit
+import Anchorage
 
 protocol SettingsCalendarListViewControllerDelegate: class {
 
     func didChangeCalendarSyncValue(sender: UISwitch, calendarIdentifier: String)
 }
 
-final class SettingsCalendarListViewController: UITableViewController {
+final class SettingsCalendarListViewController: UIViewController {
 
     // MARK: - Properties
 
+    var tableView = UITableView()
     private let viewModel: SettingsCalendarListViewModel
     private let notificationHandler: NotificationHandler
 
@@ -44,6 +46,21 @@ final class SettingsCalendarListViewController: UITableViewController {
         viewModel.syncStateObserver.onUpdate { [unowned self] _ in
             self.tableView.reloadData()
         }
+
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+
+        navigationItem.title = R.string.localized.sidebarTitleCalendars().uppercased()
+    }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.register(R.nib.settingsControlTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
     }
 }
 
@@ -58,36 +75,58 @@ private extension SettingsCalendarListViewController {
     }
 
     func setupView() {
+		let fadeContainerView = FadeContainerView()
+		view.addSubview(fadeContainerView)
+		fadeContainerView.edgeAnchors == view.edgeAnchors
+		
+        let backgroundImageView = UIImageView(image: R.image._1_1Learn())
+        fadeContainerView.addSubview(backgroundImageView)
+        backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
+
+        fadeContainerView.addSubview(tableView)
+        tableView.topAnchor == fadeContainerView.topAnchor + 100
+        tableView.leftAnchor == fadeContainerView.leftAnchor + 30
+        tableView.rightAnchor ==  fadeContainerView.rightAnchor
+        tableView.bottomAnchor == fadeContainerView.bottomAnchor
         tableView.backgroundColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: 60, left: 0, bottom: 0, right: 0)
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.allowsSelection = true
+		tableView.isScrollEnabled = false
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.register(R.nib.settingsControlTableViewCell(), forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
+		
+		fadeContainerView.setFade(top: 80, bottom: 0)
+		view.layoutIfNeeded()
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension SettingsCalendarListViewController {
+extension SettingsCalendarListViewController: UITableViewDelegate, UITableViewDataSource {
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return viewModel.calendarCount
     }
 
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let title = viewModel.calendarName(at: indexPath)
         let calendarIdentifier = viewModel.calendarIdentifier(at: indexPath)
         let syncStatus = viewModel.calendarSyncStatus(at: indexPath)
-        let settingsRow = SettingsRow.control(title: title, isOn: syncStatus, settingsType: .calendar, key: calendarIdentifier)
+        let settingsRow = SettingsRow.control(title: title,
+                                              isOn: syncStatus,
+                                              settingsType: .calendar,
+                                              key: calendarIdentifier)
 
-        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier, for: indexPath) as? SettingsTableViewCell else {
+        guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier,
+                                                               for: indexPath) as? SettingsTableViewCell else {
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
         }
 
         settingsCell.calendarSyncDelegate = self
-        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath, calendarIdentifier: calendarIdentifier, isSyncFinished: viewModel.isSyncFinished)
+        settingsCell.setup(settingsRow: settingsRow,
+                           indexPath: indexPath,
+                           calendarIdentifier: calendarIdentifier,
+                           isSyncFinished: viewModel.isSyncFinished)
 
         return settingsCell
     }

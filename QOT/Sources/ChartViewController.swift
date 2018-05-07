@@ -165,7 +165,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 extension ChartViewController: ChartViewControllerDelegate {
 
     func didSelectAddSensor() {
-        AppDelegate.current.appCoordinator.presentAddSensorView(viewController: self)
+        AppDelegate.current.appCoordinator.presentAddSensor()
     }
 
     func didSelectOpenSettings() {

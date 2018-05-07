@@ -92,11 +92,6 @@ extension SettingsAdminViewController {
         case .guideItems: return "Guide Max Days"
         }
     }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let destination = segue.destination as? ScheduledNotificationsTableViewController else { return }
-        destination.realmProvider = services?.realmProvider
-    }
 }
 
 // MARK: - Private

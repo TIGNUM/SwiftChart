@@ -47,6 +47,8 @@ final class SettingsMenuViewController: UIViewController {
     private var destination: AppCoordinator.Router.Destination?
     weak var delegate: SettingsMenuViewControllerDelegate?
 
+    var interactor: ProfileSettingsInteractor?
+
     // MARK: - Init
 
     init(viewModel: SettingsMenuViewModel, destination: AppCoordinator.Router.Destination?, permissionsManager: PermissionsManager) {
@@ -237,7 +239,7 @@ extension SettingsMenuViewController: UICollectionViewDelegate, UICollectionView
     }
 }
 
-// MARK: - ImagePickerDelegate
+
 
 extension SettingsMenuViewController: ImagePickerControllerDelegate {
 
