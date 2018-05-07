@@ -4369,8 +4369,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "43fa121b-3d50-4cb7-9b8a-a7c70b36b864";
-				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.novartis";
+				PROVISIONING_PROFILE = "6c07497b-0dc1-4193-8148-3473bed01401";
+				PROVISIONING_PROFILE_SPECIFIER = "match InHouse com.tignum.qot.novartis";
 				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
