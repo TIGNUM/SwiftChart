@@ -15,10 +15,10 @@ protocol PrepareContentHeaderTableViewCellDelegate: class {
 
 final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
-    @IBOutlet weak var bottomSeparator: UIView!
-    @IBOutlet weak var iconImageView: UIImageView!
-    @IBOutlet weak var positionLabel: UILabel!
-    @IBOutlet weak var checkboxImageView: UIImageView!
+    @IBOutlet private weak var bottomSeparator: UIView!
+    @IBOutlet private weak var iconImageView: UIImageView!
+    @IBOutlet private weak var checkboxImageView: UIImageView!
+    @IBOutlet private weak var headerLabelLeftConstraint: NSLayoutConstraint!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var contentLabel: UILabel!
     @IBOutlet weak var readMoreButton: UIButton!
@@ -54,8 +54,6 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         bottomSeparator.backgroundColor = .black30
         headerLabel.setAttrText(text: title.uppercased(), font: Font.H4Headline, lineSpacing: 3, characterSpacing: -0.8)
         headerLabel.textColor = .black
-        positionLabel.text = (position > 9 ? "." : ".0") + "\(position)"
-        positionLabel.font = Font.H4Headline
         self.readMoreID = readMoreID
         self.contentText = contentText
         self.displayMode = displayMode
@@ -63,15 +61,15 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
         switch displayMode {
         case .normal:
-            positionLabel.isHidden = false
             checkboxImageView.isHidden = true
+            headerLabelLeftConstraint.constant = -10
         case .checkbox:
-            positionLabel.isHidden = true
             checkboxImageView.isHidden = false
             checkboxImageView.image = UIImage(named: isChecked ? "checkbox_checked" : "checkbox_unchecked")
         }
 
         updateContent(isExpanded: isExpanded)
+        layoutIfNeeded()
     }
 
     func updateContent(isExpanded: Bool) {
