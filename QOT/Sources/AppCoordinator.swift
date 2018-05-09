@@ -136,6 +136,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             setupError = error
             dispatchGroup.leave()
             self.setupBugLife()
+            AppDelegate.current.setupSiren(services: self.services)
         }
 
         dispatchGroup.notify(queue: .main) {

@@ -194,6 +194,8 @@ private extension ContentService {
     }
 }
 
+// MARK: - To Be Vision Tooling
+
 extension ContentService {
 
     func toBeVisionToolingHeadlinePlaceholder() -> String? {
@@ -206,5 +208,22 @@ extension ContentService {
 
     func toBeVisionMessagePlaceholder() -> String? {
         return contentCollection(id: 101079)?.contentItems.first?.valueText
+    }
+}
+
+// MARK: - Release Manager
+
+extension ContentService {
+
+    func releaseManagerCategory() -> ContentCategory? {
+        let feedbackMessageCategories = mainRealm.contentCategories(section: .feedbackMessage)
+        return feedbackMessageCategories.filter(NSPredicate(title: "Release Manager")).first
+    }
+
+    func releaseManagerValue(for type: SirenMessagingType) -> String? {
+        guard let category = releaseManagerCategory() else { return nil }
+        var items = [ContentItem]()
+        category.contentCollections.forEach { items.append(contentsOf: Array($0.items)) }
+        return items.filter { $0.searchTags == type.rawValue }.first?.valueText
     }
 }

@@ -24,6 +24,7 @@ enum Database {
         case slideShowShort = "SLIDESHOW_SHORT"
         case slideShowLong = "SLIDESHOW_LONG"
         case visionGenerator = "TBV_GENERATOR"
+        case feedbackMessage = "FEEDBACK_MESSAGE"
 
         var value: String {
             return rawValue

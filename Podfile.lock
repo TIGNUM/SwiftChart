@@ -27,6 +27,7 @@ PODS:
   - RealmSwift (2.10.1):
     - Realm (= 2.10.1)
   - RSKImageCropper (1.6.3)
+  - Siren (3.2.0)
   - SwiftyBeaver (1.4.2)
   - UrbanAirship-iOS-SDK (8.6.0)
 
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - R.swift
   - RealmSwift
   - RSKImageCropper
+  - Siren (~> 3.2.0)
   - SwiftyBeaver
   - UrbanAirship-iOS-SDK
 
@@ -73,9 +75,10 @@ SPEC CHECKSUMS:
   Realm: fc7a317a5c2c9ba91f5f235ede4e2ea76e9eba0c
   RealmSwift: 505ed6c15942a2e76f5cfa78a8667cfa997ee75b
   RSKImageCropper: 356e36fc58c57c371b5d8b23d603936d6a73df6c
+  Siren: 964f57553cf6a39d1bada4e403557523a213b397
   SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
   UrbanAirship-iOS-SDK: 1a2837473096ca63d86f11cadb4710d993237186
 
-PODFILE CHECKSUM: 39ac4e81bf556a2728649537d7af95ddf3773e9f
+PODFILE CHECKSUM: fa5ce9c30ed264946d9fe6926a69e0527ca67752
 
 COCOAPODS: 1.3.1

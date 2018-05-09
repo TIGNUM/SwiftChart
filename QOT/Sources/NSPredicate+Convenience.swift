@@ -62,6 +62,14 @@ extension NSPredicate {
         self.init(format: "title == %@ AND startDate == %@ AND endDate == %@", startDate as NSDate, endDate as NSDate)
     }
 
+    convenience init(tag: String) {
+        self.init(format: "searchTags == %@", tag)
+    }
+
+    convenience init(title: String) {
+        self.init(format: "title == %@", title)
+    }
+
     convenience init(localID: String) {
         self.init(format: "localID == %@", localID)
     }

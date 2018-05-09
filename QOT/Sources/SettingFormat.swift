@@ -10,7 +10,6 @@ import Foundation
 import Freddy
 
 enum SettingFormat: String, JSONDecodable {
-
     case boolean = "BOOLEAN"
     case int = "LONG"
     case text = "TEXT"

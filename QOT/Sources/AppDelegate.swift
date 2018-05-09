@@ -13,6 +13,7 @@ import AirshipKit
 import CoreLocation
 import RealmSwift
 import Buglife
+import Siren
 
 protocol LocalNotificationHandlerDelegate: class {
 
@@ -77,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-
+		
         #if BUILD_DATABASE
             // @warning REINSTALL before running. Must be logged in
             __buildDatabase()
@@ -97,12 +98,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #endif
 
         sendAppEvent(.start)
+
         return true
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
         UAirship.push().resetBadge()
         sendAppEvent(.foreground)
+        checkVersionIfNeeded()
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
@@ -117,6 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         QOTUsageTimer.sharedInstance.startTimer()
         UAirship.push().resetBadge()
         appCoordinator.appDidBecomeActive()
+        checkVersionIfNeeded()
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -168,6 +172,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 // MARK: - private
 
 private extension AppDelegate {
+
+    func checkVersionIfNeeded() {
+        if Siren.shared.alertType == .force {
+            Siren.shared.checkVersion(checkType: .immediately)
+        } else {
+            Siren.shared.checkVersion(checkType: .daily)
+        }
+    }
 
     func sendAppEvent(_ event: AppEventRequest.EventType) {
         appCoordinator.networkManager.performAppEventRequest(appEvent: event) { (error) in

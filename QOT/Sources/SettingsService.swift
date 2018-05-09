@@ -26,6 +26,10 @@ final class SettingsService {
 
 extension SettingsService {
 
+    var releaseManagerMinimalVersion: String? {
+        return string(key: "system.qot.release-manager-minimal-version")
+    }
+
     func notificationSettings() -> AnyRealmCollection<SystemSetting> {
         let predicate = NSPredicate(format: "key BEGINSWITH[c] %@", "system.notification.")
 
