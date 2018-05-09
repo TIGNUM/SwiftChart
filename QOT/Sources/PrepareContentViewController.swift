@@ -186,7 +186,7 @@ private extension PrepareContentViewController {
                                displayMode: viewModel.displayMode,
                                isChecked: viewModel.isChecked(id: id))
             castedCell.contentView.layoutIfNeeded()
-            
+
             return castedCell
         case .tableFooter(let preparationID):
             guard let castedCell = cell as? PrepareContentFooterTableViewCell else {

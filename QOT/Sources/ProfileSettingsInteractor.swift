@@ -9,7 +9,7 @@
 import UIKit
 
 enum ProfileField {
-	
+
 	case telephone
 	case jobTitle
 	case gender
@@ -37,7 +37,7 @@ final class ProfileSettingsInteractor {
 // MARK: - SettingsMenuInteractor Interface
 
 extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
-	
+
 	func updateProfile(field: ProfileField, profile: ProfileSettingsModel) {
 		switch field {
 		case .telephone: worker.updateProfileTelephone(profile)
@@ -47,7 +47,7 @@ extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
 		case .height: worker.updateHeight(profile)
 		case .weight: worker.updateWeight(profile)
 		}
-		
+
 		presenter.updateSettingsMenu(profile)
 	}
 

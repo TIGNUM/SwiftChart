@@ -78,7 +78,7 @@ private extension SettingsCalendarListViewController {
 		let fadeContainerView = FadeContainerView()
 		view.addSubview(fadeContainerView)
 		fadeContainerView.edgeAnchors == view.edgeAnchors
-		
+
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         fadeContainerView.addSubview(backgroundImageView)
         backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
@@ -94,7 +94,7 @@ private extension SettingsCalendarListViewController {
         tableView.allowsSelection = true
 		tableView.isScrollEnabled = false
         tableView.rowHeight = UITableViewAutomaticDimension
-		
+
 		fadeContainerView.setFade(top: 80, bottom: 0)
 		view.layoutIfNeeded()
     }

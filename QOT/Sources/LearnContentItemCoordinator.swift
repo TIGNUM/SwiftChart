@@ -26,6 +26,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
     private let rootViewController: UIViewController
     private let headerView: LearnContentItemHeaderView
     private let presentOnStart: Bool
+    private let guideItem: Guide.Item?
     var children: [Coordinator] = []
     var topTabBarController: UINavigationController!
 
@@ -36,7 +37,8 @@ final class LearnContentItemCoordinator: ParentCoordinator {
          category: ContentCategory,
          presentationManager: ContentItemAnimator? = nil,
          topBarDelegate: NavigationItemDelegate? = nil,
-         presentOnStart: Bool = true) {
+         presentOnStart: Bool = true,
+         guideItem: Guide.Item? = nil) {
         self.rootViewController = root
         self.eventTracker = eventTracker
         self.services = services
@@ -46,6 +48,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         self.selectedContent = content
         self.topBarDelegate = topBarDelegate
         self.presentOnStart = presentOnStart
+        self.guideItem = guideItem
         self.viewModel = LearnContentItemViewModel(
             services: services,
             eventTracker: eventTracker,
@@ -87,6 +90,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         audioViewController.delegate = self
     }
 
+    // FIXME: Add page tracking
     func start() {
         if rootViewController is UIViewControllerTransitioningDelegate {
             topTabBarController.modalPresentationStyle = .fullScreen  // Custom animations doesn't work when this value is set to .custom
@@ -107,7 +111,15 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         if presentOnStart {
             rootViewController.present(topTabBarController, animated: true)
         }
-        // FIXME: Add page tracking
+
+        guard
+            let pageViewController = topTabBarController.viewControllers.first as? PageViewController,
+            let navItem = pageViewController.navigationItem as? NavigationItem,
+            guideItem != nil,
+            selectedContent.hasBulletItems == true else { return }
+        let bulletIndex = 1
+        navItem.setIndicatorToButtonIndex(bulletIndex)
+        pageViewController.setPageIndex(bulletIndex, animated: true)
     }
 }
 

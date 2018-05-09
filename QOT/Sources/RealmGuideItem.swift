@@ -75,7 +75,7 @@ extension RealmGuideItem: UpSyncable, Dirty {
             try completions.forEach { try $0(localIDtoRemoteIDMap, realm) }
         }
     }
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+
     func toJson() -> JSON? {
         let dateFormatter = DateFormatter.iso8601
         var dict: [JsonKey: JSONEncodable] = [:]

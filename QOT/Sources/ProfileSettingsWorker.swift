@@ -69,10 +69,10 @@ final class ProfileSettingsWorker {
             services.userService.updateUserJobTitle(user: user, title: new.position ?? "")
         }
     }
-	
+
 	func updateHeight(_ new: ProfileSettingsModel) {
 		guard let old = profile(), old != new else { return }
-	
+
 		if old.height != new.height || old.heightUnit != new.heightUnit {
 			updateHeight(meters: new.height, unit: new.heightUnit)
 		}

@@ -19,17 +19,17 @@ final class LaunchHandler {
         return URLScheme.isSupportedURL(url)
     }
 
-    func process(url: URL,
-                 notificationID: String = "",
-                 guideItem: Guide.Item? = nil,
-                 searchViewController: SearchViewController? = nil) {
+        func process(url: URL,
+                     notificationID: String = "",
+                     guideItem: Guide.Item? = nil,
+                     searchViewController: SearchViewController? = nil) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else { return }
 
         switch scheme {
         case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url), notificationID: notificationID, guideItem: guideItem)
         case .fitbit: fitbit(accessToken: scheme.queryParametter(url: url))
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
-        case .randomContent: randomContent(url: url, scheme: scheme)
+        case .randomContent: randomContent(url: url, scheme: scheme, guideItem: guideItem)
         case .weeklyChoices: weeklyChoiches()
         case .meChoices: weeklyChoiches()
         case .weeklyChoicesReminder: weeklyChoicesReminder()
@@ -227,11 +227,11 @@ extension LaunchHandler {
 
 extension LaunchHandler {
 
-    func randomContent(url: URL, scheme: URLScheme) {
+    func randomContent(url: URL, scheme: URLScheme, guideItem: Guide.Item? = nil) {
         guard
             let contentIDString = scheme.queryParametter(url: url),
             let contentID = Int(contentIDString) else { return }
-        appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID)
+        appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID, guideItem: guideItem)
     }
 }
 

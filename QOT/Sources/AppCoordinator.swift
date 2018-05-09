@@ -626,13 +626,13 @@ extension AppCoordinator {
 
 extension AppCoordinator {
 
-    func presentLearnContentItems(contentID: Int, onDismiss: (() -> Void)? = nil) {
+    func presentLearnContentItems(contentID: Int, guideItem: Guide.Item? = nil, onDismiss: (() -> Void)? = nil) {
         guard
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
             let category = content.contentCategories.first else { return }
         self.onDismiss = onDismiss
-        startLearnContentItemCoordinator(services: services, content: content, category: category)
+        startLearnContentItemCoordinator(services: services, content: content, category: category, guideItem: guideItem)
     }
 
     func presentLearnContentItems(contentID: Int, categoryID: Int) {
@@ -645,7 +645,8 @@ extension AppCoordinator {
 
     private func startLearnContentItemCoordinator(services: Services,
                                                   content: ContentCollection,
-                                                  category: ContentCategory) {
+                                                  category: ContentCategory,
+                                                  guideItem: Guide.Item? = nil) {
         AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let presentationManager = ContentItemAnimator(originFrame: UIScreen.main.bounds)
         // FIXME: we shouldn't really init a coordinator just to get some child content
@@ -656,7 +657,8 @@ extension AppCoordinator {
                                                       category: category,
                                                       presentationManager: presentationManager,
                                                       topBarDelegate: self,
-                                                      presentOnStart: false)
+                                                      presentOnStart: false,
+                                                      guideItem: guideItem)
         startChild(child: coordinator)
         topTabBarController = coordinator.topTabBarController
         currentPresentedNavigationController = coordinator.topTabBarController
