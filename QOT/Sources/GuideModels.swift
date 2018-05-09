@@ -21,6 +21,7 @@ struct Guide {
     struct Item {
 
         enum Content {
+            case toBeVision(title: String, body: String, image: URL?)
             case text(String)
             case dailyPrep(items: [DailyPrepItem], feedback: String?)
         }
@@ -85,42 +86,28 @@ struct Guide {
 extension Guide.Model: Equatable {
 
     public static func == (lhs: Guide.Model, rhs: Guide.Model) -> Bool {
-        return lhs.days == rhs.days
-            && lhs.greeting == rhs.greeting
-            && lhs.message == rhs.message
+        return lhs == rhs
     }
 }
 
 extension Guide.Day: Equatable {
 
     public static func == (lhs: Guide.Day, rhs: Guide.Day) -> Bool {
-        return lhs.items == rhs.items
-            && lhs.localStartOfDay == rhs.localStartOfDay
+        return lhs == rhs
     }
 }
 
 extension Guide.Item: Equatable {
 
     static func == (lhs: Guide.Item, rhs: Guide.Item) -> Bool {
-        return lhs.content == rhs.content
-            && lhs.featureButton == rhs.featureButton
-            && lhs.featureLink == rhs.featureLink
-            && lhs.identifier == rhs.identifier
-            && lhs.isDailyPrep == rhs.isDailyPrep
-            && lhs.isDailyPrepCompleted == rhs.isDailyPrepCompleted
-            && lhs.link == rhs.link
-            && lhs.status == rhs.status
-            && lhs.subtitle == rhs.subtitle
-            && lhs.title == rhs.title
+        return lhs == rhs
     }
 }
 
 extension Guide.DailyPrepItem: Equatable {
 
     static func == (lhs: Guide.DailyPrepItem, rhs: Guide.DailyPrepItem) -> Bool {
-        return lhs.result == rhs.result
-            && lhs.resultColor == rhs.resultColor
-            && lhs.title == rhs.title
+        return lhs == rhs
     }
 }
 

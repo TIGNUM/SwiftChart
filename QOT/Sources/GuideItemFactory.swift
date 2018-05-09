@@ -69,6 +69,33 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
                           identifier: "",
                           affectsTabBarBadge: false)
     }
+
+    func makeToBeVisionItem() -> Guide.Item {
+        var isToBeVisionDone: Bool = true
+        var title = services.userService.myToBeVision()?.headline?.uppercased()
+        var body = services.userService.myToBeVision()?.text
+        let image = services.userService.myToBeVision()?.profileImageResource?.localURL ??
+            services.userService.myToBeVision()?.profileImageResource?.remoteURL
+        if title == services.contentService.toBeVisionHeadlinePlaceholder() ||
+            title == services.contentService.toBeVisionToolingHeadlinePlaceholder() ||
+            body == services.contentService.toBeVisionMessagePlaceholder() {
+            isToBeVisionDone = false
+            title = R.string.localized.guideToBeVisionNotFisishedTitle()
+            body = R.string.localized.guideToBeVisionNotFisishedMessage()
+        }
+
+        let item = Guide.Item(status: isToBeVisionDone == true ? .done : .todo,
+                              title: "",
+                              content: .toBeVision(title: title ?? "", body: body ?? "", image: image),
+                              subtitle: "",
+                              isDailyPrep: false,
+                              link: URL(string: "qot://to-be-vision"),
+                              featureLink: nil,
+                              featureButton: nil,
+                              identifier: "",
+                              affectsTabBarBadge: false)
+        return item
+    }
 }
 
 private extension GuideItemFactory {

@@ -33,7 +33,8 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
                            estimatedRowHeight: 100,
                            delegate: self,
                            dataSource: self,
-                           dequeables: GuideTableViewCell.self,
+                           dequeables: GuideToBeVisionTableViewCell.self,
+                                       GuideTableViewCell.self,
                                        GuideDailyPrepTableViewCell.self)
     }()
 
@@ -161,6 +162,13 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let item = itemAt(indexPath: indexPath)
         switch item.content {
+        case .toBeVision(let title, let body, let image):
+            let cell: GuideToBeVisionTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title,
+                           body: body,
+                           status: item.status,
+                           image: image)
+            return cell
         case .dailyPrep(let items, let feedback):
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: item.title,

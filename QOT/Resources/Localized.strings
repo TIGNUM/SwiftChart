@@ -76,6 +76,9 @@
 "Top.Tab.Bar.Item.Title.Perpare.Preparation" = "PREPARATION";
 "Top.Tab.Bar.Item.Title.Perpare.Notes" = "NOTES";
 
+"Guide.ToBeVision.NotFisished.Title" = "CREATE YOUR TO BE VISION";
+"Guide.ToBeVision.NotFisished.Message" = "No human being can outperform their self-image, yet you have not created yours. I would love to help you.";
+
 "Article.Loading" = "Please wait while we configure what's hot";
 "Guide.Loading" = "Please wait while we configure your guide";
 "Me.My.Universe.Loading" = "Please wait while we configure your universe";

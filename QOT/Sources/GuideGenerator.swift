@@ -29,6 +29,12 @@ protocol GuideDailyPrepResult {
     var priority: Int { get }
 }
 
+protocol GuideToBeVisionItem {
+
+    var displayAt: Date { get }
+    var priority: Int { get }
+}
+
 protocol GuideNotificationItem {
 
     var localID: String { get }
@@ -73,7 +79,8 @@ struct GuideGenerator {
         self.guideItemBlockDeterminer = GuideLearnItemBlockDeterminer(localCalendar: localCalendar)
     }
 
-    func generateGuide(notificationItems: [GuideNotificationItem],
+    func generateGuide(toBeVisionItem: Guide.Item,
+                       notificationItems: [GuideNotificationItem],
                        featureItems: [GuideLearnItem],
                        strategyItems: [GuideLearnItem],
                        notificationConfigurations: [GuideNotificationConfiguration],
@@ -86,6 +93,7 @@ struct GuideGenerator {
         let todaylocalStartOfDay = localCalendar.startOfDay(for: now)
         var days: [Date: Day] = [:]
 
+        addToBeVisionItem(from: toBeVisionItem, to: &days)
         addNotificationItems(from: notificationItems, to: &days, now: now, minDate: minDate)
         addCompleteLearnItems(from: featureItems, to: &days, minDate: minDate, now: now)
         addIncompleteLearnItems(from: featureItems, to: &days, now: now, todayLocalStartOfDay: todaylocalStartOfDay)
@@ -151,6 +159,13 @@ struct GuideGenerator {
 private extension GuideGenerator {
 
     /**
+     Adds ToBeVision item to today.
+     */
+    func addToBeVisionItem(from item: Guide.Item, to days: inout [Date: Day]) {
+        days.appendItem(item, hour: 24, minute: 00, priority: 0, localStartOfDay: localCalendar.startOfDay(for: Date()))
+    }
+
+    /**
      Adds notifications items to `days` that are between `now` and `minDate`.
     */
     func addNotificationItems(from items: [GuideNotificationItem],
@@ -171,10 +186,10 @@ private extension GuideGenerator {
                 else { continue }
 
             days.appendItem(guideItem,
-                       hour: displayAt.hour,
-                       minute: displayAt.minute,
-                       priority: item.priority,
-                       localStartOfDay: localCalendar.startOfDay(for: displayAt.utcDate))
+                            hour: displayAt.hour,
+                            minute: displayAt.minute,
+                            priority: item.priority,
+                            localStartOfDay: localCalendar.startOfDay(for: displayAt.utcDate))
         }
     }
 
@@ -224,7 +239,6 @@ private extension GuideGenerator {
                                 localStartOfDay: localCalendar.startOfDay(for: completedAt))
             }
         }
-
     }
 
     func addItems(configurations: [GuideNotificationConfiguration],
