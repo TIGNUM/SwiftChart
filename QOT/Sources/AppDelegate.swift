@@ -78,7 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         window = UIWindow(frame: UIScreen.main.bounds)
-		
+
         #if BUILD_DATABASE
             // @warning REINSTALL before running. Must be logged in
             __buildDatabase()
@@ -92,6 +92,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         UNUserNotificationCenter.current().delegate = self
         incomingLocationEvent(launchOptions: launchOptions)
         setupUAirship()
+        setupHockeyApp()
 
         #if DEBUG
             log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
@@ -207,6 +208,13 @@ private extension AppDelegate {
         UAirship.push().pushNotificationDelegate = remoteNotificationHandler
         UAirship.push().updateRegistration()
         UAirship.shared().analytics.isEnabled = true
+    }
+
+    func setupHockeyApp() {
+        BITHockeyManager.shared().configure(withIdentifier: "4f2cc0d018ea4a2884e052d72eb9c456")
+        // Do some additional configuration if needed here
+        BITHockeyManager.shared().start()
+        BITHockeyManager.shared().authenticator.authenticateInstallation()
     }
 
     var appFilePath: String {

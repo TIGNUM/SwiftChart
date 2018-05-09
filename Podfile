@@ -27,6 +27,7 @@ target 'QOT' do
   pod 'SwiftyBeaver'
   pod 'JSONWebToken'
   pod 'Siren', '~> 3.2.0'
+  pod 'HockeySDK', '~> 5.1.2'
 
   target 'QOTTests' do
     inherit! :search_paths

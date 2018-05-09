@@ -3110,6 +3110,7 @@
 				81E2E98BE745C586EA31F424 /* [CP] Embed Pods Frameworks */,
 				5EB4CCEE8904BC282CD31F04 /* [CP] Copy Pods Resources */,
 				CBC5ACC41F177F0E007E1E9C /* Crashlytics */,
+				3649815620A3427000F5046D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -3314,6 +3315,19 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		3649815620A3427000F5046D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "FILE=\"${SRCROOT}/HockeySDK-iOS/BuildAgent\"\nif [ -f \"$FILE\" ]; then\n\"$FILE\"\nfi";
+		};
 		4050E54DF9F28B6A059319E4 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3338,9 +3352,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
+				"$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
