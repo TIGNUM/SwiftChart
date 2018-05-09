@@ -229,6 +229,7 @@
 		9115F708208DE03F00EE5D1D /* ProfileSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115F707208DE03F00EE5D1D /* ProfileSettingsPresenter.swift */; };
 		9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115F709208DE05100EE5D1D /* ProfileSettingsProtocols.swift */; };
 		9115F70E208DFFAE00EE5D1D /* SettingsMenuHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9115F70D208DFFAE00EE5D1D /* SettingsMenuHeader.xib */; };
+		91182ACD20A1A4E9006D5435 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91182ACC20A1A4E9006D5435 /* SettingsViewController.xib */; };
 		912C9E37203C713F00C1AA76 /* MyToBeVisionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E36203C713F00C1AA76 /* MyToBeVisionConfigurator.swift */; };
 		912C9E39203C716400C1AA76 /* MyToBeVisionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E38203C716400C1AA76 /* MyToBeVisionInteractor.swift */; };
 		912C9E3B203C718100C1AA76 /* MyToBeVisionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E3A203C718100C1AA76 /* MyToBeVisionModels.swift */; };
@@ -881,6 +882,7 @@
 		9115F707208DE03F00EE5D1D /* ProfileSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsPresenter.swift; sourceTree = "<group>"; };
 		9115F709208DE05100EE5D1D /* ProfileSettingsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsProtocols.swift; sourceTree = "<group>"; };
 		9115F70D208DFFAE00EE5D1D /* SettingsMenuHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsMenuHeader.xib; sourceTree = "<group>"; };
+		91182ACC20A1A4E9006D5435 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
 		912C9E36203C713F00C1AA76 /* MyToBeVisionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionConfigurator.swift; sourceTree = "<group>"; };
 		912C9E38203C716400C1AA76 /* MyToBeVisionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionInteractor.swift; sourceTree = "<group>"; };
 		912C9E3A203C718100C1AA76 /* MyToBeVisionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionModels.swift; sourceTree = "<group>"; };
@@ -1670,6 +1672,7 @@
 				91086E49209202800035DA1F /* SettingsProtocols.swift */,
 				91086E4B209202CC0035DA1F /* SettingsViewController.swift */,
 				91086E5520920ABF0035DA1F /* SettingsModel.swift */,
+				91182ACC20A1A4E9006D5435 /* SettingsViewController.xib */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -3255,6 +3258,7 @@
 				9115F70E208DFFAE00EE5D1D /* SettingsMenuHeader.xib in Resources */,
 				CB7BC429204EB319006A40D5 /* PartnerCell.xib in Resources */,
 				85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */,
+				91182ACD20A1A4E9006D5435 /* SettingsViewController.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				8514A48A1EE93D640086C70E /* PrepareContentFooterTableViewCell.xib in Resources */,

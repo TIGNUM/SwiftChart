@@ -776,7 +776,8 @@ extension AppCoordinator {
 
     func presentCalendarSettings(_ destination: AppCoordinator.Router.Destination?) {
         navigateDownToTabBar {
-            self.presentSideBarWithDestination(destination)
+            guard let sidebarCoordinator = self.presentSideBar(destination: destination) else { return }
+            sidebarCoordinator.didTapSettingsCell(in: sidebarCoordinator.sideBarViewController)
         }
     }
 

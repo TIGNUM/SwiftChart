@@ -21,6 +21,6 @@ protocol ProfileSettingsPresenterInterface {
 }
 
 protocol ProfileSettingsInteractorInterface: Interactor {
-    func saveSettingsMenu(_ profile: ProfileSettingsModel)
     func updateSettingsMenuImage(image: UIImage, settingsMenu: ProfileSettingsModel)
+	func updateProfile(field: ProfileField, profile: ProfileSettingsModel)
 }

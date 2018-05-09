@@ -85,7 +85,7 @@ private extension SettingsCalendarListViewController {
 
         fadeContainerView.addSubview(tableView)
         tableView.topAnchor == fadeContainerView.topAnchor + 100
-        tableView.leftAnchor == fadeContainerView.leftAnchor + 30
+        tableView.leftAnchor == fadeContainerView.leftAnchor + 20
         tableView.rightAnchor ==  fadeContainerView.rightAnchor
         tableView.bottomAnchor == fadeContainerView.bottomAnchor
         tableView.backgroundColor = .clear

@@ -8,6 +8,16 @@
 
 import UIKit
 
+enum ProfileField {
+	
+	case telephone
+	case jobTitle
+	case gender
+	case birthday
+	case height
+	case weight
+}
+
 final class ProfileSettingsInteractor {
 
     let worker: ProfileSettingsWorker
@@ -27,16 +37,24 @@ final class ProfileSettingsInteractor {
 // MARK: - SettingsMenuInteractor Interface
 
 extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
-
-    func saveSettingsMenu(_ settingsMenu: ProfileSettingsModel) {
-        worker.updateSettingsProfile(settingsMenu)
-    }
+	
+	func updateProfile(field: ProfileField, profile: ProfileSettingsModel) {
+		switch field {
+		case .telephone: worker.updateProfileTelephone(profile)
+		case .jobTitle: worker.updateJobTitle(profile)
+		case .gender: worker.updateProfileGender(profile)
+		case .birthday: worker.updateProfileBirthday(profile)
+		case .height: worker.updateHeight(profile)
+		case .weight: worker.updateWeight(profile)
+		}
+		
+		presenter.updateSettingsMenu(profile)
+	}
 
     func updateSettingsMenuImage(image: UIImage, settingsMenu: ProfileSettingsModel) {
         do {
-            var settingsMenu = settingsMenu
-            settingsMenu.imageURL = try worker.saveImage(image)
-            presenter.updateSettingsMenu(settingsMenu)
+            let url = try worker.saveImage(image)
+            worker.updateSettingsProfileImage(url)
         } catch {
             presenter.presentImageError(error)
         }

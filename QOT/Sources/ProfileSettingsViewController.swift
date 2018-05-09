@@ -17,7 +17,7 @@ final class ProfileSettingsViewController: UIViewController {
 
     var interactor: ProfileSettingsInteractorInterface?
     private var profile: ProfileSettingsModel?
-    private var tableView = UITableView()
+    private var tableView = UITableView(frame: .zero, style: .grouped)
     private var pickerItems: UserMeasurement?
     private var pickerViewHeight: NSLayoutConstraint?
     private var pickerInitialSelection = [Index]()
@@ -27,8 +27,10 @@ final class ProfileSettingsViewController: UIViewController {
     private let fadeContainerView = FadeContainerView()
     private let imagePickerController: ImagePickerController
     private let headerView = SettingsMenuHeader.instantiateFromNib()
+    private let keyboardListener = KeyboardListener()
     private let networkManager: NetworkManager
     private let services: Services
+    private var scrollViewContentHeightConstraint = NSLayoutConstraint()
 
     private var pickerContentView: UIView = {
         let pickerContentView = UIView()
@@ -93,11 +95,31 @@ final class ProfileSettingsViewController: UIViewController {
         headerView.delegate = self
         imagePickerController.delegate = self
         setupView()
+
+        scrollViewContentHeightConstraint.constant = tableView.contentInset.bottom
+        keyboardListener.onStateChange { [unowned self] (state) in
+            self.handleKeyboardChange(state: state)
+        }
+    }
+
+    @available(iOS 11.0, *)
+    override func viewSafeAreaInsetsDidChange() {
+        super.viewSafeAreaInsetsDidChange()
+
+        syncScrollViewLayout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+
         tableView.reloadData()
+        keyboardListener.startObserving()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+
+        keyboardListener.stopObserving()
     }
 
     override func viewDidLayoutSubviews() {
@@ -105,6 +127,7 @@ final class ProfileSettingsViewController: UIViewController {
 
         syncHeader()
         registerCells()
+        syncScrollViewLayout()
     }
 }
 
@@ -114,13 +137,12 @@ extension ProfileSettingsViewController: ProfileSettingsViewControllerInterface 
 
     func setup(profile: ProfileSettingsModel) {
         self.profile = profile
-        headerDidUpdate()
+        headerDidSetup()
     }
 
     func update(profile: ProfileSettingsModel) {
         if profile != self.profile {
-            headerDidUpdate()
-            profileDidUpdate(profile: profile)
+            profileDidUpdate()
         }
     }
 
@@ -166,6 +188,31 @@ private extension ProfileSettingsViewController {
         view.layoutIfNeeded()
     }
 
+    func syncScrollViewLayout() {
+        let contentHeight = view.bounds.height - safeAreaInsets.top - safeAreaInsets.bottom
+        scrollViewContentHeightConstraint.constant = contentHeight
+        tableView.contentInset.top = safeAreaInsets.top
+        let spaceBellowCollectionView = contentHeight - tableView.frame.maxY
+        let bottomInset = max(keyboardListener.state.height - spaceBellowCollectionView, safeAreaInsets.bottom)
+        tableView.contentInset.bottom = bottomInset
+    }
+
+    func handleKeyboardChange(state: KeyboardListener.State) {
+        switch state {
+        case .idle:
+            break
+        case .willChange(_, _, let duration, let curve):
+            syncScrollViewLayout()
+            let options = UIViewAnimationOptions(curve: curve)
+            let contentHeight = scrollViewContentHeightConstraint.constant
+            let minY = tableView.contentInset.top
+            let yPos = max(contentHeight - tableView.bounds.height + tableView.contentInset.bottom, -minY)
+            UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
+                self.tableView.contentOffset.y = yPos
+            })
+        }
+    }
+
     func syncHeader() {
         let header = headerView
         header.bounds = CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: 347)
@@ -178,23 +225,21 @@ private extension ProfileSettingsViewController {
         tableView.tableHeaderView = header
     }
 
-    func profileDidUpdate(profile: ProfileSettingsModel) {
-        headerDidUpdate()
-        interactor?.saveSettingsMenu(profile)
-
+    func profileDidUpdate() {
         guard let settingsViewModel = SettingsViewModel(services: services, settingsType: .profile) else { return }
         self.settingsViewModel = settingsViewModel
         tableView.reloadData()
     }
 
-    func headerDidUpdate() {
+    func headerDidSetup() {
         guard
             let name = profile?.givenName,
             let surname = profile?.familyName,
             let position = profile?.position else { return }
         headerView.configure(imageURL: profile?.imageURL,
                              name: name + " " + surname,
-                             position: position, viewModel: settingsMenuViewModel)
+                             position: position,
+                             viewModel: settingsMenuViewModel)
     }
 
     func registerCells() {
@@ -253,7 +298,7 @@ extension ProfileSettingsViewController {
                                     let dateOfBirth = DateFormatter.settingsUser.string(from: date)
                                     if var profile = self.profile {
                                         profile.birthday = dateOfBirth
-                                        self.profileDidUpdate(profile: profile)
+                                        self.interactor?.updateProfile(field: .birthday, profile: profile)
                                     }
                                 }
             }, cancel: { (_) in
@@ -264,10 +309,9 @@ extension ProfileSettingsViewController {
     func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
         ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { [unowned self] (_, index, _) in
             if indexPath.section == 1 && indexPath.row == 0 {
-                self.profile?.gender = items[index]
-                if let profile = self.profile {
-                    self.profileDidUpdate(profile: profile)
-                }
+                guard var profile = self.profile else { return }
+                profile.gender = items[index]
+                self.interactor?.updateProfile(field: .gender, profile: profile)
             }
             }, cancel: { (_) in
                 return
@@ -275,19 +319,18 @@ extension ProfileSettingsViewController {
     }
 
     func updateUserHeightWeight() {
-        guard let userMeasurement = pickerItems else { return }
+        guard let userMeasurement = pickerItems, var profile = profile else { return }
 
         if pickerIndexPath.section == 1 {
             if pickerIndexPath.row == 2 {
-                profile?.weight = userMeasurement.selectedValue
-                profile?.weightUnit = userMeasurement.selectedUnit
+                profile.weight = userMeasurement.selectedValue
+                profile.weightUnit = userMeasurement.selectedUnit
+				interactor?.updateProfile(field: .weight, profile: profile)
             } else if pickerIndexPath.row == 3 {
-                profile?.height = userMeasurement.selectedValue
-                profile?.heightUnit = userMeasurement.selectedUnit
+                profile.height = userMeasurement.selectedValue
+                profile.heightUnit = userMeasurement.selectedUnit
+				interactor?.updateProfile(field: .height, profile: profile)
             }
-        }
-        if let profile = profile {
-            profileDidUpdate(profile: profile)
         }
     }
 }
@@ -396,14 +439,21 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
     }
 
     func didTextFieldChanged(at indexPath: IndexPath, text: String) {
+        guard var profile = profile else { return }
         switch indexPath.row {
-        case 1: if text.isEmpty == false { profile?.position = text }
-        case 3: if text.isPhoneNumber { profile?.telephone = text }
+        case 1:
+            if text.isEmpty == false {
+                profile.position = text
+                interactor?.updateProfile(field: .jobTitle, profile: profile)
+                headerView.updateJobTitle(title: text)
+            }
+        case 3:
+            if text.isPhoneNumber {
+                profile.telephone = text
+                interactor?.updateProfile(field: .telephone, profile: profile)
+            }
         default: return
         }
-
-        guard let profile = profile else { return }
-        profileDidUpdate(profile: profile)
     }
 
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
@@ -425,12 +475,11 @@ extension ProfileSettingsViewController: SettingsMenuHeaderDelegate {
 
 extension ProfileSettingsViewController: ImagePickerControllerDelegate {
 
-    func cancelSelection() {
-        
-    }
+    func cancelSelection() {}
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         guard let profile = profile else { return }
+
         interactor?.updateSettingsMenuImage(image: image, settingsMenu: profile)
         headerView.updateLocalImage(image: image)
     }

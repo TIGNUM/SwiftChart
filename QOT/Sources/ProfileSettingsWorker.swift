@@ -38,32 +38,65 @@ final class ProfileSettingsWorker {
         return model
     }
 
-    func updateSettingsProfile(_ new: ProfileSettingsModel) {
-        guard
-            let user = user,
-            let old = profile(),
-            old != new else { return }
+    func updateProfileTelephone(_ new: ProfileSettingsModel) {
+        guard let user = user, let old = profile(), old != new else { return }
 
-        if old.imageURL != new.imageURL,
-        let imageURL = new.imageURL, imageURL.baseURL == URL.imageDirectory {
-            services.userService.updateUser(user: user) { (user) in
-                user.userImage?.setLocalURL(imageURL, format: .jpg, entity: .user, entitiyLocalID: user.localID)
-            }
-        } else if old.gender != new.gender {
-            services.userService.updateUserGender(user: user, gender: new.gender ?? "")
-        } else if old.position != new.position {
-            services.userService.updateUserJobTitle(user: user, title: new.position ?? "")
-        } else if old.telephone != new.telephone {
+        if old.telephone != new.telephone {
             services.userService.updateUserTelephone(user: user, telephone: new.telephone ?? "")
-        } else if old.weight != new.weight  || old.weightUnit != new.weightUnit {
-            updateWeight(weight: new.weight, unit: new.weightUnit)
-        } else if old.height != new.height || old.heightUnit != new.heightUnit {
-            updateHeight(meters: new.height, unit: new.heightUnit)
-        } else if old.birthday != new.birthday {
+        }
+    }
+
+    func updateProfileBirthday(_ new: ProfileSettingsModel) {
+        guard let user = user, let old = profile(), old != new else { return }
+
+        if old.birthday != new.birthday {
             services.userService.updateUserDateOfBirth(user: user, dateOfBirth: new.birthday)
         }
+    }
 
-        syncManger.syncAll(shouldDownload: false)
+    func updateProfileGender(_ new: ProfileSettingsModel) {
+        guard let user = user, let old = profile(), old != new else { return }
+
+        if old.gender != new.gender {
+            services.userService.updateUserGender(user: user, gender: new.gender ?? "")
+        }
+    }
+
+    func updateJobTitle(_ new: ProfileSettingsModel) {
+        guard let user = user, let old = profile(), old != new else { return }
+
+        if old.position != new.position {
+            services.userService.updateUserJobTitle(user: user, title: new.position ?? "")
+        }
+    }
+	
+	func updateHeight(_ new: ProfileSettingsModel) {
+		guard let old = profile(), old != new else { return }
+	
+		if old.height != new.height || old.heightUnit != new.heightUnit {
+			updateHeight(meters: new.height, unit: new.heightUnit)
+		}
+	}
+
+    func updateWeight(_ new: ProfileSettingsModel) {
+        guard let old = profile(), old != new else { return }
+
+        if old.weight != new.weight  || old.weightUnit != new.weightUnit {
+            updateWeight(weight: new.weight, unit: new.weightUnit)
+        }
+    }
+
+    func updateSettingsProfileImage(_ new: URL) {
+        guard
+            let user = user,
+            let old = profile()?.imageURL,
+            old != new else { return }
+
+        if old != new && new.baseURL == URL.imageDirectory {
+            services.userService.updateUser(user: user) { (user) in
+                user.userImage?.setLocalURL(new, format: .jpg, entity: .user, entitiyLocalID: user.localID)
+            }
+        }
     }
 
     func saveImage(_ image: UIImage) throws -> URL {

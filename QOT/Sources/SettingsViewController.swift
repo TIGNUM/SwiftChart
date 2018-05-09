@@ -42,8 +42,6 @@ final class SettingsViewController: UIViewController {
 
         interactor?.viewDidLoad()
         tableView.registerDequeueable(SettingsCell.self)
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 
     override func viewDidLayoutSubviews() {

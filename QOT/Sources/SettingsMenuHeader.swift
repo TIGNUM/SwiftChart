@@ -55,6 +55,10 @@ final class SettingsMenuHeader: UIView {
     func updateLocalImage(image: UIImage) {
         self.userImageView.image = image
     }
+
+    func updateJobTitle(title: String) {
+        self.positionLabel.text = title.uppercased()
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource

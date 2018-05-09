@@ -245,8 +245,6 @@ extension SettingsMenuViewController: UICollectionViewDelegate, UICollectionView
     }
 }
 
-
-
 extension SettingsMenuViewController: ImagePickerControllerDelegate {
 
     func cancelSelection() {}
