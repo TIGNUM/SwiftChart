@@ -234,11 +234,10 @@ private extension ProfileSettingsViewController {
     func headerDidSetup() {
         guard
             let name = profile?.givenName,
-            let surname = profile?.familyName,
-            let position = profile?.position else { return }
+            let surname = profile?.familyName else { return }
         headerView.configure(imageURL: profile?.imageURL,
                              name: name + " " + surname,
-                             position: position,
+                             position: profile?.position ?? "",
                              viewModel: settingsMenuViewModel)
     }
 

@@ -212,7 +212,7 @@ private extension AppDelegate {
 
     func setupHockeyApp() {
         BITHockeyManager.shared().configure(withIdentifier: "4f2cc0d018ea4a2884e052d72eb9c456")
-        // Do some additional configuration if needed here
+        BITHockeyManager.shared().isUpdateManagerDisabled = true
         BITHockeyManager.shared().start()
         BITHockeyManager.shared().authenticator.authenticateInstallation()
     }
