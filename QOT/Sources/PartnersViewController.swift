@@ -9,11 +9,12 @@
 import UIKit
 import RSKImageCropper
 
-final class PartnersViewController: UIViewController, PartnersViewControllerInterface, PageViewControllerNotSwipeable {
+class PartnersAnimationViewController: UIViewController {}
+
+final class PartnersViewController: PartnersAnimationViewController, PartnersViewControllerInterface, PageViewControllerNotSwipeable {
 
     @IBOutlet private weak var backgroundImageView: UIImageView!
     @IBOutlet private(set) weak var scrollView: UIScrollView!
-    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var scrollViewContentHeightConstraint: NSLayoutConstraint!
     private let cellWidth: CGFloat = 186
@@ -40,23 +41,10 @@ final class PartnersViewController: UIViewController, PartnersViewControllerInte
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         collectionView.registerDequeueable(PartnerCell.self)
-
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
-        leftButton.target = self
-        leftButton.action = #selector(didTapClose(_ :))
-        navigationItem.leftBarButtonItem = leftButton
-
-        let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
-        rightButton.target = self
-        rightButton.action = #selector(didTapEdit(_ :))
-        rightButton.tintColor = .white40
-        navigationItem.rightBarButtonItem = rightButton
-
+        setupNavigationItems()
         interactor?.viewDidLoad()
         setBackgroundColor()
-        setupHeadline()
 
         keyboardListner.onStateChange { [unowned self] (state) in
             self.handleKeyboardChange(state: state)
@@ -123,6 +111,18 @@ final class PartnersViewController: UIViewController, PartnersViewControllerInte
 // MARK: - Private
 
 private extension PartnersViewController {
+
+    func setupNavigationItems() {
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
+        leftButton.target = self
+        leftButton.action = #selector(didTapClose(_ :))
+        navigationItem.leftBarButtonItem = leftButton
+        let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
+        rightButton.target = self
+        rightButton.action = #selector(didTapEdit(_ :))
+        rightButton.tintColor = .white40
+        navigationItem.rightBarButtonItem = rightButton
+    }
 
     @objc func didTapClose(_ sender: UIBarButtonItem) {
         interactor?.didTapClose(partners: partners)
@@ -194,15 +194,6 @@ private extension PartnersViewController {
         backgroundImageView.image = R.image._1Learn()
         view.addFadeView(at: .top)
         scrollView.backgroundColor = .clear
-    }
-
-    func setupHeadline() {
-        titleLabel.attributedText = NSMutableAttributedString(
-            string: R.string.localized.meSectorMyWhyPartnersHeader(),
-            letterSpacing: 2,
-            font: Font.H1MainTitle,
-            alignment: .left
-        )
     }
 }
 

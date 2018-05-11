@@ -32,10 +32,33 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
     }
 
     func start() {
+        if services.partnerService.partners.isEmpty == true {
+            startPartnersLandingPageViewController()
+        } else {
+            startPartnersViewController()
+        }
+    }
+}
+
+// MARK: - Private
+
+private extension PartnersCoordinator {
+
+    func startPartnersViewController() {
         let configurator = PartnersConfigurator.make()
-        let partnersViewController = PartnersViewController(configure: configurator)
-        partnersViewController.title = R.string.localized.meSectorMyWhyPartnersTitle().uppercased()
-        let navController = UINavigationController(rootViewController: partnersViewController)
+        let viewController = PartnersViewController(configure: configurator)
+        presentController(viewController)
+    }
+
+    func startPartnersLandingPageViewController() {
+        let configurator = PartnersLandingPageConfigurator.make()
+        let viewController = PartnersLandingPageViewController(configure: configurator)
+        presentController(viewController)
+    }
+
+    func presentController(_ partnersAnimationViewController: PartnersAnimationViewController) {
+        partnersAnimationViewController.title = R.string.localized.meSectorMyWhyPartnersTitle().uppercased()
+        let navController = UINavigationController(rootViewController: partnersAnimationViewController)
         navController.navigationBar.applyDefaultStyle()
         navController.modalPresentationStyle = .custom
         navController.transitioningDelegate = transitioningDelegate

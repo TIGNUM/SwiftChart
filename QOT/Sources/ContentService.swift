@@ -227,3 +227,20 @@ extension ContentService {
         return items.filter { $0.searchTags == type.rawValue }.first?.valueText
     }
 }
+
+// MARK: - PARTNERS_LANDING_PAGE
+
+extension ContentService {
+
+    func partnersLandingPage() -> PartnersLandingPage {
+        let category = mainRealm.contentCategories(section: .partnersLandingPage).first
+        let items = category?.contentCollections.first?.items
+        let title = items?.filter(PartnersLandingPage.ItemTypes.title.predicate).first?.valueText
+        let message = items?.filter(PartnersLandingPage.ItemTypes.message.predicate).first?.valueText
+        let buttonTitle = items?.filter(PartnersLandingPage.ItemTypes.buttonTitle.predicate).first?.valueText
+        return PartnersLandingPage(title: title,
+                                   message: message,
+                                   buttonTitle: buttonTitle,
+                                   defaultProfilePicture: R.image.partnerPlaceholder())
+    }
+}

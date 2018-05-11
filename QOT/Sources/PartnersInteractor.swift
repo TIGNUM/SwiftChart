@@ -10,9 +10,9 @@ import UIKit
 
 final class PartnersInteractor: PartnersInteractorInterface {
 
-    let worker: PartnersWorker
-    let router: PartnersRouterInterface
-    let presenter: PartnersPresenterInterface
+    private let worker: PartnersWorker
+    private let router: PartnersRouterInterface
+    private let presenter: PartnersPresenterInterface
 
     init(worker: PartnersWorker, router: PartnersRouterInterface, presenter: PartnersPresenterInterface) {
         self.worker = worker

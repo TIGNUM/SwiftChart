@@ -28,10 +28,14 @@ final class PartnersAnimation: NSObject {
         return nil
     }
 
-    private func getPartnersViewController(_ viewController: UIViewController) -> PartnersViewController? {
+    private func getPartnersViewController(_ viewController: UIViewController) -> PartnersAnimationViewController? {
         if
             let navigationController = viewController as? UINavigationController,
             let childViewController = navigationController.viewControllers.first as? PartnersViewController {
+                return childViewController
+        } else if
+            let navigationController = viewController as? UINavigationController,
+            let childViewController = navigationController.viewControllers.first as? PartnersLandingPageViewController {
                 return childViewController
         }
         return nil
@@ -99,16 +103,16 @@ extension PartnersAnimation: UIViewControllerAnimatedTransitioning {
     }
 }
 
-private extension PartnersViewController {
+private extension PartnersAnimationViewController {
 
     func configureForDefaultState() {
         navigationController?.view.alpha = 1
-        scrollView.transform = .identity
+        view.transform = .identity
     }
 
     func configureForTransitionedState() {
         navigationController?.view.alpha = 0
-        scrollView.transform = CGAffineTransform(translationX: 0.0, y: 100.0)
+        view.transform = CGAffineTransform(translationX: 0.0, y: 100.0)
     }
 }
 

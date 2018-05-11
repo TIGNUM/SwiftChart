@@ -33,6 +33,13 @@
 		363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */; };
 		363178E71FDEECDE00833958 /* RealmGuideItemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */; };
 		36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F1F1FCEB90B004E9034 /* GuideViewController.swift */; };
+		3649814A20A3364000F5046D /* PartnersLandingPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649814820A3364000F5046D /* PartnersLandingPageViewController.swift */; };
+		3649814B20A3364000F5046D /* PartnersLandingPageViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3649814920A3364000F5046D /* PartnersLandingPageViewController.xib */; };
+		3649814D20A33CF300F5046D /* PartnersLandingPageConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649814C20A33CF300F5046D /* PartnersLandingPageConfigurator.swift */; };
+		3649814F20A33D5300F5046D /* PartnersLandingPageInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649814E20A33D5300F5046D /* PartnersLandingPageInteractor.swift */; };
+		3649815120A33D7900F5046D /* PartnersLandingPageProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649815020A33D7900F5046D /* PartnersLandingPageProtocols.swift */; };
+		3649815320A33E3B00F5046D /* PartnersLandingPageModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649815220A33E3B00F5046D /* PartnersLandingPageModels.swift */; };
+		3649815520A33E6900F5046D /* PartnersLandingPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649815420A33E6900F5046D /* PartnersLandingPagePresenter.swift */; };
 		3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0321FE323EE001F4249 /* RealmGuideTime.swift */; };
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
@@ -60,6 +67,8 @@
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
 		36B07E8D2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B07E8C2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift */; };
 		36B67B9C1FE1D9C90066A515 /* RealmGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */; };
+		36B7AA0720A348130034ED42 /* PartnersLandingPageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7AA0620A348130034ED42 /* PartnersLandingPageWorker.swift */; };
+		36B7AA0920A348960034ED42 /* PartnersLandingPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B7AA0820A348960034ED42 /* PartnersLandingPageRouter.swift */; };
 		36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */; };
 		36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */; };
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
@@ -685,6 +694,13 @@
 		363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmGuideItemLearn.swift; sourceTree = "<group>"; };
 		363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItemNotification.swift; sourceTree = "<group>"; };
 		36328F1F1FCEB90B004E9034 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		3649814820A3364000F5046D /* PartnersLandingPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersLandingPageViewController.swift; sourceTree = "<group>"; };
+		3649814920A3364000F5046D /* PartnersLandingPageViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartnersLandingPageViewController.xib; sourceTree = "<group>"; };
+		3649814C20A33CF300F5046D /* PartnersLandingPageConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersLandingPageConfigurator.swift; sourceTree = "<group>"; };
+		3649814E20A33D5300F5046D /* PartnersLandingPageInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersLandingPageInteractor.swift; sourceTree = "<group>"; };
+		3649815020A33D7900F5046D /* PartnersLandingPageProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersLandingPageProtocols.swift; sourceTree = "<group>"; };
+		3649815220A33E3B00F5046D /* PartnersLandingPageModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersLandingPageModels.swift; sourceTree = "<group>"; };
+		3649815420A33E6900F5046D /* PartnersLandingPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersLandingPagePresenter.swift; sourceTree = "<group>"; };
 		3649C0321FE323EE001F4249 /* RealmGuideTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideTime.swift; sourceTree = "<group>"; };
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
@@ -712,6 +728,8 @@
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		36B07E8C2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentReviewNotesTableViewCell.swift; sourceTree = "<group>"; };
 		36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItem.swift; sourceTree = "<group>"; };
+		36B7AA0620A348130034ED42 /* PartnersLandingPageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersLandingPageWorker.swift; sourceTree = "<group>"; };
+		36B7AA0820A348960034ED42 /* PartnersLandingPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersLandingPageRouter.swift; sourceTree = "<group>"; };
 		36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideGreetingView.xib; sourceTree = "<group>"; };
 		36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideGreetingView.swift; sourceTree = "<group>"; };
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
@@ -1368,6 +1386,22 @@
 				CB8C34551EAF7F200003AB65 /* styles.css */,
 			);
 			name = HTML;
+			sourceTree = "<group>";
+		};
+		3649814720A3360400F5046D /* PartnersLandingPage */ = {
+			isa = PBXGroup;
+			children = (
+				3649814C20A33CF300F5046D /* PartnersLandingPageConfigurator.swift */,
+				3649814E20A33D5300F5046D /* PartnersLandingPageInteractor.swift */,
+				3649815220A33E3B00F5046D /* PartnersLandingPageModels.swift */,
+				3649815420A33E6900F5046D /* PartnersLandingPagePresenter.swift */,
+				3649815020A33D7900F5046D /* PartnersLandingPageProtocols.swift */,
+				36B7AA0820A348960034ED42 /* PartnersLandingPageRouter.swift */,
+				3649814820A3364000F5046D /* PartnersLandingPageViewController.swift */,
+				36B7AA0620A348130034ED42 /* PartnersLandingPageWorker.swift */,
+				3649814920A3364000F5046D /* PartnersLandingPageViewController.xib */,
+			);
+			name = PartnersLandingPage;
 			sourceTree = "<group>";
 		};
 		365E98C41FD9A55900248361 /* CLTypingLabel */ = {
@@ -2074,15 +2108,16 @@
 		CB94423A1FDFE4B400E2B122 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				913C7174209C61B2001C4185 /* Settings */,
 				CBE8808B1FE4368300670C10 /* Guide */,
 				D5B707241F03A21E00C812EB /* Morning Interview */,
 				912C9E32203C701300C1AA76 /* My To Be Vision */,
 				CB3333F8204978BA009480DF /* Partners */,
+				3649814720A3360400F5046D /* PartnersLandingPage */,
+				91F5BE3C2097573500E85A51 /* Permissions */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
 				CBB4DD361EE08A5C0071494A /* Search */,
+				913C7174209C61B2001C4185 /* Settings */,
 				CB3333DD20480DA2009480DF /* Share */,
-				91F5BE3C2097573500E85A51 /* Permissions */,
 				CB9442261FD963B200E2B122 /* SlideShow */,
 				36667690207CF5BF00D2F5AD /* Vision Generator */,
 			);
@@ -3213,6 +3248,7 @@
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
+				3649814B20A3364000F5046D /* PartnersLandingPageViewController.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
@@ -3636,6 +3672,7 @@
 				7FB172A21FA1E6CE00112C69 /* MyToBeVisionAnimator.swift in Sources */,
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
 				851676DD1F3C68F8007A1DD6 /* LearnReadMoreCell.swift in Sources */,
+				3649814A20A3364000F5046D /* PartnersLandingPageViewController.swift in Sources */,
 				CB3333F020480E50009480DF /* ShareViewController.swift in Sources */,
 				CB3BD4191F2877E50071F51E /* UpSyncable.swift in Sources */,
 				CCFCCB141F31C8E8004A4D7E /* R.generated.swift in Sources */,
@@ -3660,12 +3697,14 @@
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
 				7FCF5FA41FC2E9FA00CD1E5E /* TabBarItem.swift in Sources */,
 				91F5BE44209757C300E85A51 /* PermissionsConfigurator.swift in Sources */,
+				3649815320A33E3B00F5046D /* PartnersLandingPageModels.swift in Sources */,
 				7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */,
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
 				CBD4BEA42018CDA7008A0E9E /* GuideInteractor.swift in Sources */,
 				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
 				CB7F046E1F8E0999001F4DE6 /* SyncOperation.swift in Sources */,
 				CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */,
+				3649815120A33D7900F5046D /* PartnersLandingPageProtocols.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
 				CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */,
@@ -3725,6 +3764,7 @@
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
+				36B7AA0720A348130034ED42 /* PartnersLandingPageWorker.swift in Sources */,
 				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
 				852DADD21EF04DEA00A10882 /* MeetingsLengthChart.swift in Sources */,
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
@@ -3866,6 +3906,7 @@
 				CB5134141FAB735E00FBDD66 /* ContentReadIntermediary.swift in Sources */,
 				CB35504020597A6A000ECAFA /* DailyPrepResultObject.swift in Sources */,
 				9115F703208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift in Sources */,
+				36B7AA0920A348960034ED42 /* PartnersLandingPageRouter.swift in Sources */,
 				7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */,
 				91086E462092024F0035DA1F /* SettingsInteractor.swift in Sources */,
 				912C9E39203C716400C1AA76 /* MyToBeVisionInteractor.swift in Sources */,
@@ -3969,10 +4010,12 @@
 				36B07E8D2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift in Sources */,
 				7F8DB4AB1FA2047D00DFE006 /* PartnersAnimation.swift in Sources */,
 				3666769E207CF69800D2F5AD /* VisionGeneratorWorker.swift in Sources */,
+				3649815520A33E6900F5046D /* PartnersLandingPagePresenter.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */,
 				91F5BE4E2097584E00E85A51 /* PermissionsCell.swift in Sources */,
 				7F5A25BF1F3CB71100A11466 /* DatabaseManager.swift in Sources */,
+				3649814F20A33D5300F5046D /* PartnersLandingPageInteractor.swift in Sources */,
 				CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */,
 				7FE151C81F3DDAE600DA8F37 /* DatabaseBuilder.swift in Sources */,
 				CB6BF031200CB28C0020241B /* RealmInterviewResult.swift in Sources */,
@@ -4025,6 +4068,7 @@
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,
 				CBC191131F603055009E483B /* URL+Convenience.swift in Sources */,
 				CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */,
+				3649814D20A33CF300F5046D /* PartnersLandingPageConfigurator.swift in Sources */,
 				CB3333EB20480E16009480DF /* SharePresenter.swift in Sources */,
 				CB94423D1FDFE55E00E2B122 /* SlideShowViewController.swift in Sources */,
 				CB84CDF71FA2345D00970E71 /* SyncStateObserver.swift in Sources */,

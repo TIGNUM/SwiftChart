@@ -9,11 +9,6 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
-    <customFonts key="customFonts">
-        <array key="Simple-Regular.ttf">
-            <string>Simple-Regular</string>
-        </array>
-    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PartnersViewController" customModule="QOT" customModuleProvider="target">
             <connections>
@@ -21,7 +16,6 @@
                 <outlet property="collectionView" destination="bo2-gv-Dx9" id="FJO-HL-T6k"/>
                 <outlet property="scrollView" destination="G8t-uY-VhO" id="DRZ-9I-zFd"/>
                 <outlet property="scrollViewContentHeightConstraint" destination="c8h-mi-ddb" id="fix-q5-uxg"/>
-                <outlet property="titleLabel" destination="y2n-30-ma0" id="kgX-qJ-Roi"/>
                 <outlet property="view" destination="iN0-l3-epB" id="oLy-x7-jlD"/>
             </connections>
         </placeholder>
@@ -39,14 +33,8 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1nz-kz-98h" userLabel="Content View">
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                             <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY SUPPORT TEAM" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="y2n-30-ma0">
-                                    <rect key="frame" x="26" y="0.0" width="323" height="43"/>
-                                    <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="36"/>
-                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="bo2-gv-Dx9" customClass="PartnersCollectionView" customModule="QOT" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="53" width="375" height="340"/>
+                                    <rect key="frame" x="0.0" y="44" width="375" height="340"/>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstAttribute="height" priority="500" constant="340" id="Etw-df-anw"/>
@@ -65,12 +53,9 @@
                             </subviews>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="bo2-gv-Dx9" secondAttribute="trailing" id="38c-Gc-mUY"/>
-                                <constraint firstItem="bo2-gv-Dx9" firstAttribute="top" secondItem="y2n-30-ma0" secondAttribute="bottom" constant="10" id="Vhe-hK-J3A"/>
-                                <constraint firstItem="y2n-30-ma0" firstAttribute="leading" secondItem="1nz-kz-98h" secondAttribute="leading" constant="26" id="WVY-Br-pyf"/>
                                 <constraint firstAttribute="height" constant="667" id="c8h-mi-ddb"/>
                                 <constraint firstItem="bo2-gv-Dx9" firstAttribute="leading" secondItem="1nz-kz-98h" secondAttribute="leading" id="foC-59-zgN"/>
-                                <constraint firstAttribute="trailing" secondItem="y2n-30-ma0" secondAttribute="trailing" constant="26" id="mat-pb-FOM"/>
-                                <constraint firstItem="y2n-30-ma0" firstAttribute="top" secondItem="1nz-kz-98h" secondAttribute="top" id="tpm-8F-UYx"/>
+                                <constraint firstItem="bo2-gv-Dx9" firstAttribute="top" secondItem="1nz-kz-98h" secondAttribute="top" constant="44" id="vLo-up-7VP"/>
                             </constraints>
                         </view>
                     </subviews>

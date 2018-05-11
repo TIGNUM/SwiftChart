@@ -146,8 +146,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     func application(_ application: UIApplication,
                      performActionFor shortcutItem: UIApplicationShortcutItem,
                      completionHandler: @escaping (Bool) -> Void) {
-        if shortcutHandlerDelegate?.shortcutHandler(self,
-                                                    canProcessShortcut: shortcutItem) == true {
+        if shortcutHandlerDelegate?.shortcutHandler(self, canProcessShortcut: shortcutItem) == true {
             handleShortcut(shortcutItem: shortcutItem)
         } else {
             unhandledShortCuts.append(shortcutItem)
