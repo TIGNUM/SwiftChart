@@ -76,12 +76,12 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
         var body = services.userService.myToBeVision()?.text
         let image = services.userService.myToBeVision()?.profileImageResource?.localURL ??
             services.userService.myToBeVision()?.profileImageResource?.remoteURL
-        if title == services.contentService.toBeVisionHeadlinePlaceholder() ||
-            title == services.contentService.toBeVisionToolingHeadlinePlaceholder() ||
-            body == services.contentService.toBeVisionMessagePlaceholder() {
-            isToBeVisionDone = false
+        if  title?.isTrimmedTextEmpty == true ||
+			body?.isTrimmedTextEmpty == true ||
+			body == services.contentService.toBeVisionMessagePlaceholder() {
             title = R.string.localized.guideToBeVisionNotFisishedTitle()
             body = R.string.localized.guideToBeVisionNotFisishedMessage()
+			isToBeVisionDone = false
         }
 
         let item = Guide.Item(status: isToBeVisionDone == true ? .done : .todo,

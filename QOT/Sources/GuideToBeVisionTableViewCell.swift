@@ -84,6 +84,6 @@ private extension GuideToBeVisionTableViewCell {
                                          lineSpacing: lineSpacing,
                                          textColor: textColor,
                                          alignment: alignment,
-                                         lineBreakMode: .byWordWrapping)
+                                         lineBreakMode: .byTruncatingTail)
     }
 }
