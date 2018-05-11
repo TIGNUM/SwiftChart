@@ -29,12 +29,6 @@ protocol GuideDailyPrepResult {
     var priority: Int { get }
 }
 
-protocol GuideToBeVisionItem {
-
-    var displayAt: Date { get }
-    var priority: Int { get }
-}
-
 protocol GuideNotificationItem {
 
     var localID: String { get }
@@ -49,6 +43,15 @@ protocol GuideLearnItem {
     var displayAt: (hour: Int, minute: Int)? { get }
     var block: Int { get }
     var priority: Int { get }
+}
+
+protocol GuideWhatsHotItem {
+	
+	var remoteID: String { get }
+	var createdAt: Date { get }
+	var viewed: Bool { get }
+	var title: String { get }
+	var imageURL: URL { get }
 }
 
 protocol GuideItemFactoryProtocol {
@@ -80,6 +83,7 @@ struct GuideGenerator {
     }
 
     func generateGuide(toBeVisionItem: Guide.Item,
+					   whatsHotItems: [(Date, Guide.Item)],
                        notificationItems: [GuideNotificationItem],
                        featureItems: [GuideLearnItem],
                        strategyItems: [GuideLearnItem],
@@ -93,6 +97,7 @@ struct GuideGenerator {
         let todaylocalStartOfDay = localCalendar.startOfDay(for: now)
         var days: [Date: Day] = [:]
 
+		addWhatsHotItems(from: whatsHotItems, to: &days, now: now, minDate: minDate)
         addToBeVisionItem(from: toBeVisionItem, to: &days)
         addNotificationItems(from: notificationItems, to: &days, now: now, minDate: minDate)
         addCompleteLearnItems(from: featureItems, to: &days, minDate: minDate, now: now)
@@ -158,12 +163,29 @@ struct GuideGenerator {
 
 private extension GuideGenerator {
 
-    /**
-     Adds ToBeVision item to today.
-     */
-    func addToBeVisionItem(from item: Guide.Item, to days: inout [Date: Day]) {
-        days.appendItem(item, hour: 24, minute: 00, priority: 0, localStartOfDay: localCalendar.startOfDay(for: Date()))
-    }
+	/**
+	Adds ToBeVision item to today.
+	*/
+	func addToBeVisionItem(from item: Guide.Item, to days: inout [Date: Day]) {
+		days.appendItem(item, hour: 24, minute: 00, priority: 0, localStartOfDay: localCalendar.startOfDay(for: Date()))
+	}
+	
+	/**
+	Adds latest WhatsHot item item to the day it's been created.
+	*/
+	func addWhatsHotItems(from items: [(Date, Guide.Item)], to days: inout [Date: Day], now: Date, minDate: Date) {
+		let localMinDate = localCalendar.startOfDay(for: minDate)
+		for item in items {
+			let displayDate = item.0
+			if displayDate <= now && displayDate >= localMinDate {
+				days.appendItem(item.1,
+								hour: 23,
+								minute: 59,
+								priority: 0,
+								localStartOfDay: localCalendar.startOfDay(for: item.0))
+			}
+		}
+	}
 
     /**
      Adds notifications items to `days` that are between `now` and `minDate`.

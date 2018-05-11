@@ -48,6 +48,7 @@ final class GuideWorker {
         // FIXME: We don't really want to do this on the main thread but the objects we use are using main thread
         let itemFactory = GuideItemFactory(services: services)
         let toBeVisionItem = itemFactory.makeToBeVisionItem()
+        let whatsHotItems = itemFactory.makeWhatsHotItem()
         let learnItems = services.guideService.learnItems()
         let allNotificationItems = services.guideService.notificationItems()
         // FIXME: Remove filter when server no longer returns daily prep type notification items
@@ -74,6 +75,7 @@ final class GuideWorker {
 
         do {
             let guide = try guideGenerator.generateGuide(toBeVisionItem: toBeVisionItem,
+														 whatsHotItems: whatsHotItems,
                                                          notificationItems: Array(notificationItems),
                                                          featureItems: Array(featureItems),
                                                          strategyItems: Array(strategyItems),

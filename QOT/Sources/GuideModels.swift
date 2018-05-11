@@ -24,6 +24,7 @@ struct Guide {
             case toBeVision(title: String, body: String, image: URL?)
             case text(String)
             case dailyPrep(items: [DailyPrepItem], feedback: String?)
+			case whatsHotArticle(title: String, body: String, image: URL?)
         }
 
         enum Status {
