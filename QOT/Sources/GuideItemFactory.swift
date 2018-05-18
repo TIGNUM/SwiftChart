@@ -198,9 +198,9 @@ private extension GuideItemFactory {
     func dailyPrepItems(questions: [Question], notification: NotificationConfigurationObject, services: Services) -> [Guide.DailyPrepItem] {
         var items: [Guide.DailyPrepItem] = []
         for question in questions {
-            let color = resultColor(question: question, resultValue: nil, services: services)
+            let key = question.key
             let title = question.dailyPrepTitle.replacingOccurrences(of: "#", with: "\n")
-            let item = Guide.DailyPrepItem(result: nil, resultColor: color, title: title)
+            let item = Guide.DailyPrepItem(result: nil, key: key ?? "", title: title)
             items.append(item)
         }
         return items
@@ -209,9 +209,8 @@ private extension GuideItemFactory {
     func dailyPrepItems(answers: [DailyPrepAnswerObject]) -> [Guide.DailyPrepItem] {
         var items: [Guide.DailyPrepItem] = []
         for answer in answers {
-            let color = answer.color
             let title = answer.title.replacingOccurrences(of: "#", with: "\n")
-            let item = Guide.DailyPrepItem(result: answer.value, resultColor: color, title: title)
+            let item = Guide.DailyPrepItem(result: answer.value, key: "", title: title)
             items.append(item)
         }
         return items
@@ -221,9 +220,9 @@ private extension GuideItemFactory {
         var items: [Guide.DailyPrepItem] = []
         for question in questions {
             let result = question.userAnswer(notification: notification).flatMap { Int($0.userAnswer) }
-            let color = resultColor(question: question, resultValue: result, services: services)
+            let key = question.key
             let title = question.dailyPrepTitle.replacingOccurrences(of: "#", with: "\n")
-            let item = Guide.DailyPrepItem(result: result, resultColor: color, title: title)
+            let item = Guide.DailyPrepItem(result: result, key: key ?? "", title: title)
             items.append(item)
         }
         return items

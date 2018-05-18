@@ -16,27 +16,10 @@ final class DailyPrepAnswerObject: Object {
 
     @objc private(set) dynamic var title: String = ""
 
-    convenience init(title: String, value: Int, colorState: String? = nil) {
+    convenience init(title: String, value: Int) {
         self.init()
 
         self.title = title
         self.value = value
-        self.colorState = colorState
-    }
-}
-
-extension DailyPrepAnswerObject {
-
-    var color: UIColor {
-        guard let colorState = colorState else { return .white90 }
-
-        switch colorState {
-        case "CRITICAL":
-            return .cherryRed
-        case "LOW":
-            return .gray
-        default:
-            return .white90
-        }
     }
 }

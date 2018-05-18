@@ -46,7 +46,7 @@ extension DailyPrepResultObject: OneWaySyncableDown {
         feedback = data.feedback
 
         let newAnswers = data.answers.map {
-            return DailyPrepAnswerObject(title: $0.title, value: $0.value, colorState: $0.colorState)
+            return DailyPrepAnswerObject(title: $0.title, value: $0.value)
         }
         objectStore.delete(answers)
         answers.append(objectsIn: newAnswers)

@@ -15,18 +15,16 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var feedbackLabel: UILabel!
     @IBOutlet private weak var typeLabel: UILabel!
-    @IBOutlet private weak var valueContainerView: UIView!
-    @IBOutlet private var valueViews: [UIView]!
-    @IBOutlet private var valueLabels: [UILabel]!
-    @IBOutlet private var valueTitleLabels: [UILabel]!
+    @IBOutlet private weak var loadLabel: UILabel!
+    @IBOutlet private weak var recoveryLabel: UILabel!
+    @IBOutlet private weak var loadProgressView: GuideProgressView!
+    @IBOutlet private weak var recoveryProgressView: GuideProgressView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         statusView.maskPathByRoundingCorners()
         containerView.corner(radius: 8)
-        valueContainerView.backgroundColor = .clear
-        valueViews.forEach { $0.backgroundColor = .clear }
         feedbackLabel.isHidden = true
         typeLabel.isHidden = true
     }
@@ -34,24 +32,19 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     override func prepareForReuse() {
         super.prepareForReuse()
 
-        valueViews.forEach { $0.isHidden = false }
-        titleLabel.attributedText = nil
         typeLabel.attributedText = nil
         feedbackLabel.attributedText = nil
     }
 
-    func configure(title: String?,
-                   type: String?,
+    func configure(type: String?,
                    dailyPrepFeedback: String?,
                    dailyPrepItems: [Guide.DailyPrepItem],
                    status: Guide.Item.Status) {
-        if let title = title {
-            titleLabel.attributedText = attributedText(letterSpacing: 1,
-                                                       text: title.uppercased(),
-                                                       font: Font.H4Identifier,
-                                                       textColor: .white,
-                                                       alignment: .left)
-        }
+        titleLabel.attributedText = attributedText(letterSpacing: 1,
+                                                   text: "DAILY PREP MINUTE",
+                                                   font: Font.H4Identifier,
+                                                   textColor: .white,
+                                                   alignment: .left)
 
         if let type = type {
             typeLabel.isHidden = false
@@ -72,22 +65,38 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                          alignment: .left)
         }
 
-        valueViews.filter { $0.tag > dailyPrepItems.count }.forEach { $0.isHidden = true }
-        for (index, item) in dailyPrepItems.prefix(5).enumerated() {
-            let resultText = item.result.map { String($0) } ?? "_"
-            valueLabels[index].attributedText = attributedText(letterSpacing: -1.1,
-                                                               text: resultText,
-                                                               font: Font.H3Subtitle,
-                                                               textColor: item.resultColor,
-                                                               alignment: .left)
+        loadLabel.attributedText = attributedText(letterSpacing: 1,
+                                                  text: "LOAD",
+                                                  font: Font.H4Identifier,
+                                                  textColor: .white,
+                                                  alignment: .left)
 
-            valueTitleLabels[index].attributedText = attributedText(letterSpacing: 0.2,
-                                                                    text: item.title,
-                                                                    font: Font.H7Title,
-                                                                    lineSpacing: 8,
-                                                                    textColor: .white70,
-                                                                    alignment: .left)
+        recoveryLabel.attributedText = attributedText(letterSpacing: 1,
+                                                      text: "RECOVERY",
+                                                      font: Font.H4Identifier,
+                                                      textColor: .white,
+                                                      alignment: .left)
+
+        var recoveryResults: Float = 0
+        var recoveryCounter: Float = 0
+        var loadResults: Float = 0
+        var loadCounter: Float = 0
+        for item in dailyPrepItems {
+            let title = item.title.lowercased()
+            if title.contains("quality") || title.contains("quantity") {
+                recoveryResults += Float(item.result ?? 1)
+                recoveryCounter += 1
+            } else if title.contains("length") || title.contains("load") || title.contains("pressure") {
+                loadResults += Float(item.result ?? 1)
+                loadCounter += 1
+            }
         }
+
+        setGradient(in: loadProgressView, with: [UIColor.green, UIColor.red])
+        setGradient(in: recoveryProgressView, with: [UIColor.red, UIColor.green])
+
+        loadProgressView.setProgress(invertedValue(for: loadResults / Float(loadCounter)), animated: true)
+        recoveryProgressView.setProgress(invertedValue(for: recoveryResults / Float(recoveryCounter)), animated: true)
 
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
@@ -111,5 +120,41 @@ private extension GuideDailyPrepTableViewCell {
                                          textColor: textColor,
                                          alignment: alignment,
                                          lineBreakMode: .byWordWrapping)
+    }
+
+    func setGradient(in progressView: UIProgressView, with colors: [UIColor]) {
+        let gradientView = UIView(frame: progressView.bounds)
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = progressView.bounds
+        gradientLayer.startPoint =  CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0)
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.locations = [0.0, 1.0]
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
+
+        let gradientImage = UIImage(view: gradientView)?.withHorizontallyFlippedOrientation()
+        progressView.trackImage = gradientImage
+        progressView.transform = CGAffineTransform(scaleX: -1.0, y: -1.0)
+        progressView.progressTintColor = UIColor(red: 0.11, green: 0.22, blue: 0.31, alpha: 1.0)
+    }
+
+    func invertedValue(for value: Float) -> Float {
+        return (10 - value) / 10
+    }
+}
+
+// MARK: - GuideProgressView
+
+final class GuideProgressView: UIProgressView {
+
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        dropShadow(color: .white, opacity: 0.2, offSet: .zero, radius: 6, scale: true)
+
+        let maskLayerPath = UIBezierPath(roundedRect: bounds, cornerRadius: 4.0)
+        let maskLayer = CAShapeLayer()
+        maskLayer.frame = bounds
+        maskLayer.path = maskLayerPath.cgPath
+        layer.mask = maskLayer
     }
 }

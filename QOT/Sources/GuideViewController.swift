@@ -179,8 +179,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .dailyPrep(let items, let feedback):
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: item.title,
-                           type: item.subtitle,
+            cell.configure(type: item.subtitle,
                            dailyPrepFeedback: feedback,
                            dailyPrepItems: items,
                            status: item.status)

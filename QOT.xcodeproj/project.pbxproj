@@ -265,6 +265,7 @@
 		91C262B91FED0B2D0075664E /* InterviewDialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B61FED0B2C0075664E /* InterviewDialView.swift */; };
 		91C262BA1FED0B2D0075664E /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */; };
 		91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */; };
+		91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */; };
 		91CC8E842063DE11005A7D17 /* BadgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC8E832063DE11005A7D17 /* BadgeManager.swift */; };
 		91CCC996206938EE00E0C251 /* EventDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCC995206938EE00E0C251 /* EventDate.swift */; };
 		91CD12ED2036F6F300E27822 /* MorningInterviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */; };
@@ -932,6 +933,7 @@
 		91C262B61FED0B2C0075664E /* InterviewDialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDialView.swift; sourceTree = "<group>"; };
 		91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
 		91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorningInterviewViewController.xib; sourceTree = "<group>"; };
+		91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Convenience.swift"; sourceTree = "<group>"; };
 		91CC8E832063DE11005A7D17 /* BadgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeManager.swift; sourceTree = "<group>"; };
 		91CCC995206938EE00E0C251 /* EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDate.swift; sourceTree = "<group>"; };
 		91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewCell.swift; sourceTree = "<group>"; };
@@ -2530,6 +2532,7 @@
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */,
 				91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */,
+				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -4050,6 +4053,7 @@
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
 				7F0F45B81FE922D400293942 /* MeetingsAverageNumberChart.swift in Sources */,
 				CCF19C591F6048600020D7B6 /* WebViewController.swift in Sources */,
+				91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */,
 				7F3A9CC21FCDC89D000F1744 /* ArticleCollectionViewData.swift in Sources */,
 				CBFED33A1F7938970006270D /* ChatItemQueue.swift in Sources */,
 				CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */,

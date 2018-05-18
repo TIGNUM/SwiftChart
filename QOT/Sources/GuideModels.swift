@@ -14,7 +14,7 @@ struct Guide {
     struct DailyPrepItem {
 
         let result: Int?
-        let resultColor: UIColor
+        let key: String
         let title: String
     }
 
