@@ -215,6 +215,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
         router?.open(item: item)
         interactor?.didTapItem(item)
+        if item.isWhatsHot == true && item.status == .todo { interactor?.didTapWhatsHotItem(item) }
     }
 
     private func itemAt(indexPath: IndexPath) -> Guide.Item {

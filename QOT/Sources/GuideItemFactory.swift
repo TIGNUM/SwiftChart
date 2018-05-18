@@ -63,6 +63,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
                           content: .text(content),
                           subtitle: R.string.localized.guideCardPreparationSubtitle(),
                           isDailyPrep: false,
+                          isWhatsHot: false,
                           link: link,
                           featureLink: nil,
                           featureButton: nil,
@@ -85,11 +86,12 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
 																	title: "",
 																	content: content,
 																	subtitle: "",
-																	isDailyPrep: false,
+                                                                    isDailyPrep: false,
+                                                                    isWhatsHot: true,
 																	link: link,
 																	featureLink: nil,
 																	featureButton: nil,
-																	identifier: "",
+																	identifier: article.localID,
 																	affectsTabBarBadge: true)))
 			}
 		}
@@ -115,6 +117,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
                           content: .toBeVision(title: title ?? "", body: body ?? "", image: image),
                           subtitle: "",
                           isDailyPrep: false,
+                          isWhatsHot: false,
                           link: URL(string: "qot://to-be-vision"),
                           featureLink: nil,
                           featureButton: nil,
@@ -134,6 +137,7 @@ private extension GuideItemFactory {
                           content: content,
                           subtitle: "",
                           isDailyPrep: true,
+                          isWhatsHot: false,
                           link: nil,
                           featureLink: nil,
                           featureButton: nil,
@@ -151,6 +155,7 @@ private extension GuideItemFactory {
                           content: content,
                           subtitle: "",
                           isDailyPrep: true,
+                          isWhatsHot: false,
                           link: URL(string: item.link),
                           featureLink: nil,
                           featureButton: nil,
@@ -164,6 +169,7 @@ private extension GuideItemFactory {
                           content: .text(item.body),
                           subtitle: item.displayType ?? "",
                           isDailyPrep: false,
+                          isWhatsHot: false,
                           link: URL(string: item.link),
                           featureLink: item.featureLink.flatMap { URL(string: $0) },
                           featureButton: item.featureButton,
@@ -188,6 +194,7 @@ private extension GuideItemFactory {
                           content: content,
                           subtitle: notification.displayType,
                           isDailyPrep: isDailyPrep,
+                          isWhatsHot: false,
                           link: URL(string: notification.link),
                           featureLink: nil,
                           featureButton: nil,
@@ -226,16 +233,6 @@ private extension GuideItemFactory {
             items.append(item)
         }
         return items
-    }
-
-    func resultColor(question: Question, resultValue: Int?, services: Services) -> UIColor {
-        guard let key = question.key,
-            let statistics = services.statisticsService.chart(key: key),
-            let resultValue = resultValue
-            else { return .white }
-        let color = statistics.color(value: Double(resultValue) * 0.1)
-
-        return color == .gray ? .white90 : color
     }
 
     func preparationItemStrings(status: Guide.Item.Status,

@@ -88,6 +88,10 @@ final class GuideWorker {
         }
     }
 
+    func markWhatsHotRead(item: Guide.Item) {
+        services.contentService.setContentCollectionViewed(localID: item.identifier)
+    }
+
     private var hasSyncedNecessaryItems: Bool {
         return syncStateObserver.hasSynced(RealmGuideItemLearn.self)
             && syncStateObserver.hasSynced(RealmGuideItemNotification.self)

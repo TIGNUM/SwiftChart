@@ -51,6 +51,7 @@ struct Guide {
         let content: Content
         let subtitle: String
         let isDailyPrep: Bool
+        let isWhatsHot: Bool
         let link: URL?
         let featureLink: URL?
         let featureButton: String?

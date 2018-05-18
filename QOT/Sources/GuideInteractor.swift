@@ -51,4 +51,8 @@ final class GuideInteractor: GuideInteractorInterface {
 
         worker.setItemCompleted(id: id)
     }
+
+    func didTapWhatsHotItem(_ item: Guide.Item) {
+        worker.markWhatsHotRead(item: item)
+    }
 }
