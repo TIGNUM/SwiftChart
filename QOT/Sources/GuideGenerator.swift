@@ -125,32 +125,55 @@ struct GuideGenerator {
                                message: factory.makeMessageText(with: message))
     }
 
+    /**
+     TODAY -> `ITEM` not finished
+
+     1.-> `DAILY PREP` -> "Let's start with a quick check in, so I can help support you today."
+     2.-> `LEARNING PLAN` -> "Let me help you dive deeper into today's strategy."
+     3.-> `WHATSHOT` -> Random between:
+        1. If you feel your pocket getting hot, it's probably because I just loaded a new What’s Hot article for you.
+        2. Check out today's What's Hot article.
+        3. Scroll down to check out What's Hot today.
+        4. Sustainable High Performance is all around us. Check out What's Hot to see where it showed up today.
+     4-> `TOBEVISION` -> Random between:
+        1. Today's a great day to create your why. Scroll down for help creating your To Be Vision.
+        2. Your self-image is what drives you to Rule Your Impact. Let me help you create yours today.
+        3. Feel the impact you can make by letting me help you create your To Be Vision.
+
+     TODAY -> All items finished
+
+     1.-> Random between:
+        1. How much impact would I have today if I were my To Be Vision?
+        2. Bring your best today by being your To Be Vision.
+     */
+
     private func guideMessage(today: Guide.Day?,
                               featureItems: [GuideLearnItem],
                               strategyItems: [GuideLearnItem],
                               notificationitems: [GuideNotificationItem]) -> Guide.Message {
 
-        // FIXME: Discuss logic with Dan
         var learnItems = featureItems
         learnItems.append(contentsOf: strategyItems)
 
-        if let today = today, today.hasIncompleteDailyPrep == true {
-            return .dailyPrep
+        if let today = today {
+            if today.hasIncompleteDailyPrep == true {
+                return .prepNotFinished
+            } else if today.hasIncompleteLearnItem == true {
+                return .learningPlanNotFinished
+            } else if today.hasIncompleteWhatsHotItem == true {
+                let messages: [Guide.Message] = [.whatsHotNotFinished1,
+                                                 .whatsHotNotFinished2,
+                                                 .whatsHotNotFinished3,
+                                                 .whatsHotNotFinished4]
+                return messages.item(at: messages.randomIndex)
+            } else if today.hasIncompleteToBeVision == true {
+                let messages: [Guide.Message] = [.toBeVisionNotFinished1, .toBeVisionNotFinished2]
+                return messages.item(at: messages.randomIndex)
+            }
         }
 
-        if learnItems.areAllComplete == true {
-            return .guideAllCompleted
-        }
-
-        if learnItems.areAllIncomplete {
-            return .welcome
-        }
-
-        if let today = today, today.items.areAllComplete {
-            return .guideTodayCompleted
-        }
-
-        return .dailyLearnPlan
+        let messages: [Guide.Message] = [.todayFinished1, .todayFinished2]
+        return messages.item(at: messages.randomIndex)
     }
 
     private func greeting(userName: String?, now: Date) -> String {
@@ -434,7 +457,19 @@ private extension Guide.Day {
     var hasIncompleteDailyPrep: Bool {
         return items.filter { $0.isDailyPrep == true && $0.isDailyPrepCompleted == false }.count > 0
     }
-}
+
+    var hasIncompleteLearnItem: Bool {
+        return items.filter { $0.isLearningPlan == true && $0.status == .todo }.count > 0
+    }
+
+    var hasIncompleteWhatsHotItem: Bool {
+        return items.filter { $0.isWhatsHot == true && $0.status == .todo }.count > 0
+    }
+
+    var hasIncompleteToBeVision: Bool {
+        return items.filter { $0.isToBeVision == true && $0.status == .todo }.count > 0
+    }
+ }
 
 private extension Array where Element == Guide.Item {
 

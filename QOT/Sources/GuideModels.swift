@@ -51,7 +51,9 @@ struct Guide {
         let content: Content
         let subtitle: String
         let isDailyPrep: Bool
+        let isLearningPlan: Bool
         let isWhatsHot: Bool
+        let isToBeVision: Bool
         let link: URL?
         let featureLink: URL?
         let featureButton: String?
@@ -77,11 +79,16 @@ struct Guide {
 
     enum Message: Int {
 
-        case welcome = 102978
-        case dailyLearnPlan = 102979
-        case dailyPrep = 103002
-        case guideAllCompleted = 103108
-        case guideTodayCompleted = 103107
+        case prepNotFinished = 103961
+        case learningPlanNotFinished = 103962
+        case whatsHotNotFinished1 = 103963
+        case whatsHotNotFinished2 = 103964
+        case whatsHotNotFinished3 = 103965
+        case whatsHotNotFinished4 = 103966
+        case toBeVisionNotFinished1 = 103967
+        case toBeVisionNotFinished2 = 103968
+        case todayFinished1 = 103970
+        case todayFinished2 = 103971
     }
 }
 
