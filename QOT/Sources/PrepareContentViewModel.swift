@@ -203,7 +203,7 @@ private extension PrepareContentViewModel {
     func setSubtitle() {
         subTitle = String(format: "%02d/%02d ",
                           checkedCount,
-                          items.count - 1) + R.string.localized.prepareContentTasks()
+                          items.dropFirst(4).count - 1) + R.string.localized.prepareContentTasks()
         items.remove(at: 0)
         items.insert(.titleItem(title: title,
                                 subTitle: subTitle,
