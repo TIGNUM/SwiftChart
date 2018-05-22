@@ -1,38 +1,44 @@
 //
-//  PartnersRouter.swift
+//  PartnersOverviewRouter.swift
 //  QOT
 //
-//  Created by Sam Wyndham on 01/03/2018.
-//  Copyright © 2018 Tignum. All rights reserved.
+//  Created by karmic on 15.05.18.
+//  Copyright (c) 2018 Tignum. All rights reserved.
 //
 
 import UIKit
 import MessageUI
 
-final class PartnersRouter: NSObject, PartnersRouterInterface {
+final class PartnersOverviewRouter: NSObject {
 
-    private let viewController: PartnersViewController
+    // MARK: - Properties
 
-    init(viewController: PartnersViewController) {
+    private let viewController: PartnersOverviewViewController
+
+    // MARK: - Init
+
+    init(viewController: PartnersOverviewViewController) {
         self.viewController = viewController
-        super.init()
     }
+}
 
-    func showAlert(_ alert: AlertType) {
-        viewController.showAlert(type: alert)
-    }
+// MARK: - PartnersOverviewRouterInterface
 
-    func showAlert(_ alert: UIAlertController) {
-        viewController.present(alert, animated: true)
-    }
+extension PartnersOverviewRouter: PartnersOverviewRouterInterface {
 
     func showShare(partner: Partners.Partner) {
-        guard let name = partner.name, let email = partner.email else {
-            assertionFailure("partner must have name and email if this method is called")
-            return
+        guard
+            let name = partner.name,
+            let surname = partner.surname,
+            let email = partner.email,
+            let relationship = partner.relationship else {
+                assertionFailure("partner must have name and email if this method is called")
+                return
         }
         let configurator = ShareConfigurator.make(partnerLocalID: partner.localID,
                                                   partnerName: name,
+                                                  partnerSurname: surname,
+                                                  partnerRelationship: relationship,
                                                   partnerImageURL: partner.imageURL,
                                                   partnerInitials: partner.initials,
                                                   partnerEmail: email)
@@ -42,10 +48,6 @@ final class PartnersRouter: NSObject, PartnersRouterInterface {
         navController.modalTransitionStyle = .crossDissolve
         navController.modalPresentationStyle = .custom
         viewController.present(navController, animated: true, completion: nil)
-    }
-
-    func dismiss() {
-        viewController.dismiss(animated: true, completion: nil)
     }
 
     func showMailComposer(email: String, subject: String, messageBody: String) {
@@ -61,11 +63,33 @@ final class PartnersRouter: NSObject, PartnersRouterInterface {
         composer.mailComposeDelegate = self
         viewController.present(composer, animated: true, completion: nil)
     }
+
+    func showEditPartner(partner: Partners.Partner) {
+        showAddPartner(partner: partner)
+    }
+
+    func showAlert(_ alert: AlertType) {
+        viewController.showAlert(type: alert)
+    }
+
+    func showAddPartner(partner: Partners.Partner) {
+        let configurator = PartnerEditConfigurator.make(partnerToEdit: partner)
+        let partnersController = PartnerEditViewController(configure: configurator)
+        partnersController.title = R.string.localized.meSectorMyWhyPartnersTitle().uppercased()
+        let navController = UINavigationController(rootViewController: partnersController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.transitioningDelegate = partnersController.transitioningDelegate
+        viewController.present(navController, animated: true, completion: nil)
+    }
+
+    func dismiss() {
+        viewController.dismiss(animated: true, completion: nil)
+    }
 }
 
 // MARK: - MFMailComposeViewControllerDelegate
 
-extension PartnersRouter: MFMailComposeViewControllerDelegate {
+extension PartnersOverviewRouter: MFMailComposeViewControllerDelegate {
 
     func mailComposeController(_ controller: MFMailComposeViewController,
                                didFinishWith result: MFMailComposeResult,

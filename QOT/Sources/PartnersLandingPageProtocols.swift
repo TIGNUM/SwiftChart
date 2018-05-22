@@ -11,6 +11,7 @@ import Foundation
 protocol PartnersLandingPageViewControllerInterface: class {
     func dismiss()
     func setup(partnersLandingPage: PartnersLandingPage)
+    func presentPartnersController(navigationController: UINavigationController)
 }
 
 protocol PartnersLandingPagePresenterInterface {

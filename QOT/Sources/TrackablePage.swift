@@ -243,7 +243,7 @@ extension MyUniverseViewController: TrackablePage {
     }
 }
 
-extension PartnersViewController: TrackablePage {
+extension PartnersOverviewViewController: TrackablePage {
     var pageName: PageName {
         return .myQOTPartners
     }

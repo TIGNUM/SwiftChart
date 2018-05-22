@@ -20,7 +20,10 @@ final class ShareWorker {
     let networkManager: NetworkManager
     let syncManager: SyncManager
     let name: String
+    let surname: String
     let imageURL: URL?
+    let relationship: String
+    let email: String
     let initials: String
     var sharingType: Partners.SharingType?
 
@@ -29,6 +32,9 @@ final class ShareWorker {
          networkManager: NetworkManager,
          syncManager: SyncManager,
          name: String,
+         surname: String,
+         relationship: String,
+         email: String,
          imageURL: URL?,
          initials: String) {
         self.services = services
@@ -36,6 +42,9 @@ final class ShareWorker {
         self.networkManager = networkManager
         self.syncManager = syncManager
         self.name = name
+        self.surname = surname
+        self.relationship = relationship
+        self.email = email
         self.imageURL = imageURL
         self.initials = initials
     }

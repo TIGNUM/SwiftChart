@@ -46,7 +46,7 @@ protocol GuideLearnItem {
 }
 
 protocol GuideWhatsHotItem {
-	
+
 	var remoteID: String { get }
 	var createdAt: Date { get }
 	var viewed: Bool { get }

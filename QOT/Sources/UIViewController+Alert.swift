@@ -41,6 +41,7 @@ enum AlertType {
     case prepareEditStrategy
     case changePermissions
     case toBeVisionActionSheet
+    case partnerIncomplete
 
     var title: String? {
         switch self {
@@ -68,6 +69,7 @@ enum AlertType {
              .canNotSendEmailWeeklyChoices: return R.string.localized.alertTitleCouldNotSendEmail()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationEditStrategy()
         case .changePermissions: return R.string.localized.alertTitleSettingsChangePermission()
+        case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteTitle()
         default: return nil
         }
     }
@@ -97,6 +99,7 @@ enum AlertType {
         case .canNotSendEmailWeeklyChoices: return R.string.localized.alertMessageCouldNotSendEmailWeeklyChoices()
         case .prepareEditStrategy: return R.string.localized.alertMessagePreparationEditStrategy()
         case .changePermissions: return R.string.localized.alertMessageSettingsChangePermission()
+        case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteMessage()
         default: return nil
         }
     }

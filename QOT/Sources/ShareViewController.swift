@@ -10,15 +10,21 @@ import UIKit
 
 final class ShareViewController: UIViewController, ShareViewControllerInterface {
 
-    @IBOutlet private weak var headerLabel: UILabel!
+    // MARK: - Properties
+
+    @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var relationshipLabel: UILabel!
+    @IBOutlet private weak var emailLabel: UILabel!
     @IBOutlet private weak var toBeVisionButton: UIButton!
     @IBOutlet private weak var weeklyChoicesButton: UIButton!
     @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var partnerImageView: UIImageView!
     @IBOutlet private weak var partnerInitialsLabel: UILabel!
+    @IBOutlet private var contentViews: [UIView]!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-
     var interactor: ShareInteractorInterface?
+
+    // MARK: - Init
 
     init(configure: Configurator<ShareViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -32,8 +38,9 @@ final class ShareViewController: UIViewController, ShareViewControllerInterface 
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        contentViews.forEach { $0.backgroundColor = .clear   }
         toBeVisionButton.isSelected = true
-        setupCloseButton()
+        setupNavigationItems()
         setupShareButton()
         syncShareButton()
         interactor?.viewDidLoad()
@@ -45,12 +52,13 @@ final class ShareViewController: UIViewController, ShareViewControllerInterface 
         syncShareButton()
     }
 
-    func setHeader(_ header: String) {
-        headerLabel.text = header
+    func setup(name: String, relationship: String, email: String) {
+        nameLabel.text = name.uppercased()
+        relationshipLabel.text = relationship.uppercased()
+        emailLabel.text = email.uppercased()
     }
 
     func setPartnerProfileImage(_ imageURL: URL?, initials: String) {
-        partnerImageView.applyHexagonMask()
         if imageURL != nil {
             partnerImageView.kf.setImage(with: imageURL)
         } else {
@@ -78,23 +86,36 @@ final class ShareViewController: UIViewController, ShareViewControllerInterface 
 
 private extension ShareViewController {
 
-    func setupCloseButton() {
+    func setupNavigationItems() {
         let closeButton = UIBarButtonItem(withImage: R.image.ic_close())
         closeButton.target = self
         closeButton.action = #selector(didTapClose(_ :))
-        navigationItem.rightBarButtonItem = closeButton
+        navigationItem.leftBarButtonItem = closeButton
+        let editButton = UIBarButtonItem(withImage: R.image.ic_edit())
+        editButton.target = self
+        editButton.action = #selector(didTapClose(_ :))
+        navigationItem.leftBarButtonItem = closeButton
     }
 
     func setupShareButton() {
-        shareButton.layer.borderWidth = 1
         shareButton.layer.cornerRadius = 20
     }
 
-    @objc private func didTapClose(_ sender: UIBarButtonItem) {
+    private func syncShareButton() {
+        shareButton.setTitleColor(.white, for: .normal)
+        shareButton.isEnabled = true
+    }
+}
+
+// MARK: - Actions
+
+private extension ShareViewController {
+
+    @objc func didTapClose(_ sender: UIBarButtonItem) {
         interactor?.didTapClose()
     }
 
-    @IBAction private func didTapOption(_ sender: UIButton) {
+    @IBAction func didTapOption(_ sender: UIButton) {
         guard sender.isSelected == false else { return }
         sender.isSelected = true
         var otherOptions = Set([toBeVisionButton, weeklyChoicesButton])
@@ -102,17 +123,11 @@ private extension ShareViewController {
         otherOptions.forEach { $0.isSelected = false }
     }
 
-    @IBAction private func didTapShareButton(_ sender: UIButton) {
+    @IBAction func didTapShareButton(_ sender: UIButton) {
         if toBeVisionButton.isSelected == true {
             interactor?.didTapShareToBeVision()
         } else if weeklyChoicesButton.isSelected == true {
             interactor?.didTapShareWeeklyChoices()
         }
-    }
-
-    private func syncShareButton() {
-        shareButton.setTitleColor(.lightGray, for: .normal)
-        shareButton.isEnabled = true
-        shareButton.layer.borderColor = UIColor.lightGray.cgColor
     }
 }

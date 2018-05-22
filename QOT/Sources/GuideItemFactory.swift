@@ -10,7 +10,7 @@ import UIKit
 import Rswift
 
 struct GuideItemFactory: GuideItemFactoryProtocol {
-	
+
     let services: Services
 
     func makeItem(with item: GuideDailyPrepResult) -> Guide.Item? {

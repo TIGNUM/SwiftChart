@@ -66,11 +66,6 @@ extension PrepareContentNotesViewController: UITextViewDelegate {
         syncPlaceholder()
         delegate?.didEditText(text: text, in: self)
     }
-
-    func textViewShouldBeginEditing(_ textView: UITextView) -> Bool {
-        textView.typingAttributes = PrepareContentNotesViewController.textViewAttributes.withStringKeys()
-        return true
-    }
 }
 
 private extension PrepareContentNotesViewController {

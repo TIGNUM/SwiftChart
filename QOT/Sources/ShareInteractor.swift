@@ -22,7 +22,11 @@ final class ShareInteractor: ShareInteractorInterface {
 
     func viewDidLoad() {
         worker.preUpSyncData()
-        presenter.setup(name: worker.name, imageURL: worker.imageURL, initials: worker.initials)
+        presenter.setup(name: worker.name + " " + worker.surname,
+                        relationship: worker.relationship,
+                        email: worker.email,
+                        imageURL: worker.imageURL,
+                        initials: worker.initials)
     }
 
     func didTapClose() {

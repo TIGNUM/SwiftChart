@@ -21,8 +21,10 @@ final class SharePresenter {
 
 extension SharePresenter: SharePresenterInterface {
 
-    func setup(name: String, imageURL: URL?, initials: String) {
-        viewController?.setHeader(R.string.localized.meSectorMyWhyPartnersShareHeader(name))
+    func setup(name: String, relationship: String, email: String, imageURL: URL?, initials: String) {
+        viewController?.setup(name: name,
+                              relationship: relationship,
+                              email: email)
         viewController?.setPartnerProfileImage(imageURL, initials: initials)
     }
 

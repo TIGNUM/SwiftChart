@@ -1,12 +1,12 @@
 //
-//  ShareModels.swift
+//  PartnersOverviewModel.swift
 //  QOT
 //
-//  Created by Sam Wyndham on 01/03/2018.
-//  Copyright © 2018 Tignum. All rights reserved.
+//  Created by karmic on 15.05.18.
+//  Copyright (c) 2018 Tignum. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 struct Partners {
 
@@ -46,7 +46,7 @@ struct Partners {
         }
 
         var isEmpty: Bool {
-            let nonEmptyStrings = [name, surname, relationship, email].compactMap { $0 }.filter { $0.isEmpty == false }
+            let nonEmptyStrings = [name, surname, email].compactMap { $0 }.filter { $0.isEmpty == false }
             return nonEmptyStrings.isEmpty && imageURL == nil
         }
 

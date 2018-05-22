@@ -30,13 +30,14 @@ extension PartnersLandingPageRouter: PartnersLandingPageRouterInterface {
     }
 
     func presentPartnersController() {
-        let configurator = PartnersConfigurator.make()
-        let viewController = PartnersViewController(configure: configurator)
-        viewController.title = R.string.localized.meSectorMyWhyPartnersTitle().uppercased()
-        let navController = UINavigationController(rootViewController: viewController)
+        let partner = Partners.Partner(localID: "", name: nil, surname: nil, relationship: nil, email: nil, imageURL: nil)
+        let configurator = PartnerEditConfigurator.make(partnerToEdit: partner)
+        let partnersController = PartnerEditViewController(configure: configurator)
+        partnersController.title = R.string.localized.meSectorMyWhyPartnersTitle().uppercased()
+        let navController = UINavigationController(rootViewController: partnersController)
         navController.navigationBar.applyDefaultStyle()
         navController.modalPresentationStyle = .custom
-        navController.transitioningDelegate = viewController.transitioningDelegate
-        viewController.present(navController, animated: true, completion: nil)
+        navController.transitioningDelegate = partnersController.transitioningDelegate
+        viewController.presentPartnersController(navigationController: navController)
     }
 }

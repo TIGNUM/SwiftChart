@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Simple-Regular.ttf">
+            <string>Simple-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PartnersOverviewViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="collectionView" destination="VjO-gE-fPi" id="CvP-u4-HHE"/>
+                <outlet property="titleLabel" destination="e9s-xA-NiW" id="oCF-bA-96b"/>
+                <outlet property="view" destination="Qxo-So-Ive" id="Sf4-Go-NrR"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Qxo-So-Ive">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundMyToBeVision" translatesAutoresizingMaskIntoConstraints="NO" id="S3n-zb-4gI">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you share your progress on QOT, you increases your chances of positive change by 32%." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9s-xA-NiW">
+                    <rect key="frame" x="24" y="108" width="327" height="95.5"/>
+                    <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VjO-gE-fPi">
+                    <rect key="frame" x="0.0" y="243.5" width="375" height="383.5"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="25" minimumInteritemSpacing="25" id="sP6-w9-sHM">
+                        <size key="itemSize" width="215" height="383"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="25" minY="0.0" maxX="25" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="USS-Xg-v6Z"/>
+                        <outlet property="delegate" destination="-1" id="EKj-Ig-0ba"/>
+                    </connections>
+                </collectionView>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="ZTD-8X-fNt" firstAttribute="bottom" secondItem="VjO-gE-fPi" secondAttribute="bottom" constant="40" id="43x-bb-XS8"/>
+                <constraint firstItem="e9s-xA-NiW" firstAttribute="top" secondItem="Qxo-So-Ive" secondAttribute="top" constant="108" id="4Q9-z4-7dH"/>
+                <constraint firstItem="VjO-gE-fPi" firstAttribute="trailing" secondItem="ZTD-8X-fNt" secondAttribute="trailing" id="9eS-h0-MJE"/>
+                <constraint firstItem="S3n-zb-4gI" firstAttribute="top" secondItem="Qxo-So-Ive" secondAttribute="top" id="EG7-6L-Mvf"/>
+                <constraint firstAttribute="trailing" secondItem="e9s-xA-NiW" secondAttribute="trailing" constant="24" id="PPC-Vj-bzm"/>
+                <constraint firstItem="e9s-xA-NiW" firstAttribute="leading" secondItem="ZTD-8X-fNt" secondAttribute="leading" constant="24" id="YLi-Xx-IjK"/>
+                <constraint firstAttribute="bottom" secondItem="S3n-zb-4gI" secondAttribute="bottom" id="bKR-xt-kJ5"/>
+                <constraint firstItem="VjO-gE-fPi" firstAttribute="top" secondItem="e9s-xA-NiW" secondAttribute="bottom" constant="40" id="hBX-SF-Qtj"/>
+                <constraint firstItem="S3n-zb-4gI" firstAttribute="leading" secondItem="Qxo-So-Ive" secondAttribute="leading" id="ohs-7f-Ewy"/>
+                <constraint firstAttribute="trailing" secondItem="S3n-zb-4gI" secondAttribute="trailing" id="sN3-ii-QbF"/>
+                <constraint firstItem="VjO-gE-fPi" firstAttribute="leading" secondItem="ZTD-8X-fNt" secondAttribute="leading" id="vXi-AS-uAZ"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTD-8X-fNt"/>
+            <point key="canvasLocation" x="49.5" y="-1.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="backgroundMyToBeVision" width="375" height="667"/>
+    </resources>
+</document>

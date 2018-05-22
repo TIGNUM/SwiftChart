@@ -205,6 +205,16 @@ extension UIColor {
         return UIColor(red: 85/255, green: 90/255, blue: 94/255, alpha: 1)
     }
 
+    /// UIColor(red: 102/255, green: 116/255, blue: 129/255, alpha: 0.3)
+    class var battleshipGrey30: UIColor {
+        return UIColor(red: 102/255, green: 116/255, blue: 129/255, alpha: 0.3)
+    }
+
+    /// UIColor(red: 102/255, green: 116/255, blue: 129/255, alpha: 1)
+    class var battleshipGrey: UIColor {
+        return UIColor(red: 34/255, green: 39/255, blue: 48/255, alpha: 1)
+    }
+
     static var random: UIColor {
         return UIColor(red: randomNumber, green: randomNumber, blue: randomNumber, alpha: 1.0)
     }

@@ -1,28 +1,38 @@
 //
-//  PartnersWorker.swift
+//  PartnerEditWorker.swift
 //  QOT
 //
-//  Created by Sam Wyndham on 01/03/2018.
-//  Copyright © 2018 Tignum. All rights reserved.
+//  Created by karmic on 12.05.18.
+//  Copyright (c) 2018 Tignum. All rights reserved.
 //
 
 import UIKit
 
-final class PartnersWorker {
+final class PartnerEditWorker {
+
+    // MARK: - Public
 
     enum Result {
         case success(Share.EmailContent)
         case failure(Error)
     }
 
-    let services: Services
-    let syncManager: SyncManager
-    let networkManager: NetworkManager
+    // MARK: - Properties
 
-    init(services: Services, syncManager: SyncManager, networkManager: NetworkManager) {
+    private let services: Services
+    private let syncManager: SyncManager
+    private let networkManager: NetworkManager
+    private let partner: Partners.Partner
+
+    init(services: Services, syncManager: SyncManager, networkManager: NetworkManager, partner: Partners.Partner) {
         self.services = services
         self.syncManager = syncManager
         self.networkManager = networkManager
+        self.partner = partner
+    }
+
+    var partnerToEdit: Partners.Partner {
+        return partner
     }
 
     func partners() -> [Partners.Partner] {
@@ -35,21 +45,19 @@ final class PartnersWorker {
         return partners
     }
 
-    func savePartners(_ partners: [Partners.Partner]) {
+    func savePartner(_ partner: Partners.Partner) {
         do {
             let realm = try services.realmProvider.realm()
-            for partner in partners {
-                guard partner.isValid else { continue }
-                if let existing = realm.syncableObject(ofType: Partner.self, localID: partner.localID) {
-                    try realm.write {
-                        existing.update(partner)
-                    }
-                } else {
-                    let new = Partner()
-                    try realm.write {
-                        realm.add(new)
-                        new.update(partner)
-                    }
+            guard partner.isValid == true else { return }
+            if let existing = realm.syncableObject(ofType: Partner.self, localID: partner.localID) {
+                try realm.write {
+                    existing.update(partner)
+                }
+            } else {
+                let new = Partner()
+                try realm.write {
+                    realm.add(new)
+                    new.update(partner)
                 }
             }
         } catch {
@@ -64,9 +72,9 @@ final class PartnersWorker {
     }
 }
 
-// MARK: - Private
+// MARK: - Email Content
 
-private extension PartnersWorker {
+private extension PartnerEditWorker {
 
     private func emailContent(sharingType: Partners.SharingType,
                               partner: Partners.Partner,
@@ -92,7 +100,7 @@ private extension PartnersWorker {
     }
 }
 
-private extension Partners.Partner {
+extension Partners.Partner {
 
     convenience init() {
         self.init(localID: UUID().uuidString,

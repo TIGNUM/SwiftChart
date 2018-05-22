@@ -25,7 +25,7 @@ final class ImagePickerController {
     let imageSize: ImageSize
     let permissionsManager: PermissionsManager
     let imagePicker: ImagePicker
-    let imageCropper: ImageCropper
+    var imageCropper: ImageCropper?
     weak var viewController: UIViewController?
     weak var delegate: ImagePickerControllerDelegate?
 
@@ -37,9 +37,20 @@ final class ImagePickerController {
         self.imageSize = imageSize
         self.permissionsManager = permissionsManager
         imagePicker = ImagePicker()
-        imageCropper = ImageCropper(shape: cropShape)
+        let imageCropper = ImageCropper(shape: cropShape)
         imagePicker.delegte = self
         imageCropper.delegate = self
+        self.imageCropper = imageCropper
+    }
+
+    init(imageQuality: ImageQuality,
+         imageSize: ImageSize,
+         permissionsManager: PermissionsManager) {
+        self.imageQuality = imageQuality
+        self.imageSize = imageSize
+        self.permissionsManager = permissionsManager
+        imagePicker = ImagePicker()
+        imagePicker.delegte = self
     }
 
     func show(in viewController: UIViewController, completion: (() -> Void)? = nil) {
@@ -160,7 +171,12 @@ extension ImagePickerController: ImagePickerDelegate {
                 let compressedImage = image.withQuality(self.imageQuality, size: self.imageSize) else {
                 return
             }
-            self.imageCropper.crop(compressedImage, in: viewController)
+
+            if let imageCropper = self.imageCropper {
+                imageCropper.crop(compressedImage, in: viewController)
+            } else {
+                self.delegate?.imagePickerController(self, selectedImage: image)
+            }
         }
     }
 

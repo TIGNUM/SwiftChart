@@ -45,8 +45,8 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
 private extension PartnersCoordinator {
 
     func startPartnersViewController() {
-        let configurator = PartnersConfigurator.make()
-        let viewController = PartnersViewController(configure: configurator)
+        let configurator = PartnersOverviewConfigurator.make()
+        let viewController = PartnersOverviewViewController(configure: configurator)
         presentController(viewController)
     }
 

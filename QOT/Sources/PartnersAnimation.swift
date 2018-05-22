@@ -31,7 +31,7 @@ final class PartnersAnimation: NSObject {
     private func getPartnersViewController(_ viewController: UIViewController) -> PartnersAnimationViewController? {
         if
             let navigationController = viewController as? UINavigationController,
-            let childViewController = navigationController.viewControllers.first as? PartnersViewController {
+            let childViewController = navigationController.viewControllers.first as? PartnersOverviewViewController {
                 return childViewController
         } else if
             let navigationController = viewController as? UINavigationController,

@@ -95,4 +95,8 @@ extension PartnersLandingPageViewController: PartnersLandingPageViewControllerIn
     func setup(partnersLandingPage: PartnersLandingPage) {
         setupView(partnersLandingPage: partnersLandingPage)
     }
+
+    func presentPartnersController(navigationController: UINavigationController) {
+        present(navigationController, animated: true, completion: nil)
+    }
 }
