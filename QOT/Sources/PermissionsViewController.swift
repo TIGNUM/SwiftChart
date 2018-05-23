@@ -40,6 +40,7 @@ final class PermissionsViewController: UIViewController {
         tableView.dataSource = self
         tableView.registerDequeueable(PermissionsCell.self)
         setupView()
+        NotificationCenter.default.addObserver(self, selector: #selector(reload), name: .UIApplicationDidBecomeActive, object: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -58,6 +59,10 @@ final class PermissionsViewController: UIViewController {
 // MARK: - Private
 
 private extension PermissionsViewController {
+
+    @objc func reload() {
+        tableView.reloadData()
+    }
 
     func setupView() {
         navigationItem.title = R.string.localized.sidebarTitlePermission().uppercased()
