@@ -1579,12 +1579,12 @@
 		7F3A9CCA1FCEFED9000F1744 /* My Universe */ = {
 			isa = PBXGroup;
 			children = (
-				7F3A9CC81FCEFED1000F1744 /* MyUniverseViewController.swift */,
-				7F3A9CD11FCF019B000F1744 /* MyUniverseViewController.xib */,
 				7FCF0EF81FD9777100138D77 /* MyUniverseContentView.swift */,
-				7FCF0EF61FD9774C00138D77 /* MyUniverseContentView.xib */,
-				7F3A9CCB1FCEFEFB000F1744 /* MyUniverseViewData.swift */,
 				7F3A9CCD1FCEFF05000F1744 /* MyUniverseProvider.swift */,
+				7F3A9CC81FCEFED1000F1744 /* MyUniverseViewController.swift */,
+				7F3A9CCB1FCEFEFB000F1744 /* MyUniverseViewData.swift */,
+				7FCF0EF61FD9774C00138D77 /* MyUniverseContentView.xib */,
+				7F3A9CD11FCF019B000F1744 /* MyUniverseViewController.xib */,
 			);
 			name = "My Universe";
 			sourceTree = "<group>";

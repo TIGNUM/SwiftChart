@@ -9,27 +9,28 @@
 import Foundation
 
 protocol PartnersOverviewViewControllerInterface: class {
-    func setup(partners: [Partners.Partner])
-    func reload(partner: Partners.Partner)
+    func setup(partners: [Partner])
+    func reload(partner: Partner)
 }
 
 protocol PartnersOverviewPresenterInterface {
-    func setup(partners: [Partners.Partner])
-    func reload(partner: Partners.Partner)
+    func setup(partners: [Partner])
+    func reload(partner: Partner)
 }
 
 protocol PartnersOverviewInteractorInterface: Interactor {
     func didTapClose()
-    func didTapShare(partner: Partners.Partner)
-    func addPartner(partner: Partners.Partner)
-    func editPartner(partner: Partners.Partner)
+    func didTapShare(partner: Partner)
+    func addPartner(partner: Partner)
+    func editPartner(partner: Partner)
+    func reload()
 }
 
 protocol PartnersOverviewRouterInterface {
     func dismiss()
-    func showShare(partner: Partners.Partner)
+    func showShare(partner: Partner)
     func showMailComposer(email: String, subject: String, messageBody: String)
-    func showAddPartner(partner: Partners.Partner)
-    func showEditPartner(partner: Partners.Partner)
+    func showAddPartner(partner: Partner)
+    func showEditPartner(partner: Partner)
     func showAlert(_ alert: AlertType)
 }

@@ -351,9 +351,10 @@ extension MyUniverseViewController: NavigationItemDelegate {
 private extension UIButton {
 
     func configure(for partner: MyUniverseViewData.Partner, placeholder: UIImage?) {
+        contentMode = .scaleAspectFill
         if let url = partner.imageURL {
             setTitle(nil, for: .normal)
-            kf.setBackgroundImage(with: url, for: .normal, placeholder: placeholder)
+            kf.setImage(with: url, for: .normal, placeholder: placeholder)
         } else if partner.initials.isEmpty == false {
             setBackgroundImage(R.image.partnerEmpty(), for: .normal)
             setTitle(partner.initials, for: .normal)

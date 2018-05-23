@@ -29,7 +29,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .plain,
-                           contentInsets: UIEdgeInsets(top: -64, left: 0, bottom: 16, right: 0),
+                           contentInsets: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0),
                            estimatedRowHeight: 100,
                            delegate: self,
                            dataSource: self,

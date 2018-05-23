@@ -17,10 +17,11 @@ final class PartnersOverviewCollectionViewCell: UICollectionViewCell, Dequeueabl
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var shareStatusView: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var initialsLabel: UILabel!
     @IBOutlet private weak var relationshipLabel: UILabel!
     @IBOutlet private weak var addPartnerLabel: UILabel!
     @IBOutlet private weak var shareButton: UIButton!
-    private var partner: Partners.Partner?
+    private var partner: Partner?
     private var interactor: PartnersOverviewInteractorInterface?
     private var partnerExist = true
 
@@ -39,7 +40,7 @@ final class PartnersOverviewCollectionViewCell: UICollectionViewCell, Dequeueabl
                    relationship: String?,
                    profileImage: URL?,
                    shareStatus: String?,
-                   partner: Partners.Partner,
+                   partner: Partner,
                    interactor: PartnersOverviewInteractorInterface?) {
         self.partner = partner
         self.interactor = interactor
@@ -90,6 +91,15 @@ private extension PartnersOverviewCollectionViewCell {
         nameLabel.attributedText = attributedName
         if let imageURL = profileImage {
             profileImageView.kf.setImage(with: imageURL)
+            initialsLabel.isHidden = true
+        } else {
+            initialsLabel.isHidden = false
+            initialsLabel.attributedText = NSAttributedString(string: partner?.initials ?? "",
+                                                              letterSpacing: 2,
+                                                              font: .simpleFont(ofSize: 36),
+                                                              lineSpacing: 2,
+                                                              textColor: .white,
+                                                              alignment: .center)
         }
     }
 
@@ -98,6 +108,7 @@ private extension PartnersOverviewCollectionViewCell {
         nameLabel.isHidden = true
         relationshipLabel.isHidden = true
         addPartnerLabel.isHidden = false
+        initialsLabel.isHidden = true
         let attributedButtonTitle = NSAttributedString(string: "Add partner",
                                                        letterSpacing: 1,
                                                        font: .bentonBookFont(ofSize: 16),

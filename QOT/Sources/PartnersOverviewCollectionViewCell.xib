@@ -45,6 +45,12 @@
                                     <constraint firstAttribute="height" constant="16" id="U1R-jZ-hlS"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFt-RX-EdQ">
+                                <rect key="frame" x="107" y="108.5" width="0.0" height="0.0"/>
+                                <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="36"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.34509803921568627" green="0.34509803921568627" blue="0.35686274509803922" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -52,7 +58,9 @@
                             <constraint firstAttribute="trailing" secondItem="nYM-5t-hGm" secondAttribute="trailing" id="JtP-Ni-ff9"/>
                             <constraint firstItem="nYM-5t-hGm" firstAttribute="leading" secondItem="cOX-ob-16S" secondAttribute="leading" id="RJ9-zq-0cb"/>
                             <constraint firstAttribute="bottom" secondItem="nYM-5t-hGm" secondAttribute="bottom" id="UdG-Vu-uX8"/>
+                            <constraint firstItem="ZFt-RX-EdQ" firstAttribute="centerY" secondItem="cOX-ob-16S" secondAttribute="centerY" id="ZWE-eA-DJO"/>
                             <constraint firstItem="nYM-5t-hGm" firstAttribute="top" secondItem="cOX-ob-16S" secondAttribute="top" id="iud-ZU-hVE"/>
+                            <constraint firstItem="ZFt-RX-EdQ" firstAttribute="centerX" secondItem="cOX-ob-16S" secondAttribute="centerX" id="q3D-ob-PXK"/>
                             <constraint firstAttribute="bottom" secondItem="Eaz-Ks-7Ob" secondAttribute="bottom" constant="8" id="ssb-Aq-cxf"/>
                         </constraints>
                     </view>
@@ -139,6 +147,7 @@
             <connections>
                 <outlet property="addPartnerLabel" destination="T9q-H3-xKv" id="cRb-CQ-hHJ"/>
                 <outlet property="bottomContentView" destination="JkD-XK-7UZ" id="hsR-EJ-2sN"/>
+                <outlet property="initialsLabel" destination="ZFt-RX-EdQ" id="Frp-Ds-tiG"/>
                 <outlet property="nameLabel" destination="9sU-m3-0dJ" id="xnT-yx-hhW"/>
                 <outlet property="profileImageView" destination="nYM-5t-hGm" id="2Fk-ex-Wxd"/>
                 <outlet property="relationshipLabel" destination="CKx-ds-UgF" id="xeJ-2a-PCE"/>

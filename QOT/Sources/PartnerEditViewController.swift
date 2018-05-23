@@ -120,6 +120,8 @@ extension PartnerEditViewController: PartnerEditViewControllerInterface {
     }
 
     func dismiss() {
+        let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PartnerEditTextFieldCell
+        cell?.endEditing(true)
         dismiss(animated: true, completion: nil)
     }
 }
