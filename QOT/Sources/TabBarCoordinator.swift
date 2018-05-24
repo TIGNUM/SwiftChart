@@ -88,11 +88,11 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let guideViewController = GuideViewController(configurator: GuideConfigurator.make())
         guideViewController.title = R.string.localized.topTabBarItemTitleGuide()
 
-        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [guideViewController],
                                                          topBarDelegate: self,
-                                                         leftButton: UIBarButtonItem.info,
-                                                         rightButton: rightButton)
+                                                         leftButton: leftButton,
+                                                         rightButton: UIBarButtonItem.info)
         let config = tabBarItemConfig(title: "GUIDE", tag: 0)
         topTabBarController.tabBarItem = TabBarItem(config: config)
         return topTabBarController
@@ -103,12 +103,12 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
-        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let navController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
-                                                         leftButton: UIBarButtonItem.info,
-                                                         rightButton: rightButton)
+                                                         leftButton: leftButton,
+                                                         rightButton: UIBarButtonItem.info)
         var config = TabBarItem.Config.default
         config.title = R.string.localized.tabBarItemLearn()
         config.tag = 1
@@ -144,14 +144,14 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     lazy var topTabBarControllerPrepare: UINavigationController = {
-        let rightButton = UIBarButtonItem(withImage: R.image.ic_menu())
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [prepareChatViewController,
                                                                      myPrepViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          backgroundImage: R.image.myprep(),
-                                                         leftButton: UIBarButtonItem.info,
-                                                         rightButton: rightButton)
+                                                         leftButton: leftButton,
+                                                         rightButton: UIBarButtonItem.info)
         var config = TabBarItem.Config.default
         config.title = R.string.localized.tabBarItemPrepare()
         config.tag = 3
@@ -345,12 +345,22 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapLeftBarButtonItem buttonItem: UIBarButtonItem, in topnavigationBar: NavigationItem) {
-        showHelp(.me)
+    func myUniverseViewController(_ viewController: MyUniverseViewController,
+                                  didTapLeftBarButtonItem buttonItem: UIBarButtonItem,
+                                  in topnavigationBar: NavigationItem) {
+        let coordinator = SidebarCoordinator(root: tabBarController,
+                                             services: services,
+                                             syncManager: syncManager,
+                                             networkManager: networkManager,
+                                             permissionsManager: permissionsManager,
+                                             destination: nil)
+        startChild(child: coordinator)
     }
 
-    func myUniverseViewController(_ viewController: MyUniverseViewController, didTapRightBarButtonItem buttonItem: UIBarButtonItem, in topnavigationBar: NavigationItem) {
-        self.navigationItem(topnavigationBar, rightButtonPressed: buttonItem)
+    func myUniverseViewController(_ viewController: MyUniverseViewController,
+                                  didTapRightBarButtonItem buttonItem: UIBarButtonItem,
+                                  in topnavigationBar: NavigationItem) {
+        showHelp(.me)
     }
 }
 
@@ -392,16 +402,13 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
  extension TabBarCoordinator: NavigationItemDelegate {
 
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
-        switch selectedIndex.value {
-        case 0:
-            showHelp(.guide)
-        case 1:
-            showHelp(.learn)
-        case 3:
-            showHelp(.prepare)
-        default:
-            assertionFailure("unhandled switch")
-        }
+        let coordinator = SidebarCoordinator(root: tabBarController,
+                                             services: services,
+                                             syncManager: syncManager,
+                                             networkManager: networkManager,
+                                             permissionsManager: permissionsManager,
+                                             destination: nil)
+        startChild(child: coordinator)
     }
 
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
@@ -415,13 +422,18 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-        let coordinator = SidebarCoordinator(root: tabBarController,
-                                             services: services,
-                                             syncManager: syncManager,
-                                             networkManager: networkManager,
-                                             permissionsManager: permissionsManager,
-                                             destination: nil)
-        startChild(child: coordinator)
+        switch selectedIndex.value {
+        case 0:
+            showHelp(.guide)
+        case 1:
+            showHelp(.learn)
+        case 2:
+            showHelp(.me)
+        case 3:
+            showHelp(.prepare)
+        default:
+            assertionFailure("unhandled switch")
+        }
     }
 }
 

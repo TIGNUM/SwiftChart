@@ -57,7 +57,7 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         self.readMoreID = readMoreID
         self.contentText = contentText
         self.displayMode = displayMode
-        iconImageView.image = isExpanded ? R.image.prepareContentMinusIcon() : R.image.prepareContentPlusIcon()
+        syncButtonImage(isExpanded: isExpanded)
 
         switch displayMode {
         case .normal:
@@ -72,8 +72,7 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         layoutIfNeeded()
     }
 
-    func updateContent(isExpanded: Bool) {
-
+    private func updateContent(isExpanded: Bool) {
         if isExpanded {
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
@@ -90,7 +89,9 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         }
     }
 
-    func setExpandImageState(isExpanded: Bool) {
+    private func syncButtonImage(isExpanded: Bool) {
+        let image = R.image.ic_back()?.tintedImage(color: .gray).withHorizontallyFlippedOrientation()
+        iconImageView.image = isExpanded ? image?.rotate(byAngle: 3 * .pi / 2) : image
     }
 
     @objc func readMore() {

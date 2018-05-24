@@ -53,10 +53,9 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="quf-Z2-jD9">
-                                    <rect key="frame" x="276" y="0.0" width="44" height="44"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="44" height="44"/>
                                     <constraints>
-                                        <constraint firstAttribute="width" constant="44" id="YyE-jE-Brp"/>
-                                        <constraint firstAttribute="height" constant="44" id="tQ3-gP-1Zt"/>
+                                        <constraint firstAttribute="width" constant="44" id="0us-vu-4pN"/>
                                     </constraints>
                                     <state key="normal" image="ic_close"/>
                                     <connections>
@@ -65,12 +64,13 @@
                                 </button>
                             </subviews>
                             <constraints>
-                                <constraint firstItem="quf-Z2-jD9" firstAttribute="leading" secondItem="mz6-zP-rT7" secondAttribute="trailing" id="Be6-eO-l2r"/>
                                 <constraint firstItem="mz6-zP-rT7" firstAttribute="centerX" secondItem="28Q-Hq-caC" secondAttribute="centerX" id="C40-Re-guj"/>
                                 <constraint firstItem="mz6-zP-rT7" firstAttribute="centerY" secondItem="28Q-Hq-caC" secondAttribute="centerY" id="CGr-9q-REK"/>
+                                <constraint firstItem="quf-Z2-jD9" firstAttribute="top" secondItem="28Q-Hq-caC" secondAttribute="top" id="Y1k-wQ-jcf"/>
                                 <constraint firstAttribute="height" constant="44" id="YqK-Va-pfi"/>
-                                <constraint firstAttribute="trailing" secondItem="quf-Z2-jD9" secondAttribute="trailing" id="jyj-P8-cPI"/>
-                                <constraint firstItem="quf-Z2-jD9" firstAttribute="centerY" secondItem="28Q-Hq-caC" secondAttribute="centerY" id="oeb-3M-cKB"/>
+                                <constraint firstItem="quf-Z2-jD9" firstAttribute="centerY" secondItem="mz6-zP-rT7" secondAttribute="centerY" id="a8O-pT-N3y"/>
+                                <constraint firstItem="quf-Z2-jD9" firstAttribute="leading" secondItem="28Q-Hq-caC" secondAttribute="leading" id="sEi-dY-roM"/>
+                                <constraint firstItem="mz6-zP-rT7" firstAttribute="leading" secondItem="quf-Z2-jD9" secondAttribute="trailing" id="xy7-Xi-5CN"/>
                             </constraints>
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How would you rate the quality of your sleep last night ?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PEM-dv-ugZ">
@@ -109,7 +109,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Feel exhausted" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="pcO-UT-df7">
-                                            <rect key="frame" x="21.5" y="27" width="79.5" height="13.5"/>
+                                            <rect key="frame" x="21" y="27" width="79.5" height="13.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" red="0.41176470590000003" green="0.41960784309999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>

@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -32,19 +33,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUV-a7-a3C">
-                    <rect key="frame" x="322" y="18" width="44" height="44"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="44" id="MbO-sl-Rob"/>
-                        <constraint firstAttribute="width" constant="44" id="gr5-wh-rkI"/>
-                    </constraints>
-                    <state key="normal" image="ic_close"/>
-                    <connections>
-                        <action selector="didTapClose:" destination="-1" eventType="touchUpInside" id="QuM-lx-C8D"/>
-                    </connections>
-                </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD THIS PREPARATION TO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Axp-yU-5xs">
-                    <rect key="frame" x="86.5" y="31" width="202.5" height="19"/>
+                    <rect key="frame" x="87" y="31" width="201" height="19"/>
                     <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -53,19 +43,19 @@
                     <rect key="frame" x="33" y="86" width="309" height="581"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY PREP LIST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="k6y-BK-ZYs">
-                            <rect key="frame" x="0.0" y="15" width="309" height="10.5"/>
+                            <rect key="frame" x="0.0" y="15" width="309" height="11"/>
                             <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="11"/>
                             <color key="textColor" red="0.60400271419999996" green="0.6039097309" blue="0.60789734129999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MY PREP LIST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a2W-OG-sO4">
-                            <rect key="frame" x="0.0" y="464" width="309" height="10.5"/>
+                            <rect key="frame" x="0.0" y="464" width="309" height="11"/>
                             <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="11"/>
                             <color key="textColor" red="0.60400271419999996" green="0.6039097309" blue="0.60789734129999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GqB-Kc-5ZW">
-                            <rect key="frame" x="0.0" y="35.5" width="309" height="1"/>
+                            <rect key="frame" x="0.0" y="36" width="309" height="1"/>
                             <color key="backgroundColor" red="0.60400271419999996" green="0.6039097309" blue="0.60789734129999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="YWk-d3-Bdw"/>
@@ -79,7 +69,7 @@
                             </constraints>
                         </view>
                         <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="N34-zx-MnW">
-                            <rect key="frame" x="0.0" y="36.5" width="309" height="401"/>
+                            <rect key="frame" x="0.0" y="37" width="309" height="401"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         </tableView>
                         <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="17c-9e-nki">
@@ -118,17 +108,29 @@
                         <constraint firstItem="JuF-ea-S3I" firstAttribute="leading" secondItem="my8-3g-xYS" secondAttribute="leading" id="uGI-gP-FB4"/>
                     </constraints>
                 </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UUV-a7-a3C">
+                    <rect key="frame" x="0.0" y="20" width="44" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="44" id="RUe-BT-8fs"/>
+                        <constraint firstAttribute="height" constant="44" id="uFX-bK-rsM"/>
+                    </constraints>
+                    <state key="normal" image="ic_close"/>
+                    <connections>
+                        <action selector="didTapClose:" destination="-1" eventType="touchUpInside" id="QuM-lx-C8D"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" cocoaTouchSystemColor="darkTextColor"/>
             <constraints>
+                <constraint firstItem="UUV-a7-a3C" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1Tv-3d-T4m"/>
                 <constraint firstAttribute="bottom" secondItem="my8-3g-xYS" secondAttribute="bottom" id="BAZ-6t-PYQ"/>
+                <constraint firstItem="my8-3g-xYS" firstAttribute="top" secondItem="UUV-a7-a3C" secondAttribute="bottom" constant="22" id="EyI-hf-V4T"/>
+                <constraint firstItem="Axp-yU-5xs" firstAttribute="leading" secondItem="UUV-a7-a3C" secondAttribute="trailing" constant="43" id="INM-hd-yOM"/>
                 <constraint firstItem="my8-3g-xYS" firstAttribute="top" secondItem="Axp-yU-5xs" secondAttribute="bottom" constant="36" id="NX8-q1-Lgl"/>
-                <constraint firstAttribute="trailing" secondItem="UUV-a7-a3C" secondAttribute="trailing" constant="9" id="ekU-Zf-U4Q"/>
-                <constraint firstItem="UUV-a7-a3C" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="18" id="jdc-Jh-7e8"/>
+                <constraint firstItem="UUV-a7-a3C" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" id="RYw-b0-PD4"/>
                 <constraint firstItem="my8-3g-xYS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="33" id="rmM-Jx-Y6T"/>
                 <constraint firstAttribute="trailing" secondItem="my8-3g-xYS" secondAttribute="trailing" constant="33" id="tOR-fk-Xcw"/>
                 <constraint firstItem="Axp-yU-5xs" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="vQc-wI-SC9"/>
-                <constraint firstItem="UUV-a7-a3C" firstAttribute="centerY" secondItem="Axp-yU-5xs" secondAttribute="centerY" id="wir-Us-lsQ"/>
             </constraints>
             <point key="canvasLocation" x="-258.5" y="-79.5"/>
         </view>

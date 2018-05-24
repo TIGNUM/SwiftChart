@@ -1,17 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BentonSans_Book.otf">
-            <string>BentonSans-Book</string>
-        </array>
         <array key="Simple-Regular.ttf">
             <string>Simple-Regular</string>
         </array>
@@ -35,34 +33,33 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Q6c-Of-LgA">
-                        <rect key="frame" x="260" y="15.5" width="30" height="30"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gbF-55-zR9">
+                        <rect key="frame" x="263" y="7" width="44" height="44"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="30" id="mZI-CM-ZzV"/>
-                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="rm6-kR-zuC"/>
+                            <constraint firstAttribute="width" constant="44" id="913-Vc-X6v"/>
+                            <constraint firstAttribute="height" constant="44" id="Sj6-Su-RY1"/>
                         </constraints>
-                        <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
-                        <state key="normal" title="Add">
-                            <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                        <state key="normal">
+                            <color key="titleColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </state>
                         <connections>
-                            <action selector="reviewNotesButtonTapped:" destination="YPw-Pc-zNE" eventType="touchUpInside" id="dHC-Sf-Lxp"/>
+                            <action selector="reviewNotesButtonTapped:" destination="YPw-Pc-zNE" eventType="touchUpInside" id="EPf-3j-DNI"/>
                         </connections>
                     </button>
                 </subviews>
                 <color key="backgroundColor" red="0.1123878911" green="1" blue="0.33953876729999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                 <constraints>
-                    <constraint firstItem="Q6c-Of-LgA" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="DjS-NG-hUe" secondAttribute="trailing" constant="8" id="ABO-jO-6Ff"/>
+                    <constraint firstItem="gbF-55-zR9" firstAttribute="trailing" secondItem="Led-ZV-tr6" secondAttribute="trailingMargin" constant="3" id="7c8-dH-m1w"/>
                     <constraint firstAttribute="bottom" secondItem="DjS-NG-hUe" secondAttribute="bottom" id="Kh7-an-5Xe"/>
-                    <constraint firstAttribute="trailing" secondItem="Q6c-Of-LgA" secondAttribute="trailing" constant="30" id="WIq-px-rdN"/>
-                    <constraint firstItem="Q6c-Of-LgA" firstAttribute="centerY" secondItem="DjS-NG-hUe" secondAttribute="centerY" id="gBC-Cs-DWZ"/>
+                    <constraint firstItem="gbF-55-zR9" firstAttribute="centerY" secondItem="Led-ZV-tr6" secondAttribute="centerY" id="P42-cc-V7A"/>
                     <constraint firstItem="DjS-NG-hUe" firstAttribute="leading" secondItem="Led-ZV-tr6" secondAttribute="leading" constant="30" id="jnN-AI-Gfk"/>
                     <constraint firstItem="DjS-NG-hUe" firstAttribute="top" secondItem="Led-ZV-tr6" secondAttribute="top" id="qvq-yX-1mW"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <connections>
-                <outlet property="reviewNotesButton" destination="Q6c-Of-LgA" id="raX-nd-mWt"/>
+                <outlet property="reviewNotesButton" destination="gbF-55-zR9" id="J9z-iY-H07"/>
                 <outlet property="titleLabel" destination="DjS-NG-hUe" id="wu4-wd-1gK"/>
             </connections>
             <point key="canvasLocation" x="8" y="36"/>

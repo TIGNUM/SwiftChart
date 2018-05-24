@@ -12,8 +12,7 @@ import ReactiveKit
 enum PrepareContentItemType {
     case titleItem(title: String, subTitle: String, contentText: String, placeholderURL: URL?, videoURL: URL?)
     case reviewNotesHeader(title: String)
-    case reviewNotesItem(title: String, buttonTitle: String,
-        reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType)
+    case reviewNotesItem(title: String, reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType)
     case checkItemsHeader(title: String)
     case item(id: Int, title: String, subTitle: String, readMoreID: Int?)
     case tableFooter(preparationID: Int)
@@ -238,15 +237,11 @@ private extension PrepareContentViewModel {
             }
 
             if hasIntentionItems == true {
-                self.items.append(.reviewNotesItem(title: "YOUR INTENTIONS",
-                                                   buttonTitle: "Add",
-                                                   reviewNotesType: .intentions))
+                self.items.append(.reviewNotesItem(title: "YOUR INTENTIONS", reviewNotesType: .intentions))
             }
 
             if hasRefelctionItems == true {
-                self.items.append(.reviewNotesItem(title: "REFLECT ON SUCCESS",
-                                                   buttonTitle: "Add",
-                                                   reviewNotesType: .reflection))
+                self.items.append(.reviewNotesItem(title: "REFLECT ON SUCCESS", reviewNotesType: .reflection))
             }
         }
 

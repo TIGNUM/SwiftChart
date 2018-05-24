@@ -12,17 +12,20 @@ import Diff
 
 final class SlideShowViewController: UIViewController {
 
+    @IBOutlet private weak var closeBarButtonItem: UIBarButtonItem!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet private weak var doneButton: UIButton!
     @IBOutlet private weak var navigationBar: UINavigationBar!
     private var pages: [SlideShow.Page] = []
+    private var type: SlidesType?
 
     var interactor: SlideShowInteractorInterface!
 
-    init(configure: Configurator<SlideShowViewController>) {
+    init(configure: Configurator<SlideShowViewController>, type: SlidesType) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
+        self.type = type
     }
 
     override func viewDidLoad() {
@@ -33,6 +36,9 @@ final class SlideShowViewController: UIViewController {
         collectionView.registerDequeueable(SlideShowTitleOnlySlideCell.self)
         collectionView.registerDequeueable(SlideShowMorePromptCell.self)
         collectionView.registerDequeueable(SlideShowCompletePromptCell.self)
+        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        navigationBar.shadowImage = UIImage()
+        navigationBar.isTranslucent = true
         navigationBar.topItem?.title = R.string.localized.sidebarTitleIntroSliders().uppercased()
         navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline,
                                              NSAttributedStringKey.foregroundColor: UIColor.white]
@@ -43,6 +49,10 @@ final class SlideShowViewController: UIViewController {
     }
 
     @IBAction func didTapDoneButton() {
+        interactor.didTapDone()
+    }
+
+    @IBAction func didTapClose(_ sender: UIBarButtonItem) {
         interactor.didTapDone()
     }
 
@@ -134,9 +144,19 @@ private extension SlideShowViewController {
     }
 
     func syncDoneButton(page: Int) {
-        let isLastPage = pageControl.numberOfPages == page + 1
-        let title = isLastPage ? "Start" : "Close"
-        doneButton.setTitle(title, for: .normal)
+        switch type {
+        case .initialInstall?:
+            let isLastPage = pageControl.numberOfPages == page + 1
+            let title = isLastPage ? "Start" : "Close"
+            doneButton.setTitle(title, for: .normal)
+            closeBarButtonItem.isEnabled = false
+            closeBarButtonItem.image = nil
+            closeBarButtonItem.title = ""
+        case .helpMenu?:
+            doneButton.isHidden = true
+        case .none:
+            return
+        }
     }
 
     func currentPageIndex() -> Int {

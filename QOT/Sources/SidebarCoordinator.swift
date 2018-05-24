@@ -41,8 +41,8 @@ final class SidebarCoordinator: ParentCoordinator {
         topTabBarController = UINavigationController(withPages: [sideBarViewController],
                                                      topBarDelegate: self,
                                                      backgroundImage: R.image.sidebar(),
-                                                     leftButton: UIBarButtonItem(withImage: R.image.ic_logo()),
-                                                     rightButton: UIBarButtonItem(withImage: R.image.ic_close()))
+                                                     leftButton: UIBarButtonItem(withImage: R.image.ic_close()),
+                                                     rightButton: UIBarButtonItem(withImage: R.image.ic_logo()))
         topTabBarController?.modalTransitionStyle = .crossDissolve
         sideBarViewController.delegate = self
     }
@@ -143,13 +143,14 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
 
 extension SidebarCoordinator: NavigationItemDelegate {
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
+        topTabBarController?.dismiss(animated: true, completion: nil)
+        removeChild(child: self)
     }
 
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-        topTabBarController?.dismiss(animated: true, completion: nil)
-        removeChild(child: self)
+
     }
 }

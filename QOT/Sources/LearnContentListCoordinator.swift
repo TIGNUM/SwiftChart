@@ -17,6 +17,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
     private let selectedCategoryIndex: Index
     private let learnContentListViewController: LearnContentListViewController
     private let rootViewController: UIViewController
+    private var navigationController: UINavigationController?
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
     private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
@@ -33,27 +34,50 @@ final class LearnContentListCoordinator: ParentCoordinator {
         self.eventTracker = eventTracker
         self.selectedCategoryIndex = selectedCategoryIndex
         let viewModel = LearnContentCollectionViewModel(services: services, selectedIndex: selectedCategoryIndex)
-        learnContentListViewController = LearnContentListViewController(viewModel: viewModel, selectedCategoryIndex: self.selectedCategoryIndex)
-        learnContentListViewController.modalPresentationStyle = .custom
-        learnContentListViewController.transitioningDelegate = transitioningDelegate
+        learnContentListViewController = LearnContentListViewController(viewModel: viewModel,
+                                                                        selectedCategoryIndex: self.selectedCategoryIndex)
+        learnContentListViewController.title = LearnContentTitle.allTitles[selectedCategoryIndex].rawValue
+        navigationController = UINavigationController(withPages: [learnContentListViewController],
+                                                      topBarDelegate: self,
+                                                      leftButton: UIBarButtonItem(withImage: R.image.ic_close()))
+        navigationController?.navigationBar.backgroundColor = .clear
+        navigationController?.modalPresentationStyle = .custom
+        navigationController?.transitioningDelegate = transitioningDelegate
         learnContentListViewController.delegate = self
     }
 
     func start() {
-        rootViewController.present(learnContentListViewController, animated: true)
+        guard let navigationController = navigationController else { return }
+
+        rootViewController.present(navigationController, animated: true)
     }
+}
+
+extension LearnContentListCoordinator: NavigationItemDelegate {
+    
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
+        learnContentListViewController.dismiss(animated: true)
+        delegate?.removeChild(child: self)
+    }
+
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {}
+
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {}
 }
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
 
-    func didSelectContent(_ content: ContentCollection, category: ContentCategory, originFrame: CGRect, in viewController: LearnContentListViewController) {
+    func didSelectContent(_ content: ContentCollection,
+                          category: ContentCategory,
+                          originFrame: CGRect,
+                          in viewController: LearnContentListViewController) {
         let presentationManager = ContentItemAnimator(originFrame: originFrame)
-        let coordinator = LearnContentItemCoordinator(root: viewController, eventTracker: eventTracker, services: services, content: content, category: category, presentationManager: presentationManager)
+        let coordinator = LearnContentItemCoordinator(root: viewController,
+                                                      eventTracker: eventTracker,
+                                                      services: services,
+                                                      content: content,
+                                                      category: category,
+                                                      presentationManager: presentationManager)
         startChild(child: coordinator)
-    }
-
-    func didTapBack(in viewController: LearnContentListViewController) {
-        viewController.dismiss(animated: true)
-        delegate?.removeChild(child: self)
     }
 }

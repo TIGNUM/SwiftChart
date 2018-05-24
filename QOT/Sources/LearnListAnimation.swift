@@ -23,12 +23,6 @@ final class LearnListAnimation: NSObject {
 
     // MARK: - private
 
-    private func getTabBarController(_ viewController: UIViewController) -> TabBarController? {
-        if let viewController = viewController as? TabBarController { return viewController }
-
-        return nil
-    }
-
     private func getLearnCategoryListViewController(_ viewController: UIViewController) -> LearnCategoryListViewController? {
         if
             let viewController = viewController as? TabBarController,
@@ -42,48 +36,12 @@ final class LearnListAnimation: NSObject {
         return nil
     }
 
-    private func getLearnContentListViewController(_ viewController: UIViewController) -> LearnContentListViewController? {
-        if let viewController = viewController as? LearnContentListViewController { return viewController }
-
-        return nil
+    private func getLearnContentListViewController(_ navigationController: UINavigationController?) -> LearnContentListViewController? {
+        return (navigationController?.viewControllers.first as? PageViewController)?.viewControllers?.first as? LearnContentListViewController
     }
 
-    private func prepare(_ tabBarController: TabBarController,
-                         _ learnCategoryListViewController: LearnCategoryListViewController,
+    private func animate(_ learnCategoryListViewController: LearnCategoryListViewController,
                          _ learnContentListViewController: LearnContentListViewController) {
-        tabBarController.view.layoutIfNeeded()
-        tabBarController.view.alpha = isPresenting ? 1 : 0
-        let labelheight = learnContentListViewController.performanceLabelSize.height
-        let cellHeight = learnContentListViewController.pagingCellSize.height
-        let constraintValue = labelheight + cellHeight
-        learnContentListViewController.pagingCollectionViewTopConstraint?.constant = isPresenting ? -constraintValue : 0
-        learnContentListViewController.pagingCollectionViewBottomConstraint?.constant = isPresenting ? 0 : constraintValue
-        let bottomConstraint = tabBarController.tabBar.frame.height
-        learnContentListViewController.getBackButtonBottomConstraint?.constant = isPresenting ? bottomConstraint : 0
-        learnContentListViewController.view.layoutIfNeeded()
-        learnContentListViewController.view.alpha = isPresenting ? 0 : 1
-
-        if isPresenting == false {
-            learnCategoryListViewController.collectionView.reloadData()
-        }
-    }
-
-    private func animate(_ tabBarController: TabBarController,
-                         _ learnCategoryListViewController: LearnCategoryListViewController,
-                         _ learnContentListViewController: LearnContentListViewController) {
-        let tabBarFrame = tabBarController.tabBar.frame
-        let offsetY = isPresenting ? tabBarFrame.height : -tabBarFrame.height
-        tabBarController.tabBar.frame = tabBarFrame.offsetBy(dx: 0, dy: offsetY)
-        tabBarController.view.layoutIfNeeded()
-        tabBarController.view.alpha = isPresenting ? 0 : 1
-        let labelHeight = learnContentListViewController.performanceLabelSize.height
-        let cellHeight = learnContentListViewController.pagingCellSize.height
-        let constraintValue = labelHeight + cellHeight
-        learnContentListViewController.pagingCollectionViewTopConstraint?.constant = isPresenting ? 0 : -constraintValue
-        learnContentListViewController.pagingCollectionViewBottomConstraint?.constant = isPresenting ? constraintValue : 0
-        let bottomConstraint = tabBarController.tabBar.frame.height
-        learnContentListViewController.getBackButtonBottomConstraint?.constant = isPresenting ? 0 : bottomConstraint
-        learnContentListViewController.view.layoutIfNeeded()
         learnContentListViewController.view.alpha = isPresenting ? 1 : 0
         learnCategoryListViewController.collectionView.transform = isPresenting ? CGAffineTransform(scaleX: upScale, y: upScale) : .identity
         learnCategoryListViewController.view.layoutIfNeeded()
@@ -119,16 +77,13 @@ extension LearnListAnimation: UIViewControllerAnimatedTransitioning {
         let expectedViewController = isPresenting ? toViewController : fromViewController
 
         guard
-            let tabBarController = getTabBarController(expectedTabBarController),
             let learnCategoryListViewController = getLearnCategoryListViewController(expectedTabBarController),
-            let learnContentListViewController = getLearnContentListViewController(expectedViewController) else {
+            let learnContentListViewController = getLearnContentListViewController(expectedViewController as? UINavigationController) else {
                 fatalError("missing view controllers for animation")
         }
 
-        prepare(tabBarController, learnCategoryListViewController, learnContentListViewController)
-
         UIView.animate(withDuration: duration, delay: 0, options: [.curveEaseOut], animations: {
-            self.animate(tabBarController, learnCategoryListViewController, learnContentListViewController)
+            self.animate(learnCategoryListViewController, learnContentListViewController)
         }, completion: { (finished: Bool) in
             if finished == true {
                 fromViewController.endAppearanceTransition()

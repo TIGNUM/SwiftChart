@@ -102,7 +102,6 @@ final class PrepareContentReviewNotesTableViewCell: UITableViewCell, Dequeueable
     }
 
     func configure(title: String,
-                   buttonTitle: String,
                    reviewNotesType: ReviewNotesType,
                    delegate: PrepareContentViewControllerDelegate?,
                    viewModel: PrepareContentViewModel) {
@@ -114,11 +113,9 @@ final class PrepareContentReviewNotesTableViewCell: UITableViewCell, Dequeueable
                                                               font: Font.PText,
                                                               textColor: .black,
                                                               alignment: .left)
-        reviewNotesButton.setAttributedTitle(NSMutableAttributedString(string: buttonTitle,
-                                                                        letterSpacing: 2,
-                                                                        font: Font.PText,
-                                                                        textColor: .black40,
-                                                                        alignment: .left), for: .normal)
+
+        reviewNotesButton.setImage(R.image.ic_back()?.tintedImage(color: .gray).withHorizontallyFlippedOrientation(),
+                                   for: .normal)
     }
 }
 

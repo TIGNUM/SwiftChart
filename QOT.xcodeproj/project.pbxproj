@@ -306,7 +306,6 @@
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
-		CB026FCE1F6C013600FC5076 /* CarouselView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FCD1F6C013600FC5076 /* CarouselView.swift */; };
 		CB0A4A5A1ECC4C3E006A2D85 /* AddSensorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */; };
 		CB0A4A5D1ECC4C72006A2D85 /* AddSensorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */; };
 		CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB142B722010CC65002DF8FB /* GuideGenerator.swift */; };
@@ -986,7 +985,6 @@
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrar.swift; sourceTree = "<group>"; };
-		CB026FCD1F6C013600FC5076 /* CarouselView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CarouselView.swift; sourceTree = "<group>"; };
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
 		CB0A4A5B1ECC4C72006A2D85 /* AddSensorViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewController.swift; sourceTree = "<group>"; };
 		CB142B722010CC65002DF8FB /* GuideGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideGenerator.swift; sourceTree = "<group>"; };
@@ -1927,14 +1925,6 @@
 			name = "APNS Device Token";
 			sourceTree = "<group>";
 		};
-		CB026FCF1F6C013B00FC5076 /* Carousel */ = {
-			isa = PBXGroup;
-			children = (
-				CB026FCD1F6C013600FC5076 /* CarouselView.swift */,
-			);
-			name = Carousel;
-			sourceTree = "<group>";
-		};
 		CB1467631EF2778400A60E31 /* Page */ = {
 			isa = PBXGroup;
 			children = (
@@ -2369,7 +2359,6 @@
 			children = (
 				CBB4DD271EE087E50071494A /* Add Sensor */,
 				CC7D21A41EFBF50A007A062E /* Article */,
-				CB026FCF1F6C013B00FC5076 /* Carousel */,
 				CBB4DD2E1EE088B80071494A /* Charts */,
 				CBB4DD461EE0911A0071494A /* Common */,
 				CB873292202AED1F0081F522 /* GradientView */,
@@ -3661,7 +3650,6 @@
 				CBC1DC291F0FB68000F6D056 /* AnswerDecision.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */,
-				CB026FCE1F6C013600FC5076 /* CarouselView.swift in Sources */,
 				7F6567401FE2897A00A6CB7F /* ScreenHelpRouter.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */,

@@ -55,8 +55,8 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
             preconditionFailure("Failed to PrepareContentTopTabBarView from xib")
         }
         view.setup(title: R.string.localized.topTabBarItemTitlePerparePreparation(),
-                   leftButtonIcon: R.image.ic_minimize(),
-                   rightButtonIcon: self.viewModel.displayMode == .normal ? R.image.ic_save_prep() : nil,
+                   leftButtonIcon: R.image.ic_close(),
+                   rightButtonIcon: nil/*self.viewModel.displayMode == .normal ? R.image.ic_save_prep() : nil*/,
                    delegate: self)
         return view
     }()
@@ -138,10 +138,7 @@ private extension PrepareContentViewController {
 
         switch contentItem {
         case .titleItem(let title, let subTitle, let contentText, let placeholderURL, let videoURL):
-            guard let castedCell = cell as? PrepareContentMainHeaderTableViewCell else {
-                return cell
-            }
-
+            guard let castedCell = cell as? PrepareContentMainHeaderTableViewCell else { return cell }
             let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
             castedCell.delegate = self
             castedCell.setCell(title: title,
@@ -158,11 +155,9 @@ private extension PrepareContentViewController {
             guard let subHeaderCell = cell as? PrepareContentSubHeaderTableViewCell else { return cell }
             subHeaderCell.configure(title: title)
             return subHeaderCell
-        case .reviewNotesItem(let title, let buttonTitle, let reviewNotesType):
+        case .reviewNotesItem(let title, let reviewNotesType):
             guard let reviewNotesCell = cell as? PrepareContentReviewNotesTableViewCell else { return cell }
-            let buttonTitle = viewModel.hasContent(noteType: reviewNotesType) ? "Review" : buttonTitle
             reviewNotesCell.configure(title: title,
-                                      buttonTitle: buttonTitle,
                                       reviewNotesType: reviewNotesType,
                                       delegate: delegate,
                                       viewModel: viewModel)

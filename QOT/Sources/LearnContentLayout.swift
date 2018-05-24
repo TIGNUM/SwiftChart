@@ -79,7 +79,7 @@ final class LearnContentLayout: UICollectionViewLayout {
         var allBubbles = [CGPoint]()
         let horizontalPadding: CGFloat = 30
         let interBubbleSpacing: CGFloat = 15
-        var xCoordinate: CGFloat = 0 + horizontalPadding
+        var xCoordinate: CGFloat = horizontalPadding
         let height: CGFloat = (3 * bubbleDiameter)
         let yCoordinate: CGFloat = height / 2 - (bubbleDiameter / 2 - horizontalPadding)
 

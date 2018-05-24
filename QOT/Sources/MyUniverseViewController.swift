@@ -232,8 +232,8 @@ private extension MyUniverseViewController {
         // top bar
         navBar.applyDefaultStyle()
         navItem.delegate = self
-        navItem.configure(leftButton: UIBarButtonItem.info,
-                          rightButton: UIBarButtonItem(withImage: R.image.ic_menu()),
+        navItem.configure(leftButton: UIBarButtonItem(withImage: R.image.ic_menu()),
+                          rightButton: UIBarButtonItem.info,
                           tabTitles: config.pages.map { $0.pageTitle },
                           style: .dark)
         contentView.partnerButtons.forEach { $0.applyHexagonMask() }

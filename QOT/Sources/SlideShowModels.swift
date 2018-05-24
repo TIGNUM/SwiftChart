@@ -8,6 +8,12 @@
 
 import UIKit
 
+enum SlidesType {
+
+    case initialInstall
+    case helpMenu
+}
+
 enum SlideShow {
 
     enum Category: Int {

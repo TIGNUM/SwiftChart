@@ -15,25 +15,23 @@ protocol PrepareContentFooterTableViewCellDelegate: class {
 final class PrepareContentFooterTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
+    
+    @IBOutlet private weak var saveButton: UIButton!
     weak var delegate: PrepareContentFooterTableViewCellDelegate?
     var preparationID: Int = 0
-    @IBOutlet weak var saveButton: UIButton!
 
     // MARK: - Life Cycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        contentView.backgroundColor = .clear
-        backgroundColor = .clear
-        saveButton.imageView?.image = saveButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
-        saveButton.tintColor = .black30
         let title = NSMutableAttributedString(string: R.string.localized.preparePrepareEventsSaveThisPreparation(),
                                               letterSpacing: 1,
                                               font: Font.DPText,
-                                              textColor: .black40)
+                                              textColor: .white)
+        saveButton.imageView?.image = saveButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
         saveButton.setAttributedTitle(title, for: .normal)
+        saveButton.corner(radius: 4)
     }
 }
 

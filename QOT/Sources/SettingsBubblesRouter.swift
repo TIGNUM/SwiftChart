@@ -49,7 +49,7 @@ private extension SettingsBubblesRouter {
     }
 
     func presentTutorial() {
-        let slideShowViewController = SlideShowViewController(configure: SlideShowConfigurator.makeModal())
+        let slideShowViewController = SlideShowViewController(configure: SlideShowConfigurator.makeModal(), type: .helpMenu)
         viewController.present(slideShowViewController, animated: true, completion: nil)
     }
 

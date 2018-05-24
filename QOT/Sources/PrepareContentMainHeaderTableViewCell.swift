@@ -80,7 +80,8 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
     }
 
     func setExpandImageState(isExpanded: Bool) {
-        iconImageView.image = isExpanded ? R.image.prepareContentMinusIcon() : R.image.prepareContentPlusIcon()
+        let image = R.image.ic_back()?.tintedImage(color: .gray).withHorizontallyFlippedOrientation()
+        iconImageView.image = isExpanded ? image?.rotate(byAngle: 3 * .pi / 2) : image
     }
 }
 

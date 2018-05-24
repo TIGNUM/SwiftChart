@@ -24,13 +24,13 @@ final class PrepareEventsViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet weak var viewTitleLabel: UILabel!
-    @IBOutlet weak var upcomingEventsTitleLabel: UILabel!
-    @IBOutlet weak var eventsTableView: UITableView!
-    @IBOutlet weak var yourDeviceTitleLabel: UILabel!
-    @IBOutlet weak var savePreparationButton: UIButton!
-    let viewModel: PrepareEventsViewModel
+    @IBOutlet private weak var viewTitleLabel: UILabel!
+    @IBOutlet private weak var upcomingEventsTitleLabel: UILabel!
+    @IBOutlet private weak var eventsTableView: UITableView!
+    @IBOutlet private weak var yourDeviceTitleLabel: UILabel!
+    @IBOutlet private weak var savePreparationButton: UIButton!
     weak var delegate: PrepareEventsViewControllerDelegate?
+    private let viewModel: PrepareEventsViewModel
 
     // MARK: - Init
 

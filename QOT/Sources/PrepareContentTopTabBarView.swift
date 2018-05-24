@@ -48,7 +48,6 @@ final class PrepareContentTopTabBarView: UIView {
         button.isHidden = image == nil
         button.contentEdgeInsets = UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
         button.setTitle("", for: .normal)
-
         button.addTarget(self, action: selector, for: .touchUpInside)
     }
 

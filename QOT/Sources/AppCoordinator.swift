@@ -421,7 +421,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
         removeChild(child: coordinator)
         QOTUsageTimer.sharedInstance.startTimer()
         if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
-            let viewController = SlideShowViewController(configure: SlideShowConfigurator.makeInitial())
+            let viewController = SlideShowViewController(configure: SlideShowConfigurator.makeInitial(), type: .initialInstall)
             windowManager.show(viewController, animated: true, completion: nil)
             UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
         } else {

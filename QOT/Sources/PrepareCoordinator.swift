@@ -157,7 +157,7 @@ extension PrepareCoordinator {
 //            let rightButton = viewModel.relatedPrepareStrategies.isEmpty == false ? rightBarButtonItem : nil
             topTabBarController = UINavigationController(withPages: [prepareController, noteController],
                                                          topBarDelegate: self,
-                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()),
+                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_close()),
                                                          rightButton: nil, //rightButton,
                                                          navigationItemStyle: .light)
             tabBarController.present(topTabBarController, animated: true)

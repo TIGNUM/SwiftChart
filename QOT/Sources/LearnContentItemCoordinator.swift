@@ -76,7 +76,7 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             pages.append(audioViewController)
         }
 
-        let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize_dark()?.withRenderingMode(.alwaysOriginal))
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_close()?.tintedImage(color: .gray).withRenderingMode(.alwaysOriginal))
         topTabBarController = UINavigationController(withPages: pages,
                                                      headerView: headerView,
                                                      topBarDelegate: topBarDelegate ?? self,

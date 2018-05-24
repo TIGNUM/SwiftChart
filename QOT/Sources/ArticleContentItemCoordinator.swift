@@ -68,7 +68,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
         if shouldPush == false {
             topTabBarController = UINavigationController(withPages: [fullViewController],
                                                          topBarDelegate: self,
-                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
+                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_close()))
         }
     }
 
