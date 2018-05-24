@@ -15,7 +15,7 @@ final class PartnersOverviewViewController: PartnersAnimationViewController {
     // MARK: - Properties
 
     var interactor: PartnersOverviewInteractorInterface?
-    private var partners = [Partners.Partner]()
+    private var partners = [Partner]()
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
 
@@ -39,7 +39,7 @@ final class PartnersOverviewViewController: PartnersAnimationViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        collectionView.reloadData()
+        interactor?.reload()
     }
 }
 
@@ -54,7 +54,7 @@ extension PartnersOverviewViewController: UICollectionViewDelegate, UICollection
         cell.configure(name: partner.name,
                        surname: partner.surname,
                        relationship: partner.relationship,
-                       profileImage: partner.imageURL,
+                       profileImage: partner.profileImageResource?.url,
                        shareStatus: nil,
                        partner: partner,
                        interactor: interactor)
@@ -106,12 +106,12 @@ private extension PartnersOverviewViewController {
 
 extension PartnersOverviewViewController: PartnersOverviewViewControllerInterface {
 
-    func setup(partners: [Partners.Partner]) {
+    func setup(partners: [Partner]) {
         self.partners = partners
         collectionView.reloadData()
     }
 
-    func reload(partner: Partners.Partner) {
+    func reload(partner: Partner) {
         guard let index = partners.index(where: { $0.localID == partner.localID }) else {
             assertionFailure("Trying to reload a partner that doesn't exist.")
             return

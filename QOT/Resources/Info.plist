@@ -146,5 +146,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>HOCKEY_APP_ID</key>
+	<string>4f2cc0d018ea4a2884e052d72eb9c456</string>
 </dict>
 </plist>

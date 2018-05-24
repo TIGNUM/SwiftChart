@@ -37,15 +37,19 @@ final class PartnersOverviewInteractor {
 
 extension PartnersOverviewInteractor: PartnersOverviewInteractorInterface {
 
-    func didTapShare(partner: Partners.Partner) {
+    func reload() {
+        presenter.setup(partners: worker.partners())
+    }
+
+    func didTapShare(partner: Partner) {
          router.showShare(partner: partner)
     }
 
-    func editPartner(partner: Partners.Partner) {
+    func editPartner(partner: Partner) {
         router.showEditPartner(partner: partner)
     }
 
-    func addPartner(partner: Partners.Partner) {
+    func addPartner(partner: Partner) {
         router.showAddPartner(partner: partner)
     }
 

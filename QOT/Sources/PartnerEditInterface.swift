@@ -9,6 +9,7 @@
 import Foundation
 
 protocol PartnerEditViewControllerInterface: class {
+    func dismiss()
     func setupView(partner: Partners.Partner)
     func reload(partner: Partners.Partner)
 }
@@ -22,7 +23,7 @@ protocol PartnerEditInteractorInterface: Interactor {
     func didTapCancel()
     func didTapSave(partner: Partners.Partner?, image: UIImage?)
     func showImagePicker()
-    func update(partner: Partners.Partner?)    
+    func update(partner: Partners.Partner?)
 }
 
 protocol PartnerEditRouterInterface {

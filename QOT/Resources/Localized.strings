@@ -355,7 +355,7 @@
 "SlideShow.CompletePrompt.DoneButtonTitle" = "Start QOT";
 
 "Partners.Alert.Imcomplete.Title" = "Incomplete Partners";
-"Partners.Alert.Imcomplete.Message" = "Every partner requires a 'Name', 'Surname', 'Relationship' and 'Email. Continue and discard changes to incomplete partners?";
+"Partners.Alert.Imcomplete.Message" = "Every partner requires a 'Name', 'Surname', 'Relationship' and 'Email.'";
 
 "Search.Filter.All" = "ALL";
 "Search.Filter.Audio" = "AUDIO";

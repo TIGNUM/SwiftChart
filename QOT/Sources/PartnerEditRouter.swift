@@ -40,7 +40,7 @@ extension PartnerEditRouter: PartnerEditRouterInterface {
     }
 
     func dismiss() {
-        viewController.dismiss(animated: true, completion: nil)
+        viewController.dismiss()
     }
 
     func showImagePicker() {

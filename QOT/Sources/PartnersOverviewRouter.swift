@@ -26,22 +26,18 @@ final class PartnersOverviewRouter: NSObject {
 
 extension PartnersOverviewRouter: PartnersOverviewRouterInterface {
 
-    func showShare(partner: Partners.Partner) {
-        guard
-            let name = partner.name,
-            let surname = partner.surname,
-            let email = partner.email,
-            let relationship = partner.relationship else {
-                assertionFailure("partner must have name and email if this method is called")
-                return
+    func showShare(partner: Partner) {
+        guard let relationship = partner.relationship else {
+            assertionFailure("partner must have name and email if this method is called")
+            return
         }
         let configurator = ShareConfigurator.make(partnerLocalID: partner.localID,
-                                                  partnerName: name,
-                                                  partnerSurname: surname,
+                                                  partnerName: partner.name,
+                                                  partnerSurname: partner.surname,
                                                   partnerRelationship: relationship,
-                                                  partnerImageURL: partner.imageURL,
+                                                  partnerImageURL: partner.profileImageResource?.url,
                                                   partnerInitials: partner.initials,
-                                                  partnerEmail: email)
+                                                  partnerEmail: partner.email)
         let shareViewController = ShareViewController(configure: configurator)
         let navController = UINavigationController(rootViewController: shareViewController)
         navController.navigationBar.applyDefaultStyle()
@@ -64,7 +60,7 @@ extension PartnersOverviewRouter: PartnersOverviewRouterInterface {
         viewController.present(composer, animated: true, completion: nil)
     }
 
-    func showEditPartner(partner: Partners.Partner) {
+    func showEditPartner(partner: Partner) {
         showAddPartner(partner: partner)
     }
 
@@ -72,8 +68,8 @@ extension PartnersOverviewRouter: PartnersOverviewRouterInterface {
         viewController.showAlert(type: alert)
     }
 
-    func showAddPartner(partner: Partners.Partner) {
-        let configurator = PartnerEditConfigurator.make(partnerToEdit: partner)
+    func showAddPartner(partner: Partner) {
+        let configurator = PartnerEditConfigurator.make(partnerToEdit: Partners.Partner(partner))
         let partnersController = PartnerEditViewController(configure: configurator)
         partnersController.title = R.string.localized.meSectorMyWhyPartnersTitle().uppercased()
         let navController = UINavigationController(rootViewController: partnersController)

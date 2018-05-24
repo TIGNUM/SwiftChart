@@ -24,12 +24,12 @@ final class PartnersOverviewWorker {
         self.networkManager = networkManager
     }
 
-    func partners() -> [Partners.Partner] {
+    func partners() -> [Partner] {
         let realmPartners = services.partnerService.lastModifiedPartnersSortedByCreatedAtAscending(maxCount: 3)
-        var partners = realmPartners.filter { $0.isValid }.map { Partners.Partner($0) }
+        var partners = realmPartners.filter { $0.isValid }
         for _ in partners.count..<3 {
             // Pad with empty partners
-            partners.append(Partners.Partner())
+            partners.append(Partner())
         }
         return partners
     }

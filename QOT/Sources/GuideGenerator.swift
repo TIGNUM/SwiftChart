@@ -192,7 +192,7 @@ private extension GuideGenerator {
 	func addToBeVisionItem(from item: Guide.Item, to days: inout [Date: Day]) {
 		days.appendItem(item, hour: 24, minute: 00, priority: 0, localStartOfDay: localCalendar.startOfDay(for: Date()))
 	}
-    
+
 	/**
 	Adds latest WhatsHot item item to the day it's been created.
 	*/

@@ -1577,12 +1577,12 @@
 		7F3A9CCA1FCEFED9000F1744 /* My Universe */ = {
 			isa = PBXGroup;
 			children = (
-				7F3A9CC81FCEFED1000F1744 /* MyUniverseViewController.swift */,
-				7F3A9CD11FCF019B000F1744 /* MyUniverseViewController.xib */,
 				7FCF0EF81FD9777100138D77 /* MyUniverseContentView.swift */,
-				7FCF0EF61FD9774C00138D77 /* MyUniverseContentView.xib */,
-				7F3A9CCB1FCEFEFB000F1744 /* MyUniverseViewData.swift */,
 				7F3A9CCD1FCEFF05000F1744 /* MyUniverseProvider.swift */,
+				7F3A9CC81FCEFED1000F1744 /* MyUniverseViewController.swift */,
+				7F3A9CCB1FCEFEFB000F1744 /* MyUniverseViewData.swift */,
+				7FCF0EF61FD9774C00138D77 /* MyUniverseContentView.xib */,
+				7F3A9CD11FCF019B000F1744 /* MyUniverseViewController.xib */,
 			);
 			name = "My Universe";
 			sourceTree = "<group>";
@@ -3200,8 +3200,6 @@
 				CBB237FC1E6FFF1200AB5AEF /* Sources */,
 				CBB237FD1E6FFF1200AB5AEF /* Frameworks */,
 				CBB237FE1E6FFF1200AB5AEF /* Resources */,
-				FFE0CDDBDBBD79C8E65D0489 /* [CP] Embed Pods Frameworks */,
-				46F9D6F111648D71D91CF213 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -3406,21 +3404,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		46F9D6F111648D71D91CF213 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		5EB4CCEE8904BC282CD31F04 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3428,11 +3411,11 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
-				$PODS_CONFIGURATION_BUILD_DIR/HockeySDK/HockeySDKResources.bundle,
+				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDKResources.bundle",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -3554,21 +3537,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "releaseConfig=\"Release\"\n\nif [ \"$releaseConfig\" = \"${CONFIGURATION}\" ]; then\necho \"Running Crashlytics\"\n\"${PODS_ROOT}/Fabric/run\" c5b6a77e0ac832aeb121a8444afaba1522a28469 d4ca106b8d4d308cc6c505618f78c345e3e6bd462c0bd7a433abfc3f733a4783\nfi";
-		};
-		FFE0CDDBDBBD79C8E65D0489 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -4325,7 +4293,7 @@
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.v2;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "31d929d7-0e6a-4552-ba10-00e7f559f5b4";
 				PROVISIONING_PROFILE_SPECIFIER = "QOT App Store";
