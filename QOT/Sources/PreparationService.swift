@@ -61,10 +61,17 @@ final class PreparationService {
             calendarEvent = realm.calendarEventForEKEvent(event)
         }
 
-        let preparation = Preparation(calendarEvent: calendarEvent, contentCollectionID: contentCollectionID, name: name, subtitle: subtitle)
-        contentCollection.items.forEach { (item: ContentItem) in
+        let preparation = Preparation(calendarEvent: calendarEvent, name: name, subtitle: subtitle)
+        let relatedContents = mainRealm.syncableObjects(ofType: ContentCollection.self,
+                                                        remoteIDs: contentCollection.relatedDefaultContentIDs)
+        let relatedContentItems = relatedContents.compactMap { $0.prepareItems }.compactMap { $0.first }
+        relatedContentItems.forEach { (item: ContentItem) in
             preparation.checks.append(PreparationCheck(preparation: preparation, contentItem: item, covered: nil))
         }
+        let videoItem = contentCollection.items.filter { $0.format == "video" }.first
+        let check = PreparationCheck(preparation: preparation, contentItem: videoItem, covered: nil)
+        preparation.checks.insert(check, at: 0)
+
         try realm.write {
             realm.add(preparation)
         }
@@ -110,18 +117,31 @@ final class PreparationService {
         }
     }
 
-    func updatePreparationChecks(preparationID: String, selectedStrategies: [WeeklyChoice]) throws {
+    func updatePreparationChecks(preparationID: String,
+                                 checkedIDs: [Int: Date?],
+                                 selectedStrategies: [WeeklyChoice]) throws {
         guard let preparation = preparation(localID: preparationID) else { return }
         try deletePreparationChecks(preparation.checks)
-
         if selectedStrategies.isEmpty == false {
             var checks = [PreparationCheck]()
-            selectedStrategies.forEach { (weeklyChoice: WeeklyChoice) in
-                let content = mainRealm.syncableObject(ofType: ContentCollection.self,
-                                                       remoteID: weeklyChoice.contentCollectionID)
+            let contentIDs = selectedStrategies.compactMap { $0.contentCollectionID }
+            let relatedContents = mainRealm.syncableObjects(ofType: ContentCollection.self,
+                                                            remoteIDs: contentIDs)
+            let relatedContentItems = relatedContents.compactMap { $0.prepareItems }.compactMap { $0.first }
+            relatedContentItems.forEach { (item: ContentItem) in
+                var covered: Date?
+                if let coveredDate = checkedIDs[item.remoteID.value ?? 0] {
+                    covered = coveredDate
+                }
                 checks.append(PreparationCheck(preparation: preparation,
-                                               contentItem: content?.items.first,
-                                               covered: nil))
+                                               contentItem: item,
+                                               covered: covered))
+            }
+
+            if let content = mainRealm.syncableObject(ofType: ContentCollection.self,
+                                                      remoteID: preparation.contentCollectionID) {
+                let videoItem = content.items.filter { $0.format == "video" }.first
+                checks.insert(PreparationCheck(preparation: preparation, contentItem: videoItem, covered: nil), at: 0)
             }
 
             let realm = try self.realmProvider.realm()
@@ -161,7 +181,6 @@ final class PreparationService {
                            notesDictionary: [Int: String]) throws {
         let realm = try self.realmProvider.realm()
         guard let preparation = realm.syncableObject(ofType: Preparation.self, localID: localID) else { return }
-
         let checkObjects = preparationChecks(preparationID: localID)
         try realm.write {
             preparation.notes = notes

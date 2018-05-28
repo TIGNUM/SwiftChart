@@ -9,13 +9,14 @@
 import UIKit
 
 protocol PrepareContentFooterTableViewCellDelegate: class {
+
     func didSavePreparation(preparationID: Int, cell: UITableViewCell)
 }
 
 final class PrepareContentFooterTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-    
+
     @IBOutlet private weak var saveButton: UIButton!
     weak var delegate: PrepareContentFooterTableViewCellDelegate?
     var preparationID: Int = 0
@@ -24,13 +25,14 @@ final class PrepareContentFooterTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         let title = NSMutableAttributedString(string: R.string.localized.preparePrepareEventsSaveThisPreparation(),
                                               letterSpacing: 1,
                                               font: Font.DPText,
                                               textColor: .white)
-        saveButton.imageView?.image = saveButton.imageView?.image?.withRenderingMode(.alwaysTemplate)
         saveButton.setAttributedTitle(title, for: .normal)
+        let image = R.image.ic_save_prep()?.withRenderingMode(.alwaysTemplate)
+        saveButton.setImage(image, for: .normal)
+        saveButton.tintColor = .white
         saveButton.corner(radius: 4)
     }
 }

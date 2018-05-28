@@ -47,6 +47,8 @@ final class ContentCollection: SyncableObject {
 
     let contentCategories = List<ContentCategory>()
 
+    let relatedContentList = List<ContentRelation>()
+
     // MARK: Computed Properties
 
     var viewedAt: Date? {
@@ -62,6 +64,10 @@ final class ContentCollection: SyncableObject {
         }
 
         return ids
+    }
+
+    var relatedDefaultContentIDs: [Int] {
+        return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" }.compactMap { $0.contentID }
     }
 
     var durationString: String {
@@ -142,7 +148,8 @@ extension ContentCollection: OneWaySyncableDown {
         searchTags = data.searchTags
         thumbnailURLString = data.thumbnailURLString
         relatedContent = data.relatedContentIDs
-
+        objectStore.delete(relatedContentList)
+        relatedContentList.append(objectsIn: data.relatedContentList.map({ ContentRelation(intermediary: $0) }))
         objectStore.delete(categoryIDs)
         categoryIDs.append(objectsIn: data.categoryIDs.map({ IntObject(int: $0) }))
     }

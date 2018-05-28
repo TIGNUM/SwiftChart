@@ -78,13 +78,11 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         UIApplication.shared.statusBarStyle = .default
         tableView.reloadData()
     }
@@ -92,10 +90,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         fixTableViewInsets()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
     }
 
     func fixTableViewInsets() {
@@ -149,7 +143,6 @@ private extension PrepareContentViewController {
                                isExpanded: isExpanded,
                                displayMode: pageName == .prepareCheckList ? .checkbox : .normal)
             castedCell.contentView.layoutIfNeeded()
-
             return castedCell
         case .reviewNotesHeader(let title):
             guard let subHeaderCell = cell as? PrepareContentSubHeaderTableViewCell else { return cell }
@@ -167,10 +160,7 @@ private extension PrepareContentViewController {
             subHeaderCell.configure(title: title)
             return subHeaderCell
         case .item(let id, let title, let subTitle, let readMoreID):
-            guard let castedCell = cell as? PrepareContentHeaderTableViewCell else {
-                return cell
-            }
-
+            guard let castedCell = cell as? PrepareContentHeaderTableViewCell else { return cell }
             let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
             castedCell.delegate = self
             castedCell.setCell(title: title,
@@ -181,13 +171,9 @@ private extension PrepareContentViewController {
                                displayMode: viewModel.displayMode,
                                isChecked: viewModel.isChecked(id: id))
             castedCell.contentView.layoutIfNeeded()
-
             return castedCell
         case .tableFooter(let preparationID):
-            guard let castedCell = cell as? PrepareContentFooterTableViewCell else {
-                return cell
-            }
-
+            guard let castedCell = cell as? PrepareContentFooterTableViewCell else { return cell }
             castedCell.delegate = self
             castedCell.preparationID = preparationID
 
@@ -231,13 +217,10 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-
         let contentItem = viewModel.item(at: indexPath.row)
-
         switch contentItem {
         case .titleItem, .item:
             viewModel.didTapHeader(index: indexPath.row)
-
             guard let cell = tableView.cellForRow(at: indexPath) else { return }
             tableView.beginUpdates()
             configure(cell: cell, forIndexPath: indexPath)
@@ -322,7 +305,6 @@ extension PrepareContentViewController: PrepareContentHeaderTableViewCellDelegat
 
     func didTapCheckbox(cell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
-
         let contentItem = viewModel.item(at: indexPath.row)
         switch contentItem {
         case .item(let id, _, _, _):
@@ -331,7 +313,6 @@ extension PrepareContentViewController: PrepareContentHeaderTableViewCellDelegat
             let headerIndexPath = IndexPath(row: 0, section: 0)
             if let headerCell = tableView.cellForRow(at: headerIndexPath) {
                 configure(cell: headerCell, forIndexPath: headerIndexPath)
-
             }
             configure(cell: cell, forIndexPath: indexPath)
             tableView.endUpdates()

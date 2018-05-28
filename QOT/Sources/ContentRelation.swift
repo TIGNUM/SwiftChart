@@ -19,7 +19,6 @@ final class ContentRelation: Object {
 
     convenience init(intermediary: ContentRelationIntermediary) {
         self.init()
-
         type = intermediary.type
         weight = intermediary.weight
         contentID = intermediary.contentID

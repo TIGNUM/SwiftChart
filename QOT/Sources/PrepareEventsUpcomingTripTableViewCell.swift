@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 
-class PrepareEventsUpcomingTripTableViewCell: UITableViewCell, Dequeueable {
+final class PrepareEventsUpcomingTripTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!

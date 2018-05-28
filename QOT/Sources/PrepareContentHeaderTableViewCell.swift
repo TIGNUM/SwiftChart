@@ -29,18 +29,11 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-
         readMoreButton.addTarget(self, action: #selector(PrepareContentHeaderTableViewCell.readMore), for: .touchDown)
-
         let gestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(PrepareContentHeaderTableViewCell.checkboxTapped))
         checkboxImageView.addGestureRecognizer(gestureRecognizer)
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
     }
 
     func setCell(title: String,
@@ -50,7 +43,6 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
                  isExpanded: Bool,
                  displayMode: PrepareContentViewModel.DisplayMode = .normal,
                  isChecked: Bool = false) {
-
         bottomSeparator.backgroundColor = .black30
         headerLabel.setAttrText(text: title.uppercased(), font: Font.H4Headline, lineSpacing: 3, characterSpacing: -0.8)
         headerLabel.textColor = .black
@@ -77,7 +69,6 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
             contentLabel.setAttrText(text: contentText, font: Font.DPText)
-
             if readMoreID != nil {
                 readMoreButton.prepareAndSetTitleAttributes(text: R.string.localized.prepareContentReadMore(),
                                                             font: Font.DPText,
@@ -90,8 +81,9 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
     }
 
     private func syncButtonImage(isExpanded: Bool) {
-        let image = R.image.ic_back()?.tintedImage(color: .gray).withHorizontallyFlippedOrientation()
-        iconImageView.image = isExpanded ? image?.rotate(byAngle: 3 * .pi / 2) : image
+        let imageDown = R.image.ic_minimize()?.tintedImage(color: .gray).withHorizontallyFlippedOrientation()
+        let imageUp = R.image.ic_minimize_up()?.tintedImage(color: .gray).withHorizontallyFlippedOrientation()
+        iconImageView.image = isExpanded == true ? imageUp : imageDown
     }
 
     @objc func readMore() {

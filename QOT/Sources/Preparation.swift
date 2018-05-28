@@ -42,7 +42,7 @@ final class Preparation: SyncableObject {
 
     // MARK: Functions
 
-    convenience init(calendarEvent: CalendarEvent?, contentCollectionID: Int, name: String, subtitle: String) {
+    convenience init(calendarEvent: CalendarEvent?, name: String, subtitle: String) {
         self.init()
         self.calendarEvent = calendarEvent
         self.name = name
@@ -54,8 +54,15 @@ final class Preparation: SyncableObject {
         answers.forEach { (preparationAnswer) in
             notes[preparationAnswer.contentItemID] = preparationAnswer.answer
         }
-
         return notes
+    }
+
+    var checkableItems: List<PreparationCheck> {
+        return checks.filter { $0.contentItem?.format != "video" }
+    }
+
+    var coveredChecks: List<PreparationCheck> {
+        return checkableItems.filter { $0.covered != nil }
     }
 }
 
@@ -80,7 +87,6 @@ extension Preparation: TwoWaySyncable {
         subtitle = data.subtitle
         notes = data.notes
         calendarEventRemoteID.value = data.calendarEventRemoteID
-
         objectStore.delete(answers)
         let newAnswers = data.answers.map { PreparationAnswer(answer: $0.answer,
                                                               contentItemID: $0.contentItemID,
@@ -93,13 +99,8 @@ extension Preparation: TwoWaySyncable {
     }
 
     func toJson() -> JSON? {
-        guard syncStatus != .clean else {
-            return nil
-        }
-        if let calendarEvent = calendarEvent, calendarEvent.syncStatus == .createdLocally {
-            return nil
-        }
-
+        guard syncStatus != .clean else { return nil }
+        if let calendarEvent = calendarEvent, calendarEvent.syncStatus == .createdLocally { return nil }
         let dateFormatter = DateFormatter.iso8601
         let prepareAnswers = Array(answers).map { $0.toJSON() }
         var dict: [JsonKey: JSONEncodable] = [

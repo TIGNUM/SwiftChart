@@ -51,30 +51,25 @@ final class MyPrepViewModel {
         preparationsNotificationHandler = preparations?.addNotificationBlock { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<Preparation>>) in
             switch change {
             case .update(_, _, let insertions, _):
-                guard insertions.count == 0 else {
+                guard insertions.isEmpty == true else {
                     self.refresh()
                     return
                 }
                 self.updates.next(.reload)
-            default:
-                break
+            default: break
             }
         }.handler
         preparationChecksNotificationHandler = preparationChecks?.addNotificationBlock { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<PreparationCheck>>) in
             switch change {
             case .update(_, _, _, let modifications):
-                guard modifications.count > 0 else {
-                    return
-                }
+                guard modifications.isEmpty == false else { return }
                 self.refresh()
-            default:
-                break
+            default: break
             }
         }.handler
         syncStateObserver.onUpdate { [unowned self] _ in
             self.updates.next(.reload)
         }
-
         refresh()
     }
 
@@ -98,48 +93,30 @@ final class MyPrepViewModel {
     func isReady() -> Bool {
         return syncStateObserver.hasSynced(Preparation.self) && syncStateObserver.hasSynced(PreparationCheck.self)
     }
+}
 
-    private func refresh() {
-        guard let preparations = preparations else {
-            return
+// MARK: - Private
+
+private extension MyPrepViewModel {
+
+    func refresh() {
+        guard let preparations = preparations else { return }
+        var items = [Item]()
+        preparations.forEach { (preparation: Preparation) in
+            items.append(Item(localID: preparation.localID,
+                              header: preparation.subtitle,
+                              text: preparation.name,
+                              startDate: preparation.calendarEvent?.event?.startDate,
+                              endDate: preparation.calendarEvent?.event?.endDate,
+                              totalPreparationCount: preparation.checkableItems.count,
+                              finishedPreparationCount: preparation.coveredChecks.count))
         }
-
-        do {
-            var items: [Item] = []
-            try preparations.forEach({ (preparation: Preparation) in
-                let contentItems = Array(try self.services.contentService.contentItemsOnBackground(contentCollectionID: preparation.contentCollectionID))
-                let contentItemIDs = contentItems.filter { (contentItem) -> Bool in
-                    switch contentItem.contentItemValue {
-                    case .prepareStep:
-                        return true
-                    default:
-                        return false
-                    }
-                    }.map { $0.remoteID }
-
-                let preparationChecks = try self.services.preparationService.preparationChecksOnBackground(preparationID: preparation.localID)
-                let finishedPreparationCount = preparationChecks.reduce(0, { (result: Int, check: PreparationCheck) -> Int in
-                    return (check.covered == nil) ? result : result + 1
-                })
-                items.append(Item(localID: preparation.localID,
-                                  header: preparation.subtitle,
-                                  text: preparation.name,
-                                  startDate: preparation.calendarEvent?.event?.startDate,
-                                  endDate: preparation.calendarEvent?.event?.endDate,
-                                  totalPreparationCount: contentItemIDs.count,
-                                  finishedPreparationCount: finishedPreparationCount))
-            })
-
-            self.items = items.sorted(by: {
-                if let firstStartDate = $0.startDate, let nextStartDate = $1.startDate {
-                    return firstStartDate > nextStartDate
-                }
-                return true
-            })
-
-            itemCountUpdate.next(itemCount)
-        } catch let error {
-            log("Failed to update MyPrepViewModel: \(error)", level: .error)
+        self.items = items.sorted {
+            if let firstStartDate = $0.startDate, let nextStartDate = $1.startDate {
+                return firstStartDate > nextStartDate
+            }
+            return true
         }
+        itemCountUpdate.next(itemCount)
     }
 }

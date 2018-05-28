@@ -59,7 +59,6 @@ final class SelectWeeklyChoicesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
     }
 }
@@ -135,11 +134,18 @@ private extension SelectWeeklyChoicesViewController {
 
     func setSelected(_ selected: Int) {
         let maxSelectionCount = viewModel.maxSelectionCount
-        let title = R.string.localized.meSectorMyWhySelectWeeklyChoicesNavigation("\(maxSelectionCount)",
+        navigationBar.topItem?.title = navigationTitle(selected: selected)
+        doneButton.isEnabled = viewModel.selectionType == .prepareStrategies || selected == maxSelectionCount
+    }
+
+    func navigationTitle(selected: Int) -> String {
+        if viewModel.selectionType == .prepareStrategies {
+            return R.string.localized.prepareNavigationTitleAddRemoveStrategies("\(selected)", "\(viewModel.maxSelectionCount)")
+        }
+        return R.string.localized.meSectorMyWhySelectWeeklyChoicesNavigation("\(viewModel.maxSelectionCount)",
             "\(selected)",
             "\(viewModel.maxSelectionCount)").uppercased()
-        navigationBar.topItem?.title = title
-        doneButton.isEnabled = viewModel.selectionType == .prepareStrategies || selected == maxSelectionCount
+
     }
 
     func showMaxSelectionCountAlert() {

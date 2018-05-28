@@ -154,11 +154,11 @@ extension PrepareCoordinator {
             noteController.notesType = .notes
             noteController.delegate = viewModel
             noteController.title = R.string.localized.topTabBarItemTitlePerpareNotes()
-//            let rightButton = viewModel.relatedPrepareStrategies.isEmpty == false ? rightBarButtonItem : nil
+            let rightButton = viewModel.relatedPrepareStrategies.isEmpty == false ? rightBarButtonItem : nil
             topTabBarController = UINavigationController(withPages: [prepareController, noteController],
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_close()),
-                                                         rightButton: nil, //rightButton,
+                                                         rightButton: rightButton,
                                                          navigationItemStyle: .light)
             tabBarController.present(topTabBarController, animated: true)
             prepareListViewController = prepareController
@@ -236,28 +236,27 @@ private extension PrepareCoordinator {
         var description: String?
         var items: [PrepareItem] = []
 
-        if let content = services.contentService.contentCollection(id: preparation.contentCollectionID) {
-            title = content.title
-            for item in content.contentItems {
-                let value = item.contentItemValue
-                switch value {
-                case .prepareStep(let title, let description, let relatedContentID):
-                    items.append(PrepareItem(id: item.forcedRemoteID,
-                                             title: title,
-                                             subTitle: description,
-                                             readMoreID: relatedContentID))
-                case .video(_, _, let placeholderURL, let videoURL, _):
-                    video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
-                case .text(let text, let style):
-                    if style == .paragraph {
-                        description = text
-                    }
-                default:
-                    items.append(PrepareItem(id: item.forcedRemoteID,
-                                             title: item.contentCollection?.title ?? "",
-                                             subTitle: item.contentCollection?.description ?? "",
-                                             readMoreID: item.relatedContent.first?.contentID))
+        title = preparation.subtitle
+        for check in preparation.checks {
+            guard let item = check.contentItem else { continue }
+            let value = item.contentItemValue
+            switch value {
+            case .prepareStep(let title, _, _):
+                items.append(PrepareItem(id: item.forcedRemoteID,
+                                         title: item.contentCollection?.title ?? "",
+                                         subTitle: title,
+                                         readMoreID: item.contentCollection?.remoteID.value))
+            case .video(_, _, let placeholderURL, let videoURL, _):
+                video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
+            case .text(let text, let style):
+                if style == .paragraph {
+                    description = text
                 }
+            default:
+                items.append(PrepareItem(id: item.forcedRemoteID,
+                                         title: item.contentCollection?.title ?? "",
+                                         subTitle: item.contentCollection?.description ?? "",
+                                         readMoreID: item.relatedContent.first?.contentID))
             }
         }
 
@@ -269,6 +268,7 @@ private extension PrepareCoordinator {
 
         if let title = title {
             contentTitle = title
+            description = preparationChecks.compactMap { $0.contentItem?.valueDescription }.first
             return PrepareContentViewModel(title: title,
                                            video: video,
                                            description: description ?? "",
@@ -456,14 +456,17 @@ extension PrepareCoordinator: NavigationItemDelegate {
         guard
             let prepareContentController = prepareListViewController,
             let preparation = services.preparationService.preparation(localID: preparationID) else { return }
-        let relatedStrategies = self.services.contentService.relatedPrepareStrategies(self.contentTitle)
+        let checkedIDs = prepareContentController.viewModel.checkedIDs
+        let relatedStrategies = services.contentService.relatedPrepareStrategies(self.contentTitle)
+        let checks = services.preparationService.preparationChecks(preparationID: preparation.localID)
+        let selectedIDs = Array(checks.compactMap { $0.contentItem?.contentCollection?.remoteID.value })
         LaunchHandler().selectStrategies(relatedStrategies: relatedStrategies,
-                                         selectedIDs: self.viewModel?.selectedIDs ?? [],
+                                         selectedIDs: selectedIDs,
                                          prepareContentController: prepareContentController,
                                          completion: { (selectedContent, syncManager) in
-                                            print("selectedContent: ", selectedContent.count)
                                             do {
                                                 try self.services.preparationService.updatePreparationChecks(preparationID: self.preparationID,
+                                                                                                             checkedIDs: checkedIDs,
                                                                                                              selectedStrategies: selectedContent)
                                             } catch {
                                                 log("Error while updating preparationChecks: \(error)", level: .error)

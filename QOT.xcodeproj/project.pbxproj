@@ -2618,6 +2618,7 @@
 		CBB4DD391EE08BC20071494A /* Prepare Events */ = {
 			isa = PBXGroup;
 			children = (
+				91CCC995206938EE00E0C251 /* EventDate.swift */,
 				0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */,
 				CBC9330D1F0AA47800C00007 /* PrepareEventsViewController.swift */,
 				CCEA22A81E8AC55F003D0CF4 /* PrepareEventsViewModel.swift */,
@@ -2625,7 +2626,6 @@
 				0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */,
 				CBC9330E1F0AA47800C00007 /* PrepareEventsViewController.xib */,
 				85C3D6BB1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib */,
-				91CCC995206938EE00E0C251 /* EventDate.swift */,
 			);
 			name = "Prepare Events";
 			sourceTree = "<group>";

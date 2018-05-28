@@ -58,7 +58,7 @@ DEPENDENCIES:
   - UrbanAirship-iOS-SDK
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
     - Alamofire
     - Anchorage
@@ -114,4 +114,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 0c952817206ec2a6992a5e23cb1f5aba58a41106
 
-COCOAPODS: 1.5.0
+COCOAPODS: 1.5.2

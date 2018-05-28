@@ -56,7 +56,7 @@ final class SelectWeeklyChoicesDataModel {
 
     init(services: Services, relatedContent: [ContentCollection], selectedIDs: [Int]) {
         self.services = services
-        self.maxSelectionCount = 0
+        self.maxSelectionCount = relatedContent.count
         self.selectionType = SelectionType.prepareStrategies
         self.rawData = services.contentService.learnContentCategories()
         self.dataSource = createDataSource(from: relatedContent, selectedIDs: selectedIDs)

@@ -109,7 +109,6 @@ final class PrepareContentViewModel {
         self.notes = notes
         self.notesDictionary = notesDictionary
         self.services = services
-
         makeItems(items)
 
         if displayMode == .checkbox {
@@ -133,13 +132,13 @@ extension PrepareContentViewModel {
 
     var hasIntentionItems: Bool {
         let results = (prepareItems.map { $0.title }).filter {
-            $0.contains("Set clear intentions (create event To Be Vision)")
+            $0.contains("SET INTENTIONS")
         }
         return results.isEmpty == false
     }
 
     var hasRefelctionItems: Bool {
-        let results = (prepareItems.map { $0.title }).filter { $0.contains("Mentally visualize success") }
+        let results = (prepareItems.map { $0.title }).filter { $0.contains("REFLECT ON SUCCESS") }
         return results.isEmpty == false
     }
 
@@ -155,9 +154,7 @@ extension PrepareContentViewModel {
     }
 
     func didTapCheckbox(id: Int) {
-        if displayMode != .checkbox {
-            return
-        }
+        guard displayMode == .checkbox else { return }
         if dateForID(id) == nil {
             checkedIDs.updateValue(Date(), forKey: id)
         } else {
@@ -200,22 +197,21 @@ extension PrepareContentViewModel {
 private extension PrepareContentViewModel {
 
     func setSubtitle() {
-        subTitle = String(format: "%02d/%02d ",
-                          checkedCount,
-                          items.dropFirst(4).count - 1) + R.string.localized.prepareContentTasks()
+        guard
+            let preparationID = preparationID,
+            let preparation = services.preparationService.preparation(localID: preparationID) else { return }
+        subTitle = String(format: "%02d/%02d ", checkedCount, preparation.checkableItems.count)
         items.remove(at: 0)
         items.insert(.titleItem(title: title,
-                                subTitle: subTitle,
+                                subTitle: subTitle + R.string.localized.prepareContentTasks(),
                                 contentText: contentText,
                                 placeholderURL: videoPlaceholder,
-                                videoURL: video), at: 0)
+                                videoURL: video),
+                     at: 0)
     }
 
     func dateForID(_ id: Int) -> Date? {
-        guard let date: Date? = checkedIDs[id] else {
-            return nil
-        }
-        return date
+        return checkedIDs[id] as? Date
     }
 
     func fillHeaderStatus() {

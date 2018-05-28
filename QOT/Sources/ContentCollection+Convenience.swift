@@ -45,8 +45,8 @@ extension ContentCollection {
         return viewed
     }
 
-    var prepareItems: AnyRealmCollection<ContentItem> {
-        return AnyRealmCollection(items)
+    var prepareItems: [ContentItem] {
+        return Array(items.filter("format = %@", "prepare"))
     }
 
     var sidebarContentItems: AnyRealmCollection<ContentItem> {
