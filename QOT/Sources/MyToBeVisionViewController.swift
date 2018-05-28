@@ -214,7 +214,6 @@ extension MyToBeVisionViewController {
         let rightButton = UIBarButtonItem(withImage: R.image.ic_edit())
         rightButton.target = self
         rightButton.action = #selector(didTapEdit(_ :))
-        rightButton.tintColor = .white40
         navItem.rightBarButtonItem = rightButton
     }
 
