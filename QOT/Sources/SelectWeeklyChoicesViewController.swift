@@ -121,15 +121,18 @@ private extension SelectWeeklyChoicesViewController {
         tableView.separatorInset = .zero
         tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 20.0))
 
-        if viewModel.selectionType == .weeklyChoices {
-            tableHeaderViewLabel.attributedText = NSMutableAttributedString(
-                string: R.string.localized.meSectorMyWhySelectWeeklyChoicesHeader("\(viewModel.maxSelectionCount)"),
-                letterSpacing: 2,
-                font: UIFont.bentonRegularFont(ofSize: 15.0),
-                lineSpacing: 12.0,
-                textColor: UIColor.white,
-                alignment: .center)
+        var header = R.string.localized.meSectorMyWhySelectWeeklyChoicesHeader("\(viewModel.maxSelectionCount)")
+        if viewModel.selectionType == .prepareStrategies {
+            header = "Add or remove strategies from your preparation list."
         }
+
+        tableHeaderViewLabel.attributedText = NSMutableAttributedString(
+            string: header,
+            letterSpacing: 2,
+            font: UIFont.bentonRegularFont(ofSize: 15.0),
+            lineSpacing: 12.0,
+            textColor: UIColor.white,
+            alignment: .center)
     }
 
     func setSelected(_ selected: Int) {

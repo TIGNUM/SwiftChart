@@ -268,7 +268,9 @@ private extension PrepareCoordinator {
 
         if let title = title {
             contentTitle = title
-            description = preparationChecks.compactMap { $0.contentItem?.valueDescription }.first
+            let content = services.contentService.contentCollection(contentTitle: preparation.subtitle)
+            let videoItem = content?.contentItems.filter { $0.format == "video" }.first
+            description = videoItem?.valueDescription
             return PrepareContentViewModel(title: title,
                                            video: video,
                                            description: description ?? "",

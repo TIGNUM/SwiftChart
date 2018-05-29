@@ -2639,13 +2639,13 @@
 				CCCC21211E8981CA00133839 /* PrepareContentViewModel.swift */,
 				367564B2206A8DFC008D1F71 /* ReviewNotesTableViewCell.swift */,
 				367564A620695922008D1F71 /* ReviewNotesViewController.swift */,
+				367564B0206A56B7008D1F71 /* ReviewNotesViewController.storyboard */,
+				367564AC206A4420008D1F71 /* PrepareContentNotesViewController.storyboard */,
 				0B40DC141E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib */,
 				8514A48D1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib */,
 				3666EFAA2062A2100020F63E /* PrepareContentReviewNotesTableViewCell.xib */,
 				3691176720656CD6007D28D3 /* PrepareContentSubHeaderTableViewCell.xib */,
 				850A50BC1F0A97FF00350097 /* PrepareContentTopTabBarView.xib */,
-				367564AC206A4420008D1F71 /* PrepareContentNotesViewController.storyboard */,
-				367564B0206A56B7008D1F71 /* ReviewNotesViewController.storyboard */,
 			);
 			name = "Prepare Content";
 			sourceTree = "<group>";

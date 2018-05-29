@@ -77,6 +77,11 @@ final class ContentService {
         return learnContentCategories().filter(NSPredicate(format: "title == %@", categoryTitle)).first
     }
 
+    func contentCollection(contentTitle: String) -> ContentCollection? {
+        let predicate = NSPredicate(title: contentTitle)
+        return mainRealm.objects(ContentCollection.self).filter(predicate).first
+    }
+
     func learnContentCategoriesOnBackground() throws -> AnyRealmCollection<ContentCategory> {
         return try realmProvider.realm().contentCategories(section: .learnStrategy)
     }

@@ -171,6 +171,9 @@ extension PrepareContentViewModel {
     }
 
     func isCellExpanded(at: Int) -> Bool {
+        if itemCount == 1 && at == 0 {
+            headerToggleState[at] = true
+        }
         return headerToggleState[at]
     }
 

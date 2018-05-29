@@ -25,13 +25,17 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
     @IBOutlet weak var previewImageButton: UIButton!
     @IBOutlet weak var contentLabel: UILabel!
     weak var delegate: PrepareContentMainHeaderTableViewCellDelegate?
+    private var subTitle = ""
     var videoURL: URL?
     var previewImageURL: URL?
     var content: String = ""
 
+    var videoOnly: Bool {
+        return subTitle == "00/00 TASKS COMPLETED"
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
-
         previewImageButton.layer.borderColor = UIColor.black30.cgColor
         previewImageButton.layer.borderWidth = 0.5
         previewImageButton.backgroundColor = .black30
@@ -42,7 +46,6 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         previewImageButton.contentMode = .scaleAspectFill
     }
 
@@ -53,6 +56,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
                  videoURL: URL?,
                  isExpanded: Bool,
                  displayMode: PrepareContentViewModel.DisplayMode = .normal) {
+        self.subTitle = subTitle
         previewImageURL = videoPlaceholder
         self.videoURL = videoURL
         content = contentText
@@ -72,7 +76,6 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
             } else {
                 previewImageButton.isHidden = true
             }
-
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
             contentLabel.setAttrText(text: content, font: Font.DPText)
@@ -83,6 +86,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
         let imageDown = R.image.ic_minimize()?.tintedImage(color: .gray).withHorizontallyFlippedOrientation()
         let imageUp = R.image.ic_minimize_up()?.tintedImage(color: .gray).withHorizontallyFlippedOrientation()
         iconImageView.image = isExpanded == true ? imageUp : imageDown
+        iconImageView.isHidden = videoOnly == true
     }
 }
 
@@ -97,6 +101,7 @@ private extension PrepareContentMainHeaderTableViewCell {
         subHeaderLabel.addCharactersSpacing(spacing: 2, text: subTitle, uppercased: true)
         subHeaderLabel.font = Font.H7Title
         subHeaderLabel.textColor = .black30
+        subHeaderLabel.isHidden = videoOnly == true
     }
 }
 

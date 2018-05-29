@@ -137,12 +137,13 @@ private extension PrepareContentViewController {
             topBarView.horizontalAnchors == view.horizontalAnchors
             topBarView.heightAnchor == Layout.TabBarView.height
             tableView.topAnchor == topBarView.bottomAnchor
-            tableView.bottomAnchor == view.safeBottomAnchor - 40
+            tableView.bottomAnchor == view.safeBottomAnchor - 64
             tableView.horizontalAnchors == view.horizontalAnchors
             savePreparationButton.topAnchor == tableView.bottomAnchor + 5
             savePreparationButton.centerXAnchor == view.centerXAnchor
             savePreparationButton.horizontalAnchors == view.horizontalAnchors + 40
-            savePreparationButton.bottomAnchor == view.safeBottomAnchor
+            savePreparationButton.bottomAnchor == view.safeBottomAnchor - 24
+            savePreparationButton.heightAnchor == 40
         } else if pageName == .prepareCheckList {
             view.addSubview(tableView)
             tableView.topAnchor == view.safeTopAnchor + 16
