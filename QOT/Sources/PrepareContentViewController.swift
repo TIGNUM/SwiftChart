@@ -44,7 +44,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
             dequeables:
             PrepareContentHeaderTableViewCell.self,
             PrepareContentReviewNotesTableViewCell.self,
-            PrepareContentFooterTableViewCell.self,
             PrepareContentMainHeaderTableViewCell.self,
             PrepareContentSubHeaderTableViewCell.self
         )
@@ -59,6 +58,22 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
                    rightButtonIcon: nil/*self.viewModel.displayMode == .normal ? R.image.ic_save_prep() : nil*/,
                    delegate: self)
         return view
+    }()
+
+    private let savePreparationButton: UIButton = {
+        let button = UIButton()
+        let image = R.image.ic_save_prep()?.withRenderingMode(.alwaysTemplate)
+        let title = NSMutableAttributedString(string: R.string.localized.preparePrepareEventsSaveThisPreparation(),
+                                             letterSpacing: 1,
+                                             font: Font.DPText,
+                                             textColor: .white)
+        button.corner(radius: 4)
+        button.tintColor = .white
+        button.backgroundColor = .azure
+        button.setImage(image, for: .normal)
+        button.setAttributedTitle(title, for: .normal)
+        button.addTarget(self, action: #selector(didTapSavePreparation), for: .touchUpInside)
+        return button
     }()
 
     // MARK: - Life Cycle
@@ -102,6 +117,10 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
         self.viewModel = viewModel
         tableView.reloadData()
     }
+
+    @objc func didTapSavePreparation() {
+        delegate?.didTapSavePreparation(in: self)
+    }
 }
 
 // MARK: - Private
@@ -113,12 +132,17 @@ private extension PrepareContentViewController {
         if pageName == .prepareContent {
             view.addSubview(topBarView)
             view.addSubview(tableView)
+            view.addSubview(savePreparationButton)
             topBarView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
             topBarView.horizontalAnchors == view.horizontalAnchors
             topBarView.heightAnchor == Layout.TabBarView.height
             tableView.topAnchor == topBarView.bottomAnchor
-            tableView.bottomAnchor == view.safeBottomAnchor - 16
+            tableView.bottomAnchor == view.safeBottomAnchor - 40
             tableView.horizontalAnchors == view.horizontalAnchors
+            savePreparationButton.topAnchor == tableView.bottomAnchor + 5
+            savePreparationButton.centerXAnchor == view.centerXAnchor
+            savePreparationButton.horizontalAnchors == view.horizontalAnchors + 40
+            savePreparationButton.bottomAnchor == view.safeBottomAnchor
         } else if pageName == .prepareCheckList {
             view.addSubview(tableView)
             tableView.topAnchor == view.safeTopAnchor + 16
@@ -172,12 +196,6 @@ private extension PrepareContentViewController {
                                isChecked: viewModel.isChecked(id: id))
             castedCell.contentView.layoutIfNeeded()
             return castedCell
-        case .tableFooter(let preparationID):
-            guard let castedCell = cell as? PrepareContentFooterTableViewCell else { return cell }
-            castedCell.delegate = self
-            castedCell.preparationID = preparationID
-
-            return castedCell
         }
     }
 }
@@ -209,9 +227,6 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
         case .item:
             let cell: PrepareContentHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             return configure(cell: cell, forIndexPath: indexPath)
-        case .tableFooter:
-            let cell: PrepareContentFooterTableViewCell = tableView.dequeueCell(for: indexPath)
-            return configure(cell: cell, forIndexPath: indexPath)
         }
     }
 
@@ -225,8 +240,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             tableView.beginUpdates()
             configure(cell: cell, forIndexPath: indexPath)
             tableView.endUpdates()
-        case .tableFooter,
-             .reviewNotesItem,
+        case .reviewNotesItem,
              .reviewNotesHeader,
              .checkItemsHeader:
             break
@@ -279,15 +293,6 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
         default:
             return UITableViewAutomaticDimension
         }
-    }
-}
-
-// MARK: - PrepareContentFooterTableViewCellDelegate
-
-extension PrepareContentViewController: PrepareContentFooterTableViewCellDelegate {
-
-    func didSavePreparation(preparationID: Int, cell: UITableViewCell) {
-        delegate?.didTapSavePreparation(in: self)
     }
 }
 

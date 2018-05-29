@@ -15,7 +15,6 @@ enum PrepareContentItemType {
     case reviewNotesItem(title: String, reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType)
     case checkItemsHeader(title: String)
     case item(id: Int, title: String, subTitle: String, readMoreID: Int?)
-    case tableFooter(preparationID: Int)
 }
 
 struct PrepareItem {
@@ -250,10 +249,6 @@ private extension PrepareContentViewModel {
                                     title: element.title,
                                     subTitle: element.subTitle,
                                     readMoreID: element.readMoreID))
-        }
-
-        if displayMode == .normal {
-            self.items.append(.tableFooter(preparationID: 1)) //TODO: we need to set the actual ID
         }
 
         fillHeaderStatus()
