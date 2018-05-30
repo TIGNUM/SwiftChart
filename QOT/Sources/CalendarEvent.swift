@@ -3,14 +3,14 @@
 //  QOT
 //
 //  Created by Sam Wyndham on 14/03/2017.
-//  Copyright © 2017 Tignum. All rights reserved.CalendarImportManger//
+//  Copyright © 2017 Tignum. All rights reserved.
 
 import Foundation
 import RealmSwift
 import EventKit
 import Freddy
 
-final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
+final class CalendarEvent: SyncableObject {
 
     @objc dynamic var deleted: Bool = false
 
@@ -23,6 +23,8 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
     @objc dynamic var startDate: Date = Date()
 
     @objc dynamic var endDate: Date = Date()
+
+    @objc dynamic var calendarItemExternalIdentifier: String?
 
     var event: EKEvent? {
         return EKEventStore.shared.event(with: self)
@@ -38,11 +40,14 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
         self.title = event.title
         self.startDate = event.startDate
         self.endDate = event.endDate
+        self.calendarItemExternalIdentifier = event.calendarItemExternalIdentifier
     }
 
     func update(event: EKEvent) {
         let now = Date()
-
+        self.title = event.title
+        self.startDate = event.startDate
+        self.endDate = event.endDate
         self.modifiedAt = event.lastModifiedDate ?? now
         self.ekEventModifiedAt = event.lastModifiedDate ?? now
         self.dirty = true
@@ -71,6 +76,60 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
         }
     }
 
+    func matches(event: EKEvent) -> Bool {
+        return event.calendarItemExternalIdentifier == calendarItemExternalIdentifier
+    }
+}
+
+// MARK: - TwoWaySyncable
+
+extension CalendarEvent: TwoWaySyncable {
+
+    static func object(remoteID: Int, store: ObjectStore, data: CalendarEventIntermediary) -> CalendarEvent? {
+        let obj = store.objects(CalendarEvent.self).filter("calendarItemExternalIdentifier == %@", data.calendarItemExternalIdentifier).first
+        if obj == nil { return nil }
+
+        do {
+            try obj!.setData(data, objectStore: store)
+        } catch {
+            // Do nothing
+        }
+
+        obj!.setRemoteIDValue(remoteID)
+
+        return obj
+    }
+
+    static func object(remoteID: Int, store: ObjectStore, data: CalendarEventIntermediary, createdAt: Date, modifiedAt: Date) -> CalendarEvent? {
+        let new = CalendarEvent()
+        do {
+        try new.setData(data, objectStore: store)
+        } catch {
+            // Do nothing
+        }
+        new.modifiedAt = modifiedAt
+        new.createdAt = createdAt
+        new.setRemoteIDValue(remoteID)
+        store.addObject(new)
+        return new
+    }
+
+    func setData(_ data: CalendarEventIntermediary, objectStore: ObjectStore) throws {
+        deleted = data.deleted
+        title = data.title
+        calendarItemExternalIdentifier = data.calendarItemExternalIdentifier
+        if let milliseconds = Double(data.startDateString) {
+            startDate = Date.init(milliseconds: milliseconds)
+        }
+
+        if let milliseconds = Double(data.startDateString) {
+            startDate = Date.init(milliseconds: milliseconds)
+        }
+        if let milliseconds = Double(data.endDateString) {
+            endDate = Date.init(milliseconds: milliseconds)
+        }
+    }
+
     func toJson() -> JSON? {
         if let event = event {
             return event.toJSON(id: remoteID.value,
@@ -86,11 +145,11 @@ final class CalendarEvent: SyncableObject, UpSyncableWithLocalAndRemoteIDs {
         }
     }
 
-    static var endpoint: Endpoint {
-        return .calendarEvent
+    static func object(externalIdentifier: String, store: ObjectStore) throws -> CalendarEvent? {
+        return store.objects(CalendarEvent.self).filter(externalIdentifier: externalIdentifier).first
     }
 
-    func matches(event: EKEvent) -> Bool {
-        return title == event.title && startDate == event.startDate && endDate == event.endDate
+    static var endpoint: Endpoint {
+        return .calendarEvent
     }
 }

@@ -32,6 +32,7 @@ target 'QOT' do
   target 'QOTTests' do
     inherit! :search_paths
     # Pods for testing
+    pod 'JPSimulatorHacks'
   end
 end
 

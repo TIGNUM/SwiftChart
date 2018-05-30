@@ -221,7 +221,7 @@ private extension SyncManager {
     func startSyncTimers() {
         #if BUILD_DATABASE
             return // Don't do regular sync when building seed database
-        #endif
+        #else
 
         func startSyncTimer(timeInterval: TimeInterval, shouldDownload: Bool) -> Timer {
             return Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [unowned self] _ in
@@ -231,6 +231,7 @@ private extension SyncManager {
         }
         syncAllTimer = startSyncTimer(timeInterval: 60.0 * 60.0 * 10.0 /* 10 mins */, shouldDownload: true)
         uploadTimer = startSyncTimer(timeInterval: 60.0, shouldDownload: false)
+        #endif //#if BUILD_DATABASE
     }
 
     func stopSyncTimers() {
@@ -264,7 +265,7 @@ private extension SyncManager {
         }
 
         let operations: [Operation?] = [
-            calendarSyncSettingOperation(context: context, shouldDownload: shouldDownload),
+            syncOperation(RealmCalendarSyncSetting.self, context: context, shouldDownload: shouldDownload),
             syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
             UpdateRelationsOperation(context: context, realmProvider: realmProvider),
             syncOperation(RealmGuideItemLearn.self, context: context, shouldDownload: shouldDownload),
@@ -331,7 +332,7 @@ private extension SyncManager {
     func syncOperation<T>(_ type: T.Type, context: SyncContext, shouldDownload: Bool)
         -> SyncOperation? where T: SyncableObject, T: UpSyncable, T: DownSyncable, T.Data: DownSyncIntermediary {
             let upSyncTask = UpSyncTask<T>(networkManager: networkManager, realmProvider: realmProvider)
-            let downSyncTask: SyncTask?
+            let downSyncTask: DownSyncTask<T>?
             if shouldDownload == true {
                 downSyncTask = DownSyncTask<T>(networkManager: networkManager,
                                                realmProvider: realmProvider,
@@ -350,49 +351,6 @@ private extension SyncManager {
                                     realmProvider: realmProvider,
                                     syncContext: context,
                                     localID: localID)
-    }
-
-    // MARK: FIXME: Emergency hack to get RealmCalendarSyncSetting working for deadlin. We need to generasize it.
-    func calendarSyncSettingOperation(context: SyncContext, shouldDownload: Bool) -> SyncOperation {
-            let upSyncTask = UpSyncTask<RealmCalendarSyncSetting>(networkManager: networkManager, realmProvider: realmProvider)
-            let downSyncTask: DownSyncTask<RealmCalendarSyncSetting>?
-            if shouldDownload == true {
-                downSyncTask = DownSyncTask<RealmCalendarSyncSetting>(networkManager: networkManager,
-                                               realmProvider: realmProvider,
-                                               syncRecordService: syncRecordService)
-                downSyncTask?.customImporter = { (changes, store) in
-                    for change in changes {
-                        do {
-                            switch change {
-                            case .createdOrUpdated(let remoteID, let createdAt, let modifiedAt, let data):
-                                let calendarID = data.calendarIdentifier
-                                if let existing = store.object(ofType: RealmCalendarSyncSetting.self, forPrimaryKey: calendarID) {
-                                    try existing.setData(data, objectStore: store)
-                                    existing.createdAt = createdAt
-                                    existing.modifiedAt = modifiedAt
-                                    existing.setRemoteIDValue(remoteID)
-                                } else {
-                                    let new = RealmCalendarSyncSetting(calendarIdentifier: calendarID, title: data.title, syncEnabled: data.syncEnabled)
-                                    new.modifiedAt = modifiedAt
-                                    new.createdAt = createdAt
-                                    new.setRemoteIDValue(remoteID)
-                                    store.addObject(new)
-                                }
-                            case .deleted(let remoteID):
-                                store.deleteObjects(RealmCalendarSyncSetting.self, predicate: NSPredicate(remoteID: remoteID))
-                            }
-                        } catch let error {
-                            log("Failed to import change: \(change), error: \(error)", level: .error)
-                        }
-                    }
-                }
-            } else {
-                downSyncTask = nil
-            }
-            return SyncOperation(upSyncTask: upSyncTask,
-                                 downSyncTask: downSyncTask,
-                                 syncContext: context,
-                                 debugIdentifier: String(describing: RealmCalendarSyncSetting.self))
     }
 
     // MARK: Notifications

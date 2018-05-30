@@ -77,55 +77,76 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        window = UIWindow(frame: UIScreen.main.bounds)
-
-        #if BUILD_DATABASE
-            // @warning REINSTALL before running. Must be logged in
-            __buildDatabase()
+        #if UNIT_TEST || BUILD_DATABASE
+            #if BUILD_DATABASE
+                // @warning REINSTALL before running. Must be logged in
+                __buildDatabase()
+            #endif
             return true
-        #endif
+        #else
+            window = UIWindow(frame: UIScreen.main.bounds)
 
-        Logger.shared.setup()
-        Fabric.with([Crashlytics.self])
-        appCoordinator.start()
-        UIApplication.shared.statusBarStyle = .lightContent
-        UNUserNotificationCenter.current().delegate = self
-        incomingLocationEvent(launchOptions: launchOptions)
-        setupUAirship()
-        setupHockeyApp()
+            Logger.shared.setup()
+            Fabric.with([Crashlytics.self])
+            appCoordinator.start()
+            UIApplication.shared.statusBarStyle = .lightContent
+            UNUserNotificationCenter.current().delegate = self
+            incomingLocationEvent(launchOptions: launchOptions)
+            setupUAirship()
+            setupHockeyApp()
 
-        #if DEBUG
-            log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
-        #endif
+            #if DEBUG
+                log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
+            #endif
 
-        sendAppEvent(.start)
-
-        return true
+            sendAppEvent(.start)
+            return true
+        #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
     func applicationWillEnterForeground(_ application: UIApplication) {
-        UAirship.push().resetBadge()
-        sendAppEvent(.foreground)
-        checkVersionIfNeeded()
+        #if UNIT_TEST || BUILD_DATABASE
+            return
+        #else
+            UAirship.push().resetBadge()
+            sendAppEvent(.foreground)
+            checkVersionIfNeeded()
+        #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
     func applicationWillTerminate(_ application: UIApplication) {
-        sendAppEvent(.termination)
+        #if UNIT_TEST || BUILD_DATABASE
+            return
+        #else
+            sendAppEvent(.termination)
+        #endif
     }
 
     func applicationDidEnterBackground(_ application: UIApplication) {
-        sendAppEvent(.background)
+        #if UNIT_TEST || BUILD_DATABASE
+            return
+        #else
+            sendAppEvent(.background)
+        #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
     func applicationDidBecomeActive(_ application: UIApplication) {
-        QOTUsageTimer.sharedInstance.startTimer()
-        UAirship.push().resetBadge()
-        appCoordinator.appDidBecomeActive()
-        checkVersionIfNeeded()
+        #if UNIT_TEST || BUILD_DATABASE
+            return
+        #else
+            QOTUsageTimer.sharedInstance.startTimer()
+            UAirship.push().resetBadge()
+            appCoordinator.appDidBecomeActive()
+            checkVersionIfNeeded()
+        #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
     func applicationWillResignActive(_ application: UIApplication) {
-        QOTUsageTimer.sharedInstance.stopTimer()
+        #if UNIT_TEST || BUILD_DATABASE
+            return
+        #else
+            QOTUsageTimer.sharedInstance.stopTimer()
+        #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
     func application(_ app: UIApplication, open url: URL,

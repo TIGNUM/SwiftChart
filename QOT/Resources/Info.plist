@@ -19,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.1.13</string>
+	<string>1.2.0</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -49,6 +49,8 @@
 			</dict>
 		</array>
 	</dict>
+	<key>HOCKEY_APP_ID</key>
+	<string>4f2cc0d018ea4a2884e052d72eb9c456</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -146,7 +148,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>HOCKEY_APP_ID</key>
-	<string>4f2cc0d018ea4a2884e052d72eb9c456</string>
 </dict>
 </plist>

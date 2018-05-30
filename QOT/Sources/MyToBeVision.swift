@@ -44,7 +44,7 @@ extension MyToBeVision: TwoWaySyncableUniqueObject {
         profileImageResource?.setRemoteURL(data.remoteProfileImageURL.flatMap({ URL(string: $0) }))
     }
 
-    static func object(remoteID: Int, store: ObjectStore) throws -> MyToBeVision? {
+    static func object(remoteID: Int, store: ObjectStore, data: MyToBeVisionIntermediary) throws -> MyToBeVision? {
         return store.objects(MyToBeVision.self).first
     }
 

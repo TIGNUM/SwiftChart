@@ -32,6 +32,31 @@ final class RealmCalendarSyncSetting: SyncableObject {
 
 extension RealmCalendarSyncSetting: TwoWaySyncable {
 
+    static func object(remoteID: Int, store: ObjectStore, data: RealmCalendarSyncSettingIntermediary) -> RealmCalendarSyncSetting? {
+        let calendarID = data.calendarIdentifier
+        let obj = store.object(ofType: RealmCalendarSyncSetting.self, forPrimaryKey: calendarID)
+        if obj == nil {
+            return nil
+        }
+        obj!.setRemoteIDValue(remoteID)
+        do {
+            try obj?.setData(data, objectStore: store)
+        } catch {
+            // Do nothing
+        }
+        return obj
+    }
+
+    static func object(remoteID: Int, store: ObjectStore, data: RealmCalendarSyncSettingIntermediary, createdAt: Date, modifiedAt: Date) -> RealmCalendarSyncSetting? {
+        let calendarID = data.calendarIdentifier
+        let new = RealmCalendarSyncSetting(calendarIdentifier: calendarID, title: data.title, syncEnabled: data.syncEnabled)
+        new.modifiedAt = modifiedAt
+        new.createdAt = createdAt
+        new.setRemoteIDValue(remoteID)
+        store.addObject(new)
+        return new
+    }
+
     func setData(_ data: RealmCalendarSyncSettingIntermediary, objectStore: ObjectStore) throws {
         title = data.title
         syncEnabled = data.syncEnabled

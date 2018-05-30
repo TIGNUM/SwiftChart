@@ -12,7 +12,8 @@ final class ProfileSettingsConfigurator: AppStateAccess {
 
     static func make() -> (ProfileSettingsViewController) -> Void {
         return { (settingsMenuViewController) in
-            let router = ProfileSettingsRouter(settingsMenuViewController: settingsMenuViewController)
+            // FIXME: Do we need router here?
+            //let router = ProfileSettingsRouter(settingsMenuViewController: settingsMenuViewController)
             let worker = ProfileSettingsWorker(services: appState.services,
                                             syncManger: appState.appCoordinator.syncManager)
             let presenter = ProfileSettingsPresenter(viewController: settingsMenuViewController)

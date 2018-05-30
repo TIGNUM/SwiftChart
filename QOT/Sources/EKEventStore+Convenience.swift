@@ -14,9 +14,9 @@ extension EKEventStore {
     static var shared = EKEventStore()
 
     func event(with calendarEvent: CalendarEvent) -> EKEvent? {
-        let title = calendarEvent.title
         let startDate = calendarEvent.startDate
         let endDate = calendarEvent.endDate
+        let externalIdentifier = calendarEvent.calendarItemExternalIdentifier
         let predicate = predicateForEvents(withStart: startDate - TimeInterval(days: 1),
                                            end: endDate + TimeInterval(days: 1),
                                            calendars: nil)
@@ -27,7 +27,7 @@ extension EKEventStore {
              enumerateEvents(...) runs this block on the main thread, which can cause issues the CalendarEvent is from a
              Realm initialised on another thread (e.g. background thread from sync)
              */
-            if title == ekEvent.title && startDate == ekEvent.startDate && endDate == ekEvent.endDate {
+            if let identifier = externalIdentifier, identifier == ekEvent.calendarItemExternalIdentifier {
                 event = ekEvent
                 stop.pointee = true
             }

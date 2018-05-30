@@ -10,6 +10,14 @@ import Foundation
 
 extension Date {
 
+    init(milliseconds: Double) {
+        self.init(timeIntervalSince1970: milliseconds/1000.0)
+    }
+
+    init(milliseconds: Int) {
+        self.init(milliseconds: Double(milliseconds))
+    }
+
     /// dateFormatter.dateStyle = .long
     /// dateFormatter.timeStyle = .short
     /// March 30. 2018 at 12:00 AM

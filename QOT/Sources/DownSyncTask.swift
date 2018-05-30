@@ -16,7 +16,6 @@ final class DownSyncTask<T>: SyncTask where T: SyncableObject, T: DownSyncable, 
     private let syncRecordService: SyncRecordService
     private var currentRequest: SerialRequest?
     private var isCancelled = false
-    var customImporter: (([DownSyncChange<T.Data>], ObjectStore) throws -> Void)? // FIXME: Remove hack
 
     init(networkManager: NetworkManager, realmProvider: RealmProvider, syncRecordService: SyncRecordService) {
         self.networkManager = networkManager
@@ -127,12 +126,8 @@ final class DownSyncTask<T>: SyncTask where T: SyncableObject, T: DownSyncable, 
         do {
             let realm = try realmProvider.realm()
             try realm.write {
-                if let importer = customImporter {
-                    try importer(changes, realm)
-                } else {
-                    let importer = DownSyncImporter<T>()
-                    try importer.importChanges(changes, store: realm)
-                }
+                let importer = DownSyncImporter<T>()
+                try importer.importChanges(changes, store: realm)
             }
             try syncRecordService.recordSync(T.self, date: syncDate)
             completion(nil)

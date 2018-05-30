@@ -663,6 +663,9 @@
 		D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */; };
 		D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC34B01EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift */; };
 		D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */; };
+		E8F43D3320B6F7E500C9FF4F /* CalendarEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */; };
+		E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */; };
+		E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -684,6 +687,7 @@
 		0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsUpcomingTripTableViewCell.swift; sourceTree = "<group>"; };
 		0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsUpcomingTripTableViewCell.xib; sourceTree = "<group>"; };
+		2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
 		2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
 		2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.release.xcconfig"; sourceTree = "<group>"; };
 		2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.release.xcconfig"; sourceTree = "<group>"; };
@@ -979,6 +983,7 @@
 		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
+		BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrar.swift; sourceTree = "<group>"; };
 		CB0A4A591ECC4C3E006A2D85 /* AddSensorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddSensorViewModel.swift; sourceTree = "<group>"; };
@@ -1350,6 +1355,9 @@
 		D5EC34B01EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyPlaylistAudioCell.swift; sourceTree = "<group>"; };
 		D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyPlaylistAudioCell.xib; sourceTree = "<group>"; };
 		D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventTests.swift; sourceTree = "<group>"; };
+		E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventIntermediary.swift; sourceTree = "<group>"; };
+		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
 		FD551F312BF873A8D050014D /* Pods-QOTTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.appstore.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -1909,6 +1917,8 @@
 				B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */,
 				80E075CE42B2191C23DED0F8 /* Pods-QOT.appstore.xcconfig */,
 				FD551F312BF873A8D050014D /* Pods-QOTTests.appstore.xcconfig */,
+				2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */,
+				BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2200,6 +2210,7 @@
 			isa = PBXGroup;
 			children = (
 				CB9B07621EF91B860017F6C3 /* CalendarEvent.swift */,
+				E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */,
 				CB9B07641EF929E50017F6C3 /* EKEvent+JSONEncodable.swift */,
 				CBFD47C9200E0E6100A91899 /* RealmCalendarSyncSetting.swift */,
 				CBFD47CB200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift */,
@@ -2288,6 +2299,8 @@
 			children = (
 				CB3333F620495196009480DF /* AuthTokenValidatorTests.swift */,
 				CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */,
+				E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */,
+				E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -3194,6 +3207,7 @@
 				CBB237FC1E6FFF1200AB5AEF /* Sources */,
 				CBB237FD1E6FFF1200AB5AEF /* Frameworks */,
 				CBB237FE1E6FFF1200AB5AEF /* Resources */,
+				ADBDEF779BEA588C80EA7200 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -3212,7 +3226,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Tignum;
 				TargetAttributes = {
 					CBB237EB1E6FFF1200AB5AEF = {
@@ -3471,6 +3485,24 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
+		ADBDEF779BEA588C80EA7200 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/JPSimulatorHacks/JPSimulatorHacks.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JPSimulatorHacks.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		BB0D582FB75DD826F51B67C2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -3557,6 +3589,7 @@
 				7F9217BB1FD01C4700CAE9E0 /* LocationPermission.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				CC143A4F1EC47810001FB76E /* ChartViewModel.swift in Sources */,
+				E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */,
 				CB8AA2C5205A850A0033F573 /* ISODate.swift in Sources */,
 				CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */,
 				91F5BE402097578300E85A51 /* PermissionsRouter.swift in Sources */,
@@ -4107,6 +4140,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */,
+				E8F43D3320B6F7E500C9FF4F /* CalendarEventTests.swift in Sources */,
 				CB3333F720495196009480DF /* AuthTokenValidatorTests.swift in Sources */,
 				CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */,
 			);
@@ -4144,15 +4179,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -4181,8 +4224,8 @@
 				OTHER_SWIFT_FLAGS = "-DBUILD_DATABASE";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Database;
@@ -4236,15 +4279,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -4266,7 +4317,6 @@
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4319,15 +4369,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -4356,8 +4414,8 @@
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -4371,15 +4429,23 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -4401,7 +4467,6 @@
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				SWIFT_WHOLE_MODULE_OPTIMIZATION = NO;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -4486,6 +4551,111 @@
 			};
 			name = Release;
 		};
+		E8F43D3420B6F98800C9FF4F /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_SWIFT_FLAGS = "-DUNIT_TEST";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = UnitTest;
+		};
+		E8F43D3520B6F98800C9FF4F /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"COCOAPODS=1",
+					"UNIT_TEST=1",
+				);
+				INFOPLIST_FILE = QOT/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "20d64035-9abd-4e9c-9756-e0af22ef2d21";
+				PROVISIONING_PROFILE_SPECIFIER = "match Development com.tignum.qot.novartis";
+				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = UnitTest;
+		};
+		E8F43D3620B6F98800C9FF4F /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = UnitTest;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -4493,6 +4663,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB238071E6FFF1300AB5AEF /* Debug */,
+				E8F43D3420B6F98800C9FF4F /* UnitTest */,
 				7FE151CC1F3DDC6200DA8F37 /* Database */,
 				CBB238081E6FFF1300AB5AEF /* Release */,
 				CBA0EBA11FCDB6C6009B33AB /* AppStore */,
@@ -4504,6 +4675,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB2380A1E6FFF1300AB5AEF /* Debug */,
+				E8F43D3520B6F98800C9FF4F /* UnitTest */,
 				7FE151CD1F3DDC6200DA8F37 /* Database */,
 				CBB2380B1E6FFF1300AB5AEF /* Release */,
 				CBA0EBA21FCDB6C6009B33AB /* AppStore */,
@@ -4515,6 +4687,7 @@
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				CBB2380D1E6FFF1300AB5AEF /* Debug */,
+				E8F43D3620B6F98800C9FF4F /* UnitTest */,
 				7FE151CE1F3DDC6200DA8F37 /* Database */,
 				CBB2380E1E6FFF1300AB5AEF /* Release */,
 				CBA0EBA31FCDB6C6009B33AB /* AppStore */,

@@ -17,17 +17,13 @@ class DownSyncImporter<T> where T: DownSyncable, T: SyncableObject {
                 switch change {
                 case .createdOrUpdated(let remoteID, let createdAt, let modifiedAt, let data):
                     let object: T
-                    if let existing = try T.object(remoteID: remoteID, store: store) {
+                    if let existing = try T.object(remoteID: remoteID, store: store, data: data) {
                         object = existing
-                    } else {
-                        object = T()
                         object.createdAt = createdAt
-                        store.addObject(object)
+                        object.modifiedAt = modifiedAt
+                    } else {
+                        try object = T.object(remoteID: remoteID, store: store, data: data, createdAt: createdAt, modifiedAt: modifiedAt)!
                     }
-
-                    object.modifiedAt = modifiedAt
-                    object.setRemoteIDValue(remoteID)
-                    try object.setData(data, objectStore: store)
                 case .deleted(let remoteID):
                     store.deleteObjects(T.self, predicate: NSPredicate(remoteID: remoteID))
                 }

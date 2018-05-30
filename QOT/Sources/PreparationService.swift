@@ -232,11 +232,7 @@ private extension Realm {
     }
 
     func calendarEventForEKEvent(_ ekEvent: EKEvent) -> CalendarEvent {
-        guard let startDate = ekEvent.startDate,
-            let endDate = ekEvent.endDate,
-            let existing = objects(CalendarEvent.self).filter(title: ekEvent.title,
-                                                              startDate: startDate,
-                                                              endDate: endDate).first else {
+        guard let existing = objects(CalendarEvent.self).filter(externalIdentifier: ekEvent.calendarItemExternalIdentifier).first else {
             return CalendarEvent(event: ekEvent)
         }
         return existing

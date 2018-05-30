@@ -15,6 +15,9 @@ PODS:
   - HockeySDK (5.1.2):
     - HockeySDK/DefaultLib (= 5.1.2)
   - HockeySDK/DefaultLib (5.1.2)
+  - JPSimulatorHacks (1.4.2):
+    - JPSimulatorHacks/standard (= 1.4.2)
+  - JPSimulatorHacks/standard (1.4.2)
   - JSONWebToken (2.2.0)
   - KeychainAccess (3.1.0)
   - Kingfisher (3.13.1)
@@ -45,6 +48,7 @@ DEPENDENCIES:
   - Fabric
   - Freddy
   - HockeySDK (~> 5.1.2)
+  - JPSimulatorHacks
   - JSONWebToken
   - KeychainAccess
   - Kingfisher (~> 3.6)
@@ -70,6 +74,7 @@ SPEC REPOS:
     - Fabric
     - Freddy
     - HockeySDK
+    - JPSimulatorHacks
     - JSONWebToken
     - KeychainAccess
     - Kingfisher
@@ -97,6 +102,7 @@ SPEC CHECKSUMS:
   Fabric: 2fb5676bc811af011a04513451f463dac6803206
   Freddy: 60e165f3943b116d188c5a89991424a89cd71165
   HockeySDK: 38b7e2726af1ea86ae97ce4b5de33ab0817e3500
+  JPSimulatorHacks: 28428b30259eb93ad558ac3f2c608acd2133a14b
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
@@ -112,6 +118,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
   UrbanAirship-iOS-SDK: 1a2837473096ca63d86f11cadb4710d993237186
 
-PODFILE CHECKSUM: 0c952817206ec2a6992a5e23cb1f5aba58a41106
+PODFILE CHECKSUM: acfffb07add7fd705a18070f27dbc29ae1696f21
 
-COCOAPODS: 1.5.2
+COCOAPODS: 1.5.3

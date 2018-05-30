@@ -183,7 +183,7 @@ extension User: TwoWaySyncableUniqueObject {
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
 
-    static func object(remoteID: Int, store: ObjectStore) throws -> User? {
+    static func object(remoteID: Int, store: ObjectStore, data: UserIntermediary) throws -> User? {
         return store.objects(User.self).first
     }
 

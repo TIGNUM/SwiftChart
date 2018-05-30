@@ -54,7 +54,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
 }
 
 extension LearnContentListCoordinator: NavigationItemDelegate {
-    
+
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         learnContentListViewController.dismiss(animated: true)
         delegate?.removeChild(child: self)
