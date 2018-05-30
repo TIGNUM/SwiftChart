@@ -382,7 +382,6 @@ private extension MyToBeVisionViewController {
         headlineTextView.isEditable = isEditing
         messageTextView.isEditable = isEditing
         imageView.isUserInteractionEnabled = isEditing
-        navItem.rightBarButtonItem?.tintColor = isEditing ? .white : .white40
         syncImageControls(animated: isEditing)
         syncInstructionsButton()
     }
