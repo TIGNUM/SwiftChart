@@ -18,9 +18,9 @@ final class PrepareEventsUpcomingTripTableViewCell: UITableViewCell, Dequeueable
         super.awakeFromNib()
     }
 
-    func setup(event: EKEvent) {
+    func setup(event: CalendarEvent) {
         let date = event.startDate.eventStringDate(endDate: event.endDate)
-        titleLabel.addCharactersSpacing(spacing: 1, text: event.title, uppercased: true)
+        titleLabel.addCharactersSpacing(spacing: 1, text: event.title!, uppercased: true)
         dateLabel.addCharactersSpacing(spacing: 2, text: date, uppercased: true)
     }
 }

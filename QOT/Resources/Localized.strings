@@ -43,6 +43,9 @@
 "Settings.Security.Copyrights.Title" = "CONTENT\nAND\nCOPYRIGHTS";
 "Settings.Security.Privacy.Policy.Title" = "PRIVACY\nPOLICY";
 
+"Settings.Calendar.Section.OnThisDevice.Header" = "FROM THIS DEVICE";
+"Settings.Calendar.Section.OnOtherDevices.Header" = "FROM OTHER DEVICES";
+
 "Sidebar.Title.Search" = "Search";
 "Sidebar.Title.Tools" = "QOT TOOLS";
 "Sidebar.Title.Benefits" = "QOT\nBENEFITS";

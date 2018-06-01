@@ -57,7 +57,14 @@
                     print("\nbuild database failed with error: \(error.localizedDescription)")
                 }
             })
-            databaseBuilder.build()
+
+            if authenticator.hasLoginCredentials() == true {
+                databaseBuilder.build()
+            } else {
+                authenticator.authenticate(username: "s.park@tignum.com", password: "tignum1234", completion: { (result) in
+                    databaseBuilder.build()
+                })
+            }
         }
     }
 #endif

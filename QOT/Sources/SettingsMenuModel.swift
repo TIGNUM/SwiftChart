@@ -121,6 +121,7 @@ enum SettingsType: Int {
     case weight
     case height
     case calendar
+    case calendarOnOtherDevices
     case tutorial
     case interview
     case support
@@ -146,6 +147,7 @@ enum SettingsType: Int {
         case .weight: return R.string.localized.settingsGeneralWeightTitle()
         case .height: return R.string.localized.settingsGeneralHeightTitle()
         case .calendar: return R.string.localized.settingsGeneralCalendarTitle()
+        case .calendarOnOtherDevices: return R.string.localized.settingsGeneralCalendarTitle()
         case .tutorial: return R.string.localized.settingsGeneralTutorialTitle()
         case .interview: return R.string.localized.settingsGeneralInterviewTitle()
         case .support: return R.string.localized.settingsGeneralSupportTitle()
@@ -375,7 +377,7 @@ enum SettingsRow {
     case label(title: String, value: String?, settingsType: SettingsType)
     case stringPicker(title: String, pickerItems: [String], selectedIndex: Index, settingsType: SettingsType)
     case datePicker(title: String, selectedDate: Date, settingsType: SettingsType)
-    case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?)
+    case control(title: String, isOn: Bool, settingsType: SettingsType, key: String?, source: String?)
     case button(title: String, value: String, settingsType: SettingsType)
     case textField(title: String, value: String, secure: Bool, settingsType: SettingsType)
     case multipleStringPicker(title: String, rows: UserMeasurement, initialSelection: [Index], settingsType: SettingsType)
@@ -509,7 +511,7 @@ private func categoryNotifications(services: Services) -> [SettingsRow] {
         if let settingType = SettingsType.notificationType(key: key), let value = service.settingValue(key: key) {
             switch value {
             case .bool(let boolValue):
-                return .control(title: systemSetting.displayName, isOn: boolValue, settingsType: settingType, key: systemSetting.key)
+                return .control(title: systemSetting.displayName, isOn: boolValue, settingsType: settingType, key: systemSetting.key, source: nil)
             default:
                 return nil
             }

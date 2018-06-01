@@ -17,6 +17,7 @@ struct CalendarEventIntermediary: DownSyncIntermediary {
     let startDateString: String
     let endDateString: String
     let calendarItemExternalIdentifier: String
+    let calendarIdentifier: String
 
     init(json: JSON) throws {
         deleted = false
@@ -25,5 +26,6 @@ struct CalendarEventIntermediary: DownSyncIntermediary {
         startDateString = try json.getItemValue(at: .startDate, fallback: "")
         endDateString = try json.getItemValue(at: .endDate, fallback: "")
         calendarItemExternalIdentifier = try json.getItemValue(at: .calendarItemExternalId, fallback: "")
+        calendarIdentifier = try json.getItemValue(at: .calendarId, fallback: "")
     }
 }

@@ -15,7 +15,6 @@ import JPSimulatorHacks
 
 class CalendarEventTests: XCTestCase {
 
-    var sut: CalendarEvent?
     var realmProvider: RealmProvider?
     var authenticator: Authenticator?
     var networkManager: NetworkManager?
@@ -49,11 +48,9 @@ class CalendarEventTests: XCTestCase {
         }
         operationQueue = OperationQueue()
         operationQueue?.maxConcurrentOperationCount = 1
-        
     }
     
     override func tearDown() {
-        sut = nil
         realmProvider = nil
         authenticator = nil
         networkManager = nil

@@ -13,7 +13,7 @@ protocol PrepareEventsViewControllerDelegate: class {
 
     func didTapClose(viewController: PrepareEventsViewController)
 
-    func didTapEvent(event: EKEvent, viewController: PrepareEventsViewController)
+    func didTapEvent(event: CalendarEvent, viewController: PrepareEventsViewController)
 
     func didTapSavePrepToDevice(viewController: PrepareEventsViewController)
 

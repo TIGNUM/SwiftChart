@@ -23,6 +23,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     private lazy var indexPath = IndexPath(row: 0, section: 0)
     private lazy var settingsType = SettingsType.calendar
     private var calendarIdentifier: String?
+    private var calendarSource: String?
     var controlUpdate = false
     weak var settingsDelegate: SettingsViewControllerDelegate?
     weak var calendarSyncDelegate: SettingsCalendarListViewControllerDelegate?
@@ -46,17 +47,19 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     func setup(settingsRow: SettingsRow,
                indexPath: IndexPath,
                calendarIdentifier: String? = nil,
+               calendarSource: String? = nil,
                isSyncFinished: Bool) {
         self.indexPath = indexPath
         self.calendarIdentifier = calendarIdentifier
+        self.calendarSource = calendarSource
 
         switch settingsRow {
         case .button(let title, let value, let settingsType):
             self.settingsType = settingsType
             setupButtonCell(title: title, value: value)
-        case .control(let title, let enabled, let settingsType, _):
+        case .control(let title, let enabled, let settingsType, _, let source):
             self.settingsType = settingsType
-            setupControlCell(title: title, isOn: enabled)
+            setupControlCell(title: title, source: source, isOn: enabled)
             setupControls(isSyncFinished: isSyncFinished)
         case .datePicker(let title, let selectedDate, let settingsType):
             self.settingsType = settingsType
@@ -95,6 +98,10 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             loadingIndicatorView.isHidden = false
             loadingIndicatorView.startAnimating()
         }
+
+        if self.settingsType == .calendarOnOtherDevices {
+            switchControl.isHidden = true
+        }
     }
 }
 
@@ -107,7 +114,7 @@ private extension SettingsTableViewCell {
         setValue(value: value)
     }
 
-    func setupControlCell(title: String, isOn: Bool) {
+    func setupControlCell(title: String, source: String?, isOn: Bool) {
         switchControl.isOn = isOn
         switchControl.addTarget(self, action: #selector(valueChanged(sender:)), for: .valueChanged)
         switchControl.tintColor = .white40
@@ -117,6 +124,7 @@ private extension SettingsTableViewCell {
         switchControl.layer.cornerRadius = 16
         setSwitchState(switchControl: switchControl)
         setTitle(title: title)
+        setValue(value: source, alignment: .left)
     }
 
     func setupDateCell(title: String, selectedDate: Date) {
@@ -154,13 +162,13 @@ private extension SettingsTableViewCell {
         titleLabel.attributedText = Style.headlineSmall(title.uppercased(), .white).attributedString(lineSpacing: 2)
     }
 
-    func setValue(value: String?) {
+    func setValue(value: String?, alignment: NSTextAlignment = .right) {
         guard let value = value else {
             valueLabel.text = nil
             return
         }
 
-        valueLabel.attributedText = Style.tagTitle(value, .white80).attributedString(lineSpacing: 2, alignment: .right)
+        valueLabel.attributedText = Style.tagTitle(value, .white80).attributedString(lineSpacing: 2, alignment: alignment)
     }
 }
 

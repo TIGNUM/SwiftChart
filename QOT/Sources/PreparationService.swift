@@ -48,7 +48,7 @@ final class PreparationService {
     }
 
     func createPreparation(contentCollectionID: Int,
-                           event: EKEvent?,
+                           event: CalendarEvent?,
                            name: String,
                            subtitle: String) throws -> String {
         let realm = try self.realmProvider.realm()
@@ -56,12 +56,7 @@ final class PreparationService {
             throw SimpleError(localizedDescription: "No content collection for contentCollectionID: \(contentCollectionID)")
         }
 
-        var calendarEvent: CalendarEvent?
-        if let event = event, event.startDate != nil, event.endDate != nil {
-            calendarEvent = realm.calendarEventForEKEvent(event)
-        }
-
-        let preparation = Preparation(calendarEvent: calendarEvent, name: name, subtitle: subtitle)
+        let preparation = Preparation(calendarEvent: event, name: name, subtitle: subtitle)
         let relatedContents = mainRealm.syncableObjects(ofType: ContentCollection.self,
                                                         remoteIDs: contentCollection.relatedDefaultContentIDs)
         let relatedContentItems = relatedContents.compactMap { $0.prepareItems }.compactMap { $0.first }

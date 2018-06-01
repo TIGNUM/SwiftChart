@@ -23,10 +23,14 @@ final class EventsService {
         self.syncSettingsManager = CalendarSyncSettingsManager(realmProvider: realmProvider)
     }
 
-    func ekEvents(from: Date, to: Date) -> [EKEvent] {
-        let predicate = eventStore.predicateForEvents(withStart: from,
-                                                      end: to,
-                                                      calendars: syncSettingsManager.syncEnabledCalendars)
-        return eventStore.events(matching: predicate)
+    func calendarEvents(from: Date, to: Date) -> [CalendarEvent] {
+        let existingCalendarEvents: Results<CalendarEvent> = mainRealm.objects()
+        let relevantCalendarEvents = existingCalendarEvents.filter {
+            if $0.startDate < from && $0.startDate > to {
+                return false
+            }
+            return true
+        }
+        return Array(relevantCalendarEvents)
     }
 }

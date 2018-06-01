@@ -19,7 +19,7 @@ final class SettingsCalendarListViewController: UIViewController {
 
     // MARK: - Properties
 
-    var tableView = UITableView()
+    var tableView = UITableView(frame: CGRect.zero, style: .grouped)
     private let viewModel: SettingsCalendarListViewModel
     private let notificationHandler: NotificationHandler
 
@@ -44,6 +44,7 @@ final class SettingsCalendarListViewController: UIViewController {
         addEventStoreNotificationHandler()
         setupView()
         viewModel.syncStateObserver.onUpdate { [unowned self] _ in
+            self.viewModel.update()
             self.tableView.reloadData()
         }
 
@@ -53,7 +54,7 @@ final class SettingsCalendarListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
+        self.viewModel.update()
         navigationItem.title = R.string.localized.sidebarTitleCalendars().uppercased()
     }
 
@@ -61,6 +62,8 @@ final class SettingsCalendarListViewController: UIViewController {
         super.viewDidLayoutSubviews()
         tableView.register(R.nib.settingsControlTableViewCell(),
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
+        tableView.register(R.nib.settingsLabelTableViewCell(),
+                           forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Label.identifier)
     }
 }
 
@@ -70,6 +73,7 @@ private extension SettingsCalendarListViewController {
 
     func addEventStoreNotificationHandler() {
         notificationHandler.handler = { [unowned self] (notificationCenter) in
+            self.viewModel.update()
             self.tableView.reloadData()
         }
     }
@@ -84,15 +88,15 @@ private extension SettingsCalendarListViewController {
         backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
 
         fadeContainerView.addSubview(tableView)
-        tableView.topAnchor == fadeContainerView.topAnchor + 100
-        tableView.leftAnchor == fadeContainerView.leftAnchor + 20
+        tableView.topAnchor == fadeContainerView.topAnchor + 100 // MARK: FIXME: constant??
+        tableView.leftAnchor == fadeContainerView.leftAnchor + 20 // MARK: FIXME: constant??
         tableView.rightAnchor ==  fadeContainerView.rightAnchor
         tableView.bottomAnchor == fadeContainerView.bottomAnchor
         tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView()
         tableView.separatorColor = .clear
         tableView.allowsSelection = true
-		tableView.isScrollEnabled = false
+		tableView.isScrollEnabled = true
         tableView.rowHeight = UITableViewAutomaticDimension
 
 		fadeContainerView.setFade(top: 80, bottom: 0)
@@ -103,19 +107,52 @@ private extension SettingsCalendarListViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension SettingsCalendarListViewController: UITableViewDelegate, UITableViewDataSource {
+    // MARK: UITableViewDataSource
+    func numberOfSections(in tableView: UITableView) -> Int {
+        var sectionCount = Int(0)
+        if viewModel.calendarCountOnThisDevice > 0 { sectionCount += 1 }
+        if viewModel.calendarCountOnOtherDevices > 0 { sectionCount += 1 }
+        return sectionCount
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let identifier = R.reuseIdentifier.settingsTableViewCell_Label.identifier
+        guard let headerCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? SettingsTableViewCell else {
+            fatalError("SettingsHeaderCell does not exist!")
+        }
+
+        headerCell.setupHeaderCell(title: viewModel.headerTitle(in: section))
+        return headerCell.contentView
+    }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.calendarCount
+        switch CalendarLocation(rawValue: section)! {
+        case .onThisDevice :
+            return viewModel.calendarCountOnThisDevice
+        default:
+            return viewModel.calendarCountOnOtherDevices
+        }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let title = viewModel.calendarName(at: indexPath)
         let calendarIdentifier = viewModel.calendarIdentifier(at: indexPath)
+        let calendarSource = viewModel.calendarSource(at: indexPath)
         let syncStatus = viewModel.calendarSyncStatus(at: indexPath)
+        let settingsType: SettingsType
+
+        switch CalendarLocation(rawValue: indexPath.section)! {
+        case .onThisDevice :
+            settingsType = .calendar
+        default:
+            settingsType = .calendarOnOtherDevices
+        }
+
         let settingsRow = SettingsRow.control(title: title,
                                               isOn: syncStatus,
-                                              settingsType: .calendar,
-                                              key: calendarIdentifier)
+                                              settingsType: settingsType,
+                                              key: calendarIdentifier,
+                                              source: calendarSource)
 
         guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier,
                                                                for: indexPath) as? SettingsTableViewCell else {
@@ -126,9 +163,15 @@ extension SettingsCalendarListViewController: UITableViewDelegate, UITableViewDa
         settingsCell.setup(settingsRow: settingsRow,
                            indexPath: indexPath,
                            calendarIdentifier: calendarIdentifier,
+                           calendarSource: calendarSource,
                            isSyncFinished: viewModel.isSyncFinished)
 
         return settingsCell
+    }
+
+    // MARK: UITableViewDelegate
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return viewModel.cellHeight
     }
 }
 

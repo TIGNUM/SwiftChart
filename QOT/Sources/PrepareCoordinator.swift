@@ -47,7 +47,17 @@ final class PrepareCoordinator: ParentCoordinator {
         delegate.handler = { [weak self] (controller, action) in
             switch action {
             case .saved:
-                if let event = controller.event {
+                if let ekEvent = controller.event {
+                    // FIXME: import created event and get CalendarEvent
+                    let event = CalendarEvent(event: ekEvent)
+                    do {
+                        let realm = try self?.services.realmProvider.realm()
+                        try realm?.write {
+                            realm?.add(event)
+                        }
+                    } catch {
+                        // Do nothing, any how the event is existing on the device, and it will be synchronized in next time.
+                    }
                     self?.createPreparation(name: event.title, event: event)
                 }
                 self?.tabBarController.dismiss(animated: true)
@@ -175,7 +185,7 @@ extension PrepareCoordinator {
         guard let context = context else { preconditionFailure("No preparation context") }
         let start = Date()
         let finish = start.addingTimeInterval(TimeInterval(days: 30))
-        let events = services.eventsService.ekEvents(from: start, to: finish)
+        let events = services.eventsService.calendarEvents(from: start, to: finish)
         let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName, events: events)
         let prepareEventsVC = PrepareEventsViewController(viewModel: viewModel)
         prepareEventsVC.delegate = self
@@ -184,34 +194,47 @@ extension PrepareCoordinator {
         viewController.present(prepareEventsVC, animated: true)
     }
 
-    func createPreparation(name: String, event: EKEvent?) {
+    func createPreparation(name: String?, event: CalendarEvent?) {
         guard let context = context else { preconditionFailure("No preparation context") }
+        guard let name = name else { preconditionFailure("No preparation name") }
 
-        let localID: String
         do {
-            localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID,
+            let localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID,
                                                                         event: event,
                                                                         name: name,
                                                                         subtitle: context.listTitle)
+            addPreparationLink(preparationID: localID, preperationName: name, calendarEvent: event)
         } catch {
             log(error, level: .error)
             return
         }
 
-        guard let event = event else { return }
+    }
+
+    func addPreparationLink(preparationID: String?, preperationName: String?, calendarEvent: CalendarEvent?) {
+        guard let event = calendarEvent else { return }
+        guard let localID = preparationID else { return }
+        guard let name = preperationName else { return }
+
         permissionsManager.askPermission(for: [.calendar], completion: { [unowned self] status in
             guard let status = status[.calendar] else { return }
 
             switch status {
             case .granted:
                 let eventStore = EKEventStore.shared
-                var notes = event.notes ?? ""
+                guard let ekEvent = eventStore.event(with: event) else {
+                    log("createPreparation - eventStore.save.error: event doesn't exist on calendar", level: .info)
+                    // FIXME: create preparation link on the device which has EKEvent on it after synchronization.
+                    // Need a flag for hasDeepLinkOnEKEvent : Bool
+                    return
+                }
+                var notes = ekEvent.notes ?? ""
                 guard let preparationLink = URLScheme.preparationURL(withID: localID) else { return }
                 notes += "\n\n" + preparationLink
                 log("preparationLink: \(preparationLink)")
-                event.notes = notes
+                ekEvent.notes = notes
                 do {
-                    try eventStore.save(event, span: .thisEvent, commit: true)
+                    try eventStore.save(ekEvent, span: .thisEvent, commit: true)
                 } catch let error {
                     log("createPreparation - eventStore.save.error: \(error.localizedDescription)", level: .error)
                     return
@@ -391,7 +414,7 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
         viewController.dismiss(animated: true)
     }
 
-    func didTapEvent(event: EKEvent, viewController: PrepareEventsViewController) {
+    func didTapEvent(event: CalendarEvent, viewController: PrepareEventsViewController) {
         createPreparation(name: event.title, event: event)
         tabBarController.dismiss(animated: true)
         chatDecisionManager.preparationSaved()

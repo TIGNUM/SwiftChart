@@ -111,6 +111,10 @@ final class SyncManager {
     }
 
     func syncAll(shouldDownload: Bool, completion: ((Error?) -> Void)? = nil) {
+        if isSyncing == true {
+            completion?(nil)
+            return
+        }
         let context = SyncContext()
 
         let startOperation = BlockOperation {

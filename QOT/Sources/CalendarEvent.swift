@@ -26,6 +26,8 @@ final class CalendarEvent: SyncableObject {
 
     @objc dynamic var calendarItemExternalIdentifier: String?
 
+    @objc dynamic var calendarIdentifier: String?
+
     var event: EKEvent? {
         return EKEventStore.shared.event(with: self)
     }
@@ -41,6 +43,7 @@ final class CalendarEvent: SyncableObject {
         self.startDate = event.startDate
         self.endDate = event.endDate
         self.calendarItemExternalIdentifier = event.calendarItemExternalIdentifier
+        self.calendarIdentifier = event.calendar.toggleIdentifier
     }
 
     func update(event: EKEvent) {
@@ -118,6 +121,8 @@ extension CalendarEvent: TwoWaySyncable {
         deleted = data.deleted
         title = data.title
         calendarItemExternalIdentifier = data.calendarItemExternalIdentifier
+        calendarIdentifier = data.calendarIdentifier
+
         if let milliseconds = Double(data.startDateString) {
             startDate = Date.init(milliseconds: milliseconds)
         }

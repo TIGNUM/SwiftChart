@@ -14,6 +14,10 @@ struct CalendarSyncSetting {
     let identifier: String
     let title: String
     let syncEnabled: Bool
+    func source() -> String? {
+        let elements = identifier.components(separatedBy: Toggle.seperator)
+        return elements.last
+    }
 }
 
 final class CalendarSyncSettingsManager {
@@ -26,6 +30,10 @@ final class CalendarSyncSettingsManager {
         self.eventStore = eventStore
         self.realmProvider = realmProvider
         self.syncManager = AppDelegate.current.appCoordinator.syncManager
+    }
+
+    var calendarIdentifiersOnThisDevice: [String] {
+        return eventStore.calendars(for: .event).compactMap { String($0.toggleIdentifier) }
     }
 
     var syncEnabledCalendars: [EKCalendar] {
@@ -42,8 +50,11 @@ final class CalendarSyncSettingsManager {
     var calendarSyncSettings: [CalendarSyncSetting] {
         do {
             var settings: [String: CalendarSyncSetting] = [:]
-            for calendar in eventStore.calendars(for: .event) {
-                let id = calendar.toggleIdentifier
+            let realm = try realmProvider.realm()
+            let existingCalendarSettings: Results<RealmCalendarSyncSetting> = realm.objects()
+
+            for calendar in existingCalendarSettings {
+                let id = calendar.localID
                 let title = calendar.title
                 let enabled = try syncEnabled(toggleIdentifier: id, title: title)
                 let setting = CalendarSyncSetting(identifier: id, title: title, syncEnabled: enabled)
@@ -72,6 +83,7 @@ final class CalendarSyncSettingsManager {
                     setting.syncEnabled = enabled
                     setting.didUpdate()
                 }
+                // FIXME: up sync Calendar Sync Setting, up/down sync Calendar Events, up/down Preperation
                 syncManager.syncAll(shouldDownload: false)
             }
         } catch {
@@ -118,6 +130,7 @@ private extension CalendarSyncSettingsManager {
             }
             result = new
         }
+        // MARK: FIXME: upsync calendar sync setting and calendar events only (when it's created)
         syncManager.syncAll(shouldDownload: false)
         return result
     }

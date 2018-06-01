@@ -12,11 +12,11 @@ import EventKit
 
 final class PrepareEventsViewModel {
 
-    private let events: [EKEvent]
+    private let events: [CalendarEvent]
 
     let preparationTitle: String
 
-    init(preparationTitle: String, events: [EKEvent]) {
+    init(preparationTitle: String, events: [CalendarEvent]) {
         self.preparationTitle = preparationTitle
         self.events = events
     }
@@ -25,7 +25,7 @@ final class PrepareEventsViewModel {
         return events.count
     }
 
-    func event(index: Index) -> EKEvent {
+    func event(index: Index) -> CalendarEvent {
         return events[index]
     }
 }
