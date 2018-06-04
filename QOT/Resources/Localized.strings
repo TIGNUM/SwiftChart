@@ -130,7 +130,7 @@
 "Me.Sector.My.Statistics.Personal.Average.Number.Of.Meetings" = "This Week’s Average Number of Meetings";
 "Me.Sector.My.Statistics.Personal.Meetings.Length" = "This Week's Average Time in Meetings";
 "Me.Sector.My.Statistics.Personal.Average.Time.Between.Meetings" = "Today’s Average Time Between Meetings";
-"Me.Sector.My.Statistics.Personal.Average.Length.Of.Meetings" = "Number of meetings versus last week";
+"Me.Sector.My.Statistics.Personal.Average.Length.Of.Meetings" = "This Week's Average Time in Meetings";
 
 "Me.Sector.My.Statistics.Day" = "DAY";
 "Me.Sector.My.Statistics.Today" = "TODAY";
@@ -144,7 +144,7 @@
 "Me.Card.Title.Sleep.Quantity" = "Sleep Quantity";
 "Me.Card.Title.Sleep.Quality" = "Sleep Quality";
 "Me.Card.Title.Meetings.Number" = "Number of Meetings";
-"Me.Card.Title.Meetings.Length" = "Meeting time statistics";
+"Me.Card.Title.Meetings.Length" = "Time in meetings";
 "Me.Card.Title.Meetings.Increase" = "Meeting load history";
 "Me.Card.Title.Meetings.Time.Between" = "Time Between Meetings";
 "Me.Card.Title.Meetings.Hours.Spent" = "Time in meetings";

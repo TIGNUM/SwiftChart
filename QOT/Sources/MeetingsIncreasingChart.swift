@@ -104,7 +104,7 @@ private extension MeetingsIncreasingChart {
     func setData() {
         let thisWeekValue = statistics.dataPoints[0].value
         let lastWeekValue = statistics.dataPoints[1].value
-        let differenceValue = statistics.userAverageValue
+        let differenceValue = statistics.userAverage
         let percentageColor = thisWeekValue < lastWeekValue ? UIColor.green : UIColor.red
         thisWeekNumberLabel.text = String(thisWeekValue)
         lastWeekNumberLabel.text = String(lastWeekValue)
