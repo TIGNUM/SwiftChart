@@ -12,7 +12,8 @@ import UIKit
 enum ChartType: String, EnumCollection {
     case meetingAverageDay = "meetings.number.day"
     case meetingAverageWeek = "meetings.number.week.avg"
-    case meetingLength = "meetings.length"
+    case meetingIncreaseDiff = "meeting.number.changed.diff.percentage"
+    case meetingLength = "meetings.length.week.avg"
     case meetingTimeBetween = "meetings.timeBetween"
     case travelTripsAverageWeeks = "travel.numberOfTrips.4weeks"
     case travelTripsAverageYear = "travel.numberOfTrips.year"
@@ -49,6 +50,7 @@ enum ChartType: String, EnumCollection {
         case .meetingAverageDay,
              .meetingAverageWeek,
              .meetingLength,
+             .meetingIncreaseDiff,
              .meetingTimeBetween: return R.string.localized.meChartInfoButtonTitleNavigateToCalendar()
         default: return nil
         }
@@ -59,6 +61,7 @@ enum ChartType: String, EnumCollection {
         case .meetingAverageDay,
              .meetingAverageWeek,
              .meetingLength,
+             .meetingIncreaseDiff,
              .meetingTimeBetween:
             return false
         case .travelTripsAverageWeeks,
@@ -98,7 +101,8 @@ enum ChartType: String, EnumCollection {
              .peakPerformanceUpcomingNextWeek,
              .intensityLoadWeek,
              .intensityRecoveryWeek: return weekdaySymbols(fullWeek: true)
-        case .meetingAverageWeek: return weekdaySymbols(fullWeek: true, startDayIndex: 1)
+        case .meetingAverageWeek,
+             .meetingLength: return weekdaySymbols(fullWeek: true, startDayIndex: 1)
         case .intensityLoadMonth,
              .intensityRecoveryMonth,
              .travelTripsTimeZoneChangedWeeks,
@@ -208,29 +212,30 @@ enum ChartType: String, EnumCollection {
     func selectedChart(charts: [Statistics]) -> Statistics? {
         switch self {
         case .meetingAverageDay:
-                let selectedType = selectedChartTypes.filter { $0.key == .meetingAverageDay }[0]
-                return charts.filter { $0.chartType == selectedType.key }[0]
-        case .meetingAverageWeek: return statistics(charts)
-        case .meetingLength: return statistics(charts)
-        case .meetingTimeBetween: return statistics(charts)
+            let selectedType = selectedChartTypes.filter { $0.key == .meetingAverageDay }[0]
+            return charts.filter { $0.chartType == selectedType.key }[0]
+        case .meetingAverageWeek,
+             .meetingLength,
+             .meetingIncreaseDiff,
+             .meetingTimeBetween: return statistics(charts)
         case .travelTripsAverageWeeks,
              .travelTripsAverageYear:
-                let selectedType = selectedChartTypes.filter { ($0.key == .travelTripsAverageWeeks || $0.key == .travelTripsAverageYear) && $0.value == true }[0]
-                return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .travelTripsAverageWeeks || $0.key == .travelTripsAverageYear) && $0.value == true }[0]
+            return charts.filter { $0.chartType == selectedType.key }[0]
         case .travelTripsNextFourWeeks: return statistics(charts)
         case .travelTripsTimeZoneChangedYear,
              .travelTripsTimeZoneChangedWeeks:
-                let selectedType = selectedChartTypes.filter { ($0.key == .travelTripsTimeZoneChangedYear || $0.key == .travelTripsTimeZoneChangedWeeks) && $0.value == true }[0]
-                return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .travelTripsTimeZoneChangedYear || $0.key == .travelTripsTimeZoneChangedWeeks) && $0.value == true }[0]
+            return charts.filter { $0.chartType == selectedType.key }[0]
         case .travelTripsMaxTimeZone: return statistics(charts)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
-                let selectedType = selectedChartTypes.filter { ($0.key == .peakPerformanceUpcomingWeek || $0.key == .peakPerformanceUpcomingNextWeek) && $0.value == true }[0]
-                return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .peakPerformanceUpcomingWeek || $0.key == .peakPerformanceUpcomingNextWeek) && $0.value == true }[0]
+            return charts.filter { $0.chartType == selectedType.key }[0]
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth:
-                let selectedType = selectedChartTypes.filter { ($0.key == .peakPerformanceAverageWeek || $0.key == .peakPerformanceAverageMonth) && $0.value == true }[0]
-                return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .peakPerformanceAverageWeek || $0.key == .peakPerformanceAverageMonth) && $0.value == true }[0]
+            return charts.filter { $0.chartType == selectedType.key }[0]
         case .sleepQuantity: return statistics(charts)
         case .sleepQuality: return statistics(charts)
         case .sleepQuantityTime: return statistics(charts)
@@ -238,12 +243,12 @@ enum ChartType: String, EnumCollection {
         case .activityLevel: return statistics(charts)
         case .intensityLoadWeek,
              .intensityLoadMonth:
-                let selectedType = selectedChartTypes.filter { ($0.key == .intensityLoadMonth || $0.key == .intensityLoadWeek) && $0.value == true }[0]
-                return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .intensityLoadMonth || $0.key == .intensityLoadWeek) && $0.value == true }[0]
+            return charts.filter { $0.chartType == selectedType.key }[0]
         case .intensityRecoveryWeek,
              .intensityRecoveryMonth:
-                let selectedType = selectedChartTypes.filter { ($0.key == .intensityRecoveryWeek || $0.key == .intensityRecoveryMonth) && $0.value == true }[0]
-                return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .intensityRecoveryWeek || $0.key == .intensityRecoveryMonth) && $0.value == true }[0]
+            return charts.filter { $0.chartType == selectedType.key }[0]
         }
     }
 
@@ -252,6 +257,7 @@ enum ChartType: String, EnumCollection {
         case .meetingAverageDay,
              .meetingAverageWeek,
              .meetingLength,
+             .meetingIncreaseDiff,
              .meetingTimeBetween: return .meetings
         case .travelTripsAverageWeeks,
              .travelTripsAverageYear,
@@ -280,6 +286,7 @@ enum ChartType: String, EnumCollection {
         case .meetingAverageDay,
              .meetingAverageWeek: return R.string.localized.meCardTitleMeetingsNumber()
         case .meetingLength: return R.string.localized.meCardTitleMeetingsLength()
+        case .meetingIncreaseDiff: return R.string.localized.meCardTitleMeetingsIncrease()
         case .meetingTimeBetween: return R.string.localized.meCardTitleMeetingsTimeBetween()
         case .travelTripsAverageWeeks,
              .travelTripsAverageYear: return R.string.localized.meCardTitleTravelAverage()
@@ -309,6 +316,7 @@ enum ChartType: String, EnumCollection {
         case .meetingAverageDay,
              .meetingAverageWeek: return R.string.localized.meChartInfoTextMeetingsAverageNumber()
         case .meetingLength: return R.string.localized.meChartInfoTextMeetingsAverageLength()
+        case .meetingIncreaseDiff: return R.string.localized.meChartInfoTextMeetingsIncrease()
         case .meetingTimeBetween: return R.string.localized.meChartInfoTextMeetingsAverageTimeBetween()
         case .travelTripsAverageWeeks,
              .travelTripsAverageYear: return R.string.localized.meChartInfoTextTravelAverageNumber()
@@ -337,6 +345,7 @@ enum ChartType: String, EnumCollection {
         case .meetingAverageDay: return true
         case .meetingAverageWeek: return false
         case .meetingLength: return false
+        case .meetingIncreaseDiff: return false
         case .meetingTimeBetween: return false
         case .travelTripsAverageWeeks,
              .travelTripsAverageYear: return true
@@ -360,11 +369,19 @@ enum ChartType: String, EnumCollection {
         }
     }
 
+    var topView: Bool {
+        switch self {
+        case .meetingIncreaseDiff: return false
+        default: return true
+        }
+    }
+
     var bottomView: Bool {
         switch self {
         case .meetingAverageDay,
              .meetingAverageWeek,
              .meetingLength,
+             .meetingIncreaseDiff,
              .meetingTimeBetween: return false
         case .travelTripsAverageWeeks,
              .travelTripsAverageYear,
@@ -403,6 +420,7 @@ enum ChartType: String, EnumCollection {
         case .meetingAverageDay,
              .meetingAverageWeek,
              .meetingLength,
+             .meetingIncreaseDiff,
              .meetingTimeBetween,
              .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek,
@@ -414,8 +432,7 @@ enum ChartType: String, EnumCollection {
 
     var comingSoon: Bool {
         switch self {
-        case .meetingLength,
-             .peakPerformanceAverageWeek,
+        case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth,
              .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek,
@@ -440,6 +457,7 @@ enum ChartType: String, EnumCollection {
         case .intensityRecoveryWeek, .intensityRecoveryMonth: return R.string.localized.meSectorMyStatisticsPersonalAveragePerceivedRecovery()
         case .meetingAverageWeek: return R.string.localized.meSectorMyStatisticsPersonalAverageNumberOfMeetings()
         case .meetingTimeBetween: return R.string.localized.meSectorMyStatisticsPersonalAverageTimeBetweenMeetings()
+        case .meetingLength: return R.string.localized.meSectorMyStatisticsPersonalAverageLengthOfMeetings()
         default: return R.string.localized.meSectorMyStatisticsPersonalAverageDefault()
         }
     }
@@ -473,6 +491,7 @@ enum ChartType: String, EnumCollection {
         case .meetingAverageDay: return R.string.localized.meSectorMyStatisticsToday().attrString(selected)
         case .meetingAverageWeek: return nil
         case .meetingLength: return nil
+        case .meetingIncreaseDiff: return nil
         case .meetingTimeBetween: return nil
         case .travelTripsAverageWeeks: return R.string.localized.meSectorMyStatisticsWeeks("4").attrString(selected)
         case .travelTripsAverageYear: return R.string.localized.meSectorMyStatisticsYear().attrString(selected)
@@ -524,6 +543,7 @@ enum ChartType: String, EnumCollection {
              .intensityRecoveryMonth,
              .meetingAverageDay,
              .meetingLength,
+             .meetingIncreaseDiff,
              .meetingTimeBetween: return defaultChartDimensions
         }
     }
@@ -564,8 +584,8 @@ enum StatisticsSectionType: Int, EnumCollection {
                                  [.intensityRecoveryWeek, .intensityRecoveryMonth]]
         case .meetings: return [[.meetingAverageWeek],
                                 [.meetingTimeBetween],
-//                                [.meetingAverageDay], // FIXME: hidden for now, but should we delete them?
-                                [.meetingLength]]
+                                [.meetingLength],
+                                [.meetingIncreaseDiff]]
         case .travel: return [[.travelTripsNextFourWeeks],
                               [.travelTripsAverageWeeks, .travelTripsAverageYear],
                               [.travelTripsTimeZoneChangedWeeks, .travelTripsTimeZoneChangedYear],

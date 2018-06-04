@@ -19,6 +19,7 @@ var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
                                              .intensityRecoveryMonth: false,
                                              .meetingAverageDay: true,
                                              .meetingAverageWeek: true,
+                                             .meetingIncreaseDiff: true,
                                              .travelTripsAverageWeeks: true,
                                              .travelTripsAverageYear: false,
                                              .travelTripsTimeZoneChangedWeeks: true,
@@ -27,6 +28,7 @@ var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
 var chartViews: [ChartType: UIView?] = [.meetingAverageDay: nil,
                                         .meetingAverageWeek: nil,
                                         .meetingLength: nil,
+                                        .meetingIncreaseDiff: nil,
                                         .meetingTimeBetween: nil,
                                         .travelTripsAverageWeeks: nil,
                                         .travelTripsAverageYear: nil,
@@ -108,9 +110,11 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var overlayBackgroundImageView: UIImageView!
     @IBOutlet private weak var comingSoonView: UIView!
     @IBOutlet private weak var comingSoonLabel: UILabel!
-    @IBOutlet weak var headerLabel: UILabel!
-    @IBOutlet weak var headerLabelLeadingConstraint: NSLayoutConstraint!
-    @IBOutlet weak var headerLabelTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerLabelLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headerLabelTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var topView: UIView!
+
     weak var delegate: ChartCellDelegate?
     private var selectedButtonTag = 0
     private var infoViewDestination: AppCoordinator.Router.Destination?
@@ -239,13 +243,16 @@ private extension ChartCell {
 
     func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
         guard let statistics = statistics.chartType.selectedChart(charts: charts) else { return }
+        let isLengthMeetingsChart = statistics.key == "meetings.length.week.avg"
+        let userAverage = isLengthMeetingsChart == true ? statistics.userAverageInHours : statistics.userAverageDisplayableValue
+
         setLabel(text: "INFO", color: .white40, label: bottomLabel)
         setLabel(text: "MY\nTEAM\nAVG.", color: .white40, label: teamLabel, lineSpacing: 2.5)
         setLabel(text: "DATA\nBASE\nAVG.", color: .white40, label: dataLabel, lineSpacing: 2.5)
         setLabel(text: statistics.chartType.personalText, color: .white40, label: userAverageLabel, lineSpacing: 2.5)
         setLabel(text: statistics.dataAverageDisplayableValue, color: .white, label: dataAverageValueLabel, font: UIFont.simpleFont(ofSize: 11))
         setLabel(text: statistics.teamAverageDisplayableValue, color: .white, label: teamAverageValueLabel, font: UIFont.simpleFont(ofSize: 11))
-        setLabel(text: statistics.userAverageDisplayableValue, color: statistics.pathColor, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
+        setLabel(text: userAverage, color: statistics.pathColor, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
         setLabel(text: headerTitle.uppercased(), color: .white, label: headerLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
         setLabel(text: R.string.localized.meChartCommingSoon().uppercased(), color: .white, label: comingSoonLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
         teamLabel.sizeToFit()
@@ -341,7 +348,8 @@ private extension ChartCell {
             return travelTripFrame
         case .travelTripsMaxTimeZone,
              .meetingLength,
-             .meetingTimeBetween: return biggerFrame
+             .meetingTimeBetween,
+             .meetingIncreaseDiff: return biggerFrame
         }
     }
 
@@ -377,6 +385,8 @@ private extension ChartCell {
                                                statistics: statistics,
                                                labelContentView: labelContentView),
                            statistics)
+        case .meetingIncreaseDiff:
+            return addView(MeetingsIncreasingChart(frame: chartFrame, statistics: statistics), statistics)
         case .meetingTimeBetween:
             return addView(MeetingsTimeBetweenChart(frame: chartFrame,
                                                     statistics: statistics,
@@ -481,6 +491,8 @@ private extension ChartCell {
         guard let statistics = statistics else { return }
         let isSleepChart = statistics.chartType != .sleepQuantityTime && statistics.chartType != .sleepQuality
         seperatorBottomView.isHidden = statistics.chartType.bottomView == false
+        seperatorTopView.isHidden = statistics.chartType.topView == false
+        topContentView.isHidden = statistics.chartType.topView == false
 
         guard statistics.chartType.labels.isEmpty == false else { return }
         guard isSleepChart else { return }

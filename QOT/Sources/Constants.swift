@@ -98,7 +98,7 @@ struct Font {
     static let H6NavigationTitle = UIFont.simpleFont(ofSize: 14)
 
     /// SIMPLE REGULAR 11 // MyUniverse sector title
-    static let H7SectorTitle = UIFont.simpleFont(ofSize: 14)
+    static let H7SectorTitle = UIFont.simpleFont(ofSize: 11)
 
     /// BENTON SANS 11 // subtitles, tags
     static let H7Tag = UIFont.bentonRegularFont(ofSize: 11)

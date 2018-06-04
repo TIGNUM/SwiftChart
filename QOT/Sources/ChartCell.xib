@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="BentonSans_Book.otf">
+        <array key="BentonSans_Regular.otf">
             <string>BentonSans</string>
         </array>
         <array key="Simple-Regular.ttf">
@@ -121,7 +121,7 @@ for the last 5 days</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVf-jw-ehF">
-                                                <rect key="frame" x="9" y="33" width="64" height="51"/>
+                                                <rect key="frame" x="9" y="33" width="64" height="50.5"/>
                                                 <string key="text">Label
 Label
 Label</string>
@@ -136,7 +136,7 @@ Label</string>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="13Z-VH-iab">
-                                                <rect key="frame" x="77" y="33" width="63.5" height="51"/>
+                                                <rect key="frame" x="77" y="33" width="63.5" height="50.5"/>
                                                 <string key="text">Label
 Label
 Label</string>
@@ -565,6 +565,7 @@ see this card</string>
                 <outlet property="teamAverageValueLabel" destination="Hi2-v4-DFt" id="l3w-WB-PhZ"/>
                 <outlet property="teamLabel" destination="OVf-jw-ehF" id="IXK-d9-XVh"/>
                 <outlet property="topContentView" destination="M4b-KY-hcD" id="KDu-0k-Dfg"/>
+                <outlet property="topView" destination="M4b-KY-hcD" id="NCd-QK-gpE"/>
                 <outlet property="userAverageLabel" destination="PrC-py-f99" id="bvc-Zt-cgJ"/>
                 <outlet property="userAverageValueLabel" destination="gEj-vj-1rK" id="6F7-Cl-5G5"/>
             </connections>

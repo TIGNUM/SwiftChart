@@ -98,6 +98,10 @@ extension Statistics {
         return displayableValue(average: dataAverage)
     }
 
+    var userAverageInHours: String {
+        return String(Int(userAverage) / 60) + "." + String(Int(userAverage) % 60)
+    }
+
     func displayableValue(average: Double, clampToMax: Bool = false) -> String {
         var value = average.toFloat * multiplier.toFloat
         if let chartType = ChartType(rawValue: key), chartType == .sleepQuantityTime {

@@ -279,6 +279,7 @@
 		915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */; };
 		9166ECEB20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9166ECEA20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib */; };
 		9166ECED20A07C2F006DF113 /* GuideToBeVisionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166ECEC20A07C2F006DF113 /* GuideToBeVisionTableViewCell.swift */; };
+		91796F2820B6D97C00AC60BA /* MeetingsIncreasingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796F2720B6D97C00AC60BA /* MeetingsIncreasingChart.swift */; };
 		91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B339DF207F5F5E00F54A62 /* SettingsBubblesViewController.xib */; };
 		91B339E2207F5F7400F54A62 /* SettingsBubblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B339E1207F5F7400F54A62 /* SettingsBubblesViewController.swift */; };
 		91C262B91FED0B2D0075664E /* InterviewDialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B61FED0B2C0075664E /* InterviewDialView.swift */; };
@@ -958,6 +959,7 @@
 		915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewcontroller+UIImpactFeedbackGenerator.swift"; sourceTree = "<group>"; };
 		9166ECEA20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideToBeVisionTableViewCell.xib; sourceTree = "<group>"; };
 		9166ECEC20A07C2F006DF113 /* GuideToBeVisionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideToBeVisionTableViewCell.swift; sourceTree = "<group>"; };
+		91796F2720B6D97C00AC60BA /* MeetingsIncreasingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingsIncreasingChart.swift; sourceTree = "<group>"; };
 		91B339DF207F5F5E00F54A62 /* SettingsBubblesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsBubblesViewController.xib; sourceTree = "<group>"; };
 		91B339E1207F5F7400F54A62 /* SettingsBubblesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesViewController.swift; sourceTree = "<group>"; };
 		91C262B61FED0B2C0075664E /* InterviewDialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDialView.swift; sourceTree = "<group>"; };
@@ -2512,6 +2514,7 @@
 				852DADD91EF147AA00A10882 /* MeetingsTimeBetweenChart.swift */,
 				852DADE71EF26B1D00A10882 /* PeakPerformanceAverageChart.swift */,
 				858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChart.swift */,
+				91796F2720B6D97C00AC60BA /* MeetingsIncreasingChart.swift */,
 				D5A64D931EE801970095D01C /* SleepChart.swift */,
 				852DADDD1EF1737700A10882 /* TravelMaxTimeZoneChart.swift */,
 				85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */,
@@ -3712,6 +3715,7 @@
 				CCFCCB141F31C8E8004A4D7E /* R.generated.swift in Sources */,
 				CC9FBDE81EAE58F300AF1CF0 /* SettingsMenuCoordinator.swift in Sources */,
 				7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */,
+				91796F2820B6D97C00AC60BA /* MeetingsIncreasingChart.swift in Sources */,
 				91086E52209204670035DA1F /* SettingsCell.swift in Sources */,
 				36667698207CF65000D2F5AD /* VisionGeneratorPresenter.swift in Sources */,
 				7F3A9CBB1FCDB8FF000F1744 /* UserFeedback.swift in Sources */,
