@@ -82,13 +82,6 @@ final class LaunchHandler {
         guard let destination = destination else { return }
         appDelegate.appCoordinator.presentPrepare(destination)
     }
-
-    func syncUserDependentData(completionHandler: (() -> Void)?) {
-        appDelegate.appCoordinator.syncManager.syncUserDependentData(syncContext: nil) { (error) in
-            if error != nil { os_log("BackgroundFetch : Sync User Dependent Data is finished with error") }
-            completionHandler?()
-        }
-    }
 }
 
 // MARK: - Preparation
@@ -278,5 +271,16 @@ extension LaunchHandler {
             let contentIDString = scheme.queryParametter(url: url),
             let contentID = Int(contentIDString) else { return }
         appDelegate.appCoordinator.presentContentItem(contentID: contentID, searchViewController: searchViewController)
+    }
+}
+
+// MARK: - Background Sync
+
+extension LaunchHandler {
+    func syncUserDependentData(completionHandler: (() -> Void)?) {
+        appDelegate.appCoordinator.syncManager.syncUserDependentData(syncContext: nil) { (error) in
+            if error != nil { os_log("BackgroundFetch : Sync User Dependent Data is finished with error") }
+            completionHandler?()
+        }
     }
 }
