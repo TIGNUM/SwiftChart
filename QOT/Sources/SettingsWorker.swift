@@ -14,6 +14,7 @@ final class SettingsWorker {
 
     init(services: Services) {
         self.services = services
+        NotificationCenter.default.post(Notification(name: .startSyncCalendarRelatedData))
     }
 
     func settings() -> SettingsModel {

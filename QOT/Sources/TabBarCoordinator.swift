@@ -250,6 +250,9 @@ extension TabBarCoordinator: TabBarControllerDelegate {
                           didSelect viewController: UIViewController,
                           at index: Int) {
 
+        if index != selectedIndex.value { // if tab changes, report conversions
+            NotificationCenter.default.post(Notification(name: .startSyncConversionRelatedData))
+        }
         selectedIndex.value = index
         if let tabBarIndex = TabBar(rawValue: index) {
             badgeManager.tabDisplayed = tabBarIndex

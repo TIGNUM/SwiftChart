@@ -123,7 +123,7 @@ extension UserService {
 extension UserService {
 
     func myToBeVision() -> MyToBeVision? {
-        return myToBeVisions().first
+        return myToBeVisions().last
     }
 
     func myToBeVisions() -> AnyRealmCollection<MyToBeVision> {

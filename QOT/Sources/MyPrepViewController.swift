@@ -205,7 +205,7 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
             try? self.viewModel.deleteItem(at: indexPath.row)
-            syncManager.syncAll(shouldDownload: false)
+            syncManager.syncPreparations()
         }
     }
 

@@ -192,6 +192,7 @@ final class PreparationService {
                 checkObject.covered = covered
                 checkObject.didUpdate()
             })
+            NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
         }
     }
 

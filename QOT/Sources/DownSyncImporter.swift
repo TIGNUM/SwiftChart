@@ -21,6 +21,7 @@ class DownSyncImporter<T> where T: DownSyncable, T: SyncableObject {
                         object = existing
                         object.createdAt = createdAt
                         object.modifiedAt = modifiedAt
+                        try object.setData(data, objectStore: store)
                     } else {
                         try object = T.object(remoteID: remoteID, store: store, data: data, createdAt: createdAt, modifiedAt: modifiedAt)!
                     }

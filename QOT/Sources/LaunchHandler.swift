@@ -119,7 +119,7 @@ extension LaunchHandler {
                 switch result {
                 case .success:
                     self.showTemporaryHUD(type: .fitbitSuccess)
-                    self.appDelegate.appCoordinator.syncManager.syncAll(shouldDownload: true)
+                    self.appDelegate.appCoordinator.syncManager.syncUserDependentData()
                 case .failure(let error):
                     self.handleFitbitFailure(error)
                 }

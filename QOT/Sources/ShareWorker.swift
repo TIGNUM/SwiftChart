@@ -58,41 +58,15 @@ final class ShareWorker {
     }
 
     func preUpSyncData() {
-        preUpSyncData(syncToBeVision: true, syncWeeklyChoices: true, completion: nil)
+        preUpSyncData(completion: nil)
     }
 
-    private func preUpSyncData(syncToBeVision: Bool, syncWeeklyChoices: Bool, completion: ((Error?) -> Void)?) {
-        let dispatchGroup =  DispatchGroup()
-        var errors: [Error] = []
-
-        if syncToBeVision == true {
-            dispatchGroup.enter()
-            syncManager.upSync(MyToBeVision.self) { (error) in
-                error.map { errors.append($0) }
-                dispatchGroup.leave()
-            }
-        }
-        if syncWeeklyChoices == true {
-            dispatchGroup.enter()
-            syncManager.upSync(UserChoice.self) { (error) in
-                error.map { errors.append($0) }
-                dispatchGroup.leave()
-            }
-        }
-        dispatchGroup.enter()
-        syncManager.upSync(Partner.self) { (error) in
-            error.map { errors.append($0) }
-            dispatchGroup.leave()
-        }
-        dispatchGroup.notify(queue: .main) {
-            completion?(errors.first)
-        }
+    private func preUpSyncData(completion: ((Error?) -> Void)?) {
+        syncManager.syncForSharing(completion: completion)
     }
 
     private func emailContent(sharingType: Partners.SharingType, completion: @escaping ((Result) -> Void)) {
-        let syncToBeVision = sharingType == .toBeVision
-        let syncWeeklyChoices = sharingType == .weeklyChoices
-        preUpSyncData(syncToBeVision: syncToBeVision, syncWeeklyChoices: syncWeeklyChoices) { [weak self] (error) in
+        preUpSyncData(completion: { [weak self] (error) in
             if let error = error {
                 completion(.failure(error))
             } else {
@@ -116,6 +90,6 @@ final class ShareWorker {
                     completion(.failure(SimpleError(localizedDescription: "Partner has no remote ID")))
                 }
             }
-        }
+        })
     }
 }

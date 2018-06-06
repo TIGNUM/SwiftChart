@@ -63,8 +63,8 @@ final class PartnerEditWorker {
         } catch {
             log("Failed to save partners with error: \(error)")
         }
-        syncManager.syncAll(shouldDownload: false)
-        syncManager.uploadMedia()
+
+        syncManager.syncPartners()
     }
 
     func saveImage(_ image: UIImage) throws -> URL {

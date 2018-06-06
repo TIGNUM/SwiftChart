@@ -82,8 +82,7 @@ extension VisionGeneratorWorker {
         }
         visionModel = currentVisionModel
         let manager = syncManager
-        manager.upSync(MyToBeVision.self) { (_) in
-            manager.downSync(MyToBeVision.self)
+        manager.syncMyToBeVision { (error) in
             completion?()
         }
     }

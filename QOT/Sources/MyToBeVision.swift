@@ -22,7 +22,7 @@ final class MyToBeVision: SyncableObject {
 
     @objc dynamic var date: Date?
 
-    @objc dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String?
 }
 
 extension MyToBeVision: TwoWaySyncableUniqueObject {

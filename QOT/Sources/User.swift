@@ -27,7 +27,7 @@ final class User: SyncableObject {
         }
     }
 
-    @objc dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String?
 
     @objc dynamic var gender: String = ""
 

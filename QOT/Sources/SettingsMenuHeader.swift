@@ -19,7 +19,7 @@ final class SettingsMenuHeader: UIView {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var positionLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
-    private var viewModel: SettingsMenuViewModel? = nil
+    private var viewModel: SettingsMenuViewModel?
     weak var delegate: SettingsMenuHeaderDelegate?
 
     override func awakeFromNib() {

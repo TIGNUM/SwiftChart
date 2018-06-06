@@ -408,7 +408,7 @@ extension LearnContentItemViewModel {
         })
 
         let audioTitle = cell?.getAudioTitle() == "" ? "Strategy Audio" : cell?.getAudioTitle()
-        MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle: audioTitle,
+        MPNowPlayingInfoCenter.default().nowPlayingInfo = [MPMediaItemPropertyTitle: audioTitle!,
                                                            MPMediaItemPropertyArtist: "// QOT"]
     }
 

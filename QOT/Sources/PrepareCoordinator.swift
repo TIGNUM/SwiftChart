@@ -48,7 +48,6 @@ final class PrepareCoordinator: ParentCoordinator {
             switch action {
             case .saved:
                 if let ekEvent = controller.event {
-                    // FIXME: import created event and get CalendarEvent
                     let event = CalendarEvent(event: ekEvent)
                     do {
                         let realm = try self?.services.realmProvider.realm()
@@ -497,12 +496,12 @@ extension PrepareCoordinator: NavigationItemDelegate {
                                                 log("Error while updating preparationChecks: \(error)", level: .error)
                                             }
                                             let hud = MBProgressHUD.showAdded(to: prepareContentController.view, animated: true)
-                                            syncManager.syncAll(shouldDownload: true) { _ in
+                                            syncManager.syncPreparations(completion: { (error) in
                                                 if let viewModel = self.prepareChecklistViewModel(preparation: preparation) {
                                                     prepareContentController.updateViewModel(viewModel: viewModel)
                                                 }
                                                 hud.hide(animated: true)
-                                            }
+                                            })
         })
     }
 }

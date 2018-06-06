@@ -21,10 +21,12 @@ extension Notification.Name {
 extension Notification.Name {
     static let startSyncAllNotification = Notification.Name(rawValue: "qot_startSyncAllNotification")
     static let startSyncUploadMediaNotification = Notification.Name(rawValue: "qot_startSyncUploadMediaNotification")
+    static let startSyncCalendarRelatedData = Notification.Name(rawValue: "qot_startSyncCalendarRelatedData")
+    static let startSyncPreparationRelatedData = Notification.Name(rawValue: "qot_startSyncPreparationRelatedData")
+    static let startSyncConversionRelatedData = Notification.Name(rawValue: "qot_startSyncConversionRelatedData")
 }
 
 final class SyncManager {
-
     // MARK: - Private Storage
 
     let syncRecordService: SyncRecordService
@@ -35,12 +37,9 @@ final class SyncManager {
     private var uploadTimer: Timer?
     private var syncTask: SyncTask?
     private var enabled = false
-    private let operationQueue: OperationQueue = {
-        let queue = OperationQueue()
-        queue.maxConcurrentOperationCount = 1
-        return queue
-    }()
-    private let priorityUpSyncQueue = OperationQueue()
+    private var nextAllSyncTime: Date = Date(timeIntervalSince1970: 0)
+    private let allSyncOperationQueue: OperationQueue
+    private let operationQueue: OperationQueue
 
     var userNotificationsManager: UserNotificationsManager?
 
@@ -52,6 +51,10 @@ final class SyncManager {
         self.networkManager = networkManager
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider
+        self.allSyncOperationQueue = OperationQueue()
+        self.allSyncOperationQueue.maxConcurrentOperationCount = 3
+        self.operationQueue = OperationQueue()
+        self.operationQueue.maxConcurrentOperationCount = 3
 
         reachability?.listener = { [weak self] (status) -> Void in
             switch status {
@@ -65,6 +68,9 @@ final class SyncManager {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(willEnterForegroundNotification(_:)),
                                                name: .UIApplicationWillEnterForeground, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didEnterBackgroundNotification(_:)),
+                                               name: .UIApplicationDidEnterBackground, object: nil)
     }
 
     deinit {
@@ -73,8 +79,8 @@ final class SyncManager {
 
     // MARK: - Public
 
-    var isSyncing: Bool {
-        return operationQueue.operationCount > 0
+    var isSyncingAll: Bool {
+        return allSyncOperationQueue.operationCount > 0
     }
 
     func start() {
@@ -111,82 +117,93 @@ final class SyncManager {
     }
 
     func syncAll(shouldDownload: Bool, completion: ((Error?) -> Void)? = nil) {
-        if isSyncing == true {
+        if isSyncingAll {
             completion?(nil)
             return
         }
+        stopSyncTimers()
+        startSyncTimers()
+        nextAllSyncTime = Date(timeIntervalSinceNow: 60 * 10) // in next 10 minutes.
         let context = SyncContext()
 
-        let startOperation = BlockOperation {
-            DispatchQueue.main.async {
-                NotificationHandler.postNotification(withName: .syncAllDidStartNotification)
-                UIApplication.shared.isNetworkActivityIndicatorVisible = true
-                log("SYNC ALL STARTED", level: .debug)
-            }
-        }
-        let finishOperation = BlockOperation {
-            DispatchQueue.main.async {
-                let errors = context.errors
-                NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
-                UIApplication.shared.isNetworkActivityIndicatorVisible = false
-                log("SYNC ALL FINISHED with \(errors.count) errors", level: .debug)
-                errors.forEach { (error: SyncError) in
-                    log(error, level: .debug)
-                }
-                completion?(errors.first)
-            }
+        let startOperation = operationBlock(context: nil) { (error) in
+            NotificationHandler.postNotification(withName: .syncAllDidStartNotification)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            log("SYNC ALL STARTED", level: .debug)
         }
 
+        let finishOperation = operationBlock(context: nil) { (error) in
+            NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            log("SYNC ALL FINISHED with \(error == nil ? "some" : "No") errors", level: .debug)
+            completion?(error)
+        }
+
+        startOperation.queuePriority = .high
         var operations: [Operation] = [startOperation]
-        operations.append(contentsOf: syncOperations(context: context, shouldDownload: shouldDownload))
+        operations.append(contentsOf: userIndependentSyncOperations(context: context))
+        operations.append(contentsOf: userDependentSyncOperations(context: context, updateRelation: false))
+        operations.append(contentsOf: conversionSyncOperations(context: context, updateRelation: false))
+        operations.append(UpdateRelationsOperation(context: context, realmProvider: realmProvider))
+        for operation in operations {
+            finishOperation.addDependency(operation)
+        }
         operations.append(finishOperation)
-        operationQueue.addOperations(operations, waitUntilFinished: false)
+        allSyncOperationQueue.addOperations(operations, waitUntilFinished: false)
     }
 
-    func upSync<T>(_ type: T.Type, completion: ((Error?) -> Void)? = nil) where T: UpSyncable, T: SyncableObject {
-        let context = SyncContext()
-        let upSyncTask = UpSyncTask<T>(networkManager: networkManager, realmProvider: realmProvider)
-        let syncOp = SyncOperation(upSyncTask: upSyncTask,
-                             downSyncTask: nil,
-                             syncContext: context,
-                             debugIdentifier: String(describing: type))
-        var operations: [Operation] = [syncOp]
-        if let completion = completion {
-            let finishOperation = BlockOperation {
-                DispatchQueue.main.async {
-                    let errors = context.errors
-                    completion(errors.first)
-                }
-            }
-            finishOperation.addDependency(syncOp)
-            operations.append(finishOperation)
-        }
-        priorityUpSyncQueue.addOperations(operations, waitUntilFinished: false)
+    func syncUserDependentData(syncContext: SyncContext? = nil, completion: ((Error?) -> Void)? = nil) {
+        let context = syncContext ?? SyncContext()
+        excute(operations: userDependentSyncOperations(context: context, updateRelation: true), context: context, completion: completion)
     }
 
-    func downSync<T>(_ type: T.Type, completion: ((Error?) -> Void)? = nil)
-        where T: DownSyncable, T: SyncableObject, T.Data: DownSyncIntermediary {
-
+    func syncUserAnswers() {
         let context = SyncContext()
-        let downSyncTask = DownSyncTask<T>(networkManager: networkManager,
-                                           realmProvider: realmProvider,
-                                           syncRecordService: syncRecordService)
-        let syncOp = SyncOperation(upSyncTask: nil,
-                                   downSyncTask: downSyncTask,
-                                   syncContext: context,
-                                   debugIdentifier: String(describing: type))
-        var operations: [Operation] = [syncOp]
-        if let completion = completion {
-            let finishOperation = BlockOperation {
-                DispatchQueue.main.async {
-                    let errors = context.errors
-                    completion(errors.first)
-                }
-            }
-            finishOperation.addDependency(syncOp)
-            operations.append(finishOperation)
-        }
-        priorityUpSyncQueue.addOperations(operations, waitUntilFinished: false)
+        let userAnswerOperation = syncOperation(UserAnswer.self, context: context, shouldDownload: true)
+        let dailyPrepResultOperation = syncOperation(DailyPrepResultObject.self, context: context, shouldDownload: true)
+        if userAnswerOperation != nil { dailyPrepResultOperation?.addDependency(userAnswerOperation!) }
+        excute(operations: [userAnswerOperation, dailyPrepResultOperation].compactMap({ $0 }),
+               context: context, completion: nil)
+    }
+
+    func syncForSharing(completion: ((Error?) -> Void)? = nil) {
+        let context = SyncContext()
+        excute(operations: [syncOperation(MyToBeVision.self, context: context, shouldDownload: true),
+                            syncOperation(UserChoice.self, context: context, shouldDownload: true),
+                            syncOperation(Partner.self, context: context, shouldDownload: true)], context: context, completion: completion)
+        uploadMedia()
+    }
+
+    func syncMyToBeVision(completion: ((Error?) -> Void)? = nil) {
+        let context = SyncContext()
+        excute(operations: [syncOperation(MyToBeVision.self, context: context, shouldDownload: true)], context: context, completion: completion)
+        uploadMedia()
+    }
+
+    func syncPartners(completion: ((Error?) -> Void)? = nil) {
+        let context = SyncContext()
+        excute(operations: [syncOperation(Partner.self, context: context, shouldDownload: true)], context: context, completion: completion)
+        uploadMedia()
+    }
+
+    func syncCalendarEvents(completion: ((Error?) -> Void)? = nil) {
+        let context = SyncContext()
+        excute(operations: [syncOperation(CalendarEvent.self, context: context, shouldDownload: true)], context: context, completion: completion)
+    }
+
+    func syncCalendarSyncSettings(completion: ((Error?) -> Void)? = nil) {
+        let context = SyncContext()
+        excute(operations: [syncOperation(RealmCalendarSyncSetting.self, context: context, shouldDownload: true)], context: context, completion: completion)
+    }
+
+    func syncPreparations(completion: ((Error?) -> Void)? = nil) {
+        let context = SyncContext()
+        excute(operations: preparationSyncOperations(context: context, updateRelation: true), context: context, completion: completion)
+    }
+
+    func syncConversions(syncContext: SyncContext? = nil, completion: ((Error?) -> Void)? = nil) {
+        let context = syncContext ?? SyncContext()
+        excute(operations: conversionSyncOperations(context: context, updateRelation: true), context: context, completion: completion)
     }
 
     func uploadMedia() {
@@ -195,22 +212,12 @@ final class SyncManager {
             var operations: [Operation] = try uploadMediaOperations(context: context)
             guard operations.count > 0 else { return }
 
-            let startOperation = BlockOperation {
-                DispatchQueue.main.async {
-                    log("UPLOAD MEDIA STARTED", level: .debug)
-                }
+            let startOperation = operationBlock(context: context) { (error) in
+                log("UPLOAD MEDIA STARTED", level: .debug)
             }
-            let finishOperation = BlockOperation {
-                DispatchQueue.main.async {
-                    let errors = context.errors
-
-                    log("UPLOAD MEDIA FINISHED with \(errors.count) errors", level: .debug)
-                    errors.forEach { (error: SyncError) in
-                        log(error, level: .debug)
-                    }
-                }
+            let finishOperation = operationBlock(context: nil) { (error) in
+                log("UPLOAD MEDIA FINISHED with \(error == nil ? "some" : "No") errors", level: .debug)
             }
-
             operations.insert(startOperation, at: 0)
             operations.append(finishOperation)
             operationQueue.addOperations(operations, waitUntilFinished: false)
@@ -222,19 +229,109 @@ final class SyncManager {
 
 private extension SyncManager {
 
+    func userIndependentSyncOperations(context: SyncContext) -> [Operation] {
+        var operations: [Operation] = contentSyncOperations(context: context, updateRelation: false)
+        operations.append(contentsOf: guideItemSyncOperations(context: context, updateRelation: true))
+        let lastOperation = operations.last!
+        if let questionSyncOperation = syncOperation(Question.self, context: context, shouldDownload: true) {
+            questionSyncOperation.addDependency(lastOperation)
+            operations.append(questionSyncOperation)
+        }
+        if let pageSyncOperation = syncOperation(Page.self, context: context, shouldDownload: true) {
+            pageSyncOperation.addDependency(lastOperation)
+            operations.append(pageSyncOperation)
+        }
+        return operations.compactMap({ $0 })
+    }
+
+    func contentSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
+        let updateRelationsOperation = updateRelation ? UpdateRelationsOperation(context: context, realmProvider: realmProvider) : nil
+        let contentCategorySyncOperation = syncOperation(ContentCategory.self, context: context, shouldDownload: true)
+        let contentCollectionSyncOperation = syncOperation(ContentCollection.self, context: context, shouldDownload: true)
+        let contentItemSyncOperation = syncOperation(ContentItem.self, context: context, shouldDownload: true)
+
+        // Add Operation Depedencies
+        if contentItemSyncOperation != nil { updateRelationsOperation?.addDependency(contentItemSyncOperation!) }
+        if contentCollectionSyncOperation != nil { updateRelationsOperation?.addDependency(contentCollectionSyncOperation!) }
+        if contentItemSyncOperation != nil { updateRelationsOperation?.addDependency(contentItemSyncOperation!) }
+
+        return [contentCategorySyncOperation, contentCollectionSyncOperation,
+                contentItemSyncOperation, updateRelationsOperation].compactMap({ $0 })
+    }
+
+    func guideItemSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
+        let updateRelationsOperation = updateRelation ? UpdateRelationsOperation(context: context, realmProvider: realmProvider) : nil
+        let scheduleNotificationOperation = BlockOperation { // Schedule Notifications
+            DispatchQueue.main.async {
+                let manager = self.userNotificationsManager
+                manager?.scheduleNotifications()
+            }
+        }
+
+        let guideItemLeanSyncOperation = syncOperation(RealmGuideItemLearn.self, context: context, shouldDownload: true)
+        let guideItemNotificationSyncOperation = syncOperation(RealmGuideItemNotification.self, context: context, shouldDownload: true)
+        let guidItemSyncOperation = syncOperation(RealmGuideItem.self, context: context, shouldDownload: true)
+
+        // Add Operation Depedencies
+        let lastOperation = updateRelationsOperation ?? scheduleNotificationOperation
+        if updateRelationsOperation != nil { scheduleNotificationOperation.addDependency(updateRelationsOperation!) }
+        if guideItemLeanSyncOperation != nil { lastOperation.addDependency(guideItemLeanSyncOperation!) }
+        if guideItemNotificationSyncOperation != nil { lastOperation.addDependency(guideItemNotificationSyncOperation!) }
+        if guidItemSyncOperation != nil { lastOperation.addDependency(guidItemSyncOperation!) }
+
+        return [guideItemLeanSyncOperation, guideItemNotificationSyncOperation,
+                guidItemSyncOperation, updateRelationsOperation, scheduleNotificationOperation].compactMap({ $0 })
+    }
+
+    func preparationSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
+        let updateRelationsOperation = updateRelation ? UpdateRelationsOperation(context: context, realmProvider: realmProvider) : nil
+        let preperationSyncOperation = syncOperation(Preparation.self, context: context, shouldDownload: true)
+        let preperationCheckSyncOperation = syncOperation(PreparationCheck.self, context: context, shouldDownload: true)
+
+        // Add Operation Depedencies
+        if preperationSyncOperation != nil { updateRelationsOperation?.addDependency(preperationSyncOperation!) }
+        if preperationCheckSyncOperation != nil { updateRelationsOperation?.addDependency(preperationCheckSyncOperation!) }
+        return [preperationSyncOperation, preperationCheckSyncOperation, updateRelationsOperation].compactMap({ $0 })
+    }
+
+    func calendarSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
+        let calendarSettingSyncOperation = syncOperation(RealmCalendarSyncSetting.self, context: context, shouldDownload: true)
+        let calendarEventSyncOperation = syncOperation(CalendarEvent.self, context: context, shouldDownload: true)
+        if calendarSettingSyncOperation != nil { calendarEventSyncOperation?.addDependency(calendarSettingSyncOperation!) }
+        return [calendarSettingSyncOperation, calendarEventSyncOperation].compactMap({ $0 })
+    }
+
+    func conversionSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
+        return [syncOperation(UserFeedback.self, context: context, shouldDownload: true),
+                syncOperation(ContentRead.self, context: context, shouldDownload: true),
+                syncOperation(PageTrack.self, context: context, shouldDownload: true)].compactMap({ $0 })
+    }
+
+    func userDependentSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
+        var operations: [Operation?] = [syncOperation(User.self, context: context, shouldDownload: true),
+                                        syncOperation(UserChoice.self, context: context, shouldDownload: true),
+                                        syncOperation(UserAnswer.self, context: context, shouldDownload: true),
+                                        syncOperation(MyToBeVision.self, context: context, shouldDownload: true),
+                                        syncOperation(Partner.self, context: context, shouldDownload: true),
+                                        syncOperation(DailyPrepResultObject.self, context: context, shouldDownload: true),
+                                        syncOperation(Statistics.self, context: context, shouldDownload: true),
+                                        syncOperation(UserSetting.self, context: context, shouldDownload: true),
+                                        syncOperation(SystemSetting.self, context: context, shouldDownload: true)]
+        operations.append(contentsOf: preparationSyncOperations(context: context, updateRelation: true))
+        operations.append(contentsOf: calendarSyncOperations(context: context, updateRelation: false))
+        return operations.compactMap({ $0 })
+    }
+
     func startSyncTimers() {
         #if BUILD_DATABASE
             return // Don't do regular sync when building seed database
         #else
 
-        func startSyncTimer(timeInterval: TimeInterval, shouldDownload: Bool) -> Timer {
-            return Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: true) { [unowned self] _ in
-                self.syncAll(shouldDownload: shouldDownload)
-                self.uploadMedia()
-            }
+        syncAllTimer = Timer.scheduledTimer(withTimeInterval: 60.0 * 10.0 /* 10 mins */, repeats: true) { [unowned self] _ in
+            self.syncAll(shouldDownload: true)
+            self.uploadMedia()
         }
-        syncAllTimer = startSyncTimer(timeInterval: 60.0 * 60.0 * 10.0 /* 10 mins */, shouldDownload: true)
-        uploadTimer = startSyncTimer(timeInterval: 60.0, shouldDownload: false)
+
         #endif //#if BUILD_DATABASE
     }
 
@@ -248,56 +345,16 @@ private extension SyncManager {
         let center = NotificationCenter.default
         center.addObserver(self, selector: #selector(startSyncAllNotification(_:)), name: .startSyncAllNotification, object: nil)
         center.addObserver(self, selector: #selector(startSyncUploadMediaNotification(_:)), name: .startSyncUploadMediaNotification, object: nil)
+        center.addObserver(self, selector: #selector(startSyncCalendarRelatedDataNotification(_:)), name: .startSyncCalendarRelatedData, object: nil)
+        center.addObserver(self, selector: #selector(startSyncConversionRelatedDataNotification(_:)), name: .startSyncConversionRelatedData, object: nil)
+        center.addObserver(self, selector: #selector(startSyncPreparationRelatedDataNotification(_:)), name: .startSyncPreparationRelatedData, object: nil)
+
     }
 
     func stopObservingSyncNotifications() {
         let center = NotificationCenter.default
         center.removeObserver(self, name: .startSyncAllNotification, object: nil)
         center.removeObserver(self, name: .startSyncUploadMediaNotification, object: nil)
-    }
-
-    func syncOperations(context: SyncContext, shouldDownload: Bool) -> [Operation] {
-        var createLocalNotificationsOperation: BlockOperation?
-        if shouldDownload {
-            createLocalNotificationsOperation = BlockOperation {
-                DispatchQueue.main.async {
-                    if let manager = self.userNotificationsManager, shouldDownload == true {
-                        manager.scheduleNotifications()
-                    }
-                }
-            }
-        }
-
-        let operations: [Operation?] = [
-            syncOperation(RealmCalendarSyncSetting.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(ContentRead.self, context: context, shouldDownload: shouldDownload),
-            UpdateRelationsOperation(context: context, realmProvider: realmProvider),
-            syncOperation(RealmGuideItemLearn.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(RealmGuideItemNotification.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(RealmGuideItem.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(DailyPrepResultObject.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(UserAnswer.self, context: context, shouldDownload: shouldDownload),
-            createLocalNotificationsOperation,
-            syncOperation(PageTrack.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(CalendarEvent.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(MyToBeVision.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(Statistics.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(Partner.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(UserChoice.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(Preparation.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(PreparationCheck.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(UserSetting.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(User.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(UserFeedback.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(SystemSetting.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(Question.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(Page.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(ContentCategory.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(ContentCollection.self, context: context, shouldDownload: shouldDownload),
-            syncOperation(ContentItem.self, context: context, shouldDownload: shouldDownload),
-            UpdateRelationsOperation(context: context, realmProvider: realmProvider)
-        ]
-        return operations.compactMap({ $0 })
     }
 
     func uploadMediaOperations(context: SyncContext) throws -> [Operation] {
@@ -357,6 +414,31 @@ private extension SyncManager {
                                     localID: localID)
     }
 
+    func operationBlock(context: SyncContext?, completion: ((Error?) -> Void)? = nil) -> Operation {
+        return BlockOperation {
+            DispatchQueue.main.async {
+                let errors = context?.errors
+                errors?.forEach { (error: SyncError) in
+                    log(error, level: .debug)
+                }
+                completion?(errors?.first)
+            }
+        }
+    }
+
+    func excute(operations: [Operation?], context: SyncContext, completion: ((Error?) -> Void)? = nil) {
+        var givenOperations = operations
+        let context = SyncContext()
+        let finishOperation: Operation? = (completion != nil) ? operationBlock(context: context, completion: completion) : nil
+        if finishOperation != nil {
+            for operation in givenOperations.compactMap({ $0 }) {
+                finishOperation!.addDependency(operation)
+            }
+            givenOperations.append(finishOperation)
+        }
+        operationQueue.addOperations(givenOperations.compactMap({ $0 }), waitUntilFinished: false)
+    }
+
     // MARK: Notifications
 
     @objc func startSyncAllNotification(_ notification: Notification) {
@@ -368,10 +450,35 @@ private extension SyncManager {
         uploadMedia()
     }
 
+    @objc func startSyncCalendarRelatedDataNotification(_ notification: Notification) {
+        syncCalendarSyncSettings { (error) in
+            self.syncCalendarEvents()
+        }
+    }
+
+    @objc func startSyncConversionRelatedDataNotification(_ notification: Notification) {
+        syncConversions()
+    }
+    @objc func startSyncPreparationRelatedDataNotification(_ notification: Notification) {
+        syncPreparations()
+    }
+
+    @objc func didEnterBackgroundNotification (_ notification: Notification) {
+        stopSyncTimers()
+    }
+
     @objc func willEnterForegroundNotification(_ notification: Notification) {
+        #if BUILD_DATABASE
+        return // Don't do regular sync when building seed database
+        #else
         guard enabled == true else { return }
 
-        syncAll(shouldDownload: true)
-        uploadMedia()
+        if nextAllSyncTime < Date() {
+            syncAll(shouldDownload: true)
+        } else {
+            syncUserDependentData()
+            uploadMedia()
+        }
+        #endif //#if BUILD_DATABASE
     }
 }

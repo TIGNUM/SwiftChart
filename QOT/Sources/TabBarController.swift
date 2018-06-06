@@ -195,6 +195,7 @@ extension TabBarController: UITabBarControllerDelegate {
             assertionFailure("index not found")
             return
         }
+
         tabBarControllerDelegate?.tabBarController(self, didSelect: viewController, at: index)
         if config.useIndicatorView == true {
             setIndicatorViewToButtonIndex(index, animated: true)

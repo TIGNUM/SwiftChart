@@ -55,7 +55,7 @@ final class MyToBeVisionWorker {
                                                      entitiyLocalID: $0.localID)
             }
         }
-        syncManager.syncAll(shouldDownload: false)
+        syncManager.syncMyToBeVision()
     }
 
     func saveImage(_ image: UIImage) throws -> URL {

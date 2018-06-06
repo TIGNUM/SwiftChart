@@ -289,7 +289,7 @@ private extension AppCoordinator {
 
     @objc func timeZoneDidChange() {
         services?.userService.updateTimeZone { [unowned self] in
-            self.syncManager.syncAll(shouldDownload: false)
+            self.syncManager.syncUserDependentData()
         }
     }
 

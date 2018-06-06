@@ -83,8 +83,8 @@ final class CalendarSyncSettingsManager {
                     setting.syncEnabled = enabled
                     setting.didUpdate()
                 }
-                // FIXME: up sync Calendar Sync Setting, up/down sync Calendar Events, up/down Preperation
-                syncManager.syncAll(shouldDownload: false)
+                syncManager.syncCalendarSyncSettings()
+                syncManager.syncCalendarEvents()
             }
         } catch {
             assertionFailure("Failed ot set calendar sync enabled: \(error)")
@@ -129,9 +129,9 @@ private extension CalendarSyncSettingsManager {
                 realm.addObject(new)
             }
             result = new
+            syncManager.syncCalendarSyncSettings()
+            syncManager.syncCalendarEvents()
         }
-        // MARK: FIXME: upsync calendar sync setting and calendar events only (when it's created)
-        syncManager.syncAll(shouldDownload: false)
         return result
     }
 }
