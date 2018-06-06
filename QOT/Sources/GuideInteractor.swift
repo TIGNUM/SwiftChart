@@ -13,6 +13,7 @@ final class GuideInteractor: GuideInteractorInterface {
     let presenter: GuidePresenterInterface
     let guideObserver: GuideObserver
     let worker: GuideWorker
+    var reloadRequestCount: Int = 0
 
     init(presenter: GuidePresenterInterface, guideObserver: GuideObserver, worker: GuideWorker) {
         self.guideObserver =  guideObserver
@@ -20,7 +21,16 @@ final class GuideInteractor: GuideInteractorInterface {
         self.presenter = presenter
 
         guideObserver.guideDidChange = { [unowned self] in
-            self.reload()
+            if self.reloadRequestCount == 0 {
+                self.reload()
+            }
+            self.reloadRequestCount += 1
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
+                if self.reloadRequestCount > 1 {
+                    self.reload()
+                }
+                self.reloadRequestCount = 0
+            }
         }
     }
 

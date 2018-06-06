@@ -110,6 +110,7 @@ private extension GuideViewController {
 
     func setupView() {
         tableView.tableHeaderView = greetingView
+        tableView.estimatedRowHeight = 300
 
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         view.addSubview(fadeContainerView)
@@ -132,6 +133,7 @@ private extension GuideViewController {
 
         fadeContainerView.setFade(top: 100, bottom: 85)
         view.layoutIfNeeded()
+        syncHeaderView()
     }
 
     func syncHeaderView() {
