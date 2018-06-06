@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import os.log
 
 final class LaunchHandler {
 
@@ -19,10 +20,10 @@ final class LaunchHandler {
         return URLScheme.isSupportedURL(url)
     }
 
-        func process(url: URL,
-                     notificationID: String = "",
-                     guideItem: Guide.Item? = nil,
-                     searchViewController: SearchViewController? = nil) {
+    func process(url: URL,
+                 notificationID: String = "",
+                 guideItem: Guide.Item? = nil,
+                 searchViewController: SearchViewController? = nil) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else { return }
 
         switch scheme {
@@ -80,6 +81,13 @@ final class LaunchHandler {
     func navigateToPrepare(_ destination: AppCoordinator.Router.Destination?) {
         guard let destination = destination else { return }
         appDelegate.appCoordinator.presentPrepare(destination)
+    }
+
+    func syncUserDependentData(completionHandler: (() -> Void)?) {
+        appDelegate.appCoordinator.syncManager.syncUserDependentData(syncContext: nil) { (error) in
+            if error != nil { os_log("BackgroundFetch : Sync User Dependent Data is finished with error") }
+            completionHandler?()
+        }
     }
 }
 

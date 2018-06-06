@@ -7,6 +7,7 @@
 //
 
 import AirshipKit
+import os.log
 
 protocol RemoteNotificationHandlerDelegate: class {
 
@@ -21,6 +22,14 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
     init(launchHandler: LaunchHandler) {
         self.launchHandler = launchHandler
         super.init()
+    }
+
+    func receivedBackgroundNotification(_ notificationContent: UANotificationContent, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+        os_log("BackgroundFetch: Did Start Sync User Dependent Data.....")
+        launchHandler.syncUserDependentData {
+            os_log("BackgroundFetch: Did Finish Sync User Dependent Data.....")
+            completionHandler(.newData)
+        }
     }
 
     func receivedNotificationResponse(_ notificationResponse: UANotificationResponse, completionHandler: @escaping () -> Void) {
