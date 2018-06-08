@@ -106,8 +106,8 @@ private extension MyPrepViewModel {
             items.append(Item(localID: preparation.localID,
                               header: preparation.subtitle,
                               text: preparation.name,
-                              startDate: preparation.calendarEvent?.event?.startDate,
-                              endDate: preparation.calendarEvent?.event?.endDate,
+                              startDate: preparation.calendarEvent?.startDate,
+                              endDate: preparation.calendarEvent?.endDate,
                               totalPreparationCount: preparation.checkableItems.count,
                               finishedPreparationCount: preparation.coveredChecks.count))
         }

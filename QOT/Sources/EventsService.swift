@@ -33,4 +33,12 @@ final class EventsService {
         }
         return Array(relevantCalendarEvents)
     }
+
+    func calendarEvent(remoteID: RealmOptional<Int>?) -> CalendarEvent? {
+        let existingCalendarEvents: Results<CalendarEvent> = mainRealm.objects()
+        let relevantCalendarEvents = existingCalendarEvents.filter {
+            return $0.remoteID.value == remoteID?.value ? true : false
+        }
+        return Array(relevantCalendarEvents).first
+    }
 }

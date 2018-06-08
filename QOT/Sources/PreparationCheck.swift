@@ -35,7 +35,7 @@ final class PreparationCheck: SyncableObject {
     convenience init(preparation: Preparation?, contentItem: ContentItem?, covered: Date?) {
         self.init()
         self.preparation = preparation
-        if let preparationID = contentItem?.remoteID.value {
+        if let preparationID = preparation?.remoteID.value {
             self.preparationID = preparationID
         }
         self.contentItem = contentItem
@@ -54,6 +54,12 @@ final class PreparationCheck: SyncableObject {
                 dirty = true
             }
         }
+    }
+
+    func setPreparationRemoteID(_ remoteID: Int?) {
+        guard let remoteID = remoteID else { return }
+        if preparationID != remoteID { self.dirty = true }
+        preparationID = remoteID
     }
 }
 

@@ -81,7 +81,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         return manager
     }()
 
-    private lazy var calendarImportManager: CalendarImportManger = {
+    lazy var calendarImportManager: CalendarImportManger = {
         let manager = CalendarImportManger(realm: self.realmProvider, predicate: { () -> (start: Date, end: Date) in
             let day: TimeInterval = 60 * 60 * 24
             let start = Date().addingTimeInterval(-(day * 30))
@@ -875,6 +875,7 @@ extension AppCoordinator {
         guard let chatViewController = tabBarCoordinator?.prepareChatViewController else { return }
         chatViewController.destination = destination
         chatViewController.routerDelegate = self
+        calendarImportManager.importEvents()
     }
 
     func presentMorningInterview(groupID: Int, date: ISODate) {

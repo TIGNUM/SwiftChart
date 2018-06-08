@@ -57,7 +57,9 @@ final class PrepareCoordinator: ParentCoordinator {
                     } catch {
                         // Do nothing, any how the event is existing on the device, and it will be synchronized in next time.
                     }
-                    self?.createPreparation(name: event.title, event: event)
+                    AppCoordinator.appState.syncManager.syncCalendarEvents(completion: { (error) in
+                        self?.createPreparation(name: event.title, event: CalendarEvent(event: ekEvent))
+                    })
                 }
                 self?.tabBarController.dismiss(animated: true)
                 self?.chatDecisionManager.preparationSaved()
@@ -199,9 +201,9 @@ extension PrepareCoordinator {
 
         do {
             let localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID,
-                                                                        event: event,
-                                                                        name: name,
-                                                                        subtitle: context.listTitle)
+                                                                            event: event,
+                                                                            name: name,
+                                                                            subtitle: context.listTitle)
             addPreparationLink(preparationID: localID, preperationName: name, calendarEvent: event)
         } catch {
             log(error, level: .error)
@@ -331,6 +333,7 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
         } catch {
             log("saveNotes - failed: \(error.localizedDescription)", level: .error)
         }
+        NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
     }
 
     func didTapSavePreparation(in viewController: PrepareContentViewController) {
@@ -417,6 +420,7 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
         createPreparation(name: event.title, event: event)
         tabBarController.dismiss(animated: true)
         chatDecisionManager.preparationSaved()
+        NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
     }
 
     func didTapSavePrepToDevice(viewController: PrepareEventsViewController) {

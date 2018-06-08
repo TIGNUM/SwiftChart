@@ -52,9 +52,14 @@ final class SyncManager {
         self.syncRecordService = syncRecordService
         self.realmProvider = realmProvider
         self.allSyncOperationQueue = OperationQueue()
-        self.allSyncOperationQueue.maxConcurrentOperationCount = 3
         self.operationQueue = OperationQueue()
+        #if BUILD_DATABASE
+        self.allSyncOperationQueue.maxConcurrentOperationCount = 1
+        self.operationQueue.maxConcurrentOperationCount = 1
+        #else
+        self.allSyncOperationQueue.maxConcurrentOperationCount = 3
         self.operationQueue.maxConcurrentOperationCount = 3
+        #endif //
 
         reachability?.listener = { [weak self] (status) -> Void in
             switch status {
@@ -133,17 +138,18 @@ final class SyncManager {
         }
 
         let finishOperation = operationBlock(context: nil) { (error) in
-            NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
-            UIApplication.shared.isNetworkActivityIndicatorVisible = false
-            log("SYNC ALL FINISHED with \(error == nil ? "some" : "No") errors", level: .debug)
-            completion?(error)
+            self.syncUserDependentData(syncContext: context, completion: { (error) in
+                NotificationHandler.postNotification(withName: .syncAllDidFinishNotification)
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                log("SYNC ALL FINISHED with \(error == nil ? "some" : "No") errors", level: .debug)
+                completion?(error)
+            })
         }
 
         startOperation.queuePriority = .high
         var operations: [Operation] = [startOperation]
         operations.append(contentsOf: userIndependentSyncOperations(context: context))
-        operations.append(contentsOf: userDependentSyncOperations(context: context, updateRelation: false))
-        operations.append(contentsOf: conversionSyncOperations(context: context, updateRelation: false))
+        operations.append(contentsOf: conversionSyncOperations(context: context))
         operations.append(UpdateRelationsOperation(context: context, realmProvider: realmProvider))
         for operation in operations {
             finishOperation.addDependency(operation)
@@ -154,7 +160,10 @@ final class SyncManager {
 
     func syncUserDependentData(syncContext: SyncContext? = nil, completion: ((Error?) -> Void)? = nil) {
         let context = syncContext ?? SyncContext()
-        excute(operations: userDependentSyncOperations(context: context, updateRelation: true), context: context, completion: completion)
+        let operations: [Operation] = userDependentSyncOperations(context: context)
+        excute(operations: operations, context: context, completion: { (error) in
+            self.syncPreparations(completion: completion)
+        })
     }
 
     func syncUserAnswers() {
@@ -198,12 +207,28 @@ final class SyncManager {
 
     func syncPreparations(completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
-        excute(operations: preparationSyncOperations(context: context, updateRelation: true), context: context, completion: completion)
+        let preUpdateRelationsOperation = UpdateRelationsOperation(context: context, realmProvider: realmProvider)
+        let updateRelationsOperation = UpdateRelationsOperation(context: context, realmProvider: realmProvider)
+        let preperationSyncOperation = syncOperation(Preparation.self, context: context, shouldDownload: true)
+        let preperationCheckSyncOperation = syncOperation(PreparationCheck.self, context: context, shouldDownload: true)
+        excute(operations: [preperationSyncOperation], context: context, completion: { (error) in
+            self.excute(operations: [preUpdateRelationsOperation], context: context, completion: { (error) in
+                self.excute(operations: [preperationCheckSyncOperation], context: context, completion: { (error) in
+                    self.excute(operations: [updateRelationsOperation], context: context, completion: completion)
+                })
+            })
+
+        })
+    }
+
+    func createPreparation(completion: ((Error?) -> Void)? = nil) {
+        let context = SyncContext()
+        excute(operations: [syncOperation(Preparation.self, context: context, shouldDownload: true)], context: context, completion: completion)
     }
 
     func syncConversions(syncContext: SyncContext? = nil, completion: ((Error?) -> Void)? = nil) {
         let context = syncContext ?? SyncContext()
-        excute(operations: conversionSyncOperations(context: context, updateRelation: true), context: context, completion: completion)
+        excute(operations: conversionSyncOperations(context: context), context: context, completion: completion)
     }
 
     func uploadMedia() {
@@ -283,31 +308,38 @@ private extension SyncManager {
                 guidItemSyncOperation, updateRelationsOperation, scheduleNotificationOperation].compactMap({ $0 })
     }
 
-    func preparationSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
-        let updateRelationsOperation = updateRelation ? UpdateRelationsOperation(context: context, realmProvider: realmProvider) : nil
+    func preparationSyncOperations(context: SyncContext) -> [Operation] {
+        let preUpdateRelationsOperation = UpdateRelationsOperation(context: context, realmProvider: realmProvider)
+        let updateRelationsOperation = UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         let preperationSyncOperation = syncOperation(Preparation.self, context: context, shouldDownload: true)
         let preperationCheckSyncOperation = syncOperation(PreparationCheck.self, context: context, shouldDownload: true)
 
         // Add Operation Depedencies
-        if preperationSyncOperation != nil { updateRelationsOperation?.addDependency(preperationSyncOperation!) }
-        if preperationCheckSyncOperation != nil { updateRelationsOperation?.addDependency(preperationCheckSyncOperation!) }
-        return [preperationSyncOperation, preperationCheckSyncOperation, updateRelationsOperation].compactMap({ $0 })
+        if preperationSyncOperation != nil {
+            preperationCheckSyncOperation?.addDependency(preperationSyncOperation!)
+            preperationCheckSyncOperation?.addDependency(preUpdateRelationsOperation)
+            preUpdateRelationsOperation.addDependency(preperationSyncOperation!)
+        }
+        updateRelationsOperation.addDependency(preUpdateRelationsOperation)
+
+        if preperationCheckSyncOperation != nil { updateRelationsOperation.addDependency(preperationCheckSyncOperation!) }
+        return [preperationSyncOperation, preUpdateRelationsOperation, preperationCheckSyncOperation, updateRelationsOperation].compactMap({ $0 })
     }
 
-    func calendarSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
+    func calendarSyncOperations(context: SyncContext) -> [Operation] {
         let calendarSettingSyncOperation = syncOperation(RealmCalendarSyncSetting.self, context: context, shouldDownload: true)
         let calendarEventSyncOperation = syncOperation(CalendarEvent.self, context: context, shouldDownload: true)
         if calendarSettingSyncOperation != nil { calendarEventSyncOperation?.addDependency(calendarSettingSyncOperation!) }
         return [calendarSettingSyncOperation, calendarEventSyncOperation].compactMap({ $0 })
     }
 
-    func conversionSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
+    func conversionSyncOperations(context: SyncContext) -> [Operation] {
         return [syncOperation(UserFeedback.self, context: context, shouldDownload: true),
                 syncOperation(ContentRead.self, context: context, shouldDownload: true),
                 syncOperation(PageTrack.self, context: context, shouldDownload: true)].compactMap({ $0 })
     }
 
-    func userDependentSyncOperations(context: SyncContext, updateRelation: Bool) -> [Operation] {
+    func userDependentSyncOperations(context: SyncContext) -> [Operation] {
         var operations: [Operation?] = [syncOperation(User.self, context: context, shouldDownload: true),
                                         syncOperation(UserChoice.self, context: context, shouldDownload: true),
                                         syncOperation(UserAnswer.self, context: context, shouldDownload: true),
@@ -317,8 +349,7 @@ private extension SyncManager {
                                         syncOperation(Statistics.self, context: context, shouldDownload: true),
                                         syncOperation(UserSetting.self, context: context, shouldDownload: true),
                                         syncOperation(SystemSetting.self, context: context, shouldDownload: true)]
-        operations.append(contentsOf: preparationSyncOperations(context: context, updateRelation: true))
-        operations.append(contentsOf: calendarSyncOperations(context: context, updateRelation: true))
+        operations.append(contentsOf: calendarSyncOperations(context: context))
         return operations.compactMap({ $0 })
     }
 

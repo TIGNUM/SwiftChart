@@ -274,10 +274,11 @@ extension LaunchHandler {
     }
 }
 
-// MARK: - Background Sync
+// MARK: - BackgroundFetch
 
 extension LaunchHandler {
     func syncUserDependentData(completionHandler: (() -> Void)?) {
+        appDelegate.appCoordinator.calendarImportManager.importEvents()
         appDelegate.appCoordinator.syncManager.syncUserDependentData(syncContext: nil) { (error) in
             if error != nil { os_log("BackgroundFetch : Sync User Dependent Data is finished with error") }
             completionHandler?()

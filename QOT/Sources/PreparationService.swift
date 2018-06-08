@@ -50,7 +50,7 @@ final class PreparationService {
     func createPreparation(contentCollectionID: Int,
                            event: CalendarEvent?,
                            name: String,
-                           subtitle: String) throws -> String {
+                           subtitle: String) throws -> String? {
         let realm = try self.realmProvider.realm()
         guard let contentCollection = realm.syncableObject(ofType: ContentCollection.self, remoteID: contentCollectionID) else {
             throw SimpleError(localizedDescription: "No content collection for contentCollectionID: \(contentCollectionID)")
@@ -96,6 +96,7 @@ final class PreparationService {
                 preparation.didUpdate()
             }
         }
+        NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
     }
 
     func deletePreparationChecks(_ checks: List<PreparationCheck>) throws {

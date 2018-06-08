@@ -23,7 +23,7 @@ final class Preparation: SyncableObject {
 
     let calendarEventRemoteID = RealmOptional<Int>(nil)
 
-    @objc dynamic var changeStamp: String? = UUID().uuidString
+    @objc dynamic var changeStamp: String?
 
     @objc dynamic var deleted: Bool = false
 
@@ -36,17 +36,33 @@ final class Preparation: SyncableObject {
 
     // MARK: Relationships
 
-    @objc private(set) dynamic var calendarEvent: CalendarEvent?
-
     let checks = List<PreparationCheck>()
+
+    @objc private(set) dynamic var event: CalendarEvent?
+
+    lazy var calendarEvent: CalendarEvent? = {
+        if self.event != nil { return event }
+        let existingCalendarEvents: Results<CalendarEvent>
+        do {
+            let realm = try RealmProvider().realm()
+            existingCalendarEvents = realm.objects()
+        } catch {
+            return nil
+        }
+        return existingCalendarEvents.filter {
+            return $0.remoteID.value == self.calendarEventRemoteID.value ? true : false
+            }.first
+    }()
 
     // MARK: Functions
 
     convenience init(calendarEvent: CalendarEvent?, name: String, subtitle: String) {
         self.init()
-        self.calendarEvent = calendarEvent
         self.name = name
         self.subtitle = subtitle
+        self.changeStamp = UUID().uuidString
+        self.calendarEventRemoteID.value = calendarEvent?.remoteID.value
+        self.event = calendarEvent
     }
 
     var notesDictionary: [Int: String] {
@@ -70,8 +86,25 @@ final class Preparation: SyncableObject {
 
 extension Preparation: BuildRelations {
 
-    func buildInverseRelations(realm: Realm) {
+    func buildRelations(realm: Realm) {
+        // MARK: PreparationCheck
         let predicate = NSPredicate(format: "preparation == %@", self)
+        let collections = realm.objects(PreparationCheck.self).filter(predicate)
+        collections.forEach { (preparationCheck) in
+            preparationCheck.setPreparationRemoteID(self.remoteID.value)
+        }
+        checks.removeAll()
+        checks.append(objectsIn: collections)
+
+        // MARK: Calendar Event
+        if event?.remoteID.value != nil && calendarEventRemoteID.value == nil {
+            calendarEventRemoteID.value = event?.remoteID.value
+        }
+    }
+
+    func buildInverseRelations(realm: Realm) {
+        guard let remoteID = self.remoteID.value else { return }
+        let predicate = NSPredicate(format: "preparationID == %d", remoteID)
         let collections = realm.objects(PreparationCheck.self).filter(predicate)
         checks.removeAll()
         checks.append(objectsIn: collections)
@@ -87,6 +120,9 @@ extension Preparation: TwoWaySyncable {
         subtitle = data.subtitle
         notes = data.notes
         calendarEventRemoteID.value = data.calendarEventRemoteID
+        if event == nil {
+            event = calendarEvent
+        }
         objectStore.delete(answers)
         let newAnswers = data.answers.map { PreparationAnswer(answer: $0.answer,
                                                               contentItemID: $0.contentItemID,
@@ -100,10 +136,10 @@ extension Preparation: TwoWaySyncable {
 
     func toJson() -> JSON? {
         guard syncStatus != .clean else { return nil }
-        if let calendarEvent = calendarEvent, calendarEvent.syncStatus == .createdLocally { return nil }
         let dateFormatter = DateFormatter.iso8601
         let prepareAnswers = Array(answers).map { $0.toJSON() }
-        var dict: [JsonKey: JSONEncodable] = [
+
+        let dict: [JsonKey: JSONEncodable] = [
             .id: remoteID.value.toJSONEncodable,
             .createdAt: dateFormatter.string(from: createdAt),
             .contentId: contentCollectionID,
@@ -113,12 +149,10 @@ extension Preparation: TwoWaySyncable {
             .syncStatus: syncStatus.rawValue,
             .subtitle: subtitle,
             .note: notes,
-            .eventId: (calendarEvent?.remoteID.value ?? nil).toJSONEncodable,
+            .eventId: (calendarEventRemoteID.value ?? (event?.remoteID.value ?? nil)).toJSONEncodable,
             .prepareAnswers: JSON.array(prepareAnswers)
         ]
-        if let calendarEvent = calendarEvent {
-            dict[.eventId] = calendarEvent.remoteID.value.toJSONEncodable
-        }
+
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
 }
