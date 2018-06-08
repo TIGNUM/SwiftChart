@@ -58,7 +58,8 @@ final class PrepareCoordinator: ParentCoordinator {
                         // Do nothing, any how the event is existing on the device, and it will be synchronized in next time.
                     }
                     AppCoordinator.appState.syncManager.syncCalendarEvents(completion: { (error) in
-                        self?.createPreparation(name: event.title, event: CalendarEvent(event: ekEvent))
+                        let createdEvent = self?.services.eventsService.calendarEvent(calendarItemExternalIdentifier: ekEvent.calendarItemExternalIdentifier)
+                        self?.createPreparation(name: createdEvent!.title, event: createdEvent)
                     })
                 }
                 self?.tabBarController.dismiss(animated: true)

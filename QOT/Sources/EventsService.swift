@@ -41,4 +41,12 @@ final class EventsService {
         }
         return Array(relevantCalendarEvents).first
     }
+
+    func calendarEvent(calendarItemExternalIdentifier: String!) -> CalendarEvent? {
+        let existingCalendarEvents: Results<CalendarEvent> = mainRealm.objects()
+        let relevantCalendarEvents = existingCalendarEvents.filter {
+            return $0.calendarItemExternalIdentifier == calendarItemExternalIdentifier ? true : false
+        }
+        return Array(relevantCalendarEvents).first
+    }
 }
