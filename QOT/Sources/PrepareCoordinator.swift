@@ -60,6 +60,7 @@ final class PrepareCoordinator: ParentCoordinator {
                     AppCoordinator.appState.syncManager.syncCalendarEvents(completion: { (error) in
                         let createdEvent = self?.services.eventsService.calendarEvent(calendarItemExternalIdentifier: ekEvent.calendarItemExternalIdentifier)
                         self?.createPreparation(name: createdEvent!.title, event: createdEvent)
+                        NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
                     })
                 }
                 self?.tabBarController.dismiss(animated: true)

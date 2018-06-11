@@ -15,6 +15,7 @@ import Crashlytics
 import ReactiveKit
 import Bond
 import Buglife
+import Appsee
 
 final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
@@ -144,6 +145,10 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 self.handleSetupError(error: error)
             } else if self.credentialsManager.hasLoginCredentials {
                 self.showApp(loginViewController: nil)
+                let user = self.services?.userService.user()
+                if let userID = user?.remoteID.value, userID != 0 {
+                    Appsee.setUserID(String(userID))
+                }
             } else {
                 self.showLogin()
             }
@@ -271,6 +276,11 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         timeZoneDidChange()
         guard authenticator.hasLoginCredentials() else { return }
 
+        Appsee.setLocation(location.coordinate.latitude,
+                           longitude: location.coordinate.longitude,
+                           horizontalAccuracy: Float(location.horizontalAccuracy),
+                           verticalAccuracy: Float(location.verticalAccuracy)
+        )
         networkManager.performUserLocationUpdateRequest(location: location) { (error: NetworkError?) in
             if let error = error {
                 log("Error while trying to update user location: \(error)")
@@ -335,7 +345,11 @@ extension AppCoordinator {
     }
 
     func showOnboarding() {
-        let userName = services?.userService.user()?.givenName ?? ""
+        let user = self.services?.userService.user()
+        let userName = user?.givenName ?? ""
+        if let userID = user?.remoteID.value, userID != 0 {
+            Appsee.setUserID(String(userID))
+        }
         let coordinator = OnboardingCoordinator(windowManager: windowManager,
                                                 delegate: self,
                                                 permissionsManager: permissionsManager,

@@ -2,6 +2,7 @@ PODS:
   - ActionSheetPicker-3.0 (2.2.0)
   - Alamofire (4.5.1)
   - Anchorage (4.0.0)
+  - Appsee (2.4.1)
   - Bond (6.3.0):
     - Diff (~> 0.5.3)
     - ReactiveKit (~> 3.6.2)
@@ -41,6 +42,7 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0
   - Alamofire
   - Anchorage
+  - Appsee
   - Bond
   - BonMot
   - Buglife
@@ -66,6 +68,7 @@ SPEC REPOS:
     - ActionSheetPicker-3.0
     - Alamofire
     - Anchorage
+    - Appsee
     - Bond
     - BonMot
     - Buglife
@@ -94,6 +97,7 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
   Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
   Anchorage: fe50dca4e20846b8cb15c859d26fec5132b41577
+  Appsee: ab8b0317b0a5217d08637f61dbddaba2c9748f2a
   Bond: 6a15b0635bbaae915d91b4c4ffa1396807530ef3
   BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
   Buglife: 81b481525f922d4d56c7f29f643ce8a8f49f5169
@@ -118,6 +122,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
   UrbanAirship-iOS-SDK: 1a2837473096ca63d86f11cadb4710d993237186
 
-PODFILE CHECKSUM: acfffb07add7fd705a18070f27dbc29ae1696f21
+PODFILE CHECKSUM: 85f32dacac3006ae67deab0c461d0799be529d14
 
 COCOAPODS: 1.5.3

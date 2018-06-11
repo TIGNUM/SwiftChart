@@ -221,11 +221,6 @@ final class SyncManager {
         })
     }
 
-    func createPreparation(completion: ((Error?) -> Void)? = nil) {
-        let context = SyncContext()
-        excute(operations: [syncOperation(Preparation.self, context: context, shouldDownload: true)], context: context, completion: completion)
-    }
-
     func syncConversions(syncContext: SyncContext? = nil, completion: ((Error?) -> Void)? = nil) {
         let context = syncContext ?? SyncContext()
         excute(operations: conversionSyncOperations(context: context), context: context, completion: completion)

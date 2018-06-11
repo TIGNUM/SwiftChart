@@ -22,6 +22,7 @@ target 'QOT' do
   pod 'MBProgressHUD'
   pod 'Fabric'
   pod 'Crashlytics'
+  pod 'Appsee'
   pod 'UrbanAirship-iOS-SDK'
   pod 'Buglife'
   pod 'SwiftyBeaver'
