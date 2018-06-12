@@ -49,6 +49,10 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         searchBar.alpha = 0
     }
 
+    override func willMove(toParentViewController parent: UIViewController?) {
+        searchBar.resignFirstResponder()
+    }
+
     func reload(_ searchResults: [Search.Result]) {
         self.searchResults = searchResults
         tableView.isUserInteractionEnabled = searchResults.isEmpty == false
