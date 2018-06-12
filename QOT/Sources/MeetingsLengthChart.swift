@@ -91,7 +91,7 @@ private extension MeetingsLengthChart {
     func setupView() {
         addAverageLines()
 
-        let maxValue = (statistics.maximum / 60).toFloat
+        let maxValue = (statistics.maximum / 60).rounded(.up).toFloat
         let delta = maxValue / 5
         addCaptionLabel(yPos: yPosition(1/5), text: "\(Int(delta*1))")
         addCaptionLabel(yPos: yPosition(2/5), text: "\(Int(delta*2))")
@@ -102,7 +102,7 @@ private extension MeetingsLengthChart {
     func drawCharts() {
         for (index, dataPoint) in statistics.dataPointObjects.enumerated() where dataPoint.percentageValue > 0 {
             let xPos = xPosition(index)
-            let yPos = yPosition(dataPoint.percentageValue / (statistics.maximum / 60).toFloat)
+            let yPos = yPosition(dataPoint.percentageValue)
             drawCapRoundLine(xPos: xPos,
                              startYPos: bottomPosition,
                              endYPos: yPos,
@@ -126,8 +126,8 @@ private extension MeetingsLengthChart {
 
         let dataPoint = statistics.dataPointObjects[todayIndex]
         let xPos = xPosition(todayIndex)
-        let yPos = yPosition(dataPoint.percentageValue / (statistics.maximum / 60).toFloat)
-        let text = String(Double(dataPoint.percentageValue))
+        let yPos = yPosition(dataPoint.percentageValue)
+        let text = Int(dataPoint.originalValue * 60).seconds2Timestamp
         let todayLabel = dayLabel(text: text)
         todayLabel.sizeToFit()
         todayLabel.center = CGPoint(x: xPos, y: yPos - 12)
@@ -141,5 +141,19 @@ private extension MeetingsLengthChart {
         label.textColor = .white
         label.text = text
         return label
+    }
+}
+
+// MARK: - Int extension for today label
+
+private extension Int {
+
+    var seconds2Timestamp: String {
+        let mins: Int = self / 60
+        let hours: Int = mins / 60
+        let timeIndicator = hours < 1 ? "min" : "h"
+        let time = (hours == 0) ? String(mins).suffix(2) : String(hours) + ":" + String(mins).suffix(2)
+
+        return time + timeIndicator
     }
 }

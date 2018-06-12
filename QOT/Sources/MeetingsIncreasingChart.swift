@@ -66,7 +66,6 @@ private extension MeetingsIncreasingChart {
 
         addSubview(lastWeekLabel)
         lastWeekLabel.textColor = .gray
-        lastWeekLabel.text = "LAST WEEK"
         lastWeekLabel.textAlignment = .center
         lastWeekLabel.font = Font.H7SectorTitle
         lastWeekLabel.addCharactersSpacing(spacing: 2, text: "LAST WEEK")
