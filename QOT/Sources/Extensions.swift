@@ -66,13 +66,11 @@ extension UIBezierPath {
         let startAngle = CGFloat(0)
         let endAngle = CGFloat(Double.pi * 2)
 
-        return UIBezierPath(
-            arcCenter: center,
-            radius: radius,
-            startAngle: startAngle,
-            endAngle: endAngle,
-            clockwise: true
-        )
+        return UIBezierPath(arcCenter: center,
+                            radius: radius,
+                            startAngle: startAngle,
+                            endAngle: endAngle,
+                            clockwise: true)
     }
 
     class func linePath(from: CGPoint, to: CGPoint) -> UIBezierPath {
@@ -83,10 +81,10 @@ extension UIBezierPath {
     }
 
     class func horseshoe(center: CGPoint,
-                          innerRadius: CGFloat,
-                          outerRadius: CGFloat,
-                          startAngle: CGFloat,
-                          endAngle: CGFloat) -> UIBezierPath {
+                         innerRadius: CGFloat,
+                         outerRadius: CGFloat,
+                         startAngle: CGFloat,
+                         endAngle: CGFloat) -> UIBezierPath {
         let start = startAngle.degreesToRadians
         let end = endAngle.degreesToRadians
         let path = UIBezierPath(arcCenter: center,

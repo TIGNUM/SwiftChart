@@ -19,15 +19,18 @@ final class MyToBeVisionViewController: UIViewController {
     @IBOutlet private weak var editImageLabel: UILabel!
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var placeholderImageView: UIImageView!
-    @IBOutlet private weak var darkBackgroundImageView: UIImageView!
     @IBOutlet private weak var editIconImageView: UIImageView!
     @IBOutlet private weak var headlineHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var messageHeightConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var imageContainerBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var tbvGeneratorButton: UIButton!
     @IBOutlet private weak var fadeContainerView: FadeContainerView!
     @IBOutlet private weak var minScrollViewContentHeight: NSLayoutConstraint!
+    @IBOutlet private weak var messageStatementTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var headlineEditingStatementLabel: UILabel!
+    @IBOutlet private weak var messageEditingStatementLabel: UILabel!
+    @IBOutlet private weak var headlineEditingSeparatorView: UIView!
+    @IBOutlet private weak var messageEditingSeparatorView: UIView!
     private let keyboardListener = KeyboardListener()
     private let navItem = NavigationItem(title: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
     private var imagePickerController: ImagePickerController!
@@ -93,6 +96,8 @@ final class MyToBeVisionViewController: UIViewController {
 
         interactor?.viewDidLoad()
         setupView()
+        resizeTextViewsHeight()
+        syncEditingViews(true)
 
         keyboardListener.onStateChange { [weak self] (state) in
             self?.syncScrollViewInsets()
@@ -123,6 +128,7 @@ final class MyToBeVisionViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
+        syncEditingViews(true)
         keyboardListener.startObserving()
         UIApplication.shared.statusBarStyle = .lightContent
     }
@@ -140,13 +146,10 @@ final class MyToBeVisionViewController: UIViewController {
     }
 
     func syncScrollViewInsets() {
-        let topInset = safeAreaInsets.top
-        let bottomeInset = max(safeAreaInsets.bottom, keyboardListener.state.height)
-
-        scrollView.contentInset.top = topInset
-        scrollView.contentInset.bottom = bottomeInset
+        let bottomInset = max(safeAreaInsets.bottom + 200, keyboardListener.state.height)
+        scrollView.contentInset.bottom = bottomInset
         fadeContainerView.setFade(top: safeAreaInsets.top + 32, bottom: 0)
-        minScrollViewContentHeight.constant = scrollView.bounds.height - topInset - bottomeInset  + 31
+        minScrollViewContentHeight.constant = scrollView.bounds.height - bottomInset + 150
     }
 }
 
@@ -230,8 +233,8 @@ extension MyToBeVisionViewController {
 
     func setupInstructionsButton() {
         tbvGeneratorButton.layer.borderWidth = 1
-        tbvGeneratorButton.layer.borderColor = UIColor.azure.cgColor
-        tbvGeneratorButton.layer.cornerRadius = tbvGeneratorButton.bounds.height * 0.5
+        tbvGeneratorButton.layer.cornerRadius = 7
+        tbvGeneratorButton.backgroundColor = .azure
     }
 
     func setupImage() {
@@ -255,7 +258,9 @@ extension MyToBeVisionViewController {
     func syncInstructionsButton() {
         headlineTextView.text = interactor?.headlinePlaceholderNeeded(headlineEdited: headlineTextView.text)
         messageTextView.text = interactor?.messagePlaceholderNeeded(messageEdited: messageTextView.text)
-        tbvGeneratorButton.isHidden = isEditing || messageTextView.text.isTrimmedTextEmpty == false
+
+        let messageIsPlaceholder = interactor?.messageEqualsPlaceholder(message: messageTextView.text)
+        tbvGeneratorButton.isHidden = isEditing || messageIsPlaceholder == false
     }
 }
 
@@ -276,20 +281,20 @@ private extension MyToBeVisionViewController {
                                                fillColor: .clear,
                                                strokeColor: .whiteLight8)
         view.layer.insertSublayer(circleLayer2, below: scrollView.layer)
-
     }
 
     func maskImage() {
-        let bounds = imageContainerView.bounds
-        let radius = bounds.height * 2 // Magic number matching placeholder radius
-        let center = CGPoint(x: bounds.midX, y: radius)
-        let path = UIBezierPath.circlePath(center: center, radius: radius)
+        let path = UIBezierPath()
         let borderMask = CAShapeLayer()
-        let borderMask2 = CAShapeLayer()
+        path.move(to: CGPoint(x: 0, y: 0))
+        path.addLine(to: CGPoint(x: view.bounds.maxX, y: view.bounds.minY))
+        path.addLine(to: CGPoint(x: view.bounds.maxX, y: 225))
+        path.addCurve(to: CGPoint(x: view.bounds.minX, y: 225),
+                      controlPoint1: CGPoint(x: view.bounds.midX + (view.bounds.midX / 2), y: 275),
+                      controlPoint2: CGPoint(x: view.bounds.midX - (view.bounds.midX / 2), y: 275))
+        path.addLine(to: CGPoint(x: view.bounds.minX, y: view.bounds.minY))
         borderMask.path = path.cgPath
-        borderMask2.path = path.cgPath
         imageView.layer.mask = borderMask
-        darkBackgroundImageView.layer.mask = borderMask2
     }
 }
 
@@ -318,21 +323,6 @@ extension MyToBeVisionViewController {
 
     @IBAction private func didTapCreateVision() {
         interactor?.makeVisionGeneratorAndPresent()
-    }
-
-    @IBAction func didTapViewInstructions(_ sender: UIButton) {
-        let stringURL = "https://s3.eu-central-1.amazonaws.com/tignum-content/videos/On-boarding/TO_BE_VISION.mp4"
-        guard let videoURL = URL(string: stringURL) else { return }
-
-        let playerViewController = stream(videoURL: videoURL)
-        if let playerItem = playerViewController.player?.currentItem {
-            avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
-            avPlayerObserver?.onStatusUpdate { (player) in
-                if playerItem.error != nil {
-                    playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
-                }
-            }
-        }
     }
 }
 
@@ -384,6 +374,24 @@ private extension MyToBeVisionViewController {
         imageView.isUserInteractionEnabled = isEditing
         syncImageControls(animated: isEditing)
         syncInstructionsButton()
+        syncEditingViews(!isEditing)
+    }
+
+    func syncEditingViews(_ areHidden: Bool) {
+        let messageTopConstraint: CGFloat = areHidden == false ? 40 : 20
+        let isEmptyState = interactor?.isEmptyState()
+        headlineEditingSeparatorView.isHidden = areHidden
+        messageEditingSeparatorView.isHidden = areHidden
+        headlineEditingStatementLabel.isHidden = areHidden
+        messageEditingStatementLabel.isHidden = areHidden
+        imageTapRecognizer.isEnabled = !areHidden
+        editIconImageView.isHidden = areHidden
+        editImageLabel.isHidden = areHidden
+        subtitleLabel.isHidden = !areHidden
+        headlineTextView.isHidden = isEmptyState == true
+        navItem.rightBarButtonItem?.isEnabled = isEmptyState == false
+        navItem.rightBarButtonItem?.tintColor = isEmptyState == true ? .clear : .white
+        messageStatementTopConstraint.constant = messageTopConstraint
     }
 
     func syncImageControls(animated: Bool) {
@@ -420,28 +428,6 @@ extension MyToBeVisionViewController {
     }
 }
 
-// MARK: - UIScrollViewDelegate
-
-extension MyToBeVisionViewController: UIScrollViewDelegate {
-
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let adjustOffsetY = scrollView.contentOffset.y + scrollView.contentInset.top
-        let hideImage = adjustOffsetY >= 30
-        setImageViewHidden(hideImage)
-    }
-
-    private func setImageViewHidden(_ hidden: Bool) {
-        guard imageIsHidden != hidden else { return }
-
-        imageIsHidden = hidden
-        let constant = hidden ? imageContainerView.bounds.height : 0
-        imageContainerBottomConstraint.constant = constant
-        UIView.animate(withDuration: 0.3) {
-            self.view.layoutIfNeeded()
-        }
-    }
-}
-
 // MARK: - UITextViewDelegate, UITextView private extension
 
 extension MyToBeVisionViewController: UITextViewDelegate {
@@ -454,10 +440,12 @@ extension MyToBeVisionViewController: UITextViewDelegate {
     }
 
     func textViewDidBeginEditing(_ textView: UITextView) {
+        headlineTextView.font = Font.H9Title
         resizeTextViewsHeight()
     }
 
     func textViewDidEndEditing(_ textView: UITextView) {
+        headlineTextView.font = Font.H1MainTitle
         switch textView {
         case headlineTextView: textView.text = interactor?.headlinePlaceholderNeeded(headlineEdited: textView.text)
         case messageTextView: textView.text = interactor?.messagePlaceholderNeeded(messageEdited: textView.text)

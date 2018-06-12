@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "Universe mytobevision.png",
+      "filename" : "universeMytobevision3X.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Universe mytobevision@2x.png",
+      "filename" : "universeMytobevision3X@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "Universe mytobevision@3x.png",
+      "filename" : "universeMytobevision3X@3x.png",
       "scale" : "3x"
     }
   ],

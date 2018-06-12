@@ -52,7 +52,7 @@ final class VisionGeneratorWorker {
     }
 
     private var headlinePlaceholder: String? {
-        if services.userService.myToBeVision()?.headline == services.contentService.toBeVisionHeadlinePlaceholder() {
+        if services.userService.myToBeVision()?.headline == nil {
             return services.contentService.toBeVisionToolingHeadlinePlaceholder()?.uppercased()
         }
         return services.userService.myToBeVision()?.headline?.uppercased()

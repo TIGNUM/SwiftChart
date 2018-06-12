@@ -23,6 +23,15 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         presenter.loadToBeVision(toBeVision)
     }
 
+    func isEmptyState() -> Bool {
+        let myToBeVision = worker.myToBeVision()
+        return myToBeVision?.headLine == nil && myToBeVision?.text == nil
+    }
+
+    func messageEqualsPlaceholder(message: String) -> Bool {
+        return message == worker.messagePlaceholder
+    }
+
     func headlinePlaceholderNeeded(headlineEdited: String) -> String? {
         if headlineEdited.isTrimmedTextEmpty == true {
             return worker.headlinePlaceholder
