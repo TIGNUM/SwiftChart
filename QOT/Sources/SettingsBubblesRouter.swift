@@ -54,6 +54,11 @@ private extension SettingsBubblesRouter {
     }
 
     func presentMailComposer(recipients: [String], subject: String) {
+        guard MFMailComposeViewController.canSendMail() == true else {
+            viewController.showAlert(type: .message(R.string.localized.alertMessateEmailNotSetup()))
+            return
+        }
+
         let composer = MFMailComposeViewController()
         composer.setToRecipients(recipients)
         composer.setSubject(subject)

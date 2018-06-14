@@ -24,7 +24,7 @@ final class ShareRouter: NSObject, ShareRouterInterface {
 
     func showMailComposer(email: String, subject: String, messageBody: String) {
         guard MFMailComposeViewController.canSendMail() == true else {
-            showAlert(.message("Email is not setup on your device"))
+            showAlert(.message(R.string.localized.alertMessateEmailNotSetup()))
             return
         }
 

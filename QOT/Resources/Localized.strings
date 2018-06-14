@@ -283,6 +283,7 @@
 "Alert.Message.Preparation.Edit.Strategy" = "You can tailor your preparation. Add strategies that fit best or remove those you dont like.";
 "Alert.Button.Title.Edit.Vision" = "Edit To Be Vision";
 "Alert.Button.Title.Create.Vision" = "Create a new To Be Vision";
+"Alert.Messate.Email.Not.Setup" = "Email is not setup on your device";
 
 "Alert.Title.Settings.ChangePermission" = "Change Permission";
 "Alert.Message.Settings.ChangePermission" = "Go to Settings to change your permissions.";
