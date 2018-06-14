@@ -27,7 +27,8 @@ extension EKEventStore {
              enumerateEvents(...) runs this block on the main thread, which can cause issues the CalendarEvent is from a
              Realm initialised on another thread (e.g. background thread from sync)
              */
-            if let identifier = externalIdentifier, identifier == ekEvent.calendarItemExternalIdentifier {
+            if let identifier = externalIdentifier, identifier == ekEvent.calendarItemExternalIdentifier &&
+                calendarEvent.startDate == ekEvent.startDate {
                 event = ekEvent
                 stop.pointee = true
             }

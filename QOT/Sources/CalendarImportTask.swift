@@ -33,7 +33,7 @@ final class CalendarImportTask {
         } else {
             // @warning: if calendars.count == 0 predicate will search all calendars hence the above check.
             let predicate = store.predicateForEvents(withStart: start, end: end, calendars: calendars)
-            events = store.events(matching: predicate)
+            events = store.events(matching: predicate).compactMap { $0 }
         }
 
         let syncableCalendarIds: [String] = calendars.compactMap {
@@ -60,15 +60,30 @@ final class CalendarImportTask {
     // MARK: Private
 
     private func createOrUpdateCalendarEvents(with ekEvents: [EKEvent], realm: Realm, with syncableCalendarIds: [String]) {
-        for ekEvent in ekEvents {
-            if syncableCalendarIds.contains(obj: ekEvent.calendar.toggleIdentifier) == false { continue }
-            let existingCalendarEvent = realm.objects(CalendarEvent.self).filter(externalIdentifier: ekEvent.calendarItemExternalIdentifier).first
+        let refreshedEvents = Array(Set(ekEvents)) // FIXME: EKEvent should be fetched in main thread. Otherwise recurrence related infos will not be updated
 
-            if let existing = existingCalendarEvent {
+        for ekEvent in refreshedEvents {
+            if syncableCalendarIds.contains(obj: ekEvent.calendar.toggleIdentifier) == false { continue } // sync for the calendar of event is disabled, ignore it
+            let filteredEvents: [CalendarEvent] = realm.objects(CalendarEvent.self).filter {
+                // if same calendar item or same identifier prefix (because of /RIDXXXXXX postfix when event changed)
+                let calendarEvent = $0
+                return (ekEvent.calendarItemExternalIdentifier ==  calendarEvent.calendarItemExternalIdentifier
+                    || ekEvent.calendarItemExternalIdentifier.hasPrefix(calendarEvent.calendarItemExternalIdentifier ?? Toggle.seperator))
+            }
+            let calendarEvent: CalendarEvent?
+            if ekEvent.hasRecurrenceRules == true {
+                calendarEvent = filteredEvents.filter {
+                    return $0.startDate.isSameDay(ekEvent.startDate)
+                    }.first
+            } else {
+                calendarEvent = filteredEvents.last
+            }
+
+            if let existing = calendarEvent {
                 ekEvent.refresh()
                 if let modifiedAt = ekEvent.lastModifiedDate,
                     modifiedAt > existing.ekEventModifiedAt ||
-                    existing.calendarItemExternalIdentifier == nil || existing.calendarIdentifier == nil {
+                        existing.calendarItemExternalIdentifier == nil || existing.calendarIdentifier == nil {
                     existing.update(event: ekEvent)
                 }
                 // The event might have been soft deleted before so un delete it
@@ -86,7 +101,7 @@ final class CalendarImportTask {
             // if it's already handled, Do nothing
             if handledExternalIdentifiers.contains(obj: ekEvent.calendarItemExternalIdentifier) { continue }
 
-            let existingEvents = realm.objects(CalendarEvent.self).filter(externalIdentifier: ekEvent.calendarItemExternalIdentifier)
+            let existingEvents = realm.objects(CalendarEvent.self).filter(ekEvent: ekEvent)
             if existingEvents.count > 1 { //if duplcated
                 handledExternalIdentifiers.append(ekEvent.calendarItemExternalIdentifier)
                 let duplicatedEvents = existingEvents[1...(existingEvents.count - 1)]
@@ -109,31 +124,34 @@ final class CalendarImportTask {
     }
 
     private func deleteCalendarEvents(from calendarEvents: [CalendarEvent], using ekEvents: [EKEvent], syncableCalendarIds: [String], existingCalendarIds: [String]) {
-        let relevantCalendarEvents = calendarEvents.filter {
-            if $0.deleted { return false } // if it's already checked to delete, do nothing.
+        let relevantCalendarEvents = calendarEvents.filter({ (calendarEvent) -> Bool in
+            if calendarEvent.deleted { return false } // if it's already checked to delete, do nothing.
 
-            if $0.endDate <= start {
+            if calendarEvent.endDate <= start {
                 return true
-            } else if $0.startDate >= end {
+            } else if calendarEvent.startDate >= end {
                 return true
             }
 
-            if existingCalendarIds.contains(obj: $0.calendarIdentifier) == false { // event calendar is not existing current device, cannot remove it
+            if existingCalendarIds.contains(obj: calendarEvent.calendarIdentifier) == false { // event's calendar is not existing current device, cannot remove it
                 return false
             }
 
-            if syncableCalendarIds.contains(obj: $0.calendarIdentifier) == false { // sync for the calendar of event is disabled, delete it
+            if syncableCalendarIds.contains(obj: calendarEvent.calendarIdentifier) == false { // sync for the calendar of event is disabled, delete it
                 return true
             }
 
-            if let externalId = $0.calendarItemExternalIdentifier, externalId.isEmpty == false {
-                // event calendar is on this device and syncable.
-                let matchedEvent = store.calendarItems(withExternalIdentifier: externalId).first
-                // if user deleted the event from calendar, we also need to delete it.
-                return matchedEvent == nil ? true : false
+            if let externalId = calendarEvent.calendarItemExternalIdentifier, externalId.isEmpty == false {
+                // event's calendar is on this device and syncable.
+                let matchedEvent = ekEvents.filter({ (ekEvent) -> Bool in
+                    return ekEvent.startDate == calendarEvent.startDate
+                }).first
+
+                return matchedEvent == nil ? true : false // if user deleted the event from calendar, we also need to delete it.
             }
-            return false
-        }
+
+            return true // externalId.isEmpty : it's legacy data. need to delete it.
+        })
         for calendarEvent in relevantCalendarEvents {
             if ekEvents.contains(where: { calendarEvent.matches(event: $0) }) == false {
                 calendarEvent.deleteOrMarkDeleted()

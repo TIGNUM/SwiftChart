@@ -58,6 +58,15 @@ final class SettingsCalendarListViewController: UIViewController {
         navigationItem.title = R.string.localized.sidebarTitleCalendars().uppercased()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+
+        // check if there is changes?
+        if self.viewModel.isChanged() == true {
+            NotificationCenter.default.post(Notification(name: .startSyncCalendarRelatedData))
+        }
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.register(R.nib.settingsControlTableViewCell(),

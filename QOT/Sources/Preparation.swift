@@ -42,16 +42,15 @@ final class Preparation: SyncableObject {
 
     lazy var calendarEvent: CalendarEvent? = {
         if self.event != nil { return event }
-        let existingCalendarEvents: Results<CalendarEvent>
+        guard let eventRemoteID = self.calendarEventRemoteID.value else { return nil }
+
         do {
             let realm = try RealmProvider().realm()
-            existingCalendarEvents = realm.objects()
+            return realm.syncableObject(ofType: CalendarEvent.self, remoteID: eventRemoteID)
         } catch {
-            return nil
+            // Do nothing
         }
-        return existingCalendarEvents.filter {
-            return $0.remoteID.value == self.calendarEventRemoteID.value ? true : false
-            }.first
+        return nil
     }()
 
     // MARK: Functions

@@ -229,7 +229,7 @@ private extension Realm {
     }
 
     func calendarEventForEKEvent(_ ekEvent: EKEvent) -> CalendarEvent {
-        guard let existing = objects(CalendarEvent.self).filter(externalIdentifier: ekEvent.calendarItemExternalIdentifier).first else {
+        guard let existing = objects(CalendarEvent.self).filter(ekEvent: ekEvent).first else {
             return CalendarEvent(event: ekEvent)
         }
         return existing

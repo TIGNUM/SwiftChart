@@ -19,6 +19,7 @@ final class SettingsCalendarListViewModel {
     let syncStateObserver: SyncStateObserver
     var calendarsOnThisDevice: [CalendarSyncSetting] = []
     var calendarsOnOtherDevices: [CalendarSyncSetting] = []
+    private var hasChanges: Bool = false
 
     var isSyncFinished: Bool {
         return syncStateObserver.hasSynced(RealmCalendarSyncSetting.self)
@@ -96,5 +97,10 @@ final class SettingsCalendarListViewModel {
 
     func updateCalendarSyncStatus(canSync: Bool, calendarIdentifier: String) {
         manager.setSyncEnabled(enabled: canSync, calendarIdentifier: calendarIdentifier)
+        hasChanges = true
+    }
+
+    func isChanged() -> Bool {
+        return hasChanges
     }
 }

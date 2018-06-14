@@ -83,8 +83,6 @@ final class CalendarSyncSettingsManager {
                     setting.syncEnabled = enabled
                     setting.didUpdate()
                 }
-                syncManager.syncCalendarSyncSettings()
-                syncManager.syncCalendarEvents()
             }
         } catch {
             assertionFailure("Failed ot set calendar sync enabled: \(error)")

@@ -53,6 +53,7 @@ final class CalendarEvent: SyncableObject {
         self.endDate = event.endDate
         self.modifiedAt = event.lastModifiedDate ?? now
         self.ekEventModifiedAt = event.lastModifiedDate ?? now
+        self.calendarItemExternalIdentifier = event.calendarItemExternalIdentifier
         self.dirty = true
         self.deleted = false
     }
@@ -80,7 +81,7 @@ final class CalendarEvent: SyncableObject {
     }
 
     func matches(event: EKEvent) -> Bool {
-        return event.calendarItemExternalIdentifier == calendarItemExternalIdentifier
+        return event.calendarItemExternalIdentifier == calendarItemExternalIdentifier && event.startDate == startDate
     }
 }
 
@@ -89,24 +90,35 @@ final class CalendarEvent: SyncableObject {
 extension CalendarEvent: TwoWaySyncable {
 
     static func object(remoteID: Int, store: ObjectStore, data: CalendarEventIntermediary) -> CalendarEvent? {
-        let obj = store.objects(CalendarEvent.self).filter("calendarItemExternalIdentifier == %@", data.calendarItemExternalIdentifier).first
-        if obj == nil { return nil }
+        let startDate: Date
 
-        do {
-            try obj!.setData(data, objectStore: store)
-        } catch {
-            // Do nothing
+        if let milliseconds = Double(data.startDateString) {
+            startDate = Date.init(milliseconds: milliseconds)
+        } else {
+            startDate = Date(timeIntervalSince1970: 0)
         }
 
-        obj!.setRemoteIDValue(remoteID)
+        let objs = store.objects(CalendarEvent.self).filter("remoteID == %d", remoteID)
+        var obj = objs.first
 
+        if obj == nil {
+            obj = store.objects(CalendarEvent.self).filter("remoteID == nil && calendarItemExternalIdentifier == %@ && startDate == %@",
+                                                           data.calendarItemExternalIdentifier, startDate).first
+        } else {
+            do {
+                try obj?.setData(data, objectStore: store)
+                obj?.setRemoteIDValue(remoteID)
+            } catch {
+                // Do nothing
+            }
+        }
         return obj
     }
 
     static func object(remoteID: Int, store: ObjectStore, data: CalendarEventIntermediary, createdAt: Date, modifiedAt: Date) -> CalendarEvent? {
         let new = CalendarEvent()
         do {
-        try new.setData(data, objectStore: store)
+            try new.setData(data, objectStore: store)
         } catch {
             // Do nothing
         }
@@ -122,10 +134,6 @@ extension CalendarEvent: TwoWaySyncable {
         title = data.title
         calendarItemExternalIdentifier = data.calendarItemExternalIdentifier
         calendarIdentifier = data.calendarIdentifier
-
-        if let milliseconds = Double(data.startDateString) {
-            startDate = Date.init(milliseconds: milliseconds)
-        }
 
         if let milliseconds = Double(data.startDateString) {
             startDate = Date.init(milliseconds: milliseconds)
@@ -148,10 +156,6 @@ extension CalendarEvent: TwoWaySyncable {
         } else {
             return nil
         }
-    }
-
-    static func object(externalIdentifier: String, store: ObjectStore) throws -> CalendarEvent? {
-        return store.objects(CalendarEvent.self).filter(externalIdentifier: externalIdentifier).first
     }
 
     static var endpoint: Endpoint {

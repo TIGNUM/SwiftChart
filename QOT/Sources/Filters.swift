@@ -12,4 +12,10 @@ extension Results where Element: CalendarEvent {
     func filter(externalIdentifier: String?) -> LazyFilterCollection<Results<T>> {
         return filter { $0.calendarItemExternalIdentifier == externalIdentifier }
     }
+
+    func filter(ekEvent: EKEvent!) -> LazyFilterCollection<Results<T>> {
+        return filter {
+            $0.calendarItemExternalIdentifier == ekEvent.calendarItemExternalIdentifier && $0.startDate == ekEvent.startDate
+        }
+    }
 }

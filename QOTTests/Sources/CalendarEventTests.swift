@@ -244,18 +244,18 @@ class CalendarEventTests: XCTestCase {
         let syncExpectation = XCTestExpectation.init(description: "Event Sync Operation Expectation!!")
         let context = SyncContext()
         let syncOperation = self.syncOperation(context: context, shouldUpload: shouldUpload, shouldDownload: shouldDownload)
-        operationQueue?.addOperation(syncOperation!)
-        operationQueue?.addOperation {
+        let finishOperation = BlockOperation {
             DispatchQueue.main.async {
                 syncExpectation.fulfill()
             }
         }
+        finishOperation.addDependency(syncOperation)
+        operationQueue?.addOperations([syncOperation, finishOperation], waitUntilFinished: false)
         
-        self.wait(for: [syncExpectation], timeout: 10)
+        self.wait(for: [syncExpectation], timeout: 20)
     }
     
-    func syncOperation(context: SyncContext, shouldUpload: Bool, shouldDownload: Bool)
-        -> SyncOperation? {
+    func syncOperation(context: SyncContext, shouldUpload: Bool, shouldDownload: Bool) -> SyncOperation {
             let upSyncTask: UpSyncTask<CalendarEvent>?
             if shouldUpload == true {
                 upSyncTask = UpSyncTask<CalendarEvent>(networkManager: networkManager!, realmProvider: realmProvider!)
@@ -278,11 +278,6 @@ class CalendarEventTests: XCTestCase {
     }
     
     func login() {
-        
-        if authenticator?.hasLoginCredentials() == true {
-            return
-        }
-
         let loginExpectation = XCTestExpectation.init(description: "Waiting for login.....")
         authenticator?.authenticate(username: "s.park@tignum.com", password: "tignum1234", completion: { (result) in
           loginExpectation.fulfill()

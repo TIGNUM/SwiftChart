@@ -58,7 +58,7 @@ final class PrepareCoordinator: ParentCoordinator {
                         // Do nothing, any how the event is existing on the device, and it will be synchronized in next time.
                     }
                     AppCoordinator.appState.syncManager.syncCalendarEvents(completion: { (error) in
-                        let createdEvent = self?.services.eventsService.calendarEvent(calendarItemExternalIdentifier: ekEvent.calendarItemExternalIdentifier)
+                        let createdEvent = self?.services.eventsService.calendarEvent(ekEvent: ekEvent)
                         self?.createPreparation(name: createdEvent!.title, event: createdEvent)
                         NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
                     })
