@@ -263,7 +263,8 @@ extension LaunchHandler {
             let guideItem = guideItem,
             let contentIDString = scheme.queryParametter(url: url),
             let contentID = Int(contentIDString) else { return }
-                appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID, guideItem: guideItem)
+                appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
+                                                                             guideItem: guideItem)
     }
 
     func contentItem(url: URL, scheme: URLScheme, searchViewController: SearchViewController?) {

@@ -214,6 +214,9 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                                         indexPath: indexPath,
                                         attributedString: item.contentItemValue.style(textStyle: .h4, text: title, textColor: .blackTwo).attributedString(),
                                         timeToReadSeconds: item.secondsRequired)
+            case .guide,
+                 .guideButton:
+                return emptyCell(tableView: tableView, indexPath: indexPath)
             default:
                 return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
             }
@@ -455,6 +458,13 @@ private extension LearnContentItemViewController {
                        titleColor: .black,
                        timeColor: .black30)
 
+        return cell
+    }
+
+    func emptyCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
         return cell
     }
 }

@@ -189,6 +189,22 @@ private extension GuideItemFactory {
                           affectsTabBarBadge: true)
     }
 
+    func notificationButtonInfo(notification: RealmGuideItemNotification) -> (String, URL)? {
+        if
+            let contentCollectionID = Int(notification.link.suffix(6)),
+            let contentCollection = services.contentService.contentCollection(id: contentCollectionID) {
+            if contentCollection.section == "GUIDE" {
+                let item = contentCollection.contentItems.filter { $0.format == "guide.feature.button" }.first
+                guard
+                    let buttonText = item?.valueText,
+                    let link = item?.link,
+                    let url = URL(string: link) else { return nil }
+                return (buttonText, url)
+            }
+        }
+        return nil
+    }
+
     func guideItem(with notification: RealmGuideItemNotification) -> Guide.Item? {
         let isDailyPrep = RealmGuideItemNotification.ItemType.morningInterview.rawValue == notification.type ||
             RealmGuideItemNotification.ItemType.weeklyInterview.rawValue == notification.type
@@ -201,6 +217,8 @@ private extension GuideItemFactory {
             content = .text(notification.body)
         }
 
+        let buttonInfo = notificationButtonInfo(notification: notification)
+
         return Guide.Item(status: notification.completedAt == nil ? .todo : .done,
                           title: notification.title ?? "",
                           content: content,
@@ -210,8 +228,8 @@ private extension GuideItemFactory {
                           isWhatsHot: false,
                           isToBeVision: false,
                           link: URL(string: notification.link),
-                          featureLink: nil,
-                          featureButton: nil,
+                          featureLink: buttonInfo?.1,
+                          featureButton: buttonInfo?.1 == nil ? buttonInfo?.0 : nil,
                           identifier: GuideItemID(item: notification).stringRepresentation,
                           affectsTabBarBadge: true)
     }

@@ -19,6 +19,8 @@ enum ContentItemValue {
     case image(title: String, description: String?, url: URL)
     case prepareStep(title: String, description: String, relatedContentID: Int?)
     case pdf(title: String, description: String?, pdfURL: URL)
+    case guide
+    case guideButton
     case invalid
 
     init(item: ContentItem) {
@@ -47,6 +49,12 @@ enum ContentItemValue {
             } else {
                 self = .invalid
             }
+        case .guideTitle,
+             .guideType,
+             .guideBody:
+            self = .guide
+        case .guideFeatureButton:
+            self = .guideButton
         case .listItem:
             if let text = text {
                 self = .listItem(text: text)
@@ -162,4 +170,8 @@ enum ContentItemFormat: String {
     case image
     case preparationStep = "prepare"
     case pdf
+    case guideTitle = "guide.title"
+    case guideType = "guide.type"
+    case guideBody = "guide.body"
+    case guideFeatureButton = "guide.feature.button"
 }

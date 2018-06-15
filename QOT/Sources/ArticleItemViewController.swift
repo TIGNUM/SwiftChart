@@ -150,7 +150,10 @@ private extension ArticleItemViewController {
 
         if
             let guideItem = guideItem,
-            let featureLink = guideItem.featureLink, URLScheme.isSupportedURL(featureLink) == true {
+            let featureLink = guideItem.link,
+            guideItem.featureButton != nil,
+            guideItem.identifier != "learn#119928",
+            URLScheme.isSupportedURL(featureLink) == true {
                 let button = featureLinkButton(guideItem: guideItem)
                 view.addSubview(button)
                 button.bottomAnchor == view.safeBottomAnchor
@@ -284,6 +287,13 @@ private extension ArticleItemViewController {
 
         return relatedArticleCell
     }
+
+    func emptyCell(tableView: UITableView, indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(frame: CGRect(x: 0, y: 0, width: 0, height: 0))
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
+        return cell
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -338,12 +348,10 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     attributedTopText = Style.qoute(text, .white60).attributedString(lineHeight: 1.8)
                 }
 
-                return contentItemTextTableViewCell(
-                    tableView: tableView,
-                    indexPath: indexPath,
-                    topText: attributedTopText,
-                    bottomText: nil
-                )
+                return contentItemTextTableViewCell(tableView: tableView,
+                                                    indexPath: indexPath,
+                                                    topText: attributedTopText,
+                                                    bottomText: nil)
             case .video(let title, _, let placeholderURL, _, _):
                 return mediaStreamCell(
                     tableView: tableView,
@@ -359,6 +367,9 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                                         indexPath: indexPath,
                                         attributedString: item.contentItemValue.style(textStyle: .h4, text: title, textColor: .white).attributedString(),
                                         timeToReadSeconds: item.secondsRequired)
+            case .guide,
+                 .guideButton:
+                return emptyCell(tableView: tableView, indexPath: indexPath)
             default:
                 return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
             }

@@ -18,6 +18,7 @@ struct ContentItemIntermediary {
     let layoutInfo: String?
     let contentID: Int
     let relatedContent: [ContentRelationIntermediary]
+    let link: String?
 
     // Value
     let valueText: String?
@@ -42,6 +43,7 @@ extension ContentItemIntermediary: DownSyncIntermediary {
         self.layoutInfo = try json.serializeString(at: .layoutInfo)
         self.contentID = try json.getItemValue(at: .contentId)
         self.relatedContent = try json.getArray(at: .relatedContent)
+        self.link = try json.getItemValue(at: .link)
 
         let valueJSON = try json.json(at: .value)
         self.valueText = try valueJSON.getItemValue(at: .text)

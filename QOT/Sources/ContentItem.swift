@@ -24,7 +24,7 @@ final class ContentItem: SyncableObject {
     @objc private(set) dynamic var tabs: String = ""
 
     @objc private(set) dynamic var layoutInfo: String?
-
+    
     @objc private(set) dynamic var valueText: String?
 
     @objc private(set) dynamic var valueDescription: String?
@@ -32,6 +32,8 @@ final class ContentItem: SyncableObject {
     @objc private(set) dynamic var valueImageURL: String?
 
     @objc private(set) dynamic var valueMediaURL: String?
+
+    @objc private(set) dynamic var link: String?
 
     let valueMediaID = RealmOptional<Int>(nil)
 
@@ -94,6 +96,7 @@ extension ContentItem: OneWaySyncableDown {
         valueDuration.value = data.valueDuration
         valueWavformData = data.valueWavformData
         valueMediaID.value = data.valueMediaID
+        link = data.link
 
         objectStore.delete(relatedContent)
         relatedContent.append(objectsIn: data.relatedContent.map({ ContentRelation(intermediary: $0) }))
