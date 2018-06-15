@@ -26,12 +26,16 @@ final class EventsService {
     func calendarEvents(from: Date, to: Date) -> [CalendarEvent] {
         let existingCalendarEvents: Results<CalendarEvent> = mainRealm.objects()
         let relevantCalendarEvents = existingCalendarEvents.filter {
-            if $0.startDate < from && $0.startDate > to {
+            if $0.startDate < from || $0.startDate > to {
                 return false
             }
             return true
         }
-        return Array(relevantCalendarEvents)
+        return Array(relevantCalendarEvents.sorted(by: { (firstEvent, secondEvent) -> Bool in
+            // near days first.
+            firstEvent.startDate < secondEvent.startDate
+        })
+        )
     }
 
     func calendarEvent(remoteID: RealmOptional<Int>?) -> CalendarEvent? {

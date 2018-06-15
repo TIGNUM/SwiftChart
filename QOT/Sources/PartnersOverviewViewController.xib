@@ -1,15 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="BentonSans_Book.otf">
+            <string>BentonSans-Book</string>
+        </array>
         <array key="Simple-Regular.ttf">
             <string>Simple-Regular</string>
         </array>
@@ -17,7 +21,12 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PartnersOverviewViewController" customModule="QOT" customModuleProvider="target">
             <connections>
+                <outlet property="addButton" destination="WjH-QX-NHo" id="J7q-74-3Cz"/>
                 <outlet property="collectionView" destination="VjO-gE-fPi" id="CvP-u4-HHE"/>
+                <outlet property="headlineLabel" destination="mdD-WH-glp" id="Y8V-g1-fjD"/>
+                <outlet property="landingViewContainer" destination="lN8-Ed-8RV" id="cI5-sq-Lek"/>
+                <outlet property="messageLabel" destination="WWX-Mq-Xqe" id="Vg2-17-MMp"/>
+                <outlet property="profileImageView" destination="iVK-wT-hXe" id="lUg-UM-Ipp"/>
                 <outlet property="titleLabel" destination="e9s-xA-NiW" id="oCF-bA-96b"/>
                 <outlet property="view" destination="Qxo-So-Ive" id="Sf4-Go-NrR"/>
             </connections>
@@ -50,17 +59,82 @@
                         <outlet property="delegate" destination="-1" id="EKj-Ig-0ba"/>
                     </connections>
                 </collectionView>
+                <view hidden="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lN8-Ed-8RV">
+                    <rect key="frame" x="0.0" y="10" width="375" height="667"/>
+                    <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundMyToBeVision" translatesAutoresizingMaskIntoConstraints="NO" id="BS1-rl-UZD">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        </imageView>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iVK-wT-hXe">
+                            <rect key="frame" x="40" y="50" width="295" height="265"/>
+                        </imageView>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Add a partner to be successful" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mdD-WH-glp">
+                            <rect key="frame" x="19" y="355" width="337.5" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="24" id="N0e-dM-a5I"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Adding a partner and being held accountable to your goals increases the chances of achieving your goals by 32%." textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WWX-Mq-Xqe">
+                            <rect key="frame" x="32" y="399" width="311" height="45.5"/>
+                            <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WjH-QX-NHo">
+                            <rect key="frame" x="20" y="468.5" width="335" height="40"/>
+                            <color key="backgroundColor" red="0.0" green="0.58431372550000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="xCr-pq-jEa"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
+                            <state key="normal" title="Add Partner">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </state>
+                            <connections>
+                                <action selector="didTapAddPartnerButton" destination="-1" eventType="touchUpInside" id="esX-rV-54b"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="BS1-rl-UZD" secondAttribute="bottom" id="5S8-SM-cdw"/>
+                        <constraint firstItem="mdD-WH-glp" firstAttribute="centerX" secondItem="lN8-Ed-8RV" secondAttribute="centerX" id="6ae-4a-FSo"/>
+                        <constraint firstItem="iVK-wT-hXe" firstAttribute="top" secondItem="8Ri-mi-Fet" secondAttribute="top" constant="40" id="CEP-Oh-CkV"/>
+                        <constraint firstItem="WWX-Mq-Xqe" firstAttribute="top" secondItem="mdD-WH-glp" secondAttribute="bottom" constant="20" id="Ed5-fi-QWM"/>
+                        <constraint firstItem="mdD-WH-glp" firstAttribute="width" secondItem="lN8-Ed-8RV" secondAttribute="width" multiplier="0.9" id="L7o-qS-ud4"/>
+                        <constraint firstItem="WWX-Mq-Xqe" firstAttribute="leading" secondItem="lN8-Ed-8RV" secondAttribute="leading" constant="32" id="Nzw-n6-g3w"/>
+                        <constraint firstItem="iVK-wT-hXe" firstAttribute="centerX" secondItem="lN8-Ed-8RV" secondAttribute="centerX" id="OYP-ch-brh"/>
+                        <constraint firstItem="WWX-Mq-Xqe" firstAttribute="centerX" secondItem="lN8-Ed-8RV" secondAttribute="centerX" id="ZQj-7L-7vh"/>
+                        <constraint firstItem="WjH-QX-NHo" firstAttribute="centerX" secondItem="lN8-Ed-8RV" secondAttribute="centerX" id="agf-6v-MMx"/>
+                        <constraint firstItem="8Ri-mi-Fet" firstAttribute="trailing" secondItem="WjH-QX-NHo" secondAttribute="trailing" constant="20" id="ctX-XO-ufR"/>
+                        <constraint firstItem="BS1-rl-UZD" firstAttribute="leading" secondItem="8Ri-mi-Fet" secondAttribute="leading" id="e19-we-Jth"/>
+                        <constraint firstItem="WjH-QX-NHo" firstAttribute="top" secondItem="WWX-Mq-Xqe" secondAttribute="bottom" constant="24" id="e3g-WM-Na4"/>
+                        <constraint firstItem="mdD-WH-glp" firstAttribute="centerY" secondItem="lN8-Ed-8RV" secondAttribute="centerY" multiplier="1.1" id="jeN-kS-CJi"/>
+                        <constraint firstItem="iVK-wT-hXe" firstAttribute="leading" secondItem="8Ri-mi-Fet" secondAttribute="leading" constant="40" id="n7f-0y-sHk"/>
+                        <constraint firstItem="BS1-rl-UZD" firstAttribute="top" secondItem="lN8-Ed-8RV" secondAttribute="top" id="pkp-b3-sym"/>
+                        <constraint firstItem="mdD-WH-glp" firstAttribute="top" secondItem="iVK-wT-hXe" secondAttribute="bottom" constant="40" id="u7g-TA-5yz"/>
+                        <constraint firstItem="8Ri-mi-Fet" firstAttribute="trailing" secondItem="BS1-rl-UZD" secondAttribute="trailing" id="xdy-0g-XxX"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="8Ri-mi-Fet"/>
+                </view>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ZTD-8X-fNt" firstAttribute="bottom" secondItem="VjO-gE-fPi" secondAttribute="bottom" constant="40" id="43x-bb-XS8"/>
                 <constraint firstItem="e9s-xA-NiW" firstAttribute="top" secondItem="Qxo-So-Ive" secondAttribute="top" constant="108" id="4Q9-z4-7dH"/>
+                <constraint firstItem="lN8-Ed-8RV" firstAttribute="centerX" secondItem="ZTD-8X-fNt" secondAttribute="centerX" id="9Ea-M7-UYB"/>
                 <constraint firstItem="VjO-gE-fPi" firstAttribute="trailing" secondItem="ZTD-8X-fNt" secondAttribute="trailing" id="9eS-h0-MJE"/>
                 <constraint firstItem="S3n-zb-4gI" firstAttribute="top" secondItem="Qxo-So-Ive" secondAttribute="top" id="EG7-6L-Mvf"/>
                 <constraint firstAttribute="trailing" secondItem="e9s-xA-NiW" secondAttribute="trailing" constant="24" id="PPC-Vj-bzm"/>
+                <constraint firstItem="lN8-Ed-8RV" firstAttribute="height" secondItem="Qxo-So-Ive" secondAttribute="height" id="RTr-Zk-SLF"/>
+                <constraint firstItem="lN8-Ed-8RV" firstAttribute="width" secondItem="Qxo-So-Ive" secondAttribute="width" id="W74-fB-SNe"/>
                 <constraint firstItem="e9s-xA-NiW" firstAttribute="leading" secondItem="ZTD-8X-fNt" secondAttribute="leading" constant="24" id="YLi-Xx-IjK"/>
                 <constraint firstAttribute="bottom" secondItem="S3n-zb-4gI" secondAttribute="bottom" id="bKR-xt-kJ5"/>
                 <constraint firstItem="VjO-gE-fPi" firstAttribute="top" secondItem="e9s-xA-NiW" secondAttribute="bottom" constant="40" id="hBX-SF-Qtj"/>
+                <constraint firstItem="lN8-Ed-8RV" firstAttribute="centerY" secondItem="ZTD-8X-fNt" secondAttribute="centerY" id="jD7-rO-Vql"/>
                 <constraint firstItem="S3n-zb-4gI" firstAttribute="leading" secondItem="Qxo-So-Ive" secondAttribute="leading" id="ohs-7f-Ewy"/>
                 <constraint firstAttribute="trailing" secondItem="S3n-zb-4gI" secondAttribute="trailing" id="sN3-ii-QbF"/>
                 <constraint firstItem="VjO-gE-fPi" firstAttribute="leading" secondItem="ZTD-8X-fNt" secondAttribute="leading" id="vXi-AS-uAZ"/>

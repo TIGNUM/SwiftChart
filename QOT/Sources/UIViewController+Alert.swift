@@ -42,6 +42,7 @@ enum AlertType {
     case changePermissions
     case toBeVisionActionSheet
     case partnerIncomplete
+    case canNotDeletePartner
 
     var title: String? {
         switch self {
@@ -70,6 +71,7 @@ enum AlertType {
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationEditStrategy()
         case .changePermissions: return R.string.localized.alertTitleSettingsChangePermission()
         case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteTitle()
+        case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorTitle()
         default: return nil
         }
     }
@@ -100,6 +102,7 @@ enum AlertType {
         case .prepareEditStrategy: return R.string.localized.alertMessagePreparationEditStrategy()
         case .changePermissions: return R.string.localized.alertMessageSettingsChangePermission()
         case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteMessage()
+        case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorMessage()
         default: return nil
         }
     }

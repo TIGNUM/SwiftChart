@@ -33,10 +33,6 @@ final class PartnersAnimation: NSObject {
             let navigationController = viewController as? UINavigationController,
             let childViewController = navigationController.viewControllers.first as? PartnersOverviewViewController {
                 return childViewController
-        } else if
-            let navigationController = viewController as? UINavigationController,
-            let childViewController = navigationController.viewControllers.first as? PartnersLandingPageViewController {
-                return childViewController
         }
         return nil
     }

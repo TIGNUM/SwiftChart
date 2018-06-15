@@ -159,6 +159,10 @@ final class SyncManager {
     }
 
     func syncUserDependentData(syncContext: SyncContext? = nil, completion: ((Error?) -> Void)? = nil) {
+        if isSyncingAll {
+            completion?(nil)
+            return
+        }
         let context = syncContext ?? SyncContext()
         let operations: [Operation] = userDependentSyncOperations(context: context)
         excute(operations: operations, context: context, completion: { (error) in
@@ -191,8 +195,17 @@ final class SyncManager {
 
     func syncPartners(completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
-        excute(operations: [syncOperation(Partner.self, context: context, shouldDownload: true)], context: context, completion: completion)
-        uploadMedia()
+        var operations: [Operation?] = [syncOperation(Partner.self, context: context, shouldDownload: true)]
+
+        do {
+            let mediaUploadOperations: [Operation] = try uploadMediaOperations(context: context)
+            if mediaUploadOperations.count > 0 {
+                operations.append(contentsOf: mediaUploadOperations)
+            }
+        } catch {
+            log("Failed to synchronise partners with error: \(error)")
+        }
+        excute(operations: operations, context: context, completion: completion)
     }
 
     func syncCalendarEvents(completion: ((Error?) -> Void)? = nil) {

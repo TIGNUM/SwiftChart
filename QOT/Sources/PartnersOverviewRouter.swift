@@ -61,7 +61,7 @@ extension PartnersOverviewRouter: PartnersOverviewRouterInterface {
     }
 
     func showEditPartner(partner: Partner) {
-        showAddPartner(partner: partner)
+        showPartner(partner: partner)
     }
 
     func showAlert(_ alert: AlertType) {
@@ -69,7 +69,11 @@ extension PartnersOverviewRouter: PartnersOverviewRouterInterface {
     }
 
     func showAddPartner(partner: Partner) {
-        let configurator = PartnerEditConfigurator.make(partnerToEdit: Partners.Partner(partner))
+        showPartner(partner: partner, isNewPartner: true)
+    }
+
+    func showPartner(partner: Partner, isNewPartner: Bool = false) {
+        let configurator = PartnerEditConfigurator.make(partnerToEdit: Partners.Partner(partner), isNewPartner: isNewPartner)
         let partnersController = PartnerEditViewController(configure: configurator)
         partnersController.title = R.string.localized.meSectorMyWhyPartnersTitle().uppercased()
         let navController = UINavigationController(rootViewController: partnersController)

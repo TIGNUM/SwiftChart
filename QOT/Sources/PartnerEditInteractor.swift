@@ -15,21 +15,24 @@ final class PartnerEditInteractor {
     private let worker: PartnerEditWorker
     private let presenter: PartnerEditPresenterInterface
     private let router: PartnerEditRouterInterface
+    private let isNewPartner: Bool
 
     // MARK: - Init
 
     init(worker: PartnerEditWorker,
         presenter: PartnerEditPresenterInterface,
-        router: PartnerEditRouterInterface) {
+        router: PartnerEditRouterInterface,
+        isNewPartner: Bool = false) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        self.isNewPartner = isNewPartner
     }
 
     // MARK: - Interactor
 
     func viewDidLoad() {
-        presenter.setupView(partner: worker.partnerToEdit)
+        presenter.setupView(partner: worker.partnerToEdit, isNewPartner: isNewPartner)
     }
 }
 
@@ -48,6 +51,7 @@ extension PartnerEditInteractor: PartnerEditInteractorInterface {
 
     func didTapSave(partner: Partners.Partner?, image: UIImage?) {
         if let partner = partner, partner.isValid == true {
+            router.showProgressHUD("")
             if let image = image {
                 do {
                     let imageURL = try worker.saveImage(image)
@@ -56,10 +60,27 @@ extension PartnerEditInteractor: PartnerEditInteractorInterface {
                     log("Error while saving partner profile image: \(error)")
                 }
             }
-            worker.savePartner(partner)
-            router.dismiss()
+            worker.savePartner(partner, completion: { (error) in
+                self.router.hideProgressHUD()
+                self.router.dismiss()
+            })
         } else {
             router.showAlert(.partnerIncomplete)
+        }
+    }
+
+    func didTapDelete(partner: Partners.Partner?) {
+        if let partner = partner, partner.isValid == true {
+            router.showProgressHUD("")
+            worker.deletePartner(partner, completion: { (error) in
+                if error != nil {
+                    self.router.showAlert(.canNotDeletePartner)
+                }
+                self.router.hideProgressHUD()
+                self.router.dismiss()
+            })
+        } else {
+            router.showAlert(.canNotDeletePartner)
         }
     }
 

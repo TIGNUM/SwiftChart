@@ -29,7 +29,7 @@ extension PartnerEditPresenter: PartnerEditPresenterInterface {
         viewController.reload(partner: partner)
     }
 
-    func setupView(partner: Partners.Partner) {
-        viewController.setupView(partner: partner)
+    func setupView(partner: Partners.Partner, isNewPartner: Bool) {
+        viewController.setupView(partner: partner, isNewPartner: isNewPartner)
     }
 }

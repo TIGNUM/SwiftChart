@@ -8,12 +8,19 @@
 
 import UIKit
 
+enum PartnerCellType: Int {
+    case partnerImage = 0
+    case partnerInfo
+    case partnerDelete
+}
+
 final class PartnerEditViewController: UITableViewController {
 
     // MARK: - Properties
 
     private var partner: Partners.Partner?
     private var tempImage: UIImage?
+    private var showsDeleteButton: Bool = true
     var interactor: PartnerEditInteractorInterface?
 
     // MARK: - Init
@@ -38,21 +45,33 @@ final class PartnerEditViewController: UITableViewController {
 extension PartnerEditViewController {
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return showsDeleteButton ? 3 : 2
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == 0 {
+        switch PartnerCellType(rawValue: indexPath.row)! {
+        case .partnerImage:
             return view.frame.height * 0.6
+        case .partnerDelete:
+            return view.frame.height * 0.1
+        default:
+            break
         }
         return view.frame.height * 0.4
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 0 {
+        switch PartnerCellType(rawValue: indexPath.row)! {
+        case .partnerImage:
             let cell: PartnerEditImageCell = tableView.dequeueCell(for: indexPath)
             cell.configure(imageURL: partner?.imageURL, image: tempImage, interactor: interactor)
             return cell
+        case .partnerDelete:
+            let cell: PartnerEditDeleteButtonCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(partner: partner, interactor: interactor)
+            return cell
+        default:
+            break
         }
         let cell: PartnerEditTextFieldCell = tableView.dequeueCell(for: indexPath)
         cell.configure(partner: partner, interactor: interactor)
@@ -65,19 +84,22 @@ extension PartnerEditViewController {
 private extension PartnerEditViewController {
 
     func setupTableView() {
-        tableView.isScrollEnabled = false
+        tableView.bounces = false
+        tableView.isScrollEnabled = showsDeleteButton ? true : false
         tableView.backgroundView = UIImageView(image: R.image.backgroundMyToBeVision())
         tableView.separatorColor = .clear
         tableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 0, right: 0)
         tableView.registerDequeueable(PartnerEditImageCell.self)
         tableView.registerDequeueable(PartnerEditTextFieldCell.self)
+        tableView.registerDequeueable(PartnerEditDeleteButtonCell.self)
+        tableView.separatorStyle = .none
     }
 
     func setupNavigationItems() {
-        let leftButton = UIBarButtonItem(title: "Save", style: .done, target: self, action: #selector(didTapSave))
+        let leftButton = UIBarButtonItem(title: "Cancel", style: .done, target: self, action: #selector(didTapCancel))
         leftButton.tintColor = .white30
         navigationItem.leftBarButtonItem = leftButton
-        let rightButton = UIBarButtonItem(title: "Cancel", style: .plain, target: self, action: #selector(didTapCancel))
+        let rightButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(didTapSave))
         rightButton.tintColor = .white30
         navigationItem.rightBarButtonItem = rightButton
     }
@@ -113,8 +135,9 @@ extension PartnerEditViewController: PartnerEditViewControllerInterface {
         self.partner = partner
     }
 
-    func setupView(partner: Partners.Partner) {
+    func setupView(partner: Partners.Partner, isNewPartner: Bool) {
         self.partner = partner
+        self.showsDeleteButton = isNewPartner ? false : true
         setupNavigationItems()
         setupTableView()
     }

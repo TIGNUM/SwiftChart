@@ -19,6 +19,13 @@ final class PartnersOverviewViewController: PartnersAnimationViewController {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
 
+    // MARK: Landing View
+    @IBOutlet weak var landingViewContainer: UIView!
+    @IBOutlet private weak var profileImageView: UIImageView!
+    @IBOutlet private weak var headlineLabel: UILabel!
+    @IBOutlet private weak var messageLabel: UILabel!
+    @IBOutlet private weak var addButton: UIButton!
+
     // MARK: - Init
 
     init(configure: Configurator<PartnersOverviewViewController>) {
@@ -62,17 +69,21 @@ extension PartnersOverviewViewController: UICollectionViewDelegate, UICollection
     }
 
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
+        return 1 // FIXME: remove constant
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3
+        return 3 // FIXME: remove constant
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.deselectItem(at: indexPath, animated: true)
         let partner = partners[indexPath.row]
-        interactor?.editPartner(partner: partner)
+        if partner.isValid {
+            interactor?.editPartner(partner: partner)
+        } else {
+            interactor?.addPartner(partner: partner)
+        }
     }
 }
 
@@ -91,6 +102,35 @@ private extension PartnersOverviewViewController {
         leftButton.action = #selector(didTapClose)
         navigationItem.leftBarButtonItem = leftButton
     }
+
+    func setupLandingPageView(partnersLandingPage: PartnersLandingPage?) {
+        landingViewContainer.isHidden = (partnersLandingPage == nil)
+        profileImageView.image = partnersLandingPage?.defaultProfilePicture
+
+        headlineLabel.attributedText = partnersLandingPage?.titleAttributedString
+        messageLabel.attributedText = partnersLandingPage?.messageAttributedString
+
+        addButton.layer.cornerRadius = 8
+        addButton.backgroundColor = .azure
+        addButton.setAttributedTitle(partnersLandingPage?.buttonTitleAttributedString, for: .normal)
+        addButton.setAttributedTitle(partnersLandingPage?.buttonTitleAttributedString, for: .selected)
+    }
+
+    func setupProfileImageView(image: UIImage?) {
+        profileImageView.image = image
+    }
+
+    func setupLabels(title: NSAttributedString, message: NSAttributedString) {
+        headlineLabel.attributedText = title
+        messageLabel.attributedText = message
+    }
+
+    func setupAddButton(buttonTitle: NSAttributedString) {
+        addButton.layer.cornerRadius = 8
+        addButton.backgroundColor = .azure
+        addButton.setAttributedTitle(buttonTitle, for: .normal)
+        addButton.setAttributedTitle(buttonTitle, for: .selected)
+    }
 }
 
 // MARK: - Actions
@@ -100,14 +140,19 @@ private extension PartnersOverviewViewController {
     @objc func didTapClose() {
         interactor?.didTapClose()
     }
+
+    @IBAction func didTapAddPartnerButton() {
+        interactor?.addPartner(partner: partners[0]) // FIXME: remove constant
+    }
 }
 
 // MARK: - PartnersOverviewViewControllerInterface
 
 extension PartnersOverviewViewController: PartnersOverviewViewControllerInterface {
 
-    func setup(partners: [Partner]) {
+    func setup(partners: [Partner], partnersLandingPage: PartnersLandingPage?) {
         self.partners = partners
+        setupLandingPageView(partnersLandingPage: partnersLandingPage)
         collectionView.reloadData()
     }
 

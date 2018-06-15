@@ -367,6 +367,8 @@
 
 "Partners.Alert.Imcomplete.Title" = "Incomplete Partners";
 "Partners.Alert.Imcomplete.Message" = "Every partner requires a 'Name', 'Surname', 'Relationship' and 'Email.'";
+"Partners.Alert.DeleteError.Title" = "Cannot delete Partner";
+"Partners.Alert.DeleteError.Message" = "Please try it again.";
 
 "Search.Filter.All" = "ALL";
 "Search.Filter.Audio" = "AUDIO";

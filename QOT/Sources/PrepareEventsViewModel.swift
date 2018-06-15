@@ -18,9 +18,7 @@ final class PrepareEventsViewModel {
 
     init(preparationTitle: String, events: [CalendarEvent]) {
         self.preparationTitle = preparationTitle
-        self.events = events.sorted(by: {
-             $0.startDate > $1.startDate
-        })
+        self.events = events
     }
 
     var eventCount: Int {

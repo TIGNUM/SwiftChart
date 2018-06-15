@@ -9,12 +9,12 @@
 import Foundation
 
 protocol PartnersOverviewViewControllerInterface: class {
-    func setup(partners: [Partner])
+    func setup(partners: [Partner], partnersLandingPage: PartnersLandingPage?)
     func reload(partner: Partner)
 }
 
 protocol PartnersOverviewPresenterInterface {
-    func setup(partners: [Partner])
+    func setup(partners: [Partner], partnersLandingPage: PartnersLandingPage?)
     func reload(partner: Partner)
 }
 

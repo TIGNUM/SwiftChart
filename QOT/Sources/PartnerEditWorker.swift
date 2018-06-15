@@ -45,7 +45,7 @@ final class PartnerEditWorker {
         return partners
     }
 
-    func savePartner(_ partner: Partners.Partner) {
+    func savePartner(_ partner: Partners.Partner, completion: ((Error?) -> Void)? = nil) {
         do {
             let realm = try services.realmProvider.realm()
             guard partner.isValid == true else { return }
@@ -64,11 +64,28 @@ final class PartnerEditWorker {
             log("Failed to save partners with error: \(error)")
         }
 
-        syncManager.syncPartners()
+        syncManager.syncPartners(completion: completion)
     }
 
     func saveImage(_ image: UIImage) throws -> URL {
         return try image.save(withName: UUID().uuidString)
+    }
+
+    func deletePartner(_ partner: Partners.Partner, completion: ((Error?) -> Void)? = nil) {
+        do {
+            let realm = try services.realmProvider.realm()
+            guard partner.isValid == true else { return }
+            if let existing = realm.syncableObject(ofType: Partner.self, localID: partner.localID) {
+                try realm.write {
+                    existing.delete()
+                }
+            }
+        } catch {
+            log("Failed to delete partner with error: \(error)")
+            completion?(error)
+            return
+        }
+        syncManager.syncPartners(completion: completion)
     }
 }
 

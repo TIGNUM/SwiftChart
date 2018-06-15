@@ -10,7 +10,7 @@ import Foundation
 
 final class PartnerEditConfigurator: AppStateAccess {
 
-    static func make(partnerToEdit: Partners.Partner) -> (PartnerEditViewController) -> Void {
+    static func make(partnerToEdit: Partners.Partner, isNewPartner: Bool = false) -> (PartnerEditViewController) -> Void {
         return { (viewController) in
             let router = PartnerEditRouter(viewController: viewController,
                                            permissionManager: appState.permissionsManager)
@@ -19,7 +19,7 @@ final class PartnerEditConfigurator: AppStateAccess {
                                            networkManager: appState.networkManager,
                                            partner: partnerToEdit)
             let presenter = PartnerEditPresenter(viewController: viewController)
-            let interactor = PartnerEditInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = PartnerEditInteractor(worker: worker, presenter: presenter, router: router, isNewPartner: isNewPartner)
             viewController.interactor = interactor
         }
     }

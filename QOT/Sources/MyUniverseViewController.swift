@@ -185,6 +185,12 @@ private extension MyUniverseViewController {
                 }
         }
 
+        // reset partner buttons first
+        for partnerButton in contentView.partnerButtons {
+            partnerButton.configure(for: MyUniverseViewData.Partner(imageURL: nil, initials: ""),
+                                    placeholder: config.partnerImagePlaceholder)
+        }
+
         for (index, partner) in viewData.partners.enumerated() {
             guard let partnerButtons = contentView.partnerButtons,
                 index < contentView.partnerButtons.count,
@@ -352,15 +358,18 @@ private extension UIButton {
 
     func configure(for partner: MyUniverseViewData.Partner, placeholder: UIImage?) {
         contentMode = .scaleAspectFill
+
+        // reset all first.
+        setTitle(nil, for: .normal)
+        setImage(nil, for: .normal)
+        setBackgroundImage(placeholder, for: .normal)
+
         if let url = partner.imageURL {
             setTitle(nil, for: .normal)
             kf.setImage(with: url, for: .normal, placeholder: placeholder)
         } else if partner.initials.isEmpty == false {
             setBackgroundImage(R.image.partnerEmpty(), for: .normal)
             setTitle(partner.initials, for: .normal)
-        } else {
-            setTitle(nil, for: .normal)
-            setBackgroundImage(placeholder, for: .normal)
         }
     }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MBProgressHUD
 
 final class PartnerEditRouter {
 
@@ -45,5 +46,19 @@ extension PartnerEditRouter: PartnerEditRouterInterface {
 
     func showImagePicker() {
         imagePicker.show(in: viewController)
+    }
+
+    func showProgressHUD(_ message: String?) {
+        guard let window = AppDelegate.current.window else {
+            return
+        }
+        MBProgressHUD.showAdded(to: window, animated: true)
+    }
+
+    func hideProgressHUD() {
+        guard let window = AppDelegate.current.window else {
+            return
+        }
+        MBProgressHUD.hide(for: window, animated: true)
     }
 }

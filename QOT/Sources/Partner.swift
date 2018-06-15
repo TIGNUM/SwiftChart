@@ -39,6 +39,11 @@ final class Partner: SyncableObject {
 }
 
 extension Partner: TwoWaySyncable {
+    func delete() {
+        deleted = true
+        dirty = true
+        modifiedAt = Date()
+    }
 
     func setData(_ data: PartnerIntermediary, objectStore: ObjectStore) throws {
         name = data.name

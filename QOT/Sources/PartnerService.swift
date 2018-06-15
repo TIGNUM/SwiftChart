@@ -25,10 +25,15 @@ final class PartnerService {
     }
 
     func lastModifiedPartnersSortedByCreatedAtAscending(maxCount: Int) -> [Partner] {
-        let unsorted = mainRealm.objects(Partner.self).sorted(byKeyPath: "modifiedAt").suffix(maxCount)
-        return unsorted.sorted { (first, second) -> Bool in
-            return first.createdAt < second.createdAt
+        do {
+            let unsorted = try self.realmProvider.realm().objects(Partner.self).sorted(byKeyPath: "modifiedAt").suffix(maxCount)
+            return unsorted.sorted { (first, second) -> Bool in
+                return first.createdAt < second.createdAt
+            }
+        } catch {
+            // Do nothing
         }
+        return []
     }
 
     func createPartner() throws -> Partner {

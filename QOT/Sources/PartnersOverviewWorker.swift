@@ -16,6 +16,13 @@ final class PartnersOverviewWorker {
     let syncManager: SyncManager
     let networkManager: NetworkManager
 
+    var landingPage: PartnersLandingPage? {
+        if services.partnerService.partners.isEmpty == true {
+            return services.contentService.partnersLandingPage()
+        }
+        return nil
+    }
+
     // MARK: - Init
 
     init(services: Services, syncManager: SyncManager, networkManager: NetworkManager) {

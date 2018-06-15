@@ -32,11 +32,7 @@ final class PartnersCoordinator: NSObject, ParentCoordinator {
     }
 
     func start() {
-        if services.partnerService.partners.isEmpty == true {
-            startPartnersLandingPageViewController()
-        } else {
-            startPartnersViewController()
-        }
+        startPartnersViewController()
     }
 }
 
@@ -47,12 +43,6 @@ private extension PartnersCoordinator {
     func startPartnersViewController() {
         let configurator = PartnersOverviewConfigurator.make()
         let viewController = PartnersOverviewViewController(configure: configurator)
-        presentController(viewController)
-    }
-
-    func startPartnersLandingPageViewController() {
-        let configurator = PartnersLandingPageConfigurator.make()
-        let viewController = PartnersLandingPageViewController(configure: configurator)
         presentController(viewController)
     }
 
