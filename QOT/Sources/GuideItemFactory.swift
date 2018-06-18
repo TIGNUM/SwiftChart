@@ -229,7 +229,7 @@ private extension GuideItemFactory {
                           isToBeVision: false,
                           link: URL(string: notification.link),
                           featureLink: buttonInfo?.1,
-                          featureButton: buttonInfo?.1 == nil ? buttonInfo?.0 : nil,
+                          featureButton: buttonInfo?.1 == nil ? nil : buttonInfo?.0,
                           identifier: GuideItemID(item: notification).stringRepresentation,
                           affectsTabBarBadge: true)
     }

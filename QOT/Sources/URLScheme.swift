@@ -43,6 +43,7 @@ enum URLScheme: String {
     case guide = "guide"
     case latestWhatsHotArticle = "latest-whats-hot-article"
     case contentItem = "contentItem"
+    case fitbitApp = "fitbit"
 
     var queryName: String {
         switch self {
@@ -80,6 +81,16 @@ enum URLScheme: String {
              .library,
              .guide,
              .latestWhatsHotArticle: return ""
+        default:
+            return ""
+        }
+    }
+
+    var alternativeURLString: String! {
+        switch self {
+        case .fitbitApp: return "https://itunes.apple.com/us/app/fitbit/id462638897?mt=8"
+        default:
+            return ""
         }
     }
 

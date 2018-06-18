@@ -24,7 +24,10 @@ final class LaunchHandler {
                  notificationID: String = "",
                  guideItem: Guide.Item? = nil,
                  searchViewController: SearchViewController? = nil) {
-        guard let host = url.host, let scheme = URLScheme(rawValue: host) else { return }
+        guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
+            processExternal(url: url)
+            return
+        }
 
         switch scheme {
         case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url), notificationID: notificationID, guideItem: guideItem)
@@ -61,7 +64,21 @@ final class LaunchHandler {
         case .guide: navigate(to: scheme.destination)
         case .latestWhatsHotArticle: navigate(to: scheme.destination)
         case .contentItem: contentItem(url: url, scheme: scheme, searchViewController: searchViewController)
+        default:
+            return
         }
+    }
+
+    func processExternal(url: URL) {
+        guard let scheme = url.scheme else { return }
+        if UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            return
+        }
+
+        guard let schemeEnum = URLScheme(rawValue: scheme) else { return }
+        guard let alternative = URL(string: schemeEnum.alternativeURLString) else { return }
+        UIApplication.shared.open(alternative, options: [:], completionHandler: nil)
     }
 
     func navigatToSideBar(with destination: AppCoordinator.Router.Destination?) {

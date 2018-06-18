@@ -153,6 +153,7 @@ private extension ArticleItemViewController {
             let featureLink = guideItem.link,
             guideItem.featureButton != nil,
             guideItem.identifier != "learn#119928",
+            guideItem.featureLink?.absoluteString != "qot://morning-interview?groupID=",
             URLScheme.isSupportedURL(featureLink) == true {
                 let button = featureLinkButton(guideItem: guideItem)
                 view.addSubview(button)

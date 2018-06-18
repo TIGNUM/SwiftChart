@@ -24,7 +24,7 @@ final class ContentItem: SyncableObject {
     @objc private(set) dynamic var tabs: String = ""
 
     @objc private(set) dynamic var layoutInfo: String?
-    
+
     @objc private(set) dynamic var valueText: String?
 
     @objc private(set) dynamic var valueDescription: String?
