@@ -181,6 +181,8 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .dailyPrep(let items, let feedback):
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
+			cell.delegate = self
+			cell.itemTapped = itemAt(indexPath: indexPath)
             cell.configure(type: item.subtitle,
                            dailyPrepFeedback: feedback,
                            dailyPrepItems: items,
@@ -214,7 +216,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = itemAt(indexPath: indexPath)
-
+		if item.isDailyPrep == true { return }
         router?.open(item: item)
         interactor?.didTapItem(item)
         if item.isWhatsHot == true && item.status == .todo { interactor?.didTapWhatsHotItem(item) }
@@ -223,4 +225,13 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
     private func itemAt(indexPath: IndexPath) -> Guide.Item {
         return days[indexPath.section].items[indexPath.row]
     }
+}
+
+// MARK: - GuideDailyPrepTableViewCellDelegate
+
+extension GuideViewController: GuideDailyPrepTableViewCellDelegate {
+	
+	func didTapFeedbackButton(for item: Guide.Item) {
+		router?.open(item: item)
+	}
 }

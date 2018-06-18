@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol GuideDailyPrepTableViewCellDelegate: class {
+	
+	func didTapFeedbackButton(for item: Guide.Item)
+}
+
 final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var containerView: UIView!
@@ -19,14 +24,21 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var recoveryLabel: UILabel!
     @IBOutlet private weak var loadProgressView: GuideProgressView!
     @IBOutlet private weak var recoveryProgressView: GuideProgressView!
+    @IBOutlet private weak var loadLabelsContainerView: UIView!
+    @IBOutlet private weak var recoveryLabelsContainerView: UIView!
+    @IBOutlet private weak var nullStateLabel: UILabel!
+	@IBOutlet private weak var receiveFeedbackButton: UIButton!
+	weak var delegate: GuideDailyPrepTableViewCellDelegate?
+	var itemTapped: Guide.Item?
 
     override func awakeFromNib() {
         super.awakeFromNib()
 
         statusView.maskPathByRoundingCorners()
         containerView.corner(radius: 8)
-        feedbackLabel.isHidden = true
-        typeLabel.isHidden = true
+        receiveFeedbackButton.corner(radius: 4)
+        receiveFeedbackButton.backgroundColor = .azure
+		receiveFeedbackButton.showsTouchWhenHighlighted = true
     }
 
     override func prepareForReuse() {
@@ -35,7 +47,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         typeLabel.attributedText = nil
         feedbackLabel.attributedText = nil
     }
-
+	
     func configure(type: String?,
                    dailyPrepFeedback: String?,
                    dailyPrepItems: [Guide.DailyPrepItem],
@@ -65,6 +77,13 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                          alignment: .left)
         }
 
+        nullStateLabel.attributedText = attributedText(letterSpacing: 0.2,
+                                                       text: R.string.localized.guideDailyPrepNotFinishedFeedback(),
+                                                       font: Font.DPText,
+                                                       lineSpacing: 6,
+                                                       textColor: .white70,
+                                                       alignment: .left)
+
         loadLabel.attributedText = attributedText(letterSpacing: 1,
                                                   text: "LOAD",
                                                   font: Font.H4Identifier,
@@ -77,30 +96,16 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                       textColor: .white,
                                                       alignment: .left)
 
-        var recoveryResults: Float = 0
-        var recoveryCounter: Float = 0
-        var loadResults: Float = 0
-        var loadCounter: Float = 0
-        for item in dailyPrepItems {
-            let title = item.title.lowercased()
-            if title.contains("quality") || title.contains("quantity") {
-                recoveryResults += Float(item.result ?? 1)
-                recoveryCounter += 1
-            } else if title.contains("length") || title.contains("load") || title.contains("pressure") {
-                loadResults += Float(item.result ?? 1)
-                loadCounter += 1
-            }
-        }
-
-        setGradient(in: loadProgressView, with: [UIColor.green, UIColor.red])
-        setGradient(in: recoveryProgressView, with: [UIColor.red, UIColor.green])
-
-        loadProgressView.setProgress(invertedValue(for: loadResults / Float(loadCounter)), animated: true)
-        recoveryProgressView.setProgress(invertedValue(for: recoveryResults / Float(recoveryCounter)), animated: true)
-
+        syncViews(status: status, dailyPrepItems: dailyPrepItems)
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
     }
+	
+	@IBAction func didTapButton(_ sender: UIButton) {
+		guard let item = itemTapped else { return }
+		
+		delegate?.didTapFeedbackButton(for: item)
+	}
 }
 
 // MARK: - Private
@@ -122,6 +127,54 @@ private extension GuideDailyPrepTableViewCell {
                                          lineBreakMode: .byWordWrapping)
     }
 
+    func invertedValue(for value: Float) -> Float {
+        return (10 - value) / 10
+    }
+
+    func syncViews(status: Guide.Item.Status, dailyPrepItems: [Guide.DailyPrepItem]) {
+        let isHidden: Bool = status == .todo ? true : false
+        loadLabel.isHidden = isHidden
+        loadProgressView.isHidden = isHidden
+        loadLabelsContainerView.isHidden = isHidden
+        recoveryLabel.isHidden = isHidden
+        recoveryProgressView.isHidden = isHidden
+        recoveryLabelsContainerView.isHidden = isHidden
+        feedbackLabel.isHidden = isHidden
+        typeLabel.isHidden = isHidden
+        nullStateLabel.isHidden = !isHidden
+        receiveFeedbackButton.isHidden = !isHidden
+		
+        switch status {
+        case .todo:
+			return
+        case .done:
+            enableProgressViews(dailyPrepItems: dailyPrepItems)
+        }
+    }
+
+    func enableProgressViews(dailyPrepItems: [Guide.DailyPrepItem]) {
+        var recoveryResults: Float = 0
+        var recoveryCounter: Float = 0
+        var loadResults: Float = 0
+        var loadCounter: Float = 0
+        for item in dailyPrepItems {
+            let title = item.title.lowercased()
+            if title.contains("quality") || title.contains("quantity") {
+                recoveryResults += Float(item.result ?? 1)
+                recoveryCounter += 1
+            } else if title.contains("length") || title.contains("load") || title.contains("pressure") {
+                loadResults += Float(item.result ?? 1)
+                loadCounter += 1
+            }
+        }
+
+        setGradient(in: loadProgressView, with: [UIColor.green, UIColor.red])
+        setGradient(in: recoveryProgressView, with: [UIColor.red, UIColor.green])
+
+        loadProgressView.setProgress(invertedValue(for: loadResults / Float(loadCounter)), animated: true)
+        recoveryProgressView.setProgress(invertedValue(for: recoveryResults / Float(recoveryCounter)), animated: true)
+    }
+
     func setGradient(in progressView: UIProgressView, with colors: [UIColor]) {
         let gradientView = UIView(frame: progressView.bounds)
         let gradientLayer = CAGradientLayer()
@@ -136,10 +189,6 @@ private extension GuideDailyPrepTableViewCell {
         progressView.trackImage = gradientImage
         progressView.transform = CGAffineTransform(scaleX: -1.0, y: -1.0)
         progressView.progressTintColor = UIColor(red: 0.11, green: 0.22, blue: 0.31, alpha: 1.0)
-    }
-
-    func invertedValue(for value: Float) -> Float {
-        return (10 - value) / 10
     }
 }
 
