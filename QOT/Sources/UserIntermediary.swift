@@ -11,6 +11,7 @@ import Freddy
 
 struct UserIntermediary: DownSyncIntermediary {
 
+    let appUpdatePrompt: Bool?
     let gender: String
     let givenName: String
     let familyName: String
@@ -59,13 +60,18 @@ struct UserIntermediary: DownSyncIntermediary {
         self.zoneName = try json.getString(at: JsonKey.zone.rawValue, JsonKey.name.rawValue)
         self.userImageURLString = try json.getItemValue(at: .userImageURL, alongPath: .nullBecomesNil)
         self.memberSince = try json.getDate(at: .memberSince)
-        self.company = try json.getString(at: JsonKey.employment.rawValue, JsonKey.company.rawValue,
+        self.company = try json.getString(at: JsonKey.employment.rawValue,
+                                          JsonKey.company.rawValue,
                                           alongPath: .nullBecomesNil)
         self.firstLevelSupportEmail = try json.getString(at: JsonKey.employment.rawValue,
                                                          JsonKey.firstLevelSupportEmail.rawValue,
                                                          alongPath: .nullBecomesNil)
-        self.jobTitle = try json.getString(at: JsonKey.employment.rawValue, JsonKey.jobTitle.rawValue,
+        self.jobTitle = try json.getString(at: JsonKey.employment.rawValue,
+                                           JsonKey.jobTitle.rawValue,
                                            alongPath: .nullBecomesNil)
+        self.appUpdatePrompt = try json.getBool(at: JsonKey.employment.rawValue,
+                                                JsonKey.appUpdatePrompt.rawValue,
+                                                alongPath: .nullBecomesNil)
         self.urbanAirshipTags = try json.getArray(at: .urbanAirshipTags, fallback: [])
         self.timeZone = try json.getItemValue(at: .timeZone)
         self.totalUsageTime = try json.getItemValue(at: .totalUsageTime)

@@ -79,6 +79,8 @@ final class User: SyncableObject {
 
     @objc private(set) dynamic var firstLevelSupportEmail: String = ""
 
+    @objc private(set) dynamic var appUpdatePrompt: Bool = false
+
     @objc private(set) dynamic var memberSince: Date = Date()
 
     @objc dynamic var totalUsageTime: Int = 0
@@ -119,6 +121,7 @@ extension User: TwoWaySyncableUniqueObject {
         company = data.company
         jobTitle = data.jobTitle
         firstLevelSupportEmail = data.firstLevelSupportEmail ?? Defaults.firstLevelSupportEmail
+        appUpdatePrompt = data.appUpdatePrompt ?? false
         memberSince = data.memberSince
         totalUsageTime = data.totalUsageTime
         timeZone = TimeZone.hoursFromGMT // We never want to update the timezone based on remote timezone
@@ -126,6 +129,7 @@ extension User: TwoWaySyncableUniqueObject {
         fitbitStateValue = data.fitbitState
         updateUAirshipTags(data.urbanAirshipTags + [data.email])
         AppDelegate.current.appCoordinator.setupBugLife()
+        AppDelegate.current.setupSiren(services: AppCoordinator.appState.services)
     }
 
     private func updateUAirshipTags(_ tags: [String]) {

@@ -28,7 +28,9 @@ enum SirenMessagingType: String {
 extension AppDelegate {
 
     func setupSiren(services: Services?) {
-        guard let minVersion = services?.settingsService.releaseManagerMinimalVersion else { return }
+        guard
+            services?.userService.user()?.appUpdatePrompt == true,
+            let minVersion = services?.settingsService.releaseManagerMinimalVersion else { return }
         if Bundle.main.versionNumber < minVersion {
             let forcedSiren = Siren.shared
             forcedSiren.alertType = .force

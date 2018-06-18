@@ -11,6 +11,7 @@ import Foundation
 enum JsonKey: String {
 
     case `default`
+    case appUpdatePrompt
     case answer
     case answerId
     case answers
