@@ -140,7 +140,7 @@
                 <constraint firstItem="VjO-gE-fPi" firstAttribute="leading" secondItem="ZTD-8X-fNt" secondAttribute="leading" id="vXi-AS-uAZ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="ZTD-8X-fNt"/>
-            <point key="canvasLocation" x="49.5" y="-1.5"/>
+            <point key="canvasLocation" x="-143" y="-15"/>
         </view>
     </objects>
     <resources>

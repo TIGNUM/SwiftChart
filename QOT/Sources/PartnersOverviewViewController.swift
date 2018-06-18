@@ -48,6 +48,13 @@ final class PartnersOverviewViewController: PartnersAnimationViewController {
         super.viewWillAppear(animated)
         interactor?.reload()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
+            layout.itemSize = CGSize(width: collectionView.frame.width*0.6, height: collectionView.frame.height)
+        }
+    }
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource

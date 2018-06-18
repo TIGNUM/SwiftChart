@@ -16,6 +16,13 @@ enum PartnerCellType: Int {
 
 final class PartnerEditViewController: UITableViewController {
 
+    // MARK: - Constants
+
+    private var partnerImageHeightRatio: CGFloat = 0.6
+    private var partnerInfoHeightRatio: CGFloat = 0.4
+    private var partnerDeleteHeightRatio: CGFloat = 0.1
+    private var infoCellVerticalSpace: CGFloat = 15
+
     // MARK: - Properties
 
     private var partner: Partners.Partner?
@@ -40,6 +47,11 @@ final class PartnerEditViewController: UITableViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        updateInfoCellVerticalSpacing()
+    }
 }
 
 extension PartnerEditViewController {
@@ -49,15 +61,16 @@ extension PartnerEditViewController {
     }
 
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let viewHeight = view.frame.height - view.safeMargins.bottom
         switch PartnerCellType(rawValue: indexPath.row)! {
         case .partnerImage:
-            return view.frame.height * 0.6
+            return viewHeight * partnerImageHeightRatio
         case .partnerDelete:
-            return view.frame.height * 0.1
+            return viewHeight * partnerDeleteHeightRatio
         default:
             break
         }
-        return view.frame.height * 0.4
+        return viewHeight * partnerInfoHeightRatio
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -74,7 +87,7 @@ extension PartnerEditViewController {
             break
         }
         let cell: PartnerEditTextFieldCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(partner: partner, interactor: interactor)
+        cell.configure(partner: partner, interactor: interactor, verticalSpace: infoCellVerticalSpace)
         return cell
     }
 }
@@ -85,14 +98,19 @@ private extension PartnerEditViewController {
 
     func setupTableView() {
         tableView.bounces = false
-        tableView.isScrollEnabled = showsDeleteButton ? true : false
+        tableView.isScrollEnabled = false
         tableView.backgroundView = UIImageView(image: R.image.backgroundMyToBeVision())
+        tableView.backgroundColor = .white
+        tableView.backgroundView?.alpha = 0.9
         tableView.separatorColor = .clear
-        tableView.contentInset = UIEdgeInsets(top: -64, left: 0, bottom: 0, right: 0)
         tableView.registerDequeueable(PartnerEditImageCell.self)
         tableView.registerDequeueable(PartnerEditTextFieldCell.self)
         tableView.registerDequeueable(PartnerEditDeleteButtonCell.self)
         tableView.separatorStyle = .none
+        if #available(iOS 11, *) {
+            tableView.contentInsetAdjustmentBehavior = .never
+        }
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
     }
 
     func setupNavigationItems() {
@@ -102,6 +120,11 @@ private extension PartnerEditViewController {
         let rightButton = UIBarButtonItem(title: "Save", style: .plain, target: self, action: #selector(didTapSave))
         rightButton.tintColor = .white30
         navigationItem.rightBarButtonItem = rightButton
+    }
+
+    func setupCellHeights() {
+        partnerDeleteHeightRatio = showsDeleteButton ? partnerDeleteHeightRatio : 0
+        partnerInfoHeightRatio = partnerInfoHeightRatio - partnerDeleteHeightRatio
     }
 }
 
@@ -125,6 +148,16 @@ private extension PartnerEditViewController {
         partner?.relationship = cell?.relationshipTextField.text
         partner?.email = cell?.emailTextField.text
     }
+
+    func updateInfoCellVerticalSpacing() {
+        let infoCellHeight = view.frame.height * partnerInfoHeightRatio
+        let newHeight: CGFloat = (infoCellHeight - (40.0 * 4.0))/5.0
+        if infoCellVerticalSpace != newHeight {
+            infoCellVerticalSpace = newHeight
+            let cellType = PartnerCellType.partnerInfo
+            tableView.reloadRows(at: [IndexPath(row: cellType.rawValue, section: 0)], with: .none)
+        }
+    }
 }
 
 // MARK: - PartnerEditViewControllerInterface
@@ -138,8 +171,10 @@ extension PartnerEditViewController: PartnerEditViewControllerInterface {
     func setupView(partner: Partners.Partner, isNewPartner: Bool) {
         self.partner = partner
         self.showsDeleteButton = isNewPartner ? false : true
+
         setupNavigationItems()
         setupTableView()
+        setupCellHeights()
     }
 
     func dismiss() {

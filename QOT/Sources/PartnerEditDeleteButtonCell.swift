@@ -19,7 +19,7 @@ final class PartnerEditDeleteButtonCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = .battleshipGrey30
+        contentView.backgroundColor = .clear
     }
 
     // MARK: - Public

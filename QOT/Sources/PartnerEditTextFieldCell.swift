@@ -16,12 +16,13 @@ final class PartnerEditTextFieldCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var surnameTextField: UITextField!
     @IBOutlet weak var relationshipTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
+    @IBOutlet var verticalSpacingLayoutConstraints: [NSLayoutConstraint]!
     private var interactor: PartnerEditInteractorInterface?
     private var partner: Partners.Partner?
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = .battleshipGrey30
+        contentView.backgroundColor = .clear
         nameTextField.backgroundColor = .clear
         surnameTextField.backgroundColor = .clear
         relationshipTextField.backgroundColor = .clear
@@ -30,10 +31,11 @@ final class PartnerEditTextFieldCell: UITableViewCell, Dequeueable {
 
     // MARK: - public
 
-    func configure(partner: Partners.Partner?, interactor: PartnerEditInteractorInterface?) {
+    func configure(partner: Partners.Partner?, interactor: PartnerEditInteractorInterface?, verticalSpace: CGFloat? = 10) {
         self.interactor = interactor
         self.partner = partner
         setupTextFields(partner: partner)
+        updateVerticalSpace(verticalSpace!)
     }
 }
 
@@ -66,6 +68,13 @@ private extension PartnerEditTextFieldCell {
                                          font: Font.PText,
                                          textColor: .white,
                                          alignment: .left)
+    }
+
+    func updateVerticalSpace(_ space: CGFloat) {
+        for verticalConstraint in verticalSpacingLayoutConstraints {
+            verticalConstraint.constant = space
+        }
+        self.updateConstraintsIfNeeded()
     }
 }
 

@@ -28,7 +28,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="43.5"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="17"/>
                         <state key="normal" title="DELETE PARTNER">
-                            <color key="titleColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                            <color key="titleColor" red="0.8980392157" green="0.27450980390000002" blue="0.35686274509999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </state>
                         <connections>
                             <action selector="didTapDeleteButton" destination="KGk-i7-Jjw" eventType="touchUpInside" id="cZe-fc-vaO"/>

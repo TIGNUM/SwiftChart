@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -46,7 +46,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFt-RX-EdQ">
-                                <rect key="frame" x="107" y="108.5" width="0.0" height="0.0"/>
+                                <rect key="frame" x="107" y="109" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -120,6 +120,7 @@
                             <constraint firstItem="t0s-mN-6rK" firstAttribute="leading" secondItem="JkD-XK-7UZ" secondAttribute="leading" constant="16" id="Z0p-G4-rzB"/>
                             <constraint firstAttribute="bottom" secondItem="t0s-mN-6rK" secondAttribute="bottom" constant="12" id="cX5-C3-Odj"/>
                             <constraint firstItem="T9q-H3-xKv" firstAttribute="top" secondItem="JkD-XK-7UZ" secondAttribute="top" constant="24" id="hI3-f8-8U5"/>
+                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="140" id="mVz-h8-1uw"/>
                             <constraint firstItem="CKx-ds-UgF" firstAttribute="top" secondItem="9sU-m3-0dJ" secondAttribute="bottom" constant="8" id="mhl-Aa-bq0"/>
                             <constraint firstAttribute="trailing" secondItem="T9q-H3-xKv" secondAttribute="trailing" constant="16" id="pum-4A-C8t"/>
                             <constraint firstItem="T9q-H3-xKv" firstAttribute="leading" secondItem="JkD-XK-7UZ" secondAttribute="leading" constant="16" id="qS1-vY-d3d"/>
@@ -132,7 +133,7 @@
                 <constraint firstItem="r6c-eO-Drg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4xp-bB-k4t"/>
                 <constraint firstAttribute="trailing" secondItem="cOX-ob-16S" secondAttribute="trailing" id="69u-xh-GOT"/>
                 <constraint firstItem="r6c-eO-Drg" firstAttribute="top" secondItem="cOX-ob-16S" secondAttribute="bottom" id="9gd-hQ-Blc"/>
-                <constraint firstItem="r6c-eO-Drg" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1.12" id="BrB-FB-8tU"/>
+                <constraint firstItem="r6c-eO-Drg" firstAttribute="centerY" relation="lessThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1.12" id="BrB-FB-8tU"/>
                 <constraint firstItem="cOX-ob-16S" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EZN-Hd-3Ty"/>
                 <constraint firstItem="JkD-XK-7UZ" firstAttribute="top" secondItem="r6c-eO-Drg" secondAttribute="bottom" id="Hrd-kG-ZZi"/>
                 <constraint firstAttribute="trailing" secondItem="r6c-eO-Drg" secondAttribute="trailing" id="Ops-EH-c4g"/>
