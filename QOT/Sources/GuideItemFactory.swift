@@ -108,7 +108,9 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
         var body = services.userService.myToBeVision()?.text
         let image = services.userService.myToBeVision()?.profileImageResource?.localURL ??
             services.userService.myToBeVision()?.profileImageResource?.remoteURL
-        if  title?.isTrimmedTextEmpty == true ||
+        if  title == nil ||
+            body == nil ||
+            title?.isTrimmedTextEmpty == true ||
 			body?.isTrimmedTextEmpty == true ||
 			body == services.contentService.toBeVisionMessagePlaceholder() {
             title = R.string.localized.guideToBeVisionNotFisishedTitle()
