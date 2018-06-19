@@ -115,6 +115,10 @@
 	<string>QOT needs access to your Library to set your images.</string>
 	<key>UIAppFonts</key>
 	<array>
+		<string>Apercu-Regular.otf</string>
+		<string>Apercu-Medium.otf</string>
+		<string>Apercu-Bold.otf</string>
+		<string>Apercu-Light.otf</string>
 		<string>BentonSansCond-Light.otf</string>
 		<string>Simple-Regular.ttf</string>
 		<string>BentonSans_Regular.otf</string>

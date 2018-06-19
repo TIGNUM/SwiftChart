@@ -75,6 +75,11 @@ extension UIColor {
         return UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.9)
     }
 
+    /// UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.6)
+    class var cherryRed60: UIColor {
+        return UIColor.cherryRed.withAlphaComponent(0.6)
+    }
+
     /// UIColor(red: 1, green: 0, blue: 34/255, alpha: 0.2)
     class var cherryRed20: UIColor {
         return UIColor(red: 1, green: 0, blue: 34/255, alpha: 0.2)
@@ -118,6 +123,11 @@ extension UIColor {
     /// UIColor(white: 255/255, alpha: 0.3)
     class var white30: UIColor {
         return UIColor(white: 1, alpha: 0.3)
+    }
+
+    /// UIColor(white: 255/255, alpha: 0.36)
+    class var white36: UIColor {
+        return UIColor(white: 1, alpha: 0.36)
     }
 
     /// UIColor(white: 255/255, alpha: 0.4)
@@ -213,6 +223,16 @@ extension UIColor {
     /// UIColor(red: 102/255, green: 116/255, blue: 129/255, alpha: 1)
     class var battleshipGrey: UIColor {
         return UIColor(red: 34/255, green: 39/255, blue: 48/255, alpha: 1)
+    }
+
+    /// UIColor(red: 255/255, green: 83/255, blue: 73/255, alpha: 1)
+    class var coral: UIColor {
+        return UIColor(red: 255/255, green: 83/255, blue: 73/255, alpha: 1)
+    }
+
+    /// UIColor(red: 80/255, green: 277/255, blue: 194/255, alpha: 1)
+    class var aquaMarine: UIColor {
+        return UIColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1)
     }
 
     static var random: UIColor {

@@ -48,6 +48,8 @@ enum Endpoint: String {
     case dailyPrepResult = "/personal/p/qot/myDailyPreps"
     case userSearchResult = "/personal/p/qot/usersearch"
     case appEvent = "/personal/p/qot/qotappevent"
+    case userEmailCheck = "/master/m/registration"
+    case country = "/master/m/qot/country"
 
     func url(baseURL: URL) -> URL {
         if let url = URL(string: rawValue), url.host != nil { return url }
@@ -56,6 +58,7 @@ enum Endpoint: String {
 }
 
 enum RequestParameter: String {
+    case code
     case from
     case size
     case page
@@ -73,6 +76,12 @@ enum RequestParameter: String {
     case qotAppEventType
     case deviceDto
     case id
+    case gender
+    case firstName
+    case lastName
+    case country
+    case password
+    case birthdate
 }
 
 enum HTTPHeader: String {

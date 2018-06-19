@@ -29,8 +29,7 @@ final class ClickableLabel: UILabel, UIGestureRecognizerDelegate {
     override var attributedText: NSAttributedString? {
         get {
             return super.attributedText
-        }
-        set {
+        } set {
             guard let text = newValue else {
                 super.attributedText = newValue
                 return

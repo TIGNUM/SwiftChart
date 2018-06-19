@@ -19,6 +19,7 @@ struct Toggle {
 
 struct Animation {
     static let duration: TimeInterval = 0.3
+    static let duration_06: TimeInterval = 0.6
 }
 
 enum FontName: String {
@@ -26,6 +27,10 @@ enum FontName: String {
     case bentonBook = "BentonSans-Book"
     case bentonRegular = "BentonSans"
     case bentonSansCondLight = "BentonSans-CondensedLight"
+    case apercuBold = "Apercu-Bold"
+    case apercuMedium = "Apercu-Medium"
+    case apercuRegular = "Apercu-Regular"
+    case apercuLight = "Apercu-Light"
 }
 
 struct Layout {
@@ -40,7 +45,7 @@ struct Layout {
     }
 
     enum CornerRadius: CGFloat {
-        case chatLabelInstruction = 8
+        case defaultEight = 8
         case chatLabelOptionNavigation = 5
         case chatLabelOptionUpdate = 10
     }

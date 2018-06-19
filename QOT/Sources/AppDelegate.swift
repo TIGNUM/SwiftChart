@@ -78,6 +78,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        Logger.shared.setup()
         #if UNIT_TEST || BUILD_DATABASE
             #if BUILD_DATABASE
                 // @warning REINSTALL before running. Must be logged in
@@ -87,7 +88,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #else
             window = UIWindow(frame: UIScreen.main.bounds)
 
-            Logger.shared.setup()
             Fabric.with([Crashlytics.self])
             appCoordinator.start()
             UIApplication.shared.statusBarStyle = .lightContent

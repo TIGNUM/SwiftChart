@@ -286,6 +286,7 @@
 "Alert.Button.Title.Create.Vision" = "Create a new To Be Vision";
 "Alert.Messate.Email.Not.Setup" = "Email is not setup on your device";
 
+
 "Alert.Title.Settings.ChangePermission" = "Change Permission";
 "Alert.Message.Settings.ChangePermission" = "Go to Settings to change your permissions.";
 
@@ -388,3 +389,49 @@
 "guide.card.preparation.single-started-today.content" = "You've got an event coming up today. Tap on the card to prepare.";
 "guide.card.preparation.multiple-started-today.title" = "Prepare for your upcoming events";
 "guide.card.preparation.multiple-started-today.content" = "You've got some events coming up today. Tap on the card to prepare.";
+
+"signing.info.01.title" = "Rule Your Impact";
+"signing.info.01.body" = "At work and away from work - today and tomorrow.";
+"signing.info.02.title" = "Learn 55 Performance Strategies";
+"signing.info.02.body" = "Access strategies and insights from leading scientists, nutritionists, and behavior coaches.";
+"signing.info.03.title" = "Show Up At Your Best";
+"signing.info.03.body" = "Improve your impact at high-stake events.";
+"signing.info.04.title" = "Be Aware of Where You Are";
+"signing.info.04.body" = "Track your performance and impact to benchmark yourself over time.";
+
+"signing.email.check.title" = "ENTER EMAIL";
+"signing.email.check.subtitle" = "We use your email to securly verify your account and to protect all data you share with us.";
+"signing.email.check.bottomButtonTitle" = "Next";
+
+"signing.login.title" = "SIGN IN";
+"signing.login.subtitle" = "Welcome back to QOT.";
+"signing.login.bottomButtonTitle" = "Next";
+"signing.login.button.title.forgot.password" = "Forgot password?";
+"signing.login.error.message.password" = "Please enter your password.";
+"signing.login.hud.title.password.reset" = "Password reset";
+"signing.login.hud.message.password.reset" = "A reset password email has been sent to\n%@";
+
+"signing.digit.check.title" = "ENTER CODE";
+"signing.digit.check.subtitle" = "An email has been sent to\n\%@\n\nEnter the 4-digit code to continue.";
+"signing.digit.check.bottomButtonTitle" = "Verify";
+"signing.digit.check.button.title.resend.code" = "Retry sending verification code?";
+
+"signing.country.title" = "COUNTRY OF RESIDENCE";
+"signing.country.subtitle" = "Which country do you live in? We use this to protect your data.";
+"signing.country.bottomButtonTitle" = "Next";
+
+"signing.profile.title" = "PROFILE DETAILS";
+"signing.profile.subtitle" = "We use your email to securly verify your account and to protect all data you share with us.";
+"signing.profile.bottomButtonTitle" = "Create account";
+"signing.profile.check.box.text" = "By creating an account, you agree to our [Terms of Use](termsOfUse://) and [Privacy Policy](privacyPolicy://).";
+"signing.profile.check.box.error" = "To use Tignum QOT, you must agree to the conditons.";
+"signing.profile.error.first.name" = "Please enter a first name.";
+"signing.profile.error.last.name" = "Please enter a last name.";
+"signing.profile.error.gender" = "Enter gender";
+"signing.profile.error.birthdate" = "Enter birthdate";
+"signing.profile.hud.title.user.created" = "WELCOME";
+
+"shortcut.item.title.whats.hot" = "Latest What's Hot Article";
+"shortcut.item.title.library" = "Tools";
+"shortcut.item.title.me.universe" = "Review My Data";
+"shortcut.item.title.prepare" = "Prepare for an event";

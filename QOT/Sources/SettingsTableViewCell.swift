@@ -32,13 +32,11 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         backgroundColor = .clear
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
         accessoryType = .none
     }
 

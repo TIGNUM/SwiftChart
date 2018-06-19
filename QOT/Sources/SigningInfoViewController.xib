@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SigningInfoViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="bottomButton" destination="xll-wn-DP0" id="kbl-yJ-WeR"/>
+                <outlet property="collectionView" destination="Z3l-Kr-Wpy" id="Eqo-zG-qcW"/>
+                <outlet property="pageControl" destination="wUK-4m-mgp" id="myc-1x-pf1"/>
+                <outlet property="view" destination="kye-X6-AOl" id="hmR-tK-sVj"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="kye-X6-AOl">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundStrategies" translatesAutoresizingMaskIntoConstraints="NO" id="SpG-ZX-PBd">
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                </imageView>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="Z3l-Kr-Wpy">
+                    <rect key="frame" x="0.0" y="52" width="375" height="438"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="Tm4-fN-JVm">
+                        <size key="itemSize" width="50" height="50"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                </collectionView>
+                <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" defersCurrentPageDisplay="YES" numberOfPages="4" translatesAutoresizingMaskIntoConstraints="NO" id="wUK-4m-mgp" customClass="PageControl" customModule="QOT" customModuleProvider="target">
+                    <rect key="frame" x="32" y="498" width="55" height="37"/>
+                </pageControl>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xll-wn-DP0">
+                    <rect key="frame" x="16" y="567" width="343" height="44"/>
+                    <color key="backgroundColor" red="0.0" green="0.58431372550000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="KeV-do-SOy"/>
+                    </constraints>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapBottomButton" destination="-1" eventType="touchUpInside" id="ZTR-Bf-oSd"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Z3l-Kr-Wpy" firstAttribute="top" secondItem="rYY-wO-Y1g" secondAttribute="top" constant="32" id="D1P-J7-nBA"/>
+                <constraint firstAttribute="bottom" secondItem="SpG-ZX-PBd" secondAttribute="bottom" id="E31-kX-X4T"/>
+                <constraint firstItem="xll-wn-DP0" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" constant="16" id="Jdb-3i-dw5"/>
+                <constraint firstItem="Z3l-Kr-Wpy" firstAttribute="centerX" secondItem="kye-X6-AOl" secondAttribute="centerX" id="Oo9-JT-c0F"/>
+                <constraint firstAttribute="trailing" secondItem="SpG-ZX-PBd" secondAttribute="trailing" id="RYD-IY-HXL"/>
+                <constraint firstItem="wUK-4m-mgp" firstAttribute="leading" secondItem="kye-X6-AOl" secondAttribute="leading" constant="32" id="T5R-tf-U6E"/>
+                <constraint firstItem="Z3l-Kr-Wpy" firstAttribute="leading" secondItem="rYY-wO-Y1g" secondAttribute="leading" id="UAG-1t-gBw"/>
+                <constraint firstItem="wUK-4m-mgp" firstAttribute="top" secondItem="Z3l-Kr-Wpy" secondAttribute="bottom" constant="8" id="WF5-0a-cht"/>
+                <constraint firstItem="rYY-wO-Y1g" firstAttribute="trailing" secondItem="xll-wn-DP0" secondAttribute="trailing" constant="16" id="YLT-NI-67P"/>
+                <constraint firstItem="xll-wn-DP0" firstAttribute="top" secondItem="wUK-4m-mgp" secondAttribute="bottom" constant="32" id="k1t-Vd-M32"/>
+                <constraint firstItem="SpG-ZX-PBd" firstAttribute="top" secondItem="kye-X6-AOl" secondAttribute="top" id="p5C-ma-zay"/>
+                <constraint firstItem="rYY-wO-Y1g" firstAttribute="bottom" secondItem="xll-wn-DP0" secondAttribute="bottom" constant="56" id="sVC-yK-Qu8"/>
+                <constraint firstItem="SpG-ZX-PBd" firstAttribute="leading" secondItem="kye-X6-AOl" secondAttribute="leading" id="uAO-hW-CFh"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="rYY-wO-Y1g"/>
+            <point key="canvasLocation" x="34.5" y="53.5"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="backgroundStrategies" width="375" height="667"/>
+    </resources>
+</document>

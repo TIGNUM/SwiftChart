@@ -16,7 +16,10 @@ final class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var bottomLabel: ClickableLabel!
     weak var delegate: LearnContentItemViewController?
 
-    func setup(topText: NSAttributedString, bottomText: NSAttributedString?, backgroundColor: UIColor = .white, delegate: ClickableLabelDelegate? = nil) {
+    func setup(topText: NSAttributedString,
+               bottomText: NSAttributedString?,
+               backgroundColor: UIColor = .white,
+               delegate: ClickableLabelDelegate? = nil) {
         topLabel.delegate = delegate
         bottomLabel.delegate = delegate
         bottomLabel.isHidden = bottomText == nil

@@ -37,12 +37,66 @@ final class NetworkManager {
         sessionManager.session.getAllTasks { $0.forEach { $0.cancel() } }
     }
 
+    func performRegistrationRequest(email: String,
+                                    code: String,
+                                    gender: String,
+                                    firstName: String,
+                                    lastName: String,
+                                    birthDate: String,
+                                    password: String,
+                                    country: UserCountry,
+                                    completion: @escaping (Result<UserRegistrationCheck, NetworkError>) -> Void) -> SerialRequest {
+        let req = requestBuilder.make(buildable: UserRegistrationRequest(email: email,
+                                                                         code: code,
+                                                                         gender: gender,
+                                                                         firstName: firstName,
+                                                                         lastName: lastName,
+                                                                         birthdate: birthDate,
+                                                                         password: password,
+                                                                         country: country))
+        let current = SerialRequest()
+        current.request = sessionManager.perform(req, parser: UserRegistrationCheck.parse) { (response, result) in
+            completion(result)
+        }
+        return current
+    }
+
+    @discardableResult func performRegistrationCountryRequest(completion: @escaping (Result<UserCountryList, NetworkError>) -> Void) -> SerialRequest {
+        let req = requestBuilder.make(buildable: RegistrationCountryRequest())
+        let current = SerialRequest()
+        current.request = sessionManager.perform(req, parser: UserCountryList.parse) { (response, result) in
+            completion(result)
+        }
+        return current
+    }
+
     func performAuthenticationRequest(username: String,
                                       password: String,
                                       completion: @escaping (NetworkError?) -> Void) {
         authenticator.authenticate(username: username, password: password) { (result) in
             completion(result.error)
         }
+    }
+
+    @discardableResult func performUserEmailCheckRequest(email: String,
+                                                         completion: @escaping (Result<UserRegistrationCheck, NetworkError>) -> Void) -> SerialRequest {
+        let req = requestBuilder.make(buildable: UserEmailCheckRequest(email: email))
+        let current = SerialRequest()
+        current.request = sessionManager.perform(req, parser: UserRegistrationCheck.parse) { (response, result) in
+            completion(result)
+        }
+        return current
+    }
+
+    @discardableResult func performUserDigitCodeCheckRequest(email: String,
+                                                             code: String,
+                                                             completion: @escaping (Result<UserRegistrationCheck, NetworkError>) -> Void) -> SerialRequest {
+        let req = requestBuilder.make(buildable: UserDigitCodeCheckRequest(email: email, code: code))
+        let current = SerialRequest()
+        current.request = sessionManager.perform(req, parser: UserRegistrationCheck.parse) { (response, result) in
+            completion(result)
+        }
+        return current
     }
 
     @discardableResult func performDevicePermissionsRequest(with data: Data,

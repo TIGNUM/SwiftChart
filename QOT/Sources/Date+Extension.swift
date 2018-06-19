@@ -28,6 +28,10 @@ extension Date {
         return dateFormatter.string(from: self)
     }
 
+    var twentyOneYearsAgo: Date {
+        return Calendar.sharedUTC.date(byAdding: .year, value: -21, to: self) ?? self
+    }
+
     var startOfDay: Date {
         return Calendar.sharedUTC.startOfDay(for: self)
     }

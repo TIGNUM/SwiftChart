@@ -38,7 +38,6 @@ final class ChartViewController: UIViewController {
 
     init(viewModel: ChartViewModel) {
         self.viewModel = viewModel
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -56,21 +55,18 @@ final class ChartViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         chartViews.keys.forEach { chartViews[$0] = nil }
         tableView.reloadData()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         configureContentInset(inset: UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0), scrollView: tableView)
     }
 
     @available(iOS 11.0, *)
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-
         configureContentInset(inset: UIEdgeInsets(top: topPadding, left: 0, bottom: 0, right: 0), scrollView: tableView)
     }
 }
@@ -82,7 +78,6 @@ private extension ChartViewController {
     func setupView() {
         view.addSubview(tableView)
         view.setFadeMask(at: .top)
-
         tableView.edgeAnchors == view.edgeAnchors
     }
 
@@ -168,6 +163,7 @@ extension ChartViewController: ChartViewControllerDelegate {
     }
 
     func didSelectOpenSettings() {
+
         UIApplication.openAppSettings()
     }
 }

@@ -259,6 +259,7 @@ final class ResetPasswordViewController: UIViewController {
 // MARK: - UITextFieldDelegate
 
 extension ResetPasswordViewController: UITextFieldDelegate {
+
     public func textFieldDidEndEditing(_ textField: UITextField) {
         guard let text = textField.text else {
             return

@@ -150,7 +150,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                     Appsee.setUserID(String(userID))
                 }
             } else {
-                self.showLogin()
+                self.showSigning(controller: viewController)
             }
         }
     }
@@ -159,7 +159,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         networkManager.cancelAllRequests()
         navigate(to: AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide))
         logout()
-        showLogin()
+        showSigning(controller: nil)
     }
 
     func setupBugLife() {
@@ -357,14 +357,16 @@ extension AppCoordinator {
         startChild(child: coordinator)
     }
 
-    func showLogin() {
+    func showSigning(controller: UIViewController?) {
         guard userIsLoggingIn.value == false else { return }
         userIsLoggingIn.value = true
-        let loginCoordinator = LoginCoordinator(windowManager: windowManager,
-                                                delegate: self,
-                                                networkManager: networkManager,
-                                                syncManager: syncManager)
-        startChild(child: loginCoordinator)
+        let configurator = SigningInfoConfigurator.make()
+        let signingController = SigningInfoViewController(configure: configurator)
+        let navigationController = UINavigationController(rootViewController: signingController)
+        navigationController.navigationBar.applyDefaultStyle()
+        navigationController.modalTransitionStyle = .crossDissolve
+        navigationController.modalPresentationStyle = .custom
+        windowManager.show(navigationController, animated: true, completion: nil)
     }
 
     func logout() {
@@ -440,6 +442,20 @@ extension AppCoordinator: LoginCoordinatorDelegate {
             UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
         } else {
             showApp(loginViewController: loginViewController)
+        }
+        networkManager.performDeviceRequest()
+        userIsLoggingIn.value = false
+    }
+
+    func didLogin() {
+        addMissingRealmObjectsAfterLogin()
+        QOTUsageTimer.sharedInstance.startTimer()
+        if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
+            let viewController = SlideShowViewController(configure: SlideShowConfigurator.makeInitial(), type: .initialInstall)
+            windowManager.show(viewController, animated: true, completion: nil)
+            UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
+        } else {
+            showApp(loginViewController: nil)
         }
         networkManager.performDeviceRequest()
         userIsLoggingIn.value = false
@@ -965,9 +981,9 @@ extension AppCoordinator {
 
     }
 
-	func presentContentItemSettings(contentID: Int, settingsViewController: SettingsBubblesViewController?) {
+	func presentContentItemSettings(contentID: Int, controller: UIViewController?) {
 		guard
-			let settingsViewController = settingsViewController,
+			let settingsViewController = controller,
 			let services = services,
 			let content = services.contentService.contentCollection(id: contentID),
 			let coordinator = ArticleContentItemCoordinator(pageName: .featureExplainer,

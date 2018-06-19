@@ -137,6 +137,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
         super.viewWillAppear(animated)
 
         UIApplication.shared.statusBarStyle = .lightContent
+        reload()
     }
 
     override func viewDidLayoutSubviews() {

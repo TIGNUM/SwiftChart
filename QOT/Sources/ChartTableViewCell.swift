@@ -39,7 +39,6 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
         setupView()
     }
 
@@ -49,7 +48,6 @@ final class ChartTableViewCell: UITableViewCell, Dequeueable {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
         collectionView.setContentOffset(.zero, animated: false)
         pageControl?.currentPage = 0
     }
@@ -111,7 +109,6 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
         chartCell.delegate = self
         let cellRect = collectionView.convert(chartCell.frame, to: collectionView.superview)
         chartCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
-
         return chartCell
     }
 
@@ -135,7 +132,6 @@ extension ChartTableViewCell: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let visibleCells = collectionView.visibleCells
-
         visibleCells.forEach { tempCell in
             guard let cell = tempCell as? ChartCell else { return }
             let cellRect = collectionView.convert(cell.frame, to: collectionView.superview)
@@ -165,14 +161,13 @@ extension ChartTableViewCell: ChartCellDelegate {
     }
 }
 // https://gist.github.com/vinhnx/fb20c6942b5823df1c35e69850caf9f6
-private class CenterCellCollectionViewFlowLayout: UICollectionViewFlowLayout {
+class CenterCellCollectionViewFlowLayout: UICollectionViewFlowLayout {
 
     var mostRecentOffset = CGPoint.zero
 
     override func targetContentOffset(forProposedContentOffset proposedContentOffset: CGPoint,
                                       withScrollingVelocity velocity: CGPoint) -> CGPoint {
         guard velocity.x != 0 else { return mostRecentOffset }
-
         if let cv = collectionView {
             let cvBounds = cv.bounds
             let halfWidth = cvBounds.size.width * 0.5

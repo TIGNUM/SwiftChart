@@ -39,6 +39,22 @@ extension UIFont {
     class func bentonCondLightFont(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.bentonSansCondLight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
+
+    class func apercuBold(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.apercuBold.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
+
+    class func apercuLight(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.apercuLight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
+
+    class func apercuMedium(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.apercuMedium.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
+
+    class func apercuRegular(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.apercuRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
 }
 
 // MARK: - NSAttributedString
@@ -762,5 +778,17 @@ extension CGSize {
 
     var ceiled: CGSize {
         return CGSize(width: ceil(width), height: ceil(height))
+    }
+}
+
+// MARK: - NSMutableAttributedString
+
+extension NSMutableAttributedString {
+    func setColorForText(_ textToFind: String, with color: UIColor) {
+        let range = mutableString.range(of: textToFind, options: .caseInsensitive)
+        if let font = R.font.apercuBold(size: 16), range.location != NSNotFound {
+            addAttribute(.foregroundColor, value: color, range: range)
+            addAttribute(.font, value: font, range: range)
+        }
     }
 }

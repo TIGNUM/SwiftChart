@@ -74,6 +74,10 @@ extension String {
     var isTrimmedTextEmpty: Bool? {
         return self.trimmingCharacters(in: .newlines).components(separatedBy: .whitespaces)[0].isEmpty
     }
+
+    var trimmed: String {
+        return self.trimmingCharacters(in: .whitespacesAndNewlines)
+    }
 }
 
 extension String {

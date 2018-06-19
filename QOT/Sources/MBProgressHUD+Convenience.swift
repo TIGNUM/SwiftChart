@@ -19,7 +19,6 @@ extension MBProgressHUD {
         hud.mode = .indeterminate
         hud.animationType = .fade
         hud.isSquare = false
-
         return hud
     }
 }

@@ -67,7 +67,6 @@ final class LearnContentListViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         collectionView.reloadData()
     }
 }
@@ -100,7 +99,6 @@ private extension LearnContentListViewController {
         collectionView.topAnchor == view.topAnchor
         collectionView.bottomAnchor == view.safeBottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
-
         view.layoutIfNeeded()
     }
 }

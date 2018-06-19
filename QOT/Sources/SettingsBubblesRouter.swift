@@ -44,8 +44,7 @@ extension SettingsBubblesRouter: SettingsBubblesRouterInterface {
 private extension SettingsBubblesRouter {
 
     func presentContentItem(id: Int) {
-		AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id,
-																	  settingsViewController: viewController)
+		AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id, controller: viewController)
     }
 
     func presentTutorial() {

@@ -1,0 +1,148 @@
+//
+//  SigningCreatePasswordViewController.swift
+//  QOT
+//
+//  Created by karmic on 07.06.18.
+//  Copyright (c) 2018 Tignum. All rights reserved.
+//
+
+import UIKit
+
+final class SigningCreatePasswordViewController: SigningAbstractViewController {
+
+    // MARK: - Properties
+
+    @IBOutlet private weak var successOverlay: UIView!
+    @IBOutlet private weak var successOverlayLabel: UILabel!
+    @IBOutlet private weak var centerContentView: UIView!
+    @IBOutlet private weak var passwordInfoContentView: UIView!
+    @IBOutlet private weak var passwordInfoCharacterLabel: UILabel!
+    @IBOutlet private weak var passwordInfoUppercaseLabel: UILabel!
+    @IBOutlet private weak var passwordInfoSpecialCharacterLabel: UILabel!
+    var interactor: SigningCreatePasswordInteractorInterface?
+
+    private lazy var formView: FormView? = {
+        let form = R.nib.formView().instantiate(withOwner: nil, options: nil).first as? FormView
+        form?.delegate = self
+        return form
+    }()
+
+    // MARK: - Init
+
+    init(configure: Configurator<SigningCreatePasswordViewController>) {
+        super.init(nibName: nil, bundle: nil)
+        configure(self)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        interactor?.viewDidLoad()
+    }
+}
+
+// MARK: - Private
+
+private extension SigningCreatePasswordViewController {
+
+    func handleOverlayView() {
+        Timer.scheduledTimer(withTimeInterval: 2.5, repeats: false) { [weak self] (_) in
+            UIView.animate(withDuration: 0.8) { [weak self] in
+                self?.hideSubviews(isHidden: false)
+                self?.successOverlay.isHidden = true
+            }
+        }
+    }
+
+    func hideSubviews(isHidden: Bool) {
+        bottomButton.isHidden = isHidden
+        titleContentView.isHidden = isHidden
+        centerContentView.isHidden = isHidden
+    }
+
+    func setupPasswordInfoLabels() {
+        passwordInfoCharacterLabel.attributedText = attributedString("• Eight characters minimum")
+        passwordInfoUppercaseLabel.attributedText = attributedString("• One uppercase character")
+        passwordInfoSpecialCharacterLabel.attributedText = attributedString("• One special character")
+    }
+
+    func attributedString(_ string: String) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: string,
+                                         letterSpacing: 0.6,
+                                         font: .apercuLight(ofSize: 11),
+                                         textColor: .white60,
+                                         alignment: .left)
+    }
+
+    func setupFormView() {
+        guard let formView = formView else { return }
+        centerContentView.addSubview(formView)
+        formView.configure(formType: .password(""))
+    }
+}
+
+// MARK: - Actions
+
+private extension SigningCreatePasswordViewController {
+
+    @IBAction func didTabButton() {
+        interactor?.didTapNext()
+    }
+}
+
+// MARK: - SigningCreatePasswordViewControllerInterface
+
+extension SigningCreatePasswordViewController: SigningCreatePasswordViewControllerInterface {
+
+    override func endEditing() {
+        formView?.resetPlaceholderLabelIfNeeded()
+        super.endEditing()
+    }
+
+    func hideErrorMessage() {
+        formView?.hideError()
+        passwordInfoContentView.isHidden = true
+    }
+
+    func activateButton(_ active: Bool) {
+        updateBottomButton(active)
+    }
+
+    func reload(errorMessage: String?, buttonActive: Bool) {
+        if let message = errorMessage {
+            formView?.showError(message: message)
+            passwordInfoContentView.isHidden = false
+        }
+        updateBottomButton(buttonActive)
+    }
+
+    func setup() {
+        hideSubviews(isHidden: true)
+        passwordInfoContentView.isHidden = true
+        setupView(title: "CREATE A PASSWORD",
+                  subtitle: "Set your password to access Tignum QOT",
+                  bottomButtonTitle: "Create password")
+        setupFormView()
+        setupPasswordInfoLabels()
+        handleOverlayView()
+    }
+}
+
+// MARK: - FormViewDelegate
+
+extension SigningCreatePasswordViewController: FormViewDelegate {
+
+    func didBeginEditingTextField(formType: FormView.FormType?) {}
+
+    func didEndEditingTextField(formType: FormView.FormType?) {
+        interactor?.updateWorkerValue(for: formType)
+        interactor?.didTapNext()
+    }
+
+    func didUpdateTextfield(formType: FormView.FormType?) {
+        interactor?.updateWorkerValue(for: formType)
+    }
+}

@@ -217,3 +217,53 @@ struct AppEventRequest: URLRequestBuildable {
                            .qotAppEventType: eventType.rawValue]
     }
 }
+
+struct UserEmailCheckRequest: URLRequestBuildable {
+    let endpoint = Endpoint.userEmailCheck
+    let httpMethod = HTTPMethod.post
+    let paramaters: [RequestParameter: Any]
+
+    init(email: String) {
+        self.paramaters = [.email: email]
+    }
+}
+
+struct UserDigitCodeCheckRequest: URLRequestBuildable {
+    let endpoint = Endpoint.userEmailCheck
+    let httpMethod = HTTPMethod.post
+    let paramaters: [RequestParameter: Any]
+
+    init(email: String, code: String) {
+        self.paramaters = [.email: email, .code: code]
+    }
+}
+
+struct UserRegistrationRequest: URLRequestBuildable {
+    let endpoint = Endpoint.userEmailCheck
+    let httpMethod = HTTPMethod.post
+    let paramaters: [RequestParameter: Any]
+
+    init(email: String,
+         code: String,
+         gender: String,
+         firstName: String,
+         lastName: String,
+         birthdate: String,
+         password: String,
+         country: UserCountry) {
+        self.paramaters = [.email: email,
+                           .code: code,
+                           .gender: gender,
+                           .firstName: firstName,
+                           .lastName: lastName,
+                           .birthdate: birthdate,
+                           .password: password,
+                           .country: ["id": country.id]]
+    }
+}
+
+struct RegistrationCountryRequest: URLRequestBuildable {
+    let endpoint = Endpoint.country
+    let httpMethod = HTTPMethod.post
+    let paramaters: [RequestParameter: Any] = [.page: 1, .size: 200]
+}

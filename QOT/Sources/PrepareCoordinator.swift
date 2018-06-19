@@ -186,7 +186,7 @@ extension PrepareCoordinator {
 
     func showCreatePreparation(from viewController: PrepareContentViewController) {
         guard let context = context else { preconditionFailure("No preparation context") }
-        let start = Date().startOfDay
+        let start = Date()
         let finish = start.addingTimeInterval(TimeInterval(days: 30))
         let events = services.eventsService.calendarEvents(from: start, to: finish)
         let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName, events: events)

@@ -12,14 +12,12 @@ import UIKit
 struct Guide {
 
     struct DailyPrepItem {
-
         let result: Int?
         let key: String
         let title: String
     }
 
     struct Item {
-
         enum Content {
             case toBeVision(title: String, body: String, image: URL?)
             case text(String)

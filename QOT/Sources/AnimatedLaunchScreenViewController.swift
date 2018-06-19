@@ -11,10 +11,14 @@ import Anchorage
 
 final class AnimatedLaunchScreenViewController: UIViewController {
 
-    private var backGroundImageView: UIImageView = UIImageView(image: R.image._1_1Learn())
-    private var tignumImageView: UIImageView = UIImageView(image: R.image.byTignum())
-    private var logoImageView: UIImageView = UIImageView()
+    // MARK: - Properties
+
+    private let backGroundImageView = UIImageView(image: R.image._1_1Learn())
+    private let tignumImageView = UIImageView(image: R.image.byTignum())
+    private var logoImageView = UIImageView()
     private let imageCount = 92
+
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,26 +26,39 @@ final class AnimatedLaunchScreenViewController: UIViewController {
         setupLayout()
     }
 
+    // MARK: - Public
+
     func fadeInLogo(withCompletion completion: (() -> Void)? = nil) {
-        UIView.animate(withDuration: 2.0, animations: {
-            self.logoImageView.alpha = 1.0
+        #if DEBUG
+            completion?()
+            return
+        #endif
+        UIView.animate(withDuration: 2, animations: {
+            self.logoImageView.alpha = 1
         }, completion: { (_: Bool) in
             completion?()
         })
     }
 
     func fadeOutLogo(withCompletion completion: (() -> Void)? = nil) {
+        #if DEBUG
+            completion?()
+            return
+        #endif
         UIView.animate(withDuration: 0.5, animations: {
-            self.logoImageView.alpha = 0.0
+            self.logoImageView.alpha = 0
         }, completion: { (_: Bool) in
             completion?()
         })
     }
 
     func startAnimatingImages(withCompletion completion: (() -> Void)? = nil) {
+        #if DEBUG
+            completion?()
+            return
+        #endif
         logoImageView.startAnimating()
-
-        let estimatedTime = Double(imageCount) * (1.0 / 30.0) // 30 fps. @see UIImageView animationDuration
+        let estimatedTime = Double(imageCount) * (1 / 30) // 30 fps. @see UIImageView animationDuration
         DispatchQueue.main.asyncAfter(deadline: .now() + estimatedTime) {
             completion?()
         }
@@ -49,6 +66,7 @@ final class AnimatedLaunchScreenViewController: UIViewController {
 }
 
 private extension AnimatedLaunchScreenViewController {
+
     func setupHierarchy() {
         view.backgroundColor = .navy20
         view.backgroundColor = .red
@@ -61,20 +79,17 @@ private extension AnimatedLaunchScreenViewController {
     func setupLayout() {
         backGroundImageView.horizontalAnchors == view.horizontalAnchors
         backGroundImageView.verticalAnchors == view.verticalAnchors
-
-        tignumImageView.bottomAnchor == view.bottomAnchor - 34.0
+        tignumImageView.bottomAnchor == view.bottomAnchor - 34
         tignumImageView.centerXAnchor == view.centerXAnchor
-
         logoImageView.heightAnchor == 48
         logoImageView.widthAnchor == 138
         logoImageView.centerAnchors == view.centerAnchors
-
         view.layoutIfNeeded()
     }
 
     func configureAnimation() {
         let images = logoImages()
-        logoImageView.alpha = 0.0
+        logoImageView.alpha = 0
         logoImageView.image = images.last
         logoImageView.animationImages = images
         logoImageView.animationRepeatCount = 1

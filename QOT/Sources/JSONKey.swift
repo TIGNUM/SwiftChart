@@ -94,6 +94,7 @@ enum JsonKey: String {
     case isCurrentUser
     case isDetached
     case isodate
+    case iso2LetterCode
     case issueDate
     case jobTitle
     case firstLevelSupportEmail
@@ -168,6 +169,7 @@ enum JsonKey: String {
     case relatedContentIds
     case relationship
     case reminderTime
+    case responseReturnCode
     case resultList
     case role
     case searchTags
