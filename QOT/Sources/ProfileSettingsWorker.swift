@@ -41,7 +41,7 @@ final class ProfileSettingsWorker {
     func updateProfileTelephone(_ new: ProfileSettingsModel) {
         guard let user = user, let old = profile(), old != new else { return }
 
-        if old.telephone != new.telephone {
+        if old.telephone != new.telephone && new.telephone?.isPhoneNumber == true {
             services.userService.updateUserTelephone(user: user, telephone: new.telephone ?? "")
         }
     }

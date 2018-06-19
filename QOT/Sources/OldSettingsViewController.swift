@@ -13,15 +13,7 @@ import UserNotifications
 import UserNotificationsUI
 import CoreLocation
 
-protocol SettingsViewControllerDelegate: class {
-
-    func didTextFieldChanged(at indexPath: IndexPath, text: String)
-
-    func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?)
-
-    func presentResetPasswordController()
-}
-
+//FIXME: Remove when nothing is calling this
 final class OldSettingsViewController: UIViewController {
 
     // MARK: - Properties
@@ -365,6 +357,10 @@ private extension OldSettingsViewController {
 // MARK: - SettingsViewControllerDelegate
 
 extension OldSettingsViewController: SettingsViewControllerDelegate {
+
+    
+    func didTextFieldEndEditing(at indexPath: IndexPath, text: String) {}
+
 
     func presentResetPasswordController() {
         delegate?.openChangePasswordViewController(settingsViewController: self)

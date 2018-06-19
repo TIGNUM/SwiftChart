@@ -11,6 +11,14 @@ import Anchorage
 import ActionSheetPicker_3_0
 import MBProgressHUD
 
+protocol SettingsViewControllerDelegate: class {
+
+    func didTextFieldChanged(at indexPath: IndexPath, text: String)
+    func didTextFieldEndEditing(at indexPath: IndexPath, text: String)
+    func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?)
+    func presentResetPasswordController()
+}
+
 final class ProfileSettingsViewController: UIViewController {
 
     // MARK: - Properties
@@ -431,6 +439,23 @@ extension ProfileSettingsViewController: ResetPasswordViewControllerDelegate {
 
 extension ProfileSettingsViewController: SettingsViewControllerDelegate {
 
+    func didTextFieldEndEditing(at indexPath: IndexPath, text: String) {
+        guard var profile = profile else { return }
+        switch indexPath.row {
+        case 1:
+            if text.isTrimmedTextEmpty == false {
+                profile.position = text
+                headerView.updateJobTitle(title: text)
+            }
+            interactor?.updateProfile(field: .jobTitle, profile: profile)
+        case 3:
+            profile.telephone = text
+            interactor?.updateProfile(field: .telephone, profile: profile)
+        default: return
+        }
+        tableView.reloadData()
+    }
+
     func presentResetPasswordController() {
         let resetPasswordViewController = ResetPasswordViewController()
         resetPasswordViewController.delegate = self
@@ -441,16 +466,14 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
         guard var profile = profile else { return }
         switch indexPath.row {
         case 1:
-            if text.isEmpty == false {
+            if text.isTrimmedTextEmpty == false {
                 profile.position = text
                 interactor?.updateProfile(field: .jobTitle, profile: profile)
                 headerView.updateJobTitle(title: text)
             }
         case 3:
-            if text.isPhoneNumber {
-                profile.telephone = text
-                interactor?.updateProfile(field: .telephone, profile: profile)
-            }
+            profile.telephone = text
+            interactor?.updateProfile(field: .telephone, profile: profile)
         default: return
         }
     }

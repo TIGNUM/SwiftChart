@@ -256,5 +256,8 @@ extension SettingsTableViewCell: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.textColor = .white80
+        if let text = textField.text {
+            settingsDelegate?.didTextFieldEndEditing(at: indexPath, text: text)
+        }
     }
 }
