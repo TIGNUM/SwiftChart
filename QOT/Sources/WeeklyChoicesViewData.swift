@@ -21,6 +21,6 @@ struct WeeklyChoicesViewData {
     let items: [Item]
 
     init(items: [Item]) {
-        self.items = items.reversed()
+        self.items = items
     }
 }

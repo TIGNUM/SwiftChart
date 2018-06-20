@@ -33,6 +33,7 @@ final class WeeklyChoicesProvider {
 
     func provideViewData() -> WeeklyChoicesViewData {
         var items = [WeeklyChoicesViewData.Item]()
+        let userChoices = self.userChoices.sorted { $0.startDate > $1.startDate }
         userChoices.forEach { (userChoice: UserChoice) in
             var title: String?
             var contentCollection: ContentCollection?
