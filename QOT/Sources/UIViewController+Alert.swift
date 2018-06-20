@@ -245,3 +245,34 @@ extension UIViewController {
         }
     }
 }
+
+extension UIViewController {
+
+    func handleError(_ error: Error?) {
+        log("Failed to login with error: \(String(describing: error?.localizedDescription)))", level: .error)
+        if let networkError = error as? NetworkError {
+            switch networkError.type {
+            case .unauthenticated: showAlert(type: .loginFailed)
+            case .noNetworkConnection: showAlert(type: .noNetworkConnection)
+            case .cancelled: showAlert(messaggeType: "cancelled")
+            case .failedToParseData(let data, let error):
+                showAlert(messaggeType: String(format: "data: %@\nError: %@",
+                                               data.base64EncodedString(),
+                                               error.localizedDescription))
+            case .notFound: showAlert(messaggeType: "notFound")
+            case .unknown(let error, let statusCode):
+                showAlert(messaggeType: String(format: "error: %@\nStatusCode: %d",
+                                               error.localizedDescription, statusCode ?? 0))
+            case .unknownError: showAlert(type: .unknown)
+            }
+        } else {
+            showAlert(type: .unknown)
+        }
+    }
+
+    func showAlert(messaggeType: String) {
+        let message = R.string.localized.alertMessageUnknownType(messaggeType)
+        let title = R.string.localized.alertTitleCustom()
+        showAlert(type: .custom(title: title, message: message))
+    }
+}
