@@ -44,7 +44,7 @@ final class LaunchHandler {
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
         case .strategies: navigate(to: scheme.destination)
         case .meUniverse: navigate(to: scheme.destination)
-        case .preferencesSyncCalendar: navigatToSideBar(with: scheme.destination)
+        case .preferencesSyncCalendar: appDelegate.appCoordinator.presentCalendar()
         case .preferencesNotification: navigatToSideBar(with: scheme.destination)
         case .addSensor: _ = appDelegate.appCoordinator.presentAddSensor()
         case .fitbitAuthrefresh: appDelegate.appCoordinator.presentAddSensor()

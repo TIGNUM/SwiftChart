@@ -13,7 +13,7 @@ import UserNotifications
 import UserNotificationsUI
 import CoreLocation
 
-//FIXME: Remove when nothing is calling this
+//FIXME: Remove when nothing is calling this (Notifications still do)
 final class OldSettingsViewController: UIViewController {
 
     // MARK: - Properties
@@ -28,7 +28,6 @@ final class OldSettingsViewController: UIViewController {
     private var pickerInitialSelection = [Index]()
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
     private let fadeContainerView = FadeContainerView()
-    weak var delegate: SettingsCoordinatorDelegate?
     let settingsType: SettingsType.SectionType
 
     lazy var pickerContentView: UIView = {
@@ -56,8 +55,6 @@ final class OldSettingsViewController: UIViewController {
     lazy var pickerView: UIPickerView = {
         let pickerView = UIPickerView()
         pickerView.showsSelectionIndicator = true
-        pickerView.delegate = self
-        pickerView.dataSource = self
         return pickerView
     }()
 
@@ -119,7 +116,6 @@ final class OldSettingsViewController: UIViewController {
         super.viewDidAppear(animated)
 
         guard destination != nil else { return }
-        delegate?.goToCalendarListViewController(settingsViewController: self, destination: destination)
         destination = nil
     }
 
@@ -273,108 +269,17 @@ extension OldSettingsViewController: UITableViewDataSource, UITableViewDelegate 
 
         return headerCell.contentView
     }
-
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        let selectedRow = viewModel.row(at: indexPath)
-
-        switch selectedRow {
-        case .button,
-             .control,
-             .textField: return
-        case .datePicker(let title, let selectedDate, _):
-            showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
-        case .stringPicker(let title, let pickerItems, let selectedIndex, _):
-            showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
-        case .multipleStringPicker(let title, let rows, let initialSelection, _):
-            showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
-        case .label(_, _, let settingsType):
-            switch settingsType {
-            case .calendar: delegate?.openCalendarListViewController(settingsViewController: self)
-            case .password: delegate?.openChangePasswordViewController(settingsViewController: self)
-            case .copyrights,
-                 .terms,
-                 .security: delegate?.openArticleViewController(viewController: self, settingsType: settingsType)
-            default: return
-            }
-        }
-    }
-}
-
-// MARK: - DatePicker
-
-private extension OldSettingsViewController {
-
-    func showDatePicker(title: String, selectedDate: Date, indexPath: IndexPath) {
-        ActionSheetDatePicker(title: title, datePickerMode: .date,
-                              selectedDate: selectedDate,
-                              doneBlock: { [unowned self] (_, value, _) in
-                                if indexPath.section == 1 && indexPath.row == 1,
-                                    let date = value as? Date {
-                                    let dateOfBirth = DateFormatter.settingsUser.string(from: date)
-                                    self.viewModel.updateDateOfBirth(dateOfBirth: dateOfBirth)
-                                    self.updateViewModelAndReloadTableView()
-                                }
-            }, cancel: { (_) in
-                return
-        }, origin: view).show()
-    }
-}
-
-// MARK: - StringPicker
-
-private extension OldSettingsViewController {
-
-    // FIXME: IS THIS USED
-    func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
-        ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { [unowned self] (_, index, _) in
-            if indexPath.section == 1 && indexPath.row == 0 {
-                self.viewModel.updateGender(gender: items[index])
-            }
-
-            self.updateViewModelAndReloadTableView()
-            }, cancel: { (_) in
-                return
-        }, origin: view).show()
-    }
-}
-
-// MARK: - MultipleStringPicker
-
-private extension OldSettingsViewController {
-
-    func showMultiplePicker(title: String,
-                            rows: UserMeasurement,
-                            initialSelection: [Index],
-                            indexPath: IndexPath) {
-        pickerItems = rows
-        pickerInitialSelection = initialSelection
-        pickerIndexPath = indexPath
-        showPickerView()
-    }
 }
 
 // MARK: - SettingsViewControllerDelegate
 
 extension OldSettingsViewController: SettingsViewControllerDelegate {
 
-    
     func didTextFieldEndEditing(at indexPath: IndexPath, text: String) {}
 
+    func presentResetPasswordController() {}
 
-    func presentResetPasswordController() {
-        delegate?.openChangePasswordViewController(settingsViewController: self)
-    }
-
-    func didTextFieldChanged(at indexPath: IndexPath, text: String) {
-        switch indexPath.row {
-        case 1: if text.isEmpty == false { viewModel.updateJobTitle(title: text) }
-        case 3: if text.isPhoneNumber { viewModel.updateTelephone(telephone: text) }
-        default: return
-        }
-
-        self.updateViewModelAndReloadTableView()
-    }
+    func didTextFieldChanged(at indexPath: IndexPath, text: String) {}
 
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
         guard let key = key else {
@@ -382,44 +287,5 @@ extension OldSettingsViewController: SettingsViewControllerDelegate {
         }
 
         viewModel.updateNotificationSetting(key: key, value: sender.isOn)
-    }
-}
-
-// MARK: - PickerViewDelegate, PickerViewDataSource
-
-extension OldSettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        guard let pickerItems = pickerItems else { return 0 }
-        return pickerItems.columnCount
-    }
-
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let pickerItems = pickerItems else { return 0 }
-        return pickerItems.rowCount(column: component)
-    }
-
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        guard let pickerItems = pickerItems else { return "" }
-        return pickerItems.title(row: row, column: component)
-    }
-
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerInitialSelection = [pickerView.selectedRow(inComponent: 0), pickerView.selectedRow(inComponent: 1)]
-        guard let pickerItems = pickerItems else { return }
-
-        let optionIndex = pickerView.selectedRow(inComponent: 1)
-        let unit = pickerItems.options[optionIndex].unit
-
-        switch component {
-        case 0:
-            pickerItems.update(valueIndex: row)
-        case 1:
-            pickerItems.update(unit: unit)
-            pickerView.reloadAllComponents()
-            pickerView.selectRow(pickerItems.valueIndex, inComponent: 0, animated: false)
-        default:
-            break
-        }
     }
 }

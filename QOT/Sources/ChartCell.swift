@@ -456,7 +456,7 @@ private extension ChartCell {
     }
 
     @IBAction func infoNavigationButtonPressed(_ sender: UIButton) {
-        AppDelegate.current.appCoordinator.presentCalendarSettings(infoViewDestination)
+        AppDelegate.current.appCoordinator.navigateToCalendarSettings(infoViewDestination)
     }
 
     @IBAction func closeInfoView() {

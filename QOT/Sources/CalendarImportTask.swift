@@ -76,11 +76,12 @@ final class CalendarImportTask {
                     return $0.startDate.isSameDay(ekEvent.startDate)
                     }.first
             } else {
-                calendarEvent = filteredEvents.last
+                calendarEvent = filteredEvents.filter {
+                    ekEvent.calendarItemExternalIdentifier ==  $0.calendarItemExternalIdentifier
+                }.first
             }
 
             if let existing = calendarEvent {
-                ekEvent.refresh()
                 if let modifiedAt = ekEvent.lastModifiedDate,
                     modifiedAt > existing.ekEventModifiedAt ||
                         existing.calendarItemExternalIdentifier == nil || existing.calendarIdentifier == nil {
@@ -104,9 +105,11 @@ final class CalendarImportTask {
             let existingEvents = realm.objects(CalendarEvent.self).filter(ekEvent: ekEvent)
             if existingEvents.count > 1 { //if duplcated
                 handledExternalIdentifiers.append(ekEvent.calendarItemExternalIdentifier)
-                let duplicatedEvents = existingEvents[1...(existingEvents.count - 1)]
-                for duplicatedEntity in duplicatedEvents {
+                var index: Int = 0
+                for duplicatedEntity in existingEvents {
+                    if index == 0 { continue }
                     duplicatedEntity.deleteOrMarkDeleted()
+                    index += 1
                 }
             }
         }

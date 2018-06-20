@@ -313,7 +313,7 @@ extension OldSettingsViewController: TrackablePage {
     }
 }
 
-extension SettingsMenuViewController: TrackablePage {
+extension ProfileSettingsViewController: TrackablePage {
     var pageName: PageName {
         return .settingsMenu
     }

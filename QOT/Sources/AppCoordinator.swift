@@ -800,18 +800,28 @@ extension AppCoordinator {
     func presentSideBarWithDestination(_ destination: AppCoordinator.Router.Destination?) {
         guard let sidebarCoordinator = presentSideBar(destination: destination) else { return }
         sidebarCoordinator.didTapProfileCell(with: nil, in: sidebarCoordinator.sideBarViewController)
-        guard let settingsMenuCoordinator = sidebarCoordinator.settingsMenuCoordinator else { return }
-        let settingsMenuViewController = settingsMenuCoordinator.settingsMenuViewController
-        settingsMenuCoordinator.didTapNotifications(in: settingsMenuViewController)
-        guard let settingsCoordinator = settingsMenuCoordinator.settingsCoordinator else { return }
-        startChild(child: settingsCoordinator)
     }
 
-    func presentCalendarSettings(_ destination: AppCoordinator.Router.Destination?) {
+    func navigateToCalendarSettings(_ destination: AppCoordinator.Router.Destination?) {
         navigateDownToTabBar {
             guard let sidebarCoordinator = self.presentSideBar(destination: destination) else { return }
-            sidebarCoordinator.didTapSettingsCell(in: sidebarCoordinator.sideBarViewController)
+            sidebarCoordinator.didTapCalendarCell(in: sidebarCoordinator.sideBarViewController)
         }
+    }
+
+    func presentCalendar() {
+        guard let services = services else { return }
+        let calendarsViewModel = SettingsCalendarListViewModel(services: services)
+        let calendarsViewController = SettingsCalendarListViewController(viewModel: calendarsViewModel)
+        let navigationController = UINavigationController(rootViewController: calendarsViewController)
+        let leftBarButton = UIBarButtonItem(image: R.image.ic_close_white(),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(dismissCurrentPresentedControllers))
+        leftBarButton.tintColor = .white
+        navigationController.navigationBar.applyDefaultStyle()
+        calendarsViewController.navigationItem.leftBarButtonItem = leftBarButton
+        currentPresentedController?.present(navigationController, animated: true, completion: nil)
     }
 
     func presentLibrary() {

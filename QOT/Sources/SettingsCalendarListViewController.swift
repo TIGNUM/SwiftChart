@@ -107,7 +107,6 @@ private extension SettingsCalendarListViewController {
         tableView.allowsSelection = true
 		tableView.isScrollEnabled = true
         tableView.rowHeight = UITableViewAutomaticDimension
-
 		fadeContainerView.setFade(top: 80, bottom: 0)
 		view.layoutIfNeeded()
     }

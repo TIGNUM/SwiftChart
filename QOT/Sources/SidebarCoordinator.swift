@@ -20,7 +20,6 @@ final class SidebarCoordinator: ParentCoordinator {
     private let sidebarViewModel: SidebarViewModel
     let sideBarViewController: SidebarViewController!
     var topTabBarController: UINavigationController?
-    var settingsMenuCoordinator: SettingsMenuCoordinator?
     var children = [Coordinator]()
 
     init(root: UIViewController,
@@ -60,11 +59,23 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     func didTapSettingsCell(in viewController: SidebarViewController) {
         let configurator = SettingsConfigurator.make()
 		let settingsViewController = SettingsViewController(configure: configurator, services: services)
+        settingsViewController.navigationItem.backBarButtonItem = UIBarButtonItem(title: "",
+                                                                                  style: .plain,
+                                                                                  target: nil,
+                                                                                  action: nil)
         let navController = UINavigationController(rootViewController: settingsViewController)
         navController.navigationBar.applyDefaultStyle()
         navController.modalTransitionStyle = .crossDissolve
         navController.modalPresentationStyle = .custom
         viewController.pushToStart(childViewController: settingsViewController)
+    }
+
+    func didTapCalendarCell(in viewController: SidebarViewController) {
+        didTapSettingsCell(in: viewController)
+
+        let calendarsViewModel = SettingsCalendarListViewModel(services: services)
+        let calendarsViewController = SettingsCalendarListViewController(viewModel: calendarsViewModel)
+        viewController.pushToStart(childViewController: calendarsViewController)
     }
 
     func didTapAdminCell(in viewController: SidebarViewController) {
@@ -147,10 +158,7 @@ extension SidebarCoordinator: NavigationItemDelegate {
         removeChild(child: self)
     }
 
-    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
-    }
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {}
 
-    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-
-    }
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {}
 }
