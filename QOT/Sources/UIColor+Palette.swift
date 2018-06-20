@@ -60,9 +60,14 @@ extension UIColor {
         return UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
     }
 
-    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
     class var black70: UIColor {
         return UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+    }
+
+    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)
+    class var black80: UIColor {
+        return UIColor.black.withAlphaComponent(0.8)
     }
 
     /// UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 1)
@@ -225,6 +230,11 @@ extension UIColor {
         return UIColor(red: 34/255, green: 39/255, blue: 48/255, alpha: 1)
     }
 
+    /// UIColor(red: 17/255, green: 17/255, blue: 17/255, alpha: 1)
+    class var charcoal: UIColor {
+        return UIColor(red: 17/255, green: 17/255, blue: 17/255, alpha: 1)
+    }
+
     /// UIColor(red: 255/255, green: 83/255, blue: 73/255, alpha: 1)
     class var coral: UIColor {
         return UIColor(red: 255/255, green: 83/255, blue: 73/255, alpha: 1)
@@ -233,6 +243,42 @@ extension UIColor {
     /// UIColor(red: 80/255, green: 277/255, blue: 194/255, alpha: 1)
     class var aquaMarine: UIColor {
         return UIColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1)
+    }
+
+    class var nightModeBackground: UIColor {
+        return Date().isNight ? .charcoal : .white
+    }
+
+    class var nightModeMainFont: UIColor {
+        return Date().isNight ? .white : .darkIndigo
+    }
+
+    class var nightModeSubFont: UIColor {
+        return Date().isNight ? .white : .black30
+    }
+
+    class var nightModeBlack: UIColor {
+        return Date().isNight ? .white : .black
+    }
+
+    class var nightModeBlack30: UIColor {
+        return Date().isNight ? .white70 : .black30
+    }
+
+    class var nightModeBlack40: UIColor {
+        return Date().isNight ? .white : .black40
+    }
+
+    class var nightModeBlackTwo: UIColor {
+        return Date().isNight ? .white : .blackTwo
+    }
+
+    class var nightModeBlack15: UIColor {
+        return Date().isNight ? .white80 : .black15
+    }
+
+    class var nightModeBlue: UIColor {
+        return Date().isNight ? .azure : .blue
     }
 
     static var random: UIColor {

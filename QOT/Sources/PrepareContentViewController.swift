@@ -12,15 +12,10 @@ import ReactiveKit
 import Anchorage
 
 protocol PrepareContentViewControllerDelegate: class {
-
     func didTapClose(in viewController: PrepareContentViewController)
-
     func didTapSavePreparation(in viewController: PrepareContentViewController)
-
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController)
-
     func saveNotes(notes: String, preparationID: String)
-
     func didTapReviewNotesButton(sender: UIButton,
                                  reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType,
                                  viewModel: PrepareContentViewModel?)
@@ -37,20 +32,20 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     let pageName: PageName
 
     private lazy var tableView: UITableView = {
-        return UITableView(
-            estimatedRowHeight: 140,
-            delegate: self,
-            dataSource: self,
-            dequeables:
+        return UITableView(estimatedRowHeight: 140,
+                           delegate: self,
+                           dataSource: self,
+                           dequeables:
             PrepareContentHeaderTableViewCell.self,
             PrepareContentReviewNotesTableViewCell.self,
             PrepareContentMainHeaderTableViewCell.self,
-            PrepareContentSubHeaderTableViewCell.self
-        )
+            PrepareContentSubHeaderTableViewCell.self)
     }()
 
     private lazy var topBarView: PrepareContentTopTabBarView = {
-        guard let view = Bundle.main.loadNibNamed("PrepareContentTopTabBarView", owner: self, options: [:])?[0] as? PrepareContentTopTabBarView else {
+        guard let view = Bundle.main.loadNibNamed("PrepareContentTopTabBarView",
+                                                  owner: self,
+                                                  options: [:])?[0] as? PrepareContentTopTabBarView else {
             preconditionFailure("Failed to PrepareContentTopTabBarView from xib")
         }
         view.setup(title: R.string.localized.topTabBarItemTitlePerparePreparation(),
@@ -81,7 +76,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     init(pageName: PageName, viewModel: PrepareContentViewModel) {
         self.pageName = pageName
         self.viewModel = viewModel
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -98,7 +92,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .default
+        UIApplication.shared.statusBarStyle = Date().isNight ? .lightContent : .default
         tableView.reloadData()
     }
 
@@ -128,7 +122,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 private extension PrepareContentViewController {
 
     func setupView() {
-        view.backgroundColor = .white
+        view.backgroundColor = .nightModeBackground
         if pageName == .prepareContent {
             view.addSubview(topBarView)
             view.addSubview(tableView)

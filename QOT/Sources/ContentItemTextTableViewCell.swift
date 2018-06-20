@@ -18,7 +18,7 @@ final class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
 
     func setup(topText: NSAttributedString,
                bottomText: NSAttributedString?,
-               backgroundColor: UIColor = .white,
+               backgroundColor: UIColor = .clear,
                delegate: ClickableLabelDelegate? = nil) {
         topLabel.delegate = delegate
         bottomLabel.delegate = delegate
@@ -26,6 +26,6 @@ final class ContentItemTextTableViewCell: UITableViewCell, Dequeueable {
         topLabel.attributedText = topText
         bottomLabel.attributedText = bottomText
         contentView.backgroundColor = backgroundColor
-        self.backgroundColor = backgroundColor
+        self.backgroundColor = .clear
     }
 }

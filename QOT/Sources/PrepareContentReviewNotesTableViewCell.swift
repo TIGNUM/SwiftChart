@@ -97,8 +97,7 @@ final class PrepareContentReviewNotesTableViewCell: UITableViewCell, Dequeueable
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        contentView.backgroundColor = .white
+        contentView.backgroundColor = .clear
     }
 
     func configure(title: String,
@@ -111,7 +110,7 @@ final class PrepareContentReviewNotesTableViewCell: UITableViewCell, Dequeueable
         titleLabel.attributedText = NSMutableAttributedString(string: title,
                                                               letterSpacing: 2,
                                                               font: Font.PText,
-                                                              textColor: .black,
+                                                              textColor: .nightModeBlack,
                                                               alignment: .left)
 
         reviewNotesButton.setImage(R.image.ic_back()?.tintedImage(color: .gray).withHorizontallyFlippedOrientation(),

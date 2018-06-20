@@ -43,9 +43,12 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
                  isExpanded: Bool,
                  displayMode: PrepareContentViewModel.DisplayMode = .normal,
                  isChecked: Bool = false) {
-        bottomSeparator.backgroundColor = .black30
-        headerLabel.setAttrText(text: title.uppercased(), font: Font.H4Headline, lineSpacing: 3, characterSpacing: -0.8)
-        headerLabel.textColor = .black
+        bottomSeparator.backgroundColor = .nightModeBlack30
+        headerLabel.setAttrText(text: title.uppercased(),
+                                font: Font.H4Headline,
+                                lineSpacing: 3,
+                                characterSpacing: -0.8,
+                                color: .nightModeBlack)        
         self.readMoreID = readMoreID
         self.contentText = contentText
         self.displayMode = displayMode
@@ -68,11 +71,11 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         if isExpanded {
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
-            contentLabel.setAttrText(text: contentText, font: Font.DPText)
+            contentLabel.setAttrText(text: contentText, font: Font.DPText, color: .nightModeSubFont)
             if readMoreID != nil {
                 readMoreButton.prepareAndSetTitleAttributes(text: R.string.localized.prepareContentReadMore(),
                                                             font: Font.DPText,
-                                                            color: .black40,
+                                                            color: .nightModeBlack40,
                                                             for: .normal)
             } else {
                 readMoreButton.isHidden = true

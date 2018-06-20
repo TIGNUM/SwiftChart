@@ -12,7 +12,6 @@ import Bond
 import ReactiveKit
 
 protocol MyPrepViewControllerDelegate: class {
-
     func didTapMyPrepItem(with myPrepItem: MyPrepViewModel.Item, viewController: MyPrepViewController)
 }
 
@@ -87,7 +86,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         UIApplication.shared.statusBarStyle = .lightContent
     }
 

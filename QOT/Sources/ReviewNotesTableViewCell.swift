@@ -15,6 +15,8 @@ final class ReviewNotesTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
     }
 
     func configure(title: String,
@@ -25,7 +27,7 @@ final class ReviewNotesTableViewCell: UITableViewCell {
                                                               letterSpacing: 2,
                                                               font: Font.PText,
                                                               lineSpacing: 10,
-                                                              textColor: .black,
+                                                              textColor: .nightModeBlack,
                                                               alignment: .left)
         var notesText = reviewNotesType.placeholder(at: row)
         var font = Font.H7Tag
@@ -37,7 +39,7 @@ final class ReviewNotesTableViewCell: UITableViewCell {
                                                              letterSpacing: 2,
                                                              font: font,
                                                              lineSpacing: 10,
-                                                             textColor: .black30,
+                                                             textColor: .nightModeBlack30,
                                                              alignment: .left,
                                                              lineBreakMode: .byWordWrapping)
     }

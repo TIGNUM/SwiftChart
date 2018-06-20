@@ -10,7 +10,6 @@ import UIKit
 import Kingfisher
 
 protocol PrepareContentMainHeaderTableViewCellDelegate: class {
-
     func didTapVideo(videoURL: URL?, cell: UITableViewCell)
 }
 
@@ -36,10 +35,10 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        previewImageButton.layer.borderColor = UIColor.black30.cgColor
+        previewImageButton.layer.borderColor = UIColor.nightModeBlack30.cgColor
         previewImageButton.layer.borderWidth = 0.5
-        previewImageButton.backgroundColor = .black30
-        bottomSeparator.backgroundColor = .black30
+        previewImageButton.backgroundColor = .nightModeBlack30
+        bottomSeparator.backgroundColor = .nightModeBlack30
         contentView.backgroundColor = .clear
         backgroundColor = .clear
     }
@@ -79,6 +78,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
             contentLabel.setAttrText(text: content, font: Font.DPText)
+            contentLabel.textColor = .nightModeBlack
         }
     }
 
@@ -97,10 +97,10 @@ private extension PrepareContentMainHeaderTableViewCell {
     func setupLabels(_ title: String, _ subTitle: String) {
         headerLabel.addCharactersSpacing(spacing: 2, text: title, uppercased: true)
         headerLabel.font = Font.H1MainTitle
-        headerLabel.textColor = .darkIndigo
+        headerLabel.textColor = .nightModeMainFont
         subHeaderLabel.addCharactersSpacing(spacing: 2, text: subTitle, uppercased: true)
         subHeaderLabel.font = Font.H7Title
-        subHeaderLabel.textColor = .black30
+        subHeaderLabel.textColor = .nightModeBlack30
         subHeaderLabel.isHidden = videoOnly == true
     }
 }

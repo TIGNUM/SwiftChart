@@ -275,7 +275,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     func sendLocationUpdate(location: CLLocation) {
         timeZoneDidChange()
         guard authenticator.hasLoginCredentials() else { return }
-
         Appsee.setLocation(location.coordinate.latitude,
                            longitude: location.coordinate.longitude,
                            horizontalAccuracy: Float(location.horizontalAccuracy),

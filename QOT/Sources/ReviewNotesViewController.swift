@@ -17,7 +17,8 @@ final class ReviewNotesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .nightModeBackground
+        tableView.backgroundColor = .clear
         setupNavigationBar()
         setupTableView()
     }
@@ -32,7 +33,6 @@ final class ReviewNotesViewController: UIViewController {
         guard
             let noteViewController = segue.destination as? PrepareContentNotesViewController,
             let row = tableView.indexPathForSelectedRow?.row else { return }
-
         let notesType: PrepareContentReviewNotesTableViewCell.NotesType
         let text: String?
         switch (reviewNotesType, row) {
@@ -61,7 +61,6 @@ final class ReviewNotesViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         tableView.reloadData()
     }
 }
@@ -71,10 +70,10 @@ final class ReviewNotesViewController: UIViewController {
 private extension ReviewNotesViewController {
 
     func setupNavigationBar() {
-        navigationController?.navigationBar.tintColor = .black40
-        navigationController?.navigationBar.barTintColor = .white
+        navigationController?.navigationBar.tintColor = .nightModeBlack40
+        navigationController?.navigationBar.barTintColor = .nightModeBackground
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline,
-                                                                   NSAttributedStringKey.foregroundColor: UIColor.black]
+                                                                   NSAttributedStringKey.foregroundColor: UIColor.nightModeBlack]
         title = reviewNotesType.navbarTitle
     }
 

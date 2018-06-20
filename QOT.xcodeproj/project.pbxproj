@@ -3406,18 +3406,18 @@
 			isa = PBXGroup;
 			children = (
 				D58BD8751E9F65F7005676DE /* ArticleCollectionCell.swift */,
-				D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */,
-				D52350951E9FC1120013DE7E /* ArticleCollectionLayout.swift */,
-				CCE372F41E8CF10C00B79352 /* ArticleCollectionViewController.swift */,
 				7FE674B81F8F8F3600FC7407 /* ArticleCollectionHeader.swift */,
+				D52350951E9FC1120013DE7E /* ArticleCollectionLayout.swift */,
 				7F3A9CBF1FCDC894000F1744 /* ArticleCollectionProvider.swift */,
+				CCE372F41E8CF10C00B79352 /* ArticleCollectionViewController.swift */,
 				7F3A9CC11FCDC89D000F1744 /* ArticleCollectionViewData.swift */,
 				CC41A5481EFD59FC00B9AE8E /* ArticleItemHeaderView.swift */,
-				CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */,
-				CC41A5401EFD241100B9AE8E /* ArticleRelatedCell.swift */,
-				CC3E5D4B1F0109B700B9E11F /* ArticleRelatedCell.xib */,
 				CC7D21A71EFC051B007A062E /* ArticleItemViewController.swift */,
 				CC7D21A51EFBF52A007A062E /* ArticleItemViewModel.swift */,
+				CC41A5401EFD241100B9AE8E /* ArticleRelatedCell.swift */,
+				D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */,
+				CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */,
+				CC3E5D4B1F0109B700B9E11F /* ArticleRelatedCell.xib */,
 			);
 			name = Article;
 			sourceTree = "<group>";

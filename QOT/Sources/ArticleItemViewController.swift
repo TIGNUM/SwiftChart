@@ -73,19 +73,16 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         tableView.reloadData()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         setTableViewHeader()
         resizeHeaderView()
     }
@@ -102,7 +99,6 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-
         tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
         view.setFadeMask(at: fadeMaskLocation)

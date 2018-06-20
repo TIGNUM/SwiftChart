@@ -172,7 +172,7 @@ extension PrepareCoordinator {
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_close()),
                                                          rightButton: rightButton,
-                                                         navigationItemStyle: .light)
+                                                         navigationItemStyle: Date().isNight ? .dark : .light)
             tabBarController.present(topTabBarController, animated: true)
             prepareListViewController = prepareController
             prepareContentNoteController = noteController
@@ -433,7 +433,6 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
         let eventEditVC = EKEventEditViewController()
         eventEditVC.eventStore = services.eventsService.eventStore
         eventEditVC.editViewDelegate = editEventHandler
-
         viewController.present(eventEditVC, animated: true)
     }
 }

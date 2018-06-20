@@ -38,14 +38,14 @@ final class LearnContentItemHeaderView: UIView {
         let nib = R.nib.learnContentItemHeaderView()
         let headerView = (nib.instantiate(withOwner: self, options: nil).first as? LearnContentItemHeaderView)!
         headerView.setupView(title: contentTitle, subtitle: categoryTitle)
-        headerView.backgroundColor = .white
+        headerView.backgroundColor = .clear
         return headerView
     }
 
     func setupView(title: String, subtitle: String) {
-        titleLabel.attributedText = Style.postTitle(title.uppercased(), .darkIndigo).attributedString()
-        subTitleLabel.attributedText = Style.tag(subtitle.uppercased(), .black30).attributedString()
-        backgroundColor = .white
+        titleLabel.attributedText = Style.postTitle(title.uppercased(), .nightModeMainFont).attributedString()
+        subTitleLabel.attributedText = Style.tag(subtitle.uppercased(), .nightModeSubFont).attributedString()
+        backgroundColor = .clear
         layoutIfNeeded()
     }
 }

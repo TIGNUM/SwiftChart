@@ -14,15 +14,26 @@ final class LearnStrategyPlaylistAudioCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var iconView: UIImageView!
+    @IBOutlet weak private var seperatorView: UIView!
     @IBOutlet weak private var audioSpinner: UIActivityIndicatorView!
+    private let pauseImage = R.image.ic_pause()?.withRenderingMode(.alwaysTemplate)
+    private let playImage = R.image.ic_play()?.withRenderingMode(.alwaysTemplate)
 
     // MARK: - Setup
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        audioSpinner.color = .nightModeMainFont
+        seperatorView.backgroundColor = .nightModeBlack30
+    }
+
     func setup(title: String, playing: Bool) {
         titleLabel.font = UIFont.bentonBookFont(ofSize: 16)
-        titleLabel.textColor = playing == true ? .blue : .black
         titleLabel.text = title
-        iconView.image = playing == true ? R.image.ic_pause() : R.image.ic_play()
+        updateStateImage(playing)
+        updateTitleColor(enabled: playing)
         audioSpinner.stopAnimating()
     }
 }
@@ -32,8 +43,7 @@ final class LearnStrategyPlaylistAudioCell: UITableViewCell, Dequeueable {
 extension LearnStrategyPlaylistAudioCell {
 
     func updateItem(buffering: Bool, playing: Bool) {
-        iconView.image = playing == true ? R.image.ic_pause() : R.image.ic_play()
-
+        updateStateImage(playing)
         if buffering == true {
             iconView.isHidden = true
             audioSpinner.startAnimating()
@@ -44,16 +54,25 @@ extension LearnStrategyPlaylistAudioCell {
     }
 
     func updateTitleColor(enabled: Bool) {
-        titleLabel.textColor = enabled == true ? .blue : .black
+        titleLabel.textColor = enabled == true ? .nightModeBlue : .nightModeBlack
     }
 
     func resetPlayIcon() {
-        iconView.image = R.image.ic_play()
+        updateStateImage(false)
     }
 
     func getAudioTitle() -> String {
         guard let title = titleLabel.text else { return "" }
-
         return title
+    }
+}
+
+// MARK: - Private
+
+private extension LearnStrategyPlaylistAudioCell {
+
+    func updateStateImage(_ playing: Bool) {
+        iconView.image = playing == true ? pauseImage : playImage
+        iconView.tintColor = .nightModeBlack
     }
 }

@@ -48,7 +48,6 @@ final class LearnContentItemViewController: UIViewController {
 
     private lazy var itemTableView: UITableView = {
         return UITableView(style: .grouped,
-                           backgroundColor: .white,
                            estimatedRowHeight: 100,
                            delegate: self,
                            dataSource: self,
@@ -67,9 +66,7 @@ final class LearnContentItemViewController: UIViewController {
     init(viewModel: LearnContentItemViewModel, tabType: TabType) {
         self.viewModel = viewModel
         self.tabType = tabType
-
         super.init(nibName: nil, bundle: nil)
-
         if tabType == .audio {
             observeViewModelPlayerUpdates()
             viewModel.audioConnectionDelegate = self
@@ -84,20 +81,16 @@ final class LearnContentItemViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
-
         if let parent = parent as? PageScroll {
             parent.pageDidLoad(self, scrollView: itemTableView)
         }
-
         itemTableView.setContentOffset(CGPoint(x: 0, y: -itemTableView.contentInset.top), animated: true)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
-        UIApplication.shared.statusBarStyle = .default
+        UIApplication.shared.statusBarStyle = Date().isNight ? .lightContent : .default
         itemTableView.reloadData()
     }
 
@@ -110,7 +103,6 @@ final class LearnContentItemViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         viewModel.stopPlayback()
     }
 
@@ -146,7 +138,6 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         var item: ContentItem!
-
         if viewModel.isPDFItem(at: indexPath, tabType: tabType) {
             item = viewModel.learnPDFContentItem(at: indexPath, tabType: tabType)
         } else if viewModel.isReadMoreItem(at: indexPath, tabType: tabType) {
@@ -164,25 +155,22 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                 soundPattern = Property(waveformData)
                 audioPlayerTopView = cell
                 observeAudioPlayerView(cell)
-
                 return cell
             default: fatalError("That should not happen!")
             }
         } else if
             viewModel.sectionCount(tabType: tabType) == 3 && indexPath.section == 2 ||
             viewModel.sectionCount(tabType: tabType) == 2 && viewModel.containsAudioItem(tabType: tabType) == false && indexPath.section == 1 {
-
                 return relatedContentCell(tableView, indexPath)
         } else {
             switch item.contentItemValue {
             case .listItem(let itemText):
                 return contentItemBulletTableViewCell(tableView: tableView, indexPath: indexPath, bulletText: itemText)
             case .text(let itemText, let style):
-                var attributedTopText = item.contentItemValue.style(textStyle: style, text: itemText, textColor: .black)
+                var attributedTopText = item.contentItemValue.style(textStyle: style, text: itemText, textColor: .nightModeBlack)
                 if style == .paragraph {
-                    attributedTopText = Style.article(itemText, .black).attributedString(lineHeight: 2)
+                    attributedTopText = Style.article(itemText, .nightModeBlack).attributedString(lineHeight: 2)
                 }
-
                 return contentItemTextTableViewCell(tableView: tableView,
                                                     indexPath: indexPath,
                                                     topText: attributedTopText,
@@ -200,19 +188,21 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                                        placeholderURL: placeholderURL,
                                        attributedString: item.contentItemValue.style(textStyle: .paragraph,
                                                                                      text: mediaDescription,
-                                                                                     textColor: .black40).attributedString(),
+                                                                                     textColor: .nightModeBlack40).attributedString(),
                                                                                      canStream: true)
             case .image(let title, _, let url):
                 return imageTableViewCell(tableView: tableView,
                                           indexPath: indexPath,
                                           attributeString: item.contentItemValue.style(textStyle: .paragraph,
                                                                                        text: title,
-                                                                                       textColor: .blackTwo).attributedString(),
+                                                                                       textColor: .nightModeBlackTwo).attributedString(),
                                                                                        url: url)
             case .pdf(let title, _, _):
                 return PDFTableViewCell(tableView: tableView,
                                         indexPath: indexPath,
-                                        attributedString: item.contentItemValue.style(textStyle: .h4, text: title, textColor: .blackTwo).attributedString(),
+                                        attributedString: item.contentItemValue.style(textStyle: .h4,
+                                                                                      text: title,
+                                                                                      textColor: .nightModeBlackTwo).attributedString(),
                                         timeToReadSeconds: item.secondsRequired)
             case .guide,
                  .guideButton:
@@ -227,13 +217,11 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         if tabType == .audio && indexPath.section == 0 {
             return nil
         }
-
         return indexPath
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-
         switch viewModel.contentItemValue(at: indexPath, tabType: tabType) {
         case .audio:
             prepareAndPlay(at: indexPath)
@@ -272,7 +260,6 @@ private extension LearnContentItemViewController {
             let url = item.bundledAudioURL ?? remoteURL
             let cell = itemTableView.cellForRow(at: indexPath) as? LearnStrategyPlaylistAudioCell
             viewModel.playItem(at: indexPath, audioURL: url, duration: duration, cell: cell)
-
             if let audioPlayerTopView = audioPlayerTopView {
                 soundPattern = Property(waveformData)
                 observeAudioPlayerView(audioPlayerTopView)
@@ -285,17 +272,14 @@ private extension LearnContentItemViewController {
         viewModel.currentPosition.map { [unowned self] (interval) -> String in
             return self.stringFromTimeInterval(interval: interval)
         }.bind(to: audioView.currentPositionLabel)
-
         viewModel.trackDuration.map { [unowned self] (interval) -> String in
             return self.stringFromTimeInterval(interval: interval)
         }.bind(to: audioView.trackDurationLabel)
-
         viewModel.currentPosition.observeNext { [unowned self] (interval) in
             let value = self.progress(currentPosition: interval, trackDuration: self.viewModel.trackDuration.value)
             audioView.audioSlider.value = Float(value)
             audioView.audioWaveformView.setProgress(value: Float(value))
         }.dispose(in: disposeBag)
-
         soundPattern.observeNext { (data) in
             audioView.audioWaveformView.data = data
         }.dispose(in: disposeBag)
@@ -336,7 +320,6 @@ private extension LearnContentItemViewController {
             formatter.allowedUnits = [.hour, .minute, .second]
         }
         let time = formatter.string(from: interval)
-
         return time ?? "00:00"
     }
 }
@@ -347,33 +330,30 @@ private extension LearnContentItemViewController {
 
     func setupView() {
         view.addSubview(itemTableView)
-        view.backgroundColor = .clear
+        view.backgroundColor = .nightModeBackground
         itemTableView.topAnchor == view.topAnchor
         itemTableView.bottomAnchor == view.bottomAnchor
         itemTableView.horizontalAnchors == view.horizontalAnchors
         itemTableView.backgroundColor = .clear
+        itemTableView.separatorColor = .nightModeBackground
     }
 
     func relatedContentCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let relatedContent = viewModel.relatedContent(at: indexPath)
-        let topText = NSMutableAttributedString(
-            string: relatedContent.title,
-            letterSpacing: CGFloat(-0.8),
-            font: Font.H4Headline,
-            textColor: .black
-        )
+        let topText = NSMutableAttributedString(string: relatedContent.title,
+                                                letterSpacing: CGFloat(-0.8),
+                                                font: Font.H4Headline,
+                                                textColor: .nightModeBlack)
         let bottomText = NSMutableAttributedString(
             string: String(format: "%d MIN TO READ", relatedContent.minutesToRead), //TODO Localise
             letterSpacing: CGFloat(2),
             font: Font.H7Tag,
-            textColor: .black30
+            textColor: .nightModeSubFont
         )
-        let cell = contentItemTextTableViewCell(
-            tableView: tableView,
-            indexPath: indexPath,
-            topText: topText,
-            bottomText: bottomText
-        )
+        let cell = contentItemTextTableViewCell(tableView: tableView,
+                                                indexPath: indexPath,
+                                                topText: topText,
+                                                bottomText: bottomText)
         cell.selectionStyle = .gray
 
         return cell
@@ -401,7 +381,6 @@ private extension LearnContentItemViewController {
                                         bulletText: String) -> LearnContentItemBulletCell {
         let bulletCell: LearnContentItemBulletCell = tableView.dequeueCell(for: indexPath)
         bulletCell.setupView(bulletText: bulletText)
-
         return bulletCell
     }
 
@@ -411,7 +390,6 @@ private extension LearnContentItemViewController {
                                       bottomText: NSAttributedString?) -> ContentItemTextTableViewCell {
         let itemTextCell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
         itemTextCell.setup(topText: topText, bottomText: bottomText)
-
         return itemTextCell
     }
 
@@ -422,14 +400,13 @@ private extension LearnContentItemViewController {
                          attributedString: NSAttributedString,
                          canStream: Bool) -> ImageSubtitleTableViewCell {
         let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        imageCell.mainImageView.backgroundColor = .black
-        imageCell.mainImageView.layer.borderColor = UIColor.black.cgColor
+        imageCell.mainImageView.backgroundColor = .nightModeBlack
+        imageCell.mainImageView.layer.borderColor = UIColor.nightModeBlack.cgColor
         imageCell.mainImageView.layer.borderWidth = 0.5
         imageCell.setupData(placeHolder: placeholderURL,
                             description: attributedString,
                             canStream: canStream)
         imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
-
         return imageCell
     }
 
@@ -440,24 +417,24 @@ private extension LearnContentItemViewController {
         let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         imageCell.setupData(placeHolder: url, description: attributeString, canStream: false)
         imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
-
         return imageCell
     }
 
     func invalidContentCell(tableView: UITableView, indexPath: IndexPath, item: ContentItem) -> ErrorCell {
         let cell: ErrorCell = tableView.dequeueCell(for: indexPath)
         cell.configure(text: R.string.localized.commonInvalidContent(), item: item)
-
         return cell
     }
 
-    func PDFTableViewCell(tableView: UITableView, indexPath: IndexPath, attributedString: NSAttributedString, timeToReadSeconds: Int) -> LearnPDFCell {
+    func PDFTableViewCell(tableView: UITableView,
+                          indexPath: IndexPath,
+                          attributedString: NSAttributedString,
+                          timeToReadSeconds: Int) -> LearnPDFCell {
         let cell: LearnPDFCell = tableView.dequeueCell(for: indexPath)
         cell.configure(titleText: attributedString,
                        timeToReadSeconds: timeToReadSeconds,
-                       titleColor: .black,
-                       timeColor: .black30)
-
+                       titleColor: .nightModeBlack,
+                       timeColor: .nightModeSubFont)
         return cell
     }
 

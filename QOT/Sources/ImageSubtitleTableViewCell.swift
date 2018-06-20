@@ -22,7 +22,6 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         contentView.backgroundColor = .clear
         backgroundColor = .clear
     }
@@ -34,10 +33,17 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
         bottomConstraint.constant = insets.bottom
     }
 
-    func setupData(placeHolder: URL, placeHolderImage: UIImage? = R.image.preloading(), description: NSAttributedString?, canStream: Bool) {
+    func setupData(placeHolder: URL,
+                   placeHolderImage: UIImage? = R.image.preloading(),
+                   description: NSAttributedString?,
+                   canStream: Bool) {
         label.isHidden = (description == nil)
         label.attributedText = description
-        mainImageView.kf.setImage(with: placeHolder, placeholder: placeHolderImage, options: nil, progressBlock: nil, completionHandler: nil)
+        mainImageView.kf.setImage(with: placeHolder,
+                                  placeholder: placeHolderImage,
+                                  options: nil,
+                                  progressBlock: nil,
+                                  completionHandler: nil)
         mainImageView.kf.indicatorType = .activity
         mainImageView.contentMode = .scaleAspectFill
         playImageView.isHidden = canStream == false

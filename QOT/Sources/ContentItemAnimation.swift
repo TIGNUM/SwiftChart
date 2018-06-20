@@ -10,19 +10,25 @@ import Foundation
 import UIKit
 
 final class ContentItemAnimation: NSObject, UIViewControllerAnimatedTransitioning {
+
+    // MARK: - Properties
+
     let duration: TimeInterval
     let isPresenting: Bool
     let originFrame: CGRect
+    let backgroundColor: UIColor
 
     private var fromViewController: UIViewController?
     private var toViewController: UIViewController?
     private var transitionContext: UIViewControllerContextTransitioning?
 
-    init(isPresenting: Bool, duration: TimeInterval, originFrame: CGRect) {
+    // MARK: - Init
+
+    init(isPresenting: Bool, duration: TimeInterval, originFrame: CGRect, backgroundColor: UIColor) {
         self.isPresenting = isPresenting
         self.duration = duration
         self.originFrame = originFrame
-
+        self.backgroundColor = backgroundColor
         super.init()
     }
 
@@ -40,10 +46,8 @@ final class ContentItemAnimation: NSObject, UIViewControllerAnimatedTransitionin
         }
         self.fromViewController = fromViewController
         self.toViewController = toViewController
-
         fromViewController.beginAppearanceTransition(false, animated: true)
         toViewController.beginAppearanceTransition(true, animated: true)
-
         let animatedViewController = isPresenting ? toViewController : fromViewController
         let animatedView = animatedViewController.view!
         let bubbleView = UIView(frame: animatedView.frame)
@@ -54,7 +58,6 @@ final class ContentItemAnimation: NSObject, UIViewControllerAnimatedTransitionin
             containerView.bringSubview(toFront: animatedView)
         }
         containerView.bringSubview(toFront: bubbleView)
-
         let bigHeight = animatedView.frame.height * 3
         let bigFrame = CGRect(x: animatedView.frame.origin.x - animatedView.frame.height,
                               y: animatedView.frame.origin.y - animatedView.frame.height,
@@ -63,21 +66,26 @@ final class ContentItemAnimation: NSObject, UIViewControllerAnimatedTransitionin
 
         let startFrame = isPresenting ? originFrame : bigFrame
         let endFrame = isPresenting ? bigFrame : originFrame
-
         let maskPath = UIBezierPath(ovalIn: startFrame)
         let maskLayer = CAShapeLayer()
         maskLayer.opacity = 0
         maskLayer.frame = animatedView.frame
         maskLayer.path = maskPath.cgPath
         bubbleView.layer.mask = maskLayer
-
         animatedView.layer.opacity = self.isPresenting ? 0 : 1
-        bubbleView.backgroundColor = .white
-
+        bubbleView.backgroundColor = backgroundColor
         if isPresenting {
-            contentItemAnimation(bubbleView: bubbleView, animatedView: animatedView, maskLayer: maskLayer, maskPath: maskPath, endFrame: endFrame)
+            contentItemAnimation(bubbleView: bubbleView,
+                                 animatedView: animatedView,
+                                 maskLayer: maskLayer,
+                                 maskPath: maskPath,
+                                 endFrame: endFrame)
         } else {
-            contentAnimation(bubbleView: bubbleView, animatedView: animatedView, maskLayer: maskLayer, maskPath: maskPath, endFrame: endFrame)
+            contentAnimation(bubbleView: bubbleView,
+                             animatedView: animatedView,
+                             maskLayer: maskLayer,
+                             maskPath: maskPath,
+                             endFrame: endFrame)
         }
     }
 }
@@ -93,19 +101,26 @@ private extension ContentItemAnimation {
         transitionContext?.completeTransition(!(transitionContext?.transitionWasCancelled ?? false))
     }
 
-    func contentAnimation(bubbleView: UIView, animatedView: UIView, maskLayer: CAShapeLayer, maskPath: UIBezierPath, endFrame: CGRect) {
+    func contentAnimation(bubbleView: UIView,
+                          animatedView: UIView,
+                          maskLayer: CAShapeLayer,
+                          maskPath: UIBezierPath,
+                          endFrame: CGRect) {
         CATransaction.begin()
         CATransaction.setCompletionBlock({ [unowned self] in
             if self.isPresenting {
                 self.animationsCompleted(bubbleView: bubbleView)
             } else {
                 animatedView.layer.opacity = 0
-                self.contentItemAnimation(bubbleView: bubbleView, animatedView: animatedView, maskLayer: maskLayer, maskPath: maskPath, endFrame: endFrame)
+                self.contentItemAnimation(bubbleView: bubbleView,
+                                          animatedView: animatedView,
+                                          maskLayer: maskLayer,
+                                          maskPath: maskPath,
+                                          endFrame: endFrame)
             }
         })
 
         animatedView.layer.opacity = 1
-
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.fromValue = self.isPresenting ? 1 : 0
         opacityAnimation.toValue = self.isPresenting ? 0 : 1
@@ -113,32 +128,35 @@ private extension ContentItemAnimation {
         opacityAnimation.isRemovedOnCompletion = false
         opacityAnimation.duration = self.duration / 2
         maskLayer.add(opacityAnimation, forKey: "opacity")
-
         CATransaction.commit()
     }
 
-    func contentItemAnimation(bubbleView: UIView, animatedView: UIView, maskLayer: CAShapeLayer, maskPath: UIBezierPath, endFrame: CGRect) {
+    func contentItemAnimation(bubbleView: UIView,
+                              animatedView: UIView,
+                              maskLayer: CAShapeLayer,
+                              maskPath: UIBezierPath,
+                              endFrame: CGRect) {
         CATransaction.begin()
         CATransaction.setCompletionBlock({ [unowned self] in
             if self.isPresenting {
-                self.contentAnimation(bubbleView: bubbleView, animatedView: animatedView, maskLayer: maskLayer, maskPath: maskPath, endFrame: endFrame)
+                self.contentAnimation(bubbleView: bubbleView,
+                                      animatedView: animatedView,
+                                      maskLayer: maskLayer, maskPath: maskPath,
+                                      endFrame: endFrame)
             } else {
                 self.animationsCompleted(bubbleView: bubbleView)
             }
         })
 
         let endCirclePath = UIBezierPath(ovalIn: endFrame)
-
         let pathAnimation = CABasicAnimation(keyPath: "path")
         pathAnimation.fromValue = maskPath.cgPath
         pathAnimation.toValue = endCirclePath
         pathAnimation.fillMode = kCAFillModeForwards
         pathAnimation.isRemovedOnCompletion = false
         pathAnimation.duration = duration / 2
-
         maskLayer.path = endCirclePath.cgPath
         maskLayer.add(pathAnimation, forKey: "pathAnimation")
-
         let opacityAnimation = CABasicAnimation(keyPath: "opacity")
         opacityAnimation.fromValue = isPresenting ? 0 : 1
         opacityAnimation.toValue = isPresenting ? 1 : 0
@@ -146,7 +164,6 @@ private extension ContentItemAnimation {
         opacityAnimation.isRemovedOnCompletion = false
         opacityAnimation.duration = duration / 2
         maskLayer.add(opacityAnimation, forKey: "opacity")
-
         CATransaction.commit()
     }
 }

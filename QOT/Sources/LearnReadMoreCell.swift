@@ -16,13 +16,22 @@ class LearnReadMoreCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var readMore: UILabel!
     @IBOutlet weak var articlesCount: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        contentView.backgroundColor = .clear
+    }
+
     // MARK: - Methods
 
     func configure(numberOfArticles: Int) {
-        readMore.setAttrText(text: R.string.localized.prepareContentReadMore().uppercased(), font: Font.H5SecondaryHeadline, characterSpacing: 1)
-
+        readMore.setAttrText(text: R.string.localized.prepareContentReadMore().uppercased(),
+                             font: Font.H5SecondaryHeadline,
+                             characterSpacing: 1,
+                             color: .nightModeBlack)
         let articleText = numberOfArticles < 2 ? R.string.localized.learnContentItemArticle() : R.string.localized.learnContentItemArticles()
-        articlesCount.setAttrText(text: "\(numberOfArticles) \(articleText)".uppercased(), font: Font.H7Tag, characterSpacing: 2)
-        articlesCount.textColor = .black30
+        articlesCount.setAttrText(text: "\(numberOfArticles) \(articleText)".uppercased(),
+                                  font: Font.H7Tag,
+                                  characterSpacing: 2)
+        articlesCount.textColor = .nightModeBlack30
     }
 }

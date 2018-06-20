@@ -20,15 +20,14 @@ final class AudioWaveformView: UIView {
     }
 
     private(set) var progress: Float = 0.0
-    private(set) var minColorBottom: UIColor = .black
+    private(set) var minColorBottom: UIColor = .nightModeBlack
     private(set) var minColorTop: UIColor = .lightGray
-    private(set) var maxColorBottom: UIColor = .blue
-    private(set) var maxColorTop: UIColor = .blue
+    private(set) var maxColorBottom: UIColor = .nightModeBlue
+    private(set) var maxColorTop: UIColor = .nightModeBlue
     private var gradientLayers: [CAGradientLayer] = []
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         redraw()
     }
 
@@ -45,11 +44,7 @@ final class AudioWaveformView: UIView {
 
     private func redraw() {
         removeExistingLayers()
-
-        guard data.count > 0 else {
-            return
-        }
-
+        guard data.count > 0 else { return }
         drawLayers(data: processedData())
     }
 
@@ -93,13 +88,11 @@ final class AudioWaveformView: UIView {
     private func drawLayers(data: [Float: Float]) {
         let baseHeight: Float = 5
         let topHeight = Float(bounds.height) - baseHeight
-
         for x in data.keys.sorted() {
             let value = data[x]!
             let height = topHeight * value + baseHeight
             addGradiantLayer(x: x, height: height)
         }
-
         syncColors()
     }
 
@@ -119,11 +112,7 @@ final class AudioWaveformView: UIView {
 
     private func syncColors(forward: Bool) {
         let index = Int(round(CGFloat(progress) * bounds.width / 2))
-
-        guard index >= 0 && index <= gradientLayers.count else {
-            return
-        }
-
+        guard index >= 0 && index <= gradientLayers.count else { return }
         if forward {
             for i in 0..<index {
                 gradientLayers[i].colors = [maxColorTop.cgColor, maxColorBottom.cgColor]

@@ -21,22 +21,34 @@ final class PrepareContentTopTabBarView: UIView {
     @IBOutlet weak var bottomSeparator: UIView!
     weak var delegate: PrepareContentTopTabBarViewDelegate?
 
-    func setup(title: String, leftButtonIcon: UIImage? = nil, rightButtonIcon: UIImage? = nil, delegate: PrepareContentTopTabBarViewDelegate? = nil) {
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = .clear
+    }
 
-        bottomSeparator.backgroundColor = .black30
-
+    func setup(title: String,
+               leftButtonIcon: UIImage? = nil,
+               rightButtonIcon: UIImage? = nil,
+               delegate: PrepareContentTopTabBarViewDelegate? = nil) {
+        bottomSeparator.backgroundColor = .nightModeBlack30
         self.delegate = delegate
         titleLabel.addCharactersSpacing(spacing: 1, text: title, uppercased: true)
         titleLabel.font = Font.H5SecondaryHeadline
-
+        titleLabel.textColor = .nightModeMainFont
         if leftButtonIcon != nil {
-            setButton(leftButton, image: leftButtonIcon, selector: #selector(PrepareContentTopTabBarView.didTapLeftButton), tintColor: .black)
+            setButton(leftButton,
+                      image: leftButtonIcon,
+                      selector: #selector(PrepareContentTopTabBarView.didTapLeftButton),
+                      tintColor: .nightModeBlack)
         } else {
             leftButton.isHidden = true
         }
 
         if rightButtonIcon != nil {
-            setButton(rightButton, image: rightButtonIcon, selector: #selector(PrepareContentTopTabBarView.didTapRightButton), tintColor: .black30)
+            setButton(rightButton,
+                      image: rightButtonIcon,
+                      selector: #selector(PrepareContentTopTabBarView.didTapRightButton),
+                      tintColor: .nightModeBlack30)
         } else {
             rightButton.isHidden = true
         }

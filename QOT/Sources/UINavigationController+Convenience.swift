@@ -20,13 +20,11 @@ extension UINavigationController {
                      rightButton: UIBarButtonItem? = nil,
                      navigationItemStyle: NavigationItem.Style = .dark) {
         self.init(navigationBarClass: UINavigationBar.self, toolbarClass: nil)
-
         let titles = pages.map { $0.title?.uppercased() ?? "" }
         let navItem = NavigationItem()
         let style = navigationItemStyle
         navItem.configure(leftButton: leftButton, rightButton: rightButton, tabTitles: titles, style: style)
         navItem.delegate = topBarDelegate
-
         let pageViewController = PageViewController(headerView: headerView,
                                                     backgroundImage: backgroundImage,
                                                     pageDelegate: pageDelegate,
@@ -36,7 +34,6 @@ extension UINavigationController {
                                                     navigationItem: navItem)
         pageViewController.setPages(pages)
         pageViewController.setPageIndex(0, animated: false)
-
         navigationBar.backgroundColor = backgroundColor
         navigationBar.applyDefaultStyle() // Should probably done using UIAppearance
         view.backgroundColor = backgroundColor

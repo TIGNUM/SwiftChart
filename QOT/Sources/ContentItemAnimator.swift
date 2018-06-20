@@ -29,11 +29,19 @@ final class ContentItemAnimator: NSObject {
 
 extension ContentItemAnimator: UIViewControllerTransitioningDelegate {
 
-    func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ContentItemAnimation(isPresenting: true, duration: duration, originFrame: originFrame)
+    func animationController(forPresented presented: UIViewController,
+                             presenting: UIViewController,
+                             source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return ContentItemAnimation(isPresenting: true,
+                                    duration: duration,
+                                    originFrame: originFrame,
+                                    backgroundColor: .nightModeBackground)
     }
 
     func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ContentItemAnimation(isPresenting: false, duration: duration, originFrame: originFrame)
+        return ContentItemAnimation(isPresenting: false,
+                                    duration: duration,
+                                    originFrame: originFrame,
+                                    backgroundColor: .nightModeBackground)
     }
 }

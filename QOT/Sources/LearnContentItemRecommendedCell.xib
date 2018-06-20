@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -51,7 +51,7 @@
                                 <rect key="frame" x="12" y="123.5" width="264" height="174.5"/>
                             </imageView>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="4DW-vo-M1W" firstAttribute="top" secondItem="QPB-Us-7s8" secondAttribute="bottom" constant="8" id="A1y-10-6Xt"/>
                             <constraint firstItem="QPB-Us-7s8" firstAttribute="leading" secondItem="sHr-K9-xld" secondAttribute="leading" constant="12" id="ChA-jd-viA"/>
@@ -76,7 +76,7 @@
                         </connections>
                     </button>
                 </subviews>
-                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="Mzc-81-MRa" firstAttribute="top" secondItem="sHr-K9-xld" secondAttribute="bottom" constant="18" id="18B-2E-ZSp"/>
                     <constraint firstItem="Mzc-81-MRa" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="16" id="22W-aD-HwA"/>
@@ -91,6 +91,7 @@
                     <constraint firstAttribute="trailing" secondItem="HbD-e9-LqD" secondAttribute="trailing" constant="30" id="hcx-U5-338"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="contentTitleLabel" destination="QPB-Us-7s8" id="fho-Sd-D4O"/>
                 <outlet property="finishButton" destination="Mzc-81-MRa" id="Bbr-qC-1Lb"/>

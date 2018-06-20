@@ -16,13 +16,17 @@ class LearnPDFCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var title: UILabel!
     @IBOutlet weak var timeToRead: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        contentView.backgroundColor = .clear
+    }
+
     // MARK: - Methods
 
     func configure(titleText: NSAttributedString, timeToReadSeconds: Int, titleColor: UIColor, timeColor: UIColor) {
         title.attributedText = titleText
         title.textColor = titleColor
         title.lineBreakMode = .byTruncatingTail
-
         let date = Date().addingTimeInterval(TimeInterval(timeToReadSeconds))
         var timeToReadText = ""
         if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {

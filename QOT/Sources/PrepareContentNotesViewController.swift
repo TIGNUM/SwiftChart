@@ -30,19 +30,16 @@ final class PrepareContentNotesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setup()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         keyboardListener.startObserving()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         keyboardListener.stopObserving()
         textView.resignFirstResponder()
     }
@@ -73,24 +70,25 @@ private extension PrepareContentNotesViewController {
     static var textViewAttributes = NSAttributedString.makeAttributes(letterSpacing: 2,
                                                                       font: Font.PText,
                                                                       lineSpacing: 10,
-                                                                      textColor: .black,
+                                                                      textColor: .nightModeBlack,
                                                                       alignment: .left,
                                                                       lineBreakMode: .byWordWrapping)
 
     func setup() {
+        textView.backgroundColor = .clear
+        placeholderTextView.backgroundColor = .clear
+        view.backgroundColor = .nightModeBackground
         let textViewAttributes = PrepareContentNotesViewController.textViewAttributes
         var placeholderAttibutes = textViewAttributes
-        placeholderAttibutes[.foregroundColor] = UIColor.black15
-
+        placeholderAttibutes[.foregroundColor] = UIColor.nightModeBlack15
         automaticallyAdjustsScrollViewInsets = false
         textView.attributedText = NSAttributedString(string: text ?? "", attributes: textViewAttributes)
         textView.contentInset = .zero
-
+        textView.textColor = .nightModeBlack
         placeholderTextView.attributedText = NSAttributedString(string: placeholder ?? R.string.localized.prepareNotesPlaceholder(),
                                                                 attributes: placeholderAttibutes)
         syncPlaceholder()
         syncLayout()
-
         keyboardListener.onStateChange { [weak self] (state) in
             self?.syncLayout()
         }

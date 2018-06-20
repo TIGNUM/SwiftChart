@@ -71,7 +71,6 @@ final class PageViewController: UIPageViewController {
         self.isPaging = false
         self.navItem = navigationItem
         super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
-
         delegate = self
         dataSource = self
 
@@ -97,7 +96,6 @@ final class PageViewController: UIPageViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.addSubview(backgroundImageView)
         view.sendSubview(toBack: backgroundImageView)
         backgroundImageView.verticalAnchors == view.verticalAnchors
@@ -107,7 +105,6 @@ final class PageViewController: UIPageViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         childViewControllers.forEach { (childViewController: UIViewController) in
             if childViewController is PageViewControllerNotSwipeable {
                 dataSource = nil

@@ -81,13 +81,14 @@ final class LearnContentItemCoordinator: ParentCoordinator {
                                                      headerView: headerView,
                                                      topBarDelegate: topBarDelegate ?? self,
                                                      pageDelegate: self,
-                                                     backgroundColor: .white,
+                                                     backgroundColor: .nightModeBackground,
                                                      backgroundImage: nil,
                                                      leftButton: leftButton,
-                                                     navigationItemStyle: .light)
+                                                     navigationItemStyle: Date().isNight ? .dark : .light)
         fullViewController.delegate = self
         bulletViewController.delegate = self
         audioViewController.delegate = self
+        topTabBarController.view.backgroundColor = .nightModeBackground
     }
 
     // FIXME: Add page tracking

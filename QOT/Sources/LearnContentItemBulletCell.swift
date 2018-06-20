@@ -14,16 +14,17 @@ final class LearnContentItemBulletCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var bulletIndicatorLabel: UILabel!
     @IBOutlet private weak var bulletSeperatorView: UIView!
 
-    func setupView(bulletText: String) {
-        let attributedString = NSMutableAttributedString(
-            string: bulletText,
-            font: Font.DPText,
-            lineSpacing: 14,
-            textColor: .blackTwo
-        )
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        contentView.backgroundColor = .clear
+    }
 
-        bulletLabel.attributedText = attributedString
-        bulletIndicatorLabel.textColor = .blackTwo
+    func setupView(bulletText: String) {
+        bulletLabel.attributedText = NSMutableAttributedString(string: bulletText,
+                                                               font: Font.DPText,
+                                                               lineSpacing: 14,
+                                                               textColor: .nightModeBlackTwo)
+        bulletIndicatorLabel.textColor = .nightModeBlackTwo
         bulletSeperatorView.backgroundColor = UIColor.lightGray.withAlphaComponent(0.5)
     }
 }

@@ -9,14 +9,11 @@
 import UIKit
 
 protocol AudioPlayerViewSliderDelegate: class {
-
     func value(at layout: Float, in view: LearnStrategyAudioPlayerView)
 }
 
 protocol AudioPlayerViewLabelDelegate: class {
-
     func startBlinking()
-
     func stopBlinking()
 }
 
@@ -35,7 +32,8 @@ final class LearnStrategyAudioPlayerView: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
         setupView()
     }
 }
@@ -61,6 +59,7 @@ private extension LearnStrategyAudioPlayerView {
     }
 
     private func setupTimerBackground() {
+        timerBackgroundView.backgroundColor = .nightModeBackground
         timerBackgroundView.layer.cornerRadius = 18
         timerBackgroundView.layer.borderWidth = 1
         timerBackgroundView.layer.borderColor = UIColor(red: 151/255, green: 151/255, blue: 151/255, alpha: 1).cgColor
@@ -69,6 +68,8 @@ private extension LearnStrategyAudioPlayerView {
     private func setupLabels() {
         trackDurationLabel.font = UIFont.simpleFont(ofSize: 14)
         currentPositionLabel.font = UIFont.simpleFont(ofSize: 14)
+        trackDurationLabel.textColor = .nightModeBlack
+        currentPositionLabel.textColor = .nightModeBlack
     }
 
     private func setupSlider() {
@@ -86,7 +87,6 @@ private extension LearnStrategyAudioPlayerView {
         UIRectFill(rect)
         let image: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
-
         return image
     }
 }

@@ -67,7 +67,7 @@ extension Date {
     }
 
     var minutesSinceMidnight: Int {
-        let components = Calendar.sharedUTC.dateComponents([.hour, .minute], from: self)
+        let components = Calendar.current.dateComponents([.hour, .minute], from: self)
 
         return 60 * (components.hour ?? 0) + (components.minute ?? 0)
     }
@@ -118,5 +118,9 @@ extension Date {
 
     var timeIntervalToNow: TimeInterval {
         return -timeIntervalSinceNow
+    }
+
+    var isNight: Bool {
+        return minutesSinceMidnight <= 5*60 || minutesSinceMidnight >= 21*60
     }
 }

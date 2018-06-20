@@ -46,7 +46,6 @@ final class LearnContentListViewController: UIViewController {
     init(viewModel: LearnContentCollectionViewModel, selectedCategoryIndex: Index) {
         self.viewModel = viewModel
         self.selectedCategoryIndex = selectedCategoryIndex
-
         super.init(nibName: nil, bundle: nil)
     }
 
