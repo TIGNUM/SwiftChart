@@ -825,10 +825,15 @@ extension AppCoordinator {
         let model = AddSensorViewModel(services: services)
         let addSensorViewController = AddSensorViewController(viewModel: model)
         let navController = UINavigationController(rootViewController: addSensorViewController)
+        let leftBarButton = UIBarButtonItem(image: R.image.ic_close_white(),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(dismissCurrentPresentedControllers))
+        leftBarButton.tintColor = .white
         navController.navigationBar.applyDefaultStyle()
-
+        addSensorViewController.navigationItem.leftBarButtonItem = leftBarButton
         windowManager.showPriority(navController, animated: true, completion: nil)
-        currentPresentedController = navController
+        currentPresentedNavigationController = navController
     }
 
     func presentToBeVision() {
@@ -1032,7 +1037,7 @@ extension AppCoordinator {
         startChild(child: coordinator)
     }
 
-    func dismissCurrentPresentedControllers() {
+    @objc func dismissCurrentPresentedControllers() {
         if let viewController = currentPresentedController {
             dismiss(viewController, level: .priority)
         }
