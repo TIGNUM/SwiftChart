@@ -78,12 +78,12 @@ final class MyUniverseProvider {
             )
         }
         let sectors = [
-            sector(for: .peakPerformance, startAngle: 235, endAngle: 245),
-            sector(for: .intensity, startAngle: 215, endAngle: 225),
+            sector(for: .peakPerformance, startAngle: 230, endAngle: 240),
+            sector(for: .intensity, startAngle: 210, endAngle: 220),
             sector(for: .meetings, startAngle: 185, endAngle: 205),
-            sector(for: .travel, startAngle: 145, endAngle: 175),
-            sector(for: .sleep, startAngle: 125, endAngle: 135),
-            sector(for: .activity, startAngle: 105, endAngle: 115)
+            sector(for: .travel, startAngle: 155, endAngle: 175),
+            sector(for: .sleep, startAngle: 135, endAngle: 145),
+            sector(for: .activity, startAngle: 115, endAngle: 125)
         ]
         return MyUniverseViewData(
             profileImageURL: myToBeVision?.profileImageResource?.url,
