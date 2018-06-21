@@ -163,14 +163,25 @@ extension QuestionsService {
 
     func visionGeneratorChoices(_ question: Question?) -> [VisionGeneratorChoice] {
         guard let question = question else { return [] }
+        let questionType = choiceType(for: question)
         var choices = [VisionGeneratorChoice]()
-        question.answers.forEach { (answer) in
+        for answer in question.answers {
+            if questionType == .home || questionType == .work {
+                guard isValid(answer: answer) == true else { continue }
+            }
             choices.append(VisionGeneratorChoice(title: answer.title,
                                                  type: choiceType(for: question),
                                                  targetID: answer.decisions.first?.targetID,
                                                  target: answer.decisions.first?.target))
         }
         return choices
+    }
+
+    private func isValid(answer: Answer) -> Bool {
+        let predicate = NSPredicate(format: "collectionID == %d", answer.decisions.first?.targetID ?? 0)
+        let contentItems: AnyRealmCollection<ContentItem> = mainRealm.anyCollection(predicates: predicate)
+        let filteredItems = contentItems.filter { $0.searchTags.isEmpty == false && $0.searchTags.contains("GENDER_") }
+        return filteredItems.isEmpty == false
     }
 
     func generateItems(_ messages: [String],

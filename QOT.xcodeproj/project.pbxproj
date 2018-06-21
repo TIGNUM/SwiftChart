@@ -3542,7 +3542,6 @@
 				CBB237EA1E6FFF1200AB5AEF /* Resources */,
 				CBB2380F1E6FFF2700AB5AEF /* Swift Lint */,
 				81E2E98BE745C586EA31F424 /* [CP] Embed Pods Frameworks */,
-				5EB4CCEE8904BC282CD31F04 /* [CP] Copy Pods Resources */,
 				CBC5ACC41F177F0E007E1E9C /* Crashlytics */,
 				3649815620A3427000F5046D /* ShellScript */,
 			);

@@ -169,12 +169,13 @@ private extension VisionGeneratorWorker {
     func createVision() -> String {
         var visionList = [String]()
         let targetIDs = chatViewModel.visionChoiceSelections.compactMap { $0.targetID }
-        targetIDs.forEach { (targetID: Int) in
+        for targetID in targetIDs {
             let contentItems = services.contentService.contentItems(contentCollectionID: targetID)
             let userGender = (services.userService.user()?.gender ?? "NEUTRAL").uppercased()
             let genderQueryNeutral = "GENDER_NEUTRAL"
             let genderQuery = String(format: "GENDER_%@", userGender)
             let filteredItems = Array(contentItems.filter { $0.searchTags.contains(genderQuery) || $0.searchTags.contains(genderQueryNeutral) })
+            guard filteredItems.isEmpty == false else { continue }
             if let randomItemText = filteredItems[filteredItems.randomIndex].valueText {
                 visionList.append(randomItemText)
             }
