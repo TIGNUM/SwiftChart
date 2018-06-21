@@ -230,7 +230,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - GuideDailyPrepTableViewCellDelegate
 
 extension GuideViewController: GuideDailyPrepTableViewCellDelegate {
-	
+
 	func didTapFeedbackButton(for item: Guide.Item) {
 		router?.open(item: item)
 	}

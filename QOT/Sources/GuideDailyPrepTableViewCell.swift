@@ -9,7 +9,6 @@
 import UIKit
 
 protocol GuideDailyPrepTableViewCellDelegate: class {
-	
 	func didTapFeedbackButton(for item: Guide.Item)
 }
 
@@ -47,7 +46,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         typeLabel.attributedText = nil
         feedbackLabel.attributedText = nil
     }
-	
+
     func configure(type: String?,
                    dailyPrepFeedback: String?,
                    dailyPrepItems: [Guide.DailyPrepItem],
@@ -100,10 +99,10 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
     }
-	
-	@IBAction func didTapButton(_ sender: UIButton) {
+
+    @IBAction func didTapButton(_ sender: UIButton) {
 		guard let item = itemTapped else { return }
-		
+
 		delegate?.didTapFeedbackButton(for: item)
 	}
 }
@@ -143,7 +142,7 @@ private extension GuideDailyPrepTableViewCell {
         typeLabel.isHidden = isHidden
         nullStateLabel.isHidden = !isHidden
         receiveFeedbackButton.isHidden = !isHidden
-		
+
         switch status {
         case .todo:
 			return

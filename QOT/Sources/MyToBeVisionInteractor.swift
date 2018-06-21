@@ -36,7 +36,7 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         if headlineEdited.isTrimmedTextEmpty == true {
             return worker.headlinePlaceholder
         }
-        return headlineEdited
+        return headlineEdited.uppercased()
     }
 
     func messagePlaceholderNeeded(messageEdited: String) -> String? {
@@ -48,13 +48,13 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
 
     func saveToBeVision(toBeVision: MyToBeVisionModel.Model) {
         worker.updateMyToBeVision(toBeVision)
+        presenter.updateToBeVision(toBeVision)
     }
 
     func updateToBeVisionImage(image: UIImage, toBeVision: MyToBeVisionModel.Model) {
         do {
             var vision = toBeVision
             vision.imageURL = try worker.saveImage(image)
-            vision.lastUpdated = Date()
             presenter.updateToBeVision(vision)
         } catch {
             presenter.presentImageError(error)

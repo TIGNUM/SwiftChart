@@ -279,7 +279,15 @@ extension OldSettingsViewController: SettingsViewControllerDelegate {
 
     func presentResetPasswordController() {}
 
-    func didTextFieldChanged(at indexPath: IndexPath, text: String) {}
+    func didTextFieldChanged(at indexPath: IndexPath, text: String) {
+        switch indexPath.row {
+        case 1: if text.isEmpty == false { viewModel.updateJobTitle(title: text) }
+        case 3: if text.isPhoneNumber { viewModel.updateTelephone(telephone: text) }
+        default: return
+        }
+
+        self.updateViewModelAndReloadTableView()
+    }
 
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
         guard let key = key else {

@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum WeekDatapoint: Int {
+    case lastWeek = 0
+    case thisWeek = 1
+}
+
 final class MeetingsIncreasingChart: UIView {
 
     private let statistics: Statistics
@@ -101,8 +106,8 @@ private extension MeetingsIncreasingChart {
     }
 
     func setData() {
-        let thisWeekValue = statistics.dataPoints[1].value.toInt
-        let lastWeekValue = statistics.dataPoints[0].value.toInt
+        let thisWeekValue = statistics.dataPoints[WeekDatapoint.thisWeek.rawValue].value.toInt
+        let lastWeekValue = statistics.dataPoints[WeekDatapoint.lastWeek.rawValue].value.toInt
         let differenceValue = statistics.userAverage.toInt
         let percentageColor: UIColor = (thisWeekValue < lastWeekValue || thisWeekValue == lastWeekValue) ? .green : .red
         thisWeekNumberLabel.text = String(thisWeekValue)
