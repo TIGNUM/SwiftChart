@@ -58,9 +58,11 @@ extension SigningProfileDetailWorker {
                                                     if result.error != nil {
                                                         completion?(result.value, result.error)
                                                     } else {
-                                                        self.downSyncUser() { (error) in
+                                                        self.sendLoginRequest(email: self.email,
+                                                                              password: self.password,
+                                                                              completion: { (error) in
                                                             completion?(result.value, error)
-                                                        }
+                                                        })
                                                     }
         }
     }
@@ -78,6 +80,17 @@ extension SigningProfileDetailWorker {
 // MARK: - Private
 
 private extension SigningProfileDetailWorker {
+
+    func sendLoginRequest(email: String, password: String, completion: ((_ error: Error?) -> Void)?) {
+        networkManager.performAuthenticationRequest(username: email.trimmed,
+                                                    password: password.trimmed) { [weak self] (error) in
+                                                        if let error = error {
+                                                            completion?(error)
+                                                        } else {
+                                                            self?.downSyncUser(completion: completion)
+                                                        }
+        }
+    }
 
     func downSyncUser(completion: ((_ error: Error?) -> Void)?) {
         self.syncManager.downSyncUser { (downSyncError) in
