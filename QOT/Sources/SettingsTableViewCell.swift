@@ -162,7 +162,7 @@ private extension SettingsTableViewCell {
     }
 
     func setValue(value: String?, alignment: NSTextAlignment = .right) {
-        guard let value = value else {
+        guard let value = value, settingsType != .logout else {
             valueLabel.text = nil
             return
         }

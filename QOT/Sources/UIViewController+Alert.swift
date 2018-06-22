@@ -43,6 +43,7 @@ enum AlertType {
     case toBeVisionActionSheet
     case partnerIncomplete
     case canNotDeletePartner
+	case logout
 
     var title: String? {
         switch self {
@@ -72,6 +73,7 @@ enum AlertType {
         case .changePermissions: return R.string.localized.alertTitleSettingsChangePermission()
         case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteTitle()
         case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorTitle()
+        case .logout: return R.string.localized.sidebarTitleLogout()
         default: return nil
         }
     }
@@ -103,6 +105,7 @@ enum AlertType {
         case .changePermissions: return R.string.localized.alertMessageSettingsChangePermission()
         case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteMessage()
         case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorMessage()
+        case .logout: return R.string.localized.alertMessageLogout()
         default: return nil
         }
     }
@@ -115,7 +118,8 @@ enum AlertType {
              .imagePicker,
              .changePermissions,
              .toBeVisionActionSheet,
-             .prepareEditStrategy: return R.string.localized.alertButtonTitleCancel()
+             .prepareEditStrategy,
+			 .logout: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
     }
@@ -128,6 +132,7 @@ enum AlertType {
              .changePermissions: return R.string.localized.alertButtonTitleOpenSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
+		case .logout: return R.string.localized.alertButtonTitleCancel()
         default: return R.string.localized.alertButtonTitleOk()
         }
     }
@@ -137,6 +142,7 @@ enum AlertType {
         case .changePermissions: return R.string.localized.alertButtonTitleCancel()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonCamera()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationRemoveStrategy()
+		case .logout: return R.string.localized.sidebarTitleLogout()
         default: return nil
         }
     }
@@ -148,6 +154,7 @@ enum AlertType {
              .settingsCalendars: return [.cancel, .default]
         case .imagePicker,
              .toBeVisionActionSheet: return [.cancel]
+		case .logout: return [.destructive, .default]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
         case .changePermissions: return [.destructive, .default]
         default: return [.default]
@@ -158,7 +165,8 @@ enum AlertType {
         switch self {
         case .imagePicker,
              .prepareEditStrategy,
-             .toBeVisionActionSheet: return .actionSheet
+             .toBeVisionActionSheet,
+			 .logout: return .actionSheet
         default: return .alert
         }
     }

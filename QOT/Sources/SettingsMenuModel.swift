@@ -443,9 +443,9 @@ private func companyRows(for user: User?) -> [SettingsRow] {
 
 private func accountRows(for user: User?) -> [SettingsRow] {
     return [
-        .button(title: "Change password", value: "", settingsType: .password),
-        .label(title: "Log out", value: "", settingsType: .logout)
-    ]
+        .button(title: SettingsType.password.title, value: "", settingsType: .password),
+		.label(title: SettingsType.logout.title, value: "", settingsType: .logout)
+	]
 }
 
 private func personalRows(for user: User?) -> [SettingsRow] {

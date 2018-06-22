@@ -313,17 +313,17 @@ extension ProfileSettingsViewController {
         }, origin: view).show()
     }
 
-    func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
-        ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { [unowned self] (_, index, _) in
-            if indexPath.section == 1 && indexPath.row == 0 {
-                guard var profile = self.profile else { return }
-                profile.gender = items[index]
-                self.interactor?.updateProfile(field: .gender, profile: profile)
-            }
-            }, cancel: { (_) in
-                return
-        }, origin: view).show()
-    }
+	func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
+		ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { [unowned self] (_, index, _) in
+			if indexPath.section == 1 && indexPath.row == 0 {
+				guard var profile = self.profile else { return }
+				profile.gender = items[index]
+				self.interactor?.updateProfile(field: .gender, profile: profile)
+			}
+			}, cancel: { (_) in
+				return
+		}, origin: view).show()
+	}
 
     func updateUserHeightWeight() {
         guard let userMeasurement = pickerItems, var profile = profile else { return }
@@ -398,15 +398,13 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         tableView.deselectRow(at: indexPath, animated: true)
 
         switch settingsViewModel.row(at: indexPath) {
-        case .label(_, _, let settingsType):
-            switch settingsType {
-            case .logout:
-                UIApplication.shared.shortcutItems?.removeAll()
-                NotificationHandler.postNotification(withName: .logoutNotification)
-            default: return
-            }
         case .control,
-             .textField: return
+			 .textField: return
+		case .label:
+			showAlert(type: .logout, handlerDestructive: {
+				UIApplication.shared.shortcutItems?.removeAll()
+				NotificationHandler.postNotification(withName: .logoutNotification)
+			})
         case .datePicker(let title, let selectedDate, _):
             showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
         case .stringPicker(let title, let pickerItems, let selectedIndex, _):
