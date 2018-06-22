@@ -73,9 +73,9 @@ extension VisionGeneratorWorker {
                 let resource = $0.profileImageResource,
                 resource.url == URL.imageDirectory {
                 $0.profileImageResource?.setLocalURL(newImageURL,
-                                                       format: .jpg,
-                                                       entity: .toBeVision,
-                                                       entitiyLocalID: $0.localID)
+                                                     format: .jpg,
+                                                     entity: .toBeVision,
+                                                     entitiyLocalID: $0.localID)
             } else if let remoteURL = old.profileImageResource?.remoteURL, currentVisionModel.imageURL == nil {
                 currentVisionModel.imageURL = remoteURL
             }

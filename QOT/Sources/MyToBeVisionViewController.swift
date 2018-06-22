@@ -67,7 +67,6 @@ final class MyToBeVisionViewController: UIViewController {
                                             self.isEditing = false
                                             self.edit(false)
         }
-
         alertController.addAction(editAction)
         alertController.addAction(generatorAction)
         alertController.addAction(cancelAction)

@@ -245,8 +245,13 @@ extension UIColor {
         return UIColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1)
     }
 
+    /// UIColor(red: 0/255, green: 12/255, blue: 22/255, alpha: 1)
+    class var hasanBlue: UIColor {
+        return UIColor(red: 0/255, green: 12/255, blue: 22/255, alpha: 1)
+    }
+
     class var nightModeBackground: UIColor {
-        return Date().isNight ? .charcoal : .white
+        return Date().isNight ? .hasanBlue : .white
     }
 
     class var nightModeMainFont: UIColor {
