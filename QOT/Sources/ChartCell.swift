@@ -165,7 +165,7 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
 
     func setup(headerTitle: String,
                chartTypes: [ChartType],
-               statistics: Statistics,
+               statistics: Statistics?,
                charts: [Statistics],
                configuration: Configuration,
                fitbitState: User.FitbitState,
@@ -213,7 +213,6 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         labelContentView.removeSubViews()
         chartContentView.removeSubViews()
         chartSegmentedContentView.removeSubViews()
@@ -245,7 +244,6 @@ private extension ChartCell {
         guard let statistics = statistics.chartType.selectedChart(charts: charts) else { return }
         let isLengthMeetingsChart = statistics.key == "meetings.length.week.avg"
         let userAverage = isLengthMeetingsChart == true ? statistics.userAverageInHours : statistics.userAverageDisplayableValue
-
         setLabel(text: "INFO", color: .white40, label: bottomLabel)
         setLabel(text: "MY\nTEAM\nAVG.", color: .white40, label: teamLabel, lineSpacing: 2.5)
         setLabel(text: "DATA\nBASE\nAVG.", color: .white40, label: dataLabel, lineSpacing: 2.5)

@@ -28,7 +28,6 @@ final class MeetingsIncreasingChart: UIView {
     init(frame: CGRect, statistics: Statistics) {
         self.statistics = statistics
         super.init(frame: frame)
-
         setupView()
         setData()
     }
@@ -39,7 +38,6 @@ final class MeetingsIncreasingChart: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         layout()
     }
 }

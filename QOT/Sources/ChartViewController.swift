@@ -10,9 +10,7 @@ import UIKit
 import Anchorage
 
 protocol ChartViewControllerDelegate: class {
-
     func didSelectAddSensor()
-
     func didSelectOpenSettings()
 }
 
@@ -82,9 +80,9 @@ private extension ChartViewController {
     }
 
     func createPageControls() {
-        viewModel.sortedSections.forEach { (sectionType: StatisticsSectionType) in
+        for (index, sectionType) in viewModel.sortedSections.enumerated() {
             let pageControl = PageControl(frame: .zero)
-            pageControl.numberOfPages = sectionType.chartTypes.count
+            pageControl.numberOfPages = viewModel.numberOfItems(in: index)
             pageControl.currentPage = 0
             pageControl.isUserInteractionEnabled = false
             pageControl.size(forNumberOfPages: sectionType.chartTypes.count)

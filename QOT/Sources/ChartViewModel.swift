@@ -46,7 +46,6 @@ final class ChartViewModel {
     static func chartCellSize(frameWidth: CGFloat) -> CGSize {
         let width = frameWidth - ChartViewModel.chartViewPadding
         let height = width * ChartViewModel.chartRatio
-
         return CGSize(width: width, height: height)
     }
 
@@ -63,14 +62,14 @@ final class ChartViewModel {
     }
 
     func numberOfItems(in section: Int) -> Int {
-        return sectionType(in: section).chartTypes.count
+        let sectionKeys = sectionType(in: section).chartTypes.map { $0.map { $0.rawValue } }.map { $0.first }
+        return allCharts.filter { sectionKeys.contains( $0.key ) }.count
     }
 
     func sectionType(in section: Int) -> StatisticsSectionType {
         guard section < sortedSections.count else {
             fatalError("Invalid section type")
         }
-
         return sortedSections[section]
     }
 
@@ -82,10 +81,9 @@ final class ChartViewModel {
         return sectionType(in: section).chartTypes[item][buttonTag]
     }
 
-    func statistics(section: Int, item: Int, buttonTag: Int = 0) -> Statistics {
+    func statistics(section: Int, item: Int, buttonTag: Int = 0) -> Statistics? {
         let cardType = sectionType(in: section).chartTypes[item][buttonTag]
-
-        return allCharts.filter { $0.key == cardType.rawValue }[0]
+        return allCharts.filter { $0.key == cardType.rawValue }.first
     }
 
     func sectionTitle(in section: Int) -> String {
@@ -97,15 +95,15 @@ final class ChartViewModel {
     }
 
     func userAverage(section: Int, item: Int, buttonTag: Int = 0) -> CGFloat {
-        return statistics(section: section, item: item, buttonTag: buttonTag).userAverageValue
+        return statistics(section: section, item: item, buttonTag: buttonTag)?.userAverageValue ?? 0
     }
 
     func teamAverage(section: Int, item: Int, buttonTag: Int = 0) -> CGFloat {
-        return statistics(section: section, item: item, buttonTag: buttonTag).teamAverageValue
+        return statistics(section: section, item: item, buttonTag: buttonTag)?.teamAverageValue ?? 0
     }
 
     func dataAverage(section: Int, item: Int, buttonTag: Int = 0) -> CGFloat {
-        return statistics(section: section, item: item, buttonTag: buttonTag).dataAverageValue
+        return statistics(section: section, item: item, buttonTag: buttonTag)?.dataAverageValue ?? 0
     }
 }
 
@@ -115,14 +113,12 @@ private extension ChartViewModel {
 
     func sortCharts(startingSection: StatisticsSectionType) {
         var criticalSectionTypes = [StatisticsSectionType: CGFloat]()
-
         StatisticsSectionType.allValues.forEach { (sectionType: StatisticsSectionType) in
             let universeValue = (sectionType.universeChartTypes.compactMap {
                 $0.statistics(allCharts)?.universeValue
             }).reduce(0, +)
             criticalSectionTypes[sectionType] = universeValue
         }
-
         sortedSections = criticalSectionTypes.sorted { $0.value > $1.value }.compactMap { $0.key }
         sortedSections.remove(object: startingSection)
         sortedSections.insert(startingSection, at: 0)

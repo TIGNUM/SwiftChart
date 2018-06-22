@@ -22,9 +22,7 @@ final class MeetingsLengthChart: UIView {
     init(frame: CGRect, statistics: Statistics, labelContentView: UIView) {
         self.statistics = statistics
         self.labelContentView = labelContentView
-
         super.init(frame: frame)
-
         setupView()
         drawCharts()
         drawTodayValueLabel()
@@ -90,7 +88,6 @@ private extension MeetingsLengthChart {
 
     func setupView() {
         addAverageLines()
-
         let maxValue = (statistics.maximum / 60).rounded(.up).toFloat
         let delta = maxValue / 5
         addCaptionLabel(yPos: yPosition(1/5), text: "\(Int(delta*1))")
@@ -105,7 +102,7 @@ private extension MeetingsLengthChart {
             let yPos = yPosition(dataPoint.percentageValue)
             drawCapRoundLine(xPos: xPos,
                              startYPos: bottomPosition,
-                             endYPos: yPos,
+                             endYPos: yPos > 0 ? yPos : 0,
                              strokeColor: dataPoint.color,
                              hasShadow: hasShadow(dataPoint))
         }
@@ -123,7 +120,6 @@ private extension MeetingsLengthChart {
             todayIndex = currentDay - 2
         }
         guard todayIndex < statistics.dataPointObjects.count else { return }
-
         let dataPoint = statistics.dataPointObjects[todayIndex]
         let xPos = xPosition(todayIndex)
         let yPos = yPosition(dataPoint.percentageValue)
@@ -153,7 +149,6 @@ private extension Int {
         let hours: Int = mins / 60
         let timeIndicator = hours < 1 ? "min" : "h"
         let time = (hours == 0) ? String(mins).suffix(2) : String(hours) + ":" + String(mins).suffix(2)
-
         return time + timeIndicator
     }
 }

@@ -3780,24 +3780,6 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5EB4CCEE8904BC282CD31F04 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
-				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}/HockeySDKResources.bundle",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		81E2E98BE745C586EA31F424 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -4044,7 +4026,6 @@
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				91CC8E842063DE11005A7D17 /* BadgeManager.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
-				CB55A2DF1E9FDF0A00D721CE /* SettingsMenuViewController.swift in Sources */,
 				366AFD0C20BD9F9300109F29 /* SigningEmailPresenter.swift in Sources */,
 				CB3437721F00ED3200D89D4F /* RealmObserver.swift in Sources */,
 				914A5E1B207FB33200092121 /* SettingsBubblesRouter.swift in Sources */,
