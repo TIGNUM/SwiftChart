@@ -394,31 +394,33 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         return footer
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-
-        switch settingsViewModel.row(at: indexPath) {
-        case .control,
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		tableView.deselectRow(at: indexPath, animated: true)
+		
+		switch settingsViewModel.row(at: indexPath) {
+		case .control,
 			 .textField: return
-		case .label:
-			showAlert(type: .logout, handlerDestructive: {
-				UIApplication.shared.shortcutItems?.removeAll()
-				NotificationHandler.postNotification(withName: .logoutNotification)
-			})
-        case .datePicker(let title, let selectedDate, _):
-            showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
-        case .stringPicker(let title, let pickerItems, let selectedIndex, _):
-            showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
-        case .multipleStringPicker(let title, let rows, let initialSelection, _):
-            showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
-        case .button(_, _, let settingsType):
-            switch settingsType {
-            case .password:
-                presentResetPasswordController()
-            default: return
-            }
-        }
-    }
+		case .label(_, _, let settingsType):
+			if settingsType == .logout {
+				showAlert(type: .logout, handlerDestructive: {
+					UIApplication.shared.shortcutItems?.removeAll()
+					NotificationHandler.postNotification(withName: .logoutNotification)
+				})
+			}
+		case .datePicker(let title, let selectedDate, _):
+			showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
+		case .stringPicker(let title, let pickerItems, let selectedIndex, _):
+			showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
+		case .multipleStringPicker(let title, let rows, let initialSelection, _):
+			showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
+		case .button(_, _, let settingsType):
+			switch settingsType {
+			case .password:
+				presentResetPasswordController()
+			default: return
+			}
+		}
+	}
 }
 
 extension ProfileSettingsViewController: ResetPasswordViewControllerDelegate {
