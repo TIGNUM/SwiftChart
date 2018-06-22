@@ -97,7 +97,6 @@ final class MyToBeVisionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         interactor?.viewDidLoad()
         setupView()
         syncEditingViews(true)
@@ -114,13 +113,11 @@ final class MyToBeVisionViewController: UIViewController {
     @available(iOS 11.0, *)
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-
         resizeTextViewsHeight()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         maskImage()
         resizeTextViewsHeight()
         fadeContainerView.setFade(top: safeAreaInsets.top + 30, bottom: 0)
@@ -128,7 +125,6 @@ final class MyToBeVisionViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         syncEditingViews(true)
         UIApplication.shared.statusBarStyle = .lightContent
         navItem.title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
@@ -136,7 +132,6 @@ final class MyToBeVisionViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         headlineTextView.resignFirstResponder()
         messageTextView.resignFirstResponder()
         if isBeingDismissed == true {
@@ -209,11 +204,9 @@ extension MyToBeVisionViewController {
         headlineTextView.textContainer.lineFragmentPadding = 0
         headlineTextView.autocapitalizationType = .allCharacters
         headlineTextView.textContainer.lineBreakMode = .byTruncatingTail
-
         messageTextView.alpha = 1
         messageTextView.textContainer.lineFragmentPadding = 0
         messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 10.0, right: 0.0)
-
         let textViewPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: nil)
         messageTextView.addGestureRecognizer(textViewPanGestureRecognizer)
         textViewPanGestureRecognizer.delegate = self
@@ -248,7 +241,6 @@ extension MyToBeVisionViewController {
     func syncInstructionsButton() {
         headlineTextView.text = interactor?.headlinePlaceholderNeeded(headlineEdited: headlineTextView.text)
         messageTextView.text = interactor?.messagePlaceholderNeeded(messageEdited: messageTextView.text)
-
         let messageIsPlaceholder = interactor?.messageEqualsPlaceholder(message: messageTextView.text)
         tbvGeneratorButton.isHidden = isEditing || messageIsPlaceholder == false
     }
@@ -283,12 +275,10 @@ private extension MyToBeVisionViewController {
         imageMask.shadowRadius = 2
         imageMask.path = imagePath.cgPath
         imageView.layer.mask = imageMask
-
         let placeholderPath = UIBezierPath.circlePath(center: imageContainerView.bounds.center, radius: 115)
         let placeholderMask = CAShapeLayer()
         placeholderMask.path = placeholderPath.cgPath
         imageViewPlaceholder.layer.mask = placeholderMask
-
         let borderPath = UIBezierPath.circlePath(center: imageContainerView.bounds.center, radius: 115.5)
         imageBorder.fillColor = UIColor.clear.cgColor
         imageBorder.strokeColor = UIColor.white.cgColor
@@ -419,7 +409,6 @@ private extension MyToBeVisionViewController {
         leftButton.target = self
         leftButton.action = leftButtonSelector
         navItem.leftBarButtonItem = leftButton
-
         let rightButton = UIBarButtonItem()
         let rightButtonImage = isEditing == true ? nil : R.image.ic_edit()
         let rightButtonText = isEditing == true ? "Save" : nil
@@ -521,7 +510,6 @@ extension MyToBeVisionViewController: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         guard let toBeVision = toBeVision else { return }
-
         interactor?.updateToBeVisionImage(image: image, toBeVision: toBeVision)
     }
 }
@@ -532,7 +520,6 @@ private extension MyToBeVisionModel.Model {
 
     var formattedHeadline: NSAttributedString? {
         guard let headLine = headLine else { return nil }
-
         return NSAttributedString(string: headLine.uppercased(),
                                   letterSpacing: 2,
                                   font: Font.H1MainTitle,
@@ -552,7 +539,6 @@ private extension MyToBeVisionModel.Model {
 
     var formattedVision: NSAttributedString? {
         guard let text = text else { return nil }
-
         return NSAttributedString(string: text,
                                   letterSpacing: -0.4,
                                   font: Font.DPText,
@@ -582,11 +568,9 @@ private extension MyToBeVisionViewController {
         guard
             let userInfo = notification.userInfo,
             let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-
         let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
         contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
         scrollViewBottomConstraint.constant = isKeyboardShowing ? contentInset.bottom : 0
-
         UIView.animate(withDuration: 0, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)

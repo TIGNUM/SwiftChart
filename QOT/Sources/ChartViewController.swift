@@ -163,7 +163,6 @@ extension ChartViewController: ChartViewControllerDelegate {
     }
 
     func didSelectOpenSettings() {
-
         UIApplication.openAppSettings()
     }
 }
@@ -208,7 +207,6 @@ private extension UIScrollView {
     var currentSection: Int {
         guard bounds.size.height > 0 else { return 0 }
         let section = Int(round(contentOffset.y / (bounds.size.height * 0.75)))
-
         return section >= 0 ? section : 0
     }
 }

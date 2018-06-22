@@ -78,6 +78,12 @@ extension VisionGeneratorWorker {
                                                      entitiyLocalID: $0.localID)
             } else if let remoteURL = old.profileImageResource?.remoteURL, currentVisionModel.imageURL == nil {
                 currentVisionModel.imageURL = remoteURL
+            } else if
+                let currentImageURL = currentVisionModel.imageURL {
+                $0.profileImageResource?.setLocalURL(currentImageURL,
+                                                     format: .jpg,
+                                                     entity: .toBeVision,
+                                                     entitiyLocalID: $0.localID)
             }
         }
         visionModel = currentVisionModel

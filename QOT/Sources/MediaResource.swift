@@ -12,14 +12,12 @@ import Freddy
 final class MediaResource: Object {
 
     enum Entity: String {
-
         case partner = "QOTPARTNER"
         case toBeVision = "TOBEVISION"
         case user = "USER"
     }
 
     enum Format: String {
-
         case png = "PNG"
         case jpg = "JPG"
     }
