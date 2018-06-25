@@ -11,29 +11,19 @@ import UIKit
 import Anchorage
 
 protocol NavigationItemDelegate: class {
-
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem)
-
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int)
-
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem)
 }
 
 final class NavigationItem: UINavigationItem {
 
     struct Style {
-
         let tabFont: UIFont
         let defaultColor: UIColor
         let selectedColor: UIColor
-
-        static var dark = Style(tabFont: Font.H5SecondaryHeadline,
-                                defaultColor: .gray,
-                                selectedColor: .white)
-
-        static var light = Style(tabFont: Font.H5SecondaryHeadline,
-                                 defaultColor: .black40,
-                                 selectedColor: .black)
+        static var dark = Style(tabFont: Font.H5SecondaryHeadline, defaultColor: .gray, selectedColor: .white)
+        static var light = Style(tabFont: Font.H5SecondaryHeadline, defaultColor: .black40, selectedColor: .black)
     }
 
     private lazy var tabMenuView: TabMenuView = {
@@ -48,21 +38,21 @@ final class NavigationItem: UINavigationItem {
     }()
 
     weak var delegate: NavigationItemDelegate?
+    private var tabTitles = [String]()
 
     func configure(leftButton: UIBarButtonItem?,
                    rightButton: UIBarButtonItem?,
                    tabTitles: [String],
                    style: Style) {
+        self.tabTitles = tabTitles
         tabMenuView.setTitles(tabTitles)
         tabMenuView.setStyle(style)
         let tabMenuSize = CGSize(width: tabMenuView.intrinsicContentSize.width, height: 44)
         tabMenuView.frame = CGRect(origin: .zero, size: tabMenuSize) // We need set the size for iOS 10
-
         leftButton?.tintColor = style.defaultColor
         leftButton?.target = self
         leftButton?.action = #selector(didTapLeftButton(_:))
         leftBarButtonItem = leftButton
-
         rightButton?.tintColor = style.defaultColor
         rightButton?.target = self
         rightButton?.action = #selector(didTapRightButton(_:))
@@ -82,6 +72,31 @@ final class NavigationItem: UINavigationItem {
         tabMenuView.setBadge(index: index, hidden: hidden)
     }
 
+    func hideTabMenuView() {
+        UIView.animate(withDuration: Animation.duration) { [weak self] in
+            self?.tabMenuView.alpha = 0
+            self?.tabMenuView.buttons.forEach { $0.setTitleColor(.clear, for: .normal) }
+            self?.tabMenuView.indicatorView.alpha = 0
+            self?.leftBarButtonItem?.tintColor = .clear
+            self?.rightBarButtonItem?.tintColor = .clear
+        }
+    }
+
+    func showTabMenuView() {
+        UIView.animate(withDuration: Animation.duration) { [weak self] in
+            self?.tabMenuView.alpha = 1
+            self?.tabMenuView.syncAppearance()
+            self?.tabMenuView.indicatorView.alpha = 1
+            self?.leftBarButtonItem?.tintColor = self?.tabMenuView.style.defaultColor
+            self?.rightBarButtonItem?.tintColor = self?.tabMenuView.style.defaultColor
+        }
+    }
+}
+
+// MARK: - Actions
+
+extension NavigationItem {
+
     @objc private func didTapLeftButton(_ sender: UIBarButtonItem) {
         delegate?.navigationItem(self, leftButtonPressed: sender)
     }
@@ -95,14 +110,12 @@ private class TabMenuView: UIView {
 
     private let minFontScale: CGFloat = 0.5
     private let spacing: CGFloat = 15
-    private let indicatorView = UIView()
-
     private(set) var buttons: [UIButton] = []
     private(set) var badges: [Int: Badge] = [:]
     private(set) var style: NavigationItem.Style = .dark
     private(set) var selectedIndex: Int?
     private(set) var titles: [String] = []
-
+    let indicatorView = UIView()
     var didSelectTabAtIndex: ((TabMenuView, Int) -> Void)?
 
     override var intrinsicContentSize: CGSize {
@@ -118,7 +131,6 @@ private class TabMenuView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         layoutButtons()
         layoutBadges()
         layoutIndicatorView(animated: false)
@@ -126,7 +138,6 @@ private class TabMenuView: UIView {
 
     func setStyle(_ style: NavigationItem.Style) {
         self.style = style
-
         syncAppearance()
         layoutButtons()
         layoutIndicatorView(animated: false)
@@ -144,7 +155,6 @@ private class TabMenuView: UIView {
 
     func setSelectedIndex(_ index: Int, animated: Bool) {
         guard index >= 0, index < buttons.count else { return }
-
         selectedIndex = index
         syncAppearance()
         layoutIndicatorView(animated: animated)
@@ -170,7 +180,7 @@ private class TabMenuView: UIView {
         }
     }
 
-    private func syncAppearance() {
+    func syncAppearance() {
         if indicatorView.superview == nil {
             addSubview(indicatorView)
         }
@@ -224,7 +234,6 @@ private class TabMenuView: UIView {
         let descriptor = style.tabFont.fontDescriptor
         let maxFontSize = descriptor.pointSize
         let minFontSize = maxFontSize * minFontScale
-
         for fontSize in stride(from: maxFontSize, to: minFontSize, by: -1.0 as CGFloat) {
             let font = UIFont(descriptor: descriptor, size: fontSize)
             let sizes = buttonSizes(titles: titles, font: font)
@@ -236,7 +245,6 @@ private class TabMenuView: UIView {
                 return (font, frames)
             }
         }
-
         let sizes = buttonSizes(titles: titles, font: style.tabFont)
         let frames = buttonFrames(buttonSizes: sizes, spacing: spacing, origin: .zero, height: bounds.height)
         return (style.tabFont, frames)
@@ -253,7 +261,6 @@ private class TabMenuView: UIView {
     private func layoutBadges() {
         for (index, badge) in badges {
             guard index < buttons.count, let label = buttons[index].titleLabel else { continue }
-
             let button = buttons[index]
             button.setNeedsLayout()
             button.layoutIfNeeded()
@@ -266,11 +273,9 @@ private class TabMenuView: UIView {
 
     private func layoutIndicatorView(animated: Bool) {
         guard let selectedIndex = selectedIndex else { return }
-
         let buttonFrame = buttons[selectedIndex].frame
         let indicatorFrame = CGRect(x: buttonFrame.minX, y: bounds.height - 1, width: buttonFrame.width, height: 1)
         let duration: TimeInterval = animated == true ? 0.3 : 0
-
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
             self.indicatorView.frame = indicatorFrame
         })

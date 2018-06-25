@@ -128,21 +128,23 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
         reload()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         UIApplication.shared.statusBarStyle = .lightContent
         reload()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        navItem.hideTabMenuView()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         setupScrollViewContent()
         updateAlphaValues()
         contentView.setupMyData(for: viewData.sectors)
@@ -172,6 +174,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 private extension MyUniverseViewController {
 
     func reload() {
+        navItem.showTabMenuView()
         isLoading = viewData.isLoading
         contentView.profileButton.kf.setBackgroundImage(
             with: viewData.profileImageURL,

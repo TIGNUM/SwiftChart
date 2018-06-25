@@ -127,6 +127,10 @@ final class MyToBeVisionViewController: UIViewController {
         super.viewDidAppear(animated)
         syncEditingViews(true)
         UIApplication.shared.statusBarStyle = .lightContent
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         navItem.title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
     }
 
@@ -137,6 +141,7 @@ final class MyToBeVisionViewController: UIViewController {
         if isBeingDismissed == true {
             edit(false)
         }
+        navItem.hideTabMenuView()
     }
 }
 
@@ -188,15 +193,11 @@ extension MyToBeVisionViewController {
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
         }
-        setupNavigation()
+        syncNavigationButtons(false)
         setupInstructionsButton()
         setupTextViews()
         drawCircles()
         setupImage()
-    }
-
-    func setupNavigation() {
-        syncNavigationButtons(false)
     }
 
     func setupTextViews() {
@@ -206,7 +207,7 @@ extension MyToBeVisionViewController {
         headlineTextView.textContainer.lineBreakMode = .byTruncatingTail
         messageTextView.alpha = 1
         messageTextView.textContainer.lineFragmentPadding = 0
-        messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 10.0, right: 0.0)
+        messageTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 10, right: 0)
         let textViewPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: nil)
         messageTextView.addGestureRecognizer(textViewPanGestureRecognizer)
         textViewPanGestureRecognizer.delegate = self
