@@ -416,6 +416,7 @@
 "signing.digit.check.subtitle" = "An email has been sent to\n\%@\n\nEnter the 4-digit code to continue.";
 "signing.digit.check.bottomButtonTitle" = "Verify";
 "signing.digit.check.button.title.resend.code" = "Retry sending verification code?";
+"signing.digit.check.error" = "Incorrect code, please try again";
 
 "signing.country.title" = "COUNTRY OF RESIDENCE";
 "signing.country.subtitle" = "Which country do you live in? We use this to protect your data.";

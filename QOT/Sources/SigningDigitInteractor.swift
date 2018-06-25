@@ -54,8 +54,12 @@ extension SigningDigitInteractor: SigningDigitInteractorInterface {
     }
 
     func verify(code: String) {
-        worker.verify(code: code) { [weak self] (check: UserRegistrationCheck?) in
+        if code.isEmpty == true || code.count < 4 {
+            presenter.reload(errorMessage: R.string.localized.signingDigitCheckError(), buttonActive: false)
+        } else {
+            worker.verify(code: code) { [weak self] (check: UserRegistrationCheck?) in
             self?.handleResponse(check: check, email: self?.worker.email)
+            }
         }
     }
 }
@@ -66,7 +70,7 @@ private extension SigningDigitInteractor {
 
     func handleResponse(check: UserRegistrationCheck?, email: String?) {
         guard let check = check, let email = email else {
-            presenter.reload(errorMessage: "Your verification code is invalid", buttonActive: false)
+            presenter.reload(errorMessage: R.string.localized.signingDigitCheckError(), buttonActive: false)
             return
         }
 
