@@ -91,7 +91,7 @@ final class ProfileSettingsWorker {
             let user = user,
             let old = profile()?.imageURL,
             old != new else { return }
-
+        
         if old != new && new.baseURL == URL.imageDirectory {
             services.userService.updateUser(user: user) { (user) in
                 user.userImage?.setLocalURL(new, format: .jpg, entity: .user, entitiyLocalID: user.localID)

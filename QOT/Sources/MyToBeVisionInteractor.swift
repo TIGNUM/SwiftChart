@@ -46,18 +46,14 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         return messageEdited
     }
 
-    func saveToBeVision(toBeVision: MyToBeVisionModel.Model) {
-        worker.updateMyToBeVision(toBeVision)
-        presenter.updateToBeVision(toBeVision)
-    }
-
-    func updateToBeVisionImage(image: UIImage, toBeVision: MyToBeVisionModel.Model) {
+    func saveToBeVision(image: UIImage, toBeVision: MyToBeVisionModel.Model) {
         do {
             var vision = toBeVision
             vision.imageURL = try worker.saveImage(image)
+            worker.updateMyToBeVision(vision)
             presenter.updateToBeVision(vision)
         } catch {
-            presenter.presentImageError(error)
+            log(error.localizedDescription)
         }
     }
 

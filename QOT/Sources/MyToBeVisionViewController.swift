@@ -25,10 +25,10 @@ final class MyToBeVisionViewController: UIViewController {
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var tbvGeneratorButton: UIButton!
     @IBOutlet private weak var fadeContainerView: FadeContainerView!
-    @IBOutlet private weak var scrollViewContentHeight: NSLayoutConstraint!
+	@IBOutlet private weak var textViewsContainer: UIView!
+	@IBOutlet private weak var containerHeight: NSLayoutConstraint!
     @IBOutlet private weak var headlineStatementTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var messageStatementTopConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var scrollViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var headlineEditingStatementLabel: UILabel!
     @IBOutlet private weak var messageEditingStatementLabel: UILabel!
     @IBOutlet private weak var headlineEditingSeparatorView: UIView!
@@ -36,13 +36,11 @@ final class MyToBeVisionViewController: UIViewController {
     private var contentInset = UIEdgeInsets()
     private let imageBorder = CAShapeLayer()
     private let navItem = NavigationItem(title: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
-    private var initialImage = UIImage()
     private var imagePickerController: ImagePickerController!
     private var imageRecognizer: UITapGestureRecognizer!
     private var toBeVision: MyToBeVisionModel.Model?
     private var imageTapRecognizer = UITapGestureRecognizer()
     private var avPlayerObserver: AVPlayerObserver?
-    private var imageIsHidden = false
     private var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] = [:]
     var interactor: MyToBeVisionInteractor?
     var router: MyToBeVisionRouter?
@@ -120,6 +118,7 @@ final class MyToBeVisionViewController: UIViewController {
         super.viewDidLayoutSubviews()
         maskImage()
         resizeTextViewsHeight()
+		updateContainerHeight()
         fadeContainerView.setFade(top: safeAreaInsets.top + 30, bottom: 0)
     }
 
@@ -179,10 +178,6 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
             toBeVisionDidUpdate()
         }
     }
-
-    func displayImageError() {
-        showAlert(type: .canNotUploadPhoto)
-    }
 }
 
 // MARK: - Setup
@@ -208,10 +203,7 @@ extension MyToBeVisionViewController {
         headlineTextView.textContainer.lineBreakMode = .byTruncatingTail
         messageTextView.alpha = 1
         messageTextView.textContainer.lineFragmentPadding = 0
-        messageTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 10, right: 0)
-        let textViewPanGestureRecognizer = UIPanGestureRecognizer(target: self, action: nil)
-        messageTextView.addGestureRecognizer(textViewPanGestureRecognizer)
-        textViewPanGestureRecognizer.delegate = self
+        messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 10.0, right: 0.0)
         syncTextViews()
     }
 
@@ -223,7 +215,6 @@ extension MyToBeVisionViewController {
 
     func setupImage() {
         imageContainerView.addGestureRecognizer(imageTapRecognizer)
-        if let image = imageView.image { initialImage = image }
     }
 
     func resizeTextViewsHeight() {
@@ -241,7 +232,14 @@ extension MyToBeVisionViewController {
     }
 
     func syncInstructionsButton() {
-        headlineTextView.text = interactor?.headlinePlaceholderNeeded(headlineEdited: headlineTextView.text)
+        if isEditing == true {
+            headlineTextView.attributedText = interactor?
+                .headlinePlaceholderNeeded(headlineEdited: headlineTextView.text)?
+                .formattedHeadlineEditingMode
+        } else {
+            headlineTextView.text = interactor?.headlinePlaceholderNeeded(headlineEdited: headlineTextView.text)
+        }
+
         messageTextView.text = interactor?.messagePlaceholderNeeded(messageEdited: messageTextView.text)
         let messageIsPlaceholder = interactor?.messageEqualsPlaceholder(message: messageTextView.text)
         tbvGeneratorButton.isHidden = isEditing || messageIsPlaceholder == false
@@ -288,6 +286,14 @@ private extension MyToBeVisionViewController {
         imageBorder.opacity = 0.55
         imageBorder.path = borderPath.cgPath
     }
+
+	func updateContainerHeight() {
+		var height: CGFloat = 0
+		for view in textViewsContainer.subviews {
+			height += view.frame.height
+		}
+		containerHeight.constant = height + 60
+	}
 }
 
 // MARK: - Actions
@@ -343,8 +349,7 @@ private extension MyToBeVisionViewController {
     }
 
     func saveToBeVisison() {
-        guard var toBeVision = toBeVision else { return }
-
+        guard var toBeVision = toBeVision, let image = imageView.image else { return }
         let currentDate = Date()
         if toBeVision.headLine != headlineTextView.text {
             toBeVision.headLine = headlineTextView.text
@@ -354,7 +359,7 @@ private extension MyToBeVisionViewController {
         }
 
         toBeVision.lastUpdated = currentDate
-        interactor?.saveToBeVision(toBeVision: toBeVision)
+        interactor?.saveToBeVision(image: image, toBeVision: toBeVision)
     }
 
     func edit(_ isEditing: Bool) {
@@ -364,7 +369,6 @@ private extension MyToBeVisionViewController {
         imageView.isUserInteractionEnabled = isEditing
         headlineTextView.textContainer.maximumNumberOfLines = isEditing ? 1 : 0
         headlineTextView.textContainer.lineBreakMode = isEditing ? .byTruncatingHead : .byWordWrapping
-        messageTextView.isScrollEnabled = isEditing
         syncImageControls(animated: isEditing)
         syncNavigationButtons(isEditing)
         syncInstructionsButton()
@@ -377,21 +381,16 @@ private extension MyToBeVisionViewController {
     @objc func saveEdit() {
         guard let toBeVision = toBeVision else { return }
 
-        edit(false)
         subtitleLabel.attributedText = toBeVision.formattedSubtitle
+        edit(false)
         saveToBeVisison()
         scrollToTop()
     }
 
     @objc func cancelEdit() {
         edit(false)
-        if let toBeVision = toBeVision {
-            let initialImageIsEmpty = (initialImage.ciImage == nil || initialImage.cgImage == nil)
-            let image = initialImageIsEmpty ? R.image.universeMytobevision() : initialImage
-            imageView.image = image
-            interactor?.updateToBeVisionImage(image: initialImage, toBeVision: toBeVision)
-        }
         scrollToTop()
+        toBeVisionDidUpdate()
     }
 
     func scrollToTop() {
@@ -511,8 +510,7 @@ extension MyToBeVisionViewController: ImagePickerControllerDelegate {
     }
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
-        guard let toBeVision = toBeVision else { return }
-        interactor?.updateToBeVisionImage(image: image, toBeVision: toBeVision)
+        imageView.image = image
     }
 }
 
@@ -571,20 +569,11 @@ private extension MyToBeVisionViewController {
             let userInfo = notification.userInfo,
             let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
-        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: keyboardFrame.height, right: 0)
-        scrollViewBottomConstraint.constant = isKeyboardShowing ? contentInset.bottom : 0
+        let height = isKeyboardShowing ? keyboardFrame.height + 60 : 0
+        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
+        scrollView.contentInset = contentInset
         UIView.animate(withDuration: 0, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
-    }
-}
-
-// MARK: - GestureRecognizerDelegate
-
-extension MyToBeVisionViewController: UIGestureRecognizerDelegate {
-
-    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
-                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
-        return true
     }
 }

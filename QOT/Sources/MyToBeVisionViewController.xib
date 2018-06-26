@@ -22,6 +22,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyToBeVisionViewController" customModule="QOT" customModuleProvider="target">
             <connections>
                 <outlet property="MessageEditingSeparatorView" destination="Bog-ZF-6HV" id="vXq-dI-i3L"/>
+                <outlet property="containerHeight" destination="gxm-mB-dk0" id="Q2B-jr-4OS"/>
                 <outlet property="editIconImageView" destination="f32-Ev-McI" id="axO-U2-GWX"/>
                 <outlet property="editImageLabel" destination="usl-he-brQ" id="drq-kF-a1y"/>
                 <outlet property="fadeContainerView" destination="fhs-xD-0nf" id="JDC-ES-KLE"/>
@@ -38,10 +39,9 @@
                 <outlet property="messageStatementTopConstraint" destination="thq-wJ-V4Q" id="g8F-Ed-h4t"/>
                 <outlet property="messageTextView" destination="HYG-f5-Phv" id="hwV-p1-UNr"/>
                 <outlet property="scrollView" destination="uD0-d0-kIf" id="HL6-6n-fcm"/>
-                <outlet property="scrollViewBottomConstraint" destination="csP-8V-nHg" id="nBr-15-9We"/>
-                <outlet property="scrollViewContentHeight" destination="Rg0-QZ-oGM" id="Rgs-se-Iab"/>
                 <outlet property="subtitleLabel" destination="3Lt-fd-bdx" id="TvC-tj-f6W"/>
                 <outlet property="tbvGeneratorButton" destination="6p5-sN-5bd" id="XCX-WR-LHV"/>
+                <outlet property="textViewsContainer" destination="tCL-zM-DF7" id="uIT-At-1QZ"/>
                 <outlet property="view" destination="iN0-l3-epB" id="QvS-N9-vPB"/>
             </connections>
         </placeholder>
@@ -62,7 +62,7 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JQh-vj-gsy" userLabel="Image Container">
                                     <rect key="frame" x="0.0" y="40" width="375" height="230"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EfY-KJ-VgG">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EfY-KJ-VgG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
                                             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
@@ -141,7 +141,7 @@
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="This is my to be vision." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HYG-f5-Phv" userLabel="Message">
+                                        <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="This is my to be vision." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HYG-f5-Phv" userLabel="Message">
                                             <rect key="frame" x="24" y="186" width="327" height="50"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

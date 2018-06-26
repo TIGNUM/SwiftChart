@@ -11,20 +11,17 @@ import UIKit
 protocol MyToBeVisionViewControllerInterface: class {
     func setup(with toBeVision: MyToBeVisionModel.Model)
     func update(with toBeVision: MyToBeVisionModel.Model)
-    func displayImageError()
     func showVisionGenerator()
 }
 
 protocol MyToBeVisionPresenterInterface {
     func loadToBeVision(_ toBeVision: MyToBeVisionModel.Model)
     func updateToBeVision(_ toBeVision: MyToBeVisionModel.Model)
-    func presentImageError(_ error: Error)
     func presentVisionGenerator()
 }
 
 protocol MyToBeVisionInteractorInterface: Interactor {
-    func saveToBeVision(toBeVision: MyToBeVisionModel.Model)
-    func updateToBeVisionImage(image: UIImage, toBeVision: MyToBeVisionModel.Model)
+    func saveToBeVision(image: UIImage, toBeVision: MyToBeVisionModel.Model)
     func makeVisionGeneratorAndPresent()
 
     // FIXME: Think of better way of handling page tracking in VIP

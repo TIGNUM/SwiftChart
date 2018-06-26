@@ -54,7 +54,9 @@ final class VisionGeneratorWorker {
     }
 
     private var headlinePlaceholder: String? {
-        if services.userService.myToBeVision()?.headline == nil {
+		let currentHeadline = services.userService.myToBeVision()?.headline
+		let initialHeadlinePlaceholder = services.contentService.toBeVisionHeadlinePlaceholder()
+        if currentHeadline == nil || currentHeadline == initialHeadlinePlaceholder {
             return services.contentService.toBeVisionToolingHeadlinePlaceholder()?.uppercased()
         }
         return services.userService.myToBeVision()?.headline?.uppercased()

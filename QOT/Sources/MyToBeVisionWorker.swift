@@ -45,11 +45,10 @@ final class MyToBeVisionWorker {
             $0.headline = new.headLine
             $0.text = new.text
             $0.date = new.lastUpdated
-            if let newImageURL = new.imageURL,
-                let resource = $0.profileImageResource,
-                resource.url != newImageURL,
-                newImageURL.isFileURL {
-                $0.profileImageResource?.setLocalURL(newImageURL,
+            if let imageURL = new.imageURL,
+                imageURL != $0.profileImageResource?.url,
+                imageURL.baseURL == URL.imageDirectory {
+                $0.profileImageResource?.setLocalURL(imageURL,
                                                      format: .jpg,
                                                      entity: .toBeVision,
                                                      entitiyLocalID: $0.localID)
