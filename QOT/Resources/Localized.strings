@@ -121,6 +121,9 @@
 "Me.Sector.My.Why.Partners.Photo.Error.Title" = "Error";
 "Me.Sector.My.Why.Partners.Photo.Error.Message" = "There was a problem updating your profile image. Please try again";
 "Me.Sector.My.Why.Partners.Photo.Error.OK.Button" = "OK";
+"Me.Sector.My.Why.Partners.Cell.Empty.State" = "Share QOT progress with your circle of three.";
+"Me.Sector.My.Why.Partners.Cell.Add.Partner" = "Add partner";
+"Me.Sector.My.Why.Partners.Cell.Share.Content" = "Share content";
 "Me.Sector.My.Statistics.Personal.Average.Default" = "PERSONAL\nAVG.";
 "Me.Sector.My.Statistics.Personal.Average.Sleep.Quality" = "Your Average Sleep Score";
 "Me.Sector.My.Statistics.Personal.Average.Sleep.Quantity" = "Average Number of Hours You Sleep";

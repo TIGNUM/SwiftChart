@@ -69,14 +69,14 @@ private extension PartnersOverviewCollectionViewCell {
         addPartnerLabel.isHidden = true
         nameLabel.isHidden = false
         partnerExist = true
-        let attributedButtonTitle = NSAttributedString(string: "Share content",
+        let attributedButtonTitle = NSAttributedString(string: R.string.localized.meSectorMyWhyPartnersCellShareContent(),
                                                        letterSpacing: 1,
                                                        font: .bentonBookFont(ofSize: 16),
                                                        textColor: .white90,
                                                        alignment: .center)
         let attributedName = NSAttributedString(string: name,
                                                 letterSpacing: -1.1,
-                                                font: .simpleFont(ofSize: 24),
+                                                font: .simpleFont(ofSize: 20),
                                                 lineSpacing: 2,
                                                 textColor: .white,
                                                 alignment: .left)
@@ -109,12 +109,12 @@ private extension PartnersOverviewCollectionViewCell {
         relationshipLabel.isHidden = true
         addPartnerLabel.isHidden = false
         initialsLabel.isHidden = true
-        let attributedButtonTitle = NSAttributedString(string: "Add partner",
+        let attributedButtonTitle = NSAttributedString(string: R.string.localized.meSectorMyWhyPartnersCellAddPartner(),
                                                        letterSpacing: 1,
                                                        font: .bentonBookFont(ofSize: 16),
                                                        textColor: .white90,
                                                        alignment: .center)
-        let addPartnerText = NSAttributedString(string: "Adding a partner and being held accountable to your goals increases the chances of achieving your goals by 32%.",
+        let addPartnerText = NSAttributedString(string: R.string.localized.meSectorMyWhyPartnersCellEmptyState(),
                                                 letterSpacing: 0,
                                                 font: .bentonBookFont(ofSize: 14),
                                                 lineSpacing: 2,

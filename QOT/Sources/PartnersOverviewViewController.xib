@@ -39,14 +39,14 @@
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundMyToBeVision" translatesAutoresizingMaskIntoConstraints="NO" id="S3n-zb-4gI">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="When you share your progress on QOT, you increases your chances of positive change by 32%." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9s-xA-NiW">
-                    <rect key="frame" x="24" y="108" width="327" height="95.5"/>
-                    <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Building your support structure is key to bringing your To Be Vision to life. Share QOT progress with your circle of three." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e9s-xA-NiW">
+                    <rect key="frame" x="24" y="60" width="327" height="107.5"/>
+                    <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="18"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="VjO-gE-fPi">
-                    <rect key="frame" x="0.0" y="243.5" width="375" height="383.5"/>
+                    <rect key="frame" x="0.0" y="191.5" width="375" height="435.5"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="25" minimumInteritemSpacing="25" id="sP6-w9-sHM">
                         <size key="itemSize" width="215" height="383"/>
@@ -124,16 +124,16 @@
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="ZTD-8X-fNt" firstAttribute="bottom" secondItem="VjO-gE-fPi" secondAttribute="bottom" constant="40" id="43x-bb-XS8"/>
-                <constraint firstItem="e9s-xA-NiW" firstAttribute="top" secondItem="Qxo-So-Ive" secondAttribute="top" constant="108" id="4Q9-z4-7dH"/>
                 <constraint firstItem="lN8-Ed-8RV" firstAttribute="centerX" secondItem="ZTD-8X-fNt" secondAttribute="centerX" id="9Ea-M7-UYB"/>
                 <constraint firstItem="VjO-gE-fPi" firstAttribute="trailing" secondItem="ZTD-8X-fNt" secondAttribute="trailing" id="9eS-h0-MJE"/>
                 <constraint firstItem="S3n-zb-4gI" firstAttribute="top" secondItem="Qxo-So-Ive" secondAttribute="top" id="EG7-6L-Mvf"/>
+                <constraint firstItem="e9s-xA-NiW" firstAttribute="top" secondItem="ZTD-8X-fNt" secondAttribute="top" constant="40" id="Jne-FS-cBp"/>
                 <constraint firstAttribute="trailing" secondItem="e9s-xA-NiW" secondAttribute="trailing" constant="24" id="PPC-Vj-bzm"/>
                 <constraint firstItem="lN8-Ed-8RV" firstAttribute="height" secondItem="Qxo-So-Ive" secondAttribute="height" id="RTr-Zk-SLF"/>
                 <constraint firstItem="lN8-Ed-8RV" firstAttribute="width" secondItem="Qxo-So-Ive" secondAttribute="width" id="W74-fB-SNe"/>
                 <constraint firstItem="e9s-xA-NiW" firstAttribute="leading" secondItem="ZTD-8X-fNt" secondAttribute="leading" constant="24" id="YLi-Xx-IjK"/>
                 <constraint firstAttribute="bottom" secondItem="S3n-zb-4gI" secondAttribute="bottom" id="bKR-xt-kJ5"/>
-                <constraint firstItem="VjO-gE-fPi" firstAttribute="top" secondItem="e9s-xA-NiW" secondAttribute="bottom" constant="40" id="hBX-SF-Qtj"/>
+                <constraint firstItem="VjO-gE-fPi" firstAttribute="top" secondItem="e9s-xA-NiW" secondAttribute="bottom" constant="24" id="hBX-SF-Qtj"/>
                 <constraint firstItem="lN8-Ed-8RV" firstAttribute="centerY" secondItem="ZTD-8X-fNt" secondAttribute="centerY" id="jD7-rO-Vql"/>
                 <constraint firstItem="S3n-zb-4gI" firstAttribute="leading" secondItem="Qxo-So-Ive" secondAttribute="leading" id="ohs-7f-Ewy"/>
                 <constraint firstAttribute="trailing" secondItem="S3n-zb-4gI" secondAttribute="trailing" id="sN3-ii-QbF"/>

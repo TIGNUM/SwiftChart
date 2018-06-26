@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -32,13 +31,13 @@
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cOX-ob-16S" userLabel="TopContentView">
-                        <rect key="frame" x="0.0" y="0.0" width="215" height="216.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="215" height="193.5"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_user" translatesAutoresizingMaskIntoConstraints="NO" id="nYM-5t-hGm">
-                                <rect key="frame" x="0.0" y="0.0" width="215" height="216.5"/>
+                                <rect key="frame" x="0.0" y="0.0" width="215" height="193.5"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eaz-Ks-7Ob">
-                                <rect key="frame" x="8" y="192.5" width="16" height="16"/>
+                                <rect key="frame" x="8" y="169.5" width="16" height="16"/>
                                 <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="16" id="OKq-f6-YF8"/>
@@ -46,7 +45,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFt-RX-EdQ">
-                                <rect key="frame" x="107" y="109" width="0.0" height="0.0"/>
+                                <rect key="frame" x="107" y="97.5" width="0.0" height="0.0"/>
                                 <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="36"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
@@ -65,29 +64,29 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r6c-eO-Drg" userLabel="Divider">
-                        <rect key="frame" x="0.0" y="216.5" width="215" height="0.0"/>
+                        <rect key="frame" x="0.0" y="193.5" width="215" height="0.0"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" id="FQJ-ny-1U3"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JkD-XK-7UZ" userLabel="BottomContentView">
-                        <rect key="frame" x="0.0" y="216.5" width="215" height="170.5"/>
+                        <rect key="frame" x="0.0" y="193.5" width="215" height="193.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gilbert Ruiz" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9sU-m3-0dJ">
-                                <rect key="frame" x="16" y="24" width="183" height="29"/>
-                                <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
+                                <rect key="frame" x="16" y="16" width="183" height="24"/>
+                                <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BROTHER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CKx-ds-UgF">
-                                <rect key="frame" x="16" y="61" width="183" height="10.5"/>
+                                <rect key="frame" x="16" y="48" width="183" height="10.5"/>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
                                 <color key="textColor" white="1" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="t0s-mN-6rK">
-                                <rect key="frame" x="16" y="118.5" width="182" height="40"/>
+                                <rect key="frame" x="16" y="141.5" width="182" height="40"/>
                                 <color key="backgroundColor" red="0.0" green="0.58431372550000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="udB-Z2-zmh"/>
@@ -101,7 +100,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="T9q-H3-xKv">
-                                <rect key="frame" x="16" y="24" width="183" height="86.5"/>
+                                <rect key="frame" x="16" y="24" width="183" height="109.5"/>
                                 <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="0.90000000000000002" colorSpace="custom" customColorSpace="displayP3"/>
                                 <nil key="highlightedColor"/>
@@ -109,14 +108,12 @@
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="9sU-m3-0dJ" firstAttribute="top" secondItem="JkD-XK-7UZ" secondAttribute="top" constant="24" id="7o6-LS-DYP"/>
+                            <constraint firstItem="9sU-m3-0dJ" firstAttribute="top" secondItem="JkD-XK-7UZ" secondAttribute="top" constant="16" id="7o6-LS-DYP"/>
                             <constraint firstAttribute="trailing" secondItem="CKx-ds-UgF" secondAttribute="trailing" constant="16" id="8jK-9Z-ZKJ"/>
                             <constraint firstAttribute="trailing" secondItem="9sU-m3-0dJ" secondAttribute="trailing" constant="16" id="CMd-K5-146"/>
                             <constraint firstItem="t0s-mN-6rK" firstAttribute="centerX" secondItem="JkD-XK-7UZ" secondAttribute="centerX" id="GGZ-BV-Vah"/>
                             <constraint firstItem="CKx-ds-UgF" firstAttribute="leading" secondItem="JkD-XK-7UZ" secondAttribute="leading" constant="16" id="Gk9-CD-WWh"/>
-                            <constraint firstItem="t0s-mN-6rK" firstAttribute="top" relation="lessThanOrEqual" secondItem="CKx-ds-UgF" secondAttribute="bottom" constant="47" id="Mbh-15-0BU"/>
                             <constraint firstItem="t0s-mN-6rK" firstAttribute="top" secondItem="T9q-H3-xKv" secondAttribute="bottom" constant="8" id="P9B-zU-2Sc"/>
-                            <constraint firstItem="t0s-mN-6rK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="CKx-ds-UgF" secondAttribute="bottom" constant="8" id="R70-53-Mnw"/>
                             <constraint firstItem="t0s-mN-6rK" firstAttribute="leading" secondItem="JkD-XK-7UZ" secondAttribute="leading" constant="16" id="Z0p-G4-rzB"/>
                             <constraint firstAttribute="bottom" secondItem="t0s-mN-6rK" secondAttribute="bottom" constant="12" id="cX5-C3-Odj"/>
                             <constraint firstItem="T9q-H3-xKv" firstAttribute="top" secondItem="JkD-XK-7UZ" secondAttribute="top" constant="24" id="hI3-f8-8U5"/>
@@ -133,7 +130,7 @@
                 <constraint firstItem="r6c-eO-Drg" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="4xp-bB-k4t"/>
                 <constraint firstAttribute="trailing" secondItem="cOX-ob-16S" secondAttribute="trailing" id="69u-xh-GOT"/>
                 <constraint firstItem="r6c-eO-Drg" firstAttribute="top" secondItem="cOX-ob-16S" secondAttribute="bottom" id="9gd-hQ-Blc"/>
-                <constraint firstItem="r6c-eO-Drg" firstAttribute="centerY" relation="lessThanOrEqual" secondItem="gTV-IL-0wX" secondAttribute="centerY" multiplier="1.12" id="BrB-FB-8tU"/>
+                <constraint firstItem="r6c-eO-Drg" firstAttribute="centerY" secondItem="gTV-IL-0wX" secondAttribute="centerY" id="BrB-FB-8tU"/>
                 <constraint firstItem="cOX-ob-16S" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="EZN-Hd-3Ty"/>
                 <constraint firstItem="JkD-XK-7UZ" firstAttribute="top" secondItem="r6c-eO-Drg" secondAttribute="bottom" id="Hrd-kG-ZZi"/>
                 <constraint firstAttribute="trailing" secondItem="r6c-eO-Drg" secondAttribute="trailing" id="Ops-EH-c4g"/>
