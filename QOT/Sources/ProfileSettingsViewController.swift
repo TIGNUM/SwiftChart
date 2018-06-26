@@ -396,16 +396,15 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		tableView.deselectRow(at: indexPath, animated: true)
-		
 		switch settingsViewModel.row(at: indexPath) {
 		case .control,
 			 .textField: return
 		case .label(_, _, let settingsType):
 			if settingsType == .logout {
-				showAlert(type: .logout, handlerDestructive: {
-					UIApplication.shared.shortcutItems?.removeAll()
-					NotificationHandler.postNotification(withName: .logoutNotification)
-				})
+                showAlert(type: .logout, handlerDestructive: {
+                    UIApplication.shared.shortcutItems?.removeAll()
+                    NotificationHandler.postNotification(withName: .logoutNotification)
+                })
 			}
 		case .datePicker(let title, let selectedDate, _):
 			showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
