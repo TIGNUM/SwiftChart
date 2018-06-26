@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina5_5" orientation="portrait">
+    <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -38,23 +38,23 @@
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+            <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundStrategies" translatesAutoresizingMaskIntoConstraints="NO" id="5T6-gY-vul">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                 </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYc-mN-T6i" userLabel="topContentView">
-                    <rect key="frame" x="16" y="60" width="382" height="120"/>
+                    <rect key="frame" x="16" y="84" width="343" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER CODE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XE-MC-K9F">
-                            <rect key="frame" x="0.0" y="0.0" width="382" height="29"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An email has been sent to  schriette.henweiker@megatignum.com  Enter the 4-digit code to continue." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eY-P8-apY">
-                            <rect key="frame" x="0.0" y="37" width="382" height="61"/>
+                            <rect key="frame" x="0.0" y="37" width="343" height="61"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -72,16 +72,16 @@
                     </constraints>
                 </view>
                 <view alpha="0.89999997615814209" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iqD-oe-mCk" userLabel="formView">
-                    <rect key="frame" x="0.0" y="318" width="414" height="100"/>
+                    <rect key="frame" x="0.0" y="356" width="375" height="100"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2tL-V1-fmj">
-                            <rect key="frame" x="8" y="0.0" width="398" height="21"/>
+                            <rect key="frame" x="8" y="0.0" width="359" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOA-Am-aND" userLabel="firstDigitLine">
-                            <rect key="frame" x="87.333333333333329" y="91" width="47.999999999999986" height="1"/>
+                            <rect key="frame" x="68" y="91" width="48" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="CBh-dj-ny8"/>
@@ -89,7 +89,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1bC-eD-bKM" userLabel="firstDigitTextField">
-                            <rect key="frame" x="87.333333333333329" y="33" width="47.999999999999986" height="56"/>
+                            <rect key="frame" x="68" y="33" width="48" height="56"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="60g-uX-x8v"/>
@@ -103,7 +103,7 @@
                             </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGg-VD-NLB" userLabel="secondDigitLine">
-                            <rect key="frame" x="151.33333333333334" y="91" width="48" height="1"/>
+                            <rect key="frame" x="132" y="91" width="48" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="DVD-jz-Ql1"/>
@@ -111,7 +111,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P8W-Sl-idb" userLabel="secondDigitTextField">
-                            <rect key="frame" x="151.33333333333334" y="33" width="48" height="56"/>
+                            <rect key="frame" x="132" y="33" width="48" height="56"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="Pko-vA-hJQ"/>
@@ -125,14 +125,14 @@
                             </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbB-5O-mP8" userLabel="centerDivider">
-                            <rect key="frame" x="207.33333333333334" y="0.0" width="0.0" height="100"/>
+                            <rect key="frame" x="188" y="0.0" width="0.0" height="100"/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.96954255710000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" id="TEz-Wd-OUR"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtS-Uv-h2B" userLabel="thirdDigitLine">
-                            <rect key="frame" x="215.33333333333334" y="91" width="48.000000000000028" height="1"/>
+                            <rect key="frame" x="196" y="91" width="48" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="nkj-Dg-ULF"/>
@@ -140,7 +140,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MxV-qd-Nna" userLabel="thirdDigitTextField">
-                            <rect key="frame" x="215.33333333333334" y="35" width="48.000000000000028" height="54"/>
+                            <rect key="frame" x="196" y="35" width="48" height="54"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="54" id="nGa-3x-jqF"/>
@@ -154,7 +154,7 @@
                             </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZk-mt-sWK" userLabel="fourthDigitLine">
-                            <rect key="frame" x="279.33333333333331" y="91" width="48" height="1"/>
+                            <rect key="frame" x="260" y="91" width="48" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="ToR-2j-mgG"/>
@@ -162,7 +162,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="flw-52-Oe8" userLabel="fourthDigitTextField">
-                            <rect key="frame" x="279.33333333333331" y="33" width="48" height="56"/>
+                            <rect key="frame" x="260" y="33" width="48" height="56"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="AYS-Xg-CZ3"/>
@@ -208,7 +208,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="L3b-bz-4V2">
-                    <rect key="frame" x="16" y="644" width="382" height="44"/>
+                    <rect key="frame" x="16" y="686" width="343" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="he4-yY-OXc"/>
                     </constraints>
@@ -218,7 +218,7 @@
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LB6-ZC-aBM">
-                    <rect key="frame" x="16" y="434" width="382" height="44"/>
+                    <rect key="frame" x="16" y="472" width="343" height="44"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="44" id="M7k-hg-iCn"/>
                     </constraints>

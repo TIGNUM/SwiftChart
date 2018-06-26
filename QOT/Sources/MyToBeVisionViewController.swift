@@ -127,6 +127,7 @@ final class MyToBeVisionViewController: UIViewController {
         super.viewDidAppear(animated)
         syncEditingViews(true)
         UIApplication.shared.statusBarStyle = .lightContent
+        navItem.showTabMenuView(titles: [R.string.localized.meSectorMyWhyVisionTitle().uppercased()])
     }
 
     override func viewDidAppear(_ animated: Bool) {

@@ -82,7 +82,8 @@ final class NavigationItem: UINavigationItem {
         }
     }
 
-    func showTabMenuView() {
+    func showTabMenuView(titles: [String]) {
+        tabMenuView.setTitles(titles)
         UIView.animate(withDuration: Animation.duration) { [weak self] in
             self?.tabMenuView.alpha = 1
             self?.tabMenuView.syncAppearance()

@@ -174,7 +174,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 private extension MyUniverseViewController {
 
     func reload() {
-        navItem.showTabMenuView()
+        navItem.showTabMenuView(titles: config.pages.map { $0.pageTitle })
         isLoading = viewData.isLoading
         contentView.profileButton.kf.setBackgroundImage(
             with: viewData.profileImageURL,
