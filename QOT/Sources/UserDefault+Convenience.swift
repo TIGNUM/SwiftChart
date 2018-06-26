@@ -22,6 +22,14 @@ extension UserDefault {
         return [.calendarDictionary, .whatsHotListLastViewed]
     }
 
+    static func objectsToClearOnNewRegistration() -> [UserDefault] {
+        return [.calendarDictionary,
+                .newGuideItem,
+                .lastInstaledAppVersion,
+                .hasShownOnbordingSlideShowInAppBuild,
+                .whatsHotListLastViewed]
+    }
+
     var boolValue: Bool {
         return UserDefaults.standard.bool(forKey: self.rawValue)
     }
@@ -63,8 +71,14 @@ extension UserDefault {
         UserDefaults.standard.synchronize()
     }
 
-    static func clearAllData() {
+    static func clearAllDataLogOut() {
         self.objectsToClearOnLogout().forEach { (userDefault) in
+            userDefault.clearObject()
+        }
+    }
+
+    static func clearAllDataRegistration() {
+        self.objectsToClearOnNewRegistration().forEach { (userDefault) in
             userDefault.clearObject()
         }
     }

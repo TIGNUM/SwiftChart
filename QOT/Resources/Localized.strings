@@ -289,8 +289,6 @@
 "Alert.Button.Title.Create.Vision" = "Create a new To Be Vision";
 "Alert.Message.Email.Not.Setup" = "Email is not setup on your device";
 "Alert.Message.Logout" = "Are you sure you would like to logout of QOT?";
-
-
 "Alert.Title.Settings.ChangePermission" = "Change Permission";
 "Alert.Message.Settings.ChangePermission" = "Go to Settings to change your permissions.";
 
@@ -425,6 +423,15 @@
 "signing.country.subtitle" = "Which country do you live in? We use this to protect your data.";
 "signing.country.bottomButtonTitle" = "Next";
 
+"signing.password.title" = "CREATE A PASSWORD";
+"signing.password.subtitle" = "Set your password to access Tignum QOT";
+"signing.password.bottomButtonTitle" = "Create password";
+"signing.password.error" = "Password is not secure enough, please review guidelines below";
+"signing.password.hint.character" = "• Eight characters minimum";
+"signing.password.hint.uppercase" = "• One uppercase character";
+"signing.password.hint.special" = "• One special character";
+
+
 "signing.profile.title" = "PROFILE DETAILS";
 "signing.profile.subtitle" = "We use your email to securly verify your account and to protect all data you share with us.";
 "signing.profile.bottomButtonTitle" = "Create account";
@@ -440,3 +447,10 @@
 "shortcut.item.title.library" = "Tools";
 "shortcut.item.title.me.universe" = "Review My Data";
 "shortcut.item.title.prepare" = "Prepare for an event";
+
+"gender.title" = "Gender";
+"gender.female" = "Female";
+"gender.male" = "Male";
+"gender.other" = "Female";
+"gender.prefer.not.to.say" = "Prefer not to say";
+"birthdate.title" = "Birthdate";

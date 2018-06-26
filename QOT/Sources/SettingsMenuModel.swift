@@ -215,17 +215,17 @@ enum SettingsType: Int {
 }
 
 enum Gender: String {
-    case female
-    case male
-    case neutral
-    case unknown
+    case female = "FEMALE"
+    case male = "MALE"
+    case other = "OTHER"
+    case preferNotToSay = "PREFER NOT TO SAY"
 
     static var allValues: [Gender] {
         return [
             .female,
             .male,
-            .neutral,
-            .unknown
+            .other,
+            .preferNotToSay
         ]
     }
 

@@ -163,7 +163,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func setupBugLife() {
-        if AppCoordinator.appState.services.userService.user()?.email.contains("@tignum.com") == true {
+        guard authenticator.hasLoginCredentials() else { return }
+        if AppCoordinator.appState.services.userService.user()?.email.lowercased().contains("@tignum.com") == true {
             Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
             Buglife.shared().delegate = AppDelegate.current
             Buglife.shared().invocationOptions = [.shake]
@@ -371,7 +372,8 @@ extension AppCoordinator {
     func logout() {
         permissionsManager.reset()
         credentialsManager.clear()
-        UserDefault.clearAllData()
+        setupBugLife()
+        UserDefault.clearAllDataLogOut()
         environment.dynamicBaseURL = nil
         do {
             syncManager.stop()

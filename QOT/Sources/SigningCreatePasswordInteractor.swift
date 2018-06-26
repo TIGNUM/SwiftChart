@@ -54,7 +54,7 @@ extension SigningCreatePasswordInteractor: SigningCreatePasswordInteractorInterf
             presenter.hideErrorMessage()
             router.showCountryView(email: worker.email, code: worker.code, password: worker.password)
         } else {
-            presenter.reload(errorMessage: "Setting the password security level higher.", buttonActive: false)
+            presenter.reload(errorMessage: R.string.localized.signingPasswordError(), buttonActive: false)
         }
     }
 }

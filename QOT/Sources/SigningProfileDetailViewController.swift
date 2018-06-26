@@ -42,6 +42,13 @@ final class SigningProfileDetailViewController: SigningAbstractViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
+
+    @objc func didSelectDateOfBirth(_ date: Date) {
+        let dateOfBirth = DateFormatter.settingsUser.string(from: date)
+        self.interactor?.updateWorkerValue(for: .dateOfBirth(dateOfBirth))
+        self.dateOfBirthFormView?.configure(formType: .dateOfBirth(dateOfBirth))
+        self.endEditing()
+    }
 }
 
 // MARK: - Private
@@ -101,12 +108,15 @@ private extension SigningProfileDetailViewController {
 
     @IBAction func didTabGenderField() {
         endEditing()
-        showStringPicker(title: "Gender", items: ["FEMALE", "MALE", "OTHER", "PREFER NOT TO SAY"])
+        showStringPicker(title: R.string.localized.genderTitle(), items: [Gender.female.rawValue,
+                                                                          Gender.male.rawValue,
+                                                                          Gender.other.rawValue,
+                                                                          Gender.preferNotToSay.rawValue])
     }
 
     @IBAction func didTabDateOfBirthField() {
         endEditing()
-        showDatePicker(title: "Birthdate", selectedDate: Date().twentyOneYearsAgo)
+        showDatePicker(title: R.string.localized.birthdateTitle())
     }
 
     @IBAction func didTabCheckBox() {
@@ -190,21 +200,13 @@ extension SigningProfileDetailViewController: FormViewDelegate {
 
 private extension SigningProfileDetailViewController {
 
-    func showDatePicker(title: String, selectedDate: Date) {
-        ActionSheetDatePicker(title: title,
-                              datePickerMode: .date,
-                              selectedDate: selectedDate,
-                              doneBlock: { [unowned self] (_, value, _) in
-                                if let date = value as? Date {
-                                    let dateOfBirth = DateFormatter.settingsUser.string(from: date)
-                                    self.interactor?.updateWorkerValue(for: .dateOfBirth(dateOfBirth))
-                                    self.dateOfBirthFormView?.configure(formType: .dateOfBirth(dateOfBirth))
-                                    self.endEditing()
-                                }
-            }, cancel: { [unowned self] _ in
-                self.endEditing()
-                return
-        }, origin: view).show()
+    func showDatePicker(title: String) {
+        ActionSheetDatePicker.show(withTitle: title,
+                                   datePickerMode: .date,
+                                   selectedDate: Date().twentyOneYearsAgo,
+                                   minimumDate: Date().minimumDateOfBirth,
+                                   maximumDate: Date().maximumDateOfBirth,
+                                   target: self, action: #selector(didSelectDateOfBirth(_:)), origin: view)
     }
 
     func showStringPicker(title: String, items: [String]) {

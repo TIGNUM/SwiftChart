@@ -135,7 +135,7 @@ private extension SigningProfileDetailInteractor {
 
     func handleResponse(registrationCheck: UserRegistrationCheck?, error: Error?) {
         guard let registrationCheck = registrationCheck else {
-            router.handleError(error)            
+            router.handleError(error)
             return
         }
 
@@ -157,6 +157,7 @@ private extension SigningProfileDetailInteractor {
                 ).hide(animated: true, afterDelay: 3)
         }
         LoginCoordinator.add3DTouchShortcuts()
+        UserDefault.clearAllDataRegistration()
         AppDelegate.current.appCoordinator.didLogin()
     }
 

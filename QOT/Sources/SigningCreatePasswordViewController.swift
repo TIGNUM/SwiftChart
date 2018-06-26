@@ -64,9 +64,9 @@ private extension SigningCreatePasswordViewController {
     }
 
     func setupPasswordInfoLabels() {
-        passwordInfoCharacterLabel.attributedText = attributedString("• Eight characters minimum")
-        passwordInfoUppercaseLabel.attributedText = attributedString("• One uppercase character")
-        passwordInfoSpecialCharacterLabel.attributedText = attributedString("• One special character")
+        passwordInfoCharacterLabel.attributedText = attributedString(R.string.localized.signingPasswordHintCharacter())
+        passwordInfoUppercaseLabel.attributedText = attributedString(R.string.localized.signingPasswordHintUppercase())
+        passwordInfoSpecialCharacterLabel.attributedText = attributedString(R.string.localized.signingPasswordHintSpecial())
     }
 
     func attributedString(_ string: String) -> NSMutableAttributedString {
@@ -122,9 +122,9 @@ extension SigningCreatePasswordViewController: SigningCreatePasswordViewControll
     func setup() {
         hideSubviews(isHidden: true)
         passwordInfoContentView.isHidden = true
-        setupView(title: "CREATE A PASSWORD",
-                  subtitle: "Set your password to access Tignum QOT",
-                  bottomButtonTitle: "Create password")
+        setupView(title: R.string.localized.signingPasswordTitle(),
+                  subtitle: R.string.localized.signingPasswordSubtitle(),
+                  bottomButtonTitle: R.string.localized.signingPasswordBottomButtonTitle())
         setupFormView()
         setupPasswordInfoLabels()
         handleOverlayView()

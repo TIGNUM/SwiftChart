@@ -32,6 +32,14 @@ extension Date {
         return Calendar.sharedUTC.date(byAdding: .year, value: -21, to: self) ?? self
     }
 
+    var minimumDateOfBirth: Date {
+        return Calendar.sharedUTC.date(byAdding: .year, value: -130, to: self) ?? self
+    }
+
+    var maximumDateOfBirth: Date {
+        return Calendar.sharedUTC.date(byAdding: .year, value: -16, to: self) ?? self
+    }
+
     var startOfDay: Date {
         return Calendar.sharedUTC.startOfDay(for: self)
     }
