@@ -278,6 +278,7 @@ extension ProfileSettingsViewController {
         UIView.animate(withDuration: 0.6) {
             self.pickerViewHeight?.constant = 0
         }
+        tableView.isUserInteractionEnabled = true
     }
 
     func showPickerView() {
@@ -287,6 +288,7 @@ extension ProfileSettingsViewController {
             self.pickerView.selectRow(self.pickerInitialSelection[0], inComponent: 0, animated: false)
             self.pickerView.selectRow(self.pickerInitialSelection[1], inComponent: 1, animated: false)
         })
+        tableView.isUserInteractionEnabled = false
     }
 
     func showMultiplePicker(title: String, rows: UserMeasurement, initialSelection: [Index], indexPath: IndexPath) {
