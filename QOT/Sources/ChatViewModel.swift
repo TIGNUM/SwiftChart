@@ -43,6 +43,7 @@ struct ChatItem<T: ChatChoice>: Equatable {
     let footer: String?
     let isAutoscrollSnapable: Bool
     let allowsMultipleSelection: Bool
+    let pushDelay: TimeInterval
 
     init(type: ChatItemType<T>,
          chatType: ChatType,
@@ -51,7 +52,8 @@ struct ChatItem<T: ChatChoice>: Equatable {
          header: String? = nil,
          showFooter: Bool,
          isAutoscrollSnapable: Bool = false,
-         allowsMultipleSelection: Bool = false) {
+         allowsMultipleSelection: Bool = false,
+         pushDelay: TimeInterval = 0) {
         self.type = type
         self.chatType = chatType
         self.alignment = alignment
@@ -60,6 +62,7 @@ struct ChatItem<T: ChatChoice>: Equatable {
         self.footer = Footer.delivered(showFooter)
         self.isAutoscrollSnapable = isAutoscrollSnapable
         self.allowsMultipleSelection = allowsMultipleSelection
+        self.pushDelay = pushDelay
     }
 
     var isMessage: Bool {

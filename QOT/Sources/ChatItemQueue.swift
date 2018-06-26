@@ -46,12 +46,18 @@ final class ChatItemQueue<T: ChatChoice> {
         if shouldPop == true {
             popFirst()
         } else {
-            let timeInterval = item.timestamp.timeIntervalSince(Date())
-            if timeInterval < 0 {
-                popFirst()
+            if item.pushDelay == 0 {
+                let timeInterval = item.timestamp.timeIntervalSince(Date())
+                if timeInterval < 0 {
+                    popFirst()
+                } else {
+                    timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { [weak self] (_) in
+                        self?.popFirst()
+                    }
+                }
             } else {
-                timer = Timer.scheduledTimer(withTimeInterval: timeInterval, repeats: false) { [unowned self] (_) in
-                    self.popFirst()
+                timer = Timer.scheduledTimer(withTimeInterval: item.pushDelay, repeats: false) { [weak self] (_) in
+                    self?.popFirst()
                 }
             }
         }

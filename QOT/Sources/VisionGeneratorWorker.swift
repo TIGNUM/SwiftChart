@@ -21,6 +21,8 @@ final class VisionGeneratorWorker {
     private var currentVisionModel: MyToBeVisionModel.Model?
     private let allChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]]
     private var didLoadLastQuestion = false
+    private let createVisionPresentDelay = DispatchTimeInterval.seconds(1)
+    private let readingVisionPresentDelay = DispatchTimeInterval.seconds(10)
 
     init(services: Services,
          networkManager: NetworkManager,
@@ -120,7 +122,7 @@ extension VisionGeneratorWorker {
         if currentQuestionType == .review {
             didLoadLastQuestion = true
         }
-        chatViewModel.appendItems(items, shouldPop: currentQuestionType == .work || currentQuestionType == .home)
+        chatViewModel.appendItems(items)
     }
 
     func updateViewModel(for questionType: VisionGeneratorChoice.QuestionType) {
@@ -157,16 +159,15 @@ private extension VisionGeneratorWorker {
                                                                includeFooter: false,
                                                                isAutoscrollSnapable: true,
                                                                questionType: questionType)])
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 5) {
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + createVisionPresentDelay) {
             self.updateViewModel(with: [self.questionService.messageChatItem(text: self.createVision(),
                                                                              date: Date(),
                                                                              includeFooter: false,
                                                                              isAutoscrollSnapable: false,
                                                                              questionType: questionType)])
         }
-
         if let nextQuestion = questionService.visionQuestion(for: questionType.nextType) {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 20) {
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + readingVisionPresentDelay) {
                 self.updateViewModel(with: self.questionService.chatItems(for: nextQuestion))
             }
         }

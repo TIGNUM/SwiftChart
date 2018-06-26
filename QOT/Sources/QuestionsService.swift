@@ -228,7 +228,8 @@ extension QuestionsService {
                                                alignment: .right,
                                                timestamp: date,
                                                showFooter: includeFooter,
-                                               allowsMultipleSelection: choiceType.multiSelection)
+                                               allowsMultipleSelection: choiceType.multiSelection,
+                                               pushDelay: 1)
     }
 
     func choiceType(for question: Question?) -> VisionGeneratorChoice.QuestionType {
