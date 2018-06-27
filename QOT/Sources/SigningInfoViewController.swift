@@ -70,7 +70,7 @@ private extension SigningInfoViewController {
     }
 
     func setupAutoScroll() {
-        timer = Timer.scheduledTimer(withTimeInterval: 4, repeats: true) { [unowned self] (_) in
+        timer = Timer.scheduledTimer(withTimeInterval: 12, repeats: true) { [unowned self] (_) in
             let nextItem = self.currentPageIndex() + 1 < SigningInfoModel.Slide.allSlides.count ? self.currentPageIndex() + 1 : 0
             let indexPath = IndexPath(item: nextItem, section: 0)
             UIView.animate(withDuration: 0.8) { [weak self] in
@@ -142,5 +142,16 @@ extension SigningInfoViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         syncControlsForCurrentPage()
+    }
+
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
+        if timer != nil {
+            timer?.invalidate()
+            timer = nil
+        }
+    }
+
+    func scrollViewWillBeginDecelerating(_ scrollView: UIScrollView) {
+        setupAutoScroll()
     }
 }

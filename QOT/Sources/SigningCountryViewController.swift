@@ -45,6 +45,15 @@ private extension SigningCountryViewController {
         centerContentView.addSubview(formView)
         formView.configure(formType: .country(""))
     }
+
+    func update(formType: FormView.FormType?) {
+        if formType?.value.isEmpty == true {
+            activateButton(false)
+            selectedCountry = nil
+            interactor?.setSelectedCountry(countryName: "")
+            tableView.reloadDataWithAnimation()
+        }
+    }
 }
 
 // MARK: - Actions
@@ -99,12 +108,7 @@ extension SigningCountryViewController: FormViewDelegate {
 
     func didBeginEditingTextField(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)
-        if formType?.value.isEmpty == true {
-            activateButton(false)
-            selectedCountry = nil
-            interactor?.setSelectedCountry(countryName: "")
-            tableView.reloadDataWithAnimation()
-        }
+        update(formType: formType)
     }
 
     func didEndEditingTextField(formType: FormView.FormType?) {
@@ -114,7 +118,15 @@ extension SigningCountryViewController: FormViewDelegate {
 
     func didUpdateTextfield(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)
-        tableView.reloadDataWithAnimation()
+        if formType?.value.isEmpty == true {
+            update(formType: formType)
+        } else {
+            interactor?.setSelectedCountry(countryName: formType?.value ?? "")
+            tableView.reloadDataWithAnimation()
+            if interactor?.numberOfRows() == 0 {
+                activateButton(false)
+            }
+        }
     }
 }
 
@@ -133,7 +145,7 @@ extension SigningCountryViewController: UITableViewDelegate, UITableViewDataSour
         if let selectedCountry = selectedCountry,
             selectedCountry.caseInsensitiveCompare(country) == .orderedSame,
             cell.accessoryType == .none {
-                countryFormView?.configure(formType: .country(country))
+                countryFormView?.configure(formType: .country(interactor?.countryQuery ?? ""))
                 cell.accessoryType = .checkmark
                 activateButton(true)
         }

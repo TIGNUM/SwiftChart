@@ -78,7 +78,10 @@ private extension SigningCountryWorker {
         if query.isEmpty == true {
             countryNames = countries.compactMap { $0.name }
         } else {
-            countryNames = (countries.compactMap { $0.name.capitalized }).filter { $0.starts(with: query.capitalized) }
+            let filteredCountries = countries.filter { $0.name.lowercased().starts(with: query.lowercased()) ||
+                $0.iso2LetterCode.lowercased().starts(with: query.lowercased()) }
+            countryNames = (filteredCountries.compactMap { $0.name })
         }
+        countryNames = countryNames.sorted()
     }
 }

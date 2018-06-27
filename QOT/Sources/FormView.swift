@@ -83,10 +83,11 @@ final class FormView: UIView {
             }
         }
 
-        var clearsOnBeginEditing: Bool {
+        var autocapitalizationType: UITextAutocapitalizationType {
             switch self {
-            case .country: return true
-            default: return false
+            case .password,
+                 .email: return .none
+            default: return .words
             }
         }
     }
@@ -161,9 +162,9 @@ private extension FormView {
         textField.textColor = .white90
         textField.keyboardType = formType.keyboardType
         textField.returnKeyType = formType.returnKeyType
+        textField.autocapitalizationType = formType.autocapitalizationType
         textField.attributedText = attributedString(textColor: .white90, string: formType.value)
         textField.isSecureTextEntry = formType.isSecureTextEntry
-        textField.clearsOnBeginEditing = formType.clearsOnBeginEditing
         if textField.hasText == true {
             animatePlaceholderLabel()
         }
@@ -185,9 +186,10 @@ private extension FormView {
 
     func animatePlaceholderLabel() {
         if textField.isEditing == false {
+            let xPos = CGFloat(placeholderLabel.text?.count ?? 0) + 1
             var transform = CGAffineTransform.identity
-            transform = transform.translatedBy(x: -8, y: -24)
-            transform = transform.scaledBy(x: 0.5, y: 0.5)
+            transform = transform.translatedBy(x: -xPos, y: -24)
+            transform = transform.scaledBy(x: 0.75, y: 0.75)
             UIView.animate(withDuration: Animation.duration_06) { [unowned self] in
                 self.placeholderLabel.transform = transform
             }

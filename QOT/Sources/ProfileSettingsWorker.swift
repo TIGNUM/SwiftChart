@@ -57,7 +57,7 @@ final class ProfileSettingsWorker {
     func updateProfileGender(_ new: ProfileSettingsModel) {
         guard let user = user, let old = profile(), old != new else { return }
 
-        if old.gender != new.gender {
+        if old.gender?.caseInsensitiveCompare(new.gender ?? "") != .orderedSame {
             services.userService.updateUserGender(user: user, gender: new.gender ?? "")
         }
     }

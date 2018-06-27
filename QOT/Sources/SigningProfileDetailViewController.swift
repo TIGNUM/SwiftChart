@@ -108,10 +108,8 @@ private extension SigningProfileDetailViewController {
 
     @IBAction func didTabGenderField() {
         endEditing()
-        showStringPicker(title: R.string.localized.genderTitle(), items: [Gender.female.rawValue,
-                                                                          Gender.male.rawValue,
-                                                                          Gender.other.rawValue,
-                                                                          Gender.preferNotToSay.rawValue])
+        showStringPicker(title: R.string.localized.genderTitle(),
+                         items: Gender.allValuesAsStrings)
     }
 
     @IBAction func didTabDateOfBirthField() {

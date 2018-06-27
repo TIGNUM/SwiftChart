@@ -234,7 +234,7 @@ enum Gender: String {
     }
 
     var selectedIndex: Index? {
-        return Gender.allValuesAsStrings.map({ $0.lowercased() }).index(of: self.rawValue.lowercased())
+        return Gender.allValuesAsStrings.map({ $0.lowercased() }).index(of: rawValue.lowercased())
     }
 }
 
@@ -462,7 +462,7 @@ private func personalRows(for user: User?) -> [SettingsRow] {
     let selectedHeightUnitIndex = heightItems.unitIndex
     var selectedWeightIndex = weightItems.valueIndex
     let selectedWeightUnitIndex = weightItems.unitIndex
-    let selectedGenderIndex = Gender(rawValue: user.gender.lowercased())?.selectedIndex ?? 0
+    let selectedGenderIndex = Gender(rawValue: user.gender)?.selectedIndex ?? 0
 
     if selectedWeightIndex == 0 && selectedWeightUnitIndex == 0 {
         selectedWeightIndex = 70
