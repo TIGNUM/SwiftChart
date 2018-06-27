@@ -55,6 +55,7 @@ extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
         do {
             let url = try worker.saveImage(image)
             worker.updateSettingsProfileImage(url)
+            presenter.updateSettingsMenu(settingsMenu)
         } catch {
             presenter.presentImageError(error)
         }
