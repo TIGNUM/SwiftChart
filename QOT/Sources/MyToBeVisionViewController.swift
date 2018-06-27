@@ -185,6 +185,7 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
 extension MyToBeVisionViewController {
 
     func setupView() {
+        scrollView.contentInset.bottom = 90
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
@@ -203,7 +204,7 @@ extension MyToBeVisionViewController {
         headlineTextView.textContainer.lineBreakMode = .byTruncatingTail
         messageTextView.alpha = 1
         messageTextView.textContainer.lineFragmentPadding = 0
-        messageTextView.textContainerInset = UIEdgeInsets(top: 14.0, left: 0.0, bottom: 10.0, right: 0.0)
+        messageTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 10, right: 0)
         syncTextViews()
     }
 
@@ -569,7 +570,7 @@ private extension MyToBeVisionViewController {
             let userInfo = notification.userInfo,
             let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
-        let height = isKeyboardShowing ? keyboardFrame.height + 60 : 0
+        let height = isKeyboardShowing ? keyboardFrame.height + 60 : 90
         contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
         scrollView.contentInset = contentInset
         UIView.animate(withDuration: 0, animations: {

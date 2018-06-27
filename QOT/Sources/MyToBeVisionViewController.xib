@@ -162,23 +162,10 @@
                                                 <constraint firstAttribute="height" constant="1" id="ek8-3s-Euz"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6p5-sN-5bd">
-                                            <rect key="frame" x="24" y="271" width="327" height="45"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="45" id="gb0-sL-sbF"/>
-                                            </constraints>
-                                            <state key="normal" title="Create my To Be Vision">
-                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            </state>
-                                            <connections>
-                                                <action selector="didTapCreateVision" destination="-1" eventType="touchUpInside" id="cce-ge-mqG"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
-                                        <constraint firstItem="6p5-sN-5bd" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="8Ab-yT-RLe"/>
                                         <constraint firstAttribute="trailing" secondItem="3Lt-fd-bdx" secondAttribute="trailing" constant="24" id="BRR-Yl-kDy"/>
                                         <constraint firstItem="Pd7-gT-U4O" firstAttribute="top" secondItem="7Sy-gJ-ovl" secondAttribute="bottom" id="DJh-72-TFx"/>
                                         <constraint firstAttribute="trailing" secondItem="gLN-uy-MTt" secondAttribute="trailing" constant="24" id="ELR-kC-KCe"/>
@@ -190,14 +177,12 @@
                                         <constraint firstAttribute="trailing" secondItem="HYG-f5-Phv" secondAttribute="trailing" constant="24" id="Qpf-FN-1op"/>
                                         <constraint firstItem="Shz-uc-ltT" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="S0D-wS-phx"/>
                                         <constraint firstAttribute="trailing" secondItem="Bog-ZF-6HV" secondAttribute="trailing" constant="24" id="X2c-EQ-I9j"/>
-                                        <constraint firstAttribute="trailing" secondItem="6p5-sN-5bd" secondAttribute="trailing" constant="24" id="XFT-1j-BA1"/>
                                         <constraint firstItem="Bog-ZF-6HV" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="bJd-5R-Sea"/>
                                         <constraint firstItem="3Lt-fd-bdx" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="25" id="cmL-if-GJX"/>
                                         <constraint firstItem="3Lt-fd-bdx" firstAttribute="top" secondItem="Pd7-gT-U4O" secondAttribute="bottom" constant="18" id="f0B-QI-qbb"/>
                                         <constraint firstItem="Bog-ZF-6HV" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="fLc-rr-YXm"/>
                                         <constraint firstItem="7Sy-gJ-ovl" firstAttribute="top" secondItem="Shz-uc-ltT" secondAttribute="bottom" id="gpo-kb-P4D"/>
                                         <constraint firstAttribute="height" constant="700" id="gxm-mB-dk0"/>
-                                        <constraint firstItem="6p5-sN-5bd" firstAttribute="top" secondItem="HYG-f5-Phv" secondAttribute="bottom" constant="35" id="ip0-3A-eTy"/>
                                         <constraint firstAttribute="trailing" secondItem="7Sy-gJ-ovl" secondAttribute="trailing" constant="24" id="kzP-1C-OfT"/>
                                         <constraint firstItem="HYG-f5-Phv" firstAttribute="top" secondItem="gLN-uy-MTt" secondAttribute="bottom" constant="3" id="mXS-Kr-e0M"/>
                                         <constraint firstItem="7Sy-gJ-ovl" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="25" id="ms4-TJ-5Fr"/>
@@ -207,10 +192,25 @@
                                         <constraint firstItem="gLN-uy-MTt" firstAttribute="top" secondItem="3Lt-fd-bdx" secondAttribute="bottom" constant="40" id="thq-wJ-V4Q"/>
                                     </constraints>
                                 </view>
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6p5-sN-5bd">
+                                    <rect key="frame" x="24" y="996" width="327" height="45"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="45" id="gb0-sL-sbF"/>
+                                    </constraints>
+                                    <state key="normal" title="Create my To Be Vision">
+                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </state>
+                                    <connections>
+                                        <action selector="didTapCreateVision" destination="-1" eventType="touchUpInside" id="cce-ge-mqG"/>
+                                    </connections>
+                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
+                                <constraint firstItem="6p5-sN-5bd" firstAttribute="top" secondItem="tCL-zM-DF7" secondAttribute="bottom" constant="26" id="7Om-yg-Bq2"/>
+                                <constraint firstItem="6p5-sN-5bd" firstAttribute="leading" secondItem="uD0-d0-kIf" secondAttribute="leading" constant="24" id="9gh-OO-yu3"/>
+                                <constraint firstAttribute="trailing" secondItem="6p5-sN-5bd" secondAttribute="trailing" constant="24" id="HWk-Px-NOK"/>
                                 <constraint firstItem="tCL-zM-DF7" firstAttribute="width" secondItem="uD0-d0-kIf" secondAttribute="width" id="JTb-5B-Z2n"/>
                                 <constraint firstAttribute="height" constant="667" id="Rg0-QZ-oGM"/>
                                 <constraint firstAttribute="trailing" secondItem="tCL-zM-DF7" secondAttribute="trailing" id="WXF-Aa-eRA"/>
