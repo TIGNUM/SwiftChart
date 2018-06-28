@@ -29,7 +29,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .plain,
-                           contentInsets: UIEdgeInsets(top: 0, left: 0, bottom: 16, right: 0),
+                           contentInsets: UIEdgeInsets(top: -64, left: 0, bottom: 16, right: 0),
                            estimatedRowHeight: 100,
                            delegate: self,
                            dataSource: self,
@@ -54,20 +54,17 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         interactor?.viewDidLoad()
         setupView()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         interactor?.reload()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-
         UIApplication.shared.statusBarStyle = .lightContent
     }
 
@@ -97,7 +94,6 @@ extension GuideViewController: GuideViewControllerInterface {
 
     func updateTabBarBadge() {
         guard let today = days.first else { return }
-
         let incompletedItems = today.items.filter { $0.status == .todo && $0.affectsTabBarBadge == true }
         let showBadge = incompletedItems.count > 0
         UserDefault.newGuideItem.setBoolValue(value: showBadge)
@@ -111,27 +107,17 @@ private extension GuideViewController {
     func setupView() {
         tableView.tableHeaderView = greetingView
         tableView.estimatedRowHeight = 300
-
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         view.addSubview(fadeContainerView)
         fadeContainerView.addSubview(backgroundImageView)
         fadeContainerView.addSubview(tableView)
         fadeContainerView.addSubview(loadingView)
-
-        if #available(iOS 11.0, *) {
-
-        } else {
-            // FIXME: We need to find a way to handle this across the app in a sane mannor
-            tableView.contentInset = UIEdgeInsets(top: 64, left: 0, bottom: 80, right: 0)
-        }
-
         fadeContainerView.verticalAnchors == view.verticalAnchors
         fadeContainerView.horizontalAnchors == view.horizontalAnchors
         tableView.edgeAnchors == fadeContainerView.edgeAnchors
         backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
         loadingView.edgeAnchors == fadeContainerView.edgeAnchors
-
-        fadeContainerView.setFade(top: 100, bottom: 85)
+        fadeContainerView.setFade(top: 0, bottom: 85)
         view.layoutIfNeeded()
         syncHeaderView()
     }
@@ -142,7 +128,6 @@ private extension GuideViewController {
         header.bounds = CGRect(x: 0, y: 0, width: Int(tableView.contentSize.width), height: Int(height))
         header.setNeedsLayout()
         header.layoutIfNeeded()
-
         var frame = header.frame
         frame.size.height = header.bounds.height
         header.frame = frame
