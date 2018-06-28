@@ -44,6 +44,8 @@ enum AlertType {
     case partnerIncomplete
     case canNotDeletePartner
     case logout
+    case noWeeklyChoice
+    case noMyToBeVision
 
     var title: String? {
         switch self {
@@ -73,7 +75,9 @@ enum AlertType {
         case .changePermissions: return R.string.localized.alertTitleSettingsChangePermission()
         case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteTitle()
         case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorTitle()
-            case .logout: return R.string.localized.sidebarTitleLogout()
+        case .logout: return R.string.localized.sidebarTitleLogout()
+        case .noMyToBeVision,
+             .noWeeklyChoice : return R.string.localized.meSectorMyWhyPartnersShareNoContentTitle()
         default: return nil
         }
     }
@@ -106,6 +110,8 @@ enum AlertType {
         case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteMessage()
         case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorMessage()
         case .logout: return R.string.localized.alertMessageLogout()
+        case .noMyToBeVision: return R.string.localized.meSectorMyWhyPartnersShareMissingMyToBeVisionAlert()
+        case .noWeeklyChoice: return R.string.localized.meSectorMyWhyPartnersShareMissingWeeklyChoiceAlert()
         default: return nil
         }
     }
@@ -132,7 +138,7 @@ enum AlertType {
              .changePermissions: return R.string.localized.alertButtonTitleOpenSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
-            case .logout: return R.string.localized.alertButtonTitleCancel()
+        case .logout: return R.string.localized.alertButtonTitleCancel()
         default: return R.string.localized.alertButtonTitleOk()
         }
     }

@@ -22,20 +22,12 @@ final class ShareInteractor: ShareInteractorInterface {
 
     func viewDidLoad() {
         worker.preUpSyncData()
-        var hasMyToBeVision = false
-        let myToBeVision = worker.services.userService.myToBeVision()
-        hasMyToBeVision = myToBeVision?.headline != nil
-
-        let weeklyChoices = worker.services.userService.userChoices()
-        let hasWeeklyChoice = weeklyChoices.count > 0
 
         presenter.setup(name: worker.name + " " + worker.surname,
                         relationship: worker.relationship,
                         email: worker.email,
                         imageURL: worker.imageURL,
-                        initials: worker.initials,
-                        hasMyToBeVision: hasMyToBeVision,
-                        hasWeeklyChoice: hasWeeklyChoice)
+                        initials: worker.initials)
     }
 
     func didTapClose() {
@@ -43,6 +35,15 @@ final class ShareInteractor: ShareInteractorInterface {
     }
 
     func didTapShareToBeVision() {
+        var hasMyToBeVision = false
+        let myToBeVision = worker.services.userService.myToBeVision()
+        hasMyToBeVision = myToBeVision?.headline != nil
+
+        if hasMyToBeVision == false {
+            router.showAlert(.noMyToBeVision)
+            return
+        }
+
         presenter.setLoading(loading: true)
         worker.sharingType = .toBeVision
         worker.shareToBeVisionEmailContent { [weak self] (result) in
@@ -52,6 +53,14 @@ final class ShareInteractor: ShareInteractorInterface {
     }
 
     func didTapShareWeeklyChoices() {
+        let weeklyChoices = worker.services.userService.userChoices()
+        let hasWeeklyChoice = weeklyChoices.count > 0
+
+        if hasWeeklyChoice == false {
+            router.showAlert(.noWeeklyChoice)
+            return
+        }
+
         presenter.setLoading(loading: true)
         worker.sharingType = .weeklyChoices
         worker.shareWeeklyChoicesEmailContent { [weak self] (result) in

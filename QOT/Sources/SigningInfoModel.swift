@@ -17,7 +17,7 @@ struct SigningInfoModel {
         case fourth
 
         static var allSlides: [Slide] {
-            return [.first, .second, .third, .fourth]            
+            return [.first, .second, .third, .fourth]  
         }
 
         var title: String {

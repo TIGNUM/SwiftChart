@@ -48,7 +48,7 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
                                 font: Font.H4Headline,
                                 lineSpacing: 3,
                                 characterSpacing: -0.8,
-                                color: .nightModeBlack)        
+                                color: .nightModeBlack)
         self.readMoreID = readMoreID
         self.contentText = contentText
         self.displayMode = displayMode

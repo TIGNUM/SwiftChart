@@ -124,6 +124,9 @@
 "Me.Sector.My.Why.Partners.Cell.Empty.State" = "Share QOT progress with your circle of three.";
 "Me.Sector.My.Why.Partners.Cell.Add.Partner" = "Add partner";
 "Me.Sector.My.Why.Partners.Cell.Share.Content" = "Share content";
+"Me.Sector.My.Why.Partners.Share.NoContent.Title" = "Unable to share content";
+"Me.Sector.My.Why.Partners.Share.MissingMyToBeVision.alert" = "Please create your To Be Vision first";
+"Me.Sector.My.Why.Partners.Share.MissingWeeklyChoice.alert" = " No Weekly Choices selected.";
 "Me.Sector.My.Statistics.Personal.Average.Default" = "PERSONAL\nAVG.";
 "Me.Sector.My.Statistics.Personal.Average.Sleep.Quality" = "Your Average Sleep Score";
 "Me.Sector.My.Statistics.Personal.Average.Sleep.Quantity" = "Average Number of Hours You Sleep";

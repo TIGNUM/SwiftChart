@@ -41,5 +41,5 @@ extension SigningProfileDetailRouter: SigningProfileDetailRouterInterface {
 
     func showPrivacyPolicy() {
         AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: 100163, controller: viewController)
-    }    
+    }
 }
