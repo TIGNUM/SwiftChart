@@ -118,6 +118,9 @@ private extension GuideViewController {
         backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
         loadingView.edgeAnchors == fadeContainerView.edgeAnchors
         fadeContainerView.setFade(top: 0, bottom: 85)
+        if view.frame.height == 812 {
+            tableView.contentInset = UIEdgeInsets(top: -84, left: 0, bottom: 80, right: 0)
+        }
         view.layoutIfNeeded()
         syncHeaderView()
     }
