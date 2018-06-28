@@ -159,6 +159,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         networkManager.cancelAllRequests()
         navigate(to: AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide))
         logout()
+        sendAppEvent(.termination)
         showSigning(controller: nil)
     }
 
@@ -284,6 +285,17 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         networkManager.performUserLocationUpdateRequest(location: location) { (error: NetworkError?) in
             if let error = error {
                 log("Error while trying to update user location: \(error)")
+            }
+        }
+    }
+
+    func sendAppEvent(_ event: AppEventRequest.EventType) {
+        networkManager.performAppEventRequest(appEvent: event) { (error) in
+            if error != nil {
+                log("Failed to performAppEventRequest for event: \(event.rawValue) with: \(String(describing: error))",
+                    level: .error)
+            } else {
+                log("Success to performAppEventRequest for event: \(event.rawValue)", level: .info)
             }
         }
     }
@@ -455,6 +467,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
             let viewController = SlideShowViewController(configure: SlideShowConfigurator.makeInitial(), type: .initialInstall)
             windowManager.show(viewController, animated: true, completion: nil)
             UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
+            sendAppEvent(.becomeActive)
         } else {
             showApp(loginViewController: nil)
         }

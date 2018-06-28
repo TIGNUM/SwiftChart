@@ -101,7 +101,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
                 log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
             #endif
 
-            sendAppEvent(.start)
+            appCoordinator.sendAppEvent(.start)
             return true
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
@@ -111,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return
         #else
             UAirship.push().resetBadge()
-            sendAppEvent(.foreground)
+            appCoordinator.sendAppEvent(.foreground)
             checkVersionIfNeeded()
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
@@ -120,7 +120,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
             return
         #else
-            sendAppEvent(.termination)
+            appCoordinator.sendAppEvent(.termination)
         #endif
     }
 
@@ -128,7 +128,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
             return
         #else
-            sendAppEvent(.background)
+            appCoordinator.sendAppEvent(.background)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -140,6 +140,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             UAirship.push().resetBadge()
             appCoordinator.appDidBecomeActive()
             checkVersionIfNeeded()
+            appCoordinator.sendAppEvent(.becomeActive)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -148,6 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return
         #else
             QOTUsageTimer.sharedInstance.stopTimer()
+            appCoordinator.sendAppEvent(.resignActive)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -201,15 +203,6 @@ private extension AppDelegate {
             Siren.shared.checkVersion(checkType: .immediately)
         } else {
             Siren.shared.checkVersion(checkType: .daily)
-        }
-    }
-
-    func sendAppEvent(_ event: AppEventRequest.EventType) {
-        appCoordinator.networkManager.performAppEventRequest(appEvent: event) { (error) in
-            if error != nil {
-                log("Failed to performAppEventRequest for event: \(event.rawValue) with: \(String(describing: error))",
-                    level: .error)
-            }
         }
     }
 
