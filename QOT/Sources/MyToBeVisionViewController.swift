@@ -368,8 +368,6 @@ private extension MyToBeVisionViewController {
         headlineTextView.isEditable = isEditing
         messageTextView.isEditable = isEditing
         imageView.isUserInteractionEnabled = isEditing
-        headlineTextView.textContainer.maximumNumberOfLines = isEditing ? 1 : 0
-        headlineTextView.textContainer.lineBreakMode = isEditing ? .byTruncatingHead : .byWordWrapping
         syncImageControls(animated: isEditing)
         syncNavigationButtons(isEditing)
         syncInstructionsButton()
