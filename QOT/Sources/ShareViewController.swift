@@ -19,6 +19,8 @@ final class ShareViewController: UIViewController, ShareViewControllerInterface 
     @IBOutlet private weak var weeklyChoicesButton: UIButton!
     @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var partnerImageView: UIImageView!
+    @IBOutlet private weak var toBeVisionButtonLabel: UILabel!
+    @IBOutlet private weak var weeklyChoicesButtonLabel: UILabel!
     @IBOutlet private weak var partnerInitialsLabel: UILabel!
     @IBOutlet private var contentViews: [UIView]!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
@@ -74,6 +76,27 @@ final class ShareViewController: UIViewController, ShareViewControllerInterface 
         }
     }
 
+    func setAvailableShareTypes(myToBeVision: Bool, weeklyChoice: Bool) {
+        shareButton.isEnabled = (myToBeVision || weeklyChoice)
+        if shareButton.isEnabled == false {
+            shareButton.backgroundColor = .gray
+        }
+
+        toBeVisionButtonLabel.textColor = myToBeVision ? .white : .gray
+        toBeVisionButton.isEnabled = myToBeVision
+        toBeVisionButton.setTitleColor(.gray, for: .disabled)
+        toBeVisionButton.isUserInteractionEnabled = myToBeVision
+
+        weeklyChoicesButtonLabel.textColor = weeklyChoice ? .white : .gray
+        weeklyChoicesButton.setTitleColor(.gray, for: .disabled)
+        weeklyChoicesButton.isEnabled = weeklyChoice
+        weeklyChoicesButton.isUserInteractionEnabled = weeklyChoice
+
+        [toBeVisionButton, weeklyChoicesButton].compactMap { (button) -> UIButton? in
+            button.isEnabled ? button : nil
+        }.first?.isSelected = true
+    }
+
     func setLoading(loading: Bool) {
         toBeVisionButton.isUserInteractionEnabled = !loading
         weeklyChoicesButton.isUserInteractionEnabled = !loading
@@ -103,7 +126,6 @@ private extension ShareViewController {
 
     private func syncShareButton() {
         shareButton.setTitleColor(.white, for: .normal)
-        shareButton.isEnabled = true
     }
 }
 

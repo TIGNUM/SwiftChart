@@ -21,11 +21,13 @@ final class SharePresenter {
 
 extension SharePresenter: SharePresenterInterface {
 
-    func setup(name: String, relationship: String, email: String, imageURL: URL?, initials: String) {
+    func setup(name: String, relationship: String, email: String, imageURL: URL?, initials: String,
+               hasMyToBeVision: Bool, hasWeeklyChoice: Bool) {
         viewController?.setup(name: name,
                               relationship: relationship,
                               email: email)
         viewController?.setPartnerProfileImage(imageURL, initials: initials)
+        viewController?.setAvailableShareTypes(myToBeVision: hasMyToBeVision, weeklyChoice: hasWeeklyChoice)
     }
 
     func setLoading(loading: Bool) {

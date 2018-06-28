@@ -11,11 +11,13 @@ import Foundation
 protocol ShareViewControllerInterface: class {
     func setup(name: String, relationship: String, email: String)
     func setPartnerProfileImage(_ imageURL: URL?, initials: String)
+    func setAvailableShareTypes(myToBeVision: Bool, weeklyChoice: Bool)
     func setLoading(loading: Bool)
 }
 
 protocol SharePresenterInterface {
-    func setup(name: String, relationship: String, email: String, imageURL: URL?, initials: String)
+    func setup(name: String, relationship: String, email: String, imageURL: URL?, initials: String,
+               hasMyToBeVision: Bool, hasWeeklyChoice: Bool)
     func setLoading(loading: Bool)
 }
 

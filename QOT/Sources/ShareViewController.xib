@@ -33,8 +33,10 @@
                 <outlet property="relationshipLabel" destination="7ib-MV-zUO" id="u0c-A6-DIb"/>
                 <outlet property="shareButton" destination="IB3-TR-UAU" id="0LM-xA-gm0"/>
                 <outlet property="toBeVisionButton" destination="3Le-0z-lbg" id="wF6-qd-uub"/>
+                <outlet property="toBeVisionButtonLabel" destination="Wwd-gk-q1L" id="g4s-S8-WZL"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="weeklyChoicesButton" destination="hc7-uH-oDV" id="efF-2l-O8D"/>
+                <outlet property="weeklyChoicesButtonLabel" destination="3g6-7E-Wpb" id="aGF-z2-P6Z"/>
                 <outletCollection property="contentViews" destination="yQr-2M-W45" collectionClass="NSMutableArray" id="Z2t-Bh-FNI"/>
                 <outletCollection property="contentViews" destination="Lyj-zX-ikJ" collectionClass="NSMutableArray" id="aRH-ia-6TZ"/>
                 <outletCollection property="contentViews" destination="Eki-Qx-R6h" collectionClass="NSMutableArray" id="eM6-Eh-svK"/>

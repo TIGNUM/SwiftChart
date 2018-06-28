@@ -22,11 +22,20 @@ final class ShareInteractor: ShareInteractorInterface {
 
     func viewDidLoad() {
         worker.preUpSyncData()
+        var hasMyToBeVision = false
+        let myToBeVision = worker.services.userService.myToBeVision()
+        hasMyToBeVision = myToBeVision?.headline != nil
+
+        let weeklyChoices = worker.services.userService.userChoices()
+        let hasWeeklyChoice = weeklyChoices.count > 0
+
         presenter.setup(name: worker.name + " " + worker.surname,
                         relationship: worker.relationship,
                         email: worker.email,
                         imageURL: worker.imageURL,
-                        initials: worker.initials)
+                        initials: worker.initials,
+                        hasMyToBeVision: hasMyToBeVision,
+                        hasWeeklyChoice: hasWeeklyChoice)
     }
 
     func didTapClose() {
