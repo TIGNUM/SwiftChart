@@ -57,6 +57,7 @@ final class MyUniverseProvider {
 
     private func fetchViewData() -> MyUniverseViewData {
         let myToBeVision = services.userService.myToBeVision()
+        let myToBeVisionText = myToBeVision?.text ?? services.contentService.toBeVisionMessagePlaceholder()
         let realmPartners =
             services.partnerService.lastModifiedPartnersSortedByCreatedAtAscending(maxCount: 3).filter { $0.isValid }
         let dataPartners = realmPartners.map { (realmPartner) -> MyUniverseViewData.Partner in
@@ -90,7 +91,7 @@ final class MyUniverseProvider {
             partners: dataPartners  ,
             weeklyChoices: weeklyChoices,
             myToBeVisionHeadline: myToBeVision?.headline ?? R.string.localized.meSectorMyWhyVisionTitle(),
-            myToBeVisionText: myToBeVision?.text ?? R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
+            myToBeVisionText: myToBeVisionText ?? R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
             sectors: sectors,
             isLoading: !isReady()
         )
