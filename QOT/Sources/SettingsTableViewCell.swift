@@ -153,7 +153,6 @@ private extension SettingsTableViewCell {
         textField.font = Font.H7Tag
         textField.isSecureTextEntry = secure
         textField.delegate = self
-        textField.isUserInteractionEnabled = settingsType != .jobTitle
         setTitle(title: title)
     }
 
