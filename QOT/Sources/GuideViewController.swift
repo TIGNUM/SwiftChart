@@ -25,7 +25,6 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     private var greetingView = GuideGreetingView.instantiateFromNib()
     var interactor: GuideInteractorInterface?
     var router: GuideRouterInterface?
-    var isImageVisible: Bool = false
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .plain,
@@ -81,7 +80,6 @@ extension GuideViewController: GuideViewControllerInterface {
     }
 
     func updateHeader(greeting: String, message: String, image: URL?) {
-        isImageVisible = (image != nil)
         greetingView.configure(message: message, greeting: greeting, userImage: image)
         syncHeaderView()
     }
@@ -118,17 +116,14 @@ private extension GuideViewController {
         backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
         loadingView.edgeAnchors == fadeContainerView.edgeAnchors
         fadeContainerView.setFade(top: 0, bottom: 85)
-        if view.frame.height == 812 {
-            tableView.contentInset = UIEdgeInsets(top: -84, left: 0, bottom: 80, right: 0)
-        }
+        tableView.contentInset = UIEdgeInsets(top: -84, left: 0, bottom: 80, right: 0)
         view.layoutIfNeeded()
         syncHeaderView()
     }
 
     func syncHeaderView() {
         let header = greetingView
-        let height = isImageVisible ? 230 : greetingView.labelsHeight
-        header.bounds = CGRect(x: 0, y: 0, width: Int(tableView.contentSize.width), height: Int(height))
+        header.bounds = CGRect(x: 0, y: 0, width: Int(tableView.contentSize.width), height: 230)
         header.setNeedsLayout()
         header.layoutIfNeeded()
         var frame = header.frame

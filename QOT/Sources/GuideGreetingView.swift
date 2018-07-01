@@ -23,10 +23,6 @@ final class GuideGreetingView: UIView {
     @IBOutlet private weak var greetingLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
 
-    var labelsHeight: CGFloat {
-        return greetingLabel.bounds.height + messageLabel.bounds.height + 40
-    }
-
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -45,8 +41,8 @@ final class GuideGreetingView: UIView {
                                                       textColor: .white,
                                                       alignment: .left)
         if let imageURL = userImage {
-            fadeView.alpha = 0.8
             userImageView.kf.setImage(with: imageURL)
+            fadeView.alpha = 0.8
             return
         }
         fadeView.alpha = 0
