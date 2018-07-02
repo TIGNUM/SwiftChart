@@ -122,7 +122,7 @@ private extension MyUniverseViewController {
     }
 
     func configureForTransitionedState() {
-        contentView.profileWrapperView.transform = CGAffineTransform(translationX: 90.0, y: 260.0).scaledBy(x: 4.0, y: 3.0)
+        contentView.profileWrapperView.transform = CGAffineTransform(translationX: 150, y: -260.0).scaledBy(x: 4.0, y: 3.0)
         contentView.visionWrapperView.transform = CGAffineTransform(translationX: -120.0, y: 20.0)
         contentView.weeklyChoicesWrapperView.transform = CGAffineTransform(translationX: 100.0, y: 10.0)
         contentView.partnersWrapperView.transform = CGAffineTransform(translationX: 10.0, y: 100.0)
