@@ -102,7 +102,6 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
 
     @IBAction func didTapButton(_ sender: UIButton) {
 		guard let item = itemTapped else { return }
-
 		delegate?.didTapFeedbackButton(for: item)
 	}
 }
@@ -169,7 +168,6 @@ private extension GuideDailyPrepTableViewCell {
 
         setGradient(in: loadProgressView, with: [UIColor.green, UIColor.red])
         setGradient(in: recoveryProgressView, with: [UIColor.red, UIColor.green])
-
         loadProgressView.setProgress(invertedValue(for: loadResults / Float(loadCounter)), animated: true)
         recoveryProgressView.setProgress(invertedValue(for: recoveryResults / Float(recoveryCounter)), animated: true)
     }
@@ -183,7 +181,6 @@ private extension GuideDailyPrepTableViewCell {
         gradientLayer.colors = colors.map { $0.cgColor }
         gradientLayer.locations = [0.0, 1.0]
         gradientView.layer.insertSublayer(gradientLayer, at: 0)
-
         let gradientImage = UIImage(view: gradientView)?.withHorizontallyFlippedOrientation()
         progressView.trackImage = gradientImage
         progressView.transform = CGAffineTransform(scaleX: -1.0, y: -1.0)
