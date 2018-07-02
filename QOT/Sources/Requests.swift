@@ -207,10 +207,6 @@ struct AppEventRequest: URLRequestBuildable {
 
     enum EventType: String {
         case start = "APP_START"
-        case resignActive = "RESIGN_ACTIVE"
-        case background = "BACKGROUND"
-        case becomeActive = "BECOME_ACTIVE"
-        case foreground = "FOREGROUND"
         case termination = "TERMINATION"
     }
 
