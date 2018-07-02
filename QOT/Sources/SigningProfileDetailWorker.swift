@@ -47,23 +47,23 @@ final class SigningProfileDetailWorker {
 extension SigningProfileDetailWorker {
 
     func createAccount(completion: ((UserRegistrationCheck?, Error?) -> Void)?) {
-        networkManager.performRegistrationRequest(email: email,
-                                                  code: code,
-                                                  gender: gender.uppercased(),
-                                                  firstName: firstName,
-                                                  lastName: lastName,
-                                                  birthDate: dateOfBirth,
-                                                  password: password,
-                                                  country: country) { (result) in
-                                                    if result.error != nil {
-                                                        completion?(result.value, result.error)
-                                                    } else {
-                                                        self.sendLoginRequest(email: self.email,
-                                                                              password: self.password,
-                                                                              completion: { (error) in
-                                                            completion?(result.value, error)
-                                                        })
-                                                    }
+        _ = networkManager.performRegistrationRequest(email: email,
+                                                      code: code,
+                                                      gender: gender.uppercased(),
+                                                      firstName: firstName,
+                                                      lastName: lastName,
+                                                      birthDate: dateOfBirth,
+                                                      password: password,
+                                                      country: country) { (result) in
+                                                        if result.error != nil {
+                                                            completion?(result.value, result.error)
+                                                        } else {
+                                                            self.sendLoginRequest(email: self.email,
+                                                                                  password: self.password,
+                                                                                  completion: { (error) in
+                                                                                    completion?(result.value, error)
+                                                            })
+                                                        }
         }
     }
 

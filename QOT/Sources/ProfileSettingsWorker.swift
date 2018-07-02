@@ -44,7 +44,7 @@ final class ProfileSettingsWorker {
         if old.telephone != new.telephone && new.telephone?.isPhoneNumber == true {
             services.userService.updateUserTelephone(user: user, telephone: new.telephone ?? "")
             syncManger.upSyncUser(completion: {error in
-                log(error?.localizedDescription, level: .error)
+                log(error?.localizedDescription ?? String(describing: error), level: .error)
             })
         }
     }
@@ -55,7 +55,7 @@ final class ProfileSettingsWorker {
         if old.birthday != new.birthday {
             services.userService.updateUserDateOfBirth(user: user, dateOfBirth: new.birthday)
             syncManger.upSyncUser(completion: {error in
-                log(error?.localizedDescription, level: .error)
+                log(error?.localizedDescription ?? String(describing: error), level: .error)
             })
         }
     }
@@ -66,7 +66,7 @@ final class ProfileSettingsWorker {
         if old.gender?.caseInsensitiveCompare(new.gender ?? "") != .orderedSame {
             services.userService.updateUserGender(user: user, gender: new.gender ?? "")
             syncManger.upSyncUser(completion: {error in
-                log(error?.localizedDescription, level: .error)
+                log(error?.localizedDescription ?? String(describing: error), level: .error)
             })
         }
     }
@@ -77,7 +77,7 @@ final class ProfileSettingsWorker {
         if old.position != new.position {
             services.userService.updateUserJobTitle(user: user, title: new.position ?? "")
             syncManger.upSyncUser(completion: {error in
-                log(error?.localizedDescription, level: .error)
+                log(error?.localizedDescription ?? String(describing: error), level: .error)
             })
         }
     }
@@ -88,7 +88,7 @@ final class ProfileSettingsWorker {
 		if old.height != new.height || old.heightUnit != new.heightUnit {
 			updateHeight(meters: new.height, unit: new.heightUnit)
             syncManger.upSyncUser(completion: {error in
-                log(error?.localizedDescription, level: .error)
+                log(error?.localizedDescription ?? String(describing: error), level: .error)
             })
 		}
     }
@@ -99,7 +99,7 @@ final class ProfileSettingsWorker {
         if old.weight != new.weight  || old.weightUnit != new.weightUnit {
             updateWeight(weight: new.weight, unit: new.weightUnit)
             syncManger.upSyncUser(completion: {error in
-                log(error?.localizedDescription, level: .error)
+                log(error?.localizedDescription ?? String(describing: error), level: .error)
             })
         }
     }
@@ -114,7 +114,7 @@ final class ProfileSettingsWorker {
             services.userService.updateUser(user: user) { (user) in
                 user.userImage?.setLocalURL(new, format: .jpg, entity: .user, entitiyLocalID: user.localID)
                 syncManger.upSyncUser(completion: {error in
-                    log(error?.localizedDescription, level: .error)
+                    log(error?.localizedDescription ?? String(describing: error), level: .error)
                 })
             }
         }

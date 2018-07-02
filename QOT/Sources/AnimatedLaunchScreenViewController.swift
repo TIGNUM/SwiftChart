@@ -32,36 +32,39 @@ final class AnimatedLaunchScreenViewController: UIViewController {
         #if DEBUG
             completion?()
             return
-        #endif
+        #else
         UIView.animate(withDuration: 2, animations: {
             self.logoImageView.alpha = 1
         }, completion: { (_: Bool) in
             completion?()
         })
+        #endif // #if DEBUG
     }
 
     func fadeOutLogo(withCompletion completion: (() -> Void)? = nil) {
         #if DEBUG
             completion?()
             return
-        #endif
+        #else
         UIView.animate(withDuration: 0.5, animations: {
             self.logoImageView.alpha = 0
         }, completion: { (_: Bool) in
             completion?()
         })
+        #endif // #if DEBUG
     }
 
     func startAnimatingImages(withCompletion completion: (() -> Void)? = nil) {
         #if DEBUG
             completion?()
             return
-        #endif
+        #else
         logoImageView.startAnimating()
         let estimatedTime = Double(imageCount) * (1 / 30) // 30 fps. @see UIImageView animationDuration
         DispatchQueue.main.asyncAfter(deadline: .now() + estimatedTime) {
             completion?()
         }
+        #endif // #if DEBUG
     }
 }
 
