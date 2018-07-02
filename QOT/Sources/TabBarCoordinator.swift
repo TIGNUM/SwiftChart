@@ -316,11 +316,9 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
 
     func myUniverseViewControllerDidTapVision(_ viewController: MyUniverseViewController) {
         let transitioningDelegate = MyToBeVisionAnimator()
-        let coordinator = MyToBeVisionCoordinator(
-            root: topTabBarControllerMe,
-            transitioningDelegate: transitioningDelegate,
-            services: services
-        )
+        let coordinator = MyToBeVisionCoordinator(root: topTabBarControllerMe,
+                                                  transitioningDelegate: transitioningDelegate,
+                                                  services: services)
         startChild(child: coordinator)
     }
 

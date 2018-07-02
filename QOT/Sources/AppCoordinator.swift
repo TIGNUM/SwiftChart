@@ -861,13 +861,14 @@ extension AppCoordinator {
     }
 
     func presentToBeVision() {
-        let configurator = MyToBeVisionConfigurator.make()
-        let myToBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
-        let navController = UINavigationController(rootViewController: myToBeVisionViewController)
-        navController.navigationBar.applyDefaultStyle()
-
-        windowManager.showPriority(navController, animated: true, completion: nil)
-        currentPresentedController = navController
+        guard
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services else { return }
+        let transitioningDelegate = MyToBeVisionAnimator()
+        let coordinator = MyToBeVisionCoordinator(root: rootViewController,
+                                                  transitioningDelegate: transitioningDelegate,
+                                                  services: services)
+        startChild(child: coordinator)
     }
 
     func presentWhatsHotArticle() {
