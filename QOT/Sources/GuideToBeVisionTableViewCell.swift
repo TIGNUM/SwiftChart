@@ -54,7 +54,7 @@ private extension GuideToBeVisionTableViewCell {
     func setupView() {
         statusView.maskPathByRoundingCorners()
         containerView.backgroundColor = .whiteLight12
-        containerView.corner(radius: 8)
+        containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
 
         toBeVisionImageView.clipsToBounds = true
         shadowImageView.clipsToBounds = false

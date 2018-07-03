@@ -15,11 +15,9 @@ final class PartnersOverviewViewController: PartnersAnimationViewController {
     // MARK: - Properties
 
     var interactor: PartnersOverviewInteractorInterface?
-    private var partners = [Partner]()
+    private var partners = [Partners.Partner]()
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var collectionView: UICollectionView!
-
-    // MARK: Landing View
     @IBOutlet weak var landingViewContainer: UIView!
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var headlineLabel: UILabel!
@@ -39,8 +37,6 @@ final class PartnersOverviewViewController: PartnersAnimationViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupCollectionView()
-        setupNavigationItems()
         interactor?.viewDidLoad()
     }
 
@@ -52,7 +48,7 @@ final class PartnersOverviewViewController: PartnersAnimationViewController {
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
-            layout.itemSize = CGSize(width: collectionView.frame.width*0.6, height: collectionView.frame.height)
+            layout.itemSize = CGSize(width: collectionView.frame.width * 0.8, height: collectionView.frame.height)
         }
     }
 }
@@ -68,19 +64,15 @@ extension PartnersOverviewViewController: UICollectionViewDelegate, UICollection
         cell.configure(name: partner.name,
                        surname: partner.surname,
                        relationship: partner.relationship,
-                       profileImage: partner.profileImageResource?.url,
+                       profileImage: partner.imageURL,
                        shareStatus: nil,
                        partner: partner,
                        interactor: interactor)
         return cell
     }
 
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1 // FIXME: remove constant
-    }
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 3 // FIXME: remove constant
+        return partners.count
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -98,6 +90,20 @@ extension PartnersOverviewViewController: UICollectionViewDelegate, UICollection
 
 private extension PartnersOverviewViewController {
 
+    func setupNotifications() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleShareViewDidDismiss(_:)),
+                                               name: .didDismissView,
+                                               object: nil)
+    }
+
+    @objc func handleShareViewDidDismiss(_ notification: Notification) {
+        if notification.name == .didDismissView {
+            setupLandingPageView()
+            collectionView.reloadData()
+        }
+    }
+
     func setupCollectionView() {
         collectionView.backgroundColor = .clear
         collectionView.registerDequeueable(PartnersOverviewCollectionViewCell.self)
@@ -110,17 +116,15 @@ private extension PartnersOverviewViewController {
         navigationItem.leftBarButtonItem = leftButton
     }
 
-    func setupLandingPageView(partnersLandingPage: PartnersLandingPage?) {
-        landingViewContainer.isHidden = (partnersLandingPage == nil)
-        profileImageView.image = partnersLandingPage?.defaultProfilePicture
-
-        headlineLabel.attributedText = partnersLandingPage?.titleAttributedString
-        messageLabel.attributedText = partnersLandingPage?.messageAttributedString
-
-        addButton.layer.cornerRadius = 8
+    func setupLandingPageView() {
+        landingViewContainer.isHidden = (partners.filter { $0.isValid == true }).isEmpty == false
+        profileImageView.image = interactor?.landingPage?.defaultProfilePicture
+        headlineLabel.attributedText = interactor?.landingPage?.titleAttributedString
+        messageLabel.attributedText = interactor?.landingPage?.messageAttributedString
+        addButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         addButton.backgroundColor = .azure
-        addButton.setAttributedTitle(partnersLandingPage?.buttonTitleAttributedString, for: .normal)
-        addButton.setAttributedTitle(partnersLandingPage?.buttonTitleAttributedString, for: .selected)
+        addButton.setAttributedTitle(interactor?.landingPage?.buttonTitleAttributedString, for: .normal)
+        addButton.setAttributedTitle(interactor?.landingPage?.buttonTitleAttributedString, for: .selected)
     }
 
     func setupProfileImageView(image: UIImage?) {
@@ -133,7 +137,7 @@ private extension PartnersOverviewViewController {
     }
 
     func setupAddButton(buttonTitle: NSAttributedString) {
-        addButton.layer.cornerRadius = 8
+        addButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         addButton.backgroundColor = .azure
         addButton.setAttributedTitle(buttonTitle, for: .normal)
         addButton.setAttributedTitle(buttonTitle, for: .selected)
@@ -157,17 +161,21 @@ private extension PartnersOverviewViewController {
 
 extension PartnersOverviewViewController: PartnersOverviewViewControllerInterface {
 
-    func setup(partners: [Partner], partnersLandingPage: PartnersLandingPage?) {
+    func setup(partners: [Partners.Partner]) {
         self.partners = partners
-        setupLandingPageView(partnersLandingPage: partnersLandingPage)
+        setupNotifications()
+        setupCollectionView()
+        setupNavigationItems()
+        setupLandingPageView()
         collectionView.reloadData()
     }
 
-    func reload(partner: Partner) {
+    func reload(partner: Partners.Partner) {
         guard let index = partners.index(where: { $0.localID == partner.localID }) else {
             assertionFailure("Trying to reload a partner that doesn't exist.")
             return
         }
+        setupLandingPageView()
         collectionView.reloadItems(at: [IndexPath(item: index, section: 0)])
     }
 }

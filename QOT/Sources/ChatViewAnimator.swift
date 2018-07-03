@@ -34,7 +34,7 @@ final class ChatViewAnimator {
 
 extension ChatViewAnimator {
 
-    static func messageAnimator() -> ChatViewAnimator {
+    static func messageAnimator(stopTypingDelay: CFTimeInterval = 1) -> ChatViewAnimator {
         return ChatViewAnimator { (view, attrs) -> CancelHandler in
             guard let view = view as? ChatViewCell, let date = attrs.insertedAt, date.timeIntervalToNow < 0.5 else {
                 return {}
@@ -59,13 +59,13 @@ extension ChatViewAnimator {
                                         valuesAtTimes: [startTyping: startPosition,
                                                         stopTyping: startPosition,
                                                         finish: endPosition]),
-                    CAKeyframeAnimation(keyPath: "opacity", valuesAtTimes: [startTyping: 1, finish: 1])
+                    CAKeyframeAnimation(keyPath: "opacity", valuesAtTimes: [startTyping: 1, finish: 10])
                 ]
             }
 
             func typingIndicatorAnimations() -> [CAKeyframeAnimation] {
                 return [CAKeyframeAnimation(keyPath: "opacity",
-                                            valuesAtTimes: [startTyping: 1, stopTyping: 1, fadeInLabel: 0])]
+                                            valuesAtTimes: [startTyping: 1, stopTyping: stopTypingDelay, fadeInLabel: 0])]
             }
 
             func labelViewAnimations() -> [CAKeyframeAnimation] {

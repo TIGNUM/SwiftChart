@@ -9,24 +9,27 @@
 import Foundation
 
 protocol ShareViewControllerInterface: class {
-    func setup(name: String, relationship: String, email: String)
-    func setPartnerProfileImage(_ imageURL: URL?, initials: String)
+    func setup()
+    func setPartnerProfileImage()
     func setLoading(loading: Bool)
 }
 
 protocol SharePresenterInterface {
-    func setup(name: String, relationship: String, email: String, imageURL: URL?, initials: String)
+    func setup()
     func setLoading(loading: Bool)
 }
 
 protocol ShareInteractorInterface: Interactor {
+    var partner: Partners.Partner { get }
     func didTapClose()
     func didTapShareToBeVision()
     func didTapShareWeeklyChoices()
+    func didTapEditPartner(partner: Partners.Partner?)
 }
 
 protocol ShareRouterInterface {
     func dismiss()
     func showAlert(_ alert: AlertType)
     func showMailComposer(email: String, subject: String, messageBody: String)
+    func showEditPartner(partner: Partners.Partner?)
 }

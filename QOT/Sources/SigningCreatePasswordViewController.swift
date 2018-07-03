@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SigningCreatePasswordViewController: SigningAbstractViewController {
+final class SigningCreatePasswordViewController: AbstractFormViewController {
 
     // MARK: - Properties
 
@@ -136,6 +136,10 @@ extension SigningCreatePasswordViewController: SigningCreatePasswordViewControll
 extension SigningCreatePasswordViewController: FormViewDelegate {
 
     func didBeginEditingTextField(formType: FormView.FormType?) {}
+
+    func didTapReturn(formType: FormView.FormType?) {
+        formView?.activateTextField(false)
+    }
 
     func didEndEditingTextField(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)

@@ -26,24 +26,8 @@ final class PartnersOverviewRouter: NSObject {
 
 extension PartnersOverviewRouter: PartnersOverviewRouterInterface {
 
-    func showShare(partner: Partner) {
-        guard let relationship = partner.relationship else {
-            assertionFailure("partner must have name and email if this method is called")
-            return
-        }
-        let configurator = ShareConfigurator.make(partnerLocalID: partner.localID,
-                                                  partnerName: partner.name,
-                                                  partnerSurname: partner.surname,
-                                                  partnerRelationship: relationship,
-                                                  partnerImageURL: partner.profileImageResource?.url,
-                                                  partnerInitials: partner.initials,
-                                                  partnerEmail: partner.email)
-        let shareViewController = ShareViewController(configure: configurator)
-        let navController = UINavigationController(rootViewController: shareViewController)
-        navController.navigationBar.applyDefaultStyle()
-        navController.modalTransitionStyle = .crossDissolve
-        navController.modalPresentationStyle = .custom
-        viewController.present(navController, animated: true, completion: nil)
+    func showShare(partner: Partners.Partner) {
+        showSharePartner(partner: partner)
     }
 
     func showMailComposer(email: String, subject: String, messageBody: String) {
@@ -60,22 +44,31 @@ extension PartnersOverviewRouter: PartnersOverviewRouterInterface {
         viewController.present(composer, animated: true, completion: nil)
     }
 
-    func showEditPartner(partner: Partner) {
-        showPartner(partner: partner)
+    func showEditPartner(partner: Partners.Partner) {
+        showSharePartner(partner: partner)
     }
 
     func showAlert(_ alert: AlertType) {
         viewController.showAlert(type: alert)
     }
 
-    func showAddPartner(partner: Partner) {
+    func showAddPartner(partner: Partners.Partner) {
         showPartner(partner: partner, isNewPartner: true)
     }
 
-    func showPartner(partner: Partner, isNewPartner: Bool = false) {
-        let configurator = PartnerEditConfigurator.make(partnerToEdit: Partners.Partner(partner), isNewPartner: isNewPartner)
+    func showSharePartner(partner: Partners.Partner) {
+        let configurator = ShareConfigurator.make(partnerLocalID: partner.localID, partner: partner)
+        let shareViewController = ShareViewController(configure: configurator)
+        let navController = UINavigationController(rootViewController: shareViewController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .custom
+        viewController.present(navController, animated: true, completion: nil)
+    }
+
+    func showPartner(partner: Partners.Partner, isNewPartner: Bool = false) {
+        let configurator = PartnerEditConfigurator.make(partnerToEdit: partner, isNewPartner: isNewPartner)
         let partnersController = PartnerEditViewController(configure: configurator)
-        partnersController.title = R.string.localized.meSectorMyWhyPartnersTitle().uppercased()
         let navController = UINavigationController(rootViewController: partnersController)
         navController.navigationBar.applyDefaultStyle()
         navController.transitioningDelegate = partnersController.transitioningDelegate

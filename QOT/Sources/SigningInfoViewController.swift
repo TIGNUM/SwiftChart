@@ -58,7 +58,7 @@ private extension SigningInfoViewController {
                                                         textColor: .white90,
                                                         alignment: .left)
         bottomButton.backgroundColor = .azure
-        bottomButton.corner(radius: Layout.CornerRadius.defaultEight.rawValue)
+        bottomButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         bottomButton.setAttributedTitle(attributedTitle, for: .normal)
         bottomButton.setAttributedTitle(attributedTitle, for: .selected)
     }

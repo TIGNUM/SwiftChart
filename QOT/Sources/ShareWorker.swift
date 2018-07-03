@@ -16,37 +16,19 @@ final class ShareWorker {
     }
 
     let services: Services
-    let partnerLocalID: String
     let networkManager: NetworkManager
     let syncManager: SyncManager
-    let name: String
-    let surname: String
-    let imageURL: URL?
-    let relationship: String
-    let email: String
-    let initials: String
+    let partner: Partners.Partner
     var sharingType: Partners.SharingType?
 
     init(services: Services,
-         partnerLocalID: String,
          networkManager: NetworkManager,
          syncManager: SyncManager,
-         name: String,
-         surname: String,
-         relationship: String,
-         email: String,
-         imageURL: URL?,
-         initials: String) {
+         partner: Partners.Partner) {
         self.services = services
-        self.partnerLocalID = partnerLocalID
         self.networkManager = networkManager
         self.syncManager = syncManager
-        self.name = name
-        self.surname = surname
-        self.relationship = relationship
-        self.email = email
-        self.imageURL = imageURL
-        self.initials = initials
+        self.partner = partner
     }
 
     func shareToBeVisionEmailContent(completion: @escaping ((_ emailContent: Result) -> Void)) {
@@ -72,7 +54,7 @@ final class ShareWorker {
             } else {
                 guard let `self` = self else { return }
                 let realm = self.services.mainRealm
-                if let partner = realm.syncableObject(ofType: Partner.self, localID: self.partnerLocalID),
+                if let partner = realm.syncableObject(ofType: Partner.self, localID: self.partner.localID),
                     let remoteID = partner.remoteID.value {
                     self.networkManager
                         .performPartnerSharingRequest(partnerID: remoteID, sharingType: sharingType) { (result) in

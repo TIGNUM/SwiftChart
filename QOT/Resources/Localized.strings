@@ -116,8 +116,8 @@
 "Me.Sector.My.Why.Partners.Surname" = "Surname";
 "Me.Sector.My.Why.Partners.Relationship" = "Relationship";
 "Me.Sector.My.Why.Partners.Email" = "e-mail";
-"Me.Sector.My.Why.Partners.Add.Photo" = "Add Photo";
-"Me.Sector.My.Why.Partners.Change.Photo" = "Change Photo";
+"Me.Sector.My.Why.Partners.Add.Photo" = "Add a photo";
+"Me.Sector.My.Why.Partners.Change.Photo" = "Change photo";
 "Me.Sector.My.Why.Partners.Photo.Error.Title" = "Error";
 "Me.Sector.My.Why.Partners.Photo.Error.Message" = "There was a problem updating your profile image. Please try again";
 "Me.Sector.My.Why.Partners.Photo.Error.OK.Button" = "OK";

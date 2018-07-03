@@ -120,7 +120,7 @@
 		36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5520D3C4B800B55429 /* SigningInfoConfigurator.swift */; };
 		36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */; };
 		36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */; };
-		3686678420D3835900B400FE /* SigningAbstractViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3686678320D3835900B400FE /* SigningAbstractViewController.swift */; };
+		3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3686678320D3835900B400FE /* AbstractFormViewController.swift */; };
 		3691175E20650B0A007D28D3 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691175D20650B09007D28D3 /* PageViewController.swift */; };
 		3691176D20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3691176720656CD6007D28D3 /* PrepareContentSubHeaderTableViewCell.xib */; };
 		3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */; };
@@ -137,14 +137,11 @@
 		3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3698428020C91EF3007A8C8F /* SigningDigitConfigurator.swift */; };
 		3698428A20C91F10007A8C8F /* SigningDigitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3698428920C91F10007A8C8F /* SigningDigitViewController.xib */; };
 		369842B420CA7BB5007A8C8F /* UserRegistrationCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369842B320CA7BB5007A8C8F /* UserRegistrationCheck.swift */; };
+		36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AD001F20EA8D8100F7227C /* PartnerEditViewController.xib */; };
 		36B07E8D2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B07E8C2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift */; };
 		36B67B9C1FE1D9C90066A515 /* RealmGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */; };
 		36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */; };
 		36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */; };
-		36BBC4BB20ADDE93000DD7C5 /* PartnerEditTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BBC4B920ADDE93000DD7C5 /* PartnerEditTextFieldCell.swift */; };
-		36BBC4BC20ADDE93000DD7C5 /* PartnerEditTextFieldCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36BBC4BA20ADDE93000DD7C5 /* PartnerEditTextFieldCell.xib */; };
-		36BBC4C520ADDF7A000DD7C5 /* PartnerEditImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BBC4C320ADDF7A000DD7C5 /* PartnerEditImageCell.swift */; };
-		36BBC4C620ADDF7A000DD7C5 /* PartnerEditImageCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36BBC4C420ADDF7A000DD7C5 /* PartnerEditImageCell.xib */; };
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
 		36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */; };
 		36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */; };
@@ -723,8 +720,6 @@
 		D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */; };
 		D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC34B01EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift */; };
 		D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */; };
-		E81043E320D1654400858D8A /* PartnerEditDeleteButtonCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E81043E120D1654400858D8A /* PartnerEditDeleteButtonCell.swift */; };
-		E81043E420D1654400858D8A /* PartnerEditDeleteButtonCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = E81043E220D1654400858D8A /* PartnerEditDeleteButtonCell.xib */; };
 		E8F43D3320B6F7E500C9FF4F /* CalendarEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */; };
 		E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */; };
 		E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */; };
@@ -878,7 +873,7 @@
 		36796A5520D3C4B800B55429 /* SigningInfoConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoConfigurator.swift; sourceTree = "<group>"; };
 		36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoPresenter.swift; sourceTree = "<group>"; };
 		36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Siren.swift"; sourceTree = "<group>"; };
-		3686678320D3835900B400FE /* SigningAbstractViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningAbstractViewController.swift; sourceTree = "<group>"; };
+		3686678320D3835900B400FE /* AbstractFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractFormViewController.swift; sourceTree = "<group>"; };
 		3691175D20650B09007D28D3 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		3691176720656CD6007D28D3 /* PrepareContentSubHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentSubHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentNotesViewController.swift; sourceTree = "<group>"; };
@@ -923,14 +918,11 @@
 		36998D6220C6770A00FD2B9F /* SigningLoginInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningLoginInteractor.swift; sourceTree = "<group>"; };
 		36998D6320C6770A00FD2B9F /* SigningLoginModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningLoginModel.swift; sourceTree = "<group>"; };
 		36998D6420C6770A00FD2B9F /* SigningLoginConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningLoginConfigurator.swift; sourceTree = "<group>"; };
+		36AD001F20EA8D8100F7227C /* PartnerEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartnerEditViewController.xib; sourceTree = "<group>"; };
 		36B07E8C2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentReviewNotesTableViewCell.swift; sourceTree = "<group>"; };
 		36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItem.swift; sourceTree = "<group>"; };
 		36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideGreetingView.xib; sourceTree = "<group>"; };
 		36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideGreetingView.swift; sourceTree = "<group>"; };
-		36BBC4B920ADDE93000DD7C5 /* PartnerEditTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditTextFieldCell.swift; sourceTree = "<group>"; };
-		36BBC4BA20ADDE93000DD7C5 /* PartnerEditTextFieldCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartnerEditTextFieldCell.xib; sourceTree = "<group>"; };
-		36BBC4C320ADDF7A000DD7C5 /* PartnerEditImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditImageCell.swift; sourceTree = "<group>"; };
-		36BBC4C420ADDF7A000DD7C5 /* PartnerEditImageCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartnerEditImageCell.xib; sourceTree = "<group>"; };
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
 		36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -1526,8 +1518,6 @@
 		D5EC34B01EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyPlaylistAudioCell.swift; sourceTree = "<group>"; };
 		D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyPlaylistAudioCell.xib; sourceTree = "<group>"; };
 		D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E81043E120D1654400858D8A /* PartnerEditDeleteButtonCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditDeleteButtonCell.swift; sourceTree = "<group>"; };
-		E81043E220D1654400858D8A /* PartnerEditDeleteButtonCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartnerEditDeleteButtonCell.xib; sourceTree = "<group>"; };
 		E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventTests.swift; sourceTree = "<group>"; };
 		E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventIntermediary.swift; sourceTree = "<group>"; };
 		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
@@ -1638,7 +1628,7 @@
 		366AFD2320BEC8D200109F29 /* Signing */ = {
 			isa = PBXGroup;
 			children = (
-				3686678320D3835900B400FE /* SigningAbstractViewController.swift */,
+				3686678320D3835900B400FE /* AbstractFormViewController.swift */,
 				366AFD1620BDAD0800109F29 /* FormView */,
 				36796A3820D3C48300B55429 /* SgningLogin */,
 				36796A0E20D3C43C00B55429 /* SigningCountry */,
@@ -1835,18 +1825,13 @@
 			isa = PBXGroup;
 			children = (
 				36D535DA20A711E700F1C2FC /* PartnerEditConfigurator.swift */,
-				E81043E120D1654400858D8A /* PartnerEditDeleteButtonCell.swift */,
-				36BBC4C320ADDF7A000DD7C5 /* PartnerEditImageCell.swift */,
 				36D535D820A711E700F1C2FC /* PartnerEditInteractor.swift */,
 				36D535D620A711E700F1C2FC /* PartnerEditInterface.swift */,
 				36D535D320A711E700F1C2FC /* PartnerEditPresenter.swift */,
 				36D535D520A711E700F1C2FC /* PartnerEditRouter.swift */,
-				36BBC4B920ADDE93000DD7C5 /* PartnerEditTextFieldCell.swift */,
 				36D535D720A711E700F1C2FC /* PartnerEditViewController.swift */,
 				36D535D420A711E700F1C2FC /* PartnerEditWorker.swift */,
-				36BBC4C420ADDF7A000DD7C5 /* PartnerEditImageCell.xib */,
-				36BBC4BA20ADDE93000DD7C5 /* PartnerEditTextFieldCell.xib */,
-				E81043E220D1654400858D8A /* PartnerEditDeleteButtonCell.xib */,
+				36AD001F20EA8D8100F7227C /* PartnerEditViewController.xib */,
 			);
 			name = PartnerEdit;
 			sourceTree = "<group>";
@@ -2901,6 +2886,7 @@
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
 				7F47E83F1F8E4FE000ED4446 /* UIDevice+Utility.swift */,
 				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
+				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
 				7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */,
 				8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */,
 				7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */,
@@ -2910,17 +2896,16 @@
 				CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */,
 				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
 				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
+				91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */,
 				CC7A91111F0F978E00F791B9 /* UIViewController+ScreenType.swift */,
 				CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
+				915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */,
 				CBB98B03201F850100B8EAD7 /* UNCalendarNotificationTrigger+Convenience.swift */,
 				CBB98B05201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift */,
 				CBB98AFF201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift */,
 				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
-				915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */,
-				91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */,
-				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3649,6 +3634,7 @@
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				367564B1206A56B7008D1F71 /* ReviewNotesViewController.storyboard in Resources */,
 				CC8A2EDE1F0CF98B002585CE /* BentonSansCond-Light.otf in Resources */,
+				36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */,
 				3674FF3920AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.xib in Resources */,
 				91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
@@ -3672,7 +3658,6 @@
 				3631232E20C7CC5C00D97D01 /* SigningEmailViewController.xib in Resources */,
 				7F6567321FE13BFB00A6CB7F /* ScreenHelpViewController.xib in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
-				36BBC4C620ADDF7A000DD7C5 /* PartnerEditImageCell.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				CB96B7E81FED349400ED8015 /* SlideShowMorePromptCell.xib in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
@@ -3713,7 +3698,6 @@
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */,
 				3691176D20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.xib in Resources */,
-				E81043E420D1654400858D8A /* PartnerEditDeleteButtonCell.xib in Resources */,
 				36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */,
 				36796A3420D3C47400B55429 /* SigningProfileDetailViewController.xib in Resources */,
 				36796A4520D3C49900B55429 /* SigningLoginViewController.xib in Resources */,
@@ -3726,7 +3710,6 @@
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */,
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
-				36BBC4BC20ADDE93000DD7C5 /* PartnerEditTextFieldCell.xib in Resources */,
 				7F99ABB11F3DF38E009CA587 /* Database in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				7FCF0EF71FD9774C00138D77 /* MyUniverseContentView.xib in Resources */,
@@ -3971,7 +3954,6 @@
 				7FB172A01FA1E6AD00112C69 /* MyToBeVisionAnimation.swift in Sources */,
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
 				CB3333E320480DE8009480DF /* ShareModels.swift in Sources */,
-				E81043E320D1654400858D8A /* PartnerEditDeleteButtonCell.swift in Sources */,
 				3674FF2E20AADE7D008EEB6C /* PartnersOverviewModels.swift in Sources */,
 				CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */,
 				91B339E2207F5F7400F54A62 /* SettingsBubblesViewController.swift in Sources */,
@@ -4140,7 +4122,7 @@
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CB3333E720480DF8009480DF /* ShareRouter.swift in Sources */,
-				3686678420D3835900B400FE /* SigningAbstractViewController.swift in Sources */,
+				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
@@ -4349,7 +4331,6 @@
 				3698428620C91EF3007A8C8F /* SigningDigitInteractor.swift in Sources */,
 				7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */,
 				91086E462092024F0035DA1F /* SettingsInteractor.swift in Sources */,
-				36BBC4BB20ADDE93000DD7C5 /* PartnerEditTextFieldCell.swift in Sources */,
 				912C9E39203C716400C1AA76 /* MyToBeVisionInteractor.swift in Sources */,
 				7F3277951FB4B22E00C7717C /* BlurLoadingView.swift in Sources */,
 				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */,
@@ -4428,7 +4409,6 @@
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */,
 				85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */,
-				36BBC4C520ADDF7A000DD7C5 /* PartnerEditImageCell.swift in Sources */,
 				36796A0A20D3C41F00B55429 /* SigningCreatePasswordInterface.swift in Sources */,
 				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,
 				851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */,

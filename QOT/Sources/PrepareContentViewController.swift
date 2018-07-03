@@ -62,7 +62,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
                                              letterSpacing: 1,
                                              font: Font.DPText,
                                              textColor: .white)
-        button.corner(radius: 4)
+        button.corner(radius: Layout.CornerRadius.eight.rawValue)
         button.tintColor = .white
         button.backgroundColor = .azure
         button.setImage(image, for: .normal)

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SigningDigitViewController: SigningAbstractViewController {
+final class SigningDigitViewController: AbstractFormViewController {
 
     // MARK: - Properties
 

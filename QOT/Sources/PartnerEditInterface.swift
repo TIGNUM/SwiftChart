@@ -28,7 +28,7 @@ protocol PartnerEditInteractorInterface: Interactor {
 }
 
 protocol PartnerEditRouterInterface {
-    func dismiss()
+    func dismiss(_ partner: Partners.Partner)
     func showAlert(_ alert: AlertType)
     func showImagePicker()
     func showProgressHUD(_ message: String?)

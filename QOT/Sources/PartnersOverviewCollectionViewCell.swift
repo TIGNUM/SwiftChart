@@ -17,18 +17,19 @@ final class PartnersOverviewCollectionViewCell: UICollectionViewCell, Dequeueabl
     @IBOutlet private weak var profileImageView: UIImageView!
     @IBOutlet private weak var shareStatusView: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var lastNameLabel: UILabel!
     @IBOutlet private weak var initialsLabel: UILabel!
     @IBOutlet private weak var relationshipLabel: UILabel!
     @IBOutlet private weak var addPartnerLabel: UILabel!
     @IBOutlet private weak var shareButton: UIButton!
-    private var partner: Partner?
+    private var partner: Partners.Partner?
     private var interactor: PartnersOverviewInteractorInterface?
     private var partnerExist = true
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        shareButton.corner(radius: 20)
-        contentView.corner(radius: 8)
+        shareButton.corner(radius: Layout.CornerRadius.eight.rawValue)
+        contentView.corner(radius: Layout.CornerRadius.eight.rawValue)
         bottomContentView.backgroundColor = .battleshipGrey30
         shareStatusView.applyHexagonMask()
         shareStatusView.isHidden = true
@@ -40,12 +41,13 @@ final class PartnersOverviewCollectionViewCell: UICollectionViewCell, Dequeueabl
                    relationship: String?,
                    profileImage: URL?,
                    shareStatus: String?,
-                   partner: Partner,
+                   partner: Partners.Partner,
                    interactor: PartnersOverviewInteractorInterface?) {
         self.partner = partner
         self.interactor = interactor
         if let name = name, let surname = surname, let relationship = relationship {
-            setupPartner(name: name + " " + surname,
+            setupPartner(name: name,
+                         lastName: surname,
                          relationship: relationship,
                          profileImage: profileImage,
                          shareStatus: shareStatus)
@@ -64,23 +66,30 @@ final class PartnersOverviewCollectionViewCell: UICollectionViewCell, Dequeueabl
 
 private extension PartnersOverviewCollectionViewCell {
 
-    func setupPartner(name: String, relationship: String, profileImage: URL?, shareStatus: String?) {
+    func setupPartner(name: String, lastName: String, relationship: String, profileImage: URL?, shareStatus: String?) {
         relationshipLabel.isHidden = false
         addPartnerLabel.isHidden = true
         nameLabel.isHidden = false
+        lastNameLabel.isHidden = false
         partnerExist = true
         let attributedButtonTitle = NSAttributedString(string: R.string.localized.meSectorMyWhyPartnersCellShareContent(),
                                                        letterSpacing: 1,
                                                        font: .bentonBookFont(ofSize: 16),
                                                        textColor: .white90,
                                                        alignment: .center)
-        let attributedName = NSAttributedString(string: name,
+        let attributedName = NSAttributedString(string: name.uppercased(),
                                                 letterSpacing: -1.1,
                                                 font: .simpleFont(ofSize: 20),
                                                 lineSpacing: 2,
                                                 textColor: .white,
                                                 alignment: .left)
-        let attributedRelationship = NSAttributedString(string: relationship,
+        let attributedLastName = NSAttributedString(string: lastName.uppercased(),
+                                                letterSpacing: -1.1,
+                                                font: .simpleFont(ofSize: 20),
+                                                lineSpacing: 2,
+                                                textColor: .white,
+                                                alignment: .left)
+        let attributedRelationship = NSAttributedString(string: relationship.uppercased(),
                                                         letterSpacing: 2,
                                                         font: .bentonRegularFont(ofSize: 11),
                                                         textColor: .white60,
@@ -89,23 +98,21 @@ private extension PartnersOverviewCollectionViewCell {
         shareButton.setAttributedTitle(attributedButtonTitle, for: .selected)
         relationshipLabel.attributedText = attributedRelationship
         nameLabel.attributedText = attributedName
-        if let imageURL = profileImage {
-            profileImageView.kf.setImage(with: imageURL)
-            initialsLabel.isHidden = true
-        } else {
-            initialsLabel.isHidden = false
-            initialsLabel.attributedText = NSAttributedString(string: partner?.initials ?? "",
-                                                              letterSpacing: 2,
-                                                              font: .simpleFont(ofSize: 36),
-                                                              lineSpacing: 2,
-                                                              textColor: .white,
-                                                              alignment: .center)
-        }
+        lastNameLabel.attributedText = attributedLastName
+        profileImageView.kf.setImage(with: profileImage, placeholder: R.image.placeholder_partner())
+        initialsLabel.isHidden = (profileImage != nil)
+        initialsLabel.attributedText = NSAttributedString(string: partner?.initials ?? "",
+                                                          letterSpacing: 2,
+                                                          font: .simpleFont(ofSize: 36),
+                                                          lineSpacing: 2,
+                                                          textColor: .white,
+                                                          alignment: .center)
     }
 
     func setupEmptyPartner() {
         partnerExist = false
         nameLabel.isHidden = true
+        lastNameLabel.isHidden = true
         relationshipLabel.isHidden = true
         addPartnerLabel.isHidden = false
         initialsLabel.isHidden = true
@@ -123,7 +130,7 @@ private extension PartnersOverviewCollectionViewCell {
         shareButton.setAttributedTitle(attributedButtonTitle, for: .normal)
         shareButton.setAttributedTitle(attributedButtonTitle, for: .selected)
         addPartnerLabel.attributedText = addPartnerText
-        profileImageView.image = R.image.placeholder_user()
+        profileImageView.kf.setImage(with: partner?.imageURL, placeholder: R.image.placeholder_partner())
     }
 }
 

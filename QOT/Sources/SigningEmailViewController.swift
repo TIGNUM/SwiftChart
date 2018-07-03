@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SigningEmailViewController: SigningAbstractViewController {
+final class SigningEmailViewController: AbstractFormViewController {
 
     // MARK: - Properties
 
@@ -92,6 +92,10 @@ private extension SigningEmailViewController {
 extension SigningEmailViewController: FormViewDelegate {
 
     func didBeginEditingTextField(formType: FormView.FormType?) {}
+
+    func didTapReturn(formType: FormView.FormType?) {
+        emailFormView?.activateTextField(false)
+    }
 
     func didEndEditingTextField(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)

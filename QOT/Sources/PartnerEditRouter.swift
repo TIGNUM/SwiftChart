@@ -40,7 +40,7 @@ extension PartnerEditRouter: PartnerEditRouterInterface {
         viewController.showAlert(type: alert)
     }
 
-    func dismiss() {
+    func dismiss(_ partner: Partners.Partner) {
         viewController.dismiss()
     }
 

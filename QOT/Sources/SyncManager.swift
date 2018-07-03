@@ -15,6 +15,7 @@ import Alamofire
 extension Notification.Name {
     static let syncAllDidStartNotification = Notification.Name(rawValue: "qot_syncAllDidStartNotification")
     static let syncAllDidFinishNotification = Notification.Name(rawValue: "qot_syncAllDidFinishNotification")
+    static let didDismissView = Notification.Name(rawValue: "qot_didDismissView")
 }
 
 // Command notifications
@@ -40,7 +41,6 @@ final class SyncManager {
     private var nextAllSyncTime: Date = Date(timeIntervalSince1970: 0)
     private let allSyncOperationQueue: OperationQueue
     private let operationQueue: OperationQueue
-
     var userNotificationsManager: UserNotificationsManager?
 
     // MARK: - Init

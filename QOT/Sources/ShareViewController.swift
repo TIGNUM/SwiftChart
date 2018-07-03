@@ -8,10 +8,11 @@
 
 import UIKit
 
-final class ShareViewController: UIViewController, ShareViewControllerInterface {
+final class ShareViewController: UIViewController {
 
     // MARK: - Properties
 
+    @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var relationshipLabel: UILabel!
     @IBOutlet private weak var emailLabel: UILabel!
@@ -37,41 +38,47 @@ final class ShareViewController: UIViewController, ShareViewControllerInterface 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        contentViews.forEach { $0.backgroundColor = .clear   }
-        toBeVisionButton.isSelected = true
-        setupNavigationItems()
-        setupShareButton()
-        syncShareButton()
+        containerView.withGradientBackground()
         interactor?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        if interactor?.partner.isValid == false {
+            interactor?.didTapClose()
+        } else {
+            setup()
+            setPartnerProfileImage()
+        }
+    }
+}
 
+// MARK: - ShareViewControllerInterface
+
+extension ShareViewController: ShareViewControllerInterface {
+
+    func setup() {
+        contentViews.forEach { $0.backgroundColor = .clear }
+        toBeVisionButton.isSelected = true
+        let name = interactor?.partner.name?.uppercased() ?? ""
+        let surname = interactor?.partner.surname?.uppercased() ?? ""
+        nameLabel.text = name + " " + surname
+        relationshipLabel.text = interactor?.partner.relationship?.uppercased()
+        emailLabel.text = interactor?.partner.email?.uppercased()
+        setPartnerProfileImage()
+        setupNavigationItems()
         syncShareButton()
     }
 
-    func setup(name: String, relationship: String, email: String) {
-        nameLabel.text = name.uppercased()
-        relationshipLabel.text = relationship.uppercased()
-        emailLabel.text = email.uppercased()
-    }
-
-    func setPartnerProfileImage(_ imageURL: URL?, initials: String) {
-        if imageURL != nil {
-            partnerImageView.kf.setImage(with: imageURL)
-        } else {
-            partnerImageView.backgroundColor = UIColor.whiteLight
-            partnerInitialsLabel.attributedText = NSAttributedString(
-                string: initials.uppercased(),
-                letterSpacing: 2,
-                font: Font.H1MainTitle,
-                lineSpacing: 0,
-                textColor: .white60,
-                alignment: .center
-            )
-        }
+    func setPartnerProfileImage() {
+        partnerImageView.kf.setImage(with: interactor?.partner.imageURL, placeholder: R.image.placeholder_partner())
+        partnerInitialsLabel.isHidden = (interactor?.partner.imageURL != nil)
+        partnerInitialsLabel.attributedText = NSAttributedString(string: interactor?.partner.initials.uppercased() ?? "",
+                                                                 letterSpacing: 2,
+                                                                 font: Font.H1MainTitle,
+                                                                 lineSpacing: 0,
+                                                                 textColor: .white60,
+                                                                 alignment: .center)
     }
 
     func setLoading(loading: Bool) {
@@ -93,15 +100,12 @@ private extension ShareViewController {
         navigationItem.leftBarButtonItem = closeButton
         let editButton = UIBarButtonItem(withImage: R.image.ic_edit())
         editButton.target = self
-        editButton.action = #selector(didTapClose(_ :))
-        navigationItem.leftBarButtonItem = closeButton
+        editButton.action = #selector(didTapEdit)
+        navigationItem.rightBarButtonItem = editButton
     }
 
-    func setupShareButton() {
-        shareButton.layer.cornerRadius = 20
-    }
-
-    private func syncShareButton() {
+    func syncShareButton() {
+        shareButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         shareButton.setTitleColor(.white, for: .normal)
         shareButton.isEnabled = true
     }
@@ -113,6 +117,10 @@ private extension ShareViewController {
 
     @objc func didTapClose(_ sender: UIBarButtonItem) {
         interactor?.didTapClose()
+    }
+
+    @objc func didTapEdit() {
+        interactor?.didTapEditPartner(partner: interactor?.partner)
     }
 
     @IBAction func didTapOption(_ sender: UIButton) {

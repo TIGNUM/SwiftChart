@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ShareInteractor: ShareInteractorInterface {
+final class ShareInteractor {
 
     let worker: ShareWorker
     let router: ShareRouterInterface
@@ -22,12 +22,16 @@ final class ShareInteractor: ShareInteractorInterface {
 
     func viewDidLoad() {
         worker.preUpSyncData()
+        presenter.setup()
+    }
+}
 
-        presenter.setup(name: worker.name + " " + worker.surname,
-                        relationship: worker.relationship,
-                        email: worker.email,
-                        imageURL: worker.imageURL,
-                        initials: worker.initials)
+// MARK: - ShareInteractorInterface
+
+extension ShareInteractor: ShareInteractorInterface {
+
+    var partner: Partners.Partner {
+        return worker.partner
     }
 
     func didTapClose() {
@@ -67,6 +71,10 @@ final class ShareInteractor: ShareInteractorInterface {
             self?.presenter.setLoading(loading: false)
             self?.handleResult(result)
         }
+    }
+
+    func didTapEditPartner(partner: Partners.Partner?) {
+        router.showEditPartner(partner: partner)
     }
 }
 

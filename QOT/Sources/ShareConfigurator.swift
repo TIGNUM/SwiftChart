@@ -10,25 +10,13 @@ import Foundation
 
 final class ShareConfigurator: AppStateAccess {
 
-    static func make(partnerLocalID: String,
-                     partnerName: String,
-                     partnerSurname: String,
-                     partnerRelationship: String,
-                     partnerImageURL: URL?,
-                     partnerInitials: String,
-                     partnerEmail: String) -> (ShareViewController) -> Void {
+    static func make(partnerLocalID: String, partner: Partners.Partner) -> (ShareViewController) -> Void {
         return { (viewController) in
             let router = ShareRouter(viewController: viewController)
             let worker = ShareWorker(services: appState.services,
-                                     partnerLocalID: partnerLocalID,
                                      networkManager: appState.networkManager,
                                      syncManager: appState.syncManager,
-                                     name: partnerName,
-                                     surname: partnerSurname,
-                                     relationship: partnerRelationship,
-                                     email: partnerEmail,
-                                     imageURL: partnerImageURL,
-                                     initials: partnerInitials)
+                                     partner: partner)
             let presenter = SharePresenter(viewController: viewController)
             let interactor = ShareInteractor(worker: worker, router: router, presenter: presenter)
             viewController.interactor = interactor

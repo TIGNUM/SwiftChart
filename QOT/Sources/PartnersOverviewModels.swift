@@ -50,6 +50,14 @@ struct Partners {
             return nonEmptyStrings.isEmpty && imageURL == nil
         }
 
+        func delete() {
+            name = nil
+            surname = nil
+            email = nil
+            imageURL = nil
+            relationship = nil
+        }
+
         public static func == (lhs: Partner, rhs: Partner) -> Bool {
             return lhs.localID == rhs.localID
                 && lhs.name == rhs.name

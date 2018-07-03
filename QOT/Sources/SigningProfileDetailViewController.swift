@@ -9,7 +9,7 @@
 import UIKit
 import ActionSheetPicker_3_0
 
-final class SigningProfileDetailViewController: SigningAbstractViewController {
+final class SigningProfileDetailViewController: AbstractFormViewController {
 
     // MARK: - Properties
 
@@ -182,6 +182,8 @@ extension SigningProfileDetailViewController: SigningProfileDetailViewController
 
 extension SigningProfileDetailViewController: FormViewDelegate {
 
+    func didBeginEditingTextField(formType: FormView.FormType?) {}
+
     func didUpdateTextfield(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)
     }
@@ -191,7 +193,17 @@ extension SigningProfileDetailViewController: FormViewDelegate {
         interactor?.didTapNext()
     }
 
-    func didBeginEditingTextField(formType: FormView.FormType?) {}
+    func didTapReturn(formType: FormView.FormType?) {
+        guard let formType = formType else { return }
+        switch formType {
+        case .firstName:
+            lastNameFormView?.activateTextField(true)
+        case .lastName:
+            lastNameFormView?.activateTextField(false)
+            didTabGenderField()
+        default: return
+        }
+    }
 }
 
 // MARK: - Private PickerView
@@ -212,6 +224,7 @@ private extension SigningProfileDetailViewController {
             self.interactor?.updateWorkerValue(for: .gender(items[index]))
             self.genderFormView?.configure(formType: .gender(items[index]))
             self.endEditing()
+            self.didTabDateOfBirthField()
             }, cancel: { [unowned self] _ in
                 self.endEditing()
                 return

@@ -62,7 +62,7 @@ extension PartnerEditInteractor: PartnerEditInteractorInterface {
             }
             worker.savePartner(partner, completion: { (error) in
                 self.router.hideProgressHUD()
-                self.router.dismiss()
+                self.router.dismiss(partner)
             })
         } else {
             router.showAlert(.partnerIncomplete)
@@ -77,7 +77,7 @@ extension PartnerEditInteractor: PartnerEditInteractorInterface {
                     self.router.showAlert(.canNotDeletePartner)
                 }
                 self.router.hideProgressHUD()
-                self.router.dismiss()
+                self.router.dismiss(partner)
             })
         } else {
             router.showAlert(.canNotDeletePartner)
@@ -85,6 +85,6 @@ extension PartnerEditInteractor: PartnerEditInteractorInterface {
     }
 
     func didTapCancel() {
-        router.dismiss()
+        router.dismiss(worker.partnerToEdit)
     }
 }

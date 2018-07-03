@@ -45,7 +45,7 @@ struct Layout {
     }
 
     enum CornerRadius: CGFloat {
-        case defaultEight = 8
+        case eight = 8
         case chatLabelOptionNavigation = 5
         case chatLabelOptionUpdate = 10
     }

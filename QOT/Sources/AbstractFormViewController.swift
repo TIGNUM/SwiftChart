@@ -1,5 +1,5 @@
 //
-//  SigningAbstractViewController.swift
+//  AbstractFormViewController.swift
 //  QOT
 //
 //  Created by karmic on 15.06.18.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SigningAbstractViewController: UIViewController {
+class AbstractFormViewController: UIViewController {
 
     // MARK: - Properties
 
@@ -38,7 +38,7 @@ class SigningAbstractViewController: UIViewController {
     }
 }
 
-extension SigningAbstractViewController {
+extension AbstractFormViewController {
 
     @objc func formView() -> FormView? {
         return R.nib.formView.instantiate(withOwner: nil).first as? FormView
@@ -54,9 +54,9 @@ extension SigningAbstractViewController {
     }
 
     @objc func endEditing() {
-        UIView.animate(withDuration: 0.5) { [weak self] in
-            self?.view.endEditing(true)
-        }
+        UIView.animate(withDuration: 0.75, delay: 0, options: .curveEaseOut, animations: {
+            self.view.endEditing(true)
+        })
     }
 
     @objc func updateBottomButton(_ active: Bool) {
@@ -67,7 +67,7 @@ extension SigningAbstractViewController {
 
 // MARK: - Private
 
-private extension SigningAbstractViewController {
+private extension AbstractFormViewController {
 
     func addGestureRecognizer() {
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
@@ -110,6 +110,6 @@ private extension SigningAbstractViewController {
         bottomButton.backgroundColor = .clear
         bottomButton.layer.borderWidth = 1
         bottomButton.layer.borderColor = UIColor.white36.cgColor
-        bottomButton.corner(radius: Layout.CornerRadius.defaultEight.rawValue)
+        bottomButton.corner(radius: Layout.CornerRadius.eight.rawValue)
     }
 }

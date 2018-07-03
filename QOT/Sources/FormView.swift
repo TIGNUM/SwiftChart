@@ -12,6 +12,7 @@ protocol FormViewDelegate: class {
     func didUpdateTextfield(formType: FormView.FormType?)
     func didEndEditingTextField(formType: FormView.FormType?)
     func didBeginEditingTextField(formType: FormView.FormType?)
+    func didTapReturn(formType: FormView.FormType?)
 }
 
 final class FormView: UIView {
@@ -24,6 +25,7 @@ final class FormView: UIView {
         case lastName(String)
         case gender(String)
         case dateOfBirth(String)
+        case relationship(String)
 
         func update(value: String?) -> FormType? {
             guard let value = value else { return nil }
@@ -35,6 +37,7 @@ final class FormView: UIView {
             case .lastName: return .lastName(value)
             case .gender: return .gender(value)
             case .dateOfBirth: return .dateOfBirth(value)
+            case .relationship: return .relationship(value)
             }
         }
 
@@ -47,6 +50,7 @@ final class FormView: UIView {
             case .lastName(let string): return string
             case .gender(let string): return string
             case .dateOfBirth(let string): return string
+            case .relationship(let string): return string
             }
         }
 
@@ -59,6 +63,7 @@ final class FormView: UIView {
             case .lastName: return "Last name"
             case .gender: return "Gender"
             case .dateOfBirth: return "Birthdate"
+            case .relationship: return "Relationship"
             }
         }
 
@@ -114,6 +119,14 @@ final class FormView: UIView {
 // MARK: - Public
 
 extension FormView {
+
+    func activateTextField(_ active: Bool) {
+        if active == true {
+            textField.becomeFirstResponder()
+        } else {
+            endEditing(true)
+        }
+    }
 
     func configure(formType: FormType, enabled: Bool = true) {
         self.formType = formType
@@ -218,8 +231,7 @@ extension FormView: UITextFieldDelegate {
 
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         animatePlaceholderLabel()
-        textField.endEditing(true)
-        delegate?.didEndEditingTextField(formType: formType?.update(value: textField.text))
+        delegate?.didTapReturn(formType: formType)
         return true
     }
 
@@ -234,6 +246,7 @@ extension FormView: UITextFieldDelegate {
 
     func textFieldDidEndEditing(_ textField: UITextField) {
         resetPlaceholderLabelIfNeeded()
+        delegate?.didEndEditingTextField(formType: formType?.update(value: textField.text))
     }
 }
 

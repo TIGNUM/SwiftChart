@@ -34,8 +34,8 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
 
         statusView.maskPathByRoundingCorners()
-        containerView.corner(radius: 8)
-        receiveFeedbackButton.corner(radius: 4)
+        containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
+        receiveFeedbackButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         receiveFeedbackButton.backgroundColor = .azure
 		receiveFeedbackButton.showsTouchWhenHighlighted = true
     }

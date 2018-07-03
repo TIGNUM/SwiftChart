@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SigningCountryViewController: SigningAbstractViewController {
+final class SigningCountryViewController: AbstractFormViewController {
 
     // MARK: - Properties
 
@@ -105,6 +105,10 @@ extension SigningCountryViewController: SigningCountryViewControllerInterface {
 // MARK: - FormViewDelegate
 
 extension SigningCountryViewController: FormViewDelegate {
+
+    func didTapReturn(formType: FormView.FormType?) {
+        countryFormView?.activateTextField(false)
+    }
 
     func didBeginEditingTextField(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)

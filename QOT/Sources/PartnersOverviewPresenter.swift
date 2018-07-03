@@ -25,11 +25,11 @@ final class PartnersOverviewPresenter {
 
 extension PartnersOverviewPresenter: PartnersOverviewPresenterInterface {
 
-    func setup(partners: [Partner], partnersLandingPage: PartnersLandingPage?) {
-        viewController?.setup(partners: partners, partnersLandingPage: partnersLandingPage)
+    func setup(partners: [Partners.Partner]) {
+        viewController?.setup(partners: partners)
     }
 
-    func reload(partner: Partner) {
+    func reload(partner: Partners.Partner) {
         viewController?.reload(partner: partner)
     }
 }

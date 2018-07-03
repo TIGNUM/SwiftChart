@@ -57,8 +57,8 @@ private extension GuideWhatsHotTableViewCell {
 
     func setupView() {
         whatsHotImageView.isHidden = true
-		containerView.corner(radius: 8)
-		whatsHotImageView.corner(radius: 8)
+		containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
+		whatsHotImageView.corner(radius: Layout.CornerRadius.eight.rawValue)
         statusView.maskPathByRoundingCorners()
 		containerView.backgroundColor = .whiteLight12
     }

@@ -26,6 +26,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareViewController" customModule="QOT" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="isb-94-hiD" id="Ru1-va-7Tm"/>
+                <outlet property="containerView" destination="OwW-7o-BTV" id="XQZ-RB-S67"/>
                 <outlet property="emailLabel" destination="n6k-Ro-th2" id="3gm-Gj-GLY"/>
                 <outlet property="nameLabel" destination="b4U-iA-UEC" id="O4J-6T-NUA"/>
                 <outlet property="partnerImageView" destination="wSi-OY-Do8" id="rrR-H4-nTX"/>
@@ -47,25 +48,20 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kCX-Tg-4vc">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                    <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="OT6-dZ-csq">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    </view>
-                    <blurEffect style="dark"/>
-                </visualEffectView>
                 <view opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OwW-7o-BTV" userLabel="Container">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
+                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundMyToBeVision" translatesAutoresizingMaskIntoConstraints="NO" id="u2H-ZJ-OHe">
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQr-2M-W45" userLabel="topView">
-                            <rect key="frame" x="0.0" y="20" width="375" height="247.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="267.5"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="wSi-OY-Do8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="247.5"/>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_partner" translatesAutoresizingMaskIntoConstraints="NO" id="wSi-OY-Do8">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="267.5"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lji-ky-tt8">
-                                    <rect key="frame" x="187.5" y="124" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="187.5" y="134" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -276,13 +272,15 @@
                         <constraint firstItem="1x1-Na-Dx7" firstAttribute="centerY" secondItem="OwW-7o-BTV" secondAttribute="centerY" multiplier="0.8" id="1d3-gI-nWc"/>
                         <constraint firstItem="0ld-dd-RoU" firstAttribute="centerY" secondItem="OwW-7o-BTV" secondAttribute="centerY" multiplier="1.6" id="5O9-kv-aCV"/>
                         <constraint firstItem="yQr-2M-W45" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" id="9Pk-yY-wSk"/>
-                        <constraint firstItem="yQr-2M-W45" firstAttribute="top" secondItem="OwW-7o-BTV" secondAttribute="top" constant="20" id="9ox-ka-cTk"/>
+                        <constraint firstItem="yQr-2M-W45" firstAttribute="top" secondItem="OwW-7o-BTV" secondAttribute="top" id="9ox-ka-cTk"/>
                         <constraint firstItem="1x1-Na-Dx7" firstAttribute="top" secondItem="yQr-2M-W45" secondAttribute="bottom" id="AdG-WK-0jX"/>
                         <constraint firstAttribute="trailing" secondItem="0ld-dd-RoU" secondAttribute="trailing" constant="24" id="FB2-7g-Dpt"/>
+                        <constraint firstAttribute="trailing" secondItem="u2H-ZJ-OHe" secondAttribute="trailing" id="Fco-UT-bef"/>
                         <constraint firstAttribute="trailing" secondItem="1x1-Na-Dx7" secondAttribute="trailing" id="GVN-s8-XFd"/>
                         <constraint firstAttribute="trailing" secondItem="Lyj-zX-ikJ" secondAttribute="trailing" id="JXo-1s-PZH"/>
                         <constraint firstItem="MBV-Td-LRW" firstAttribute="top" secondItem="0ld-dd-RoU" secondAttribute="bottom" id="Kid-Y6-Mdg"/>
                         <constraint firstAttribute="trailing" secondItem="MBV-Td-LRW" secondAttribute="trailing" id="LwK-0f-B9r"/>
+                        <constraint firstItem="u2H-ZJ-OHe" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" id="N3r-Jm-uz5"/>
                         <constraint firstItem="MBV-Td-LRW" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" id="OOb-6q-PkR"/>
                         <constraint firstItem="0ld-dd-RoU" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" constant="24" id="Vk9-DV-Ufn"/>
                         <constraint firstItem="1x1-Na-Dx7" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" id="dDR-QA-Fb5"/>
@@ -290,27 +288,27 @@
                         <constraint firstAttribute="trailing" secondItem="yQr-2M-W45" secondAttribute="trailing" id="nSF-dd-y6f"/>
                         <constraint firstItem="Lyj-zX-ikJ" firstAttribute="top" secondItem="1x1-Na-Dx7" secondAttribute="bottom" id="p2y-KJ-LKQ"/>
                         <constraint firstAttribute="bottom" secondItem="MBV-Td-LRW" secondAttribute="bottom" id="sla-1d-A5s"/>
+                        <constraint firstAttribute="bottom" secondItem="u2H-ZJ-OHe" secondAttribute="bottom" id="u2f-eB-dIN"/>
                         <constraint firstItem="Lyj-zX-ikJ" firstAttribute="leading" secondItem="OwW-7o-BTV" secondAttribute="leading" id="xm4-1P-sao"/>
+                        <constraint firstItem="u2H-ZJ-OHe" firstAttribute="top" secondItem="OwW-7o-BTV" secondAttribute="top" id="zdS-0L-PjS"/>
                     </constraints>
                 </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="OwW-7o-BTV" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="1jm-Kd-oa1"/>
-                <constraint firstItem="kCX-Tg-4vc" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="9GJ-3F-atR"/>
                 <constraint firstItem="OwW-7o-BTV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="Rhn-qC-RZy"/>
-                <constraint firstItem="kCX-Tg-4vc" firstAttribute="bottom" secondItem="i5M-Pr-FkT" secondAttribute="bottom" id="ZhH-sh-WD2"/>
+                <constraint firstItem="OwW-7o-BTV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="XG2-XE-dwh"/>
                 <constraint firstItem="OwW-7o-BTV" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="iST-27-Jgx"/>
-                <constraint firstItem="OwW-7o-BTV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="-20" id="kDY-Cu-oH9"/>
-                <constraint firstAttribute="trailing" secondItem="kCX-Tg-4vc" secondAttribute="trailing" id="uUX-2q-bCY"/>
-                <constraint firstItem="kCX-Tg-4vc" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="wKi-Ih-Aez"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <point key="canvasLocation" x="33.5" y="54.5"/>
         </view>
     </objects>
     <resources>
+        <image name="backgroundMyToBeVision" width="375" height="667"/>
         <image name="ic_radio_selected" width="24" height="24"/>
         <image name="ic_radio_unselected" width="24" height="24"/>
+        <image name="placeholder_partner" width="430" height="430"/>
     </resources>
 </document>

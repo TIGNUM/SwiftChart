@@ -45,24 +45,29 @@ extension UIColor {
         return UIColor(red: 8/255, green: 8/255, blue: 8/255, alpha: 1)
     }
 
-    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.15)
+    /// UIColor.black.withAlphaComponent(0.15)
     class var black15: UIColor {
-        return UIColor(red: 0, green: 0, blue: 0, alpha: 0.15)
+        return UIColor.black.withAlphaComponent(0.15)
     }
 
-    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+    /// UIColor.black.withAlphaComponent(0.3)
     class var black30: UIColor {
-        return UIColor(red: 0, green: 0, blue: 0, alpha: 0.3)
+        return UIColor.black.withAlphaComponent(0.3)
     }
 
-    /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+    /// UIColor.black.withAlphaComponent(0.4)
     class var black40: UIColor {
-        return UIColor(red: 0, green: 0, blue: 0, alpha: 0.4)
+        return UIColor.black.withAlphaComponent(0.6)
+    }
+
+    /// UIColor.black.withAlphaComponent(0.6)
+    class var black60: UIColor {
+        return UIColor.black.withAlphaComponent(0.6)
     }
 
     /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
     class var black70: UIColor {
-        return UIColor(red: 0, green: 0, blue: 0, alpha: 0.7)
+        return UIColor.black.withAlphaComponent(0.7)
     }
 
     /// UIColor(red: 0, green: 0, blue: 0, alpha: 0.8)

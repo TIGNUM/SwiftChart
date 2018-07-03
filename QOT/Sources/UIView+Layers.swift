@@ -241,3 +241,14 @@ extension UIView {
         })
     }
 }
+
+extension UIView {
+
+    func withGradientBackground() {
+        let gradient = CAGradientLayer()
+        gradient.frame = frame
+        gradient.colors = [UIColor.charcoal.cgColor, UIColor.clear.cgColor]
+        gradient.locations = [0.0, 0.2]
+        layer.addSublayer(gradient)
+    }
+}

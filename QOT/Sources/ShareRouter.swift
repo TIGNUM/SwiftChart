@@ -9,17 +9,34 @@
 import UIKit
 import MessageUI
 
-final class ShareRouter: NSObject, ShareRouterInterface {
+final class ShareRouter: NSObject {
 
-    private let viewController: UIViewController
+    private let viewController: ShareViewController
 
-    init(viewController: UIViewController) {
+    init(viewController: ShareViewController) {
         self.viewController = viewController
         super.init()
     }
+}
+
+// MARK: - ShareRouterInterface
+
+extension ShareRouter: ShareRouterInterface {
+
+    func showEditPartner(partner: Partners.Partner?) {
+        guard let partner = partner else { return }
+        let configurator = PartnerEditConfigurator.make(partnerToEdit: partner)
+        let partnersController = PartnerEditViewController(configure: configurator)
+        let navController = UINavigationController(rootViewController: partnersController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.transitioningDelegate = partnersController.transitioningDelegate
+        viewController.present(navController, animated: true, completion: nil)
+    }
 
     func dismiss() {
-        viewController.dismiss(animated: true, completion: nil)
+        viewController.dismiss(animated: true) {
+            NotificationCenter.default.post(name: .didDismissView, object: nil)
+        }
     }
 
     func showMailComposer(email: String, subject: String, messageBody: String) {

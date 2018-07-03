@@ -8,27 +8,39 @@
 
 import UIKit
 
-enum PartnerCellType: Int {
-    case partnerImage = 0
-    case partnerInfo
-    case partnerDelete
-}
-
-final class PartnerEditViewController: UITableViewController {
-
-    // MARK: - Constants
-
-    private var partnerImageHeightRatio: CGFloat = 0.6
-    private var partnerInfoHeightRatio: CGFloat = 0.4
-    private var partnerDeleteHeightRatio: CGFloat = 0.1
-    private var infoCellVerticalSpace: CGFloat = 15
+final class PartnerEditViewController: UIViewController {
 
     // MARK: - Properties
 
+    @IBOutlet private weak var topLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var bottomLayoutConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var cameraImageView: UIImageView!
+    @IBOutlet private weak var profileImageView: UIImageView!
+    @IBOutlet private weak var imageLabel: UILabel!
+    @IBOutlet private weak var imageContainerView: UIView!
+    @IBOutlet private weak var formContainerView: UIView!
+    @IBOutlet private weak var firstNameFormContentView: UIView!
+    @IBOutlet private weak var lastNameFormContentView: UIView!
+    @IBOutlet private weak var relationshipFormContentView: UIView!
+    @IBOutlet private weak var emailFormContentView: UIView!
+    @IBOutlet private weak var deleteButton: UIButton!
+    private lazy var firstNameFormView = formView()
+    private lazy var lastNameFormView = formView()
+    private lazy var relationshipFormView = formView()
+    private lazy var emailFormView = formView()
+    private var partnerFirstName: String?
+    private var partnerLastName: String?
+    private var partnerRelationship: String?
+    private var partnerEmail: String?
     private var partner: Partners.Partner?
     private var tempImage: UIImage?
-    private var showsDeleteButton: Bool = true
+    private var layoutConstraintMultiplier = CGFloat(-1)
+    private let keyboardListener = KeyboardListener()
     var interactor: PartnerEditInteractorInterface?
+
+    private var formViewHeight: CGFloat {
+        return firstNameFormContentView.frame.height
+    }
 
     // MARK: - Init
 
@@ -48,47 +60,14 @@ final class PartnerEditViewController: UITableViewController {
         interactor?.viewDidLoad()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        updateInfoCellVerticalSpacing()
-    }
-}
-
-extension PartnerEditViewController {
-
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return showsDeleteButton ? 3 : 2
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        keyboardListener.startObserving()
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let viewHeight = view.frame.height - view.safeMargins.bottom
-        switch PartnerCellType(rawValue: indexPath.row)! {
-        case .partnerImage:
-            return viewHeight * partnerImageHeightRatio
-        case .partnerDelete:
-            return viewHeight * partnerDeleteHeightRatio
-        default:
-            break
-        }
-        return viewHeight * partnerInfoHeightRatio
-    }
-
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch PartnerCellType(rawValue: indexPath.row)! {
-        case .partnerImage:
-            let cell: PartnerEditImageCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(imageURL: partner?.imageURL, image: tempImage, interactor: interactor)
-            return cell
-        case .partnerDelete:
-            let cell: PartnerEditDeleteButtonCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(partner: partner, interactor: interactor)
-            return cell
-        default:
-            break
-        }
-        let cell: PartnerEditTextFieldCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(partner: partner, interactor: interactor, verticalSpace: infoCellVerticalSpace)
-        return cell
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        keyboardListener.stopObserving()
     }
 }
 
@@ -96,21 +75,39 @@ extension PartnerEditViewController {
 
 private extension PartnerEditViewController {
 
-    func setupTableView() {
-        tableView.bounces = false
-        tableView.isScrollEnabled = false
-        tableView.backgroundView = UIImageView(image: R.image.backgroundMyToBeVision())
-        tableView.backgroundColor = .white
-        tableView.backgroundView?.alpha = 0.9
-        tableView.separatorColor = .clear
-        tableView.registerDequeueable(PartnerEditImageCell.self)
-        tableView.registerDequeueable(PartnerEditTextFieldCell.self)
-        tableView.registerDequeueable(PartnerEditDeleteButtonCell.self)
-        tableView.separatorStyle = .none
-        if #available(iOS 11, *) {
-            tableView.contentInsetAdjustmentBehavior = .never
-        }
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+    func formView() -> FormView? {
+        return R.nib.formView.instantiate(withOwner: nil).first as? FormView
+    }
+
+    func setupFormViews(_ partner: Partners.Partner?) {
+        guard
+            let formFirstName = firstNameFormView,
+            let formLastName = lastNameFormView,
+            let formRelationship = relationshipFormView,
+            let formEmail = emailFormView else { return }
+        formFirstName.delegate = self
+        formLastName.delegate = self
+        formRelationship.delegate = self
+        formEmail.delegate = self
+        firstNameFormContentView.addSubview(formFirstName)
+        lastNameFormContentView.addSubview(formLastName)
+        relationshipFormContentView.addSubview(formRelationship)
+        emailFormContentView.addSubview(formEmail)
+        firstNameFormContentView.backgroundColor = .clear
+        lastNameFormContentView.backgroundColor = .clear
+        relationshipFormContentView.backgroundColor = .clear
+        emailFormContentView.backgroundColor = .clear
+        formFirstName.configure(formType: .firstName(partner?.name ?? ""))
+        formLastName.configure(formType: .lastName(partner?.surname ?? ""))
+        formRelationship.configure(formType: .relationship(partner?.relationship ?? ""))
+        formEmail.configure(formType: .email(partner?.email ?? ""))
+    }
+
+    func setupImageView() {
+        profileImageView.kf.setImage(with: partner?.imageURL)
+        imageContainerView.backgroundColor = .black60
+        imageContainerView.withGradientBackground()
+        updateImageContainerView(tempImage)
     }
 
     func setupNavigationItems() {
@@ -122,9 +119,9 @@ private extension PartnerEditViewController {
         navigationItem.rightBarButtonItem = rightButton
     }
 
-    func setupCellHeights() {
-        partnerDeleteHeightRatio = showsDeleteButton ? partnerDeleteHeightRatio : 0
-        partnerInfoHeightRatio = partnerInfoHeightRatio - partnerDeleteHeightRatio
+    func editImageTitle() -> String {
+        let imageExist = partner?.imageURL != nil || tempImage != nil
+        return imageExist == true ?  R.string.localized.meSectorMyWhyPartnersChangePhoto() : R.string.localized.meSectorMyWhyPartnersAddPhoto()
     }
 }
 
@@ -132,31 +129,65 @@ private extension PartnerEditViewController {
 
 private extension PartnerEditViewController {
 
+    @IBAction func didTapImageButton() {
+        interactor?.showImagePicker()
+        endEditing()
+    }
+
+    @IBAction func didTapDeleteButton() {
+        interactor?.didTapDelete(partner: partner)
+        endEditing()
+    }
+
     @objc func didTapCancel() {
         interactor?.didTapCancel()
+        endEditing()
     }
 
     @objc func didTapSave() {
+        endEditing()
         updatePartner()
         interactor?.didTapSave(partner: partner, image: tempImage)
     }
 
-    func updatePartner() {
-        let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PartnerEditTextFieldCell
-        partner?.name = cell?.nameTextField.text
-        partner?.surname = cell?.surnameTextField.text
-        partner?.relationship = cell?.relationshipTextField.text
-        partner?.email = cell?.emailTextField.text
+    @objc func endEditing() {
+        UIView.animate(withDuration: 0.75, delay: 0, options: .curveEaseOut, animations: {
+            self.view.endEditing(true)
+        })
     }
 
-    func updateInfoCellVerticalSpacing() {
-        let infoCellHeight = view.frame.height * partnerInfoHeightRatio
-        let newHeight: CGFloat = (infoCellHeight - (40.0 * 4.0))/5.0
-        if infoCellVerticalSpace != newHeight {
-            infoCellVerticalSpace = newHeight
-            let cellType = PartnerCellType.partnerInfo
-            tableView.reloadRows(at: [IndexPath(row: cellType.rawValue, section: 0)], with: .none)
+    func updatePartner() {
+        partner?.name = partnerFirstName
+        partner?.surname = partnerLastName
+        partner?.relationship = partnerRelationship
+        partner?.email = partnerEmail
+    }
+
+    func updateImageContainerView(_ tempImage: UIImage?) {
+        if tempImage != nil {
+            profileImageView.image = tempImage
         }
+        imageLabel.attributedText = NSMutableAttributedString(string: editImageTitle(),
+                                                              letterSpacing: 0.8,
+                                                              font: .apercuLight(ofSize: 16),
+                                                              textColor: .white90,
+                                                              alignment: .center)
+    }
+
+    func updateFormViewConstraints() {
+        let keyboardHeight = keyboardListener.state.height
+        topLayoutConstraint.constant = keyboardHeight == 0 ? 0 : (formViewHeight * layoutConstraintMultiplier)
+        bottomLayoutConstraint.constant = keyboardHeight == 0 ? 0 : -(formViewHeight * layoutConstraintMultiplier)
+        UIView.animate(withDuration: 0.75) { [weak self] in
+            self?.view.layoutIfNeeded()
+            self?.view.updateConstraints()
+        }
+    }
+
+    func addGestureRecognizer() {
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(endEditing))
+        tapGesture.cancelsTouchesInView = false
+        view.addGestureRecognizer(tapGesture)
     }
 }
 
@@ -170,16 +201,22 @@ extension PartnerEditViewController: PartnerEditViewControllerInterface {
 
     func setupView(partner: Partners.Partner, isNewPartner: Bool) {
         self.partner = partner
-        self.showsDeleteButton = isNewPartner ? false : true
-
+        partnerFirstName = partner.name
+        partnerLastName = partner.surname
+        partnerRelationship = partner.relationship
+        partnerEmail = partner.email
+        deleteButton.isHidden = (isNewPartner == true)
         setupNavigationItems()
-        setupTableView()
-        setupCellHeights()
+        setupImageView()
+        setupFormViews(partner)
+        addGestureRecognizer()
+        keyboardListener.onStateChange { [weak self] _ in
+            self?.updateFormViewConstraints()
+        }
     }
 
     func dismiss() {
-        let cell = tableView.cellForRow(at: IndexPath(row: 1, section: 0)) as? PartnerEditTextFieldCell
-        cell?.endEditing(true)
+        view.endEditing(true)
         dismiss(animated: true, completion: nil)
     }
 }
@@ -190,11 +227,52 @@ extension PartnerEditViewController: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         tempImage = image
-        updatePartner()
-        tableView.reloadRows(at: [IndexPath(item: 0, section: 0)], with: .automatic)
+        updateImageContainerView(tempImage)
     }
 
     func cancelSelection() {
-        // Do nothing
+        // Do nothing.
+    }
+}
+
+// MARK: - FormViewDelegate
+
+extension PartnerEditViewController: FormViewDelegate {
+
+    func didUpdateTextfield(formType: FormView.FormType?) {}
+
+    func didTapReturn(formType: FormView.FormType?) {
+        guard let formType = formType else { return }
+        switch formType {
+        case .firstName: lastNameFormView?.activateTextField(true)
+        case .lastName: relationshipFormView?.activateTextField(true)
+        case .relationship: emailFormView?.activateTextField(true)
+        case .email:
+            emailFormView?.activateTextField(false)
+            didTapSave()
+        default: return
+        }
+    }
+
+    func didEndEditingTextField(formType: FormView.FormType?) {
+        guard let formType = formType else { return }
+        switch formType {
+        case .firstName: partnerFirstName = formType.value
+        case .lastName: partnerLastName = formType.value
+        case .relationship: partnerRelationship = formType.value
+        case .email: partnerEmail = formType.value
+        default: return
+        }
+    }
+
+    func didBeginEditingTextField(formType: FormView.FormType?) {
+        guard let formType = formType else { return }
+        switch formType {
+        case .firstName: layoutConstraintMultiplier = -1
+        case .lastName: layoutConstraintMultiplier = -2
+        case .relationship: layoutConstraintMultiplier = -3
+        case .email: layoutConstraintMultiplier = -4
+        default: return
+        }
     }
 }

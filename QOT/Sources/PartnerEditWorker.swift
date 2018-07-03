@@ -40,6 +40,9 @@ final class PartnerEditWorker {
         var partners = realmPartners.filter { $0.isValid }.map { Partners.Partner($0) }
         for _ in partners.count..<3 {
             // Pad with empty partners
+            // --> But just and only because an old design requiered this.
+            //     We should NOT have three empty partner cards, or other kind of placeholders times three here.
+            //     Add a comment if you agree.
             partners.append(Partners.Partner())
         }
         return partners
@@ -63,7 +66,6 @@ final class PartnerEditWorker {
         } catch {
             log("Failed to save partners with error: \(error)")
         }
-
         syncManager.syncPartners(completion: completion)
     }
 
@@ -78,6 +80,7 @@ final class PartnerEditWorker {
             if let existing = realm.syncableObject(ofType: Partner.self, localID: partner.localID) {
                 try realm.write {
                     existing.delete()
+                    partner.delete()
                 }
             }
         } catch {
@@ -145,7 +148,6 @@ private extension Partner {
             let name = partner.name,
             let surname = partner.surname,
             let email = partner.email else { return }
-
         self.name = name
         self.surname = surname
         self.relationship = partner.relationship

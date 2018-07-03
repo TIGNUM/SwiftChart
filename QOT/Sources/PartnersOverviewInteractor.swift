@@ -29,7 +29,7 @@ final class PartnersOverviewInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        presenter.setup(partners: worker.partners(), partnersLandingPage: worker.landingPage)
+        presenter.setup(partners: worker.partners())
     }
 }
 
@@ -37,19 +37,23 @@ final class PartnersOverviewInteractor {
 
 extension PartnersOverviewInteractor: PartnersOverviewInteractorInterface {
 
-    func reload() {
-        presenter.setup(partners: worker.partners(), partnersLandingPage: worker.landingPage)
+    var landingPage: PartnersLandingPage? {
+        return worker.landingPage
     }
 
-    func didTapShare(partner: Partner) {
+    func reload() {
+        presenter.setup(partners: worker.partners())
+    }
+
+    func didTapShare(partner: Partners.Partner) {
          router.showShare(partner: partner)
     }
 
-    func editPartner(partner: Partner) {
+    func editPartner(partner: Partners.Partner) {
         router.showEditPartner(partner: partner)
     }
 
-    func addPartner(partner: Partner) {
+    func addPartner(partner: Partners.Partner) {
         router.showAddPartner(partner: partner)
     }
 
