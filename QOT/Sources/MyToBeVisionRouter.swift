@@ -10,19 +10,16 @@ import UIKit
 
 final class MyToBeVisionRouter {
 
-    // FIXME: Remove AppCoordinator when we have migrated to a VIP architecture.
-    let appCoordinator: AppCoordinator
-    let viewController: UIViewController
+    private let viewController: UIViewController
 
-    init(viewController: UIViewController, appCoordinator: AppCoordinator) {
+    init(viewController: UIViewController) {
         self.viewController = viewController
-        self.appCoordinator = appCoordinator
     }
 }
 
 extension MyToBeVisionRouter: MyToBeVisionRouterInterface {
 
     func close() {
-        appCoordinator.dismiss(viewController, level: .priority)
+        viewController.dismiss(animated: true, completion: nil)
     }
 }

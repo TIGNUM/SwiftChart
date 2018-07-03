@@ -351,15 +351,14 @@ private extension MyToBeVisionViewController {
 
     func saveToBeVisison() {
         guard var toBeVision = toBeVision, let image = imageView.image else { return }
-        let currentDate = Date()
         if toBeVision.headLine != headlineTextView.text {
             toBeVision.headLine = headlineTextView.text
         }
         if toBeVision.text != messageTextView.text {
             toBeVision.text = messageTextView.text
+            toBeVision.lastUpdated = Date()
         }
 
-        toBeVision.lastUpdated = currentDate
         interactor?.saveToBeVision(image: image, toBeVision: toBeVision)
     }
 

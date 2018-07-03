@@ -11,7 +11,7 @@ import Foundation
 final class MyToBeVisionConfigurator: AppStateAccess {
     static func make() -> Configurator<MyToBeVisionViewController> {
         return { viewController in
-            let router = MyToBeVisionRouter(viewController: viewController, appCoordinator: appState.appCoordinator)
+            let router = MyToBeVisionRouter(viewController: viewController)
             let presenter = MyToBeVisionPresenter(viewController: viewController)
             let worker = MyToBeVisionWorker(services: appState.services,
                                             syncManager: appState.appCoordinator.syncManager)
