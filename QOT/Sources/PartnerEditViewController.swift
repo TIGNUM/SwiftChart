@@ -195,6 +195,6 @@ extension PartnerEditViewController: ImagePickerControllerDelegate {
     }
 
     func cancelSelection() {
-
+        // Do nothing
     }
 }

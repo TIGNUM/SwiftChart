@@ -16,7 +16,6 @@ final class FadeContainerView: UIView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setup()
     }
 
@@ -26,7 +25,6 @@ final class FadeContainerView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         setup()
     }
 
@@ -38,7 +36,6 @@ final class FadeContainerView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         updateMask()
     }
 
@@ -51,7 +48,6 @@ final class FadeContainerView: UIView {
 
     private func updateMask() {
         maskLayer.frame = bounds
-
         if bounds.height != 0 {
             let top = topFade / bounds.height
             let midTop = top / 2
