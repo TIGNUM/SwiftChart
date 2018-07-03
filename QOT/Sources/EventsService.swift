@@ -14,7 +14,7 @@ final class EventsService {
 
     private let mainRealm: Realm
     private let realmProvider: RealmProvider
-    private let syncSettingsManager: CalendarSyncSettingsManager
+    let syncSettingsManager: CalendarSyncSettingsManager
     let eventStore = EKEventStore.shared
 
     init(mainRealm: Realm, realmProvider: RealmProvider) {

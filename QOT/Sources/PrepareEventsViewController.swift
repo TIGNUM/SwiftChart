@@ -69,7 +69,10 @@ final class PrepareEventsViewController: UIViewController {
     // MARK: - Private
 
     private func setupUI() {
-        upcomingEventsTitleLabel.addCharactersSpacing(spacing: 2, text: R.string.localized.preparePrepareEventsUpcomingEvents(), uppercased: true)
+        let upcomingEventTitle = self.viewModel.availableCalendarCount > 0 ?
+            R.string.localized.preparePrepareEventsUpcomingEvents() : R.string.localized.preparePrepareEventsNoSynchronisableCalendars()
+
+        upcomingEventsTitleLabel.addCharactersSpacing(spacing: 2, text: upcomingEventTitle, uppercased: true)
         yourDeviceTitleLabel.addCharactersSpacing(spacing: 2, text: R.string.localized.preparePrepareEventsYourDevice(), uppercased: true)
         viewTitleLabel.addCharactersSpacing(spacing: 1, text: R.string.localized.preparePrepareEventsAddPreparation(), uppercased: true)
     }
@@ -105,7 +108,10 @@ extension PrepareEventsViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer: PrepareEventTableViewFooterView = tableView.dequeueHeaderFooter()
-        footer.setup(title: R.string.localized.preparePrepareEventsAddNewEvent(), delegate: self)
+
+        let footerTitle = self.viewModel.availableCalendarCount > 0 ?
+            R.string.localized.preparePrepareEventsAddNewEvent() : R.string.localized.preparePrepareEventsSyncCalendarEvents()
+        footer.setup(title: footerTitle, delegate: self)
 
         return footer
     }
@@ -128,6 +134,11 @@ extension PrepareEventsViewController: UITableViewDelegate, UITableViewDataSourc
 extension PrepareEventsViewController: PrepareEventTableViewFooterViewDelegate {
 
     func didTapAddNewTrip() {
-        delegate?.didTapAddNewTrip(viewController: self)
+        if self.viewModel.availableCalendarCount > 0 {
+            delegate?.didTapAddNewTrip(viewController: self)
+        } else {
+            AppDelegate.current.appCoordinator.navigateToCalendarSettings(AppCoordinator.Router.Destination(preferences: .calendarSync))
+
+        }
     }
 }

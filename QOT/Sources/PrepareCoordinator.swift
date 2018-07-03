@@ -189,7 +189,10 @@ extension PrepareCoordinator {
         let start = Date()
         let finish = start.addingTimeInterval(TimeInterval(days: 30))
         let events = services.eventsService.calendarEvents(from: start, to: finish)
-        let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName, events: events)
+        let synchronisedCalendars = services.eventsService.syncSettingsManager.calendarSyncSettings.compactMap {
+            return $0.syncEnabled ? $0.source() : nil
+        }
+        let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName, events: events, calendarIdentifiers: synchronisedCalendars)
         let prepareEventsVC = PrepareEventsViewController(viewModel: viewModel)
         prepareEventsVC.delegate = self
         prepareEventsVC.modalPresentationStyle = .custom

@@ -189,8 +189,10 @@
 
 "Prepare.PrepareEvents.AddPreparation" = "ADD THIS PREPARATION TO";
 "Prepare.PrepareEvents.AddNewEvent" = "Add new event";
+"Prepare.PrepareEvents.SyncCalendarEvents" = "Sync Calendars";
 "Prepare.PrepareEvents.MyPrepList" = "MY PREP LIST";
 "Prepare.PrepareEvents.UpcomingEvents" = "UPCOMING EVENTS";
+"Prepare.PrepareEvents.NoSynchronisableCalendars" = "NO EVENTS AVAILABE, PLEASE SYNC CALENDARS";
 "Prepare.PrepareEvents.YourDevice" = "YOUR DEVICE";
 "Prepare.PrepareEvents.SaveThisPreparation" = "Save this preparation";
 "Prepare.Content.ReadMore" = "Read more";
