@@ -30,17 +30,19 @@ final class GuideWhatsHotTableViewCell: UITableViewCell, Dequeueable {
                                                    font: Font.H5SecondaryHeadline,
                                                    textColor: .white,
                                                    alignment: .left)
-        bodyLabel.attributedText = attributedText(letterSpacing: 0.2,
-                                                  text: body,
-                                                  font: Font.DPText,
-                                                  lineSpacing: 6,
-                                                  textColor: .white70,
-                                                  alignment: .left)
         footerLabel.attributedText = attributedText(letterSpacing: 2,
                                                     text: "WHAT'S HOT ARTICLE",
                                                     font: Font.H7Tag,
                                                     textColor: .white40,
                                                     alignment: .left)
+        let bodyAttributedString = NSMutableAttributedString(attributedString: body.attributedString())
+        replaceLinks(in: bodyAttributedString)
+        bodyLabel.attributedText = attributedText(letterSpacing: 0.2,
+                                                  text: bodyAttributedString.string,
+                                                  font: Font.DPText,
+                                                  lineSpacing: 6,
+                                                  textColor: .white70,
+                                                  alignment: .left)
 
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
@@ -76,5 +78,13 @@ private extension GuideWhatsHotTableViewCell {
                                          textColor: textColor,
                                          alignment: alignment,
                                          lineBreakMode: .byTruncatingTail)
+    }
+
+    func replaceLinks(in attributedString: NSMutableAttributedString) {
+        String.matches(for: "\\[.*?\\]\\(.*?(?=\\))\\)", in: attributedString.string).reversed().forEach { range in
+            let linkSubstring = attributedString.mutableString.substring(with: range)
+            let linkTitle = String.getString(for: "\\[.*\\]", in: linkSubstring).trimmingCharacters(in: ["[", "]"])
+            attributedString.mutableString.replaceCharacters(in: range, with: linkTitle)
+        }
     }
 }

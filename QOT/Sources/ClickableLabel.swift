@@ -93,10 +93,10 @@ private extension ClickableLabel {
     }
 
     func replaceLinks(in mutableAttributedText: NSMutableAttributedString) {
-        matches(for: "\\[.*?\\]\\(.*?(?=\\))\\)", in: mutableAttributedText.string).reversed().forEach { range in
+        String.matches(for: "\\[.*?\\]\\(.*?(?=\\))\\)", in: mutableAttributedText.string).reversed().forEach { range in
             let linkSubstring = mutableAttributedText.mutableString.substring(with: range)
-            let linkTitle = getString(for: "\\[.*\\]", in: linkSubstring).trimmingCharacters(in: ["[", "]"])
-            let link = getString(for: "\\(.*\\)", in: linkSubstring).trimmingCharacters(in: ["(", ")"])
+            let linkTitle = String.getString(for: "\\[.*\\]", in: linkSubstring).trimmingCharacters(in: ["[", "]"])
+            let link = String.getString(for: "\\(.*\\)", in: linkSubstring).trimmingCharacters(in: ["(", ")"])
             let additionalCharactersCount = linkSubstring.count - linkTitle.count
             let newRange =  NSRange(location: range.location, length: linkTitle.count)
             let mdLink = MarkdownLink(range: newRange, link: link, title: linkTitle)
@@ -105,36 +105,12 @@ private extension ClickableLabel {
             mutableAttributedText.mutableString.replaceCharacters(in: range, with: linkTitle)
         }
     }
-
+    
     func updateLinksLocations(with additionalCharactersCount: Int) {
         for i in 0..<links.count {
             let link = links[i]
             let newRange = NSRange(location: link.range.location - additionalCharactersCount, length: link.range.length)
             links[i] = MarkdownLink(range: newRange, link: link.link, title: link.title)
-        }
-    }
-
-    func matches(for regex: String, in text: String) -> [NSRange] {
-        do {
-            let regex = try NSRegularExpression(pattern: regex)
-            let nsString = text as NSString
-            let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
-            return results.map { $0.range }
-        } catch let error {
-            log("invalid regex: \(error.localizedDescription)")
-            return []
-        }
-    }
-
-    func getString(for regex: String, in text: String) -> String {
-        do {
-            let regex = try NSRegularExpression(pattern: regex)
-            let nsString = text as NSString
-            let results = regex.matches(in: text, range: NSRange(location: 0, length: nsString.length))
-            return results.count > 0 ? nsString.substring(with: results[0].range) : ""
-        } catch let error {
-            log("invalid regex: \(error.localizedDescription)")
-            return ""
         }
     }
 }
