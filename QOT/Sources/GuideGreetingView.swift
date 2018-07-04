@@ -11,8 +11,7 @@ import UIKit
 final class GuideGreetingView: UIView {
 
     static func instantiateFromNib() -> GuideGreetingView {
-        let nibName = "GuideGreetingView"
-        guard let view = Bundle.main.loadNibNamed(nibName, owner: self, options: [:])?[0] as? GuideGreetingView else {
+        guard let view = R.nib.guideGreetingView.instantiate(withOwner: self).first as? GuideGreetingView else {
             fatalError("Cannot load guide view")
         }
         return view
@@ -25,21 +24,12 @@ final class GuideGreetingView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         backgroundColor = .clear
     }
 
     func configure(message: String, greeting: String, userImage: URL?) {
-        greetingLabel.attributedText = attributedText(letterSpacing: -0.8,
-                                                     text: greeting.uppercased(),
-                                                     font: Font.H4Headline,
-                                                     textColor: .white,
-                                                     alignment: .left)
-        messageLabel.attributedText = attributedText(letterSpacing: -0.8,
-                                                      text: message.uppercased(),
-                                                      font: Font.H4Headline,
-                                                      textColor: .white,
-                                                      alignment: .left)
+        greetingLabel.attributedText = attributedText(greeting)
+        messageLabel.attributedText = attributedText(message)
         if let imageURL = userImage {
             userImageView.kf.setImage(with: imageURL)
             fadeView.alpha = 0.8
@@ -59,17 +49,13 @@ final class GuideGreetingView: UIView {
 
 private extension GuideGreetingView {
 
-    func attributedText(letterSpacing: CGFloat = 2,
-                        text: String,
-                        font: UIFont,
-                        textColor: UIColor,
-                        alignment: NSTextAlignment) -> NSMutableAttributedString {
-        return NSMutableAttributedString(string: text,
-                                         letterSpacing: letterSpacing,
-                                         font: font,
+    func attributedText(_ text: String) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: text.uppercased(),
+                                         letterSpacing: -0.8,
+                                         font: Font.H4Headline,
                                          lineSpacing: 1.4,
-                                         textColor: textColor,
-                                         alignment: alignment,
+                                         textColor: .white,
+                                         alignment: .left,
                                          lineBreakMode: .byWordWrapping)
     }
 }

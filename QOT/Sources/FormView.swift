@@ -68,10 +68,7 @@ final class FormView: UIView {
         }
 
         var returnKeyType: UIReturnKeyType {
-            switch self {
-            case .email: return .send
-            default: return .next
-            }
+            return .next
         }
 
         var keyboardType: UIKeyboardType {

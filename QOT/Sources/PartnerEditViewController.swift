@@ -247,9 +247,7 @@ extension PartnerEditViewController: FormViewDelegate {
         case .firstName: lastNameFormView?.activateTextField(true)
         case .lastName: relationshipFormView?.activateTextField(true)
         case .relationship: emailFormView?.activateTextField(true)
-        case .email:
-            emailFormView?.activateTextField(false)
-            didTapSave()
+        case .email: emailFormView?.activateTextField(false)
         default: return
         }
     }
