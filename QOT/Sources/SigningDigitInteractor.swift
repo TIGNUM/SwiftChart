@@ -29,7 +29,7 @@ final class SigningDigitInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        presenter.setup()
+        presenter.setup(code: worker.code)
     }
 }
 

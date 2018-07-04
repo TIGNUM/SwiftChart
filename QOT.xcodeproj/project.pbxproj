@@ -152,6 +152,7 @@
 		36D535DF20A711E800F1C2FC /* PartnerEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D535D720A711E700F1C2FC /* PartnerEditViewController.swift */; };
 		36D535E020A711E800F1C2FC /* PartnerEditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D535D820A711E700F1C2FC /* PartnerEditInteractor.swift */; };
 		36D535E220A711E800F1C2FC /* PartnerEditConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D535DA20A711E700F1C2FC /* PartnerEditConfigurator.swift */; };
+		36DA661620EBBF9E007089E3 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DA661520EBBF9E007089E3 /* TextField.swift */; };
 		36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */; };
 		36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */; };
 		36DC825120D54A6900CDEC34 /* SigningCountryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36DC825020D54A6900CDEC34 /* SigningCountryTableViewCell.xib */; };
@@ -933,6 +934,7 @@
 		36D535D720A711E700F1C2FC /* PartnerEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditViewController.swift; sourceTree = "<group>"; };
 		36D535D820A711E700F1C2FC /* PartnerEditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditInteractor.swift; sourceTree = "<group>"; };
 		36D535DA20A711E700F1C2FC /* PartnerEditConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditConfigurator.swift; sourceTree = "<group>"; };
+		36DA661520EBBF9E007089E3 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminCoordinator.swift; sourceTree = "<group>"; };
 		36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminViewController.swift; sourceTree = "<group>"; };
 		36DC825020D54A6900CDEC34 /* SigningCountryTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SigningCountryTableViewCell.xib; sourceTree = "<group>"; };
@@ -3093,6 +3095,7 @@
 				360947A21FB5E684003AF3E9 /* PageControl.swift */,
 				3691175D20650B09007D28D3 /* PageViewController.swift */,
 				D5B761861EE6B19C00AE178B /* SpacingInLabel.swift */,
+				36DA661520EBBF9E007089E3 /* TextField.swift */,
 				CCF19C581F6048600020D7B6 /* WebViewController.swift */,
 				CC335EE61EBC84780085F5C5 /* ContentItemTextTableViewCell.xib */,
 				D50D6C231EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib */,
@@ -4081,6 +4084,7 @@
 				36796A4720D3C49900B55429 /* SigningLoginPresenter.swift in Sources */,
 				CCFCCB141F31C8E8004A4D7E /* R.generated.swift in Sources */,
 				7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */,
+				36DA661620EBBF9E007089E3 /* TextField.swift in Sources */,
 				91796F2820B6D97C00AC60BA /* MeetingsIncreasingChart.swift in Sources */,
 				91086E52209204670035DA1F /* SettingsCell.swift in Sources */,
 				36667698207CF65000D2F5AD /* VisionGeneratorPresenter.swift in Sources */,

@@ -16,14 +16,15 @@ final class SigningDigitWorker {
     private let services: Services
     private let networkManager: NetworkManager
     let email: String
-    var code = ""
+    var code: String?
 
     // MARK: - Init
 
-    init(services: Services, networkManager: NetworkManager, email: String) {
+    init(services: Services, networkManager: NetworkManager, email: String, code: String?) {
         self.services = services
         self.networkManager = networkManager
         self.email = email
+        self.code = code
     }
 }
 

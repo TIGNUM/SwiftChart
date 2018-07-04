@@ -9,14 +9,14 @@
 import Foundation
 
 protocol SigningDigitViewControllerInterface: class {
-    func setup()
+    func setup(code: String?)
     func reload(errorMessage: String?, buttonActive: Bool)
     func activateButton(_ active: Bool)
     func endEditing()
 }
 
 protocol SigningDigitPresenterInterface {
-    func setup()
+    func setup(code: String?)
     func reload(errorMessage: String?, buttonActive: Bool)
     func activateButton(_ active: Bool)
     func endEditing()
@@ -29,6 +29,6 @@ protocol SigningDigitInteractorInterface: SigningInteractor {
 }
 
 protocol SigningDigitRouterInterface {
-    func openCreatePasswordView(email: String, code: String)
+    func openCreatePasswordView(email: String, code: String?)
     func openEnterEmailView()
 }

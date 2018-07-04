@@ -26,7 +26,7 @@ final class SigningEmailRouter {
 extension SigningEmailRouter: SigningEmailRouterInterface {
 
     func openDigitVerificationView(email: String) {
-        let configurator = SigningDigitConfigurator.make(email: email)
+        let configurator = SigningDigitConfigurator.make(email: email, code: nil)
         let controller = SigningDigitViewController(configure: configurator)
         viewController.pushToStart(childViewController: controller)
     }

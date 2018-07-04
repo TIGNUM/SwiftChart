@@ -25,8 +25,8 @@ final class SigningDigitPresenter {
 
 extension SigningDigitPresenter: SigningDigitPresenterInterface {
 
-    func setup() {
-        viewController?.setup()
+    func setup(code: String?) {
+        viewController?.setup(code: code)
     }
 
     func reload(errorMessage: String?, buttonActive: Bool) {

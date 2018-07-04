@@ -64,6 +64,7 @@ final class LaunchHandler {
         case .guide: navigate(to: scheme.destination)
         case .latestWhatsHotArticle: navigate(to: scheme.destination)
         case .contentItem: contentItem(url: url, scheme: scheme, searchViewController: searchViewController)
+        case .signingVerificationCode: signingVerificationCode(url: url)
         default:
             return
         }
@@ -301,5 +302,17 @@ extension LaunchHandler {
             if error != nil { os_log("BackgroundFetch : Sync User Dependent Data is finished with error") }
             completionHandler?()
         }
+    }
+}
+
+// MARK: - SigningVerificationCode
+
+extension LaunchHandler {
+
+    func signingVerificationCode(url: URL) {
+        guard url.pathComponents.count == 4 else { return }
+        let verificationCode = url.pathComponents[1]
+        let email = url.pathComponents[3]
+        appDelegate.appCoordinator.presentSigningVerificationView(code: verificationCode, email: email)
     }
 }

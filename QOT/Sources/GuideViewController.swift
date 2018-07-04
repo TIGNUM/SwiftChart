@@ -23,6 +23,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     private let loadingView = BlurLoadingView(lodingText: R.string.localized.guideLoading(),
                                               activityIndicatorStyle: .whiteLarge)
     private var greetingView = GuideGreetingView.instantiateFromNib()
+    private var greetingImageURL: URL?
     var interactor: GuideInteractorInterface?
     var router: GuideRouterInterface?
 
@@ -69,7 +70,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        syncHeaderView()
+        syncHeaderView(imageURL: greetingImageURL)
     }
 }
 
@@ -80,8 +81,9 @@ extension GuideViewController: GuideViewControllerInterface {
     }
 
     func updateHeader(greeting: String, message: String, image: URL?) {
+        greetingImageURL = image
         greetingView.configure(message: message, greeting: greeting, userImage: image)
-        syncHeaderView()
+        syncHeaderView(imageURL: image)
     }
 
     func updateDays(days: [Guide.Day]) {
@@ -118,12 +120,16 @@ private extension GuideViewController {
         fadeContainerView.setFade(top: view.frame.height * 0.15, bottom: view.frame.height * 0.15)
         tableView.contentInset = UIEdgeInsets(top: -84, left: 0, bottom: 80, right: 0)
         view.layoutIfNeeded()
-        syncHeaderView()
+        syncHeaderView(imageURL: greetingImageURL)
     }
 
-    func syncHeaderView() {
+    func syncHeaderView(imageURL: URL?) {
         let header = greetingView
-        header.bounds = CGRect(x: 0, y: 0, width: Int(tableView.contentSize.width), height: Int(view.frame.height * 0.4))
+        let heightMultiplicator: CGFloat = imageURL != nil ? 0.45 : 0.35
+        header.bounds = CGRect(x: 0,
+                               y: 0,
+                               width: Int(tableView.contentSize.width),
+                               height: Int(view.frame.height * heightMultiplicator))
         header.setNeedsLayout()
         header.layoutIfNeeded()
         var frame = header.frame

@@ -1062,6 +1062,27 @@ extension AppCoordinator {
         startChild(child: coordinator)
     }
 
+    func presentSigningVerificationView(code: String, email: String) {
+        let topViewController = AppDelegate.topViewController()
+        if let signingDigitController = topViewController as? SigningDigitViewController {
+            signingDigitController.setup(code: code)
+        }
+
+        if let signingEmailController = topViewController as? SigningEmailViewController {
+            pushSigningDigitController(code: code, email: email, root: signingEmailController)
+        }
+
+        if let signingInfoController = topViewController as? SigningInfoViewController {
+            pushSigningDigitController(code: code, email: email, root: signingInfoController)
+        }
+    }
+
+    private func pushSigningDigitController(code: String, email: String, root: UIViewController) {
+        let configurator = SigningDigitConfigurator.make(email: email, code: code)
+        let controller = SigningDigitViewController(configure: configurator)
+        root.pushToStart(childViewController: controller)
+    }
+
     @objc func dismissCurrentPresentedControllers() {
         if let viewController = currentPresentedController {
             dismiss(viewController, level: .priority)

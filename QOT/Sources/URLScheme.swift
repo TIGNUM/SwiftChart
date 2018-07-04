@@ -44,6 +44,7 @@ enum URLScheme: String {
     case latestWhatsHotArticle = "latest-whats-hot-article"
     case contentItem = "contentItem"
     case fitbitApp = "fitbit"
+    case signingVerificationCode = "verificationCode"
 
     var queryName: String {
         switch self {

@@ -15,7 +15,7 @@ final class SigningDigitViewController: AbstractFormViewController {
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var centerContentView: UIView!
     @IBOutlet private weak var resendCodeButton: UIButton!
-    @IBOutlet private var digitTextFields: [UITextField]!
+    @IBOutlet private var digitTextFields: [TextField]!
     @IBOutlet private var digitLines: [UIView]!
     private var showingError = false
     var interactor: SigningDigitInteractorInterface?
@@ -99,6 +99,16 @@ private extension SigningDigitViewController {
             didTabVerifyButton()
         }
     }
+
+    func insertCodeIfNeeded(code: String?) {
+        if let code = code, code.count == 4 {
+            let characters = Array(code)
+            for (index, digit) in characters.enumerated() {
+                self.digitTextFields[index].text = String(digit)
+            }
+        }
+        updateButtonState()
+    }
 }
 
 // MARK: - Actions
@@ -119,14 +129,16 @@ private extension SigningDigitViewController {
 
 extension SigningDigitViewController: SigningDigitViewControllerInterface {
 
-    func setup() {
+    func setup(code: String?) {
         errorLabel.isHidden = true
         centerContentView.backgroundColor = .clear
+        digitTextFields.forEach { $0.textFieldDelegate = self }
         setupResendCodeButton()
         setupFormView()
         setupView(title: R.string.localized.signingDigitCheckTitle(),
                   subtitle: R.string.localized.signingDigitCheckSubtitle(interactor?.email ?? ""),
                   bottomButtonTitle: R.string.localized.signingDigitCheckBottomButtonTitle())
+        insertCodeIfNeeded(code: code)
     }
 
     func reload(errorMessage: String?, buttonActive: Bool) {
@@ -159,7 +171,9 @@ extension SigningDigitViewController: SigningDigitViewControllerInterface {
 extension SigningDigitViewController: UITextFieldDelegate {
 
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        guard let index = digitTextFields.index(of: textField) else { return }
+        guard
+            let textField = textField as? TextField,
+            let index = digitTextFields.index(of: textField) else { return }
         if showingError == true {
             dismissError()
         }
@@ -173,7 +187,9 @@ extension SigningDigitViewController: UITextFieldDelegate {
         updateButtonState()
     }
 
-    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
         let maxLength = 1
         let currentString = textField.text! as NSString
         let newString = currentString.replacingCharacters(in: range, with: string) as NSString
@@ -181,12 +197,26 @@ extension SigningDigitViewController: UITextFieldDelegate {
     }
 
     @objc func textFieldDidChange(_ textField: UITextField) {
-        guard let index = digitTextFields.index(of: textField), textField.hasText == true else { return }
+        guard
+            let textField = textField as? TextField,
+            let index = digitTextFields.index(of: textField),
+            textField.hasText == true else { return }
         if index + 1 < digitTextFields.count {
             let nextTextField = digitTextFields[index + 1]
             goToNextDigitField(textField, nextTextField: nextTextField)
         } else {
             textField.resignFirstResponder()
+        }
+    }
+}
+
+extension SigningDigitViewController: TextFieldDelegate {
+
+    func textFieldDidDelete(_ textField: TextField) {
+        guard let index = digitTextFields.index(of: textField) else { return }
+        if index - 1 >= 0 {
+            let nextTextField = digitTextFields[index - 1]
+            goToNextDigitField(textField, nextTextField: nextTextField)
         }
     }
 }

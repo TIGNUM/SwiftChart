@@ -142,13 +142,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
-    func application(_ app: UIApplication, open url: URL,
+    func application(_ app: UIApplication,
+                     open url: URL,
                      options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
         if launchHandler.canLaunch(url: url) == true &&
-            (url.host == URLScheme.fitbit.rawValue || url.host == URLScheme.preparation.rawValue) {
-                launchHandler.process(url: url)
+            (url.host == URLScheme.fitbit.rawValue ||
+                url.host == URLScheme.preparation.rawValue ||
+                url.host == URLScheme.signingVerificationCode.rawValue) {
+            launchHandler.process(url: url)
         }
-
         return launchHandler.canLaunch(url: url)
     }
 

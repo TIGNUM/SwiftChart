@@ -10,12 +10,13 @@ import Foundation
 
 final class SigningDigitConfigurator: AppStateAccess {
 
-    static func make(email: String) -> (SigningDigitViewController) -> Void {
+    static func make(email: String, code: String?) -> (SigningDigitViewController) -> Void {
         return { (viewController) in
             let router = SigningDigitRouter(viewController: viewController)
             let worker = SigningDigitWorker(services: appState.services,
                                             networkManager: appState.networkManager,
-                                            email: email)
+                                            email: email,
+                                            code: code)
             let presenter = SigningDigitPresenter(viewController: viewController)
             let interactor = SigningDigitInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
