@@ -48,13 +48,13 @@
                     <rect key="frame" x="16" y="84" width="343" height="120"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ENTER CODE" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0XE-MC-K9F">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="An email has been sent to  schriette.henweiker@megatignum.com  Enter the 4-digit code to continue." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6eY-P8-apY">
-                            <rect key="frame" x="0.0" y="37" width="343" height="61"/>
+                            <rect key="frame" x="0.0" y="36" width="343" height="61"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -214,7 +214,7 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="didTabVerifyButton" destination="-1" eventType="touchUpInside" id="Z0t-l4-vCm"/>
+                        <action selector="didTapVerifyButton" destination="-1" eventType="touchUpInside" id="8zv-Dm-ajX"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LB6-ZC-aBM">
@@ -224,7 +224,7 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="didTabResendButton" destination="-1" eventType="touchUpInside" id="G82-0j-nnZ"/>
+                        <action selector="didTapResendButton" destination="-1" eventType="touchUpInside" id="aCd-uI-Wjr"/>
                     </connections>
                 </button>
             </subviews>

@@ -113,26 +113,22 @@ final class ProfileSettingsViewController: UIViewController {
     @available(iOS 11.0, *)
     override func viewSafeAreaInsetsDidChange() {
         super.viewSafeAreaInsetsDidChange()
-
         syncScrollViewLayout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         tableView.reloadData()
         keyboardListener.startObserving()
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
-
         keyboardListener.stopObserving()
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         syncHeader()
         registerCells()
         syncScrollViewLayout()
@@ -168,17 +164,14 @@ private extension ProfileSettingsViewController {
         tableView.tableHeaderView = headerView
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
-
         view.addSubview(fadeContainerView)
         fadeContainerView.addSubview(tableView)
         fadeContainerView.addSubview(pickerContentView)
         pickerContentView.addSubview(pickerToolBar)
         pickerContentView.addSubview(pickerView)
-
         fadeContainerView.edgeAnchors == view.edgeAnchors
         tableView.edgeAnchors == fadeContainerView.edgeAnchors
         tableView.backgroundView = UIImageView(image: R.image._1_1Learn())
-
         pickerContentView.trailingAnchor == fadeContainerView.trailingAnchor
         pickerContentView.leadingAnchor == fadeContainerView.leadingAnchor
         pickerContentView.bottomAnchor == fadeContainerView.safeBottomAnchor
@@ -191,7 +184,6 @@ private extension ProfileSettingsViewController {
         pickerView.leadingAnchor == pickerContentView.leadingAnchor
         pickerView.trailingAnchor == pickerContentView.trailingAnchor
         pickerView.bottomAnchor == pickerContentView.bottomAnchor
-
         fadeContainerView.setFade(top: 100, bottom: 0)
         view.layoutIfNeeded()
     }
@@ -226,7 +218,6 @@ private extension ProfileSettingsViewController {
         header.bounds = CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: 347)
         header.setNeedsLayout()
         header.layoutIfNeeded()
-
         var frame = header.frame
         frame.size.height = header.bounds.height
         header.frame = frame

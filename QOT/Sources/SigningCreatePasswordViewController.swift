@@ -88,7 +88,7 @@ private extension SigningCreatePasswordViewController {
 
 private extension SigningCreatePasswordViewController {
 
-    @IBAction func didTabButton() {
+    @IBAction func didTapButton() {
         interactor?.didTapNext()
     }
 }
@@ -139,11 +139,11 @@ extension SigningCreatePasswordViewController: FormViewDelegate {
 
     func didTapReturn(formType: FormView.FormType?) {
         formView?.activateTextField(false)
+        interactor?.didTapNext()
     }
 
     func didEndEditingTextField(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)
-        interactor?.didTapNext()
     }
 
     func didUpdateTextfield(formType: FormView.FormType?) {

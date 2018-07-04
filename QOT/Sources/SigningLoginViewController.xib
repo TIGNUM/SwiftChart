@@ -92,7 +92,7 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="didTabButton" destination="-1" eventType="touchUpInside" id="nfY-Xl-OLW"/>
+                        <action selector="didTapButton" destination="-1" eventType="touchUpInside" id="39F-EN-5gW"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zN9-Hf-3nP">
@@ -102,7 +102,7 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="didTabResetPasswordButton" destination="-1" eventType="touchUpInside" id="Ls4-xI-Qnl"/>
+                        <action selector="didTapResetPasswordButton" destination="-1" eventType="touchUpInside" id="PqN-mp-vdj"/>
                     </connections>
                 </button>
             </subviews>

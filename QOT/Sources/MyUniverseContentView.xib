@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -13,8 +13,10 @@
     </dependencies>
     <customFonts key="customFonts">
         <array key="BentonSans_Book.otf">
-            <string>BentonSans</string>
             <string>BentonSans-Book</string>
+        </array>
+        <array key="BentonSans_Regular.otf">
+            <string>BentonSans</string>
         </array>
         <array key="Simple-Regular.ttf">
             <string>Simple-Regular</string>
@@ -34,13 +36,13 @@
                     <rect key="frame" x="414" y="70" width="345" height="177"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yQw-sh-9va" userLabel="Vision Type Label">
-                            <rect key="frame" x="0.0" y="158.5" width="27" height="10.5"/>
+                            <rect key="frame" x="0.0" y="158.5" width="28" height="10.5"/>
                             <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dI3-2u-IfZ">
-                            <rect key="frame" x="0.0" y="138" width="32" height="12.5"/>
+                            <rect key="frame" x="0.0" y="138" width="32.5" height="12.5"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" priority="750" constant="12" id="dwI-TW-7ay"/>
                             </constraints>
@@ -49,7 +51,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIi-aG-41Z" userLabel="Vision Title Label">
-                            <rect key="frame" x="0.0" y="109" width="32" height="21"/>
+                            <rect key="frame" x="0.0" y="109" width="32.5" height="21"/>
                             <constraints>
                                 <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="SjX-1H-Ye8"/>
                             </constraints>
@@ -72,10 +74,10 @@
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mRZ-bG-WzI">
-                    <rect key="frame" x="511.5" y="257" width="263.5" height="192.5"/>
+                    <rect key="frame" x="511.5" y="257" width="263.5" height="230"/>
                     <subviews>
                         <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Mug-L0-VbV">
-                            <rect key="frame" x="7.5" y="18.5" width="237.5" height="23.5"/>
+                            <rect key="frame" x="7.5" y="33.5" width="237.5" height="28"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="12"/>
                             <state key="normal" backgroundImage="myWhyChoicesFrame">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
@@ -85,7 +87,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fO0-BW-Pec">
-                            <rect key="frame" x="11.5" y="50" width="237.5" height="23.5"/>
+                            <rect key="frame" x="11.5" y="69.5" width="237.5" height="28"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="12"/>
                             <state key="normal" backgroundImage="myWhyChoicesFrame">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
@@ -95,7 +97,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Egq-L6-nrU">
-                            <rect key="frame" x="15.5" y="81.5" width="237.5" height="23"/>
+                            <rect key="frame" x="15.5" y="105.5" width="237.5" height="27.5"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="12"/>
                             <state key="normal" backgroundImage="myWhyChoicesFrame">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
@@ -105,7 +107,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rRw-oV-kuv">
-                            <rect key="frame" x="10.5" y="112.5" width="237.5" height="23"/>
+                            <rect key="frame" x="10.5" y="141" width="237.5" height="27.5"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="12"/>
                             <state key="normal" backgroundImage="myWhyChoicesFrame">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
@@ -115,7 +117,7 @@
                             </connections>
                         </button>
                         <button opaque="NO" alpha="0.80000001192092896" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="tailTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZIT-z9-Sao">
-                            <rect key="frame" x="5.5" y="143.5" width="237.5" height="22.5"/>
+                            <rect key="frame" x="5.5" y="176.5" width="237.5" height="27"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="12"/>
                             <state key="normal" backgroundImage="myWhyChoicesFrame">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="0.80000000000000004" colorSpace="custom" customColorSpace="sRGB"/>
@@ -125,7 +127,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9mc-Xw-6Rp">
-                            <rect key="frame" x="5.5" y="174" width="27" height="10.5"/>
+                            <rect key="frame" x="5.5" y="211.5" width="28" height="10.5"/>
                             <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -160,32 +162,40 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RMa-Er-aJ5">
                     <rect key="frame" x="358" y="280" width="107" height="107"/>
                     <subviews>
-                        <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfP-9a-nKd">
+                        <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c8O-4T-mug">
                             <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
-                            <connections>
-                                <action selector="profileButtonPressed:" destination="x6j-nb-lZl" eventType="touchUpInside" id="97h-KJ-cjT"/>
-                            </connections>
-                        </button>
-                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Q9q-6s-Uzn">
-                            <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
-                        </imageView>
+                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ksV-lu-U4F">
+                                <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfP-9a-nKd">
+                                        <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                        <connections>
+                                            <action selector="profileButtonPressed:" destination="x6j-nb-lZl" eventType="touchUpInside" id="97h-KJ-cjT"/>
+                                        </connections>
+                                    </button>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Q9q-6s-Uzn">
+                                        <rect key="frame" x="0.0" y="0.0" width="107" height="107"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    </imageView>
+                                </subviews>
+                            </view>
+                            <blurEffect style="light"/>
+                        </visualEffectView>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
-                        <constraint firstItem="cfP-9a-nKd" firstAttribute="leading" secondItem="RMa-Er-aJ5" secondAttribute="leading" id="4TV-yK-Hma"/>
+                        <constraint firstItem="c8O-4T-mug" firstAttribute="top" secondItem="RMa-Er-aJ5" secondAttribute="top" id="8ga-Sn-UaE"/>
+                        <constraint firstItem="c8O-4T-mug" firstAttribute="leading" secondItem="RMa-Er-aJ5" secondAttribute="leading" id="Bzw-c3-rZe"/>
+                        <constraint firstAttribute="trailing" secondItem="c8O-4T-mug" secondAttribute="trailing" id="EQm-Np-d4c"/>
+                        <constraint firstAttribute="bottom" secondItem="c8O-4T-mug" secondAttribute="bottom" id="Fcs-ea-rGm"/>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="150" id="J4F-Yg-ctg"/>
-                        <constraint firstItem="cfP-9a-nKd" firstAttribute="top" secondItem="RMa-Er-aJ5" secondAttribute="top" id="Pi7-eG-bmU"/>
-                        <constraint firstItem="Q9q-6s-Uzn" firstAttribute="top" secondItem="RMa-Er-aJ5" secondAttribute="top" id="Ryh-hb-Z8P"/>
-                        <constraint firstAttribute="bottom" secondItem="Q9q-6s-Uzn" secondAttribute="bottom" id="Tzv-Ht-Gdp"/>
-                        <constraint firstAttribute="trailing" secondItem="cfP-9a-nKd" secondAttribute="trailing" id="VUn-A4-771"/>
                         <constraint firstAttribute="width" secondItem="RMa-Er-aJ5" secondAttribute="height" multiplier="1:1" id="dQ5-oh-pnr"/>
-                        <constraint firstAttribute="bottom" secondItem="cfP-9a-nKd" secondAttribute="bottom" id="fxt-ML-RAH"/>
-                        <constraint firstItem="Q9q-6s-Uzn" firstAttribute="leading" secondItem="RMa-Er-aJ5" secondAttribute="leading" id="guq-dH-rqC"/>
-                        <constraint firstAttribute="trailing" secondItem="Q9q-6s-Uzn" secondAttribute="trailing" id="u4O-jo-ppf"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="68Q-jU-o0Z">
-                    <rect key="frame" x="455.5" y="469" width="180" height="85"/>
+                    <rect key="frame" x="455.5" y="506.5" width="180" height="85"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GXh-cu-QXE">
                             <rect key="frame" x="17.5" y="8.5" width="46" height="52"/>
@@ -225,7 +235,7 @@
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6aV-L1-y9Y">
-                            <rect key="frame" x="8" y="67" width="27" height="10.5"/>
+                            <rect key="frame" x="8" y="67" width="28" height="10.5"/>
                             <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
                             <color key="textColor" red="1" green="1" blue="1" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                             <nil key="highlightedColor"/>
@@ -269,7 +279,6 @@
                 <constraint firstItem="Rzl-vt-awr" firstAttribute="top" secondItem="x6j-nb-lZl" secondAttribute="top" id="mgL-K2-ZlN"/>
                 <constraint firstAttribute="trailing" secondItem="mRZ-bG-WzI" secondAttribute="trailing" constant="8" id="nfO-f1-WGy"/>
                 <constraint firstItem="Rzl-vt-awr" firstAttribute="leading" secondItem="x6j-nb-lZl" secondAttribute="leading" id="pGr-J1-FN5"/>
-                <constraint firstItem="mRZ-bG-WzI" firstAttribute="height" secondItem="Q9q-6s-Uzn" secondAttribute="height" multiplier="1.8" id="skg-c8-7iX"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NcT-Pm-i7L" secondAttribute="trailing" constant="24" id="v3W-YJ-Foj"/>
                 <constraint firstItem="RMa-Er-aJ5" firstAttribute="top" secondItem="NcT-Pm-i7L" secondAttribute="bottom" constant="33" id="x1X-62-ukz"/>
                 <constraint firstItem="NcT-Pm-i7L" firstAttribute="width" secondItem="RMa-Er-aJ5" secondAttribute="width" multiplier="3.3" priority="750" id="xfP-rX-Yxb"/>
@@ -280,6 +289,7 @@
                 <outlet property="backgroundImageView" destination="Rzl-vt-awr" id="9Rc-kh-QNL"/>
                 <outlet property="partnersTitleLabel" destination="6aV-L1-y9Y" id="AJd-sR-T2R"/>
                 <outlet property="partnersWrapperView" destination="68Q-jU-o0Z" id="fll-Ns-vkk"/>
+                <outlet property="profileBlurView" destination="c8O-4T-mug" id="W2I-WC-WUx"/>
                 <outlet property="profileButton" destination="cfP-9a-nKd" id="PTZ-x4-c5C"/>
                 <outlet property="profileButtonOverlay" destination="Q9q-6s-Uzn" id="9hn-fd-go0"/>
                 <outlet property="profileWrapperView" destination="RMa-Er-aJ5" id="d9X-Pt-xFd"/>

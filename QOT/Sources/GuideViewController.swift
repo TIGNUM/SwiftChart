@@ -118,18 +118,16 @@ private extension GuideViewController {
         backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
         loadingView.edgeAnchors == fadeContainerView.edgeAnchors
         fadeContainerView.setFade(top: view.frame.height * 0.15, bottom: view.frame.height * 0.15)
-        tableView.contentInset = UIEdgeInsets(top: -84, left: 0, bottom: 80, right: 0)
         view.layoutIfNeeded()
         syncHeaderView(imageURL: greetingImageURL)
     }
 
     func syncHeaderView(imageURL: URL?) {
         let header = greetingView
-        let heightMultiplicator: CGFloat = imageURL != nil ? 0.45 : 0.35
         header.bounds = CGRect(x: 0,
                                y: 0,
                                width: Int(tableView.contentSize.width),
-                               height: Int(view.frame.height * heightMultiplicator))
+                               height: Int(view.frame.height * 0.35))
         header.setNeedsLayout()
         header.layoutIfNeeded()
         var frame = header.frame

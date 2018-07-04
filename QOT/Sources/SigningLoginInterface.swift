@@ -27,7 +27,7 @@ protocol SigningLoginPresenterInterface {
 protocol SigningLoginInteractorInterface: SigningInteractor {
     var email: String { get }
     func updatePassword(_ password: String)
-    func didTabbedForgettPasswordButton()
+    func didTapbedForgettPasswordButton()
 }
 
 protocol SigningLoginRouterInterface {

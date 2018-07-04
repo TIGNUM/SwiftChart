@@ -878,11 +878,14 @@ extension AppCoordinator {
         currentPresentedNavigationController = navController
     }
 
-    func presentToBeVision() {
+    func presentToBeVision(articleItemController: ArticleItemViewController?) {
         guard
-            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            var rootViewController = windowManager.rootViewController(atLevel: .normal),
             let services = services else { return }
-        let transitioningDelegate = MyToBeVisionAnimator()
+        let transitioningDelegate: MyToBeVisionAnimator? = articleItemController == nil ? MyToBeVisionAnimator() : nil
+        if let articleController = articleItemController {
+            rootViewController = articleController
+        }
         let coordinator = MyToBeVisionCoordinator(root: rootViewController,
                                                   transitioningDelegate: transitioningDelegate,
                                                   services: services)
@@ -894,7 +897,6 @@ extension AppCoordinator {
             let services = services,
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
             let content = services.contentService.whatsHotArticles().first else { return }
-
         tabBarCoordinator?.didTapItem(articleHeader: ArticleCollectionHeader(content: content), in: rootViewController)
         destination = nil
     }

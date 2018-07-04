@@ -82,7 +82,7 @@ extension SigningEmailViewController: SigningEmailViewControllerInterface {
 
 private extension SigningEmailViewController {
 
-    @IBAction func didTabButton() {
+    @IBAction func didTapButton() {
         interactor?.didTapNext()
     }
 }
@@ -95,11 +95,11 @@ extension SigningEmailViewController: FormViewDelegate {
 
     func didTapReturn(formType: FormView.FormType?) {
         emailFormView?.activateTextField(false)
+        interactor?.didTapNext()
     }
 
     func didEndEditingTextField(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)
-        interactor?.didTapNext()
     }
 
     func didUpdateTextfield(formType: FormView.FormType?) {

@@ -23,7 +23,8 @@ final class LaunchHandler {
     func process(url: URL,
                  notificationID: String = "",
                  guideItem: Guide.Item? = nil,
-                 searchViewController: SearchViewController? = nil) {
+                 searchViewController: SearchViewController? = nil,
+                 articleItemController: ArticleItemViewController? = nil) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             processExternal(url: url)
             return
@@ -38,7 +39,7 @@ final class LaunchHandler {
         case .meChoices: weeklyChoiches()
         case .weeklyChoicesReminder: weeklyChoicesReminder()
         case .myPreps: navigate(to: scheme.destination)
-        case .toBeVision: toBeVision()
+        case .toBeVision: toBeVision(articleItemController: articleItemController)
         case .weeklyPeakPerformance: navigate(to: scheme.destination)
         case .contentCategory: contentCategory(collectionID: scheme.queryParametter(url: url))
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
@@ -258,8 +259,8 @@ extension LaunchHandler {
 
 extension LaunchHandler {
 
-    func toBeVision() {
-        appDelegate.appCoordinator.presentToBeVision()
+    func toBeVision(articleItemController: ArticleItemViewController?) {
+        appDelegate.appCoordinator.presentToBeVision(articleItemController: articleItemController)
     }
 }
 

@@ -197,7 +197,7 @@ private extension ArticleItemViewController {
 
     @objc func openFeatureLink() {
         guard let url = guideItem?.featureLink else { return }
-        LaunchHandler().process(url: url, guideItem: guideItem)
+        LaunchHandler().process(url: url, guideItem: guideItem, articleItemController: self)
     }
 
     func setTableViewHeader() {
@@ -249,7 +249,6 @@ private extension ArticleItemViewController {
         imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
         imageCell.backgroundColor = .clear
         imageCell.contentView.backgroundColor = .clear
-
         return imageCell
     }
 
@@ -269,7 +268,6 @@ private extension ArticleItemViewController {
         cell.configure(text: R.string.localized.commonInvalidContent(), item: item)
         cell.backgroundColor = .clear
         cell.contentView.backgroundColor = .clear
-
         return cell
     }
 

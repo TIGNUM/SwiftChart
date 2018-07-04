@@ -19,7 +19,6 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         setupView()
     }
 
@@ -27,21 +26,14 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
         titleLabel.attributedText = attributedText(letterSpacing: 1,
                                                    text: title.uppercased(),
                                                    font: Font.H5SecondaryHeadline,
-                                                   textColor: .white,
-                                                   alignment: .left)
+                                                   textColor: .white)
 
         bodyLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                   text: body,
                                                   font: Font.DPText,
                                                   lineSpacing: 6,
-                                                  textColor: .white70,
-                                                  alignment: .left)
-
-        toBeVisionImageView.kf.setImage(with: image,
-                                        placeholder: R.image.universeMytobevision(),
-                                        options: nil,
-                                        progressBlock: nil,
-                                        completionHandler: nil)
+                                                  textColor: .white70)
+        toBeVisionImageView.kf.setImage(with: image, placeholder: R.image.universeMytobevision())
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
     }
@@ -55,14 +47,12 @@ private extension GuideToBeVisionTableViewCell {
         statusView.maskPathByRoundingCorners()
         containerView.backgroundColor = .whiteLight12
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
-
         toBeVisionImageView.clipsToBounds = true
         shadowImageView.clipsToBounds = false
         shadowImageView.layer.shadowOpacity = 1
         shadowImageView.layer.shadowRadius = 3
         shadowImageView.layer.shadowColor = UIColor.white.cgColor
-        shadowImageView.layer.shadowOffset = CGSize.zero
-
+        shadowImageView.layer.shadowOffset = .zero
         circularImageView(image: toBeVisionImageView)
         circularImageView(image: shadowImageView)
     }
@@ -77,14 +67,13 @@ private extension GuideToBeVisionTableViewCell {
                         text: String,
                         font: UIFont,
                         lineSpacing: CGFloat = 1.4,
-                        textColor: UIColor,
-                        alignment: NSTextAlignment) -> NSMutableAttributedString {
+                        textColor: UIColor) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: text,
                                          letterSpacing: letterSpacing,
                                          font: font,
                                          lineSpacing: lineSpacing,
                                          textColor: textColor,
-                                         alignment: alignment,
+                                         alignment: .left,
                                          lineBreakMode: .byTruncatingTail)
     }
 }

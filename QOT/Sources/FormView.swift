@@ -251,7 +251,7 @@ extension FormView: UITextFieldDelegate {
 
 private extension FormView {
 
-    @IBAction func didTabShowPasswordButton() {
+    @IBAction func didTapShowPasswordButton() {
         guard formType?.isSecureTextEntry == true else { return }
         showPasswordButton.isSelected = !showPasswordButton.isSelected
         textField.isSecureTextEntry = !textField.isSecureTextEntry

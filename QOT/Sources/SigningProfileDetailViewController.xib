@@ -91,7 +91,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fAI-bo-X60">
                             <rect key="frame" x="0.0" y="0.0" width="168.66666666666666" height="80"/>
                             <connections>
-                                <action selector="didTabGenderField" destination="-1" eventType="touchUpInside" id="lFV-JM-JJT"/>
+                                <action selector="didTapGenderField" destination="-1" eventType="touchUpInside" id="NKR-kn-lWj"/>
                             </connections>
                         </button>
                     </subviews>
@@ -117,7 +117,7 @@
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z1A-0l-U8s">
                             <rect key="frame" x="0.0" y="0.0" width="182.33333333333334" height="80"/>
                             <connections>
-                                <action selector="didTabDateOfBirthField" destination="-1" eventType="touchUpInside" id="GSH-7o-Nct"/>
+                                <action selector="didTapDateOfBirthField" destination="-1" eventType="touchUpInside" id="6cB-Rm-JxB"/>
                             </connections>
                         </button>
                     </subviews>
@@ -137,7 +137,7 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="didTabCreateAccount" destination="-1" eventType="touchUpInside" id="M2Y-3T-t11"/>
+                        <action selector="didTapCreateAccount" destination="-1" eventType="touchUpInside" id="Xxs-Cs-fCh"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Nd6-hy-J64">
@@ -152,7 +152,7 @@
                             <state key="normal" image="checkbox_unchecked"/>
                             <state key="selected" image="checkbox_checked"/>
                             <connections>
-                                <action selector="didTabCheckBox" destination="-1" eventType="touchUpInside" id="JvB-bV-UuM"/>
+                                <action selector="didTapCheckBox" destination="-1" eventType="touchUpInside" id="FbG-6X-FP7"/>
                             </connections>
                         </button>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By creating an account, you agree to our Terms of Use and Privacy Policy" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LkH-8L-nDn" customClass="ClickableLabel" customModule="QOT" customModuleProvider="target">

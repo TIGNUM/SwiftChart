@@ -68,7 +68,7 @@ private extension SigningLoginViewController {
 
 private extension SigningLoginViewController {
 
-    @IBAction func didTabButton() {
+    @IBAction func didTapButton() {
         if bottomButton.backgroundColor != .clear {
             interactor?.didTapNext()
         } else {
@@ -76,8 +76,8 @@ private extension SigningLoginViewController {
         }
     }
 
-    @IBAction func didTabResetPasswordButton() {
-        interactor?.didTabbedForgettPasswordButton()
+    @IBAction func didTapResetPasswordButton() {
+        interactor?.didTapbedForgettPasswordButton()
     }
 }
 
@@ -130,11 +130,11 @@ extension SigningLoginViewController: FormViewDelegate {
 
     func didTapReturn(formType: FormView.FormType?) {
         formViewPassword?.activateTextField(false)
+        didTapButton()
     }
 
     func didEndEditingTextField(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)
-        didTabButton()
     }
 
     func didUpdateTextfield(formType: FormView.FormType?) {

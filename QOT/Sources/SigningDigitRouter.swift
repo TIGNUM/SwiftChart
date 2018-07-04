@@ -33,7 +33,7 @@ extension SigningDigitRouter: SigningDigitRouterInterface {
     }
 
     func openCreatePasswordView(email: String, code: String?) {
-        guard let code = code else { return }
+        guard let code = code, AppDelegate.topViewController() is SigningDigitViewController else { return }
         let configurator = SigningCreatePasswordConfigurator.make(email: email, code: code)
         let controller = SigningCreatePasswordViewController(configure: configurator)
         controller.navigationItem.hidesBackButton = true

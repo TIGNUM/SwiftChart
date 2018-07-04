@@ -106,18 +106,18 @@ private extension SigningProfileDetailViewController {
 
 private extension SigningProfileDetailViewController {
 
-    @IBAction func didTabGenderField() {
+    @IBAction func didTapGenderField() {
         endEditing()
         showStringPicker(title: R.string.localized.genderTitle(),
                          items: Gender.allValuesAsStrings)
     }
 
-    @IBAction func didTabDateOfBirthField() {
+    @IBAction func didTapDateOfBirthField() {
         endEditing()
         showDatePicker(title: R.string.localized.birthdateTitle())
     }
 
-    @IBAction func didTabCheckBox() {
+    @IBAction func didTapCheckBox() {
         checkBoxButton.isSelected = !checkBoxButton.isSelected
         interactor?.updateCheckBox(checkBoxButton.isSelected)
         if checkBoxErrorLabel.isHidden == false {
@@ -125,7 +125,7 @@ private extension SigningProfileDetailViewController {
         }
     }
 
-    @IBAction func didTabCreateAccount() {
+    @IBAction func didTapCreateAccount() {
         guard let interactor = interactor else { return }
         if interactor.firstName.isEmpty == true {
             firstNameFormView?.showError(message: R.string.localized.signingProfileErrorFirstName())
@@ -190,7 +190,6 @@ extension SigningProfileDetailViewController: FormViewDelegate {
 
     func didEndEditingTextField(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)
-        interactor?.didTapNext()
     }
 
     func didTapReturn(formType: FormView.FormType?) {
@@ -200,7 +199,7 @@ extension SigningProfileDetailViewController: FormViewDelegate {
             lastNameFormView?.activateTextField(true)
         case .lastName:
             lastNameFormView?.activateTextField(false)
-            didTabGenderField()
+            didTapGenderField()
         default: return
         }
     }
@@ -224,7 +223,7 @@ private extension SigningProfileDetailViewController {
             self.interactor?.updateWorkerValue(for: .gender(items[index]))
             self.genderFormView?.configure(formType: .gender(items[index]))
             self.endEditing()
-            self.didTabDateOfBirthField()
+            self.didTapDateOfBirthField()
             }, cancel: { [unowned self] _ in
                 self.endEditing()
                 return

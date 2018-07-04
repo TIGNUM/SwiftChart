@@ -96,7 +96,7 @@ private extension SigningDigitViewController {
         let active = (digitTextFields.filter { $0.hasText == false }).isEmpty == true
         updateBottomButton(active)
         if active == true {
-            didTabVerifyButton()
+            didTapVerifyButton()
         }
     }
 
@@ -115,12 +115,12 @@ private extension SigningDigitViewController {
 
 private extension SigningDigitViewController {
 
-    @IBAction func didTabVerifyButton() {
+    @IBAction func didTapVerifyButton() {
         let code = (digitTextFields.compactMap { $0.text }).joined()
         interactor?.verify(code: code)
     }
 
-    @IBAction func didTabResendButton() {
+    @IBAction func didTapResendButton() {
         interactor?.resendCode()
     }
 }

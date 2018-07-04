@@ -30,12 +30,8 @@ final class GuideGreetingView: UIView {
     func configure(message: String, greeting: String, userImage: URL?) {
         greetingLabel.attributedText = attributedText(greeting)
         messageLabel.attributedText = attributedText(message)
-        if let imageURL = userImage {
-            userImageView.kf.setImage(with: imageURL)
-            fadeView.alpha = 0.8
-            return
-        }
-        fadeView.alpha = 0
+        userImageView.kf.setImage(with: userImage)
+        fadeView.alpha = 0.8
     }
 
     override func layoutSubviews() {

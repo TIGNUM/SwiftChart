@@ -26,12 +26,14 @@ final class SigningEmailRouter {
 extension SigningEmailRouter: SigningEmailRouterInterface {
 
     func openDigitVerificationView(email: String) {
+        guard AppDelegate.topViewController() is SigningEmailViewController else { return }
         let configurator = SigningDigitConfigurator.make(email: email, code: nil)
         let controller = SigningDigitViewController(configure: configurator)
         viewController.pushToStart(childViewController: controller)
     }
 
     func openSignInView(email: String) {
+        guard AppDelegate.topViewController() is SigningEmailViewController else { return }
         let configurator = SigningLoginConfigurator.make(email: email)
         let controller = SigningLoginViewController(configure: configurator)
         viewController.pushToStart(childViewController: controller)

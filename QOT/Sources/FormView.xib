@@ -61,7 +61,7 @@
                     <state key="normal" image="ic_eye"/>
                     <state key="selected" image="ic_eyeHide"/>
                     <connections>
-                        <action selector="didTabShowPasswordButton" destination="z0g-m2-7VQ" eventType="touchUpInside" id="ROK-dA-VrG"/>
+                        <action selector="didTapShowPasswordButton" destination="z0g-m2-7VQ" eventType="touchUpInside" id="bYe-T3-xOj"/>
                     </connections>
                 </button>
             </subviews>

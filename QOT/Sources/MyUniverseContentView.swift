@@ -49,6 +49,7 @@ extension MyUniverseContentView {
 final class MyUniverseContentView: UIView {
 
     @IBOutlet weak var backgroundImageView: UIImageView!
+    @IBOutlet weak var profileBlurView: UIVisualEffectView!
     @IBOutlet weak var profileWrapperView: UIView!
     @IBOutlet weak var profileButton: UIButton!
     @IBOutlet weak var profileButtonOverlay: UIImageView!
@@ -77,18 +78,15 @@ final class MyUniverseContentView: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         layer.insertSublayer(circle1, below: profileWrapperView.layer)
         layer.insertSublayer(circle2, below: profileWrapperView.layer)
         layer.insertSublayer(visionLine, below: profileWrapperView.layer)
         layer.insertSublayer(weeklyChoicesLine, below: profileWrapperView.layer)
         layer.insertSublayer(partnersLine, below: profileWrapperView.layer)
         layer.insertSublayer(profileButtonGlowLayer, below: profileWrapperView.layer)
-
         visionWrapperView.addGestureRecognizer(
             UITapGestureRecognizer(target: self, action: #selector(visionTapped(_:)))
         )
-
         visionWrapperView.backgroundColor = .clear
         weeklyChoicesWrapperView.backgroundColor = .clear
         partnersWrapperView.backgroundColor = .clear
@@ -96,7 +94,6 @@ final class MyUniverseContentView: UIView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         setupCircles()
         setupMyWhyLines()
         setupProfileButton()
@@ -200,8 +197,9 @@ final class MyUniverseContentView: UIView {
 
     private func setupProfileButton() {
         let radius = profileButtonOverlay.bounds.width / 2
-        profileButton.layer.cornerRadius = radius
-        profileButtonOverlay.layer.cornerRadius = radius
+        profileBlurView.corner(radius: radius)
+        profileButton.corner(radius: radius)
+        profileButtonOverlay.corner(radius: radius)
         profileButtonGlowLayer.path = UIBezierPath.circlePath(center: .zero, radius: radius).cgPath
         profileButtonGlowLayer.position = profileWrapperView.center
     }

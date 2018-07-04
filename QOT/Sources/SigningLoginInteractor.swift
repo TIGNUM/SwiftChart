@@ -38,7 +38,7 @@ final class SigningLoginInteractor {
 
 extension SigningLoginInteractor: SigningLoginInteractorInterface {
 
-    func didTabbedForgettPasswordButton() {
+    func didTapbedForgettPasswordButton() {
         let email = worker.email
         guard let window = AppDelegate.current.window else { return }
         let hud = MBProgressHUD.showAdded(to: window, animated: true)

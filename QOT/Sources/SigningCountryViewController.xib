@@ -84,7 +84,7 @@
                     </constraints>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="didTabButton" destination="-1" eventType="touchUpInside" id="IfN-Zu-ouN"/>
+                        <action selector="didTapButton" destination="-1" eventType="touchUpInside" id="cIr-qt-QUk"/>
                     </connections>
                 </button>
             </subviews>

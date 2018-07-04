@@ -60,7 +60,7 @@ private extension SigningCountryViewController {
 
 private extension SigningCountryViewController {
 
-    @IBAction func didTabButton() {
+    @IBAction func didTapButton() {
         interactor?.didTapNext()
     }
 }
@@ -108,6 +108,7 @@ extension SigningCountryViewController: FormViewDelegate {
 
     func didTapReturn(formType: FormView.FormType?) {
         countryFormView?.activateTextField(false)
+        interactor?.didTapNext()
     }
 
     func didBeginEditingTextField(formType: FormView.FormType?) {
@@ -117,7 +118,6 @@ extension SigningCountryViewController: FormViewDelegate {
 
     func didEndEditingTextField(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)
-        interactor?.didTapNext()
     }
 
     func didUpdateTextfield(formType: FormView.FormType?) {

@@ -15,12 +15,12 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
 
     private let services: Services
     private let rootViewController: UIViewController
-    private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
+    private let transitioningDelegate: UIViewControllerTransitioningDelegate? // swiftlint:disable:this weak_delegate
     var children: [Coordinator] = []
 
     // MARK: - Life Cycle
 
-    init(root: UIViewController, transitioningDelegate: UIViewControllerTransitioningDelegate, services: Services) {
+    init(root: UIViewController, transitioningDelegate: UIViewControllerTransitioningDelegate?, services: Services) {
         self.rootViewController = root
         self.transitioningDelegate = transitioningDelegate
         self.services = services
