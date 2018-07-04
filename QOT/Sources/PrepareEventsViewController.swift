@@ -137,8 +137,9 @@ extension PrepareEventsViewController: PrepareEventTableViewFooterViewDelegate {
         if self.viewModel.availableCalendarCount > 0 {
             delegate?.didTapAddNewTrip(viewController: self)
         } else {
-            AppDelegate.current.appCoordinator.navigateToCalendarSettings(AppCoordinator.Router.Destination(preferences: .calendarSync))
-
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.1, execute: {
+                AppDelegate.current.appCoordinator.navigateToCalendarSettings(AppCoordinator.Router.Destination(preferences: .calendarSync))
+            })
         }
     }
 }
