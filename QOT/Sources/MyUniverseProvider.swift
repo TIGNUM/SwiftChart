@@ -162,9 +162,9 @@ final class MyUniverseProvider {
 
     private func titleColor(for section: StatisticsSectionType) -> UIColor {
         for chartType in section.universeChartTypes {
-            return critical(chartType) == true ? .cherryRedTwo : .white40
+            return critical(chartType) == true ? .cherryRedTwo : .white
         }
-        return .white40
+        return .white
     }
 
     private func titleSize(for section: StatisticsSectionType) -> CGFloat {
