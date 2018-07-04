@@ -14,7 +14,7 @@ final class ContentItemAnimator: NSObject {
     private let originFrame: CGRect
     private let duration: TimeInterval
 
-    init(originFrame: CGRect, duration: TimeInterval = 0.6) {
+    init(originFrame: CGRect, duration: TimeInterval = 0.3) {
         self.originFrame = originFrame
         self.duration = duration
         super.init()
