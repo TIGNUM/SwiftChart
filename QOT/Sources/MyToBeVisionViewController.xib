@@ -64,7 +64,7 @@
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EfY-KJ-VgG">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
-                                            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Universe mytobevision" translatesAutoresizingMaskIntoConstraints="NO" id="qBI-s2-B4h" userLabel="ImagePlaceHolder">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>

@@ -34,6 +34,7 @@ final class MyToBeVisionViewController: UIViewController {
     @IBOutlet private weak var headlineEditingSeparatorView: UIView!
     @IBOutlet private weak var messageEditingSeparatorView: UIView!
     private var contentInset = UIEdgeInsets()
+    private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()
     private let navItem = NavigationItem(title: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
     private var imagePickerController: ImagePickerController!
@@ -216,6 +217,9 @@ extension MyToBeVisionViewController {
 
     func setupImage() {
         imageContainerView.addGestureRecognizer(imageTapRecognizer)
+        if let currentImage = imageView.image {
+            initialImage = currentImage
+        }
     }
 
     func resizeTextViewsHeight() {
@@ -358,7 +362,7 @@ private extension MyToBeVisionViewController {
             toBeVision.text = messageTextView.text
             toBeVision.lastUpdated = Date()
         }
-
+        initialImage = image
         interactor?.saveToBeVision(image: image, toBeVision: toBeVision)
     }
 
@@ -389,6 +393,7 @@ private extension MyToBeVisionViewController {
         edit(false)
         scrollToTop()
         toBeVisionDidUpdate()
+        imageView.image = initialImage
     }
 
     func scrollToTop() {
@@ -443,7 +448,6 @@ private extension MyToBeVisionViewController {
 
     func syncImageControls(animated: Bool) {
         let hasImage = toBeVision?.imageURL != nil
-        imageView.isHidden = !hasImage
         let buttonAlpha: CGFloat
         if hasImage {
             buttonAlpha = isEditing == true ? 1 : 0
