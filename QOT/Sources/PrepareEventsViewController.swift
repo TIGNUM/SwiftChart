@@ -69,7 +69,7 @@ final class PrepareEventsViewController: UIViewController {
     // MARK: - Private
 
     private func setupUI() {
-        let upcomingEventTitle = self.viewModel.availableCalendarCount > 0 ?
+        let upcomingEventTitle = self.viewModel.availableCalendarCount > 0 && self.viewModel.eventCount > 0 ?
             R.string.localized.preparePrepareEventsUpcomingEvents() : R.string.localized.preparePrepareEventsNoSynchronisableCalendars()
 
         upcomingEventsTitleLabel.addCharactersSpacing(spacing: 2, text: upcomingEventTitle, uppercased: true)

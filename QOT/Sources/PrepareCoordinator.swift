@@ -189,8 +189,9 @@ extension PrepareCoordinator {
         let start = Date()
         let finish = start.addingTimeInterval(TimeInterval(days: 30))
         let events = services.eventsService.calendarEvents(from: start, to: finish)
+        let calendarsOnDevice = services.eventsService.syncSettingsManager.calendarIdentifiersOnThisDevice
         let synchronisedCalendars = services.eventsService.syncSettingsManager.calendarSyncSettings.compactMap {
-            return $0.syncEnabled ? $0.source() : nil
+            return $0.syncEnabled && calendarsOnDevice.contains($0.source() ?? Toggle.seperator) ? $0.source() : nil
         }
         let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName, events: events, calendarIdentifiers: synchronisedCalendars)
         let prepareEventsVC = PrepareEventsViewController(viewModel: viewModel)
@@ -504,7 +505,7 @@ extension PrepareCoordinator: NavigationItemDelegate {
                                                 log("Error while updating preparationChecks: \(error)", level: .error)
                                             }
                                             let hud = MBProgressHUD.showAdded(to: prepareContentController.view, animated: true)
-                                            syncManager.syncPreparations(completion: { (error) in
+                                            syncManager.syncPreparations(shouldDownload: true, completion: { (error) in
                                                 if let viewModel = self.prepareChecklistViewModel(preparation: preparation) {
                                                     prepareContentController.updateViewModel(viewModel: viewModel)
                                                 }

@@ -172,7 +172,7 @@ final class SyncManager {
         let context = syncContext ?? SyncContext()
         let operations: [Operation] = userDependentSyncOperations(context: context)
         excute(operations: operations, context: context, completion: { (error) in
-            self.syncPreparations(completion: completion)
+            self.syncPreparations(shouldDownload: true, completion: completion)
         })
     }
 
@@ -220,12 +220,12 @@ final class SyncManager {
         excute(operations: [syncOperation(RealmCalendarSyncSetting.self, context: context, shouldDownload: true)], context: context, completion: completion)
     }
 
-    func syncPreparations(completion: ((Error?) -> Void)? = nil) {
+    func syncPreparations(shouldDownload: Bool, completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
         let preUpdateRelationsOperation = UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         let updateRelationsOperation = UpdateRelationsOperation(context: context, realmProvider: realmProvider)
-        let preperationSyncOperation = syncOperation(Preparation.self, context: context, shouldDownload: true)
-        let preperationCheckSyncOperation = syncOperation(PreparationCheck.self, context: context, shouldDownload: true)
+        let preperationSyncOperation = syncOperation(Preparation.self, context: context, shouldDownload: shouldDownload)
+        let preperationCheckSyncOperation = syncOperation(PreparationCheck.self, context: context, shouldDownload: shouldDownload)
         excute(operations: [preperationSyncOperation], context: context, completion: { (error) in
             self.excute(operations: [preUpdateRelationsOperation], context: context, completion: { (error) in
                 self.excute(operations: [preperationCheckSyncOperation], context: context, completion: { (error) in
@@ -501,7 +501,7 @@ private extension SyncManager {
         syncConversions()
     }
     @objc func startSyncPreparationRelatedDataNotification(_ notification: Notification) {
-        syncPreparations()
+        syncPreparations(shouldDownload: false)
     }
 
     @objc func didEnterBackgroundNotification (_ notification: Notification) {
