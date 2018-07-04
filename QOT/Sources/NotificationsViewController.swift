@@ -1,5 +1,5 @@
 //
-//  ScheduledNotificationsTableViewController.swift
+//  NotificationsViewController.swift
 //  QOT
 //
 //  Created by karmic on 10.01.18.

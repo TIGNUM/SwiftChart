@@ -807,7 +807,6 @@ extension AppCoordinator {
         startChild(child: coordinator)
         currentPresentedController = coordinator.sideBarViewController
         currentPresentedNavigationController = coordinator.topTabBarController
-
         return coordinator
     }
 
@@ -821,6 +820,25 @@ extension AppCoordinator {
             guard let sidebarCoordinator = self.presentSideBar(destination: destination) else { return }
             sidebarCoordinator.didTapCalendarCell(in: sidebarCoordinator.sideBarViewController)
         }
+    }
+
+    func presentNotificationsSettings() {
+        guard
+            let services = services,
+            let viewModel = SettingsViewModel(services: services, settingsType: .notifications) else { return }
+        let notificationsViewController = OldSettingsViewController(viewModel: viewModel,
+                                                                    services: services,
+                                                                    settingsType: .notifications,
+                                                                    destination: nil)
+        let leftBarButton = UIBarButtonItem(image: R.image.ic_close_white(),
+                                            style: .plain,
+                                            target: self,
+                                            action: #selector(dismissCurrentPresentedControllers))
+        let navigationController = UINavigationController(rootViewController: notificationsViewController)
+        leftBarButton.tintColor = .white
+        navigationController.navigationBar.applyDefaultStyle()
+        notificationsViewController.navigationItem.leftBarButtonItem = leftBarButton
+        currentPresentedController?.present(navigationController, animated: true, completion: nil)
     }
 
     func presentCalendar() {
