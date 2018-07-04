@@ -160,10 +160,7 @@
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="C9e-Kg-hL7">
                                         <rect key="frame" x="0.0" y="370" width="354" height="30"/>
-                                        <state key="normal">
-                                            <string key="title" base64-UTF8="YES">
-FFJlY2VpdmUgRmVlZGJhY2s
-</string>
+                                        <state key="normal" title="Do Daily Prep Minute">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
                                         <connections>
