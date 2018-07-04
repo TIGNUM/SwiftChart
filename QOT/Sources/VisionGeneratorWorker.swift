@@ -67,24 +67,17 @@ extension VisionGeneratorWorker {
 
     func saveVision(completion: (() -> Void)?) {
         guard
-            var currentVisionModel = self.currentVisionModel,
+            let currentVisionModel = self.currentVisionModel,
             let old = services.userService.myToBeVision() else { return }
         services.userService.updateMyToBeVision(old) {
             $0.headline = headlinePlaceholder
             $0.text = currentVisionModel.text
             $0.date = Date()
-            if let newImageURL = currentVisionModel.imageURL,
-                let resource = $0.profileImageResource,
-                resource.url == URL.imageDirectory {
-                $0.profileImageResource?.setLocalURL(newImageURL,
-                                                     format: .jpg,
-                                                     entity: .toBeVision,
-                                                     entitiyLocalID: $0.localID)
-            } else if let remoteURL = old.profileImageResource?.remoteURL, currentVisionModel.imageURL == nil {
-                currentVisionModel.imageURL = remoteURL
-            } else if
-                let currentImageURL = currentVisionModel.imageURL {
-                $0.profileImageResource?.setLocalURL(currentImageURL,
+
+            if let imageURL = currentVisionModel.imageURL,
+                imageURL != $0.profileImageResource?.url,
+                imageURL.baseURL == URL.imageDirectory {
+                $0.profileImageResource?.setLocalURL(imageURL,
                                                      format: .jpg,
                                                      entity: .toBeVision,
                                                      entitiyLocalID: $0.localID)

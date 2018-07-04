@@ -195,23 +195,19 @@ final class SyncManager {
 
     func syncMyToBeVision(completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
-        excute(operations: [syncOperation(MyToBeVision.self, context: context, shouldDownload: true)], context: context, completion: completion)
-        uploadMedia()
+        excute(operations: [syncOperation(MyToBeVision.self, context: context, shouldDownload: true)], context: context, completion: { error in
+            self.uploadMedia()
+            completion?(error)
+        })
     }
 
     func syncPartners(completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
-        var operations: [Operation?] = [syncOperation(Partner.self, context: context, shouldDownload: true)]
-
-        do {
-            let mediaUploadOperations: [Operation] = try uploadMediaOperations(context: context)
-            if mediaUploadOperations.count > 0 {
-                operations.append(contentsOf: mediaUploadOperations)
-            }
-        } catch {
-            log("Failed to synchronise partners with error: \(error)")
-        }
-        excute(operations: operations, context: context, completion: completion)
+        let operations = [syncOperation(Partner.self, context: context, shouldDownload: true)]
+        excute(operations: operations, context: context, completion: { error in
+            self.uploadMedia()
+            completion?(error)
+        })
     }
 
     func syncCalendarEvents(completion: ((Error?) -> Void)? = nil) {

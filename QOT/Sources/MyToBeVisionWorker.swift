@@ -53,8 +53,8 @@ final class MyToBeVisionWorker {
                                                      entity: .toBeVision,
                                                      entitiyLocalID: $0.localID)
             }
+            syncManager.syncMyToBeVision()
         }
-        syncManager.syncMyToBeVision()
     }
 
     func saveImage(_ image: UIImage) throws -> URL {

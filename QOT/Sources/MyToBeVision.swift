@@ -45,7 +45,9 @@ extension MyToBeVision: TwoWaySyncableUniqueObject {
     }
 
     static func object(remoteID: Int, store: ObjectStore, data: MyToBeVisionIntermediary) throws -> MyToBeVision? {
-        return store.objects(MyToBeVision.self).first
+        let object = store.objects(MyToBeVision.self).first
+        object?.setRemoteIDValue(remoteID)
+        return object
     }
 
     static var endpoint: Endpoint {
