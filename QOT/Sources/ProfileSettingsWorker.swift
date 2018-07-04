@@ -105,12 +105,13 @@ final class ProfileSettingsWorker {
     }
 
     func updateSettingsProfileImage(_ new: URL) {
-        guard
-            let user = user,
-            let old = profile()?.imageURL,
-            old != new else { return }
+        let old = profile()?.imageURL
+        guard let user = user, old == nil || old != new else { return }
 
-        if old != new && new.baseURL == URL.imageDirectory {
+        let localPathComponents = new.baseURL?.pathComponents ?? []
+        let expectedPathComponents = URL.imageDirectory.pathComponents
+
+        if localPathComponents.elementsEqual(expectedPathComponents) {
             services.userService.updateUser(user: user) { (user) in
                 user.userImage?.setLocalURL(new, format: .jpg, entity: .user, entitiyLocalID: user.localID)
                 syncManger.upSyncUser(completion: {error in
