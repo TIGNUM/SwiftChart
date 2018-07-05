@@ -92,7 +92,6 @@ final class SyncManager {
     func start() {
         enabled = true
         syncAll(shouldDownload: true)
-        uploadMedia()
         reachability?.startListening()
         startSyncTimers()
         startObservingSyncNotifications()
@@ -174,6 +173,7 @@ final class SyncManager {
         let operations: [Operation] = userDependentSyncOperations(context: context)
         excute(operations: operations, context: context, completion: { (error) in
             self.syncPreparations(shouldDownload: true, completion: completion)
+            self.uploadMedia()
         })
     }
 
@@ -526,7 +526,6 @@ private extension SyncManager {
             syncAll(shouldDownload: true)
         } else {
             syncUserDependentData()
-            uploadMedia()
         }
         #endif //#if BUILD_DATABASE
     }
