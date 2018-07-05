@@ -29,6 +29,7 @@ final class CalendarImportManger {
     private let syncSettingsManager: CalendarSyncSettingsManager
 
     var predicate: () -> (start: Date, end: Date)
+    var isImportingEvents = false
     weak var delegate: CalendarImportMangerDelegate?
 
     init(realm: RealmProvider, predicate: @escaping () -> (start: Date, end: Date)) {
@@ -52,6 +53,11 @@ final class CalendarImportManger {
         let status = EKEventStore.authorizationStatus(for: .event)
 
         if status == .authorized {
+            if isImportingEvents {
+                return
+            }
+
+            isImportingEvents = true
             let (start, end) = predicate()
             sync(start: start, end: end) { [weak self] (result: CalendarImportResult) in
                 switch result {
@@ -60,6 +66,7 @@ final class CalendarImportManger {
                 case .failure(let error):
                     self?.delegate?.calendarImportDidFail(error: error)
                 }
+                self?.isImportingEvents = false
             }
         } else {
             delegate?.eventStoreAuthorizationRequired(for: self, currentStatus: status)

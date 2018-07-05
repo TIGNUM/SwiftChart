@@ -42,6 +42,7 @@ final class SyncManager {
     private let allSyncOperationQueue: OperationQueue
     private let operationQueue: OperationQueue
     var userNotificationsManager: UserNotificationsManager?
+    var isSynchronsingPreparation = false
 
     // MARK: - Init
 
@@ -221,6 +222,12 @@ final class SyncManager {
     }
 
     func syncPreparations(shouldDownload: Bool, completion: ((Error?) -> Void)? = nil) {
+        if isSynchronsingPreparation {
+            log("Sync Preparation is running!!!!!", level: .info)
+            completion?(nil)
+            return
+        }
+        isSynchronsingPreparation = true
         let context = SyncContext()
         let preUpdateRelationsOperation = UpdateRelationsOperation(context: context, realmProvider: realmProvider)
         let updateRelationsOperation = UpdateRelationsOperation(context: context, realmProvider: realmProvider)
@@ -230,6 +237,7 @@ final class SyncManager {
             self.excute(operations: [preUpdateRelationsOperation], context: context, completion: { (error) in
                 self.excute(operations: [preperationCheckSyncOperation], context: context, completion: { (error) in
                     self.excute(operations: [updateRelationsOperation], context: context, completion: completion)
+                    self.isSynchronsingPreparation = false
                 })
             })
 
