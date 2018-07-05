@@ -272,5 +272,6 @@ extension PartnerEditViewController: FormViewDelegate {
         case .email: layoutConstraintMultiplier = -4
         default: return
         }
+        updateFormViewConstraints()
     }
 }
