@@ -109,7 +109,7 @@ private extension SigningProfileDetailViewController {
     @IBAction func didTapGenderField() {
         endEditing()
         showStringPicker(title: R.string.localized.genderTitle(),
-                         items: Gender.allValuesAsStrings)
+                         items: Gender.allValues.compactMap { $0.dsiplayValue })
     }
 
     @IBAction func didTapDateOfBirthField() {

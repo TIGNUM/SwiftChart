@@ -375,7 +375,6 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
                                                                for: indexPath) as? SettingsTableViewCell else {
             fatalError("SettingsTableViewCell does not exist")
         }
-
         settingsCell.settingsDelegate = self
         settingsCell.setup(settingsRow: row, indexPath: indexPath, isSyncFinished: true)
         return settingsCell

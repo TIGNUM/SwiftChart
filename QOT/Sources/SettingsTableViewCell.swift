@@ -141,7 +141,6 @@ private extension SettingsTableViewCell {
                 lineSpacing: 4,
                 textColor: .white40
             )
-
             valueLabel.isHidden = true
         } else {
             setTitle(title: title)

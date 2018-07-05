@@ -45,7 +45,7 @@ final class UserService {
 
     func updateUserGender(user: User, gender: String) {
         updateUser(user: user) {
-            $0.gender = gender.uppercased()
+            $0.gender = gender.replacingOccurrences(of: " ", with: "_").uppercased()
         }
     }
 

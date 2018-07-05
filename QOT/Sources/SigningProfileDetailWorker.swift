@@ -49,7 +49,7 @@ extension SigningProfileDetailWorker {
     func createAccount(completion: ((UserRegistrationCheck?, Error?) -> Void)?) {
         _ = networkManager.performRegistrationRequest(email: email,
                                                       code: code,
-                                                      gender: gender.uppercased(),
+                                                      gender: gender.replacingOccurrences(of: " ", with: "_").uppercased(),
                                                       firstName: firstName,
                                                       lastName: lastName,
                                                       birthDate: dateOfBirth,

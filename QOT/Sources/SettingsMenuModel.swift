@@ -218,19 +218,26 @@ enum Gender: String {
     case female = "FEMALE"
     case male = "MALE"
     case other = "OTHER"
-    case preferNotToSay = "PREFER NOT TO SAY"
+    case preferNotToSay = "PREFER_NOT_TO_SAY"
 
     static var allValues: [Gender] {
-        return [
-            .female,
-            .male,
-            .other,
-            .preferNotToSay
-        ]
+        return [.female,
+                .male,
+                .other,
+                .preferNotToSay]
+    }
+
+    var dsiplayValue: String {
+        switch self {
+        case .female,
+             .male,
+             .other: return rawValue.capitalized
+        case .preferNotToSay: return rawValue.replacingOccurrences(of: "_", with: " ").capitalized
+        }
     }
 
     static var allValuesAsStrings: [String] {
-        return Gender.allValues.map { $0.rawValue.capitalized }
+        return Gender.allValues.map { $0.rawValue }
     }
 
     var selectedIndex: Index? {
@@ -450,12 +457,10 @@ private func accountRows(for user: User?) -> [SettingsRow] {
 
 private func personalRows(for user: User?) -> [SettingsRow] {
     guard let user = user else { return [] }
-
     var date = Date()
     if let dateOfBirth = user.dateOfBirth {
         date = DateFormatter.settingsUser.date(from: dateOfBirth) ?? Date()
     }
-
     let heightItems = user.heightPickerItems
     let weightItems = user.weightPickerItems
     let selectedHeightIndex = heightItems.valueIndex
@@ -472,7 +477,7 @@ private func personalRows(for user: User?) -> [SettingsRow] {
 
     return [
         .stringPicker(title: SettingsType.gender.title,
-                      pickerItems: Gender.allValuesAsStrings,
+                      pickerItems: Gender.allValues.compactMap { $0.dsiplayValue },
                       selectedIndex: selectedGenderIndex,
                       settingsType: .gender),
         .datePicker(title: SettingsType.dateOfBirth.title,
