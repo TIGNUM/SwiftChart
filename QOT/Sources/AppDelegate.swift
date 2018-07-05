@@ -100,6 +100,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             #if DEBUG
                 log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
             #endif
+            appCoordinator.sendAppEvent(.start)
             return true
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
@@ -110,6 +111,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #else
             UAirship.push().resetBadge()
             checkVersionIfNeeded()
+            appCoordinator.sendAppEvent(.foreground)
+        #endif //#if UNIT_TEST || BUILD_DATABASE
+    }
+
+    func applicationDidEnterBackground(_ application: UIApplication) {
+        #if UNIT_TEST || BUILD_DATABASE
+        return
+        #else
+            appCoordinator.sendAppEvent(.background)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -138,7 +148,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return
         #else
             QOTUsageTimer.sharedInstance.stopTimer()
-            appCoordinator.sendAppEvent(.termination)
+            appCoordinator.sendAppEvent(.background)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 

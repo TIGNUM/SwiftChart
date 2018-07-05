@@ -208,6 +208,9 @@ struct AppEventRequest: URLRequestBuildable {
     enum EventType: String {
         case start = "APP_START"
         case termination = "TERMINATION"
+        case login = "APP_LOGIN"
+        case background = "BACKGROUND"
+        case foreground = "FOREGROUND"
     }
 
     init(eventType: EventType) {

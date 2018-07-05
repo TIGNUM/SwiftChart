@@ -467,10 +467,10 @@ extension AppCoordinator: LoginCoordinatorDelegate {
             let viewController = SlideShowViewController(configure: SlideShowConfigurator.makeInitial(), type: .initialInstall)
             windowManager.show(viewController, animated: true, completion: nil)
             UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
-            sendAppEvent(.start)
         } else {
             showApp(loginViewController: nil)
         }
+        sendAppEvent(.login)
         networkManager.performDeviceRequest()
         userIsLoggingIn.value = false
     }
