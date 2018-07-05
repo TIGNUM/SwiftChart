@@ -19,7 +19,6 @@ final class SlideShowViewController: UIViewController {
     @IBOutlet private weak var navigationBar: UINavigationBar!
     private var pages: [SlideShow.Page] = []
     private var type: SlidesType?
-
     var interactor: SlideShowInteractorInterface!
 
     init(configure: Configurator<SlideShowViewController>, type: SlidesType) {
@@ -31,10 +30,8 @@ final class SlideShowViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor.viewDidLoad()
-
         collectionView.registerDequeueable(SlideShowTitleSubtitleSlideCell.self)
         collectionView.registerDequeueable(SlideShowTitleOnlySlideCell.self)
-        collectionView.registerDequeueable(SlideShowMorePromptCell.self)
         collectionView.registerDequeueable(SlideShowCompletePromptCell.self)
         navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         navigationBar.shadowImage = UIImage()
@@ -92,10 +89,6 @@ extension SlideShowViewController: UICollectionViewDelegateFlowLayout, UICollect
             let cell: SlideShowTitleOnlySlideCell = collectionView.dequeueCell(for: indexPath)
             cell.configure(title: title, imageURL: imageURL)
             return cell
-        case .morePrompt:
-            let cell: SlideShowMorePromptCell = collectionView.dequeueCell(for: indexPath)
-            cell.delegate = self
-            return cell
         case .completePrompt:
             let cell: SlideShowCompletePromptCell = collectionView.dequeueCell(for: indexPath)
             cell.delegate = self
@@ -118,10 +111,6 @@ extension SlideShowViewController: SlideShowPromtCellDelegate {
 
     func didTapDone(cell: UICollectionViewCell) {
         interactor.didTapDone()
-    }
-
-    func didTapMore(cell: UICollectionViewCell) {
-        interactor.didTapLoadMore()
     }
 }
 
@@ -161,7 +150,6 @@ private extension SlideShowViewController {
 
     func currentPageIndex() -> Int {
         guard pages.count > 0 else { return 0 }
-
         let pageWidth = collectionView.frame.size.width
         let centerOffsetX = collectionView.contentOffset.x + (pageWidth / 2)
         let page = Int(centerOffsetX / pageWidth)

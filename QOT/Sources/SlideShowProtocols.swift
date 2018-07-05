@@ -14,12 +14,10 @@ protocol SlideShowViewControllerInterface: class {
 }
 
 protocol SlideShowPresenterInterface {
-    func loadBasicSlides(slides: [SlideShow.Slide])
-    func loadAllSlides(slides: [SlideShow.Slide])
+    func loadSlideShow(slides: [SlideShow.Slide])
 }
 
 protocol SlideShowInteractorInterface: Interactor {
-    func didTapLoadMore()
     func didTapDone()
 }
 

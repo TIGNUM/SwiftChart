@@ -14,6 +14,7 @@ disabled_rules:
   - vertical_parameter_alignment
   - type_body_length
   - line_length
+  - weak_delegate
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT  

@@ -17,18 +17,14 @@ final class SlideShowPresenter {
     }
 }
 
+// MARK: - SlideShowPresenterInterface
+
 extension SlideShowPresenter: SlideShowPresenterInterface {
 
-    func loadBasicSlides(slides: [SlideShow.Slide]) {
-        var pages = slides.map { SlideShow.Page(slide: $0) }
-        pages.append(.morePrompt)
-        viewController?.setPages(pages)
-    }
-
-    func loadAllSlides(slides: [SlideShow.Slide]) {
+    func loadSlideShow(slides: [SlideShow.Slide]) {
         var pages = slides.map { SlideShow.Page(slide: $0) }
         pages.append(.completePrompt)
-        viewController?.updatePages(pages)
+        viewController?.setPages(pages)
     }
 }
 

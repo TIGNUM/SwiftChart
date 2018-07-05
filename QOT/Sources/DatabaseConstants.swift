@@ -21,6 +21,7 @@ enum Database {
         case prepare = "PREPARE"
         case faq = "FAQ"
         case help = "HELP"
+        case slideShow = "SLIDESHOW_"
         case slideShowShort = "SLIDESHOW_SHORT"
         case slideShowLong = "SLIDESHOW_LONG"
         case visionGenerator = "TBV_GENERATOR"

@@ -9,9 +9,7 @@
 import UIKit
 
 protocol SlideShowPromtCellDelegate: class {
-
     func didTapDone(cell: UICollectionViewCell)
-    func didTapMore(cell: UICollectionViewCell)
 }
 
 final class SlideShowMorePromptCell: UICollectionViewCell, Dequeueable {
@@ -30,10 +28,6 @@ final class SlideShowMorePromptCell: UICollectionViewCell, Dequeueable {
 
     @objc func didTapDoneButton() {
         delegate?.didTapDone(cell: self)
-    }
-
-    @objc func didTapMoreButton() {
-        delegate?.didTapMore(cell: self)
     }
 }
 
@@ -63,10 +57,6 @@ private extension SlideShowMorePromptCell {
         let doneButtonTitle = R.string.localized.slideShowMorePromptDoneButtonTitle()
         doneButton.setup(title: doneButtonTitle, color: .doneButton)
         doneButton.addTarget(self, action: #selector(didTapDoneButton), for: .touchUpInside)
-
-        let moreButtonTitle = R.string.localized.slideShowMorePromptMoreButtonTitle()
-        moreButton.setup(title: moreButtonTitle, color: .moreButton)
-        moreButton.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
     }
 }
 

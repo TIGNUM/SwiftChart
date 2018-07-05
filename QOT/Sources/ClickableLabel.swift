@@ -105,7 +105,7 @@ private extension ClickableLabel {
             mutableAttributedText.mutableString.replaceCharacters(in: range, with: linkTitle)
         }
     }
-    
+
     func updateLinksLocations(with additionalCharactersCount: Int) {
         for i in 0..<links.count {
             let link = links[i]

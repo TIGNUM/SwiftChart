@@ -21,17 +21,12 @@ final class SlideShowInteractor {
     }
 }
 
+// MARK: - SlideShowInteractorInterface
+
 extension SlideShowInteractor: SlideShowInteractorInterface {
 
     func viewDidLoad() {
-        presenter.loadBasicSlides(slides: worker.basicSlides)
-        didTapLoadMore()
-    }
-
-    func didTapLoadMore() {
-        var slides = worker.basicSlides
-        slides.append(contentsOf: worker.extendedSlides)
-        presenter.loadAllSlides(slides: slides)
+        presenter.loadSlideShow(slides: worker.slides())
     }
 
     func didTapDone() {

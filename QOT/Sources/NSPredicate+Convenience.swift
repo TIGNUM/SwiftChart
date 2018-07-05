@@ -10,6 +10,10 @@ import Foundation
 
 extension NSPredicate {
 
+    static func slideShow() -> NSPredicate {
+        return NSPredicate(format: "section CONTAINS %@", Database.Section.slideShow.rawValue)
+    }
+
     static func section(_ section: Database.Section) -> NSPredicate {
         return NSPredicate(section: section.value)
     }

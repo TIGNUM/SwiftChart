@@ -100,6 +100,10 @@ final class ContentService {
 
     // MARK: - Collections
 
+    func tutorialSlideShows() -> AnyRealmCollection<ContentCollection> {
+        return mainRealm.anyCollection(.sortOrder(), predicates: NSPredicate.slideShow())
+    }
+
     func tools() -> AnyRealmCollection<ContentCollection> {
         return mainRealm.anyCollection(.sortOrder(), predicates: .section(.tools))
     }
