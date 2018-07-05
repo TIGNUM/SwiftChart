@@ -63,7 +63,6 @@ final class SettingsCalendarListViewController: UIViewController {
 
         // check if there is changes?
         if self.viewModel.isChanged() == true {
-            NotificationCenter.default.post(name: .EKEventStoreChanged, object: EKEventStore.shared)
             NotificationCenter.default.post(Notification(name: .startSyncCalendarRelatedData))
         }
     }
@@ -190,5 +189,6 @@ extension SettingsCalendarListViewController: SettingsCalendarListViewController
 
     func didChangeCalendarSyncValue(sender: UISwitch, calendarIdentifier: String) {
         viewModel.updateCalendarSyncStatus(canSync: sender.isOn, calendarIdentifier: calendarIdentifier)
+        NotificationCenter.default.post(name: .EKEventStoreChanged, object: EKEventStore.shared)
     }
 }
