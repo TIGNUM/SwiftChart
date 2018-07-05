@@ -43,11 +43,19 @@ final class CalendarImportTask {
         let result: CalendarImportResult
         do {
             let existingCalendarEvents: Results<CalendarEvent> = realm.objects()
+            for ekEvent in events {
+                try realm.write {
+                    createOrUpdateCalendarEvents(with: Array(Set([ekEvent])), realm: realm, with: syncableCalendarIds)
+                }
+            }
             try realm.write {
-                createOrUpdateCalendarEvents(with: events, realm: realm, with: syncableCalendarIds)
                 deleteDuplicatedCalendarEvents(with: events, realm: realm)
+            }
+            try realm.write {
                 deleteCalendarEvents(from: Array(existingCalendarEvents), using: events,
                                      syncableCalendarIds: syncableCalendarIds, existingCalendarIds: existingCalendarIds)
+            }
+            try realm.write {
                 deleteLegacyCalendarEvents(from: Array(existingCalendarEvents))
             }
             result = .success
@@ -60,9 +68,7 @@ final class CalendarImportTask {
     // MARK: Private
 
     private func createOrUpdateCalendarEvents(with ekEvents: [EKEvent], realm: Realm, with syncableCalendarIds: [String]) {
-        let refreshedEvents = Array(Set(ekEvents)) // FIXME: EKEvent should be fetched in main thread. Otherwise recurrence related infos will not be updated
-
-        for ekEvent in refreshedEvents {
+        for ekEvent in ekEvents {
             if syncableCalendarIds.contains(obj: ekEvent.calendar.toggleIdentifier) == false { continue } // sync for the calendar of event is disabled, ignore it
             let filteredEvents: [CalendarEvent] = realm.objects(CalendarEvent.self).filter {
                 // if same calendar item or same identifier prefix (because of /RIDXXXXXX postfix when event changed)
