@@ -191,7 +191,7 @@ extension PrepareCoordinator {
         let events = services.eventsService.calendarEvents(from: start, to: finish)
         let calendarsOnDevice = services.eventsService.syncSettingsManager.calendarIdentifiersOnThisDevice
         let synchronisedCalendars = services.eventsService.syncSettingsManager.calendarSyncSettings.compactMap {
-            return $0.syncEnabled && calendarsOnDevice.contains($0.source() ?? Toggle.seperator) ? $0.source() : nil
+            return $0.syncEnabled && calendarsOnDevice.contains($0.identifier) ? $0.identifier : nil
         }
         let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName, events: events, calendarIdentifiers: synchronisedCalendars)
         let prepareEventsVC = PrepareEventsViewController(viewModel: viewModel)

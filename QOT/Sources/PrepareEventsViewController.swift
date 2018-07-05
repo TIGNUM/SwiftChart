@@ -69,9 +69,15 @@ final class PrepareEventsViewController: UIViewController {
     // MARK: - Private
 
     private func setupUI() {
-        let upcomingEventTitle = self.viewModel.availableCalendarCount > 0 && self.viewModel.eventCount > 0 ?
-            R.string.localized.preparePrepareEventsUpcomingEvents() : R.string.localized.preparePrepareEventsNoSynchronisableCalendars()
+        var upcomingEventTitle = R.string.localized.preparePrepareEventsUpcomingEvents()
 
+        if self.viewModel.availableCalendarCount == 0 && self.viewModel.eventCount > 0 {
+            upcomingEventTitle = R.string.localized.preparePrepareEventsUpcomingEventsNoSynchronisableCalendars()
+        } else if self.viewModel.availableCalendarCount > 0 && self.viewModel.eventCount == 0 {
+            upcomingEventTitle = R.string.localized.preparePrepareEventsNoUpcomingEventsSynchronisableCalendar()
+        } else if self.viewModel.availableCalendarCount == 0 && self.viewModel.eventCount == 0 {
+            upcomingEventTitle = R.string.localized.preparePrepareEventsNoSynchronisableCalendars()
+        }
         upcomingEventsTitleLabel.addCharactersSpacing(spacing: 2, text: upcomingEventTitle, uppercased: true)
         yourDeviceTitleLabel.addCharactersSpacing(spacing: 2, text: R.string.localized.preparePrepareEventsYourDevice(), uppercased: true)
         viewTitleLabel.addCharactersSpacing(spacing: 1, text: R.string.localized.preparePrepareEventsAddPreparation(), uppercased: true)
