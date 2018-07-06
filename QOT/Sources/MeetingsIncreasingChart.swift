@@ -24,6 +24,9 @@ final class MeetingsIncreasingChart: UIView {
     private let changeLabel = UILabel()
     private let firstSeparatorView = UIView()
     private let secondSeparatorView = UIView()
+    private var width: CGFloat {
+        return bounds.width
+    }
 
     init(frame: CGRect, statistics: Statistics) {
         self.statistics = statistics
@@ -51,37 +54,30 @@ private extension MeetingsIncreasingChart {
         thisWeekNumberLabel.textColor = .white
         thisWeekNumberLabel.textAlignment = .center
         thisWeekNumberLabel.font = Font.H2SecondaryTitle
-
         addSubview(thisWeekLabel)
         thisWeekLabel.textColor = .gray
         thisWeekLabel.textAlignment = .center
         thisWeekLabel.font = Font.H7SectorTitle
         thisWeekLabel.addCharactersSpacing(spacing: 2, text: "THIS WEEK")
-
         addSubview(firstSeparatorView)
         firstSeparatorView.backgroundColor = .gray
         firstSeparatorView.layer.opacity = 0.6
-
         addSubview(lastWeekNumberLabel)
         lastWeekNumberLabel.textColor = .white
         lastWeekNumberLabel.textAlignment = .center
         lastWeekNumberLabel.font = Font.H2SecondaryTitle
-
         addSubview(lastWeekLabel)
         lastWeekLabel.textColor = .gray
         lastWeekLabel.textAlignment = .center
         lastWeekLabel.font = Font.H7SectorTitle
         lastWeekLabel.addCharactersSpacing(spacing: 2, text: "LAST WEEK")
-
         addSubview(secondSeparatorView)
         secondSeparatorView.backgroundColor = .gray
         secondSeparatorView.layer.opacity = 0.6
-
         addSubview(percentageLabel)
         percentageLabel.textColor = .green
         percentageLabel.textAlignment = .center
         percentageLabel.font = Font.H2SecondaryTitle
-
         addSubview(changeLabel)
         changeLabel.textColor = .gray
         changeLabel.textAlignment = .center
@@ -90,17 +86,14 @@ private extension MeetingsIncreasingChart {
     }
 
     func layout() {
-        thisWeekNumberLabel.frame = CGRect(x: 0, y: -35, width: bounds.width, height: 30)
-        thisWeekLabel.frame = CGRect(x: 0, y: thisWeekNumberLabel.frame.maxY + 5, width: bounds.width, height: 20)
-
-        lastWeekNumberLabel.frame = CGRect(x: 0, y: thisWeekLabel.frame.maxY + 55, width: bounds.width, height: 30)
-        lastWeekLabel.frame = CGRect(x: 0, y: lastWeekNumberLabel.frame.maxY + 5, width: bounds.width, height: 20)
-
-        percentageLabel.frame = CGRect(x: 0, y: lastWeekLabel.frame.maxY + 55, width: bounds.width, height: 30)
+        thisWeekNumberLabel.frame = CGRect(x: 0, y: -35, width: width, height: 30)
+        thisWeekLabel.frame = CGRect(x: 0, y: thisWeekNumberLabel.frame.maxY + 5, width: width, height: 20)
+        lastWeekNumberLabel.frame = CGRect(x: 0, y: thisWeekLabel.frame.maxY + 55, width: width, height: 30)
+        lastWeekLabel.frame = CGRect(x: 0, y: lastWeekNumberLabel.frame.maxY + 5, width: width, height: 20)
+        percentageLabel.frame = CGRect(x: 0, y: lastWeekLabel.frame.maxY + 55, width: width, height: 30)
         changeLabel.frame = CGRect(x: 0, y: percentageLabel.frame.maxY + 5, width: bounds.width, height: 20)
-
-        firstSeparatorView.frame = CGRect(x: 10, y: thisWeekLabel.frame.maxY + 25, width: bounds.width - 20, height: 0.2)
-        secondSeparatorView.frame = CGRect(x: 10, y: lastWeekLabel.frame.maxY + 25, width: bounds.width - 20, height: 0.2)
+        firstSeparatorView.frame = CGRect(x: 10, y: thisWeekLabel.frame.maxY + 25, width: width - 20, height: 0.4)
+        secondSeparatorView.frame = CGRect(x: 10, y: lastWeekLabel.frame.maxY + 25, width: width - 20, height: 0.4)
     }
 
     func setData() {
