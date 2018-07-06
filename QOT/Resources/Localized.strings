@@ -192,7 +192,7 @@
 "Prepare.PrepareEvents.SyncCalendarEvents" = "Sync Calendars";
 "Prepare.PrepareEvents.MyPrepList" = "MY PREP LIST";
 "Prepare.PrepareEvents.UpcomingEvents" = "UPCOMING EVENTS";
-"Prepare.PrepareEvents.NoSynchronisableCalendars" = "NO EVENTS AVAILABE,\nPLEASE SYNC CALENDARS";
+"Prepare.PrepareEvents.NoSynchronisableCalendars" = "NO EVENTS AVAILABLE,\nPLEASE SYNC CALENDARS";
 "Prepare.PrepareEvents.NoUpcomingEventsSynchronisableCalendar" = "NO EVENTS AVAILABE,\nPLEASE ADD EVENT";
 "Prepare.PrepareEvents.UpcomingEventsNoSynchronisableCalendars" = "UPCOMING EVENTS,\nOR SYNC CALENDAR";
 "Prepare.PrepareEvents.YourDevice" = "YOUR DEVICE";
