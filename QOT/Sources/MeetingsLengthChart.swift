@@ -145,10 +145,10 @@ private extension MeetingsLengthChart {
 private extension Int {
 
     var seconds2Timestamp: String {
-        let mins: Int = self / 60
-        let hours: Int = mins / 60
+        let mins: Int = (self % 3600) / 60
+        let hours: Int = self / 3600
         let timeIndicator = hours < 1 ? "min" : "h"
-        let time = (hours == 0) ? String(mins).suffix(2) : String(hours) + ":" + String(mins).suffix(2)
+        let time = (hours == 0) ? "\(mins)" : "\(hours):\(mins)"
         return time + timeIndicator
     }
 }
