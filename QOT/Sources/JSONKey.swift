@@ -31,6 +31,7 @@ enum JsonKey: String {
     case calendarName
     case categoryIds
     case city
+    case code
     case colorState
     case company
     case component
@@ -143,6 +144,7 @@ enum JsonKey: String {
     case pageId
     case pageIds
     case pageSize
+    case password
     case periods
     case permissionState
     case planItemID
@@ -229,6 +231,7 @@ enum JsonKey: String {
     case upperThreshold
     case urbanAirshipTags
     case url
+    case user
     case userAnswer
     case userAnswers
     case userAverage

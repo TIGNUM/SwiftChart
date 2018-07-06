@@ -251,7 +251,7 @@ struct UserRegistrationRequest: URLRequestBuildable {
          lastName: String,
          birthdate: String,
          password: String,
-         country: UserCountry) {
+         countryID: Int) {
         self.paramaters = [.email: email,
                            .code: code,
                            .gender: gender,
@@ -259,7 +259,7 @@ struct UserRegistrationRequest: URLRequestBuildable {
                            .lastName: lastName,
                            .birthdate: birthdate,
                            .password: password,
-                           .country: ["id": country.id]]
+                           .country: ["id": countryID]]
     }
 }
 

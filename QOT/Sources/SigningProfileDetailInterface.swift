@@ -21,14 +21,14 @@ protocol SigningProfileDetailPresenterInterface {
 }
 
 protocol SigningProfileDetailInteractorInterface: SigningInteractor {
-    var email: String { get }
-    var code: String { get }
-    var password: String { get }
-    var country: UserCountry { get }
-    var firstName: String { get }
-    var lastName: String { get }
-    var gender: String { get }
-    var dateOfBirth: String { get }
+    var email: String? { get }
+    var code: String? { get }
+    var password: String? { get }
+    var country: UserCountry? { get }
+    var firstName: String? { get }
+    var lastName: String? { get }
+    var gender: String? { get }
+    var dateOfBirth: String? { get }
     func updateFirstName(_ firstName: String)
     func updateLastName(_ lastName: String)
     func updateGenderName(_ gender: String)

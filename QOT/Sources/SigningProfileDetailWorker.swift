@@ -15,14 +15,7 @@ final class SigningProfileDetailWorker {
     private let services: Services
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
-    let email: String
-    let password: String
-    let country: UserCountry
-    let code: String
-    var firstName = ""
-    var lastName = ""
-    var dateOfBirth = ""
-    var gender = ""
+    var userSigning: UserSigning
     var checkBoxIsChecked = false
 
     // MARK: - Init
@@ -30,36 +23,31 @@ final class SigningProfileDetailWorker {
     init(services: Services,
          networkManager: NetworkManager,
          syncManager: SyncManager,
-         email: String,
-         code: String,
-         password: String,
-         country: UserCountry) {
+         userSigning: UserSigning) {
         self.services = services
         self.networkManager = networkManager
         self.syncManager = syncManager
-        self.email = email
-        self.code = code
-        self.password = password
-        self.country = country
+        self.userSigning = userSigning
     }
 }
 
 extension SigningProfileDetailWorker {
 
     func createAccount(completion: ((UserRegistrationCheck?, Error?) -> Void)?) {
-        _ = networkManager.performRegistrationRequest(email: email,
-                                                      code: code,
-                                                      gender: gender.replacingOccurrences(of: " ", with: "_").uppercased(),
-                                                      firstName: firstName,
-                                                      lastName: lastName,
-                                                      birthDate: dateOfBirth,
-                                                      password: password,
-                                                      country: country) { (result) in
+        _ = networkManager.performRegistrationRequest(email: userSigning.email ?? "",
+                                                      code: userSigning.verificationCode ?? "",
+                                                      gender: (userSigning.gender ?? "").replacingOccurrences(of: " ",
+                                                                                                              with: "_").uppercased(),
+                                                      firstName: userSigning.firstName ?? "",
+                                                      lastName: userSigning.lastName ?? "",
+                                                      birthDate: userSigning.birthdate ?? "",
+                                                      password: userSigning.password ?? "",
+                                                      countryID: userSigning.country?.id ?? 0) { (result) in
                                                         if result.error != nil {
                                                             completion?(result.value, result.error)
                                                         } else {
-                                                            self.sendLoginRequest(email: self.email,
-                                                                                  password: self.password,
+                                                            self.sendLoginRequest(email: self.userSigning.email ?? "",
+                                                                                  password: self.userSigning.password ?? "",
                                                                                   completion: { (error) in
                                                                                     completion?(result.value, error)
                                                             })
@@ -69,10 +57,10 @@ extension SigningProfileDetailWorker {
 
     func activateButton() -> Bool {
         return
-            firstName.isEmpty == false &&
-            lastName.isEmpty == false &&
-            dateOfBirth.isEmpty == false &&
-            gender.isEmpty == false &&
+            userSigning.firstName?.isEmpty == false &&
+            userSigning.lastName?.isEmpty == false &&
+            userSigning.birthdate?.isEmpty == false &&
+            userSigning.gender?.isEmpty == false &&
             checkBoxIsChecked == true
     }
 }

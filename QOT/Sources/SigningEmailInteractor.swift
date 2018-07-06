@@ -79,6 +79,7 @@ private extension SigningEmailInteractor {
         case .userExist: router.openSignInView(email: email)
         case .invalid: presenter.reload(errorMessage: emailCheck.message, buttonActive: false)
         case .codeValid,
+             .codeValidNoPassword,
              .userCreated: return
         }
     }

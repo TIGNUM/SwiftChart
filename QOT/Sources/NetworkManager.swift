@@ -44,7 +44,7 @@ final class NetworkManager {
                                     lastName: String,
                                     birthDate: String,
                                     password: String,
-                                    country: UserCountry,
+                                    countryID: Int,
                                     completion: @escaping (Result<UserRegistrationCheck, NetworkError>) -> Void) -> SerialRequest {
         let req = requestBuilder.make(buildable: UserRegistrationRequest(email: email,
                                                                          code: code,
@@ -53,7 +53,7 @@ final class NetworkManager {
                                                                          lastName: lastName,
                                                                          birthdate: birthDate,
                                                                          password: password,
-                                                                         country: country))
+                                                                         countryID: countryID))
         let current = SerialRequest()
         current.request = sessionManager.perform(req, parser: UserRegistrationCheck.parse) { (response, result) in
             completion(result)

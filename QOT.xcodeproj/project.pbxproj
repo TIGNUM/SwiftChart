@@ -121,6 +121,7 @@
 		36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */; };
 		36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */; };
 		3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3686678320D3835900B400FE /* AbstractFormViewController.swift */; };
+		368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368BE2EA20EF4A9600A6B809 /* UserSigning.swift */; };
 		3691175E20650B0A007D28D3 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691175D20650B09007D28D3 /* PageViewController.swift */; };
 		3691176D20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3691176720656CD6007D28D3 /* PrepareContentSubHeaderTableViewCell.xib */; };
 		3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */; };
@@ -875,6 +876,7 @@
 		36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoPresenter.swift; sourceTree = "<group>"; };
 		36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Siren.swift"; sourceTree = "<group>"; };
 		3686678320D3835900B400FE /* AbstractFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractFormViewController.swift; sourceTree = "<group>"; };
+		368BE2EA20EF4A9600A6B809 /* UserSigning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigning.swift; sourceTree = "<group>"; };
 		3691175D20650B09007D28D3 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		3691176720656CD6007D28D3 /* PrepareContentSubHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentSubHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentNotesViewController.swift; sourceTree = "<group>"; };
@@ -2441,11 +2443,12 @@
 			isa = PBXGroup;
 			children = (
 				CB810E631EF00DB70043E3E5 /* User.swift */,
-				CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */,
 				CC7C7A041F064F3F00DAAC14 /* User+Convenience.swift */,
-				369842B320CA7BB5007A8C8F /* UserRegistrationCheck.swift */,
 				362614A920CFB4E500AB3659 /* UserCountry.swift */,
 				362614AB20CFC1C300AB3659 /* UserCountryList.swift */,
+				CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */,
+				369842B320CA7BB5007A8C8F /* UserRegistrationCheck.swift */,
+				368BE2EA20EF4A9600A6B809 /* UserSigning.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -4380,6 +4383,7 @@
 				CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */,
 				CB53F0D820235A9C007C624B /* Atomic.swift in Sources */,
 				CC944DB61EE804CD00B8423C /* ChartTableViewCell.swift in Sources */,
+				368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
 				36796A1C20D3C45200B55429 /* SigningCountryInteractor.swift in Sources */,
 				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,

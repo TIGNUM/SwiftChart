@@ -27,5 +27,6 @@ protocol SigningCreatePasswordPresenterInterface {
 protocol SigningCreatePasswordInteractorInterface: SigningInteractor {}
 
 protocol SigningCreatePasswordRouterInterface {
-    func showCountryView(email: String, code: String, password: String)
+    func showCountryView(userSigning: UserSigning)
+    func showProfileDetailView(userSigning: UserSigning)
 }

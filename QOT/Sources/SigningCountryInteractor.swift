@@ -50,10 +50,8 @@ extension SigningCountryInteractor: SigningCountryInteractorInterface {
 
     func didTapNext() {
         guard let country = worker.selectedCountry else { return }
-        router.showProfileDetailsView(email: worker.email,
-                                      code: worker.code,
-                                      password: worker.password,
-                                      country: country)
+        worker.userSigning.country = country
+        router.showProfileDetailsView(userSigning: worker.userSigning)
     }
 
     var countryQuery: String {

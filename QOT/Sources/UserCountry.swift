@@ -14,15 +14,15 @@ struct UserCountry {
     // MARK: - Properties
 
     let id: Int
-    let name: String
-    let iso2LetterCode: String
+    let name: String?
+    let iso2LetterCode: String?
 
     // MARK: - Init
 
     init(json: JSON) throws {
         id = try json.getItemValue(at: .id)
-        name = try json.getItemValue(at: .name)
-        iso2LetterCode = try json.getItemValue(at: .iso2LetterCode)
+        name = try json.getItemValue(at: .name, alongPath: .nullBecomesNil)
+        iso2LetterCode = try json.getItemValue(at: .iso2LetterCode, alongPath: .nullBecomesNil)
     }
 
     static func parse(_ data: Data) throws -> UserCountry {

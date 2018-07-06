@@ -25,9 +25,15 @@ final class SigningCreatePasswordRouter {
 
 extension SigningCreatePasswordRouter: SigningCreatePasswordRouterInterface {
 
-    func showCountryView(email: String, code: String, password: String) {
-        let configurator = SigningCountryConfigurator.make(email: email, code: code, password: password)
+    func showCountryView(userSigning: UserSigning) {
+        let configurator = SigningCountryConfigurator.make(userSigning: userSigning)
         let controller = SigningCountryViewController(configure: configurator)
+        AppDelegate.current.windowManager.show(controller, animated: true, completion: nil)
+    }
+
+    func showProfileDetailView(userSigning: UserSigning) {
+        let configurator = SigningProfileDetailConfigurator.make(userSigning: userSigning)
+        let controller = SigningProfileDetailViewController(configure: configurator)
         AppDelegate.current.windowManager.show(controller, animated: true, completion: nil)
     }
 }

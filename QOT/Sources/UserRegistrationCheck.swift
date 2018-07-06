@@ -15,6 +15,7 @@ struct UserRegistrationCheck {
         case userExist = "USER_EXIST"
         case codeSent = "VERIFICATIONCODE_SENT"
         case codeValid = "VERIFICATIONCODE_VALID"
+        case codeValidNoPassword = "VERIFICATIONCODE_VALID_NO_PASSWORD"
         case userCreated = "USER_CREATED"
         case invalid
     }
@@ -24,6 +25,7 @@ struct UserRegistrationCheck {
     let response: String
     let message: String
     let responseType: ResponseType
+    var userSigning: UserSigning?
 
     // MARK: - Init
 
@@ -42,6 +44,12 @@ struct UserRegistrationCheck {
         }
         if response == UserRegistrationCheck.ResponseType.userCreated.rawValue {
             type = .userCreated
+        }
+        if response == UserRegistrationCheck.ResponseType.codeValidNoPassword.rawValue {
+            type = .codeValidNoPassword
+            let userSigningJson = try json.json(at: .user)
+            userSigning = try UserSigning(json: userSigningJson)
+
         }
         responseType = type
     }

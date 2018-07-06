@@ -13,22 +13,26 @@ final class SigningCreatePasswordWorker {
     // MARK: - Properties
 
     private let services: Services
-    let email: String
-    let code: String
-    var password = ""
+    let responseType: UserRegistrationCheck.ResponseType
+    var userSigning: UserSigning?
 
     // MARK: - Init
 
-    init(services: Services, email: String, code: String) {
+    init(services: Services,
+         userSigning: UserSigning?,
+         responseType: UserRegistrationCheck.ResponseType) {
         self.services = services
-        self.email = email
-        self.code = code
+        self.userSigning = userSigning
+        self.responseType = responseType
     }
 }
 
+// MARK: - Public
+
 extension SigningCreatePasswordWorker {
 
-    func isPasswordSecure(password: String) -> Bool {
+    func isPasswordSecure(password: String?) -> Bool {
+        guard let password = password else { return false }
         var containsSpecialCharacter = false
         let setSpecial = CharacterSet.alphanumerics
         if password.rangeOfCharacter(from: setSpecial.inverted) != nil {

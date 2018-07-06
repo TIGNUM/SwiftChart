@@ -46,55 +46,55 @@ extension SigningProfileDetailInteractor: SigningProfileDetailInteractorInterfac
         router.showPrivacyPolicy()
     }
 
-    var code: String {
-        return worker.code
+    var code: String? {
+        return worker.userSigning.verificationCode
     }
 
-    var password: String {
-        return worker.password
+    var password: String? {
+        return worker.userSigning.password
     }
 
-    var country: UserCountry {
-        return worker.country
+    var country: UserCountry? {
+        return worker.userSigning.country
     }
 
-    var firstName: String {
-        return worker.firstName
+    var firstName: String? {
+        return worker.userSigning.firstName
     }
 
-    var lastName: String {
-        return worker.lastName
+    var lastName: String? {
+        return worker.userSigning.lastName
     }
 
-    var gender: String {
-        return worker.gender
+    var gender: String? {
+        return worker.userSigning.gender
     }
 
-    var dateOfBirth: String {
-        return worker.dateOfBirth
+    var dateOfBirth: String? {
+        return worker.userSigning.birthdate
     }
 
-    var email: String {
-        return worker.email
+    var email: String? {
+        return worker.userSigning.email
     }
 
     func updateFirstName(_ firstName: String) {
-        worker.firstName = firstName
+        worker.userSigning.firstName = firstName
         activateButton()
     }
 
     func updateLastName(_ lastName: String) {
-        worker.lastName = lastName
+        worker.userSigning.lastName = lastName
         activateButton()
     }
 
     func updateGenderName(_ gender: String) {
-        worker.gender = gender
+        worker.userSigning.gender = gender
         activateButton()
     }
 
     func updateDateOfBirth(_ dateOfBirth: String) {
-        worker.dateOfBirth = dateOfBirth
+        worker.userSigning.birthdate = dateOfBirth
         activateButton()
     }
 
@@ -144,6 +144,7 @@ private extension SigningProfileDetailInteractor {
         case .userExist: handleRegistrationFailure(registrationCheck: registrationCheck)
         case .invalid,
              .codeValid,
+             .codeValidNoPassword,
              .codeSent: return
         }
     }

@@ -29,6 +29,7 @@ protocol SigningDigitInteractorInterface: SigningInteractor {
 }
 
 protocol SigningDigitRouterInterface {
-    func openCreatePasswordView(email: String, code: String?)
+    func openCreatePasswordView(userSigning: UserSigning,
+                                responseType: UserRegistrationCheck.ResponseType)
     func openEnterEmailView()
 }

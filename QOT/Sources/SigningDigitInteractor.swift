@@ -58,7 +58,7 @@ extension SigningDigitInteractor: SigningDigitInteractorInterface {
             presenter.reload(errorMessage: R.string.localized.signingDigitCheckError(), buttonActive: false)
         } else {
             worker.verify(code: code) { [weak self] (check: UserRegistrationCheck?) in
-            self?.handleResponse(check: check, email: self?.worker.email)
+                self?.handleResponse(check: check)
             }
         }
     }
@@ -68,15 +68,19 @@ extension SigningDigitInteractor: SigningDigitInteractorInterface {
 
 private extension SigningDigitInteractor {
 
-    func handleResponse(check: UserRegistrationCheck?, email: String?) {
-        guard let check = check, let email = email else {
+    func handleResponse(check: UserRegistrationCheck?) {
+        guard var check = check else {
             presenter.reload(errorMessage: R.string.localized.signingDigitCheckError(), buttonActive: false)
             return
         }
 
         switch check.responseType {
         case .invalid: presenter.reload(errorMessage: check.message, buttonActive: false)
-        case .codeValid: router.openCreatePasswordView(email: email, code: worker.code)
+        case .codeValid,
+             .codeValidNoPassword:
+            check.userSigning?.verificationCode = worker.code
+            let userSigning = check.userSigning ?? UserSigning(email: worker.email, code: worker.code)
+            router.openCreatePasswordView(userSigning: userSigning, responseType: check.responseType)
         case .codeSent,
              .userExist,
              .userCreated: return // Do nothing

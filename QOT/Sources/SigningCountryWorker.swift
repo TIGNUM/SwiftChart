@@ -15,9 +15,7 @@ final class SigningCountryWorker {
     private let services: Services
     private let networkManager: NetworkManager
     private var countries = [UserCountry]()
-    let email: String
-    let code: String
-    let password: String
+    var userSigning: UserSigning
     var countryNames = [String]()
     var countryQuery = ""
     var selectedCountry: UserCountry?
@@ -26,14 +24,10 @@ final class SigningCountryWorker {
 
     init(services: Services,
          networkManager: NetworkManager,
-         email: String,
-         code: String,
-         password: String) {
+         userSigning: UserSigning) {
         self.services = services
         self.networkManager = networkManager
-        self.email = email
-        self.code = code
-        self.password = password
+        self.userSigning = userSigning
     }
 }
 
@@ -78,8 +72,8 @@ private extension SigningCountryWorker {
         if query.isEmpty == true {
             countryNames = countries.compactMap { $0.name }
         } else {
-            let filteredCountries = countries.filter { $0.name.lowercased().starts(with: query.lowercased()) ||
-                $0.iso2LetterCode.lowercased().starts(with: query.lowercased()) }
+            let filteredCountries = countries.filter { ($0.name ?? "").lowercased().starts(with: query.lowercased()) ||
+                ($0.iso2LetterCode ?? "").lowercased().starts(with: query.lowercased()) }
             countryNames = (filteredCountries.compactMap { $0.name })
         }
         countryNames = countryNames.sorted()

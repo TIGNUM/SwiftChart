@@ -10,10 +10,13 @@ import Foundation
 
 final class SigningCreatePasswordConfigurator: AppStateAccess {
 
-    static func make(email: String, code: String) -> (SigningCreatePasswordViewController) -> Void {
+    static func make(userSigning: UserSigning?,
+                     responseType: UserRegistrationCheck.ResponseType) -> (SigningCreatePasswordViewController) -> Void {
         return { (viewController) in
             let router = SigningCreatePasswordRouter(viewController: viewController)
-            let worker = SigningCreatePasswordWorker(services: appState.services, email: email, code: code)
+            let worker = SigningCreatePasswordWorker(services: appState.services,
+                                                     userSigning: userSigning,
+                                                     responseType: responseType)
             let presenter = SigningCreatePasswordPresenter(viewController: viewController)
             let interactor = SigningCreatePasswordInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

@@ -25,11 +25,8 @@ final class SigningCountryRouter {
 
 extension SigningCountryRouter: SigningCountryRouterInterface {
 
-    func showProfileDetailsView(email: String, code: String, password: String, country: UserCountry) {
-        let configurator = SigningProfileDetailConfigurator.make(email: email,
-                                                                 password: password,
-                                                                 code: code,
-                                                                 country: country)
+    func showProfileDetailsView(userSigning: UserSigning) {
+        let configurator = SigningProfileDetailConfigurator.make(userSigning: userSigning)
         let controller = SigningProfileDetailViewController(configure: configurator)
         AppDelegate.current.windowManager.show(controller, animated: true, completion: nil)
     }

@@ -28,6 +28,8 @@ final class SigningDigitWorker {
     }
 }
 
+// MARK: - Public
+
 extension SigningDigitWorker {
 
     func verify(code: String, completion: ((UserRegistrationCheck?) -> Void)?) {

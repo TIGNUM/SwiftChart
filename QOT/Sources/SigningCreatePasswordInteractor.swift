@@ -39,22 +39,34 @@ extension SigningCreatePasswordInteractor: SigningCreatePasswordInteractorInterf
 
     func updateWorkerValue(for formType: FormView.FormType?) {
         guard let formType = formType else { return }
-        worker.password = formType.value
-        if worker.isPasswordSecure(password: worker.password ) == true {
-            presenter.activateButton(true)
-            presenter.hideErrorMessage()
-        } else {
-            presenter.activateButton(false)
-        }
+        worker.userSigning?.password = formType.value
+        updateViewState(active: worker.isPasswordSecure(password: worker.userSigning?.password) == true)
     }
 
     func didTapNext() {
-        if worker.isPasswordSecure(password: worker.password) == true {
-            presenter.activateButton(true)
-            presenter.hideErrorMessage()
-            router.showCountryView(email: worker.email, code: worker.code, password: worker.password)
+        if worker.isPasswordSecure(password: worker.userSigning?.password) == true,
+            let userSigning = worker.userSigning {
+            if worker.responseType == .codeValid {
+                updateViewState(active: true)
+                router.showCountryView(userSigning: userSigning)
+            } else if worker.responseType == .codeValidNoPassword {
+                updateViewState(active: true)
+                router.showProfileDetailView(userSigning: userSigning)
+            }
         } else {
             presenter.reload(errorMessage: R.string.localized.signingPasswordError(), buttonActive: false)
+        }
+    }
+}
+
+// MARK: - Private
+
+private extension SigningCreatePasswordInteractor {
+
+    func updateViewState(active: Bool) {
+        presenter.activateButton(active)
+        if active == true {
+            presenter.hideErrorMessage()
         }
     }
 }

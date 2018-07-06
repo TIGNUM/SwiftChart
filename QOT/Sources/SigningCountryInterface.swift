@@ -34,5 +34,5 @@ protocol SigningCountryInteractorInterface: SigningInteractor {
 }
 
 protocol SigningCountryRouterInterface {
-    func showProfileDetailsView(email: String, code: String, password: String, country: UserCountry)
+    func showProfileDetailsView(userSigning: UserSigning)
 }

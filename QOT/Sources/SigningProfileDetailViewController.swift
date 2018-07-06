@@ -57,26 +57,26 @@ private extension SigningProfileDetailViewController {
 
     func setupFormViews() {
         if let firstNameFormView = firstNameFormView {
-            firstNameFormView.configure(formType: .firstName(""))
+            firstNameFormView.configure(formType: .firstName(interactor?.firstName ?? ""))
             firstNameContentView.addSubview(firstNameFormView)
             firstNameContentView.backgroundColor = .clear
             firstNameFormView.delegate = self
         }
         if let lastNameFormView = lastNameFormView {
-            lastNameFormView.configure(formType: .lastName(""))
+            lastNameFormView.configure(formType: .lastName(interactor?.lastName ?? ""))
             lastNameContentView.addSubview(lastNameFormView)
             lastNameContentView.backgroundColor = .clear
             lastNameFormView.delegate = self
         }
         if let genderFormView = genderFormView {
-            genderFormView.configure(formType: .gender(""), enabled: false)
+            genderFormView.configure(formType: .gender(interactor?.gender ?? ""), enabled: false)
             genderContentView.addSubview(genderFormView)
             genderContentView.sendSubview(toBack: genderFormView)
             genderContentView.backgroundColor = .clear
             genderFormView.delegate = self
         }
         if let dateOfBirthFormView = dateOfBirthFormView {
-            dateOfBirthFormView.configure(formType: .dateOfBirth(""), enabled: false)
+            dateOfBirthFormView.configure(formType: .dateOfBirth(interactor?.dateOfBirth ?? ""), enabled: false)
             dateOfBirthContentView.addSubview(dateOfBirthFormView)
             dateOfBirthContentView.sendSubview(toBack: dateOfBirthFormView)
             dateOfBirthContentView.backgroundColor = .clear
@@ -127,22 +127,22 @@ private extension SigningProfileDetailViewController {
 
     @IBAction func didTapCreateAccount() {
         guard let interactor = interactor else { return }
-        if interactor.firstName.isEmpty == true {
+        if interactor.firstName?.isEmpty == true {
             firstNameFormView?.showError(message: R.string.localized.signingProfileErrorFirstName())
         } else {
             firstNameFormView?.hideError()
         }
-        if interactor.lastName.isEmpty == true {
+        if interactor.lastName?.isEmpty == true {
             lastNameFormView?.showError(message: R.string.localized.signingProfileErrorLastName())
         } else {
             lastNameFormView?.hideError()
         }
-        if interactor.gender.isEmpty == true {
+        if interactor.gender?.isEmpty == true {
             genderFormView?.showError(message: R.string.localized.signingProfileErrorGender())
         } else {
             genderFormView?.hideError()
         }
-        if interactor.dateOfBirth.isEmpty == true {
+        if interactor.dateOfBirth?.isEmpty == true {
             dateOfBirthFormView?.showError(message: R.string.localized.signingProfileErrorBirthdate())
         } else {
             dateOfBirthFormView?.hideError()
