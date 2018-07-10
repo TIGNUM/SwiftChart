@@ -53,6 +53,10 @@ final class VisionGeneratorWorker {
         return visionModel
     }
 
+    var visionNotCreated: Bool {
+        return services.userService.myToBeVision()?.remoteID.value == nil
+    }
+
     private var headline: String? {
 		let currentHeadline = services.userService.myToBeVision()?.headline
 		let initialHeadlinePlaceholder = services.contentService.toBeVisionHeadlinePlaceholder()

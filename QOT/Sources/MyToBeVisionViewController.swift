@@ -124,7 +124,9 @@ final class MyToBeVisionViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
+        scrollToTop()
+        toBeVisionDidUpdate()
         syncEditingViews(true)
         UIApplication.shared.statusBarStyle = .lightContent
         navItem.showTabMenuView(titles: [R.string.localized.meSectorMyWhyVisionTitle().uppercased()])
@@ -176,7 +178,6 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
     func update(with toBeVision: MyToBeVisionModel.Model) {
         if toBeVision != self.toBeVision {
             self.toBeVision = toBeVision
-            toBeVisionDidUpdate()
         }
     }
 }
@@ -382,7 +383,6 @@ private extension MyToBeVisionViewController {
 
     @objc func saveEdit() {
         guard let toBeVision = toBeVision else { return }
-
         subtitleLabel.attributedText = toBeVision.formattedSubtitle
         edit(false)
         saveToBeVisison()
@@ -570,11 +570,11 @@ private extension MyToBeVisionViewController {
         guard
             let userInfo = notification.userInfo,
             let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        let isKeyboardShowing = notification.name == NSNotification.Name.UIKeyboardWillShow
+        let isKeyboardShowing = notification.name == .UIKeyboardWillShow
         let height = isKeyboardShowing ? keyboardFrame.height + 60 : 90
         contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
         scrollView.contentInset = contentInset
-        UIView.animate(withDuration: 0, animations: {
+        UIView.animate(withDuration: Animation.duration_06, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
     }

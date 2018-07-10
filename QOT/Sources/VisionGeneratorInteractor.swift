@@ -56,8 +56,12 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
         case .work,
              .home: handleChoiceDecision(choice)
         case .next:
-            worker.saveVision {
-                self.handleChoiceTargets(choice)
+            if worker.visionNotCreated == true {
+                worker.saveVision {
+                    self.handleChoiceTargets(choice)
+                }
+            } else {
+                handleChoiceTargets(choice)
             }
         case .picture:
             if choice.target == nil {
