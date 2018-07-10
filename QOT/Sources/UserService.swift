@@ -134,27 +134,24 @@ extension UserService {
             let old = myToBeVision(),
             let new = new, old.model != new else { return }
         var tbvExist = false
-        updateMyToBeVision(old, newVision: new) {
+        updateMyToBeVision(old) {
             $0.headline = new.headLine
             $0.text = new.text
             $0.date = new.lastUpdated
-            if old.remoteID.value != nil {
+            if $0.remoteID.value != nil {
                 tbvExist = true
                 updateVisionImage(newImageURL: new.imageURL, old: $0)
             }
-            syncManager.syncMyToBeVision { (error) in
-                if let syncedVision = self.myToBeVision(),
-                    tbvExist == false && syncedVision.model != new {
-                    self.saveVisionAndSync(new, syncManager: syncManager, completion: completion)
-                }
-                completion?()
+        }
+        syncManager.syncMyToBeVision { (error) in
+            if tbvExist == false {
+                self.saveVisionAndSync(new, syncManager: syncManager, completion: completion)
             }
+            completion?()
         }
     }
 
-    func updateMyToBeVision(_ myToBeVision: MyToBeVision,
-                            newVision: MyToBeVisionModel.Model,
-                            block: (MyToBeVision) -> Void) {
+    func updateMyToBeVision(_ myToBeVision: MyToBeVision, block: (MyToBeVision) -> Void) {
         do {
             try mainRealm.write {
                 block(myToBeVision)
