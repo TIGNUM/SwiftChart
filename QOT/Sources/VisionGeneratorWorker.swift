@@ -53,7 +53,7 @@ final class VisionGeneratorWorker {
         return visionModel
     }
 
-    private var headlinePlaceholder: String? {
+    private var headline: String? {
 		let currentHeadline = services.userService.myToBeVision()?.headline
 		let initialHeadlinePlaceholder = services.contentService.toBeVisionHeadlinePlaceholder()
         if currentHeadline == nil || currentHeadline == initialHeadlinePlaceholder {
@@ -66,27 +66,10 @@ final class VisionGeneratorWorker {
 extension VisionGeneratorWorker {
 
     func saveVision(completion: (() -> Void)?) {
-        guard
-            let currentVisionModel = self.currentVisionModel,
-            let old = services.userService.myToBeVision() else { return }
-        services.userService.updateMyToBeVision(old) {
-            $0.headline = headlinePlaceholder
-            $0.text = currentVisionModel.text
-            $0.date = Date()
-
-            if let imageURL = currentVisionModel.imageURL,
-                imageURL != $0.profileImageResource?.url,
-                imageURL.baseURL == URL.imageDirectory {
-                $0.profileImageResource?.setLocalURL(imageURL,
-                                                     format: .jpg,
-                                                     entity: .toBeVision,
-                                                     entitiyLocalID: $0.localID)
-            }
-        }
-        visionModel = currentVisionModel
-        let manager = syncManager
-        manager.syncMyToBeVision { (error) in
-            completion?()
+        services.userService.saveVisionAndSync(currentVisionModel,
+                                               syncManager: syncManager) { [weak self] in
+                                                self?.visionModel = self?.currentVisionModel
+                                                completion?()
         }
     }
 
@@ -183,7 +166,7 @@ private extension VisionGeneratorWorker {
             }
         }
         let vision = visionList.joined(separator: " ")
-        currentVisionModel?.headLine = headlinePlaceholder
+        currentVisionModel?.headLine = headline
         currentVisionModel?.text = vision
         currentVisionModel?.lastUpdated = Date()
         return vision

@@ -39,37 +39,10 @@ final class MyToBeVisionWorker {
     }
 
     func updateMyToBeVision(_ new: MyToBeVisionModel.Model) {
-        guard let old = services.userService.myToBeVision(), old.model != new else { return }
-
-        services.userService.updateMyToBeVision(old) {
-            $0.headline = new.headLine
-            $0.text = new.text
-            $0.date = new.lastUpdated
-            if let imageURL = new.imageURL,
-                imageURL != $0.profileImageResource?.url,
-                imageURL.baseURL == URL.imageDirectory {
-                $0.profileImageResource?.setLocalURL(imageURL,
-                                                     format: .jpg,
-                                                     entity: .toBeVision,
-                                                     entitiyLocalID: $0.localID)
-            }
-            syncManager.syncMyToBeVision()
-        }
+        services.userService.saveVisionAndSync(new, syncManager: syncManager, completion: nil)
     }
 
     func saveImage(_ image: UIImage) throws -> URL {
         return try image.save(withName: UUID().uuidString)
-    }
-}
-
-// MARK: - Private extension MyToBeVision
-
-private extension MyToBeVision {
-
-    var model: MyToBeVisionModel.Model {
-        return MyToBeVisionModel.Model(headLine: headline,
-                                       imageURL: profileImageResource?.url,
-                                       lastUpdated: date,
-                                       text: text)
     }
 }

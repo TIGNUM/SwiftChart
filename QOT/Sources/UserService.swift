@@ -17,7 +17,6 @@ final class UserService {
     init(mainRealm: Realm, realmProvider: RealmProvider) {
         self.mainRealm = mainRealm
         self.realmProvider = realmProvider
-
         updateTimeZone()
     }
 
@@ -130,25 +129,32 @@ extension UserService {
         return AnyRealmCollection(mainRealm.objects(MyToBeVision.self))
     }
 
-    func updateHeadline(myToBeVision: MyToBeVision, headline: String?) {
-        updateMyToBeVision(myToBeVision) {
-            $0.headline = headline
+    func saveVisionAndSync(_ new: MyToBeVisionModel.Model?, syncManager: SyncManager, completion: (() -> Void)?) {
+        guard
+            let old = myToBeVision(),
+            let new = new, old.model != new else { return }
+        var tbvExist = false
+        updateMyToBeVision(old, newVision: new) {
+            $0.headline = new.headLine
+            $0.text = new.text
+            $0.date = new.lastUpdated
+            if old.remoteID.value != nil {
+                tbvExist = true
+                updateVisionImage(newImageURL: new.imageURL, old: $0)
+            }
+            syncManager.syncMyToBeVision { (error) in
+                if let syncedVision = self.myToBeVision(),
+                    tbvExist == false && syncedVision.model != new {
+                    self.saveVisionAndSync(new, syncManager: syncManager, completion: completion)
+                }
+                completion?()
+            }
         }
     }
 
-    func updateText(myToBeVision: MyToBeVision, text: String?) {
-        updateMyToBeVision(myToBeVision) {
-            $0.text = text
-        }
-    }
-
-    func updateDate(myToBeVision: MyToBeVision, date: Date) {
-        updateMyToBeVision(myToBeVision) {
-            $0.date = date
-        }
-    }
-
-    func updateMyToBeVision(_ myToBeVision: MyToBeVision, block: (MyToBeVision) -> Void) {
+    func updateMyToBeVision(_ myToBeVision: MyToBeVision,
+                            newVision: MyToBeVisionModel.Model,
+                            block: (MyToBeVision) -> Void) {
         do {
             try mainRealm.write {
                 block(myToBeVision)
@@ -156,6 +162,17 @@ extension UserService {
             }
         } catch let error {
             assertionFailure("Update \(MyToBeVision.self), error: \(error)")
+        }
+    }
+
+    func updateVisionImage(newImageURL: URL?, old: MyToBeVision) {
+        if let imageURL = newImageURL,
+            imageURL != old.profileImageResource?.url,
+            imageURL.baseURL == URL.imageDirectory {
+            old.profileImageResource?.setLocalURL(imageURL,
+                                                  format: .jpg,
+                                                  entity: .toBeVision,
+                                                  entitiyLocalID: old.localID)
         }
     }
 

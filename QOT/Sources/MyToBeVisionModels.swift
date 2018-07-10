@@ -11,7 +11,6 @@ import Foundation
 struct MyToBeVisionModel {
 
     struct Model: Equatable {
-
         var headLine: String?
         var imageURL: URL?
         var lastUpdated: Date?

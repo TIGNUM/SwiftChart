@@ -1591,7 +1591,7 @@
 			name = CLTypingLabel;
 			sourceTree = "<group>";
 		};
-		36667690207CF5BF00D2F5AD /* Vision Generator */ = {
+		36667690207CF5BF00D2F5AD /* Generator */ = {
 			isa = PBXGroup;
 			children = (
 				36667691207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift */,
@@ -1602,7 +1602,7 @@
 				3666769B207CF68500D2F5AD /* VisionGeneratorRouter.swift */,
 				3666769D207CF69800D2F5AD /* VisionGeneratorWorker.swift */,
 			);
-			name = "Vision Generator";
+			name = Generator;
 			sourceTree = "<group>";
 		};
 		366AFD0320BD9F3E00109F29 /* SigningEmail */ = {
@@ -1812,6 +1812,22 @@
 				3698428920C91F10007A8C8F /* SigningDigitViewController.xib */,
 			);
 			name = SigningDigit;
+			sourceTree = "<group>";
+		};
+		36D9A72920F4A13000341095 /* OverView */ = {
+			isa = PBXGroup;
+			children = (
+				912C9E36203C713F00C1AA76 /* MyToBeVisionConfigurator.swift */,
+				912C9E38203C716400C1AA76 /* MyToBeVisionInteractor.swift */,
+				912C9E3A203C718100C1AA76 /* MyToBeVisionModels.swift */,
+				912C9E3C203C71F900C1AA76 /* MyToBeVisionPresenter.swift */,
+				912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */,
+				912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */,
+				912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */,
+				CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */,
+				CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */,
+			);
+			name = OverView;
 			sourceTree = "<group>";
 		};
 		36DADE771FA7869000EB00D4 /* SettingsAdmin */ = {
@@ -2166,20 +2182,13 @@
 			name = Core;
 			sourceTree = "<group>";
 		};
-		912C9E32203C701300C1AA76 /* My To Be Vision */ = {
+		912C9E32203C701300C1AA76 /* ToBeVision */ = {
 			isa = PBXGroup;
 			children = (
-				912C9E36203C713F00C1AA76 /* MyToBeVisionConfigurator.swift */,
-				912C9E38203C716400C1AA76 /* MyToBeVisionInteractor.swift */,
-				912C9E3A203C718100C1AA76 /* MyToBeVisionModels.swift */,
-				912C9E3C203C71F900C1AA76 /* MyToBeVisionPresenter.swift */,
-				912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */,
-				912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */,
-				912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */,
-				CCCE09CD1EA67F87008730F1 /* MyToBeVisionViewController.swift */,
-				CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */,
+				36667690207CF5BF00D2F5AD /* Generator */,
+				36D9A72920F4A13000341095 /* OverView */,
 			);
-			name = "My To Be Vision";
+			name = ToBeVision;
 			sourceTree = "<group>";
 		};
 		913C7174209C61B2001C4185 /* Settings */ = {
@@ -2491,7 +2500,7 @@
 			children = (
 				CBE8808B1FE4368300670C10 /* Guide */,
 				D5B707241F03A21E00C812EB /* Morning Interview */,
-				912C9E32203C701300C1AA76 /* My To Be Vision */,
+				912C9E32203C701300C1AA76 /* ToBeVision */,
 				36FB012D20A63C8800472E6F /* PartnerEdit */,
 				3674FF1F20AADDED008EEB6C /* Partners Overview */,
 				91F5BE3C2097573500E85A51 /* Permissions */,
@@ -2501,7 +2510,6 @@
 				CB3333DD20480DA2009480DF /* Share */,
 				366AFD2320BEC8D200109F29 /* Signing */,
 				CB9442261FD963B200E2B122 /* SlideShow */,
-				36667690207CF5BF00D2F5AD /* Vision Generator */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";

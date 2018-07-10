@@ -196,9 +196,11 @@ final class SyncManager {
 
     func syncMyToBeVision(completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
-        excute(operations: [syncOperation(MyToBeVision.self, context: context, shouldDownload: true)], context: context, completion: { error in
-            self.uploadMedia()
-            completion?(error)
+        excute(operations: [syncOperation(MyToBeVision.self, context: context, shouldDownload: true)],
+               context: context,
+               completion: { error in
+                self.uploadMedia()
+                completion?(error)
         })
     }
 

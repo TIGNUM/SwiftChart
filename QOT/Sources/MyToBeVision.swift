@@ -67,3 +67,13 @@ extension MyToBeVision: TwoWaySyncableUniqueObject {
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
 }
+
+extension MyToBeVision {
+
+    var model: MyToBeVisionModel.Model {
+        return MyToBeVisionModel.Model(headLine: headline,
+                                       imageURL: profileImageResource?.url,
+                                       lastUpdated: date,
+                                       text: text)
+    }
+}
