@@ -398,7 +398,7 @@ private extension MyToBeVisionViewController {
 
     func scrollToTop() {
         let topPoint = CGPoint(x: 0, y: -contentInset.top)
-        scrollView.setContentOffset(topPoint, animated: false)
+        scrollView.setContentOffset(topPoint, animated: true)
     }
 
     func syncNavigationButtons(_ isEditing: Bool) {

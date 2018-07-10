@@ -180,7 +180,7 @@ extension LearnContentItemViewModel {
     }
 
     func contentItems(at tabType: TabType) -> [ContentItem] {
-        return contentCollection.contentItems.filter { $0.tabs.contains(tabType.rawValue) }
+        return contentCollection.contentItems.filter { $0.tabs.contains(tabType.rawValue) && $0.format.contains("guide.") == false }
     }
 
     func contentItemValue(at indexPath: IndexPath, tabType: TabType) -> ContentItemValue {
