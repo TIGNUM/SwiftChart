@@ -20,10 +20,10 @@ final class LearnContentListCoordinator: ParentCoordinator {
     private var navigationController: UINavigationController?
     var children: [Coordinator] = []
     weak var delegate: LearnContentListCoordinatorDelegate?
-    private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
+    private let transitioningDelegate: UIViewControllerTransitioningDelegate? // swiftlint:disable:this weak_delegate
 
     init(root: UIViewController,
-         transitioningDelegate: UIViewControllerTransitioningDelegate,
+         transitioningDelegate: UIViewControllerTransitioningDelegate?,
          services: Services,
          eventTracker: EventTracker,
          selectedCategoryIndex: Index,
@@ -41,8 +41,10 @@ final class LearnContentListCoordinator: ParentCoordinator {
                                                       topBarDelegate: self,
                                                       leftButton: UIBarButtonItem(withImage: R.image.ic_close()))
         navigationController?.navigationBar.backgroundColor = .clear
-        navigationController?.modalPresentationStyle = .custom
-        navigationController?.transitioningDelegate = transitioningDelegate
+        if let transitioningDelegate = transitioningDelegate {
+            navigationController?.modalPresentationStyle = .custom
+            navigationController?.transitioningDelegate = transitioningDelegate
+        }
         learnContentListViewController.delegate = self
     }
 

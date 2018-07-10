@@ -1071,9 +1071,8 @@ extension AppCoordinator {
         guard
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
             let services = services else { return }
-        let transitioningDelegate = LearnListAnimator()
         let coordinator = LearnContentListCoordinator(root: rootViewController,
-                                                      transitioningDelegate: transitioningDelegate,
+                                                      transitioningDelegate: nil,
                                                       services: services,
                                                       eventTracker: eventTracker,
                                                       selectedCategoryIndex: 5,
