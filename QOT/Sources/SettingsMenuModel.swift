@@ -429,22 +429,11 @@ private func generalSettingsSection(for user: User?, services: Services) -> [Set
 }
 
 private func companyRows(for user: User?) -> [SettingsRow] {
-    guard let user = user else {
-        return []
-    }
-
-    var jobTitle: String = ""
-    var telephone: String = ""
-    if let phoneNumber = user.telephone, let title = user.jobTitle {
-        telephone = phoneNumber
-        jobTitle = title
-    }
-
     return [
-        .label(title: SettingsType.company.title, value: user.company, settingsType: .company),
-        .textField(title: SettingsType.jobTitle.title, value: jobTitle, secure: false, settingsType: .jobTitle),
-        .label(title: SettingsType.email.title, value: user.email, settingsType: .email),
-        .textField(title: SettingsType.phone.title, value: telephone, secure: false, settingsType: .phone)
+        .label(title: SettingsType.company.title, value: user?.company, settingsType: .company),
+        .textField(title: SettingsType.jobTitle.title, value: user?.jobTitle ?? "", secure: false, settingsType: .jobTitle),
+        .label(title: SettingsType.email.title, value: user?.email, settingsType: .email),
+        .textField(title: SettingsType.phone.title, value: user?.telephone ?? "", secure: false, settingsType: .phone)
     ]
 }
 

@@ -72,11 +72,10 @@ final class ProfileSettingsWorker {
     }
 
     func updateJobTitle(_ new: ProfileSettingsModel) {
-        guard let user = user, let old = profile(), old != new else { return }
-
-        if old.position != new.position {
-            services.userService.updateUserJobTitle(user: user, title: new.position ?? "")
-            syncManger.upSyncUser(completion: {error in
+        guard let user = user, let old = profile(), let newPosition = new.position, old != new else { return }
+        if old.position != newPosition {
+            services.userService.updateUserJobTitle(user: user, title: newPosition)
+            syncManger.upSyncUser(completion: { error in
                 log(error?.localizedDescription ?? String(describing: error), level: .error)
             })
         }

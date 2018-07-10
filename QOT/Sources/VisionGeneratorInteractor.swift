@@ -52,10 +52,13 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
     func handleChoice(_ choice: VisionGeneratorChoice) {
         switch choice.type {
         case .intro,
-             .instructions,
-             .next: handleChoiceTargets(choice)
+             .instructions: handleChoiceTargets(choice)
         case .work,
              .home: handleChoiceDecision(choice)
+        case .next:
+            worker.saveVision {
+                self.handleChoiceTargets(choice)
+            }
         case .picture:
             if choice.target == nil {
                 router.showPictureActionSheet(.picture)

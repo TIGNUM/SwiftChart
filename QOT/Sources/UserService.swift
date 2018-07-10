@@ -133,20 +133,13 @@ extension UserService {
         guard
             let old = myToBeVision(),
             let new = new, old.model != new else { return }
-        var tbvExist = false
         updateMyToBeVision(old) {
             $0.headline = new.headLine
             $0.text = new.text
             $0.date = new.lastUpdated
-            if $0.remoteID.value != nil {
-                tbvExist = true
-                updateVisionImage(newImageURL: new.imageURL, old: $0)
-            }
+            updateVisionImage(newImageURL: new.imageURL, old: $0)
         }
         syncManager.syncMyToBeVision { (error) in
-            if tbvExist == false {
-                self.saveVisionAndSync(new, syncManager: syncManager, completion: completion)
-            }
             completion?()
         }
     }
