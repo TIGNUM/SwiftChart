@@ -158,7 +158,7 @@ extension UserService {
     func updateVisionImage(newImageURL: URL?, old: MyToBeVision) {
         if let imageURL = newImageURL,
             imageURL != old.profileImageResource?.url,
-            imageURL.baseURL == URL.imageDirectory {
+            imageURL.isLocalImageDirectory() {
             old.profileImageResource?.setLocalURL(imageURL,
                                                   format: .jpg,
                                                   entity: .toBeVision,

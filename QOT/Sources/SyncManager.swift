@@ -261,7 +261,7 @@ final class SyncManager {
                 log("UPLOAD MEDIA STARTED", level: .debug)
             }
             let finishOperation = operationBlock(context: nil) { (error) in
-                log("UPLOAD MEDIA FINISHED with \(error == nil ? "some" : "No") errors", level: .debug)
+                log("UPLOAD MEDIA FINISHED with \(error == nil ? "No" : "Some") errors", level: .debug)
             }
             operations.insert(startOperation, at: 0)
             operations.append(finishOperation)

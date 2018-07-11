@@ -44,14 +44,7 @@ final class MediaResource: Object {
     }
 
     func setLocalURL(_ localURL: URL, format: Format, entity: Entity, entitiyLocalID: String) {
-        guard let localBaseURL = localURL.baseURL else {
-            assert(false, "localURL must have image directory baseURL")
-            return
-
-        }
-        let localPathComponents = localBaseURL.pathComponents
-        let expectedPathComponents = URL.imageDirectory.pathComponents
-        assert(localPathComponents.elementsEqual(expectedPathComponents), "localURL baseURL must be image directory")
+        assert(localURL.isLocalImageDirectory(), "localURL baseURL must be image directory")
 
         self.localFileName = localURL.relativePath
         self.format = format.rawValue

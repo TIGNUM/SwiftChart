@@ -155,7 +155,7 @@ private extension Partner {
         // Only update imageURL if necessary otherwise will need to upload
         if let imageURL = partner.imageURL,
             imageURL != profileImageResource?.url,
-            imageURL.baseURL == URL.imageDirectory {
+            imageURL.isLocalImageDirectory() {
             self.profileImageResource?.setLocalURL(imageURL, format: .jpg, entity: .partner, entitiyLocalID: localID)
         }
         didUpdate()

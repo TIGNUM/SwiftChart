@@ -37,4 +37,10 @@ extension URL {
             let queryItems = url.queryItems else { return [] }
         return queryItems
     }
+
+    func isLocalImageDirectory() -> Bool {
+        let localPathComponents = self.baseURL?.pathComponents ?? []
+        let expectedPathComponents = URL.imageDirectory.pathComponents
+        return localPathComponents.elementsEqual(expectedPathComponents)
+    }
 }

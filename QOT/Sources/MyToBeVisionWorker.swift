@@ -16,6 +16,13 @@ final class MyToBeVisionWorker {
     init(services: Services, syncManager: SyncManager) {
         self.services = services
         self.syncManager = syncManager
+
+        // Make sure that image directory is created.
+        do {
+            try FileManager.default.createDirectory(at: URL.imageDirectory, withIntermediateDirectories: true)
+        } catch {
+            log("failed to create image directory", level: .debug)
+        }
     }
 
     var trackablePageObject: PageObject? {
