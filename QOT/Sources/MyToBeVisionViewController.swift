@@ -347,7 +347,8 @@ private extension MyToBeVisionViewController {
         }
 
         imageViewPlaceholder.isVisible = toBeVision?.imageURL == nil
-        if toBeVision?.imageURL != nil {
+        if (isEditing == false || imageView.image == nil) && // during editing, we don't save image, do not reset the image.
+            toBeVision?.imageURL != nil {
             imageView.kf.setImage(with: toBeVision?.imageURL)
         }
         syncInstructionsButton()
