@@ -254,7 +254,6 @@ private extension LearnContentItemViewController {
 
     func prepareAndPlay(at indexPath: IndexPath) {
         let item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
-
         switch item.contentItemValue {
         case .audio(_, _, _, let remoteURL, let duration, let waveformData):
             let url = item.bundledAudioURL ?? remoteURL

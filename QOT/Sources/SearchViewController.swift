@@ -30,14 +30,12 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupSegementedControl()
         setupSearchBar()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         searchBar.alpha = 1
         searchBar.becomeFirstResponder()
         tableView.register(R.nib.searchTableViewCell(),
@@ -57,7 +55,6 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         self.searchResults = searchResults
         tableView.isUserInteractionEnabled = searchResults.isEmpty == false
         tableView.reloadData()
-
         if searchResults.isEmpty == true {
             let filter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
             interactor?.sendUserSearchResult(contentId: nil,
@@ -139,7 +136,6 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         } else if searchResults.isEmpty == true && searchQuery.isEmpty == false {
             return 1
         }
-
         return 0
     }
 
@@ -175,14 +171,23 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case .audio,
              .video:
             if let url = selectedSearchResult.mediaURL {
-                let playerViewController = stream(videoURL: url)
-                if let playerItem = playerViewController.player?.currentItem {
-                    avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
-                    avPlayerObserver?.onStatusUpdate { (player) in
-                        if playerItem.error != nil {
-                            playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
-                        }
-                    }
+                handleMediaSelection(mediaURL: url)
+            }
+        }
+    }
+}
+
+// MARK: - Private
+
+private extension SearchViewController {
+
+    func handleMediaSelection(mediaURL: URL) {
+        let playerViewController = stream(videoURL: mediaURL)
+        if let playerItem = playerViewController.player?.currentItem {
+            avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+            avPlayerObserver?.onStatusUpdate { (player) in
+                if playerItem.error != nil {
+                    playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
                 }
             }
         }

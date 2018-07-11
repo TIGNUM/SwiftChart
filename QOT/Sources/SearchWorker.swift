@@ -35,10 +35,8 @@ final class SearchWorker {
                                              duration: content.durationString)
             allResults.append(searchResult)
         }
-
         allResults.append(contentsOf: contentItemsAudio)
         allResults.append(contentsOf: contentItemsVideo)
-
         return allResults.sorted { $0.title < $1.title }
     }()
 
@@ -47,11 +45,9 @@ final class SearchWorker {
         var allResults = [Search.Result]()
         videoItems.forEach { (item) in
             var mediaURL: URL?
-
             if let urlString = item.valueMediaURL {
                 mediaURL = URL(string: urlString)
             }
-
             let searchResult = Search.Result(filter: .video,
                                              title: item.valueText ?? "",
                                              contentID: nil,
@@ -70,13 +66,11 @@ final class SearchWorker {
     private lazy var contentItemsAudio: [Search.Result] = {
         let audioItems = Array(services.contentService.contentItemsAudio())
         var allResults = [Search.Result]()
-        audioItems.forEach { (item) in
+        audioItems.forEach { (item: ContentItem) in
             var mediaURL: URL?
-
             if let urlString = item.valueMediaURL {
-                mediaURL = URL(string: urlString)
+                mediaURL = item.bundledAudioURL ?? URL(string: urlString)
             }
-
             let searchResult = Search.Result(filter: .audio,
                                              title: item.valueText ?? "",
                                              contentID: nil,
@@ -99,7 +93,6 @@ final class SearchWorker {
         case .video: searchArray = contentItemsVideo
         case .audio: searchArray = contentItemsAudio
         }
-
         return searchArray.filter { (item) -> Bool in
             return item.title.lowercased().contains(searchText.lowercased())
                 || item.searchTags.lowercased().contains(searchText.lowercased())
