@@ -31,7 +31,7 @@ enum ContentItemValue {
 
         let text = item.valueText?.trimmingCharacters(in: .whitespacesAndNewlines)
         let description = item.valueDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let mediaURL = item.valueMediaURL.flatMap { URL(string: $0) }
+        let mediaURL = item.bundledAudioURL ?? item.valueMediaURL.flatMap { URL(string: $0) }
         let imageURL = item.valueImageURL.flatMap { URL(string: $0) }
         let duration = item.valueDuration.value.map { TimeInterval($0) }
 

@@ -159,6 +159,7 @@ private extension SigningProfileDetailInteractor {
         }
         LoginCoordinator.add3DTouchShortcuts()
         UserDefault.clearAllDataRegistration()
+        UserDefault.lastInstaledAppVersion.setStringValue(value: Bundle.main.versionNumber)
         AppDelegate.current.appCoordinator.didLogin()
     }
 
