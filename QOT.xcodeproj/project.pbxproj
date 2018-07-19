@@ -301,6 +301,13 @@
 		85C3D6BE1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */; };
 		85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */; };
 		85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */; };
+		9100194F20F63E4C00049118 /* WidgetUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912AB11620F38BD700E34328 /* WidgetUserDefaults.swift */; };
+		9100195020F6413900049118 /* WidgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91842AE220F63CAD007605FD /* WidgetModel.swift */; };
+		9100195220F88EE600049118 /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E9BF1F1628B50000D20D /* Date+Extension.swift */; };
+		9100195320F88EF100049118 /* Calendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */; };
+		9100195420F88F0700049118 /* DateFormatter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */; };
+		9100195520F88F1A00049118 /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C4205A850A0033F573 /* ISODate.swift */; };
+		9100195720F8A0E200049118 /* WidgetDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9100195620F8A0E200049118 /* WidgetDataManager.swift */; };
 		91086E37208EFA050035DA1F /* SettingsMenuHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E36208EFA050035DA1F /* SettingsMenuHeader.swift */; };
 		91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E38208F0BE50035DA1F /* ProfileSettingsViewController.swift */; };
 		91086E3B20909E7A0035DA1F /* ProfileSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E3A20909E7A0035DA1F /* ProfileSettingsModel.swift */; };
@@ -314,6 +321,7 @@
 		91086E502092044C0035DA1F /* SettingsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91086E4F2092044C0035DA1F /* SettingsCell.xib */; };
 		91086E52209204670035DA1F /* SettingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E51209204670035DA1F /* SettingsCell.swift */; };
 		91086E5620920ABF0035DA1F /* SettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91086E5520920ABF0035DA1F /* SettingsModel.swift */; };
+		9112FE2720EE16A3006B0F7B /* WeeklyChoicesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9112FE2620EE16A3006B0F7B /* WeeklyChoicesView.swift */; };
 		9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115F6FE208DDFD700EE5D1D /* ProfileSettingsRouter.swift */; };
 		9115F701208DDFEB00EE5D1D /* ProfileSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115F700208DDFEB00EE5D1D /* ProfileSettingsWorker.swift */; };
 		9115F703208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115F702208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift */; };
@@ -322,6 +330,7 @@
 		9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9115F709208DE05100EE5D1D /* ProfileSettingsProtocols.swift */; };
 		9115F70E208DFFAE00EE5D1D /* SettingsMenuHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9115F70D208DFFAE00EE5D1D /* SettingsMenuHeader.xib */; };
 		91182ACD20A1A4E9006D5435 /* SettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91182ACC20A1A4E9006D5435 /* SettingsViewController.xib */; };
+		912AB11720F38BD700E34328 /* WidgetUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912AB11620F38BD700E34328 /* WidgetUserDefaults.swift */; };
 		912C9E37203C713F00C1AA76 /* MyToBeVisionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E36203C713F00C1AA76 /* MyToBeVisionConfigurator.swift */; };
 		912C9E39203C716400C1AA76 /* MyToBeVisionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E38203C716400C1AA76 /* MyToBeVisionInteractor.swift */; };
 		912C9E3B203C718100C1AA76 /* MyToBeVisionModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E3A203C718100C1AA76 /* MyToBeVisionModels.swift */; };
@@ -329,6 +338,9 @@
 		912C9E3F203C721300C1AA76 /* MyToBeVisionProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */; };
 		912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */; };
 		912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */; };
+		9130CD6C20EE0C3E0094A594 /* WidgetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9130CD6B20EE0C3E0094A594 /* WidgetViewController.xib */; };
+		9130CD7020EE15020094A594 /* MyToBeVisionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9130CD6F20EE15020094A594 /* MyToBeVisionView.swift */; };
+		9130CD7220EE15D70094A594 /* UpcomingEventsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9130CD7120EE15D70094A594 /* UpcomingEventsView.swift */; };
 		914A5E1B207FB33200092121 /* SettingsBubblesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E1A207FB33200092121 /* SettingsBubblesRouter.swift */; };
 		914A5E1D207FB35600092121 /* SettingsBubblesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E1C207FB35600092121 /* SettingsBubblesWorker.swift */; };
 		914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E1E207FB37100092121 /* SettingsBubblesConfigurator.swift */; };
@@ -337,10 +349,16 @@
 		914A5E25207FB3AF00092121 /* SettingsBubblesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E24207FB3AF00092121 /* SettingsBubblesPresenter.swift */; };
 		914A5E27207FB3BD00092121 /* SettingsBubblesProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E26207FB3BD00092121 /* SettingsBubblesProtocols.swift */; };
 		914A5E29207FB54A00092121 /* BubblesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914A5E28207FB54A00092121 /* BubblesView.swift */; };
+		914FEFF120EF5A9600999D6A /* Connectivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 914FEFF020EF5A9600999D6A /* Connectivity.swift */; };
 		915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */; };
 		9166ECEB20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9166ECEA20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib */; };
 		9166ECED20A07C2F006DF113 /* GuideToBeVisionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9166ECEC20A07C2F006DF113 /* GuideToBeVisionTableViewCell.swift */; };
 		91796F2820B6D97C00AC60BA /* MeetingsIncreasingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91796F2720B6D97C00AC60BA /* MeetingsIncreasingChart.swift */; };
+		91842AE120F4D356007605FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBB237F61E6FFF1200AB5AEF /* Assets.xcassets */; };
+		91842AE320F63CAD007605FD /* WidgetModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91842AE220F63CAD007605FD /* WidgetModel.swift */; };
+		918D5E2120EE050900AEAD37 /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 918D5E2020EE050900AEAD37 /* NotificationCenter.framework */; };
+		918D5E2420EE050900AEAD37 /* WidgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 918D5E2320EE050900AEAD37 /* WidgetViewController.swift */; };
+		918D5E2B20EE050900AEAD37 /* QOTWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 918D5E1F20EE050900AEAD37 /* QOTWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B339DF207F5F5E00F54A62 /* SettingsBubblesViewController.xib */; };
 		91B339E2207F5F7400F54A62 /* SettingsBubblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B339E1207F5F7400F54A62 /* SettingsBubblesViewController.swift */; };
 		91C262B91FED0B2D0075664E /* InterviewDialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B61FED0B2C0075664E /* InterviewDialView.swift */; };
@@ -725,9 +743,17 @@
 		E8F43D3320B6F7E500C9FF4F /* CalendarEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */; };
 		E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */; };
 		E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */; };
+		F6E88A76FF398AFB812AA0B4 /* Pods_QOTWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		918D5E2920EE050900AEAD37 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CBB237E41E6FFF1200AB5AEF /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 918D5E1E20EE050900AEAD37;
+			remoteInfo = QOTWidget;
+		};
 		CBB238011E6FFF1200AB5AEF /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = CBB237E41E6FFF1200AB5AEF /* Project object */;
@@ -736,6 +762,20 @@
 			remoteInfo = QOT;
 		};
 /* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		918D5E3220EE050900AEAD37 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				918D5E2B20EE050900AEAD37 /* QOTWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0B2CA3791ED2BC93006B355F /* SensorCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SensorCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -746,6 +786,7 @@
 		0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsUpcomingTripTableViewCell.swift; sourceTree = "<group>"; };
 		0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsUpcomingTripTableViewCell.xib; sourceTree = "<group>"; };
+		1A232D8A077E90EF7B93B4A0 /* Pods-QOTWidget.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.database.xcconfig"; sourceTree = "<group>"; };
 		2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
 		2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
 		2C2AD94F9096EA48FAC24935 /* Pods-DatabaseBuilder.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.release.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.release.xcconfig"; sourceTree = "<group>"; };
@@ -948,6 +989,7 @@
 		36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideWhatsHotTableViewCell.swift; sourceTree = "<group>"; };
 		36FEA86220A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GuideWhatsHotTableViewCell.xib; sourceTree = "<group>"; };
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
+		5085A062A04C07A736CE9E5F /* Pods-QOTWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.release.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropper.swift; sourceTree = "<group>"; };
@@ -1088,6 +1130,7 @@
 		85C3D6BD1F0B920E00E0CBFE /* PrepareEventTableViewFooterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewFooterView.swift; sourceTree = "<group>"; };
 		85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsChart.swift; sourceTree = "<group>"; };
 		85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnListAnimation.swift; sourceTree = "<group>"; };
+		9100195620F8A0E200049118 /* WidgetDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetDataManager.swift; sourceTree = "<group>"; };
 		91086E36208EFA050035DA1F /* SettingsMenuHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsMenuHeader.swift; sourceTree = "<group>"; };
 		91086E38208F0BE50035DA1F /* ProfileSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsViewController.swift; sourceTree = "<group>"; };
 		91086E3A20909E7A0035DA1F /* ProfileSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsModel.swift; sourceTree = "<group>"; };
@@ -1101,6 +1144,7 @@
 		91086E4F2092044C0035DA1F /* SettingsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsCell.xib; sourceTree = "<group>"; };
 		91086E51209204670035DA1F /* SettingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCell.swift; sourceTree = "<group>"; };
 		91086E5520920ABF0035DA1F /* SettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsModel.swift; sourceTree = "<group>"; };
+		9112FE2620EE16A3006B0F7B /* WeeklyChoicesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesView.swift; sourceTree = "<group>"; };
 		9115F6FE208DDFD700EE5D1D /* ProfileSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsRouter.swift; sourceTree = "<group>"; };
 		9115F700208DDFEB00EE5D1D /* ProfileSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsWorker.swift; sourceTree = "<group>"; };
 		9115F702208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsConfigurator.swift; sourceTree = "<group>"; };
@@ -1109,6 +1153,8 @@
 		9115F709208DE05100EE5D1D /* ProfileSettingsProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsProtocols.swift; sourceTree = "<group>"; };
 		9115F70D208DFFAE00EE5D1D /* SettingsMenuHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsMenuHeader.xib; sourceTree = "<group>"; };
 		91182ACC20A1A4E9006D5435 /* SettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsViewController.xib; sourceTree = "<group>"; };
+		912AB11520F3830A00E34328 /* QOTWidget.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = QOTWidget.entitlements; sourceTree = "<group>"; };
+		912AB11620F38BD700E34328 /* WidgetUserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetUserDefaults.swift; sourceTree = "<group>"; };
 		912C9E36203C713F00C1AA76 /* MyToBeVisionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionConfigurator.swift; sourceTree = "<group>"; };
 		912C9E38203C716400C1AA76 /* MyToBeVisionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionInteractor.swift; sourceTree = "<group>"; };
 		912C9E3A203C718100C1AA76 /* MyToBeVisionModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionModels.swift; sourceTree = "<group>"; };
@@ -1116,6 +1162,9 @@
 		912C9E3E203C721300C1AA76 /* MyToBeVisionProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionProtocols.swift; sourceTree = "<group>"; };
 		912C9E40203C722F00C1AA76 /* MyToBeVisionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRouter.swift; sourceTree = "<group>"; };
 		912C9E42203C724500C1AA76 /* MyToBeVisionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionWorker.swift; sourceTree = "<group>"; };
+		9130CD6B20EE0C3E0094A594 /* WidgetViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WidgetViewController.xib; sourceTree = "<group>"; };
+		9130CD6F20EE15020094A594 /* MyToBeVisionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionView.swift; sourceTree = "<group>"; };
+		9130CD7120EE15D70094A594 /* UpcomingEventsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventsView.swift; sourceTree = "<group>"; };
 		914A5E1A207FB33200092121 /* SettingsBubblesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesRouter.swift; sourceTree = "<group>"; };
 		914A5E1C207FB35600092121 /* SettingsBubblesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesWorker.swift; sourceTree = "<group>"; };
 		914A5E1E207FB37100092121 /* SettingsBubblesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesConfigurator.swift; sourceTree = "<group>"; };
@@ -1124,10 +1173,16 @@
 		914A5E24207FB3AF00092121 /* SettingsBubblesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesPresenter.swift; sourceTree = "<group>"; };
 		914A5E26207FB3BD00092121 /* SettingsBubblesProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesProtocols.swift; sourceTree = "<group>"; };
 		914A5E28207FB54A00092121 /* BubblesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubblesView.swift; sourceTree = "<group>"; };
+		914FEFF020EF5A9600999D6A /* Connectivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Connectivity.swift; sourceTree = "<group>"; };
 		915AFC6F207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewcontroller+UIImpactFeedbackGenerator.swift"; sourceTree = "<group>"; };
 		9166ECEA20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideToBeVisionTableViewCell.xib; sourceTree = "<group>"; };
 		9166ECEC20A07C2F006DF113 /* GuideToBeVisionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideToBeVisionTableViewCell.swift; sourceTree = "<group>"; };
 		91796F2720B6D97C00AC60BA /* MeetingsIncreasingChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingsIncreasingChart.swift; sourceTree = "<group>"; };
+		91842AE220F63CAD007605FD /* WidgetModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetModel.swift; sourceTree = "<group>"; };
+		918D5E1F20EE050900AEAD37 /* QOTWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = QOTWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		918D5E2020EE050900AEAD37 /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
+		918D5E2320EE050900AEAD37 /* WidgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WidgetViewController.swift; sourceTree = "<group>"; };
+		918D5E2820EE050900AEAD37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91B339DF207F5F5E00F54A62 /* SettingsBubblesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsBubblesViewController.xib; sourceTree = "<group>"; };
 		91B339E1207F5F7400F54A62 /* SettingsBubblesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesViewController.swift; sourceTree = "<group>"; };
 		91C262B61FED0B2C0075664E /* InterviewDialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDialView.swift; sourceTree = "<group>"; };
@@ -1151,8 +1206,12 @@
 		91F5BE4F2097585900E85A51 /* PermissionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionsCell.xib; sourceTree = "<group>"; };
 		91F5BE5120975E1300E85A51 /* PermissionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsInteractor.swift; sourceTree = "<group>"; };
 		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
+		9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC812B5E79C328CCC051F8B9 /* Pods-QOTWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
+		B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.unittest.xcconfig"; sourceTree = "<group>"; };
+		BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.appstore.xcconfig"; sourceTree = "<group>"; };
 		BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrar.swift; sourceTree = "<group>"; };
@@ -1529,6 +1588,15 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		918D5E1C20EE050900AEAD37 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				918D5E2120EE050900AEAD37 /* NotificationCenter.framework in Frameworks */,
+				F6E88A76FF398AFB812AA0B4 /* Pods_QOTWidget.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CBB237E91E6FFF1200AB5AEF /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -1864,6 +1932,8 @@
 				82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */,
 				CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */,
 				D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */,
+				918D5E2020EE050900AEAD37 /* NotificationCenter.framework */,
+				9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -2104,6 +2174,35 @@
 			name = Tutorial;
 			sourceTree = "<group>";
 		};
+		9100194C20F63DF100049118 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				91842AE220F63CAD007605FD /* WidgetModel.swift */,
+				912AB11620F38BD700E34328 /* WidgetUserDefaults.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9100194D20F63E0800049118 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9130CD6F20EE15020094A594 /* MyToBeVisionView.swift */,
+				9130CD7120EE15D70094A594 /* UpcomingEventsView.swift */,
+				9112FE2620EE16A3006B0F7B /* WeeklyChoicesView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		9100194E20F63E1D00049118 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9130CD6B20EE0C3E0094A594 /* WidgetViewController.xib */,
+				918D5E2320EE050900AEAD37 /* WidgetViewController.swift */,
+				914FEFF020EF5A9600999D6A /* Connectivity.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		91086E3C209201AB0035DA1F /* Settings */ = {
 			isa = PBXGroup;
 			children = (
@@ -2201,6 +2300,18 @@
 			name = Settings;
 			sourceTree = "<group>";
 		};
+		918D5E2220EE050900AEAD37 /* QOTWidget */ = {
+			isa = PBXGroup;
+			children = (
+				912AB11520F3830A00E34328 /* QOTWidget.entitlements */,
+				918D5E2820EE050900AEAD37 /* Info.plist */,
+				9100194C20F63DF100049118 /* Model */,
+				9100194D20F63E0800049118 /* View */,
+				9100194E20F63E1D00049118 /* Controller */,
+			);
+			path = QOTWidget;
+			sourceTree = "<group>";
+		};
 		91F5BE3C2097573500E85A51 /* Permissions */ = {
 			isa = PBXGroup;
 			children = (
@@ -2266,6 +2377,11 @@
 				FD551F312BF873A8D050014D /* Pods-QOTTests.appstore.xcconfig */,
 				2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */,
 				BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */,
+				AC812B5E79C328CCC051F8B9 /* Pods-QOTWidget.debug.xcconfig */,
+				B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */,
+				1A232D8A077E90EF7B93B4A0 /* Pods-QOTWidget.database.xcconfig */,
+				5085A062A04C07A736CE9E5F /* Pods-QOTWidget.release.xcconfig */,
+				BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -2590,6 +2706,7 @@
 		CBB237E31E6FFF1200AB5AEF = {
 			isa = PBXGroup;
 			children = (
+				918D5E2220EE050900AEAD37 /* QOTWidget */,
 				7BD58BE66F7DCDCEF349DBD8 /* Frameworks */,
 				B1B85C4C58D59EA1163CE83B /* Pods */,
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
@@ -2604,6 +2721,7 @@
 			children = (
 				CBB237EC1E6FFF1200AB5AEF /* QOT.app */,
 				CBB238001E6FFF1200AB5AEF /* QOTTests.xctest */,
+				918D5E1F20EE050900AEAD37 /* QOTWidget.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -3201,6 +3319,7 @@
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
 				CB2EF4FF2073A77600CD6DB4 /* WhatsHotBadgeState.swift */,
 				7F4276761F570DB600AEE3D7 /* WindowManager.swift */,
+				9100195620F8A0E200049118 /* WidgetDataManager.swift */,
 				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 				7F9217B31FD01BF400CAE9E0 /* Permissions */,
 				CB6637A7201A24E200A995D6 /* UserNotifications */,
@@ -3530,6 +3649,25 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		918D5E1E20EE050900AEAD37 /* QOTWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 918D5E3120EE050900AEAD37 /* Build configuration list for PBXNativeTarget "QOTWidget" */;
+			buildPhases = (
+				E55B25E81037DFEBE0ED9C34 /* [CP] Check Pods Manifest.lock */,
+				918D5E1B20EE050900AEAD37 /* Sources */,
+				918D5E1C20EE050900AEAD37 /* Frameworks */,
+				918D5E1D20EE050900AEAD37 /* Resources */,
+				9100195820FC798400049118 /* SwiftLint */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = QOTWidget;
+			productName = QOTWidget;
+			productReference = 918D5E1F20EE050900AEAD37 /* QOTWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		CBB237EB1E6FFF1200AB5AEF /* QOT */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CBB238091E6FFF1300AB5AEF /* Build configuration list for PBXNativeTarget "QOT" */;
@@ -3544,10 +3682,12 @@
 				CBC5ACC41F177F0E007E1E9C /* Crashlytics */,
 				3649815620A3427000F5046D /* ShellScript */,
 				C3683032C904FFA0E0CA62DE /* [CP] Copy Pods Resources */,
+				918D5E3220EE050900AEAD37 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				918D5E2A20EE050900AEAD37 /* PBXTargetDependency */,
 			);
 			name = QOT;
 			productName = QOT;
@@ -3580,16 +3720,29 @@
 		CBB237E41E6FFF1200AB5AEF /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0830;
+				LastSwiftUpdateCheck = 0940;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = Tignum;
 				TargetAttributes = {
+					918D5E1E20EE050900AEAD37 = {
+						CreatedOnToolsVersion = 9.4;
+						DevelopmentTeam = 4FQQH349R5;
+						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
 						DevelopmentTeam = 4FQQH349R5;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
 							com.apple.BackgroundModes = {
 								enabled = 1;
 							};
@@ -3624,11 +3777,21 @@
 			targets = (
 				CBB237EB1E6FFF1200AB5AEF /* QOT */,
 				CBB237FF1E6FFF1200AB5AEF /* QOTTests */,
+				918D5E1E20EE050900AEAD37 /* QOTWidget */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		918D5E1D20EE050900AEAD37 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				91842AE120F4D356007605FD /* Assets.xcassets in Resources */,
+				9130CD6C20EE0C3E0094A594 /* WidgetViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CBB237EA1E6FFF1200AB5AEF /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3785,6 +3948,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Anchorage/Anchorage.framework",
@@ -3794,7 +3958,6 @@
 				"${BUILT_PRODUCTS_DIR}/Freddy/Freddy.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/LoremIpsum/LoremIpsum.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
@@ -3808,6 +3971,7 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Anchorage.framework",
@@ -3817,7 +3981,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Freddy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoremIpsum.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
@@ -3833,6 +3996,20 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		9100195820FC798400049118 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
 		};
 		ADBDEF779BEA588C80EA7200 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -3930,9 +4107,45 @@
 			shellPath = /bin/sh;
 			shellScript = "releaseConfig=\"Release\"\n\nif [ \"$releaseConfig\" = \"${CONFIGURATION}\" ]; then\necho \"Running Crashlytics\"\n\"${PODS_ROOT}/Fabric/run\" c5b6a77e0ac832aeb121a8444afaba1522a28469 d4ca106b8d4d308cc6c505618f78c345e3e6bd462c0bd7a433abfc3f733a4783\nfi";
 		};
+		E55B25E81037DFEBE0ED9C34 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QOTWidget-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		918D5E1B20EE050900AEAD37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9100195520F88F1A00049118 /* ISODate.swift in Sources */,
+				9112FE2720EE16A3006B0F7B /* WeeklyChoicesView.swift in Sources */,
+				91842AE320F63CAD007605FD /* WidgetModel.swift in Sources */,
+				9100195420F88F0700049118 /* DateFormatter+Convenience.swift in Sources */,
+				9130CD7020EE15020094A594 /* MyToBeVisionView.swift in Sources */,
+				914FEFF120EF5A9600999D6A /* Connectivity.swift in Sources */,
+				9100195320F88EF100049118 /* Calendar+Convenience.swift in Sources */,
+				9130CD7220EE15D70094A594 /* UpcomingEventsView.swift in Sources */,
+				9100195220F88EE600049118 /* Date+Extension.swift in Sources */,
+				912AB11720F38BD700E34328 /* WidgetUserDefaults.swift in Sources */,
+				918D5E2420EE050900AEAD37 /* WidgetViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CBB237E81E6FFF1200AB5AEF /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -3950,7 +4163,9 @@
 				CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */,
 				366AFD1120BD9F9300109F29 /* SigningEmailInteractor.swift in Sources */,
 				7F2B77D31FC5C3E800203D90 /* LibraryViewModelInterface.swift in Sources */,
+				9100195020F6413900049118 /* WidgetModel.swift in Sources */,
 				912C9E3B203C718100C1AA76 /* MyToBeVisionModels.swift in Sources */,
+				9100194F20F63E4C00049118 /* WidgetUserDefaults.swift in Sources */,
 				7F4B98A81FA21FD3000B402C /* WeeklyChoicesAnimation.swift in Sources */,
 				8514A48C1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift in Sources */,
 				CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */,
@@ -4467,6 +4682,7 @@
 				36D535E020A711E800F1C2FC /* PartnerEditInteractor.swift in Sources */,
 				36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */,
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,
+				9100195720F8A0E200049118 /* WidgetDataManager.swift in Sources */,
 				CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */,
 				CC7C7A051F064F3F00DAAC14 /* User+Convenience.swift in Sources */,
 				36796A2220D3C45200B55429 /* SigningCountryWorker.swift in Sources */,
@@ -4564,6 +4780,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		918D5E2A20EE050900AEAD37 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 918D5E1E20EE050900AEAD37 /* QOTWidget */;
+			targetProxy = 918D5E2920EE050900AEAD37 /* PBXContainerItemProxy */;
+		};
 		CBB238021E6FFF1200AB5AEF /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = CBB237EB1E6FFF1200AB5AEF /* QOT */;
@@ -4648,9 +4869,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
@@ -4683,6 +4906,127 @@
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = Database;
+		};
+		918D5E2C20EE050900AEAD37 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AC812B5E79C328CCC051F8B9 /* Pods-QOTWidget.debug.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		918D5E2D20EE050900AEAD37 /* UnitTest */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = UnitTest;
+		};
+		918D5E2E20EE050900AEAD37 /* Database */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1A232D8A077E90EF7B93B4A0 /* Pods-QOTWidget.database.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Database;
+		};
+		918D5E2F20EE050900AEAD37 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5085A062A04C07A736CE9E5F /* Pods-QOTWidget.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		918D5E3020EE050900AEAD37 /* AppStore */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = TFH2SGDX62;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = AppStore;
 		};
 		CBA0EBA11FCDB6C6009B33AB /* AppStore */ = {
 			isa = XCBuildConfiguration;
@@ -4740,9 +5084,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 80E075CE42B2191C23DED0F8 /* Pods-QOT.appstore.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = TFH2SGDX62;
 				ENABLE_BITCODE = NO;
@@ -4890,9 +5236,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
@@ -4915,6 +5263,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
@@ -5029,9 +5378,11 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-beta";
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = 4FQQH349R5;
@@ -5073,6 +5424,18 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		918D5E3120EE050900AEAD37 /* Build configuration list for PBXNativeTarget "QOTWidget" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				918D5E2C20EE050900AEAD37 /* Debug */,
+				918D5E2D20EE050900AEAD37 /* UnitTest */,
+				918D5E2E20EE050900AEAD37 /* Database */,
+				918D5E2F20EE050900AEAD37 /* Release */,
+				918D5E3020EE050900AEAD37 /* AppStore */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

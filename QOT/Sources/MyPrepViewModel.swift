@@ -30,6 +30,7 @@ final class MyPrepViewModel {
     }
 
     private let services: Services
+    private let widgetDataManager: WidgetDataManager
     private var preparations: AnyRealmCollection<Preparation>?
     private var preparationChecks: AnyRealmCollection<PreparationCheck>?
     private var preparationsNotificationHandler: NotificationTokenHandler?
@@ -45,6 +46,7 @@ final class MyPrepViewModel {
 
     init(services: Services) {
         self.services = services
+        self.widgetDataManager = WidgetDataManager(services: services)
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         preparations = try? services.preparationService.preparationsOnBackground(predicate: NSPredicate(format: "deleted == false"))
         preparationChecks = try? services.preparationService.preparationChecksOnBackground()
@@ -71,6 +73,7 @@ final class MyPrepViewModel {
             self.updates.next(.reload)
         }
         refresh()
+        widgetDataManager.update(.upcomingEvent)
     }
 
     var initialItem: Int? {

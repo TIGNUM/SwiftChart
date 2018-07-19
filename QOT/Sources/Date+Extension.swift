@@ -96,6 +96,13 @@ extension Date {
         return Calendar.sharedUTC.component(.month, from: self)
     }
 
+    var monthDescription: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM"
+        let monthDescription = dateFormatter.string(from: self)
+        return monthDescription
+    }
+
     func isInCurrentWeek(date: Date) -> Bool {
         return Calendar.sharedUTC.isDate(self, equalTo: date, toGranularity: .weekOfYear)
     }
@@ -130,5 +137,9 @@ extension Date {
 
     var isNight: Bool {
         return minutesSinceMidnight <= 5*60 || minutesSinceMidnight >= 21*60
+    }
+
+    var isPast: Bool {
+        return self < Date()
     }
 }

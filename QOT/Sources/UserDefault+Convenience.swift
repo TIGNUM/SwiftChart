@@ -72,14 +72,11 @@ extension UserDefault {
     }
 
     static func clearAllDataLogOut() {
-        self.objectsToClearOnLogout().forEach { (userDefault) in
-            userDefault.clearObject()
-        }
+        WidgetUserDefaults.widgetObjectsToClearOnLogout().forEach { $0.clearWidgetObject() }
+        self.objectsToClearOnLogout().forEach { $0.clearObject() }
     }
 
     static func clearAllDataRegistration() {
-        self.objectsToClearOnNewRegistration().forEach { (userDefault) in
-            userDefault.clearObject()
-        }
+        self.objectsToClearOnNewRegistration().forEach { $0.clearObject() }
     }
 }

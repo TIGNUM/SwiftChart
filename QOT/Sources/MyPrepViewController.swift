@@ -58,7 +58,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: style, target: self, action: action)
         barButtonItem.setTitleTextAttributes(barButtonTextAttributes, for: .normal)
         barButtonItem.setTitleTextAttributes(barButtonTextAttributes, for: .selected)
-
         return barButtonItem
     }
 
@@ -67,7 +66,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
     init(viewModel: MyPrepViewModel, syncManager: SyncManager) {
         self.viewModel = viewModel
         self.syncManager = syncManager
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -79,7 +77,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
         observeViewModel()
     }

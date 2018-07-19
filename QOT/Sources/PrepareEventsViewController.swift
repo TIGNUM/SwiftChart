@@ -10,13 +10,9 @@ import UIKit
 import EventKit
 
 protocol PrepareEventsViewControllerDelegate: class {
-
     func didTapClose(viewController: PrepareEventsViewController)
-
     func didTapEvent(event: CalendarEvent, viewController: PrepareEventsViewController)
-
     func didTapSavePrepToDevice(viewController: PrepareEventsViewController)
-
     func didTapAddNewTrip(viewController: PrepareEventsViewController)
 }
 
@@ -100,7 +96,6 @@ extension PrepareEventsViewController: UITableViewDelegate, UITableViewDataSourc
         let cell: PrepareEventsUpcomingTripTableViewCell = tableView.dequeueCell(for: indexPath)
         let event = viewModel.event(index: indexPath.row)
         cell.setup(event: event)
-
         return cell
     }
 
@@ -118,14 +113,12 @@ extension PrepareEventsViewController: UITableViewDelegate, UITableViewDataSourc
         let footerTitle = self.viewModel.availableCalendarCount > 0 ?
             R.string.localized.preparePrepareEventsAddNewEvent() : R.string.localized.preparePrepareEventsSyncCalendarEvents()
         footer.setup(title: footerTitle, delegate: self)
-
         return footer
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = UIView()
         header.backgroundColor = .clear
-
         return header
     }
 

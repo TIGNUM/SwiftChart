@@ -12,10 +12,12 @@ final class MyToBeVisionWorker {
 
     private let services: Services
     private let syncManager: SyncManager
+    private let widgetDataManager: WidgetDataManager
 
     init(services: Services, syncManager: SyncManager) {
         self.services = services
         self.syncManager = syncManager
+        self.widgetDataManager = WidgetDataManager(services: services)
 
         // Make sure that image directory is created.
         do {
@@ -47,6 +49,7 @@ final class MyToBeVisionWorker {
 
     func updateMyToBeVision(_ new: MyToBeVisionModel.Model) {
         services.userService.saveVisionAndSync(new, syncManager: syncManager, completion: nil)
+        widgetDataManager.update(.toBeVision)
     }
 
     func saveImage(_ image: UIImage) throws -> URL {

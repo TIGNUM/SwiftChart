@@ -3,14 +3,25 @@ platform :ios, '10.0'
 # ignore all warnings from all pods
 inhibit_all_warnings!
 
+def shared_pods
+  pod 'Kingfisher', '~> 3.6'
+end
+
+target 'QOTWidget' do
+  use_frameworks!
+
+  # Pods for QOTWidget
+  shared_pods
+end
+
 target 'QOT' do
   use_frameworks!
 
   # Pods for QOT
+  shared_pods
   pod 'Bond'
   pod 'Anchorage'
   pod 'R.swift'
-  pod 'Kingfisher', '~> 3.6'
   pod 'LoremIpsum'
   pod 'RealmSwift'
   pod 'Freddy'

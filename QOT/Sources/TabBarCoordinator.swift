@@ -47,7 +47,6 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                                 viewModel: viewModel,
                                                 fadeMaskLocation: .topAndBottom)
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
-
         return viewController
     }()
 
@@ -55,7 +54,6 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let viewModel = MyPrepViewModel(services: self.services)
         let viewController = MyPrepViewController(viewModel: viewModel, syncManager: syncManager)
         viewController.title = R.string.localized.topTabBarItemTitlePerparePrep()
-
         return viewController
     }()
 

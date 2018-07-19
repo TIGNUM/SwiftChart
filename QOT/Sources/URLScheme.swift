@@ -146,4 +146,14 @@ enum URLScheme: String {
         let preparation = URLScheme.preparation
         return "\(urlSchemes[0])://\(preparation.rawValue)\(preparation.queryName)\(localID)"
     }
+
+    static func isLaunchableHost(host: String?) -> Bool {
+        guard let host = host else { return false }
+        return host == URLScheme.fitbit.rawValue ||
+            host == URLScheme.preparation.rawValue ||
+            host == URLScheme.signingVerificationCode.rawValue ||
+            host == URLScheme.toBeVision.rawValue ||
+            host == URLScheme.prepareEvent.rawValue ||
+            host == URLScheme.weeklyChoices.rawValue
+    }
 }

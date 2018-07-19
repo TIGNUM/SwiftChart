@@ -72,7 +72,7 @@ extension String {
     }
 
     var isTrimmedTextEmpty: Bool? {
-        return self.trimmingCharacters(in: .newlines).components(separatedBy: .whitespaces)[0].isEmpty
+        return self.trimmingCharacters(in: .newlines).components(separatedBy: .whitespaces).first?.isEmpty
     }
 
     var trimmed: String {

@@ -13,10 +13,12 @@ final class GuideWorker {
 
     private let syncStateObserver: SyncStateObserver
     let services: Services
+    let widgetDataManager: WidgetDataManager
     let backgroudQueue = DispatchQueue(label: "guide worker", qos: .background)
 
     init(services: Services) {
         self.services = services
+        self.widgetDataManager = WidgetDataManager(services: services)
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
     }
 
@@ -83,6 +85,7 @@ final class GuideWorker {
                                                          dailyPrepResults: Array(dailyPrepResults.values),
                                                          preparations: Array(preparations))
             completion(guide)
+            widgetDataManager.update(.all)
         } catch {
             log("Unable to generate guide: \(error)", level: .error)
         }

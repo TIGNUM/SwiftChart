@@ -127,6 +127,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
             return
         #else
+            WidgetDataManager.didUserLogIn(false)
             appCoordinator.sendAppEvent(.termination)
         #endif
     }
@@ -155,10 +156,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
-        if launchHandler.canLaunch(url: url) == true &&
-            (url.host == URLScheme.fitbit.rawValue ||
-                url.host == URLScheme.preparation.rawValue ||
-                url.host == URLScheme.signingVerificationCode.rawValue) {
+        if launchHandler.canLaunch(url: url) == true && URLScheme.isLaunchableHost(host: url.host) == true {
             launchHandler.process(url: url)
         }
         return launchHandler.canLaunch(url: url)
