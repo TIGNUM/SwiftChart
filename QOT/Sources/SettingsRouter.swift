@@ -41,9 +41,9 @@ extension SettingsRouter: SettingsRouterInterface {
             let permissionsViewController = PermissionsViewController(configure: configurator)
             settingsViewController.pushToStart(childViewController: permissionsViewController)
         case .sensors:
-            let model = AddSensorViewModel(services: services)
-            let addSensorViewController = AddSensorViewController(viewModel: model)
-            settingsViewController.pushToStart(childViewController: addSensorViewController)
+            let configurator = SensorConfigurator.make()
+            let sensorViewController = SensorViewController(configure: configurator)
+            settingsViewController.pushToStart(childViewController: sensorViewController)
         }
     }
 }

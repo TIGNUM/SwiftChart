@@ -20,18 +20,25 @@ final class SensorCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        setupView()
+    }
 
+    // MARK: - Setup
+
+    func setupView() {
         backgroundColor = .white8
-        layer.cornerRadius = 8.0
+        corner(radius: Layout.CornerRadius.eight.rawValue)
         sensorNameLabel.font = Font.H7Title
         sensorNameLabel.textColor = .white
         connectLabel.font = Font.H7Title
-        connectLabel.textColor = UIColor(red: 2/255, green: 149/255, blue: 208/255, alpha: 1.0)
+        connectLabel.textColor = .addSensorConnectGray
     }
 
-    func setup(image: UIImage, sensorName: String, fitbitState: User.FitbitState) {
+    func configure(image: UIImage, sensorName: String, fitbitState: User.FitbitState?) {
         imageView.image = image
         sensorNameLabel.addCharactersSpacing(spacing: 2, text: sensorName, uppercased: true)
-        connectLabel.addCharactersSpacing(spacing: 2, text: fitbitState.rawValue, uppercased: true)
+        if let fitbitState = fitbitState {
+            connectLabel.addCharactersSpacing(spacing: 2, text: fitbitState.rawValue, uppercased: true)
+        }
     }
 }

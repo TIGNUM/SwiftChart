@@ -86,7 +86,7 @@ struct PageObject {
 
 // MARK: - extensions
 
-extension AddSensorViewController: TrackablePage {
+extension SensorViewController: TrackablePage {
     var pageName: PageName {
         return .addSensor
     }
@@ -343,15 +343,6 @@ extension SettingsChangePasswordViewController: TrackablePage {
 extension SidebarViewController: TrackablePage {
     var pageName: PageName {
         return .sideBar
-    }
-    var pageAssociatedObject: PageObject? {
-        return nil
-    }
-}
-
-extension TutorialViewController: TrackablePage {
-    var pageName: PageName {
-        return .tutorial
     }
     var pageAssociatedObject: PageObject? {
         return nil

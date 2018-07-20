@@ -863,17 +863,16 @@ extension AppCoordinator {
     }
 
     func presentAddSensor() {
-        guard let services = services else { return }
-        let model = AddSensorViewModel(services: services)
-        let addSensorViewController = AddSensorViewController(viewModel: model)
-        let navController = UINavigationController(rootViewController: addSensorViewController)
+        let configurator = SensorConfigurator.make()
+        let sensorViewController = SensorViewController(configure: configurator)
+        let navController = UINavigationController(rootViewController: sensorViewController)
         let leftBarButton = UIBarButtonItem(image: R.image.ic_close_white(),
                                             style: .plain,
                                             target: self,
                                             action: #selector(dismissCurrentPresentedControllers))
         leftBarButton.tintColor = .white
         navController.navigationBar.applyDefaultStyle()
-        addSensorViewController.navigationItem.leftBarButtonItem = leftBarButton
+        sensorViewController.navigationItem.leftBarButtonItem = leftBarButton
         windowManager.showPriority(navController, animated: true, completion: nil)
         currentPresentedNavigationController = navController
     }

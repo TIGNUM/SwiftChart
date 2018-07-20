@@ -202,31 +202,10 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }
 
     func start() {
-        windowManager.show(tabBarController, animated: true) {
-            guard let tutorial = Tutorial(rawValue: self.selectedIndex.value) else { return }
-            self.showTutorial(tutorial)
-        }
+        windowManager.show(tabBarController, animated: true, completion: nil)
     }
 
     // MARK: - private
-
-    /// TODO: For now we will not show the Tutorial.
-    // When/If it will finally be removed we have to remove all the related Tutorial stuff.
-    private func showTutorial(_ tutorial: Tutorial) {
-        guard false else { return }
-        /*
-        guard tutorial.exists() == false,
-            let buttonFrame = tabBarController.frameForButton(at: selectedIndex.value) else { return }
-        tutorial.set()
-
-        let viewModel = TutorialViewModel(tutorial: tutorial)
-        let viewController = TutorialViewController(viewModel: viewModel, buttonFrame: buttonFrame) {
-            self.windowManager.resignWindow(atLevel: .overlay)
-        }
-        viewController.modalTransitionStyle = .crossDissolve
-        windowManager.showOverlay(viewController, animated: true, completion: nil)
-        */
-    }
 
     private func showHelp(_ section: ScreenHelp.Category) {
         let viewController = ScreenHelpViewController(configurator: ScreenHelpConfigurator.make(section))
@@ -260,9 +239,6 @@ extension TabBarCoordinator: TabBarControllerDelegate {
             prepareCoordinator.focus()
         }
         syncLearnTabBadge()
-
-        guard let tutorial = Tutorial(rawValue: index) else { return }
-        showTutorial(tutorial)
     }
 }
 

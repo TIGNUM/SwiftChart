@@ -255,6 +255,10 @@ extension UIColor {
         return UIColor(red: 0/255, green: 12/255, blue: 22/255, alpha: 1)
     }
 
+    class var addSensorConnectGray: UIColor {
+        return UIColor(red: 2/255, green: 149/255, blue: 208/255, alpha: 1)
+    }
+
     class var nightModeBackground: UIColor {
         return Date().isNight ? .hasanBlue : .white
     }

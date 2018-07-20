@@ -14,6 +14,8 @@ enum AlertType {
     case fitbitSuccess
     case fitbitFailure
     case fitbitAlreadyConnected
+    case addSensor
+    case addSensorCompletion
     case noContent
     case title(String)
     case message(String)
@@ -52,6 +54,8 @@ enum AlertType {
         case .fitbitSuccess: return R.string.localized.sidebarSensorsMenuFitbitSuccess()
         case .fitbitFailure: return R.string.localized.sidebarSensorsMenuFitbitFailure()
         case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedTitle()
+        case .addSensor: return R.string.localized.addSensorViewAlertTitle()
+        case .addSensorCompletion: return R.string.localized.addSensorViewAlertFeedbackTitle()
         case .noContent: return R.string.localized.alertTitleNoContent()
         case .custom(let title, _): return title
         case .title(let title): return title
@@ -112,6 +116,7 @@ enum AlertType {
         case .logout: return R.string.localized.alertMessageLogout()
         case .noMyToBeVision: return R.string.localized.meSectorMyWhyPartnersShareMissingMyToBeVisionAlert()
         case .noWeeklyChoice: return R.string.localized.meSectorMyWhyPartnersShareMissingWeeklyChoiceAlert()
+        case .addSensor: return R.string.localized.addSensorViewAlertMessage()
         default: return nil
         }
     }
@@ -125,7 +130,8 @@ enum AlertType {
              .changePermissions,
              .toBeVisionActionSheet,
              .prepareEditStrategy,
-             .logout: return R.string.localized.alertButtonTitleCancel()
+             .logout,
+             .addSensor: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
     }
@@ -139,6 +145,7 @@ enum AlertType {
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
         case .logout: return R.string.localized.alertButtonTitleCancel()
+        case .addSensorCompletion: return R.string.localized.addSensorViewAlertFeedbackSuccessOK()
         default: return R.string.localized.alertButtonTitleOk()
         }
     }
@@ -157,7 +164,8 @@ enum AlertType {
         switch self {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
-             .settingsCalendars: return [.cancel, .default]
+             .settingsCalendars,
+             .addSensor: return [.cancel]
         case .imagePicker,
              .toBeVisionActionSheet: return [.cancel]
         case .logout: return [.destructive, .cancel]
