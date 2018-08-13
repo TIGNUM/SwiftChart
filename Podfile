@@ -40,6 +40,7 @@ target 'QOT' do
   pod 'JSONWebToken'
   pod 'Siren', '~> 3.2.0'
   pod 'HockeySDK', '~> 5.1.2'
+  pod 'PredictIO', '~> 5.5.0'
 
   target 'QOTTests' do
     inherit! :search_paths
@@ -49,10 +50,16 @@ target 'QOT' do
 end
 
 post_install do |installer|
-  installer.pods_project.targets.each do |target|
-    target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.2'
-      config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
+    installer.pods_project.targets.each do |target|
+        target.build_configurations.each do |config|
+            config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
+        end
+        if target.name == 'PredictIO' || target.name == 'RxSwift' || target.name == 'SwiftyJSON'
+            #use default swift version
+            else
+            target.build_configurations.each do |config|
+                config.build_settings['SWIFT_VERSION'] = '3.2'
+            end
+        end
     end
-  end
 end

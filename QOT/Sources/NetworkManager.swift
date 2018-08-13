@@ -70,6 +70,16 @@ final class NetworkManager {
         return current
     }
 
+    @discardableResult func performPredictIOConfigRequest(completion: @escaping (Result<UserPredictIOConfig, NetworkError>) -> Void) -> SerialRequest {
+        let current = SerialRequest()
+        performAuthenticatingRequest(PredictIOConfigRequest(),
+                                     parser: UserPredictIOConfig.parse,
+                                     notifyDelegateOfFailure: false,
+                                     current: current,
+                                     completion: completion)
+        return current
+    }
+
     func performAuthenticationRequest(username: String,
                                       password: String,
                                       completion: @escaping (NetworkError?) -> Void) {

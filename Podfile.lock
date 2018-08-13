@@ -24,6 +24,9 @@ PODS:
   - Kingfisher (3.13.1)
   - LoremIpsum (1.0.0)
   - MBProgressHUD (1.0.0)
+  - PredictIO (5.5.0):
+    - RxSwift (~> 4.1.2)
+    - SwiftyJSON (~> 3.1.0)
   - R.swift (3.3.0):
     - R.swift.Library (~> 3.0.2)
   - R.swift.Library (3.0.2)
@@ -34,8 +37,10 @@ PODS:
   - RealmSwift (2.10.1):
     - Realm (= 2.10.1)
   - RSKImageCropper (1.6.3)
+  - RxSwift (4.1.2)
   - Siren (3.2.0)
-  - SwiftyBeaver (1.4.2)
+  - SwiftyBeaver (1.6.0)
+  - SwiftyJSON (3.1.4)
   - UrbanAirship-iOS-SDK (8.6.0)
 
 DEPENDENCIES:
@@ -56,6 +61,7 @@ DEPENDENCIES:
   - Kingfisher (~> 3.6)
   - LoremIpsum
   - MBProgressHUD
+  - PredictIO (~> 5.5.0)
   - R.swift
   - RealmSwift
   - RSKImageCropper
@@ -83,14 +89,17 @@ SPEC REPOS:
     - Kingfisher
     - LoremIpsum
     - MBProgressHUD
+    - PredictIO
     - R.swift
     - R.swift.Library
     - ReactiveKit
     - Realm
     - RealmSwift
     - RSKImageCropper
+    - RxSwift
     - Siren
     - SwiftyBeaver
+    - SwiftyJSON
     - UrbanAirship-iOS-SDK
 
 SPEC CHECKSUMS:
@@ -112,16 +121,19 @@ SPEC CHECKSUMS:
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
   LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
+  PredictIO: fca9aed148a6d6fdcfcbb949da793ef0b6160690
   R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
   ReactiveKit: 59813e52505065d14fa77b453d8be5981eced6b7
   Realm: fc7a317a5c2c9ba91f5f235ede4e2ea76e9eba0c
   RealmSwift: 505ed6c15942a2e76f5cfa78a8667cfa997ee75b
   RSKImageCropper: 356e36fc58c57c371b5d8b23d603936d6a73df6c
+  RxSwift: e49536837d9901277638493ea537394d4b55f570
   Siren: 964f57553cf6a39d1bada4e403557523a213b397
-  SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
+  SwiftyBeaver: e45759613e50b522b0e6f53b1f0f14389b45ca34
+  SwiftyJSON: c2842d878f95482ffceec5709abc3d05680c0220
   UrbanAirship-iOS-SDK: 1a2837473096ca63d86f11cadb4710d993237186
 
-PODFILE CHECKSUM: b9297e3c00121a3335fdc6e10f8611ae77f93ec4
+PODFILE CHECKSUM: 78996677189407d3753daa942f7a767f97a334da
 
 COCOAPODS: 1.5.3

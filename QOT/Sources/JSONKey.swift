@@ -45,6 +45,7 @@ enum JsonKey: String {
     case country
     case covered
     case createdAt
+    case customParameter
     case dataAverage
     case dataPoints
     case day
@@ -247,6 +248,7 @@ enum JsonKey: String {
     case viewed
     case visited
     case waveformData
+    case webhookURL
     case weekend
     case weekNumber
     case weeksOfTheYear

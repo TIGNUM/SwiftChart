@@ -13,7 +13,6 @@
 		0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */; };
 		0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */; };
 		0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */; };
-		0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360256DF2051834F00862B0E /* SearchConfigurator.swift */; };
 		360256E22051836200862B0E /* SearchRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360256E12051836200862B0E /* SearchRouter.swift */; };
 		360256E42051837300862B0E /* SearchWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360256E32051837300862B0E /* SearchWorker.swift */; };
@@ -25,6 +24,8 @@
 		360256F020528DBD00862B0E /* SearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360256EF20528DBD00862B0E /* SearchTableViewCell.swift */; };
 		360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360256F120528E9F00862B0E /* SearchTableViewCell.xib */; };
 		360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360947A21FB5E684003AF3E9 /* PageControl.swift */; };
+		3616D632210AF0FA00C155B6 /* AppDelegate+PredictIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616D631210AF0FA00C155B6 /* AppDelegate+PredictIO.swift */; };
+		3616D648210B0F1800C155B6 /* Pods_QOT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */; };
 		362614AA20CFB4E500AB3659 /* UserCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362614A920CFB4E500AB3659 /* UserCountry.swift */; };
 		362614AC20CFC1C300AB3659 /* UserCountryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362614AB20CFC1C300AB3659 /* UserCountryList.swift */; };
 		362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362632441FD6A2710024C626 /* GuideTableViewCell.xib */; };
@@ -141,6 +142,7 @@
 		36B67B9C1FE1D9C90066A515 /* RealmGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */; };
 		36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */; };
 		36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */; };
+		36BADA46211D9655009D9C72 /* UserPredictIOConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BADA45211D9655009D9C72 /* UserPredictIOConfig.swift */; };
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
 		36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */; };
 		36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */; };
@@ -804,6 +806,14 @@
 		360256EF20528DBD00862B0E /* SearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTableViewCell.swift; sourceTree = "<group>"; };
 		360256F120528E9F00862B0E /* SearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SearchTableViewCell.xib; sourceTree = "<group>"; };
 		360947A21FB5E684003AF3E9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		3616D631210AF0FA00C155B6 /* AppDelegate+PredictIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+PredictIO.swift"; sourceTree = "<group>"; };
+		3616D633210AF86300C155B6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		3616D635210AF86E00C155B6 /* CoreMotion.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMotion.framework; path = System/Library/Frameworks/CoreMotion.framework; sourceTree = SDKROOT; };
+		3616D637210AF87700C155B6 /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		3616D639210AF88300C155B6 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		3616D63B210AF88C00C155B6 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		3616D63D210AF89B00C155B6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
+		3616D63F210AF8AB00C155B6 /* libz.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
 		362614A920CFB4E500AB3659 /* UserCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCountry.swift; sourceTree = "<group>"; };
 		362614AB20CFC1C300AB3659 /* UserCountryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCountryList.swift; sourceTree = "<group>"; };
 		362632441FD6A2710024C626 /* GuideTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideTableViewCell.xib; sourceTree = "<group>"; };
@@ -920,6 +930,7 @@
 		36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItem.swift; sourceTree = "<group>"; };
 		36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideGreetingView.xib; sourceTree = "<group>"; };
 		36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideGreetingView.swift; sourceTree = "<group>"; };
+		36BADA45211D9655009D9C72 /* UserPredictIOConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPredictIOConfig.swift; sourceTree = "<group>"; };
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
 		36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -1560,8 +1571,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3616D648210B0F1800C155B6 /* Pods_QOT.framework in Frameworks */,
 				7FB32D111F42E8620027BF4E /* Security.framework in Frameworks */,
-				0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1830,6 +1841,13 @@
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				3616D63F210AF8AB00C155B6 /* libz.tbd */,
+				3616D63D210AF89B00C155B6 /* libsqlite3.tbd */,
+				3616D63B210AF88C00C155B6 /* SystemConfiguration.framework */,
+				3616D639210AF88300C155B6 /* Foundation.framework */,
+				3616D637210AF87700C155B6 /* AdSupport.framework */,
+				3616D635210AF86E00C155B6 /* CoreMotion.framework */,
+				3616D633210AF86300C155B6 /* CoreLocation.framework */,
 				7FB32D101F42E8620027BF4E /* Security.framework */,
 				CC37B1301E93CDD600651C46 /* QOTDatabase.framework */,
 				82E5AD3BA2AFF4C5836434DD /* Pods_QOT.framework */,
@@ -2505,6 +2523,7 @@
 				CB810E651EF00DCA0043E3E5 /* UserIntermediary.swift */,
 				369842B320CA7BB5007A8C8F /* UserRegistrationCheck.swift */,
 				368BE2EA20EF4A9600A6B809 /* UserSigning.swift */,
+				36BADA45211D9655009D9C72 /* UserPredictIOConfig.swift */,
 			);
 			name = User;
 			sourceTree = "<group>";
@@ -3064,6 +3083,7 @@
 				CBB237EF1E6FFF1200AB5AEF /* AppDelegate.swift */,
 				CBC191141F62918B009E483B /* AppDelegate+Buglife.swift */,
 				7F4276781F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift */,
+				3616D631210AF0FA00C155B6 /* AppDelegate+PredictIO.swift */,
 				36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */,
 				CB9442241FD80B5700E2B122 /* AppState.swift */,
 				7F6567431FE28FBC00A6CB7F /* Clean.swift */,
@@ -3876,13 +3896,16 @@
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/LoremIpsum/LoremIpsum.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${PODS_ROOT}/PredictIO/Frameworks/PredictIO.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
 				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift/RealmSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
 				"${BUILT_PRODUCTS_DIR}/Siren/Siren.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyBeaver/SwiftyBeaver.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/UrbanAirship-iOS-SDK/AirshipKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -3899,13 +3922,16 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoremIpsum.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PredictIO.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Siren.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyBeaver.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AirshipKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -4113,6 +4139,7 @@
 				CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
+				3616D632210AF0FA00C155B6 /* AppDelegate+PredictIO.swift in Sources */,
 				362614AA20CFB4E500AB3659 /* UserCountry.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
 				36796A3720D3C47400B55429 /* SigningProfileDetailInteractor.swift in Sources */,
@@ -4183,6 +4210,7 @@
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */,
+				36BADA46211D9655009D9C72 /* UserPredictIOConfig.swift in Sources */,
 				CCAF03251E801B0E00015125 /* OldSettingsViewController.swift in Sources */,
 				CB2C3091203B087C0041044F /* MorningInterviewInteractor.swift in Sources */,
 				914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */,
