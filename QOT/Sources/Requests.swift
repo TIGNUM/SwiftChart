@@ -268,8 +268,3 @@ struct RegistrationCountryRequest: URLRequestBuildable {
     let httpMethod = HTTPMethod.post
     let paramaters: [RequestParameter: Any] = [.page: 1, .size: 200]
 }
-
-struct PredictIOConfigRequest: URLRequestBuildable {
-    let endpoint = Endpoint.predictIOConfig
-    let httpMethod = HTTPMethod.post
-}

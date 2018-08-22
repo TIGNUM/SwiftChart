@@ -138,12 +138,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             dispatchGroup.leave()
             self.setupBugLife()
             AppDelegate.current.setupSiren(services: self.services)
-            self.networkManager.performPredictIOConfigRequest { (result) in
-                guard
-                    let webHookURL = result.value?.webHookURL,
-                    let customParameters = result.value?.customParameters else { return }
-                AppDelegate.current.setupPredictIO(webHookURL: webHookURL, customParameters: customParameters)
-            }
         }
 
         dispatchGroup.notify(queue: .main) {
