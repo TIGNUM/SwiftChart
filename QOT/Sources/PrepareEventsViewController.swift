@@ -32,7 +32,6 @@ final class PrepareEventsViewController: UIViewController {
 
     init(viewModel: PrepareEventsViewModel) {
         self.viewModel = viewModel
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -44,7 +43,6 @@ final class PrepareEventsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         eventsTableView.delegate = self
         eventsTableView.dataSource = self
         eventsTableView.rowHeight = UITableViewAutomaticDimension
@@ -66,7 +64,6 @@ final class PrepareEventsViewController: UIViewController {
 
     private func setupUI() {
         var upcomingEventTitle = R.string.localized.preparePrepareEventsUpcomingEvents()
-
         if self.viewModel.availableCalendarCount == 0 && self.viewModel.eventCount > 0 {
             upcomingEventTitle = R.string.localized.preparePrepareEventsUpcomingEventsNoSynchronisableCalendars()
         } else if self.viewModel.availableCalendarCount > 0 && self.viewModel.eventCount == 0 {

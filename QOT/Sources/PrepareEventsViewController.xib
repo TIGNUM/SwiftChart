@@ -34,7 +34,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ADD THIS PREPARATION TO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Axp-yU-5xs">
-                    <rect key="frame" x="87" y="31" width="201" height="19"/>
+                    <rect key="frame" x="86.5" y="31" width="202.5" height="19"/>
                     <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -125,7 +125,6 @@
                 <constraint firstItem="UUV-a7-a3C" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="1Tv-3d-T4m"/>
                 <constraint firstAttribute="bottom" secondItem="my8-3g-xYS" secondAttribute="bottom" id="BAZ-6t-PYQ"/>
                 <constraint firstItem="my8-3g-xYS" firstAttribute="top" secondItem="UUV-a7-a3C" secondAttribute="bottom" constant="22" id="EyI-hf-V4T"/>
-                <constraint firstItem="Axp-yU-5xs" firstAttribute="leading" secondItem="UUV-a7-a3C" secondAttribute="trailing" constant="43" id="INM-hd-yOM"/>
                 <constraint firstItem="my8-3g-xYS" firstAttribute="top" secondItem="Axp-yU-5xs" secondAttribute="bottom" constant="36" id="NX8-q1-Lgl"/>
                 <constraint firstItem="UUV-a7-a3C" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="topMargin" id="RYw-b0-PD4"/>
                 <constraint firstItem="my8-3g-xYS" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="33" id="rmM-Jx-Y6T"/>
