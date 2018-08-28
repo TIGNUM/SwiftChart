@@ -9,6 +9,11 @@
 import Foundation
 import ReactiveKit
 
+public enum PreparationContentType {
+    case prepContentEvent
+    case prepContentProblem
+}
+
 enum PrepareContentItemType {
     case titleItem(title: String, subTitle: String, contentText: String, placeholderURL: URL?, videoURL: URL?)
     case reviewNotesHeader(title: String)
@@ -58,6 +63,7 @@ final class PrepareContentViewModel {
     var notes: String = ""
     var notesDictionary: [Int: String] = [:]
     var relatedPrepareStrategies = [ContentCollection]()
+    let preparationType: PreparationContentType
     private let prepareItems: [PrepareItem]
     private let services: Services
 
@@ -69,12 +75,14 @@ final class PrepareContentViewModel {
 
     // MARK: - Initialisation
 
-    init(title: String,
-         subtitle: String,
-         video: Video?,
-         description: String,
-         items: [PrepareItem],
-         services: Services) {
+    init(type: PreparationContentType,
+        title: String,
+        subtitle: String,
+        video: Video?,
+        description: String,
+        items: [PrepareItem],
+        services: Services) {
+        self.preparationType = type
         self.prepareItems = items
         self.title = title
         self.subTitle = subtitle
@@ -87,7 +95,8 @@ final class PrepareContentViewModel {
         makeItems(items)
     }
 
-    init(title: String,
+    init(type: PreparationContentType,
+         title: String,
          video: Video?,
          description: String,
          items: [PrepareItem],
@@ -97,6 +106,7 @@ final class PrepareContentViewModel {
          notes: String,
          notesDictionary: [Int: String],
          services: Services) {
+        self.preparationType = type
         self.prepareItems = items
         self.title = title
         self.video = video?.url

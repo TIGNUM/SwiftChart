@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -15,14 +15,18 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="74"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bJC-25-Ysl">
-                    <rect key="frame" x="166.5" y="13" width="42" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="bJC-25-Ysl">
+                    <rect key="frame" x="166.5" y="27" width="42" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jr4-sr-HV7">
-                    <rect key="frame" x="16" y="8.5" width="46" height="30"/>
+                    <rect key="frame" x="16" y="12" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="50" id="IlI-1U-Dpk"/>
+                        <constraint firstAttribute="width" constant="50" id="OP9-cu-dUK"/>
+                    </constraints>
                     <state key="normal" title="Button"/>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="QFA-qo-egT">
@@ -33,21 +37,27 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="su8-HZ-Bci">
-                    <rect key="frame" x="313" y="8.5" width="46" height="30"/>
+                    <rect key="frame" x="309" y="12" width="50" height="50"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="50" id="JUR-if-hlE"/>
+                        <constraint firstAttribute="height" constant="50" id="hGX-7U-1Q2"/>
+                    </constraints>
                     <state key="normal" title="Button"/>
                 </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
+                <constraint firstItem="su8-HZ-Bci" firstAttribute="centerY" secondItem="BaX-zb-kQ8" secondAttribute="centerY" id="77J-WH-9qF"/>
                 <constraint firstAttribute="trailing" secondItem="su8-HZ-Bci" secondAttribute="trailing" constant="16" id="Czm-xG-M5H"/>
                 <constraint firstItem="bJC-25-Ysl" firstAttribute="centerX" secondItem="BaX-zb-kQ8" secondAttribute="centerX" id="DzV-9p-5qb"/>
                 <constraint firstAttribute="trailing" secondItem="QFA-qo-egT" secondAttribute="trailing" constant="30" id="OKj-I0-xbE"/>
                 <constraint firstItem="QFA-qo-egT" firstAttribute="leading" secondItem="BaX-zb-kQ8" secondAttribute="leading" constant="30" id="ObV-j2-3jF"/>
-                <constraint firstItem="Jr4-sr-HV7" firstAttribute="centerY" secondItem="bJC-25-Ysl" secondAttribute="centerY" id="QWE-v6-KcM"/>
-                <constraint firstItem="bJC-25-Ysl" firstAttribute="top" secondItem="BaX-zb-kQ8" secondAttribute="top" constant="13" id="U86-XZ-Ons"/>
+                <constraint firstItem="bJC-25-Ysl" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Jr4-sr-HV7" secondAttribute="trailing" priority="750" id="PFY-b6-DHQ"/>
+                <constraint firstItem="bJC-25-Ysl" firstAttribute="centerY" secondItem="BaX-zb-kQ8" secondAttribute="centerY" id="RxJ-Wz-b0z"/>
+                <constraint firstItem="bJC-25-Ysl" firstAttribute="trailing" relation="lessThanOrEqual" secondItem="su8-HZ-Bci" secondAttribute="leading" priority="750" id="T0l-5h-R2f"/>
                 <constraint firstItem="Jr4-sr-HV7" firstAttribute="leading" secondItem="BaX-zb-kQ8" secondAttribute="leading" constant="16" id="dym-jF-3s3"/>
                 <constraint firstAttribute="bottom" secondItem="QFA-qo-egT" secondAttribute="bottom" id="hwO-S6-jdQ"/>
-                <constraint firstItem="su8-HZ-Bci" firstAttribute="centerY" secondItem="bJC-25-Ysl" secondAttribute="centerY" id="uPh-ju-tuw"/>
+                <constraint firstItem="Jr4-sr-HV7" firstAttribute="centerY" secondItem="BaX-zb-kQ8" secondAttribute="centerY" id="zmk-OF-qon"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <nil key="simulatedTopBarMetrics"/>

@@ -108,13 +108,27 @@ final class PrepareCoordinator: ParentCoordinator {
 extension PrepareCoordinator {
 
     func showPrepareList(contentCollectionID: Int) {
+        let problemCategoryID: Int = 100032 // FIXME: Should be set based on settings
         var title: String? = nil
         var video: PrepareContentViewModel.Video? = nil
         var description: String?
+        var subtitle: String?
         var items: [PrepareItem] = []
-
+        var viewControllerTitle = R.string.localized.topTabBarItemTitlePerparePrep()
+        var categoryID = 0
+        var prepType: PreparationContentType = .prepContentEvent
         if let content = services.contentService.contentCollection(id: contentCollectionID) {
+            viewControllerTitle = content.contentCategories.first?.title ?? viewControllerTitle
+            categoryID = content.contentCategories.first?.forcedRemoteID ?? categoryID
+            prepType = (categoryID != problemCategoryID) ? .prepContentEvent : .prepContentProblem
             title = content.title
+
+            if prepType == .prepContentProblem {
+                let videoItem = content.contentItems.filter { $0.format == "video" }.first
+                description = videoItem?.valueText
+                subtitle = videoItem?.valueDescription
+            }
+
             for item in content.contentItems {
                 let value = item.contentItemValue
                 switch value {
@@ -136,8 +150,9 @@ extension PrepareCoordinator {
         }
 
         if let title = title {
-            let viewModel = PrepareContentViewModel(title: title,
-                                                    subtitle: "",
+            let viewModel = PrepareContentViewModel(type: prepType,
+                                                    title: title,
+                                                    subtitle: subtitle ?? "",
                                                     video: video,
                                                     description: description ?? "",
                                                     items: items,
@@ -145,6 +160,7 @@ extension PrepareCoordinator {
 
             let viewController = PrepareContentViewController(pageName: .prepareContent, viewModel: viewModel)
             viewController.delegate = self
+            viewController.title = viewControllerTitle
             tabBarController.present(viewController, animated: true)
             prepareListViewController = viewController
             context = Context(contentCollectionID: contentCollectionID, listTitle: title)
@@ -195,7 +211,9 @@ extension PrepareCoordinator {
         let synchronisedCalendars = services.eventsService.syncSettingsManager.calendarSyncSettings.compactMap {
             return $0.syncEnabled && calendarsOnDevice.contains($0.identifier) ? $0.identifier : nil
         }
-        let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName, events: events, calendarIdentifiers: synchronisedCalendars)
+        let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName,
+                                               events: events,
+                                               calendarIdentifiers: synchronisedCalendars)
         let prepareEventsVC = PrepareEventsViewController(viewModel: viewModel)
         prepareEventsVC.delegate = self
         prepareEventsVC.modalPresentationStyle = .custom
@@ -303,7 +321,8 @@ private extension PrepareCoordinator {
             let content = services.contentService.contentCollection(contentTitle: preparation.subtitle)
             let videoItem = content?.contentItems.filter { $0.format == "video" }.first
             description = videoItem?.valueDescription
-            return PrepareContentViewModel(title: title,
+            return PrepareContentViewModel(type: .prepContentEvent,
+                                           title: title,
                                            video: video,
                                            description: description ?? "",
                                            items: items,

@@ -48,7 +48,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
                                                   options: [:])?[0] as? PrepareContentTopTabBarView else {
             preconditionFailure("Failed to PrepareContentTopTabBarView from xib")
         }
-        view.setup(title: R.string.localized.topTabBarItemTitlePerparePreparation(),
+        view.setup(title: self.title ?? R.string.localized.topTabBarItemTitlePerparePreparation(),
                    leftButtonIcon: R.image.ic_close(),
                    rightButtonIcon: nil/*self.viewModel.displayMode == .normal ? R.image.ic_save_prep() : nil*/,
                    delegate: self)
@@ -120,24 +120,25 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 // MARK: - Private
 
 private extension PrepareContentViewController {
-
     func setupView() {
         view.backgroundColor = .nightModeBackground
         if pageName == .prepareContent {
             view.addSubview(topBarView)
             view.addSubview(tableView)
-            view.addSubview(savePreparationButton)
+            if viewModel.preparationType == .prepContentEvent {
+                view.addSubview(savePreparationButton)
+                savePreparationButton.topAnchor == tableView.bottomAnchor + 5
+                savePreparationButton.centerXAnchor == view.centerXAnchor
+                savePreparationButton.horizontalAnchors == view.horizontalAnchors + 40
+                savePreparationButton.bottomAnchor == view.safeBottomAnchor - 24
+                savePreparationButton.heightAnchor == 40
+            }
             topBarView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
             topBarView.horizontalAnchors == view.horizontalAnchors
             topBarView.heightAnchor == Layout.TabBarView.height
             tableView.topAnchor == topBarView.bottomAnchor
             tableView.bottomAnchor == view.safeBottomAnchor - 64
             tableView.horizontalAnchors == view.horizontalAnchors
-            savePreparationButton.topAnchor == tableView.bottomAnchor + 5
-            savePreparationButton.centerXAnchor == view.centerXAnchor
-            savePreparationButton.horizontalAnchors == view.horizontalAnchors + 40
-            savePreparationButton.bottomAnchor == view.safeBottomAnchor - 24
-            savePreparationButton.heightAnchor == 40
         } else if pageName == .prepareCheckList {
             view.addSubview(tableView)
             tableView.topAnchor == view.safeTopAnchor + 16
@@ -162,6 +163,7 @@ private extension PrepareContentViewController {
                                isExpanded: isExpanded,
                                displayMode: pageName == .prepareCheckList ? .checkbox : .normal)
             castedCell.contentView.layoutIfNeeded()
+            castedCell.iconImageView.isHidden = (viewModel.preparationType == .prepContentProblem) && (indexPath.row == 0)
             return castedCell
         case .reviewNotesHeader(let title):
             guard let subHeaderCell = cell as? PrepareContentSubHeaderTableViewCell else { return cell }
