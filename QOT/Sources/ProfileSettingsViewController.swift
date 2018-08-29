@@ -290,7 +290,7 @@ extension ProfileSettingsViewController {
     }
 
     func showDatePicker(title: String, selectedDate: Date, indexPath: IndexPath) {
-        ActionSheetDatePicker(title: title, datePickerMode: .date,
+        let datePicker = ActionSheetDatePicker(title: title, datePickerMode: .date,
                               selectedDate: selectedDate,
                               doneBlock: { [unowned self] (_, value, _) in
                                 if indexPath.section == 1 && indexPath.row == 1,
@@ -303,7 +303,10 @@ extension ProfileSettingsViewController {
                                 }
             }, cancel: { (_) in
                 return
-        }, origin: view).show()
+        }, origin: view)
+		datePicker?.minimumDate = Date().minimumDateOfBirth
+		datePicker?.maximumDate = Date().maximumDateOfBirth
+		datePicker?.show()
     }
 
 	func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
