@@ -139,7 +139,6 @@ private extension GuideItemFactory {
     func guideItem(with result: DailyPrepResultObject) -> Guide.Item? {
         let items = dailyPrepItems(answers: Array(result.answers))
         let content: Guide.Item.Content = .dailyPrep(items: items, feedback: result.feedback)
-
         return Guide.Item(status: .done,
                           title: result.title,
                           content: content,
@@ -159,7 +158,6 @@ private extension GuideItemFactory {
         let questions = item.questionsFor(services: services)
         let items = dailyPrepItems(questions: questions, notification: item, services: services)
         let content: Guide.Item.Content = .dailyPrep(items: items, feedback: nil)
-
         return Guide.Item(status: .todo,
                           title: item.title,
                           content: content,
@@ -220,7 +218,6 @@ private extension GuideItemFactory {
         }
 
         let buttonInfo = notificationButtonInfo(notification: notification)
-
         return Guide.Item(status: notification.completedAt == nil ? .todo : .done,
                           title: notification.title ?? "",
                           content: content,
@@ -236,7 +233,9 @@ private extension GuideItemFactory {
                           affectsTabBarBadge: true)
     }
 
-    func dailyPrepItems(questions: [Question], notification: NotificationConfigurationObject, services: Services) -> [Guide.DailyPrepItem] {
+    func dailyPrepItems(questions: [Question],
+						notification: NotificationConfigurationObject,
+						services: Services) -> [Guide.DailyPrepItem] {
         var items: [Guide.DailyPrepItem] = []
         for question in questions {
             let key = question.key
@@ -257,7 +256,9 @@ private extension GuideItemFactory {
         return items
     }
 
-    func dailyPrepItems(questions: [Question], notification: RealmGuideItemNotification, services: Services) -> [Guide.DailyPrepItem] {
+    func dailyPrepItems(questions: [Question],
+						notification: RealmGuideItemNotification,
+						services: Services) -> [Guide.DailyPrepItem] {
         var items: [Guide.DailyPrepItem] = []
         for question in questions {
             let result = question.userAnswer(notification: notification).flatMap { Int($0.userAnswer) }
