@@ -79,7 +79,6 @@ enum AlertType {
         case .changePermissions: return R.string.localized.alertTitleSettingsChangePermission()
         case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteTitle()
         case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorTitle()
-        case .logout: return R.string.localized.sidebarTitleLogout()
         case .noMyToBeVision,
              .noWeeklyChoice : return R.string.localized.meSectorMyWhyPartnersShareNoContentTitle()
         default: return nil
