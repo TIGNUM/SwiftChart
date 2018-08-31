@@ -44,25 +44,18 @@ class AVPlayerObserver: NSObject {
 
     private var updateHandler: ((AVPlayerItem) -> Void)?
     let playerItem: AVPlayerItem
+    var observation: NSKeyValueObservation?
 
     init(playerItem: AVPlayerItem) {
         self.playerItem = playerItem
         super.init()
-
-        playerItem.addObserver(self, forKeyPath: "status", options: .initial, context: nil)
+        observation = playerItem.observe(\.status, options: [.initial]) { [weak self] (item, changes) in
+            self?.updateHandler?(playerItem)
+        }
     }
 
     deinit {
-        playerItem.removeObserver(self, forKeyPath: "status")
-    }
-
-    override func observeValue(forKeyPath keyPath: String?,
-                               of object: Any?,
-                               change: [NSKeyValueChangeKey: Any]?,
-                               context: UnsafeMutableRawPointer?) {
-        if keyPath == "status" {
-            updateHandler?(playerItem)
-        }
+        observation?.invalidate()
     }
 
     func onStatusUpdate(_ closure: @escaping (AVPlayerItem) -> Void) {

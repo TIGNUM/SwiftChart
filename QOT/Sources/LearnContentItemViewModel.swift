@@ -48,7 +48,12 @@ final class LearnContentItemViewModel: NSObject {
     private var playerItemPlaybackObserver: Any?
     private var player: AVPlayer? = AVPlayer()
     private let eventTracker: EventTracker
-    private var playerItem: AVPlayerItem?
+    private var observations = [NSKeyValueObservation]()
+    private var playerItem: AVPlayerItem? {
+        didSet {
+            updateObservation()
+        }
+    }
     private var avPlayerObserver: AVPlayerObserver?
     private let commandCenter = MPRemoteCommandCenter.shared()
     private(set) var isPlaying = false
@@ -88,20 +93,36 @@ final class LearnContentItemViewModel: NSObject {
     }
 
     // MARK: - KVO AudioItem
+    func updateObservation() {
+        for observation in observations {
+            observation.invalidate()
+        }
+        observations.removeAll()
 
-    override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
-        guard let playerItem = playerItem else { return }
+        if playerItem == nil {
+            return
+        }
 
-        if keyPath == "playbackBufferEmpty" {
+        let buffer = playerItem?.observe(\.playbackBufferEmpty, changeHandler: { [weak self] (playerItem, changes) in
             if playerItem.isPlaybackBufferEmpty == true {
-                currentPlayingCell?.updateItem(buffering: false, playing: isPlaying)
-                audioPlayerViewDelegate?.stopBlinking()
+                self?.currentPlayingCell?.updateItem(buffering: false, playing: self?.isPlaying ?? false)
+                self?.audioPlayerViewDelegate?.stopBlinking()
             }
-        } else if keyPath == "playbackLikelyToKeepUp" {
+        })
+
+        let keepUp = playerItem?.observe(\.playbackLikelyToKeepUp, changeHandler: { [weak self] (playerItem, changes) in
             if playerItem.isPlaybackLikelyToKeepUp == true {
-                currentPlayingCell?.updateItem(buffering: false, playing: isPlaying)
-                audioPlayerViewDelegate?.stopBlinking()
+                self?.currentPlayingCell?.updateItem(buffering: false, playing: self?.isPlaying ?? false)
+                self?.audioPlayerViewDelegate?.stopBlinking()
             }
+        })
+
+        if let bufferObservation = buffer {
+            observations.append(bufferObservation)
+        }
+
+        if let keepUpObservation = keepUp {
+            observations.append(keepUpObservation)
         }
     }
 }
@@ -180,7 +201,9 @@ extension LearnContentItemViewModel {
     }
 
     func contentItems(at tabType: TabType) -> [ContentItem] {
-        return contentCollection.contentItems.filter { $0.tabs.contains(tabType.rawValue) && $0.format.contains("guide.") == false }
+        return contentCollection.contentItems.filter {
+            $0.tabs.contains(tabType.rawValue) && $0.format.contains("guide.") == false
+        }
     }
 
     func contentItemValue(at indexPath: IndexPath, tabType: TabType) -> ContentItemValue {
@@ -368,6 +391,7 @@ extension LearnContentItemViewModel {
     }
 
     func forward(value: Float) {
+        player?.cancelPendingPrerolls()
         let time = TimeInterval(value) * trackDuration.value
         player?.seek(to: CMTimeMakeWithSeconds(time, 1))
         player?.play()
@@ -413,22 +437,31 @@ extension LearnContentItemViewModel {
     }
 
     private func observePlayerTime() {
-        timeObserver = player?.addPeriodicTimeObserver(forInterval: CMTime(seconds: 1, preferredTimescale: 1), queue: .main) { (time: CMTime) in
+        let interval = CMTime(seconds: 1, preferredTimescale: 1)
+        timeObserver = player?.addPeriodicTimeObserver(forInterval: interval, queue: .main) { (time: CMTime) in
             self.currentPosition.value = time.seconds
         }
     }
 
     private func observePlayerItem() {
         if let playerItem = playerItem {
-            playerItemBufferEmptyObserver = playerItem.addObserver(self, forKeyPath: "playbackBufferEmpty", options: .new, context: nil)
-            playerItemPlaybackObserver = playerItem.addObserver(self, forKeyPath: "playbackLikelyToKeepUp", options: .new, context: nil)
+            playerItemBufferEmptyObserver = playerItem.addObserver(self,
+                                                                   forKeyPath: "playbackBufferEmpty",
+                                                                   options: .new,
+                                                                   context: nil)
+            playerItemPlaybackObserver = playerItem.addObserver(self,
+                                                                forKeyPath: "playbackLikelyToKeepUp",
+                                                                options: .new,
+                                                                context: nil)
         }
     }
 
     // MARK: - notification
 
     private func setupAudioNotifications() {
-        NotificationCenter.default.addObserver(self, selector: #selector(playerDidEndNotification(_:)), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(playerDidEndNotification(_:)),
+                                               name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
     }
 
     private func tearDownAudioNotifications() {
