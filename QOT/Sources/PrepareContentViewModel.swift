@@ -281,5 +281,10 @@ extension PrepareContentViewModel: PrepareContentNotesViewControllerDelegate {
         case .reflectionNotes: notesDictionary[notesType.contentItemID] = text
         case .reflectionVision: notesDictionary[notesType.contentItemID] = text
         }
+		if let localID = preparationID {
+			try? services.preparationService.updatePreparation(localID: localID,
+															   checks: checkedIDs,
+															   notes: notes, notesDictionary: notesDictionary)
+		}
     }
 }

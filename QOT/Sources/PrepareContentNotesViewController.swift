@@ -21,6 +21,7 @@ final class PrepareContentNotesViewController: UIViewController {
     @IBOutlet private weak var placeholderTextView: UITextView!
     @IBOutlet private weak var textViewTopConstraint: NSLayoutConstraint!
     private let keyboardListener = KeyboardListener()
+	private let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDoneButton(_:)))
     weak var delegate: PrepareContentNotesViewControllerDelegate?
     var notesType: PrepareContentReviewNotesTableViewCell.NotesType?
     var text: String?
@@ -42,6 +43,10 @@ final class PrepareContentNotesViewController: UIViewController {
         super.viewWillDisappear(animated)
         keyboardListener.stopObserving()
         textView.resignFirstResponder()
+		if notesType == .notes {
+			text = textView.text
+			delegate?.didEditText(text: text, in: self)
+		}
     }
 
     @available(iOS 11.0, *)
@@ -58,10 +63,13 @@ final class PrepareContentNotesViewController: UIViewController {
 
 extension PrepareContentNotesViewController: UITextViewDelegate {
 
+	func textViewDidBeginEditing(_ textView: UITextView) {
+		doneButton.tintColor = .gray
+	}
+
     func textViewDidChange(_ textView: UITextView) {
         text = textView.text
         syncPlaceholder()
-        delegate?.didEditText(text: text, in: self)
     }
 }
 
@@ -75,6 +83,8 @@ private extension PrepareContentNotesViewController {
                                                                       lineBreakMode: .byWordWrapping)
 
     func setup() {
+		doneButton.tintColor = UIColor.gray.withAlphaComponent(0.5)
+		navigationItem.rightBarButtonItem = doneButton
         textView.backgroundColor = .clear
         placeholderTextView.backgroundColor = .clear
         view.backgroundColor = .nightModeBackground
@@ -104,4 +114,11 @@ private extension PrepareContentNotesViewController {
         textView.contentInset = UIEdgeInsets(top: 16, left: 0, bottom: bottomeInset + 16, right: 0)
         placeholderTextView.contentInset = textView.contentInset
     }
+
+	@objc func didTapDoneButton(_ sender: UIBarButtonItem) {
+		delegate?.didEditText(text: text, in: self)
+		if let previousVC = navigationController?.viewControllers.dropLast().last {
+			navigationController?.popToViewController(previousVC, animated: true)
+		}
+	}
 }

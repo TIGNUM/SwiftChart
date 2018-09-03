@@ -478,8 +478,7 @@ private class EditEventHandler: NSObject, EKEventEditViewDelegate {
 extension PrepareCoordinator: NavigationItemDelegate {
 
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
-        topTabBarController.dismiss(animated: true, completion: nil)
-
+		topTabBarController.dismiss(animated: true, completion: nil)
         guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController,
             let viewControllers = pageViewController.data,
             viewControllers.count >= 1,
@@ -499,10 +498,7 @@ extension PrepareCoordinator: NavigationItemDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
-        guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else {
-            return
-        }
-
+        guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else { return }
         pageViewController.setPageIndex(index, animated: true)
         pageViewController.navigationItem.rightBarButtonItem = (index == 0 ? rightBarButtonItem : nil)
     }
