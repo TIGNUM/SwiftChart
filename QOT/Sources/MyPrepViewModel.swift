@@ -116,7 +116,7 @@ private extension MyPrepViewModel {
         }
         self.items = items.sorted {
             if let firstStartDate = $0.startDate, let nextStartDate = $1.startDate {
-                return firstStartDate > nextStartDate
+                return firstStartDate < nextStartDate
             }
             return true
         }
