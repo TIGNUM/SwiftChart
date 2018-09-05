@@ -145,10 +145,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 self.handleSetupError(error: error)
             } else if self.credentialsManager.hasLoginCredentials {
                 self.showApp(loginViewController: nil)
-                let user = self.services?.userService.user()
-                if let userID = user?.remoteID.value, userID != 0 {
-                    Appsee.setUserID(String(userID))
-                }
             } else {
                 self.showSigning(controller: viewController)
             }
@@ -357,11 +353,7 @@ extension AppCoordinator {
     }
 
     func showOnboarding() {
-        let user = self.services?.userService.user()
-        let userName = user?.givenName ?? ""
-        if let userID = user?.remoteID.value, userID != 0 {
-            Appsee.setUserID(String(userID))
-        }
+        let userName = self.services?.userService.user()?.givenName ?? ""
         let coordinator = OnboardingCoordinator(windowManager: windowManager,
                                                 delegate: self,
                                                 permissionsManager: permissionsManager,
@@ -382,6 +374,7 @@ extension AppCoordinator {
     }
 
     func logout() {
+		Appsee.stop()
         permissionsManager.reset()
         credentialsManager.clear()
         setupBugLife()

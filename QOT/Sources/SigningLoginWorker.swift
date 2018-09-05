@@ -49,6 +49,15 @@ extension SigningLoginWorker {
             completion(error)
         }
     }
+
+	func userIDForAppsee() -> Int? {
+		let user = services.userService.user()
+		guard
+			let userID = user?.remoteID.value,
+			userID != 0,
+			user?.email.lowercased().contains("@tignum.com") == false else { return nil }
+		return userID
+	}
 }
 
 // MARK: - Private

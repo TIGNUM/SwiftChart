@@ -95,7 +95,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()
             setupHockeyApp()
-            setupAppsee()
 
             #if DEBUG
                 log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
@@ -230,10 +229,6 @@ private extension AppDelegate {
         BITHockeyManager.shared().isUpdateManagerDisabled = true
         BITHockeyManager.shared().start()
         BITHockeyManager.shared().authenticator.authenticateInstallation()
-    }
-
-    func setupAppsee() {
-        Appsee.start()
     }
 
     var appFilePath: String {

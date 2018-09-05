@@ -8,6 +8,7 @@
 
 import UIKit
 import MBProgressHUD
+import Appsee
 
 final class SigningLoginInteractor {
 
@@ -70,25 +71,32 @@ extension SigningLoginInteractor: SigningLoginInteractorInterface {
         activateButton()
     }
 
-    func didTapNext() {
-        guard let window = AppDelegate.current.window else { return }
-        let hud = MBProgressHUD.showAdded(to: window, animated: true)
-        worker.sendLoginRequest(email: worker.email,
-                                password: worker.password) { [weak self] (error) in
-                                    hud.hide(animated: true)
-                                    if let error = error {
-                                        self?.router.handleLoginError(error)
-                                    } else {
-                                        LoginCoordinator.add3DTouchShortcuts()
-                                        AppDelegate.current.appCoordinator.didLogin()
-                                    }
-        }
-    }
+	func didTapNext() {
+		guard let window = AppDelegate.current.window else { return }
+		let hud = MBProgressHUD.showAdded(to: window, animated: true)
+		worker.sendLoginRequest(email: worker.email,
+								password: worker.password) { [weak self] (error) in
+									hud.hide(animated: true)
+									if let error = error {
+										self?.router.handleLoginError(error)
+									} else {
+										LoginCoordinator.add3DTouchShortcuts()
+										AppDelegate.current.appCoordinator.didLogin()
+										self?.setAppseeUser()
+									}
+		}
+	}
 
     func activateButton() {
         let active = worker.email.isEmail == true && worker.password.count > 3
         presenter.activateButton(active)
     }
+
+	func setAppseeUser() {
+		if let userID = worker.userIDForAppsee() {
+			Appsee.setUserID(String(userID))
+		}
+	}
 
     var email: String {
         return worker.email
