@@ -125,7 +125,7 @@ extension LearnContentListViewController: UICollectionViewDelegate {
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let content = viewModel.item(at: indexPath, categorySelectedIndex: selectedCategoryIndex)
-        let category = viewModel.category(at: indexPath.section)
+        let category = viewModel.category(at: selectedCategoryIndex)
         guard var originFrame = collectionView.cellForItem(at: indexPath)?.frame else { return }
         originFrame = collectionView.convert(originFrame, to: view)
         delegate?.didSelectContent(content, category: category, originFrame: originFrame, in: self)

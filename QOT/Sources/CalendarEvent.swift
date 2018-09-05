@@ -81,7 +81,22 @@ final class CalendarEvent: SyncableObject {
     }
 
     func matches(event: EKEvent) -> Bool {
-        return event.calendarItemExternalIdentifier == calendarItemExternalIdentifier && event.startDate == startDate
+        // if it's not same day : it's not same event
+        if startDate.isSameDay(event.startDate) == false {
+            return false
+        }
+        // if same calendar item
+        if event.calendarItemExternalIdentifier ==  calendarItemExternalIdentifier {
+            return true
+        }
+
+        // or same identifier prefix (because of /RIDXXXXXX postfix when event changed)
+        if let storedExternalIdentifier = calendarItemExternalIdentifier {
+            let storedPrefix = storedExternalIdentifier.components(separatedBy: "/RID").first ?? "CalendarEvent"
+            let eventPrefix = event.calendarItemExternalIdentifier.components(separatedBy: "/RID").first ?? "EkEvent"
+            return storedPrefix == eventPrefix
+        }
+        return false
     }
 }
 
@@ -104,23 +119,26 @@ extension CalendarEvent: TwoWaySyncable {
         if obj == nil {
             obj = store.objects(CalendarEvent.self).filter("remoteID == nil && calendarItemExternalIdentifier == %@ && startDate == %@",
                                                            data.calendarItemExternalIdentifier, startDate).first
-        } else {
-            do {
-                try obj?.setData(data, objectStore: store)
-                obj?.setRemoteIDValue(remoteID)
-            } catch {
-                // Do nothing
-            }
+        }
+        do {
+            try obj?.setData(data, objectStore: store)
+            obj?.setRemoteIDValue(remoteID)
+        } catch {
+            log("error to set CalendarEvent Data and RemoteID : \(error)", level: .error)
         }
         return obj
     }
 
     static func object(remoteID: Int, store: ObjectStore, data: CalendarEventIntermediary, createdAt: Date, modifiedAt: Date) -> CalendarEvent? {
+        // Try to Create calendar event which is not exising in DB yet.
+        if data.syncStatus == 2 { // if it's deleted
+            return nil
+        }
         let new = CalendarEvent()
         do {
             try new.setData(data, objectStore: store)
         } catch {
-            // Do nothing
+            log("error to create new CalendarEvent : \(error)", level: .error)
         }
         new.modifiedAt = modifiedAt
         new.createdAt = createdAt
@@ -144,15 +162,15 @@ extension CalendarEvent: TwoWaySyncable {
     }
 
     func toJson() -> JSON? {
-        if let event = event {
+        if syncStatus == .deletedLocally, let remoteID = remoteID.value {
+            let dict: [JsonKey: JSONEncodable] = [.id: remoteID, .syncStatus: syncStatus.rawValue]
+            return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
+        } else if let event = event {
             return event.toJSON(id: remoteID.value,
                                 createdAt: createdAt,
                                 modifiedAt: modifiedAt,
                                 syncStatus: syncStatus.rawValue,
                                 localID: localID)
-        } else if syncStatus == .deletedLocally, let remoteID = remoteID.value {
-            let dict: [JsonKey: JSONEncodable] = [.id: remoteID, .syncStatus: syncStatus.rawValue]
-            return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
         } else {
             return nil
         }

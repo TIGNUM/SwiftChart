@@ -68,29 +68,21 @@ final class CalendarImportTask {
     // MARK: Private
 
     private func createOrUpdateCalendarEvents(with ekEvents: [EKEvent], realm: Realm, with syncableCalendarIds: [String]) {
+        let calendarEvents = realm.objects(CalendarEvent.self)
         for ekEvent in ekEvents {
-            if syncableCalendarIds.contains(obj: ekEvent.calendar.toggleIdentifier) == false { continue } // sync for the calendar of event is disabled, ignore it
-            let filteredEvents: [CalendarEvent] = realm.objects(CalendarEvent.self).filter {
-                // if same calendar item or same identifier prefix (because of /RIDXXXXXX postfix when event changed)
-                let calendarEvent = $0
-                return (ekEvent.calendarItemExternalIdentifier ==  calendarEvent.calendarItemExternalIdentifier
-                    || ekEvent.calendarItemExternalIdentifier.hasPrefix(calendarEvent.calendarItemExternalIdentifier ?? Toggle.seperator))
-            }
-            let calendarEvent: CalendarEvent?
-            if ekEvent.hasRecurrenceRules == true {
-                calendarEvent = filteredEvents.filter {
-                    return $0.startDate.isSameDay(ekEvent.startDate)
-                    }.first
-            } else {
-                calendarEvent = filteredEvents.filter {
-                    ekEvent.calendarItemExternalIdentifier ==  $0.calendarItemExternalIdentifier
-                }.first
+            if syncableCalendarIds.contains(obj: ekEvent.calendar.toggleIdentifier) == false {
+                print("!!!Sync for Event is disabled\n\(ekEvent.title)\n\(ekEvent.calendarItemExternalIdentifier)\n\(ekEvent.startDate)")
+                // sync for the calendar of event is disabled, ignore it
+                continue
             }
 
-            if let existing = calendarEvent {
+            let filteredEvents: [CalendarEvent] = calendarEvents.filter {
+                return $0.matches(event: ekEvent)
+            }
+
+            if let existing = filteredEvents.first {
                 if let modifiedAt = ekEvent.lastModifiedDate,
-                    modifiedAt > existing.ekEventModifiedAt ||
-                        existing.calendarItemExternalIdentifier == nil || existing.calendarIdentifier == nil {
+                    modifiedAt > existing.ekEventModifiedAt {
                     existing.update(event: ekEvent)
                 }
                 // The event might have been soft deleted before so un delete it
@@ -155,7 +147,6 @@ final class CalendarImportTask {
                 let matchedEvent = ekEvents.filter({ (ekEvent) -> Bool in
                     return ekEvent.startDate == calendarEvent.startDate
                 }).first
-
                 return matchedEvent == nil ? true : false // if user deleted the event from calendar, we also need to delete it.
             }
 

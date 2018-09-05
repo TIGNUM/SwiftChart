@@ -54,13 +54,8 @@ final class SyncManager {
         self.realmProvider = realmProvider
         self.allSyncOperationQueue = OperationQueue()
         self.operationQueue = OperationQueue()
-        #if BUILD_DATABASE
         self.allSyncOperationQueue.maxConcurrentOperationCount = 1
         self.operationQueue.maxConcurrentOperationCount = 1
-        #else
-        self.allSyncOperationQueue.maxConcurrentOperationCount = 3
-        self.operationQueue.maxConcurrentOperationCount = 3
-        #endif //
 
         reachability?.listener = { [weak self] (status) -> Void in
             switch status {
@@ -157,6 +152,7 @@ final class SyncManager {
         operations.append(contentsOf: userIndependentSyncOperations(context: context))
         operations.append(contentsOf: conversionSyncOperations(context: context))
         operations.append(UpdateRelationsOperation(context: context, realmProvider: realmProvider))
+        operations.append(contentsOf: (userDependentSyncOperations(context: context)))
         for operation in operations {
             finishOperation.addDependency(operation)
         }
