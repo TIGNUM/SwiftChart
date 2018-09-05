@@ -15,25 +15,21 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
 
     func makeItem(with item: GuideDailyPrepResult) -> Guide.Item? {
         guard let item = item as? DailyPrepResultObject else { return nil }
-
         return guideItem(with: item)
     }
 
     func makeItem(with item: GuideLearnItem) -> Guide.Item? {
         guard let item = item as? RealmGuideItemLearn else { return nil }
-
         return guideItem(with: item)
     }
 
     func makeItem(with item: GuideNotificationItem) -> Guide.Item? {
         guard let item = item as? RealmGuideItemNotification else { return nil }
-
         return guideItem(with: item)
     }
 
     func makeItem(with item: GuideNotificationConfiguration, date: ISODate) -> Guide.Item? {
         guard let item = item as? NotificationConfigurationObject else { return nil }
-
         return guideItem(with: item, date: date)
     }
 

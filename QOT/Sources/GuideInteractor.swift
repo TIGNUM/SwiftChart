@@ -13,6 +13,7 @@ final class GuideInteractor: GuideInteractorInterface {
     let presenter: GuidePresenterInterface
     let guideObserver: GuideObserver
     let worker: GuideWorker
+	var currentGuide: Guide.Model?
     var reloadRequestCount: Int = 0
 
     init(presenter: GuidePresenterInterface, guideObserver: GuideObserver, worker: GuideWorker) {
@@ -39,28 +40,30 @@ final class GuideInteractor: GuideInteractorInterface {
         reload()
     }
 
-    func reload() {
-        worker.makeGuide { [weak self] (guide) in
-            if let guide = guide {
-                let imageResource = worker.services.userService.myToBeVision()?.profileImageResource
-                if let localImageURL = imageResource?.localURL {
-                    self?.presenter.present(model: guide, headerImage: localImageURL)
-                    return
-                }
-                self?.presenter.present(model: guide, headerImage: imageResource?.remoteURL)
-            } else {
-                self?.presenter.presentLoading()
-            }
-        }
-    }
+	func reload() {
+		worker.makeGuide { [weak self] (guide) in
+			if guide != nil {
+				self?.currentGuide = guide
+				self?.presentGuideWithImage()
+			} else {
+				self?.presenter.presentLoading()
+			}
+		}
+	}
 
-    func didTapItem(_ item: Guide.Item) {
-        guard item.isDailyPrep == false,
-            item.status == .todo,
-            let id = try? GuideItemID(stringRepresentation: item.identifier) else { return }
+	func presentGuideWithImage() {
+		guard let guide = currentGuide else { return }
+		let imageResource = worker.services.userService.myToBeVision()?.profileImageResource
+		presenter.present(model: guide, headerImage: imageResource?.localURL ?? imageResource?.remoteURL)
+	}
 
-        worker.setItemCompleted(id: id)
-    }
+	func didTapItem(_ item: Guide.Item) {
+		guard
+			item.isDailyPrep == false,
+			item.status == .todo,
+			let id = try? GuideItemID(stringRepresentation: item.identifier) else { return }
+		worker.setItemCompleted(id: id)
+	}
 
     func didTapWhatsHotItem(_ item: Guide.Item) {
         worker.markWhatsHotRead(item: item)

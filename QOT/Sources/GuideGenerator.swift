@@ -82,48 +82,42 @@ struct GuideGenerator {
         self.guideItemBlockDeterminer = GuideLearnItemBlockDeterminer(localCalendar: localCalendar)
     }
 
-    func generateGuide(toBeVisionItem: Guide.Item,
+	func generateGuide(toBeVisionItem: Guide.Item,
 					   whatsHotItems: [(Date, Guide.Item)],
-                       notificationItems: [GuideNotificationItem],
-                       featureItems: [GuideLearnItem],
-                       strategyItems: [GuideLearnItem],
-                       notificationConfigurations: [GuideNotificationConfiguration],
-                       dailyPrepResults: [GuideDailyPrepResult],
-                       preparations: [GuidePreparation],
-                       now: Date = Date()) throws -> Guide.Model {
-        guard maxDays > 0 else { throw SimpleError(localizedDescription: "Incorrect maxDays: \(maxDays)") }
-
-        let minDate = now.addingTimeInterval(-TimeInterval(days: maxDays - 1))
-        let todaylocalStartOfDay = localCalendar.startOfDay(for: now)
-        var days: [Date: Day] = [:]
-
+					   notificationItems: [GuideNotificationItem],
+					   featureItems: [GuideLearnItem],
+					   strategyItems: [GuideLearnItem],
+					   notificationConfigurations: [GuideNotificationConfiguration],
+					   dailyPrepResults: [GuideDailyPrepResult],
+					   preparations: [GuidePreparation],
+					   now: Date = Date()) throws -> Guide.Model {
+		guard maxDays > 0 else { throw SimpleError(localizedDescription: "Incorrect maxDays: \(maxDays)") }
+		let minDate = now.addingTimeInterval(-TimeInterval(days: maxDays - 1))
+		let todaylocalStartOfDay = localCalendar.startOfDay(for: now)
+		var days: [Date: Day] = [:]
 		addWhatsHotItems(from: whatsHotItems, to: &days, now: now, minDate: minDate)
-        addToBeVisionItem(from: toBeVisionItem, to: &days)
-        addNotificationItems(from: notificationItems, to: &days, now: now, minDate: minDate)
-        addCompleteLearnItems(from: featureItems, to: &days, minDate: minDate, now: now)
-        addIncompleteLearnItems(from: featureItems, to: &days, now: now, todayLocalStartOfDay: todaylocalStartOfDay)
-        addCompleteLearnItems(from: strategyItems, to: &days, minDate: minDate, now: now)
-        addIncompleteLearnItems(from: strategyItems, to: &days, now: now, todayLocalStartOfDay: todaylocalStartOfDay)
-        addItems(configurations: notificationConfigurations,
-                 dailyPrepResults: dailyPrepResults,
-                 to: &days,
-                 minDate: minDate,
-                 now: now)
-        addPreparations(from: preparations, to: &days, now: now, minDate: minDate)
-
-        let guideDays: [Date: Guide.Day] = days.mapKeyValues { ($0, guideDayBySortingItems(from: $1)) }
-        let sortedDays = guideDays.sorted { $0.key > $1.key }.map { $0.value }
-
-        // Message
-        let message = guideMessage(today: guideDays[todaylocalStartOfDay],
-                                   featureItems: featureItems,
-                                   strategyItems: strategyItems,
-                                   notificationitems: notificationItems)
-
-        return Guide.Model(days: sortedDays,
-                               greeting: greeting(userName: factory.userName(), now: now),
-                               message: factory.makeMessageText(with: message))
-    }
+		addToBeVisionItem(from: toBeVisionItem, to: &days)
+		addNotificationItems(from: notificationItems, to: &days, now: now, minDate: minDate)
+		addCompleteLearnItems(from: featureItems, to: &days, minDate: minDate, now: now)
+		addIncompleteLearnItems(from: featureItems, to: &days, now: now, todayLocalStartOfDay: todaylocalStartOfDay)
+		addCompleteLearnItems(from: strategyItems, to: &days, minDate: minDate, now: now)
+		addIncompleteLearnItems(from: strategyItems, to: &days, now: now, todayLocalStartOfDay: todaylocalStartOfDay)
+		addItems(configurations: notificationConfigurations,
+				 dailyPrepResults: dailyPrepResults,
+				 to: &days,
+				 minDate: minDate,
+				 now: now)
+		addPreparations(from: preparations, to: &days, now: now, minDate: minDate)
+		let guideDays: [Date: Guide.Day] = days.mapKeyValues { ($0, guideDayBySortingItems(from: $1)) }
+		let sortedDays = guideDays.sorted { $0.key > $1.key }.map { $0.value }
+		let message = guideMessage(today: guideDays[todaylocalStartOfDay],
+								   featureItems: featureItems,
+								   strategyItems: strategyItems,
+								   notificationitems: notificationItems)
+		return Guide.Model(days: sortedDays,
+						   greeting: greeting(userName: factory.userName(), now: now),
+						   message: factory.makeMessageText(with: message))
+	}
 
     /**
      TODAY -> `ITEM` not finished
@@ -151,10 +145,8 @@ struct GuideGenerator {
                               featureItems: [GuideLearnItem],
                               strategyItems: [GuideLearnItem],
                               notificationitems: [GuideNotificationItem]) -> Guide.Message {
-
-        var learnItems = featureItems
+		var learnItems: [GuideLearnItem] = featureItems
         learnItems.append(contentsOf: strategyItems)
-
         if let today = today {
             if today.hasIncompleteDailyPrep == true {
                 return .prepNotFinished
