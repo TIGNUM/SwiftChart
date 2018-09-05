@@ -15,6 +15,7 @@ disabled_rules:
   - type_body_length
   - line_length
   - weak_delegate
+  - notification_center_detachment
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT  

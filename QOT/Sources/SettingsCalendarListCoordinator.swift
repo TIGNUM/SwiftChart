@@ -23,7 +23,7 @@ final class SettingsCalendarListCoordinator: ParentCoordinator {
         settingsCalendarListViewController = SettingsCalendarListViewController(viewModel: viewModel)
         let backgroundImageView = UIImageView(frame: rootViewController.view.frame)
         backgroundImageView.image = R.image.backgroundSidebar()
-        settingsCalendarListViewController.tableView.backgroundView = backgroundImageView
+        settingsCalendarListViewController.setTableViewBackgound(backgroundImageView)
         settingsCalendarListViewController.title = R.string.localized.settingsGeneralCalendarTitle().uppercased()
     }
 

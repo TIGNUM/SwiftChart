@@ -19,7 +19,10 @@ final class SettingsCalendarListViewController: UIViewController {
 
     // MARK: - Properties
 
-    var tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    private var tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    private var noPermissionLabel: UILabel = UILabel()
+    private var openSettingButton: UIButton = UIButton()
+
     private let viewModel: SettingsCalendarListViewModel
     private let notificationHandler: NotificationHandler
 
@@ -43,13 +46,13 @@ final class SettingsCalendarListViewController: UIViewController {
 
         addEventStoreNotificationHandler()
         setupView()
-        viewModel.syncStateObserver.onUpdate { [unowned self] _ in
-            self.viewModel.update()
-            self.tableView.reloadData()
+        viewModel.syncStateObserver.onUpdate { [weak self] _ in
+            self?.update()
         }
 
         tableView.delegate = self
         tableView.dataSource = self
+        self.update()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -77,14 +80,42 @@ final class SettingsCalendarListViewController: UIViewController {
     }
 }
 
+// MARK: - Internal
+
+extension SettingsCalendarListViewController {
+
+    func setTableViewBackgound(_ view: UIView?) {
+        tableView.backgroundView = view
+    }
+}
+
 // MARK: - Private
 
 private extension SettingsCalendarListViewController {
 
-    func addEventStoreNotificationHandler() {
-        notificationHandler.handler = { [unowned self] (notificationCenter) in
+    func update() {
+        DispatchQueue.main.async {
             self.viewModel.update()
             self.tableView.reloadData()
+
+            let authStatus = EKEventStore.authorizationStatus(for: .event)
+            switch authStatus {
+            case .denied:
+                self.noPermissionLabel.isVisible = true
+                self.openSettingButton.isVisible = true
+            case .notDetermined:
+                self.askCalendarPermission()
+                self.noPermissionLabel.isVisible = false
+                self.openSettingButton.isVisible = false
+            default:
+                self.noPermissionLabel.isVisible = false
+                self.openSettingButton.isVisible = false
+            }
+        }
+    }
+    func addEventStoreNotificationHandler() {
+        notificationHandler.handler = { [weak self] (notificationCenter) in
+            self?.update()
         }
     }
 
@@ -92,14 +123,13 @@ private extension SettingsCalendarListViewController {
 		let fadeContainerView = FadeContainerView()
 		view.addSubview(fadeContainerView)
 		fadeContainerView.edgeAnchors == view.edgeAnchors
-
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         fadeContainerView.addSubview(backgroundImageView)
         backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
-
         fadeContainerView.addSubview(tableView)
-        tableView.topAnchor == fadeContainerView.topAnchor + 100 // MARK: FIXME: constant??
-        tableView.leftAnchor == fadeContainerView.leftAnchor + 20 // MARK: FIXME: constant??
+
+        tableView.topAnchor == fadeContainerView.topAnchor + 100 // FIXME: constant??
+        tableView.leftAnchor == fadeContainerView.leftAnchor + 20 // FIXME: constant??
         tableView.rightAnchor ==  fadeContainerView.rightAnchor
         tableView.bottomAnchor == fadeContainerView.bottomAnchor
         tableView.backgroundColor = .clear
@@ -109,7 +139,74 @@ private extension SettingsCalendarListViewController {
 		tableView.isScrollEnabled = true
         tableView.rowHeight = UITableViewAutomaticDimension
 		fadeContainerView.setFade(top: 80, bottom: 0)
+        setupOpenSettingForCalendar(fadeContainerView: fadeContainerView)
 		view.layoutIfNeeded()
+    }
+
+    func setupOpenSettingForCalendar(fadeContainerView: UIView) {
+        noPermissionLabel = UILabel()
+        noPermissionLabel.attributedText = Style.navigationTitle(R.string.localized.alertMessageCalendarNoAccess(),
+                                                                 .white80).attributedString()
+        noPermissionLabel.numberOfLines = 0
+        fadeContainerView.addSubview(noPermissionLabel)
+        noPermissionLabel.translatesAutoresizingMaskIntoConstraints = false
+        let labelCenterX: NSLayoutConstraint = NSLayoutConstraint(item: noPermissionLabel, attribute: NSLayoutAttribute.centerX,
+                                                                  relatedBy: NSLayoutRelation.equal, toItem: fadeContainerView,
+                                                                  attribute: NSLayoutAttribute.centerX,
+                                                                  multiplier: 1,
+                                                                  constant: 0)
+        let labelWidth: NSLayoutConstraint = NSLayoutConstraint(item: noPermissionLabel, attribute: NSLayoutAttribute.width,
+                                                                relatedBy: NSLayoutRelation.equal, toItem: fadeContainerView,
+                                                                attribute: NSLayoutAttribute.width,
+                                                                multiplier: 0.75,
+                                                                constant: 0)
+        let labelPosY: NSLayoutConstraint = NSLayoutConstraint(item: noPermissionLabel, attribute: NSLayoutAttribute.bottom,
+                                                               relatedBy: NSLayoutRelation.equal, toItem: fadeContainerView,
+                                                               attribute: NSLayoutAttribute.centerY,
+                                                               multiplier: 1,
+                                                               constant: 0)
+        fadeContainerView.addConstraint(labelCenterX)
+        fadeContainerView.addConstraint(labelWidth)
+        fadeContainerView.addConstraint(labelPosY)
+
+        openSettingButton = UIButton()
+        fadeContainerView.addSubview(openSettingButton)
+        openSettingButton.setTitle(R.string.localized.alertButtonTitleOpenSettings(), for: UIControlState.normal)
+        openSettingButton.titleLabel?.font = UIFont.simpleFont(ofSize: 22)
+        openSettingButton.addTarget(self, action: #selector(didTapPermissionButton), for: UIControlEvents.touchUpInside)
+
+        openSettingButton.translatesAutoresizingMaskIntoConstraints = false
+        let buttonCenterX: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: NSLayoutAttribute.centerX,
+                                                                   relatedBy: NSLayoutRelation.equal, toItem: noPermissionLabel,
+                                                                   attribute: NSLayoutAttribute.centerX,
+                                                                   multiplier: 1,
+                                                                   constant: 0)
+        let buttonWidth: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: NSLayoutAttribute.width,
+                                                                 relatedBy: NSLayoutRelation.equal, toItem: fadeContainerView,
+                                                                 attribute: NSLayoutAttribute.width,
+                                                                 multiplier: 0.5,
+                                                                 constant: 0)
+        let buttonPosY: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: NSLayoutAttribute.top,
+                                                                relatedBy: NSLayoutRelation.equal, toItem: noPermissionLabel,
+                                                                attribute: NSLayoutAttribute.bottom,
+                                                                multiplier: 1,
+                                                                constant: 20)
+        fadeContainerView.addConstraint(buttonCenterX)
+        fadeContainerView.addConstraint(buttonWidth)
+        fadeContainerView.addConstraint(buttonPosY)
+        noPermissionLabel.isVisible = false
+        openSettingButton.isVisible = false
+    }
+
+    @objc func didTapPermissionButton() {
+        UIApplication.openAppSettings()
+    }
+
+    func askCalendarPermission() {
+        let calendarPermission = CalendarPermission()
+        calendarPermission.askPermission { [weak self] result in
+            self?.update()
+        }
     }
 }
 

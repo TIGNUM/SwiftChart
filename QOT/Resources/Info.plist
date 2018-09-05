@@ -96,7 +96,9 @@
 		</dict>
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
-	<string>We use this for flight info.</string>
+	<string>QOT needs access to calendar to prepare events and to create calendar events.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>QOT needs access to reminder to remind you and to help you</string>
 	<key>NSCameraUsageDescription</key>
 	<string>QOT needs camera access for changing images.</string>
 	<key>NSContactsUsageDescription</key>
