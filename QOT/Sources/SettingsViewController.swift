@@ -32,21 +32,18 @@ final class SettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         UIApplication.shared.statusBarStyle = .lightContent
         navigationItem.title = R.string.localized.settingsTitle().uppercased()
     }
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         interactor?.viewDidLoad()
         tableView.registerDequeueable(SettingsCell.self)
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
     }

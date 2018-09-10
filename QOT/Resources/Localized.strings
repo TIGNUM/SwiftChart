@@ -50,7 +50,7 @@
 "Sidebar.Title.Tools" = "QOT TOOLS";
 "Sidebar.Title.Benefits" = "QOT\nBENEFITS";
 "Sidebar.Title.Profile" = "Profile";
-"Sidebar.Title.Sensor" = "Add Sensor";
+"Sidebar.Title.Sensor" = "Connect fitness tracker";
 "Sidebar.Title.Support" = "Support";
 "Sidebar.Title.About" = "ABOUT TIGNUM";
 "Sidebar.Title.Permission" = "PERMISSIONS";
@@ -240,9 +240,9 @@
 "Sidebar.SettingsMenu.SecurityButton" = "SECURITY AND LEGAL";
 "Sidebar.SettingsMenu.LogoutButton" = "Logout";
 
-"Sidebar.SensorsMenu.Sensors" = "SENSORS";
+"Sidebar.SensorsMenu.Sensors" = "FITNESS TRACKERS";
 "Sidebar.SensorsMenu.Fitbit" = "FITBIT";
-"Sidebar.SensorsMenu.RequestSensor" = "Request sensor";
+"Sidebar.SensorsMenu.RequestSensor" = "Request fitness tracker";
 "Sidebar.SensorsMenu.Connect" = "CONNECT";
 "Sidebar.SensorsMenu.Fitbit.Success" = "Fitbit successfully linked";
 "Sidebar.SensorsMenu.Fitbit.Failure" = "Failed to link Fitbit";

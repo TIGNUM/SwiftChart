@@ -25,6 +25,7 @@ final class RequestDeviceSensorCollectionViewCell: UICollectionViewCell, Dequeue
         layer.borderColor = UIColor.white40.cgColor
         titleLabel.font = Font.DPText
         titleLabel.textColor = .white40
+		titleLabel.textAlignment = .center
         drawImage()
     }
 
