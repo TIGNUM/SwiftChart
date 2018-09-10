@@ -74,15 +74,10 @@ final class CalendarImportManger {
     }
 
     private func sync(start: Date, end: Date, completion: @escaping (CalendarImportResult) -> Void) {
-        queue.async { [store, realmProvider] in
+        queue.async { [realmProvider] in
             let result: CalendarImportResult
-            do {
-                let realm = try realmProvider.realm()
-                let task = CalendarImportTask(startDate: start, endDate: end, realm: realm, store: store)
-                result = task.sync(calendars: self.syncSettingsManager.syncEnabledCalendars)
-            } catch let error {
-                result = .failure(error)
-            }
+            let task = CalendarImportTask(startDate: start, endDate: end, realmProvider: realmProvider)
+            result = task.sync(calendars: self.syncSettingsManager.syncEnabledCalendars)
             DispatchQueue.main.async {
                 completion(result)
             }

@@ -15,26 +15,18 @@ final class CalendarImportTask {
 
     let start: Date
     let end: Date
-    let realm: Realm
     let store: EKEventStore
+    private let realmProvider: RealmProvider
 
-    init(startDate: Date, endDate: Date, realm: Realm, store: EKEventStore) {
-        self.start = startDate
-        self.end = endDate
-        self.realm = realm
-        self.store = store
+    init(startDate: Date, endDate: Date, realmProvider: RealmProvider) {
+        start = startDate
+        end = endDate
+        store = EKEventStore.shared
+        self.realmProvider = realmProvider
     }
 
     func sync(calendars: [EKCalendar]) -> CalendarImportResult {
-        let events: [EKEvent]
         let existingCalendarIds: [String] = store.calendars(for: .event).compactMap { String($0.toggleIdentifier) }
-        if calendars.count == 0 {
-            events = []
-        } else {
-            // @warning: if calendars.count == 0 predicate will search all calendars hence the above check.
-            let predicate = store.predicateForEvents(withStart: start, end: end, calendars: calendars)
-            events = store.events(matching: predicate).compactMap { $0 }
-        }
 
         let syncableCalendarIds: [String] = calendars.compactMap {
             String($0.toggleIdentifier)
@@ -42,22 +34,25 @@ final class CalendarImportTask {
 
         let result: CalendarImportResult
         do {
+            let realm = try realmProvider.realm()
             let existingCalendarEvents: Results<CalendarEvent> = realm.objects()
-            for ekEvent in events {
-                try realm.write {
-                    createOrUpdateCalendarEvents(with: Array(Set([ekEvent])), realm: realm, with: syncableCalendarIds)
+            try realm.write {
+                let events: [EKEvent]
+                if calendars.count == 0 {
+                    events = []
+                } else {
+                    // @warning: if calendars.count == 0 predicate will search all calendars hence the above check.
+                    let predicate = store.predicateForEvents(withStart: start, end: end, calendars: calendars)
+                    events = store.events(matching: predicate).compactMap { $0 }
                 }
-            }
-            try realm.write {
+                createOrUpdateCalendarEvents(with: events, realm: realm, with: syncableCalendarIds)
+
                 deleteDuplicatedCalendarEvents(with: events, realm: realm)
-            }
-            try realm.write {
                 deleteCalendarEvents(from: Array(existingCalendarEvents), using: events,
                                      syncableCalendarIds: syncableCalendarIds, existingCalendarIds: existingCalendarIds)
-            }
-            try realm.write {
                 deleteLegacyCalendarEvents(from: Array(existingCalendarEvents))
             }
+
             result = .success
         } catch {
             result = .failure(error)

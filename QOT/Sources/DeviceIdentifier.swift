@@ -11,11 +11,19 @@ import Foundation
 private let keychain = Keychain()
 
 let deviceID: String = {
+    var returnValue: String = ""
     if let identifier = keychain[string: .deviceID] {
-        return identifier
+        returnValue = identifier
     } else {
         let identifier = UUID().uuidString
         keychain[string: .deviceID] = identifier
-        return identifier
+        returnValue = identifier
     }
+
+    // To help Backend, put Prefix to identify Simulator request.
+    #if targetEnvironment(simulator)
+    return "SIMULATOR-" + returnValue
+    #else
+    return returnValue
+    #endif
 }()
