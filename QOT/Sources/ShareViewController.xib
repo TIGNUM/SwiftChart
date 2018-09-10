@@ -6,7 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -148,25 +148,30 @@
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gan-UU-Q07" userLabel="middleViewBottom">
                                     <rect key="frame" x="0.0" y="133.5" width="375" height="133"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc7-uH-oDV">
-                                            <rect key="frame" x="24" y="88" width="24" height="24"/>
-                                            <constraints>
-                                                <constraint firstAttribute="width" constant="24" id="7Zm-y0-FdA"/>
-                                                <constraint firstAttribute="height" constant="24" id="lsw-Tx-eGA"/>
-                                                <constraint firstAttribute="width" secondItem="hc7-uH-oDV" secondAttribute="height" multiplier="1:1" id="xgM-MP-XB8"/>
-                                            </constraints>
-                                            <state key="normal" image="ic_radio_unselected"/>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-0z-lbg">
+                                            <rect key="frame" x="24" y="8" width="327" height="58"/>
+                                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
+                                            <inset key="titleEdgeInsets" minX="14" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="SHARE MY TO BE VISION" image="ic_radio_unselected">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
+                                            <state key="selected" image="ic_radio_selected"/>
+                                            <connections>
+                                                <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="rfd-Dp-cHw"/>
+                                            </connections>
+                                        </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc7-uH-oDV">
+                                            <rect key="frame" x="24" y="67" width="327" height="58"/>
+                                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
+                                            <inset key="titleEdgeInsets" minX="14" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                            <state key="normal" title="SHARE MY WEEKLY CHOICES" image="ic_radio_unselected">
+                                                <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </state>
                                             <state key="selected" image="ic_radio_selected"/>
                                             <connections>
                                                 <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="wpg-OS-NWw"/>
                                             </connections>
                                         </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE MY TO BE VISION" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Wwd-gk-q1L">
-                                            <rect key="frame" x="64" y="0.0" width="287" height="66"/>
-                                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zCJ-KT-C16">
                                             <rect key="frame" x="24" y="66" width="327" height="1"/>
                                             <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -174,43 +179,20 @@
                                                 <constraint firstAttribute="height" constant="1" id="vAG-LF-fzn"/>
                                             </constraints>
                                         </view>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-0z-lbg">
-                                            <rect key="frame" x="24" y="21" width="24" height="24"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="24" id="Flk-kI-wR6"/>
-                                                <constraint firstAttribute="width" constant="24" id="I9t-IA-pgP"/>
-                                                <constraint firstAttribute="width" secondItem="3Le-0z-lbg" secondAttribute="height" multiplier="1:1" id="XL2-02-J4V"/>
-                                            </constraints>
-                                            <state key="normal" image="ic_radio_unselected"/>
-                                            <state key="selected" image="ic_radio_selected"/>
-                                            <connections>
-                                                <action selector="didTapOption:" destination="-1" eventType="touchUpInside" id="rfd-Dp-cHw"/>
-                                            </connections>
-                                        </button>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SHARE MY WEEKLY CHOICES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3g6-7E-Wpb">
-                                            <rect key="frame" x="64" y="67" width="287" height="66"/>
-                                            <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
-                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
                                     </subviews>
                                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="3Le-0z-lbg" firstAttribute="leading" secondItem="Gan-UU-Q07" secondAttribute="leading" constant="24" id="ASK-2n-RkM"/>
                                         <constraint firstAttribute="trailing" secondItem="zCJ-KT-C16" secondAttribute="trailing" constant="24" id="Bdg-dP-MNf"/>
-                                        <constraint firstItem="3g6-7E-Wpb" firstAttribute="centerY" secondItem="hc7-uH-oDV" secondAttribute="centerY" id="HUK-Kt-ZLZ"/>
-                                        <constraint firstAttribute="trailing" secondItem="3g6-7E-Wpb" secondAttribute="trailing" constant="24" id="LvR-RE-tul"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="hc7-uH-oDV" secondAttribute="bottom" id="JQ3-RO-BZv"/>
+                                        <constraint firstItem="3Le-0z-lbg" firstAttribute="trailing" secondItem="zCJ-KT-C16" secondAttribute="trailing" id="KAi-ci-TeY"/>
                                         <constraint firstItem="zCJ-KT-C16" firstAttribute="leading" secondItem="Gan-UU-Q07" secondAttribute="leading" constant="24" id="MON-20-Pih"/>
-                                        <constraint firstItem="3g6-7E-Wpb" firstAttribute="top" secondItem="zCJ-KT-C16" secondAttribute="bottom" id="Nly-kF-FCH"/>
-                                        <constraint firstAttribute="trailing" secondItem="Wwd-gk-q1L" secondAttribute="trailing" constant="24" id="Nmk-ZF-FSM"/>
-                                        <constraint firstAttribute="bottom" secondItem="3g6-7E-Wpb" secondAttribute="bottom" id="OmF-D4-8i0"/>
+                                        <constraint firstItem="3Le-0z-lbg" firstAttribute="top" secondItem="Gan-UU-Q07" secondAttribute="topMargin" id="ObZ-sO-IG4"/>
                                         <constraint firstItem="zCJ-KT-C16" firstAttribute="centerY" secondItem="Gan-UU-Q07" secondAttribute="centerY" id="QDJ-qG-DSh"/>
-                                        <constraint firstItem="Wwd-gk-q1L" firstAttribute="top" secondItem="Gan-UU-Q07" secondAttribute="top" id="aqm-Nw-1cx"/>
-                                        <constraint firstItem="zCJ-KT-C16" firstAttribute="top" secondItem="Wwd-gk-q1L" secondAttribute="bottom" id="gjp-Yr-pXo"/>
-                                        <constraint firstItem="3g6-7E-Wpb" firstAttribute="leading" secondItem="hc7-uH-oDV" secondAttribute="trailing" constant="16" id="hZz-sr-4Rr"/>
-                                        <constraint firstItem="Wwd-gk-q1L" firstAttribute="centerY" secondItem="3Le-0z-lbg" secondAttribute="centerY" id="qFM-yT-a8U"/>
+                                        <constraint firstItem="hc7-uH-oDV" firstAttribute="top" secondItem="zCJ-KT-C16" secondAttribute="bottom" id="R1N-KC-W0m"/>
+                                        <constraint firstItem="zCJ-KT-C16" firstAttribute="top" secondItem="3Le-0z-lbg" secondAttribute="bottom" id="bVV-ne-C7t"/>
+                                        <constraint firstItem="hc7-uH-oDV" firstAttribute="trailing" secondItem="zCJ-KT-C16" secondAttribute="trailing" id="pTH-zI-BQJ"/>
                                         <constraint firstItem="hc7-uH-oDV" firstAttribute="leading" secondItem="Gan-UU-Q07" secondAttribute="leading" constant="24" id="rfZ-cf-LfX"/>
-                                        <constraint firstItem="Wwd-gk-q1L" firstAttribute="leading" secondItem="3Le-0z-lbg" secondAttribute="trailing" constant="16" id="xN1-eG-bRA"/>
                                     </constraints>
                                 </view>
                             </subviews>
