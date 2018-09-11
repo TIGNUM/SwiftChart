@@ -365,6 +365,7 @@ private extension SyncManager {
                                         syncOperation(Statistics.self, context: context, shouldDownload: true),
                                         syncOperation(UserSetting.self, context: context, shouldDownload: true),
                                         syncOperation(SystemSetting.self, context: context, shouldDownload: true)]
+        operations.append(contentsOf: preparationSyncOperations(context: context))
         operations.append(contentsOf: calendarSyncOperations(context: context))
         return operations.compactMap({ $0 })
     }
