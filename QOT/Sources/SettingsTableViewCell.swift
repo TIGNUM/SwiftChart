@@ -74,7 +74,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             setupLabelCell(title: title, value: displayableValue)
         case .textField(let title, let value, let secure, let settingsType):
             self.settingsType = settingsType
-            setupTextFieldCell(title: title, value: value, secure: secure)
+            setupTextFieldCell(title: title, value: value, secure: secure, settingsType: settingsType)
         }
 
         if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .password || settingsType == .adminSettings {
@@ -147,13 +147,33 @@ private extension SettingsTableViewCell {
         }
     }
 
-    func setupTextFieldCell(title: String, value: String, secure: Bool) {
+	func setupTextFieldCell(title: String, value: String, secure: Bool, settingsType: SettingsType) {
         textField.attributedText = Style.tagTitle(value, .white80).attributedString(lineSpacing: 2, alignment: .right)
         textField.font = Font.H7Tag
         textField.isSecureTextEntry = secure
         textField.delegate = self
         setTitle(title: title)
+		if settingsType == .phone {
+			textField.keyboardType = .phonePad
+			let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 40))
+			let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
+			let done: UIBarButtonItem = UIBarButtonItem(title: "Done",
+														style: .done,
+														target: self,
+														action: #selector(didFinishEnterText))
+			doneToolbar.barStyle = .default
+			doneToolbar.setItems([flexSpace, done], animated: false)
+			doneToolbar.sizeToFit()
+			textField.inputAccessoryView = doneToolbar
+		}
     }
+
+	@objc func didFinishEnterText() {
+		textField.textColor = .white80
+		if let text = textField.text {
+			settingsDelegate?.didTextFieldEndEditing(at: indexPath, text: text)
+		}
+	}
 
     func setTitle(title: String) {
         titleLabel.attributedText = Style.headlineSmall(title.uppercased(), .white).attributedString(lineSpacing: 2)
@@ -251,10 +271,7 @@ extension SettingsTableViewCell: UITextFieldDelegate {
         textField.textColor = .white
     }
 
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        textField.textColor = .white80
-        if let text = textField.text {
-            settingsDelegate?.didTextFieldEndEditing(at: indexPath, text: text)
-        }
-    }
+	@objc func textFieldDidEndEditing(_ textField: UITextField) {
+		didFinishEnterText()
+	}
 }

@@ -55,7 +55,7 @@ private extension MeetingsLengthChart {
     }
 
     func yPosition(_ value: CGFloat) -> CGFloat {
-        return (bottomPosition - (value * bottomPosition)) + padding * 0.5
+        return (bottomPosition - (value * bottomPosition)) + padding * 5
     }
 
     func drawCapRoundLine(xPos: CGFloat, startYPos: CGFloat, endYPos: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
@@ -66,7 +66,7 @@ private extension MeetingsLengthChart {
     }
 
     func addAverageLines() {
-        let yPos = yPosition(statistics.userAverageValue)
+        let yPos = yPosition(statistics.userAverageValue) - 35
         let averageFrame = CGRect(x: yAxisOffset, y: yPos, width: frame.width - yAxisOffset, height: 0)
         let averageLine = CAShapeLayer()
         averageLine.strokeColor = UIColor.white8.cgColor
@@ -94,6 +94,7 @@ private extension MeetingsLengthChart {
         addCaptionLabel(yPos: yPosition(2/5), text: "\(Int(delta*2))")
         addCaptionLabel(yPos: yPosition(3/5), text: "\(Int(delta*3))")
         addCaptionLabel(yPos: yPosition(4/5), text: "\(Int(delta*4))")
+		addCaptionLabel(yPos: yPosition(5/5), text: "\(Int(delta*5))")
     }
 
     func drawCharts() {
@@ -126,7 +127,7 @@ private extension MeetingsLengthChart {
         let text = Int(dataPoint.originalValue * 60).seconds2Timestamp
         let todayLabel = dayLabel(text: text)
         todayLabel.sizeToFit()
-        todayLabel.center = CGPoint(x: xPos, y: yPos - 12)
+        todayLabel.center = CGPoint(x: xPos, y: yPos - 35)
         addSubview(todayLabel)
     }
 

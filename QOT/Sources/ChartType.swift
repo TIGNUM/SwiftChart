@@ -117,6 +117,7 @@ enum ChartType: String, EnumCollection {
     var hightlightColor: UIColor {
         switch self {
         case .meetingAverageWeek,
+			 .meetingLength,
              .activityLevel,
              .activitySittingMovementRatio,
              .sleepQuality,
@@ -466,6 +467,7 @@ enum ChartType: String, EnumCollection {
         switch self {
         case .meetingAverageDay,
              .meetingAverageWeek,
+			 .meetingLength,
              .travelTripsTimeZoneChangedYear,
              .travelTripsTimeZoneChangedWeeks: return R.image.overlay_travel_01()
         case .travelTripsMaxTimeZone,
@@ -475,7 +477,6 @@ enum ChartType: String, EnumCollection {
              .peakPerformanceUpcomingNextWeek,
              .meetingTimeBetween: return R.image.overlay_travel_02()
         case .travelTripsNextFourWeeks,
-             .meetingLength,
              .activitySittingMovementRatio: return R.image.overlay_travel_03()
         case .sleepQuality,
              .travelTripsAverageYear,
@@ -522,6 +523,7 @@ enum ChartType: String, EnumCollection {
 
         switch self {
         case .meetingAverageWeek,
+			 .meetingLength,
              .travelTripsAverageWeeks,
              .travelTripsNextFourWeeks,
              .travelTripsTimeZoneChangedWeeks,
@@ -542,7 +544,6 @@ enum ChartType: String, EnumCollection {
              .intensityRecoveryWeek,
              .intensityRecoveryMonth,
              .meetingAverageDay,
-             .meetingLength,
              .meetingIncreaseDiff,
              .meetingTimeBetween: return defaultChartDimensions
         }
