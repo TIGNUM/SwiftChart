@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ArticleItemHeaderView: UIView {
 
@@ -16,6 +17,7 @@ final class ArticleItemHeaderView: UIView {
     @IBOutlet private weak var subTitleLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var durationLabel: UILabel!
+	@IBOutlet private weak var articleThumbnail: UIImageView!
 
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -25,42 +27,40 @@ final class ArticleItemHeaderView: UIView {
     }()
 
     func setupView(header: ArticleCollectionHeader) {
-        titleLabel.attributedText = attributedText(
-            letterSpacing: 1,
-            text: header.articleTitle.uppercased(),
-            font: Font.H5SecondaryHeadline,
-            textColor: .white,
-            alignment: .left
-        )
-        subTitleLabel.attributedText = attributedText(
-            text: header.articleSubTitle.uppercased(),
-            font: Font.H1MainTitle,
-            textColor: .white,
-            alignment: .left
-        )
-        dateLabel.attributedText = attributedText(
-            text: dateFormatter.string(from: header.articleDate).uppercased(),
-            font: Font.H7Tag,
-            textColor: .white20,
-            alignment: .left
-        )
-        durationLabel.attributedText = attributedText(
-            text: header.articleDuration.uppercased() == "0 MIN" ? "1 MIN" : header.articleDuration.uppercased(),
-            font: Font.H7Tag,
-            textColor: .white20,
-            alignment: .left
-        )
+		let duration = header.articleDuration.uppercased() == "0 MIN" ? "1 MIN" : header.articleDuration.uppercased()
+		titleLabel.attributedText = attributedText(letterSpacing: 1,
+												   text: header.articleTitle.uppercased(),
+												   font: Font.H5SecondaryHeadline,
+												   textColor: .white,
+												   alignment: .left)
+		subTitleLabel.attributedText = attributedText(text: header.articleSubTitle.uppercased(),
+													  font: Font.H1MainTitle,
+													  textColor: .white,
+													  alignment: .left)
+		dateLabel.attributedText = attributedText(text: dateFormatter.string(from: header.articleDate).uppercased(),
+												  font: Font.H7Tag,
+												  textColor: .white20,
+												  alignment: .left)
+		durationLabel.attributedText = attributedText(text: duration,
+													  font: Font.H7Tag,
+													  textColor: .white20,
+													  alignment: .left)
+		articleThumbnail.kf.setImage(with: header.thumbnail)
+		articleThumbnail.layer.cornerRadius = 8
+		articleThumbnail.layer.masksToBounds = true
     }
 
-    private func attributedText(letterSpacing: CGFloat = 2, text: String, font: UIFont, textColor: UIColor, alignment: NSTextAlignment) -> NSMutableAttributedString {
-        return NSMutableAttributedString(
-            string: text,
-            letterSpacing: letterSpacing,
-            font: font,
-            lineSpacing: 1.4,
-            textColor: textColor,
-            alignment: alignment,
-            lineBreakMode: .byWordWrapping
-        )
+    private func attributedText(letterSpacing: CGFloat = 2,
+								text: String,
+								font: UIFont,
+								textColor: UIColor,
+								alignment: NSTextAlignment) -> NSMutableAttributedString {
+		return NSMutableAttributedString(string: text,
+										 letterSpacing: letterSpacing,
+										 font: font,
+										 lineSpacing: 1.4,
+										 textColor: textColor,
+										 alignment: alignment,
+										 lineBreakMode: .byWordWrapping)
     }
 }

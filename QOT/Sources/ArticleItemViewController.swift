@@ -166,15 +166,17 @@ private extension ArticleItemViewController {
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-            tableView.edgeAnchors == view.edgeAnchors
+            tableView.safeTopAnchor == view.safeTopAnchor
+			tableView.leftAnchor == view.leftAnchor
+			tableView.rightAnchor == view.rightAnchor
             tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.paddingTop
             tableView.contentInset.bottom = view.safeMargins.bottom
         } else {
-            tableView.topAnchor == view.safeTopAnchor
-            tableView.bottomAnchor == view.safeBottomAnchor
-            tableView.leadingAnchor == view.leadingAnchor
-            tableView.trailingAnchor == view.trailingAnchor
-            tableView.contentInset.top = tableView.contentInset.top + Layout.paddingTop
+            tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
+            tableView.bottomAnchor == view.bottomAnchor
+            tableView.rightAnchor == view.rightAnchor
+            tableView.leftAnchor == view.leftAnchor
+            tableView.contentInset.top = tableView.contentInset.top + Layout.paddingTop + (Layout.statusBarHeight * 2)
         }
 
         tableView.bottomAnchor == view.safeBottomAnchor - 60

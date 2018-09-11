@@ -164,14 +164,12 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let item = viewData.items[indexPath.row]
-        let articleHeader = ArticleCollectionHeader(
-            articleTitle: item.title,
-            articleSubTitle: item.description,
-            articleDate: item.articleDate,
-            articleDuration: item.duration,
-            articleContentCollectionID: item.contentCollectionID
-        )
-
+		let articleHeader = ArticleCollectionHeader(articleTitle: item.title,
+													articleSubTitle: item.description,
+													articleDate: item.articleDate,
+													articleDuration: item.duration,
+													articleContentCollectionID: item.contentCollectionID,
+													thumbnail: item.previewImageURL)
         delegate?.didTapItem(articleHeader: articleHeader, in: self)
     }
 }

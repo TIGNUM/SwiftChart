@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="12121" systemVersion="16F73" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,29 +20,35 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ArticleItemHeaderView" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="375" height="179"/>
+            <rect key="frame" x="0.0" y="0.0" width="465" height="313"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T5e-o1-72O">
+                    <rect key="frame" x="28" y="17.5" width="409" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="150" id="0Hc-WT-Wic"/>
+                    </constraints>
+                </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label TIGNUM THOUGHTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heR-bY-EbL">
-                    <rect key="frame" x="28" y="0.5" width="319" height="19"/>
+                    <rect key="frame" x="28" y="177.5" width="409" height="19"/>
                     <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HARNESS THE POWER OF WORDS IN YOUR LIFE" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Oy-Ph-XGt">
-                    <rect key="frame" x="28" y="27.5" width="319" height="129"/>
+                    <rect key="frame" x="28" y="204.5" width="409" height="86"/>
                     <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="36"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24/12/2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uF-Nr-OZC">
-                    <rect key="frame" x="28" y="168.5" width="64" height="10.5"/>
+                    <rect key="frame" x="28" y="302.5" width="64" height="10.5"/>
                     <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="11"/>
                     <color key="textColor" white="1" alpha="0.29946082746478875" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 MINUTES TO READ" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE2-X6-Sye">
-                    <rect key="frame" x="122" y="168.5" width="114" height="10.5"/>
+                    <rect key="frame" x="122" y="302.5" width="114" height="10.5"/>
                     <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="11"/>
                     <color key="textColor" white="1" alpha="0.29946082750000003" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -56,21 +62,24 @@
                 <constraint firstAttribute="trailing" secondItem="heR-bY-EbL" secondAttribute="trailing" constant="28" id="KMw-Xt-RiH"/>
                 <constraint firstItem="8uF-Nr-OZC" firstAttribute="top" secondItem="8Oy-Ph-XGt" secondAttribute="bottom" constant="12" id="LYN-he-244"/>
                 <constraint firstItem="CE2-X6-Sye" firstAttribute="leading" secondItem="8uF-Nr-OZC" secondAttribute="trailing" constant="30" id="Pyv-td-c1j"/>
-                <constraint firstItem="heR-bY-EbL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="Uwh-ua-tNk"/>
+                <constraint firstItem="heR-bY-EbL" firstAttribute="top" secondItem="T5e-o1-72O" secondAttribute="bottom" constant="10" id="Uwh-ua-tNk"/>
+                <constraint firstItem="T5e-o1-72O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="Uwx-hQ-jsP"/>
                 <constraint firstItem="8Oy-Ph-XGt" firstAttribute="top" secondItem="heR-bY-EbL" secondAttribute="bottom" constant="8" id="VXM-E3-ODp"/>
                 <constraint firstItem="CE2-X6-Sye" firstAttribute="top" secondItem="8uF-Nr-OZC" secondAttribute="top" id="eum-0G-ANp"/>
+                <constraint firstAttribute="trailing" secondItem="T5e-o1-72O" secondAttribute="trailing" constant="28" id="fJH-v5-nyN"/>
                 <constraint firstAttribute="bottom" secondItem="8uF-Nr-OZC" secondAttribute="bottom" id="mKZ-p2-nX7"/>
                 <constraint firstAttribute="trailing" secondItem="8Oy-Ph-XGt" secondAttribute="trailing" constant="28" id="ps1-3t-OrK"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <connections>
+                <outlet property="articleThumbnail" destination="T5e-o1-72O" id="AJY-Ha-pOB"/>
                 <outlet property="dateLabel" destination="8uF-Nr-OZC" id="KKD-up-hF0"/>
                 <outlet property="durationLabel" destination="CE2-X6-Sye" id="VQ3-94-3F1"/>
                 <outlet property="subTitleLabel" destination="8Oy-Ph-XGt" id="5n8-my-1K6"/>
                 <outlet property="titleLabel" destination="heR-bY-EbL" id="qCl-Br-UVC"/>
             </connections>
-            <point key="canvasLocation" x="33.5" y="49.5"/>
+            <point key="canvasLocation" x="78.5" y="83.5"/>
         </view>
     </objects>
 </document>
