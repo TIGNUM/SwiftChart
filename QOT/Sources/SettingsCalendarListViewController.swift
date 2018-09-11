@@ -172,8 +172,11 @@ private extension SettingsCalendarListViewController {
         openSettingButton = UIButton()
         fadeContainerView.addSubview(openSettingButton)
         openSettingButton.setTitle(R.string.localized.alertButtonTitleOpenSettings(), for: UIControlState.normal)
-        openSettingButton.titleLabel?.font = UIFont.simpleFont(ofSize: 22)
+        openSettingButton.titleLabel?.font = UIFont.systemFont(ofSize: 15)
         openSettingButton.addTarget(self, action: #selector(didTapPermissionButton), for: UIControlEvents.touchUpInside)
+        openSettingButton.corner(radius: Layout.CornerRadius.eight.rawValue)
+        openSettingButton.backgroundColor = .azure
+        openSettingButton.showsTouchWhenHighlighted = true
 
         openSettingButton.translatesAutoresizingMaskIntoConstraints = false
         let buttonCenterX: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: NSLayoutAttribute.centerX,
