@@ -69,14 +69,12 @@ struct Guide {
     }
 
     struct Model {
-
         let days: [Day]
         let greeting: String
         let message: String
     }
 
     enum Message: Int {
-
         case prepNotFinished = 103961
         case learningPlanNotFinished = 103962
         case whatsHotNotFinished1 = 103963

@@ -74,6 +74,9 @@ struct GuideGenerator {
     let maxDays: Int
     let factory: GuideItemFactoryProtocol
     let guideItemBlockDeterminer: GuideLearnItemBlockDeterminer
+    private static var randIdxWhatsHot = 0
+    private static var randIdxToBeVision = 0
+    private static var randIdxTodayFinished = 0
 
     init(localCalendar: Calendar = Calendar.current, maxDays: Int, factory: GuideItemFactoryProtocol) {
         self.localCalendar = localCalendar
@@ -157,15 +160,20 @@ struct GuideGenerator {
                                                  .whatsHotNotFinished2,
                                                  .whatsHotNotFinished3,
                                                  .whatsHotNotFinished4]
-                return messages.item(at: messages.randomIndex)
+                let index = GuideGenerator.randIdxWhatsHot == 0 ? messages.randomIndex : GuideGenerator.randIdxWhatsHot
+                GuideGenerator.randIdxWhatsHot = index
+                return messages.item(at: GuideGenerator.randIdxWhatsHot)
             } else if today.hasIncompleteToBeVision == true {
                 let messages: [Guide.Message] = [.toBeVisionNotFinished1, .toBeVisionNotFinished2]
-                return messages.item(at: messages.randomIndex)
+                let index = GuideGenerator.randIdxToBeVision == 0 ? messages.randomIndex : GuideGenerator.randIdxToBeVision
+                GuideGenerator.randIdxToBeVision = index
+                return messages.item(at: GuideGenerator.randIdxToBeVision)
             }
         }
-
         let messages: [Guide.Message] = [.todayFinished1, .todayFinished2]
-        return messages.item(at: messages.randomIndex)
+        let index = GuideGenerator.randIdxTodayFinished == 0 ? messages.randomIndex : GuideGenerator.randIdxTodayFinished
+        GuideGenerator.randIdxTodayFinished = index
+        return messages.item(at: GuideGenerator.randIdxTodayFinished)
     }
 
     private func greeting(userName: String?, now: Date) -> String {

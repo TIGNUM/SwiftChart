@@ -19,7 +19,6 @@ final class GuidePresenter: GuidePresenterInterface {
 
     func presentLoading() {
         guard let viewController = viewController else { return }
-
         viewController.setLoading(true)
         viewController.updateHeader(greeting: "", message: "", image: nil)
         viewController.updateDays(days: [])
@@ -27,7 +26,6 @@ final class GuidePresenter: GuidePresenterInterface {
 
     func present(model: Guide.Model, headerImage: URL?) {
         guard model != self.model, let viewController = viewController else { return }
-
         viewController.setLoading(false)
         viewController.updateHeader(greeting: model.greeting, message: model.message, image: headerImage)
         viewController.updateDays(days: model.days)
