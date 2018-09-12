@@ -320,8 +320,8 @@ private extension AppCoordinator {
     }
 
     func registerRemoteNotifications() {
-        permissionsManager.askPermission(for: [.remoteNotification]) { status in
-            guard let status = status[.remoteNotification] else { return }
+        permissionsManager.askPermission(for: [.notifications]) { status in
+            guard let status = status[.notifications] else { return }
             UAirship.push().userPushNotificationsEnabled = status == .granted
         }
     }

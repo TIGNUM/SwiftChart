@@ -37,8 +37,7 @@ final class PermissionsCell: UITableViewCell, Dequeueable {
 
     func configure(identifier: PermissionsManager.Permission.Identifier, isOn: Bool) {
         self.identifier = identifier
-        let text = identifier.rawValue == "remoteNotification" ? "remote notifications" : identifier.rawValue
-        permissionLabel.text = text.uppercased()
+        permissionLabel.text = identifier.rawValue.uppercased()
         permissionSwitch.setOn(isOn, animated: false)
         setSwitchState()
     }

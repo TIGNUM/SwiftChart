@@ -25,7 +25,7 @@ final class PermissionsManager {
     struct Permission {
         enum Identifier: String { // ensure each keys has a PermissionInterface
             case calendar
-            case remoteNotification
+            case notifications
             case location
             case photos
             case camera
@@ -67,7 +67,7 @@ final class PermissionsManager {
     func reset() {
         data = [ // ensure every key is mapped to a permission
             .calendar: Permission(interface: calendarPermission, askStatus: .canAsk, identifier: .calendar),
-            .remoteNotification: Permission(interface: remoteNotificationPermission, askStatus: .canAsk, identifier: .remoteNotification),
+            .notifications: Permission(interface: remoteNotificationPermission, askStatus: .canAsk, identifier: .notifications),
             .location: Permission(interface: locationPermission, askStatus: .canAsk, identifier: .location),
             .photos: Permission(interface: photosPermission, askStatus: .canAsk, identifier: .photos),
             .camera: Permission(interface: cameraPermission, askStatus: .canAsk, identifier: .camera)
