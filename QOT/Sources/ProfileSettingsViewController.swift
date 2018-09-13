@@ -103,6 +103,7 @@ final class ProfileSettingsViewController: UIViewController {
         headerView.delegate = self
         imagePickerController.delegate = self
         setupView()
+		syncHeader()
 
         scrollViewContentHeightConstraint.constant = tableView.contentInset.bottom
         keyboardListener.onStateChange { [unowned self] (state) in
@@ -184,6 +185,7 @@ private extension ProfileSettingsViewController {
         pickerView.leadingAnchor == pickerContentView.leadingAnchor
         pickerView.trailingAnchor == pickerContentView.trailingAnchor
         pickerView.bottomAnchor == pickerContentView.bottomAnchor
+		pickerToolBar.tintColor = .clear
         fadeContainerView.setFade(top: 100, bottom: 0)
         view.layoutIfNeeded()
     }
@@ -267,6 +269,7 @@ extension ProfileSettingsViewController {
     }
 
     func hidePickerView() {
+		pickerToolBar.tintColor = .clear
         UIView.animate(withDuration: 0.6) {
             self.pickerViewHeight?.constant = 0
         }
@@ -274,6 +277,7 @@ extension ProfileSettingsViewController {
     }
 
     func showPickerView() {
+		pickerToolBar.tintColor = .azure
         UIView.animate(withDuration: 0.6, animations: {
             self.pickerViewHeight?.constant = self.view.frame.height * 0.3
         }, completion: { finished in

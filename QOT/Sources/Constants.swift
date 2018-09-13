@@ -35,12 +35,19 @@ enum FontName: String {
 }
 
 struct Layout {
-
-    static let statusBarHeight: CGFloat = 64
-    static let paddingTop: CGFloat = 24
-    static let padding_07: CGFloat = 7
-    static let padding_20: CGFloat = 20
     static let articleImageHeight: CGFloat = 200
+    static let statusBarHeight: CGFloat = 64
+    static let padding_5: CGFloat = 5
+    static let padding_07: CGFloat = 7
+    static let padding_10: CGFloat = 10
+    static let padding_20: CGFloat = 20
+    static let padding_24: CGFloat = 24
+    static let padding_16: CGFloat = 16
+    static let padding_64: CGFloat = 64
+    static let padding_40: CGFloat = 40
+    static let height_44: CGFloat = 44
+    static let multiplier_025: CGFloat = 0.25
+    static let multiplier_065: CGFloat = 0.65
 
     struct TabBarView {
         static let insets = UIEdgeInsets(top: TabBarView.height, left: 0, bottom: 0, right: 0)

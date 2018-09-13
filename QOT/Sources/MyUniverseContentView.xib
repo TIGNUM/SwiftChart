@@ -29,9 +29,6 @@
             <rect key="frame" x="0.0" y="0.0" width="783" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rzl-vt-awr">
-                    <rect key="frame" x="0.0" y="0.0" width="783" height="667"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NcT-Pm-i7L">
                     <rect key="frame" x="414" y="70" width="345" height="177"/>
                     <subviews>
@@ -263,12 +260,10 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="Rzl-vt-awr" secondAttribute="bottom" id="3sE-pQ-18k"/>
                 <constraint firstItem="mRZ-bG-WzI" firstAttribute="top" secondItem="NcT-Pm-i7L" secondAttribute="bottom" constant="10" id="4kx-4f-oLV"/>
-                <constraint firstItem="STZ-7r-bUC" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="68Q-jU-o0Z" secondAttribute="bottom" constant="10" id="BCK-eo-2rl"/>
+                <constraint firstItem="STZ-7r-bUC" firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="68Q-jU-o0Z" secondAttribute="bottom" constant="15" id="BCK-eo-2rl"/>
                 <constraint firstItem="RMa-Er-aJ5" firstAttribute="centerX" secondItem="x6j-nb-lZl" secondAttribute="centerX" constant="20" id="C6W-x5-gvU"/>
                 <constraint firstItem="68Q-jU-o0Z" firstAttribute="leading" secondItem="NcT-Pm-i7L" secondAttribute="leading" multiplier="1.1" id="CX9-Tc-WEn"/>
-                <constraint firstAttribute="trailing" secondItem="Rzl-vt-awr" secondAttribute="trailing" id="INi-cn-PUf"/>
                 <constraint firstItem="RMa-Er-aJ5" firstAttribute="height" secondItem="x6j-nb-lZl" secondAttribute="height" multiplier="0.16" priority="999" id="NJj-wg-3Su"/>
                 <constraint firstItem="NcT-Pm-i7L" firstAttribute="leading" secondItem="RMa-Er-aJ5" secondAttribute="trailing" multiplier="0.89" id="Nwr-Tv-Z0C"/>
                 <constraint firstItem="NcT-Pm-i7L" firstAttribute="top" relation="greaterThanOrEqual" secondItem="STZ-7r-bUC" secondAttribute="top" constant="50" id="W4x-xe-Cvq"/>
@@ -276,9 +271,7 @@
                 <constraint firstItem="RMa-Er-aJ5" firstAttribute="centerY" secondItem="x6j-nb-lZl" secondAttribute="centerY" id="ZPI-pK-CbN"/>
                 <constraint firstItem="NcT-Pm-i7L" firstAttribute="top" secondItem="STZ-7r-bUC" secondAttribute="top" priority="750" constant="50" id="aij-O4-N88"/>
                 <constraint firstItem="mRZ-bG-WzI" firstAttribute="leading" secondItem="RMa-Er-aJ5" secondAttribute="trailing" multiplier="1.1" id="dB3-np-7jf"/>
-                <constraint firstItem="Rzl-vt-awr" firstAttribute="top" secondItem="x6j-nb-lZl" secondAttribute="top" id="mgL-K2-ZlN"/>
                 <constraint firstAttribute="trailing" secondItem="mRZ-bG-WzI" secondAttribute="trailing" constant="8" id="nfO-f1-WGy"/>
-                <constraint firstItem="Rzl-vt-awr" firstAttribute="leading" secondItem="x6j-nb-lZl" secondAttribute="leading" id="pGr-J1-FN5"/>
                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="NcT-Pm-i7L" secondAttribute="trailing" constant="24" id="v3W-YJ-Foj"/>
                 <constraint firstItem="RMa-Er-aJ5" firstAttribute="top" secondItem="NcT-Pm-i7L" secondAttribute="bottom" constant="33" id="x1X-62-ukz"/>
                 <constraint firstItem="NcT-Pm-i7L" firstAttribute="width" secondItem="RMa-Er-aJ5" secondAttribute="width" multiplier="3.3" priority="750" id="xfP-rX-Yxb"/>
@@ -286,7 +279,6 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="STZ-7r-bUC"/>
             <connections>
-                <outlet property="backgroundImageView" destination="Rzl-vt-awr" id="9Rc-kh-QNL"/>
                 <outlet property="partnersTitleLabel" destination="6aV-L1-y9Y" id="AJd-sR-T2R"/>
                 <outlet property="partnersWrapperView" destination="68Q-jU-o0Z" id="fll-Ns-vkk"/>
                 <outlet property="profileBlurView" destination="c8O-4T-mug" id="W2I-WC-WUx"/>

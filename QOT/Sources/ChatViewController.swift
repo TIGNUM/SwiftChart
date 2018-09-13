@@ -58,6 +58,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     // MARK: - Properties
 
     private let disposeBag = DisposeBag()
+	private let backgroundImageView = UIImageView()
     private var sizingCell = ChatViewCell()
     private var sizeCache: NSCache<GenericCacheKey<SizeCacheKey>, NSValue> = NSCache()
     private var items: [ChatItem<T>] = []
@@ -176,7 +177,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
+        collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
         addFadeMaskLocationIfNeeded()
     }
@@ -287,57 +288,68 @@ private extension ChatViewController {
 
     func setupView(withBackgroundImage backgroundImage: UIImage?) {
         view.backgroundColor = .clear
+		view.addSubview(backgroundImageView)
         view.addSubview(collectionView)
 
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
             collectionView.edgeAnchors == view.edgeAnchors
-            collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
+            collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
             collectionView.contentInset.bottom = view.safeMargins.bottom
+			backgroundImageView.edgeAnchors == view.edgeAnchors
         } else {
-            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.paddingTop
+            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.padding_24
             collectionView.bottomAnchor == view.bottomAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
-            collectionView.contentInset.top = Layout.paddingTop
+            collectionView.contentInset.top = Layout.padding_24
+			backgroundImageView.topAnchor == view.topAnchor
+			backgroundImageView.leadingAnchor == view.leadingAnchor
+			backgroundImageView.trailingAnchor == view.trailingAnchor
+			backgroundImageView.bottomAnchor == view.bottomAnchor
         }
-        if let backgroundImage = backgroundImage {
-            collectionView.backgroundView = UIImageView(image: backgroundImage)
-        }
+        setupBackgroundImage(backgroundImage)
         addFadeMaskLocationIfNeeded()
     }
 
     func setupVisionGeneratorView(withBackgroundImage backgroundImage: UIImage?) {
         view.backgroundColor = .clear
-        let backgroundImage = UIImageView(image: backgroundImage)
-        view.addSubview(backgroundImage)
+		view.addSubview(backgroundImageView)
         view.addSubview(collectionView)
         view.addSubview(bottomButton)
         bottomButton.centerXAnchor == view.centerXAnchor
-        bottomButton.heightAnchor == 44
-        bottomButton.widthAnchor == view.widthAnchor - view.frame.width * 0.25
+        bottomButton.heightAnchor == Layout.height_44
+        bottomButton.widthAnchor == view.widthAnchor - view.frame.width * Layout.multiplier_025
         bottomButton.isHidden = true
-
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
-            backgroundImage.edgeAnchors == view.edgeAnchors
-            bottomButton.bottomAnchor == view.bottomAnchor - 16 - view.safeMargins.bottom
+            backgroundImageView.edgeAnchors == view.edgeAnchors
+            bottomButton.bottomAnchor == view.bottomAnchor - Layout.padding_16 - view.safeMargins.bottom
             collectionView.contentInsetAdjustmentBehavior = .never
             collectionView.topAnchor == view.topAnchor + view.safeMargins.top + Layout.statusBarHeight
             collectionView.bottomAnchor == view.bottomAnchor - view.safeMargins.bottom - Layout.statusBarHeight
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
-            collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
-            collectionView.contentInset.bottom = view.safeMargins.bottom - bottomButton.frame.height - 16
+            collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
+            collectionView.contentInset.bottom = view.safeMargins.bottom - bottomButton.frame.height - Layout.padding_16
         } else {
-            bottomButton.bottomAnchor == view.bottomAnchor - 16
-            collectionView.topAnchor == view.topAnchor + Layout.paddingTop
-            collectionView.bottomAnchor == bottomButton.topAnchor + 16
+            bottomButton.bottomAnchor == view.bottomAnchor - Layout.padding_16
+            collectionView.topAnchor == view.topAnchor + Layout.padding_24 + Layout.statusBarHeight
+            collectionView.bottomAnchor == bottomButton.topAnchor + Layout.padding_16
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
-            collectionView.contentInset.top = Layout.paddingTop
+            collectionView.contentInset.top = Layout.padding_24
+			backgroundImageView.topAnchor == view.topAnchor
+			backgroundImageView.leadingAnchor == view.leadingAnchor
+			backgroundImageView.trailingAnchor == view.trailingAnchor
+			backgroundImageView.bottomAnchor == view.bottomAnchor
         }
+		setupBackgroundImage(backgroundImage)
+    }
+
+    func setupBackgroundImage(_ image: UIImage?) {
+        backgroundImageView.image = image
     }
 
     func registerReusableViews() {

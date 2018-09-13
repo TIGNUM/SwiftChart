@@ -13,6 +13,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     var interactor: SearchInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
+	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
     private var avPlayerObserver: AVPlayerObserver?
     private var searchBar = UISearchBar()
     private var searchResults = [Search.Result]()
@@ -90,6 +91,11 @@ private extension SearchViewController {
         searchBar.delegate = self
         navigationItem.titleView = searchBar
         self.searchBar = searchBar
+		if #available(iOS 11.0, *) {
+
+		} else {
+			topConstraint.constant = Layout.statusBarHeight + Layout.padding_24
+		}
     }
 }
 

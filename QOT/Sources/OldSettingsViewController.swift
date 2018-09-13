@@ -159,7 +159,7 @@ private extension OldSettingsViewController {
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-            tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.paddingTop
+            tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.padding_24
         }
 
 		view.addSubview(fadeContainerView)

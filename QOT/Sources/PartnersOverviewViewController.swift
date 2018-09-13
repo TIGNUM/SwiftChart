@@ -23,6 +23,7 @@ final class PartnersOverviewViewController: PartnersAnimationViewController {
     @IBOutlet private weak var headlineLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet private weak var addButton: UIButton!
+	@IBOutlet private weak var titleTopConstraint: NSLayoutConstraint!
 
     // MARK: - Init
 
@@ -38,6 +39,11 @@ final class PartnersOverviewViewController: PartnersAnimationViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+		if #available(iOS 11.0, *) {
+
+		} else {
+			titleTopConstraint.constant = Layout.padding_24 + Layout.statusBarHeight
+		}
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -20,7 +20,8 @@ final class SensorViewController: UIViewController {
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var wearablesTitleLabel: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
-    private var sensors = [SensorModel]()
+	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
+	private var sensors = [SensorModel]()
     private var contentSize: CGSize {
         var height: CGFloat = 150
         containerView.subviews.forEach { height += $0.frame.height }
@@ -69,6 +70,11 @@ private extension SensorViewController {
         if let navBarHeight = navigationController?.navigationBar.bounds.height {
             fadeContainerView.setFade(top: navBarHeight, bottom: 0)
         }
+		if #available(iOS 11.0, *) {
+
+		} else {
+			topConstraint.constant = Layout.statusBarHeight
+		}
     }
 }
 

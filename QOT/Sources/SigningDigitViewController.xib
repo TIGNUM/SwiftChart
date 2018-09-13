@@ -25,6 +25,7 @@
                 <outlet property="textInputTopConstraint" destination="VmJ-6r-2YD" id="TeJ-Kx-4AS"/>
                 <outlet property="titleContentView" destination="VYc-mN-T6i" id="cCu-Lr-6zL"/>
                 <outlet property="titleLabel" destination="0XE-MC-K9F" id="5n7-uM-CP3"/>
+                <outlet property="topConstraint" destination="tKq-1B-zrz" id="BDE-dZ-Dkh"/>
                 <outlet property="view" destination="iN0-l3-epB" id="crO-E2-rsO"/>
                 <outletCollection property="digitLines" destination="nOA-Am-aND" collectionClass="NSMutableArray" id="xsg-ng-N7u"/>
                 <outletCollection property="digitTextFields" destination="1bC-eD-bKM" collectionClass="NSMutableArray" id="TSe-ZY-uP9"/>

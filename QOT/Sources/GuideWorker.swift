@@ -51,7 +51,7 @@ final class GuideWorker {
         let itemFactory = GuideItemFactory(services: services)
         let toBeVisionItem = itemFactory.makeToBeVisionItem()
         let whatsHotItems = itemFactory.makeWhatsHotItem()
-        let learnItems = services.guideService.learnItems()
+		let learnItems = services.guideService.learnItems()
         let allNotificationItems = services.guideService.notificationItems()
         // FIXME: Remove filter when server no longer returns daily prep type notification items
         let notificationItems = allNotificationItems.filter("type != 'MORNING_INTERVIEW' AND type != 'WEEKLY_INTERVIEW'")

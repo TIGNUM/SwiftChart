@@ -112,11 +112,18 @@ private extension GuideViewController {
         fadeContainerView.addSubview(backgroundImageView)
         fadeContainerView.addSubview(tableView)
         fadeContainerView.addSubview(loadingView)
-        fadeContainerView.verticalAnchors == view.verticalAnchors
-        fadeContainerView.horizontalAnchors == view.horizontalAnchors
-        tableView.edgeAnchors == fadeContainerView.edgeAnchors
-        backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
-        loadingView.edgeAnchors == fadeContainerView.edgeAnchors
+		if #available(iOS 11.0, *) {
+			tableView.edgeAnchors == fadeContainerView.edgeAnchors
+		} else {
+			tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
+			tableView.leadingAnchor == view.leadingAnchor
+			tableView.trailingAnchor == view.trailingAnchor
+			tableView.bottomAnchor == view.bottomAnchor - Layout.statusBarHeight
+		}
+		fadeContainerView.verticalAnchors == view.verticalAnchors
+		fadeContainerView.horizontalAnchors == view.horizontalAnchors
+		backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
+		loadingView.edgeAnchors == fadeContainerView.edgeAnchors
         fadeContainerView.setFade(top: view.frame.height * 0.15, bottom: view.frame.height * 0.15)
         view.layoutIfNeeded()
         syncHeaderView(imageURL: greetingImageURL)

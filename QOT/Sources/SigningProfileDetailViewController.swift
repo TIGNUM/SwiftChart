@@ -21,7 +21,8 @@ final class SigningProfileDetailViewController: AbstractFormViewController {
     @IBOutlet private weak var checkBoxButton: UIButton!
     @IBOutlet private weak var checkBoxLabel: ClickableLabel!
     @IBOutlet private weak var checkBoxErrorLabel: UILabel!
-    private lazy var firstNameFormView: FormView? = formView()
+	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
+	private lazy var firstNameFormView: FormView? = formView()
     private lazy var lastNameFormView: FormView? = formView()
     private lazy var genderFormView: FormView? = formView()
     private lazy var dateOfBirthFormView: FormView? = formView()
@@ -82,6 +83,11 @@ private extension SigningProfileDetailViewController {
             dateOfBirthContentView.backgroundColor = .clear
             dateOfBirthFormView.delegate = self
         }
+		if #available(iOS 11.0, *) {
+
+		} else {
+			topConstraint.constant = Layout.statusBarHeight
+		}
     }
 
     func setupCheckView() {

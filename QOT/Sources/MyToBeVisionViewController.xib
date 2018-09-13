@@ -42,6 +42,7 @@
                 <outlet property="subtitleLabel" destination="3Lt-fd-bdx" id="TvC-tj-f6W"/>
                 <outlet property="tbvGeneratorButton" destination="6p5-sN-5bd" id="XCX-WR-LHV"/>
                 <outlet property="textViewsContainer" destination="tCL-zM-DF7" id="uIT-At-1QZ"/>
+                <outlet property="topConstraint" destination="yNe-nq-tzX" id="YoE-jr-MOG"/>
                 <outlet property="view" destination="iN0-l3-epB" id="QvS-N9-vPB"/>
             </connections>
         </placeholder>

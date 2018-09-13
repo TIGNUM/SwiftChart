@@ -141,10 +141,10 @@ private extension MyPrepViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.edgeAnchors == fadeContainerView.edgeAnchors
-            tableView.contentInset.top = fadeContainerView.safeMargins.top + Layout.paddingTop
+            tableView.contentInset.top = fadeContainerView.safeMargins.top + Layout.padding_24
             tableView.contentInset.bottom = fadeContainerView.safeMargins.bottom
         } else {
-            tableView.topAnchor == fadeContainerView.topAnchor + Layout.paddingTop
+            tableView.topAnchor == fadeContainerView.topAnchor + Layout.padding_24
             tableView.bottomAnchor == fadeContainerView.bottomAnchor
             tableView.leadingAnchor == fadeContainerView.leadingAnchor
             tableView.trailingAnchor == fadeContainerView.trailingAnchor

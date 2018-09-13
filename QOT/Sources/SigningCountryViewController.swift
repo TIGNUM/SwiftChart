@@ -14,6 +14,7 @@ final class SigningCountryViewController: AbstractFormViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var centerContentView: UIView!
+	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
     private var selectedCountry: String?
     private lazy var countryFormView: FormView? = formView()
     var interactor: SigningCountryInteractorInterface?
@@ -44,6 +45,9 @@ private extension SigningCountryViewController {
         formView.delegate = self
         centerContentView.addSubview(formView)
         formView.configure(formType: .country(""))
+		if #available(iOS 11.0, *) {
+			topConstraint.constant = Layout.statusBarHeight
+		}
     }
 
     func update(formType: FormView.FormType?) {

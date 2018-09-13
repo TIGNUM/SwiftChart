@@ -25,6 +25,7 @@
                 <outlet property="textInputTopConstraint" destination="KKg-C3-Zzh" id="4az-Wn-i0P"/>
                 <outlet property="titleContentView" destination="4S7-tz-dv3" id="0qK-h2-ndh"/>
                 <outlet property="titleLabel" destination="06r-R7-EqU" id="ZRe-NJ-HDp"/>
+                <outlet property="topConstraint" destination="lZ2-Aw-Xkt" id="E9i-Vo-hN8"/>
                 <outlet property="view" destination="NdG-Pa-N5J" id="cFb-DJ-HNk"/>
             </connections>
         </placeholder>

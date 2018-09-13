@@ -16,7 +16,8 @@ final class SigningDigitViewController: AbstractFormViewController {
     @IBOutlet private weak var centerContentView: UIView!
     @IBOutlet private weak var resendCodeButton: UIButton!
     @IBOutlet private var digitTextFields: [TextField]!
-    @IBOutlet private var digitLines: [UIView]!
+	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
+	@IBOutlet private var digitLines: [UIView]!
     private var showingError = false
     var interactor: SigningDigitInteractorInterface?
 
@@ -54,6 +55,11 @@ private extension SigningDigitViewController {
                                                                  font: .simpleFont(ofSize: 32),
                                                                  textColor: .white,
                                                                  alignment: .center)
+			if #available(iOS 11.0, *) {
+
+			} else {
+				topConstraint.constant = Layout.statusBarHeight
+			}
         }
     }
 

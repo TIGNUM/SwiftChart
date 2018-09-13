@@ -63,14 +63,14 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.edgeAnchors == view.edgeAnchors
-            tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
+            tableView.contentInset.top = view.safeMargins.top + Layout.padding_24
             tableView.contentInset.bottom = view.safeMargins.bottom
         } else {
             tableView.topAnchor == view.safeTopAnchor
             tableView.bottomAnchor == view.safeBottomAnchor
             tableView.leadingAnchor == view.leadingAnchor
             tableView.trailingAnchor == view.trailingAnchor
-            tableView.contentInset.top = tableView.contentInset.top + Layout.paddingTop
+            tableView.contentInset.top = tableView.contentInset.top + Layout.padding_24
             tableView.contentInset.bottom = view.safeMargins.bottom
         }
         tableView.backgroundView = viewModel.tableViewBackground
@@ -80,7 +80,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        tableView.contentInset.top = view.safeMargins.top + Layout.paddingTop
+        tableView.contentInset.top = view.safeMargins.top + Layout.padding_24
         tableView.contentInset.bottom = view.safeMargins.bottom
         view.setFadeMask(at: fadeMaskLocation)
     }

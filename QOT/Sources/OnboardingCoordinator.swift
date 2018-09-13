@@ -101,8 +101,7 @@ final class OnboardingCoordinator: ParentCoordinator {
         case .yes:
             permissionsManager.askPermission(for: identifiers, completion: { status in
                 // decide what message to show, based on if everything was granted
-                let isAllGranted = status.filter({ $0.value == .denied }).count == 0
-                if isAllGranted {
+                if status.filter({ $0.value == .denied }).count == 0 {
                     self.showLastStep()
                 } else {
                     self.showSettings()

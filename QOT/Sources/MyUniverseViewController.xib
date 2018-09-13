@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -13,8 +14,11 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MyUniverseViewController" customModule="QOT" customModuleProvider="target">
             <connections>
                 <outlet property="navBar" destination="e6W-4G-Rh6" id="Fka-5w-Q0P"/>
+                <outlet property="navBarTopConstraint" destination="vSK-fm-tOQ" id="pKf-Lw-Azt"/>
                 <outlet property="navItem" destination="qog-FT-IFL" id="afF-wf-6Dw"/>
                 <outlet property="scrollView" destination="ymA-DW-uuH" id="f0q-ce-kHW"/>
+                <outlet property="scrollViewBottomConstraint" destination="N7c-Dz-D0p" id="1Q2-Dz-h3Q"/>
+                <outlet property="scrollViewTopConstrain" destination="6DV-Ad-Rwc" id="gUs-Fe-ZxN"/>
                 <outlet property="view" destination="sGc-Zi-A5C" id="jr1-hW-tbG"/>
             </connections>
         </placeholder>
@@ -23,6 +27,9 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundMyUniverse" translatesAutoresizingMaskIntoConstraints="NO" id="LKY-2n-7dK">
+                    <rect key="frame" x="0.0" y="0.0" width="750" height="667"/>
+                </imageView>
                 <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" bouncesZoom="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ymA-DW-uuH">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <connections>
@@ -40,15 +47,22 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="ymA-DW-uuH" firstAttribute="leading" secondItem="sDp-3s-2YK" secondAttribute="leading" id="0nH-jD-FGv"/>
+                <constraint firstItem="LKY-2n-7dK" firstAttribute="width" secondItem="ymA-DW-uuH" secondAttribute="width" multiplier="2" id="1CO-3N-8of"/>
                 <constraint firstItem="ymA-DW-uuH" firstAttribute="top" secondItem="sGc-Zi-A5C" secondAttribute="top" id="6DV-Ad-Rwc"/>
                 <constraint firstAttribute="trailing" secondItem="e6W-4G-Rh6" secondAttribute="trailing" id="6MC-y7-bbl"/>
+                <constraint firstItem="LKY-2n-7dK" firstAttribute="leading" secondItem="sDp-3s-2YK" secondAttribute="leading" id="9EB-eB-lkX"/>
                 <constraint firstAttribute="bottom" secondItem="ymA-DW-uuH" secondAttribute="bottom" id="N7c-Dz-D0p"/>
+                <constraint firstItem="LKY-2n-7dK" firstAttribute="height" secondItem="sGc-Zi-A5C" secondAttribute="height" id="O7Z-uM-45I"/>
                 <constraint firstItem="sDp-3s-2YK" firstAttribute="trailing" secondItem="ymA-DW-uuH" secondAttribute="trailing" id="Ydh-ZH-9GA"/>
                 <constraint firstItem="e6W-4G-Rh6" firstAttribute="leading" secondItem="sGc-Zi-A5C" secondAttribute="leading" id="cLf-Na-4Gm"/>
+                <constraint firstItem="LKY-2n-7dK" firstAttribute="top" secondItem="sGc-Zi-A5C" secondAttribute="top" id="nBZ-KM-aqV"/>
                 <constraint firstItem="e6W-4G-Rh6" firstAttribute="top" secondItem="sDp-3s-2YK" secondAttribute="top" id="vSK-fm-tOQ"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="sDp-3s-2YK"/>
             <point key="canvasLocation" x="278.5" y="-667.5"/>
         </view>
     </objects>
+    <resources>
+        <image name="backgroundMyUniverse" width="700" height="667"/>
+    </resources>
 </document>

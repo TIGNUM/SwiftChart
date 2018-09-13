@@ -95,19 +95,11 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
 private extension WeeklyChoicesViewController {
 
     func redraw() {
-        layout.circle = WeeklyChoicesLayout.Circle(
-            center: CGPoint(
-                x: -collectionView.bounds.size.width * 0.65,
-                y: collectionView.center.y
-            ),
-            radius: collectionView.bounds.size.width
-        )
-        layout.itemSize = CGSize(
-            width: collectionView.bounds.width,
-            height: collectionView.bounds.height / CGFloat(5)
-        )
+        layout.circle = WeeklyChoicesLayout.Circle(center: CGPoint(x: -collectionView.bounds.size.width * Layout.multiplier_065,
+																   y: collectionView.center.y),
+												   radius: collectionView.bounds.size.width)
+        layout.itemSize = CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height / CGFloat(5))
         layout.invalidateLayout()
-
         circleLayer?.removeFromSuperlayer()
         circleLayer = draw(layout.circle)
     }
@@ -118,14 +110,18 @@ private extension WeeklyChoicesViewController {
         view.addSubview(coverView)
         view.addSubview(collectionView)
         view.backgroundColor = .clear
-        collectionView.topAnchor == view.safeTopAnchor + 20
-        collectionView.bottomAnchor == view.bottomAnchor
-        collectionView.horizontalAnchors == view.horizontalAnchors
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
-        }
+			collectionView.topAnchor == view.safeTopAnchor + Layout.padding_20
+			collectionView.horizontalAnchors == view.horizontalAnchors
+		} else {
+			collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight
+			collectionView.leftAnchor == view.leftAnchor
+			collectionView.rightAnchor == view.rightAnchor
+		}
+		collectionView.bottomAnchor == view.bottomAnchor
         coverView.edgeAnchors == view.edgeAnchors
         setNoContentLabel()
 

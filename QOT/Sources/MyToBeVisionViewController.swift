@@ -33,7 +33,8 @@ final class MyToBeVisionViewController: UIViewController {
     @IBOutlet private weak var messageEditingStatementLabel: UILabel!
     @IBOutlet private weak var headlineEditingSeparatorView: UIView!
     @IBOutlet private weak var messageEditingSeparatorView: UIView!
-    private var contentInset = UIEdgeInsets()
+	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
+	private var contentInset = UIEdgeInsets()
     private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()
     private let navItem = NavigationItem(title: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
@@ -129,7 +130,9 @@ final class MyToBeVisionViewController: UIViewController {
         toBeVisionDidUpdate()
         syncEditingViews(true)
         UIApplication.shared.statusBarStyle = .lightContent
-        navItem.showTabMenuView(titles: [R.string.localized.meSectorMyWhyVisionTitle().uppercased()])
+		if #available(iOS 11.0, *) {
+			navItem.showTabMenuView(titles: [R.string.localized.meSectorMyWhyVisionTitle().uppercased()])
+		}
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -191,7 +194,9 @@ extension MyToBeVisionViewController {
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             scrollView.contentInsetAdjustmentBehavior = .never
-        }
+		} else {
+			topConstraint.constant = Layout.statusBarHeight + Layout.padding_24
+		}
         syncNavigationButtons(false)
         setupInstructionsButton()
         setupTextViews()

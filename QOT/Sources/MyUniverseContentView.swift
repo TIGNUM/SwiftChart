@@ -48,7 +48,6 @@ extension MyUniverseContentView {
 
 final class MyUniverseContentView: UIView {
 
-    @IBOutlet weak var backgroundImageView: UIImageView!
     @IBOutlet weak var profileBlurView: UIVisualEffectView!
     @IBOutlet weak var profileWrapperView: UIView!
     @IBOutlet weak var profileButton: UIButton!

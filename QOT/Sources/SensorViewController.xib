@@ -18,6 +18,7 @@
                 <outlet property="scrollView" destination="Rs1-oh-6d7" id="nWN-9M-r8s"/>
                 <outlet property="sensorsTitleLabel" destination="vuM-VR-2IE" id="8sW-KN-haq"/>
                 <outlet property="textLabel" destination="5ae-I5-8Am" id="jby-lg-nw7"/>
+                <outlet property="topConstraint" destination="jLp-up-KIU" id="GYr-v2-QHR"/>
                 <outlet property="view" destination="iN0-l3-epB" id="gBG-VT-WH0"/>
                 <outlet property="wearablesTitleLabel" destination="Cyb-Cc-pN9" id="ima-Ak-Pax"/>
             </connections>

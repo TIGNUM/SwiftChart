@@ -95,7 +95,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
+        collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
         view.setFadeMask(at: fadeMaskLocation)
@@ -124,14 +124,14 @@ private extension ArticleCollectionViewController {
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
             collectionView.edgeAnchors == view.edgeAnchors
-            collectionView.contentInset.top = Layout.paddingTop + view.safeMargins.top
+            collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
             collectionView.contentInset.bottom = view.safeMargins.bottom
         } else {
-            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.paddingTop
+            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.padding_24
             collectionView.bottomAnchor == view.bottomAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
-            collectionView.contentInset.top = Layout.paddingTop
+            collectionView.contentInset.top = Layout.padding_24
         }
 
         view.setFadeMask(at: fadeMaskLocation)

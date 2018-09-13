@@ -24,6 +24,7 @@
                 <outlet property="tableView" destination="MFb-xJ-I9S" id="dF7-2x-KaC"/>
                 <outlet property="titleContentView" destination="1rH-OC-d6Q" id="1GO-ls-caI"/>
                 <outlet property="titleLabel" destination="1yM-Cj-80x" id="tgK-HM-Zic"/>
+                <outlet property="topConstraint" destination="WLf-3a-5KN" id="nDE-Nc-XBf"/>
                 <outlet property="view" destination="iN0-l3-epB" id="0gf-QU-Mlj"/>
             </connections>
         </placeholder>

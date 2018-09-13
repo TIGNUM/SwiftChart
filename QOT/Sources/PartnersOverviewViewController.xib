@@ -28,6 +28,7 @@
                 <outlet property="messageLabel" destination="WWX-Mq-Xqe" id="Vg2-17-MMp"/>
                 <outlet property="profileImageView" destination="iVK-wT-hXe" id="lUg-UM-Ipp"/>
                 <outlet property="titleLabel" destination="e9s-xA-NiW" id="oCF-bA-96b"/>
+                <outlet property="titleTopConstraint" destination="Jne-FS-cBp" id="2SY-ax-HIQ"/>
                 <outlet property="view" destination="Qxo-So-Ive" id="Sf4-Go-NrR"/>
             </connections>
         </placeholder>

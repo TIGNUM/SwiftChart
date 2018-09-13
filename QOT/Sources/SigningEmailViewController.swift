@@ -14,7 +14,8 @@ final class SigningEmailViewController: AbstractFormViewController {
 
     @IBOutlet private weak var topContentView: UIView!
     @IBOutlet private weak var centerContentView: UIView!
-    private lazy var emailFormView: FormView? = formView()
+	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
+	private lazy var emailFormView: FormView? = formView()
     var interactor: SigningEmailInteractorInterface?
 
     // MARK: - Init
@@ -43,6 +44,11 @@ private extension SigningEmailViewController {
         formView.delegate = self
         centerContentView.addSubview(formView)
         formView.configure(formType: .email(""))
+		if #available(iOS 11.0, *) {
+
+		} else {
+			topConstraint.constant = Layout.statusBarHeight
+		}
     }
 }
 

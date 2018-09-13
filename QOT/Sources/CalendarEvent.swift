@@ -29,7 +29,9 @@ final class CalendarEvent: SyncableObject {
     @objc dynamic var calendarIdentifier: String?
 
     var event: EKEvent? {
-        return EKEventStore.shared.event(with: self)
+        return EKEventStore.shared.getEvent(startDate: self.startDate,
+											endDate: self.endDate,
+											identifier: self.calendarItemExternalIdentifier)
     }
 
     convenience init(event: EKEvent) {

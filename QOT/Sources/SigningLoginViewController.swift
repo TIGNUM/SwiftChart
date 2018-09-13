@@ -15,7 +15,8 @@ final class SigningLoginViewController: AbstractFormViewController {
     @IBOutlet private weak var emailFormContentView: UIView!
     @IBOutlet private weak var passwordFormContentView: UIView!
     @IBOutlet private weak var resetPasswordButton: UIButton!
-    private lazy var formViewEmail: FormView? = formView()
+	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
+	private lazy var formViewEmail: FormView? = formView()
     private lazy var formViewPassword: FormView? = formView()
     var interactor: SigningLoginInteractorInterface?
 
@@ -51,6 +52,11 @@ private extension SigningLoginViewController {
         passwordFormContentView.addSubview(formPassword)
         formEmail.configure(formType: .email(interactor?.email ?? ""), enabled: false)
         formPassword.configure(formType: .password(""))
+		if #available(iOS 11.0, *) {
+
+		} else {
+			topConstraint.constant = Layout.statusBarHeight
+		}
     }
 
     func setupResetPasswordButton() {

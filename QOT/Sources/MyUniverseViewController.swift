@@ -72,7 +72,10 @@ extension MyUniverseViewController {
 
 final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
-    @IBOutlet private weak var navBar: UINavigationBar! // FIXME: Remove nav bar from xib and place self in UINavigationController
+	@IBOutlet private weak var navBarTopConstraint: NSLayoutConstraint!
+	@IBOutlet private weak var scrollViewTopConstrain: NSLayoutConstraint!
+	@IBOutlet private weak var scrollViewBottomConstraint: NSLayoutConstraint!
+	@IBOutlet private weak var navBar: UINavigationBar! // FIXME: Remove nav bar from xib and place self in UINavigationController
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet weak var navItem: NavigationItem!
     private var config: Config
@@ -158,9 +161,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
         case 1: offset = config.pages[1].widthPercentage * scrollView.bounds.width
         default:
             assertionFailure("more than 2 pages is unhandled / untested / unexpected")
-            offset = config.pages[1..<number].reduce(0, {
-                $0 + $1.widthPercentage * scrollView.bounds.width
-            })
+            offset = config.pages[1..<number].reduce(0, { $0 + $1.widthPercentage * scrollView.bounds.width })
         }
         scrollView.setContentOffset(CGPoint(
             x: offset,
@@ -173,21 +174,21 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
 private extension MyUniverseViewController {
 
-    func reload() {
-        navItem.showTabMenuView(titles: config.pages.map { $0.pageTitle })
-        isLoading = viewData.isLoading
-        contentView.profileButton.kf.setBackgroundImage(
-            with: viewData.profileImageURL,
-            for: .normal,
-            placeholder: config.profileImagePlaceholder) { [weak self] (image, _, _, _) in
-                guard let `self` = self, let image = image else { return }
-                DispatchQueue.global(qos: .userInitiated).async {
-                    let processed = UIImage.makeGrayscale(image)
-                    DispatchQueue.main.async {
-                        self.contentView.profileButtonOverlay.image = processed
-                    }
-                }
-        }
+	func reload() {
+		navItem.showTabMenuView(titles: config.pages.map { $0.pageTitle })
+		isLoading = viewData.isLoading
+		contentView.profileButton.kf.setBackgroundImage(
+			with: viewData.profileImageURL,
+			for: .normal,
+			placeholder: config.profileImagePlaceholder) { [weak self] (image, _, _, _) in
+				guard let `self` = self, let image = image else { return }
+				DispatchQueue.global(qos: .userInitiated).async {
+					let processed = UIImage.makeGrayscale(image)
+					DispatchQueue.main.async {
+						self.contentView.profileButtonOverlay.image = processed
+					}
+				}
+		}
 
         // reset partner buttons first
         for partnerButton in contentView.partnerButtons {
@@ -199,18 +200,14 @@ private extension MyUniverseViewController {
             guard let partnerButtons = contentView.partnerButtons,
                 index < contentView.partnerButtons.count,
                 index >= partnerButtons.startIndex,
-                index <= partnerButtons.endIndex else {
-                    break
-            }
+                index <= partnerButtons.endIndex else { break }
             contentView.partnerButtons[index].configure(for: partner, placeholder: config.partnerImagePlaceholder)
         }
 
         for (index, weeklyChoice) in viewData.weeklyChoices.enumerated() {
             guard let weeklyChoiceButtons = contentView.weeklyChoiceButtons,
                 index >= weeklyChoiceButtons.startIndex,
-                index <= weeklyChoiceButtons.endIndex else {
-                    break
-            }
+                index <= weeklyChoiceButtons.endIndex else { break }
             contentView.weeklyChoiceButtons[index].configure(for: weeklyChoice)
         }
         contentView.setVisionText(viewData.myToBeVisionText)
@@ -221,17 +218,17 @@ private extension MyUniverseViewController {
     func setupView() {
         // scroll view
         automaticallyAdjustsScrollViewInsets = false
-        if #available(iOS 11.0, *) {
-            scrollView.contentInsetAdjustmentBehavior = .never
-        }
         scrollView.addSubview(contentView)
+		if #available(iOS 11.0, *) {
 
+		} else {
+			navBarTopConstraint.constant = navBarTopConstraint.constant + Layout.padding_24
+			scrollViewTopConstrain.constant = navBarTopConstraint.constant
+			scrollViewBottomConstraint.constant = Layout.statusBarHeight
+		}
         // content view
         contentView.delegate = self
-        contentView.addGestureRecognizer(
-            UITapGestureRecognizer(target: self, action: #selector(contentViewTapped(_:)))
-        )
-        contentView.backgroundImageView.image = config.backgroundImage
+        contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(contentViewTapped(_:))))
         contentView.partnersTitleLabel.text = config.partnersTitle
         contentView.weeklyChoiceButtons.forEach {
             $0.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 10)
@@ -252,19 +249,14 @@ private extension MyUniverseViewController {
 
     func setupScrollViewContent() {
         // set scrollView content size
-        let contentSize = CGSize(
-            width: config.pages.reduce(0.0, { $0 + scrollView.bounds.width * $1.widthPercentage }),
-            height: scrollView.bounds.height
-        )
+        let contentSize = CGSize(width: config.pages.reduce(0.0, { $0 + scrollView.bounds.width * $1.widthPercentage }),
+								 height: scrollView.bounds.height)
         if scrollView.contentSize != contentSize {
             scrollView.contentSize = contentSize
         }
 
         // set contentView frame
-        let frame = CGRect(
-            origin: scrollView.frame.origin,
-            size: contentSize
-        )
+        let frame = CGRect(origin: scrollView.frame.origin, size: contentSize)
         if contentView.frame != frame {
             contentView.frame = frame
             contentView.layoutIfNeeded()

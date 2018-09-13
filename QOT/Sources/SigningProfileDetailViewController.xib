@@ -33,6 +33,7 @@
                 <outlet property="subtitleLabel" destination="Qqo-u8-vcY" id="0RD-u4-pgL"/>
                 <outlet property="titleContentView" destination="XBI-il-igd" id="SBT-E5-tV4"/>
                 <outlet property="titleLabel" destination="DGg-pY-81I" id="l1i-ua-GOM"/>
+                <outlet property="topConstraint" destination="DIe-LL-61c" id="rcV-oI-goI"/>
                 <outlet property="view" destination="Ozj-K2-nrr" id="m7E-QR-qdL"/>
             </connections>
         </placeholder>

@@ -127,23 +127,30 @@ private extension PrepareContentViewController {
             view.addSubview(tableView)
             if viewModel.preparationType == .prepContentEvent {
                 view.addSubview(savePreparationButton)
-                savePreparationButton.topAnchor == tableView.bottomAnchor + 5
+                savePreparationButton.topAnchor == tableView.bottomAnchor + Layout.padding_5
                 savePreparationButton.centerXAnchor == view.centerXAnchor
-                savePreparationButton.horizontalAnchors == view.horizontalAnchors + 40
-                savePreparationButton.bottomAnchor == view.safeBottomAnchor - 24
-                savePreparationButton.heightAnchor == 40
+                savePreparationButton.horizontalAnchors == view.horizontalAnchors + Layout.padding_40
+                savePreparationButton.bottomAnchor == view.safeBottomAnchor - Layout.padding_24
+                savePreparationButton.heightAnchor == Layout.padding_40
             }
             topBarView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
             topBarView.horizontalAnchors == view.horizontalAnchors
             topBarView.heightAnchor == Layout.TabBarView.height
             tableView.topAnchor == topBarView.bottomAnchor
-            tableView.bottomAnchor == view.safeBottomAnchor - 64
+            tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_64
             tableView.horizontalAnchors == view.horizontalAnchors
         } else if pageName == .prepareCheckList {
             view.addSubview(tableView)
-            tableView.topAnchor == view.safeTopAnchor + 16
-            tableView.bottomAnchor == view.safeBottomAnchor - 16
-            tableView.horizontalAnchors == view.horizontalAnchors
+			if #available(iOS 11.0, *) {
+				tableView.topAnchor == view.safeTopAnchor + Layout.padding_16
+				tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_16
+				tableView.horizontalAnchors == view.horizontalAnchors
+			} else {
+				tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
+				tableView.bottomAnchor == view.bottomAnchor
+				tableView.leftAnchor == view.leftAnchor
+				tableView.rightAnchor == view.rightAnchor
+			}
         }
     }
 
@@ -260,10 +267,10 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
 
             if viewModel.isCellExpanded(at: indexPath.row) {
                 // return content label y position + height + bottom padding
-                return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + 20.0
+                return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + Layout.padding_20
             }
             // return image button yPos, - an offset
-            return cell.previewImageButton.frame.origin.y - 10
+            return cell.previewImageButton.frame.origin.y - Layout.padding_10
         case .reviewNotesItem:
             return 60
         case .reviewNotesHeader,
@@ -280,13 +287,13 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             if viewModel.isCellExpanded(at: indexPath.row) {
                 if readMoreID == nil {
                     // return content label y position + height + bottom padding
-                    return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + 20.0
+                    return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + Layout.padding_20
                 }
                 // return read more button y position + height + bottom padding
-                return cell.readMoreButton.frame.origin.y + cell.readMoreButton.bounds.height + 20.0
+                return cell.readMoreButton.frame.origin.y + cell.readMoreButton.bounds.height + Layout.padding_20
             }
             // return header label y position + height + bottom padding
-            return cell.headerLabel.frame.origin.y + cell.headerLabel.frame.height + 20.0
+            return cell.headerLabel.frame.origin.y + cell.headerLabel.frame.height + Layout.padding_20
         default:
             return UITableViewAutomaticDimension
         }
