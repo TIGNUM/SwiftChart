@@ -59,7 +59,9 @@ extension ShareViewController: ShareViewControllerInterface {
 
     func setup() {
         contentViews.forEach { $0.backgroundColor = .clear }
-        toBeVisionButton.isSelected = true
+        if toBeVisionButton.isSelected == false, weeklyChoicesButton.isSelected == false {
+            toBeVisionButton.isSelected = true
+        }
         let name = interactor?.partner.name?.uppercased() ?? ""
         let surname = interactor?.partner.surname?.uppercased() ?? ""
         nameLabel.text = name + " " + surname
