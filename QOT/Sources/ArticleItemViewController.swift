@@ -46,6 +46,10 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
                             ErrorCell.self)
     }()
 
+    private var paddingTop: CGFloat {
+        return pageName == .libraryArticle ? Layout.paddingTop : view.safeMargins.top + Layout.articleImageHeight
+    }
+
     // MARK: - Init
 
     init(pageName: PageName,
@@ -99,7 +103,7 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.paddingTop
+        tableView.contentInset.top = paddingTop
         tableView.contentInset.bottom = view.safeMargins.bottom
         view.setFadeMask(at: fadeMaskLocation)
     }
@@ -167,9 +171,9 @@ private extension ArticleItemViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.safeTopAnchor == view.safeTopAnchor
+            tableView.contentInset.top = paddingTop
 			tableView.leftAnchor == view.leftAnchor
 			tableView.rightAnchor == view.rightAnchor
-            tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.paddingTop
             tableView.contentInset.bottom = view.safeMargins.bottom
         } else {
             tableView.topAnchor == view.topAnchor + Layout.statusBarHeight

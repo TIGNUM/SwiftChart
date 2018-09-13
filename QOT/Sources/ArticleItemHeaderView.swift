@@ -18,6 +18,7 @@ final class ArticleItemHeaderView: UIView {
     @IBOutlet private weak var dateLabel: UILabel!
     @IBOutlet private weak var durationLabel: UILabel!
 	@IBOutlet private weak var articleThumbnail: UIImageView!
+    @IBOutlet private var titleTopContraint: NSLayoutConstraint!
 
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -45,9 +46,15 @@ final class ArticleItemHeaderView: UIView {
 													  font: Font.H7Tag,
 													  textColor: .white20,
 													  alignment: .left)
-		articleThumbnail.kf.setImage(with: header.thumbnail)
-		articleThumbnail.layer.cornerRadius = 8
-		articleThumbnail.layer.masksToBounds = true
+        if let image = header.thumbnail {
+            articleThumbnail.kf.setImage(with: image)
+            articleThumbnail.layer.cornerRadius = Layout.CornerRadius.eight.rawValue
+            articleThumbnail.layer.masksToBounds = true
+        } else {
+            articleThumbnail.removeFromSuperview()
+            titleTopContraint.isActive = true
+            layoutIfNeeded()
+        }
     }
 
     private func attributedText(letterSpacing: CGFloat = 2,

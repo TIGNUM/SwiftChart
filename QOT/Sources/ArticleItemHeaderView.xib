@@ -65,6 +65,7 @@
                 <constraint firstItem="heR-bY-EbL" firstAttribute="top" secondItem="T5e-o1-72O" secondAttribute="bottom" constant="10" id="Uwh-ua-tNk"/>
                 <constraint firstItem="T5e-o1-72O" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="28" id="Uwx-hQ-jsP"/>
                 <constraint firstItem="8Oy-Ph-XGt" firstAttribute="top" secondItem="heR-bY-EbL" secondAttribute="bottom" constant="8" id="VXM-E3-ODp"/>
+                <constraint firstItem="heR-bY-EbL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cqC-gU-tze"/>
                 <constraint firstItem="CE2-X6-Sye" firstAttribute="top" secondItem="8uF-Nr-OZC" secondAttribute="top" id="eum-0G-ANp"/>
                 <constraint firstAttribute="trailing" secondItem="T5e-o1-72O" secondAttribute="trailing" constant="28" id="fJH-v5-nyN"/>
                 <constraint firstAttribute="bottom" secondItem="8uF-Nr-OZC" secondAttribute="bottom" id="mKZ-p2-nX7"/>
@@ -72,12 +73,18 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="cqC-gU-tze"/>
+                </mask>
+            </variation>
             <connections>
                 <outlet property="articleThumbnail" destination="T5e-o1-72O" id="AJY-Ha-pOB"/>
                 <outlet property="dateLabel" destination="8uF-Nr-OZC" id="KKD-up-hF0"/>
                 <outlet property="durationLabel" destination="CE2-X6-Sye" id="VQ3-94-3F1"/>
                 <outlet property="subTitleLabel" destination="8Oy-Ph-XGt" id="5n8-my-1K6"/>
                 <outlet property="titleLabel" destination="heR-bY-EbL" id="qCl-Br-UVC"/>
+                <outlet property="titleTopContraint" destination="cqC-gU-tze" id="VES-mw-KGU"/>
             </connections>
             <point key="canvasLocation" x="78.5" y="83.5"/>
         </view>
