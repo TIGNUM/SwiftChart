@@ -38,6 +38,8 @@ struct Layout {
 
     static let statusBarHeight: CGFloat = 64
     static let paddingTop: CGFloat = 24
+    static let padding_07: CGFloat = 7
+    static let padding_20: CGFloat = 20
     static let articleImageHeight: CGFloat = 200
 
     struct TabBarView {
@@ -55,6 +57,10 @@ struct Layout {
     struct MeSection {
         static let maxWeeklyPage = 5
         static let maxPartners = 3
+    }
+
+    struct Device {
+        static let iPhone5width: CGFloat = 374
     }
 }
 
@@ -89,13 +95,13 @@ struct Font {
     /// SIMPLE REGULAR 32 // video title, main diagram title, sidemenu
     static let H2SecondaryTitle = UIFont.simpleFont(ofSize: 32)
 
-    /// SIMPLE REGULAR 24 // bubble title, ME numbers, ME secondary cards title
+    /// SIMPLE REGULAR 24 // ME numbers, ME secondary cards title
     static let H3Subtitle = UIFont.simpleFont(ofSize: 24)
 
     /// SIMPLE REGULAR 20 // recommended article title
     static let H4Headline = UIFont.simpleFont(ofSize: 20)
 
-    /// SIMPLE REGULAR 18 // strategy title
+    /// SIMPLE REGULAR 18 // bubble title, strategy title
     static let H4Identifier = UIFont.simpleFont(ofSize: 18)
 
     /// SIMPLE REGULAR 16 // strategy title

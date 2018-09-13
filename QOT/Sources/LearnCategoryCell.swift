@@ -17,29 +17,34 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     private var shapeDashLayer: CAShapeLayer?
     private var outerLayer: CAGradientLayer?
     private var percentageLearned = 0.0
-    private lazy var contentCountLabel = UILabel()
+    private lazy var titleLabel = UILabel()
     private var indexPath = IndexPath(item: 0, section: 0)
 
-    private lazy var titleLabel: UILabel = {
+    private lazy var learnedContentLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
         return label
     }()
 
     private lazy var textContainerView: UIView = {
         let view = UIView()
+        view.addSubview(self.learnedContentLabel)
         view.addSubview(self.titleLabel)
-        view.addSubview(self.contentCountLabel)
         self.contentView.addSubview(view)
-
         return view
     }()
+
+    private var titleFont: UIFont {
+        return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? Font.H4Identifier : UIFont.simpleFont(ofSize: 13)
+    }
+
+    private var percentageFont: UIFont {
+        return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? Font.H7Tag : UIFont.bentonRegularFont(ofSize: 10)
+    }
 
     // MARK: - Init
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         backgroundColor = .clear
         setupLayout()
     }
@@ -50,7 +55,6 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         contentView.layer.cornerRadius = frame.width / 2
         contentView.layer.masksToBounds = true
         drawCircles(frame: frame)
@@ -69,12 +73,10 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         let start: CGFloat = 0.0
         let end = 2.0 * CGFloat.pi
         let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: start, endAngle: end, clockwise: true)
-
         let gradient = CAGradientLayer()
         gradient.frame = frame
         gradient.colors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0.40).cgColor]
         gradient.locations = [0.6, 1.0]
-
         let shape = CAShapeLayer()
         shape.path = path.cgPath
         shape.strokeColor = UIColor.white.cgColor
@@ -93,7 +95,6 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         let start: CGFloat = (3 * CGFloat.pi ) / 2
         let end: CGFloat = 2.0 * CGFloat.pi * CGFloat(percentageLearned) + start
         let path = UIBezierPath(arcCenter: center, radius: radius, startAngle: start, endAngle: end, clockwise: true)
-
         let layer = CAShapeLayer()
         layer.path = path.cgPath
         layer.fillColor = UIColor.clear.cgColor
@@ -101,7 +102,6 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         layer.lineWidth = 5.0
         layer.lineDashPattern = [1]
         layer.addGlowEffect(color: UIColor.white)
-
         shapeDashLayer?.removeFromSuperlayer()
         contentView.layer.addSublayer(layer)
         shapeDashLayer = layer
@@ -109,29 +109,27 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     func configure(with category: LearnCategoryListViewModel.Item, indexPath: IndexPath) {
         self.indexPath = indexPath
-
-        // @warning iPhone5s HACK - we want margins, but in doing so messes up text on the 5s, we go for an old-school hack
-        let titleFont = UIScreen.main.bounds.width >= 375 ? Font.H7Tag : UIFont.bentonRegularFont(ofSize: 10)
-        let attributedTextTitle = NSMutableAttributedString(
-            string: category.title.uppercased(),
-            letterSpacing: 2,
-            font: titleFont,
-            lineSpacing: 2.5,
-            textColor: .white60,
-            lineBreakMode: .byTruncatingTail
-        )
-        let attributedTextCount = NSMutableAttributedString(
-            string: "\(category.viewedCount)/\(category.itemCount)",
-            letterSpacing: -1.1,
-            font: Font.H3Subtitle,
-            lineSpacing: 2
-        )
+		let attributedTextTitle = NSMutableAttributedString(string: category.title.uppercased(),
+															letterSpacing: 1.1,
+															font: titleFont,
+															lineSpacing: 2,
+															textColor: .white,
+															lineBreakMode: .byWordWrapping)
+		let attributedTextCount = NSMutableAttributedString(string: "\(category.viewedCount) OUT OF \(category.itemCount)",
+			letterSpacing: 2,
+			font: percentageFont,
+			lineSpacing: 2.5,
+			textColor: .white60)
         if percentageLearned != category.percentageLearned {
             percentageLearned = category.percentageLearned
         }
 
+        learnedContentLabel.attributedText = attributedTextCount
         titleLabel.attributedText = attributedTextTitle
-        contentCountLabel.attributedText = attributedTextCount
+		learnedContentLabel.textAlignment = .center
+		titleLabel.textAlignment = .center
+		titleLabel.adjustsFontSizeToFitWidth = true
+		titleLabel.numberOfLines = 0
     }
 
     private func applyGradient(frame: CGRect) {
@@ -139,7 +137,6 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         gradient.frame = frame
         gradient.colors = [UIColor.white.cgColor, UIColor.white.withAlphaComponent(0.40).cgColor]
         gradient.locations = [0.6, 1.0]
-
         let shape = CAShapeLayer()
         let lineWidth: CGFloat = 2
         let frame = gradient.bounds
@@ -185,13 +182,12 @@ private extension LearnCategoryCell {
         topGuide.heightAnchor == bottomGuide.heightAnchor
 
         // configure the inbtween content
-        let padding = 20.0
-        contentCountLabel.topAnchor == topGuide.bottomAnchor
-        contentCountLabel.leadingAnchor == textContainerView.leadingAnchor + padding
-        contentCountLabel.trailingAnchor == textContainerView.trailingAnchor - padding
+        titleLabel.topAnchor == topGuide.bottomAnchor
+        titleLabel.leadingAnchor == textContainerView.leadingAnchor + Layout.padding_20
+        titleLabel.trailingAnchor == textContainerView.trailingAnchor - Layout.padding_20
 
-        titleLabel.topAnchor == contentCountLabel.bottomAnchor
-        titleLabel.horizontalAnchors == contentCountLabel.horizontalAnchors
-        titleLabel.bottomAnchor == bottomGuide.topAnchor
+        learnedContentLabel.topAnchor == titleLabel.bottomAnchor + Layout.padding_07
+        learnedContentLabel.horizontalAnchors == titleLabel.horizontalAnchors
+        learnedContentLabel.bottomAnchor == bottomGuide.topAnchor
     }
 }
