@@ -60,6 +60,28 @@ final class ProfileSettingsWorker {
         }
     }
 
+    func updateProfileGivenName(_ new: ProfileSettingsModel) {
+        guard let user = user, let old = profile(), old != new else { return }
+
+        if old.givenName?.caseInsensitiveCompare(new.givenName ?? "") != .orderedSame {
+            services.userService.updateUserGivenName(user: user, name: new.givenName ?? "")
+            syncManger.upSyncUser(completion: { error in
+                log(error?.localizedDescription ?? String(describing: error), level: .error)
+            })
+        }
+    }
+
+    func updateProfileFamilyName(_ new: ProfileSettingsModel) {
+        guard let user = user, let old = profile(), old != new else { return }
+
+        if old.familyName?.caseInsensitiveCompare(new.familyName ?? "") != .orderedSame {
+            services.userService.updateUserFamilyName(user: user, name: new.familyName ?? "")
+            syncManger.upSyncUser(completion: { error in
+                log(error?.localizedDescription ?? String(describing: error), level: .error)
+            })
+        }
+    }
+
     func updateProfileGender(_ new: ProfileSettingsModel) {
         guard let user = user, let old = profile(), old != new else { return }
 

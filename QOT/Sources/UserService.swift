@@ -42,6 +42,18 @@ final class UserService {
         }
     }
 
+    func updateUserGivenName(user: User, name: String) {
+        updateUser(user: user) {
+            $0.givenName = name
+        }
+    }
+
+    func updateUserFamilyName(user: User, name: String) {
+        updateUser(user: user) {
+            $0.familyName = name
+        }
+    }
+
     func updateUserGender(user: User, gender: String) {
         updateUser(user: user) {
             $0.gender = gender.replacingOccurrences(of: " ", with: "_").uppercased()

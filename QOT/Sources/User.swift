@@ -47,9 +47,9 @@ final class User: SyncableObject {
 
     // MARK: Data
 
-    @objc private(set) dynamic var givenName: String = ""
+    @objc dynamic var givenName: String = ""
 
-    @objc private(set) dynamic var familyName: String = ""
+    @objc dynamic var familyName: String = ""
 
     @objc private(set) dynamic var zipCode: String?
 

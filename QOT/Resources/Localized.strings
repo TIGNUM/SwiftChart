@@ -22,6 +22,8 @@
 "Settings.General.Company.Title" = "Company";
 "Settings.General.Email.Title" = "Email";
 "Settings.General.Telephone.Title" = "Telephone";
+"Settings.General.FirstName.Title" = "First Name";
+"Settings.General.LastName.Title" = "Last Name";
 "Settings.General.Gender.Title" = "Gender";
 "Settings.General.DateOfBirth.Title" = "Date Of Birth";
 "Settings.General.Weight.Title" = "Weight";

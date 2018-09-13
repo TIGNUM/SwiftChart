@@ -41,10 +41,10 @@ final class SettingsMenuHeader: UIView {
         return view
     }
 
-    func configure(imageURL: URL?, name: String, position: String, viewModel: SettingsMenuViewModel) {
+    func configure(imageURL: URL?, firstName: String, lastName: String, position: String, viewModel: SettingsMenuViewModel) {
         self.viewModel = viewModel
-        nameLabel.text = name.uppercased()
-        positionLabel.text = position.uppercased()
+        updateUserName(firstName: firstName, lastName: lastName)
+        updateJobTitle(title: position)
         userImageView.kf.setImage(with: imageURL,
                                   placeholder: R.image.placeholder_user(),
                                   options: nil,
@@ -58,6 +58,10 @@ final class SettingsMenuHeader: UIView {
 
     func updateJobTitle(title: String) {
         self.positionLabel.text = title.uppercased()
+    }
+
+    func updateUserName(firstName: String, lastName: String) {
+        self.nameLabel.text = (firstName + " " + lastName).uppercased()
     }
 }
 

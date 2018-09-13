@@ -12,6 +12,8 @@ enum ProfileField {
 
 	case telephone
 	case jobTitle
+    case givenName
+    case familyName
 	case gender
 	case birthday
 	case height
@@ -38,18 +40,28 @@ final class ProfileSettingsInteractor {
 
 extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
 
-	func updateProfile(field: ProfileField, profile: ProfileSettingsModel) {
-		switch field {
-		case .telephone: worker.updateProfileTelephone(profile)
-		case .jobTitle: worker.updateJobTitle(profile)
-		case .gender: worker.updateProfileGender(profile)
-		case .birthday: worker.updateProfileBirthday(profile)
-		case .height: worker.updateHeight(profile)
-		case .weight: worker.updateWeight(profile)
-		}
+    func updateProfile(field: ProfileField, profile: ProfileSettingsModel) {
+        switch field {
+        case .telephone:
+            worker.updateProfileTelephone(profile)
+        case .jobTitle:
+            worker.updateJobTitle(profile)
+        case .givenName:
+            worker.updateProfileGivenName(profile)
+        case .familyName:
+            worker.updateProfileFamilyName(profile)
+        case .gender:
+            worker.updateProfileGender(profile)
+        case .birthday:
+            worker.updateProfileBirthday(profile)
+        case .height:
+            worker.updateHeight(profile)
+        case .weight:
+            worker.updateWeight(profile)
+        }
 
-		presenter.updateSettingsMenu(profile)
-	}
+        presenter.updateSettingsMenu(profile)
+    }
 
     func updateSettingsMenuImage(image: UIImage, settingsMenu: ProfileSettingsModel) {
         do {

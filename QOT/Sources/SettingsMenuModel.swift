@@ -116,6 +116,8 @@ enum SettingsType: Int {
     case jobTitle
     case email
     case phone
+    case firstName
+    case lastName
     case gender
     case dateOfBirth
     case weight
@@ -142,6 +144,8 @@ enum SettingsType: Int {
         case .jobTitle: return R.string.localized.settingsGeneralJobTitleTitle()
         case .email: return R.string.localized.settingsGeneralEmailTitle()
         case .phone: return R.string.localized.settingsGeneralTelephoneTitle()
+        case .firstName: return R.string.localized.settingsGeneralFirstNameTitle()
+        case .lastName: return R.string.localized.settingsGeneralLastNameTitle()
         case .gender: return R.string.localized.settingsGeneralGenderTitle()
         case .dateOfBirth: return R.string.localized.settingsGeneralDateOfBirthTitle()
         case .weight: return R.string.localized.settingsGeneralWeightTitle()
@@ -465,6 +469,8 @@ private func personalRows(for user: User?) -> [SettingsRow] {
     }
 
     return [
+        .textField(title: SettingsType.firstName.title, value: user.givenName, secure: false, settingsType: .firstName),
+        .textField(title: SettingsType.lastName.title, value: user.familyName, secure: false, settingsType: .lastName),
         .stringPicker(title: SettingsType.gender.title,
                       pickerItems: Gender.allValues.compactMap { $0.dsiplayValue },
                       selectedIndex: selectedGenderIndex,

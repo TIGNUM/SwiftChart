@@ -235,7 +235,8 @@ private extension ProfileSettingsViewController {
             let name = profile?.givenName,
             let surname = profile?.familyName else { return }
         headerView.configure(imageURL: profile?.imageURL,
-                             name: name + " " + surname,
+                             firstName: name,
+                             lastName: surname,
                              position: profile?.position ?? "",
                              viewModel: settingsMenuViewModel)
     }
@@ -435,19 +436,7 @@ extension ProfileSettingsViewController: ResetPasswordViewControllerDelegate {
 extension ProfileSettingsViewController: SettingsViewControllerDelegate {
 
     func didTextFieldEndEditing(at indexPath: IndexPath, text: String) {
-        guard var profile = profile else { return }
-        switch indexPath.row {
-        case 1:
-            if text.isTrimmedTextEmpty == false {
-                profile.position = text
-                headerView.updateJobTitle(title: text)
-            }
-            interactor?.updateProfile(field: .jobTitle, profile: profile)
-        case 3:
-            profile.telephone = text
-            interactor?.updateProfile(field: .telephone, profile: profile)
-        default: return
-        }
+        didTextFieldChanged(at: indexPath, text: text)
         tableView.reloadData()
     }
 
@@ -458,6 +447,16 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
     }
 
     func didTextFieldChanged(at indexPath: IndexPath, text: String) {
+        switch indexPath.section {
+        case 0:
+            didChangeTextFieldInContentSection(at: indexPath, text: text)
+        case 1:
+            didChangeTextFieldInPersonalSection(at: indexPath, text: text)
+        default: return
+        }
+    }
+
+    func didChangeTextFieldInContentSection(at indexPath: IndexPath, text: String) {
         guard var profile = profile else { return }
         switch indexPath.row {
         case 1:
@@ -471,6 +470,24 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
             interactor?.updateProfile(field: .telephone, profile: profile)
         default: return
         }
+    }
+
+    func didChangeTextFieldInPersonalSection(at indexPath: IndexPath, text: String) {
+        guard var profile = profile else { return }
+        switch indexPath.row {
+        case 0: // FirstName
+            if text.isTrimmedTextEmpty == false {
+                profile.givenName = text
+                interactor?.updateProfile(field: .givenName, profile: profile)
+            }
+        case 1: // LastName
+            if text.isTrimmedTextEmpty == false {
+                profile.familyName = text
+                interactor?.updateProfile(field: .familyName, profile: profile)
+            }
+        default: return
+        }
+        headerView.updateUserName(firstName: profile.givenName ?? "", lastName: profile.familyName ?? "")
     }
 
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
