@@ -27,6 +27,7 @@ enum Database {
         case visionGenerator = "TBV_GENERATOR"
         case feedbackMessage = "FEEDBACK_MESSAGE"
         case partnersLandingPage = "PARTNERS_LANDING_PAGE"
+        case generic = "GENERIC"
 
         var value: String {
             return rawValue

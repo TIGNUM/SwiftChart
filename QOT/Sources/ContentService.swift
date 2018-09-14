@@ -224,13 +224,30 @@ extension ContentService {
 
 extension ContentService {
 
-    func releaseManagerCategory() -> ContentCategory? {
+    private func releaseManagerCategory() -> ContentCategory? {
         let feedbackMessageCategories = mainRealm.contentCategories(section: .feedbackMessage)
         return feedbackMessageCategories.filter(NSPredicate(title: "Release Manager")).first
     }
 
     func releaseManagerValue(for type: SirenMessagingType) -> String? {
         guard let category = releaseManagerCategory() else { return nil }
+        var items = [ContentItem]()
+        category.contentCollections.forEach { items.append(contentsOf: Array($0.items)) }
+        return items.filter { $0.searchTags == type.rawValue }.first?.valueText
+    }
+}
+
+// MARK: - iPad Advice View
+
+extension ContentService {
+
+    private func iPadAdviceCategory() -> ContentCategory? {
+        let iPadAdviceCategories = mainRealm.contentCategories(section: .generic)
+        return iPadAdviceCategories.filter(NSPredicate(title: "iPad Advice")).first
+    }
+
+    func iPadAdviceValue(for type: IPadAdviceViewType) -> String? {
+        guard let category = iPadAdviceCategory() else { return nil }
         var items = [ContentItem]()
         category.contentCollections.forEach { items.append(contentsOf: Array($0.items)) }
         return items.filter { $0.searchTags == type.rawValue }.first?.valueText

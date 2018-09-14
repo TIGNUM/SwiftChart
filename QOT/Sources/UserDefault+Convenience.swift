@@ -14,12 +14,13 @@ enum UserDefault: String {
     case lastInstaledAppVersion = "qot.userdefault.key.last.installed.app.version"
     case hasShownOnbordingSlideShowInAppBuild = "qot.userdefault.key.onboardingSlideShow"
     case whatsHotListLastViewed = "qot.userdefault.key.whatsHotListLastViewed"
+    case iPadAdviceDoNotShowAgain = "qot.userdefault.key.iPadAdviceDoNotShowAgain"
 }
 
 extension UserDefault {
 
     static func objectsToClearOnLogout() -> [UserDefault] {
-        return [.calendarDictionary, .whatsHotListLastViewed]
+        return [.calendarDictionary, .whatsHotListLastViewed, .iPadAdviceDoNotShowAgain]
     }
 
     static func objectsToClearOnNewRegistration() -> [UserDefault] {
@@ -27,7 +28,8 @@ extension UserDefault {
                 .newGuideItem,
                 .lastInstaledAppVersion,
                 .hasShownOnbordingSlideShowInAppBuild,
-                .whatsHotListLastViewed]
+                .whatsHotListLastViewed,
+                .iPadAdviceDoNotShowAgain]
     }
 
     var boolValue: Bool {

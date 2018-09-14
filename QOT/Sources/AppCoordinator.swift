@@ -33,6 +33,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private var onDismiss: (() -> Void)?
     private var onDismissWithResults: ((_ results: [WeeklyChoice], _ syncManager: SyncManager) -> Void)?
     private var destination: AppCoordinator.Router.Destination?
+    private var iPadAdviceCompletion: (() -> Void)?
     private let userIsLoggingIn = Atomic(false)
     private weak var tabBarCoordinator: TabBarCoordinator?
     private weak var topTabBarController: UINavigationController?
@@ -90,8 +91,23 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             return (start, end)
         })
         manager.delegate = self
-
         return manager
+    }()
+
+    private lazy var iPadAdviceView: IPadAdviceView? = {
+        let advice = R.nib.iPadAdviceView().instantiate(withOwner: nil, options: nil).first as? IPadAdviceView
+        if
+            let title = IPadAdviceViewType.title.value(contentService: services?.contentService),
+            let body = IPadAdviceViewType.body.value(contentService: services?.contentService),
+            let buttonDismiss = IPadAdviceViewType.buttonDismiss.value(contentService: services?.contentService),
+            let buttonDoNotShow = IPadAdviceViewType.buttonDoNotShowAgain.value(contentService: services?.contentService) {
+                advice?.setupView(title: title,
+                                  body: body,
+                                  buttonTitleDismiss: buttonDismiss,
+                                  buttonTitleDoNotShow: buttonDoNotShow)
+        }
+        advice?.delegate = self
+        return advice
     }()
 
     // MARK: - Life Cycle
@@ -126,7 +142,9 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             viewController.fadeInLogo()
             viewController.startAnimatingImages { [unowned viewController] in
                 viewController.fadeOutLogo {
-                    dispatchGroup.leave()
+                    self.showIpadSupportViewIfNeeded {
+                        dispatchGroup.leave()
+                    }
                 }
             }
         })
@@ -308,6 +326,21 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 // MARK: - private
 
 private extension AppCoordinator {
+
+    func showIpadSupportViewIfNeeded(completion: (() -> Void)?) {
+        if UIDevice.isPad == true && UserDefault.iPadAdviceDoNotShowAgain.boolValue == false {
+            if let iPadAdvice = iPadAdviceView {
+                iPadAdvice.alpha = 0
+                AppDelegate.topViewController()?.view.addSubview(iPadAdvice)
+                iPadAdviceCompletion = completion
+                UIView.animate(withDuration: Animation.duration_06) {
+                    iPadAdvice.alpha = 1
+                }
+            }
+        } else {
+            completion?()
+        }
+    }
 
     func observeTimeZoneChange() {
         NotificationCenter.default.addObserver(self, selector: #selector(timeZoneDidChange), name: .NSSystemTimeZoneDidChange, object: nil)
@@ -1122,5 +1155,19 @@ extension AppCoordinator: ChatViewControllerDelegate {
             let chatViewController = viewController as? ChatViewController<PrepareAnswer>,
             let indexPath = destination?.chatSection.indexPath else { return }
         chatViewController.collectionView(collectionView, didSelectItemAt: indexPath)
+    }
+}
+
+extension AppCoordinator: IPadAdviceViewDelegate {
+
+    func dismiss() {
+        if let iPadAdvice = iPadAdviceView {
+            UIView.animate(withDuration: Animation.duration_06, animations: {
+                iPadAdvice.alpha = 0
+            }, completion: { _ in
+                iPadAdvice.removeFromSuperview()
+                self.iPadAdviceCompletion?()
+            })
+        }
     }
 }

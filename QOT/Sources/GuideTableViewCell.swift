@@ -18,7 +18,6 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         statusView.maskPathByRoundingCorners()
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
     }

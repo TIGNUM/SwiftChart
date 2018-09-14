@@ -35,14 +35,12 @@ final class TabBarController: UITabBarController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         apply(config)
         delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         if config.useIndicatorView == true {
             if indicatorView == nil {
                 setupIndicatorView()

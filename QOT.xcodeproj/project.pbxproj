@@ -33,6 +33,8 @@
 		363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */; };
 		363178E71FDEECDE00833958 /* RealmGuideItemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */; };
 		36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F1F1FCEB90B004E9034 /* GuideViewController.swift */; };
+		36424980214A55CB0018A4A7 /* IPadAdviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */; };
+		36424982214A55E80018A4A7 /* IPadAdviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36424981214A55E80018A4A7 /* IPadAdviceView.xib */; };
 		3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0321FE323EE001F4249 /* RealmGuideTime.swift */; };
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
@@ -151,6 +153,7 @@
 		36D535DF20A711E800F1C2FC /* PartnerEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D535D720A711E700F1C2FC /* PartnerEditViewController.swift */; };
 		36D535E020A711E800F1C2FC /* PartnerEditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D535D820A711E700F1C2FC /* PartnerEditInteractor.swift */; };
 		36D535E220A711E800F1C2FC /* PartnerEditConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D535DA20A711E700F1C2FC /* PartnerEditConfigurator.swift */; };
+		36D58A562149727600D5E6D2 /* UIDevice+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */; };
 		36DA661620EBBF9E007089E3 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DA661520EBBF9E007089E3 /* TextField.swift */; };
 		36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */; };
 		36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */; };
@@ -812,6 +815,8 @@
 		363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmGuideItemLearn.swift; sourceTree = "<group>"; };
 		363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItemNotification.swift; sourceTree = "<group>"; };
 		36328F1F1FCEB90B004E9034 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadAdviceView.swift; sourceTree = "<group>"; };
+		36424981214A55E80018A4A7 /* IPadAdviceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IPadAdviceView.xib; sourceTree = "<group>"; };
 		3649C0321FE323EE001F4249 /* RealmGuideTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideTime.swift; sourceTree = "<group>"; };
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
@@ -930,6 +935,7 @@
 		36D535D720A711E700F1C2FC /* PartnerEditViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditViewController.swift; sourceTree = "<group>"; };
 		36D535D820A711E700F1C2FC /* PartnerEditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditInteractor.swift; sourceTree = "<group>"; };
 		36D535DA20A711E700F1C2FC /* PartnerEditConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditConfigurator.swift; sourceTree = "<group>"; };
+		36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Convenience.swift"; sourceTree = "<group>"; };
 		36DA661520EBBF9E007089E3 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminCoordinator.swift; sourceTree = "<group>"; };
 		36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminViewController.swift; sourceTree = "<group>"; };
@@ -1600,6 +1606,15 @@
 				CB6BF030200CB28C0020241B /* RealmInterviewResult.swift */,
 			);
 			name = Guide;
+			sourceTree = "<group>";
+		};
+		3642496C214A50DE0018A4A7 /* iPad Advice */ = {
+			isa = PBXGroup;
+			children = (
+				3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */,
+				36424981214A55E80018A4A7 /* IPadAdviceView.xib */,
+			);
+			name = "iPad Advice";
 			sourceTree = "<group>";
 		};
 		36433D1B203EBFB30043F853 /* HTML */ = {
@@ -2548,7 +2563,6 @@
 				9150411C20FDF2C700D43D18 /* Add Sensor */,
 				CBE8808B1FE4368300670C10 /* Guide */,
 				D5B707241F03A21E00C812EB /* Morning Interview */,
-				912C9E32203C701300C1AA76 /* ToBeVision */,
 				36FB012D20A63C8800472E6F /* PartnerEdit */,
 				3674FF1F20AADDED008EEB6C /* Partners Overview */,
 				91F5BE3C2097573500E85A51 /* Permissions */,
@@ -2558,6 +2572,7 @@
 				CB3333DD20480DA2009480DF /* Share */,
 				366AFD2320BEC8D200109F29 /* Signing */,
 				CB9442261FD963B200E2B122 /* SlideShow */,
+				912C9E32203C701300C1AA76 /* ToBeVision */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -2769,6 +2784,7 @@
 				CBB4DD461EE0911A0071494A /* Common */,
 				CB873292202AED1F0081F522 /* GradientView */,
 				7F01A6221F98A1F5002C7B72 /* ImagePicker */,
+				3642496C214A50DE0018A4A7 /* iPad Advice */,
 				CBB4DD3F1EE08EF90071494A /* Launch */,
 				CBB4DD281EE088050071494A /* Learn Category */,
 				CBB4DD291EE0882D0071494A /* Learn Content */,
@@ -2931,6 +2947,7 @@
 				7FE38DD41F2B2E760061E98F /* UIBarButtonItem+Convenience.swift */,
 				CC1E2A5E1EDF1DE100B9EFD3 /* UICollectionView+Create.swift */,
 				CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */,
+				36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */,
 				7F47E83F1F8E4FE000ED4446 /* UIDevice+Utility.swift */,
 				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
 				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
@@ -3741,6 +3758,7 @@
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
 				36DC825120D54A6900CDEC34 /* SigningCountryTableViewCell.xib in Resources */,
 				851676DF1F3C694B007A1DD6 /* LearnReadMoreCell.xib in Resources */,
+				36424982214A55E80018A4A7 /* IPadAdviceView.xib in Resources */,
 				36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
@@ -4176,6 +4194,7 @@
 				CB3437721F00ED3200D89D4F /* RealmObserver.swift in Sources */,
 				914A5E1B207FB33200092121 /* SettingsBubblesRouter.swift in Sources */,
 				36796A0520D3C41F00B55429 /* SigningCreatePasswordViewController.swift in Sources */,
+				36424980214A55CB0018A4A7 /* IPadAdviceView.swift in Sources */,
 				CBE880931FE9153200670C10 /* GuideItemID.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
@@ -4202,6 +4221,7 @@
 				CB9442301FD97DE200E2B122 /* SlideShowRouter.swift in Sources */,
 				CB3333F320494D27009480DF /* AuthTokenValidator.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
+				36D58A562149727600D5E6D2 /* UIDevice+Convenience.swift in Sources */,
 				CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */,
 				CBD4BE97201246D4008A0E9E /* GuideProvider.swift in Sources */,
 				9166ECED20A07C2F006DF113 /* GuideToBeVisionTableViewCell.swift in Sources */,
