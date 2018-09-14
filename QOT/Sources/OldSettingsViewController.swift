@@ -192,6 +192,12 @@ private extension OldSettingsViewController {
         pickerView.leadingAnchor == pickerContentView.leadingAnchor
         pickerView.trailingAnchor == pickerContentView.trailingAnchor
         pickerView.bottomAnchor == pickerContentView.bottomAnchor
+        pickerToolBar.tintColor = .clear
+        if #available(iOS 11.0, *) {
+
+        } else {
+            tableView.contentInset.top = Layout.statusBarHeight + Layout.padding_20
+        }
 
         if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
             fadeContainerView.setFade(top: navigationBarHeight + 32, bottom: 0)
