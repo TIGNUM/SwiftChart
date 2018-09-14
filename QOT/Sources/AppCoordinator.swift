@@ -556,13 +556,37 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
     }
 }
 
-// MARK: - RemoteNotificationHandlerDelegate
+// MARK: - RemoteNotificationHandlerDelegate (Handle Response)
 
 extension AppCoordinator: RemoteNotificationHandlerDelegate {
 
     func remoteNotificationHandler(_ handler: RemoteNotificationHandler,
                                    canProcessNotificationResponse: UANotificationResponse) -> Bool {
         return canProcessRemoteNotifications
+    }
+}
+
+// MARK: - Handle incomming RemoteNotification
+
+extension AppCoordinator {
+    func syncUserDependentData(completionHandler: (() -> Void)?) {
+        calendarImportManager.importEvents()
+        syncManager.syncUserDependentData(syncContext: nil) { (error) in
+            completionHandler?()
+        }
+    }
+
+    func handleIncommingNotificationDeepLinkURL(url: URL) {
+        guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
+            return
+        }
+
+        switch scheme {
+        case .toBeVision:
+            services?.userService.setMyToBeVisionReminder(true)
+        default:
+            return
+        }
     }
 }
 

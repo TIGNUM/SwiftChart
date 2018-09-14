@@ -19,6 +19,7 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
     }
 
     func viewDidLoad() {
+        worker.setMyToBeVisionReminder(false)
         guard let toBeVision = worker.myToBeVision() else { return }
         presenter.loadToBeVision(toBeVision)
     }

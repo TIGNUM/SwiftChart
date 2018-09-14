@@ -23,6 +23,8 @@ final class MyToBeVision: SyncableObject {
     @objc dynamic var date: Date?
 
     @objc dynamic var changeStamp: String?
+
+    @objc dynamic var needsToRemind = false
 }
 
 extension MyToBeVision: TwoWaySyncableUniqueObject {
@@ -74,6 +76,7 @@ extension MyToBeVision {
         return MyToBeVisionModel.Model(headLine: headline,
                                        imageURL: profileImageResource?.url,
                                        lastUpdated: date,
-                                       text: text)
+                                       text: text,
+                                       needsToRemind: needsToRemind)
     }
 }

@@ -99,11 +99,11 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
 	}
 
     func makeToBeVisionItem() -> Guide.Item {
-        var isToBeVisionDone: Bool = true
-        var title = services.userService.myToBeVision()?.headline?.uppercased()
-        var body = services.userService.myToBeVision()?.text
-        let image = services.userService.myToBeVision()?.profileImageResource?.localURL ??
-            services.userService.myToBeVision()?.profileImageResource?.remoteURL
+        let myToBeVision = services.userService.myToBeVision()
+        var isToBeVisionDone: Bool = (myToBeVision?.needsToRemind == false)
+        var title = myToBeVision?.headline?.uppercased()
+        var body = myToBeVision?.text
+        let image = myToBeVision?.profileImageResource?.localURL ?? myToBeVision?.profileImageResource?.remoteURL
         if  title == nil ||
             body == nil ||
             title?.isTrimmedTextEmpty == true ||

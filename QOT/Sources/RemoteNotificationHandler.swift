@@ -19,15 +19,20 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
     private let launchHandler: LaunchHandler
     weak var delegate: RemoteNotificationHandlerDelegate?
 
+    private var appDelegate: AppDelegate {
+        return AppDelegate.current
+    }
+
     init(launchHandler: LaunchHandler) {
         self.launchHandler = launchHandler
         super.init()
     }
 
     func receivedBackgroundNotification(_ notificationContent: UANotificationContent, completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-        os_log("BackgroundFetch: Did Start Sync User Dependent Data.....")
-        launchHandler.syncUserDependentData {
-            os_log("BackgroundFetch: Did Finish Sync User Dependent Data.....")
+        if let deepLinkURL = notificationContent.deepLinkURL {
+            appDelegate.appCoordinator.handleIncommingNotificationDeepLinkURL(url: deepLinkURL)
+        }
+        appDelegate.appCoordinator.syncUserDependentData {
             completionHandler(.newData)
         }
     }

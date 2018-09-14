@@ -168,6 +168,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .toBeVision(let title, let body, let image):
             let cell: GuideToBeVisionTableViewCell = tableView.dequeueCell(for: indexPath)
+            // FIXME:
             cell.configure(title: title,
                            body: body,
                            status: item.status,
@@ -213,7 +214,12 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 		if item.isDailyPrep == true { return }
         router?.open(item: item)
         interactor?.didTapItem(item)
-        if item.isWhatsHot == true && item.status == .todo { interactor?.didTapWhatsHotItem(item) }
+
+        if item.isWhatsHot == true && item.status == .todo {
+            interactor?.didTapWhatsHotItem(item)
+        } else if item.isToBeVision {
+            interactor?.didTapMyToBeVision(item)
+        }
     }
 
     private func itemAt(indexPath: IndexPath) -> Guide.Item {

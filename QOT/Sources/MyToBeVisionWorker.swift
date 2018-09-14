@@ -47,6 +47,10 @@ final class MyToBeVisionWorker {
         return services.userService.myToBeVision()?.model
     }
 
+    func setMyToBeVisionReminder(_ remind: Bool) {
+        services.userService.setMyToBeVisionReminder(remind)
+    }
+
     func updateMyToBeVision(_ new: MyToBeVisionModel.Model) {
         services.userService.saveVisionAndSync(new, syncManager: syncManager, completion: nil)
         widgetDataManager.update(.toBeVision)

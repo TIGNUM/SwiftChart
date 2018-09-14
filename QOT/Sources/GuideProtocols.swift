@@ -23,6 +23,7 @@ protocol GuideInteractorInterface: Interactor {
     func reload()
     func didTapItem(_ item: Guide.Item)
     func didTapWhatsHotItem(_ item: Guide.Item)
+    func didTapMyToBeVision(_ item: Guide.Item)
 }
 
 protocol GuideRouterInterface {

@@ -68,4 +68,8 @@ final class GuideInteractor: GuideInteractorInterface {
     func didTapWhatsHotItem(_ item: Guide.Item) {
         worker.markWhatsHotRead(item: item)
     }
+
+    func didTapMyToBeVision(_ item: Guide.Item) {
+        worker.markToBeVisionRead(item: item)
+    }
 }

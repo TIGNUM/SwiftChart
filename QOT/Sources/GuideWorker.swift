@@ -95,6 +95,14 @@ final class GuideWorker {
         services.contentService.setContentCollectionViewed(localID: item.identifier)
     }
 
+    func markToBeVisionRead(item: Guide.Item) {
+        guard let myToBeVision = services.userService.myToBeVision(),
+            myToBeVision.text?.isTrimmedTextEmpty == false else {
+                return
+        }
+        services.userService.setMyToBeVisionReminder(false)
+    }
+
     private var hasSyncedNecessaryItems: Bool {
         return syncStateObserver.hasSynced(RealmGuideItemLearn.self)
             && syncStateObserver.hasSynced(RealmGuideItemNotification.self)

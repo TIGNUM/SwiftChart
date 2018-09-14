@@ -141,6 +141,17 @@ extension UserService {
         return AnyRealmCollection(mainRealm.objects(MyToBeVision.self))
     }
 
+    func setMyToBeVisionReminder(_ remind: Bool) {
+        do {
+            let realm = try realmProvider.realm()
+            try realm.write {
+                AnyRealmCollection(realm.objects(MyToBeVision.self)).last?.needsToRemind = remind
+            }
+        } catch {
+            log(error, level: .error)
+        }
+    }
+
     func saveVisionAndSync(_ new: MyToBeVisionModel.Model?, syncManager: SyncManager, completion: (() -> Void)?) {
         guard
             let old = myToBeVision(),
