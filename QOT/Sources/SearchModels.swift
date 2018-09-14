@@ -30,7 +30,7 @@ struct Search {
         case video
     }
 
-    struct Result {
+    struct Result: Equatable {
         let filter: Filter
         let title: String
         let contentID: Int?
@@ -41,5 +41,11 @@ struct Search {
         let mediaURL: URL?
         let displayType: DisplayType
         let duration: String
+
+        static func == (lhs: Search.Result, rhs: Search.Result) -> Bool {
+            return
+                lhs.title == rhs.title &&
+                lhs.displayType == rhs.displayType
+        }
     }
 }

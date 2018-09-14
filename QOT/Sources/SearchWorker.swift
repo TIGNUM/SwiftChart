@@ -93,10 +93,21 @@ final class SearchWorker {
         case .video: searchArray = contentItemsVideo
         case .audio: searchArray = contentItemsAudio
         }
-        return searchArray.filter { (item) -> Bool in
+        let searchResults = searchArray.filter { (item) -> Bool in
             return item.title.lowercased().contains(searchText.lowercased())
                 || item.searchTags.lowercased().contains(searchText.lowercased())
         }
+        return removeDuplicates(from: searchResults)
+    }
+
+    private func removeDuplicates(from results: [Search.Result]) -> [Search.Result] {
+        var tempResults = [Search.Result]()
+        for result in results {
+            if tempResults.contains(obj: result) == false {
+                tempResults.append(result)
+            }
+        }
+        return tempResults
     }
 
     func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String) {

@@ -294,8 +294,6 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             }
             // return header label y position + height + bottom padding
             return cell.headerLabel.frame.origin.y + cell.headerLabel.frame.height + Layout.padding_20
-        default:
-            return UITableViewAutomaticDimension
         }
     }
 }

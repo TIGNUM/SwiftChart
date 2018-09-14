@@ -50,14 +50,13 @@
             <constraints>
                 <constraint firstItem="fwn-5F-dz3" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="4EO-3T-kv7"/>
                 <constraint firstItem="iLX-7j-F9D" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="6NC-fy-Itk"/>
+                <constraint firstAttribute="bottom" secondItem="fwn-5F-dz3" secondAttribute="bottom" id="I4f-UW-eih"/>
                 <constraint firstItem="iLX-7j-F9D" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="20" id="ISR-3Y-3uB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fwn-5F-dz3" secondAttribute="trailing" id="PTy-tQ-Z43"/>
                 <constraint firstItem="iLX-7j-F9D" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="64" id="Pvh-VB-JGS"/>
                 <constraint firstItem="Omd-UX-Jwl" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="SQV-8w-zpw"/>
                 <constraint firstItem="fwn-5F-dz3" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="cQH-5L-te8"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="fwn-5F-dz3" secondAttribute="bottom" id="dxv-Pd-wUl"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Omd-UX-Jwl" secondAttribute="bottom" constant="20" id="fi4-Q1-WOT"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="iLX-7j-F9D" secondAttribute="trailing" constant="64" id="rSA-nV-ap8"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Omd-UX-Jwl" secondAttribute="trailing" id="xhO-XL-yy8"/>
                 <constraint firstItem="Omd-UX-Jwl" firstAttribute="top" secondItem="iLX-7j-F9D" secondAttribute="bottom" constant="20" id="yJo-1E-kng"/>
             </constraints>
