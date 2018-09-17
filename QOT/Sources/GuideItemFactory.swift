@@ -56,7 +56,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
         }
         return Guide.Item(status: status,
                           title: title,
-                          content: .text(content),
+                          content: .learningPlan(text: content, strategiesCompleted: nil),
                           subtitle: R.string.localized.guideCardPreparationSubtitle(),
                           isDailyPrep: false,
                           isLearningPlan: true,
@@ -170,9 +170,11 @@ private extension GuideItemFactory {
     }
 
     func guideItem(with item: RealmGuideItemLearn) -> Guide.Item? {
+        let isStrategy = item.type.caseInsensitiveCompare(RealmGuideItemLearn.ItemType.strategy.rawValue) == .orderedSame
+        let strategiesCompleted = isStrategy == true && item.block <= Defaults.totalNumberOfStrategies ? item.block : nil
         return Guide.Item(status: item.completedAt == nil ? .todo : .done,
                           title: item.title,
-                          content: .text(item.body),
+                          content: .learningPlan(text: item.body, strategiesCompleted: strategiesCompleted),
                           subtitle: item.displayType ?? "",
                           isDailyPrep: false,
                           isLearningPlan: true,
@@ -210,7 +212,7 @@ private extension GuideItemFactory {
             let items = dailyPrepItems(questions: questions, notification: notification, services: services)
             content = .dailyPrep(items: items, feedback: notification.dailyPrepFeedback)
         } else {
-            content = .text(notification.body)
+            content = .learningPlan(text: notification.body, strategiesCompleted: nil)
         }
 
         let buttonInfo = notificationButtonInfo(notification: notification)

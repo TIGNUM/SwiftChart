@@ -20,7 +20,7 @@ struct Guide {
     struct Item {
         enum Content {
             case toBeVision(title: String, body: String, image: URL?)
-            case text(String)
+            case learningPlan(text: String, strategiesCompleted: Int?)
             case dailyPrep(items: [DailyPrepItem], feedback: String?)
 			case whatsHotArticle(title: String, body: String, image: URL?)
         }
@@ -120,7 +120,7 @@ extension Guide.Item.Content: Equatable {
 
     static func == (lhs: Guide.Item.Content, rhs: Guide.Item.Content) -> Bool {
         switch (lhs, rhs) {
-        case let (.text(a), .text(b)):
+        case let (.learningPlan(a), .learningPlan(b)):
             return a == b
         case let (.dailyPrep(itemsA, feedbackA), .dailyPrep(itemsB, feedbackB)):
             return itemsA == itemsB && feedbackA == feedbackB

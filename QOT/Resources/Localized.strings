@@ -399,6 +399,7 @@
 "guide.card.preparation.single-started-today.content" = "You've got an event coming up today. Tap on the card to prepare.";
 "guide.card.preparation.multiple-started-today.title" = "Prepare for your upcoming events";
 "guide.card.preparation.multiple-started-today.content" = "You've got some events coming up today. Tap on the card to prepare.";
+"guide.item.completed.strategies.counter" = "%d of %d STRATEGIES";
 
 "signing.info.01.title" = "Rule Your Impact";
 "signing.info.01.body" = "At work and away from work - today and tomorrow.";

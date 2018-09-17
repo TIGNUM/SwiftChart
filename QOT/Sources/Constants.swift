@@ -11,6 +11,7 @@ import UIKit
 struct Defaults {
     static let firstLevelSupportEmail = "support@qot.io"
     static let firstLevelFeatureEmail = "feature@qot.io"
+    static let totalNumberOfStrategies = 55
 }
 
 struct Toggle {

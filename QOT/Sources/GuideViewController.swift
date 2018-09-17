@@ -183,9 +183,13 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
                            dailyPrepItems: items,
                            status: item.status)
             return cell
-        case .text(let value):
+        case .learningPlan(let value, let strategiesCompleted):
             let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: item.title, content: value, type: item.subtitle, status: item.status)
+            cell.configure(title: item.title,
+                           content: value,
+                           type: item.subtitle,
+                           status: item.status,
+                           strategiesCompleted: strategiesCompleted)
             return cell
         }
     }

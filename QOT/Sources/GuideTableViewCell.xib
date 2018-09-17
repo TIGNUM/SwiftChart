@@ -33,8 +33,14 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWU-rM-t82">
-                                <rect key="frame" x="14" y="96" width="291" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWU-rM-t82">
+                                <rect key="frame" x="14" y="96" width="249" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS4-7r-d9r">
+                                <rect key="frame" x="263" y="95.5" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -42,6 +48,7 @@
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="OS4-7r-d9r" secondAttribute="trailing" constant="14" id="1pr-tT-1dO"/>
                             <constraint firstItem="GMQ-qL-Zkk" firstAttribute="top" secondItem="z4n-BX-elH" secondAttribute="top" constant="21" id="2Aw-An-9tl"/>
                             <constraint firstItem="8h2-Fq-9f6" firstAttribute="top" secondItem="GMQ-qL-Zkk" secondAttribute="bottom" constant="14" id="3rn-ia-Rr0"/>
                             <constraint firstAttribute="bottom" secondItem="wWU-rM-t82" secondAttribute="bottom" constant="14" id="BJ3-ir-d7c"/>
@@ -51,9 +58,10 @@
                             <constraint firstItem="8h2-Fq-9f6" firstAttribute="leading" secondItem="z4n-BX-elH" secondAttribute="leading" constant="14" id="VgY-dh-Fmv"/>
                             <constraint firstItem="wWU-rM-t82" firstAttribute="top" secondItem="8h2-Fq-9f6" secondAttribute="bottom" constant="19" id="XGB-zx-jmO"/>
                             <constraint firstAttribute="trailing" secondItem="GMQ-qL-Zkk" secondAttribute="trailing" constant="14" id="dVw-4g-lhc"/>
-                            <constraint firstAttribute="trailing" secondItem="wWU-rM-t82" secondAttribute="trailing" constant="14" id="fWc-UF-j3N"/>
+                            <constraint firstItem="OS4-7r-d9r" firstAttribute="leading" secondItem="wWU-rM-t82" secondAttribute="trailing" id="fWc-UF-j3N"/>
                             <constraint firstItem="8h2-Fq-9f6" firstAttribute="leading" secondItem="z4n-BX-elH" secondAttribute="leading" constant="14" id="tES-er-6HI"/>
                             <constraint firstItem="GMQ-qL-Zkk" firstAttribute="leading" secondItem="z4n-BX-elH" secondAttribute="leading" constant="14" id="uCI-WH-ab6"/>
+                            <constraint firstAttribute="bottom" secondItem="OS4-7r-d9r" secondAttribute="bottom" constant="14" id="v8U-xG-ws7"/>
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jst-ev-Zmq">
@@ -81,6 +89,7 @@
             <connections>
                 <outlet property="containerView" destination="z4n-BX-elH" id="dny-A0-lPN"/>
                 <outlet property="contentLabel" destination="8h2-Fq-9f6" id="QeX-eb-uLb"/>
+                <outlet property="counterLabel" destination="OS4-7r-d9r" id="IdP-n0-HGj"/>
                 <outlet property="statusView" destination="jst-ev-Zmq" id="BAr-NH-rHn"/>
                 <outlet property="titleLabel" destination="GMQ-qL-Zkk" id="yTR-Ld-v2V"/>
                 <outlet property="typeLabel" destination="wWU-rM-t82" id="okL-We-hMk"/>
