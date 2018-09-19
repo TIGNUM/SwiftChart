@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Kingfisher
 
 protocol SettingsMenuHeaderDelegate: class {
     func didTapImage(in view: SettingsMenuHeader)
@@ -22,28 +21,15 @@ final class SettingsMenuHeader: UIView {
     private var viewModel: SettingsMenuViewModel?
     weak var delegate: SettingsMenuHeaderDelegate?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
-
         setupImage()
         setupCollectionView()
     }
 
-    static func instantiateFromNib() -> SettingsMenuHeader {
-        let nibName = "SettingsMenuHeader"
-        guard let view = Bundle.main.loadNibNamed(nibName, owner: self, options: [:])?[0] as? SettingsMenuHeader else {
-            fatalError("Cannot load SettingsHeaderView")
-        }
-        return view
-    }
-
-    func configure(imageURL: URL?, firstName: String, lastName: String, position: String, viewModel: SettingsMenuViewModel) {
+    func configure(imageURL: URL?, position: String, viewModel: SettingsMenuViewModel) {
         self.viewModel = viewModel
-        updateUserName(firstName: firstName, lastName: lastName)
+        updateUserName()
         updateJobTitle(title: position)
         userImageView.kf.setImage(with: imageURL,
                                   placeholder: R.image.placeholder_user(),
@@ -57,11 +43,11 @@ final class SettingsMenuHeader: UIView {
     }
 
     func updateJobTitle(title: String) {
-        self.positionLabel.text = title.uppercased()
+        self.positionLabel.text = viewModel?.userJobTitle
     }
 
-    func updateUserName(firstName: String, lastName: String) {
-        self.nameLabel.text = (firstName + " " + lastName).uppercased()
+    func updateUserName() {
+        nameLabel.text = viewModel?.userName
     }
 }
 

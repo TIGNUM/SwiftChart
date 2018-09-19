@@ -21,75 +21,67 @@ final class ProfileSettingsWorker {
     }
 
     func profile() -> ProfileSettingsModel? {
-        let model = ProfileSettingsModel(imageURL: user?.userImage?.localURL ?? user?.userImage?.remoteURL,
-                                         givenName: user?.givenName,
-                                         familyName: user?.familyName,
-                                         position: user?.jobTitle,
-                                         memberSince: user?.totalUsageTime ?? 0,
-                                         company: user?.company,
-                                         email: user?.email,
-                                         telephone: user?.telephone,
-                                         gender: user?.gender,
-                                         height: user?.height.value ?? 150,
-                                         heightUnit: user?.heightUnit ?? "",
-                                         weight: user?.weight.value ?? 60,
-                                         weightUnit: user?.weightUnit ?? "",
-                                         birthday: user?.dateOfBirth ?? "")
-        return model
+        return ProfileSettingsModel(imageURL: user?.userImage?.localURL ?? user?.userImage?.remoteURL,
+                                    givenName: user?.givenName,
+                                    familyName: user?.familyName,
+                                    position: user?.jobTitle,
+                                    memberSince: user?.totalUsageTime ?? 0,
+                                    company: user?.company,
+                                    email: user?.email,
+                                    telephone: user?.telephone,
+                                    gender: user?.gender,
+                                    height: user?.height.value ?? 150,
+                                    heightUnit: user?.heightUnit ?? "",
+                                    weight: user?.weight.value ?? 60,
+                                    weightUnit: user?.weightUnit ?? "",
+                                    birthday: user?.dateOfBirth ?? "")
+    }
+
+    func upSyncUser() {
+        syncManger.upSyncUser { error in
+            if let error = error {
+                log(error.localizedDescription, level: .error)
+            }
+        }
     }
 
     func updateProfileTelephone(_ new: ProfileSettingsModel) {
         guard let user = user, let old = profile(), old != new else { return }
-
         if old.telephone != new.telephone && new.telephone?.isPhoneNumber == true {
             services.userService.updateUserTelephone(user: user, telephone: new.telephone ?? "")
-            syncManger.upSyncUser(completion: { error in
-                log(error?.localizedDescription ?? String(describing: error), level: .error)
-            })
+            upSyncUser()
         }
     }
 
     func updateProfileBirthday(_ new: ProfileSettingsModel) {
         guard let user = user, let old = profile(), old != new else { return }
-
         if old.birthday != new.birthday {
             services.userService.updateUserDateOfBirth(user: user, dateOfBirth: new.birthday)
-            syncManger.upSyncUser(completion: { error in
-                log(error?.localizedDescription ?? String(describing: error), level: .error)
-            })
+            upSyncUser()
         }
     }
 
     func updateProfileGivenName(_ new: ProfileSettingsModel) {
         guard let user = user, let old = profile(), old != new else { return }
-
         if old.givenName?.caseInsensitiveCompare(new.givenName ?? "") != .orderedSame {
             services.userService.updateUserGivenName(user: user, name: new.givenName ?? "")
-            syncManger.upSyncUser(completion: { error in
-                log(error?.localizedDescription ?? String(describing: error), level: .error)
-            })
+            upSyncUser()
         }
     }
 
     func updateProfileFamilyName(_ new: ProfileSettingsModel) {
         guard let user = user, let old = profile(), old != new else { return }
-
         if old.familyName?.caseInsensitiveCompare(new.familyName ?? "") != .orderedSame {
             services.userService.updateUserFamilyName(user: user, name: new.familyName ?? "")
-            syncManger.upSyncUser(completion: { error in
-                log(error?.localizedDescription ?? String(describing: error), level: .error)
-            })
+            upSyncUser()
         }
     }
 
     func updateProfileGender(_ new: ProfileSettingsModel) {
         guard let user = user, let old = profile(), old != new else { return }
-
         if old.gender?.caseInsensitiveCompare(new.gender ?? "") != .orderedSame {
             services.userService.updateUserGender(user: user, gender: new.gender ?? "")
-            syncManger.upSyncUser(completion: { error in
-                log(error?.localizedDescription ?? String(describing: error), level: .error)
-            })
+            upSyncUser()
         }
     }
 
@@ -97,31 +89,24 @@ final class ProfileSettingsWorker {
         guard let user = user, let old = profile(), let newPosition = new.position, old != new else { return }
         if old.position != newPosition {
             services.userService.updateUserJobTitle(user: user, title: newPosition)
-            syncManger.upSyncUser(completion: { error in
-                log(error?.localizedDescription ?? String(describing: error), level: .error)
-            })
+            upSyncUser()
         }
     }
 
 	func updateHeight(_ new: ProfileSettingsModel) {
 		guard let old = profile(), old != new else { return }
-
 		if old.height != new.height || old.heightUnit != new.heightUnit {
 			updateHeight(meters: new.height, unit: new.heightUnit)
-            syncManger.upSyncUser(completion: { error in
-                log(error?.localizedDescription ?? String(describing: error), level: .error)
-            })
+            upSyncUser()
 		}
     }
 
     func updateWeight(_ new: ProfileSettingsModel) {
         guard let old = profile(), old != new else { return }
 
-        if old.weight != new.weight  || old.weightUnit != new.weightUnit {
+        if old.weight != new.weight || old.weightUnit != new.weightUnit {
             updateWeight(weight: new.weight, unit: new.weightUnit)
-            syncManger.upSyncUser(completion: { error in
-                log(error?.localizedDescription ?? String(describing: error), level: .error)
-            })
+            upSyncUser()
         }
     }
 
@@ -132,9 +117,7 @@ final class ProfileSettingsWorker {
         if new.isLocalImageDirectory() {
             services.userService.updateUser(user: user) { (user) in
                 user.userImage?.setLocalURL(new, format: .jpg, entity: .user, entitiyLocalID: user.localID)
-                syncManger.upSyncUser(completion: { error in
-                    log(error?.localizedDescription ?? String(describing: error), level: .error)
-                })
+                upSyncUser()
             }
         }
     }

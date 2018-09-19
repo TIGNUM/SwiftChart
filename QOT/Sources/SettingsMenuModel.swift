@@ -68,10 +68,7 @@ final class SettingsMenuViewModel {
     }
 
     init?(services: Services) {
-        guard let user = services.userService.user() else {
-            return nil
-        }
-
+        guard let user = services.userService.user() else { return nil }
         self.services = services
         self.timer = QOTUsageTimer.sharedInstance
         self.user = user

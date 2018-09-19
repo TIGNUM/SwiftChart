@@ -34,11 +34,16 @@ final class ProfileSettingsViewController: UIViewController {
     private var settingsMenuViewModel: SettingsMenuViewModel
     private let fadeContainerView = FadeContainerView()
     private let imagePickerController: ImagePickerController
-    private let headerView = SettingsMenuHeader.instantiateFromNib()
     private let keyboardListener = KeyboardListener()
     private let networkManager: NetworkManager
     private let services: Services
     private var scrollViewContentHeightConstraint = NSLayoutConstraint()
+
+    private lazy var headerView: SettingsMenuHeader? = {
+        let headerView = R.nib.settingsMenuHeader().instantiate(withOwner: nil, options: nil).first as? SettingsMenuHeader
+        headerView?.delegate = self
+        return headerView
+    }()
 
     private var pickerContentView: UIView = {
         let pickerContentView = UIView()
@@ -96,15 +101,12 @@ final class ProfileSettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         interactor?.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        headerView.delegate = self
         imagePickerController.delegate = self
         setupView()
 		syncHeader()
-
         scrollViewContentHeightConstraint.constant = tableView.contentInset.bottom
         keyboardListener.onStateChange { [unowned self] (state) in
             self.handleKeyboardChange(state: state)
@@ -217,12 +219,12 @@ private extension ProfileSettingsViewController {
 
     func syncHeader() {
         let header = headerView
-        header.bounds = CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: 347)
-        header.setNeedsLayout()
-        header.layoutIfNeeded()
-        var frame = header.frame
-        frame.size.height = header.bounds.height
-        header.frame = frame
+        header?.bounds = CGRect(x: 0, y: 0, width: tableView.contentSize.width, height: 347)
+        header?.setNeedsLayout()
+        header?.layoutIfNeeded()
+        var frame = header?.frame ?? .zero
+        frame.size.height = header?.bounds.height ?? 0
+        header?.frame = frame
         tableView.tableHeaderView = header
     }
 
@@ -233,14 +235,9 @@ private extension ProfileSettingsViewController {
     }
 
     func headerDidSetup() {
-        guard
-            let name = profile?.givenName,
-            let surname = profile?.familyName else { return }
-        headerView.configure(imageURL: profile?.imageURL,
-                             firstName: name,
-                             lastName: surname,
-                             position: profile?.position ?? "",
-                             viewModel: settingsMenuViewModel)
+        headerView?.configure(imageURL: profile?.imageURL,
+                              position: profile?.position ?? "",
+                              viewModel: settingsMenuViewModel)
     }
 
     func registerCells() {
@@ -328,7 +325,6 @@ extension ProfileSettingsViewController {
 
     func updateUserHeightWeight() {
         guard let userMeasurement = pickerItems, var profile = profile else { return }
-
         if pickerIndexPath.section == 1 {
             if pickerIndexPath.row == 2 {
                 profile.weight = userMeasurement.selectedValue
@@ -467,7 +463,7 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
             if text.isTrimmedTextEmpty == false {
                 profile.position = text
                 interactor?.updateProfile(field: .jobTitle, profile: profile)
-                headerView.updateJobTitle(title: text)
+                headerView?.updateJobTitle(title: text)
             }
         case 3:
             profile.telephone = text
@@ -483,15 +479,16 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
             if text.isTrimmedTextEmpty == false {
                 profile.givenName = text
                 interactor?.updateProfile(field: .givenName, profile: profile)
+                headerView?.updateUserName()
             }
         case 1: // LastName
             if text.isTrimmedTextEmpty == false {
                 profile.familyName = text
                 interactor?.updateProfile(field: .familyName, profile: profile)
+                headerView?.updateUserName()
             }
         default: return
         }
-        headerView.updateUserName(firstName: profile.givenName ?? "", lastName: profile.familyName ?? "")
     }
 
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
@@ -519,7 +516,7 @@ extension ProfileSettingsViewController: ImagePickerControllerDelegate {
         guard let profile = profile else { return }
 
         interactor?.updateSettingsMenuImage(image: image, settingsMenu: profile)
-        headerView.updateLocalImage(image: image)
+        headerView?.updateLocalImage(image: image)
     }
 }
 

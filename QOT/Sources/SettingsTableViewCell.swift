@@ -152,8 +152,11 @@ private extension SettingsTableViewCell {
         textField.font = Font.H7Tag
         textField.isSecureTextEntry = secure
         textField.delegate = self
+        textField.keyboardType = .default
+        textField.autocapitalizationType = UITextAutocapitalizationType.words
         setTitle(title: title)
 		if settingsType == .phone {
+            textField.autocapitalizationType = UITextAutocapitalizationType.none
 			textField.keyboardType = .phonePad
 			let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 40))
 			let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
@@ -184,7 +187,6 @@ private extension SettingsTableViewCell {
             valueLabel.text = nil
             return
         }
-
         valueLabel.attributedText = Style.tagTitle(value, .white80).attributedString(lineSpacing: 2, alignment: alignment)
     }
 }
@@ -263,7 +265,6 @@ extension SettingsTableViewCell: UITextFieldDelegate {
         if let text = textField.text {
             settingsDelegate?.didTextFieldChanged(at: indexPath, text: text)
         }
-
         return endEditing(true)
     }
 

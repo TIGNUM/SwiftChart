@@ -2158,19 +2158,19 @@
 		9115F6FC208DDF9800EE5D1D /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */,
-				91E59F2C2057D23700396225 /* UserMeasurement.swift */,
-				CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */,
+				CCAF03221E801B0E00015125 /* OldSettingsViewController.swift */,
 				CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */,
-				CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */,
-				CB8C344E1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib */,
+				91086E36208EFA050035DA1F /* SettingsMenuHeader.swift */,
+				CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */,
+				CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */,
+				91E59F2C2057D23700396225 /* UserMeasurement.swift */,
 				CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */,
 				CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */,
 				CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */,
-				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
-				CCAF03221E801B0E00015125 /* OldSettingsViewController.swift */,
+				CB8C344E1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib */,
 				9115F70D208DFFAE00EE5D1D /* SettingsMenuHeader.xib */,
-				91086E36208EFA050035DA1F /* SettingsMenuHeader.swift */,
+				CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */,
+				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
 			);
 			name = Other;
 			sourceTree = "<group>";

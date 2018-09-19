@@ -111,9 +111,11 @@ final class SyncManager {
         }
     }
 
-    func upSyncUser (completion: @escaping (Error?) -> Void) {
+    func upSyncUser(completion: @escaping (Error?) -> Void) {
         let context = SyncContext()
-        excute(operations: [syncOperation(User.self, context: context, shouldDownload: false)], context: context, completion: completion)
+        excute(operations: [syncOperation(User.self, context: context, shouldDownload: false)],
+               context: context,
+               completion: completion)
         uploadMedia()
     }
 
