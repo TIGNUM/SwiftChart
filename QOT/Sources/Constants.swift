@@ -42,6 +42,7 @@ struct Layout {
     static let padding_5: CGFloat = 5
     static let padding_07: CGFloat = 7
     static let padding_10: CGFloat = 10
+    static let padding_12: CGFloat = 12
     static let padding_20: CGFloat = 20
     static let padding_24: CGFloat = 24
     static let padding_16: CGFloat = 16
@@ -49,7 +50,10 @@ struct Layout {
     static let padding_40: CGFloat = 40
     static let height_44: CGFloat = 44
     static let multiplier_025: CGFloat = 0.25
+    static let multiplier_05: CGFloat = 0.5
     static let multiplier_065: CGFloat = 0.65
+    static let multiplier_075: CGFloat = 0.75
+    static let multiplier_080: CGFloat = 0.80
 
     struct TabBarView {
         static let insets = UIEdgeInsets(top: TabBarView.height, left: 0, bottom: 0, right: 0)

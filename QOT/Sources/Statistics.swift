@@ -99,7 +99,10 @@ extension Statistics {
     }
 
     var userAverageInHours: String {
-        return String(Int(userAverage) / 60) + "." + String(Int(userAverage) % 60)
+        let formatter = DateComponentsFormatter()
+        formatter.allowedUnits = [.hour, .minute]
+        formatter.unitsStyle = .positional
+        return (formatter.string(from: TimeInterval(userAverage * 60))  ?? "00:00") + "h"
     }
 
     func displayableValue(average: Double, clampToMax: Bool = false) -> String {

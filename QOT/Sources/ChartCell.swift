@@ -326,6 +326,7 @@ private extension ChartCell {
         case .activityLevel,
              .activitySittingMovementRatio,
              .meetingAverageWeek,
+             .meetingLength,
              .sleepQuality,
              .sleepQuantity,
              .sleepQuantityTime: return frame
@@ -345,7 +346,6 @@ private extension ChartCell {
             let travelTripFrame = statistics.chartType == .travelTripsNextFourWeeks ? frame : segmentedFrame
             return travelTripFrame
         case .travelTripsMaxTimeZone,
-             .meetingLength,
              .meetingTimeBetween,
              .meetingIncreaseDiff: return biggerFrame
         }
@@ -498,7 +498,7 @@ private extension ChartCell {
         let labels = statistics.chartType.labels
         let highlightColor = statistics.chartType.hightlightColor
         let highlightedIndex: Int
-        if statistics.chartType == .meetingAverageWeek {
+        if statistics.chartType == .meetingAverageWeek || statistics.chartType == .meetingLength {
             let currentDay = Date().dayOfWeek
             switch currentDay {
             case 1: // Sunday
