@@ -155,9 +155,9 @@ final class DatabaseManager {
     }
 
     private func deleteAllObjectsWithClassNames(_ classNames: [String], fromDatabase database: Realm) throws {
-        try classNames.forEach { (className: String) in
-            let objects = database.dynamicObjects(className)
-            try database.write {
+        try database.write {
+            classNames.forEach { (className: String) in
+                let objects = database.dynamicObjects(className)
                 database.delete(objects)
             }
         }

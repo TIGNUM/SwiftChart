@@ -160,6 +160,8 @@ extension UserService {
             $0.headline = new.headLine
             $0.text = new.text
             $0.date = new.lastUpdated
+            $0.setKeywords(new.workTags ?? [], for: .work)
+            $0.setKeywords(new.homeTags ?? [], for: .home)
             updateVisionImage(newImageURL: new.imageURL, old: $0)
         }
         syncManager.syncMyToBeVision { (error) in

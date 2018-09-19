@@ -23,7 +23,6 @@ final class MyToBeVisionViewController: UIViewController {
     @IBOutlet private weak var headlineHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var messageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var imageContainerView: UIView!
-    @IBOutlet private weak var tbvGeneratorButton: UIButton!
     @IBOutlet private weak var fadeContainerView: FadeContainerView!
 	@IBOutlet private weak var textViewsContainer: UIView!
 	@IBOutlet private weak var containerHeight: NSLayoutConstraint!
@@ -37,7 +36,6 @@ final class MyToBeVisionViewController: UIViewController {
 	private var contentInset = UIEdgeInsets()
     private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()
-    private let navItem = NavigationItem(title: R.string.localized.meSectorMyWhyVisionTitle().uppercased())
     private var imagePickerController: ImagePickerController!
     private var imageRecognizer: UITapGestureRecognizer!
     private var toBeVision: MyToBeVisionModel.Model?
@@ -91,10 +89,6 @@ final class MyToBeVisionViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    override var navigationItem: UINavigationItem {
-        return navItem
-    }
-
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
@@ -122,6 +116,7 @@ final class MyToBeVisionViewController: UIViewController {
         resizeTextViewsHeight()
 		updateContainerHeight()
         fadeContainerView.setFade(top: safeAreaInsets.top + 30, bottom: 0)
+        self.title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -130,14 +125,12 @@ final class MyToBeVisionViewController: UIViewController {
         toBeVisionDidUpdate()
         syncEditingViews(true)
         UIApplication.shared.statusBarStyle = .lightContent
-		if #available(iOS 11.0, *) {
-			navItem.showTabMenuView(titles: [R.string.localized.meSectorMyWhyVisionTitle().uppercased()])
-		}
+        let item = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        navigationItem.backBarButtonItem = item
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        navItem.title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -147,7 +140,6 @@ final class MyToBeVisionViewController: UIViewController {
         if isBeingDismissed == true {
             edit(false)
         }
-        navItem.hideTabMenuView()
     }
 }
 
@@ -156,20 +148,9 @@ final class MyToBeVisionViewController: UIViewController {
 extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
 
     func showVisionGenerator() {
-        let chatViewModel = ChatViewModel<VisionGeneratorChoice>(items: [])
-        let configurator = VisionGeneratorConfigurator.make(chatViewModel,
-                                                            visionModel: toBeVision,
-                                                            visionController: self,
-                                                            visionChatItems: visionChatItems)
-        let chatViewController = ChatViewController(pageName: .visionGenerator,
-                                                    viewModel: chatViewModel,
-                                                    backgroundImage: R.image.backgroundChatBot(),
-                                                    configure: configurator)
-        chatViewController.title = "CREATE A TO BE VISION"
-        let navController = UINavigationController(rootViewController: chatViewController)
-        navController.navigationBar.applyDarkBluryStyle()
-        navController.modalTransitionStyle = .crossDissolve
-        navController.modalPresentationStyle = .custom
+        let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(toBeVision: toBeVision,
+                                                                                           visionController: self,
+                                                                                           visionChatItems: visionChatItems)
         pushToStart(childViewController: chatViewController)
     }
 
@@ -198,7 +179,6 @@ extension MyToBeVisionViewController {
 			topConstraint.constant = Layout.statusBarHeight + Layout.padding_24
 		}
         syncNavigationButtons(false)
-        setupInstructionsButton()
         setupTextViews()
         drawCircles()
         setupImage()
@@ -212,20 +192,10 @@ extension MyToBeVisionViewController {
         messageTextView.alpha = 1
         messageTextView.textContainer.lineFragmentPadding = 0
         messageTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 10, right: 0)
-        syncTextViews()
-    }
-
-    func setupInstructionsButton() {
-        tbvGeneratorButton.layer.borderWidth = 1
-        tbvGeneratorButton.layer.cornerRadius = 7
-        tbvGeneratorButton.backgroundColor = .azure
     }
 
     func setupImage() {
         imageContainerView.addGestureRecognizer(imageTapRecognizer)
-        if let currentImage = imageView.image {
-            initialImage = currentImage
-        }
     }
 
     func resizeTextViewsHeight() {
@@ -235,25 +205,6 @@ extension MyToBeVisionViewController {
         let messageSize = messageTextView.sizeThatFits(CGSize(width: messageTextView.frame.size.width,
                                                               height: CGFloat(MAXFLOAT)))
         messageHeightConstraint.constant = messageSize.height
-    }
-
-    func syncTextViews() {
-        resizeTextViewsHeight()
-        syncInstructionsButton()
-    }
-
-    func syncInstructionsButton() {
-        if isEditing == true {
-            headlineTextView.attributedText = interactor?
-                .headlinePlaceholderNeeded(headlineEdited: headlineTextView.text)?
-                .formattedHeadlineEditingMode
-        } else {
-            headlineTextView.text = interactor?.headlinePlaceholderNeeded(headlineEdited: headlineTextView.text)
-        }
-
-        messageTextView.text = interactor?.messagePlaceholderNeeded(messageEdited: messageTextView.text)
-        let messageIsPlaceholder = interactor?.messageEqualsPlaceholder(message: messageTextView.text)
-        tbvGeneratorButton.isHidden = isEditing || messageIsPlaceholder == false
     }
 }
 
@@ -356,12 +307,11 @@ private extension MyToBeVisionViewController {
             toBeVision?.imageURL != nil {
             imageView.kf.setImage(with: toBeVision?.imageURL)
         }
-        syncInstructionsButton()
         syncImageControls(animated: false)
     }
 
     func saveToBeVisison() {
-        guard var toBeVision = toBeVision, let image = imageView.image else { return }
+        guard var toBeVision = toBeVision else { return }
         if toBeVision.headLine != headlineTextView.text {
             toBeVision.headLine = headlineTextView.text
         }
@@ -369,7 +319,9 @@ private extension MyToBeVisionViewController {
             toBeVision.text = messageTextView.text
             toBeVision.lastUpdated = Date()
         }
-        initialImage = image
+
+        let image = imageView.image
+
         interactor?.saveToBeVision(image: image, toBeVision: toBeVision)
     }
 
@@ -380,7 +332,6 @@ private extension MyToBeVisionViewController {
         imageView.isUserInteractionEnabled = isEditing
         syncImageControls(animated: isEditing)
         syncNavigationButtons(isEditing)
-        syncInstructionsButton()
         syncEditingViews(!isEditing)
         if isEditing == false {
             headlineTextView.font = Font.H1MainTitle
@@ -399,7 +350,6 @@ private extension MyToBeVisionViewController {
         edit(false)
         scrollToTop()
         toBeVisionDidUpdate()
-        imageView.image = initialImage
     }
 
     func scrollToTop() {
@@ -418,7 +368,7 @@ private extension MyToBeVisionViewController {
         leftButton.title = leftButtonText
         leftButton.target = self
         leftButton.action = leftButtonSelector
-        navItem.leftBarButtonItem = leftButton
+        self.navigationItem.leftBarButtonItem = leftButton
         let rightButton = UIBarButtonItem()
         let rightButtonImage = isEditing == true ? nil : R.image.ic_edit()
         let rightButtonText = isEditing == true ? "Save" : nil
@@ -428,7 +378,7 @@ private extension MyToBeVisionViewController {
         rightButton.tintColor = buttonsColor
         rightButton.target = self
         rightButton.action = rightButtonSelector
-        navItem.rightBarButtonItem = rightButton
+        self.navigationItem.rightBarButtonItem = rightButton
     }
 
     func syncEditingViews(_ areHidden: Bool) {
@@ -445,8 +395,8 @@ private extension MyToBeVisionViewController {
         editImageLabel.isHidden = areHidden
         subtitleLabel.isHidden = !areHidden
         headlineTextView.isHidden = isEmptyState == true
-        navItem.rightBarButtonItem?.isEnabled = isEmptyState == false
-        navItem.rightBarButtonItem?.tintColor = isEmptyState == true ? .clear : buttonColor
+        self.navigationItem.rightBarButtonItem?.isEnabled = isEmptyState == false
+        self.navigationItem.rightBarButtonItem?.tintColor = isEmptyState == true ? .clear : buttonColor
         headlineStatementTopConstraint.constant = headlineTopConstraint
         messageStatementTopConstraint.constant = messageTopConstraint
         view.layoutIfNeeded()
@@ -487,7 +437,7 @@ extension MyToBeVisionViewController: UITextViewDelegate {
         case messageTextView: textView.text = interactor?.messagePlaceholderNeeded(messageEdited: textView.text)
         default: return
         }
-        syncTextViews()
+        resizeTextViewsHeight()
     }
 
     func textViewDidChange(_ textView: UITextView) {

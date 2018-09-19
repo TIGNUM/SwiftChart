@@ -10,6 +10,11 @@ import Foundation
 import RealmSwift
 import Freddy
 
+enum MyToBeVisionKeywordType: String {
+    case work
+    case home
+}
+
 final class MyToBeVision: SyncableObject {
 
     @objc dynamic var profileImageResource: MediaResource? = MediaResource()
@@ -25,9 +30,31 @@ final class MyToBeVision: SyncableObject {
     @objc dynamic var changeStamp: String?
 
     @objc dynamic var needsToRemind = false
+
+    @objc private dynamic var keywordsWork: String?
+
+    @objc private dynamic var keywordsHome: String?
 }
 
 extension MyToBeVision: TwoWaySyncableUniqueObject {
+
+    func setKeywords(_ tags: [String], for type: MyToBeVisionKeywordType) {
+        switch type {
+        case .home:
+            keywordsHome = tags.joined(separator: ";")
+        case .work:
+            keywordsWork = tags.joined(separator: ";")
+        }
+    }
+
+    func keywords(for type: MyToBeVisionKeywordType) -> [String] {
+        switch type {
+        case .home:
+            return keywordsHome?.components(separatedBy: ";") ?? []
+        case .work:
+            return keywordsWork?.components(separatedBy: ";") ?? []
+        }
+    }
 
     func setData(_ data: MyToBeVisionIntermediary, objectStore: ObjectStore) throws {
         if let date = date, date > data.validFrom {
@@ -44,6 +71,8 @@ extension MyToBeVision: TwoWaySyncableUniqueObject {
         text = data.text
         date = data.validFrom
         profileImageResource?.setRemoteURL(data.remoteProfileImageURL.flatMap({ URL(string: $0) }))
+        setKeywords(data.workTags, for: .work)
+        setKeywords(data.homeTags, for: .home)
     }
 
     static func object(remoteID: Int, store: ObjectStore, data: MyToBeVisionIntermediary) throws -> MyToBeVision? {
@@ -58,13 +87,17 @@ extension MyToBeVision: TwoWaySyncableUniqueObject {
 
     func toJson() -> JSON? {
         guard syncStatus != .clean, let date = date else { return nil }
-
+        let workTags: [JsonKey: JSONEncodable] = [.key: JsonKey.work.rawValue, .tags: self.keywords(for: .work).toJSON()]
+        let homeTags: [JsonKey: JSONEncodable] = [.key: JsonKey.home.rawValue, .tags: self.keywords(for: .home).toJSON()]
+        let keywordTags: [JSON] = [.dictionary(workTags.mapKeyValues({ ($0.rawValue, $1.toJSON()) })),
+                                   .dictionary(homeTags.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))]
         let dict: [JsonKey: JSONEncodable] = [
             .syncStatus: syncStatus.rawValue,
             .title: headline.toJSONEncodable,
             .shortDescription: subHeadline.toJSONEncodable,
             .description: text.toJSONEncodable,
-            .validFrom: date
+            .validFrom: date,
+            .keywordTags: keywordTags.toJSON()
         ]
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
@@ -77,6 +110,8 @@ extension MyToBeVision {
                                        imageURL: profileImageResource?.url,
                                        lastUpdated: date,
                                        text: text,
-                                       needsToRemind: needsToRemind)
+                                       needsToRemind: needsToRemind,
+                                       workTags: nil,
+                                       homeTags: nil)
     }
 }

@@ -28,4 +28,8 @@ extension UIViewController {
         view.window?.layer.add(transition, forKey: kCATransition)
         dismiss(animated: false, completion: nil)
     }
+
+    @objc func dismiss(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+    }
 }

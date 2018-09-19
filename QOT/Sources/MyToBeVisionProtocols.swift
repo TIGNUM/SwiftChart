@@ -21,7 +21,7 @@ protocol MyToBeVisionPresenterInterface {
 }
 
 protocol MyToBeVisionInteractorInterface: Interactor {
-    func saveToBeVision(image: UIImage, toBeVision: MyToBeVisionModel.Model)
+    func saveToBeVision(image: UIImage?, toBeVision: MyToBeVisionModel.Model)
     func makeVisionGeneratorAndPresent()
 
     // FIXME: Think of better way of handling page tracking in VIP

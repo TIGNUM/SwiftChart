@@ -83,6 +83,7 @@ enum JsonKey: String {
     case height
     case heightUnit
     case heightUnits
+    case home
     case horizontalAccuracy
     case hour
     case id
@@ -101,6 +102,7 @@ enum JsonKey: String {
     case firstLevelSupportEmail
     case key
     case keypathID
+    case keywordTags
     case lastName
     case lastVisitedDate
     case latestVersion
@@ -206,6 +208,7 @@ enum JsonKey: String {
     case syncTime
     case syncTokenHeaderKey
     case tabs
+    case tags
     case targetGroupId
     case targetGroupName
     case targetType
@@ -253,6 +256,7 @@ enum JsonKey: String {
     case weight
     case weightUnit
     case weightUnits
+    case work
     case workingDays
     case yearMonthDay
     case zip

@@ -17,6 +17,8 @@ struct MyToBeVisionIntermediary: DownSyncIntermediary {
     var remoteProfileImageURL: String?
     var validFrom: Date
     var validTo: Date?
+    var workTags: [String] = []
+    var homeTags: [String] = []
 
     init(json: JSON) throws {
         remoteProfileImageURL = try json.getString(at: JsonKey.images.rawValue, 0, JsonKey.mediaUrl.rawValue,
@@ -26,5 +28,17 @@ struct MyToBeVisionIntermediary: DownSyncIntermediary {
         text = try json.getItemValue(at: .description)
         validFrom = (try json.getDate(at: .validFrom) as Date?) ?? Date()
         validTo = try json.getDate(at: .validUntil)
+        let tags = try json.getArray(at: .keywordTags, fallback: [])
+        for tagModel in tags {
+            let type = try tagModel.getItemValue(at: .key, fallback: "")
+            switch JsonKey.init(rawValue: type) {
+            case .home?:
+                homeTags = try tagModel.getArray(at: .tags)
+            case .work?:
+                workTags = try tagModel.getArray(at: .tags)
+            default:
+                continue
+            }
+        }
     }
 }

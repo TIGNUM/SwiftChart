@@ -40,7 +40,6 @@
                 <outlet property="messageTextView" destination="HYG-f5-Phv" id="hwV-p1-UNr"/>
                 <outlet property="scrollView" destination="uD0-d0-kIf" id="HL6-6n-fcm"/>
                 <outlet property="subtitleLabel" destination="3Lt-fd-bdx" id="TvC-tj-f6W"/>
-                <outlet property="tbvGeneratorButton" destination="6p5-sN-5bd" id="XCX-WR-LHV"/>
                 <outlet property="textViewsContainer" destination="tCL-zM-DF7" id="uIT-At-1QZ"/>
                 <outlet property="topConstraint" destination="yNe-nq-tzX" id="YoE-jr-MOG"/>
                 <outlet property="view" destination="iN0-l3-epB" id="QvS-N9-vPB"/>
@@ -193,25 +192,10 @@
                                         <constraint firstItem="gLN-uy-MTt" firstAttribute="top" secondItem="3Lt-fd-bdx" secondAttribute="bottom" constant="40" id="thq-wJ-V4Q"/>
                                     </constraints>
                                 </view>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6p5-sN-5bd">
-                                    <rect key="frame" x="24" y="996" width="327" height="45"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="45" id="gb0-sL-sbF"/>
-                                    </constraints>
-                                    <state key="normal" title="Create my To Be Vision">
-                                        <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                    </state>
-                                    <connections>
-                                        <action selector="didTapCreateVision" destination="-1" eventType="touchUpInside" id="cce-ge-mqG"/>
-                                    </connections>
-                                </button>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                             <constraints>
-                                <constraint firstItem="6p5-sN-5bd" firstAttribute="top" secondItem="tCL-zM-DF7" secondAttribute="bottom" constant="26" id="7Om-yg-Bq2"/>
-                                <constraint firstItem="6p5-sN-5bd" firstAttribute="leading" secondItem="uD0-d0-kIf" secondAttribute="leading" constant="24" id="9gh-OO-yu3"/>
-                                <constraint firstAttribute="trailing" secondItem="6p5-sN-5bd" secondAttribute="trailing" constant="24" id="HWk-Px-NOK"/>
                                 <constraint firstItem="tCL-zM-DF7" firstAttribute="width" secondItem="uD0-d0-kIf" secondAttribute="width" id="JTb-5B-Z2n"/>
                                 <constraint firstAttribute="height" constant="667" id="Rg0-QZ-oGM"/>
                                 <constraint firstAttribute="trailing" secondItem="tCL-zM-DF7" secondAttribute="trailing" id="WXF-Aa-eRA"/>

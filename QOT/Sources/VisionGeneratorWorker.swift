@@ -155,9 +155,9 @@ private extension VisionGeneratorWorker {
         }
     }
 
-    func createVision() -> String {
+    func string(from visionChoices: [VisionGeneratorChoice]) -> String {
         var visionList = [String]()
-        let targetIDs = chatViewModel.visionChoiceSelections.compactMap { $0.targetID }
+        let targetIDs = visionChoices.compactMap { $0.targetID }
         for targetID in targetIDs {
             let contentItems = services.contentService.contentItems(contentCollectionID: targetID)
             let userGender = (services.userService.user()?.gender ?? "NEUTRAL").uppercased()
@@ -169,10 +169,22 @@ private extension VisionGeneratorWorker {
                 visionList.append(randomItemText)
             }
         }
-        let vision = visionList.joined(separator: " ")
+
+        return visionList.joined(separator: " ")
+    }
+
+    func createVision() -> String {
+        let selectionsForWork = chatViewModel.visionChoiceSelections.filter { $0.type == .work }
+        let selectionsForHome = chatViewModel.visionChoiceSelections.filter { $0.type == .home }
+        var visions: [String] = []
+        visions.append(string(from: selectionsForWork))
+        visions.append(string(from: selectionsForHome))
+        let vision = visions.joined(separator: "\n\n")
         currentVisionModel?.headLine = headline
         currentVisionModel?.text = vision
         currentVisionModel?.lastUpdated = Date()
+        currentVisionModel?.workTags = selectionsForWork.map { $0.title }
+        currentVisionModel?.homeTags = selectionsForHome.map { $0.title }
         return vision
     }
 

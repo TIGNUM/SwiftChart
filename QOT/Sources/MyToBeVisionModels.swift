@@ -16,6 +16,8 @@ struct MyToBeVisionModel {
         var lastUpdated: Date?
         var text: String?
         var needsToRemind: Bool?
+        var workTags: [String]?
+        var homeTags: [String]?
 
         public static func == (lhs: Model, rhs: Model) -> Bool {
             return lhs.headLine == rhs.headLine
@@ -23,6 +25,8 @@ struct MyToBeVisionModel {
                 && lhs.lastUpdated == rhs.lastUpdated
                 && lhs.text == rhs.text
                 && lhs.needsToRemind == rhs.needsToRemind
+                && lhs.workTags == rhs.workTags
+                && lhs.homeTags == rhs.homeTags
         }
     }
 }

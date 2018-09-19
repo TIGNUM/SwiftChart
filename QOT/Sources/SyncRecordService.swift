@@ -36,9 +36,9 @@ final class SyncRecordService {
 
     func deleteSyncRecordsForClassNames(_ names: [String]) throws {
         let realm = try realmProvider.realm()
-        try names.forEach { (name: String) in
-            let objects = realm.objects(SyncRecord.self).filter(NSPredicate(format: "%K == %@", "associatedClassName", name))
-            try realm.write {
+        try realm.write {
+            names.forEach { (name: String) in
+                let objects = realm.objects(SyncRecord.self).filter(NSPredicate(format: "%K == %@", "associatedClassName", name))
                 realm.delete(objects)
             }
         }

@@ -1,4 +1,4 @@
-disabled_rules:    
+disabled_rules:
   - variable_name
   - class_delegate_protocol # This can give false positives if the protocol is inherited.
   - large_tuple
@@ -16,9 +16,10 @@ disabled_rules:
   - line_length
   - weak_delegate
   - notification_center_detachment
+  - redundant_optional_initialization
 
 included: # paths to include during linting. `--path` is ignored if present.
-  - QOT  
+  - QOT
   - trailing_whitespace
 
 excluded:

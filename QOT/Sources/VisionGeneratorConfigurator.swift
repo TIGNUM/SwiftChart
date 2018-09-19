@@ -35,4 +35,20 @@ final class VisionGeneratorConfigurator: AppStateAccess {
             }
         }
     }
+
+    static func visionGeneratorViewController(toBeVision: MyToBeVisionModel.Model?,
+                                              visionController: MyToBeVisionViewController,
+                                              visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]]) -> UIViewController {
+        let chatViewModel = ChatViewModel<VisionGeneratorChoice>(items: [])
+        let configurator = VisionGeneratorConfigurator.make(chatViewModel,
+                                                            visionModel: toBeVision,
+                                                            visionController: visionController,
+                                                            visionChatItems: visionChatItems)
+        let chatViewController = ChatViewController(pageName: .visionGenerator,
+                                                    viewModel: chatViewModel,
+                                                    backgroundImage: R.image.backgroundChatBot(),
+                                                    configure: configurator)
+        chatViewController.title = R.string.localized.guideToBeVisionNotFisishedTitle()
+        return chatViewController
+    }
 }

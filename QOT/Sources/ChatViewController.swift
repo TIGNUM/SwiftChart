@@ -506,7 +506,15 @@ extension ChatViewController: ChatViewControllerInterface {
     }
 
     func dismiss() {
-        navigationController?.popViewController(animated: true)
+        if let childViewControllers = navigationController?.childViewControllers,
+            childViewControllers.first != self {
+            navigationController?.popViewController(animated: true)
+            return
+        }
+
+        let configurator = MyToBeVisionConfigurator.make()
+        let toBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
+        navigationController?.pushViewController(toBeVisionViewController, animated: true)
     }
 
     func laodLastQuestion() {
@@ -522,13 +530,17 @@ extension ChatViewController: ChatViewControllerInterface {
         bottomButton.isHidden = questionType.bottomButtonIsHidden
         let itemCount = visionGeneratorInteractor?.visionSelectionCount(for: questionType) ?? 0
         let title = visionGeneratorInteractor?.bottomButtonTitle(choice) ?? ""
-        let style = Style.headlineSmall(title, .white).attributedString(lineSpacing: 2)
+        let textColor: UIColor = itemCount < 4 ? .white60 : .white
+        let style = Style.headlineSmall(title, textColor).attributedString(lineSpacing: 2)
         bottomButton.setAttributedTitle(style, for: .normal)
-        bottomButton.backgroundColor = itemCount < 4 ? .clear : .azure
         bottomButton.isEnabled = itemCount == 4
-        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_02) {
-            let style = Style.headlineSmall(title, itemCount < 4 ? .white60 : .white).attributedString(lineSpacing: 2)
-            self.bottomButton.setAttributedTitle(style, for: .normal)
+
+        if bottomButton.isEnabled {
+            bottomButton.backgroundColor = UIColor.azure
+            bottomButton.layer.borderColor = UIColor.azure.cgColor
+        } else {
+            bottomButton.backgroundColor = UIColor.clear
+            bottomButton.layer.borderColor = UIColor.lightGray.cgColor
         }
     }
 
