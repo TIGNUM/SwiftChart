@@ -529,19 +529,15 @@ extension ChatViewController: ChatViewControllerInterface {
         visionChoice = choice
         bottomButton.isHidden = questionType.bottomButtonIsHidden
         let itemCount = visionGeneratorInteractor?.visionSelectionCount(for: questionType) ?? 0
+        let enableButton = itemCount == VisionGeneratorChoice.expectedChoiceCount
         let title = visionGeneratorInteractor?.bottomButtonTitle(choice) ?? ""
-        let textColor: UIColor = itemCount < 4 ? .white60 : .white
+        let textColor: UIColor = enableButton ? .white : .white60
         let style = Style.headlineSmall(title, textColor).attributedString(lineSpacing: 2)
         bottomButton.setAttributedTitle(style, for: .normal)
-        bottomButton.isEnabled = itemCount == 4
-
-        if bottomButton.isEnabled {
-            bottomButton.backgroundColor = UIColor.azure
-            bottomButton.layer.borderColor = UIColor.azure.cgColor
-        } else {
-            bottomButton.backgroundColor = UIColor.clear
-            bottomButton.layer.borderColor = UIColor.lightGray.cgColor
-        }
+        bottomButton.isEnabled = enableButton
+        bottomButton.backgroundColor = enableButton ? UIColor.azure : UIColor.clear
+        bottomButton.layer.borderColor = enableButton ? UIColor.azure.cgColor : UIColor.lightGray.cgColor
+        bottomButton.pulsate()
     }
 
     func loadNextQuestions(_ choice: VisionGeneratorChoice) {

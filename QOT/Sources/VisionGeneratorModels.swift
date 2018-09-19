@@ -74,4 +74,6 @@ struct VisionGeneratorChoice: ChatChoice {
     let type: QuestionType
     let targetID: Int?
     let target: AnswerDecision.Target?
+
+    static let expectedChoiceCount = 4
 }
