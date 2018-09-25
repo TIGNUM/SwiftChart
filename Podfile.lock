@@ -22,7 +22,6 @@ PODS:
   - JSONWebToken (2.2.0)
   - KeychainAccess (3.1.0)
   - Kingfisher (3.13.1)
-  - LoremIpsum (1.0.0)
   - MBProgressHUD (1.0.0)
   - R.swift (3.3.0):
     - R.swift.Library (~> 3.0.2)
@@ -54,7 +53,6 @@ DEPENDENCIES:
   - JSONWebToken
   - KeychainAccess
   - Kingfisher (~> 3.6)
-  - LoremIpsum
   - MBProgressHUD
   - R.swift
   - RealmSwift
@@ -81,7 +79,6 @@ SPEC REPOS:
     - JSONWebToken
     - KeychainAccess
     - Kingfisher
-    - LoremIpsum
     - MBProgressHUD
     - R.swift
     - R.swift.Library
@@ -110,7 +107,6 @@ SPEC CHECKSUMS:
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
   KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
   Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
-  LoremIpsum: 9029c55d36501b2ee0b05cc9ecda11d3a0479160
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
   R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
@@ -122,6 +118,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
   UrbanAirship-iOS-SDK: 1a2837473096ca63d86f11cadb4710d993237186
 
-PODFILE CHECKSUM: b9297e3c00121a3335fdc6e10f8611ae77f93ec4
+PODFILE CHECKSUM: bf8a702d1657a9fbafd4ae8f277074cc3e6613f7
 
 COCOAPODS: 1.5.3

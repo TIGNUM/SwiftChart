@@ -15,10 +15,12 @@ extension RealmGuideItemNotification {
 
     enum ItemType: String {
         case morningInterview = "MORNING_INTERVIEW"
+        case morningInterviewReminder = "MORNING_INTERVIEW_REMINDER"
         case weeklyInterview = "WEEKLY_INTERVIEW"
         case toBeVision = "TOBEVISION"
         case randomContentSleep = "RANDOM_CONTENT_SLEEP"
         case randomContentMovement = "RANDOM_CONTENT_MOVEMENT"
+        case fitBitSyncReminder = "FITBIT_SYNC_REMINDER"
     }
 }
 

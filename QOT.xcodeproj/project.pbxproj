@@ -1370,7 +1370,7 @@
 		CBC5A5731FA07F10007B9A5B /* 20_min_power_nap_with_voice_A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 20_min_power_nap_with_voice_A.m4a; path = Media/20_min_power_nap_with_voice_A.m4a; sourceTree = "<group>"; };
 		CBC5A5741FA07F11007B9A5B /* 20_min_power_nap_with_voice_B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 20_min_power_nap_with_voice_B.m4a; path = Media/20_min_power_nap_with_voice_B.m4a; sourceTree = "<group>"; };
 		CBC5A5751FA07F11007B9A5B /* 90_min_power_nap.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 90_min_power_nap.m4a; path = Media/90_min_power_nap.m4a; sourceTree = "<group>"; };
-		CBC5A5761FA07F11007B9A5B /* 15_min_power_nap_with_voice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 15_min_power_nap_with_voice.m4a; path = Media/15_min_power_nap_with_voice.m4a; sourceTree = "<group>"; };
+		CBC5A5761FA07F11007B9A5B /* 15_min_power_nap_with_voice.m4a */ = {isa = PBXFileReference; lastKnownFileType = text; name = 15_min_power_nap_with_voice.m4a; path = Media/15_min_power_nap_with_voice.m4a; sourceTree = "<group>"; };
 		CBC5A5771FA07F11007B9A5B /* 10_min_power_nap_with_voice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 10_min_power_nap_with_voice.m4a; path = Media/10_min_power_nap_with_voice.m4a; sourceTree = "<group>"; };
 		CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoice.swift; sourceTree = "<group>"; };
 		CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoiceIntermediary.swift; sourceTree = "<group>"; };
@@ -3691,7 +3691,7 @@
 					};
 					CBB237FF1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 0920;
+						LastSwiftMigration = 0940;
 						ProvisioningStyle = Automatic;
 						TestTargetID = CBB237EB1E6FFF1200AB5AEF;
 					};
@@ -3895,7 +3895,6 @@
 				"${BUILT_PRODUCTS_DIR}/Freddy/Freddy.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
-				"${BUILT_PRODUCTS_DIR}/LoremIpsum/LoremIpsum.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
@@ -3918,7 +3917,6 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Freddy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/LoremIpsum.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",

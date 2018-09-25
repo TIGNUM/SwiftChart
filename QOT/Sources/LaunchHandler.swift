@@ -278,12 +278,20 @@ extension LaunchHandler {
 extension LaunchHandler {
 
     func featureExplainer(url: URL, scheme: URLScheme, guideItem: Guide.Item?) {
-        guard
+        if
             let guideItem = guideItem,
             let contentIDString = scheme.queryParametter(url: url),
-            let contentID = Int(contentIDString) else { return }
+            let contentID = Int(contentIDString) {
                 appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
                                                                              guideItem: guideItem)
+        } else if
+            let contentIDString = scheme.queryParametter(url: url),
+            let contentID = Int(contentIDString),
+            let notificationIDString = scheme.pushNotificationID(url: url),
+            let notificationID = Int(notificationIDString) {
+                appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
+                                                                             notificationID: notificationID)
+        }
     }
 
     func contentItem(url: URL, scheme: URLScheme, searchViewController: SearchViewController?) {

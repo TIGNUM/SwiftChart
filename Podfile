@@ -22,7 +22,6 @@ target 'QOT' do
   pod 'Bond'
   pod 'Anchorage'
   pod 'R.swift'
-  pod 'LoremIpsum'
   pod 'RealmSwift'
   pod 'Freddy'
   pod 'Alamofire'

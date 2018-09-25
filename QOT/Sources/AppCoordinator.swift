@@ -1069,7 +1069,7 @@ extension AppCoordinator {
         currentPresentedController = viewController
     }
 
-    func presentFeatureArticelContentItems(contentID: Int, guideItem: Guide.Item) {
+    func presentFeatureArticelContentItems(contentID: Int, guideItem: Guide.Item?) {
         guard
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
             let services = services,
@@ -1079,13 +1079,48 @@ extension AppCoordinator {
                                                             services: services,
                                                             contentCollection: content,
                                                             articleHeader: ArticleCollectionHeader(content: content),
-                                                            topTabBarTitle: guideItem.subtitle.uppercased(),
+                                                            topTabBarTitle: guideItem?.subtitle.uppercased(),
                                                             shouldPush: false,
                                                             guideItem: guideItem) else { return }
         startChild(child: coordinator)
         currentPresentedNavigationController = coordinator.topTabBarController
         currentPresentedController = coordinator.fullViewController
 
+    }
+
+    func presentFeatureArticelContentItems(contentID: Int, notificationID: Int) {
+        if
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let services = services,
+            let content = services.contentService.contentCollection(id: contentID) {
+                let guideItemContent = Guide.Item.Content.learningPlan(text: content.guideBody ?? "",
+                                                                       strategiesCompleted: nil)
+                let guideItem = Guide.Item(status: .done,
+                                           title: content.guideTitle ?? "",
+                                           content: guideItemContent,
+                                           subtitle: content.guideBody ?? "",
+                                           isDailyPrep: false,
+                                           isLearningPlan: false,
+                                           isWhatsHot: false,
+                                           isToBeVision: false,
+                                           link: URL(string: "qot://feature-explainer?contentID=\(contentID)"),
+                                           featureLink: content.guideFeatureButton.link,
+                                           featureButton: content.guideFeatureButton.title,
+                                           identifier: "\(notificationID)",
+                                           affectsTabBarBadge: false)
+                if let coordinator = ArticleContentItemCoordinator(pageName: .featureExplainer,
+                                                                   root: rootViewController,
+                                                                   services: services,
+                                                                   contentCollection: content,
+                                                                   articleHeader: ArticleCollectionHeader(content: content),
+                                                                   topTabBarTitle: content.guideType?.uppercased(),
+                                                                   shouldPush: false,
+                                                                   guideItem: guideItem) {
+                    startChild(child: coordinator)
+                    currentPresentedNavigationController = coordinator.topTabBarController
+                    currentPresentedController = coordinator.fullViewController
+                }
+            }
     }
 
 	func presentContentItemSettings(contentID: Int, controller: UIViewController?) {

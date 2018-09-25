@@ -204,6 +204,7 @@ private extension GuideItemFactory {
     }
 
     func guideItem(with notification: RealmGuideItemNotification) -> Guide.Item? {
+        let buttonInfo = notificationButtonInfo(notification: notification)
         let isDailyPrep = RealmGuideItemNotification.ItemType.morningInterview.rawValue == notification.type ||
             RealmGuideItemNotification.ItemType.weeklyInterview.rawValue == notification.type
         let content: Guide.Item.Content
@@ -215,7 +216,6 @@ private extension GuideItemFactory {
             content = .learningPlan(text: notification.body, strategiesCompleted: nil)
         }
 
-        let buttonInfo = notificationButtonInfo(notification: notification)
         return Guide.Item(status: notification.completedAt == nil ? .todo : .done,
                           title: notification.title ?? "",
                           content: content,

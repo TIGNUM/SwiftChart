@@ -8,7 +8,6 @@
 
 import UIKit
 import Anchorage
-import LoremIpsum
 import Bond
 import ReactiveKit
 

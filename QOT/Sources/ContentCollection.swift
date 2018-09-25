@@ -61,9 +61,7 @@ final class ContentCollection: SyncableObject {
         guard
             let relatedContent = relatedContent,
             let json = try? JSON(jsonString: relatedContent),
-            let ids = try? json.decodedArray(type: Int.self) else {
-                return []
-        }
+            let ids = try? json.decodedArray(type: Int.self) else { return [] }
         return ids
     }
 
@@ -86,23 +84,36 @@ final class ContentCollection: SyncableObject {
     }
 
     var hasVideoOnly: Bool {
-        let contentItemsVideo = contentItems.filter { $0.format == "video" }
-        return contentItemsVideo.count == contentItems.count
+        return contentItems.filter { $0.format == "video" }.count == contentItems.count
     }
 
     var hasFullItems: Bool {
-        let contentItemsFull = contentItems.filter { $0.tabs.contains("FULL") == true }
-        return contentItemsFull.isEmpty == false
+        return contentItems.filter { $0.tabs.contains("FULL") == true }.isEmpty == false
     }
 
     var hasBulletItems: Bool {
-        let contentItemsBullet = contentItems.filter { $0.tabs.contains("BULLETS") == true }
-        return contentItemsBullet.isEmpty == false
+        return contentItems.filter { $0.tabs.contains("BULLETS") == true }.isEmpty == false
     }
 
     var hasAudioItems: Bool {
-        let contentItemsAudio = contentItems.filter { $0.tabs.contains("AUDIO") == true }
-        return contentItemsAudio.isEmpty == false
+        return contentItems.filter { $0.tabs.contains("AUDIO") == true }.isEmpty == false
+    }
+
+    var guideTitle: String? {
+        return contentItems.filter { $0.format == ContentItemFormat.guideTitle.rawValue }.first?.valueText
+    }
+
+    var guideBody: String? {
+        return contentItems.filter { $0.format == ContentItemFormat.guideBody.rawValue }.first?.valueText
+    }
+
+    var guideType: String? {
+        return contentItems.filter { $0.format == ContentItemFormat.guideType.rawValue }.first?.valueText
+    }
+
+    var guideFeatureButton: (title: String?, link: URL?) {
+        let item = contentItems.filter { $0.format == ContentItemFormat.guideFeatureButton.rawValue }.first
+        return (title: item?.valueText, link: URL(string: item?.link ?? ""))
     }
 }
 
