@@ -34,8 +34,10 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
         let messagePlaceholder = services.contentService.toBeVisionMessagePlaceholder()
         let currentToBeVision = services.userService.myToBeVision()
         if let toBeVision = currentToBeVision,
-            toBeVision.headline != headlinePlaceholder,
-            toBeVision.text != messagePlaceholder {
+            let headline = toBeVision.headline,
+            let text = toBeVision.text,
+            headline != headlinePlaceholder,
+            text != messagePlaceholder {
             let navController = UINavigationController(rootViewController: myToBeVisionViewController)
             navController.navigationBar.applyDefaultStyle()
             navController.modalPresentationStyle = .custom

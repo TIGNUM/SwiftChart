@@ -15,7 +15,7 @@ public protocol ApplicationStatusBarStyle {
 
 extension UIApplication: ApplicationStatusBarStyle {
     public func setStatusBarStyle(_ statusBarStyle: UIStatusBarStyle) {
-        setStatusBarStyle(Date().isNight ? .lightContent : .default, animated: true)
+        self.statusBarStyle = statusBarStyle
     }
 }
 
