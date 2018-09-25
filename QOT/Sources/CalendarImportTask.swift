@@ -35,7 +35,7 @@ final class CalendarImportTask {
         let result: CalendarImportResult
         do {
             let realm = try realmProvider.realm()
-            let existingCalendarEvents: Results<CalendarEvent> = realm.objects()
+            let existingCalendarEvents: Results<CalendarEvent> = realm.objects(CalendarEvent.self)
             try realm.write {
                 let events: [EKEvent]
                 if calendars.count == 0 {
@@ -66,7 +66,7 @@ final class CalendarImportTask {
         let calendarEvents = realm.objects(CalendarEvent.self)
         for ekEvent in ekEvents {
             if syncableCalendarIds.contains(obj: ekEvent.calendar.toggleIdentifier) == false {
-                print("!!!Sync for Event is disabled\n\(ekEvent.title)\n\(ekEvent.calendarItemExternalIdentifier)\n\(ekEvent.startDate)")
+                print("!!!Sync for Event is disabled\n\(String(describing: ekEvent.title))\n\(String(describing: ekEvent.calendarItemExternalIdentifier))\n\(String(describing: ekEvent.startDate))")
                 // sync for the calendar of event is disabled, ignore it
                 continue
             }

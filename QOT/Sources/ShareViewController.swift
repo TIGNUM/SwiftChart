@@ -130,7 +130,7 @@ private extension ShareViewController {
         sender.isSelected = true
         var otherOptions = Set([toBeVisionButton, weeklyChoicesButton])
         otherOptions.remove(sender)
-        otherOptions.forEach { $0.isSelected = false }
+        otherOptions.forEach { $0?.isSelected = false }
     }
 
     @IBAction func didTapShareButton(_ sender: UIButton) {

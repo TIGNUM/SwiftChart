@@ -12,8 +12,6 @@ import RealmSwift
 protocol DownSyncable: Syncable {
     associatedtype Data
 
-    var modifiedAt: Date { get set }
-
     func setData(_ data: Data, objectStore: ObjectStore) throws
 
     static func object(remoteID: Int, store: ObjectStore, data: Data) throws -> Self?

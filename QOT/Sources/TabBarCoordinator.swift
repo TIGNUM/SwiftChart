@@ -114,12 +114,11 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
         guard let pageViewController = navController.viewControllers.first as? PageViewController,
             let navItem = pageViewController.navigationItem as? NavigationItem else { return navController }
-
-        whatsHotBadgeState.onChange { [weak navItem, weak articleCollectionViewController] (state) in
+        tokenBin.addToken(whatsHotBadgeState.onChange { [weak navItem, weak articleCollectionViewController] (state) in
             let showingArticlesList = articleCollectionViewController?.isShowing ?? false
             let hidden = showingArticlesList || state == .hidden
             navItem?.setBadge(index: 1, hidden: hidden)
-        }.addTo(tokenBin)
+        })
         return navController
     }()
 
@@ -190,9 +189,9 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         articleCollectionProvider.updateBlock = { [unowned self] viewData in
             self.articleCollectionViewController.viewData = viewData
         }
-        whatsHotBadgeState.onChange { [weak self] (state) in
+        tokenBin.addToken(whatsHotBadgeState.onChange { [weak self] (state) in
             self?.syncLearnTabBadge()
-        }.addTo(tokenBin)
+        })
     }
 
     // MARK: -

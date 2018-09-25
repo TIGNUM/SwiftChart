@@ -19,7 +19,7 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.1</string>
+	<string>1.2.2</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -97,8 +97,6 @@
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>QOT needs access to calendar to prepare events and to create calendar events.</string>
-	<key>NSRemindersUsageDescription</key>
-	<string>QOT needs access to reminder to remind you and to help you</string>
 	<key>NSCameraUsageDescription</key>
 	<string>QOT needs camera access for changing images.</string>
 	<key>NSContactsUsageDescription</key>
@@ -115,6 +113,8 @@
 	<string>QOT needs access to your location to track your steps.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>QOT needs access to your Library to set your images.</string>
+	<key>NSRemindersUsageDescription</key>
+	<string>QOT needs access to reminder to remind you and to help you</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Apercu-Regular.otf</string>

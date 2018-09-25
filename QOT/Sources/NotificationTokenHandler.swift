@@ -25,6 +25,6 @@ class NotificationTokenHandler {
     }
 
     func stop() {
-        notificationToken.stop()
+        notificationToken.invalidate()
     }
 }

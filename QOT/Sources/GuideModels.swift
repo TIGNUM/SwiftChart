@@ -91,28 +91,39 @@ struct Guide {
 extension Guide.Model: Equatable {
 
     public static func == (lhs: Guide.Model, rhs: Guide.Model) -> Bool {
-        return lhs == rhs
+        return lhs.days == rhs.days
+            && lhs.message == rhs.message
+            && lhs.greeting == rhs.greeting
     }
 }
 
 extension Guide.Day: Equatable {
 
     public static func == (lhs: Guide.Day, rhs: Guide.Day) -> Bool {
-        return lhs == rhs
+        return lhs.localStartOfDay == rhs.localStartOfDay
+            && lhs.items == rhs.items
     }
 }
 
 extension Guide.Item: Equatable {
 
     static func == (lhs: Guide.Item, rhs: Guide.Item) -> Bool {
-        return lhs == rhs
+        return lhs.identifier == rhs.identifier
+            && lhs.title == rhs.title
+            && lhs.link == rhs.link
+            && lhs.featureLink == rhs.featureLink
+            && lhs.content == rhs.content
+            && lhs.subtitle == rhs.subtitle
+            && lhs.content == rhs.content
     }
 }
 
 extension Guide.DailyPrepItem: Equatable {
 
     static func == (lhs: Guide.DailyPrepItem, rhs: Guide.DailyPrepItem) -> Bool {
-        return lhs == rhs
+        return lhs.result == rhs.result
+            && lhs.key == lhs.key
+            && lhs.title == rhs.title
     }
 }
 

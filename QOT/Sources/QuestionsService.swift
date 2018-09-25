@@ -179,7 +179,7 @@ extension QuestionsService {
 
     private func isValid(answer: Answer) -> Bool {
         let predicate = NSPredicate(format: "collectionID == %d", answer.decisions.first?.targetID ?? 0)
-        let contentItems: AnyRealmCollection<ContentItem> = mainRealm.anyCollection(predicates: predicate)
+        let contentItems = AnyRealmCollection(mainRealm.objects(ContentItem.self).filter(predicate))
         let filteredItems = contentItems.filter { $0.searchTags.isEmpty == false && $0.searchTags.contains("GENDER_") }
         return filteredItems.isEmpty == false
     }

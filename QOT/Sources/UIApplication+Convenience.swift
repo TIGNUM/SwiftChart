@@ -9,6 +9,16 @@
 import Foundation
 import UIKit
 
+public protocol ApplicationStatusBarStyle {
+    func setStatusBarStyle(_ statusBarStyle: UIStatusBarStyle)
+}
+
+extension UIApplication: ApplicationStatusBarStyle {
+    public func setStatusBarStyle(_ statusBarStyle: UIStatusBarStyle) {
+        setStatusBarStyle(Date().isNight ? .lightContent : .default, animated: true)
+    }
+}
+
 extension UIApplication {
 
     class func openAppSettings() {

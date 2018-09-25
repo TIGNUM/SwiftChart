@@ -37,7 +37,7 @@ final class MorningInterviewWorker {
         return realmQuestions.compactMap { (question) -> MorningInterview.Question? in
             guard let remoteID = question.remoteID.value else { return nil }
             // FIXME: This assumes answer title will be 1 ... 10. Use sortOrder when fixed on server
-            let answers = question.answers.flatMap { (answer) -> MorningInterview.Answer? in
+            let answers = question.answers.compactMap { (answer) -> MorningInterview.Answer? in
                 guard let remoteID = answer.remoteID.value else { return nil }
                 return MorningInterview.Answer(remoteID: remoteID, title: answer.title, subtitle: answer.subtitle)
                 }.sorted { (a, b) -> Bool in

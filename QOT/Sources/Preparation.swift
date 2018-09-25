@@ -40,19 +40,6 @@ final class Preparation: SyncableObject {
 
     @objc private(set) dynamic var event: CalendarEvent?
 
-    lazy var calendarEvent: CalendarEvent? = {
-        if self.event != nil { return event }
-        guard let eventRemoteID = self.calendarEventRemoteID.value else { return nil }
-
-        do {
-            let realm = try RealmProvider().realm()
-            return realm.syncableObject(ofType: CalendarEvent.self, remoteID: eventRemoteID)
-        } catch {
-            // Do nothing
-        }
-        return nil
-    }()
-
     // MARK: Functions
 
     convenience init(calendarEvent: CalendarEvent?, name: String, subtitle: String) {
@@ -72,12 +59,25 @@ final class Preparation: SyncableObject {
         return notes
     }
 
-    var checkableItems: List<PreparationCheck> {
+    var checkableItems: [PreparationCheck] {
         return checks.filter { $0.contentItem?.format != "video" }
     }
 
-    var coveredChecks: List<PreparationCheck> {
+    var coveredChecks: [PreparationCheck] {
         return checkableItems.filter { $0.covered != nil }
+    }
+
+    func calendarEvent() -> CalendarEvent? {
+        if self.event != nil { return event }
+        guard let eventRemoteID = self.calendarEventRemoteID.value else { return nil }
+
+        do {
+            let realm = try RealmProvider().realm()
+            return realm.syncableObject(ofType: CalendarEvent.self, remoteID: eventRemoteID)
+        } catch {
+            // Do nothing
+        }
+        return nil
     }
 }
 
@@ -120,7 +120,7 @@ extension Preparation: TwoWaySyncable {
         notes = data.notes
         calendarEventRemoteID.value = data.calendarEventRemoteID
         if event == nil {
-            event = calendarEvent
+            event = calendarEvent()
         }
         objectStore.delete(answers)
         let newAnswers = data.answers.map { PreparationAnswer(answer: $0.answer,

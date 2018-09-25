@@ -75,7 +75,7 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.setStatusBarStyle(.lightContent)
     }
 }
 

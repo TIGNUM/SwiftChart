@@ -291,7 +291,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     static func updateStatusBarStyleIfNeeded() {
         if let statusBarStyle = AppCoordinator.currentStatusBarStyle {
-            UIApplication.shared.statusBarStyle = statusBarStyle
+            UIApplication.shared.setStatusBarStyle(statusBarStyle)
             AppCoordinator.currentStatusBarStyle = nil
         }
     }

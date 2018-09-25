@@ -50,7 +50,7 @@ final class MyPrepViewModel {
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         preparations = try? services.preparationService.preparationsOnBackground(predicate: NSPredicate(format: "deleted == false"))
         preparationChecks = try? services.preparationService.preparationChecksOnBackground()
-        preparationsNotificationHandler = preparations?.addNotificationBlock { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<Preparation>>) in
+        preparationsNotificationHandler = preparations?.observe { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<Preparation>>) in
             switch change {
             case .update(_, _, let insertions, _):
                 guard insertions.isEmpty == true else {
@@ -61,7 +61,7 @@ final class MyPrepViewModel {
             default: break
             }
         }.handler
-        preparationChecksNotificationHandler = preparationChecks?.addNotificationBlock { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<PreparationCheck>>) in
+        preparationChecksNotificationHandler = preparationChecks?.observe { [unowned self] (change: RealmCollectionChange<AnyRealmCollection<PreparationCheck>>) in
             switch change {
             case .update(_, _, _, let modifications):
                 guard modifications.isEmpty == false else { return }
@@ -109,8 +109,8 @@ private extension MyPrepViewModel {
             items.append(Item(localID: preparation.localID,
                               header: preparation.subtitle,
                               text: preparation.name,
-                              startDate: preparation.calendarEvent?.startDate,
-                              endDate: preparation.calendarEvent?.endDate,
+                              startDate: preparation.calendarEvent()?.startDate,
+                              endDate: preparation.calendarEvent()?.endDate,
                               totalPreparationCount: preparation.checkableItems.count,
                               finishedPreparationCount: preparation.coveredChecks.count))
         }

@@ -35,7 +35,7 @@ final class LearnContentCollectionViewModel {
 
     init(services: Services, selectedIndex: Index) {
         self.categories = services.contentService.learnContentCategories()
-        token = categories.addNotificationBlock { [unowned self] (_) in
+        token = categories.observe { [unowned self] (_) in
             self.updates.next(.reload)
         }.handler
     }

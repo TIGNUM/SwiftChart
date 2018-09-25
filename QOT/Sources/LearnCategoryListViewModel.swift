@@ -37,7 +37,7 @@ final class LearnCategoryListViewModel {
     init(services: Services) {
         self.categories = services.contentService.learnContentCategories()
 
-        token = categories.addNotificationBlock { [unowned self] (change) in
+        token = categories.observe { [unowned self] (change) in
             self.updates.next(change.update(section: 0))
         }.handler
     }

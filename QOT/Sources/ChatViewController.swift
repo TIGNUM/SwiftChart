@@ -163,7 +163,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.setStatusBarStyle(.lightContent)
         guard let visionChoice = visionChoice else { return }
         loadNextQuestions(visionChoice)
         self.visionChoice = nil

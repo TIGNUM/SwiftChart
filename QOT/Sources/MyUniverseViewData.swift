@@ -61,30 +61,43 @@ struct MyUniverseViewData {
 
 extension MyUniverseViewData: Equatable {
     static func == (lhs: MyUniverseViewData, rhs: MyUniverseViewData) -> Bool {
-        return lhs == rhs
+        return lhs.profileImageURL == rhs.profileImageURL
+            && lhs.partners == rhs.partners
+            && lhs.weeklyChoices == rhs.weeklyChoices
+            && lhs.myToBeVisionText == rhs.myToBeVisionText
+            && lhs.myToBeVisionHeadline == rhs.myToBeVisionHeadline
+            && lhs.sectors == rhs.sectors
     }
 }
 
 extension MyUniverseViewData.Partner: Equatable {
     static func == (lhs: MyUniverseViewData.Partner, rhs: MyUniverseViewData.Partner) -> Bool {
-        return lhs == rhs
+        return lhs.imageURL == rhs.imageURL
+            && lhs.initials == rhs.initials
     }
 }
 
 extension MyUniverseViewData.Sector: Equatable {
     static func == (lhs: MyUniverseViewData.Sector, rhs: MyUniverseViewData.Sector) -> Bool {
-        return lhs == rhs
+        return lhs.type == rhs.type
+            && lhs.title == rhs.title
     }
 }
 
 extension MyUniverseViewData.Line: Equatable {
     static func == (lhs: MyUniverseViewData.Line, rhs: MyUniverseViewData.Line) -> Bool {
-        return lhs == rhs
+        return lhs.chartType == rhs.chartType
+            && lhs.color == rhs.color
+            && lhs.dot == rhs.dot
     }
 }
 
 extension MyUniverseViewData.Dot: Equatable {
     static func == (lhs: MyUniverseViewData.Dot, rhs: MyUniverseViewData.Dot) -> Bool {
-        return lhs == rhs
+        return lhs.fillColor == rhs.fillColor
+            && lhs.lineWidth == rhs.lineWidth
+            && lhs.strokeColor == rhs.strokeColor
+            && lhs.radius == rhs.radius
+            && lhs.distance == rhs.distance
     }
 }

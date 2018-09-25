@@ -12,7 +12,7 @@ import RealmSwift
 extension Preparation: GuidePreparation {
 
     var eventStartDate: Date? {
-        return self.calendarEvent?.startDate
+        return self.calendarEvent()?.startDate
     }
 
     var priority: Int {

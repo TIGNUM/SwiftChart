@@ -133,7 +133,7 @@ extension LearnContentItemCoordinator: NavigationItemDelegate {
         if AppCoordinator.currentStatusBarStyle != nil {
             AppCoordinator.updateStatusBarStyleIfNeeded()
         } else {
-            UIApplication.shared.statusBarStyle = .lightContent
+            UIApplication.shared.setStatusBarStyle(.lightContent)
         }
     }
 

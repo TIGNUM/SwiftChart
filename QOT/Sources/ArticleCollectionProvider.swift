@@ -21,7 +21,7 @@ final class ArticleCollectionProvider {
         self.services = services
         contentCollections = services.contentService.whatsHotArticles()
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
-        notificationTokenHandler = contentCollections.addNotificationBlock { [unowned self] change in
+        notificationTokenHandler = contentCollections.observe { [unowned self] change in
             self.updateBlock?(self.provideViewData())
         }.handler
         syncStateObserver.onUpdate { [unowned self] _ in

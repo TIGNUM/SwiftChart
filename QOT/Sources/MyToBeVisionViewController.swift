@@ -124,7 +124,7 @@ final class MyToBeVisionViewController: UIViewController {
         scrollToTop()
         toBeVisionDidUpdate()
         syncEditingViews(true)
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.setStatusBarStyle(.lightContent)
         let item = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = item
     }

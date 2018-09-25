@@ -9,11 +9,11 @@
 import RealmSwift
 
 extension Results where Element: CalendarEvent {
-    func filter(externalIdentifier: String?) -> LazyFilterCollection<Results<T>> {
+    func filter(externalIdentifier: String?) -> LazyFilterCollection<Results<Element>> {
         return filter { $0.calendarItemExternalIdentifier == externalIdentifier }
     }
 
-    func filter(ekEvent: EKEvent!) -> LazyFilterCollection<Results<T>> {
+    func filter(ekEvent: EKEvent!) -> LazyFilterCollection<Results<Element>> {
         return filter {
             return $0.matches(event: ekEvent)
         }

@@ -25,7 +25,7 @@ import RealmSwift
         self.syncRecords = syncRecords
         self.syncedClasses = syncRecords.classNames
 
-        token = syncRecords.addNotificationBlock { [unowned self] (change) in
+        token = syncRecords.observe { [unowned self] (change) in
             switch change {
             case .initial(let syncRecords):
                 self.syncedClasses = syncRecords.classNames
@@ -50,7 +50,7 @@ import RealmSwift
 
 // MARK: Helpers
 
-private extension Results where T: SyncRecord {
+private extension Results where Element: SyncRecord {
 
     var classNames: Set<String> {
         return Set(map({ $0.associatedClassName }))

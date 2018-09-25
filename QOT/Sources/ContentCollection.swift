@@ -72,7 +72,7 @@ final class ContentCollection: SyncableObject {
     var durationString: String {
         let durationString: String
         if hasVideoOnly == true {
-            let durations = contentItems.flatMap { $0.valueDuration.value?.toFloat }
+            let durations = contentItems.compactMap { $0.valueDuration.value?.toFloat }
             let total = durations.reduce(0) { ($0 / 60) + ($1 / 60) }
             let min = String(Int(total))
             durationString = R.string.localized.learnContentListViewMinutesLabelWatch(min)

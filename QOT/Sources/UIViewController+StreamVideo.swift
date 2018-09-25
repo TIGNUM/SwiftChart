@@ -14,7 +14,7 @@ extension UIViewController {
 
     @discardableResult
     func stream(videoURL: URL) -> AVPlayerViewController {
-        UIApplication.shared.statusBarStyle = .lightContent
+        UIApplication.shared.setStatusBarStyle(.lightContent)
         let player = AVPlayer(url: videoURL)
         let playerController = AVPlayerViewController()
         playerController.player = player

@@ -20,7 +20,7 @@ final class PreparationService {
     }
 
     func preparations() -> AnyRealmCollection<Preparation> {
-        return mainRealm.anyCollection()
+        return AnyRealmCollection(mainRealm.objects(Preparation.self))
     }
 
     func preparation(localID: String) -> Preparation? {
@@ -33,14 +33,14 @@ final class PreparationService {
 
     func preparationsOnBackground(predicate: NSPredicate? = nil) throws -> AnyRealmCollection<Preparation> {
         if let predicate = predicate {
-            return try realmProvider.realm().anyCollection(predicates: predicate)
+            return try AnyRealmCollection(realmProvider.realm().objects(Preparation.self).filter(predicate))
         } else {
-            return try realmProvider.realm().anyCollection()
+            return try AnyRealmCollection(realmProvider.realm().objects(Preparation.self))
         }
     }
 
     func preparationChecksOnBackground() throws -> AnyRealmCollection<PreparationCheck> {
-        return try realmProvider.realm().anyCollection()
+        return try AnyRealmCollection(realmProvider.realm().objects(PreparationCheck.self))
     }
 
     func preparationChecksOnBackground(preparationID: String) throws -> AnyRealmCollection<PreparationCheck> {
@@ -156,7 +156,7 @@ final class PreparationService {
     }
 
     func removeLinkFromEventNotes(forPreparation preparation: Preparation) throws {
-        guard let event = preparation.calendarEvent?.event, let notes = event.notes else {
+        guard let event = preparation.calendarEvent()?.event, let notes = event.notes else {
             return
         }
         let regex = try NSRegularExpression(pattern: "(qotapp:\\/\\/preparation#[A-Z0-9-]+)", options: [])
@@ -225,7 +225,7 @@ final class PreparationService {
 private extension Realm {
 
     func preparationChecks(preparationID: String) -> AnyRealmCollection<PreparationCheck> {
-        return anyCollection(predicates: .deleted(false), .preparationID(preparationID))
+        return AnyRealmCollection(objects(PreparationCheck.self).filter(.deleted(false)).filter(.preparationID(preparationID)))
     }
 
     func calendarEventForEKEvent(_ ekEvent: EKEvent) -> CalendarEvent {

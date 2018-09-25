@@ -32,9 +32,9 @@ final class WhatsHotBadgeState {
                 self.update()
             }
         }
-        articles.addNotificationBlock { [unowned self] (_) in
+        tokenBin.addToken(articles.observe { [unowned self] (_) in
             self.update()
-        }.addTo(tokenBin)
+        })
     }
 
     var state: State {
@@ -90,7 +90,7 @@ private extension Realm {
     }
 }
 
-private extension Results where T: ContentCollection {
+private extension Results where Element: ContentCollection {
 
     var lastModified: Date? {
         return first?.modifiedAt

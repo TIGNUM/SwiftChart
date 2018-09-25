@@ -90,7 +90,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
             Fabric.with([Crashlytics.self])
             appCoordinator.start()
-            UIApplication.shared.statusBarStyle = .lightContent
+            UIApplication.shared.setStatusBarStyle(.lightContent)
             UNUserNotificationCenter.current().delegate = self
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()

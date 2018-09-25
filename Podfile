@@ -4,7 +4,7 @@ platform :ios, '10.0'
 inhibit_all_warnings!
 
 def shared_pods
-  pod 'Kingfisher', '~> 3.6'
+  pod 'Kingfisher'
 end
 
 target 'QOTWidget' do
@@ -32,7 +32,7 @@ target 'QOT' do
   pod 'MBProgressHUD'
   pod 'Fabric'
   pod 'Crashlytics'
-  pod 'Appsee'
+  pod 'Appsee', '~> 2.4.4'
   pod 'UrbanAirship-iOS-SDK'
   pod 'Buglife'
   pod 'SwiftyBeaver'
@@ -50,7 +50,9 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.2'
+        if target.name == 'JSONWebToken'
+            system("rm -rf Pods/JSONWebToken/CommonCrypto")
+        end
       config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
     end
   end

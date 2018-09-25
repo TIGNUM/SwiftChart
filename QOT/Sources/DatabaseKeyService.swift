@@ -31,8 +31,9 @@ class DatabaseKeyService {
     // @see https://developer.apple.com/documentation/security/1399291-secrandomcopybytes
     func generateNewKey() throws -> Data {
         var keyData = Data(count: length)
+        let dataCount = keyData.count
         let result = keyData.withUnsafeMutableBytes { (mutableBytes: UnsafeMutablePointer<UInt8>) -> Int32 in
-            SecRandomCopyBytes(kSecRandomDefault, keyData.count, mutableBytes)
+            SecRandomCopyBytes(kSecRandomDefault, dataCount, mutableBytes)
         }
         guard result == errSecSuccess else {
             throw SimpleError(localizedDescription: "SecRandomCopyBytes failed with code \(result)")

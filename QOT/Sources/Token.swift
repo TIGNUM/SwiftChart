@@ -15,13 +15,6 @@ protocol TokenProtocol: class {
     func invalidate()
 }
 
-extension TokenProtocol {
-
-    func addTo(_ bin: TokenBin) {
-        bin.addToken(self)
-    }
-}
-
 final class Token: TokenProtocol {
 
     private let lock = NSLock()
@@ -83,7 +76,4 @@ extension CompositeDisposable: TokenProtocol {
 
 extension NotificationToken: TokenProtocol {
 
-    func invalidate() {
-        stop()
-    }
 }

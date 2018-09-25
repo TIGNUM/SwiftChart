@@ -66,7 +66,7 @@ extension ImageCropper: RSKImageCropViewControllerDelegate {
         delegate?.imageCropperDidPressCancel(self)
     }
 
-    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect) {
+    func imageCropViewController(_ controller: RSKImageCropViewController, didCropImage croppedImage: UIImage, usingCropRect cropRect: CGRect, rotationAngle: CGFloat) {
         delegate?.imageCropper(self, croppedImage: croppedImage)
     }
 }

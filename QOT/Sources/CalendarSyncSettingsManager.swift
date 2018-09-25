@@ -51,7 +51,7 @@ final class CalendarSyncSettingsManager {
         do {
             var settings: [String: CalendarSyncSetting] = [:]
             let realm = try realmProvider.realm()
-            let existingCalendarSettings: Results<RealmCalendarSyncSetting> = realm.objects()
+            let existingCalendarSettings = realm.objects(RealmCalendarSyncSetting.self)
 
             for calendar in existingCalendarSettings {
                 let id = calendar.localID

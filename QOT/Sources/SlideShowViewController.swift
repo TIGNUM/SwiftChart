@@ -8,7 +8,6 @@
 
 import UIKit
 import Anchorage
-import Diff
 
 final class SlideShowViewController: UIViewController {
 

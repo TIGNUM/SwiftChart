@@ -129,9 +129,9 @@ final class ChatViewCell: UICollectionViewCell {
         typingAnimationView.widthAnchor == 60
         typingAnimationView.heightAnchor == 40
         dashedLineView.edgeAnchors == contentView.edgeAnchors
-        label.horizontalAnchors == contentView.horizontalAnchors + 12 ~ Priority.custom(999)
+        label.horizontalAnchors == contentView.horizontalAnchors + 12 ~ Priority.custom(LayoutPriority(rawValue: 999))
         label.topAnchor == contentView.topAnchor + 12
-        label.bottomAnchor == contentView.bottomAnchor - 12 ~ Priority.custom(999)
+        label.bottomAnchor == contentView.bottomAnchor - 12 ~ Priority.custom(LayoutPriority(rawValue: 999))
     }
 
     func typingAnimationImages() -> [UIImage] {

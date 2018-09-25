@@ -1,18 +1,18 @@
 PODS:
-  - ActionSheetPicker-3.0 (2.2.0)
-  - Alamofire (4.5.1)
-  - Anchorage (4.0.0)
-  - Appsee (2.4.1)
-  - Bond (6.3.0):
-    - Diff (~> 0.5.3)
-    - ReactiveKit (~> 3.6.2)
-  - BonMot (4.3.1)
-  - Buglife (1.9.0)
-  - Crashlytics (3.8.6):
-    - Fabric (~> 1.6.3)
-  - Diff (0.5.3)
-  - Fabric (1.6.13)
-  - Freddy (3.0.2)
+  - ActionSheetPicker-3.0 (2.3.0)
+  - Alamofire (4.7.3)
+  - Anchorage (4.3)
+  - Appsee (2.4.4)
+  - Bond (6.10.0):
+    - Differ (~> 1.2)
+    - ReactiveKit (~> 3.9)
+  - BonMot (5.3)
+  - Buglife (2.8.1)
+  - Crashlytics (3.10.7):
+    - Fabric (~> 1.7.11)
+  - Differ (1.2.3)
+  - Fabric (1.7.11)
+  - Freddy (3.0.3)
   - HockeySDK (5.1.2):
     - HockeySDK/DefaultLib (= 5.1.2)
   - HockeySDK/DefaultLib (5.1.2)
@@ -20,28 +20,28 @@ PODS:
     - JPSimulatorHacks/standard (= 1.4.2)
   - JPSimulatorHacks/standard (1.4.2)
   - JSONWebToken (2.2.0)
-  - KeychainAccess (3.1.0)
-  - Kingfisher (3.13.1)
-  - MBProgressHUD (1.0.0)
-  - R.swift (3.3.0):
-    - R.swift.Library (~> 3.0.2)
-  - R.swift.Library (3.0.2)
-  - ReactiveKit (3.6.2)
-  - Realm (2.10.1):
-    - Realm/Headers (= 2.10.1)
-  - Realm/Headers (2.10.1)
-  - RealmSwift (2.10.1):
-    - Realm (= 2.10.1)
-  - RSKImageCropper (1.6.3)
-  - Siren (3.2.0)
-  - SwiftyBeaver (1.4.2)
-  - UrbanAirship-iOS-SDK (8.6.0)
+  - KeychainAccess (3.1.1)
+  - Kingfisher (4.10.0)
+  - MBProgressHUD (1.1.0)
+  - R.swift (4.0.0):
+    - R.swift.Library (~> 4.0.0)
+  - R.swift.Library (4.0.0)
+  - ReactiveKit (3.9.6)
+  - Realm (3.10.0):
+    - Realm/Headers (= 3.10.0)
+  - Realm/Headers (3.10.0)
+  - RealmSwift (3.10.0):
+    - Realm (= 3.10.0)
+  - RSKImageCropper (2.2.0)
+  - Siren (3.2.3)
+  - SwiftyBeaver (1.6.1)
+  - UrbanAirship-iOS-SDK (10.0.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
   - Alamofire
   - Anchorage
-  - Appsee
+  - Appsee (~> 2.4.4)
   - Bond
   - BonMot
   - Buglife
@@ -52,7 +52,7 @@ DEPENDENCIES:
   - JPSimulatorHacks
   - JSONWebToken
   - KeychainAccess
-  - Kingfisher (~> 3.6)
+  - Kingfisher
   - MBProgressHUD
   - R.swift
   - RealmSwift
@@ -71,7 +71,7 @@ SPEC REPOS:
     - BonMot
     - Buglife
     - Crashlytics
-    - Diff
+    - Differ
     - Fabric
     - Freddy
     - HockeySDK
@@ -91,33 +91,33 @@ SPEC REPOS:
     - UrbanAirship-iOS-SDK
 
 SPEC CHECKSUMS:
-  ActionSheetPicker-3.0: d11a4c12c6aaf704b8a3f56d179198c99f3e41e6
-  Alamofire: 2d95912bf4c34f164fdfc335872e8c312acaea4a
-  Anchorage: fe50dca4e20846b8cb15c859d26fec5132b41577
-  Appsee: ab8b0317b0a5217d08637f61dbddaba2c9748f2a
-  Bond: 6a15b0635bbaae915d91b4c4ffa1396807530ef3
-  BonMot: 043bb5a8834cc6d74e9d624742272b92385e0a27
-  Buglife: 81b481525f922d4d56c7f29f643ce8a8f49f5169
-  Crashlytics: 95d05f4e4c19a771250c4bd9ce344d996de32bbf
-  Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
-  Fabric: 2fb5676bc811af011a04513451f463dac6803206
-  Freddy: 60e165f3943b116d188c5a89991424a89cd71165
+  ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
+  Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  Anchorage: 21a98675245188427f0bcea21404d42a824a766f
+  Appsee: ee95b522257365d162c2c83f28e32386053bd980
+  Bond: 86b0a343dcb8c8ad18c8a31fc9faa2ba45280b30
+  BonMot: 0104d1b4eda54f4a4b7393d6559539ef25498fbd
+  Buglife: cbf83ab8a0e203a76ee640b24c2e3c3cae9f2c8a
+  Crashlytics: ccaac42660eb9351b9960c0d66106b0bcf99f4fa
+  Differ: 061f3298ea9408494c43b530c44583e555884daf
+  Fabric: f233c9492b3bbc1f04e3882986740f7988a58edb
+  Freddy: 7c62db262a0d0e3b3e2b8b40f2c0cc51e122fbc4
   HockeySDK: 38b7e2726af1ea86ae97ce4b5de33ab0817e3500
   JPSimulatorHacks: 28428b30259eb93ad558ac3f2c608acd2133a14b
   JSONWebToken: 6fae32489632658d563dd6952a5c34020ea813e4
-  KeychainAccess: 94c5540b32eabf7bc32bfb976a268e8ea05fd6da
-  Kingfisher: ed9707a409cc47fddafbcd12a43a9757e3600af5
-  MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
-  R.swift: bde9704d50ff36820f49e266bc88ef545e1e9b36
-  R.swift.Library: fbdec16c9802ad104fc1ba53415dc190e6ec5c73
-  ReactiveKit: 59813e52505065d14fa77b453d8be5981eced6b7
-  Realm: fc7a317a5c2c9ba91f5f235ede4e2ea76e9eba0c
-  RealmSwift: 505ed6c15942a2e76f5cfa78a8667cfa997ee75b
-  RSKImageCropper: 356e36fc58c57c371b5d8b23d603936d6a73df6c
-  Siren: 964f57553cf6a39d1bada4e403557523a213b397
-  SwiftyBeaver: 91057725648ee4980308f1650af077d04b3654a0
-  UrbanAirship-iOS-SDK: 1a2837473096ca63d86f11cadb4710d993237186
+  KeychainAccess: 7bd430028059754a3debab3cfc0bd1fc7fb85df3
+  Kingfisher: 43c4b802d8b5256cf1f4379e9cd10b329be6d3e2
+  MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
+  R.swift: d6a5ec2f55a8441dc0ed9f1f8b37d7d11ae85c66
+  R.swift.Library: c3af34921024333546e23b70e70d0b4e0cffca75
+  ReactiveKit: 804d3093ad42dee0de19e42d4f7dcae9c14364b0
+  Realm: 85ab9e4f779d66f6e9ffeb118dc25b7f130c96ac
+  RealmSwift: 69121c8b86d0ae005fb779efdb10e606732e1c74
+  RSKImageCropper: bd0bdf765b27c046c89728d65075b363a3b665c2
+  Siren: aeb0151fcc47be5c9302b1e1c98816d8f77c95d9
+  SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
+  UrbanAirship-iOS-SDK: 49d6f0f960f5b631af049522102fc5502111290f
 
-PODFILE CHECKSUM: bf8a702d1657a9fbafd4ae8f277074cc3e6613f7
+PODFILE CHECKSUM: eaf6618f90f09a75522f38d6010156498f4b0f74
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0.beta.1

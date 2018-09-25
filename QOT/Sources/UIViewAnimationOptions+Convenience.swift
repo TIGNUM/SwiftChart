@@ -19,6 +19,8 @@ extension UIViewAnimationOptions {
             self = .curveEaseInOut
         case .linear:
             self = .curveLinear
+        default:
+            self = .curveLinear
         }
     }
 }

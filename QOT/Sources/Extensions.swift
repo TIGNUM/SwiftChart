@@ -291,15 +291,6 @@ extension MutableCollection where Index == Int {
     }
 }
 
-extension Collection {
-
-    func shuffled() -> [Iterator.Element] {
-        var list = Array(self)
-        list.shuffle()
-        return list
-    }
-}
-
 // MAARK: - UIView
 
 extension UIView {

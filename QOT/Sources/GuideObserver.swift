@@ -35,20 +35,20 @@ final class GuideObserver {
         becomeActiveHandler.handler = { [unowned self] _ in
             self.guideDidChange?()
         }
-        notificationItems.addNotificationBlock { [unowned self] _ in
+        tokenBin.addToken(notificationItems.observe { [unowned self] _ in
             self.guideDidChange?()
-            }.addTo(tokenBin)
-        learnItems.addNotificationBlock { [unowned self] _ in
+        })
+        tokenBin.addToken(learnItems.observe { [unowned self] _ in
             self.guideDidChange?()
-            }.addTo(tokenBin)
-        dailyPrepResults.addNotificationBlock { [unowned self] _ in
+        })
+        tokenBin.addToken(dailyPrepResults.observe { [unowned self] _ in
             self.guideDidChange?()
-            }.addTo(tokenBin)
-        preparations.addNotificationBlock { [unowned self] _ in
+        })
+        tokenBin.addToken(preparations.observe { [unowned self] _ in
             self.guideDidChange?()
-            }.addTo(tokenBin)
-        myToBeVision.addNotificationBlock { [unowned self] _ in
+        })
+        tokenBin.addToken(myToBeVision.observe { [unowned self] _ in
             self.guideDidChange?()
-            }.addTo(tokenBin)
+        })
     }
 }

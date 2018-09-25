@@ -34,18 +34,18 @@ final class MyUniverseProvider {
                 self.update()
             }
         }
-        myToBeVisions.addNotificationBlock { [unowned self] _ in
+        tokenBin.addToken(myToBeVisions.observe { [unowned self] _ in
             self.update()
-        }.addTo(tokenBin)
-        partners.addNotificationBlock { [unowned self] _ in
+        })
+        tokenBin.addToken(partners.observe { [unowned self] _ in
             self.update()
-        }.addTo(tokenBin)
-        userChoices.addNotificationBlock { [unowned self] _ in
+        })
+        tokenBin.addToken(userChoices.observe { [unowned self] _ in
             self.update()
-        }.addTo(tokenBin)
-        statistics.addNotificationBlock { [unowned self] _ in
+        })
+        tokenBin.addToken(statistics.observe { [unowned self] _ in
             self.update()
-        }.addTo(tokenBin)
+        })
     }
 
     // MARK: - private

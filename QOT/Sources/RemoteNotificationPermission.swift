@@ -36,6 +36,8 @@ private extension UNAuthorizationStatus {
             return "denied"
         case .authorized:
             return "authorized"
+        case .provisional:
+            return "provisional"
         }
     }
 }

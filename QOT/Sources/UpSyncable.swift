@@ -66,7 +66,6 @@ extension Dirty {
 
 protocol UpSyncableDeleting: UpSyncable {
 
-    var localID: String { get }
 }
 
 extension UpSyncableDeleting where Self: SyncableObject {
@@ -104,10 +103,6 @@ extension UpSyncableDeleting where Self: SyncableObject {
 // MARK: UpSyncableWithLocalAndRemoteIDs
 
 protocol UpSyncableWithLocalAndRemoteIDs: UpSyncable, Dirty {
-
-    var localID: String { get }
-
-    var remoteID: RealmOptional<Int> { get }
 
     var deleted: Bool { get set }
 }

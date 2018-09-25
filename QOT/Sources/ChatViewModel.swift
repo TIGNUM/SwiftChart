@@ -71,7 +71,7 @@ struct ChatItem<T: ChatChoice>: Equatable {
     }
 
     static func == (lhs: ChatItem<T>, rhs: ChatItem<T>) -> Bool {
-        return lhs == rhs
+        return lhs.identifier == rhs.identifier
     }
 }
 

@@ -103,14 +103,14 @@ final class LearnContentItemViewModel: NSObject {
             return
         }
 
-        let buffer = playerItem?.observe(\.playbackBufferEmpty, changeHandler: { [weak self] (playerItem, changes) in
+        let buffer = playerItem?.observe(\.isPlaybackBufferEmpty, changeHandler: { [weak self] (playerItem, changes) in
             if playerItem.isPlaybackBufferEmpty == true {
                 self?.currentPlayingCell?.updateItem(buffering: false, playing: self?.isPlaying ?? false)
                 self?.audioPlayerViewDelegate?.stopBlinking()
             }
         })
 
-        let keepUp = playerItem?.observe(\.playbackLikelyToKeepUp, changeHandler: { [weak self] (playerItem, changes) in
+        let keepUp = playerItem?.observe(\.isPlaybackLikelyToKeepUp, changeHandler: { [weak self] (playerItem, changes) in
             if playerItem.isPlaybackLikelyToKeepUp == true {
                 self?.currentPlayingCell?.updateItem(buffering: false, playing: self?.isPlaying ?? false)
                 self?.audioPlayerViewDelegate?.stopBlinking()

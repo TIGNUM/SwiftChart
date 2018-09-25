@@ -65,8 +65,8 @@ final class ContentService {
     func toolsCategories() -> AnyRealmCollection<ContentCategory> {
         let library = Database.Section.library.rawValue
         let predicate = NSPredicate(format: "ANY contentCollections.section == %@ AND remoteID != %d", library, 100037)
-
-        return sortedResults(for: predicate)
+        return AnyRealmCollection(mainRealm.objects(ContentCategory.self).filter(predicate).sorted(by: [.sortOrder()]))
+//        return sortedResults(for: predicate)
     }
 
     func learnContentCategories() -> AnyRealmCollection<ContentCategory> {
@@ -91,7 +91,8 @@ final class ContentService {
     }
 
     func contentCategories(ids: [Int]) -> AnyRealmCollection<ContentCategory> {
-        return sortedResults(for: NSPredicate(remoteIDs: ids))
+        let predicate = NSPredicate(remoteIDs: ids)
+        return AnyRealmCollection(mainRealm.objects(ContentCategory.self).filter(predicate).sorted(by: [.sortOrder()]))
     }
 
     func visionGeneratorCategories() -> AnyRealmCollection<ContentCategory> {
@@ -101,23 +102,28 @@ final class ContentService {
     // MARK: - Collections
 
     func tutorialSlideShows() -> AnyRealmCollection<ContentCollection> {
-        return mainRealm.anyCollection(.sortOrder(), predicates: NSPredicate.slideShow())
+        let predicate = NSPredicate.slideShow()
+        return AnyRealmCollection(mainRealm.objects(ContentCollection.self).filter(predicate).sorted(by: [.sortOrder()]))
     }
 
     func tools() -> AnyRealmCollection<ContentCollection> {
-        return mainRealm.anyCollection(.sortOrder(), predicates: .section(.tools))
+        let predicate = NSPredicate.section(.tools)
+        return AnyRealmCollection(mainRealm.objects(ContentCollection.self).filter(predicate).sorted(by: [.sortOrder()]))
     }
 
     func whatsHotArticles() -> AnyRealmCollection<ContentCollection> {
-        return mainRealm.anyCollection(.sortOrder(), predicates: .section(.learnWhatsHot))
+        let predicate = NSPredicate.section(.learnWhatsHot)
+        return AnyRealmCollection(mainRealm.objects(ContentCollection.self).filter(predicate).sorted(by: [.sortOrder()]))
     }
 
     func contentCollections(ids: [Int]) -> AnyRealmCollection<ContentCollection> {
-        return sortedResults(for: NSPredicate(remoteIDs: ids))
+        let predicate = NSPredicate(remoteIDs: ids)
+        return AnyRealmCollection(mainRealm.objects(ContentCollection.self).filter(predicate).sorted(by: [.sortOrder()]))
     }
 
     func contentCollections(categoryID: Int) -> AnyRealmCollection<ContentCollection> {
-        return sortedResults(for: NSPredicate(format: "ANY categoryIDs.value == %d", categoryID))
+        let predicate = NSPredicate(format: "ANY categoryIDs.value == %d", categoryID)
+        return AnyRealmCollection(mainRealm.objects(ContentCollection.self).filter(predicate).sorted(by: [.sortOrder()]))
     }
 
     func contentCollection(id: Int) -> ContentCollection? {
@@ -125,11 +131,13 @@ final class ContentService {
     }
 
     func contentItems(contentCollectionID: Int) -> AnyRealmCollection<ContentItem> {
-        return mainRealm.anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentCollectionID))
+        let predicate = NSPredicate(format: "collectionID == %d", contentCollectionID)
+        return AnyRealmCollection(mainRealm.objects(ContentItem.self).filter(predicate))
     }
 
     func contentItemsOnBackground(contentCollectionID: Int) throws -> AnyRealmCollection<ContentItem> {
-        return try realmProvider.realm().anyCollection(predicates: NSPredicate(format: "collectionID == %d", contentCollectionID))
+        let predicate = NSPredicate(format: "collectionID == %d", contentCollectionID)
+        return try AnyRealmCollection(realmProvider.realm().objects(ContentItem.self).filter(predicate))
     }
 
     func contentItem(id: Int) -> ContentItem? {
@@ -185,7 +193,7 @@ private extension Realm {
 
     func contentCategories(section: Database.Section) -> AnyRealmCollection<ContentCategory> {
         let predicate = NSPredicate(format: "ANY contentCollections.section == %@", section.rawValue)
-        return anyCollection(.sortOrder(), predicates: predicate)
+        return AnyRealmCollection(objects(ContentCategory.self).filter(predicate).sorted(by: [.sortOrder()]))
     }
 }
 
@@ -198,9 +206,10 @@ extension SortDescriptor {
 
 private extension ContentService {
 
-    func sortedResults<T>(for predicate: NSPredicate) -> AnyRealmCollection<T> {
-        return mainRealm.anyCollection(.sortOrder(), predicates: predicate)
-    }
+//    func sortedResults<T>(for predicate: NSPredicate) -> AnyRealmCollection<T> {
+//        return AnyRealmCollection(mainRealm.objects(T.Type).filter(predicate).sorted(by: .sortOrder()))
+//        return mainRealm.anyCollection(.sortOrder(), predicates: predicate)
+//    }
 }
 
 // MARK: - To Be Vision Tooling

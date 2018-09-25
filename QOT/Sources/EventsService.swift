@@ -24,7 +24,7 @@ final class EventsService {
     }
 
     func calendarEvents(from: Date, to: Date) -> [CalendarEvent] {
-        let existingCalendarEvents: Results<CalendarEvent> = mainRealm.objects()
+        let existingCalendarEvents = mainRealm.objects(CalendarEvent.self)
         let relevantCalendarEvents = existingCalendarEvents.filter {
             if $0.startDate < from || $0.startDate > to {
                 return false
@@ -39,7 +39,7 @@ final class EventsService {
     }
 
     func calendarEvent(remoteID: RealmOptional<Int>?) -> CalendarEvent? {
-        let existingCalendarEvents: Results<CalendarEvent> = mainRealm.objects()
+        let existingCalendarEvents = mainRealm.objects(CalendarEvent.self)
         let relevantCalendarEvents = existingCalendarEvents.filter {
             return $0.remoteID.value == remoteID?.value ? true : false
         }
@@ -47,7 +47,7 @@ final class EventsService {
     }
 
     func calendarEvent(ekEvent: EKEvent!) -> CalendarEvent? {
-        let existingCalendarEvents: Results<CalendarEvent> = mainRealm.objects()
+        let existingCalendarEvents = mainRealm.objects(CalendarEvent.self)
         let relevantCalendarEvents = existingCalendarEvents.filter {
             return $0.calendarItemExternalIdentifier == ekEvent.calendarItemExternalIdentifier && $0.startDate == ekEvent.startDate
         }

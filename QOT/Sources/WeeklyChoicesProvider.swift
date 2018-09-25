@@ -26,7 +26,7 @@ final class WeeklyChoicesProvider {
         self.userChoices = services.userService.userChoices()
         self.itemsPerPage = itemsPerPage
 
-        notificationTokenHandler = userChoices.addNotificationBlock { [unowned self] change in
+        notificationTokenHandler = userChoices.observe { [unowned self] change in
             self.updateBlock?(self.provideViewData())
         }.handler
     }

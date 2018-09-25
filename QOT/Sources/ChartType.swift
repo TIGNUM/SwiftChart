@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-enum ChartType: String, EnumCollection {
+enum ChartType: String {
     case meetingAverageDay = "meetings.number.day"
     case meetingAverageWeek = "meetings.number.week.avg"
     case meetingIncreaseDiff = "meeting.number.changed.diff.percentage"
@@ -554,7 +554,7 @@ enum ChartType: String, EnumCollection {
     }
 }
 
-enum StatisticsSectionType: Int, EnumCollection {
+enum StatisticsSectionType: Int {
     case sleep = 0
     case activity
     case peakPerformance
@@ -607,5 +607,9 @@ enum StatisticsSectionType: Int, EnumCollection {
 
     var sectionKeys: [[String]] {
         return chartTypes.map { $0.map { $0.rawValue } }
+    }
+
+    static var allValues: [StatisticsSectionType] {
+        return [.sleep, .activity, .peakPerformance, .intensity, .meetings, .travel]
     }
 }

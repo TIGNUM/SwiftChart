@@ -27,6 +27,9 @@ protocol ObjectStore {
 }
 
 extension Realm: ObjectStore {
+    func delete<T>(_ objects: List<T>) where T: RealmCollectionValue {
+//        delete(<#T##object: Object##Object#>)
+    }
 
     func addObject(_ object: Object) {
         add(object, update: false)

@@ -92,7 +92,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarStyle = Date().isNight ? .lightContent : .default
+        UIApplication.shared.setStatusBarStyle(Date().isNight ? .lightContent : .default)
         tableView.reloadData()
     }
 
