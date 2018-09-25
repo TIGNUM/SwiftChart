@@ -463,3 +463,4 @@
 "gender.other" = "Female";
 "gender.prefer.not.to.say" = "Prefer not to say";
 "birthdate.title" = "Birthdate";
+"aricle.author.by" = "BY %@";

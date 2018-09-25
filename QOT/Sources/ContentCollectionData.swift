@@ -11,6 +11,7 @@ import Freddy
 
 struct ContentCollectionData {
 
+    let author: String?
     let section: String
     let sortOrder: Int
     let title: String
@@ -27,6 +28,7 @@ struct ContentCollectionData {
 extension ContentCollectionData: DownSyncIntermediary {
 
     init(json: JSON) throws {
+        self.author = try json.getItemValue(at: .author, alongPath: .nullBecomesNil)
         self.section = try json.getItemValue(at: .section)
         self.title = try json.getItemValue(at: .title)
         self.sortOrder = try json.getItemValue(at: .sortOrder)

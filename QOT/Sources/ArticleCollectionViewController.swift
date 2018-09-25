@@ -149,8 +149,8 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: ArticleCollectionCell = collectionView.dequeueCell(for: indexPath)
         let item = viewData.items[indexPath.row]
-
-        cell.configure(articleDate: item.articleDate,
+        cell.configure(author: item.author,
+                       articleDate: item.articleDate,
                        sortOrder: item.sortOrder,
                        title: item.title,
                        description: item.description,

@@ -7,9 +7,10 @@
 //
 
 import UIKit
-import Kingfisher
 
-class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
+final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
+
+    // MARK: - Properties
 
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var date: UILabel!
@@ -17,6 +18,7 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var subTitle: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var mediaInformation: UILabel!
+    @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var bottomSeparator: UIView!
 
     private lazy var dateFormatter: DateFormatter = {
@@ -28,13 +30,18 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
-        imageView.layer.cornerRadius = 8
-        imageView.layer.masksToBounds = true
+        imageView.corner(radius: Layout.CornerRadius.eight.rawValue)
         layoutSubviews()
     }
 
-    func configure(articleDate: Date, sortOrder: String, title: String, description: String, imageURL: URL?, duration: String, showSeparator: Bool) {
+    func configure(author: String,
+                   articleDate: Date,
+                   sortOrder: String,
+                   title: String,
+                   description: String,
+                   imageURL: URL?,
+                   duration: String,
+                   showSeparator: Bool) {
 
         let attributedCustomDate = NSMutableAttributedString(
             string: dateFormatter.string(from: articleDate).uppercased(),
@@ -56,16 +63,16 @@ class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         sortTag.attributedText = attributedSortTag
         sortTag.textAlignment = .right
         subTitle.attributedText = attributedTitle(text: title)
+        authorLabel.attributedText = attributedTitle(text: author)
         textLabel.attributedText = Style.headline(description.uppercased(), .white).attributedString()
         mediaInformation.attributedText = attributedTitle(text: duration)
         imageView.kf.indicatorType = .activity
-        imageView.kf.setImage(with: imageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
+        imageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
         bottomSeparator.isHidden = !showSeparator
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         subTitle.sizeToFit()
     }
 

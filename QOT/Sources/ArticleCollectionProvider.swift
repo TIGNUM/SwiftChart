@@ -30,17 +30,22 @@ final class ArticleCollectionProvider {
     }
 
     func provideViewData() -> ArticleCollectionViewData {
-        let items = Array(contentCollections).compactMap { contentCollection -> ArticleCollectionViewData.Item? in
-            guard contentCollection.articleItems.count > 0 else { return nil }
+        let items = Array(contentCollections).compactMap { content -> ArticleCollectionViewData.Item? in
+            guard content.articleItems.count > 0 else { return nil }
+            var authorValue = ""
+            if let author = content.author, author.isEmpty == false {
+                authorValue = R.string.localized.aricleAuthorBy(author)
+            }
             return ArticleCollectionViewData.Item(
-                title: contentCollection.contentCategories.first?.title ?? "",
-                description: contentCollection.title,
-                date: contentCollection.createdAt,
-                duration: "\(contentCollection.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN", //TODO Localise?
-                articleDate: contentCollection.editedAt,
-                sortOrder: String(format: "#%002d", contentCollection.sortOrder), //TODO Localise?
-                previewImageURL: contentCollection.thumbnailURL,
-                contentCollectionID: contentCollection.remoteID.value ?? 0
+                author: authorValue,
+                title: content.contentCategories.first?.title ?? "",
+                description: content.title,
+                date: content.createdAt,
+                duration: "\(content.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN", //TODO Localise?
+                articleDate: content.editedAt,
+                sortOrder: String(format: "#%002d", content.sortOrder), //TODO Localise?
+                previewImageURL: content.thumbnailURL,
+                contentCollectionID: content.remoteID.value ?? 0
             )
         }
         return ArticleCollectionViewData(items: items)

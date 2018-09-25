@@ -10,6 +10,7 @@ import Foundation
 
 struct ArticleCollectionViewData {
     struct Item {
+        let author: String
         let title: String
         let description: String
         let date: Date

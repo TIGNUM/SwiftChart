@@ -20,6 +20,7 @@ enum JsonKey: String {
     case associatedValueType
     case attendees
     case attitude
+    case author
     case availability
     case base64Data
     case birthdate

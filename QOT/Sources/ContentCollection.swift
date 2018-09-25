@@ -25,6 +25,8 @@ final class ContentCollection: SyncableObject {
 
     // MARK: ContentData
 
+    @objc private(set) dynamic var author: String?
+
     @objc private(set) dynamic var section: String = ""
 
     @objc private(set) dynamic var sortOrder: Int = 0
@@ -62,7 +64,6 @@ final class ContentCollection: SyncableObject {
             let ids = try? json.decodedArray(type: Int.self) else {
                 return []
         }
-
         return ids
     }
 
@@ -72,7 +73,6 @@ final class ContentCollection: SyncableObject {
 
     var durationString: String {
         let durationString: String
-
         if hasVideoOnly == true {
             let durations = contentItems.flatMap { $0.valueDuration.value?.toFloat }
             let total = durations.reduce(0) { ($0 / 60) + ($1 / 60) }
@@ -82,31 +82,26 @@ final class ContentCollection: SyncableObject {
             let min = String(max(minutesToRead, 1))
             durationString = R.string.localized.learnContentListViewMinutesLabel(min)
         }
-
         return durationString
     }
 
     var hasVideoOnly: Bool {
         let contentItemsVideo = contentItems.filter { $0.format == "video" }
-
         return contentItemsVideo.count == contentItems.count
     }
 
     var hasFullItems: Bool {
         let contentItemsFull = contentItems.filter { $0.tabs.contains("FULL") == true }
-
         return contentItemsFull.isEmpty == false
     }
 
     var hasBulletItems: Bool {
         let contentItemsBullet = contentItems.filter { $0.tabs.contains("BULLETS") == true }
-
         return contentItemsBullet.isEmpty == false
     }
 
     var hasAudioItems: Bool {
         let contentItemsAudio = contentItems.filter { $0.tabs.contains("AUDIO") == true }
-
         return contentItemsAudio.isEmpty == false
     }
 }
@@ -141,6 +136,7 @@ extension ContentCollection: OneWaySyncableDown {
     }
 
     func setData(_ data: ContentCollectionData, objectStore: ObjectStore) throws {
+        author = data.author
         section = data.section
         sortOrder = data.sortOrder
         title = data.title
