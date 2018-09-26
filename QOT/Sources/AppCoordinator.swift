@@ -1057,7 +1057,7 @@ extension AppCoordinator {
         let viewModel = SelectWeeklyChoicesDataModel(services: services,
                                                      relatedContent: relatedStrategies,
                                                      selectedIDs: selectedIDs)
-        let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
+        let image = AppDelegate.topViewController()?.view.screenshot()
         let viewController = SelectWeeklyChoicesViewController(delegate: self,
                                                                viewModel: viewModel,
                                                                backgroundImage: image)

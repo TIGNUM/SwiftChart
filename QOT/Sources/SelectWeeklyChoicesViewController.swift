@@ -102,7 +102,6 @@ private extension SelectWeeklyChoicesViewController {
 
     func setupNavigationBar() {
         backgroundImageView.image = backgroundImage
-        backgroundBlurView.alpha = 0.85 // changing blur view alpha is not recommended, but it looks better...
         setSelected(viewModel.numOfItemsSelected)
         navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: Font.H6NavigationTitle]
         let dummyImage = UIImage()
