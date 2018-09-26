@@ -15,7 +15,7 @@ final class MyToBeVisionConfigurator: AppStateAccess {
             let presenter = MyToBeVisionPresenter(viewController: viewController)
             let worker = MyToBeVisionWorker(services: appState.services,
                                             syncManager: appState.appCoordinator.syncManager)
-            let interactor = MyToBeVisionInteractor(presenter: presenter, worker: worker)
+            let interactor = MyToBeVisionInteractor(presenter: presenter, worker: worker, router: router)
             viewController.interactor = interactor
             viewController.router = router
             viewController.permissionsManager = appState.permissionsManager

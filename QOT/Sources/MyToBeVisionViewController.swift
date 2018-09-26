@@ -33,6 +33,7 @@ final class MyToBeVisionViewController: UIViewController {
     @IBOutlet private weak var headlineEditingSeparatorView: UIView!
     @IBOutlet private weak var messageEditingSeparatorView: UIView!
 	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var shareButton: UIButton!
 	private var contentInset = UIEdgeInsets()
     private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()
@@ -283,6 +284,14 @@ extension MyToBeVisionViewController {
 
     @IBAction private func didTapCreateVision() {
         interactor?.makeVisionGeneratorAndPresent()
+    }
+
+    @IBAction private func didTapShareButton() {
+        interactor?.shareMyToBeVision { error in
+            if let error = error {
+                self.showAlert(type: .message(error.localizedDescription))
+            }
+        }
     }
 }
 

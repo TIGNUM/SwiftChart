@@ -19,23 +19,6 @@ extension Realm {
         }
     }
 
-//    func anyCollection<T>(_ type: T.Type, _ sort: SortDescriptor? = nil, predicates: NSPredicate...) -> AnyRealmCollection<T> {
-//        let predicate = NSCompoundPredicate(andPredicateWithSubpredicates: predicates)
-//        if let sort = sort {
-//            return AnyRealmCollection(objects(type).filter(predicate).sorted(by: [sort]))
-//        }
-//
-//        return AnyRealmCollection(objects(type).filter(predicate))
-//    }
-//
-//    func objects<T>(_ type: T.Type, predicate: NSPredicate) -> Results<T> {
-//        if let predicate = predicate {
-//            return objects(ofType: type).filter(predicate)
-//        } else {
-//            return objects(type)
-//        }
-//    }
-
     func syncableObjects<T: SyncableObject>(ofType type: T.Type, remoteIDs: [Int]) -> [T] {
         return remoteIDs.compactMap { (remoteIDs) -> T? in
             return syncableObject(ofType: T.self, remoteID: remoteIDs)

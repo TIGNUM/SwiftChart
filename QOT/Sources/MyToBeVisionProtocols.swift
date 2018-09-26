@@ -23,6 +23,7 @@ protocol MyToBeVisionPresenterInterface {
 protocol MyToBeVisionInteractorInterface: Interactor {
     func saveToBeVision(image: UIImage?, toBeVision: MyToBeVisionModel.Model)
     func makeVisionGeneratorAndPresent()
+    func shareMyToBeVision(completion: @escaping (Error?) -> Void)
 
     // FIXME: Think of better way of handling page tracking in VIP
     var trackablePageObject: PageObject? { get }
@@ -31,4 +32,5 @@ protocol MyToBeVisionInteractorInterface: Interactor {
 
 protocol MyToBeVisionRouterInterface {
     func close()
+    func showMailComposer(email: String, subject: String, messageBody: String)
 }

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -39,6 +38,7 @@
                 <outlet property="messageStatementTopConstraint" destination="thq-wJ-V4Q" id="g8F-Ed-h4t"/>
                 <outlet property="messageTextView" destination="HYG-f5-Phv" id="hwV-p1-UNr"/>
                 <outlet property="scrollView" destination="uD0-d0-kIf" id="HL6-6n-fcm"/>
+                <outlet property="shareButton" destination="UGm-PQ-00D" id="A5g-3t-RLr"/>
                 <outlet property="subtitleLabel" destination="3Lt-fd-bdx" id="TvC-tj-f6W"/>
                 <outlet property="textViewsContainer" destination="tCL-zM-DF7" id="uIT-At-1QZ"/>
                 <outlet property="topConstraint" destination="yNe-nq-tzX" id="YoE-jr-MOG"/>
@@ -70,12 +70,12 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="230"/>
                                         </imageView>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera" translatesAutoresizingMaskIntoConstraints="NO" id="f32-Ev-McI">
-                                            <rect key="frame" x="159" y="93" width="58" height="45"/>
+                                            <rect key="frame" x="158.5" y="92.5" width="58" height="45"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usl-he-brQ">
-                                            <rect key="frame" x="135" y="148" width="106" height="47"/>
+                                            <rect key="frame" x="134.5" y="147.5" width="106" height="47.5"/>
                                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -162,6 +162,18 @@
                                                 <constraint firstAttribute="height" constant="1" id="ek8-3s-Euz"/>
                                             </constraints>
                                         </view>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGm-PQ-00D">
+                                            <rect key="frame" x="311" y="103.5" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="40" id="05j-r5-u07"/>
+                                                <constraint firstAttribute="width" constant="40" id="DHw-Du-CWX"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" image="ic_share"/>
+                                            <connections>
+                                                <action selector="didTapShareButton" destination="-1" eventType="touchUpInside" id="8W7-xL-qYg"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
@@ -174,7 +186,9 @@
                                         <constraint firstAttribute="trailing" secondItem="Shz-uc-ltT" secondAttribute="trailing" constant="24" id="JWj-mY-Vvt"/>
                                         <constraint firstItem="HYG-f5-Phv" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="KfR-fC-ZGm"/>
                                         <constraint firstItem="gLN-uy-MTt" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="LbJ-ua-YTp"/>
+                                        <constraint firstItem="UGm-PQ-00D" firstAttribute="centerY" secondItem="3Lt-fd-bdx" secondAttribute="centerY" id="OpH-K5-8Gj"/>
                                         <constraint firstAttribute="trailing" secondItem="HYG-f5-Phv" secondAttribute="trailing" constant="24" id="Qpf-FN-1op"/>
+                                        <constraint firstItem="UGm-PQ-00D" firstAttribute="trailing" secondItem="3Lt-fd-bdx" secondAttribute="trailing" id="RJH-8J-9DU"/>
                                         <constraint firstItem="Shz-uc-ltT" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="S0D-wS-phx"/>
                                         <constraint firstAttribute="trailing" secondItem="Bog-ZF-6HV" secondAttribute="trailing" constant="24" id="X2c-EQ-I9j"/>
                                         <constraint firstItem="Bog-ZF-6HV" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="bJd-5R-Sea"/>
@@ -241,5 +255,6 @@
         <image name="Universe mytobevision" width="375" height="229"/>
         <image name="backgroundWeeklyChoices" width="187" height="333"/>
         <image name="ic_camera" width="58" height="45"/>
+        <image name="ic_share" width="20" height="28"/>
     </resources>
 </document>

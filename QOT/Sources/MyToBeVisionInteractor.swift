@@ -12,10 +12,12 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
 
     let presenter: MyToBeVisionPresenterInterface
     let worker: MyToBeVisionWorker
+    let router: MyToBeVisionRouter
 
-    init(presenter: MyToBeVisionPresenterInterface, worker: MyToBeVisionWorker) {
+    init(presenter: MyToBeVisionPresenterInterface, worker: MyToBeVisionWorker, router: MyToBeVisionRouter) {
         self.worker = worker
         self.presenter = presenter
+        self.router = router
     }
 
     func viewDidLoad() {
@@ -75,5 +77,23 @@ extension MyToBeVisionInteractor {
 
     func makeVisionGeneratorAndPresent() {
         presenter.presentVisionGenerator()
+    }
+}
+
+extension MyToBeVisionInteractor: AppStateAccess {
+    func shareMyToBeVision(completion: @escaping (Error?) -> Void) {
+        self.router.showProgressHUD(nil)
+        let networkManager = MyToBeVisionInteractor.appState.networkManager
+        networkManager?.performPartnerSharingRequest(partnerID: 0,
+                                                    sharingType: Partners.SharingType.toBeVision) { result in
+            switch result {
+            case .success(let value):
+                self.router.showMailComposer(email: "", subject: value.subject, messageBody: value.body)
+                completion(nil)
+            case .failure(let error):
+                completion(error)
+            }
+            self.router.hideProgressHUD()
+        }
     }
 }
