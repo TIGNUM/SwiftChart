@@ -125,7 +125,7 @@ final class ImagePickerController {
             case .granted:
                 self.handleOption(option)
             case .denied:
-                self.viewController?.showAlert(type: .permissionNotGranted) {
+                self.viewController?.showAlert(type: .cameraNotAvailable) {
                     self.finish()
                 }
             case .later:

@@ -253,6 +253,8 @@
 
 "Common.InvalidContent" = "Cannot Display Content";
 
+"Alert.Title.Camera.Not.Available" = "Notice!";
+"Alert.Body.Camera.Not.Available" = "QOT does not have access to your Photos or Videos. To enable access open Setting on your device";
 "Alert.Title.Notifications.Not.Authorized" = "No Authorization";
 "Alert.Message.Notifications.Not.Authorized" = "Push Notifications are not authorized for QOT. To enabled Push Notifications open Settings and enable them. ";
 "Alert.Title.NoContent" = "Content Not Found";

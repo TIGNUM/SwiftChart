@@ -69,7 +69,8 @@ enum AlertType {
         case .settingsLoccationService: return R.string.localized.alertTitleLocationServices()
         case .settingsCalendars: return R.string.localized.alertTitleCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
-        case .cameraNotAvailable, .permissionNotGranted: return R.string.localized.alertTitleCustom()
+        case .cameraNotAvailable: return R.string.localized.alertTitleCameraNotAvailable()
+        case .permissionNotGranted: return R.string.localized.alertTitleCustom()
         case .resetPassword: return R.string.localized.alertTitleResetPassword()
         case .canNotUploadPhoto: return R.string.localized.meSectorMyWhyPartnersPhotoErrorTitle()
         case .canNotSendMail,
@@ -99,7 +100,7 @@ enum AlertType {
         case .settingsLoccationService: return R.string.localized.alertMessageLocationServices()
         case .settingsCalendars: return R.string.localized.alertMessageCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertMessageEmailNotFound()
-        case .cameraNotAvailable: return R.string.localized.alertCameraNotAvailableMessage()
+        case .cameraNotAvailable: return R.string.localized.alertBodyCameraNotAvailable()
         case .permissionNotGranted: return R.string.localized.alertPermissionNotGrantedMessage()
         case .notSynced: return R.string.localized.alertNotSyncedMessage()
         case .fitbitAlreadyConnected: return R.string.localized.sidebarSensorsMenuFitbitAlreadyConnectedMessage()
