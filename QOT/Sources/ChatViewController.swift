@@ -336,7 +336,7 @@ private extension ChatViewController {
         } else {
             bottomButton.bottomAnchor == view.bottomAnchor - Layout.padding_16
             collectionView.topAnchor == view.topAnchor + Layout.padding_24 + Layout.statusBarHeight
-            collectionView.bottomAnchor == bottomButton.topAnchor + Layout.padding_16
+            collectionView.bottomAnchor == bottomButton.topAnchor - Layout.padding_16
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
             collectionView.contentInset.top = Layout.padding_24

@@ -47,7 +47,11 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
     }()
 
     private var paddingTop: CGFloat {
-        return pageName == .libraryArticle ? Layout.padding_24 : view.safeMargins.top + Layout.articleImageHeight
+        switch pageName {
+        case .libraryArticle: return Layout.padding_24
+        case .whatsHotArticle: return view.safeMargins.top + Layout.articleImageHeight
+        default: return 0
+        }
     }
 
     // MARK: - Init
@@ -105,7 +109,6 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-        tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.padding_24
         tableView.contentInset.bottom = view.safeMargins.bottom
         view.setFadeMask(at: fadeMaskLocation)
     }
@@ -173,17 +176,16 @@ private extension ArticleItemViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.safeTopAnchor == view.safeTopAnchor
+            tableView.leftAnchor == view.leftAnchor
+            tableView.rightAnchor == view.rightAnchor
             tableView.contentInset.top = paddingTop
-			      tableView.leftAnchor == view.leftAnchor
-      			tableView.rightAnchor == view.rightAnchor
-            tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.padding_24
             tableView.contentInset.bottom = view.safeMargins.bottom
         } else {
             tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
             tableView.bottomAnchor == view.bottomAnchor
             tableView.rightAnchor == view.rightAnchor
             tableView.leftAnchor == view.leftAnchor
-            tableView.contentInset.top = tableView.contentInset.top + Layout.padding_24 + (Layout.statusBarHeight * 2)
+            tableView.contentInset.top = paddingTop
         }
 
         tableView.bottomAnchor == view.safeBottomAnchor - 60

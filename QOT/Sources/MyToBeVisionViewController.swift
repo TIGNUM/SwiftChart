@@ -94,14 +94,7 @@ final class MyToBeVisionViewController: UIViewController {
         interactor?.viewDidLoad()
         setupView()
         syncEditingViews(true)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleKeyboard(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillHide,
-                                               object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(handleKeyboard(notification:)),
-                                               name: NSNotification.Name.UIKeyboardWillShow,
-                                               object: nil)
+        addKeyboardObservers()
     }
 
     @available(iOS 11.0, *)
@@ -127,10 +120,6 @@ final class MyToBeVisionViewController: UIViewController {
         UIApplication.shared.setStatusBarStyle(.lightContent)
         let item = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         navigationItem.backBarButtonItem = item
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -171,12 +160,13 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
 extension MyToBeVisionViewController {
 
     func setupView() {
-        scrollView.contentInset.bottom = 90
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
+            scrollView.contentInset.bottom = Layout.padding_90
             scrollView.contentInsetAdjustmentBehavior = .never
 		} else {
-			topConstraint.constant = Layout.statusBarHeight + Layout.padding_24
+            topConstraint.constant = Layout.statusBarHeight + Layout.padding_40
+            scrollView.contentInset.bottom = view.bounds.height
 		}
         syncNavigationButtons(false)
         setupTextViews()
@@ -211,6 +201,17 @@ extension MyToBeVisionViewController {
 // MARK: - Private drawing
 
 private extension MyToBeVisionViewController {
+
+    func addKeyboardObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleKeyboard(notification:)),
+                                               name: .UIKeyboardWillHide,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleKeyboard(notification:)),
+                                               name: .UIKeyboardWillShow,
+                                               object: nil)
+    }
 
     func drawCircles() {
         imageContainerView.layer.addSublayer(imageBorder)
@@ -361,7 +362,7 @@ private extension MyToBeVisionViewController {
         let leftButton = UIBarButtonItem()
         let leftButtonImage = isEditing == true ? nil : R.image.ic_minimize()
         let leftButtonText = isEditing == true ? "Cancel" : nil
-        let buttonsColor = isEditing == true ? UIColor.gray : UIColor.white
+        let buttonsColor: UIColor = isEditing == true ? .gray : .white
         let leftButtonSelector = isEditing == true ? #selector(cancelEdit) : #selector(didTapClose(_:))
         leftButton.tintColor = buttonsColor
         leftButton.image = leftButtonImage
@@ -385,7 +386,7 @@ private extension MyToBeVisionViewController {
         let headlineTopConstraint: CGFloat = areHidden == false ? 25 : 15
         let messageTopConstraint: CGFloat = areHidden == false ? 40 : 20
         let isEmptyState = interactor?.isEmptyState()
-        let buttonColor = isEditing == true ? UIColor.gray : UIColor.white
+        let buttonColor: UIColor = isEditing == true ? .gray : .white
         headlineEditingSeparatorView.isHidden = areHidden
         messageEditingSeparatorView.isHidden = areHidden
         headlineEditingStatementLabel.isHidden = areHidden
