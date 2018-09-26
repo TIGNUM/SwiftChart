@@ -127,13 +127,13 @@ final class ChatViewModel<T: ChatChoice> {
         case .choiceList(let choices):
             let choice = choices[indexPath.item]
             if item.allowsMultipleSelection == true {
-                if let visionChoice = choice as? VisionGeneratorChoice {
+                if let visionChoice = choice as? VisionGeneratorChoice, visionGeneratorInteractor?.currentQuestionType == visionChoice.type {
                     updateVisionSelections(visionChoice)
-                }
-                if selectedVisionChoicesIDs.contains(item.identifier + choice.title) == true {
-                    selectedVisionChoicesIDs.remove(object: item.identifier + choice.title)
-                } else {
-                    selectedVisionChoicesIDs.append(item.identifier + choice.title)
+                    if selectedVisionChoicesIDs.contains(item.identifier + choice.title) == true {
+                        selectedVisionChoicesIDs.remove(object: item.identifier + choice.title)
+                    } else {
+                        selectedVisionChoicesIDs.append(item.identifier + choice.title)
+                    }
                 }
             } else {
                 if (selectedVisionChoicesIDs.filter { $0.starts(with: item.identifier) }).count == 0 {

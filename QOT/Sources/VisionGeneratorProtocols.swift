@@ -35,6 +35,7 @@ protocol VisionGeneratorInteractorInterface: Interactor {
     func laodLastQuestion()
     func didPressBottomButton(_ choice: VisionGeneratorChoice)
     func bottomButtonTitle(_ choice: VisionGeneratorChoice) -> String
+    var currentQuestionType: VisionGeneratorChoice.QuestionType { get }
 }
 
 protocol VisionGeneratorRouterInterface {

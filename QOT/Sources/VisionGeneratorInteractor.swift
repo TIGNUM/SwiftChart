@@ -28,6 +28,10 @@ final class VisionGeneratorInteractor {
 
 extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
 
+    var currentQuestionType: VisionGeneratorChoice.QuestionType {
+        return worker.questionType
+    }
+
     func visionSelectionCount(for questionType: VisionGeneratorChoice.QuestionType) -> Int {
         return worker.visionSelectionCount(for: questionType)
     }
