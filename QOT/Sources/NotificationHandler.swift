@@ -18,7 +18,7 @@ final class NotificationHandler {
     let center: NotificationCenter
     var handler: ((Notification) -> Void)?
 
-    init(center: NotificationCenter = NotificationCenter.default, name: NSNotification.Name, object: Any? = nil) {
+    init(center: NotificationCenter = .default, name: NSNotification.Name, object: Any? = nil) {
         self.center = center
         center.addObserver(self, selector: #selector(performHandler(notification:)), name: name, object: object)
     }

@@ -11,8 +11,8 @@ import UIKit
 final class TabBarItem: UITabBarItem {
 
     private let config: Config
-    var isRead: Bool = true
-    var readFlag: Badge?
+    var badgeCounter = 0
+    var badge: Badge?
 
     struct Config {
         var title: String?

@@ -20,6 +20,7 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var mediaInformation: UILabel!
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var bottomSeparator: UIView!
+    @IBOutlet private weak var newArticleIndicator: UIView!
 
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -30,6 +31,8 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        backgroundColor = .clear
+        imageView.backgroundColor = .clear
         imageView.corner(radius: Layout.CornerRadius.eight.rawValue)
         layoutSubviews()
     }
@@ -41,8 +44,8 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
                    description: String,
                    imageURL: URL?,
                    duration: String,
-                   showSeparator: Bool) {
-
+                   showSeparator: Bool,
+                   newArticle: Bool) { 
         let attributedCustomDate = NSMutableAttributedString(
             string: dateFormatter.string(from: articleDate).uppercased(),
             letterSpacing: 0.5,
@@ -69,6 +72,7 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
         bottomSeparator.isHidden = !showSeparator
+        newArticleIndicator.isHidden = !newArticle
     }
 
     override func layoutSubviews() {

@@ -11,12 +11,14 @@ import RealmSwift
 
 final class GuideWorker {
 
+    private let badgeManager: BadgeManager?
     private let syncStateObserver: SyncStateObserver
     let services: Services
     let widgetDataManager: WidgetDataManager
     let backgroudQueue = DispatchQueue(label: "guide worker", qos: .background)
 
-    init(services: Services) {
+    init(services: Services, badgeManager: BadgeManager?) {
+        self.badgeManager = badgeManager
         self.services = services
         self.widgetDataManager = WidgetDataManager(services: services)
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
@@ -86,9 +88,22 @@ final class GuideWorker {
                                                          preparations: Array(preparations))
             completion(guide)
             widgetDataManager.update(.all)
+            updateGuideBadgeValue(guide: guide)
         } catch {
             log("Unable to generate guide: \(error)", level: .error)
         }
+    }
+
+    func updateGuideBadgeValue(guide: Guide.Model) {
+        var newItems = [Guide.Item]()
+        guide.days.forEach { (guideDay: Guide.Day) in
+            guideDay.items.forEach { (item: Guide.Item) in
+                if item.status == .todo && item.affectsTabBarBadge == true {
+                    newItems.append(item)
+                }
+            }
+        }
+        badgeManager?.updateGuideBadgeValue(newGuideItems: newItems)
     }
 
     func markWhatsHotRead(item: Guide.Item) {

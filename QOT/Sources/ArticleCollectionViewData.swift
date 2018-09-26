@@ -19,6 +19,7 @@ struct ArticleCollectionViewData {
         let sortOrder: String
         let previewImageURL: URL?
         let contentCollectionID: Int
+        let newArticle: Bool
     }
 
     let items: [Item]

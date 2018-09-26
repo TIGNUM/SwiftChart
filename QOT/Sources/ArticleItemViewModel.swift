@@ -12,30 +12,21 @@ import ReactiveKit
 
 final class ArticleItemViewModel {
 
+    // MARK: - Properties
+
     private let items: [ContentItem]
     private let relatedArticles: [ContentCollection]
+    private let services: Services
     let backgroundImage: UIImage?
     let articleHeader: ArticleCollectionHeader?
     let contentCollection: ContentCollection
 
-    func itemCount(in section: Index) -> Int {
-        switch section {
-        case 0: return items.count
-        case 1: return relatedArticles.count > 3 ? 3 : relatedArticles.count
-        default: return 0
-        }
+    var isWhatsHot: Bool {
+        return contentCollection.section.caseInsensitiveCompare(Database.Section.learnWhatsHot.value) == .orderedSame
     }
 
     var sectionCount: Int {
         return relatedArticles.count > 0 ? 2 : 1
-    }
-
-    func articleItem(at indexPath: IndexPath) -> ContentItem {
-        return items[indexPath.row]
-    }
-
-    func relatedArticle(at indexPath: IndexPath) -> ContentCollection {
-        return relatedArticles[indexPath.row]
     }
 
     // MARK: - Init
@@ -45,6 +36,7 @@ final class ArticleItemViewModel {
          contentCollection: ContentCollection,
          articleHeader: ArticleCollectionHeader?,
          backgroundImage: UIImage? = nil) {
+        self.services = services
         self.articleHeader = articleHeader
         self.backgroundImage = backgroundImage
         self.contentCollection = contentCollection
@@ -56,6 +48,31 @@ final class ArticleItemViewModel {
 
         self.items = items.sorted { (lhs: ContentItem, rhs: ContentItem) -> Bool in
             return lhs.sortOrder > rhs.sortOrder
+        }
+    }
+}
+
+// MARK: - Public
+
+extension ArticleItemViewModel {
+
+    func markContentAsRead() {
+        services.contentService.setContentCollectionViewed(localID: contentCollection.localID)
+    }
+
+    func articleItem(at indexPath: IndexPath) -> ContentItem {
+        return items[indexPath.row]
+    }
+
+    func relatedArticle(at indexPath: IndexPath) -> ContentCollection {
+        return relatedArticles[indexPath.row]
+    }
+
+    func itemCount(in section: Index) -> Int {
+        switch section {
+        case 0: return items.count
+        case 1: return relatedArticles.count > 3 ? 3 : relatedArticles.count
+        default: return 0
         }
     }
 }

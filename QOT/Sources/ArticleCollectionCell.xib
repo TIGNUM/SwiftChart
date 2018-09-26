@@ -9,6 +9,11 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Apercu-Regular.otf">
+            <string>Apercu-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -21,6 +26,7 @@
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="256" verticalHuggingPriority="257" horizontalCompressionResistancePriority="741" translatesAutoresizingMaskIntoConstraints="NO" id="VQl-Re-jfO">
                         <rect key="frame" x="64" y="93.5" width="265" height="176.5"/>
+                        <color key="backgroundColor" red="1" green="0.091334824090000002" blue="0.34198637189999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="VQl-Re-jfO" secondAttribute="height" multiplier="3:2" id="tMV-AO-vdD"/>
                         </constraints>
@@ -35,7 +41,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="hKO-zn-69f">
-                                <rect key="frame" x="0.0" y="45" width="265" height="20.5"/>
+                                <rect key="frame" x="0.0" y="45" width="205" height="20.5"/>
                                 <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -62,7 +68,7 @@
                             <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="cvB-FN-y9M" secondAttribute="trailing" constant="173" id="QwR-Sc-Yb9"/>
                             <constraint firstItem="cvB-FN-y9M" firstAttribute="centerY" secondItem="5di-4K-nT6" secondAttribute="centerY" id="RYX-bU-WOh"/>
                             <constraint firstItem="hKO-zn-69f" firstAttribute="leading" secondItem="WGo-rT-mVM" secondAttribute="leading" id="ZVX-Hz-oRT"/>
-                            <constraint firstAttribute="trailing" secondItem="hKO-zn-69f" secondAttribute="trailing" id="gvx-EH-fpw"/>
+                            <constraint firstAttribute="trailing" secondItem="hKO-zn-69f" secondAttribute="trailing" constant="60" id="gvx-EH-fpw"/>
                             <constraint firstItem="5di-4K-nT6" firstAttribute="top" secondItem="hKO-zn-69f" secondAttribute="bottom" constant="5" id="llY-sZ-ICS"/>
                             <constraint firstAttribute="trailing" secondItem="Oa2-gh-lrd" secondAttribute="trailing" id="vrL-qG-ltn"/>
                             <constraint firstItem="Oa2-gh-lrd" firstAttribute="top" secondItem="WGo-rT-mVM" secondAttribute="top" constant="24" id="zWZ-Bj-5k0"/>
@@ -74,6 +80,34 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Zqf-F7-8Ar">
+                        <rect key="frame" x="282" y="24" width="60" height="28"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_new_tag" translatesAutoresizingMaskIntoConstraints="NO" id="GpL-2B-ME3">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="28"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="NEW" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QF2-yf-gHk">
+                                <rect key="frame" x="0.0" y="0.0" width="60" height="28"/>
+                                <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="QF2-yf-gHk" secondAttribute="bottom" id="0hW-v3-qmc"/>
+                            <constraint firstAttribute="height" constant="28" id="9as-Us-tpJ"/>
+                            <constraint firstAttribute="trailing" secondItem="GpL-2B-ME3" secondAttribute="trailing" id="Cen-7v-G5i"/>
+                            <constraint firstAttribute="bottom" secondItem="GpL-2B-ME3" secondAttribute="bottom" id="DmK-r0-p7n"/>
+                            <constraint firstItem="QF2-yf-gHk" firstAttribute="top" secondItem="Zqf-F7-8Ar" secondAttribute="top" id="Mfh-r4-ClV"/>
+                            <constraint firstItem="GpL-2B-ME3" firstAttribute="leading" secondItem="Zqf-F7-8Ar" secondAttribute="leading" id="Uch-dk-Ovm"/>
+                            <constraint firstAttribute="width" constant="60" id="WBm-6l-b3g"/>
+                            <constraint firstAttribute="trailing" secondItem="QF2-yf-gHk" secondAttribute="trailing" id="iRS-0s-kNe"/>
+                            <constraint firstItem="QF2-yf-gHk" firstAttribute="leading" secondItem="Zqf-F7-8Ar" secondAttribute="leading" id="rTc-Lf-ZsB"/>
+                            <constraint firstItem="GpL-2B-ME3" firstAttribute="top" secondItem="Zqf-F7-8Ar" secondAttribute="top" id="uuU-D8-6V8"/>
+                        </constraints>
+                    </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uYk-tW-xJY">
                         <rect key="frame" x="11" y="48" width="45" height="20"/>
                         <constraints>
@@ -92,11 +126,12 @@
                     </view>
                 </subviews>
             </view>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="0.0028394792260000002" green="1" blue="0.0044057105550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="ar7-NF-lKj" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="64" id="7DM-8D-UJw"/>
                 <constraint firstItem="NvG-HG-VMS" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="11" id="AMR-ID-AV9"/>
                 <constraint firstItem="WGo-rT-mVM" firstAttribute="top" secondItem="VQl-Re-jfO" secondAttribute="bottom" id="B6z-0W-pBo"/>
+                <constraint firstItem="Zqf-F7-8Ar" firstAttribute="centerY" secondItem="NvG-HG-VMS" secondAttribute="centerY" constant="4" id="DQk-bQ-TMd"/>
                 <constraint firstItem="NvG-HG-VMS" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="24" id="FMO-eB-Xev"/>
                 <constraint firstItem="VQl-Re-jfO" firstAttribute="leading" secondItem="NvG-HG-VMS" secondAttribute="trailing" constant="8" id="ION-bF-Zna"/>
                 <constraint firstItem="VQl-Re-jfO" firstAttribute="leading" secondItem="uYk-tW-xJY" secondAttribute="trailing" constant="8" id="PKg-T4-eps"/>
@@ -108,6 +143,7 @@
                 <constraint firstItem="WGo-rT-mVM" firstAttribute="leading" secondItem="VQl-Re-jfO" secondAttribute="leading" id="vKd-F6-dnF"/>
                 <constraint firstAttribute="bottom" secondItem="WGo-rT-mVM" secondAttribute="bottom" id="vk0-Gp-NAU"/>
                 <constraint firstItem="WGo-rT-mVM" firstAttribute="trailing" secondItem="VQl-Re-jfO" secondAttribute="trailing" id="wd6-Nx-2BB"/>
+                <constraint firstAttribute="trailing" secondItem="Zqf-F7-8Ar" secondAttribute="trailing" constant="16" id="xMb-oI-f16"/>
                 <constraint firstAttribute="trailing" secondItem="ar7-NF-lKj" secondAttribute="trailing" constant="28" id="yXD-Ji-hLN"/>
             </constraints>
             <size key="customSize" width="374" height="362"/>
@@ -117,6 +153,7 @@
                 <outlet property="date" destination="NvG-HG-VMS" id="h8l-9M-LDw"/>
                 <outlet property="imageView" destination="VQl-Re-jfO" id="uM1-VZ-Hkd"/>
                 <outlet property="mediaInformation" destination="5di-4K-nT6" id="Fn0-cV-54Y"/>
+                <outlet property="newArticleIndicator" destination="Zqf-F7-8Ar" id="4FG-7U-VV5"/>
                 <outlet property="sortTag" destination="uYk-tW-xJY" id="aoQ-rH-lPs"/>
                 <outlet property="subTitle" destination="Oa2-gh-lrd" id="qzs-DW-Yc7"/>
                 <outlet property="textLabel" destination="hKO-zn-69f" id="EBh-A4-z8V"/>
@@ -124,4 +161,7 @@
             <point key="canvasLocation" x="37" y="-150"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <image name="ic_new_tag" width="42" height="18"/>
+    </resources>
 </document>

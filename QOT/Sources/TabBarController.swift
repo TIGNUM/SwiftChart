@@ -49,14 +49,6 @@ final class TabBarController: UITabBarController {
         }
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        updateFlagFrames()
-        // unfortunately we can't manage any auto-layout constraints in UITabBar (iOS forbids it by crashing),
-        // so we resort to frame based positioning.
-        // This means we must relayout any unread flags (the dots) when viewDidLayoutSubviews() is called
-    }
-
     func frameForButton(at index: Int) -> CGRect? {
         guard let items = tabBar.items, index >= items.startIndex, index < items.endIndex else {
             assertionFailure("index \(index) out of bounds")
@@ -95,18 +87,6 @@ final class TabBarController: UITabBarController {
             animations()
         }
     }
-
-    func mark(isRead: Bool, at index: Int) {
-        guard (tabBar.items?.count ?? 0) > 0 else { return }
-        guard
-            let items = tabBar.items, index >= items.startIndex, index < items.endIndex,
-            let item = items[index] as? TabBarItem else {
-                assertionFailure("index \(index) out of bounds")
-                return
-        }
-        item.isRead = isRead
-        updateFlags()
-    }
 }
 
 // MARK: - Config
@@ -121,7 +101,6 @@ extension TabBarController {
         var indicatorViewHeight: CGFloat
         var indicatorViewColor: UIColor
         var indicatorViewSidePadding: CGFloat
-        var readFlagPadding: CGFloat
 
         static var `default` = Config(tabBarBackgroundColor: .clear,
                                       tabBarBackgroundImage: UIImage(),
@@ -129,28 +108,13 @@ extension TabBarController {
                                       useIndicatorView: true,
                                       indicatorViewHeight: 1,
                                       indicatorViewColor: .white,
-                                      indicatorViewSidePadding: 20,
-                                      readFlagPadding: 2
-        )
+                                      indicatorViewSidePadding: 20)
     }
 }
 
 // MARK: - Private
 
 private extension TabBarController {
-
-    func updateFlags() {
-        guard let items = tabBar.items as? [TabBarItem] else { return }
-        items.forEach { (item: TabBarItem) in
-            if item.isRead == true {
-                item.readFlag?.removeFromSuperview()
-                item.readFlag = nil
-            } else if item.readFlag == nil {
-                item.readFlag = tabBar.addBadge(origin: .zero)
-            }
-        }
-        updateFlagFrames()
-    }
 
     func setupIndicatorView() {
         guard let items = tabBar.items, selectedIndex >= items.startIndex, selectedIndex < items.endIndex else { return }
@@ -169,18 +133,6 @@ private extension TabBarController {
         tabBar.backgroundColor = config.tabBarBackgroundColor
         tabBar.backgroundImage = config.tabBarBackgroundImage
         tabBar.shadowImage = config.tabBarShadowImage
-    }
-
-    private func updateFlagFrames() {
-        guard let items = tabBar.items as? [TabBarItem] else { return }
-        for (index, item) in items.enumerated() {
-            if let flag = item.readFlag {
-                let buttonWidth = tabBar.buttonWidth
-                let buttonCenterX = (buttonWidth * index.toFloat) + (buttonWidth / 2)
-                let xPos = buttonCenterX + (item.textWidth / 2)
-                flag.frame = CGRect(origin: CGPoint(x: xPos, y: -config.readFlagPadding), size: flag.bounds.size)
-            }
-        }
     }
 }
 

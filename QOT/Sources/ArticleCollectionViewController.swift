@@ -156,9 +156,8 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
                        description: item.description,
                        imageURL: item.previewImageURL,
                        duration: item.duration,
-                       showSeparator: indexPath.row + 1 != viewData.items.count
-        )
-
+                       showSeparator: indexPath.row + 1 != viewData.items.count,
+                       newArticle: item.newArticle)
         return cell
     }
 

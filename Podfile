@@ -39,6 +39,7 @@ target 'QOT' do
   pod 'JSONWebToken'
   pod 'Siren', '~> 3.2.0'
   pod 'HockeySDK', '~> 5.1.2'
+  pod 'BadgeSwift', '~> 5.0'
 
   target 'QOTTests' do
     inherit! :search_paths

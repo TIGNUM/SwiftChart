@@ -10,6 +10,17 @@ import Foundation
 
 extension NSPredicate {
 
+    static var newWhatsHotArticles: NSPredicate {
+        return NSCompoundPredicate(andPredicateWithSubpredicates: [section(.learnWhatsHot), unReadArticles])
+    }
+
+    static var unReadArticles: NSPredicate {
+        if let date = UserDefault.firstInstallationTimestamp.object as? NSDate {
+            return NSPredicate(format: "contentRead == nil AND modifiedAt > %@", date)
+        }
+        return NSPredicate(format: "contentRead == nil")
+    }
+
     static func slideShow() -> NSPredicate {
         return NSPredicate(format: "section CONTAINS %@", Database.Section.slideShow.rawValue)
     }

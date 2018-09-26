@@ -6,18 +6,45 @@
 //  Copyright © 2018 Tignum. All rights reserved.
 //
 
+import Foundation
 import UIKit
-
-enum TabBar: Int {
-
-    case guide = 0
-    case learn = 1
-    case me = 2
-    case prepare = 3
-}
+import RealmSwift
+import ReactiveKit
 
 final class BadgeManager {
-    weak var tabBarController: TabBarController?
+
+    // MARK: - Properties
+
+    private let tokenBin = TokenBin()
+    private let services: Services
+    private var guideBadge: Badge?
+    private var learnBadge: Badge?
+    private var whatsHotBadge: Badge?
+    private var newGuideItems = [Guide.Item]()
+
+    var guideBadgeContainer: (view: UIView, frame: CGRect) = (view: UIView(), frame: .zero) {
+        didSet {
+            let badgeType = Badge.BadgeType.guide(parent: guideBadgeContainer.view,
+                                                  frame: guideBadgeContainer.frame)
+            guideBadge = Badge(badgeType, badgeValue: newGuideItems.count)
+        }
+    }
+
+    var learnBadgeContainer: (view: UIView, frame: CGRect) = (view: UIView(), frame: .zero) {
+        didSet {
+            let badgeType = Badge.BadgeType.learn(parent: learnBadgeContainer.view,
+                                                  frame: learnBadgeContainer.frame)
+            learnBadge = Badge(badgeType, badgeValue: badgeValueWhatsHot)
+        }
+    }
+
+    var whatsHotBadgeContainer: (view: UIView, frame: CGRect) = (view: UIView(), frame: .zero) {
+        didSet {
+            let badgeType = Badge.BadgeType.whatsHot(parent: whatsHotBadgeContainer.view,
+                                                     frame: whatsHotBadgeContainer.frame)
+            whatsHotBadge = Badge(badgeType, badgeValue: badgeValueWhatsHot)
+        }
+    }
 
     var tabDisplayed: TabBar = .guide {
         didSet {
@@ -25,36 +52,66 @@ final class BadgeManager {
         }
     }
 
-    init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(userDefaultsDidChangeNotification),
-                                               name: UserDefaults.didChangeNotification,
-                                               object: nil)
+    // MARK: - Init
+
+    init(services: Services) {
+        self.services = services
+        observeWhatsHotArticleUpdates()
     }
 
-    private func update() {
-        checkIfNewItemWasAdded()
-        hideCurrentTabBadge()
+    func updateWhatsHotBadge(isHidden: Bool) {
+        if newWhatsHotArticles.count == 0 {
+            whatsHotBadge?.isHidden = true
+        } else {
+            whatsHotBadge?.isHidden = isHidden
+        }
     }
 
-    func hideCurrentTabBadge() {
+    func updateGuideBadgeValue(newGuideItems: [Guide.Item]) {
+        self.newGuideItems = newGuideItems
+        guideBadge?.update(newGuideItems.count)
+        guideBadge?.isHidden = tabDisplayed == .guide || newGuideItems.isEmpty
+        UserDefault.guideBadgeNumber.setDoubleValue(value: Double(newGuideItems.count))
+    }
+}
+
+// MARK: - Private
+
+private extension BadgeManager {
+
+    var newWhatsHotArticles: Results<ContentCollection> {
+        return services.contentService.whatsHotArticlesNew()
+    }
+
+    var badgeValueWhatsHot: Int {
+        return newWhatsHotArticles.count
+    }
+
+    func observeWhatsHotArticleUpdates() {
+        tokenBin.addToken(newWhatsHotArticles.observe { [weak self] changes in
+            switch changes {
+            case .update(let articles, _, _, _):
+                self?.whatsHotBadge?.update(articles.count)
+                self?.learnBadge?.update(articles.count)
+                self?.whatsHotBadge?.isHidden = self?.whatsHotBadge?.isHidden ?? true
+                self?.learnBadge?.isHidden = self?.tabDisplayed == .learn
+                UserDefault.whatsHotBadgeNumber.setDoubleValue(value: Double(articles.count))
+            default: break
+            }
+        })
+    }
+
+    func update() {
         switch tabDisplayed {
         case .guide:
-            tabBarController?.mark(isRead: true, at: tabDisplayed.rawValue)
+            guideBadge?.isHidden = true
+            learnBadge?.isHidden = badgeValueWhatsHot == 0
         case .learn:
-            tabBarController?.mark(isRead: true, at: tabDisplayed.rawValue)
-        case .me, .prepare: return
-        }
-    }
-
-    func checkIfNewItemWasAdded() {
-        if UserDefault.newGuideItem.boolValue == true {
-            tabBarController?.mark(isRead: false, at: 0)
-        }
-    }
-
-    @objc func userDefaultsDidChangeNotification(_ noticiation: Notification) {
-        DispatchQueue.main.async {
-            self.update()
+            guideBadge?.isHidden = newGuideItems.isEmpty
+            learnBadge?.isHidden = true
+        case .me, .prepare:
+            guideBadge?.isHidden = newGuideItems.isEmpty
+            learnBadge?.isHidden = badgeValueWhatsHot == 0
         }
     }
 }

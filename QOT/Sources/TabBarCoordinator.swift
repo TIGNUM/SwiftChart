@@ -16,6 +16,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
     // MARK: - Properties
 
+    var children = [Coordinator]()
     private let windowManager: WindowManager
     private let services: Services
     private let eventTracker: EventTracker
@@ -25,11 +26,10 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let networkManager: NetworkManager
     private let syncManager: SyncManager
     private let articleCollectionProvider: ArticleCollectionProvider
-    private let badgeManager = BadgeManager()
-    private let whatsHotBadgeState: WhatsHotBadgeState
     private let tokenBin = TokenBin()
+    private let badgeManager: BadgeManager
 
-    var children = [Coordinator]()
+    private lazy var myUniverseProvider = MyUniverseProvider(services: services)
 
     lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
@@ -60,17 +60,20 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     // MARK: - tab bar
 
     private lazy var tabBarController: TabBarController = {
-        let tabBarController = TabBarController(config: .default)
-        tabBarController.modalTransitionStyle = .crossDissolve
-        tabBarController.modalPresentationStyle = .custom
-        tabBarController.tabBarControllerDelegate = self
-        tabBarController.selectedIndex = selectedIndex.value
-        tabBarController.viewControllers = [topTabBarControllerGuide,
-                                            topTabBarControllerLearn,
-                                            topTabBarControllerMe,
-                                            topTabBarControllerPrepare]
-        badgeManager.tabBarController = tabBarController
-        return tabBarController
+        let controller = TabBarController(config: .default)
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .custom
+        controller.tabBarControllerDelegate = self
+        controller.selectedIndex = selectedIndex.value
+        controller.viewControllers = [topTabBarControllerGuide,
+                                      topTabBarControllerLearn,
+                                      topTabBarControllerMe,
+                                      topTabBarControllerPrepare]
+        badgeManager.guideBadgeContainer = (view: controller.tabBar.subviews[TabBar.guide.index],
+                                            frame: controller.frameForButton(at: TabBar.guide.index) ?? .zero)
+        badgeManager.learnBadgeContainer = (view: controller.tabBar.subviews[TabBar.learn.index],
+                                            frame: controller.frameForButton(at: TabBar.learn.index) ?? .zero)
+        return controller
     }()
 
     private lazy var articleCollectionViewController: ArticleCollectionViewController = {
@@ -83,46 +86,38 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     lazy var topTabBarControllerGuide: UINavigationController = {
-        let guideViewController = GuideViewController(configurator: GuideConfigurator.make())
+        let guideViewController = GuideViewController(configurator: GuideConfigurator.make(badgeManager: badgeManager))
         guideViewController.title = R.string.localized.topTabBarItemTitleGuide()
-
         let leftButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [guideViewController],
                                                          topBarDelegate: self,
                                                          leftButton: leftButton,
-                                                         rightButton: UIBarButtonItem.info)
-        let config = tabBarItemConfig(title: "GUIDE", tag: 0)
-        topTabBarController.tabBarItem = TabBarItem(config: config)
+                                                         rightButton: .info)
+        topTabBarController.tabBarItem = TabBarItem(config: TabBar.guide.itemConfig)
         return topTabBarController
     }()
 
     private lazy var topTabBarControllerLearn: UINavigationController = {
-        let viewModel = LearnCategoryListViewModel(services: self.services)
+        let viewModel = LearnCategoryListViewModel(services: services)
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
         let leftButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let navController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController],
-                                                         topBarDelegate: self,
-                                                         pageDelegate: self,
-                                                         leftButton: leftButton,
-                                                         rightButton: UIBarButtonItem.info)
-        var config = TabBarItem.Config.default
-        config.title = R.string.localized.tabBarItemLearn()
-        config.tag = 1
-        navController.tabBarItem = TabBarItem(config: config)
-
-        guard let pageViewController = navController.viewControllers.first as? PageViewController,
-            let navItem = pageViewController.navigationItem as? NavigationItem else { return navController }
-        tokenBin.addToken(whatsHotBadgeState.onChange { [weak navItem, weak articleCollectionViewController] (state) in
-            let showingArticlesList = articleCollectionViewController?.isShowing ?? false
-            let hidden = showingArticlesList || state == .hidden
-            navItem?.setBadge(index: 1, hidden: hidden)
-        })
+                                                   topBarDelegate: self,
+                                                   pageDelegate: self,
+                                                   leftButton: leftButton,
+                                                   rightButton: .info)
+        navController.tabBarItem = TabBarItem(config: TabBar.learn.itemConfig)
+        if
+            let pageViewController = navController.viewControllers.first as? PageViewController,
+            let navItem = pageViewController.navigationItem as? NavigationItem,
+            let whatsHotButton = navItem.middleButton(index: 1) {
+                badgeManager.whatsHotBadgeContainer = (view: whatsHotButton, frame: whatsHotButton.frame)
+        }
         return navController
     }()
 
-    private lazy var myUniverseProvider = MyUniverseProvider(services: services)
     private lazy var topTabBarControllerMe: MyUniverseViewController = {
         let topTabBarController = MyUniverseViewController(
             config: .default,
@@ -133,10 +128,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
             topTabBarController.viewData = viewData
         }
         topTabBarController.delegate = self
-        var tabBarItemConfig = TabBarItem.Config.default
-        tabBarItemConfig.title = R.string.localized.tabBarItemMe()
-        tabBarItemConfig.tag = 2
-        topTabBarController.tabBarItem = TabBarItem(config: tabBarItemConfig)
+        topTabBarController.tabBarItem = TabBarItem(config: TabBar.me.itemConfig)
         return topTabBarController
     }()
 
@@ -148,20 +140,10 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                                          pageDelegate: self,
                                                          backgroundImage: R.image.myprep(),
                                                          leftButton: leftButton,
-                                                         rightButton: UIBarButtonItem.info)
-        var config = TabBarItem.Config.default
-        config.title = R.string.localized.tabBarItemPrepare()
-        config.tag = 3
-        topTabBarController.tabBarItem = TabBarItem(config: config)
+                                                         rightButton: .info)
+        topTabBarController.tabBarItem = TabBarItem(config: TabBar.prepare.itemConfig)
         return topTabBarController
     }()
-
-    private func tabBarItemConfig(title: String, tag: Int) -> TabBarItem.Config {
-        var config = TabBarItem.Config.default
-        config.title = title
-        config.tag = tag
-        return config
-    }
 
     // MARK: - Init
 
@@ -181,17 +163,14 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         self.pageTracker = pageTracker
         self.syncManager = syncManager
         self.networkManager = networkManager
-        self.whatsHotBadgeState = WhatsHotBadgeState(realm: services.mainRealm)
         articleCollectionProvider = ArticleCollectionProvider(services: services)
+        badgeManager = BadgeManager(services: services)
 
         super.init()
 
         articleCollectionProvider.updateBlock = { [unowned self] viewData in
             self.articleCollectionViewController.viewData = viewData
         }
-        tokenBin.addToken(whatsHotBadgeState.onChange { [weak self] (state) in
-            self?.syncLearnTabBadge()
-        })
     }
 
     // MARK: -
@@ -210,12 +189,6 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let viewController = ScreenHelpViewController(configurator: ScreenHelpConfigurator.make(section))
         windowManager.showPriority(viewController, animated: true, completion: nil)
     }
-
-    private func syncLearnTabBadge() {
-        let learnTabIndex = 1
-        let showBadge = tabBarController.selectedIndex != learnTabIndex && whatsHotBadgeState.state == .visible
-        tabBarController.mark(isRead: !showBadge, at: learnTabIndex)
-    }
 }
 
 // MARK: - TabBarControllerDelegate
@@ -225,19 +198,17 @@ extension TabBarCoordinator: TabBarControllerDelegate {
     func tabBarController(_ tabBarController: TabBarController,
                           didSelect viewController: UIViewController,
                           at index: Int) {
-
-        if index != selectedIndex.value { // if tab changes, report conversions
+        if index != selectedIndex.value {
             NotificationCenter.default.post(Notification(name: .startSyncConversionRelatedData))
         }
         selectedIndex.value = index
         if let tabBarIndex = TabBar(rawValue: index) {
             badgeManager.tabDisplayed = tabBarIndex
         }
-
-        if index == 3 {
+        if index == TabBar.prepare.index {
             prepareCoordinator.focus()
         }
-        syncLearnTabBadge()
+//        syncLearnTabBadge()
     }
 }
 
@@ -362,13 +333,9 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
         startChild(child: coordinator)
     }
 
-    func viewWillAppear(in viewController: ArticleCollectionViewController) {
-        whatsHotBadgeState.updateVisited()
-    }
+    func viewWillAppear(in viewController: ArticleCollectionViewController) {}
 
-    func viewDidDisappear(in viewController: ArticleCollectionViewController) {
-        whatsHotBadgeState.updateVisited()
-    }
+    func viewDidDisappear(in viewController: ArticleCollectionViewController) {}
 }
 
 // MARK: - TopNavigationBarDelegate
@@ -391,22 +358,20 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
             let pageViewController = navigationController.viewControllers.first as? PageViewController else {
                 return
         }
-
         pageViewController.setPageIndex(index, animated: true)
+        let pageTitle = pageViewController.currentPage?.title
+        let whatsHotPageTitle = R.string.localized.topTabBarItemTitleLearnWhatsHot()
+        let isWhatsHotPage = pageTitle?.caseInsensitiveCompare(whatsHotPageTitle) == .orderedSame
+        badgeManager.updateWhatsHotBadge(isHidden: isWhatsHotPage)
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         switch selectedIndex.value {
-        case 0:
-            showHelp(.guide)
-        case 1:
-            showHelp(.learn)
-        case 2:
-            showHelp(.me)
-        case 3:
-            showHelp(.prepare)
-        default:
-            assertionFailure("unhandled switch")
+        case 0: showHelp(.guide)
+        case 1: showHelp(.learn)
+        case 2: showHelp(.me)
+        case 3: showHelp(.prepare)
+        default: assertionFailure("unhandled switch")
         }
     }
 }

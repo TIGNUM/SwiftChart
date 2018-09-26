@@ -401,25 +401,6 @@ extension UIView {
         return wrapperLayer
     }
 
-    @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, topAnchorOffset: CGFloat = 0, rightAnchorOffset: CGFloat = 0) -> Badge {
-        let badge = Badge()
-        addSubview(badge)
-        badge.backgroundColor = color
-        badge.topAnchor == topAnchor + topAnchorOffset
-        badge.rightAnchor == rightAnchor + rightAnchorOffset
-        badge.widthAnchor == size
-        badge.heightAnchor == size
-        return badge
-    }
-
-    @discardableResult func addBadge(with color: UIColor = .cherryRed, size: CGFloat = 6.0, origin: CGPoint) -> Badge {
-        let badge = Badge()
-        addSubview(badge)
-        badge.backgroundColor = color
-        badge.frame = CGRect(origin: origin, size: CGSize(width: size, height: size))
-        return badge
-    }
-
     func removeSubViews() {
         subviews.forEach({ (subView: UIView) in
             subView.removeFromSuperview()

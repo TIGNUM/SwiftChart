@@ -92,10 +92,14 @@ extension GuideViewController: GuideViewControllerInterface {
     }
 
     func updateTabBarBadge() {
-        guard let today = days.first else { return }
-        let incompletedItems = today.items.filter { $0.status == .todo && $0.affectsTabBarBadge == true }
-        let showBadge = incompletedItems.count > 0
-        UserDefault.newGuideItem.setBoolValue(value: showBadge)
+        var newGuideItems = [Guide.Item]()
+        days.forEach { (day: Guide.Day) in
+            day.items.forEach { (item: Guide.Item) in
+                if item.status == .done && item.affectsTabBarBadge == true {
+                    newGuideItems.append(item)
+                }
+            }
+        }
     }
 }
 

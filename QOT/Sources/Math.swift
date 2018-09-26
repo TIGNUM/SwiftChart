@@ -23,3 +23,7 @@ struct Math {
 var randomNumber: CGFloat {
     return (CGFloat(Float(arc4random()) / Float(UINT32_MAX)))
 }
+
+var randomInt: Int {
+    return Int(arc4random_uniform(UInt32(10)))
+}

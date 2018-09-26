@@ -133,6 +133,9 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             self.credentialsManager.clear()
         }
         UserDefault.lastInstaledAppVersion.setStringValue(value: Bundle.main.versionNumber)
+        if UserDefault.firstInstallationTimestamp.object == nil {
+            UserDefault.firstInstallationTimestamp.setObject(Date())
+        }
         pageTracker.start()
         observeTimeZoneChange()
         let dispatchGroup = DispatchGroup()
@@ -693,13 +696,6 @@ extension AppCoordinator {
             case calendarSync
             case notifications
             case none
-        }
-
-        enum TabBar: Index {
-            case guide = 0
-            case learn = 1
-            case me = 2
-            case prepare = 3
         }
 
         enum TopTabBar {

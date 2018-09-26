@@ -83,6 +83,7 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
+        viewModel.markContentAsRead()
     }
 
     override func viewDidLayoutSubviews() {
@@ -97,7 +98,8 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
         resizeHeaderView()
         tableView.reloadData()
         tableView.layoutIfNeeded()
-        tableView.setContentOffset(CGPoint(x: 0.0, y: -(tableView.tableHeaderView?.bounds.height ?? 0.0)), animated: false)
+        tableView.setContentOffset(CGPoint(x: 0, y: -(tableView.tableHeaderView?.bounds.height ?? 0)), animated: false)
+        viewModel.markContentAsRead()
     }
 
     @available(iOS 11.0, *)

@@ -87,7 +87,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return true
         #else
             window = UIWindow(frame: UIScreen.main.bounds)
-
+            addBadgeObserver()
             Fabric.with([Crashlytics.self])
             appCoordinator.start()
             UIApplication.shared.setStatusBarStyle(.lightContent)
@@ -108,7 +108,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
             return
         #else
-            UAirship.push().resetBadge()
             checkVersionIfNeeded()
             appCoordinator.sendAppEvent(.foreground)
         #endif //#if UNIT_TEST || BUILD_DATABASE
@@ -136,7 +135,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return
         #else
             QOTUsageTimer.sharedInstance.startTimer()
-            UAirship.push().resetBadge()
             appCoordinator.appDidBecomeActive()
             checkVersionIfNeeded()
             appCoordinator.sendAppEvent(.start)
@@ -195,6 +193,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 // MARK: - private
 
 private extension AppDelegate {
+
+    func addBadgeObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(updateBadgeNumber),
+                                               name: UserDefaults.didChangeNotification,
+                                               object: nil)
+    }
+
+    @objc func updateBadgeNumber() {
+        DispatchQueue.main.async {
+            let badgeNumber = UserDefault.whatsHotBadgeNumber.doubleValue.toInt + UserDefault.guideBadgeNumber.doubleValue.toInt
+            UIApplication.shared.applicationIconBadgeNumber = badgeNumber
+        }
+    }
 
     func checkVersionIfNeeded() {
         if Siren.shared.alertType == .force {
@@ -287,7 +299,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let host = link.host,
             let scheme = URLScheme(rawValue: host), scheme != .dailyPrep,
             let id = try? GuideItemID(stringRepresentation: notificationID) else { return }
-        let guideWorker = GuideWorker(services: AppDelegate.appState.services)
+        let guideWorker = GuideWorker(services: AppDelegate.appState.services, badgeManager: nil)
         guideWorker.setItemCompleted(id: id)
     }
 

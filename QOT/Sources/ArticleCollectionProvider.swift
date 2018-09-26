@@ -36,6 +36,12 @@ final class ArticleCollectionProvider {
             if let author = content.author, author.isEmpty == false {
                 authorValue = R.string.localized.aricleAuthorBy(author)
             }
+
+            var isNewArticle = content.contentRead == nil
+            if let firstInstallTimeStamp = UserDefault.firstInstallationTimestamp.object as? Date {
+                isNewArticle = content.contentRead == nil && content.modifiedAt > firstInstallTimeStamp
+            }
+
             return ArticleCollectionViewData.Item(
                 author: authorValue,
                 title: content.contentCategories.first?.title ?? "",
@@ -45,8 +51,8 @@ final class ArticleCollectionProvider {
                 articleDate: content.editedAt,
                 sortOrder: String(format: "#%002d", content.sortOrder), //TODO Localise?
                 previewImageURL: content.thumbnailURL,
-                contentCollectionID: content.remoteID.value ?? 0
-            )
+                contentCollectionID: content.remoteID.value ?? 0,
+                newArticle: isNewArticle)
         }
         return ArticleCollectionViewData(items: items)
     }

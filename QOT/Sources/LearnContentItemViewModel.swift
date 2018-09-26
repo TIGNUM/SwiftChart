@@ -290,8 +290,7 @@ extension LearnContentItemViewModel {
     }
 
     func markContentViewed() {
-        let localID = contentCollection.localID
-        services.contentService.setContentCollectionViewed(localID: localID)
+        services.contentService.setContentCollectionViewed(localID: contentCollection.localID)
     }
 
     var format: String {
