@@ -417,7 +417,7 @@ private var securitySettingsSection: [SettingsSection] {
 
 private func notificationsSettingsSection(services: Services) -> [SettingsSection] {
     return [
-        Sections(title: "Categories", rows: categoryNotifications(services: services))
+        Sections(title: "", rows: categoryNotifications(services: services))
     ]
 }
 
