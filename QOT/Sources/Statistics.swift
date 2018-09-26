@@ -98,16 +98,10 @@ extension Statistics {
         return displayableValue(average: dataAverage)
     }
 
-    var userAverageInHours: String {
-        let formatter = DateComponentsFormatter()
-        formatter.allowedUnits = [.hour, .minute]
-        formatter.unitsStyle = .positional
-        return (formatter.string(from: TimeInterval(userAverage * 60))  ?? "00:00") + "h"
-    }
-
     func displayableValue(average: Double, clampToMax: Bool = false) -> String {
         var value = average.toFloat * multiplier.toFloat
-        if let chartType = ChartType(rawValue: key), chartType == .sleepQuantityTime {
+        if let chartType = ChartType(rawValue: key),
+            chartType == .sleepQuantityTime || chartType == .meetingLength {
             let totalMinutes = Int(value)
             let hours = totalMinutes / 60
             let minutes = totalMinutes % 60

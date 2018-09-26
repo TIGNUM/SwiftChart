@@ -242,15 +242,13 @@ private extension ChartCell {
 
     func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
         guard let statistics = statistics.chartType.selectedChart(charts: charts) else { return }
-        let isLengthMeetingsChart = statistics.key == "meetings.length.week.avg"
-        let userAverage = isLengthMeetingsChart == true ? statistics.userAverageInHours : statistics.userAverageDisplayableValue
         setLabel(text: "INFO", color: .white40, label: bottomLabel)
         setLabel(text: "MY\nTEAM\nAVG.", color: .white40, label: teamLabel, lineSpacing: 2.5)
         setLabel(text: "DATA\nBASE\nAVG.", color: .white40, label: dataLabel, lineSpacing: 2.5)
         setLabel(text: statistics.chartType.personalText, color: .white40, label: userAverageLabel, lineSpacing: 2.5)
         setLabel(text: statistics.dataAverageDisplayableValue, color: .white, label: dataAverageValueLabel, font: UIFont.simpleFont(ofSize: 11))
         setLabel(text: statistics.teamAverageDisplayableValue, color: .white, label: teamAverageValueLabel, font: UIFont.simpleFont(ofSize: 11))
-        setLabel(text: userAverage, color: statistics.pathColor, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
+        setLabel(text: statistics.userAverageDisplayableValue, color: statistics.pathColor, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
         setLabel(text: headerTitle.uppercased(), color: .white, label: headerLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
         setLabel(text: R.string.localized.meChartCommingSoon().uppercased(), color: .white, label: comingSoonLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
         teamLabel.sizeToFit()
