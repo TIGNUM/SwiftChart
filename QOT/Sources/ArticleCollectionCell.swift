@@ -46,20 +46,14 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
                    duration: String,
                    showSeparator: Bool,
                    newArticle: Bool) {
-        let attributedCustomDate = NSMutableAttributedString(
-            string: dateFormatter.string(from: articleDate).uppercased(),
-            letterSpacing: 0.5,
-            font: Font.H7Tag,
-            lineSpacing: 0
-        )
-
-        let attributedSortTag = NSMutableAttributedString(
-            string: sortOrder,
-            letterSpacing: -0.72,
-            font: Font.H4Identifier,
-            lineSpacing: 0
-        )
-
+        let attributedCustomDate = NSMutableAttributedString(string: dateFormatter.string(from: articleDate).uppercased(),
+                                                             letterSpacing: 0.5,
+                                                             font: Font.H7Tag,
+                                                             lineSpacing: 0)
+        let attributedSortTag = NSMutableAttributedString(string: sortOrder,
+                                                          letterSpacing: -0.72,
+                                                          font: Font.H4Identifier,
+                                                          lineSpacing: 0)
         date.attributedText = attributedCustomDate
         date.alpha = 0.6
         date.textAlignment = .right
