@@ -77,6 +77,23 @@ private extension ChartTableViewCell {
         collectionView.horizontalAnchors == horizontalAnchors
     }
 
+    func currentPageIndex() -> Int {
+        guard let items = viewModel?.numberOfItems(in: currentSection), items > 0 else { return 0 }
+        let pageWidth = collectionView.frame.size.width
+        let centerOffsetX = collectionView.contentOffset.x + (pageWidth / 2)
+        let page = Int(centerOffsetX / pageWidth)
+        return page.constrainedTo(min: 0, max: items - 1)
+    }
+
+    func syncControlsForCurrentPage() {
+        let index = currentPageIndex()
+        syncPageControl(page: index)
+    }
+
+    func syncPageControl(page: Int) {
+        pageControl?.currentPage = page
+    }
+
     func updatePageControl(indexPath: IndexPath) {
         pageControl?.currentPage = indexPath.item
     }
@@ -131,16 +148,13 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
 extension ChartTableViewCell: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        syncControlsForCurrentPage()
         let visibleCells = collectionView.visibleCells
         visibleCells.forEach { tempCell in
             guard let cell = tempCell as? ChartCell else { return }
             let cellRect = collectionView.convert(cell.frame, to: collectionView.superview)
             cell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)
         }
-    }
-
-    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
-        pageControl?.currentPage = scrollView.currentPage
     }
 }
 

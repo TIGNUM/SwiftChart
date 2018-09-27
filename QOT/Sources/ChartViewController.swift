@@ -119,7 +119,6 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
         let headline = viewModel.sectionTitle(in: section).uppercased()
         view.addSubview(label)
         label.attributedText = Style.subTitle(headline, .white).attributedString()
-
         return view
     }
 
@@ -128,7 +127,6 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
         let pageControl = pageControls[section]
         pageControl.frame = view.frame
         view.addSubview(pageControl)
-
         return view
     }
 
@@ -147,7 +145,6 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
                    screenType: screenType,
                    pageControl: pageControls[indexPath.section])
         cell.delegate = self
-
         return cell
     }
 }
@@ -169,12 +166,6 @@ extension ChartViewController: ChartViewControllerDelegate {
 
 extension ChartViewController: UIScrollViewDelegate {
 
-    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
-        guard scrollView.currentSection < pageControls.count else { return }
-        let pageControl = pageControls[scrollView.currentSection]
-        pageControl.numberOfPages = viewModel.numberOfItems(in: scrollView.currentSection)
-    }
-
     private func centerTableView() {
         guard let pathForCenterCell = tableView.indexPathForRow(at: CGPoint(x: tableView.bounds.midX,
                                                                             y: tableView.bounds.midY)) else { return }
@@ -195,16 +186,5 @@ extension ChartViewController: UIScrollViewDelegate {
 
     private func pageHeight() -> CGFloat {
         return cellHeight() + headerHeight + footerHeight
-    }
-}
-
-// MARK: - UIScrollView
-
-private extension UIScrollView {
-
-    var currentSection: Int {
-        guard bounds.size.height > 0 else { return 0 }
-        let section = Int(round(contentOffset.y / (bounds.size.height * 0.75)))
-        return section >= 0 ? section : 0
     }
 }
