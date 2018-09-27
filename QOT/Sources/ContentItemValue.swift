@@ -18,7 +18,7 @@ enum ContentItemValue {
     case audio(title: String, description: String?, placeholderURL: URL, audioURL: URL, duration: TimeInterval, waveformData: [Float])
     case image(title: String, description: String?, url: URL)
     case prepareStep(title: String, description: String, relatedContentID: Int?)
-    case pdf(title: String, description: String?, pdfURL: URL)
+    case pdf(title: String, description: String?, pdfURL: URL, itemID: Int)
     case guide
     case guideButton
     case invalid
@@ -34,6 +34,7 @@ enum ContentItemValue {
         let mediaURL = item.bundledAudioURL ?? item.valueMediaURL.flatMap { URL(string: $0) }
         let imageURL = item.valueImageURL.flatMap { URL(string: $0) }
         let duration = item.valueDuration.value.map { TimeInterval($0) }
+        let itemID = item.forcedRemoteID
 
         switch format {
         case .textH1,
@@ -87,7 +88,7 @@ enum ContentItemValue {
             }
         case .pdf:
             if let title = text, let description = description, let pdf = mediaURL {
-                self = .pdf(title: title, description: description, pdfURL: pdf)
+                self = .pdf(title: title, description: description, pdfURL: pdf, itemID: itemID)
             } else {
                 self = .invalid
             }

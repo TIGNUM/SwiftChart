@@ -45,6 +45,7 @@ enum Endpoint: String {
     case guide = "/personal/p/qot/guide"
     case device = "/personal/p/qot/device"
     case partnerSharing = "/personal/p/qot/qotpartnersharing"
+    case conteintItemSharing = "/personal/p/qot/contentitemsharing"
     case dailyPrepResult = "/personal/p/qot/myDailyPreps"
     case userSearchResult = "/personal/p/qot/usersearch"
     case appEvent = "/personal/p/qot/qotappevent"

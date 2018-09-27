@@ -9,7 +9,6 @@
 import UIKit
 import AVKit
 import RealmSwift
-import SafariServices
 import AVFoundation
 
 final class ArticleContentItemCoordinator: ParentCoordinator {

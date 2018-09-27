@@ -8,7 +8,6 @@
 
 import UIKit
 import RealmSwift
-import SafariServices
 
 final class LearnContentItemCoordinator: ParentCoordinator {
 
@@ -190,17 +189,17 @@ extension LearnContentItemCoordinator: LearnContentItemViewControllerDelegate {
         log("didTapArticle")
     }
 
-    func didTapPDF(withURL url: URL, in viewController: LearnContentItemViewController) {
-        do {
-            // FIXME: apple bug. perhaps because this gets displayed on WindowManager.Level.priority
-            // https://stackoverflow.com/questions/46439142/sfsafariviewcontroller-blank-in-ios-11-xcode-9-0
-            // https://openradar.appspot.com/29108332
-            let vc = try WebViewController(url)
-            viewController.present(vc, animated: true, completion: nil)
-        } catch {
-            log("Failed to open url. Error: \(error)", level: .error)
-            viewController.showAlert(type: .message(error.localizedDescription))
+    func didTapPDF(withURL url: URL, in viewController: LearnContentItemViewController, title: String, itemID: Int) {
+        let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
+        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
+            return
         }
+        guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
+            return
+        }
+        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title, url: url)
+        pdfReaderConfigurator(readerViewController)
+        viewController.present(navigationController, animated: true, completion: nil)
     }
 }
 

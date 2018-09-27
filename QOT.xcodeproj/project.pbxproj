@@ -750,6 +750,16 @@
 		DB34725221594560004F17D6 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725121594560004F17D6 /* Realm.framework */; };
 		DB34725421594560004F17D6 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725321594560004F17D6 /* RealmSwift.framework */; };
 		DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB82EEC32152859C002322B7 /* UIView+Animation.swift */; };
+		DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */; };
+		E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A12130055700C0723E /* PDFReaderViewController.swift */; };
+		E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */; };
+		E813F0A82135280F00C0723E /* PDFReaderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A72135280F00C0723E /* PDFReaderConfigurator.swift */; };
+		E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A92135281E00C0723E /* PDFReaderInteractor.swift */; };
+		E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0AD2135283800C0723E /* PDFReaderPresenter.swift */; };
+		E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0AF2135284700C0723E /* PDFReaderRouter.swift */; };
+		E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0B12135285A00C0723E /* PDFReaderWorker.swift */; };
+		E871E8542136EA50005E787C /* ContentItemSharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871E8532136EA50005E787C /* ContentItemSharing.swift */; };
+		E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871E8552136F17F005E787C /* PDFReaderInterface.swift */; };
 		E8F43D3320B6F7E500C9FF4F /* CalendarEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */; };
 		E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */; };
 		E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */; };
@@ -1552,6 +1562,16 @@
 		DB34725121594560004F17D6 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB34725321594560004F17D6 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB82EEC32152859C002322B7 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
+		DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
+		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
+		E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFReaderViewController.storyboard; sourceTree = "<group>"; };
+		E813F0A72135280F00C0723E /* PDFReaderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderConfigurator.swift; sourceTree = "<group>"; };
+		E813F0A92135281E00C0723E /* PDFReaderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInteractor.swift; sourceTree = "<group>"; };
+		E813F0AD2135283800C0723E /* PDFReaderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderPresenter.swift; sourceTree = "<group>"; };
+		E813F0AF2135284700C0723E /* PDFReaderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderRouter.swift; sourceTree = "<group>"; };
+		E813F0B12135285A00C0723E /* PDFReaderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderWorker.swift; sourceTree = "<group>"; };
+		E871E8532136EA50005E787C /* ContentItemSharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentItemSharing.swift; sourceTree = "<group>"; };
+		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
 		E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventTests.swift; sourceTree = "<group>"; };
 		E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventIntermediary.swift; sourceTree = "<group>"; };
 		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
@@ -2395,6 +2415,7 @@
 				CB1D5E331EC5E25A00BCDF8D /* ContentItemIntermediary.swift */,
 				CB1D5E341EC5E25A00BCDF8D /* ContentItemValue.swift */,
 				CB3437681EFE75C400D89D4F /* ContentItem+Convenience.swift */,
+				E871E8532136EA50005E787C /* ContentItemSharing.swift */,
 			);
 			name = ContentItem;
 			sourceTree = "<group>";
@@ -2598,6 +2619,7 @@
 		CB94423A1FDFE4B400E2B122 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				E813F0A02130053700C0723E /* PDFReader */,
 				9150411C20FDF2C700D43D18 /* Add Sensor */,
 				CBE8808B1FE4368300670C10 /* Guide */,
 				D5B707241F03A21E00C812EB /* Morning Interview */,
@@ -3008,6 +3030,7 @@
 				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				DB82EEC32152859C002322B7 /* UIView+Animation.swift */,
+				DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3613,6 +3636,21 @@
 			name = "Morning Interview";
 			sourceTree = "<group>";
 		};
+		E813F0A02130053700C0723E /* PDFReader */ = {
+			isa = PBXGroup;
+			children = (
+				E813F0A12130055700C0723E /* PDFReaderViewController.swift */,
+				E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */,
+				E813F0A72135280F00C0723E /* PDFReaderConfigurator.swift */,
+				E813F0A92135281E00C0723E /* PDFReaderInteractor.swift */,
+				E813F0AD2135283800C0723E /* PDFReaderPresenter.swift */,
+				E813F0AF2135284700C0723E /* PDFReaderRouter.swift */,
+				E813F0B12135285A00C0723E /* PDFReaderWorker.swift */,
+				E871E8552136F17F005E787C /* PDFReaderInterface.swift */,
+			);
+			path = PDFReader;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -3688,7 +3726,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0940;
-				LastUpgradeCheck = 0930;
+				LastUpgradeCheck = 1000;
 				ORGANIZATIONNAME = Tignum;
 				TargetAttributes = {
 					918D5E1E20EE050900AEAD37 = {
@@ -3828,6 +3866,7 @@
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
+				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
 				7F3A9CD21FCF019B000F1744 /* MyUniverseViewController.xib in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
@@ -3916,7 +3955,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
@@ -3965,7 +4004,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9100195820FC798400049118 /* SwiftLint */ = {
@@ -3988,7 +4027,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JPSimulatorHacks/JPSimulatorHacks.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -3997,7 +4036,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BB0D582FB75DD826F51B67C2 /* [CP] Check Pods Manifest.lock */ = {
@@ -4024,7 +4063,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -4033,7 +4072,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CB8A15401E7981900023B2F9 /* Generate R.Swift */ = {
@@ -4318,6 +4357,7 @@
 				91086E4C209202CC0035DA1F /* SettingsViewController.swift in Sources */,
 				36FEA86320A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift in Sources */,
 				3674FF2C20AADE7D008EEB6C /* PartnersOverviewViewController.swift in Sources */,
+				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CB3333E720480DF8009480DF /* ShareRouter.swift in Sources */,
@@ -4337,6 +4377,7 @@
 				CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */,
 				367564A720695922008D1F71 /* ReviewNotesViewController.swift in Sources */,
 				CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */,
+				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
 				7FB32D151F44793F0027BF4E /* TrackablePage.swift in Sources */,
 				7F9217BD1FD01C5D00CAE9E0 /* PhotosPermission.swift in Sources */,
 				CBB4DD0D1EDEAA610071494A /* URLRequestBuilder.swift in Sources */,
@@ -4390,6 +4431,7 @@
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */,
+				E871E8542136EA50005E787C /* ContentItemSharing.swift in Sources */,
 				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
 				3698428520C91EF3007A8C8F /* SigningDigitViewController.swift in Sources */,
 				CB694E09205C1C3600D29B3E /* DailyPrepResultIntermediary.swift in Sources */,
@@ -4400,6 +4442,7 @@
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				854708E21F306628007AB971 /* ContentItemAnimation.swift in Sources */,
 				CBC1DC1D1F0F988E00F6D056 /* SettingsService.swift in Sources */,
+				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
 				7F65672F1FE13BCA00A6CB7F /* ScreenHelpViewController.swift in Sources */,
 				914A5E1D207FB35600092121 /* SettingsBubblesWorker.swift in Sources */,
 				3674FF3820AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.swift in Sources */,
@@ -4551,6 +4594,7 @@
 				7F4B98A71FA21FD3000B402C /* WeeklyChoicesAnimator.swift in Sources */,
 				CB9AFD0F1F012A2800D067F2 /* QuestionsService.swift in Sources */,
 				36796A3620D3C47400B55429 /* SigningProfileDetailConfigurator.swift in Sources */,
+				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
@@ -4559,6 +4603,7 @@
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				9115F708208DE03F00EE5D1D /* ProfileSettingsPresenter.swift in Sources */,
 				CCE6CD801F15299F00B66DA3 /* StatisticsPeriod.swift in Sources */,
+				E813F0A82135280F00C0723E /* PDFReaderConfigurator.swift in Sources */,
 				7FCF0EF91FD9777100138D77 /* MyUniverseContentView.swift in Sources */,
 				CC16578C1F75194900D52660 /* CLLocation+Convenience.swift in Sources */,
 				CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */,
@@ -4628,6 +4673,7 @@
 				CB3333E520480DEF009480DF /* ShareProtocols.swift in Sources */,
 				7FE674B91F8F8F3600FC7407 /* ArticleCollectionHeader.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
+				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				CBC1DC351F14D34000F6D056 /* SettingValue.swift in Sources */,
@@ -4639,6 +4685,7 @@
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				36667692207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
+				DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */,
 				CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */,
 				CBD4BEAA2018E7D4008A0E9E /* GuideConfigurator.swift in Sources */,
 				36B07E8D2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift in Sources */,
@@ -4736,6 +4783,7 @@
 				CB53F0DA20237507007C624B /* Keychain.swift in Sources */,
 				366AFD1320BD9F9300109F29 /* SigningEmailConfigurator.swift in Sources */,
 				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
+				E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */,
 				CCE6CD861F15313300B66DA3 /* StatisticsIntermediary.swift in Sources */,
 				CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */,
 				3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */,
@@ -4836,7 +4884,6 @@
 				OTHER_SWIFT_FLAGS = "-DBUILD_DATABASE";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5164,7 +5211,6 @@
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -5360,7 +5406,6 @@
 				OTHER_SWIFT_FLAGS = "-DUNIT_TEST";
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
-				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

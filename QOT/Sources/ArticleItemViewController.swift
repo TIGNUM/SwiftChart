@@ -368,7 +368,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
                     canStream: true
                 )
-            case .pdf(let title, _, _):
+            case .pdf(let title, _, _, _):
                 return PDFTableViewCell(tableView: tableView,
                                         indexPath: indexPath,
                                         attributedString: item.contentItemValue.style(textStyle: .h4, text: title, textColor: .white).attributedString(),
@@ -420,7 +420,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                         }
                     }
                 }
-            case .pdf(_, _, let pdfURL):
+            case .pdf(_, _, let pdfURL, _):
                 delegate?.didTapLink(pdfURL, in: self)
             default: return
             }

@@ -140,6 +140,18 @@ struct PartnerSharingRequest: URLRequestBuildable {
     }
 }
 
+struct ContentItemSharingRequest: URLRequestBuildable {
+    let endpoint: Endpoint = .conteintItemSharing
+    let httpMethod: HTTPMethod = .post
+    let paramaters: [RequestParameter: Any]
+
+    init(contentItemID: Int) {
+        self.paramaters = [
+            .contentItemId: contentItemID
+        ]
+    }
+}
+
 struct UserLocationUpdateRequest: URLRequestBuildable {
     let endpoint: Endpoint = .userLocationUpdate
     let httpMethod: HTTPMethod = .put

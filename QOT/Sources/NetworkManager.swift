@@ -170,6 +170,17 @@ final class NetworkManager {
         return current
     }
 
+    @discardableResult func performContentItemSharingRequest(contentItemID: Int,
+                                                         completion: @escaping (Result<ContentItemSharing, NetworkError>) -> Void) -> SerialRequest {
+        let current = SerialRequest()
+        performAuthenticatingRequest(ContentItemSharingRequest(contentItemID: contentItemID),
+                                     parser: ContentItemSharing.parse,
+                                     notifyDelegateOfFailure: false,
+                                     current: current,
+                                     completion: completion)
+        return current
+    }
+
     @discardableResult func performUserSearchResultRequest(contentId: Int?,
                                                            contentItemId: Int?,
                                                            filter: Search.Filter,
@@ -349,7 +360,6 @@ extension SessionManager {
                 log("REQUEST URLRequest URL: \(String(describing: urlRequest.urlRequest?.url))", level: .verbose)
                 log("REQUEST BODY DATA: \(response.request?.httpBody?.utf8String ?? "No request body data")", level: .verbose)
                 log("RESPONSE BODY DATA: \(response.data?.utf8String ?? "No response data")", level: .verbose)
-
                 let result: Result<T, NetworkError>
                 switch response.result {
                 case .success(let data):

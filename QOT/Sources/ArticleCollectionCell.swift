@@ -45,7 +45,7 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
                    imageURL: URL?,
                    duration: String,
                    showSeparator: Bool,
-                   newArticle: Bool) { 
+                   newArticle: Bool) {
         let attributedCustomDate = NSMutableAttributedString(
             string: dateFormatter.string(from: articleDate).uppercased(),
             letterSpacing: 0.5,

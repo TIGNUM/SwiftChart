@@ -24,7 +24,7 @@ protocol LearnContentItemViewControllerDelegate: class {
 
     func didTapFinish(from view: UIView)
 
-    func didTapPDF(withURL url: URL, in viewController: LearnContentItemViewController)
+    func didTapPDF(withURL url: URL, in viewController: LearnContentItemViewController, title: String, itemID: Int)
 
     func didSelectReadMoreContentCollection(with collectionID: Int, in viewController: LearnContentItemViewController)
 }
@@ -197,7 +197,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                                                                                        text: title,
                                                                                        textColor: .nightModeBlackTwo).attributedString(),
                                                                                        url: url)
-            case .pdf(let title, _, _):
+            case .pdf(let title, _, _, _):
                 return PDFTableViewCell(tableView: tableView,
                                         indexPath: indexPath,
                                         attributedString: item.contentItemValue.style(textStyle: .h4,
@@ -235,8 +235,8 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                     }
                 }
             }
-        case .pdf(_, _, let pdfURL):
-            delegate?.didTapPDF(withURL: pdfURL, in: self)
+        case .pdf(let title, _, let pdfURL, let itemID):
+            delegate?.didTapPDF(withURL: pdfURL, in: self, title: title, itemID: itemID)
         default:
             if
                 viewModel.sectionCount(tabType: tabType) == 3 && indexPath.section == 2 ||
