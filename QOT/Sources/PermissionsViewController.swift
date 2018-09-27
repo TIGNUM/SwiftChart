@@ -34,7 +34,6 @@ final class PermissionsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         interactor?.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
@@ -45,7 +44,6 @@ final class PermissionsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         interactor?.viewDidLoad()
         tableView.reloadData()
     }
@@ -69,19 +67,16 @@ private extension PermissionsViewController {
         let fadeContainerView = FadeContainerView()
         view.addSubview(fadeContainerView)
         fadeContainerView.edgeAnchors == view.edgeAnchors
-
         let backgroundImageView = UIImageView(image: R.image._1_1Learn())
         fadeContainerView.addSubview(backgroundImageView)
         backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
-
         fadeContainerView.addSubview(tableView)
         tableView.backgroundColor = .clear
         tableView.separatorColor = .clear
         tableView.isScrollEnabled = false
-        tableView.topAnchor == fadeContainerView.topAnchor + 100
+        tableView.topAnchor == fadeContainerView.topAnchor + Layout.padding_100
         tableView.bottomAnchor == fadeContainerView.bottomAnchor
         tableView.horizontalAnchors == fadeContainerView.horizontalAnchors
-
         fadeContainerView.setFade(top: 80, bottom: 0)
         view.layoutIfNeeded()
     }

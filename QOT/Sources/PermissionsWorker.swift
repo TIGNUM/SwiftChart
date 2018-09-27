@@ -21,7 +21,6 @@ final class PermissionsWorker {
     func permissions(completion: @escaping ([Permission]) -> Void) {
         var permissions: [Permission] = []
         let dispatchGroup = DispatchGroup()
-
         permissionsManager.allPermissions.forEach { [unowned self] (permission) in
             dispatchGroup.enter()
             permissionsManager.askPermission(for: [permission.identifier], completion: { status in
@@ -29,8 +28,10 @@ final class PermissionsWorker {
                 guard let status = status[permission.identifier] else { return }
                 permissions.append(Permission(activated: status, identifier: permission.identifier))
             })
-
-            dispatchGroup.notify(queue: DispatchQueue.main) { completion(permissions) }
+        }
+        
+        dispatchGroup.notify(queue: .main) {
+            completion(permissions)
         }
     }
 }

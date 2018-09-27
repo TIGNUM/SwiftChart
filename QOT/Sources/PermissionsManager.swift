@@ -81,9 +81,9 @@ final class PermissionsManager {
         data[identifier] = permission
     }
 
-    func askPermission(for identifiers: [Permission.Identifier], completion: @escaping ([Permission.Identifier: AuthorizationStatus]) -> Void) {
+    func askPermission(for identifiers: [Permission.Identifier],
+                       completion: @escaping ([Permission.Identifier: AuthorizationStatus]) -> Void) {
         guard let lastIdentifier = identifiers.last else { return }
-
         var results = [Permission.Identifier: AuthorizationStatus]()
         identifiers.forEach { identifier in
             guard let permission = self.data[identifier] else { return }
@@ -91,6 +91,8 @@ final class PermissionsManager {
             self.queue.addOperation(WaitBlockOperation { (finish: (() -> Void)?) in
                 guard permission.askStatus == .canAsk else {
                     results[identifier] = permission.askStatus == .askLater ? .later : .denied
+                    completion(results)
+                    finish?()
                     return
                 }
                 // ask the permission. the permission's completion block won't be fired until the user responds
