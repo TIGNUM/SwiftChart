@@ -70,11 +70,19 @@ final class ReviewNotesViewController: UIViewController {
 private extension ReviewNotesViewController {
 
     func setupNavigationBar() {
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.ic_back(),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(backToPreviousViewController))
         navigationController?.navigationBar.tintColor = .nightModeBlack40
         navigationController?.navigationBar.barTintColor = .nightModeBackground
         navigationController?.navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline,
                                                                    NSAttributedStringKey.foregroundColor: UIColor.nightModeBlack]
         title = reviewNotesType.navbarTitle
+    }
+
+    @objc func backToPreviousViewController() {
+        navigationController?.popToRootViewController(animated: true)
     }
 
     func setupTableView() {

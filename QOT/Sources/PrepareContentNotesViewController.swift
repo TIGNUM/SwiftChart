@@ -84,6 +84,10 @@ private extension PrepareContentNotesViewController {
 
     func setup() {
 		doneButton.tintColor = UIColor.gray.withAlphaComponent(0.5)
+        navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.ic_back(),
+                                                           style: .plain,
+                                                           target: self,
+                                                           action: #selector(backToPreviousViewController))
 		navigationItem.rightBarButtonItem = doneButton
         textView.backgroundColor = .clear
         placeholderTextView.backgroundColor = .clear
@@ -117,8 +121,12 @@ private extension PrepareContentNotesViewController {
 
 	@objc func didTapDoneButton(_ sender: UIBarButtonItem) {
 		delegate?.didEditText(text: text, in: self)
-		if let previousVC = navigationController?.viewControllers.dropLast().last {
-			navigationController?.popToViewController(previousVC, animated: true)
-		}
+        backToPreviousViewController()
 	}
+    
+    @objc func backToPreviousViewController() {
+        if let previousVC = navigationController?.viewControllers.dropLast().last {
+            navigationController?.popToViewController(previousVC, animated: true)
+        }
+    }
 }
