@@ -123,7 +123,7 @@ private extension PrepareContentNotesViewController {
 		delegate?.didEditText(text: text, in: self)
         backToPreviousViewController()
 	}
-    
+
     @objc func backToPreviousViewController() {
         if let previousVC = navigationController?.viewControllers.dropLast().last {
             navigationController?.popToViewController(previousVC, animated: true)

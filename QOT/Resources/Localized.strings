@@ -206,6 +206,8 @@
 "Prepare.Chat.Header.Preparations" = "PREPARATIONS";
 "Prepare.MyPrep.TimeToEvent" = "Time to the event %@";
 "Prepare.MyPrep.NoSavePreparations" = "No preps saved";
+"Prepare.MyPrep.Tableview.section.header.PastPreparations" = "Past preps";
+"Prepare.MyPrep.Tableview.section.header.UpCommingPreparations" = "Upcoming preps";
 "Prepare.Chat.PreparationSaved" = "Your preparation has been saved to My Prep";
 "Prepare.Notes.Placeholder" = "Tap here to put any additional thoughts into writing. Some examples might include your event To Be Vision, details of what your event's space looks like, or key people at your event.";
 "Prepare.Review.Notes.Intention.Preceiving.Title" = "How do you want to be perceived during the event?";

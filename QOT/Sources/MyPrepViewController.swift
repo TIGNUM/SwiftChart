@@ -165,7 +165,7 @@ private extension MyPrepViewController {
 extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = viewModel.item(at: indexPath.row)
+        let item = viewModel.item(at: indexPath)
         let cell: MyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
         var count = ""
         if item.totalPreparationCount > 0 {
@@ -186,12 +186,16 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let item = viewModel.item(at: indexPath.row)
+        let item = viewModel.item(at: indexPath)
         delegate?.didTapMyPrepItem(with: item, viewController: self)
     }
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.viewModel.sections.count
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.itemCount
+        return viewModel.itemCount(at: section)
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -200,11 +204,27 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            try? self.viewModel.deleteItem(at: indexPath.row)
+            try? self.viewModel.deleteItem(at: indexPath)
         }
     }
 
     func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCellEditingStyle {
         return .delete
+    }
+
+    // MARK: Section Headers
+
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return self.viewModel.itemTypeString(at: section)
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let headerLabel = (view as? UITableViewHeaderFooterView)?.textLabel
+
+        if let headerTitle = headerLabel?.text {
+            headerLabel?.attributedText = Style.headlineSmall(headerTitle.uppercased(), .white).attributedString(lineSpacing: 2)
+            (view as? UITableViewHeaderFooterView)?.backgroundView?.backgroundColor = .clear
+            (view as? UITableViewHeaderFooterView)?.contentView.backgroundColor = .clear
+        }
     }
 }

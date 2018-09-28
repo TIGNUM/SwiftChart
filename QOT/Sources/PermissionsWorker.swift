@@ -29,7 +29,7 @@ final class PermissionsWorker {
                 permissions.append(Permission(activated: status, identifier: permission.identifier))
             })
         }
-        
+
         dispatchGroup.notify(queue: .main) {
             completion(permissions)
         }

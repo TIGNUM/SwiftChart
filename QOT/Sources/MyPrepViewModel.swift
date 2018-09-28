@@ -44,6 +44,14 @@ final class MyPrepViewModel {
     let updates = PublishSubject<CollectionUpdate, NoError>()
     let itemCountUpdate = ReplayOneSubject<Int, NoError>()
 
+    enum Section {
+        case future
+        case past
+    }
+
+    private var futurePreparations: [Item] = []
+    private var pastPreparations: [Item] = []
+
     init(services: Services) {
         self.services = services
         self.widgetDataManager = WidgetDataManager(services: services)
@@ -81,15 +89,48 @@ final class MyPrepViewModel {
     }
 
     var itemCount: Int {
-        return items.count
+        return futureItemCount + pastItemCount
     }
 
-    func item(at index: Index) -> MyPrepViewModel.Item {
-        return items[index]
+    var futureItemCount: Int {
+        return futurePreparations.count
     }
 
-    func deleteItem(at index: Index) throws {
-        try services.preparationService.deletePreparation(withLocalID: items[index].localID)
+    var pastItemCount: Int {
+        return pastPreparations.count
+    }
+
+    var sections = [Section]()
+
+    func item(at indexPath: IndexPath) -> MyPrepViewModel.Item {
+        switch sections[indexPath.section] {
+        case .future:
+            return futurePreparations[indexPath.row]
+        case .past:
+            return pastPreparations[indexPath.row]
+        }
+    }
+
+    func itemCount(at section: Index) -> Int {
+        switch sections[section] {
+        case .future:
+            return futureItemCount
+        case .past:
+            return pastItemCount
+        }
+    }
+
+    func itemTypeString(at section: Index) -> String? {
+        switch sections[section] {
+        case .future:
+            return R.string.localized.prepareMyPrepTableviewSectionHeaderUpCommingPreparations()
+        case .past:
+            return R.string.localized.prepareMyPrepTableviewSectionHeaderPastPreparations()
+        }
+    }
+
+    func deleteItem(at indexPath: IndexPath) throws {
+        try services.preparationService.deletePreparation(withLocalID: item(at: indexPath).localID)
         refresh()
     }
 
@@ -114,12 +155,42 @@ private extension MyPrepViewModel {
                               totalPreparationCount: preparation.checkableItems.count,
                               finishedPreparationCount: preparation.coveredChecks.count))
         }
-        self.items = items.sorted {
+
+        let now = Date()
+        var futurePreparations = [Item]()
+        var pastPreparations = [Item]()
+        items.forEach { (item: MyPrepViewModel.Item) in
+            guard let startDate = item.startDate else {
+                return
+            }
+            if startDate > now {
+                futurePreparations.append(item)
+            } else {
+                pastPreparations.append(item)
+            }
+        }
+        self.futurePreparations = futurePreparations.sorted {
             if let firstStartDate = $0.startDate, let nextStartDate = $1.startDate {
                 return firstStartDate < nextStartDate
             }
             return true
         }
+
+        self.pastPreparations = pastPreparations.sorted {
+            if let firstStartDate = $0.startDate, let nextStartDate = $1.startDate {
+                return firstStartDate < nextStartDate
+            }
+            return true
+        }
+
+        sections = []
+        if self.futurePreparations.count > 0 {
+            sections.append(.future)
+        }
+        if self.pastPreparations.count > 0 {
+            sections.append(.past)
+        }
+        self.items = self.futurePreparations + self.pastPreparations
         itemCountUpdate.next(itemCount)
     }
 }
