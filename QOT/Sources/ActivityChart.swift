@@ -22,9 +22,7 @@ final class ActivityChart: UIView {
     init(frame: CGRect, statistics: Statistics, labelContentView: UIView) {
         self.statistics = statistics
         self.labelContentView = labelContentView
-
         super.init(frame: frame)
-
         setupView()
         drawCharts()
         drawTodayValueLabel()
@@ -47,7 +45,7 @@ private extension ActivityChart {
     }
 
     var bottomPosition: CGFloat {
-        return frame.height - padding * 0.75
+        return frame.height - padding * Layout.multiplier_075
     }
 
     func xPosition(_ index: Int) -> CGFloat {
@@ -57,14 +55,18 @@ private extension ActivityChart {
 
         let labelFrame = labelContentView.subviews[index].frame
 
-        return (labelFrame.origin.x + labelFrame.width * 0.5)
+        return (labelFrame.origin.x + labelFrame.width * Layout.multiplier_05)
     }
 
     func yPosition(_ value: CGFloat) -> CGFloat {
-        return (bottomPosition - (value * bottomPosition)) + padding * 0.5
+        return (bottomPosition - (value * bottomPosition)) + padding * Layout.multiplier_05
     }
 
-    private func drawCapRoundLine(xPos: CGFloat, startYPos: CGFloat, endYPos: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
+    private func drawCapRoundLine(xPos: CGFloat,
+                                  startYPos: CGFloat,
+                                  endYPos: CGFloat,
+                                  strokeColor: UIColor,
+                                  hasShadow: Bool = false) {
         let startPoint = CGPoint(x: xPos, y: startYPos)
         let endPoint = CGPoint(x: xPos, y: endYPos)
         drawCapRoundLine(from: startPoint, to: endPoint, lineWidth: 8, strokeColor: strokeColor, hasShadow: hasShadow)
@@ -85,7 +87,10 @@ private extension ActivityChart {
     }
 
     func addCaptionLabel(yPos: CGFloat, text: String) {
-        let captionLabel = UILabel(frame: CGRect(x: 0, y: yPos - yAxisOffset * 0.25, width: yAxisOffset, height: yAxisOffset * 0.5))
+        let captionLabel = UILabel(frame: CGRect(x: 0,
+                                                 y: yPos - yAxisOffset * Layout.multiplier_025,
+                                                 width: yAxisOffset,
+                                                 height: yAxisOffset * Layout.multiplier_05))
         captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
         addSubview(captionLabel)
     }
@@ -107,7 +112,6 @@ private extension ActivityChart {
     func setupView() {
         updateLabelFrames()
         addAverageLines()
-
         let maxValue = statistics.multiplier
         let delta = maxValue/4
         addCaptionLabel(yPos: yPosition(0.25), text: "\(delta*1)")
@@ -117,12 +121,14 @@ private extension ActivityChart {
 
     func drawCharts() {
         let daataPoints = statistics.dataPointObjects.filter { $0.percentageValue > 0 }
-
         for (index, dataPoint) in daataPoints.enumerated() {
             let xPos = xPosition(index)
             let yPos = yPosition(dataPoint.percentageValue)
-            drawCapRoundLine(xPos: xPos, startYPos: bottomPosition, endYPos: yPos, strokeColor: dataPoint.color, hasShadow: hasShadow(dataPoint))
-
+            drawCapRoundLine(xPos: xPos,
+                             startYPos: bottomPosition,
+                             endYPos: yPos,
+                             strokeColor: dataPoint.color,
+                             hasShadow: hasShadow(dataPoint))
             if statistics.chartType == .activitySittingMovementRatio && dataPoint.percentageValue < 1 {
                 drawCapRoundLine(xPos: xPos, startYPos: yPos - padding, endYPos: padding * 0.5, strokeColor: .white20)
             }
@@ -131,7 +137,7 @@ private extension ActivityChart {
 
     func drawTodayValueLabel() {
         guard let dataPoint = statistics.dataPointObjects.last, dataPoint.percentageValue > 0 else { return }
-        let xPos = xPosition(statistics.dataPointObjects.endIndex - 1)
+        let xPos = xPosition(statistics.dataPointObjects.endIndex)
         let yPos = yPosition(dataPoint.percentageValue)
         let text = statistics.displayableValue(average: Double(dataPoint.percentageValue))
         let todayLabel = dayLabel(text: text, textColor: .white)

@@ -213,30 +213,30 @@ enum ChartType: String {
     func selectedChart(charts: [Statistics]) -> Statistics? {
         switch self {
         case .meetingAverageDay:
-            let selectedType = selectedChartTypes.filter { $0.key == .meetingAverageDay }[0]
-            return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { $0.key == .meetingAverageDay }.first
+            return charts.filter { $0.chartType == selectedType?.key }.first
         case .meetingAverageWeek,
              .meetingLength,
              .meetingIncreaseDiff,
              .meetingTimeBetween: return statistics(charts)
         case .travelTripsAverageWeeks,
              .travelTripsAverageYear:
-            let selectedType = selectedChartTypes.filter { ($0.key == .travelTripsAverageWeeks || $0.key == .travelTripsAverageYear) && $0.value == true }[0]
-            return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .travelTripsAverageWeeks || $0.key == .travelTripsAverageYear) && $0.value == true }.first
+            return charts.filter { $0.chartType == selectedType?.key }.first
         case .travelTripsNextFourWeeks: return statistics(charts)
         case .travelTripsTimeZoneChangedYear,
              .travelTripsTimeZoneChangedWeeks:
-            let selectedType = selectedChartTypes.filter { ($0.key == .travelTripsTimeZoneChangedYear || $0.key == .travelTripsTimeZoneChangedWeeks) && $0.value == true }[0]
-            return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .travelTripsTimeZoneChangedYear || $0.key == .travelTripsTimeZoneChangedWeeks) && $0.value == true }.first
+            return charts.filter { $0.chartType == selectedType?.key }.first
         case .travelTripsMaxTimeZone: return statistics(charts)
         case .peakPerformanceUpcomingWeek,
              .peakPerformanceUpcomingNextWeek:
-            let selectedType = selectedChartTypes.filter { ($0.key == .peakPerformanceUpcomingWeek || $0.key == .peakPerformanceUpcomingNextWeek) && $0.value == true }[0]
-            return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .peakPerformanceUpcomingWeek || $0.key == .peakPerformanceUpcomingNextWeek) && $0.value == true }.first
+            return charts.filter { $0.chartType == selectedType?.key }.first
         case .peakPerformanceAverageWeek,
              .peakPerformanceAverageMonth:
-            let selectedType = selectedChartTypes.filter { ($0.key == .peakPerformanceAverageWeek || $0.key == .peakPerformanceAverageMonth) && $0.value == true }[0]
-            return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .peakPerformanceAverageWeek || $0.key == .peakPerformanceAverageMonth) && $0.value == true }.first
+            return charts.filter { $0.chartType == selectedType?.key }.first
         case .sleepQuantity: return statistics(charts)
         case .sleepQuality: return statistics(charts)
         case .sleepQuantityTime: return statistics(charts)
@@ -244,12 +244,12 @@ enum ChartType: String {
         case .activityLevel: return statistics(charts)
         case .intensityLoadWeek,
              .intensityLoadMonth:
-            let selectedType = selectedChartTypes.filter { ($0.key == .intensityLoadMonth || $0.key == .intensityLoadWeek) && $0.value == true }[0]
-            return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .intensityLoadMonth || $0.key == .intensityLoadWeek) && $0.value == true }.first
+            return charts.filter { $0.chartType == selectedType?.key }.first
         case .intensityRecoveryWeek,
              .intensityRecoveryMonth:
-            let selectedType = selectedChartTypes.filter { ($0.key == .intensityRecoveryWeek || $0.key == .intensityRecoveryMonth) && $0.value == true }[0]
-            return charts.filter { $0.chartType == selectedType.key }[0]
+            let selectedType = selectedChartTypes.filter { ($0.key == .intensityRecoveryWeek || $0.key == .intensityRecoveryMonth) && $0.value == true }.first
+            return charts.filter { $0.chartType == selectedType?.key }.first
         }
     }
 
