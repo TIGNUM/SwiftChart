@@ -68,10 +68,21 @@ final class BadgeManager {
     }
 
     func updateGuideBadgeValue(newGuideItems: [Guide.Item]) {
-        self.newGuideItems = newGuideItems
-        guideBadge?.update(newGuideItems.count)
-        guideBadge?.isHidden = tabDisplayed == .guide || newGuideItems.isEmpty
-        UserDefault.guideBadgeNumber.setDoubleValue(value: Double(newGuideItems.count))
+        var todaysDailyPrep: Guide.Item?
+        let dialyPrepItems = newGuideItems.filter { $0.isDailyPrep == true }
+        dialyPrepItems.forEach { (guideItem: Guide.Item) in
+            let dateStirng = guideItem.identifier.replacingOccurrences(of: NotificationID.Prefix.dailyPrep.rawValue + "#", with: "")
+            if DateFormatter.dialyPrep.date(from: dateStirng)?.isSameDay(Date()) == true {
+                todaysDailyPrep = guideItem
+            }
+        }
+        self.newGuideItems = newGuideItems.filter { $0.isDailyPrep == false }
+        if let todaysDailyPrep = todaysDailyPrep, self.newGuideItems.contains(todaysDailyPrep) == false {
+            self.newGuideItems.append(todaysDailyPrep)
+        }
+        guideBadge?.update(self.newGuideItems.count)
+        guideBadge?.isHidden = tabDisplayed == .guide || self.newGuideItems.isEmpty
+        UserDefault.guideBadgeNumber.setDoubleValue(value: Double(self.newGuideItems.count))
     }
 }
 

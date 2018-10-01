@@ -15,7 +15,7 @@ struct NotificationID {
 
 extension NotificationID {
 
-    private enum Prefix: String {
+    enum Prefix: String {
         case dailyPrep = "daily-prep"
     }
 

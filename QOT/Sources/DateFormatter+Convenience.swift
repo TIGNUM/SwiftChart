@@ -23,6 +23,13 @@ private let userDateFormatter: DateFormatter = {
     return formatter
 }()
 
+private let dailyPrepDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyy-MM-dd"
+    formatter.timeZone = TimeZone(abbreviation: "UTC")
+    return formatter
+}()
+
 private let displayTimeFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.locale = Locale.current
@@ -70,6 +77,10 @@ extension DateFormatter {
 
     static var mediumDate: DateFormatter {
         return mediumDateFormatter
+    }
+
+    static var dialyPrep: DateFormatter {
+        return dailyPrepDateFormatter
     }
 
     static var utcYearMonthDay: DateFormatter = {

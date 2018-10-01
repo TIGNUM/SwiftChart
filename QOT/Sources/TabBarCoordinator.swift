@@ -208,7 +208,6 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         if index == TabBar.prepare.index {
             prepareCoordinator.focus()
         }
-//        syncLearnTabBadge()
     }
 }
 

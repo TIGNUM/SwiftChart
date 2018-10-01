@@ -109,9 +109,9 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
             title?.isTrimmedTextEmpty == true ||
 			body?.isTrimmedTextEmpty == true ||
 			body == services.contentService.toBeVisionMessagePlaceholder() {
-            title = R.string.localized.guideToBeVisionNotFisishedTitle()
-            body = R.string.localized.guideToBeVisionNotFisishedMessage()
-			isToBeVisionDone = false
+                title = R.string.localized.guideToBeVisionNotFisishedTitle()
+                body = R.string.localized.guideToBeVisionNotFisishedMessage()
+                isToBeVisionDone = false
         }
 
         return Guide.Item(status: isToBeVisionDone == true ? .done : .todo,
@@ -126,7 +126,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
                           featureLink: nil,
                           featureButton: nil,
                           identifier: "",
-                          affectsTabBarBadge: false)
+                          affectsTabBarBadge: true)
     }
 }
 

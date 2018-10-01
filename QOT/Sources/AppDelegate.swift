@@ -291,7 +291,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
         }
 
         var notificationID = notification.request.identifier
-        if notificationID.starts(with: "daily-prep") {
+        if notificationID.starts(with: NotificationID.Prefix.dailyPrep.rawValue) {
             notificationID = NotificationID.dailyPrep(date: Calendar.current.isoDate(from: notification.date)).string
         }
         launchHandler.process(url: link, notificationID: notificationID)
