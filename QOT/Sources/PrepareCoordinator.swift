@@ -34,7 +34,7 @@ final class PrepareCoordinator: ParentCoordinator {
     private let chatViewController: ChatViewController<PrepareAnswer>
     private let myPrepViewController: MyPrepViewController
     private let chatDecisionManager: PrepareChatDecisionManager
-    private let rightBarButtonItem = UIBarButtonItem(withImage: R.image.add_remove())
+    private let rightBarButtonItem = UIBarButtonItem.info
     private var prepareContentNoteController: PrepareContentNotesViewController?
     private var context: Context?
     private var contentTitle = ""
@@ -504,31 +504,7 @@ extension PrepareCoordinator: NavigationItemDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-        guard
-            let prepareContentController = prepareListViewController,
-            let preparation = services.preparationService.preparation(localID: preparationID) else { return }
-        let checkedIDs = prepareContentController.viewModel.checkedIDs
-        let relatedStrategies = services.contentService.relatedPrepareStrategies(self.contentTitle)
-        let checks = services.preparationService.preparationChecks(preparationID: preparation.localID)
-        let selectedIDs = Array(checks.compactMap { $0.contentItem?.contentCollection?.remoteID.value })
-        LaunchHandler().selectStrategies(relatedStrategies: relatedStrategies,
-                                         selectedIDs: selectedIDs,
-                                         prepareContentController: prepareContentController,
-                                         completion: { (selectedContent, syncManager) in
-                                            do {
-                                                try self.services.preparationService.updatePreparationChecks(preparationID: self.preparationID,
-                                                                                                             checkedIDs: checkedIDs,
-                                                                                                             selectedStrategies: selectedContent)
-                                            } catch {
-                                                log("Error while updating preparationChecks: \(error)", level: .error)
-                                            }
-                                            let hud = MBProgressHUD.showAdded(to: prepareContentController.view, animated: true)
-                                            syncManager.syncPreparations(shouldDownload: true, completion: { (error) in
-                                                if let viewModel = self.prepareChecklistViewModel(preparation: preparation) {
-                                                    prepareContentController.updateViewModel(viewModel: viewModel)
-                                                }
-                                                hud.hide(animated: true)
-                                            })
-        })
+        let viewController = ScreenHelpViewController(configurator: ScreenHelpConfigurator.make(.prepare))
+        AppDelegate.current.windowManager.showPriority(viewController, animated: true, completion: nil)
     }
 }
