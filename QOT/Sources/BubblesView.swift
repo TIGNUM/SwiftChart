@@ -69,6 +69,7 @@ private extension BubblesView {
         for bubble in bubbles {
             if let bubblePath = bubble.shape.path, bubblePath.contains(location) {
                 selectionDelegate.didTouchUp(settingsType: bubble.type, in: self)
+                return
             }
         }
     }

@@ -101,6 +101,11 @@ final class ContentService {
 
     // MARK: - Collections
 
+    func faq() -> AnyRealmCollection<ContentCollection> {
+        let predicate = NSPredicate(format: "section == %@ AND title != %@", "FAQ", "FAQ")
+        return AnyRealmCollection(mainRealm.objects(ContentCollection.self).filter(predicate).sorted(by: [.sortOrder()]))
+    }
+
     func tutorialSlideShows() -> AnyRealmCollection<ContentCollection> {
         let predicate = NSPredicate.slideShow()
         return AnyRealmCollection(mainRealm.objects(ContentCollection.self).filter(predicate).sorted(by: [.sortOrder()]))

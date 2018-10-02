@@ -40,6 +40,13 @@
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
 		36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
+		366183E72162793700634560 /* SupportFAQPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183DF2162793700634560 /* SupportFAQPresenter.swift */; };
+		366183E82162793700634560 /* SupportFAQWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183E02162793700634560 /* SupportFAQWorker.swift */; };
+		366183EA2162793700634560 /* SupportFAQInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183E22162793700634560 /* SupportFAQInterface.swift */; };
+		366183EB2162793700634560 /* SupportFAQViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183E32162793700634560 /* SupportFAQViewController.swift */; };
+		366183EC2162793800634560 /* SupportFAQInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183E42162793700634560 /* SupportFAQInteractor.swift */; };
+		366183EE2162793800634560 /* SupportFAQConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183E62162793700634560 /* SupportFAQConfigurator.swift */; };
+		366183F721635FAA00634560 /* SupportFAQTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183F621635FAA00634560 /* SupportFAQTableViewCell.swift */; };
 		36667692207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36667691207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift */; };
 		36667694207CF62700D2F5AD /* VisionGeneratorInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36667693207CF62700D2F5AD /* VisionGeneratorInteractor.swift */; };
 		36667696207CF64000D2F5AD /* VisionGeneratorModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36667695207CF64000D2F5AD /* VisionGeneratorModels.swift */; };
@@ -131,6 +138,8 @@
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
 		36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */; };
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
+		3693F62321625E8700E286A9 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693F62221625E8700E286A9 /* AppContent.swift */; };
+		3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693F6242162601000E286A9 /* AppContentIntermediary.swift */; };
 		3698428120C91EF3007A8C8F /* SigningDigitPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3698427920C91EF3007A8C8F /* SigningDigitPresenter.swift */; };
 		3698428220C91EF3007A8C8F /* SigningDigitWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3698427A20C91EF3007A8C8F /* SigningDigitWorker.swift */; };
 		3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3698427B20C91EF3007A8C8F /* SigningDigitRouter.swift */; };
@@ -142,6 +151,8 @@
 		369842B420CA7BB5007A8C8F /* UserRegistrationCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369842B320CA7BB5007A8C8F /* UserRegistrationCheck.swift */; };
 		36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36AD001F20EA8D8100F7227C /* PartnerEditViewController.xib */; };
 		36B07E8D2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B07E8C2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift */; };
+		36B515CA21638CA800A7B405 /* SupportFAQViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B515C921638CA800A7B405 /* SupportFAQViewController.xib */; };
+		36B515CC216395B600A7B405 /* SupportFAQTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B515CB216395B600A7B405 /* SupportFAQTableViewCell.xib */; };
 		36B67B9C1FE1D9C90066A515 /* RealmGuideItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */; };
 		36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */; };
 		36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */; };
@@ -835,6 +846,13 @@
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSharingEmail.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
+		366183DF2162793700634560 /* SupportFAQPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQPresenter.swift; sourceTree = "<group>"; };
+		366183E02162793700634560 /* SupportFAQWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQWorker.swift; sourceTree = "<group>"; };
+		366183E22162793700634560 /* SupportFAQInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQInterface.swift; sourceTree = "<group>"; };
+		366183E32162793700634560 /* SupportFAQViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQViewController.swift; sourceTree = "<group>"; };
+		366183E42162793700634560 /* SupportFAQInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQInteractor.swift; sourceTree = "<group>"; };
+		366183E62162793700634560 /* SupportFAQConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQConfigurator.swift; sourceTree = "<group>"; };
+		366183F621635FAA00634560 /* SupportFAQTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQTableViewCell.swift; sourceTree = "<group>"; };
 		36667691207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorConfigurator.swift; sourceTree = "<group>"; };
 		36667693207CF62700D2F5AD /* VisionGeneratorInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorInteractor.swift; sourceTree = "<group>"; };
 		36667695207CF64000D2F5AD /* VisionGeneratorModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionGeneratorModels.swift; sourceTree = "<group>"; };
@@ -926,6 +944,8 @@
 		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
 		36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDailyPrepTableViewCell.swift; sourceTree = "<group>"; };
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
+		3693F62221625E8700E286A9 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
+		3693F6242162601000E286A9 /* AppContentIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContentIntermediary.swift; sourceTree = "<group>"; };
 		3698427920C91EF3007A8C8F /* SigningDigitPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningDigitPresenter.swift; sourceTree = "<group>"; };
 		3698427A20C91EF3007A8C8F /* SigningDigitWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningDigitWorker.swift; sourceTree = "<group>"; };
 		3698427B20C91EF3007A8C8F /* SigningDigitRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningDigitRouter.swift; sourceTree = "<group>"; };
@@ -937,6 +957,8 @@
 		369842B320CA7BB5007A8C8F /* UserRegistrationCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationCheck.swift; sourceTree = "<group>"; };
 		36AD001F20EA8D8100F7227C /* PartnerEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartnerEditViewController.xib; sourceTree = "<group>"; };
 		36B07E8C2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentReviewNotesTableViewCell.swift; sourceTree = "<group>"; };
+		36B515C921638CA800A7B405 /* SupportFAQViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportFAQViewController.xib; sourceTree = "<group>"; };
+		36B515CB216395B600A7B405 /* SupportFAQTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SupportFAQTableViewCell.xib; sourceTree = "<group>"; };
 		36B67B9B1FE1D9C90066A515 /* RealmGuideItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItem.swift; sourceTree = "<group>"; };
 		36B8F2501FE2FDD400AD6A17 /* GuideGreetingView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideGreetingView.xib; sourceTree = "<group>"; };
 		36B8F2521FE2FEA600AD6A17 /* GuideGreetingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideGreetingView.swift; sourceTree = "<group>"; };
@@ -1661,6 +1683,22 @@
 			name = CLTypingLabel;
 			sourceTree = "<group>";
 		};
+		366183DE2162790000634560 /* Support - FAQ */ = {
+			isa = PBXGroup;
+			children = (
+				366183E62162793700634560 /* SupportFAQConfigurator.swift */,
+				366183E42162793700634560 /* SupportFAQInteractor.swift */,
+				366183E22162793700634560 /* SupportFAQInterface.swift */,
+				366183DF2162793700634560 /* SupportFAQPresenter.swift */,
+				366183F621635FAA00634560 /* SupportFAQTableViewCell.swift */,
+				366183E32162793700634560 /* SupportFAQViewController.swift */,
+				366183E02162793700634560 /* SupportFAQWorker.swift */,
+				36B515C921638CA800A7B405 /* SupportFAQViewController.xib */,
+				36B515CB216395B600A7B405 /* SupportFAQTableViewCell.xib */,
+			);
+			name = "Support - FAQ";
+			sourceTree = "<group>";
+		};
 		36667690207CF5BF00D2F5AD /* Generator */ = {
 			isa = PBXGroup;
 			children = (
@@ -1839,6 +1877,15 @@
 				36796A4F20D3C4B700B55429 /* SigningInfoViewController.xib */,
 			);
 			name = SigningInfo;
+			sourceTree = "<group>";
+		};
+		3693F62121625E6700E286A9 /* AppContent */ = {
+			isa = PBXGroup;
+			children = (
+				3693F62221625E8700E286A9 /* AppContent.swift */,
+				3693F6242162601000E286A9 /* AppContentIntermediary.swift */,
+			);
+			name = AppContent;
 			sourceTree = "<group>";
 		};
 		3698427820C91ECF007A8C8F /* SigningDigit */ = {
@@ -2619,12 +2666,12 @@
 		CB94423A1FDFE4B400E2B122 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				E813F0A02130053700C0723E /* PDFReader */,
 				9150411C20FDF2C700D43D18 /* Add Sensor */,
 				CBE8808B1FE4368300670C10 /* Guide */,
 				D5B707241F03A21E00C812EB /* Morning Interview */,
 				36FB012D20A63C8800472E6F /* PartnerEdit */,
 				3674FF1F20AADDED008EEB6C /* Partners Overview */,
+				E813F0A02130053700C0723E /* PDFReader */,
 				91F5BE3C2097573500E85A51 /* Permissions */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
 				CBB4DD361EE08A5C0071494A /* Search */,
@@ -2632,6 +2679,7 @@
 				CB3333DD20480DA2009480DF /* Share */,
 				366AFD2320BEC8D200109F29 /* Signing */,
 				CB9442261FD963B200E2B122 /* SlideShow */,
+				366183DE2162790000634560 /* Support - FAQ */,
 				912C9E32203C701300C1AA76 /* ToBeVision */,
 			);
 			name = Scenes;
@@ -2903,6 +2951,7 @@
 		CBB4DD251EE087830071494A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				3693F62121625E6700E286A9 /* AppContent */,
 				CB9B07581EF904410017F6C3 /* CalendarEvent */,
 				CB4881501EF7BF6400389C88 /* ContentCategory */,
 				CB48814F1EF7BF5B00389C88 /* ContentCollection */,
@@ -3879,6 +3928,7 @@
 				85C3D6BC1F0B919100E0CBFE /* PrepareEventTableViewFooterView.xib in Resources */,
 				91182ACD20A1A4E9006D5435 /* SettingsViewController.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
+				36B515CA21638CA800A7B405 /* SupportFAQViewController.xib in Resources */,
 				3698428A20C91F10007A8C8F /* SigningDigitViewController.xib in Resources */,
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
 				CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */,
@@ -3902,6 +3952,7 @@
 				CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */,
 				CBC5A57C1FA08077007B9A5B /* 20_min_power_nap_with_voice_B.m4a in Resources */,
 				851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */,
+				36B515CC216395B600A7B405 /* SupportFAQTableViewCell.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
 				CBB237F71E6FFF1200AB5AEF /* Assets.xcassets in Resources */,
 				D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */,
@@ -4169,6 +4220,7 @@
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
 				36796A4420D3C49900B55429 /* SigningLoginConfigurator.swift in Sources */,
+				366183E72162793700634560 /* SupportFAQPresenter.swift in Sources */,
 				CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */,
 				366AFD1120BD9F9300109F29 /* SigningEmailInteractor.swift in Sources */,
 				7F2B77D31FC5C3E800203D90 /* LibraryViewModelInterface.swift in Sources */,
@@ -4214,6 +4266,7 @@
 				36796A5720D3C4B800B55429 /* SigningInfoModel.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
+				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
 				36796A4820D3C49900B55429 /* SigningLoginRouter.swift in Sources */,
 				91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */,
 				CB3437621EFD67B600D89D4F /* AnswerIntermediary.swift in Sources */,
@@ -4302,6 +4355,7 @@
 				9166ECED20A07C2F006DF113 /* GuideToBeVisionTableViewCell.swift in Sources */,
 				CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */,
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
+				366183E82162793700634560 /* SupportFAQWorker.swift in Sources */,
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
@@ -4357,6 +4411,7 @@
 				91086E4C209202CC0035DA1F /* SettingsViewController.swift in Sources */,
 				36FEA86320A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift in Sources */,
 				3674FF2C20AADE7D008EEB6C /* PartnersOverviewViewController.swift in Sources */,
+				366183EE2162793800634560 /* SupportFAQConfigurator.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
@@ -4384,6 +4439,7 @@
 				CBC933151F0B9CC200C00007 /* ContentRelationIntermediary.swift in Sources */,
 				7F65673E1FE2896F00A6CB7F /* ScreenHelpPresenter.swift in Sources */,
 				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
+				366183EA2162793700634560 /* SupportFAQInterface.swift in Sources */,
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				7F5A25B21F3C515800A11466 /* Swizzle.swift in Sources */,
 				7F9217B91FD01C2F00CAE9E0 /* RemoteNotificationPermission.swift in Sources */,
@@ -4656,6 +4712,7 @@
 				85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */,
+				366183EC2162793800634560 /* SupportFAQInteractor.swift in Sources */,
 				36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */,
 				85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */,
 				36796A0A20D3C41F00B55429 /* SigningCreatePasswordInterface.swift in Sources */,
@@ -4690,6 +4747,7 @@
 				CBD4BEAA2018E7D4008A0E9E /* GuideConfigurator.swift in Sources */,
 				36B07E8D2068E5170000C358 /* PrepareContentReviewNotesTableViewCell.swift in Sources */,
 				7F8DB4AB1FA2047D00DFE006 /* PartnersAnimation.swift in Sources */,
+				366183F721635FAA00634560 /* SupportFAQTableViewCell.swift in Sources */,
 				3666769E207CF69800D2F5AD /* VisionGeneratorWorker.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */,
@@ -4710,6 +4768,7 @@
 				CBFD47CA200E0E6100A91899 /* RealmCalendarSyncSetting.swift in Sources */,
 				859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */,
 				7F1D3D251F8E29050071D322 /* RemoteLogDestination.swift in Sources */,
+				366183EB2162793700634560 /* SupportFAQViewController.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* StatisticsService.swift in Sources */,
 				CB34376B1EFE799D00D89D4F /* ContentCategory+Convenience.swift in Sources */,
 				7FE38DCF1F2A48480061E98F /* NavigationItem.swift in Sources */,
@@ -4745,6 +4804,7 @@
 				7F3A9CBE1FCDBA51000F1744 /* FeedbackService.swift in Sources */,
 				CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */,
 				36796A3220D3C47400B55429 /* SigningProfileDetailRouter.swift in Sources */,
+				3693F62321625E8700E286A9 /* AppContent.swift in Sources */,
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,
 				914A5E21207FB38500092121 /* SettingsBubblesInteractor.swift in Sources */,
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,

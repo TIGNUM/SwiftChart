@@ -13,6 +13,7 @@ final class SettingsBubblesRouter: NSObject {
 
     private let viewController: SettingsBubblesViewController
     private let services: Services
+    private var supportFAQController: SupportFAQViewController?
 
     init(viewController: SettingsBubblesViewController, services: Services) {
         self.viewController = viewController
@@ -34,7 +35,7 @@ extension SettingsBubblesRouter: SettingsBubblesRouterInterface {
         case .contactSupport: presentMailComposer(recipients: [supportEmail()], subject: "ID: Support")
         case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail], subject: "ID: Feature")
         case .tutorial: presentTutorial()
-        case .faq: presentContentItem(id: bubbleTapped.primaryKey)
+        case .faq: presentFAQ()
         }
     }
 }
@@ -44,7 +45,13 @@ extension SettingsBubblesRouter: SettingsBubblesRouterInterface {
 private extension SettingsBubblesRouter {
 
     func presentContentItem(id: Int) {
-		AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id, controller: viewController)
+        AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id, controller: viewController)
+    }
+
+    func presentFAQ() {
+        let configurator = SupportFAQConfigurator.make()
+        let controller = SupportFAQViewController(configure: configurator)
+        viewController.pushToStart(childViewController: controller)
     }
 
     func presentTutorial() {
