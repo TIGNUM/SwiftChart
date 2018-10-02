@@ -219,11 +219,11 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let headerLabel = (view as? UITableViewHeaderFooterView)?.textLabel
+        guard let headerLabel = (view as? UITableViewHeaderFooterView)?.textLabel else { return }
 
-        if let headerTitle = headerLabel?.text {
-            headerLabel?.attributedText = Style.headlineSmall(headerTitle.uppercased(), .white).attributedString(lineSpacing: 2)
-            (view as? UITableViewHeaderFooterView)?.backgroundView?.backgroundColor = .clear
+        if let headerTitle = headerLabel.text {
+            headerLabel.attributedText = Style.headlineSmall(headerTitle.uppercased(), .white).attributedString(lineSpacing: 2)
+            (view as? UITableViewHeaderFooterView)?.backgroundView?.backgroundColor = UIColor.black30
             (view as? UITableViewHeaderFooterView)?.contentView.backgroundColor = .clear
         }
     }
