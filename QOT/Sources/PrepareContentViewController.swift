@@ -121,7 +121,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 private extension PrepareContentViewController {
     func setupView() {
         view.backgroundColor = .nightModeBackground
-        view.addSubview(savePreparationButton)
         if pageName == .prepareContent {
             view.addSubview(topBarView)
             view.addSubview(tableView)
@@ -129,10 +128,11 @@ private extension PrepareContentViewController {
             topBarView.horizontalAnchors == view.horizontalAnchors
             topBarView.heightAnchor == Layout.TabBarView.height
             tableView.topAnchor == topBarView.bottomAnchor
-            tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_64
+            tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_24
             tableView.horizontalAnchors == view.horizontalAnchors
         } else if pageName == .prepareCheckList {
             view.addSubview(tableView)
+            view.addSubview(savePreparationButton)
 			if #available(iOS 11.0, *) {
 				tableView.topAnchor == view.safeTopAnchor + Layout.padding_16
 				tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_64
@@ -143,12 +143,12 @@ private extension PrepareContentViewController {
 				tableView.leftAnchor == view.leftAnchor
 				tableView.rightAnchor == view.rightAnchor
 			}
+            savePreparationButton.topAnchor == tableView.bottomAnchor + Layout.padding_5
+            savePreparationButton.centerXAnchor == view.centerXAnchor
+            savePreparationButton.horizontalAnchors == view.horizontalAnchors + Layout.padding_40
+            savePreparationButton.bottomAnchor == view.safeBottomAnchor - Layout.padding_16
+            savePreparationButton.heightAnchor == Layout.padding_40
         }
-        savePreparationButton.topAnchor == tableView.bottomAnchor + Layout.padding_5
-        savePreparationButton.centerXAnchor == view.centerXAnchor
-        savePreparationButton.horizontalAnchors == view.horizontalAnchors + Layout.padding_40
-        savePreparationButton.bottomAnchor == view.safeBottomAnchor - Layout.padding_16
-        savePreparationButton.heightAnchor == Layout.padding_40
     }
 
     @discardableResult func configure(cell: UITableViewCell, forIndexPath indexPath: IndexPath) -> UITableViewCell {
