@@ -49,6 +49,7 @@ final class ArticleItemHeaderView: UIView {
         if let image = header.thumbnail {
             articleThumbnail.kf.setImage(with: image)
             articleThumbnail.layer.cornerRadius = Layout.CornerRadius.eight.rawValue
+            articleThumbnail.contentMode = .scaleAspectFill
             articleThumbnail.layer.masksToBounds = true
         } else {
             articleThumbnail.removeFromSuperview()
