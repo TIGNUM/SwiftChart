@@ -39,6 +39,7 @@ final class PrepareCoordinator: ParentCoordinator {
     private var context: Context?
     private var contentTitle = ""
     private var preparationID = ""
+    private var contentCollectionID = 0
     private weak var prepareListViewController: PrepareContentViewController?
     private var viewModel: PrepareContentViewModel?
     var children: [Coordinator] = []
@@ -202,8 +203,9 @@ extension PrepareCoordinator {
         }
     }
 
-    func showCreatePreparation(from viewController: PrepareContentViewController) {
-        guard let context = context else { preconditionFailure("No preparation context") }
+    func showCreatePreparation(from viewController: UIViewController, contentCollectionID: Int) {
+        guard let content = services.contentService.contentCollection(id: contentCollectionID) else { return }
+        self.contentCollectionID = contentCollectionID
         let start = Date()
         let finish = start.addingTimeInterval(TimeInterval(days: 30))
         let events = services.eventsService.calendarEvents(from: start, to: finish)
@@ -211,7 +213,7 @@ extension PrepareCoordinator {
         let synchronisedCalendars = services.eventsService.syncSettingsManager.calendarSyncSettings.compactMap {
             return $0.syncEnabled && calendarsOnDevice.contains($0.identifier) ? $0.identifier : nil
         }
-        let viewModel = PrepareEventsViewModel(preparationTitle: context.defaultPreparationName,
+        let viewModel = PrepareEventsViewModel(preparationTitle: content.title,
                                                events: events,
                                                calendarIdentifiers: synchronisedCalendars)
         let prepareEventsVC = PrepareEventsViewController(viewModel: viewModel)
@@ -221,16 +223,19 @@ extension PrepareCoordinator {
         viewController.present(prepareEventsVC, animated: true)
     }
 
-    func createPreparation(name: String?, event: CalendarEvent?) {
-        guard let context = context else { preconditionFailure("No preparation context") }
-        guard let name = name else { preconditionFailure("No preparation name") }
-
+    func createPreparation(name: String?, event: CalendarEvent?, completion: ((String?) -> Void)? = nil) {
+        guard
+            let name = name,
+            let title = services.contentService.contentCollection(id: contentCollectionID)?.title
+            else { preconditionFailure("No preparation name or title") }
+        let context = Context(contentCollectionID: contentCollectionID, listTitle: title)
         do {
             let localID = try services.preparationService.createPreparation(contentCollectionID: context.contentCollectionID,
                                                                             event: event,
                                                                             name: name,
                                                                             subtitle: context.listTitle)
             addPreparationLink(preparationID: localID, preperationName: name, calendarEvent: event)
+            completion?(localID)
         } catch {
             log(error, level: .error)
             return
@@ -364,7 +369,7 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
     }
 
     func didTapSavePreparation(in viewController: PrepareContentViewController) {
-        showCreatePreparation(from: viewController)
+        showCreatePreparation(from: viewController, contentCollectionID: contentCollectionID)
     }
 
     func didTapClose(in viewController: PrepareContentViewController) {
@@ -415,8 +420,15 @@ extension PrepareCoordinator: PrepareChatDecisionManagerDelegate {
         chatViewController.viewModel.appendItems(items)
     }
 
-    func showContent(id: Int, manager: PrepareChatDecisionManager) {
-        showPrepareList(contentCollectionID: id)
+    func showContent(id: Int, manager: PrepareChatDecisionManager, questionID: Int) {
+        switch questionID {
+        case 100006:
+            showCreatePreparation(from: chatViewController, contentCollectionID: id)
+        case 100008:
+            showPrepareList(contentCollectionID: id)
+        default:
+            return
+        }
     }
 
     func showNoContentError(manager: PrepareChatDecisionManager) {
@@ -444,10 +456,14 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
     }
 
     func didTapEvent(event: CalendarEvent, viewController: PrepareEventsViewController) {
-        createPreparation(name: event.title, event: event)
-        tabBarController.dismiss(animated: true)
-        chatDecisionManager.preparationSaved()
-        NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
+        createPreparation(name: event.title, event: event) { (preparationID) in
+            self.tabBarController.dismiss(animated: true)
+            self.chatDecisionManager.preparationSaved()
+            NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
+            if let id = preparationID {
+                self.showPrepareCheckList(preparationID: id)
+            }
+        }
         widgetDataManager.update(.upcomingEvent)
     }
 

@@ -14,7 +14,7 @@ extension Answer: ChatChoice {}
 protocol PrepareChatDecisionManagerDelegate: class {
     func setItems(_ items: [ChatItem<PrepareAnswer>], manager: PrepareChatDecisionManager)
     func appendItems(_ items: [ChatItem<PrepareAnswer>], manager: PrepareChatDecisionManager)
-    func showContent(id: Int, manager: PrepareChatDecisionManager)
+    func showContent(id: Int, manager: PrepareChatDecisionManager, questionID: Int)
     func showNoContentError(manager: PrepareChatDecisionManager)
 }
 
@@ -28,6 +28,7 @@ final class PrepareChatDecisionManager {
     private let questionsService: QuestionsService
     weak var delegate: PrepareChatDecisionManagerDelegate?
     private var questionGroupID: Int = 100007 // FIXME: Should be set based on settings
+    private var questionSelectedID: Int = 0
 
     init(service: QuestionsService) {
         self.questionsService = service
@@ -58,9 +59,10 @@ final class PrepareChatDecisionManager {
 
         switch target {
         case .content(let id):
-            delegate?.showContent(id: id, manager: self)
+            delegate?.showContent(id: id, manager: self, questionID: questionSelectedID)
         case .question(let id):
             if let question = questionsService.question(id: id) {
+                questionSelectedID = id
                 process(question: question, timestamp: Date(), isAutoscrollSnapable: true)
             }
         default: return
@@ -86,7 +88,6 @@ final class PrepareChatDecisionManager {
                                                            showFooter: true,
                                                            isAutoscrollSnapable: isAutoscrollSnapable)
         items.append(botMessage)
-
         let answers = Array(question.prepareChatAnswers(groupID: questionGroupID))
         let prepareAnswers: [PrepareAnswer] = answers.map {
             let target = questionsService.target(answer: $0, questionGroupID: questionGroupID)
@@ -99,7 +100,6 @@ final class PrepareChatDecisionManager {
                             showFooter: true,
                             allowsMultipleSelection: true)
         items.append(item)
-
         delegate?.appendItems(items, manager: self)
     }
 
