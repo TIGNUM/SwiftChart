@@ -202,6 +202,18 @@ extension PrepareContentViewModel {
     func relatedStrategies(for contentCollectionTitle: String) -> [ContentCollection] {
         return services.contentService.relatedPrepareStrategies(contentCollectionTitle)
     }
+    
+    func updatePreparation() {
+        guard let preparationID = preparationID else { return }
+        do {
+            try services.preparationService.updatePreparation(localID: preparationID,
+                                                              checks: checkedIDs,
+                                                              notes: notes,
+                                                              notesDictionary: notesDictionary)
+        } catch {
+            log(error.localizedDescription, level: .error)
+        }
+    }
 }
 
 // MARK: - Private

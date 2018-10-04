@@ -495,22 +495,6 @@ extension PrepareCoordinator: NavigationItemDelegate {
 
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
 		topTabBarController.dismiss(animated: true, completion: nil)
-        guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController,
-            let viewControllers = pageViewController.data,
-            viewControllers.count >= 1,
-            let prepareContentViewController = viewControllers[0] as?  PrepareContentViewController else {
-                return
-        }
-
-        let viewModel = prepareContentViewController.viewModel
-        if let preparationID = viewModel.preparationID {
-            let checks = viewModel.checkedIDs
-            try? services.preparationService
-                .updatePreparation(localID: preparationID,
-                                   checks: checks,
-                                   notes: viewModel.notes,
-                                   notesDictionary: viewModel.notesDictionary)
-        }
     }
 
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {

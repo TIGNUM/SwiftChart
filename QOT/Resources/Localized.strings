@@ -199,7 +199,7 @@
 "Prepare.PrepareEvents.NoUpcomingEventsSynchronisableCalendar" = "NO EVENTS AVAILABE,\nPLEASE ADD EVENT";
 "Prepare.PrepareEvents.UpcomingEventsNoSynchronisableCalendars" = "UPCOMING EVENTS,\nOR SYNC CALENDAR";
 "Prepare.PrepareEvents.YourDevice" = "YOUR DEVICE";
-"Prepare.PrepareEvents.SaveThisPreparation" = "Save this preparation";
+"Prepare.PrepareEvents.SaveThisPreparation" = "Save Preparation";
 "Prepare.Content.ReadMore" = "Read more";
 "Prepare.Content.Tasks" = "TASKS COMPLETED";
 "Prepare.Chat.Footer.DeliveredTime" = "Delivered at %@";

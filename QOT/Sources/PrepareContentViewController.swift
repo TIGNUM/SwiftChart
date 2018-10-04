@@ -57,7 +57,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     private let savePreparationButton: UIButton = {
         let button = UIButton()
-        let image = R.image.ic_save_prep()?.withRenderingMode(.alwaysTemplate)
         let title = NSMutableAttributedString(string: R.string.localized.preparePrepareEventsSaveThisPreparation(),
                                              letterSpacing: 1,
                                              font: Font.DPText,
@@ -65,7 +64,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
         button.corner(radius: Layout.CornerRadius.eight.rawValue)
         button.tintColor = .white
         button.backgroundColor = .azure
-        button.setImage(image, for: .normal)
         button.setAttributedTitle(title, for: .normal)
         button.addTarget(self, action: #selector(didTapSavePreparation), for: .touchUpInside)
         return button
@@ -113,7 +111,8 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     }
 
     @objc func didTapSavePreparation() {
-        delegate?.didTapSavePreparation(in: self)
+        viewModel.updatePreparation()
+        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -122,17 +121,10 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 private extension PrepareContentViewController {
     func setupView() {
         view.backgroundColor = .nightModeBackground
+        view.addSubview(savePreparationButton)
         if pageName == .prepareContent {
             view.addSubview(topBarView)
             view.addSubview(tableView)
-            if viewModel.preparationType == .prepContentEvent {
-                view.addSubview(savePreparationButton)
-                savePreparationButton.topAnchor == tableView.bottomAnchor + Layout.padding_5
-                savePreparationButton.centerXAnchor == view.centerXAnchor
-                savePreparationButton.horizontalAnchors == view.horizontalAnchors + Layout.padding_40
-                savePreparationButton.bottomAnchor == view.safeBottomAnchor - Layout.padding_24
-                savePreparationButton.heightAnchor == Layout.padding_40
-            }
             topBarView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
             topBarView.horizontalAnchors == view.horizontalAnchors
             topBarView.heightAnchor == Layout.TabBarView.height
@@ -143,20 +135,24 @@ private extension PrepareContentViewController {
             view.addSubview(tableView)
 			if #available(iOS 11.0, *) {
 				tableView.topAnchor == view.safeTopAnchor + Layout.padding_16
-				tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_16
+				tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_64
 				tableView.horizontalAnchors == view.horizontalAnchors
 			} else {
 				tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
-				tableView.bottomAnchor == view.bottomAnchor
+				tableView.bottomAnchor == view.bottomAnchor - Layout.padding_64
 				tableView.leftAnchor == view.leftAnchor
 				tableView.rightAnchor == view.rightAnchor
 			}
         }
+        savePreparationButton.topAnchor == tableView.bottomAnchor + Layout.padding_5
+        savePreparationButton.centerXAnchor == view.centerXAnchor
+        savePreparationButton.horizontalAnchors == view.horizontalAnchors + Layout.padding_40
+        savePreparationButton.bottomAnchor == view.safeBottomAnchor - Layout.padding_16
+        savePreparationButton.heightAnchor == Layout.padding_40
     }
 
     @discardableResult func configure(cell: UITableViewCell, forIndexPath indexPath: IndexPath) -> UITableViewCell {
         let contentItem = viewModel.item(at: indexPath.row)
-
         switch contentItem {
         case .titleItem(let title, let subTitle, let contentText, let placeholderURL, let videoURL):
             guard let castedCell = cell as? PrepareContentMainHeaderTableViewCell else { return cell }
@@ -214,7 +210,6 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let contentItem = viewModel.item(at: indexPath.row)
-
         switch contentItem {
         case .titleItem:
             let cell: PrepareContentMainHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
