@@ -137,10 +137,11 @@ extension LearnContentItemCoordinator: NavigationItemDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
-        guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else {
-            return
-        }
+        guard let pageViewController = topTabBarController.viewControllers.first as? PageViewController else { return }
         pageViewController.setPageIndex(index, animated: true)
+        if let tableView = (pageViewController.viewControllers?.first as? LearnContentItemViewController)?.itemTableView {
+            pageViewController.pageDidScroll(in: tableView)
+        }
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {

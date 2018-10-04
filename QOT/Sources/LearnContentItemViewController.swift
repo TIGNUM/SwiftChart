@@ -46,7 +46,7 @@ final class LearnContentItemViewController: UIViewController {
     private var soundPattern = Property([Float(0)])
     private var avPlayerObserver: AVPlayerObserver?
 
-    private lazy var itemTableView: UITableView = {
+    lazy var itemTableView: UITableView = {
         return UITableView(style: .grouped,
                            estimatedRowHeight: 100,
                            delegate: self,
@@ -108,8 +108,6 @@ final class LearnContentItemViewController: UIViewController {
 
     func reloadData(viewModel: LearnContentItemViewModel) {
         self.viewModel = viewModel
-        //TODO:this
-        //self.contentTitle = viewModel.contentTitle
         itemTableView.reloadData()
         let sections = itemTableView.numberOfSections
         let rowsInSection = itemTableView.numberOfRows(inSection: 0)
@@ -308,16 +306,10 @@ private extension LearnContentItemViewController {
     }
 
     private func stringFromTimeInterval(interval: TimeInterval?) -> String {
-        guard let interval = interval else {
-            return "00:00"
-        }
-
+        guard let interval = interval else { return "00:00" }
         let formatter = DateComponentsFormatter()
         formatter.zeroFormattingBehavior = .pad
-        formatter.allowedUnits = [.minute, .second]
-        if interval >= 3600 {
-            formatter.allowedUnits = [.hour, .minute, .second]
-        }
+        formatter.allowedUnits = interval >= 3600 ? [.hour, .minute, .second] : [.minute, .second]
         let time = formatter.string(from: interval)
         return time ?? "00:00"
     }
@@ -469,7 +461,7 @@ extension LearnContentItemViewController: UIScrollViewDelegate {
 
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if let parent = parent as? PageScroll {
-            parent.pageDidScroll(self, scrollView: itemTableView)
+            parent.pageDidScroll(in: itemTableView)
         }
     }
 }
