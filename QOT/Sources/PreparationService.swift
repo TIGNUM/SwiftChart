@@ -102,7 +102,7 @@ final class PreparationService {
     func deletePreparationChecks(_ checks: List<PreparationCheck>) throws {
         let realm = try self.realmProvider.realm()
         try realm.write {
-            checks.forEach { (check: PreparationCheck) in
+            checks.dropFirst().forEach { (check: PreparationCheck) in
                 if check.remoteID.value == nil {
                     realm.delete(check)
                 } else {
@@ -120,25 +120,15 @@ final class PreparationService {
         try deletePreparationChecks(preparation.checks)
         var checks = [PreparationCheck]()
         let contentIDs = selectedStrategies.compactMap { $0.contentCollectionID }
-        let relatedContents = mainRealm.syncableObjects(ofType: ContentCollection.self,
-                                                        remoteIDs: contentIDs)
+        let relatedContents = mainRealm.syncableObjects(ofType: ContentCollection.self, remoteIDs: contentIDs)
         let relatedContentItems = relatedContents.compactMap { $0.prepareItems }.compactMap { $0.first }
         relatedContentItems.forEach { (item: ContentItem) in
             var covered: Date?
             if let coveredDate = checkedIDs[item.remoteID.value ?? 0] {
                 covered = coveredDate
             }
-            checks.append(PreparationCheck(preparation: preparation,
-                                           contentItem: item,
-                                           covered: covered))
+            checks.append(PreparationCheck(preparation: preparation, contentItem: item, covered: covered))
         }
-
-        if let content = mainRealm.syncableObject(ofType: ContentCollection.self,
-                                                  remoteID: preparation.contentCollectionID) {
-            let videoItem = content.items.filter { $0.format == "video" }.first
-            checks.insert(PreparationCheck(preparation: preparation, contentItem: videoItem, covered: nil), at: 0)
-        }
-
         let realm = try self.realmProvider.realm()
         try realm.write {
             preparation.checks.append(objectsIn: checks)
