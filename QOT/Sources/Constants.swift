@@ -46,11 +46,13 @@ struct Layout {
     static let padding_20: CGFloat = 20
     static let padding_24: CGFloat = 24
     static let padding_16: CGFloat = 16
+    static let padding_32: CGFloat = 32
     static let padding_64: CGFloat = 64
     static let padding_40: CGFloat = 40
     static let padding_90: CGFloat = 90
     static let padding_100: CGFloat = 100
     static let height_44: CGFloat = 44
+    static let multiplier_015: CGFloat = 0.15
     static let multiplier_025: CGFloat = 0.25
     static let multiplier_05: CGFloat = 0.5
     static let multiplier_065: CGFloat = 0.65
