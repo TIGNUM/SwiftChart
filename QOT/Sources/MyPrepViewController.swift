@@ -90,7 +90,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         super.viewDidAppear(animated)
         updateReadyState()
         if let initialItem = viewModel.initialItem, viewModel.itemCount > 0 {
-            tableView.scrollToRow(at: IndexPath(row: initialItem, section: 0), at: .top, animated: true)
+            tableView.scrollToRow(at: IndexPath(row: initialItem, section: 0), at: .middle, animated: true)
             viewDidLayoutSubviews()
         }
     }
@@ -98,14 +98,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         tableView.setEditing(false, animated: true)
-    }
-
-    @available(iOS 11.0, *)
-    override func viewLayoutMarginsDidChange() {
-        super.viewLayoutMarginsDidChange()
-        tableView.contentInset.top = view.safeMargins.top
-        tableView.contentInset.bottom = view.safeMargins.bottom
-        fadeContainerView.setFade(top: safeAreaInsets.top + 32, bottom: safeAreaInsets.bottom + 32)
     }
 }
 
@@ -136,21 +128,20 @@ private extension MyPrepViewController {
         view.addSubview(fadeContainerView)
         fadeContainerView.edgeAnchors == view.edgeAnchors
         fadeContainerView.addSubview(tableView)
-
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-            tableView.edgeAnchors == fadeContainerView.edgeAnchors
-            tableView.contentInset.top = fadeContainerView.safeMargins.top + Layout.padding_24
-            tableView.contentInset.bottom = fadeContainerView.safeMargins.bottom
-        } else {
-            tableView.topAnchor == fadeContainerView.topAnchor + Layout.padding_24
-            tableView.bottomAnchor == fadeContainerView.bottomAnchor
-            tableView.leadingAnchor == fadeContainerView.leadingAnchor
-            tableView.trailingAnchor == fadeContainerView.trailingAnchor
         }
+        let statusBarHeight = Layout.height_44 + UIApplication.shared.statusBarFrame.height
+        tableView.topAnchor == view.topAnchor + statusBarHeight
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.leadingAnchor == view.leadingAnchor
+        tableView.trailingAnchor == view.trailingAnchor
+        tableView.contentInset.top = 0
+        tableView.contentInset.bottom = safeAreaInsets.bottom + Layout.padding_64
 
-        fadeContainerView.setFade(top: safeAreaInsets.top + 32, bottom: safeAreaInsets.bottom + 32)
+        fadeContainerView.setFade(top: safeAreaInsets.top,
+                                  bottom: view.frame.height * Layout.multiplier_015)
     }
 
     func updateView() {
