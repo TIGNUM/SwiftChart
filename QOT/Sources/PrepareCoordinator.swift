@@ -453,6 +453,7 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
 
     func didTapClose(viewController: PrepareEventsViewController) {
         viewController.dismiss(animated: true)
+        chatDecisionManager.addQuestions()
     }
 
     func didTapEvent(event: CalendarEvent, viewController: PrepareEventsViewController) {
