@@ -148,9 +148,7 @@ extension ProfileSettingsViewController: ProfileSettingsViewControllerInterface 
     }
 
     func update(profile: ProfileSettingsModel) {
-        if profile != self.profile {
             profileDidUpdate()
-        }
     }
 
     func displayImageError() {
@@ -293,48 +291,56 @@ extension ProfileSettingsViewController {
 
     func showDatePicker(title: String, selectedDate: Date, indexPath: IndexPath) {
         let datePicker = ActionSheetDatePicker(title: title, datePickerMode: .date,
-                              selectedDate: selectedDate,
-                              doneBlock: { [unowned self] (_, value, _) in
-                                if indexPath.section == 1 && indexPath.row == 1,
-                                    let date = value as? Date {
-                                    let dateOfBirth = DateFormatter.settingsUser.string(from: date)
-                                    if var profile = self.profile {
-                                        profile.birthday = dateOfBirth
-                                        self.interactor?.updateProfile(field: .birthday, profile: profile)
-                                    }
-                                }
+                                               selectedDate: selectedDate,
+                                               doneBlock: { [unowned self] (_, value, _) in
+                                                guard let date = value as? Date else { return }
+                                                let dateOfBirth = DateFormatter.settingsUser.string(from: date)
+                                                switch self.settingsViewModel.row(at: indexPath) {
+                                                case .datePicker(_, _, let settingsType):
+                                                    if settingsType == .dateOfBirth, var profile = self.profile {
+                                                        profile.birthday = dateOfBirth
+                                                        self.interactor?.updateProfile(field: .birthday, profile: profile)
+                                                    }
+                                                default: return
+                                                }
             }, cancel: { (_) in
                 return
         }, origin: view)
-		datePicker?.minimumDate = Date().minimumDateOfBirth
+        datePicker?.minimumDate = Date().minimumDateOfBirth
 		datePicker?.maximumDate = Date().maximumDateOfBirth
 		datePicker?.show()
     }
 
 	func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
 		ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { [unowned self] (_, index, _) in
-			if indexPath.section == 1 && indexPath.row == 0 {
-				guard var profile = self.profile else { return }
-				profile.gender = items[index]
-				self.interactor?.updateProfile(field: .gender, profile: profile)
-			}
-			}, cancel: { (_) in
+            switch self.settingsViewModel.row(at: indexPath) {
+            case .stringPicker(_, _, _, let settingsType):
+                if settingsType == .gender, var profile = self.profile {
+                    profile.gender = items[index]
+                    self.interactor?.updateProfile(field: .gender, profile: profile)
+                }
+            default: return
+            }
+		}, cancel: { (_) in
 				return
 		}, origin: view).show()
 	}
 
     func updateUserHeightWeight() {
         guard let userMeasurement = pickerItems, var profile = profile else { return }
-        if pickerIndexPath.section == 1 {
-            if pickerIndexPath.row == 2 {
-                profile.weight = userMeasurement.selectedValue
-                profile.weightUnit = userMeasurement.selectedUnit
-				interactor?.updateProfile(field: .weight, profile: profile)
-            } else if pickerIndexPath.row == 3 {
+        switch self.settingsViewModel.row(at: pickerIndexPath) {
+        case .multipleStringPicker(_, _, _, let settingsType):
+            if settingsType == .height {
                 profile.height = userMeasurement.selectedValue
                 profile.heightUnit = userMeasurement.selectedUnit
-				interactor?.updateProfile(field: .height, profile: profile)
+                interactor?.updateProfile(field: .height, profile: profile)
+            } else if settingsType == .weight {
+                profile.weight = userMeasurement.selectedValue
+                profile.weightUnit = userMeasurement.selectedUnit
+                interactor?.updateProfile(field: .weight, profile: profile)
             }
+        default:
+            return
         }
     }
 }
