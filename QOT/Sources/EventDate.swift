@@ -10,7 +10,7 @@ import Foundation
 
 extension Date {
 
-    func eventStringDate(endDate: Date) -> String {
+    var eventStringDate: String {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
         dateFormatter.timeZone = TimeZone.current

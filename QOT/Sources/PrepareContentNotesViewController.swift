@@ -20,10 +20,11 @@ final class PrepareContentNotesViewController: UIViewController {
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var placeholderTextView: UITextView!
     @IBOutlet private weak var textViewTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var cancelButtonItem: UIBarButtonItem!
+    @IBOutlet private weak var saveButtonItem: UIBarButtonItem!
     private let keyboardListener = KeyboardListener()
-	private let doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(didTapDoneButton(_:)))
     weak var delegate: PrepareContentNotesViewControllerDelegate?
-    var notesType: PrepareContentReviewNotesTableViewCell.NotesType?
+    var notesType: PrepareNotesViewController.NotesType?
     var text: String?
     var placeholder: String?
 
@@ -43,10 +44,6 @@ final class PrepareContentNotesViewController: UIViewController {
         super.viewWillDisappear(animated)
         keyboardListener.stopObserving()
         textView.resignFirstResponder()
-		if notesType == .notes {
-			text = textView.text
-			delegate?.didEditText(text: text, in: self)
-		}
     }
 
     @available(iOS 11.0, *)
@@ -64,7 +61,7 @@ final class PrepareContentNotesViewController: UIViewController {
 extension PrepareContentNotesViewController: UITextViewDelegate {
 
 	func textViewDidBeginEditing(_ textView: UITextView) {
-		doneButton.tintColor = .gray
+        saveButtonItem.tintColor = .gray
 	}
 
     func textViewDidChange(_ textView: UITextView) {
@@ -83,12 +80,8 @@ private extension PrepareContentNotesViewController {
                                                                       lineBreakMode: .byWordWrapping)
 
     func setup() {
-		doneButton.tintColor = UIColor.gray.withAlphaComponent(0.5)
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.ic_back(),
-                                                           style: .plain,
-                                                           target: self,
-                                                           action: #selector(backToPreviousViewController))
-		navigationItem.rightBarButtonItem = doneButton
+        saveButtonItem.tintColor = UIColor.gray.withAlphaComponent(0.5)
+        cancelButtonItem.tintColor = .gray
         textView.backgroundColor = .clear
         placeholderTextView.backgroundColor = .clear
         view.backgroundColor = .nightModeBackground
@@ -119,14 +112,12 @@ private extension PrepareContentNotesViewController {
         placeholderTextView.contentInset = textView.contentInset
     }
 
-	@objc func didTapDoneButton(_ sender: UIBarButtonItem) {
-		delegate?.didEditText(text: text, in: self)
-        backToPreviousViewController()
-	}
+    @IBAction func didTapSave() {
+        delegate?.didEditText(text: text, in: self)
+        dismiss(animated: true, completion: nil)
+    }
 
-    @objc func backToPreviousViewController() {
-        if let previousVC = navigationController?.viewControllers.dropLast().last {
-            navigationController?.popToViewController(previousVC, animated: true)
-        }
+    @IBAction func didTapCancel() {
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -57,16 +57,19 @@ final class PrepareCoordinator: ParentCoordinator {
                             realm?.add(event)
                         }
                     } catch {
-                        // Do nothing, any how the event is existing on the device, and it will be synchronized in next time.
+                        // Do nothing, any how the event exists on the device and will be synchronized next time.
                     }
-                    AppCoordinator.appState.syncManager.syncCalendarEvents(completion: { (error) in
+                    AppCoordinator.appState.syncManager.syncCalendarEvents { (error) in
                         let createdEvent = self?.services.eventsService.calendarEvent(ekEvent: ekEvent)
-                        self?.createPreparation(name: createdEvent!.title, event: createdEvent)
-                        NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
-                    })
+                        self?.createPreparation(name: event.title, event: event) { (preparationID) in
+                            self?.tabBarController.dismiss(animated: true)
+                            NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
+                            if let id = preparationID {
+                                self?.showPrepareCheckList(preparationID: id, chatDecisionManager: self?.chatDecisionManager)
+                            }
+                        }
+                    }
                 }
-                self?.tabBarController.dismiss(animated: true)
-                self?.chatDecisionManager.preparationSaved()
             case .canceled, .deleted:
                 controller.dismiss(animated: true)
             }
@@ -158,7 +161,6 @@ extension PrepareCoordinator {
                                                     description: description ?? "",
                                                     items: items,
                                                     services: services)
-
             let viewController = PrepareContentViewController(pageName: .prepareContent, viewModel: viewModel)
             viewController.delegate = self
             viewController.title = viewControllerTitle
@@ -168,33 +170,30 @@ extension PrepareCoordinator {
         } else {
             tabBarController.showAlert(type: .noContent, handler: { [weak self] in
                 self?.chatDecisionManager.start()
-            }, handlerDestructive: nil)
+                }, handlerDestructive: nil)
         }
     }
 
-    func showPrepareCheckList(preparationID: String) {
+    func showPrepareCheckList(preparationID: String, chatDecisionManager: PrepareChatDecisionManager? = nil) {
         guard let preparation = services.preparationService.preparation(localID: preparationID) else { return }
         self.preparationID = preparationID
         if let viewModel = prepareChecklistViewModel(preparation: preparation) {
-            let prepareController = PrepareContentViewController(pageName: .prepareCheckList, viewModel: viewModel)
+            let prepareController = PrepareContentViewController(pageName: .prepareCheckList,
+                                                                 viewModel: viewModel,
+                                                                 chatDecisionManager: chatDecisionManager)
             prepareController.delegate = self
             prepareController.title = R.string.localized.topTabBarItemTitlePerparePreparation()
-            let storyboard = R.storyboard.prepareContentNotesViewController()
-            guard let noteController = storyboard.instantiateInitialViewController() as?
-                PrepareContentNotesViewController  else { return }
-            noteController.text = viewModel.notes
-            noteController.notesType = .notes
-            noteController.delegate = viewModel
+            let storyboard = R.storyboard.reviewNotesViewController()
+            guard let noteController = storyboard.instantiateInitialViewController() as? PrepareNotesViewController else { return }
+            noteController.viewModel = viewModel
             noteController.title = R.string.localized.topTabBarItemTitlePerpareNotes()
-            let rightButton = viewModel.relatedPrepareStrategies.isEmpty == false ? rightBarButtonItem : nil
             topTabBarController = UINavigationController(withPages: [prepareController, noteController],
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_close()),
-                                                         rightButton: rightButton,
+                                                         rightButton: rightBarButtonItem,
                                                          navigationItemStyle: Date().isNight ? .dark : .light)
             tabBarController.present(topTabBarController, animated: true)
             prepareListViewController = prepareController
-            prepareContentNoteController = noteController
             self.viewModel = viewModel
         } else {
             tabBarController.showAlert(type: .noContent, handler: { [weak self] in
@@ -346,17 +345,33 @@ private extension PrepareCoordinator {
 
 extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
-    func didTapReviewNotesButton(sender: UIButton,
-                                 reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType,
-                                 viewModel: PrepareContentViewModel?) {
-        let storyboard = R.storyboard.reviewNotesViewController()
+    func didTapAddRemove() {
         guard
-            let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController,
-            let reviewNotesViewController = navigationController.viewControllers.first as? ReviewNotesViewController
-            else { return }
-        reviewNotesViewController.configure(viewModel: viewModel,
-                                            reviewNotesType: reviewNotesType)
-        prepareListViewController?.pushToStart(childViewController: reviewNotesViewController)
+            let prepareContentController = prepareListViewController,
+            let preparation = services.preparationService.preparation(localID: preparationID) else { return }
+        let checkedIDs = prepareContentController.viewModel.checkedIDs
+        let relatedStrategies = services.contentService.relatedPrepareStrategies(self.contentTitle)
+        let checks = services.preparationService.preparationChecks(preparationID: preparation.localID)
+        let selectedIDs = Array(checks.compactMap { $0.contentItem?.contentCollection?.remoteID.value })
+        LaunchHandler().selectStrategies(relatedStrategies: relatedStrategies,
+                                         selectedIDs: selectedIDs,
+                                         prepareContentController: prepareContentController,
+                                         completion: { (selectedContent, syncManager) in
+                                            do {
+                                                try self.services.preparationService.updatePreparationChecks(preparationID: self.preparationID,
+                                                                                                             checkedIDs: checkedIDs,
+                                                                                                             selectedStrategies: selectedContent)
+                                            } catch {
+                                                log("Error while updating preparationChecks: \(error)", level: .error)
+                                            }
+                                            let hud = MBProgressHUD.showAdded(to: prepareContentController.view, animated: true)
+                                            syncManager.syncPreparations(shouldDownload: true, completion: { (error) in
+                                                if let viewModel = self.prepareChecklistViewModel(preparation: preparation) {
+                                                    prepareContentController.updateViewModel(viewModel: viewModel)
+                                                }
+                                                hud.hide(animated: true)
+                                            })
+        })
     }
 
     func saveNotes(notes: String, preparationID: String) {
@@ -459,10 +474,9 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
     func didTapEvent(event: CalendarEvent, viewController: PrepareEventsViewController) {
         createPreparation(name: event.title, event: event) { (preparationID) in
             self.tabBarController.dismiss(animated: true)
-            self.chatDecisionManager.preparationSaved()
             NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
             if let id = preparationID {
-                self.showPrepareCheckList(preparationID: id)
+                self.showPrepareCheckList(preparationID: id, chatDecisionManager: self.chatDecisionManager)
             }
         }
         widgetDataManager.update(.upcomingEvent)

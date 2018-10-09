@@ -16,8 +16,6 @@ public enum PreparationContentType {
 
 enum PrepareContentItemType {
     case titleItem(title: String, subTitle: String, contentText: String, placeholderURL: URL?, videoURL: URL?)
-    case reviewNotesHeader(title: String)
-    case reviewNotesItem(title: String, reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType)
     case checkItemsHeader(title: String)
     case item(id: Int, title: String, subTitle: String, readMoreID: Int?)
 }
@@ -48,9 +46,18 @@ final class PrepareContentViewModel {
         let placeholderURL: URL?
     }
 
+    enum Section: Int {
+        case top = 0
+        case bottom = 1
+
+        static var allValues: [Section] {
+            return [.top, .bottom]
+        }
+    }
+
     // MARK: - Properties
 
-    private var headerToggleState: [Bool] = []
+    private var headerToggleState: [Int: [Bool]] = [:]
     var displayMode: DisplayMode
     var checkedIDs: [Int: Date?]
     var title: String = ""
@@ -58,7 +65,7 @@ final class PrepareContentViewModel {
     var contentText: String = ""
     var videoPlaceholder: URL?
     var video: URL?
-    var items: [PrepareContentItemType] = []
+    var items: [Section: [PrepareContentItemType]] = [:]
     var preparationID: String?
     var notes: String = ""
     var notesDictionary: [Int: String] = [:]
@@ -76,12 +83,12 @@ final class PrepareContentViewModel {
     // MARK: - Initialisation
 
     init(type: PreparationContentType,
-        title: String,
-        subtitle: String,
-        video: Video?,
-        description: String,
-        items: [PrepareItem],
-        services: Services) {
+         title: String,
+         subtitle: String,
+         video: Video?,
+         description: String,
+         items: [PrepareItem],
+         services: Services) {
         self.preparationType = type
         self.prepareItems = items
         self.title = title
@@ -119,11 +126,6 @@ final class PrepareContentViewModel {
         self.notesDictionary = notesDictionary
         self.services = services
         makeItems(items)
-
-        if displayMode == .checkbox {
-            relatedPrepareStrategies = relatedStrategies(for: contentCollectionTitle)
-            setSubtitle()
-        }
     }
 }
 
@@ -131,12 +133,40 @@ final class PrepareContentViewModel {
 
 extension PrepareContentViewModel {
 
+    var completedTasksValue: String {
+        guard
+            let preparationID = preparationID,
+            let preparation = services.preparationService.preparation(localID: preparationID) else { return subTitle }
+        let taskValue = String(format: "%02d/%02d ", checkedCount, preparation.checkableItems.count)
+        subTitle = String(format: "%@ %@", taskValue, R.string.localized.prepareContentCompleted())
+        return subTitle
+    }
+
+    var eventName: String {
+        guard
+            let preparationID = preparationID,
+            let preparation = services.preparationService.preparation(localID: preparationID) else { return "" }
+        return preparation.name
+    }
+
+    var eventDate: String {
+        guard
+            let preparationID = preparationID,
+            let preparation = services.preparationService.preparation(localID: preparationID) else { return "" }
+        return preparation.eventStartDate?.eventStringDate ?? ""
+    }
+
     var selectedIDs: [Int] {
         return prepareItems.compactMap { $0.readMoreID }
     }
 
-    var itemCount: Int {
-        return items.count
+    var sectionCount: Int {
+        return Section.allValues.count
+    }
+
+    func numberOfRows(in sectionIdx: Int) -> Int {
+        guard let section = Section(rawValue: sectionIdx) else { return 0 }
+        return items[section]?.count ?? 0
     }
 
     var hasIntentionItems: Bool {
@@ -169,40 +199,29 @@ extension PrepareContentViewModel {
         } else {
             checkedIDs.updateValue(nil, forKey: id)
         }
-        setSubtitle()
     }
 
-    func item(at index: Int) -> PrepareContentItemType {
-        return items[index]
+    func item(at indexPath: IndexPath) -> PrepareContentItemType? {
+        guard let section = Section(rawValue: indexPath.section) else { return nil }
+        return items[section]?[indexPath.item]
     }
 
-    func didTapHeader(index: Int) {
-        headerToggleState[index] = !headerToggleState[index]
+    func didTapHeader(indexPath: IndexPath) {
+        let currentState = headerToggleState[indexPath.section]?[indexPath.row] ?? false
+        headerToggleState[indexPath.section]?[indexPath.row] = !currentState
     }
 
-    func isCellExpanded(at: Int) -> Bool {
-        if itemCount == 1 && at == 0 {
-            headerToggleState[at] = true
+    func isCellExpanded(at indexPath: IndexPath) -> Bool {
+        if numberOfRows(in: 1) == 0 && indexPath.row == 0 {
+            headerToggleState[indexPath.section]?[indexPath.row] = true
         }
-        return headerToggleState[at]
-    }
-
-    func hasContent(noteType: PrepareContentReviewNotesTableViewCell.ReviewNotesType) -> Bool {
-        let content: [String]
-        switch noteType {
-        case .intentions: content = [notesDictionary[103432] ?? "",
-                                     notesDictionary[103433] ?? "",
-                                     notesDictionary[103434] ?? ""]
-        case .reflection: content = [notesDictionary[103435] ?? "",
-                                     notesDictionary[103436] ?? ""]
-        }
-        return content.joined().isEmpty == false
+        return headerToggleState[indexPath.section]?[indexPath.row] ?? false
     }
 
     func relatedStrategies(for contentCollectionTitle: String) -> [ContentCollection] {
         return services.contentService.relatedPrepareStrategies(contentCollectionTitle)
     }
-    
+
     func updatePreparation() {
         guard let preparationID = preparationID else { return }
         do {
@@ -220,62 +239,61 @@ extension PrepareContentViewModel {
 
 private extension PrepareContentViewModel {
 
-    func setSubtitle() {
-        guard
-            let preparationID = preparationID,
-            let preparation = services.preparationService.preparation(localID: preparationID) else { return }
-        subTitle = String(format: "%02d/%02d ", checkedCount, preparation.checkableItems.count)
-        items.remove(at: 0)
-        items.insert(.titleItem(title: title,
-                                subTitle: subTitle + R.string.localized.prepareContentTasks(),
-                                contentText: contentText,
-                                placeholderURL: videoPlaceholder,
-                                videoURL: video),
-                     at: 0)
-    }
-
     func dateForID(_ id: Int) -> Date? {
         return checkedIDs[id] as? Date
     }
 
     func fillHeaderStatus() {
-        for _ in 0...items.count {
-            headerToggleState.append(itemCount == 2)
+        for section in 0...sectionCount {
+            for _ in 0...numberOfRows(in: section) {
+                if headerToggleState[section] == nil {
+                    headerToggleState[section] = [Bool]()
+                }
+                headerToggleState[section]?.append(numberOfRows(in: 1) == 0)
+            }
         }
     }
 
-    func makeItems(_ items: [PrepareItem]) {
-        self.items.append(.titleItem(title: title,
-                                     subTitle: subTitle,
-                                     contentText: contentText,
-                                     placeholderURL: videoPlaceholder,
-                                     videoURL: video))
-
-        if displayMode == .checkbox {
-            if hasIntentionItems == true || hasRefelctionItems == true {
-                self.items.append(.reviewNotesHeader(title: "BEFORE AND AFTER"))
-            }
-
-            if hasIntentionItems == true {
-                self.items.append(.reviewNotesItem(title: "YOUR INTENTIONS", reviewNotesType: .intentions))
-            }
-
-            if hasRefelctionItems == true {
-                self.items.append(.reviewNotesItem(title: "REFLECT ON SUCCESS", reviewNotesType: .reflection))
-            }
+    func makeCheckBoxItems(_ items: [PrepareItem]) {
+        if self.items[.top] == nil {
+            self.items[.top] = [PrepareContentItemType]()
         }
-
+        if self.items[.bottom] == nil {
+            self.items[.bottom] = [PrepareContentItemType]()
+        }
+        self.items[.top]?.append(.titleItem(title: title,
+                                            subTitle: subTitle,
+                                            contentText: contentText,
+                                            placeholderURL: videoPlaceholder,
+                                            videoURL: video))
         if items.isEmpty == false {
-            self.items.append(.checkItemsHeader(title: "MY EVENT CHECKLIST"))
+            self.items[.bottom]?.append(.checkItemsHeader(title: R.string.localized.prepareHeaderPreparationList()))
         }
-
-        for element in items {
-            self.items.append(.item(id: element.id,
-                                    title: element.title,
-                                    subTitle: element.subTitle,
-                                    readMoreID: element.readMoreID))
+        for item in items {
+            self.items[.bottom]?.append(.item(id: item.id,
+                                              title: item.title,
+                                              subTitle: item.subTitle,
+                                              readMoreID: item.readMoreID))
         }
+    }
 
+    // Don`t like that function name...
+    func makeNormalItems(_ items: [PrepareItem]) {
+        if self.items[.top] == nil {
+            self.items[.top] = [PrepareContentItemType]()
+        }
+        self.items[.top]?.append(.titleItem(title: title,
+                                            subTitle: subTitle,
+                                            contentText: contentText,
+                                            placeholderURL: videoPlaceholder,
+                                            videoURL: video))
+    }
+
+    func makeItems(_ items: [PrepareItem]) {
+        switch displayMode {
+        case .checkbox: makeCheckBoxItems(items)
+        case .normal: makeNormalItems(items)
+        }
         fillHeaderStatus()
     }
 }
@@ -293,10 +311,10 @@ extension PrepareContentViewModel: PrepareContentNotesViewControllerDelegate {
         case .reflectionNotes: notesDictionary[notesType.contentItemID] = text
         case .reflectionVision: notesDictionary[notesType.contentItemID] = text
         }
-		if let localID = preparationID {
-			try? services.preparationService.updatePreparation(localID: localID,
-															   checks: checkedIDs,
-															   notes: notes, notesDictionary: notesDictionary)
-		}
+        if let localID = preparationID {
+            try? services.preparationService.updatePreparation(localID: localID,
+                                                               checks: checkedIDs,
+                                                               notes: notes, notesDictionary: notesDictionary)
+        }
     }
 }

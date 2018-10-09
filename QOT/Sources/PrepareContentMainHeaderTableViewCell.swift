@@ -17,7 +17,6 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
 
     // MARK: - Properties
 
-    @IBOutlet weak var bottomSeparator: UIView!
     @IBOutlet weak var iconImageView: UIImageView!
     @IBOutlet weak var headerLabel: UILabel!
     @IBOutlet weak var subHeaderLabel: UILabel!
@@ -38,7 +37,6 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
         previewImageButton.layer.borderColor = UIColor.nightModeBlack30.cgColor
         previewImageButton.layer.borderWidth = 0.5
         previewImageButton.backgroundColor = .nightModeBlack30
-        bottomSeparator.backgroundColor = .nightModeBlack30
         contentView.backgroundColor = .clear
         backgroundColor = .clear
     }
@@ -60,8 +58,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
         self.videoURL = videoURL
         content = contentText
         iconImageView.isHidden = contentText.isEmpty && videoURL == nil
-        bottomSeparator.isHidden = displayMode == .checkbox
-        setupLabels(title, subTitle)
+        setupLabels(title)
         setExpandImageState(isExpanded: isExpanded)
         updateContent(isExpanded: isExpanded)
     }
@@ -94,12 +91,14 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
 
 private extension PrepareContentMainHeaderTableViewCell {
 
-    func setupLabels(_ title: String, _ subTitle: String) {
+    func setupLabels(_ title: String) {
         headerLabel.addCharactersSpacing(spacing: 2, text: title, uppercased: true)
+        subHeaderLabel.addCharactersSpacing(spacing: 2,
+                                            text: R.string.localized.prepareSubtitleLearnMore(),
+                                            uppercased: true)
         headerLabel.font = Font.H1MainTitle
-        headerLabel.textColor = .nightModeMainFont
-        subHeaderLabel.addCharactersSpacing(spacing: 2, text: subTitle, uppercased: true)
         subHeaderLabel.font = Font.H7Title
+        headerLabel.textColor = .nightModeMainFont
         subHeaderLabel.textColor = .nightModeBlack30
         subHeaderLabel.isHidden = videoOnly == true
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PrepareContentSubHeaderTableViewCell" customModule="QOT" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="KGk-i7-Jjw" customClass="PrepareContentSubHeaderTableViewCell" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="320" height="56"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -25,33 +25,24 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="BEFORE AND AFTER" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rdp-2c-8TS">
-                        <rect key="frame" x="30" y="21.5" width="260" height="17"/>
+                        <rect key="frame" x="30" y="11" width="260" height="34"/>
                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="14"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ErU-Sv-0wt" userLabel="Bottom Seperator">
-                        <rect key="frame" x="30" y="42.5" width="260" height="1"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.40000000000000002" colorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="1" id="t2T-pe-snM"/>
-                        </constraints>
-                    </view>
                 </subviews>
                 <constraints>
-                    <constraint firstAttribute="trailing" secondItem="ErU-Sv-0wt" secondAttribute="trailing" constant="30" id="20s-0T-ZEl"/>
-                    <constraint firstItem="ErU-Sv-0wt" firstAttribute="top" secondItem="rdp-2c-8TS" secondAttribute="bottom" constant="4" id="KS1-nq-yjF"/>
-                    <constraint firstAttribute="bottom" secondItem="ErU-Sv-0wt" secondAttribute="bottom" constant="12" id="O6B-lE-Hut"/>
-                    <constraint firstItem="ErU-Sv-0wt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="Swe-W3-ZmM"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="rdp-2c-8TS" secondAttribute="bottom" id="F7f-9e-NR3"/>
                     <constraint firstItem="rdp-2c-8TS" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="Vla-gc-Yxq"/>
                     <constraint firstAttribute="trailing" secondItem="rdp-2c-8TS" secondAttribute="trailing" constant="30" id="Xid-HQ-BK9"/>
+                    <constraint firstItem="rdp-2c-8TS" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="szT-UC-iBJ"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="speratorView" destination="ErU-Sv-0wt" id="IsA-vo-zSb"/>
                 <outlet property="titleLabel" destination="rdp-2c-8TS" id="7uE-GG-3up"/>
             </connections>
+            <point key="canvasLocation" x="56" y="48.575712143928037"/>
         </tableViewCell>
     </objects>
 </document>

@@ -16,9 +16,7 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapSavePreparation(in viewController: PrepareContentViewController)
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController)
     func saveNotes(notes: String, preparationID: String)
-    func didTapReviewNotesButton(sender: UIButton,
-                                 reviewNotesType: PrepareContentReviewNotesTableViewCell.ReviewNotesType,
-                                 viewModel: PrepareContentViewModel?)
+    func didTapAddRemove()
 }
 
 final class PrepareContentViewController: UIViewController, PageViewControllerNotSwipeable {
@@ -28,6 +26,8 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     var viewModel: PrepareContentViewModel
     private let disposeBag = DisposeBag()
     private var avPlayerObserver: AVPlayerObserver?
+    private var sectionHeaderView: PrepareSectionHeaderView?
+    private weak var chatDecisionManager: PrepareChatDecisionManager?
     weak var delegate: PrepareContentViewControllerDelegate?
     let pageName: PageName
 
@@ -37,7 +37,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
                            dataSource: self,
                            dequeables:
             PrepareContentHeaderTableViewCell.self,
-            PrepareContentReviewNotesTableViewCell.self,
             PrepareContentMainHeaderTableViewCell.self,
             PrepareContentSubHeaderTableViewCell.self)
     }()
@@ -55,25 +54,12 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
         return view
     }()
 
-    private let savePreparationButton: UIButton = {
-        let button = UIButton()
-        let title = NSMutableAttributedString(string: R.string.localized.preparePrepareEventsSaveThisPreparation(),
-                                             letterSpacing: 1,
-                                             font: Font.DPText,
-                                             textColor: .white)
-        button.corner(radius: Layout.CornerRadius.eight.rawValue)
-        button.tintColor = .white
-        button.backgroundColor = .azure
-        button.setAttributedTitle(title, for: .normal)
-        button.addTarget(self, action: #selector(didTapSavePreparation), for: .touchUpInside)
-        return button
-    }()
-
     // MARK: - Life Cycle
 
-    init(pageName: PageName, viewModel: PrepareContentViewModel) {
+    init(pageName: PageName, viewModel: PrepareContentViewModel, chatDecisionManager: PrepareChatDecisionManager? = nil) {
         self.pageName = pageName
         self.viewModel = viewModel
+        self.chatDecisionManager = chatDecisionManager
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -99,6 +85,12 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
         fixTableViewInsets()
     }
 
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        viewModel.updatePreparation()
+        chatDecisionManager?.preparationSaved()
+    }
+
     func fixTableViewInsets() {
         let zContentInsets = UIEdgeInsets.zero
         tableView.contentInset = zContentInsets
@@ -119,6 +111,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 // MARK: - Private
 
 private extension PrepareContentViewController {
+
     func setupView() {
         view.backgroundColor = .nightModeBackground
         if pageName == .prepareContent {
@@ -132,31 +125,25 @@ private extension PrepareContentViewController {
             tableView.horizontalAnchors == view.horizontalAnchors
         } else if pageName == .prepareCheckList {
             view.addSubview(tableView)
-            view.addSubview(savePreparationButton)
 			if #available(iOS 11.0, *) {
 				tableView.topAnchor == view.safeTopAnchor + Layout.padding_16
-				tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_64
+				tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_24
 				tableView.horizontalAnchors == view.horizontalAnchors
 			} else {
 				tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
-				tableView.bottomAnchor == view.bottomAnchor - Layout.padding_64
+				tableView.bottomAnchor == view.bottomAnchor - Layout.padding_24
 				tableView.leftAnchor == view.leftAnchor
 				tableView.rightAnchor == view.rightAnchor
 			}
-            savePreparationButton.topAnchor == tableView.bottomAnchor + Layout.padding_5
-            savePreparationButton.centerXAnchor == view.centerXAnchor
-            savePreparationButton.horizontalAnchors == view.horizontalAnchors + Layout.padding_40
-            savePreparationButton.bottomAnchor == view.safeBottomAnchor - Layout.padding_16
-            savePreparationButton.heightAnchor == Layout.padding_40
         }
     }
 
     @discardableResult func configure(cell: UITableViewCell, forIndexPath indexPath: IndexPath) -> UITableViewCell {
-        let contentItem = viewModel.item(at: indexPath.row)
+        guard let contentItem = viewModel.item(at: indexPath) else { return UITableViewCell() }
         switch contentItem {
         case .titleItem(let title, let subTitle, let contentText, let placeholderURL, let videoURL):
             guard let castedCell = cell as? PrepareContentMainHeaderTableViewCell else { return cell }
-            let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
+            let isExpanded = viewModel.isCellExpanded(at: indexPath)
             castedCell.delegate = self
             castedCell.setCell(title: title,
                                subTitle: subTitle,
@@ -168,24 +155,13 @@ private extension PrepareContentViewController {
             castedCell.contentView.layoutIfNeeded()
             castedCell.iconImageView.isHidden = (viewModel.preparationType == .prepContentProblem) && (indexPath.row == 0)
             return castedCell
-        case .reviewNotesHeader(let title):
-            guard let subHeaderCell = cell as? PrepareContentSubHeaderTableViewCell else { return cell }
-            subHeaderCell.configure(title: title)
-            return subHeaderCell
-        case .reviewNotesItem(let title, let reviewNotesType):
-            guard let reviewNotesCell = cell as? PrepareContentReviewNotesTableViewCell else { return cell }
-            reviewNotesCell.configure(title: title,
-                                      reviewNotesType: reviewNotesType,
-                                      delegate: delegate,
-                                      viewModel: viewModel)
-            return reviewNotesCell
         case .checkItemsHeader(let title):
             guard let subHeaderCell = cell as? PrepareContentSubHeaderTableViewCell else { return cell }
             subHeaderCell.configure(title: title)
             return subHeaderCell
         case .item(let id, let title, let subTitle, let readMoreID):
             guard let castedCell = cell as? PrepareContentHeaderTableViewCell else { return cell }
-            let isExpanded = viewModel.isCellExpanded(at: indexPath.row)
+            let isExpanded = viewModel.isCellExpanded(at: indexPath)
             castedCell.delegate = self
             castedCell.setCell(title: title,
                                contentText: subTitle,
@@ -204,21 +180,19 @@ private extension PrepareContentViewController {
 
 extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSource {
 
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return viewModel.sectionCount
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.itemCount
+        return viewModel.numberOfRows(in: section)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let contentItem = viewModel.item(at: indexPath.row)
+        guard let contentItem = viewModel.item(at: indexPath) else { return UITableViewCell() }
         switch contentItem {
         case .titleItem:
             let cell: PrepareContentMainHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            return configure(cell: cell, forIndexPath: indexPath)
-        case .reviewNotesHeader:
-            let cell: PrepareContentSubHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            return configure(cell: cell, forIndexPath: indexPath)
-        case .reviewNotesItem:
-            let cell: PrepareContentReviewNotesTableViewCell = tableView.dequeueCell(for: indexPath)
             return configure(cell: cell, forIndexPath: indexPath)
         case .checkItemsHeader:
             let cell: PrepareContentSubHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -231,64 +205,75 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
-        let contentItem = viewModel.item(at: indexPath.row)
+        guard let contentItem = viewModel.item(at: indexPath) else { return }
         switch contentItem {
         case .titleItem, .item:
-            viewModel.didTapHeader(index: indexPath.row)
+            viewModel.didTapHeader(indexPath: indexPath)
             guard let cell = tableView.cellForRow(at: indexPath) else { return }
             tableView.beginUpdates()
             configure(cell: cell, forIndexPath: indexPath)
             tableView.endUpdates()
-        case .reviewNotesItem,
-             .reviewNotesHeader,
-             .checkItemsHeader:
-            break
+        case .checkItemsHeader: delegate?.didTapAddRemove()
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let contentItem = viewModel.item(at: indexPath.row)
+         guard let contentItem = viewModel.item(at: indexPath) else { return 0 }
 
         // @note any magic numbers here represent bottom padding
         // we're setting the cell's frame size, then using autolayout to dynamically calculate top-bottom height
         switch contentItem {
         case .titleItem:
-            guard let cell = Bundle.main.loadNibNamed("\(PrepareContentMainHeaderTableViewCell.self)", owner: self, options: [:])?.first as? PrepareContentMainHeaderTableViewCell else {
+            guard let cell = Bundle.main.loadNibNamed("\(PrepareContentMainHeaderTableViewCell.self)", owner: self)?.first as? PrepareContentMainHeaderTableViewCell else {
                 return UITableViewAutomaticDimension
             }
             cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: tableView.frame.width, height: cell.frame.height)
             configure(cell: cell, forIndexPath: indexPath)
             cell.layoutIfNeeded()
 
-            if viewModel.isCellExpanded(at: indexPath.row) {
-                // return content label y position + height + bottom padding
+            if viewModel.isCellExpanded(at: indexPath) {
                 return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + Layout.padding_20
             }
-            // return image button yPos, - an offset
             return cell.previewImageButton.frame.origin.y - Layout.padding_10
-        case .reviewNotesItem:
-            return 60
-        case .reviewNotesHeader,
-             .checkItemsHeader:
-            return 56
+        case .checkItemsHeader: return UITableViewAutomaticDimension
         case .item(_, _, _, let readMoreID):
-            guard let cell = Bundle.main.loadNibNamed("\(PrepareContentHeaderTableViewCell.self)", owner: self, options: [:])?.first as? PrepareContentHeaderTableViewCell else {
+            guard let cell = Bundle.main.loadNibNamed("\(PrepareContentHeaderTableViewCell.self)", owner: self)?.first as? PrepareContentHeaderTableViewCell else {
                 return UITableViewAutomaticDimension
             }
             cell.frame = CGRect(x: cell.frame.origin.x, y: cell.frame.origin.y, width: tableView.frame.width, height: cell.frame.height)
             configure(cell: cell, forIndexPath: indexPath)
             cell.layoutIfNeeded()
 
-            if viewModel.isCellExpanded(at: indexPath.row) {
+            if viewModel.isCellExpanded(at: indexPath) {
                 if readMoreID == nil {
-                    // return content label y position + height + bottom padding
                     return cell.contentLabel.frame.origin.y + cell.contentLabel.frame.height + Layout.padding_20
                 }
-                // return read more button y position + height + bottom padding
                 return cell.readMoreButton.frame.origin.y + cell.readMoreButton.bounds.height + Layout.padding_20
             }
-            // return header label y position + height + bottom padding
             return cell.headerLabel.frame.origin.y + cell.headerLabel.frame.height + Layout.padding_20
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        switch viewModel.displayMode {
+        case .checkbox: return section == 1 ? 152 : 0
+        case .normal: return 0
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        switch viewModel.displayMode {
+        case .checkbox:
+            if section == 1 {
+                sectionHeaderView = R.nib.prepareSectionHeaderView().instantiate(withOwner: nil).first as? PrepareSectionHeaderView
+                sectionHeaderView?.configure(eventName: viewModel.eventName,
+                                             eventDate: viewModel.eventDate,
+                                             completedTasks: viewModel.completedTasksValue)
+                sectionHeaderView?.delegate = delegate
+                return sectionHeaderView
+            }
+            return nil
+        case .normal: return nil
         }
     }
 }
@@ -306,8 +291,9 @@ extension PrepareContentViewController: PrepareContentHeaderTableViewCellDelegat
     }
 
     func didTapCheckbox(cell: UITableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) else { return }
-        let contentItem = viewModel.item(at: indexPath.row)
+        guard
+            let indexPath = tableView.indexPath(for: cell),
+            let contentItem = viewModel.item(at: indexPath) else { return }
         switch contentItem {
         case .item(let id, _, _, _):
             viewModel.didTapCheckbox(id: id)
@@ -316,6 +302,7 @@ extension PrepareContentViewController: PrepareContentHeaderTableViewCellDelegat
             if let headerCell = tableView.cellForRow(at: headerIndexPath) {
                 configure(cell: headerCell, forIndexPath: headerIndexPath)
             }
+            sectionHeaderView?.upddateCompletedTasks(viewModel.completedTasksValue)
             configure(cell: cell, forIndexPath: indexPath)
             tableView.endUpdates()
         default:

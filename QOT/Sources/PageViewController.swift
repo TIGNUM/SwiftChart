@@ -161,7 +161,6 @@ extension PageViewController: UIPageViewControllerDelegate {
             let index = data?.index(of: viewController) else { return }
         currentPageIndex = (direction == .forward) ? index + 1 : index - 1
         pageDelegate?.pageViewController(self, didSelectPageIndex: currentPageIndex)
-        
         if let scrollableViewController = currentPage as? PageScrollView {
             setHeaderY(scrollableViewController.scrollView().normalized, animated: true)
         }

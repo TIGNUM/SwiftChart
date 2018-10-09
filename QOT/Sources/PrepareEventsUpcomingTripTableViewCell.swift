@@ -19,7 +19,7 @@ final class PrepareEventsUpcomingTripTableViewCell: UITableViewCell, Dequeueable
     }
 
     func setup(event: CalendarEvent) {
-        let date = event.startDate.eventStringDate(endDate: event.endDate)
+        let date = event.startDate.eventStringDate
         titleLabel.addCharactersSpacing(spacing: 1, text: event.title!, uppercased: true)
         dateLabel.addCharactersSpacing(spacing: 2, text: date, uppercased: true)
     }

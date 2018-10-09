@@ -201,7 +201,7 @@
 "Prepare.PrepareEvents.YourDevice" = "YOUR DEVICE";
 "Prepare.PrepareEvents.SaveThisPreparation" = "Save Preparation";
 "Prepare.Content.ReadMore" = "Read more";
-"Prepare.Content.Tasks" = "TASKS COMPLETED";
+"Prepare.Content.Completed" = "PREPARATIONS COMPLETED";
 "Prepare.Chat.Footer.DeliveredTime" = "Delivered at %@";
 "Prepare.Chat.Header.Preparations" = "PREPARATIONS";
 "Prepare.MyPrep.TimeToEvent" = "Time to the event %@";
@@ -215,16 +215,24 @@
 "Prepare.Review.Notes.Intention.Feeling.Title" = "How do you want the person/group to feel after the event?";
 "Prepare.Review.Notes.Reflection.Positive.Title" = "Reflecting on what you did well will rewire your brain for future success. What did you do well in this event?";
 "Prepare.Review.Notes.Reflection.Improve.Title" = "If there is something you wish you would have done better, what would you look like if you had done it exactly the way you envisioned?";
+"Prepare.Review.Notes.General.Title" = "Room for additional thoughts";
 "Prepare.Review.Notes.Intentions.Placeholder" = "Tap here to put your thoughts into writing (i.e. heard, loved, valued, important).";
 "Prepare.Review.Notes.Reflections.Placeholder" = "Write your reflection notes here";
 "Prepare.Review.Notes.Reflections.Navbar.Title" = "YOUR REFLECTIONS";
 "Prepare.Review.Notes.Intentions.Navbar.Title" = "YOUR INTENTIONS";
+"Prepare.Review.Notes.General.Navbar.Title" = "GNERAL NOTES";
 
 "Prepare.Review.Notes.Intentions.Perceived.Placeholder" = "Tap here to put your thoughts into writing (i.e. calm, engaged, confident, empathetic).";
 "Prepare.Review.Notes.Intentions.PersonGroup.Placeholder" = "Tap here to put your thoughts into writing (i.e. I'm not perfect; your opinion matters; I'm committed to excellence).";
 "Prepare.Review.Notes.Reflection.BrainSuccess.Placeholder" = "Tap here to put your thoughts into writing (i.e. I listened well; I was calm; I answered questions clearly).";
 "Prepare.Review.Notes.Reflection.Wish.Placeholder" = "Tap here to put your thoughts into writing (i.e. I listened well; I didn't overreact; I was prepared).";
 "Prepare.Navigation.Title.Add.Remove.Strategies" = "Selected Strategies %@/%@";
+"Prepare.Subtitle.Learn.More" = "LEARN MORE";
+"Prepare.header.before.and.after" = "BEFORE AND AFTER";
+"Prepare.header.preparation.list" = "PREPARATION LIST";
+"Prepare.header.your.intensions" = "YOUR INTENTIONS";
+"Prepare.header.reflect.on.success" = "REFLECT ON SUCCESS";
+"Prepare.edit.preparation.list" = "EDIT PREPARATION LIST";
 
 "Weekly.Choices.No.Content" = "No weekly choices\nhave been saved yet.";
 

@@ -164,8 +164,8 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
         }
         var footer = ""
         var lineColor = UIColor.white
-        if let startDate = item.startDate, let endDate = item.endDate {
-            footer = startDate.eventStringDate(endDate: endDate)
+        if let startDate = item.startDate {
+            footer = startDate.eventStringDate
             if item.startDate?.timeIntervalSinceNow.sign == .minus {
                 lineColor = .gray
             }
