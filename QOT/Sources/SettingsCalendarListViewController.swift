@@ -31,7 +31,6 @@ final class SettingsCalendarListViewController: UIViewController {
     init(viewModel: SettingsCalendarListViewModel) {
         self.viewModel = viewModel
         self.notificationHandler = NotificationHandler(name: .EKEventStoreChanged, object: EKEventStore.shared)
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -43,7 +42,6 @@ final class SettingsCalendarListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         addEventStoreNotificationHandler()
         setupView()
         viewModel.syncStateObserver.onUpdate { [weak self] _ in
@@ -120,6 +118,7 @@ private extension SettingsCalendarListViewController {
     }
 
     func setupView() {
+        view.addBlackNavigationView()
 		let fadeContainerView = FadeContainerView()
 		view.addSubview(fadeContainerView)
 		fadeContainerView.edgeAnchors == view.edgeAnchors

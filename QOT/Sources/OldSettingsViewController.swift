@@ -155,6 +155,7 @@ private extension OldSettingsViewController {
 private extension OldSettingsViewController {
 
     func setupView() {
+        view.addBlackNavigationView()
         tableView = UITableView(frame: .zero, style: .grouped)
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {

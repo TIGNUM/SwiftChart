@@ -892,7 +892,8 @@ extension AppCoordinator {
         leftBarButton.tintColor = .white
         navigationController.navigationBar.applyDefaultStyle()
         notificationsViewController.navigationItem.leftBarButtonItem = leftBarButton
-        currentPresentedController?.present(navigationController, animated: true, completion: nil)
+        windowManager.showPriority(navigationController, animated: true, completion: nil)
+        currentPresentedNavigationController = navigationController
     }
 
     func presentCalendar() {
@@ -907,7 +908,8 @@ extension AppCoordinator {
         leftBarButton.tintColor = .white
         navigationController.navigationBar.applyDefaultStyle()
         calendarsViewController.navigationItem.leftBarButtonItem = leftBarButton
-        currentPresentedController?.present(navigationController, animated: true, completion: nil)
+        windowManager.showPriority(navigationController, animated: true, completion: nil)
+        currentPresentedNavigationController = navigationController
     }
 
     func presentLibrary() {
@@ -1070,7 +1072,8 @@ extension AppCoordinator {
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
-            let coordinator = ArticleContentItemCoordinator(pageName: .featureExplainer,
+            let isWhatsHot = guideItem?.isWhatsHot,
+            let coordinator = ArticleContentItemCoordinator(pageName: isWhatsHot ? .whatsHotArticle : .featureExplainer,
                                                             root: rootViewController,
                                                             services: services,
                                                             contentCollection: content,

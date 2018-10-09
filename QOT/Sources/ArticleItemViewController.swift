@@ -48,9 +48,9 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
 
     private var paddingTop: CGFloat {
         switch pageName {
-        case .libraryArticle: return Layout.padding_24
-        case .whatsHotArticle,
-             .featureExplainer: return view.safeMargins.top + Layout.articleImageHeight
+        case .libraryArticle,
+             .featureExplainer: return Layout.padding_24
+        case .whatsHotArticle: return view.safeMargins.top + Layout.articleImageHeight
         default: return 0
         }
     }
