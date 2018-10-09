@@ -15,6 +15,7 @@ final class ActivityChart: UIView {
     private var statistics: Statistics
     private var labelContentView: UIView
     private let padding: CGFloat = 8
+    private let xAxisOffset: CGFloat = 20
     private let yAxisOffset: CGFloat = 40
 
     // MARK: - Init
@@ -49,12 +50,8 @@ private extension ActivityChart {
     }
 
     func xPosition(_ index: Int) -> CGFloat {
-        guard labelContentView.subviews.count >= index else {
-            return 0
-        }
-
+        guard labelContentView.subviews.count >= index else { return 0 }
         let labelFrame = labelContentView.subviews[index].frame
-
         return (labelFrame.origin.x + labelFrame.width * Layout.multiplier_05)
     }
 
@@ -75,7 +72,7 @@ private extension ActivityChart {
 
     func addAverageLines() {
         let yPos = yPosition(statistics.userAverageValue)
-        let averageFrame = CGRect(x: yAxisOffset, y: yPos, width: frame.width - yAxisOffset, height: 0)
+        let averageFrame = CGRect(x: xAxisOffset, y: yPos, width: frame.width - xAxisOffset, height: 0)
         let averageLine = CAShapeLayer()
         averageLine.strokeColor = UIColor.white8.cgColor
         averageLine.fillColor = UIColor.clear.cgColor
@@ -101,7 +98,7 @@ private extension ActivityChart {
                 let frame = subView.frame
                 subView.sizeToFit()
                 let fittedFrame = subView.frame
-                subView.frame = CGRect(x: frame.origin.x + yAxisOffset,
+                subView.frame = CGRect(x: frame.origin.x + xAxisOffset,
                                        y: frame.origin.y,
                                        width: fittedFrame.width,
                                        height: frame.height)
@@ -120,8 +117,7 @@ private extension ActivityChart {
     }
 
     func drawCharts() {
-        let daataPoints = statistics.dataPointObjects.filter { $0.percentageValue > 0 }
-        for (index, dataPoint) in daataPoints.enumerated() {
+        for (index, dataPoint) in statistics.dataPointObjects.enumerated() where dataPoint.percentageValue > 0 {
             let xPos = xPosition(index)
             let yPos = yPosition(dataPoint.percentageValue)
             drawCapRoundLine(xPos: xPos,
@@ -137,7 +133,8 @@ private extension ActivityChart {
 
     func drawTodayValueLabel() {
         guard let dataPoint = statistics.dataPointObjects.last, dataPoint.percentageValue > 0 else { return }
-        let xPos = xPosition(statistics.dataPointObjects.endIndex)
+        let xIndex = statistics.dataPointObjects.endIndex > 0 ? statistics.dataPointObjects.endIndex - 1 : 0
+        let xPos = xPosition(xIndex)
         let yPos = yPosition(dataPoint.percentageValue)
         let text = statistics.displayableValue(average: Double(dataPoint.percentageValue))
         let todayLabel = dayLabel(text: text, textColor: .white)
