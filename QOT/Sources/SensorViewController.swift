@@ -121,3 +121,19 @@ extension SensorViewController: UICollectionViewDelegate, UICollectionViewDataSo
         interactor?.didTapSensor(sensor: sensor)
     }
 }
+
+// MARK: - UICollectionViewDelegateFlowLayout
+
+extension SensorViewController: UICollectionViewDelegateFlowLayout {
+
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        let horizontalPadding: CGFloat = 72
+        let verticalPadding: CGFloat = 16
+        let cellSpacing: CGFloat = 10
+        let numberOfItems: CGFloat = sensors.count > 0 ? CGFloat(sensors.count) : 2
+        return CGSize(width: ((collectionView.bounds.width - horizontalPadding - cellSpacing) / numberOfItems),
+                      height: collectionView.bounds.size.height - verticalPadding)
+    }
+}
