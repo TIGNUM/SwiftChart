@@ -39,6 +39,7 @@ enum FontName: String {
 struct Layout {
     static let articleImageHeight: CGFloat = 200
     static let statusBarHeight: CGFloat = 64
+    static let padding_1: CGFloat = 1
     static let padding_5: CGFloat = 5
     static let padding_07: CGFloat = 7
     static let padding_10: CGFloat = 10

@@ -20,6 +20,14 @@ final class TabMenuView: UIView {
     private(set) var titles: [String] = []
     let indicatorView = UIView()
     var didSelectTabAtIndex: ((TabMenuView, Int) -> Void)?
+    private var buttonFrame: CGRect {
+        return buttons[selectedIndex ?? 0].frame
+    }
+    private var indicatorFrame: CGRect {
+        let isLearn = titles.contains(obj: R.string.localized.topTabBarItemTitleLearnWhatsHot().uppercased())
+        let padding = isLearn ? Layout.padding_10 : -Layout.padding_1
+        return CGRect(x: buttonFrame.minX, y: bounds.height + padding, width: buttonFrame.width, height: 1)
+    }
 
     override var intrinsicContentSize: CGSize {
         let sizes = buttonSizes(titles: titles, font: style.tabFont)
@@ -149,11 +157,9 @@ final class TabMenuView: UIView {
 
     private func layoutIndicatorView(animated: Bool) {
         guard let selectedIndex = selectedIndex else { return }
-        let buttonFrame = buttons[selectedIndex].frame
-        let indicatorFrame = CGRect(x: buttonFrame.minX, y: bounds.height - 1, width: buttonFrame.width, height: 1)
         let duration: TimeInterval = animated == true ? 0.3 : 0
         UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
-            self.indicatorView.frame = indicatorFrame
+            self.indicatorView.frame = self.indicatorFrame
         })
     }
 
