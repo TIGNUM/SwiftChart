@@ -81,7 +81,7 @@ extension GuideViewController: GuideViewControllerInterface {
 
     func updateHeader(greeting: String, message: String, image: URL?) {
         greetingImageURL = image
-        greetingView.configure(message: message, greeting: greeting, userImage: image)
+        greetingView.configure(message: message, greeting: greeting)
         syncHeaderView(imageURL: image)
     }
 

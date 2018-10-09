@@ -27,10 +27,9 @@ final class GuideGreetingView: UIView {
         backgroundColor = .clear
     }
 
-    func configure(message: String, greeting: String, userImage: URL?) {
+    func configure(message: String, greeting: String) {
         greetingLabel.attributedText = attributedText(greeting)
         messageLabel.attributedText = attributedText(message)
-        userImageView.kf.setImage(with: userImage)
         fadeView.alpha = 0.8
     }
 
