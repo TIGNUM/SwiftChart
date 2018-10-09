@@ -162,19 +162,19 @@
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Latest event name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhM-hN-By9">
-                            <rect key="frame" x="60" y="44.5" width="248.5" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You do not have any upcoming events" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KhM-hN-By9">
+                            <rect key="frame" x="60" y="44.5" width="295" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="15:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4U-LK-anZ">
-                            <rect key="frame" x="318.5" y="44.5" width="36.5" height="17"/>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="G4U-LK-anZ">
+                            <rect key="frame" x="365" y="44.5" width="0.0" height="0.0"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <nil key="textColor"/>
                             <nil key="highlightedColor"/>
                         </label>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/7 Tasks Completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch8-ti-qqH">
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tasks to be completed" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ch8-ti-qqH">
                             <rect key="frame" x="60" y="71.5" width="305" height="17"/>
                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                             <color key="textColor" red="1" green="0.14913141730000001" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -217,7 +217,7 @@
                         <constraint firstAttribute="bottom" secondItem="tjD-gd-IJo" secondAttribute="bottom" id="j26-5T-BnF"/>
                         <constraint firstItem="ch8-ti-qqH" firstAttribute="leading" secondItem="Wgt-7q-2Zv" secondAttribute="leading" constant="60" id="njj-hn-UQK"/>
                         <constraint firstItem="6tf-lw-lw2" firstAttribute="top" secondItem="ch8-ti-qqH" secondAttribute="bottom" constant="13" id="oBg-2X-7Zm"/>
-                        <constraint firstAttribute="trailing" secondItem="G4U-LK-anZ" secondAttribute="trailing" constant="20" id="q8L-Rx-p2C"/>
+                        <constraint firstAttribute="trailing" secondItem="G4U-LK-anZ" secondAttribute="trailing" constant="10" id="q8L-Rx-p2C"/>
                         <constraint firstAttribute="trailing" secondItem="6tf-lw-lw2" secondAttribute="trailing" constant="10" id="qEt-fd-nUG"/>
                         <constraint firstItem="K9Q-eM-x66" firstAttribute="leading" secondItem="ZhQ-Pe-Q7G" secondAttribute="trailing" constant="15" id="wWI-Wc-PHD"/>
                     </constraints>

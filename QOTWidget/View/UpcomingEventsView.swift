@@ -32,19 +32,14 @@ final class UpcomingEventsView: UIView {
     // MARK: - Actions
 
     func configure(event: WidgetModel.UpcomingEvent) {
-        guard let eventName = event.eventName, let eventDate = event.eventDate else {
-            eventNameLabel.text = "You do not have any upcoming events."
-            return
+        if let eventName = event.eventName {
+            eventNameLabel.text = eventName
+            eventTimeLabel.text = dateDescription(for: event.eventDate ?? nil)
+            if let tasks = event.numberOfTasks, let tasksCompleted = event.tasksCompleted, tasks > 0 {
+                tasksCompletedLabel.text = "\(tasksCompleted)/\(tasks) Tasks Completed"
+                tasksCompletedLabel.textColor = tasksCompleted == tasks ? .green : .red
+            }
         }
-        eventNameLabel.text = eventName
-        eventTimeLabel.text = dateDescription(for: eventDate)
-
-        guard let tasks = event.numberOfTasks, let tasksCompleted = event.tasksCompleted, tasks > 0 else {
-            tasksCompletedLabel.text = "No tasks to be completed"
-            return
-        }
-        tasksCompletedLabel.text = "\(tasksCompleted)/\(tasks) Tasks Completed"
-        tasksCompletedLabel.textColor = tasksCompleted == tasks ? .green : .red
     }
 
     @IBAction func didTapCreateToBeVision(_ sender: UIButton) {
@@ -57,6 +52,7 @@ final class UpcomingEventsView: UIView {
 private extension UpcomingEventsView {
 
     func setupView() {
+        eventTimeLabel.adjustsFontSizeToFitWidth = true
         createNewEventButton.layer.cornerRadius = 6
         eventNameLabel.textColor = .gray
     }
@@ -71,7 +67,7 @@ private extension UpcomingEventsView {
         } else {
             let day = calendar.component(.day, from: date)
             let month = date.monthDescription
-            return "\(day) \(month)"
+            return "\(day) \(month.prefix(3))"
         }
     }
 }
