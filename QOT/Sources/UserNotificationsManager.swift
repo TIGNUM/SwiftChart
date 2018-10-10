@@ -29,11 +29,10 @@ final class UserNotificationsManager {
             let now = Date()
             let realm = try realmProvider.realm()
             let notificationItems = realm.objects(RealmGuideItemNotification.self).filter {
-                guard $0.completedAt == nil, let triggerDate = $0.localNotificationDate else {
-                    return false
-                }
+                guard $0.completedAt == nil, let triggerDate = $0.localNotificationDate else { return false }
                 return triggerDate >= now
             }
+
             let learnItems = realm.objects(RealmGuideItemLearn.self)
             let featureItems = todaysLearnItems(from: learnItems, type: .feature, now: now)
             let strategyItems = todaysLearnItems(from: learnItems, type: .strategy, now: now)

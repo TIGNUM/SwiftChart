@@ -52,15 +52,11 @@ extension UserSetting: TwoWaySyncableWithUpdateOnlyUpsyncing {
     func setData(_ data: UserSettingIntermediary, objectStore: ObjectStore) throws {
         _value?.delete()
         _value = SettingValueObject(with: data.value)
-
         dirty = false
     }
 
     func toJson() -> JSON? {
-        guard let value = _value, let settingID = remoteID.value else {
-            return nil
-        }
-
+        guard let value = _value, let settingID = remoteID.value else { return nil }
         return SettingValue(setting: value).toJSON(settingID: settingID)
     }
 }

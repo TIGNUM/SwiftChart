@@ -30,12 +30,9 @@ extension SettingsRouter: SettingsRouterInterface {
             let calendarListViewController = SettingsCalendarListViewController(viewModel: viewModel)
             settingsViewController.pushToStart(childViewController: calendarListViewController)
         case .notifications:
-            guard let viewModel = SettingsViewModel(services: services, settingsType: .notifications) else { return }
-            let notificationsVC = OldSettingsViewController(viewModel: viewModel,
-                                                            services: services,
-                                                            settingsType: .notifications,
-                                                            destination: nil)
-            settingsViewController.pushToStart(childViewController: notificationsVC)
+            settingsViewController.showAlert(type: .changeNotifications, handler: {
+                UIApplication.openAppSettings()
+            }, handlerDestructive: nil)
         case .permissions:
             let configurator = PermissionsConfigurator.make()
             let permissionsViewController = PermissionsViewController(configure: configurator)

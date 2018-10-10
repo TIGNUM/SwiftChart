@@ -472,7 +472,7 @@ extension UIView {
             return layoutMargins
         }
     }
-    
+
     func addBlackNavigationView() {
         let blackTopView = UIView(frame: CGRect(x: 0, y: 0, width: bounds.width, height: Layout.statusBarHeight * 2))
         blackTopView.backgroundColor = .black

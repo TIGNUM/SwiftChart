@@ -92,7 +92,6 @@ final class OldSettingsViewController: UIViewController {
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
-
         tableView.contentInset = UIEdgeInsets(top: view.safeMargins.top + Layout.statusBarHeight,
                                               left: 0,
                                               bottom: 0,
@@ -101,20 +100,17 @@ final class OldSettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         navigationItem.title = settingsType.title.uppercased()
         tableView.reloadData()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-
         guard destination != nil else { return }
         destination = nil
     }
@@ -162,13 +158,11 @@ private extension OldSettingsViewController {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.padding_24
         }
-
 		view.addSubview(fadeContainerView)
 		fadeContainerView.addSubview(tableView)
 		fadeContainerView.addSubview(pickerContentView)
 		pickerContentView.addSubview(pickerToolBar)
         pickerContentView.addSubview(pickerView)
-
 		fadeContainerView.edgeAnchors == view.edgeAnchors
         tableView.edgeAnchors == fadeContainerView.edgeAnchors
         tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
@@ -180,7 +174,6 @@ private extension OldSettingsViewController {
         tableView.allowsSelection = true
         tableView.rowHeight = 44
 		tableView.isScrollEnabled = false
-
         pickerContentView.trailingAnchor == fadeContainerView.trailingAnchor
         pickerContentView.leadingAnchor == fadeContainerView.leadingAnchor
         pickerContentView.bottomAnchor == fadeContainerView.safeBottomAnchor
@@ -195,11 +188,9 @@ private extension OldSettingsViewController {
         pickerView.bottomAnchor == pickerContentView.bottomAnchor
         pickerToolBar.tintColor = .clear
         if #available(iOS 11.0, *) {
-
         } else {
             tableView.contentInset.top = Layout.statusBarHeight + Layout.padding_20
         }
-
         if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
             fadeContainerView.setFade(top: navigationBarHeight + 32, bottom: 0)
         }
@@ -220,7 +211,6 @@ private extension OldSettingsViewController {
         guard let settingsViewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
             return
         }
-
         viewModel = settingsViewModel
         tableView.reloadData()
     }
@@ -240,14 +230,11 @@ extension OldSettingsViewController: UITableViewDataSource, UITableViewDelegate 
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let settingsRow = viewModel.row(at: indexPath)
-
         guard let settingsCell = tableView.dequeueReusableCell(withIdentifier: settingsRow.identifier, for: indexPath) as? SettingsTableViewCell else {
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
         }
-
         settingsCell.settingsDelegate = self
         settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath, isSyncFinished: true)
-
         return settingsCell
     }
 
@@ -262,7 +249,6 @@ extension OldSettingsViewController: UITableViewDataSource, UITableViewDelegate 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView()
         footer.backgroundColor = .clear
-
         return footer
     }
 
@@ -271,9 +257,7 @@ extension OldSettingsViewController: UITableViewDataSource, UITableViewDelegate 
         guard let headerCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? SettingsTableViewCell else {
             fatalError("HeaderCell does not exist!")
         }
-
         headerCell.setupHeaderCell(title: viewModel.headerTitle(in: section))
-
         return headerCell.contentView
     }
 }
@@ -292,15 +276,11 @@ extension OldSettingsViewController: SettingsViewControllerDelegate {
         case 3: if text.isPhoneNumber { viewModel.updateTelephone(telephone: text) }
         default: return
         }
-
         self.updateViewModelAndReloadTableView()
     }
 
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
-        guard let key = key else {
-            return
-        }
-
+        guard let key = key else { return }
         viewModel.updateNotificationSetting(key: key, value: sender.isOn)
     }
 }

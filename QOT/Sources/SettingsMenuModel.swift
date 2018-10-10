@@ -362,11 +362,7 @@ final class SettingsViewModel {
 
     init?(services: Services, settingsType: SettingsType.SectionType) {
         self.services = services
-
-        guard let user = services.userService.user() else {
-            return nil
-        }
-
+        guard let user = services.userService.user() else { return nil }
         self.user = user
         self.settingsType = settingsType
         self.settingsSections = settingSections(user: user, settingsType: settingsType)

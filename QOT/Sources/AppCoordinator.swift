@@ -877,6 +877,12 @@ extension AppCoordinator {
     }
 
     func presentNotificationsSettings() {
+        AppDelegate.topViewController()?.showAlert(type: .changeNotifications, handler: {
+            UIApplication.openAppSettings()
+        }, handlerDestructive: nil)
+    }
+
+    func navigateToNotificationsSettings() {
         guard
             let services = services,
             let viewModel = SettingsViewModel(services: services, settingsType: .notifications) else { return }

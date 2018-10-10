@@ -42,6 +42,7 @@ enum AlertType {
     case canNotSendEmailWeeklyChoices
     case prepareEditStrategy
     case changePermissions
+    case changeNotifications
     case toBeVisionActionSheet
     case partnerIncomplete
     case canNotDeletePartner
@@ -84,6 +85,7 @@ enum AlertType {
         case .noMyToBeVision,
              .noWeeklyChoice : return R.string.localized.meSectorMyWhyPartnersShareNoContentTitle()
         case .calendarNotSynced: return R.string.localized.alertTitleCalendarNotSynced()
+        case .changeNotifications: return R.string.localized.alertTitleSettingsChangeNotifications()
         default: return nil
         }
     }
@@ -120,6 +122,7 @@ enum AlertType {
         case .noWeeklyChoice: return R.string.localized.meSectorMyWhyPartnersShareMissingWeeklyChoiceAlert()
         case .addSensor: return R.string.localized.addSensorViewAlertMessage()
         case .calendarNotSynced: return R.string.localized.alertMessageCalendarNotSynced()
+        case .changeNotifications: return R.string.localized.alertMessageSettingsChangeNotifications()
         default: return nil
         }
     }
@@ -131,6 +134,7 @@ enum AlertType {
              .settingsCalendars,
              .imagePicker,
              .changePermissions,
+             .changeNotifications,
              .toBeVisionActionSheet,
              .prepareEditStrategy,
              .logout,
@@ -144,7 +148,8 @@ enum AlertType {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
              .settingsCalendars,
-             .changePermissions: return R.string.localized.alertButtonTitleOpenSettings()
+             .changePermissions,
+             .changeNotifications: return R.string.localized.alertButtonTitleOpenSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
         case .logout: return R.string.localized.alertButtonTitleCancel()
@@ -155,7 +160,8 @@ enum AlertType {
 
     var buttonTitleDestructive: String? {
         switch self {
-        case .changePermissions: return R.string.localized.alertButtonTitleCancel()
+        case .changePermissions,
+             .changeNotifications: return R.string.localized.alertButtonTitleCancel()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonCamera()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationRemoveStrategy()
         case .logout: return R.string.localized.sidebarTitleLogout()
@@ -173,7 +179,8 @@ enum AlertType {
              .toBeVisionActionSheet: return [.cancel]
         case .logout: return [.destructive, .cancel]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
-        case .changePermissions: return [.destructive, .default]
+        case .changePermissions,
+             .changeNotifications: return [.destructive, .default]
         default: return [.default]
         }
     }

@@ -50,7 +50,6 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
         self.indexPath = indexPath
         self.calendarIdentifier = calendarIdentifier
         self.calendarSource = calendarSource
-
         switch settingsRow {
         case .button(let title, let value, let settingsType):
             self.settingsType = settingsType
@@ -76,7 +75,6 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             self.settingsType = settingsType
             setupTextFieldCell(title: title, value: value, secure: secure, settingsType: settingsType)
         }
-
         if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .password || settingsType == .adminSettings {
             accessoryType = .disclosureIndicator
         }
@@ -96,7 +94,6 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             loadingIndicatorView.isHidden = false
             loadingIndicatorView.startAnimating()
         }
-
         if self.settingsType == .calendarOnOtherDevices {
             switchControl.isHidden = true
         }

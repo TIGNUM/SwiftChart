@@ -75,7 +75,6 @@ extension RealmGuideItemNotification {
 
     var isDailyPrep: Bool {
         guard let itemType = ItemType(rawValue: type) else { return false }
-
         return itemType == .morningInterview || itemType == .weeklyInterview
     }
 
@@ -90,13 +89,10 @@ extension RealmGuideItemNotification {
 
     var notificationRequest: UNNotificationRequest? {
         guard let triggerDate = localNotificationDate, isDailyPrep == false else { return nil }
-
         let content = UNMutableNotificationContent(title: title, body: body, soundName: sound, link: link)
-
         if sound.isEmpty == true {
             content.sound = nil
         }
-
         let trigger = UNCalendarNotificationTrigger(localTriggerDate: triggerDate)
         return UNNotificationRequest(identifier: guideItemID.stringRepresentation, content: content, trigger: trigger)
     }
@@ -127,19 +123,15 @@ extension RealmGuideItemNotification: OneWaySyncableDown {
         sound = data.sound
         priority = data.priority
         issueDate = data.issueDate
-
         if data.completedAt != nil {
             completedAt = data.completedAt
         }
-
         if data.feedback != nil {
             _dailyPrepFeedback = data.feedback
         }
-
         if let displayTime = data.displayTime {
             self.displayTime = RealmGuideTime(displayTime)
         }
-
         if let reminderTime = data.reminderTime {
             self.reminderTime = RealmGuideTime(reminderTime)
         }

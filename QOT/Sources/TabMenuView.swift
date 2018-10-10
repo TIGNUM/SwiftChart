@@ -156,11 +156,12 @@ final class TabMenuView: UIView {
     }
 
     private func layoutIndicatorView(animated: Bool) {
-        guard let selectedIndex = selectedIndex else { return }
-        let duration: TimeInterval = animated == true ? 0.3 : 0
-        UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
-            self.indicatorView.frame = self.indicatorFrame
-        })
+        if selectedIndex != nil {
+            let duration: TimeInterval = animated == true ? 0.3 : 0
+            UIView.animate(withDuration: duration, delay: 0, options: .curveEaseInOut, animations: {
+                self.indicatorView.frame = self.indicatorFrame
+            })
+        }
     }
 
     @objc private func buttonTapped(_ sender: UIButton) {

@@ -22,10 +22,7 @@ extension UIApplication: ApplicationStatusBarStyle {
 extension UIApplication {
 
     class func openAppSettings() {
-        guard let url = URL(string: UIApplicationOpenSettingsURLString) else {
-            return
-        }
-
+        guard let url = URL(string: UIApplicationOpenSettingsURLString) else { return }
         UIApplication.shared.open(url, options: [:], completionHandler: nil)
     }
 }
