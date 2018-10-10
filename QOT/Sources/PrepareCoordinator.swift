@@ -45,6 +45,7 @@ final class PrepareCoordinator: ParentCoordinator {
     var children: [Coordinator] = []
 
     private lazy var editEventHandler: EditEventHandler = {
+        var canCreatePreparation = true
         let delegate = EditEventHandler()
         delegate.handler = { [weak self] (controller, action) in
             switch action {
@@ -52,21 +53,33 @@ final class PrepareCoordinator: ParentCoordinator {
                 if let ekEvent = controller.event {
                     let event = CalendarEvent(event: ekEvent)
                     do {
-                        let realm = try self?.services.realmProvider.realm()
-                        try realm?.write {
-                            realm?.add(event)
+                        canCreatePreparation = try self?.services.eventsService.calendarSyncEnabled(toggleIdentifier: event.calendarIdentifier,
+                                                                                                    title: event.title) ?? false
+                        if canCreatePreparation == true {
+                            let realm = try self?.services.realmProvider.realm()
+                            try realm?.write {
+                                realm?.add(event)
+                            }
                         }
                     } catch {
                         // Do nothing, any how the event exists on the device and will be synchronized next time.
                     }
-                    AppCoordinator.appState.syncManager.syncCalendarEvents { (error) in
-                        let createdEvent = self?.services.eventsService.calendarEvent(ekEvent: ekEvent)
-                        self?.createPreparation(name: event.title, event: event) { (preparationID) in
-                            self?.tabBarController.dismiss(animated: true)
-                            NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
-                            if let id = preparationID {
-                                self?.showPrepareCheckList(preparationID: id, chatDecisionManager: self?.chatDecisionManager)
+                    if canCreatePreparation == true {
+                        AppCoordinator.appState.syncManager.syncCalendarEvents { (error) in
+                            let createdEvent = self?.services.eventsService.calendarEvent(ekEvent: ekEvent)
+                            self?.createPreparation(name: event.title, event: event) { (preparationID) in
+                                self?.tabBarController.dismiss(animated: true)
+                                NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
+                                if let id = preparationID {
+                                    self?.showPrepareCheckList(preparationID: id, chatDecisionManager: self?.chatDecisionManager)
+                                }
                             }
+                        }
+                    } else {
+                        self?.tabBarController.dismiss(animated: true) {
+                            self?.chatViewController.showAlert(type: .calendarNotSynced, handler: { [weak self] in
+                                self?.chatDecisionManager.addQuestions()
+                                }, handlerDestructive: nil)
                         }
                     }
                 }

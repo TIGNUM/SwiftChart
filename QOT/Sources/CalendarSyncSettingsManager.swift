@@ -98,13 +98,13 @@ final class CalendarSyncSettingsManager {
             }
         }
     }
-}
-
-private extension CalendarSyncSettingsManager {
 
     func syncEnabled(toggleIdentifier: String, title: String) throws -> Bool {
         return try calendarSyncSetting(toggleIdentifier: toggleIdentifier, title: title).syncEnabled
     }
+}
+
+private extension CalendarSyncSettingsManager {
 
     func calendarSyncSetting(toggleIdentifier: String, title: String) throws -> RealmCalendarSyncSetting {
         let realm = try realmProvider.realm()

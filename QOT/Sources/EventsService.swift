@@ -53,4 +53,9 @@ final class EventsService {
         }
         return Array(relevantCalendarEvents).first
     }
+
+    func calendarSyncEnabled(toggleIdentifier: String?, title: String?) throws -> Bool {
+        guard let toggleIdentifier = toggleIdentifier, let title = title else { return false }
+        return try syncSettingsManager.syncEnabled(toggleIdentifier: toggleIdentifier, title: title)
+    }
 }

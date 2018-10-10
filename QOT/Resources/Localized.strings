@@ -312,6 +312,8 @@
 "Alert.Message.Logout" = "Are you sure you would like to logout of QOT?";
 "Alert.Title.Settings.ChangePermission" = "Change Permission";
 "Alert.Message.Settings.ChangePermission" = "Go to Settings to change your permissions.";
+"Alert.title.calendar.not.synced" = "Calendar not synchronized";
+"Alert.message.calendar.not.synced" = "QOT could not create the event for the selected calendar. Please choose another calendar or enable Calendar Synchronization in Settings.";
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
 "ImagePicker.Options.Button.Camera" = "Take a Picture";

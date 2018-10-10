@@ -48,6 +48,7 @@ enum AlertType {
     case logout
     case noWeeklyChoice
     case noMyToBeVision
+    case calendarNotSynced
 
     var title: String? {
         switch self {
@@ -82,6 +83,7 @@ enum AlertType {
         case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorTitle()
         case .noMyToBeVision,
              .noWeeklyChoice : return R.string.localized.meSectorMyWhyPartnersShareNoContentTitle()
+        case .calendarNotSynced: return R.string.localized.alertTitleCalendarNotSynced()
         default: return nil
         }
     }
@@ -117,6 +119,7 @@ enum AlertType {
         case .noMyToBeVision: return R.string.localized.meSectorMyWhyPartnersShareMissingMyToBeVisionAlert()
         case .noWeeklyChoice: return R.string.localized.meSectorMyWhyPartnersShareMissingWeeklyChoiceAlert()
         case .addSensor: return R.string.localized.addSensorViewAlertMessage()
+        case .calendarNotSynced: return R.string.localized.alertMessageCalendarNotSynced()
         default: return nil
         }
     }
