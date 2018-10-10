@@ -107,7 +107,8 @@ private extension BadgeManager {
                 self?.whatsHotBadge?.isHidden = self?.whatsHotBadge?.isHidden ?? true
                 self?.learnBadge?.isHidden = self?.tabDisplayed == .learn
                 UserDefault.whatsHotBadgeNumber.setDoubleValue(value: Double(articles.count))
-            default: break
+            default:
+                UserDefault.whatsHotBadgeNumber.setDoubleValue(value: 0)
             }
         })
     }
