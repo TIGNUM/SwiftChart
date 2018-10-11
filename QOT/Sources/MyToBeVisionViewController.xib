@@ -22,6 +22,7 @@
             <connections>
                 <outlet property="MessageEditingSeparatorView" destination="Bog-ZF-6HV" id="vXq-dI-i3L"/>
                 <outlet property="containerHeight" destination="gxm-mB-dk0" id="Q2B-jr-4OS"/>
+                <outlet property="editButton" destination="mb2-ni-aD7" id="HZi-B8-bGe"/>
                 <outlet property="editIconImageView" destination="f32-Ev-McI" id="axO-U2-GWX"/>
                 <outlet property="editImageLabel" destination="usl-he-brQ" id="drq-kF-a1y"/>
                 <outlet property="fadeContainerView" destination="fhs-xD-0nf" id="JDC-ES-KLE"/>
@@ -75,7 +76,7 @@
                                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Change photo" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="usl-he-brQ">
-                                            <rect key="frame" x="134.5" y="147.5" width="106" height="47.5"/>
+                                            <rect key="frame" x="136.5" y="147.5" width="102" height="47.5"/>
                                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                                             <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                             <nil key="highlightedColor"/>
@@ -123,7 +124,7 @@
                                             </connections>
                                         </textView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="1000" text="20 YEARS AGO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Lt-fd-bdx" userLabel="Subtitle">
-                                            <rect key="frame" x="25" y="118" width="326" height="11"/>
+                                            <rect key="frame" x="25" y="118" width="326" height="13"/>
                                             <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
                                             <color key="textColor" red="0.41176470590000003" green="0.41960784309999999" blue="0.43921568630000002" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -136,13 +137,13 @@
                                             </constraints>
                                         </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="To Be Vision Statement" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gLN-uy-MTt">
-                                            <rect key="frame" x="24" y="169" width="327" height="14"/>
+                                            <rect key="frame" x="24" y="171" width="327" height="14"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                             <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="This is my to be vision." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HYG-f5-Phv" userLabel="Message">
-                                            <rect key="frame" x="24" y="186" width="327" height="50"/>
+                                            <rect key="frame" x="24" y="188" width="327" height="50"/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
@@ -156,14 +157,14 @@
                                             </connections>
                                         </textView>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Bog-ZF-6HV" userLabel="Message Editing Separator View">
-                                            <rect key="frame" x="24" y="244" width="327" height="1"/>
+                                            <rect key="frame" x="24" y="246" width="327" height="1"/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="ek8-3s-Euz"/>
                                             </constraints>
                                         </view>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UGm-PQ-00D">
-                                            <rect key="frame" x="311" y="103.5" width="40" height="40"/>
+                                            <rect key="frame" x="311" y="104.5" width="40" height="40"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="40" id="05j-r5-u07"/>
                                                 <constraint firstAttribute="width" constant="40" id="DHw-Du-CWX"/>
@@ -174,10 +175,23 @@
                                                 <action selector="didTapShareButton" destination="-1" eventType="touchUpInside" id="8W7-xL-qYg"/>
                                             </connections>
                                         </button>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="top" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="mb2-ni-aD7">
+                                            <rect key="frame" x="263" y="104.5" width="40" height="40"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="40" id="3AS-1d-pJ2"/>
+                                                <constraint firstAttribute="height" constant="40" id="pg9-S5-3Zn"/>
+                                            </constraints>
+                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <state key="normal" image="ic_edit"/>
+                                            <connections>
+                                                <action selector="didTapEdit" destination="-1" eventType="touchUpInside" id="uh7-as-jnH"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                     <constraints>
+                                        <constraint firstItem="UGm-PQ-00D" firstAttribute="leading" secondItem="mb2-ni-aD7" secondAttribute="trailing" constant="8" id="8sv-pt-S0A"/>
                                         <constraint firstAttribute="trailing" secondItem="3Lt-fd-bdx" secondAttribute="trailing" constant="24" id="BRR-Yl-kDy"/>
                                         <constraint firstItem="Pd7-gT-U4O" firstAttribute="top" secondItem="7Sy-gJ-ovl" secondAttribute="bottom" id="DJh-72-TFx"/>
                                         <constraint firstAttribute="trailing" secondItem="gLN-uy-MTt" secondAttribute="trailing" constant="24" id="ELR-kC-KCe"/>
@@ -185,11 +199,13 @@
                                         <constraint firstAttribute="trailing" secondItem="Bog-ZF-6HV" secondAttribute="trailing" constant="24" id="IVO-33-x2O"/>
                                         <constraint firstAttribute="trailing" secondItem="Shz-uc-ltT" secondAttribute="trailing" constant="24" id="JWj-mY-Vvt"/>
                                         <constraint firstItem="HYG-f5-Phv" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="KfR-fC-ZGm"/>
+                                        <constraint firstItem="UGm-PQ-00D" firstAttribute="top" secondItem="mb2-ni-aD7" secondAttribute="top" id="L9j-HB-sjy"/>
                                         <constraint firstItem="gLN-uy-MTt" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="LbJ-ua-YTp"/>
                                         <constraint firstItem="UGm-PQ-00D" firstAttribute="centerY" secondItem="3Lt-fd-bdx" secondAttribute="centerY" id="OpH-K5-8Gj"/>
                                         <constraint firstAttribute="trailing" secondItem="HYG-f5-Phv" secondAttribute="trailing" constant="24" id="Qpf-FN-1op"/>
                                         <constraint firstItem="UGm-PQ-00D" firstAttribute="trailing" secondItem="3Lt-fd-bdx" secondAttribute="trailing" id="RJH-8J-9DU"/>
                                         <constraint firstItem="Shz-uc-ltT" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="S0D-wS-phx"/>
+                                        <constraint firstItem="UGm-PQ-00D" firstAttribute="bottom" secondItem="mb2-ni-aD7" secondAttribute="bottom" id="TWc-VG-v0s"/>
                                         <constraint firstAttribute="trailing" secondItem="Bog-ZF-6HV" secondAttribute="trailing" constant="24" id="X2c-EQ-I9j"/>
                                         <constraint firstItem="Bog-ZF-6HV" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="bJd-5R-Sea"/>
                                         <constraint firstItem="3Lt-fd-bdx" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="25" id="cmL-if-GJX"/>
@@ -197,6 +213,7 @@
                                         <constraint firstItem="Bog-ZF-6HV" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="24" id="fLc-rr-YXm"/>
                                         <constraint firstItem="7Sy-gJ-ovl" firstAttribute="top" secondItem="Shz-uc-ltT" secondAttribute="bottom" id="gpo-kb-P4D"/>
                                         <constraint firstAttribute="height" constant="700" id="gxm-mB-dk0"/>
+                                        <constraint firstItem="UGm-PQ-00D" firstAttribute="centerY" secondItem="mb2-ni-aD7" secondAttribute="centerY" id="hng-YA-zaQ"/>
                                         <constraint firstAttribute="trailing" secondItem="7Sy-gJ-ovl" secondAttribute="trailing" constant="24" id="kzP-1C-OfT"/>
                                         <constraint firstItem="HYG-f5-Phv" firstAttribute="top" secondItem="gLN-uy-MTt" secondAttribute="bottom" constant="3" id="mXS-Kr-e0M"/>
                                         <constraint firstItem="7Sy-gJ-ovl" firstAttribute="leading" secondItem="tCL-zM-DF7" secondAttribute="leading" constant="25" id="ms4-TJ-5Fr"/>
@@ -253,8 +270,9 @@
     </objects>
     <resources>
         <image name="Universe mytobevision" width="375" height="229"/>
-        <image name="backgroundWeeklyChoices" width="187" height="333"/>
+        <image name="backgroundWeeklyChoices" width="187.5" height="333.5"/>
         <image name="ic_camera" width="58" height="45"/>
+        <image name="ic_edit" width="36" height="36"/>
         <image name="ic_share" width="20" height="28"/>
     </resources>
 </document>

@@ -34,6 +34,7 @@ final class MyToBeVisionViewController: UIViewController {
     @IBOutlet private weak var messageEditingSeparatorView: UIView!
 	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
     @IBOutlet private weak var shareButton: UIButton!
+    @IBOutlet private weak var editButton: UIButton!
 	private var contentInset = UIEdgeInsets()
     private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()
@@ -119,8 +120,6 @@ final class MyToBeVisionViewController: UIViewController {
         toBeVisionDidUpdate()
         syncEditingViews(true)
         UIApplication.shared.setStatusBarStyle(.lightContent)
-        let item = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        navigationItem.backBarButtonItem = item
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -265,10 +264,16 @@ private extension MyToBeVisionViewController {
 extension MyToBeVisionViewController {
 
     @objc func didTapClose(_ sender: UIBarButtonItem) {
+        sender.tintColor = .clear
         router?.close()
     }
 
-    @objc func didTapEdit(_ sender: UIBarButtonItem) {
+    @objc func didTapHelpButton(_ sender: UIBarButtonItem) {
+        let viewController = ScreenHelpViewController(configurator: ScreenHelpConfigurator.make(.me))
+        AppDelegate.current.windowManager.showPriority(viewController, animated: true, completion: nil)
+    }
+
+    @IBAction private func didTapEdit() {
         if isEditing == true {
             editAlertController.dismiss(animated: true, completion: nil)
             self.isEditing = false
@@ -369,8 +374,8 @@ private extension MyToBeVisionViewController {
 
     func syncNavigationButtons(_ isEditing: Bool) {
         let leftButton = UIBarButtonItem()
-        let leftButtonImage = isEditing == true ? nil : R.image.ic_minimize()
-        let leftButtonText = isEditing == true ? "Cancel" : nil
+        let leftButtonImage = isEditing == true ? nil : R.image.ic_close()
+        let leftButtonText = isEditing == true ? R.string.localized.alertButtonTitleCancel() : nil
         let buttonsColor: UIColor = isEditing == true ? .gray : .white
         let leftButtonSelector = isEditing == true ? #selector(cancelEdit) : #selector(didTapClose(_:))
         leftButton.tintColor = buttonsColor
@@ -380,15 +385,21 @@ private extension MyToBeVisionViewController {
         leftButton.action = leftButtonSelector
         self.navigationItem.leftBarButtonItem = leftButton
         let rightButton = UIBarButtonItem()
-        let rightButtonImage = isEditing == true ? nil : R.image.ic_edit()
-        let rightButtonText = isEditing == true ? "Save" : nil
-        let rightButtonSelector = isEditing == true ? #selector(saveEdit) : #selector(didTapEdit(_:))
+        let rightButtonImage = isEditing == true ? nil : R.image.explainer_ico()
+        let rightButtonText = isEditing == true ? R.string.localized.alertButtonTitleSave() : nil
+        let rightButtonSelector = isEditing == true ? #selector(saveEdit) : #selector(didTapHelpButton(_:))
         rightButton.image = rightButtonImage
         rightButton.title = rightButtonText
         rightButton.tintColor = buttonsColor
         rightButton.target = self
         rightButton.action = rightButtonSelector
         self.navigationItem.rightBarButtonItem = rightButton
+        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .selected)
+        editButton.imageView?.tintColor = .gray
+        shareButton.setImage(R.image.ic_share()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        shareButton.setImage(R.image.ic_share()?.withRenderingMode(.alwaysTemplate), for: .selected)
+        shareButton.imageView?.tintColor = .white
     }
 
     func syncEditingViews(_ areHidden: Bool) {
@@ -405,8 +416,8 @@ private extension MyToBeVisionViewController {
         editImageLabel.isHidden = areHidden
         subtitleLabel.isHidden = !areHidden
         headlineTextView.isHidden = isEmptyState == true
-        self.navigationItem.rightBarButtonItem?.isEnabled = isEmptyState == false
-        self.navigationItem.rightBarButtonItem?.tintColor = isEmptyState == true ? .clear : buttonColor
+        navigationItem.rightBarButtonItem?.isEnabled = isEmptyState == false
+        navigationItem.rightBarButtonItem?.tintColor = isEmptyState == true ? .clear : buttonColor
         headlineStatementTopConstraint.constant = headlineTopConstraint
         messageStatementTopConstraint.constant = messageTopConstraint
         view.layoutIfNeeded()

@@ -165,9 +165,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         self.networkManager = networkManager
         articleCollectionProvider = ArticleCollectionProvider(services: services)
         badgeManager = BadgeManager(services: services)
-
         super.init()
-
         articleCollectionProvider.updateBlock = { [unowned self] viewData in
             self.articleCollectionViewController.viewData = viewData
         }
