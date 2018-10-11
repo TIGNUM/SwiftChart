@@ -9,35 +9,30 @@
 import Foundation
 
 protocol GuidePreparation {
-
     var localID: String { get }
     var eventStartDate: Date? { get }
     var priority: Int { get }
 }
 
 protocol GuideNotificationConfiguration {
-
     var localID: String { get }
     var displayAt: (weekday: Int, hour: Int, minute: Int) { get }
     var priority: Int { get }
 }
 
 protocol GuideDailyPrepResult {
-
     var localID: String { get }
     var displayAt: (date: ISODate, hour: Int, minute: Int)? { get }
     var priority: Int { get }
 }
 
 protocol GuideNotificationItem {
-
     var localID: String { get }
     var displayAt: (utcDate: Date, hour: Int, minute: Int)? { get }
     var priority: Int { get }
 }
 
 protocol GuideLearnItem {
-
     var localID: String { get }
     var completedAt: Date? { get }
     var displayAt: (hour: Int, minute: Int)? { get }
@@ -46,7 +41,6 @@ protocol GuideLearnItem {
 }
 
 protocol GuideWhatsHotItem {
-
 	var remoteID: String { get }
 	var createdAt: Date { get }
 	var viewed: Bool { get }
@@ -55,7 +49,6 @@ protocol GuideWhatsHotItem {
 }
 
 protocol GuideItemFactoryProtocol {
-
     func makePreparationItem(status: Guide.Item.Status,
                              representsMultiple: Bool,
                              startsTomorrow: Bool,
@@ -229,7 +222,6 @@ private extension GuideGenerator {
                 localDisplayDate >= localMinDate,
                 let guideItem = factory.makeItem(with: item)
                 else { continue }
-
             days.appendItem(guideItem,
                             hour: displayAt.hour,
                             minute: displayAt.minute,
@@ -320,7 +312,6 @@ private extension GuideGenerator {
                 for configuration in configurations {
                     let displayAt = configuration.displayAt
                     guard displayAt.weekday == localCalendar.component(.weekday, from: date) else { continue }
-
                     let displayAtDate = localCalendar.date(bySettingHour: displayAt.hour,
                                                            minute: displayAt.minute,
                                                            second: 0,
@@ -328,7 +319,6 @@ private extension GuideGenerator {
                     let isoDate = localCalendar.isoDate(from: date)
                     if let displayAtDate = displayAtDate, now >= displayAtDate,
                         let guideItem = factory.makeItem(with: configuration, date: isoDate) {
-
                         days.appendItem(guideItem,
                                         hour: displayAt.hour,
                                         minute: displayAt.minute,
@@ -346,13 +336,11 @@ private extension GuideGenerator {
         var date = now
         while date >= minDate {
             guard let nextDay = localCalendar.date(byAdding: .day, value: 1, to: date) else { break }
-
             var preparationsStartingTomorrow: [GuidePreparation] = []
             var preparationsStartingToday: [GuidePreparation] = []
             var preparationsStartedToday: [GuidePreparation] = []
             for preparation in preparations {
                 guard let eventStart = preparation.eventStartDate else { continue }
-
                 let nowIsAfter3PM = localCalendar.component(.hour, from: now) >= 15
                 if localCalendar.isDate(eventStart, inSameDayAs: nextDay) && date == now && nowIsAfter3PM {
                     preparationsStartingTomorrow.append(preparation)
@@ -393,7 +381,6 @@ private extension GuideGenerator {
             if let item = item {
                 days.appendItem(item, hour: 0, minute: 0, priority: priority, localStartOfDay: startOfDay)
             }
-
             guard let dayBefore = localCalendar.date(byAdding: .day, value: -1, to: date) else { break }
             date = dayBefore
         }

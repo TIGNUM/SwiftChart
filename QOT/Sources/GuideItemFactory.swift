@@ -30,7 +30,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
 
     func makeItem(with item: GuideNotificationConfiguration, date: ISODate) -> Guide.Item? {
         guard let item = item as? NotificationConfigurationObject else { return nil }
-        return guideItem(with: item, date: date)
+        return guideItem(with: item, isoDate: date)
     }
 
     func makeMessageText(with greeting: Guide.Message) -> String {
@@ -150,7 +150,8 @@ private extension GuideItemFactory {
                           affectsTabBarBadge: true)
     }
 
-    func guideItem(with item: NotificationConfigurationObject, date: ISODate) -> Guide.Item? {
+    func guideItem(with item: NotificationConfigurationObject, isoDate: ISODate) -> Guide.Item? {
+        guard isoDate.date?.isToday == true else { return nil }
         let questions = item.questionsFor(services: services)
         let items = dailyPrepItems(questions: questions, notification: item, services: services)
         let content: Guide.Item.Content = .dailyPrep(items: items, feedback: nil)
@@ -165,7 +166,7 @@ private extension GuideItemFactory {
                           link: URL(string: item.link),
                           featureLink: nil,
                           featureButton: nil,
-                          identifier: NotificationID.dailyPrep(date: date).string,
+                          identifier: NotificationID.dailyPrep(date: isoDate).string,
                           affectsTabBarBadge: true)
     }
 

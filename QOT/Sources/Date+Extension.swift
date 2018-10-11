@@ -142,4 +142,8 @@ extension Date {
     var isPast: Bool {
         return self < Date()
     }
+
+    var isToday: Bool {
+        return self.isSameDay(Date())
+    }
 }
