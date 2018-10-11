@@ -130,10 +130,6 @@ extension FormView {
         setupLabels(placeholder: formType.placeholder)
         setupTextField(formType, enabled: enabled)
         setupShowPasswordButton()
-        if UIDevice.isPad == true {
-            textField.autocorrectionType = .no
-            textField.textContentType = UITextContentType("")
-        }
     }
 
     func showError(message: String) {
@@ -174,6 +170,7 @@ private extension FormView {
     func setupTextField(_ formType: FormType, enabled: Bool) {
         textField.tintColor = .white90
         textField.textColor = .white90
+        textField.autocorrectionType = .no
         textField.keyboardType = formType.keyboardType
         textField.returnKeyType = formType.returnKeyType
         textField.autocapitalizationType = formType.autocapitalizationType
@@ -181,6 +178,9 @@ private extension FormView {
         textField.isSecureTextEntry = formType.isSecureTextEntry
         if textField.hasText == true {
             animatePlaceholderLabel()
+        }
+        if UIDevice.isPad == true {
+            textField.textContentType = UITextContentType("")
         }
         textField.isUserInteractionEnabled = enabled
     }
