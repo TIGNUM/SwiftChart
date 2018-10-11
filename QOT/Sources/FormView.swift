@@ -130,6 +130,10 @@ extension FormView {
         setupLabels(placeholder: formType.placeholder)
         setupTextField(formType, enabled: enabled)
         setupShowPasswordButton()
+        if UIDevice.isPad == true {
+            textField.autocorrectionType = .no
+            textField.textContentType = UITextContentType("")
+        }
     }
 
     func showError(message: String) {

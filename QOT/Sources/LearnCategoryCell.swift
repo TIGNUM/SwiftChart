@@ -34,11 +34,19 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     }()
 
     private var titleFont: UIFont {
-        return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? Font.H4Identifier : UIFont.simpleFont(ofSize: 13)
+        if UIDevice.isPad == true {
+            return UIFont.simpleFont(ofSize: 10)
+        } else {
+            return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? Font.H4Identifier : UIFont.simpleFont(ofSize: 10)
+        }
     }
 
     private var percentageFont: UIFont {
-        return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? Font.H7Tag : UIFont.bentonRegularFont(ofSize: 10)
+        if UIDevice.isPad == true {
+            return UIFont.bentonRegularFont(ofSize: 8)
+        } else {
+            return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? Font.H7Tag : UIFont.bentonRegularFont(ofSize: 10)
+        }
     }
 
     // MARK: - Init

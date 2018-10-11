@@ -24,7 +24,12 @@ class AbstractFormViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        defaultTextInputTopConstant = textInputTopConstraint?.constant ?? 0
+        if UIDevice.isPad {
+            defaultTextInputTopConstant = 0
+            textInputTopConstraint?.constant = 0
+        } else {
+            defaultTextInputTopConstant = textInputTopConstraint?.constant ?? 0
+        }
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -76,8 +81,7 @@ private extension AbstractFormViewController {
     }
 
     func updateTextInputConstraints() {
-        textInputTopConstraint?.constant = max(-40,
-                                               defaultTextInputTopConstant - keyboardListener.state.height)
+        textInputTopConstraint?.constant = max(-40, defaultTextInputTopConstant - keyboardListener.state.height)
         UIView.animate(withDuration: 1) { [weak self] in
             self?.view.layoutIfNeeded()
             self?.view.updateConstraints()

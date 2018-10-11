@@ -27,7 +27,6 @@ final class SettingsBubblesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         bubblesView.selectionDelegate = self
         bubblesView.type = settingsType
         setupNavigationBar()

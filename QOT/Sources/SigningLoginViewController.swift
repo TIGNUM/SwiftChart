@@ -15,8 +15,8 @@ final class SigningLoginViewController: AbstractFormViewController {
     @IBOutlet private weak var emailFormContentView: UIView!
     @IBOutlet private weak var passwordFormContentView: UIView!
     @IBOutlet private weak var resetPasswordButton: UIButton!
-	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
-	private lazy var formViewEmail: FormView? = formView()
+    @IBOutlet private weak var topConstraint: NSLayoutConstraint!
+    private lazy var formViewEmail: FormView? = formView()
     private lazy var formViewPassword: FormView? = formView()
     var interactor: SigningLoginInteractorInterface?
 
@@ -34,6 +34,9 @@ final class SigningLoginViewController: AbstractFormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        if UIDevice.isPad == true {
+            addKeyboardObserver()
+        }
     }
 }
 
@@ -145,5 +148,29 @@ extension SigningLoginViewController: FormViewDelegate {
 
     func didUpdateTextfield(formType: FormView.FormType?) {
         interactor?.updateWorkerValue(for: formType)
+    }
+}
+
+// MARK: - NotificationCenter
+
+extension SigningLoginViewController {
+    
+    func addKeyboardObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillShow(notification:)),
+                                               name: .UIKeyboardWillShow,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(keyboardWillHide(notification:)),
+                                               name: .UIKeyboardWillHide,
+                                               object: nil)
+    }
+    
+    @objc func keyboardWillShow(notification: Notification) {
+        formViewPassword?.frame.origin.y -= Layout.padding_50
+    }
+    
+    @objc func keyboardWillHide(notification: Notification) {
+        formViewPassword?.frame.origin.y += Layout.padding_50
     }
 }

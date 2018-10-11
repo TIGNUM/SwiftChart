@@ -41,19 +41,21 @@ final class BubblesView: UIView {
     private var centerPoint: CGPoint {
         return CGPoint(x: bounds.width / 2, y: bounds.height / 2)
     }
+    
+    private var dividend: CGFloat {
+        return UIDevice.isPad ? 1.2 : 1
+    }
 
     // MARK: - Init
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         labelsLayout()
         setupHierarchy()
     }
 
     override func layoutSubviews() {
         super.layoutSubviews()
-
         setupBubblesInfo()
         setupBubbles()
         setupGestureRecognizer()
@@ -153,22 +155,22 @@ private extension BubblesView {
 
     func setupBubbles() {
         let bubble1centerPoint = CGPoint(x: centerPoint.x - 60, y: centerPoint.y + 115)
-        bubble1.path = UIBezierPath.circlePath(center: bubble1centerPoint, radius: 90).cgPath
+        bubble1.path = UIBezierPath.circlePath(center: bubble1centerPoint, radius: 90 / dividend).cgPath
         bubbles.append(Bubble(shape: bubble1, type: bubblesValues[0]))
         applyBubbleGradient(bubble: bubble1)
 
         let bubble2centerPoint = CGPoint(x: centerPoint.x + 60, y: centerPoint.y - 105)
-        bubble2.path = UIBezierPath.circlePath(center: bubble2centerPoint, radius: 90).cgPath
+        bubble2.path = UIBezierPath.circlePath(center: bubble2centerPoint, radius: 90 / dividend).cgPath
         bubbles.append(Bubble(shape: bubble2, type: bubblesValues[1]))
         applyBubbleGradient(bubble: bubble2)
 
         let bubble3centerPoint = CGPoint(x: centerPoint.x - 85, y: centerPoint.y - 45)
-        bubble3.path = UIBezierPath.circlePath(center: bubble3centerPoint, radius: 60).cgPath
+        bubble3.path = UIBezierPath.circlePath(center: bubble3centerPoint, radius: 60 / dividend).cgPath
         bubbles.append(Bubble(shape: bubble3, type: bubblesValues[2]))
         applyBubbleGradient(bubble: bubble3)
 
         let bubble4centerPoint = CGPoint(x: centerPoint.x + 95, y: centerPoint.y + 55)
-        bubble4.path = UIBezierPath.circlePath(center: bubble4centerPoint, radius: 60).cgPath
+        bubble4.path = UIBezierPath.circlePath(center: bubble4centerPoint, radius: 60 / dividend).cgPath
         bubbles.append(Bubble(shape: bubble4, type: bubblesValues[3]))
         applyBubbleGradient(bubble: bubble4)
 
@@ -193,8 +195,9 @@ private extension BubblesView {
         bubble4Label.text = bubblesValues[3].title
 
         if type == .about {
-            let bubble5centerPoint = CGPoint(x: centerPoint.x - 85, y: centerPoint.y - 170)
-            bubble5.path = UIBezierPath.circlePath(center: bubble5centerPoint, radius: 50).cgPath
+            let yBubblePadding: CGFloat = UIDevice.isPad ? 145 : 170
+            let bubble5centerPoint = CGPoint(x: centerPoint.x - 85, y: centerPoint.y - yBubblePadding)
+            bubble5.path = UIBezierPath.circlePath(center: bubble5centerPoint, radius: 50 / dividend).cgPath
             bubbles.append(Bubble(shape: bubble5, type: bubblesValues[4]))
             applyBubbleGradient(bubble: bubble5)
 
