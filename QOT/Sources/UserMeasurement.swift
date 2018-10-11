@@ -99,7 +99,7 @@ final class UserMeasurement {
 
     static func weight(kilograms: Double, unit: String) -> UserMeasurement {
         var kilogramsValues: [(value: Double, title: String)] = []
-        for weight in stride(from: 0.0, to: 1000.0, by: 0.5) {
+        for weight in stride(from: 1.0, to: 501.0, by: 1.0) {
             let kilograms = Measurement(value: weight, unit: UnitMass.kilograms)
             let displayValue = String(format: "%.1f", weight)
             kilogramsValues.append((kilograms.value, displayValue))
@@ -107,7 +107,7 @@ final class UserMeasurement {
         let kilogramsOption = Option(unit: "kg", values: kilogramsValues)
 
         var poundsValues: [(value: Double, title: String)] = []
-        for weight in stride(from: 0.0, to: 2000.0, by: 1.0) {
+        for weight in stride(from: 1.0, to: 1105.0, by: 1.0) {
             let pounds = Measurement(value: weight, unit: UnitMass.pounds)
             let kilograms = pounds.converted(to: .kilograms)
             let displayValue = String(format: "%d", Int(weight))
@@ -126,7 +126,7 @@ final class UserMeasurement {
         formatter.numberFormatter.maximumFractionDigits = 0
 
         var feetValues: [(value: Double, title: String)] = []
-        for inches in stride(from: 0.0, to: 120.0, by: 1.0) {
+        for inches in stride(from: 1.0, to: 120.0, by: 1.0) {
             let inches = Measurement(value: inches, unit: UnitLength.inches)
             let meters = inches.converted(to: .meters).value
             let displayValue = formatter.string(fromMeters: meters)
@@ -135,7 +135,7 @@ final class UserMeasurement {
         let feetOption = Option(unit: "ft", values: feetValues)
 
         var centimeterValues: [(value: Double, title: String)] = []
-        for height in stride(from: 0.0, to: 300.0, by: 1.0) {
+        for height in stride(from: 1.0, to: 300.0, by: 1.0) {
             let centimeters = Measurement(value: height, unit: UnitLength.centimeters)
             let meters = centimeters.converted(to: .meters).value
             let displayValue = String(format: "%d", Int(height))
