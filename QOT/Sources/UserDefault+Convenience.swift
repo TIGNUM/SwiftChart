@@ -27,8 +27,7 @@ extension UserDefault {
                 .whatsHotListLastViewed,
                 .iPadAdviceDoNotShowAgain,
                 .whatsHotBadgeNumber,
-                .guideBadgeNumber,
-                .firstInstallationTimestamp]
+                .guideBadgeNumber]
     }
 
     static func objectsToClearOnNewRegistration() -> [UserDefault] {
