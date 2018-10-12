@@ -39,8 +39,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         super.viewWillAppear(animated)
         searchBar.alpha = 1
         searchBar.becomeFirstResponder()
-        tableView.register(R.nib.searchTableViewCell(),
-                           forCellReuseIdentifier: R.reuseIdentifier.searchTableViewCell_Identifier.identifier)
+        tableView.registerDequeueable(SearchTableViewCell.self)
         UIApplication.shared.setStatusBarStyle(.lightContent)
     }
 
@@ -146,12 +145,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let identifier = R.reuseIdentifier.searchTableViewCell_Identifier.identifier
-        guard let searchCell = tableView.dequeueReusableCell(withIdentifier: identifier,
-                                                             for: indexPath) as? SearchTableViewCell else {
-            fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
-        }
-
+        let searchCell: SearchTableViewCell = tableView.dequeueCell(for: indexPath)
         if searchResults.isEmpty == true && searchQuery.isEmpty == false {
             searchCell.configure(title: R.string.localized.alertTitleNoContent(), contentType: nil, duration: nil)
         } else {

@@ -227,7 +227,7 @@ class CalendarEventTests: XCTestCase {
             let start = Date().addingTimeInterval(-(day * 30))
             let end = Date().addingTimeInterval(day * 30)
             let realm = try realmProvider?.realm()
-            let task = CalendarImportTask(startDate: start, endDate: end, realm: realm!, store: eventStore!)
+            let task = CalendarImportTask(startDate: start, endDate: end, realm: realm!)
             let result = task.sync(calendars: eventStore!.calendars(for: .event))
             for calendar in eventStore!.calendars(for: .event) {
                 print (calendar)
