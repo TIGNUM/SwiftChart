@@ -154,7 +154,7 @@ extension SigningLoginViewController: FormViewDelegate {
 // MARK: - NotificationCenter
 
 extension SigningLoginViewController {
-    
+
     func addKeyboardObserver() {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(keyboardWillShow(notification:)),
@@ -165,11 +165,11 @@ extension SigningLoginViewController {
                                                name: .UIKeyboardWillHide,
                                                object: nil)
     }
-    
+
     @objc func keyboardWillShow(notification: Notification) {
         formViewPassword?.frame.origin.y -= Layout.padding_50
     }
-    
+
     @objc func keyboardWillHide(notification: Notification) {
         formViewPassword?.frame.origin.y += Layout.padding_50
     }

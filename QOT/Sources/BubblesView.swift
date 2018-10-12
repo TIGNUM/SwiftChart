@@ -41,7 +41,7 @@ final class BubblesView: UIView {
     private var centerPoint: CGPoint {
         return CGPoint(x: bounds.width / 2, y: bounds.height / 2)
     }
-    
+
     private var dividend: CGFloat {
         return UIDevice.isPad ? 1.2 : 1
     }

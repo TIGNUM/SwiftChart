@@ -97,6 +97,7 @@ final class MyToBeVisionViewController: UIViewController {
         setupView()
         syncEditingViews(true)
         addKeyboardObservers()
+        edit(false)
     }
 
     @available(iOS 11.0, *)
