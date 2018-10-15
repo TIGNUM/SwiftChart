@@ -16,6 +16,7 @@ final class SettingsMenuHeader: UIView {
 
     @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var nameLabel: UILabel!
+    @IBOutlet private weak var lastNameLabel: UILabel!
     @IBOutlet private weak var positionLabel: UILabel!
     @IBOutlet private weak var collectionView: UICollectionView!
     private var viewModel: SettingsMenuViewModel?
@@ -47,7 +48,8 @@ final class SettingsMenuHeader: UIView {
     }
 
     func updateUserName() {
-        nameLabel.text = viewModel?.userName
+        nameLabel.text = viewModel?.userFirstName
+        lastNameLabel.text = viewModel?.userLastName
     }
 }
 

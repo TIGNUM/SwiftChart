@@ -33,8 +33,12 @@ final class SettingsMenuViewModel {
         return tiles.count
     }
 
-    var userName: String {
-        return String(format: "%@\n%@", user.givenName, user.familyName).uppercased()
+    var userFirstName: String {
+        return user.givenName.uppercased()
+    }
+
+    var userLastName: String {
+        return user.familyName.uppercased()
     }
 
     var userJobTitle: String? {

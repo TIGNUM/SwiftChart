@@ -270,7 +270,7 @@ private extension ArticleItemViewController {
     }
 
     func PDFTableViewCell(tableView: UITableView,
-                          indexPath: IndexPath, 
+                          indexPath: IndexPath,
                           attributedString: NSAttributedString,
                           timeToReadSeconds: Int) -> LearnPDFCell {
         let cell: LearnPDFCell = tableView.dequeueCell(for: indexPath)
