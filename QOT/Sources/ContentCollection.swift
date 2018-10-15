@@ -76,11 +76,18 @@ final class ContentCollection: SyncableObject {
             let total = durations.reduce(0) { ($0 / 60) + ($1 / 60) }
             let min = String(Int(total))
             durationString = R.string.localized.learnContentListViewMinutesLabelWatch(min)
+        } else if isFoundation == true {
+            let videoItem = items.filter { $0.format == "video" }.first
+            durationString = videoItem?.durationString ?? ""
         } else {
             let min = String(max(minutesToRead, 1))
             durationString = R.string.localized.learnContentListViewMinutesLabel(min)
         }
         return durationString
+    }
+
+    var isFoundation: Bool {
+        return contentCategories.first?.title.caseInsensitiveCompare("Performance Foundation") == .orderedSame
     }
 
     var hasVideoOnly: Bool {
