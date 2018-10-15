@@ -11,13 +11,9 @@ import Rswift
 import Anchorage
 
 protocol ArticleItemViewControllerDelegate: class {
-
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController)
-
     func didTapClose(in viewController: ArticleItemViewController)
-
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
-
     func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
 }
 
@@ -99,11 +95,13 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
 
     func reloadArticles(viewModel: ArticleItemViewModel) {
         self.viewModel = viewModel
-        setTableViewHeader()
-        resizeHeaderView()
-        tableView.reloadData()
-        tableView.layoutIfNeeded()
-        tableView.setContentOffset(CGPoint(x: 0, y: -(tableView.tableHeaderView?.bounds.height ?? 0)), animated: false)
+        UIView.animate(withDuration: 0.2, animations: {
+            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.paddingTop), animated: false)
+        }, completion: { _ in
+            self.setTableViewHeader()
+            self.tableView.reloadData()
+            self.tableView.layoutIfNeeded()
+        })
         viewModel.markContentAsRead()
     }
 
@@ -120,18 +118,23 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
 private extension ArticleItemViewController {
 
     func resizeHeaderView() {
-        guard
-            let headerView = tableView.tableHeaderView,
-            let header = viewModel.articleHeader else { return }
+        guard let headerView = tableView.tableHeaderView, let header = viewModel.articleHeader else { return }
         let sidePadding = CGFloat(56)
         let frameWidth = tableView.frame.size.width - sidePadding
-        let titleHeight = calculateLabelHeight(text: header.articleTitle, font: Font.H5SecondaryHeadline, dispayedLineHeight: 18, frameWidth: frameWidth, characterSpacing: 1)
-        let subTitleHeight = calculateLabelHeight(text: header.articleSubTitle, font: Font.H1MainTitle, dispayedLineHeight: 46, frameWidth: frameWidth, characterSpacing: 2)
+        let titleHeight = calculateLabelHeight(text: header.articleTitle,
+                                               font: Font.H5SecondaryHeadline,
+                                               dispayedLineHeight: 18,
+                                               frameWidth: frameWidth,
+                                               characterSpacing: 1)
+        let subTitleHeight = calculateLabelHeight(text: header.articleSubTitle,
+                                                  font: Font.H1MainTitle,
+                                                  dispayedLineHeight: 46,
+                                                  frameWidth: frameWidth,
+                                                  characterSpacing: 2)
         let dateHeight = CGFloat(14)
         let spacing: CGFloat = 20
         let height = titleHeight + subTitleHeight + dateHeight + spacing
         var headerFrame = headerView.frame
-
         if height != headerFrame.size.height {
             headerFrame.size.height = height
             headerView.frame = headerFrame
@@ -139,10 +142,13 @@ private extension ArticleItemViewController {
         }
     }
 
-    func calculateLabelHeight(text: String, font: UIFont, dispayedLineHeight: CGFloat, frameWidth: CGFloat, characterSpacing: CGFloat?) -> CGFloat {
+    func calculateLabelHeight(text: String,
+                              font: UIFont,
+                              dispayedLineHeight: CGFloat,
+                              frameWidth: CGFloat,
+                              characterSpacing: CGFloat?) -> CGFloat {
         let lineHeight = "a".height(withConstrainedWidth: frameWidth, font: font)
         let headerHeight = text.height(withConstrainedWidth: frameWidth, font: font, characterSpacing: characterSpacing)
-
         return headerHeight / lineHeight * dispayedLineHeight
     }
 
@@ -188,7 +194,6 @@ private extension ArticleItemViewController {
             tableView.leftAnchor == view.leftAnchor
             tableView.contentInset.top = paddingTop
         }
-
         tableView.bottomAnchor == view.safeBottomAnchor - 60
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
@@ -218,7 +223,6 @@ private extension ArticleItemViewController {
         guard let headerView = (nib.instantiate(withOwner: self, options: nil).first as? ArticleItemHeaderView) else {
             return
         }
-
         headerView.setupView(header: header)
         headerView.backgroundColor = .clear
         tableView.tableHeaderView = headerView
@@ -232,7 +236,6 @@ private extension ArticleItemViewController {
         itemTextCell.setup(topText: topText, bottomText: bottomText, delegate: self)
         itemTextCell.backgroundColor = .clear
         itemTextCell.contentView.backgroundColor = .clear
-
         return itemTextCell
     }
 
@@ -244,11 +247,13 @@ private extension ArticleItemViewController {
                          attributedString: NSAttributedString,
                          canStream: Bool) -> ImageSubtitleTableViewCell {
         let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        imageCell.setupData(placeHolder: placeholderURL, placeHolderImage: placeholderImage, description: attributedString, canStream: canStream)
+        imageCell.setupData(placeHolder: placeholderURL,
+                            placeHolderImage: placeholderImage,
+                            description: attributedString,
+                            canStream: canStream)
         imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
         imageCell.backgroundColor = .clear
         imageCell.contentView.backgroundColor = .clear
-
         return imageCell
     }
 
@@ -264,14 +269,16 @@ private extension ArticleItemViewController {
         return imageCell
     }
 
-    func PDFTableViewCell(tableView: UITableView, indexPath: IndexPath, attributedString: NSAttributedString, timeToReadSeconds: Int) -> LearnPDFCell {
+    func PDFTableViewCell(tableView: UITableView,
+                          indexPath: IndexPath, 
+                          attributedString: NSAttributedString,
+                          timeToReadSeconds: Int) -> LearnPDFCell {
         let cell: LearnPDFCell = tableView.dequeueCell(for: indexPath)
         cell.backgroundColor = .clear
         cell.configure(titleText: attributedString,
                        timeToReadSeconds: timeToReadSeconds,
                        titleColor: .white,
                        timeColor: .gray)
-
         return cell
     }
 
@@ -289,9 +296,7 @@ private extension ArticleItemViewController {
         let date = Date().addingTimeInterval(TimeInterval(relatedArticle.minutesToRead * 60))
         let subtitle = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) ?? ""
         relatedArticleCell.setupView(title: relatedArticle.title, subTitle: subtitle, previewImageURL: relatedArticle.thumbnailURL)
-
         log("time: \(subtitle)")
-
         return relatedArticleCell
     }
 
@@ -319,7 +324,6 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
         switch indexPath.section {
         case 0:
             let item = viewModel.articleItem(at: indexPath)
-
             switch item.contentItemValue {
             case .audio(let title, _, let placeholderURL, _, _, _):
                 return mediaStreamCell(
@@ -329,22 +333,19 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     placeholderURL: placeholderURL,
                     placeholderImage: R.image.audioPlaceholder(),
                     attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
-                    canStream: true
-                )
+                    canStream: true)
             case .image(let title, _, let url):
                 return imageTableViweCell(
                     tableView: tableView,
                     indexPath: indexPath,
                     attributeString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
-                    url: url
-                )
+                    url: url)
             case .listItem(let text):
                 return contentItemTextTableViewCell(
                     tableView: tableView,
                     indexPath: indexPath,
                     topText: item.contentItemValue.style(textStyle: .paragraph, text: text, textColor: .white),
-                    bottomText: nil
-                )
+                    bottomText: nil)
             case .text(let text, let style):
                 var attributedTopText = item.contentItemValue.style(textStyle: style, text: text, textColor: .white)
                 if style.headline == true {
@@ -367,8 +368,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     placeholderURL: placeholderURL,
                     placeholderImage: R.image.preloading(),
                     attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
-                    canStream: true
-                )
+                    canStream: true)
             case .pdf(let title, _, _, _):
                 return PDFTableViewCell(tableView: tableView,
                                         indexPath: indexPath,
@@ -393,7 +393,6 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
             let titleLabel = UILabel(frame: CGRect(x: 28, y: 60, width: view.frame.width, height: 18))
             titleLabel.attributedText = Style.headlineSmall(R.string.localized.learnContentItemTitleRelatedArticles(), .white).attributedString(lineSpacing: 1.5)
             headerView.addSubview(titleLabel)
-
             return headerView
         }
 
@@ -402,7 +401,6 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
         switch indexPath.section {
         case 0:
             let item = viewModel.articleItem(at: indexPath)
