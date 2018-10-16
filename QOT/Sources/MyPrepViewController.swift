@@ -89,10 +89,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         updateReadyState()
-        if let initialItem = viewModel.initialItem, viewModel.itemCount > 0 {
-            tableView.scrollToRow(at: IndexPath(row: initialItem, section: 0), at: .middle, animated: true)
-            viewDidLayoutSubviews()
-        }
+        tableView.setContentOffset(.zero, animated: false)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
