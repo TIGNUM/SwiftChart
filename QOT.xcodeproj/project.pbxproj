@@ -128,6 +128,8 @@
 		36796A5F20D3C4B800B55429 /* SigningInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5420D3C4B800B55429 /* SigningInfoViewController.swift */; };
 		36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5520D3C4B800B55429 /* SigningInfoConfigurator.swift */; };
 		36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */; };
+		3679A4E12175E3BA00DF761A /* WebViewContent.html in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E02175E3BA00DF761A /* WebViewContent.html */; };
+		3679A4E32175E45300DF761A /* qot_clip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E22175E45200DF761A /* qot_clip.gif */; };
 		36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */; };
 		3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3686678320D3835900B400FE /* AbstractFormViewController.swift */; };
 		368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368BE2EA20EF4A9600A6B809 /* UserSigning.swift */; };
@@ -937,6 +939,8 @@
 		36796A5420D3C4B800B55429 /* SigningInfoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoViewController.swift; sourceTree = "<group>"; };
 		36796A5520D3C4B800B55429 /* SigningInfoConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoConfigurator.swift; sourceTree = "<group>"; };
 		36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoPresenter.swift; sourceTree = "<group>"; };
+		3679A4E02175E3BA00DF761A /* WebViewContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = WebViewContent.html; sourceTree = "<group>"; };
+		3679A4E22175E45200DF761A /* qot_clip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = qot_clip.gif; path = Media/qot_clip.gif; sourceTree = "<group>"; };
 		36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Siren.swift"; sourceTree = "<group>"; };
 		3686678320D3835900B400FE /* AbstractFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractFormViewController.swift; sourceTree = "<group>"; };
 		368BE2EA20EF4A9600A6B809 /* UserSigning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigning.swift; sourceTree = "<group>"; };
@@ -1676,6 +1680,7 @@
 		36433D1B203EBFB30043F853 /* HTML */ = {
 			isa = PBXGroup;
 			children = (
+				3679A4E02175E3BA00DF761A /* WebViewContent.html */,
 				CB8C34551EAF7F200003AB65 /* styles.css */,
 			);
 			name = HTML;
@@ -2625,6 +2630,7 @@
 		CB78D3361F9F674A0068A54A /* Bundled Media */ = {
 			isa = PBXGroup;
 			children = (
+				3679A4E22175E45200DF761A /* qot_clip.gif */,
 				CBC5A5761FA07F11007B9A5B /* 15_min_power_nap_with_voice.m4a */,
 				CBC5A5751FA07F11007B9A5B /* 90_min_power_nap.m4a */,
 				CBC5A5721FA07F10007B9A5B /* 15_min_power_nap_no_voice.m4a */,
@@ -3867,6 +3873,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3679A4E12175E3BA00DF761A /* WebViewContent.html in Resources */,
 				366AFD1F20BEAA6700109F29 /* Apercu-Bold.otf in Resources */,
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
@@ -3905,6 +3912,7 @@
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				CB94423E1FDFE55E00E2B122 /* SlideShowViewController.xib in Resources */,
 				3631232E20C7CC5C00D97D01 /* SigningEmailViewController.xib in Resources */,
+				3679A4E32175E45300DF761A /* qot_clip.gif in Resources */,
 				7F6567321FE13BFB00A6CB7F /* ScreenHelpViewController.xib in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,

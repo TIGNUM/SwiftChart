@@ -25,9 +25,7 @@ extension ContentItem {
     }
 
     var bundledAudioURL: URL? {
-        guard let mediaID = valueMediaID.value, let fileName = bundledMediaNames[mediaID] else {
-            return nil
-        }
+        guard let mediaID = valueMediaID.value, let fileName = bundledMediaNames[mediaID] else { return nil }
         return Bundle.main.url(forResource: fileName, withExtension: nil)
     }
 }

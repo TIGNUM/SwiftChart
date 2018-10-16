@@ -413,7 +413,7 @@ extension AppCoordinator {
         let navigationController = UINavigationController(rootViewController: signingController)
         navigationController.navigationBar.applyDefaultStyle()
         navigationController.modalTransitionStyle = .crossDissolve
-        navigationController.modalPresentationStyle = .custom
+        navigationController.modalPresentationStyle = .overFullScreen
         windowManager.show(navigationController, animated: true, completion: nil)
     }
 

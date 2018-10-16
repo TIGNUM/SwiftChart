@@ -14,6 +14,7 @@ final class SigningInfoViewController: UIViewController {
 
     var interactor: SigningInfoInteractorInterface?
     private var timer: Timer?
+    @IBOutlet private weak var webView: UIWebView!
     @IBOutlet private weak var bottomButton: UIButton!
     @IBOutlet private weak var pageControl: PageControl!
     @IBOutlet private weak var collectionView: UICollectionView!
@@ -38,6 +39,7 @@ final class SigningInfoViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        navigationController?.navigationBar.isHidden = true
         setupAutoScroll()
     }
 
@@ -79,6 +81,17 @@ private extension SigningInfoViewController {
         }
     }
 
+    func setupWebViewBackground() {
+        let htmlPath = Bundle.main.path(forResource: "WebViewContent", ofType: "html")
+        let htmlURL = URL(fileURLWithPath: htmlPath!)
+        let html = try? Data(contentsOf: htmlURL)
+        webView.load(html!, mimeType: "text/html",
+                          textEncodingName: "UTF-8",
+                          baseURL: htmlURL.deletingLastPathComponent())
+        webView.scalesPageToFit = true
+        webView.contentMode = .scaleAspectFit
+    }
+
     func currentPageIndex() -> Int {
         let pageWidth = collectionView.frame.size.width
         let centerOffsetX = collectionView.contentOffset.x + (pageWidth * 0.5)
@@ -110,6 +123,7 @@ private extension SigningInfoViewController {
 extension SigningInfoViewController: SigningInfoViewControllerInterface {
 
     func setup() {
+        setupWebViewBackground()
         setupButtons()
         setupCollectionView()
     }
