@@ -1073,7 +1073,7 @@ extension AppCoordinator {
         currentPresentedController = viewController
     }
 
-    func presentFeatureArticelContentItems(contentID: Int, guideItem: Guide.Item?) {
+    func presentFeatureArticelContentItems(contentID: Int, guideItem: Guide.Item?, showHeader: Bool = true) {
         guard
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
             let services = services,
@@ -1083,7 +1083,7 @@ extension AppCoordinator {
                                                             root: rootViewController,
                                                             services: services,
                                                             contentCollection: content,
-                                                            articleHeader: ArticleCollectionHeader(content: content),
+                                                            articleHeader: showHeader ? ArticleCollectionHeader(content: content) : nil,
                                                             topTabBarTitle: guideItem?.subtitle.uppercased(),
                                                             shouldPush: false,
                                                             guideItem: guideItem) else { return }

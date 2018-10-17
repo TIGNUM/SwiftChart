@@ -251,7 +251,13 @@ extension LaunchHandler {
         guard
             let contentIDString = scheme.queryParametter(url: url),
             let contentID = Int(contentIDString) else { return }
-        appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID, guideItem: guideItem)
+        if guideItem?.identifier == "learn#103423" {
+            appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
+                                                                         guideItem: guideItem,
+                                                                         showHeader: false)
+        } else {
+            appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID, guideItem: guideItem)
+        }
     }
 }
 
