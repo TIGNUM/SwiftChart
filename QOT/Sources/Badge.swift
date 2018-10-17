@@ -63,9 +63,7 @@ private extension Badge {
         insets = CGSize(width: 2, height: 2)
         badgeColor = .cherryRed
         textColor = .white
-        borderColor = .white
-        borderWidth = 1
-        font = UIFont.preferredFont(forTextStyle: .footnote)
+        font = .preferredFont(forTextStyle: .footnote)
     }
 
     func setPosition(_ badgeType: BadgeType) {
