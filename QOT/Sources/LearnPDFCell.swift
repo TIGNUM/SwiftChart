@@ -32,7 +32,7 @@ class LearnPDFCell: UITableViewCell, Dequeueable {
         if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
             timeToReadText = "\(timeString)  \(R.string.localized.learnContentItemToRead())".uppercased()
         }
-        timeToRead.setAttrText(text: timeToReadText, font: .H7Tag, characterSpacing: 2)
+        timeToRead.setAttrText(text: timeToReadText, font: Font.H7Tag, characterSpacing: 2)
         timeToRead.textColor = timeColor
     }
 }

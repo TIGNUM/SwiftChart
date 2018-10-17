@@ -28,11 +28,11 @@ final class SettingsMenuCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     func setup(with title: String, subTitle: String) {
         timeLabel.attributedText = NSMutableAttributedString(string: title,
-                                                             font: .H6NavigationTitle,
+                                                             font: Font.H6NavigationTitle,
                                                              lineSpacing: 2)
         titleLabel.attributedText = NSMutableAttributedString(string: subTitle,
                                                               letterSpacing: 2,
-                                                              font: .H7Tag,
+                                                              font: Font.H7Tag,
                                                               lineSpacing: 3.2,
                                                               textColor: .white30)
     }

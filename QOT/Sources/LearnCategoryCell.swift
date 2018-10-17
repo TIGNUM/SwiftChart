@@ -35,17 +35,17 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     private var titleFont: UIFont {
         if UIDevice.isPad == true {
-            return .H7Tag
+            return UIFont.simpleFont(ofSize: 10)
         } else {
-            return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? .H4Identifier : .H7Tag
+            return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? Font.H4Identifier : UIFont.simpleFont(ofSize: 10)
         }
     }
 
     private var percentageFont: UIFont {
         if UIDevice.isPad == true {
-            return .H8Tag
+            return UIFont.bentonRegularFont(ofSize: 8)
         } else {
-            return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? .H7Tag : .H7Tag
+            return UIScreen.main.bounds.width > Layout.Device.iPhone5width ? Font.H7Tag : UIFont.bentonRegularFont(ofSize: 10)
         }
     }
 

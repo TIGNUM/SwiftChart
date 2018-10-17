@@ -78,7 +78,7 @@ private extension PermissionsCell {
         permissionSwitch.layer.borderWidth = 1
         permissionSwitch.layer.cornerRadius = 16
         permissionSwitch.layer.borderColor = UIColor.white40.cgColor
-        permissionLabel.font = .H5SecondaryHeadline
+        permissionLabel.font = UIFont.simpleFont(ofSize: 16)
         permissionSwitch.addTarget(self, action: #selector(didTapSwitch), for: .valueChanged)
         setSwitchState()
     }

@@ -53,11 +53,11 @@ private extension MeetingsIncreasingChart {
         addSubview(thisWeekNumberLabel)
         thisWeekNumberLabel.textColor = .white
         thisWeekNumberLabel.textAlignment = .center
-        thisWeekNumberLabel.font = .H2SecondaryTitle
+        thisWeekNumberLabel.font = Font.H2SecondaryTitle
         addSubview(thisWeekLabel)
         thisWeekLabel.textColor = .gray
         thisWeekLabel.textAlignment = .center
-        thisWeekLabel.font = .H7SectorTitle
+        thisWeekLabel.font = Font.H7SectorTitle
         thisWeekLabel.addCharactersSpacing(spacing: 2, text: "THIS WEEK")
         addSubview(firstSeparatorView)
         firstSeparatorView.backgroundColor = .gray
@@ -65,11 +65,11 @@ private extension MeetingsIncreasingChart {
         addSubview(lastWeekNumberLabel)
         lastWeekNumberLabel.textColor = .white
         lastWeekNumberLabel.textAlignment = .center
-        lastWeekNumberLabel.font = .H2SecondaryTitle
+        lastWeekNumberLabel.font = Font.H2SecondaryTitle
         addSubview(lastWeekLabel)
         lastWeekLabel.textColor = .gray
         lastWeekLabel.textAlignment = .center
-        lastWeekLabel.font = .H7SectorTitle
+        lastWeekLabel.font = Font.H7SectorTitle
         lastWeekLabel.addCharactersSpacing(spacing: 2, text: "LAST WEEK")
         addSubview(secondSeparatorView)
         secondSeparatorView.backgroundColor = .gray
@@ -77,11 +77,11 @@ private extension MeetingsIncreasingChart {
         addSubview(percentageLabel)
         percentageLabel.textColor = .green
         percentageLabel.textAlignment = .center
-        percentageLabel.font = .H2SecondaryTitle
+        percentageLabel.font = Font.H2SecondaryTitle
         addSubview(changeLabel)
         changeLabel.textColor = .gray
         changeLabel.textAlignment = .center
-        changeLabel.font = .H7SectorTitle
+        changeLabel.font = Font.H7SectorTitle
         changeLabel.addCharactersSpacing(spacing: 2, text: "CHANGE")
     }
 

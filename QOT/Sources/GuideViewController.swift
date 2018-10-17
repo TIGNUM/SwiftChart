@@ -14,6 +14,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     // MARK: - Properties
 
     private let sectionHeaderHeight: CGFloat = 24
+    private let fadeContainerView = FadeContainerView()
     private var days: [Guide.Day] = []
     private let loadingView = BlurLoadingView(lodingText: R.string.localized.guideLoading(),
                                               activityIndicatorStyle: .whiteLarge)
@@ -103,20 +104,26 @@ extension GuideViewController: GuideViewControllerInterface {
 private extension GuideViewController {
 
     func setupView() {
-        view.backgroundColor = .navy
         tableView.tableHeaderView = greetingView
         tableView.estimatedRowHeight = 300
-        view.addSubview(tableView)
-        view.addSubview(loadingView)
+        let backgroundImageView = UIImageView(image: R.image._1_1Learn())
+        view.addSubview(fadeContainerView)
+        fadeContainerView.addSubview(backgroundImageView)
+        fadeContainerView.addSubview(tableView)
+        fadeContainerView.addSubview(loadingView)
 		if #available(iOS 11.0, *) {
-			tableView.edgeAnchors == view.edgeAnchors
+			tableView.edgeAnchors == fadeContainerView.edgeAnchors
 		} else {
 			tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
 			tableView.leadingAnchor == view.leadingAnchor
 			tableView.trailingAnchor == view.trailingAnchor
 			tableView.bottomAnchor == view.bottomAnchor - Layout.statusBarHeight
 		}
-		loadingView.edgeAnchors == view.edgeAnchors
+		fadeContainerView.verticalAnchors == view.verticalAnchors
+		fadeContainerView.horizontalAnchors == view.horizontalAnchors
+		backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
+		loadingView.edgeAnchors == fadeContainerView.edgeAnchors
+        fadeContainerView.setFade(top: view.frame.height * 0.15, bottom: view.frame.height * 0.15)
         view.layoutIfNeeded()
         syncHeaderView()
     }

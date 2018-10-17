@@ -31,19 +31,19 @@ final class ArticleItemHeaderView: UIView {
 		let duration = header.articleDuration.uppercased() == "0 MIN" ? "1 MIN" : header.articleDuration.uppercased()
 		titleLabel.attributedText = attributedText(letterSpacing: 1,
 												   text: header.articleTitle.uppercased(),
-												   font: .H5SecondaryHeadline,
+												   font: Font.H5SecondaryHeadline,
 												   textColor: .white,
 												   alignment: .left)
 		subTitleLabel.attributedText = attributedText(text: header.articleSubTitle.uppercased(),
-													  font: .H1MainTitle,
+													  font: Font.H1MainTitle,
 													  textColor: .white,
 													  alignment: .left)
 		dateLabel.attributedText = attributedText(text: dateFormatter.string(from: header.articleDate).uppercased(),
-												  font: .H7Tag,
+												  font: Font.H7Tag,
 												  textColor: .white20,
 												  alignment: .left)
 		durationLabel.attributedText = attributedText(text: duration,
-													  font: .H7Tag,
+													  font: Font.H7Tag,
 													  textColor: .white20,
 													  alignment: .left)
         if let image = header.thumbnail {

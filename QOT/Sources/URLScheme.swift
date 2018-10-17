@@ -104,9 +104,9 @@ enum URLScheme: String {
              .meMeeting,
              .meSleep,
              .mePeakPerformance,
-             .meTravel: return AppCoordinator.Router.Destination(tabBar: .data, topTabBar: .myData)
-        case .meMyWhy: return AppCoordinator.Router.Destination(tabBar: .data, topTabBar: .myWhy)
-        case .guide: return AppCoordinator.Router.Destination(tabBar: .today, topTabBar: .guide)
+             .meTravel: return AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData)
+        case .meMyWhy: return AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myWhy)
+        case .guide: return AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide)
         case .prepare: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach)
         case .myPreps,
              .weeklyPeakPerformance: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)

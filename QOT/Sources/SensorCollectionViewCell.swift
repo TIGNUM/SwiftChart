@@ -28,9 +28,9 @@ final class SensorCollectionViewCell: UICollectionViewCell, Dequeueable {
     func setupView() {
         backgroundColor = .white8
         corner(radius: Layout.CornerRadius.eight.rawValue)
-        sensorNameLabel.font = .H7Title
+        sensorNameLabel.font = Font.H7Title
         sensorNameLabel.textColor = .white
-        connectLabel.font = .H7Title
+        connectLabel.font = Font.H7Title
         connectLabel.textColor = .addSensorConnectGray
     }
 

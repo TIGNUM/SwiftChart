@@ -52,7 +52,7 @@ private extension SigningDigitViewController {
                                 for: .editingChanged)
             textField.attributedText = NSMutableAttributedString(string: "",
                                                                  letterSpacing: 2,
-                                                                 font: .H2SecondaryTitle,
+                                                                 font: .simpleFont(ofSize: 32),
                                                                  textColor: .white,
                                                                  alignment: .center)
 			if #available(iOS 11.0, *) {

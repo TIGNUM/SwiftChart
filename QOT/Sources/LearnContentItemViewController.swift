@@ -333,12 +333,12 @@ private extension LearnContentItemViewController {
         let relatedContent = viewModel.relatedContent(at: indexPath)
         let topText = NSMutableAttributedString(string: relatedContent.title,
                                                 letterSpacing: CGFloat(-0.8),
-                                                font: .H4Headline,
+                                                font: Font.H4Headline,
                                                 textColor: .nightModeBlack)
         let bottomText = NSMutableAttributedString(
             string: String(format: "%d MIN TO READ", relatedContent.minutesToRead), //TODO Localise
             letterSpacing: CGFloat(2),
-            font: .H7Tag,
+            font: Font.H7Tag,
             textColor: .nightModeSubFont
         )
         let cell = contentItemTextTableViewCell(tableView: tableView,

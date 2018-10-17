@@ -26,10 +26,4 @@ extension UIBarButtonItem {
         button.tintColor = .white60
         return button
     }
-
-    static var burger: UIBarButtonItem {
-        let button = UIBarButtonItem(withImage: R.image.ic_menu()?.withRenderingMode(.alwaysTemplate))
-        button.tintColor = .white60
-        return button
-    }
 }

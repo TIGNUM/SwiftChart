@@ -191,7 +191,7 @@ private extension SleepChart {
 
     func dayLabel(text: String, textColor: UIColor) -> UILabel {
         let label = UILabel()
-        label.font = .H7Title
+        label.font = Font.H7Title
         label.textAlignment = .center
         label.textColor = textColor
         label.text = text

@@ -24,7 +24,7 @@ final class PrepareNotesHeaderView: UIView {
     func configure(title: String) {
         titleLabel.attributedText = NSAttributedString(string: title,
                                                        letterSpacing: 1,
-                                                       font: .DPText,
+                                                       font: .bentonBookFont(ofSize: 16),
                                                        textColor: .nightModeSubFont,
                                                        alignment: .left)
     }

@@ -74,7 +74,7 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
             }
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
-            contentLabel.setAttrText(text: content, font: .DPText)
+            contentLabel.setAttrText(text: content, font: Font.DPText)
             contentLabel.textColor = .nightModeBlack
         }
     }
@@ -96,8 +96,8 @@ private extension PrepareContentMainHeaderTableViewCell {
         subHeaderLabel.addCharactersSpacing(spacing: 2,
                                             text: R.string.localized.prepareSubtitleLearnMore(),
                                             uppercased: true)
-        headerLabel.font = .H1MainTitle
-        subHeaderLabel.font = .H7Title
+        headerLabel.font = Font.H1MainTitle
+        subHeaderLabel.font = Font.H7Title
         headerLabel.textColor = .nightModeMainFont
         subHeaderLabel.textColor = .nightModeBlack30
         subHeaderLabel.isHidden = videoOnly == true

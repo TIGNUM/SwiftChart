@@ -51,7 +51,7 @@ final class ScreenHelpViewController: UIViewController {
         imageView.kf.setImage(with: helpItem.imageURL)
         messageLabel.attributedText = NSAttributedString(string: helpItem.message,
                                                          letterSpacing: 1.4,
-                                                         font: .DPText2,
+                                                         font: UIFont.bentonBookFont(ofSize: 15),
                                                          lineSpacing: 14,
                                                          textColor: .white
         )

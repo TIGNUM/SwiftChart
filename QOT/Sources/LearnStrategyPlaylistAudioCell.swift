@@ -30,7 +30,7 @@ final class LearnStrategyPlaylistAudioCell: UITableViewCell, Dequeueable {
     }
 
     func setup(title: String, playing: Bool) {
-        titleLabel.font = .DPText
+        titleLabel.font = UIFont.bentonBookFont(ofSize: 16)
         titleLabel.text = title
         updateStateImage(playing)
         updateTitleColor(enabled: playing)

@@ -65,8 +65,8 @@ private extension SensorViewController {
     func setupView() {
         collectionView.registerDequeueable(SensorCollectionViewCell.self)
         collectionView.registerDequeueable(RequestDeviceSensorCollectionViewCell.self)
-        sensorsTitleLabel.font = .H3Subtitle
-        wearablesTitleLabel.font = .H3Subtitle
+        sensorsTitleLabel.font = Font.H3Subtitle
+        wearablesTitleLabel.font = Font.H3Subtitle
         if let navBarHeight = navigationController?.navigationBar.bounds.height {
             fadeContainerView.setFade(top: navBarHeight, bottom: 0)
         }
@@ -85,7 +85,7 @@ extension SensorViewController: SensorViewControllerInterface {
     func setup(sensors: [SensorModel], headline: String, content: String) {
         self.sensors = sensors
         wearablesTitleLabel.addCharactersSpacing(spacing: 2, text: headline, uppercased: true)
-        textLabel.setAttrText(text: content, font: .DPText, alignment: .left, lineSpacing: 13)
+        textLabel.setAttrText(text: content, font: Font.DPText, alignment: .left, lineSpacing: 13)
         reload()
     }
 

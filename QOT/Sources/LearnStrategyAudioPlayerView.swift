@@ -66,8 +66,8 @@ private extension LearnStrategyAudioPlayerView {
     }
 
     private func setupLabels() {
-        trackDurationLabel.font = .H6NavigationTitle
-        currentPositionLabel.font = .H6NavigationTitle
+        trackDurationLabel.font = UIFont.simpleFont(ofSize: 14)
+        currentPositionLabel.font = UIFont.simpleFont(ofSize: 14)
         trackDurationLabel.textColor = .nightModeBlack
         currentPositionLabel.textColor = .nightModeBlack
     }

@@ -122,12 +122,12 @@ private extension ArticleItemViewController {
         let sidePadding = CGFloat(56)
         let frameWidth = tableView.frame.size.width - sidePadding
         let titleHeight = calculateLabelHeight(text: header.articleTitle,
-                                               font: .H5SecondaryHeadline,
+                                               font: Font.H5SecondaryHeadline,
                                                dispayedLineHeight: 18,
                                                frameWidth: frameWidth,
                                                characterSpacing: 1)
         let subTitleHeight = calculateLabelHeight(text: header.articleSubTitle,
-                                                  font: .H1MainTitle,
+                                                  font: Font.H1MainTitle,
                                                   dispayedLineHeight: 46,
                                                   frameWidth: frameWidth,
                                                   characterSpacing: 2)
@@ -207,7 +207,7 @@ private extension ArticleItemViewController {
         button.setTitleColor(.white40, for: .normal)
         button.setTitle(guideItem.featureButton?.uppercased() ?? "", for: .normal)
         button.titleLabel?.addCharactersSpacing(spacing: 1, text: guideItem.featureButton ?? "")
-        button.titleLabel?.font = .DPText
+        button.titleLabel?.font = Font.DPText
         button.titleLabel?.textAlignment = .center
         return button
     }

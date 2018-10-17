@@ -77,7 +77,7 @@ extension ShareViewController: ShareViewControllerInterface {
         partnerInitialsLabel.isHidden = (interactor?.partner.imageURL != nil)
         partnerInitialsLabel.attributedText = NSAttributedString(string: interactor?.partner.initials.uppercased() ?? "",
                                                                  letterSpacing: 2,
-                                                                 font: .H1MainTitle,
+                                                                 font: Font.H1MainTitle,
                                                                  lineSpacing: 0,
                                                                  textColor: .white60,
                                                                  alignment: .center)

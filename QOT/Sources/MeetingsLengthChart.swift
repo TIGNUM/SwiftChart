@@ -81,7 +81,7 @@ private extension MeetingsLengthChart {
     func addCaptionLabel(yPos: CGFloat, text: String) {
         let captionLabel = UILabel()
         captionLabel.center = CGPoint(x: 0, y: yPos)
-        captionLabel.setAttrText(text: text, font: .H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
+        captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
         captionLabel.sizeToFit()
         addSubview(captionLabel)
     }
@@ -134,7 +134,7 @@ private extension MeetingsLengthChart {
 
     func dayLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.font = .H7Title
+        label.font = Font.H7Title
         label.textAlignment = .center
         label.textColor = .white
         label.text = text

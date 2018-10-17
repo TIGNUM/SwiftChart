@@ -101,7 +101,7 @@ final class MyUniverseContentView: UIView {
     func setVisionText(_ text: String) {
         visionTextLabel.attributedText = NSAttributedString(string: text,
                                                             letterSpacing: 1.7,
-                                                            font: .PTextSmall,
+                                                            font: Font.PTextSmall,
                                                             lineSpacing: 3,
                                                             textColor: .white,
                                                             alignment: .left,
@@ -111,7 +111,7 @@ final class MyUniverseContentView: UIView {
     func setVisionHeadline(_ headline: String) {
         visionHeadlineLabel.attributedText = NSAttributedString(string: headline.uppercased(),
                                                                 letterSpacing: 1.7,
-                                                                font: .H6NavigationTitle,
+                                                                font: Font.H6NavigationTitle,
                                                                 lineSpacing: 1.5,
                                                                 textColor: .white,
                                                                 alignment: .left,
@@ -133,7 +133,7 @@ final class MyUniverseContentView: UIView {
             let label = UILabel()
             label.attributedText = NSMutableAttributedString(string: sector.title,
                                                              letterSpacing: 2,
-                                                             font: UIFont.apercuRegular(ofSize: sector.titleSize),
+                                                             font: UIFont.simpleFont(ofSize: sector.titleSize),
                                                              textColor: sector.titleColor,
                                                              alignment: .center)
             label.numberOfLines = 0

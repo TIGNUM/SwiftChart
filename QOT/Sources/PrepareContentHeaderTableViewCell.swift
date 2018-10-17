@@ -45,7 +45,7 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
                  isChecked: Bool = false) {
         bottomSeparator.backgroundColor = .nightModeBlack30
         headerLabel.setAttrText(text: title.uppercased(),
-                                font: .H4Headline,
+                                font: Font.H4Headline,
                                 lineSpacing: 3,
                                 characterSpacing: -0.8,
                                 color: .nightModeBlack)
@@ -71,10 +71,10 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
         if isExpanded {
             contentLabel.numberOfLines = 0
             contentLabel.lineBreakMode = .byWordWrapping
-            contentLabel.setAttrText(text: contentText, font: .DPText, color: .nightModeSubFont)
+            contentLabel.setAttrText(text: contentText, font: Font.DPText, color: .nightModeSubFont)
             if readMoreID != nil {
                 readMoreButton.prepareAndSetTitleAttributes(text: R.string.localized.prepareContentReadMore(),
-                                                            font: .DPText,
+                                                            font: Font.DPText,
                                                             color: .nightModeBlack40,
                                                             for: .normal)
             } else {

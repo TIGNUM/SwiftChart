@@ -136,14 +136,14 @@ private extension IntensityChart {
             let labelFrame = CGRect(x: 0, y: yPos - yAxisOffset * 0.5, width: yAxisOffset, height: yAxisOffset)
             let captionLabel = UILabel(frame: labelFrame)
             let text = String(format: "%d", index + 2)
-            captionLabel.setAttrText(text: text, font: .H7Title, color: .white20)
+            captionLabel.setAttrText(text: text, font: Font.H7Title, color: .white20)
             addSubview(captionLabel)
         }
     }
 
     func dayLabel(text: String, textColor: UIColor) -> UILabel {
         let label = UILabel()
-        label.font = .H7Title
+        label.font = Font.H7Title
         label.textAlignment = .center
         label.textColor = textColor
         label.text = text

@@ -31,18 +31,18 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
                    strategiesCompleted: Int?) {
         titleLabel.attributedText = attributedText(letterSpacing: 1,
                                                    text: title.uppercased(),
-                                                   font: .H5SecondaryHeadline,
+                                                   font: Font.H5SecondaryHeadline,
                                                    textColor: .white,
                                                    alignment: .left)
         contentLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                      text: content,
-                                                     font: .DPText,
+                                                     font: Font.DPText,
                                                      lineSpacing: 6,
                                                      textColor: .white70,
                                                      alignment: .left)
         typeLabel.attributedText = attributedText(letterSpacing: 2,
                                                   text: type.uppercased(),
-                                                  font: .H7Tag,
+                                                  font: Font.H7Tag,
                                                   textColor: .white40,
                                                   alignment: .left)
         statusView.backgroundColor = status.statusViewColor
@@ -53,7 +53,7 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
                                                                               Defaults.totalNumberOfStrategies)
 			let mutableAttributedText = attributedText(letterSpacing: 1.5,
 													   text: text,
-													   font: .H7Tag,
+													   font: Font.H7Tag,
 													   textColor: .white40,
 													   alignment: .right)
 			mutableAttributedText.addAttribute(.foregroundColor,

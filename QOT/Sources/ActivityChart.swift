@@ -88,7 +88,7 @@ private extension ActivityChart {
                                                  y: yPos - yAxisOffset * Layout.multiplier_025,
                                                  width: yAxisOffset,
                                                  height: yAxisOffset * Layout.multiplier_05))
-        captionLabel.setAttrText(text: text, font: .H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
+        captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
         addSubview(captionLabel)
     }
 
@@ -145,7 +145,7 @@ private extension ActivityChart {
 
     func dayLabel(text: String, textColor: UIColor) -> UILabel {
         let label = UILabel()
-        label.font = .H7Title
+        label.font = Font.H7Title
         label.textAlignment = .center
         label.textColor = textColor
         label.text = text

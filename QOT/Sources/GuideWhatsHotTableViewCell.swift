@@ -24,22 +24,22 @@ final class GuideWhatsHotTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String, body: String, image: URL?, status: Guide.Item.Status) {
-		titleLabel.font = .H5SecondaryHeadline
+		titleLabel.font = Font.H5SecondaryHeadline
         titleLabel.attributedText = attributedText(letterSpacing: 1,
                                                    text: title.uppercased(),
-                                                   font: .H5SecondaryHeadline,
+                                                   font: Font.H5SecondaryHeadline,
                                                    textColor: .white,
                                                    alignment: .left)
         footerLabel.attributedText = attributedText(letterSpacing: 2,
                                                     text: "WHAT'S HOT ARTICLE",
-                                                    font: .H7Tag,
+                                                    font: Font.H7Tag,
                                                     textColor: .white40,
                                                     alignment: .left)
         let bodyAttributedString = NSMutableAttributedString(attributedString: body.attributedString())
         replaceLinks(in: bodyAttributedString)
         bodyLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                   text: bodyAttributedString.string,
-                                                  font: .DPText,
+                                                  font: Font.DPText,
                                                   lineSpacing: 6,
                                                   textColor: .white70,
                                                   alignment: .left)

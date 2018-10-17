@@ -21,7 +21,7 @@ final class SettingsCell: UITableViewCell, Dequeueable {
 
         backgroundColor = .clear
         titleLabel.textColor = .white
-        titleLabel.font = .H3Subtitle
+        titleLabel.font = UIFont.simpleFont(ofSize: 22)
     }
 
     func configure(title: String) {

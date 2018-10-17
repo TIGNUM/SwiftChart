@@ -38,7 +38,7 @@ private extension GuideGreetingView {
     func attributedText(_ text: String) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: text.uppercased(),
                                          letterSpacing: -0.8,
-                                         font: .H4Headline,
+                                         font: Font.H4Headline,
                                          lineSpacing: 1.4,
                                          textColor: .white,
                                          alignment: .left,

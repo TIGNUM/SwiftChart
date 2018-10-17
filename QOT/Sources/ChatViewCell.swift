@@ -25,7 +25,7 @@ final class ChatViewCell: UICollectionViewCell {
                          dashedLineColor: .white,
                          dashedLineWidth: 0,
                          dashedLinePattern: nil,
-                         textAttributes: Style.attributes(font: .PText, textColor: .black))
+                         textAttributes: Style.attributes(font: .bentonBookFont(ofSize: 17), textColor: .black))
         }()
 
         static let choiceUnselected: Style = {
@@ -34,7 +34,7 @@ final class ChatViewCell: UICollectionViewCell {
                          dashedLineColor: .greyish20,
                          dashedLineWidth: 1,
                          dashedLinePattern: [4, 3],
-                         textAttributes: Style.attributes(font: .PText, textColor: .white60))
+                         textAttributes: Style.attributes(font: .bentonBookFont(ofSize: 17), textColor: .white60))
         }()
 
         static let choiceSelected: Style = {
@@ -43,7 +43,7 @@ final class ChatViewCell: UICollectionViewCell {
                          dashedLineColor: .greyish20,
                          dashedLineWidth: 1,
                          dashedLinePattern: nil,
-                         textAttributes: Style.attributes(font: .PText, textColor: .white))
+                         textAttributes: Style.attributes(font: .bentonBookFont(ofSize: 17), textColor: .white))
         }()
 
         static let visionChoiceSelected: Style = {
@@ -52,7 +52,7 @@ final class ChatViewCell: UICollectionViewCell {
                          dashedLineColor: .greyish20,
                          dashedLineWidth: 1,
                          dashedLinePattern: nil,
-                         textAttributes: Style.attributes(font: .PText, textColor: .white))
+                         textAttributes: Style.attributes(font: .bentonBookFont(ofSize: 17), textColor: .white))
         }()
 
         static func attributes(font: UIFont, textColor: UIColor, lineSpacing: CGFloat = 7)

@@ -26,9 +26,9 @@ final class PrepareSectionHeaderView: UIView {
         eventNameLabel.textColor = .nightModeMainFont
         eventDateLabel.textColor = .nightModeMainFont
         completedTasksLabel.textColor = .nightModeBlack30
-        eventNameLabel.font = .H6NavigationTitle
-        eventDateLabel.font = .H7SectorTitle
-        completedTasksLabel.font = .H7Title
+        eventNameLabel.font = Font.H6NavigationTitle
+        eventDateLabel.font = Font.H7SectorTitle
+        completedTasksLabel.font = Font.H7Title
         topSeperatorView.backgroundColor = .nightModeBlack30
         bottomSeperatorView.backgroundColor = .nightModeBlack30
         calendarImageView.image = R.image.shortcutItemPrepare()?.withRenderingMode(.alwaysTemplate)
@@ -60,7 +60,7 @@ private extension PrepareSectionHeaderView {
     func attributed(title: String) -> NSAttributedString {
         return NSAttributedString(string: title,
                                   letterSpacing: 1,
-                                  font: .DPText,
+                                  font: .bentonBookFont(ofSize: 16),
                                   textColor: .white,
                                   alignment: .center)
     }

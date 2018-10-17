@@ -57,14 +57,14 @@ final class LearnContentCell: UICollectionViewCell, Dequeueable {
         let attributedTitle = NSMutableAttributedString(
             string: content.title.uppercased(),
             letterSpacing: 1,
-            font: contentView.bounds.width < 150 ? .H7Tag : .H5SecondaryHeadline,
+            font: contentView.bounds.width < 150 ? Font.H7Tag : Font.H5SecondaryHeadline,
             textColor: .white,
             lineBreakMode: .byTruncatingTail
         )
         let attributedDuration = NSMutableAttributedString(
             string: content.durationString,
             letterSpacing: contentView.bounds.width < 150 ? 1.3 : 2,
-            font: contentView.bounds.width < 150 ? .H7Tag : .H7Title,
+            font: contentView.bounds.width < 150 ? UIFont.bentonBookFont(ofSize: 10) : Font.H7Title,
             textColor: .white40
         )
         indexLabel.attributedText = attributedIndex

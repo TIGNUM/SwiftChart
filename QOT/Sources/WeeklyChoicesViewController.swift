@@ -42,7 +42,7 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
         label.textColor = .white40
         label.numberOfLines = 0
         label.setAttrText(text: R.string.localized.weeklyChoicesNoContent(),
-                          font: .DPText,
+                          font: Font.DPText,
                           alignment: .center,
                           lineSpacing: 7,
                           characterSpacing: 1)

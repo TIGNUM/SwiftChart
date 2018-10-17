@@ -83,27 +83,27 @@ private extension BubblesView {
 
     func labelsLayout() {
         bubble1Label.textColor = .white
-        bubble1Label.font = .H3Subtitle
+        bubble1Label.font = Font.H3Subtitle
         bubble1Label.adjustsFontSizeToFitWidth = true
         bubble1Label.numberOfLines = 0
 
         bubble2Label.textColor = .white
-        bubble2Label.font = .H3Subtitle
+        bubble2Label.font = Font.H3Subtitle
         bubble2Label.adjustsFontSizeToFitWidth = true
         bubble2Label.numberOfLines = 0
 
         bubble3Label.textColor = .white
-        bubble3Label.font = .H3Subtitle
+        bubble3Label.font = Font.H3Subtitle
         bubble3Label.adjustsFontSizeToFitWidth = true
         bubble3Label.numberOfLines = 1
 
         bubble4Label.textColor = .white
-        bubble4Label.font = .H3Subtitle
+        bubble4Label.font = Font.H3Subtitle
         bubble4Label.adjustsFontSizeToFitWidth = true
         bubble4Label.numberOfLines = 0
 
         bubble5Label.textColor = .white
-        bubble5Label.font = .H3Subtitle
+        bubble5Label.font = Font.H3Subtitle
         bubble5Label.adjustsFontSizeToFitWidth = true
         bubble5Label.numberOfLines = 0
     }

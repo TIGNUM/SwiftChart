@@ -89,7 +89,7 @@ struct PartnersLandingPage {
     var titleAttributedString: NSAttributedString {
         return NSAttributedString(string: (title ?? "").uppercased(),
                                   letterSpacing: -0.8,
-                                  font: .H4Headline,
+                                  font: .simpleFont(ofSize: 20),
                                   textColor: .white,
                                   alignment: .center)
     }
@@ -97,7 +97,7 @@ struct PartnersLandingPage {
     var messageAttributedString: NSAttributedString {
         return NSAttributedString(string: message ?? "",
                                   letterSpacing: 0,
-                                  font: .DPText,
+                                  font: .bentonBookFont(ofSize: 16),
                                   lineSpacing: 12,
                                   textColor: .white,
                                   alignment: .center)
@@ -106,7 +106,7 @@ struct PartnersLandingPage {
     var buttonTitleAttributedString: NSAttributedString {
         return NSAttributedString(string: buttonTitle ?? "",
                                   letterSpacing: 1,
-                                  font: .DPText,
+                                  font: .bentonBookFont(ofSize: 16),
                                   textColor: .white,
                                   alignment: .center)
     }

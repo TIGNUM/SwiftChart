@@ -56,7 +56,7 @@ private extension SigningInfoViewController {
     func setupButtons() {
         let attributedTitle = NSMutableAttributedString(string: "Sign In",
                                                         letterSpacing: 0.8,
-                                                        font: .DPText,
+                                                        font: Font.DPText,
                                                         textColor: .white90,
                                                         alignment: .left)
         bottomButton.backgroundColor = .azure

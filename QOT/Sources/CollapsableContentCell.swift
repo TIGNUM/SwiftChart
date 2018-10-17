@@ -35,7 +35,7 @@ class CollapsableContentCell: UITableViewCell {
         label.attributedText = NSMutableAttributedString(
             string: text ?? "",
             letterSpacing: 2,
-            font: .H6NavigationTitle,
+            font: UIFont.simpleFont(ofSize: 14.0),
             textColor: .white)
     }
 

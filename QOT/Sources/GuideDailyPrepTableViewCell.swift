@@ -53,7 +53,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                    status: Guide.Item.Status) {
         titleLabel.attributedText = attributedText(letterSpacing: 1,
                                                    text: "DAILY PREP MINUTE",
-                                                   font: .H4Identifier,
+                                                   font: Font.H4Identifier,
                                                    textColor: .white,
                                                    alignment: .left)
 
@@ -61,7 +61,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
             typeLabel.isHidden = false
             typeLabel.attributedText = attributedText(letterSpacing: 2,
                                                       text: type.uppercased(),
-                                                      font: .H7Tag,
+                                                      font: Font.H7Tag,
                                                       textColor: .white40,
                                                       alignment: .left)
         }
@@ -70,7 +70,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
             feedbackLabel.isHidden = false
             feedbackLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                          text: feedback,
-                                                         font: .DPText,
+                                                         font: Font.DPText,
                                                          lineSpacing: 6,
                                                          textColor: .white70,
                                                          alignment: .left)
@@ -78,20 +78,20 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
 
         nullStateLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                        text: R.string.localized.guideDailyPrepNotFinishedFeedback(),
-                                                       font: .DPText,
+                                                       font: Font.DPText,
                                                        lineSpacing: 6,
                                                        textColor: .white70,
                                                        alignment: .left)
 
         loadLabel.attributedText = attributedText(letterSpacing: 1,
                                                   text: "LOAD",
-                                                  font: .H4Identifier,
+                                                  font: Font.H4Identifier,
                                                   textColor: .white,
                                                   alignment: .left)
 
         recoveryLabel.attributedText = attributedText(letterSpacing: 1,
                                                       text: "RECOVERY",
-                                                      font: .H4Identifier,
+                                                      font: Font.H4Identifier,
                                                       textColor: .white,
                                                       alignment: .left)
 

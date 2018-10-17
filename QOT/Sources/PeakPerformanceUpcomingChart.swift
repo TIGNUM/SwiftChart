@@ -63,7 +63,7 @@ private extension PeakPerformanceUpcomingChart {
 
     private func addCaptionLabel(yPos: CGFloat, text: String) {
         let captionLabel = UILabel(frame: CGRect(x: 0, y: yPos - yAxisOffset * 0.25, width: yAxisOffset, height: yAxisOffset * 0.5))
-        captionLabel.setAttrText(text: text, font: .H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
+        captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
         addSubview(captionLabel)
     }
 

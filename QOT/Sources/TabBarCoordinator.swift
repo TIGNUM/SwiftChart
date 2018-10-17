@@ -57,9 +57,23 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         return viewController
     }()
 
-    private lazy var toBeVisionController: MyToBeVisionViewController = {
-        let configurator = MyToBeVisionConfigurator.make()
-        return MyToBeVisionViewController(configurator: configurator)
+    // MARK: - tab bar
+
+    private lazy var tabBarController: TabBarController = {
+        let controller = TabBarController(config: .default)
+        controller.modalTransitionStyle = .crossDissolve
+        controller.modalPresentationStyle = .custom
+        controller.tabBarControllerDelegate = self
+        controller.selectedIndex = selectedIndex.value
+        controller.viewControllers = [topTabBarControllerGuide,
+                                      topTabBarControllerLearn,
+                                      topTabBarControllerMe,
+                                      topTabBarControllerPrepare]
+        badgeManager.guideBadgeContainer = (view: controller.tabBar.subviews[TabBar.guide.index],
+                                            frame: controller.frameForButton(at: TabBar.guide.index) ?? .zero)
+        badgeManager.learnBadgeContainer = (view: controller.tabBar.subviews[TabBar.learn.index],
+                                            frame: controller.frameForButton(at: TabBar.learn.index) ?? .zero)
+        return controller
     }()
 
     private lazy var articleCollectionViewController: ArticleCollectionViewController = {
@@ -71,43 +85,15 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         return viewController
     }()
 
-    // MARK: - tab bar
-
-    private lazy var tabBarController: TabBarController = {
-        let controller = TabBarController(config: .default)
-        controller.modalTransitionStyle = .crossDissolve
-        controller.modalPresentationStyle = .custom
-        controller.tabBarControllerDelegate = self
-        controller.selectedIndex = selectedIndex.value
-        controller.viewControllers = [topTabBarControllerGuide,
-                                      topTabBarControllerLearn,
-                                      topTabBarControllerToBeVision,
-                                      topTabBarControllerMe,
-                                      topTabBarControllerPrepare]
-        badgeManager.guideBadgeContainer = (view: controller.tabBar.subviews[TabBar.today.index],
-                                            frame: controller.frameForButton(at: TabBar.today.index) ?? .zero)
-        badgeManager.learnBadgeContainer = (view: controller.tabBar.subviews[TabBar.learn.index],
-                                            frame: controller.frameForButton(at: TabBar.learn.index) ?? .zero)
-        return controller
-    }()
-
-    private lazy var topTabBarControllerToBeVision: UINavigationController = {
-        let topTabBarController = UINavigationController(withPages: [toBeVisionController],
-                                                         topBarDelegate: self,
-                                                         leftButton: .burger,
-                                                         rightButton: .info)
-        topTabBarController.tabBarItem = TabBarItem(config: TabBar.tbv.itemConfig)
-        return topTabBarController
-    }()
-
     lazy var topTabBarControllerGuide: UINavigationController = {
         let guideViewController = GuideViewController(configurator: GuideConfigurator.make(badgeManager: badgeManager))
         guideViewController.title = R.string.localized.topTabBarItemTitleGuide()
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [guideViewController],
                                                          topBarDelegate: self,
-                                                         leftButton: .burger,
+                                                         leftButton: leftButton,
                                                          rightButton: .info)
-        topTabBarController.tabBarItem = TabBarItem(config: TabBar.today.itemConfig)
+        topTabBarController.tabBarItem = TabBarItem(config: TabBar.guide.itemConfig)
         return topTabBarController
     }()
 
@@ -116,10 +102,11 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let learnCategoryListVC = LearnCategoryListViewController(viewModel: viewModel)
         learnCategoryListVC.title = R.string.localized.topTabBarItemTitleLearnStrategies()
         learnCategoryListVC.delegate = self
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let navController = UINavigationController(withPages: [learnCategoryListVC, articleCollectionViewController],
                                                    topBarDelegate: self,
                                                    pageDelegate: self,
-                                                   leftButton: .burger,
+                                                   leftButton: leftButton,
                                                    rightButton: .info)
         navController.tabBarItem = TabBarItem(config: TabBar.learn.itemConfig)
         if
@@ -132,24 +119,27 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     private lazy var topTabBarControllerMe: MyUniverseViewController = {
-        let topTabBarController = MyUniverseViewController(config: .default,
-                                                           viewData: myUniverseProvider.viewData,
-                                                           pageTracker: pageTracker)
+        let topTabBarController = MyUniverseViewController(
+            config: .default,
+            viewData: myUniverseProvider.viewData,
+            pageTracker: pageTracker
+        )
         myUniverseProvider.updateBlock = { viewData in
             topTabBarController.viewData = viewData
         }
         topTabBarController.delegate = self
-        topTabBarController.tabBarItem = TabBarItem(config: TabBar.data.itemConfig)
+        topTabBarController.tabBarItem = TabBarItem(config: TabBar.me.itemConfig)
         return topTabBarController
     }()
 
     lazy var topTabBarControllerPrepare: UINavigationController = {
+        let leftButton = UIBarButtonItem(withImage: R.image.ic_menu())
         let topTabBarController = UINavigationController(withPages: [prepareChatViewController,
                                                                      myPrepViewController],
                                                          topBarDelegate: self,
                                                          pageDelegate: self,
                                                          backgroundImage: R.image.myprep(),
-                                                         leftButton: .burger,
+                                                         leftButton: leftButton,
                                                          rightButton: .info)
         topTabBarController.tabBarItem = TabBarItem(config: TabBar.prepare.itemConfig)
         return topTabBarController

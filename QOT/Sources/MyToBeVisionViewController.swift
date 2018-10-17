@@ -350,7 +350,7 @@ private extension MyToBeVisionViewController {
         syncNavigationButtons(isEditing)
         syncEditingViews(!isEditing)
         if isEditing == false {
-            headlineTextView.font = .H1MainTitle
+            headlineTextView.font = Font.H1MainTitle
         }
     }
 
@@ -502,7 +502,7 @@ private extension MyToBeVisionModel.Model {
         guard let headLine = headLine else { return nil }
         return NSAttributedString(string: headLine.uppercased(),
                                   letterSpacing: 2,
-                                  font: .H1MainTitle,
+                                  font: Font.H1MainTitle,
                                   lineSpacing: 3,
                                   textColor: .white)
     }
@@ -514,14 +514,14 @@ private extension MyToBeVisionModel.Model {
             else { return nil }
 
         let text = R.string.localized.meSectorMyWhyVisionWriteDate(timeInterval).uppercased()
-        return NSAttributedString(string: text, letterSpacing: 2, font: .H7Tag, lineSpacing: 0, textColor: .white30)
+        return NSAttributedString(string: text, letterSpacing: 2, font: Font.H7Tag, lineSpacing: 0, textColor: .white30)
     }
 
     var formattedVision: NSAttributedString? {
         guard let text = text else { return nil }
         return NSAttributedString(string: text,
                                   letterSpacing: -0.4,
-                                  font: .DPText,
+                                  font: Font.DPText,
                                   lineSpacing: 10.0,
                                   textColor: .white)
     }
@@ -534,7 +534,7 @@ private extension String {
     var formattedHeadlineEditingMode: NSAttributedString? {
         return NSAttributedString(string: self.capitalized,
                                   letterSpacing: -0.4,
-                                  font: .DPText,
+                                  font: Font.DPText,
                                   lineSpacing: 10.0,
                                   textColor: .white)
     }

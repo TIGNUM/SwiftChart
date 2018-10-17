@@ -103,7 +103,7 @@ private extension SelectWeeklyChoicesViewController {
     func setupNavigationBar() {
         backgroundImageView.image = backgroundImage
         setSelected(viewModel.numOfItemsSelected)
-        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.H6NavigationTitle]
+        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: Font.H6NavigationTitle]
         let dummyImage = UIImage()
         navigationBar.setBackgroundImage(dummyImage, for: .default)
         navigationBar.shadowImage = dummyImage
@@ -128,7 +128,7 @@ private extension SelectWeeklyChoicesViewController {
         tableHeaderViewLabel.attributedText = NSMutableAttributedString(
             string: header,
             letterSpacing: 2,
-            font: .H5SecondaryHeadline,
+            font: UIFont.bentonRegularFont(ofSize: 15.0),
             lineSpacing: 12.0,
             textColor: UIColor.white,
             alignment: .center)
