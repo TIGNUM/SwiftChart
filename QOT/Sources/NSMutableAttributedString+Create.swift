@@ -89,22 +89,22 @@ enum Style {
 
     private var font: UIFont {
         switch self {
-        case .postTitle: return Font.H1MainTitle
-        case .secondaryTitle: return Font.H2SecondaryTitle
-        case .subTitle: return Font.H3Subtitle
-        case .headline: return Font.H4Headline
-        case .headlineSmall: return Font.H5SecondaryHeadline
-        case .navigationTitle: return Font.H6NavigationTitle
-        case .tag: return Font.H7Tag
-        case .tagTitle: return Font.H8Title
-        case .paragraph: return Font.H7Title
-        case .qoute: return Font.Qoute
-        case .article: return Font.DPText
-        case .mediaDescription: return Font.DPText
-        case .question: return Font.H9Title
-        case .sub: return Font.H8Subtitle
-        case .num: return Font.H0Number
-        case .sector: return Font.H7SectorTitle
+        case .postTitle: return .H1MainTitle
+        case .secondaryTitle: return .H2SecondaryTitle
+        case .subTitle: return .H3Subtitle
+        case .headline: return .H4Headline
+        case .headlineSmall: return .H5SecondaryHeadline
+        case .navigationTitle: return .H6NavigationTitle
+        case .tag: return .H7Tag
+        case .tagTitle: return .H8Title
+        case .paragraph: return .H7Title
+        case .qoute: return .Qoute
+        case .article: return .DPText
+        case .mediaDescription: return .DPText
+        case .question: return .H9Title
+        case .sub: return .H8Subtitle
+        case .num: return .H0Number
+        case .sector: return .H7SectorTitle
         }
     }
 

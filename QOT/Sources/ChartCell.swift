@@ -69,9 +69,9 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
 
         static func make(screenType: UIViewController.ScreenType) -> Configuration {
             switch screenType {
-            case .big: return Configuration(infoFont: Font.DPText, infoLineSpacing: 10, infoCharacterSpacing: 1)
-            case .medium: return Configuration(infoFont: Font.DPText2, infoLineSpacing: 9, infoCharacterSpacing: 1)
-            case .small: return Configuration(infoFont: Font.PTextSmall, infoLineSpacing: 7, infoCharacterSpacing: 0)
+            case .big: return Configuration(infoFont: .DPText, infoLineSpacing: 10, infoCharacterSpacing: 1)
+            case .medium: return Configuration(infoFont: .DPText2, infoLineSpacing: 9, infoCharacterSpacing: 1)
+            case .small: return Configuration(infoFont: .PTextSmall, infoLineSpacing: 7, infoCharacterSpacing: 0)
             }
         }
     }
@@ -246,11 +246,11 @@ private extension ChartCell {
         setLabel(text: "MY\nTEAM\nAVG.", color: .white40, label: teamLabel, lineSpacing: 2.5)
         setLabel(text: "DATA\nBASE\nAVG.", color: .white40, label: dataLabel, lineSpacing: 2.5)
         setLabel(text: statistics.chartType.personalText, color: .white40, label: userAverageLabel, lineSpacing: 2.5)
-        setLabel(text: statistics.dataAverageDisplayableValue, color: .white, label: dataAverageValueLabel, font: UIFont.simpleFont(ofSize: 11))
-        setLabel(text: statistics.teamAverageDisplayableValue, color: .white, label: teamAverageValueLabel, font: UIFont.simpleFont(ofSize: 11))
-        setLabel(text: statistics.userAverageDisplayableValue, color: statistics.pathColor, label: userAverageValueLabel, characterSpacing: -2.7, font: Font.H1MainTitle)
-        setLabel(text: headerTitle.uppercased(), color: .white, label: headerLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
-        setLabel(text: R.string.localized.meChartCommingSoon().uppercased(), color: .white, label: comingSoonLabel, lineSpacing: 2.5, font: Font.PTextSubtitle)
+        setLabel(text: statistics.dataAverageDisplayableValue, color: .white, label: dataAverageValueLabel, font: .H7SectorTitle)
+        setLabel(text: statistics.teamAverageDisplayableValue, color: .white, label: teamAverageValueLabel, font: .H7SectorTitle)
+        setLabel(text: statistics.userAverageDisplayableValue, color: statistics.pathColor, label: userAverageValueLabel, characterSpacing: -2.7, font: .H1MainTitle)
+        setLabel(text: headerTitle.uppercased(), color: .white, label: headerLabel, lineSpacing: 2.5, font: .PTextSubtitle)
+        setLabel(text: R.string.localized.meChartCommingSoon().uppercased(), color: .white, label: comingSoonLabel, lineSpacing: 2.5, font: .PTextSubtitle)
         teamLabel.sizeToFit()
         dataLabel.sizeToFit()
     }
@@ -260,7 +260,7 @@ private extension ChartCell {
                   label: UILabel,
                   lineSpacing: CGFloat = 1,
                   characterSpacing: CGFloat = 2,
-                  font: UIFont = Font.H7Tag,
+                  font: UIFont = .H7Tag,
                   alignment: NSTextAlignment = .natural) {
         label.setAttrText(text: text,
                           font: font,
@@ -512,7 +512,7 @@ private extension ChartCell {
         labelContentView.drawLabelsForColumns(titles: labels,
                                               textColor: .white20,
                                               highlightColor: highlightColor,
-                                              font: Font.H7Title,
+                                              font: .H7Title,
                                               center: true,
                                               highlightedIndex: highlightedIndex)
         layoutIfNeeded()
@@ -571,7 +571,7 @@ private extension ChartCell {
                      label: addSenorViewLabel,
                      lineSpacing: 5,
                      characterSpacing: 1,
-                     font: Font.DPText,
+                     font: .DPText,
                      alignment: .center)
         }
     }

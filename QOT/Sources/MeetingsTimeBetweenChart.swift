@@ -92,7 +92,7 @@ private extension MeetingsTimeBetweenChart {
 
     func dayLabel(text: String, textColor: UIColor) -> UILabel {
         let label = UILabel()
-        label.font = Font.H7Title
+        label.font = .H7Title
         label.textAlignment = .center
         label.textColor = textColor
         label.text = text

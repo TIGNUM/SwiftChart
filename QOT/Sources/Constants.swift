@@ -26,14 +26,14 @@ struct Animation {
 }
 
 enum FontName: String {
-    case simple = "Simple-Regular"
-    case bentonBook = "BentonSans-Book"
-    case bentonRegular = "BentonSans"
-    case bentonSansCondLight = "BentonSans-CondensedLight"
     case apercuBold = "Apercu-Bold"
     case apercuMedium = "Apercu-Medium"
     case apercuRegular = "Apercu-Regular"
     case apercuLight = "Apercu-Light"
+
+    func font(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
 }
 
 struct Layout {
@@ -92,81 +92,74 @@ enum KeychainConstant: String {
     case databaseKey = "com.tignum.qot.database.key"
 }
 
-struct Font {
-
-    enum Name: String {
-        case h2SecondaryTitle
-        case h5SecondaryHeadline
-
-        static func font(name: String) -> UIFont {
-            switch name {
-            case Name.h2SecondaryTitle.rawValue: return Font.H2SecondaryTitle
-            case Name.h5SecondaryHeadline.rawValue: return Font.H5SecondaryHeadline
-            default: return Font.H4Headline
-            }
-        }
-    }
+extension UIFont {
 
     /// SIMPLE REGUAR 72 // Number title
-    static let H0Number = UIFont.simpleFont(ofSize: 72)
+    static let H0Number = UIFont.apercuRegular(ofSize: 72)
 
     /// SIMPLE REGULAR 36 // main post title
-    static let H1MainTitle = UIFont.simpleFont(ofSize: 36)
+    static let H1MainTitle = UIFont.apercuRegular(ofSize: 36)
 
     /// SIMPLE REGULAR 32 // video title, main diagram title, sidemenu
-    static let H2SecondaryTitle = UIFont.simpleFont(ofSize: 32)
+    static let H2SecondaryTitle = UIFont.apercuRegular(ofSize: 32)
 
     /// SIMPLE REGULAR 24 // ME numbers, ME secondary cards title
-    static let H3Subtitle = UIFont.simpleFont(ofSize: 24)
+    static let H3Subtitle = UIFont.apercuRegular(ofSize: 24)
 
     /// SIMPLE REGULAR 20 // recommended article title
-    static let H4Headline = UIFont.simpleFont(ofSize: 20)
+    static let H4Headline = UIFont.apercuRegular(ofSize: 20)
 
     /// SIMPLE REGULAR 18 // bubble title, strategy title
-    static let H4Identifier = UIFont.simpleFont(ofSize: 18)
+    static let H4Identifier = UIFont.apercuRegular(ofSize: 18)
 
     /// SIMPLE REGULAR 16 // strategy title
-    static let H5SecondaryHeadline = UIFont.simpleFont(ofSize: 16)
+    static let H5SecondaryHeadline = UIFont.apercuRegular(ofSize: 16)
 
     /// SIMPLE REGULAR 14 // navigation title
-    static let H6NavigationTitle = UIFont.simpleFont(ofSize: 14)
+    static let H6NavigationTitle = UIFont.apercuRegular(ofSize: 14)
 
     /// SIMPLE REGULAR 11 // MyUniverse sector title
-    static let H7SectorTitle = UIFont.simpleFont(ofSize: 11)
+    static let H7SectorTitle = UIFont.apercuRegular(ofSize: 11)
 
     /// BENTON SANS 11 // subtitles, tags
-    static let H7Tag = UIFont.bentonRegularFont(ofSize: 11)
+    static let H7Tag = UIFont.apercuRegular(ofSize: 11)
 
     /// BENTON SANS 16 // paragraph, body text
-    static let PText = UIFont.bentonRegularFont(ofSize: 16)
+    static let PText = UIFont.apercuRegular(ofSize: 16)
 
     /// BENTON SAN BOOK 11 // title
-    static let H7Title = UIFont.bentonBookFont(ofSize: 11)
+    static let H7Title = UIFont.apercuMedium(ofSize: 11)
+
+    /// BENTON SANS 8 // subtitles, tags
+    static let H8Tag = UIFont.apercuRegular(ofSize: 8)
 
     /// BENTON SAN BOOK 12 // text
-    static let H8Title = UIFont.bentonBookFont(ofSize: 12)
+    static let H8Title = UIFont.apercuMedium(ofSize: 12)
 
     /// BENTON SAN BOOK 19 // title
-    static let H9Title = UIFont.bentonBookFont(ofSize: 19)
+    static let H9Title = UIFont.apercuLight(ofSize: 19)
 
     /// BENTON SAN BOOK 18 // subtitile
-    static let H8Subtitle = UIFont.bentonBookFont(ofSize: 18)
+    static let H8Subtitle = UIFont.apercuLight(ofSize: 18)
 
     /// BENTON SANS 13 // paragraph, body text
-    static let PTextSmall = UIFont.bentonRegularFont(ofSize: 13)
+    static let PTextSmall = UIFont.apercuLight(ofSize: 13)
 
     /// BENTON SANS 11 // paragraph, body text
-    static let PTextSubtitle = UIFont.bentonRegularFont(ofSize: 11)
+    static let PTextSubtitle = UIFont.apercuLight(ofSize: 11)
 
     /// BENTON SANS BOOK 16 // body text
-    static let DPText = UIFont.bentonBookFont(ofSize: 16)
+    static let DPText = UIFont.apercuLight(ofSize: 16)
 
     /// BENTON SAN BOOK 15 // text
-    static let DPText2 = UIFont.bentonBookFont(ofSize: 15)
+    static let DPText2 = UIFont.apercuLight(ofSize: 15)
 
     /// BENTON SAN BOOK 14 // text
-    static let DPText3 = UIFont.bentonBookFont(ofSize: 14)
+    static let DPText3 = UIFont.apercuLight(ofSize: 14)
 
     /// BENTON SANS Condensed Light // QOUTES
-    static let Qoute = UIFont.bentonCondLightFont(ofSize: 28)
+    static let Qoute = UIFont.apercuLight(ofSize: 28)
+
+    /// apercu Medium 10
+    static let TabBar = UIFont.apercuMedium(ofSize: 10)
 }

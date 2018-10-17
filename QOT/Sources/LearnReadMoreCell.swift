@@ -25,12 +25,12 @@ class LearnReadMoreCell: UITableViewCell, Dequeueable {
 
     func configure(numberOfArticles: Int) {
         readMore.setAttrText(text: R.string.localized.prepareContentReadMore().uppercased(),
-                             font: Font.H5SecondaryHeadline,
+                             font: .H5SecondaryHeadline,
                              characterSpacing: 1,
                              color: .nightModeBlack)
         let articleText = numberOfArticles < 2 ? R.string.localized.learnContentItemArticle() : R.string.localized.learnContentItemArticles()
         articlesCount.setAttrText(text: "\(numberOfArticles) \(articleText)".uppercased(),
-                                  font: Font.H7Tag,
+                                  font: .H7Tag,
                                   characterSpacing: 2)
         articlesCount.textColor = .nightModeBlack30
     }

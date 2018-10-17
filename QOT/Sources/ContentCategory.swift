@@ -86,20 +86,3 @@ struct BubbleLayoutInfo: JSONDecodable {
         return BubbleLayoutInfo()
     }
 }
-
-struct SidebarLayoutInfo: JSONDecodable {
-
-    let font: UIFont
-    let textColor: UIColor
-    let cellHeight: CGFloat
-
-    init(json: JSON) throws {
-        let red = CGFloat(try json.getDouble(at: Database.ItemKey.textColorRed.value))
-        let green = CGFloat(try json.getDouble(at: Database.ItemKey.textColorGreen.value))
-        let blue = CGFloat(try json.getDouble(at: Database.ItemKey.textColorBlue.value))
-        let alpha = CGFloat(try json.getDouble(at: Database.ItemKey.textColorAlpha.value))
-        textColor = UIColor(red: red, green: green, blue: blue, alpha: alpha)
-        font = Font.Name.font(name: try json.getString(at: Database.ItemKey.font.value))
-        cellHeight = CGFloat(try json.getDouble(at: Database.ItemKey.cellHeight.value))
-    }
-}

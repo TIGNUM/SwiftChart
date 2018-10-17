@@ -14,8 +14,8 @@ extension UINavigationController {
                      headerView: UIView? = nil,
                      topBarDelegate: NavigationItemDelegate? = nil,
                      pageDelegate: PageViewControllerDelegate? = nil,
-                     backgroundColor: UIColor = .clear,
-                     backgroundImage: UIImage? = R.image._1Learn(),
+                     backgroundColor: UIColor = .hasanBlue,
+                     backgroundImage: UIImage? = nil,//R.image._1Learn(),
                      leftButton: UIBarButtonItem? = nil,
                      rightButton: UIBarButtonItem? = nil,
                      navigationItemStyle: NavigationItem.Style = .dark) {

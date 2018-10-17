@@ -36,26 +36,26 @@ final class MyPrepTableViewCell: UITableViewCell, Dequeueable {
         headerLabel.attributedText = NSMutableAttributedString(
             string: header.uppercased(),
             letterSpacing: 2,
-            font: Font.PTextSubtitle,
+            font: .PTextSubtitle,
             textColor: .white60
         )
         mainTextLabel.attributedText = NSMutableAttributedString(
             string: text.uppercased(),
             letterSpacing: -0.8,
-            font: Font.H4Headline,
+            font: .H4Headline,
             lineSpacing: 2
         )
         footerLabel.attributedText = NSMutableAttributedString(
             string: footer,
             letterSpacing: 2,
-            font: Font.PTextSubtitle,
+            font: .PTextSubtitle,
             textColor: .white60,
             lineBreakMode: .byTruncatingTail
         )
         prepCount.attributedText = NSMutableAttributedString(
             string: count,
             letterSpacing: -0.8,
-            font: Font.H4Headline
+            font: .H4Headline
         )
         lineIndicatorView.backgroundColor = lineColor
     }

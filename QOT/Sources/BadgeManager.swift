@@ -46,7 +46,7 @@ final class BadgeManager {
         }
     }
 
-    var tabDisplayed: TabBar = .guide {
+    var tabDisplayed: TabBar = .today {
         didSet {
             update()
         }
@@ -81,7 +81,7 @@ final class BadgeManager {
             self.newGuideItems.append(todaysDailyPrep)
         }
         guideBadge?.update(self.newGuideItems.count)
-        guideBadge?.isHidden = tabDisplayed == .guide || self.newGuideItems.isEmpty
+        guideBadge?.isHidden = tabDisplayed == .today || self.newGuideItems.isEmpty
         UserDefault.guideBadgeNumber.setDoubleValue(value: Double(self.newGuideItems.count))
     }
 }
@@ -115,13 +115,13 @@ private extension BadgeManager {
 
     func update() {
         switch tabDisplayed {
-        case .guide:
+        case .today:
             guideBadge?.isHidden = true
             learnBadge?.isHidden = badgeValueWhatsHot == 0
         case .learn:
             guideBadge?.isHidden = newGuideItems.isEmpty
             learnBadge?.isHidden = true
-        case .me, .prepare:
+        default:
             guideBadge?.isHidden = newGuideItems.isEmpty
             learnBadge?.isHidden = badgeValueWhatsHot == 0
         }

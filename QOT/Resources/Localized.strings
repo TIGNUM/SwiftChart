@@ -67,9 +67,12 @@
 "Sidebar.User.Titles.Member.Since" = "MEMBER SINCE";
 "Sidebar.User.Titles.Member.QOT.Usage" = "QOT USAGE";
 
+"Tab.Bar.Item.Today" = "TODAY";
 "Tab.Bar.Item.Guide" = "GUIDE";
 "Tab.Bar.Item.Learn" = "LEARN";
 "Tab.Bar.Item.Me" = "ME";
+"Tab.Bar.Item.Data" = "DATA";
+"Tab.Bar.Item.tbv" = "TBV";
 "Tab.Bar.Item.Prepare" = "PREPARE";
 
 "Top.Tab.Bar.Item.Title.Guide" = "MY PERSONAL GUIDE";
@@ -221,7 +224,7 @@
 "Prepare.Review.Notes.Reflections.Placeholder" = "Write your reflection notes here";
 "Prepare.Review.Notes.Reflections.Navbar.Title" = "YOUR REFLECTIONS";
 "Prepare.Review.Notes.Intentions.Navbar.Title" = "YOUR INTENTIONS";
-"Prepare.Review.Notes.General.Navbar.Title" = "GNERAL NOTES";
+"Prepare.Review.Notes.General.Navbar.Title" = "GENERAL NOTES";
 
 "Prepare.Review.Notes.Intentions.Perceived.Placeholder" = "Tap here to put your thoughts into writing (i.e. calm, engaged, confident, empathetic).";
 "Prepare.Review.Notes.Intentions.PersonGroup.Placeholder" = "Tap here to put your thoughts into writing (i.e. I'm not perfect; your opinion matters; I'm committed to excellence).";

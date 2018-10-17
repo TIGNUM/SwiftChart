@@ -36,7 +36,7 @@ final class SlideShowViewController: UIViewController {
         navigationBar.shadowImage = UIImage()
         navigationBar.isTranslucent = true
         navigationBar.topItem?.title = R.string.localized.sidebarTitleIntroSliders().uppercased()
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline,
+        navigationBar.titleTextAttributes = [NSAttributedStringKey.font: UIFont.H5SecondaryHeadline,
                                              NSAttributedStringKey.foregroundColor: UIColor.white]
     }
 

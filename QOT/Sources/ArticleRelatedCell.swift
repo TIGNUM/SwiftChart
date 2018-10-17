@@ -47,7 +47,7 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
         subTitleLabel.attributedText = NSMutableAttributedString(
             string: subTitle.uppercased(),
             letterSpacing: 2,
-            font: Font.H7Title,
+            font: .H7Title,
             textColor: .whiteLight40
         )
     }

@@ -182,7 +182,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     func restart() {
         networkManager.cancelAllRequests()
-        navigate(to: AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide))
+        navigate(to: AppCoordinator.Router.Destination(tabBar: .today, topTabBar: .guide))
         logout()
         sendAppEvent(.termination)
         showSigning(controller: nil)
@@ -288,7 +288,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 self.navigate(to: destination)
             }
         }
-
         AppCoordinator.updateStatusBarStyleIfNeeded()
     }
 
@@ -671,7 +670,7 @@ extension AppCoordinator {
             }
 
             init(preferences: Preferences) {
-                self.tabBar = .guide // FIXME: The current impl. will ignore it, but we dont wanna change the tap
+                self.tabBar = .today // FIXME: The current impl. will ignore it, but we dont wanna change the tap
                 self.topTabBar = .guide  // FIXME: The current impl. will ignore it, but we dont wanna change the tap
                 self.chatSection = .none
                 self.preferences = preferences
@@ -764,7 +763,7 @@ extension AppCoordinator {
     }
 
     func presentMeCharts(sector: StatisticsSectionType) {
-        navigate(to: AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData))
+        navigate(to: AppCoordinator.Router.Destination(tabBar: .data, topTabBar: .myData))
         tabBarCoordinator?.myUniverseViewController(nil, didTap: sector)
     }
 

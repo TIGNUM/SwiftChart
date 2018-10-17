@@ -47,7 +47,7 @@ class MorningInterviewCell: UICollectionViewCell, DialSelectionDelegate, Dequeue
         shadow.shadowColor = UIColor.white
 
         let attributes: [NSAttributedStringKey: Any] = [.foregroundColor: UIColor.white,
-                                                        .font: Font.H5SecondaryHeadline,
+                                                        .font: UIFont.H5SecondaryHeadline,
                                                         .shadow: shadow]
         centerLabel.attributedText = NSAttributedString(string: centerLabelText, attributes: attributes)
     }

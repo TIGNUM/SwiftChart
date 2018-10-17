@@ -689,7 +689,6 @@
 		CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */; };
 		CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8813E91EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift */; };
 		CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */; };
-		CC8A2EDE1F0CF98B002585CE /* BentonSansCond-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = CC8A2EDD1F0CF98B002585CE /* BentonSansCond-Light.otf */; };
 		CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D6D021EC316BF007AE687 /* LearnContentItemViewController.swift */; };
 		CC8D6D051EC316BF007AE687 /* LearnContentItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D6D031EC316BF007AE687 /* LearnContentItemViewModel.swift */; };
 		CC90EC9B1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC90EC9A1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift */; };
@@ -706,9 +705,6 @@
 		CCAE22D01F6BD7F80017C9EF /* ChartCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CCAE22CF1F6BD7F80017C9EF /* ChartCell.xib */; };
 		CCAF03251E801B0E00015125 /* OldSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCAF03221E801B0E00015125 /* OldSettingsViewController.swift */; };
 		CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4BD1E82730E002A8362 /* Extensions.swift */; };
-		CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4C91E827F87002A8362 /* BentonSans_Book.otf */; };
-		CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4CB1E828007002A8362 /* BentonSans_Regular.otf */; };
-		CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CCC0C4D31E82A8D9002A8362 /* Simple-Regular.ttf */; };
 		CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */; };
 		CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6A21E8B9B7300D1461F /* LearnCategoryCell.swift */; };
 		CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCC1B6A31E8B9B7300D1461F /* LearnCategoryLayout.swift */; };
@@ -1516,7 +1512,6 @@
 		CC8018221F026BDA0040B03F /* LibraryTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryTableViewCell.xib; sourceTree = "<group>"; };
 		CC8813E91EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemRecommendedCell.swift; sourceTree = "<group>"; };
 		CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnContentItemRecommendedCell.xib; sourceTree = "<group>"; };
-		CC8A2EDD1F0CF98B002585CE /* BentonSansCond-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "BentonSansCond-Light.otf"; sourceTree = "<group>"; };
 		CC8D6D021EC316BF007AE687 /* LearnContentItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemViewController.swift; sourceTree = "<group>"; };
 		CC8D6D031EC316BF007AE687 /* LearnContentItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemViewModel.swift; sourceTree = "<group>"; };
 		CC90EC9A1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsChangePasswordCoordinator.swift; sourceTree = "<group>"; };
@@ -1533,9 +1528,6 @@
 		CCAE22CF1F6BD7F80017C9EF /* ChartCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChartCell.xib; sourceTree = "<group>"; };
 		CCAF03221E801B0E00015125 /* OldSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OldSettingsViewController.swift; sourceTree = "<group>"; };
 		CCC0C4BD1E82730E002A8362 /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		CCC0C4C91E827F87002A8362 /* BentonSans_Book.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BentonSans_Book.otf; sourceTree = "<group>"; };
-		CCC0C4CB1E828007002A8362 /* BentonSans_Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = BentonSans_Regular.otf; sourceTree = "<group>"; };
-		CCC0C4D31E82A8D9002A8362 /* Simple-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Simple-Regular.ttf"; sourceTree = "<group>"; };
 		CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarCoordinator.swift; sourceTree = "<group>"; };
 		CCC1B6A21E8B9B7300D1461F /* LearnCategoryCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryCell.swift; sourceTree = "<group>"; };
 		CCC1B6A31E8B9B7300D1461F /* LearnCategoryLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnCategoryLayout.swift; sourceTree = "<group>"; };
@@ -3266,10 +3258,6 @@
 				366AFD1E20BEA2F200109F29 /* Apercu-Light.otf */,
 				366AFD1C20BEA2F100109F29 /* Apercu-Medium.otf */,
 				366AFD1D20BEA2F200109F29 /* Apercu-Regular.otf */,
-				CC8A2EDD1F0CF98B002585CE /* BentonSansCond-Light.otf */,
-				CCC0C4C91E827F87002A8362 /* BentonSans_Book.otf */,
-				CCC0C4CB1E828007002A8362 /* BentonSans_Regular.otf */,
-				CCC0C4D31E82A8D9002A8362 /* Simple-Regular.ttf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -3888,7 +3876,6 @@
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				367564B1206A56B7008D1F71 /* ReviewNotesViewController.storyboard in Resources */,
-				CC8A2EDE1F0CF98B002585CE /* BentonSansCond-Light.otf in Resources */,
 				36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */,
 				3674FF3920AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.xib in Resources */,
 				91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */,
@@ -3915,7 +3902,6 @@
 				3679A4E32175E45300DF761A /* qot_clip.gif in Resources */,
 				7F6567321FE13BFB00A6CB7F /* ScreenHelpViewController.xib in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
-				CCC0C4CA1E827F87002A8362 /* BentonSans_Book.otf in Resources */,
 				CB96B7E81FED349400ED8015 /* SlideShowMorePromptCell.xib in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
 				CB96B7EE1FED462600ED8015 /* SlideShowCompletePromptCell.xib in Resources */,
@@ -3929,7 +3915,6 @@
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */,
-				CCC0C4CC1E828007002A8362 /* BentonSans_Regular.otf in Resources */,
 				36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */,
 				367564AD206A4420008D1F71 /* PrepareContentNotesViewController.storyboard in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
@@ -3939,7 +3924,6 @@
 				91CD12EE2036F6F300E27822 /* MorningInterviewCell.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
-				CCC0C4D41E82A8D9002A8362 /* Simple-Regular.ttf in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
 				7F3A9CD21FCF019B000F1744 /* MyUniverseViewController.xib in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,

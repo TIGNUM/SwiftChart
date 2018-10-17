@@ -74,24 +74,24 @@ private extension PartnersOverviewCollectionViewCell {
         partnerExist = true
         let attributedButtonTitle = NSAttributedString(string: R.string.localized.meSectorMyWhyPartnersCellShareContent(),
                                                        letterSpacing: 1,
-                                                       font: .bentonBookFont(ofSize: 16),
+                                                       font: .H5SecondaryHeadline,
                                                        textColor: .white90,
                                                        alignment: .center)
         let attributedName = NSAttributedString(string: name.uppercased(),
                                                 letterSpacing: -1.1,
-                                                font: .simpleFont(ofSize: 20),
+                                                font: .H4Headline,
                                                 lineSpacing: 2,
                                                 textColor: .white,
                                                 alignment: .left)
         let attributedLastName = NSAttributedString(string: lastName.uppercased(),
                                                 letterSpacing: -1.1,
-                                                font: .simpleFont(ofSize: 20),
+                                                font: .H4Headline,
                                                 lineSpacing: 2,
                                                 textColor: .white,
                                                 alignment: .left)
         let attributedRelationship = NSAttributedString(string: relationship.uppercased(),
                                                         letterSpacing: 2,
-                                                        font: .bentonRegularFont(ofSize: 11),
+                                                        font: .H7Tag,
                                                         textColor: .white60,
                                                         alignment: .left)
         shareButton.setAttributedTitle(attributedButtonTitle, for: .normal)
@@ -103,7 +103,7 @@ private extension PartnersOverviewCollectionViewCell {
         initialsLabel.isHidden = (profileImage != nil)
         initialsLabel.attributedText = NSAttributedString(string: partner?.initials ?? "",
                                                           letterSpacing: 2,
-                                                          font: .simpleFont(ofSize: 36),
+                                                          font: .H1MainTitle,
                                                           lineSpacing: 2,
                                                           textColor: .white,
                                                           alignment: .center)
@@ -118,12 +118,12 @@ private extension PartnersOverviewCollectionViewCell {
         initialsLabel.isHidden = true
         let attributedButtonTitle = NSAttributedString(string: R.string.localized.meSectorMyWhyPartnersCellAddPartner(),
                                                        letterSpacing: 1,
-                                                       font: .bentonBookFont(ofSize: 16),
+                                                       font: .DPText,
                                                        textColor: .white90,
                                                        alignment: .center)
         let addPartnerText = NSAttributedString(string: R.string.localized.meSectorMyWhyPartnersCellEmptyState(),
                                                 letterSpacing: 0,
-                                                font: .bentonBookFont(ofSize: 14),
+                                                font: .DPText3,
                                                 lineSpacing: 2,
                                                 textColor: .white90,
                                                 alignment: .left)

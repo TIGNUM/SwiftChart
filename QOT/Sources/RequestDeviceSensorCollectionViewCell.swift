@@ -23,7 +23,7 @@ final class RequestDeviceSensorCollectionViewCell: UICollectionViewCell, Dequeue
         corner(radius: Layout.CornerRadius.eight.rawValue)
         layer.borderWidth = 1
         layer.borderColor = UIColor.white40.cgColor
-        titleLabel.font = Font.DPText
+        titleLabel.font = .DPText
         titleLabel.textColor = .white40
 		titleLabel.textAlignment = .center
         drawImage()

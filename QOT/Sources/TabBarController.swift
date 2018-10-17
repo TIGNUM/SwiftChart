@@ -94,6 +94,7 @@ final class TabBarController: UITabBarController {
 extension TabBarController {
 
     struct Config {
+        var tabBarItemImage: UIImage?
         var tabBarBackgroundColor: UIColor
         var tabBarBackgroundImage: UIImage?
         var tabBarShadowImage: UIImage?
@@ -102,10 +103,11 @@ extension TabBarController {
         var indicatorViewColor: UIColor
         var indicatorViewSidePadding: CGFloat
 
-        static var `default` = Config(tabBarBackgroundColor: .clear,
+        static var `default` = Config(tabBarItemImage: UIImage(),
+                                      tabBarBackgroundColor: .navy,
                                       tabBarBackgroundImage: UIImage(),
                                       tabBarShadowImage: UIImage(),
-                                      useIndicatorView: true,
+                                      useIndicatorView: false,
                                       indicatorViewHeight: 1,
                                       indicatorViewColor: .white,
                                       indicatorViewSidePadding: 20)
@@ -130,9 +132,10 @@ private extension TabBarController {
     }
 
     func apply(_ config: Config) {
-        tabBar.backgroundColor = config.tabBarBackgroundColor
-        tabBar.backgroundImage = config.tabBarBackgroundImage
-        tabBar.shadowImage = config.tabBarShadowImage
+        tabBar.barStyle = .black
+        tabBar.isTranslucent = false
+        tabBar.barTintColor = config.tabBarBackgroundColor
+        tabBar.setValue(true, forKey: "_hidesShadow")
     }
 }
 

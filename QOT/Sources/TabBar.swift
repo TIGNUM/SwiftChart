@@ -9,10 +9,11 @@
 import Foundation
 
 enum TabBar: Index {
-    case guide = 0
+    case today = 0
     case learn = 1
-    case me = 2
-    case prepare = 3
+    case data = 2
+    case tbv = 3
+    case prepare = 4
 
     var index: Index {
        return self.rawValue
@@ -20,10 +21,21 @@ enum TabBar: Index {
 
     var title: String {
         switch self {
-        case .guide: return R.string.localized.tabBarItemGuide()
+        case .today: return R.string.localized.tabBarItemToday()
         case .learn: return R.string.localized.tabBarItemLearn()
-        case .me: return R.string.localized.tabBarItemMe()
+        case .data: return R.string.localized.tabBarItemData()
+        case .tbv: return R.string.localized.tabBarItemTbv()
         case .prepare: return R.string.localized.tabBarItemPrepare()
+        }
+    }
+
+    var image: UIImage? {
+        switch self {
+        case .today: return R.image.shortcutItemTools()
+        case .learn: return R.image.shortcutItemWhatsHotArticle()
+        case .data: return R.image.shortcutItemMyData()
+        case .tbv: return R.image.shortcutItemMyToBeVision()
+        case .prepare: return R.image.shortcutItemPrepare()
         }
     }
 
@@ -31,6 +43,8 @@ enum TabBar: Index {
         var config = TabBarItem.Config.default
         config.title = title
         config.tag = index
+        config.image = image
+        config.selectedImage = image
         return config
     }
 }

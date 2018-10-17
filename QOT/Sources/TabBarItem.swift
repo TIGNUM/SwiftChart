@@ -27,16 +27,12 @@ final class TabBarItem: UITabBarItem {
         static var `default` = Config(
             title: nil,
             isTitleUppercased: true,
-            titlePositionAdjustment: UIOffset(horizontal: 0, vertical: -26),
-            normalTitleTextAttributes: [
-                .font: Font.H5SecondaryHeadline,
-                .foregroundColor: UIColor.white.withAlphaComponent(0.4)
-            ],
-            selectedTitleTextAttributes: [
-                NSAttributedStringKey.font: Font.H5SecondaryHeadline,
-                NSAttributedStringKey.foregroundColor: UIColor.white
-            ],
-            image: UIImage(),
+            titlePositionAdjustment: UIOffset(horizontal: 0, vertical: 4),
+            normalTitleTextAttributes: [.font: UIFont.TabBar,
+                                        .foregroundColor: UIColor.white],
+            selectedTitleTextAttributes: [.font: UIFont.TabBar,
+                                          .foregroundColor: UIColor.azure],
+            image: nil,
             selectedImage: R.image.tabBarButtonItemHighlight(),
             tag: 0
         )
@@ -59,8 +55,8 @@ final class TabBarItem: UITabBarItem {
         titlePositionAdjustment = config.titlePositionAdjustment
         setTitleTextAttributes(config.normalTitleTextAttributes, for: .normal)
         setTitleTextAttributes(config.selectedTitleTextAttributes, for: .selected)
-        image = config.image
-        selectedImage = config.selectedImage
+        image = config.image?.withRenderingMode(.alwaysTemplate)
+        selectedImage = config.image
         tag = config.tag
     }
 }

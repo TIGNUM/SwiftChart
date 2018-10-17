@@ -25,12 +25,12 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String, body: String, status: Guide.Item.Status, image: URL?) {
         titleLabel.attributedText = attributedText(letterSpacing: 1,
                                                    text: title.uppercased(),
-                                                   font: Font.H5SecondaryHeadline,
+                                                   font: .H5SecondaryHeadline,
                                                    textColor: .white)
 
         bodyLabel.attributedText = attributedText(letterSpacing: 0.2,
                                                   text: body,
-                                                  font: Font.DPText,
+                                                  font: .DPText,
                                                   lineSpacing: 6,
                                                   textColor: .white70)
         toBeVisionImageView.kf.setImage(with: image, placeholder: R.image.universeMytobevision())

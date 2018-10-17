@@ -33,7 +33,7 @@ final class PrepareContentTopTabBarView: UIView {
         bottomSeparator.backgroundColor = .nightModeBlack30
         self.delegate = delegate
         titleLabel.addCharactersSpacing(spacing: 1, text: title, uppercased: true)
-        titleLabel.font = Font.H5SecondaryHeadline
+        titleLabel.font = .H5SecondaryHeadline
         titleLabel.textColor = .nightModeMainFont
         if leftButtonIcon != nil {
             setButton(leftButton,

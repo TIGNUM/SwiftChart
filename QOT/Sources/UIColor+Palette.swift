@@ -15,9 +15,9 @@ extension UIColor {
         return UIColor(white: 255/255, alpha: 0.1)
     }
 
-    /// UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 1)
+    /// UIColor(red: 2/255, green: 18/255, blue: 33/255, alpha: 1)
     class var navy: UIColor {
-        return UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 1)
+        return UIColor(red: 2/255, green: 18/255, blue: 33/255, alpha: 1)
     }
 
     /// UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 0.2)

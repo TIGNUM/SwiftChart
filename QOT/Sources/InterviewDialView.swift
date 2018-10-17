@@ -274,7 +274,7 @@ private extension InterviewDialView {
         } else {
             let label = UILabel()
             label.textColor = .white
-            label.font = Font.H5SecondaryHeadline
+            label.font = .H5SecondaryHeadline
             addSubview(label)
             segmentLabels[index] = label
             return label

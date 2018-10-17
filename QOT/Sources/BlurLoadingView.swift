@@ -33,7 +33,7 @@ final class BlurLoadingView: UIView {
         activityIndicatorView.startAnimating()
 
         label.text = lodingText
-        label.font = UIFont.bentonBookFont(ofSize: 15)
+        label.font = .DPText2
         label.textColor = .white
         label.numberOfLines = 0
 

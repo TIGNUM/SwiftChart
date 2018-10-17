@@ -25,7 +25,7 @@ final class PrepareContentSubHeaderTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String) {
         titleLabel.attributedText = NSMutableAttributedString(string: title,
                                                               letterSpacing: 2,
-                                                              font: Font.H5SecondaryHeadline,
+                                                              font: .H5SecondaryHeadline,
                                                               textColor: .nightModeBlack40,
                                                               alignment: .left)
     }

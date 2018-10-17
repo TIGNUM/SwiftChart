@@ -23,7 +23,7 @@ final class PrepareNotesTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String) {
         titleLabel.attributedText = NSMutableAttributedString(string: title,
                                                               letterSpacing: 2,
-                                                              font: Font.PText,
+                                                              font: .PText,
                                                               lineSpacing: 10,
                                                               textColor: .nightModeBlack,
                                                               alignment: .left)

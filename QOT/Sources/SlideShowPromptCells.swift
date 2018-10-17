@@ -39,7 +39,7 @@ private extension SlideShowMorePromptCell {
         let title = R.string.localized.slideShowMorePromptTitle()
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 1,
-                                                       font: .simpleFont(ofSize: 16),
+                                                       font: .H5SecondaryHeadline,
                                                        lineSpacing: 1,
                                                        textColor: .white,
                                                        alignment: .center,
@@ -48,7 +48,7 @@ private extension SlideShowMorePromptCell {
         let subtitle = R.string.localized.slideShowMorePromptSubtitle()
         subtitleLabel.attributedText = NSAttributedString(string: subtitle,
                                                           letterSpacing: 1,
-                                                          font: .simpleFont(ofSize: 14),
+                                                          font: .H5SecondaryHeadline,
                                                           lineSpacing: 1,
                                                           textColor: .white,
                                                           alignment: .center,
@@ -85,7 +85,7 @@ private extension SlideShowCompletePromptCell {
         let title = R.string.localized.slideShowCompletePromptTitle()
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 1,
-                                                       font: .simpleFont(ofSize: 16),
+                                                       font: .H5SecondaryHeadline,
                                                        lineSpacing: 1,
                                                        textColor: .white,
                                                        alignment: .center,
@@ -110,7 +110,7 @@ private extension UIButton {
         layer.borderWidth = 1
         layer.borderColor = color.cgColor
         let attributedTitle = NSAttributedString(string: title,
-                                                 font: .bentonBookFont(ofSize: 16),
+                                                 font: .DPText,
                                                  textColor: color,
                                                  alignment: .center)
         setAttributedTitle(attributedTitle, for: .normal)

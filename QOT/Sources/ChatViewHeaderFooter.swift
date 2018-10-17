@@ -13,12 +13,11 @@ final class ChatViewHeaderFooter: UICollectionReusableView {
 
     struct Style {
         let textAttributes: [NSAttributedStringKey: Any]
-
         static func `default`(alignment: NSTextAlignment) -> Style {
             let style = NSMutableParagraphStyle()
             style.alignment = alignment
             let attrs: [NSAttributedStringKey: Any] = [.paragraphStyle: style.copy(),
-                                                       .font: UIFont.bentonBookFont(ofSize: 11),
+                                                       .font: UIFont.H7Tag,
                                                        .foregroundColor: UIColor.whiteLight40]
             return Style(textAttributes: attrs)
         }
@@ -29,7 +28,6 @@ final class ChatViewHeaderFooter: UICollectionReusableView {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setup()
     }
 
@@ -43,7 +41,6 @@ final class ChatViewHeaderFooter: UICollectionReusableView {
 
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         super.apply(layoutAttributes)
-
         if let attrs = layoutAttributes as? ChatViewLayoutAttibutes, let animator = attrs.animator {
             self.animator = animator
             animator.animate(view: self, using: attrs)
@@ -52,7 +49,6 @@ final class ChatViewHeaderFooter: UICollectionReusableView {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
         animator?.cancel()
     }
 
