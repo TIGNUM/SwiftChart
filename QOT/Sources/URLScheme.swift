@@ -45,6 +45,7 @@ enum URLScheme: String {
     case contentItem = "contentItem"
     case fitbitApp = "fitbit"
     case signingVerificationCode = "verificationCode"
+    case profile = "profile"
 
     var queryName: String {
         switch self {
@@ -81,7 +82,8 @@ enum URLScheme: String {
              .prepareDay,
              .library,
              .guide,
-             .latestWhatsHotArticle: return ""
+             .latestWhatsHotArticle,
+             .profile: return ""
         default:
             return ""
         }
@@ -119,7 +121,7 @@ enum URLScheme: String {
         }
     }
 
-    func queryParametter(url: URL) -> String? {
+    func queryParameter(url: URL) -> String? {
         return url.queryStringParameter(param: queryName)
     }
 
@@ -155,6 +157,7 @@ enum URLScheme: String {
             host == URLScheme.toBeVision.rawValue ||
             host == URLScheme.prepareEvent.rawValue ||
             host == URLScheme.weeklyChoices.rawValue ||
-            host == URLScheme.featureExplainer.rawValue
+            host == URLScheme.featureExplainer.rawValue ||
+            host == URLScheme.profile.rawValue
     }
 }

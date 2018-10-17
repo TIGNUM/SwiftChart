@@ -60,13 +60,15 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
         case .work,
              .home: handleChoiceDecision(choice)
         case .next:
-            if worker.visionNotCreated == true {
-                worker.saveVision {
-                    self.handleChoiceTargets(choice)
-                }
-            } else {
-                handleChoiceTargets(choice)
+            presenter.showLoadingIndicator()
+            worker.saveVision { [weak self] in
+                self?.presenter.hideLoadingIndicator()
+                guard let model = self?.worker.model else { return }
+                self?.presenter.updateVisionControllerModel(model)
+                self?.handleChoiceTargets(choice)
             }
+            // Set restart URL
+            RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
         case .picture:
             if choice.target == nil {
                 router.showPictureActionSheet(.picture)
@@ -74,12 +76,14 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
                 handleChoiceTargets(choice)
             }
         case .review:
+            // Remove RestartInfo because we don't need it in this case.
+            RestartHelper.clearRestartRouteInfo()
             presenter.showLoadingIndicator()
-            worker.saveVision { [weak self] in
-                guard let model = self?.worker.model else { return }
-                self?.presenter.updateVisionControllerModel(model)
-                self?.presenter.dismiss()
+            worker.saveVision(completion: nil)
+            if let model = worker.model {
+                presenter.updateVisionControllerModel(model)
             }
+            presenter.dismiss()
         default: return
         }
     }

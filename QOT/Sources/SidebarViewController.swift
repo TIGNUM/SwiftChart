@@ -17,7 +17,9 @@ protocol SidebarViewControllerDelegate: class {
     func didTapSupportCell(in viewController: SidebarViewController)
     func didTapSettingsCell(in viewController: SidebarViewController)
     func didTapAdminCell(in viewController: SidebarViewController)
-    func didTapProfileCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController)
+    func didTapProfileCell(with contentCollection: ContentCollection?,
+                           in viewController: SidebarViewController,
+                           options: [LaunchOption: String?]?)
     func didTapAboutCell(in viewController: SidebarViewController)
 }
 
@@ -118,7 +120,10 @@ private extension SidebarViewController {
         switch sidebarItem {
         case .search: delegate?.didTapSearchCell(in: self)
         case .tools: delegate?.didTapLibraryCell(in: self)
-        case .profile: delegate?.didTapProfileCell(with: viewModel.contentCollection(sidebarItem), in: self)
+        case .profile:
+            delegate?.didTapProfileCell(with: viewModel.contentCollection(sidebarItem),
+                                        in: self,
+                                        options: nil)
         case .placeholder: return
         case .support: delegate?.didTapSupportCell(in: self)
         case .about: delegate?.didTapAboutCell(in: self)

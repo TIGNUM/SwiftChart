@@ -27,6 +27,10 @@ extension VisionGeneratorPresenter: VisionGeneratorPresenterInterface {
         viewController?.showLoadingIndicator()
     }
 
+    func hideLoadingIndicator() {
+        viewController?.hideLoadingIndicator()
+    }
+
     func updateVisionControllerModel(_ model: MyToBeVisionModel.Model) {
         visionController?.update(with: model)
     }

@@ -11,9 +11,11 @@ import UIKit
 final class MyToBeVisionPresenter: MyToBeVisionPresenterInterface {
 
     private weak var viewController: MyToBeVisionViewControllerInterface?
+    private let options: [LaunchOption: String?]
 
-    init(viewController: MyToBeVisionViewControllerInterface) {
+    init(viewController: MyToBeVisionViewControllerInterface, options: [LaunchOption: String?]? = nil) {
         self.viewController = viewController
+        self.options = options ?? [:]
     }
 
     func loadToBeVision(_ toBeVision: MyToBeVisionModel.Model) {
@@ -26,5 +28,9 @@ final class MyToBeVisionPresenter: MyToBeVisionPresenterInterface {
 
     func presentVisionGenerator() {
         viewController?.showVisionGenerator()
+    }
+
+    func setLaunchOptions(_ options: [LaunchOption: String?]) {
+        viewController?.setLaunchOptions(options)
     }
 }

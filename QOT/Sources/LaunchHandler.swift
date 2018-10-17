@@ -10,6 +10,10 @@ import UIKit
 import MBProgressHUD
 import os.log
 
+enum LaunchOption: String {
+    case edit
+}
+
 final class LaunchHandler {
 
     private var appDelegate: AppDelegate {
@@ -30,18 +34,27 @@ final class LaunchHandler {
             return
         }
 
+        var options: [LaunchOption: String?] = [:]
+        for queryItem in url.queryItems() {
+            if let option = LaunchOption(rawValue: queryItem.name) {
+                options[option] = queryItem.value
+            }
+        }
+
         switch scheme {
-        case .dailyPrep: dailyPrep(groupID: scheme.queryParametter(url: url), notificationID: notificationID, guideItem: guideItem)
-        case .fitbit: fitbit(accessToken: scheme.queryParametter(url: url))
+        case .dailyPrep:
+            dailyPrep(groupID: scheme.queryParameter(url: url), notificationID: notificationID, guideItem: guideItem)
+        case .fitbit: fitbit(accessToken: scheme.queryParameter(url: url))
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
         case .randomContent: randomContent(url: url, scheme: scheme, guideItem: guideItem)
         case .weeklyChoices: weeklyChoiches()
         case .meChoices: weeklyChoiches()
         case .weeklyChoicesReminder: weeklyChoicesReminder()
         case .myPreps: navigate(to: scheme.destination)
-        case .toBeVision: toBeVision(articleItemController: articleItemController)
+        case .toBeVision:
+            toBeVision(articleItemController: articleItemController, options: options)
         case .weeklyPeakPerformance: navigate(to: scheme.destination)
-        case .contentCategory: contentCategory(collectionID: scheme.queryParametter(url: url))
+        case .contentCategory: contentCategory(collectionID: scheme.queryParameter(url: url))
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
         case .strategies: navigate(to: scheme.destination)
         case .meUniverse: navigate(to: scheme.destination)
@@ -62,6 +75,7 @@ final class LaunchHandler {
         case .prepareEvent: navigateToPrepare(scheme.destination)
         case .prepareDay: navigateToPrepare(scheme.destination)
         case .library: appDelegate.appCoordinator.presentLibrary()
+        case .profile: appDelegate.appCoordinator.presentProfile(options: options)
         case .guide: navigate(to: scheme.destination)
         case .latestWhatsHotArticle: navigate(to: scheme.destination)
         case .contentItem: contentItem(url: url, scheme: scheme, searchViewController: searchViewController)
@@ -146,7 +160,8 @@ extension LaunchHandler {
             }
         } catch let error {
             hud.hide(animated: true)
-            self.showTemporaryHUD(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription))
+            self.showTemporaryHUD(type: .custom(title: R.string.localized.alertTitleCustom(),
+                                                message: error.localizedDescription))
         }
     }
 
@@ -155,7 +170,9 @@ extension LaunchHandler {
         case .unauthenticated: showTemporaryHUD(type: .unauthenticated)
         case .noNetworkConnection: showTemporaryHUD(type: .noNetworkConnection)
         case .unknown(let error, _),
-             .failedToParseData(_, let error): showTemporaryHUD(type: .custom(title: R.string.localized.alertTitleCustom(), message: error.localizedDescription))
+             .failedToParseData(_, let error):
+            showTemporaryHUD(type: .custom(title: R.string.localized.alertTitleCustom(),
+                                           message: error.localizedDescription))
         case .cancelled: showTemporaryHUD(type: .fitbitFailure)
         default: break
         }
@@ -249,7 +266,7 @@ extension LaunchHandler {
 
     func randomContent(url: URL, scheme: URLScheme, guideItem: Guide.Item? = nil) {
         guard
-            let contentIDString = scheme.queryParametter(url: url),
+            let contentIDString = scheme.queryParameter(url: url),
             let contentID = Int(contentIDString) else { return }
         if guideItem?.identifier == "learn#103423" {
             appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
@@ -265,8 +282,8 @@ extension LaunchHandler {
 
 extension LaunchHandler {
 
-    func toBeVision(articleItemController: ArticleItemViewController?) {
-        appDelegate.appCoordinator.presentToBeVision(articleItemController: articleItemController)
+    func toBeVision(articleItemController: ArticleItemViewController?, options: [LaunchOption: String?]) {
+        appDelegate.appCoordinator.presentToBeVision(articleItemController: articleItemController, options: options)
     }
 }
 
@@ -286,12 +303,12 @@ extension LaunchHandler {
     func featureExplainer(url: URL, scheme: URLScheme, guideItem: Guide.Item?) {
         if
             let guideItem = guideItem,
-            let contentIDString = scheme.queryParametter(url: url),
+            let contentIDString = scheme.queryParameter(url: url),
             let contentID = Int(contentIDString) {
                 appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
                                                                              guideItem: guideItem)
         } else if
-            let contentIDString = scheme.queryParametter(url: url),
+            let contentIDString = scheme.queryParameter(url: url),
             let contentID = Int(contentIDString),
             let notificationIDString = scheme.pushNotificationID(url: url),
             let notificationID = Int(notificationIDString) {
@@ -302,7 +319,7 @@ extension LaunchHandler {
 
     func contentItem(url: URL, scheme: URLScheme, searchViewController: SearchViewController?) {
         guard
-            let contentIDString = scheme.queryParametter(url: url),
+            let contentIDString = scheme.queryParameter(url: url),
             let contentID = Int(contentIDString) else { return }
         appDelegate.appCoordinator.presentContentItem(contentID: contentID, searchViewController: searchViewController)
     }

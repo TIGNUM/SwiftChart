@@ -9,13 +9,16 @@
 import Foundation
 
 final class MyToBeVisionConfigurator: AppStateAccess {
-    static func make() -> Configurator<MyToBeVisionViewController> {
+    static func make(_ options: [LaunchOption: String?]? = nil) -> Configurator<MyToBeVisionViewController> {
         return { viewController in
             let router = MyToBeVisionRouter(viewController: viewController)
             let presenter = MyToBeVisionPresenter(viewController: viewController)
             let worker = MyToBeVisionWorker(services: appState.services,
                                             syncManager: appState.appCoordinator.syncManager)
-            let interactor = MyToBeVisionInteractor(presenter: presenter, worker: worker, router: router)
+            let interactor = MyToBeVisionInteractor(presenter: presenter,
+                                                    worker: worker,
+                                                    router: router,
+                                                    options: options)
             viewController.interactor = interactor
             viewController.router = router
             viewController.permissionsManager = appState.permissionsManager

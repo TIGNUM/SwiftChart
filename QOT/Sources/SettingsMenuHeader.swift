@@ -9,7 +9,7 @@
 import UIKit
 
 protocol SettingsMenuHeaderDelegate: class {
-    func didTapImage(in view: SettingsMenuHeader)
+    func didTapImage(in view: SettingsMenuHeader?)
 }
 
 final class SettingsMenuHeader: UIView {

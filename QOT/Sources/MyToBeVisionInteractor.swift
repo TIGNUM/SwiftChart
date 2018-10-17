@@ -13,11 +13,16 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
     let presenter: MyToBeVisionPresenterInterface
     let worker: MyToBeVisionWorker
     let router: MyToBeVisionRouter
+    let options: [LaunchOption: String?]
 
-    init(presenter: MyToBeVisionPresenterInterface, worker: MyToBeVisionWorker, router: MyToBeVisionRouter) {
+    init(presenter: MyToBeVisionPresenterInterface,
+         worker: MyToBeVisionWorker,
+         router: MyToBeVisionRouter,
+         options: [LaunchOption: String?]?) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        self.options = options ?? [:]
     }
 
     func viewDidLoad() {
@@ -26,6 +31,9 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         presenter.loadToBeVision(toBeVision)
     }
 
+    func setLaunchOptions() {
+        presenter.setLaunchOptions(options)
+    }
     func isEmptyState() -> Bool {
         let myToBeVision = worker.myToBeVision()
         return myToBeVision?.headLine == nil && myToBeVision?.text == nil

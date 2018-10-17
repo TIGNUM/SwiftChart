@@ -106,7 +106,9 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
         viewController.pushToStart(childViewController: bubblesViewController)
     }
 
-    func didTapProfileCell(with contentCollection: ContentCollection?, in viewController: SidebarViewController) {
+    func didTapProfileCell(with contentCollection: ContentCollection?,
+                           in viewController: SidebarViewController,
+                           options: [LaunchOption: String?]? = nil) {
         let configurator = ProfileSettingsConfigurator.make()
         guard
             let menuViewModel = SettingsMenuViewModel(services: services),
@@ -116,7 +118,8 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
                                                                   permissionsManager: permissionsManager,
                                                                   networkManager: networkManager,
                                                                   settingsMenuViewModel: menuViewModel,
-                                                                  settingsViewModel: settingsViewModel)
+                                                                  settingsViewModel: settingsViewModel,
+                                                                  launchOptions: options)
         let navController = UINavigationController(rootViewController: profileViewController)
         navController.navigationBar.applyDefaultStyle()
         navController.modalTransitionStyle = .crossDissolve

@@ -50,6 +50,8 @@ enum AlertType {
     case noWeeklyChoice
     case noMyToBeVision
     case calendarNotSynced
+    case photosPermissionNotAuthorized
+    case cameraPermissionNotAuthorized
 
     var title: String? {
         switch self {
@@ -71,6 +73,8 @@ enum AlertType {
         case .settingsLoccationService: return R.string.localized.alertTitleLocationServices()
         case .settingsCalendars: return R.string.localized.alertTitleCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
+        case .photosPermissionNotAuthorized: return R.string.localized.alertTitlePhotosPermissionNotGranted()
+        case .cameraPermissionNotAuthorized: return R.string.localized.alertTitleCameraPermissionNotGranted()
         case .cameraNotAvailable: return R.string.localized.alertTitleCameraNotAvailable()
         case .permissionNotGranted: return R.string.localized.alertTitleCustom()
         case .resetPassword: return R.string.localized.alertTitleResetPassword()
@@ -104,6 +108,8 @@ enum AlertType {
         case .settingsLoccationService: return R.string.localized.alertMessageLocationServices()
         case .settingsCalendars: return R.string.localized.alertMessageCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertMessageEmailNotFound()
+        case .photosPermissionNotAuthorized: return R.string.localized.alertPhotosPermissionNotGrantedMessage()
+        case .cameraPermissionNotAuthorized: return R.string.localized.alertCameraPermissionNotGrantedMessage()
         case .cameraNotAvailable: return R.string.localized.alertBodyCameraNotAvailable()
         case .permissionNotGranted: return R.string.localized.alertPermissionNotGrantedMessage()
         case .notSynced: return R.string.localized.alertNotSyncedMessage()
@@ -138,6 +144,8 @@ enum AlertType {
              .toBeVisionActionSheet,
              .prepareEditStrategy,
              .logout,
+             .photosPermissionNotAuthorized,
+             .cameraPermissionNotAuthorized,
              .addSensor: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
@@ -149,6 +157,8 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars,
              .changePermissions,
+             .photosPermissionNotAuthorized,
+             .cameraPermissionNotAuthorized,
              .changeNotifications: return R.string.localized.alertButtonTitleOpenSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
@@ -161,6 +171,8 @@ enum AlertType {
     var buttonTitleDestructive: String? {
         switch self {
         case .changePermissions,
+             .photosPermissionNotAuthorized,
+             .cameraPermissionNotAuthorized,
              .changeNotifications: return R.string.localized.alertButtonTitleCancel()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonCamera()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationRemoveStrategy()
@@ -180,6 +192,8 @@ enum AlertType {
         case .logout: return [.destructive, .cancel]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
         case .changePermissions,
+             .cameraPermissionNotAuthorized,
+             .photosPermissionNotAuthorized,
              .changeNotifications: return [.destructive, .default]
         default: return [.default]
         }

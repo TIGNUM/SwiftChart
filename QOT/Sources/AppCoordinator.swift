@@ -174,6 +174,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 self.handleSetupError(error: error)
             } else if self.credentialsManager.hasLoginCredentials {
                 self.showApp(loginViewController: nil)
+                RestartHelper().checkRestartURLAndRoute()
             } else {
                 self.showSigning(controller: viewController)
             }
@@ -924,6 +925,12 @@ extension AppCoordinator {
         currentPresentedController = sidebarCoordinator.sideBarViewController
     }
 
+    func presentProfile(options: [LaunchOption: String?]) {
+        guard let sidebarCoordinator = presentSideBar(destination: nil) else { return }
+        sidebarCoordinator.didTapProfileCell(with: nil, in: sidebarCoordinator.sideBarViewController, options: options)
+        currentPresentedController = sidebarCoordinator.sideBarViewController
+    }
+
     func presentAddSensor() {
         let configurator = SensorConfigurator.make()
         let sensorViewController = SensorViewController(configure: configurator)
@@ -939,7 +946,8 @@ extension AppCoordinator {
         currentPresentedNavigationController = navController
     }
 
-    func presentToBeVision(articleItemController: ArticleItemViewController?) {
+    func presentToBeVision(articleItemController: ArticleItemViewController?,
+                           options: [LaunchOption: String?]? = nil) {
         guard
             var rootViewController = windowManager.rootViewController(atLevel: .normal),
             let services = services else { return }
@@ -949,7 +957,8 @@ extension AppCoordinator {
         }
         let coordinator = MyToBeVisionCoordinator(root: rootViewController,
                                                   transitioningDelegate: transitioningDelegate,
-                                                  services: services)
+                                                  services: services,
+                                                  options: options)
         startChild(child: coordinator)
     }
 

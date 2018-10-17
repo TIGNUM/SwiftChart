@@ -505,6 +505,10 @@ extension ChatViewController: ChatViewControllerInterface {
         _ = MBProgressHUD.showAdded(to: view, animated: true)
     }
 
+    func hideLoadingIndicator() {
+        MBProgressHUD.hide(for: view, animated: true)
+    }
+
     func dismiss() {
         if let childViewControllers = navigationController?.childViewControllers,
             childViewControllers.first != self {

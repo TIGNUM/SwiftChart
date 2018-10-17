@@ -17,6 +17,7 @@ protocol ChatViewControllerInterface: class {
     func resetVisionChoice()
     func dismiss()
     func showLoadingIndicator()
+    func hideLoadingIndicator()
 }
 
 protocol VisionGeneratorPresenterInterface {
@@ -26,6 +27,7 @@ protocol VisionGeneratorPresenterInterface {
     func dismiss()
     func updateVisionControllerModel(_ model: MyToBeVisionModel.Model)
     func showLoadingIndicator()
+    func hideLoadingIndicator()
 }
 
 protocol VisionGeneratorInteractorInterface: Interactor {

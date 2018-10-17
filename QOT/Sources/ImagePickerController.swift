@@ -125,9 +125,13 @@ final class ImagePickerController {
             case .granted:
                 self.handleOption(option)
             case .denied:
-                self.viewController?.showAlert(type: .cameraNotAvailable) {
+                let type: AlertType = (identifier == .camera) ? .cameraPermissionNotAuthorized : .photosPermissionNotAuthorized
+                self.viewController?.showAlert(type: type, handler: {
+                    UIApplication.openAppSettings()
+                }, handlerDestructive: {
                     self.finish()
-                }
+                    self.delegate?.cancelSelection()
+                })
             case .later:
                 self.permissionsManager.updateAskStatus(.canAsk, for: identifier)
                 self.handleAuthorizationForOption(option)

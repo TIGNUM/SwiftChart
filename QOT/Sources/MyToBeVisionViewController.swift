@@ -98,6 +98,7 @@ final class MyToBeVisionViewController: UIViewController {
         syncEditingViews(true)
         addKeyboardObservers()
         edit(false)
+        interactor?.setLaunchOptions()
     }
 
     @available(iOS 11.0, *)
@@ -152,6 +153,22 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
     func update(with toBeVision: MyToBeVisionModel.Model) {
         if toBeVision != self.toBeVision {
             self.toBeVision = toBeVision
+        }
+    }
+
+    func setLaunchOptions(_ options: [LaunchOption: String?]) {
+        for option in options.keys {
+            let value = options[option] ?? ""
+            switch option {
+            case .edit:
+                if value?.lowercased() == "image" {
+                    DispatchQueue.main.async {
+                        self.isEditing = true
+                        self.edit(true)
+                        self.didTapImage()
+                    }
+                }
+            }
         }
     }
 }
@@ -286,6 +303,7 @@ extension MyToBeVisionViewController {
 
     @objc func didTapImage() {
         imagePickerController.show(in: self)
+        RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
     }
 
     @IBAction private func didTapCreateVision() {
@@ -487,10 +505,12 @@ extension MyToBeVisionViewController: ImagePickerControllerDelegate {
 
     func cancelSelection() {
         edit(true)
+        RestartHelper.clearRestartRouteInfo()
     }
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         imageView.image = image
+        RestartHelper.clearRestartRouteInfo()
     }
 }
 

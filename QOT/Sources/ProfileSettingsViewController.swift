@@ -38,6 +38,7 @@ final class ProfileSettingsViewController: UIViewController {
     private let networkManager: NetworkManager
     private let services: Services
     private var scrollViewContentHeightConstraint = NSLayoutConstraint()
+    private var launchOptions: [LaunchOption: String?]
 
     private lazy var headerView: SettingsMenuHeader? = {
         let headerView = R.nib.settingsMenuHeader().instantiate(withOwner: nil, options: nil).first as? SettingsMenuHeader
@@ -80,7 +81,8 @@ final class ProfileSettingsViewController: UIViewController {
          permissionsManager: PermissionsManager,
          networkManager: NetworkManager,
          settingsMenuViewModel: SettingsMenuViewModel,
-         settingsViewModel: SettingsViewModel) {
+         settingsViewModel: SettingsViewModel,
+         launchOptions: [LaunchOption: String?]? = nil) {
         self.networkManager = networkManager
         self.services = services
         self.settingsMenuViewModel = settingsMenuViewModel
@@ -89,6 +91,7 @@ final class ProfileSettingsViewController: UIViewController {
                                                       imageQuality: .low,
                                                       imageSize: .small,
                                                       permissionsManager: permissionsManager)
+        self.launchOptions = launchOptions ?? [:]
         super.init(nibName: nil, bundle: nil)
         configurator(self)
     }
@@ -111,6 +114,8 @@ final class ProfileSettingsViewController: UIViewController {
         keyboardListener.onStateChange { [unowned self] (state) in
             self.handleKeyboardChange(state: state)
         }
+
+        setLaunchOptions(launchOptions)
     }
 
     @available(iOS 11.0, *)
@@ -247,6 +252,20 @@ private extension ProfileSettingsViewController {
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
         tableView.register(R.nib.settingsTextFieldTableViewCell(),
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_TextField.identifier)
+    }
+
+    func setLaunchOptions(_ options: [LaunchOption: String?]) {
+        for option in options.keys {
+            let value = options[option] ?? ""
+            switch option {
+            case .edit:
+                if value?.lowercased() == "image" {
+                    DispatchQueue.main.async {
+                        self.didTapImage(in: nil)
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -507,8 +526,9 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
 
 extension ProfileSettingsViewController: SettingsMenuHeaderDelegate {
 
-    func didTapImage(in view: SettingsMenuHeader) {
+    func didTapImage(in view: SettingsMenuHeader?) {
         imagePickerController.show(in: self)
+        RestartHelper.setRestartURLScheme(.profile, options: [.edit: "image"])
     }
 }
 
@@ -516,13 +536,16 @@ extension ProfileSettingsViewController: SettingsMenuHeaderDelegate {
 
 extension ProfileSettingsViewController: ImagePickerControllerDelegate {
 
-    func cancelSelection() {}
+    func cancelSelection() {
+        RestartHelper.clearRestartRouteInfo()
+    }
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         guard let profile = profile else { return }
 
         interactor?.updateSettingsMenuImage(image: image, settingsMenu: profile)
         headerView?.updateLocalImage(image: image)
+        RestartHelper.clearRestartRouteInfo()
     }
 }
 
