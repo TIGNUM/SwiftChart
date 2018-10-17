@@ -10,13 +10,13 @@ import Foundation
 
 protocol GuideViewControllerInterface: class {
     func setLoading(_ loading: Bool)
-    func updateHeader(greeting: String, message: String, image: URL?)
+    func updateHeader(greeting: String, message: String)
     func updateDays(days: [Guide.Day])
 }
 
 protocol GuidePresenterInterface {
     func presentLoading()
-    func present(model: Guide.Model, headerImage: URL?)
+    func present(model: Guide.Model)
 }
 
 protocol GuideInteractorInterface: Interactor {

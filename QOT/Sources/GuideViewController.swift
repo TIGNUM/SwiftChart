@@ -8,8 +8,6 @@
 
 import UIKit
 import Anchorage
-import Bond
-import ReactiveKit
 
 final class GuideViewController: UIViewController, PageViewControllerNotSwipeable {
 
@@ -17,12 +15,10 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     private let sectionHeaderHeight: CGFloat = 24
     private let fadeContainerView = FadeContainerView()
-    private let disposeBag = DisposeBag()
     private var days: [Guide.Day] = []
     private let loadingView = BlurLoadingView(lodingText: R.string.localized.guideLoading(),
                                               activityIndicatorStyle: .whiteLarge)
     private var greetingView = GuideGreetingView.instantiateFromNib()
-    private var greetingImageURL: URL?
     var interactor: GuideInteractorInterface?
     var router: GuideRouterInterface?
 
@@ -70,7 +66,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        syncHeaderView(imageURL: greetingImageURL)
+        syncHeaderView()
     }
 }
 
@@ -80,10 +76,9 @@ extension GuideViewController: GuideViewControllerInterface {
         loadingView.animateHidden(!loading)
     }
 
-    func updateHeader(greeting: String, message: String, image: URL?) {
-        greetingImageURL = image
+    func updateHeader(greeting: String, message: String) {
         greetingView.configure(message: message, greeting: greeting)
-        syncHeaderView(imageURL: image)
+        syncHeaderView()
     }
 
     func updateDays(days: [Guide.Day]) {
@@ -130,10 +125,10 @@ private extension GuideViewController {
 		loadingView.edgeAnchors == fadeContainerView.edgeAnchors
         fadeContainerView.setFade(top: view.frame.height * 0.15, bottom: view.frame.height * 0.15)
         view.layoutIfNeeded()
-        syncHeaderView(imageURL: greetingImageURL)
+        syncHeaderView()
     }
 
-    func syncHeaderView(imageURL: URL?) {
+    func syncHeaderView() {
         let header = greetingView
         header.bounds = CGRect(x: 0,
                                y: 0,

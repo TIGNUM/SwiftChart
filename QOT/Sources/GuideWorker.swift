@@ -13,9 +13,9 @@ final class GuideWorker {
 
     private let badgeManager: BadgeManager?
     private let syncStateObserver: SyncStateObserver
-    let services: Services
-    let widgetDataManager: WidgetDataManager
-    let backgroudQueue = DispatchQueue(label: "guide worker", qos: .background)
+    private let services: Services
+    private let widgetDataManager: WidgetDataManager
+    private let backgroudQueue = DispatchQueue(label: "guide worker", qos: .background)
 
     init(services: Services, badgeManager: BadgeManager?) {
         self.badgeManager = badgeManager

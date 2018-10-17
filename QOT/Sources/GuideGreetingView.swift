@@ -16,21 +16,12 @@ final class GuideGreetingView: UIView {
         }
         return view
     }
-
-    @IBOutlet private weak var fadeView: UIView!
-    @IBOutlet private weak var userImageView: UIImageView!
     @IBOutlet private weak var greetingLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        backgroundColor = .clear
-    }
 
     func configure(message: String, greeting: String) {
         greetingLabel.attributedText = attributedText(greeting)
         messageLabel.attributedText = attributedText(message)
-        fadeView.alpha = 0.8
     }
 
     override func layoutSubviews() {

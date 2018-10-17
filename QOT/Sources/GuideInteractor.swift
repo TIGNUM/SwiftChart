@@ -44,17 +44,16 @@ final class GuideInteractor: GuideInteractorInterface {
 		worker.makeGuide { [weak self] (guide) in
 			if guide != nil {
 				self?.currentGuide = guide
-				self?.presentGuideWithImage()
+				self?.presentGuide()
 			} else {
 				self?.presenter.presentLoading()
 			}
 		}
 	}
 
-	func presentGuideWithImage() {
+	func presentGuide() {
 		guard let guide = currentGuide else { return }
-		let imageResource = worker.services.userService.myToBeVision()?.profileImageResource
-		presenter.present(model: guide, headerImage: imageResource?.localURL ?? imageResource?.remoteURL)
+		presenter.present(model: guide)
 	}
 
 	func didTapItem(_ item: Guide.Item) {

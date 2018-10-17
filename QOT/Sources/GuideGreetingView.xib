@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,13 +16,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="300"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hyb-ib-nTu">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="290"/>
-                </imageView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bz9-Rn-hta">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="290"/>
-                    <color key="backgroundColor" red="0.0" green="0.12549019610000001" blue="0.2156862745" alpha="1" colorSpace="calibratedRGB"/>
-                </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b4W-PL-n5j">
                     <rect key="frame" x="28" y="230.5" width="319" height="21"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
@@ -40,28 +33,18 @@
             <constraints>
                 <constraint firstItem="b4W-PL-n5j" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="28" id="55m-5z-1sf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="h86-VF-w5o" secondAttribute="trailing" constant="28" id="Huc-Na-b35"/>
-                <constraint firstItem="bz9-Rn-hta" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="bAg-TX-74h"/>
                 <constraint firstItem="h86-VF-w5o" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="28" id="ilP-CU-RVh"/>
-                <constraint firstItem="bz9-Rn-hta" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="jML-Qs-p6r"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="b4W-PL-n5j" secondAttribute="trailing" constant="28" id="lVA-Hb-boN"/>
-                <constraint firstItem="Hyb-ib-nTu" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="nuZ-CR-iK5"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="bz9-Rn-hta" secondAttribute="bottom" constant="10" id="p1y-n1-Upb"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bz9-Rn-hta" secondAttribute="trailing" id="pYP-mh-k1g"/>
-                <constraint firstItem="Hyb-ib-nTu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="quF-g6-jdg"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Hyb-ib-nTu" secondAttribute="bottom" constant="10" id="uh0-ZY-ea7"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="h86-VF-w5o" secondAttribute="bottom" constant="20" id="ush-eb-OIQ"/>
                 <constraint firstItem="h86-VF-w5o" firstAttribute="top" secondItem="b4W-PL-n5j" secondAttribute="bottom" constant="8" id="wOO-Eb-MmO"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Hyb-ib-nTu" secondAttribute="trailing" id="yiW-0t-Okg"/>
             </constraints>
             <nil key="simulatedTopBarMetrics"/>
             <nil key="simulatedBottomBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
-                <outlet property="fadeView" destination="bz9-Rn-hta" id="SMl-sE-dxM"/>
                 <outlet property="greetingLabel" destination="b4W-PL-n5j" id="LEF-oy-IqR"/>
                 <outlet property="messageLabel" destination="h86-VF-w5o" id="FKp-6j-SuG"/>
-                <outlet property="userImageView" destination="Hyb-ib-nTu" id="qX2-cx-nae"/>
             </connections>
             <point key="canvasLocation" x="35.5" y="47.5"/>
         </view>
