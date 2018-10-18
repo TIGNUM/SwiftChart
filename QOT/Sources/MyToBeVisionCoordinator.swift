@@ -35,14 +35,8 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
     func start() {
         let configurator = MyToBeVisionConfigurator.make(options)
         let myToBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
-        let headlinePlaceholder = services.contentService.toBeVisionHeadlinePlaceholder()
-        let messagePlaceholder = services.contentService.toBeVisionMessagePlaceholder()
         let currentToBeVision = services.userService.myToBeVision()
-        if let toBeVision = currentToBeVision,
-            let headline = toBeVision.headline,
-            let text = toBeVision.text,
-            headline != headlinePlaceholder,
-            text != messagePlaceholder {
+        if let toBeVision = currentToBeVision, toBeVision.headline != nil, toBeVision.text != nil {
             let navController = UINavigationController(rootViewController: myToBeVisionViewController)
             navController.navigationBar.applyDefaultStyle()
             navController.modalPresentationStyle = .custom
