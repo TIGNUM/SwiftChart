@@ -50,6 +50,7 @@ enum AlertType {
     case noWeeklyChoice
     case noMyToBeVision
     case calendarNotSynced
+    case eventDateNotAvailable
     case photosPermissionNotAuthorized
     case cameraPermissionNotAuthorized
 
@@ -89,6 +90,7 @@ enum AlertType {
         case .noMyToBeVision,
              .noWeeklyChoice : return R.string.localized.meSectorMyWhyPartnersShareNoContentTitle()
         case .calendarNotSynced: return R.string.localized.alertTitleCalendarNotSynced()
+        case .eventDateNotAvailable: return R.string.localized.alertTitleEventDateNotAvailable()
         case .changeNotifications: return R.string.localized.alertTitleSettingsChangeNotifications()
         default: return nil
         }
@@ -128,6 +130,7 @@ enum AlertType {
         case .noWeeklyChoice: return R.string.localized.meSectorMyWhyPartnersShareMissingWeeklyChoiceAlert()
         case .addSensor: return R.string.localized.addSensorViewAlertMessage()
         case .calendarNotSynced: return R.string.localized.alertMessageCalendarNotSynced()
+        case .eventDateNotAvailable: return R.string.localized.alertMessageEventDateNotAvailable()
         case .changeNotifications: return R.string.localized.alertMessageSettingsChangeNotifications()
         default: return nil
         }

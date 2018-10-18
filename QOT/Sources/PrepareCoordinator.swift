@@ -45,43 +45,12 @@ final class PrepareCoordinator: ParentCoordinator {
     var children: [Coordinator] = []
 
     private lazy var editEventHandler: EditEventHandler = {
-        var canCreatePreparation = true
         let delegate = EditEventHandler()
         delegate.handler = { [weak self] (controller, action) in
             switch action {
             case .saved:
                 if let ekEvent = controller.event {
-                    let event = CalendarEvent(event: ekEvent)
-                    do {
-                        canCreatePreparation = try self?.services.eventsService.calendarSyncEnabled(toggleIdentifier: event.calendarIdentifier,
-                                                                                                    title: event.title) ?? false
-                        if canCreatePreparation == true {
-                            let realm = try self?.services.realmProvider.realm()
-                            try realm?.write {
-                                realm?.add(event)
-                            }
-                        }
-                    } catch {
-                        // Do nothing, any how the event exists on the device and will be synchronized next time.
-                    }
-                    if canCreatePreparation == true {
-                        AppCoordinator.appState.syncManager.syncCalendarEvents { (error) in
-                            let createdEvent = self?.services.eventsService.calendarEvent(ekEvent: ekEvent)
-                            self?.createPreparation(name: event.title, event: event) { (preparationID) in
-                                self?.tabBarController.dismiss(animated: true)
-                                NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
-                                if let id = preparationID {
-                                    self?.showPrepareCheckList(preparationID: id, chatDecisionManager: self?.chatDecisionManager)
-                                }
-                            }
-                        }
-                    } else {
-                        self?.tabBarController.dismiss(animated: true) {
-                            self?.chatViewController.showAlert(type: .calendarNotSynced, handler: { [weak self] in
-                                self?.chatDecisionManager.addQuestions()
-                                }, handlerDestructive: nil)
-                        }
-                    }
+                    self?.createPreparation(with: ekEvent)
                 }
             case .canceled, .deleted:
                 controller.dismiss(animated: true)
@@ -514,6 +483,59 @@ private class EditEventHandler: NSObject, EKEventEditViewDelegate {
     func eventEditViewController(_ controller: EKEventEditViewController,
                                  didCompleteWith action: EKEventEditViewAction) {
         handler?(controller, action)
+    }
+}
+
+// MARK: - Create Preparation with Creating Event
+
+extension PrepareCoordinator {
+
+    func createPreparation(with ekEvent: EKEvent) {
+        let event = CalendarEvent(event: ekEvent)
+        var calendarSyncAvailable = true
+        var dateInValidRange = true
+        do {
+            calendarSyncAvailable = try self.services.eventsService.calendarSyncEnabled(toggleIdentifier: event.calendarIdentifier,
+                                                                                        title: event.title)
+            // check out of date range. we collect always last 30 days and next 30 days
+            let validStartDate = Date().dayBefore(days: 30)
+            let validEndDate = Date().dayAfter(days: 30)
+
+            if ekEvent.startDate < validStartDate || ekEvent.startDate > validEndDate {
+                dateInValidRange = false
+            }
+
+            if calendarSyncAvailable == true && dateInValidRange == true {
+                let realm = try self.services.realmProvider.realm()
+                try realm.write {
+                    realm.add(event)
+                }
+            } else { // If it's invalid, remove from calendar
+                try EKEventStore.shared.remove(ekEvent, span: .futureEvents)
+            }
+        } catch {
+            // Do nothing, any how the event exists on the device and will be synchronized next time.
+        }
+        if calendarSyncAvailable == true && dateInValidRange == true {
+            AppCoordinator.appState.syncManager.syncCalendarEvents { (error) in
+                if let createdEvent = self.services.eventsService.calendarEvent(ekEvent: ekEvent) {
+                    self.createPreparation(name: createdEvent.title, event: createdEvent) { (preparationID) in
+                        self.tabBarController.dismiss(animated: true)
+                        NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
+                        if let id = preparationID {
+                            self.showPrepareCheckList(preparationID: id, chatDecisionManager: self.chatDecisionManager)
+                        }
+                    }
+                }
+            }
+        } else {
+            let alertType: AlertType = calendarSyncAvailable == false ? .calendarNotSynced : .eventDateNotAvailable
+            self.tabBarController.dismiss(animated: true) {
+                self.chatViewController.showAlert(type: alertType, handler: { [weak self] in
+                    self?.chatDecisionManager.addQuestions()
+                    }, handlerDestructive: nil)
+            }
+        }
     }
 }
 

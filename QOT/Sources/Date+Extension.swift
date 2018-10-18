@@ -64,6 +64,14 @@ extension Date {
         return date.isSameDay(nextDay)
     }
 
+    func dayBefore(days: Int) -> Date {
+        return Calendar.sharedUTC.date(byAdding: .day, value: (-days), to: self) ?? self
+    }
+
+    func dayAfter(days: Int) -> Date {
+        return Calendar.sharedUTC.date(byAdding: .day, value: days, to: self) ?? self
+    }
+
     func isSameDay(_ date: Date) -> Bool {
         let componentsFirst = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: date)
         let componentsSecond = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: self)

@@ -318,7 +318,9 @@
 "Alert.Title.Settings.ChangePermission" = "Change Permission";
 "Alert.Message.Settings.ChangePermission" = "Go to System Settings to change your permissions.";
 "Alert.title.calendar.not.synced" = "Calendar not synchronized";
+"Alert.title.event.date.not.available" = "Date not available";
 "Alert.message.calendar.not.synced" = "QOT could not create the event for the selected calendar. Please choose another calendar or enable Calendar Synchronization in Settings.";
+"Alert.message.event.date.not.available" = "QOT could not create the event for the selected date. Please choose date in next 30 days.";
 "Alert.Title.Settings.Change.Notifications" = "Change Notifications";
 "Alert.Message.Settings.Change.Notifications" = "Go to System Settings to edit your notification settings.";
 

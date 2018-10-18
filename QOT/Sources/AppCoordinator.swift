@@ -85,9 +85,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     lazy var calendarImportManager: CalendarImportManger = {
         let manager = CalendarImportManger(realm: self.realmProvider, predicate: { () -> (start: Date, end: Date) in
-            let day: TimeInterval = 60 * 60 * 24
-            let start = Date().addingTimeInterval(-(day * 30))
-            let end = Date().addingTimeInterval(day * 30)
+            let start = Date().dayBefore(days: 30)
+            let end = Date().dayAfter(days: 30)
             return (start, end)
         })
         manager.delegate = self
