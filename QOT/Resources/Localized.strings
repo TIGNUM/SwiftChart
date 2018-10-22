@@ -411,6 +411,7 @@
 "Search.Filter.Video" = "VIDEO";
 
 "guide.card.preparation.subtitle" = "PREPARE";
+"guide.card.foundation.subtitle" = "QOT FOUNDATION";
 "guide.card.preparation.single-unstarted-today.title" = "Prepare for your upcoming event";
 "guide.card.preparation.single-unstarted-today.content" = "You've got an event coming up today. Tap on the card to prepare.";
 "guide.card.preparation.multiple-unstarted-today.title" = "Prepare for your upcoming events";
