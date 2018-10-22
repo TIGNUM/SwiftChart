@@ -93,18 +93,6 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
         resizeHeaderView()
     }
 
-    func reloadArticles(viewModel: ArticleItemViewModel) {
-        self.viewModel = viewModel
-        UIView.animate(withDuration: 0.2, animations: {
-            self.tableView.setContentOffset(CGPoint(x: 0, y: -self.paddingTop), animated: false)
-        }, completion: { _ in
-            self.setTableViewHeader()
-            self.tableView.reloadData()
-            self.tableView.layoutIfNeeded()
-        })
-        viewModel.markContentAsRead()
-    }
-
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()

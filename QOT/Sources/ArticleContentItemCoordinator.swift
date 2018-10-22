@@ -116,7 +116,18 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
                                          items: Array(selectedArticle.articleItems),
                                          contentCollection: selectedArticle,
                                          articleHeader: articleHeader)
-        fullViewController.reloadArticles(viewModel: viewModel)
+        let topInset = fullViewController.view.bounds.height * Layout.multiplier_025
+        let edgeInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
+        let relatedArticleViewController = ArticleItemViewController(pageName: .whatsHotArticle,
+                                                                     viewModel: viewModel,
+                                                                     contentInsets: edgeInsets,
+                                                                     fadeMaskLocation: .top)
+        let navigationController = UINavigationController(withPages: [relatedArticleViewController],
+                                                          topBarDelegate: self,
+                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_close()))
+        fullViewController.present(navigationController, animated: true) {
+            self.viewModel.markContentAsRead()
+        }
     }
 
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController) {
