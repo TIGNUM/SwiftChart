@@ -25,7 +25,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     @IBOutlet private weak var weeklyChoicesView: WeeklyChoicesView!
 
     private var totalHeight: CGFloat {
-        return myToBeVisionView.bounds.height + upcomingEventsView.bounds.height + weeklyChoicesView.height
+        return myToBeVisionView.bounds.height + upcomingEventsView.bounds.height
     }
 
     private var isNetworkAvailable: Bool {
