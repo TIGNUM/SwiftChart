@@ -79,8 +79,8 @@ final class MyToBeVisionViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
         configurator(self)
         imagePickerController = ImagePickerController(cropShape: .circle,
-                                                      imageQuality: .low,
-                                                      imageSize: .small,
+                                                      imageQuality: .high,
+                                                      imageSize: .large,
                                                       permissionsManager: permissionsManager)
         imagePickerController.delegate = self
         imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
