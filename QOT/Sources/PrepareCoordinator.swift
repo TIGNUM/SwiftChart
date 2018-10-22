@@ -109,12 +109,6 @@ extension PrepareCoordinator {
             prepType = (categoryID != problemCategoryID) ? .prepContentEvent : .prepContentProblem
             title = content.title
 
-            if prepType == .prepContentProblem {
-                let videoItem = content.contentItems.filter { $0.format == "video" }.first
-                description = videoItem?.valueText
-                subtitle = videoItem?.valueDescription
-            }
-
             for item in content.contentItems {
                 let value = item.contentItemValue
                 switch value {
@@ -132,6 +126,12 @@ extension PrepareCoordinator {
                 default:
                     break
                 }
+            }
+
+            if prepType == .prepContentProblem {
+                let videoItem = content.contentItems.filter { $0.format == "video" }.first
+                description = videoItem?.valueText
+                subtitle = videoItem?.valueDescription
             }
         }
 
