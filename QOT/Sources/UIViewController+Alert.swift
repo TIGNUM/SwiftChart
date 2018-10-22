@@ -74,8 +74,6 @@ enum AlertType {
         case .settingsLoccationService: return R.string.localized.alertTitleLocationServices()
         case .settingsCalendars: return R.string.localized.alertTitleCalendarNoAccess()
         case .emailNotFound: return R.string.localized.alertTitleEmailNotFound()
-        case .photosPermissionNotAuthorized: return R.string.localized.alertTitlePhotosPermissionNotGranted()
-        case .cameraPermissionNotAuthorized: return R.string.localized.alertTitleCameraPermissionNotGranted()
         case .cameraNotAvailable: return R.string.localized.alertTitleCameraNotAvailable()
         case .permissionNotGranted: return R.string.localized.alertTitleCustom()
         case .resetPassword: return R.string.localized.alertTitleResetPassword()
@@ -160,9 +158,9 @@ enum AlertType {
              .settingsLoccationService,
              .settingsCalendars,
              .changePermissions,
-             .photosPermissionNotAuthorized,
-             .cameraPermissionNotAuthorized,
              .changeNotifications: return R.string.localized.alertButtonTitleOpenSettings()
+        case .photosPermissionNotAuthorized,
+             .cameraPermissionNotAuthorized: return R.string.localized.alertButtonTitleSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
         case .logout: return R.string.localized.alertButtonTitleCancel()

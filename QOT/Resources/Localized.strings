@@ -264,8 +264,6 @@
 
 "Common.InvalidContent" = "Cannot Display Content";
 
-"Alert.Title.CameraPermission.Not.Granted" = "Access Camera";
-"Alert.Title.PhotosPermission.Not.Granted" = "Access Photos";
 "Alert.Title.Camera.Not.Available" = "Notice!";
 "Alert.Body.Camera.Not.Available" = "QOT does not have access to your Photos or Videos. To enable access open Setting on your device";
 "Alert.Title.Notifications.Not.Authorized" = "No Authorization";
@@ -287,6 +285,7 @@
 "Alert.Button.Title.Cancel" = "Cancel";
 "Alert.Button.Title.Continue" = "Continue";
 "Alert.Button.Title.Save" = "Save";
+"Alert.Button.Title.Settings" = "Settings";
 "Alert.Button.Title.Open.Settings" = "Open Settings";
 "Alert.Title.LocationServices" = "Location Services";
 "Alert.Message.LocationServices" = "To change the location service permissions please go the settings.";
@@ -295,8 +294,8 @@
 "Alert.Title.EmailNotFound" = "Email not found";
 "Alert.Message.EmailNotFound" = "Please try again";
 "Alert.CameraNotAvailable.Message" = "The camera is not currently available on this device";
-"Alert.CameraPermissionNotGranted.Message" = "QOT dose not have access to your Camera. To enable access, tap Setting and turn on Camera.";
-"Alert.PhotosPermissionNotGranted.Message" = "QOT dose not have access to your photos. To enable access, tap Setting and turn on photos.";
+"Alert.CameraPermissionNotGranted.Message" = "QOT does not have access to your Camera. To enable access, tap Settings and turn on Camera.";
+"Alert.PhotosPermissionNotGranted.Message" = "QOT does not have access to your photos. To enable access, tap Settings and turn on photos.";
 "Alert.PermissionNotGranted.Message" = "Please open your settings to enable permissions for this action";
 "Alert.NotSynced.Message" = "QOT needs to download more data. Please try again later";
 "Alert.Title.Reset.Password" = "Reset Password";
