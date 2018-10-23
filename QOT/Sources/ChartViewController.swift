@@ -8,13 +8,14 @@
 
 import UIKit
 import Anchorage
+import ReactiveKit
 
 protocol ChartViewControllerDelegate: class {
     func didSelectAddSensor()
     func didSelectOpenSettings()
 }
 
-final class ChartViewController: UIViewController {
+final class ChartViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
 
     // MARK: - Properties
 
@@ -23,6 +24,13 @@ final class ChartViewController: UIViewController {
     private var pageControls = [PageControl]()
     private let headerHeight: CGFloat = 20
     private let footerHeight: CGFloat = 30
+    private let disposeBag = DisposeBag()
+    var loadingView: BlurLoadingView?
+    var isLoading: Bool = false {
+        didSet {
+            showLoading(isLoading, text: R.string.localized.loadingData())
+        }
+    }
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped,
@@ -49,12 +57,14 @@ final class ChartViewController: UIViewController {
         super.viewDidLoad()
         setupView()
         createPageControls()
+        observeViewModel()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         chartViews.keys.forEach { chartViews[$0] = nil }
         tableView.reloadData()
+        updateReadyState()
     }
 
     override func viewDidLayoutSubviews() {
@@ -72,6 +82,21 @@ final class ChartViewController: UIViewController {
 // MARK: - Private
 
 private extension ChartViewController {
+
+    func updateReadyState() {
+        isLoading = !viewModel.isReady()
+    }
+
+    func observeViewModel() {
+        viewModel.updates.observeNext { [unowned self] (update) in
+            switch update {
+            case .reload, .update:
+                self.createPageControls()
+                self.tableView.reloadData()
+                self.updateReadyState()
+            }
+        }.dispose(in: disposeBag)
+    }
 
     func setupView() {
         view.addSubview(tableView)
@@ -100,7 +125,7 @@ private extension ChartViewController {
 extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return viewModel.numberOfSections
+        return viewModel.isReady() ? viewModel.numberOfSections : 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -92,6 +92,7 @@
 "Article.Loading" = "Please wait while we configure what's hot";
 "Guide.Loading" = "Please wait while we configure your guide";
 "Me.My.Universe.Loading" = "Please wait while we configure your universe";
+"Loading.Data" = "Please wait while we configure your data";
 "Me.My.Prep.Loading" = "Please wait while we configure your preparation";
 
 "Me.My.Statistics.Navigation.Bar.Title" = "MY STATISTICS";

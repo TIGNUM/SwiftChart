@@ -22,6 +22,7 @@ final class ChartViewModel {
     private var charts: [[Statistics]] = []
     private let services: Services
     private let permissionsManager: PermissionsManager
+    private let syncStateObserver: SyncStateObserver
     var allCharts: [Statistics] = []
     var sortedSections = [StatisticsSectionType]()
     var calandarAccessGranted = false
@@ -31,13 +32,17 @@ final class ChartViewModel {
     init(services: Services, permissionsManager: PermissionsManager, startingSection: StatisticsSectionType) {
         self.services = services
         self.permissionsManager = permissionsManager
-        do {
-            self.charts = try services.statisticsService.charts()
-            self.allCharts = self.charts.flatMap { $0 }
-            sortCharts(startingSection: startingSection)
-            askPermissionForCalendar()
-        } catch let error {
-            log(error)
+        syncStateObserver = SyncStateObserver(realm: services.mainRealm)
+        syncStateObserver.onUpdate { [unowned self] _ in
+            do {
+                self.charts = try services.statisticsService.charts()
+                self.allCharts = self.charts.flatMap { $0 }
+                self.sortCharts(startingSection: startingSection)
+                self.askPermissionForCalendar()
+                self.updates.next(.reload)
+            } catch let error {
+                log(error)
+            }
         }
     }
 
@@ -104,6 +109,10 @@ final class ChartViewModel {
 
     func dataAverage(section: Int, item: Int, buttonTag: Int = 0) -> CGFloat {
         return statistics(section: section, item: item, buttonTag: buttonTag)?.dataAverageValue ?? 0
+    }
+
+    func isReady() -> Bool {
+        return syncStateObserver.hasSynced(Statistics.self) && allCharts.count > 0
     }
 }
 

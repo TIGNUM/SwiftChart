@@ -12,7 +12,7 @@ import Kingfisher
 
 protocol MyUniverseViewControllerDelegate: class {
 
-    func myUniverseViewController(_ viewController: MyUniverseViewController?, didTap sector: StatisticsSectionType)    
+    func myUniverseViewController(_ viewController: MyUniverseViewController?, didTap sector: StatisticsSectionType)
 
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapWeeklyChoiceAt index: Index)
 
