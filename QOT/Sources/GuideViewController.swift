@@ -23,7 +23,7 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     private lazy var tableView: UITableView = {
         let topContentInset: CGFloat = UIDevice.isPad ? Layout.padding_64 : -Layout.padding_64
-        return UITableView(style: .plain,
+        return UITableView(style: .grouped,
                            contentInsets: UIEdgeInsets(top: topContentInset, left: 0, bottom: 16, right: 0),
                            estimatedRowHeight: 100,
                            delegate: self,
