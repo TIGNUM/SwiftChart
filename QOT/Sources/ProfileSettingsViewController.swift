@@ -88,8 +88,8 @@ final class ProfileSettingsViewController: UIViewController {
         self.settingsMenuViewModel = settingsMenuViewModel
         self.settingsViewModel = settingsViewModel
         imagePickerController = ImagePickerController(cropShape: .circle,
-                                                      imageQuality: .low,
-                                                      imageSize: .small,
+                                                      imageQuality: .high,
+                                                      imageSize: .large,
                                                       permissionsManager: permissionsManager)
         self.launchOptions = launchOptions ?? [:]
         super.init(nibName: nil, bundle: nil)
