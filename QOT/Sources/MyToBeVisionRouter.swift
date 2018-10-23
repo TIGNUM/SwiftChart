@@ -23,16 +23,12 @@ final class MyToBeVisionRouter: NSObject {
     }
 
     func showProgressHUD(_ message: String?) {
-        guard let window = AppDelegate.current.window else {
-            return
-        }
+        guard let window = AppDelegate.current.window else { return }
         MBProgressHUD.showAdded(to: window, animated: true)
     }
 
     func hideProgressHUD() {
-        guard let window = AppDelegate.current.window else {
-            return
-        }
+        guard let window = AppDelegate.current.window else { return }
         MBProgressHUD.hide(for: window, animated: true)
     }
 }
@@ -48,7 +44,6 @@ extension MyToBeVisionRouter: MyToBeVisionRouterInterface {
             viewController.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
             return
         }
-
         let composer = MFMailComposeViewController()
         composer.setToRecipients([email])
         composer.setSubject(subject)

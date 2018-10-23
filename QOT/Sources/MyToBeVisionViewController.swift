@@ -142,6 +142,7 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
         let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(toBeVision: toBeVision,
                                                                                            visionController: self,
                                                                                            visionChatItems: visionChatItems)
+        chatViewController.hidesBottomBarWhenPushed = true
         pushToStart(childViewController: chatViewController)
     }
 

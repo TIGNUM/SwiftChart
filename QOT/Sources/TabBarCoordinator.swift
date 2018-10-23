@@ -401,6 +401,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
     func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {
         let configurator = SearchConfigurator.make()
         let searchViewController = SearchViewController(configure: configurator)
+        searchViewController.hidesBottomBarWhenPushed = true
         let navController = UINavigationController(rootViewController: searchViewController)
         navController.navigationBar.applyDefaultStyle()
         navController.modalTransitionStyle = .crossDissolve
