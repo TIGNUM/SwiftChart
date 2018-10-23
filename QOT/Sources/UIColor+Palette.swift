@@ -105,6 +105,11 @@ extension UIColor {
         return UIColor(red: 3/255, green: 6/255, blue: 15/255, alpha: 1)
     }
 
+    /// UIColor(white: 1, alpha: 0.02)
+    class var whiteLight2: UIColor {
+        return UIColor(white: 1, alpha: 0.062)
+    }
+
     /// UIColor(white: 1, alpha: 0.06)
     class var whiteLight6: UIColor {
         return UIColor(white: 1, alpha: 0.06)
@@ -248,6 +253,18 @@ extension UIColor {
     /// UIColor(red: 80/255, green: 277/255, blue: 194/255, alpha: 1)
     class var aquaMarine: UIColor {
         return UIColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1)
+    }
+
+    class var guideCardToDoBackground: UIColor {
+        return UIColor(red: 31/255, green: 62/255, blue: 87/255, alpha: 0.7)
+    }
+
+    class var guideCardDoneBackground: UIColor {
+        return UIColor(red: 33/255, green: 43/255, blue: 53/255, alpha: 1.0)
+    }
+
+    class var guideCardTypeGray: UIColor {
+        return UIColor(red: 166/255, green: 169/255, blue: 173/255, alpha: 1)
     }
 
     class var addSensorConnectGray: UIColor {

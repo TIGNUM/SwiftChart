@@ -10,40 +10,31 @@ import UIKit
 
 final class GuideWhatsHotTableViewCell: UITableViewCell, Dequeueable {
 
+    // MARK: - Properties
+
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var whatsHotImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
     @IBOutlet private weak var footerLabel: UILabel!
+    @IBOutlet private weak var actionLabel: UILabel!
+
+    // MARK: - Lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         setupView()
     }
 
+    // MARK: - Cell configuration
+
     func configure(title: String, body: String, image: URL?, status: Guide.Item.Status) {
-		titleLabel.font = .H5SecondaryHeadline
-        titleLabel.attributedText = attributedText(letterSpacing: 1,
-                                                   text: title.uppercased(),
-                                                   font: .H5SecondaryHeadline,
-                                                   textColor: .white,
-                                                   alignment: .left)
-        footerLabel.attributedText = attributedText(letterSpacing: 2,
-                                                    text: "WHAT'S HOT ARTICLE",
-                                                    font: .H7Tag,
-                                                    textColor: .white40,
-                                                    alignment: .left)
+        titleLabel.text = title.uppercased()
+        footerLabel.text = R.string.localized.guideCardTypeWhatsHot()
         let bodyAttributedString = NSMutableAttributedString(attributedString: body.attributedString())
         replaceLinks(in: bodyAttributedString)
-        bodyLabel.attributedText = attributedText(letterSpacing: 0.2,
-                                                  text: bodyAttributedString.string,
-                                                  font: .DPText,
-                                                  lineSpacing: 6,
-                                                  textColor: .white70,
-                                                  alignment: .left)
-
+        bodyLabel.text = bodyAttributedString.string
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
         if let imageURL = image {
@@ -58,26 +49,15 @@ final class GuideWhatsHotTableViewCell: UITableViewCell, Dequeueable {
 private extension GuideWhatsHotTableViewCell {
 
     func setupView() {
+        titleLabel.font = .H4Identifier
+        bodyLabel.font = .H5SecondaryHeadline
         whatsHotImageView.isHidden = true
+        statusView.maskPathByRoundingCorners()
+        actionLabel.font = .apercuBold(ofSize: 14)
+        footerLabel.textColor = .guideCardTypeGray
+        footerLabel.font = .apercuRegular(ofSize: 15)
 		containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
 		whatsHotImageView.corner(radius: Layout.CornerRadius.eight.rawValue)
-        statusView.maskPathByRoundingCorners()
-		containerView.backgroundColor = .whiteLight12
-    }
-
-    func attributedText(letterSpacing: CGFloat = 2,
-                        text: String,
-                        font: UIFont,
-                        lineSpacing: CGFloat = 1.4,
-                        textColor: UIColor,
-                        alignment: NSTextAlignment) -> NSMutableAttributedString {
-        return NSMutableAttributedString(string: text,
-                                         letterSpacing: letterSpacing,
-                                         font: font,
-                                         lineSpacing: lineSpacing,
-                                         textColor: textColor,
-                                         alignment: alignment,
-                                         lineBreakMode: .byTruncatingTail)
     }
 
     func replaceLinks(in attributedString: NSMutableAttributedString) {

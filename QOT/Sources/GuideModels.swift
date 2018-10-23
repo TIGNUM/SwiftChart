@@ -32,15 +32,15 @@ struct Guide {
 
             var cardColor: UIColor {
                 switch self {
-                case .done: return .whiteLight6
-                case .todo: return .whiteLight12
+                case .done: return .guideCardDoneBackground
+                case .todo: return .guideCardToDoBackground
                 }
             }
 
             var statusViewColor: UIColor {
                 switch self {
                 case .done: return .charcoalGreyMedium
-                case .todo: return .white
+                case .todo: return .cherryRed90
                 }
             }
         }

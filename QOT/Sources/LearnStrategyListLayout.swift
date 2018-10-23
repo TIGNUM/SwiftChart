@@ -48,9 +48,6 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
         let contentInset = collectionView.contentInset
         let contentHeight = collectionView.bounds.height - contentInset.top - contentInset.bottom
         let layoutRadius = contentHeight * LearnStrategyListLayout.layoutRadiusFactor
-
-        var decorationCounter = 0
-
         var sectionMaxXs: [CGFloat] = []
         var cache: [UICollectionViewLayoutAttributes] = []
         var sectionMinXs: [CGFloat] = []

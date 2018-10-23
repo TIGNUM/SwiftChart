@@ -14,6 +14,8 @@ protocol GuideDailyPrepTableViewCellDelegate: class {
 
 final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
 
+    // MARK: - Properties
+
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -30,33 +32,34 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
 	weak var delegate: GuideDailyPrepTableViewCellDelegate?
 	var itemTapped: Guide.Item?
 
+    // MARK: - Lifecycle
+
     override func awakeFromNib() {
         super.awakeFromNib()
-
         statusView.maskPathByRoundingCorners()
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
         receiveFeedbackButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         receiveFeedbackButton.backgroundColor = .azure
 		receiveFeedbackButton.showsTouchWhenHighlighted = true
+        titleLabel.font = .H4Identifier
+        nullStateLabel.font = .H5SecondaryHeadline
+        feedbackLabel.font = .H5SecondaryHeadline
+        nullStateLabel.text = R.string.localized.guideDailyPrepNotFinishedFeedback()
+        titleLabel.text = R.string.localized.morningControllerTitleLabel()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
         typeLabel.attributedText = nil
         feedbackLabel.attributedText = nil
     }
+
+    // MARK: - Cell configuration
 
     func configure(type: String?,
                    dailyPrepFeedback: String?,
                    dailyPrepItems: [Guide.DailyPrepItem],
                    status: Guide.Item.Status) {
-        titleLabel.attributedText = attributedText(letterSpacing: 1,
-                                                   text: "DAILY PREP MINUTE",
-                                                   font: .H4Identifier,
-                                                   textColor: .white,
-                                                   alignment: .left)
-
         if let type = type {
             typeLabel.isHidden = false
             typeLabel.attributedText = attributedText(letterSpacing: 2,
@@ -65,40 +68,26 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                                                       textColor: .white40,
                                                       alignment: .left)
         }
-
         if let feedback = dailyPrepFeedback {
             feedbackLabel.isHidden = false
-            feedbackLabel.attributedText = attributedText(letterSpacing: 0.2,
-                                                         text: feedback,
-                                                         font: .DPText,
-                                                         lineSpacing: 6,
-                                                         textColor: .white70,
-                                                         alignment: .left)
+            feedbackLabel.text = feedback
         }
-
-        nullStateLabel.attributedText = attributedText(letterSpacing: 0.2,
-                                                       text: R.string.localized.guideDailyPrepNotFinishedFeedback(),
-                                                       font: .DPText,
-                                                       lineSpacing: 6,
-                                                       textColor: .white70,
-                                                       alignment: .left)
-
         loadLabel.attributedText = attributedText(letterSpacing: 1,
                                                   text: "LOAD",
                                                   font: .H4Identifier,
                                                   textColor: .white,
                                                   alignment: .left)
-
         recoveryLabel.attributedText = attributedText(letterSpacing: 1,
                                                       text: "RECOVERY",
                                                       font: .H4Identifier,
                                                       textColor: .white,
                                                       alignment: .left)
-
         syncViews(status: status, dailyPrepItems: dailyPrepItems)
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
     }
+
+    // MARK: - Actions
 
     @IBAction func didTapButton(_ sender: UIButton) {
 		guard let item = itemTapped else { return }
@@ -141,7 +130,6 @@ private extension GuideDailyPrepTableViewCell {
         typeLabel.isHidden = isHidden
         nullStateLabel.isHidden = !isHidden
         receiveFeedbackButton.isHidden = !isHidden
-
         switch status {
         case .todo:
 			return
@@ -195,7 +183,6 @@ final class GuideProgressView: UIProgressView {
     override func layoutSubviews() {
         super.layoutSubviews()
         dropShadow(color: .white, opacity: 0.2, offSet: .zero, radius: 6, scale: true)
-
         let maskLayerPath = UIBezierPath(roundedRect: bounds, cornerRadius: 4.0)
         let maskLayer = CAShapeLayer()
         maskLayer.frame = bounds

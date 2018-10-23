@@ -10,29 +10,28 @@ import UIKit
 
 final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
 
+    // MARK: - Properties
+
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var shadowImageView: UIImageView!
     @IBOutlet private weak var toBeVisionImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
+    @IBOutlet private weak var actionLabel: UILabel!
+
+    // MARK: - Lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
     }
 
-    func configure(title: String, body: String, status: Guide.Item.Status, image: URL?) {
-        titleLabel.attributedText = attributedText(letterSpacing: 1,
-                                                   text: title.uppercased(),
-                                                   font: .H5SecondaryHeadline,
-                                                   textColor: .white)
+    // MARK: - Cell configuration
 
-        bodyLabel.attributedText = attributedText(letterSpacing: 0.2,
-                                                  text: body,
-                                                  font: .DPText,
-                                                  lineSpacing: 6,
-                                                  textColor: .white70)
+    func configure(title: String, body: String, status: Guide.Item.Status, image: URL?) {
+        titleLabel.text = title.uppercased()
+        bodyLabel.text = body
         toBeVisionImageView.kf.setImage(with: image, placeholder: R.image.universeMytobevision())
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
@@ -44,8 +43,10 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
 private extension GuideToBeVisionTableViewCell {
 
     func setupView() {
+        titleLabel.font = .H4Identifier
+        bodyLabel.font = .H5SecondaryHeadline
         statusView.maskPathByRoundingCorners()
-        containerView.backgroundColor = .whiteLight12
+        bodyLabel.lineBreakMode = .byTruncatingTail
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
         toBeVisionImageView.clipsToBounds = true
         shadowImageView.clipsToBounds = false
@@ -53,6 +54,7 @@ private extension GuideToBeVisionTableViewCell {
         shadowImageView.layer.shadowRadius = 3
         shadowImageView.layer.shadowColor = UIColor.white.cgColor
         shadowImageView.layer.shadowOffset = .zero
+        actionLabel.font = .apercuBold(ofSize: 14)
         circularImageView(image: toBeVisionImageView)
         circularImageView(image: shadowImageView)
     }
@@ -61,19 +63,5 @@ private extension GuideToBeVisionTableViewCell {
         image.layer.borderWidth = 1
         image.layer.borderColor = UIColor.white.cgColor
         image.layer.cornerRadius = toBeVisionImageView.bounds.size.width / 2
-    }
-
-    func attributedText(letterSpacing: CGFloat = 2,
-                        text: String,
-                        font: UIFont,
-                        lineSpacing: CGFloat = 1.4,
-                        textColor: UIColor) -> NSMutableAttributedString {
-        return NSMutableAttributedString(string: text,
-                                         letterSpacing: letterSpacing,
-                                         font: font,
-                                         lineSpacing: lineSpacing,
-                                         textColor: textColor,
-                                         alignment: .left,
-                                         lineBreakMode: .byTruncatingTail)
     }
 }

@@ -28,7 +28,7 @@
                         </constraints>
                     </view>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kn7-eW-vle">
-                        <rect key="frame" x="28" y="12" width="515" height="160.5"/>
+                        <rect key="frame" x="28" y="5" width="515" height="174.5"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOG-uK-eQE">
                                 <rect key="frame" x="10.5" y="17" width="426" height="18"/>
@@ -43,19 +43,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="PREPARATION CARD TITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFI-ly-hWb">
-                                <rect key="frame" x="9" y="52" width="491" height="22.5"/>
+                                <rect key="frame" x="9" y="52" width="491" height="21.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="This is your upcoming event title or some text coming from content department" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KkN-qy-sLk">
-                                <rect key="frame" x="11" y="87.5" width="493" height="41"/>
+                                <rect key="frame" x="11" y="86.5" width="493" height="35"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DISCOVER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ph7-LW-D2j">
-                                <rect key="frame" x="413" y="127.5" width="83" height="21"/>
+                                <rect key="frame" x="413" y="141.5" width="83" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0039215686274509803" green="0.58039215686274503" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -63,7 +63,7 @@
                         </subviews>
                         <color key="backgroundColor" red="0.12941176470588234" green="0.16862745098039217" blue="0.20784313725490194" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="KkN-qy-sLk" secondAttribute="bottom" constant="32" id="5PI-8P-Isu"/>
+                            <constraint firstItem="ph7-LW-D2j" firstAttribute="top" secondItem="KkN-qy-sLk" secondAttribute="bottom" constant="20" id="5PI-8P-Isu"/>
                             <constraint firstItem="VOG-uK-eQE" firstAttribute="leading" secondItem="Kn7-eW-vle" secondAttribute="leading" constant="10.5" id="FQw-ru-pmC"/>
                             <constraint firstAttribute="trailing" secondItem="CFI-ly-hWb" secondAttribute="trailing" constant="15" id="G65-p1-GEo"/>
                             <constraint firstItem="KkN-qy-sLk" firstAttribute="top" secondItem="CFI-ly-hWb" secondAttribute="bottom" constant="13" id="Hf5-Wx-1dJ"/>
@@ -81,8 +81,8 @@
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="Kn7-eW-vle" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="1BW-l3-cxw"/>
-                    <constraint firstAttribute="bottom" secondItem="Kn7-eW-vle" secondAttribute="bottom" constant="12" id="Ax4-MT-H9I"/>
+                    <constraint firstItem="Kn7-eW-vle" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="5" id="1BW-l3-cxw"/>
+                    <constraint firstAttribute="bottom" secondItem="Kn7-eW-vle" secondAttribute="bottom" constant="5" id="Ax4-MT-H9I"/>
                     <constraint firstItem="Uuf-0z-hZ8" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="12" id="F7P-aI-MGK"/>
                     <constraint firstItem="Uuf-0z-hZ8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="9" id="bqY-WL-NWz"/>
                     <constraint firstAttribute="trailing" secondItem="Kn7-eW-vle" secondAttribute="trailing" constant="28" id="vXF-Xz-5An"/>
