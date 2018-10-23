@@ -23,6 +23,9 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         self.presenter = presenter
         self.router = router
         self.options = options ?? [:]
+        self.worker.toBeVisionDidChange = { [unowned self] (model: MyToBeVisionModel.Model?) in
+            self.presenter.setLoading(model: model)
+        }
     }
 
     func viewDidLoad() {
@@ -80,6 +83,10 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
 
     var navigationItem: NavigationItem {
         return worker.navItem
+    }
+
+    func isReady() -> Bool {
+        return worker.isReady()
     }
 }
 

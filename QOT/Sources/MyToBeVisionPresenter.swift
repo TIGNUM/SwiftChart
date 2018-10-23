@@ -33,4 +33,8 @@ final class MyToBeVisionPresenter: MyToBeVisionPresenterInterface {
     func setLaunchOptions(_ options: [LaunchOption: String?]) {
         viewController?.setLaunchOptions(options)
     }
+
+    func setLoading(model: MyToBeVisionModel.Model?) {
+        viewController?.setLoading(model: model)
+    }
 }

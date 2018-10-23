@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import ReactiveKit
 
 final class MyToBeVisionWorker {
 
@@ -14,12 +15,18 @@ final class MyToBeVisionWorker {
     private let syncManager: SyncManager
     private let widgetDataManager: WidgetDataManager
     private let navigationItem: NavigationItem
+    private let syncStateObserver: SyncStateObserver
+    var toBeVisionDidChange: ((MyToBeVisionModel.Model?) -> Void)?
 
     init(services: Services, syncManager: SyncManager, navigationItem: NavigationItem) {
         self.navigationItem = navigationItem
         self.services = services
         self.syncManager = syncManager
         self.widgetDataManager = WidgetDataManager(services: services)
+        syncStateObserver = SyncStateObserver(realm: services.mainRealm)
+        syncStateObserver.onUpdate { [unowned self] _ in
+            self.toBeVisionDidChange?(self.myToBeVision())
+        }
 
         // Make sure that image directory is created.
         do {
@@ -64,5 +71,9 @@ final class MyToBeVisionWorker {
 
     func saveImage(_ image: UIImage) throws -> URL {
         return try image.save(withName: UUID().uuidString)
+    }
+
+    func isReady() -> Bool {
+        return syncStateObserver.hasSynced(MyToBeVision.self) && myToBeVision() != nil
     }
 }

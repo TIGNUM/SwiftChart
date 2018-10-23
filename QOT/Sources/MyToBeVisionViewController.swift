@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-final class MyToBeVisionViewController: UIViewController, PageViewControllerNotSwipeable {
+final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var headlineTextView: UITextView!
@@ -47,6 +47,12 @@ final class MyToBeVisionViewController: UIViewController, PageViewControllerNotS
     var interactor: MyToBeVisionInteractor?
     var router: MyToBeVisionRouter?
     var permissionsManager: PermissionsManager!
+    var loadingView: BlurLoadingView?
+    var isLoading: Bool = false {
+        didSet {
+            showLoading(isLoading, text: R.string.localized.loadingData())
+        }
+    }
 
     private lazy var editAlertController: UIAlertController = {
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
@@ -138,6 +144,13 @@ final class MyToBeVisionViewController: UIViewController, PageViewControllerNotS
 
 extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
 
+    func setLoading(model: MyToBeVisionModel.Model?) {
+        self.toBeVision = model
+        toBeVisionDidUpdate()
+        updateReadyState()
+        view.layoutIfNeeded()
+    }
+
     func showVisionGenerator() {
         let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(toBeVision: toBeVision,
                                                                                            visionController: self,
@@ -221,6 +234,10 @@ extension MyToBeVisionViewController {
 // MARK: - Private drawing
 
 private extension MyToBeVisionViewController {
+
+    func updateReadyState() {
+        isLoading = !(interactor?.isReady() ?? false)
+    }
 
     func addKeyboardObservers() {
         NotificationCenter.default.addObserver(self,

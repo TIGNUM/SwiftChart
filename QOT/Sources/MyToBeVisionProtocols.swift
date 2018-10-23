@@ -13,9 +13,11 @@ protocol MyToBeVisionViewControllerInterface: class {
     func update(with toBeVision: MyToBeVisionModel.Model)
     func showVisionGenerator()
     func setLaunchOptions(_ options: [LaunchOption: String?])
+    func setLoading(model: MyToBeVisionModel.Model?)
 }
 
 protocol MyToBeVisionPresenterInterface {
+    func setLoading(model: MyToBeVisionModel.Model?)
     func loadToBeVision(_ toBeVision: MyToBeVisionModel.Model)
     func updateToBeVision(_ toBeVision: MyToBeVisionModel.Model)
     func presentVisionGenerator()
@@ -27,6 +29,7 @@ protocol MyToBeVisionInteractorInterface: Interactor {
     func makeVisionGeneratorAndPresent()
     func shareMyToBeVision(completion: @escaping (Error?) -> Void)
     func setLaunchOptions()
+    func isReady() -> Bool
 
     // FIXME: Think of better way of handling page tracking in VIP
     var trackablePageObject: PageObject? { get }
