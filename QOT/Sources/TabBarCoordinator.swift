@@ -381,10 +381,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
                 return
         }
         pageViewController.setPageIndex(index, animated: true)
-        let pageTitle = pageViewController.currentPage?.title
-        let whatsHotPageTitle = R.string.localized.topTabBarItemTitleLearnWhatsHot()
-        let isWhatsHotPage = pageTitle?.caseInsensitiveCompare(whatsHotPageTitle) == .orderedSame
-        badgeManager.updateWhatsHotBadge(isHidden: isWhatsHotPage)
+        badgeManager.updateWhatsHotBadge()
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {

@@ -59,12 +59,8 @@ final class BadgeManager {
         observeWhatsHotArticleUpdates()
     }
 
-    func updateWhatsHotBadge(isHidden: Bool) {
-        if newWhatsHotArticles.count == 0 {
-            whatsHotBadge?.isHidden = true
-        } else {
-            whatsHotBadge?.isHidden = isHidden
-        }
+    func updateWhatsHotBadge() {
+        whatsHotBadge?.isHidden = newWhatsHotArticles.count == 0 ? true : false
     }
 
     func updateGuideBadgeValue(newGuideItems: [Guide.Item]) {
@@ -81,7 +77,7 @@ final class BadgeManager {
             self.newGuideItems.append(todaysDailyPrep)
         }
         guideBadge?.update(self.newGuideItems.count)
-        guideBadge?.isHidden = tabDisplayed == .guide || self.newGuideItems.isEmpty
+        guideBadge?.isHidden = self.newGuideItems.isEmpty
         UserDefault.guideBadgeNumber.setDoubleValue(value: Double(self.newGuideItems.count))
     }
 }
@@ -116,11 +112,9 @@ private extension BadgeManager {
     func update() {
         switch tabDisplayed {
         case .guide:
-            guideBadge?.isHidden = true
             learnBadge?.isHidden = badgeValueWhatsHot == 0
         case .learn:
             guideBadge?.isHidden = newGuideItems.isEmpty
-            learnBadge?.isHidden = true
         default:
             guideBadge?.isHidden = newGuideItems.isEmpty
             learnBadge?.isHidden = badgeValueWhatsHot == 0
