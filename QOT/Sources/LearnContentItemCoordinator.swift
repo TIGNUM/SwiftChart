@@ -142,6 +142,8 @@ extension LearnContentItemCoordinator: NavigationItemDelegate {
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         log("did select book mark")
     }
+
+    func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
 }
 
 // MARK: - LearnContentItemViewControllerDelegate

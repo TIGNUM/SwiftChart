@@ -83,11 +83,9 @@ private extension SearchViewController {
 
     func setupSearchBar() {
         let searchBar = UISearchBar()
-        searchBar.sizeToFit()
-        searchBar.tintColor = .white
+        searchBar.tintColor = .navy
         searchBar.keyboardAppearance = .dark
-        searchBar.barTintColor = .clear
-        searchBar.changeSearchBarColor(color: .clear)
+        searchBar.barTintColor = .gray
         searchBar.delegate = self
         navigationItem.titleView = searchBar
         self.searchBar = searchBar
@@ -189,29 +187,6 @@ private extension SearchViewController {
             avPlayerObserver?.onStatusUpdate { (player) in
                 if playerItem.error != nil {
                     playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
-                }
-            }
-        }
-    }
-}
-
-private extension UISearchBar {
-
-    func changeSearchBarColor(color: UIColor) {
-        UIGraphicsBeginImageContext(frame.size)
-        color.setFill()
-        UIBezierPath(rect: frame).fill()
-        let bgImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-
-        setSearchFieldBackgroundImage(bgImage, for: .normal)
-        setBackgroundImage(bgImage, for: .top, barMetrics: .defaultPrompt)
-
-        for view in subviews {
-            for subview in view.subviews {
-                if let textField = subview as? UITextField {
-                    textField.backgroundColor = color
-                    textField.textColor = .white
                 }
             }
         }

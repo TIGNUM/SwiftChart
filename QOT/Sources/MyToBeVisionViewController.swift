@@ -579,4 +579,6 @@ extension MyToBeVisionViewController: NavigationItemDelegate {
                                                                                  rightButtonPressed: button)
         }
     }
+
+    func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
 }

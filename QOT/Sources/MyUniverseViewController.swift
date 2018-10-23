@@ -340,6 +340,8 @@ extension MyUniverseViewController: NavigationItemDelegate {
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         delegate?.myUniverseViewController(self, didTapRightBarButtonItem: button, in: navigationItem)
     }
+
+    func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
 }
 
 // MARK: - UIButton

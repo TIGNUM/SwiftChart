@@ -14,6 +14,7 @@ protocol NavigationItemDelegate: class {
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem)
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int)
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem)
+    func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem)
 }
 
 final class NavigationItem: UINavigationItem {
@@ -43,7 +44,8 @@ final class NavigationItem: UINavigationItem {
     func configure(leftButton: UIBarButtonItem?,
                    rightButton: UIBarButtonItem?,
                    tabTitles: [String],
-                   style: Style) {
+                   style: Style,
+                   hasSearchButton: Bool = false) {
         self.tabTitles = tabTitles
         tabMenuView.setTitles(tabTitles)
         tabMenuView.setStyle(style)
@@ -53,10 +55,21 @@ final class NavigationItem: UINavigationItem {
         leftButton?.target = self
         leftButton?.action = #selector(didTapLeftButton(_:))
         leftBarButtonItem = leftButton
-        rightButton?.tintColor = style.defaultColor
-        rightButton?.target = self
-        rightButton?.action = #selector(didTapRightButton(_:))
-        rightBarButtonItem = rightButton
+        if let rightButton = rightButton {
+            var rightButtons = [rightButton]
+            rightButton.tintColor = style.defaultColor
+            rightButton.target = self
+            rightButton.action = #selector(didTapRightButton(_:))
+            if hasSearchButton == true {
+                let searchButton = UIBarButtonItem(image: R.image.ic_search(),
+                                                   style: .plain,
+                                                   target: self,
+                                                   action: #selector(didTabSearch(_:)))
+                searchButton.tintColor = style.defaultColor
+                rightButtons.append(searchButton)
+            }
+            rightBarButtonItems = rightButtons
+        }
     }
 
     func middleButton(index: Int) -> UIButton? {
@@ -100,5 +113,9 @@ extension NavigationItem {
 
     @objc private func didTapRightButton(_ sender: UIBarButtonItem) {
         delegate?.navigationItem(self, rightButtonPressed: sender)
+    }
+
+    @objc private func didTabSearch(_ sender: UIBarButtonItem) {
+        delegate?.navigationItem(self, searchButtonPressed: sender)
     }
 }

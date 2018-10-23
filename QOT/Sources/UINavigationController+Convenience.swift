@@ -19,11 +19,16 @@ extension UINavigationController {
                      backgroundImage: UIImage? = UIImage(),
                      leftButton: UIBarButtonItem? = nil,
                      rightButton: UIBarButtonItem? = nil,
-                     navigationItemStyle: NavigationItem.Style = .dark) {
+                     navigationItemStyle: NavigationItem.Style = .dark,
+                     hasSearchButton: Bool = false) {
         self.init(navigationBarClass: UINavigationBar.self, toolbarClass: nil)
         let titles = pages.map { $0.title?.uppercased() ?? "" }
         let style = navigationItemStyle
-        navigationItem.configure(leftButton: leftButton, rightButton: rightButton, tabTitles: titles, style: style)
+        navigationItem.configure(leftButton: leftButton,
+                                 rightButton: rightButton,
+                                 tabTitles: titles,
+                                 style: style,
+                                 hasSearchButton: hasSearchButton)
         navigationItem.delegate = topBarDelegate
         let pageViewController = PageViewController(headerView: headerView,
                                                     backgroundImage: backgroundImage,

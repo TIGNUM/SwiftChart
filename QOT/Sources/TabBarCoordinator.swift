@@ -99,14 +99,19 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         return topTabBarController
     }()
 
-    lazy var topTabBarControllerGuide: UINavigationController = {
+    lazy var guideViewController: GuideViewController = {
         let guideViewController = GuideViewController(configurator: GuideConfigurator.make(badgeManager: badgeManager))
         guideViewController.title = R.string.localized.topTabBarItemTitleGuide()
+        return guideViewController
+    }()
+
+    lazy var topTabBarControllerGuide: UINavigationController = {
         let topTabBarController = UINavigationController(withPages: [guideViewController],
                                                          navigationItem: NavigationItem(),
                                                          topBarDelegate: self,
                                                          leftButton: .burger,
-                                                         rightButton: .info)
+                                                         rightButton: .info,
+                                                         hasSearchButton: true)
         topTabBarController.tabBarItem = TabBarItem(config: TabBar.guide.itemConfig)
         return topTabBarController
     }()
@@ -391,6 +396,16 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
         case 4: showHelp(.prepare)
         default: assertionFailure("unhandled switch")
         }
+    }
+
+    func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {
+        let configurator = SearchConfigurator.make()
+        let searchViewController = SearchViewController(configure: configurator)
+        let navController = UINavigationController(rootViewController: searchViewController)
+        navController.navigationBar.applyDefaultStyle()
+        navController.modalTransitionStyle = .crossDissolve
+        navController.modalPresentationStyle = .custom
+        guideViewController.pushToStart(childViewController: searchViewController)
     }
 }
 

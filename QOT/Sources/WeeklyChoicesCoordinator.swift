@@ -97,4 +97,6 @@ extension WeeklyChoicesCoordinator: NavigationItemDelegate {
             self.weeklyChoicesViewController.viewData = self.provider.provideViewData()
         }
     }
+
+    func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
 }

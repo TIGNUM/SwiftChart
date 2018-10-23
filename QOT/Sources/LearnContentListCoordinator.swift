@@ -66,6 +66,8 @@ extension LearnContentListCoordinator: NavigationItemDelegate {
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {}
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {}
+
+    func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
 }
 
 extension LearnContentListCoordinator: LearnContentListViewControllerDelegate {
