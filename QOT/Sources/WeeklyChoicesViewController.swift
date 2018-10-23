@@ -42,7 +42,7 @@ final class WeeklyChoicesViewController: UIViewController, PageViewControllerNot
         label.textColor = .white40
         label.numberOfLines = 0
         label.setAttrText(text: R.string.localized.weeklyChoicesNoContent(),
-                          font: Font.DPText,
+                          font: .DPText,
                           alignment: .center,
                           lineSpacing: 7,
                           characterSpacing: 1)
@@ -105,11 +105,8 @@ private extension WeeklyChoicesViewController {
     }
 
     func setupView() {
-        let coverView = UIImageView(image: R.image.backgroundWeeklyChoices())
-        coverView.contentMode = .scaleAspectFill
-        view.addSubview(coverView)
         view.addSubview(collectionView)
-        view.backgroundColor = .clear
+        view.backgroundColor = .navy
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
@@ -122,9 +119,7 @@ private extension WeeklyChoicesViewController {
 			collectionView.rightAnchor == view.rightAnchor
 		}
 		collectionView.bottomAnchor == view.bottomAnchor
-        coverView.edgeAnchors == view.edgeAnchors
         setNoContentLabel()
-
         view.layoutIfNeeded()
     }
 

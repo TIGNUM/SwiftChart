@@ -46,9 +46,9 @@ extension UIViewController {
 
         var fontCritical: UIFont {
             switch self {
-            case .big: return Font.PText
+            case .big: return .PText
             case .medium,
-                 .small: return Font.PTextSmall
+                 .small: return .PTextSmall
             }
         }
 

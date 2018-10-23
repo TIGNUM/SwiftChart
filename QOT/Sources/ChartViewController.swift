@@ -75,7 +75,6 @@ private extension ChartViewController {
 
     func setupView() {
         view.addSubview(tableView)
-        view.setFadeMask(at: .top)
         tableView.edgeAnchors == view.edgeAnchors
     }
 

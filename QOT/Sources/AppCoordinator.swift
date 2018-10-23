@@ -35,7 +35,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private var destination: AppCoordinator.Router.Destination?
     private var iPadAdviceCompletion: (() -> Void)?
     private let userIsLoggingIn = Atomic(false)
-    private weak var tabBarCoordinator: TabBarCoordinator?
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
@@ -43,6 +42,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     lazy var logoutNotificationHandler = NotificationHandler(name: .logoutNotification)
     lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: networkManager,
                                                                  credentialsManager: credentialsManager)
+    weak var tabBarCoordinator: TabBarCoordinator?
     lazy var networkManager: NetworkManager = {
         let manager = NetworkManager(delegate: self, authenticator: authenticator)
         AppCoordinator.appState.networkManager = manager
@@ -288,7 +288,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 self.navigate(to: destination)
             }
         }
-
         AppCoordinator.updateStatusBarStyleIfNeeded()
     }
 
@@ -702,8 +701,8 @@ extension AppCoordinator {
             case guide
             case strategies
             case whatsHot
-            case myData
-            case myWhy
+            case toBeVision
+            case data
             case coach
             case myPrep
 
@@ -712,8 +711,8 @@ extension AppCoordinator {
                 case .guide: return nil
                 case .strategies: return 0
                 case .whatsHot: return 1
-                case .myData: return 0
-                case .myWhy: return 1
+                case .toBeVision: return nil
+                case .data: return nil
                 case .coach: return 0
                 case .myPrep: return 1
                 }
@@ -764,7 +763,7 @@ extension AppCoordinator {
     }
 
     func presentMeCharts(sector: StatisticsSectionType) {
-        navigate(to: AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData))
+        navigate(to: AppCoordinator.Router.Destination(tabBar: .data, topTabBar: .data))
         tabBarCoordinator?.myUniverseViewController(nil, didTap: sector)
     }
 
@@ -947,18 +946,7 @@ extension AppCoordinator {
 
     func presentToBeVision(articleItemController: ArticleItemViewController?,
                            options: [LaunchOption: String?]? = nil) {
-        guard
-            var rootViewController = windowManager.rootViewController(atLevel: .normal),
-            let services = services else { return }
-        let transitioningDelegate: MyToBeVisionAnimator? = articleItemController == nil ? MyToBeVisionAnimator() : nil
-        if let articleController = articleItemController {
-            rootViewController = articleController
-        }
-        let coordinator = MyToBeVisionCoordinator(root: rootViewController,
-                                                  transitioningDelegate: transitioningDelegate,
-                                                  services: services,
-                                                  options: options)
-        startChild(child: coordinator)
+        navigate(to: AppCoordinator.Router.Destination(tabBar: .tbv, topTabBar: .toBeVision))
     }
 
     func presentWhatsHotArticle() {
@@ -1116,6 +1104,7 @@ extension AppCoordinator {
                                            isLearningPlan: false,
                                            isWhatsHot: false,
                                            isToBeVision: false,
+                                           isPreparation: false,
                                            link: URL(string: "qot://feature-explainer?contentID=\(contentID)"),
                                            featureLink: content.guideFeatureButton.link,
                                            featureButton: content.guideFeatureButton.title,

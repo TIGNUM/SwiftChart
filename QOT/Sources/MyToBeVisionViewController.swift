@@ -10,7 +10,7 @@ import UIKit
 import AVKit
 import AVFoundation
 
-final class MyToBeVisionViewController: UIViewController {
+final class MyToBeVisionViewController: UIViewController, PageViewControllerNotSwipeable {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var headlineTextView: UITextView!
@@ -178,6 +178,7 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
 extension MyToBeVisionViewController {
 
     func setupView() {
+        view.backgroundColor = .navy
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             scrollView.contentInset.bottom = Layout.padding_90
@@ -281,16 +282,6 @@ private extension MyToBeVisionViewController {
 
 extension MyToBeVisionViewController {
 
-    @objc func didTapClose(_ sender: UIBarButtonItem) {
-        sender.tintColor = .clear
-        router?.close()
-    }
-
-    @objc func didTapHelpButton(_ sender: UIBarButtonItem) {
-        let viewController = ScreenHelpViewController(configurator: ScreenHelpConfigurator.make(.me))
-        AppDelegate.current.windowManager.showPriority(viewController, animated: true, completion: nil)
-    }
-
     @IBAction private func didTapEdit() {
         if isEditing == true {
             editAlertController.dismiss(animated: true, completion: nil)
@@ -353,9 +344,7 @@ private extension MyToBeVisionViewController {
             toBeVision.text = messageTextView.text
             toBeVision.lastUpdated = Date()
         }
-
         let image = imageView.image
-
         interactor?.saveToBeVision(image: image, toBeVision: toBeVision)
     }
 
@@ -368,7 +357,7 @@ private extension MyToBeVisionViewController {
         syncNavigationButtons(isEditing)
         syncEditingViews(!isEditing)
         if isEditing == false {
-            headlineTextView.font = Font.H1MainTitle
+            headlineTextView.font = .H1MainTitle
         }
     }
 
@@ -393,26 +382,17 @@ private extension MyToBeVisionViewController {
 
     func syncNavigationButtons(_ isEditing: Bool) {
         let leftButton = UIBarButtonItem()
-        let leftButtonImage = isEditing == true ? nil : R.image.ic_close()
-        let leftButtonText = isEditing == true ? R.string.localized.alertButtonTitleCancel() : nil
-        let buttonsColor: UIColor = isEditing == true ? .gray : .white
-        let leftButtonSelector = isEditing == true ? #selector(cancelEdit) : #selector(didTapClose(_:))
-        leftButton.tintColor = buttonsColor
-        leftButton.image = leftButtonImage
-        leftButton.title = leftButtonText
-        leftButton.target = self
-        leftButton.action = leftButtonSelector
-        self.navigationItem.leftBarButtonItem = leftButton
+        leftButton.tintColor = .white
+        leftButton.image =  isEditing == true ? nil : R.image.ic_menu()
+        leftButton.title = isEditing == true ? R.string.localized.alertButtonTitleCancel() : nil
         let rightButton = UIBarButtonItem()
-        let rightButtonImage = isEditing == true ? nil : R.image.explainer_ico()
-        let rightButtonText = isEditing == true ? R.string.localized.alertButtonTitleSave() : nil
-        let rightButtonSelector = isEditing == true ? #selector(saveEdit) : #selector(didTapHelpButton(_:))
-        rightButton.image = rightButtonImage
-        rightButton.title = rightButtonText
-        rightButton.tintColor = buttonsColor
-        rightButton.target = self
-        rightButton.action = rightButtonSelector
-        self.navigationItem.rightBarButtonItem = rightButton
+        rightButton.image = isEditing == true ? nil : R.image.explainer_ico()
+        rightButton.title = isEditing == true ? R.string.localized.alertButtonTitleSave() : nil
+        rightButton.tintColor = .white
+        interactor?.navigationItem.configure(leftButton: leftButton,
+                                             rightButton: rightButton,
+                                             tabTitles: [R.string.localized.meSectorMyWhyVisionTitle().uppercased()],
+                                             style: .dark)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .selected)
         editButton.imageView?.tintColor = .gray
@@ -491,7 +471,6 @@ extension MyToBeVisionViewController: UITextViewDelegate {
             headlineTextView.resignFirstResponder()
             messageTextView.becomeFirstResponder()
             messageTextView.text.removeLast()
-
             let scrollPoint: CGPoint = CGPoint(x: 0, y: messageEditingSeparatorView.frame.maxY - 100)
             scrollView.setContentOffset(scrollPoint, animated: false)
         }
@@ -522,7 +501,7 @@ private extension MyToBeVisionModel.Model {
         guard let headLine = headLine else { return nil }
         return NSAttributedString(string: headLine.uppercased(),
                                   letterSpacing: 2,
-                                  font: Font.H1MainTitle,
+                                  font: .H1MainTitle,
                                   lineSpacing: 3,
                                   textColor: .white)
     }
@@ -532,16 +511,15 @@ private extension MyToBeVisionModel.Model {
             let date = lastUpdated,
             let timeInterval = DateComponentsFormatter.timeIntervalToString(-date.timeIntervalSinceNow, isShort: true)
             else { return nil }
-
         let text = R.string.localized.meSectorMyWhyVisionWriteDate(timeInterval).uppercased()
-        return NSAttributedString(string: text, letterSpacing: 2, font: Font.H7Tag, lineSpacing: 0, textColor: .white30)
+        return NSAttributedString(string: text, letterSpacing: 2, font: .H7Tag, lineSpacing: 0, textColor: .white30)
     }
 
     var formattedVision: NSAttributedString? {
         guard let text = text else { return nil }
         return NSAttributedString(string: text,
                                   letterSpacing: -0.4,
-                                  font: Font.DPText,
+                                  font: .DPText,
                                   lineSpacing: 10.0,
                                   textColor: .white)
     }
@@ -554,7 +532,7 @@ private extension String {
     var formattedHeadlineEditingMode: NSAttributedString? {
         return NSAttributedString(string: self.capitalized,
                                   letterSpacing: -0.4,
-                                  font: Font.DPText,
+                                  font: .DPText,
                                   lineSpacing: 10.0,
                                   textColor: .white)
     }
@@ -575,5 +553,30 @@ private extension MyToBeVisionViewController {
         UIView.animate(withDuration: Animation.duration_06, animations: {
             self.view.layoutIfNeeded()
         }, completion: nil)
+    }
+}
+
+// MARK: - TopNavigationBarDelegate
+
+extension MyToBeVisionViewController: NavigationItemDelegate {
+
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
+        if isEditing == true {
+            cancelEdit()
+        } else {
+            AppDelegate.current.appCoordinator.tabBarCoordinator?.navigationItem(navigationItem,
+                                                                                 leftButtonPressed: button)
+        }
+    }
+
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {}
+
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
+        if isEditing == true {
+            saveEdit()
+        } else {
+            AppDelegate.current.appCoordinator.tabBarCoordinator?.navigationItem(navigationItem,
+                                                                                 rightButtonPressed: button)
+        }
     }
 }

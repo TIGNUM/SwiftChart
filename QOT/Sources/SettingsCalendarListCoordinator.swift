@@ -21,9 +21,6 @@ final class SettingsCalendarListCoordinator: ParentCoordinator {
         self.services = services
         let viewModel = SettingsCalendarListViewModel(services: services)
         settingsCalendarListViewController = SettingsCalendarListViewController(viewModel: viewModel)
-        let backgroundImageView = UIImageView(frame: rootViewController.view.frame)
-        backgroundImageView.image = R.image.backgroundSidebar()
-        settingsCalendarListViewController.setTableViewBackgound(backgroundImageView)
         settingsCalendarListViewController.title = R.string.localized.settingsGeneralCalendarTitle().uppercased()
     }
 

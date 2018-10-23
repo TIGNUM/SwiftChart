@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,9 +42,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundStrategies" translatesAutoresizingMaskIntoConstraints="NO" id="5T6-gY-vul">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VYc-mN-T6i" userLabel="topContentView">
                     <rect key="frame" x="16" y="84" width="343" height="120"/>
                     <subviews>
@@ -82,7 +79,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nOA-Am-aND" userLabel="firstDigitLine">
-                            <rect key="frame" x="68" y="91" width="48" height="1"/>
+                            <rect key="frame" x="67.666666666666671" y="91" width="48" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="CBh-dj-ny8"/>
@@ -90,7 +87,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="1bC-eD-bKM" userLabel="firstDigitTextField" customClass="TextField" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="68" y="33" width="48" height="56"/>
+                            <rect key="frame" x="67.666666666666671" y="33" width="48" height="56"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="56" id="60g-uX-x8v"/>
@@ -104,7 +101,7 @@
                             </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xGg-VD-NLB" userLabel="secondDigitLine">
-                            <rect key="frame" x="132" y="91" width="48" height="1"/>
+                            <rect key="frame" x="131.66666666666666" y="91" width="48" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="DVD-jz-Ql1"/>
@@ -112,7 +109,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P8W-Sl-idb" userLabel="secondDigitTextField" customClass="TextField" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="132" y="33" width="48" height="56"/>
+                            <rect key="frame" x="131.66666666666666" y="33" width="48" height="56"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="Pko-vA-hJQ"/>
@@ -126,14 +123,14 @@
                             </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qbB-5O-mP8" userLabel="centerDivider">
-                            <rect key="frame" x="188" y="0.0" width="0.0" height="100"/>
+                            <rect key="frame" x="187.66666666666666" y="0.0" width="0.0" height="100"/>
                             <color key="backgroundColor" red="1" green="0.0" blue="0.96954255710000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
                                 <constraint firstAttribute="width" id="TEz-Wd-OUR"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BtS-Uv-h2B" userLabel="thirdDigitLine">
-                            <rect key="frame" x="196" y="91" width="48" height="1"/>
+                            <rect key="frame" x="195.66666666666666" y="91" width="48" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="nkj-Dg-ULF"/>
@@ -141,7 +138,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="MxV-qd-Nna" userLabel="thirdDigitTextField" customClass="TextField" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="196" y="35" width="48" height="54"/>
+                            <rect key="frame" x="195.66666666666666" y="35" width="48" height="54"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="54" id="nGa-3x-jqF"/>
@@ -155,7 +152,7 @@
                             </connections>
                         </textField>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZk-mt-sWK" userLabel="fourthDigitLine">
-                            <rect key="frame" x="260" y="91" width="48" height="1"/>
+                            <rect key="frame" x="259.66666666666669" y="91" width="48" height="1"/>
                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="1" id="ToR-2j-mgG"/>
@@ -163,7 +160,7 @@
                             </constraints>
                         </view>
                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" textAlignment="center" clearsOnBeginEditing="YES" adjustsFontSizeToFit="NO" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="flw-52-Oe8" userLabel="fourthDigitTextField" customClass="TextField" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="260" y="33" width="48" height="56"/>
+                            <rect key="frame" x="259.66666666666669" y="33" width="48" height="56"/>
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="48" id="AYS-Xg-CZ3"/>
@@ -229,30 +226,23 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="0.091334824090000002" blue="0.34198637189999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstAttribute="trailing" secondItem="5T6-gY-vul" secondAttribute="trailing" id="3zu-o4-iog"/>
                 <constraint firstItem="VYc-mN-T6i" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="48v-Db-hEQ"/>
                 <constraint firstItem="L3b-bz-4V2" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="77Y-yw-n9i"/>
                 <constraint firstItem="VYc-mN-T6i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="7ia-Jl-1R6"/>
                 <constraint firstItem="LB6-ZC-aBM" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KEb-6P-Fhg"/>
-                <constraint firstItem="5T6-gY-vul" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="KGE-pj-kLX"/>
                 <constraint firstItem="LB6-ZC-aBM" firstAttribute="top" secondItem="iqD-oe-mCk" secondAttribute="bottom" constant="16" id="MSQ-om-IjU"/>
                 <constraint firstItem="iqD-oe-mCk" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="T1e-fl-KlH"/>
                 <constraint firstItem="LB6-ZC-aBM" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="TqP-L0-slD"/>
                 <constraint firstItem="iqD-oe-mCk" firstAttribute="top" relation="greaterThanOrEqual" secondItem="VYc-mN-T6i" secondAttribute="bottom" constant="10" id="VmJ-6r-2YD"/>
                 <constraint firstItem="iqD-oe-mCk" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Vxp-V1-jxh"/>
-                <constraint firstAttribute="bottom" secondItem="5T6-gY-vul" secondAttribute="bottom" id="cKF-Tq-gLP"/>
                 <constraint firstItem="L3b-bz-4V2" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="dub-Jg-hWw"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="L3b-bz-4V2" secondAttribute="bottom" constant="48" id="jRn-5u-VoC"/>
-                <constraint firstItem="5T6-gY-vul" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="lCW-4n-9XY"/>
                 <constraint firstItem="iqD-oe-mCk" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="smo-EP-t2V"/>
                 <constraint firstItem="VYc-mN-T6i" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="tKq-1B-zrz"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
-    <resources>
-        <image name="backgroundStrategies" width="375" height="667"/>
-    </resources>
 </document>

@@ -25,7 +25,6 @@ final class LoginViewController: UIViewController {
     private let logoImageView: UIImageView = UIImageView(image: R.image.loginLogo())
     private let crossImageView: UIImageView = UIImageView(image: R.image.crossImage())
     private let emailCorrectImage: UIImageView = UIImageView(image: R.image.correctEmail())
-    private let backgroundImageView: UIImageView = UIImageView(image: R.image.loginBackground())
     private var topConstraintOriginalValue: CGFloat = 0
     private var topConstraint: NSLayoutConstraint? {
         didSet {
@@ -50,7 +49,7 @@ final class LoginViewController: UIViewController {
         label.attributedText =  NSMutableAttributedString(
             string: text,
             letterSpacing: 1.5,
-            font: Font.H8Title,
+            font: .H8Title,
             textColor: .cherryRed,
             alignment: .left
         )
@@ -58,12 +57,12 @@ final class LoginViewController: UIViewController {
     }()
     private lazy var userInput: UITextField = {
         let input = UITextField()
-        let placeHolder = NSMutableAttributedString(string: R.string.localized.loginViewInputPlaceHolder(), letterSpacing: 1.5, font: Font.H8Title, textColor: .white80, alignment: .left)
+        let placeHolder = NSMutableAttributedString(string: R.string.localized.loginViewInputPlaceHolder(), letterSpacing: 1.5, font: .H8Title, textColor: .white80, alignment: .left)
         input.textColor = .white
         input.tintColor = input.textColor
         input.autocorrectionType = .no
         input.autocapitalizationType = .none
-        input.font = Font.DPText
+        input.font = .DPText
         input.contentVerticalAlignment = .center
         input.keyboardType = .emailAddress
         input.keyboardAppearance = .dark
@@ -74,12 +73,12 @@ final class LoginViewController: UIViewController {
     }()
     private lazy var passwordInput: UITextField = {
         let input = UITextField()
-        let placeHolder = NSMutableAttributedString(string: R.string.localized.loginViewPasswordPlaceHolder(), letterSpacing: 1.5, font: Font.H8Title, textColor: .white80, alignment: .left)
+        let placeHolder = NSMutableAttributedString(string: R.string.localized.loginViewPasswordPlaceHolder(), letterSpacing: 1.5, font: .H8Title, textColor: .white80, alignment: .left)
         input.isSecureTextEntry = true
         input.textColor = .white
         input.tintColor = input.textColor
         input.autocorrectionType = .no
-        input.font = Font.DPText
+        input.font = .DPText
         input.keyboardType = .default
         input.keyboardAppearance = .dark
         input.returnKeyType = .send
@@ -93,7 +92,7 @@ final class LoginViewController: UIViewController {
         button.setTitleColor(.white40, for: .normal)
         button.setTitle(R.string.localized.loginViewLoginButton(), for: .normal)
         button.titleLabel?.addCharactersSpacing(spacing: 1, text: R.string.localized.loginViewLoginButton())
-        button.titleLabel?.font = Font.DPText
+        button.titleLabel?.font = .DPText
         button.titleLabel?.textAlignment = .center
         return button
     }()
@@ -102,7 +101,7 @@ final class LoginViewController: UIViewController {
         button.setTitle(R.string.localized.loginViewToggleShow(), for: .normal)
         button.addTarget(self, action: #selector(didPressShow(_:)), for: .touchUpInside)
         button.setTitleColor(.white40, for: .normal)
-        button.titleLabel?.font = Font.H8Title
+        button.titleLabel?.font = .H8Title
         return button
     }()
     private lazy var forgotPasswordButton: UIButton = {
@@ -111,7 +110,7 @@ final class LoginViewController: UIViewController {
         button.setTitleColor(.white40, for: .normal)
         button.setTitle(R.string.localized.loginViewForgotButton(), for: .normal)
         button.titleLabel?.addCharactersSpacing(spacing: 1.5, text: R.string.localized.loginViewForgotButton())
-        button.titleLabel?.font = Font.H8Title
+        button.titleLabel?.font = .H8Title
         return button
     }()
 
@@ -182,7 +181,6 @@ final class LoginViewController: UIViewController {
     }
 
     private func addHierarchy() {
-        view.addSubview(backgroundImageView)
         view.addSubview(logoImageView)
         view.addSubview(userView)
         view.addSubview(passwordView)
@@ -197,8 +195,6 @@ final class LoginViewController: UIViewController {
     }
 
     private func setupLayout() {
-        backgroundImageView.horizontalAnchors == view.horizontalAnchors
-        backgroundImageView.verticalAnchors == view.verticalAnchors
 
         topConstraint = logoImageView.topAnchor == view.topAnchor + 81
         logoImageView.heightAnchor == 35

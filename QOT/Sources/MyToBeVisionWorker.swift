@@ -13,8 +13,10 @@ final class MyToBeVisionWorker {
     private let services: Services
     private let syncManager: SyncManager
     private let widgetDataManager: WidgetDataManager
+    private let navigationItem: NavigationItem
 
-    init(services: Services, syncManager: SyncManager) {
+    init(services: Services, syncManager: SyncManager, navigationItem: NavigationItem) {
+        self.navigationItem = navigationItem
         self.services = services
         self.syncManager = syncManager
         self.widgetDataManager = WidgetDataManager(services: services)
@@ -25,6 +27,10 @@ final class MyToBeVisionWorker {
         } catch {
             log("failed to create image directory", level: .debug)
         }
+    }
+
+    var navItem: NavigationItem {
+        return navigationItem
     }
 
     var trackablePageObject: PageObject? {

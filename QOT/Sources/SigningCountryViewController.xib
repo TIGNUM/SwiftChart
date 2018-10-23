@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -33,20 +32,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundStrategies" translatesAutoresizingMaskIntoConstraints="NO" id="68V-yU-Mls">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1rH-OC-d6Q">
                     <rect key="frame" x="16" y="84" width="343" height="100"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Country of residence" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1yM-Cj-80x">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Which country do you live in? We use this to protect your data." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1Wf-JN-gqm">
-                            <rect key="frame" x="0.0" y="37" width="343" height="40.666666666666657"/>
+                            <rect key="frame" x="0.0" y="36" width="343" height="40.666666666666657"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -89,21 +85,17 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="0.091334824090000002" blue="0.34198637189999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="68V-yU-Mls" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="2D8-WZ-ggK"/>
                 <constraint firstItem="O5M-G5-EvY" firstAttribute="top" secondItem="MFb-xJ-I9S" secondAttribute="bottom" constant="8" id="3aJ-8k-ERd"/>
-                <constraint firstAttribute="trailing" secondItem="68V-yU-Mls" secondAttribute="trailing" id="3oe-jc-2AY"/>
                 <constraint firstItem="MFb-xJ-I9S" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="9aS-e9-fH7"/>
                 <constraint firstItem="1rH-OC-d6Q" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="DYX-wG-ip4"/>
                 <constraint firstItem="1rH-OC-d6Q" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="WLf-3a-5KN"/>
                 <constraint firstItem="tAf-iz-TfB" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Y9b-Ho-BbB"/>
                 <constraint firstItem="O5M-G5-EvY" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="bS9-kJ-zcn"/>
                 <constraint firstItem="tAf-iz-TfB" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" multiplier="0.8" id="e9B-vL-DmX"/>
-                <constraint firstAttribute="bottom" secondItem="68V-yU-Mls" secondAttribute="bottom" id="gpo-fb-TwY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="O5M-G5-EvY" secondAttribute="bottom" constant="48" id="i6r-AL-4jA"/>
                 <constraint firstItem="MFb-xJ-I9S" firstAttribute="top" secondItem="tAf-iz-TfB" secondAttribute="bottom" constant="8" id="qhM-vD-mTB"/>
-                <constraint firstItem="68V-yU-Mls" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="v5f-qQ-ocy"/>
                 <constraint firstItem="MFb-xJ-I9S" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="vn8-yE-Gd6"/>
                 <constraint firstItem="1rH-OC-d6Q" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="wDd-2O-VpQ"/>
                 <constraint firstItem="O5M-G5-EvY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="wRN-Ik-RXM"/>
@@ -113,7 +105,4 @@
             <point key="canvasLocation" x="33.5" y="53.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="backgroundStrategies" width="375" height="667"/>
-    </resources>
 </document>

@@ -54,7 +54,6 @@ final class LearnContentItemCoordinator: ParentCoordinator {
             contentCollection: selectedContent,
             categoryID: category.forcedRemoteID
         )
-
         headerView = LearnContentItemHeaderView.fromXib(contentTitle: selectedContent.title.capitalized,
                                                         categoryTitle: categoryTitle.capitalized)
         fullViewController = LearnContentItemViewController(viewModel: viewModel, tabType: .full)
@@ -63,7 +62,6 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         bulletViewController.title = R.string.localized.learnContentItemTitleBullets()
         audioViewController = LearnContentItemViewController(viewModel: viewModel, tabType: .audio)
         audioViewController.title = R.string.localized.learnContentItemTitleAudio()
-
         var pages = [LearnContentItemViewController]()
         if content.hasFullItems == true {
             pages.append(fullViewController)
@@ -74,9 +72,9 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         if content.hasAudioItems == true {
             pages.append(audioViewController)
         }
-
         let leftButton = UIBarButtonItem(withImage: R.image.ic_close()?.tintedImage(color: .gray).withRenderingMode(.alwaysOriginal))
         topTabBarController = UINavigationController(withPages: pages,
+                                                     navigationItem: NavigationItem(),
                                                      headerView: headerView,
                                                      topBarDelegate: topBarDelegate ?? self,
                                                      pageDelegate: self,
@@ -87,7 +85,8 @@ final class LearnContentItemCoordinator: ParentCoordinator {
         fullViewController.delegate = self
         bulletViewController.delegate = self
         audioViewController.delegate = self
-        topTabBarController.view.backgroundColor = .nightModeBackground
+        topTabBarController.navigationBar.barTintColor = .nightModeBackground
+        topTabBarController.navigationBar.shadowImage = UIImage()
     }
 
     // FIXME: Add page tracking
@@ -97,17 +96,13 @@ final class LearnContentItemCoordinator: ParentCoordinator {
 
             // If rootVC has a custom defined transition that one will be used
             // We have a custom transition from PrepareContent (when pressing readMore button)
-            guard let transitionDelegate = rootViewController as? UIViewControllerTransitioningDelegate else {
-                return
-            }
-
+            guard let transitionDelegate = rootViewController as? UIViewControllerTransitioningDelegate else { return }
             topTabBarController.transitioningDelegate = transitionDelegate
         } else if let presentationManager = presentationManager {
             topTabBarController.transitioningDelegate = presentationManager
         } else {
             topTabBarController.modalPresentationStyle = .custom
         }
-
         if presentOnStart {
             rootViewController.present(topTabBarController, animated: true)
         }

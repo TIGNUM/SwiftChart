@@ -24,22 +24,6 @@ extension String {
 
 extension UIFont {
 
-    class func simpleFont(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.simple.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
-    }
-
-    class func bentonBookFont(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.bentonBook.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
-    }
-
-    class func bentonRegularFont(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.bentonRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
-    }
-
-    class func bentonCondLightFont(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.bentonSansCondLight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
-    }
-
     class func apercuBold(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.apercuBold.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
@@ -762,6 +746,7 @@ extension CGSize {
 // MARK: - NSMutableAttributedString
 
 extension NSMutableAttributedString {
+
     func setColorForText(_ textToFind: String, with color: UIColor) {
         let range = mutableString.range(of: textToFind, options: .caseInsensitive)
         if let font = R.font.apercuBold(size: 16), range.location != NSNotFound {

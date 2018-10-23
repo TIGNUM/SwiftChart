@@ -29,11 +29,9 @@ final class BlurLoadingView: UIView {
     private func setup(lodingText: String) {
         // config components
         backgroundColor = .clear
-
         activityIndicatorView.startAnimating()
-
         label.text = lodingText
-        label.font = UIFont.bentonBookFont(ofSize: 15)
+        label.font = .DPText2
         label.textColor = .white
         label.numberOfLines = 0
 

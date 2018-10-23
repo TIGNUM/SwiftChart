@@ -45,6 +45,7 @@ final class WeeklyChoicesCoordinator: NSObject, ParentCoordinator {
         let leftButton = UIBarButtonItem(withImage: R.image.ic_minimize())
         let rightButton = learnCategoryListViewModel?.areAllCompleted == true ? self.rightButton : nil
         topTabBarController = UINavigationController(withPages: [weeklyChoicesViewController],
+                                                     navigationItem: NavigationItem(),
                                                      topBarDelegate: topBarDelegate ?? self,
                                                      leftButton: leftButton,
                                                      rightButton: rightButton)

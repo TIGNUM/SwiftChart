@@ -327,18 +327,19 @@ private extension LearnContentItemViewController {
         itemTableView.horizontalAnchors == view.horizontalAnchors
         itemTableView.backgroundColor = .clear
         itemTableView.separatorColor = .nightModeBackground
+        navigationController?.navigationBar.applyNighModeStyle()
     }
 
     func relatedContentCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
         let relatedContent = viewModel.relatedContent(at: indexPath)
         let topText = NSMutableAttributedString(string: relatedContent.title,
                                                 letterSpacing: CGFloat(-0.8),
-                                                font: Font.H4Headline,
+                                                font: .H4Headline,
                                                 textColor: .nightModeBlack)
         let bottomText = NSMutableAttributedString(
             string: String(format: "%d MIN TO READ", relatedContent.minutesToRead), //TODO Localise
             letterSpacing: CGFloat(2),
-            font: Font.H7Tag,
+            font: .H7Tag,
             textColor: .nightModeSubFont
         )
         let cell = contentItemTextTableViewCell(tableView: tableView,
@@ -346,14 +347,12 @@ private extension LearnContentItemViewController {
                                                 topText: topText,
                                                 bottomText: bottomText)
         cell.selectionStyle = .gray
-
         return cell
     }
 
     func readMoreTableViewCell(tableView: UITableView, indexPath: IndexPath) -> LearnReadMoreCell {
         let readMoreCell: LearnReadMoreCell = tableView.dequeueCell(for: indexPath)
         readMoreCell.configure(numberOfArticles: viewModel.pdfCount(at: indexPath, tabType: tabType))
-
         return readMoreCell
     }
 
@@ -363,7 +362,6 @@ private extension LearnContentItemViewController {
                               duration: TimeInterval) -> LearnStrategyPlaylistAudioCell {
         let cell: LearnStrategyPlaylistAudioCell = tableView.dequeueCell(for: indexPath)
         cell.setup(title: title, playing: viewModel.isPlaying(indexPath: indexPath))
-
         return cell
     }
 

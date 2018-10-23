@@ -134,7 +134,7 @@ private extension SettingsTableViewCell {
             titleLabel.attributedText = NSMutableAttributedString(
                 string: title.uppercased(),
                 letterSpacing: 2,
-                font: Font.H7Tag,
+                font: .H7Tag,
                 lineSpacing: 4,
                 textColor: .white40
             )
@@ -146,7 +146,7 @@ private extension SettingsTableViewCell {
 
 	func setupTextFieldCell(title: String, value: String, secure: Bool, settingsType: SettingsType) {
         textField.attributedText = Style.tagTitle(value, .white80).attributedString(lineSpacing: 2, alignment: .right)
-        textField.font = Font.H7Tag
+        textField.font = .H7Tag
         textField.isSecureTextEntry = secure
         textField.delegate = self
         textField.keyboardType = .default

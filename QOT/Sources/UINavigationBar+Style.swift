@@ -11,7 +11,7 @@ import UIKit
 extension UINavigationBar {
 
     func applyDefaultStyle() {
-        titleTextAttributes = [.foregroundColor: UIColor.white, .font: Font.H6NavigationTitle]
+        titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.H6NavigationTitle]
         let dummyImage = UIImage()
         setBackgroundImage(dummyImage, for: .default)
         shadowImage = dummyImage
@@ -19,8 +19,22 @@ extension UINavigationBar {
     }
 
     func applyDarkBluryStyle() {
-        titleTextAttributes = [.foregroundColor: UIColor.white, .font: Font.H6NavigationTitle]
+        titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.H6NavigationTitle]
         isTranslucent = true
         barStyle = .black
+    }
+
+    func applyNavyStyle() {
+        titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.H6NavigationTitle]
+        isTranslucent = false
+        barTintColor = .navy
+    }
+
+    func applyNighModeStyle() {
+        let dummyImage = UIImage()
+        setBackgroundImage(dummyImage, for: .default)
+        shadowImage = dummyImage
+        isTranslucent = false
+        barTintColor = .nightModeBackground
     }
 }

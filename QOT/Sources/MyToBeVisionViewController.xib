@@ -51,9 +51,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundWeeklyChoices" translatesAutoresizingMaskIntoConstraints="NO" id="0uc-fl-hd8">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fhs-xD-0nf" customClass="FadeContainerView" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                     <subviews>
@@ -255,14 +252,10 @@
             <color key="backgroundColor" red="1" green="0.16596179029999999" blue="0.095281278689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="fhs-xD-0nf" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="FqX-jd-eeD"/>
-                <constraint firstAttribute="trailing" secondItem="0uc-fl-hd8" secondAttribute="trailing" id="TWU-Mg-ebE"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="top" secondItem="uD0-d0-kIf" secondAttribute="top" constant="20" id="Vpl-Cb-dXU"/>
                 <constraint firstItem="fhs-xD-0nf" firstAttribute="bottom" secondItem="iN0-l3-epB" secondAttribute="bottom" id="iba-wB-ySl"/>
                 <constraint firstItem="fhs-xD-0nf" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="nXb-Mn-vST"/>
-                <constraint firstItem="0uc-fl-hd8" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="q4T-4V-kup"/>
-                <constraint firstAttribute="bottom" secondItem="0uc-fl-hd8" secondAttribute="bottom" id="sQf-N7-xFe"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fhs-xD-0nf" secondAttribute="trailing" id="v8q-L3-CJN"/>
-                <constraint firstItem="0uc-fl-hd8" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="z35-nn-Azs"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="-120.5" y="249.5"/>
@@ -270,7 +263,6 @@
     </objects>
     <resources>
         <image name="Universe mytobevision" width="375" height="229"/>
-        <image name="backgroundWeeklyChoices" width="187.5" height="333.5"/>
         <image name="ic_camera" width="58" height="45"/>
         <image name="ic_edit" width="36" height="36"/>
         <image name="ic_share" width="20" height="28"/>

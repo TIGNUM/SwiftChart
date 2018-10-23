@@ -51,11 +51,11 @@ private extension MeetingsLengthChart {
     func xPosition(_ index: Int) -> CGFloat {
         guard labelContentView.subviews.count >= index else { return 0 }
         let labelFrame = labelContentView.subviews[index].frame
-        return labelFrame.origin.x + labelFrame.width * Layout.multiplier_05
+        return labelFrame.origin.x + labelFrame.width * Layout.multiplier_050
     }
 
     func yPosition(_ value: CGFloat) -> CGFloat {
-        return (bottomPosition - (value * bottomPosition)) + padding * Layout.multiplier_05
+        return (bottomPosition - (value * bottomPosition)) + padding * Layout.multiplier_050
     }
 
     func drawCapRoundLine(xPos: CGFloat, startYPos: CGFloat, endYPos: CGFloat, strokeColor: UIColor, hasShadow: Bool = false) {
@@ -81,7 +81,7 @@ private extension MeetingsLengthChart {
     func addCaptionLabel(yPos: CGFloat, text: String) {
         let captionLabel = UILabel()
         captionLabel.center = CGPoint(x: 0, y: yPos)
-        captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
+        captionLabel.setAttrText(text: text, font: .H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
         captionLabel.sizeToFit()
         addSubview(captionLabel)
     }
@@ -134,7 +134,7 @@ private extension MeetingsLengthChart {
 
     func dayLabel(text: String) -> UILabel {
         let label = UILabel()
-        label.font = Font.H7Title
+        label.font = .H7Title
         label.textAlignment = .center
         label.textColor = .white
         label.text = text

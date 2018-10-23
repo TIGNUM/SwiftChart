@@ -63,21 +63,14 @@ private extension PermissionsViewController {
     }
 
     func setupView() {
+        view.addSubview(tableView)
         navigationItem.title = R.string.localized.sidebarTitlePermission().uppercased()
-        let fadeContainerView = FadeContainerView()
-        view.addSubview(fadeContainerView)
-        fadeContainerView.edgeAnchors == view.edgeAnchors
-        let backgroundImageView = UIImageView(image: R.image._1_1Learn())
-        fadeContainerView.addSubview(backgroundImageView)
-        backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
-        fadeContainerView.addSubview(tableView)
-        tableView.backgroundColor = .clear
+        tableView.backgroundColor = .navy
         tableView.separatorColor = .clear
         tableView.isScrollEnabled = false
-        tableView.topAnchor == fadeContainerView.topAnchor + Layout.padding_100
-        tableView.bottomAnchor == fadeContainerView.bottomAnchor
-        tableView.horizontalAnchors == fadeContainerView.horizontalAnchors
-        fadeContainerView.setFade(top: 80, bottom: 0)
+        tableView.topAnchor == view.topAnchor + Layout.padding_100
+        tableView.bottomAnchor == view.bottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
         view.layoutIfNeeded()
     }
 }

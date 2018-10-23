@@ -50,6 +50,7 @@ extension AbstractFormViewController {
     }
 
     @objc func setupView(title: String, subtitle: String, bottomButtonTitle: String) {
+        view.backgroundColor = .navy
         addGestureRecognizer()
         setupLabels(title: title, subtitle: subtitle)
         setupBottomButton(buttonTitle: bottomButtonTitle)
@@ -91,13 +92,13 @@ private extension AbstractFormViewController {
     @objc func setupLabels(title: String, subtitle: String) {
         titleLabel.attributedText = NSMutableAttributedString(string: title,
                                                               letterSpacing: 1.5,
-                                                              font: .simpleFont(ofSize: 24),
+                                                              font: .H3Subtitle,
                                                               lineSpacing: 2,
                                                               textColor: .white,
                                                               alignment: .left)
         subtitleLabel.attributedText = NSMutableAttributedString(string: subtitle,
                                                                  letterSpacing: 0.8,
-                                                                 font: .apercuLight(ofSize: 16),
+                                                                 font: .DPText,
                                                                  lineSpacing: 8,
                                                                  textColor: .white90,
                                                                  alignment: .left)
@@ -106,7 +107,7 @@ private extension AbstractFormViewController {
     func setupBottomButton(buttonTitle: String) {
         let attributedTitle = NSMutableAttributedString(string: buttonTitle,
                                                         letterSpacing: 0.8,
-                                                        font: .apercuRegular(ofSize: 16),
+                                                        font: .DPText,
                                                         textColor: .white90,
                                                         alignment: .center)
         bottomButton.setAttributedTitle(attributedTitle, for: .selected)

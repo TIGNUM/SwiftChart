@@ -12,9 +12,7 @@ import Kingfisher
 
 protocol MyUniverseViewControllerDelegate: class {
 
-    func myUniverseViewController(_ viewController: MyUniverseViewController?, didTap sector: StatisticsSectionType)
-
-    func myUniverseViewControllerDidTapVision(_ viewController: MyUniverseViewController)
+    func myUniverseViewController(_ viewController: MyUniverseViewController?, didTap sector: StatisticsSectionType)    
 
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapWeeklyChoiceAt index: Index)
 
@@ -50,7 +48,6 @@ extension MyUniverseViewController {
     struct Config {
         let pages: [Page]
         let loadingText: String
-        let backgroundImage: UIImage?
         let profileImagePlaceholder: UIImage?
         let partnerImagePlaceholder: UIImage?
         let partnersTitle: String
@@ -60,7 +57,6 @@ extension MyUniverseViewController {
         static let `default` = Config(
             pages: [Page.myDataPage, Page.myWhyPage],
             loadingText: R.string.localized.meMyUniverseLoading(),
-            backgroundImage: R.image.backgroundMyUniverse(),
             profileImagePlaceholder: R.image.universe_2state(),
             partnerImagePlaceholder: R.image.partnerPlaceholder(),
             partnersTitle: R.string.localized.meSectorMyWhyPartnersTitle().uppercased(),
@@ -300,9 +296,7 @@ private extension MyUniverseViewController {
 
 extension MyUniverseViewController: MyUniverseContentViewDelegate {
 
-    func myUniverseContentViewDidTapProfile(_ viewController: MyUniverseContentView) {
-        delegate?.myUniverseViewControllerDidTapVision(self)
-    }
+    func myUniverseContentViewDidTapProfile(_ viewController: MyUniverseContentView) {}
 
     func myUniverseContentViewDidTapWeeklyChoice(_ viewController: MyUniverseContentView, at index: Int) {
         delegate?.myUniverseViewController(self, didTapWeeklyChoiceAt: index)

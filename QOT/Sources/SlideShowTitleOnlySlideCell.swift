@@ -22,7 +22,7 @@ final class SlideShowTitleOnlySlideCell: UICollectionViewCell, Dequeueable {
     func configure(title: String, imageURL: URL) {
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 1,
-                                                       font: .simpleFont(ofSize: 16),
+                                                       font: .H5SecondaryHeadline,
                                                        lineSpacing: 1,
                                                        textColor: .white,
                                                        alignment: .center,

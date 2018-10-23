@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -42,20 +41,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundStrategies" translatesAutoresizingMaskIntoConstraints="NO" id="h8a-XC-B8a">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XBI-il-igd">
                     <rect key="frame" x="16" y="84" width="343" height="100"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Profile Details" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DGg-pY-81I">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We use your email to securly verify your account and to protect all data you share with us." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qqo-u8-vcY">
-                            <rect key="frame" x="0.0" y="37" width="343" height="61"/>
+                            <rect key="frame" x="0.0" y="36" width="343" height="61"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -145,7 +141,7 @@
                     <rect key="frame" x="0.0" y="630" width="375" height="48"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bk6-7l-qa3">
-                            <rect key="frame" x="16" y="11.666666666666629" width="24" height="24"/>
+                            <rect key="frame" x="16" y="12" width="24" height="24"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="24" id="CL5-MY-Fw6"/>
                                 <constraint firstAttribute="height" constant="24" id="MuU-ub-Y81"/>
@@ -186,7 +182,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="0.091334824090000002" blue="0.34198637189999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="mO4-vC-ozc" firstAttribute="leading" secondItem="kno-HR-5ef" secondAttribute="leading" id="1Zk-WJ-Rem"/>
                 <constraint firstItem="fi3-uU-lX7" firstAttribute="leading" secondItem="Ozj-K2-nrr" secondAttribute="leading" id="3e7-jh-WK9"/>
@@ -195,12 +191,10 @@
                 <constraint firstItem="Nd6-hy-J64" firstAttribute="trailing" secondItem="kno-HR-5ef" secondAttribute="trailing" id="79Y-vZ-deu"/>
                 <constraint firstItem="XBI-il-igd" firstAttribute="top" secondItem="kno-HR-5ef" secondAttribute="top" constant="40" id="DIe-LL-61c"/>
                 <constraint firstItem="XBI-il-igd" firstAttribute="leading" secondItem="kno-HR-5ef" secondAttribute="leading" constant="16" id="HO7-ii-1Ph"/>
-                <constraint firstAttribute="bottom" secondItem="h8a-XC-B8a" secondAttribute="bottom" id="HYA-gh-Oya"/>
                 <constraint firstItem="BY5-rj-j5K" firstAttribute="leading" secondItem="Ozj-K2-nrr" secondAttribute="leading" constant="16" id="MxD-pR-Tm6"/>
                 <constraint firstItem="kno-HR-5ef" firstAttribute="bottom" secondItem="BY5-rj-j5K" secondAttribute="bottom" constant="48" id="OTf-gE-YFd"/>
                 <constraint firstItem="Ech-VT-r5k" firstAttribute="leading" secondItem="Ozj-K2-nrr" secondAttribute="leading" id="QCr-Mc-djm"/>
                 <constraint firstItem="2UJ-J7-j5n" firstAttribute="top" secondItem="fi3-uU-lX7" secondAttribute="bottom" id="QSI-kj-AlQ"/>
-                <constraint firstItem="h8a-XC-B8a" firstAttribute="top" secondItem="Ozj-K2-nrr" secondAttribute="top" id="TCu-H3-oOJ"/>
                 <constraint firstItem="XBI-il-igd" firstAttribute="centerX" secondItem="Ozj-K2-nrr" secondAttribute="centerX" id="UPR-GV-VNZ"/>
                 <constraint firstItem="fi3-uU-lX7" firstAttribute="top" secondItem="mO4-vC-ozc" secondAttribute="bottom" id="ZD8-Bc-Ixr"/>
                 <constraint firstItem="FOH-Xa-9vi" firstAttribute="leading" secondItem="Ech-VT-r5k" secondAttribute="trailing" id="bAo-ct-91Y"/>
@@ -211,8 +205,6 @@
                 <constraint firstItem="mO4-vC-ozc" firstAttribute="top" secondItem="XBI-il-igd" secondAttribute="bottom" constant="16" id="lC8-8f-JGX"/>
                 <constraint firstItem="mO4-vC-ozc" firstAttribute="centerX" secondItem="Ozj-K2-nrr" secondAttribute="centerX" id="mTd-C0-0H4"/>
                 <constraint firstItem="Ech-VT-r5k" firstAttribute="top" secondItem="fi3-uU-lX7" secondAttribute="bottom" id="pKr-tT-vPE"/>
-                <constraint firstItem="h8a-XC-B8a" firstAttribute="leading" secondItem="Ozj-K2-nrr" secondAttribute="leading" id="shv-Zn-TIh"/>
-                <constraint firstAttribute="trailing" secondItem="h8a-XC-B8a" secondAttribute="trailing" id="swc-vF-aRB"/>
                 <constraint firstItem="2UJ-J7-j5n" firstAttribute="leading" secondItem="Ech-VT-r5k" secondAttribute="trailing" id="uZ4-C5-ydC"/>
                 <constraint firstItem="BY5-rj-j5K" firstAttribute="centerX" secondItem="Ozj-K2-nrr" secondAttribute="centerX" id="vnU-e1-vGJ"/>
                 <constraint firstItem="FOH-Xa-9vi" firstAttribute="top" secondItem="Ozj-K2-nrr" secondAttribute="top" id="yPz-ol-HQD"/>
@@ -222,7 +214,6 @@
         </view>
     </objects>
     <resources>
-        <image name="backgroundStrategies" width="375" height="667"/>
         <image name="checkbox_checked" width="24" height="24"/>
         <image name="checkbox_unchecked" width="24" height="24"/>
     </resources>

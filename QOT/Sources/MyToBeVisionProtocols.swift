@@ -31,6 +31,7 @@ protocol MyToBeVisionInteractorInterface: Interactor {
     // FIXME: Think of better way of handling page tracking in VIP
     var trackablePageObject: PageObject? { get }
     var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] { get }
+    var navigationItem: NavigationItem { get }
 }
 
 protocol MyToBeVisionRouterInterface {

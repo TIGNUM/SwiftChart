@@ -14,7 +14,6 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     // MARK: - Properties
 
     private let sectionHeaderHeight: CGFloat = 24
-    private let fadeContainerView = FadeContainerView()
     private var days: [Guide.Day] = []
     private let loadingView = BlurLoadingView(lodingText: R.string.localized.guideLoading(),
                                               activityIndicatorStyle: .whiteLarge)
@@ -32,7 +31,8 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
                            dequeables: GuideWhatsHotTableViewCell.self,
 									   GuideToBeVisionTableViewCell.self,
                                        GuideTableViewCell.self,
-                                       GuideDailyPrepTableViewCell.self)
+                                       GuideDailyPrepTableViewCell.self,
+                                       GuidePreparationTableViewCell.self)
     }()
 
     // MARK: - Init
@@ -104,26 +104,20 @@ extension GuideViewController: GuideViewControllerInterface {
 private extension GuideViewController {
 
     func setupView() {
+        view.backgroundColor = .navy
         tableView.tableHeaderView = greetingView
         tableView.estimatedRowHeight = 300
-        let backgroundImageView = UIImageView(image: R.image._1_1Learn())
-        view.addSubview(fadeContainerView)
-        fadeContainerView.addSubview(backgroundImageView)
-        fadeContainerView.addSubview(tableView)
-        fadeContainerView.addSubview(loadingView)
+        view.addSubview(tableView)
+        view.addSubview(loadingView)
 		if #available(iOS 11.0, *) {
-			tableView.edgeAnchors == fadeContainerView.edgeAnchors
+			tableView.edgeAnchors == view.edgeAnchors
 		} else {
 			tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
 			tableView.leadingAnchor == view.leadingAnchor
 			tableView.trailingAnchor == view.trailingAnchor
 			tableView.bottomAnchor == view.bottomAnchor - Layout.statusBarHeight
 		}
-		fadeContainerView.verticalAnchors == view.verticalAnchors
-		fadeContainerView.horizontalAnchors == view.horizontalAnchors
-		backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
-		loadingView.edgeAnchors == fadeContainerView.edgeAnchors
-        fadeContainerView.setFade(top: view.frame.height * 0.15, bottom: view.frame.height * 0.15)
+		loadingView.edgeAnchors == view.edgeAnchors
         view.layoutIfNeeded()
         syncHeaderView()
     }
@@ -133,7 +127,7 @@ private extension GuideViewController {
         header.bounds = CGRect(x: 0,
                                y: 0,
                                width: Int(tableView.contentSize.width),
-                               height: Int(view.frame.height * 0.35))
+                               height: Int(view.frame.height * Layout.multiplier_035))
         header.setNeedsLayout()
         header.layoutIfNeeded()
         var frame = header.frame
@@ -189,6 +183,10 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
                            type: item.subtitle,
                            status: item.status,
                            strategiesCompleted: strategiesCompleted)
+            return cell
+        case .preparation(let title, let body):
+            let cell: GuidePreparationTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title, body: body, status: item.status)
             return cell
         }
     }

@@ -63,18 +63,11 @@ final class SensorViewController: UIViewController {
 private extension SensorViewController {
 
     func setupView() {
+        view.backgroundColor = .navy
         collectionView.registerDequeueable(SensorCollectionViewCell.self)
         collectionView.registerDequeueable(RequestDeviceSensorCollectionViewCell.self)
-        sensorsTitleLabel.font = Font.H3Subtitle
-        wearablesTitleLabel.font = Font.H3Subtitle
-        if let navBarHeight = navigationController?.navigationBar.bounds.height {
-            fadeContainerView.setFade(top: navBarHeight, bottom: 0)
-        }
-		if #available(iOS 11.0, *) {
-
-		} else {
-			topConstraint.constant = Layout.statusBarHeight
-		}
+        sensorsTitleLabel.font = .H3Subtitle
+        wearablesTitleLabel.font = .H3Subtitle
     }
 }
 
@@ -85,7 +78,7 @@ extension SensorViewController: SensorViewControllerInterface {
     func setup(sensors: [SensorModel], headline: String, content: String) {
         self.sensors = sensors
         wearablesTitleLabel.addCharactersSpacing(spacing: 2, text: headline, uppercased: true)
-        textLabel.setAttrText(text: content, font: Font.DPText, alignment: .left, lineSpacing: 13)
+        textLabel.setAttrText(text: content, font: .DPText, alignment: .left, lineSpacing: 13)
         reload()
     }
 

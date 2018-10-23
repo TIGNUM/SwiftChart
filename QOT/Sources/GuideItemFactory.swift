@@ -47,7 +47,8 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
                              preparationLocalID: String?) -> Guide.Item? {
         guard let (title, content) = preparationItemStrings(status: status,
                                                             representsMultiple: representsMultiple,
-                                                            startsTomorrow: startsTomorrow) else { return nil }
+                                                            startsTomorrow: startsTomorrow,
+                                                            preparationLocalID: preparationLocalID) else { return nil }
         let link: URL?
         if let localID = preparationLocalID {
             link = URL(string: "qot://preparation#\(localID)")
@@ -56,12 +57,13 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
         }
         return Guide.Item(status: status,
                           title: title,
-                          content: .learningPlan(text: content, strategiesCompleted: nil),
+                          content: .preparation(title: title, body: content),
                           subtitle: R.string.localized.guideCardPreparationSubtitle(),
                           isDailyPrep: false,
                           isLearningPlan: true,
                           isWhatsHot: false,
                           isToBeVision: false,
+                          isPreparation: true,
                           link: link,
                           featureLink: nil,
                           featureButton: nil,
@@ -88,6 +90,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
                                                                     isLearningPlan: false,
                                                                     isWhatsHot: true,
                                                                     isToBeVision: false,
+                                                                    isPreparation: false,
 																	link: link,
 																	featureLink: nil,
 																	featureButton: nil,
@@ -122,6 +125,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
                           isLearningPlan: false,
                           isWhatsHot: false,
                           isToBeVision: true,
+                          isPreparation: false,
                           link: URL(string: "qot://to-be-vision"),
                           featureLink: nil,
                           featureButton: nil,
@@ -143,6 +147,7 @@ private extension GuideItemFactory {
                           isLearningPlan: false,
                           isWhatsHot: false,
                           isToBeVision: false,
+                          isPreparation: false,
                           link: nil,
                           featureLink: nil,
                           featureButton: nil,
@@ -163,6 +168,7 @@ private extension GuideItemFactory {
                           isLearningPlan: false,
                           isWhatsHot: false,
                           isToBeVision: false,
+                          isPreparation: false,
                           link: URL(string: item.link),
                           featureLink: nil,
                           featureButton: nil,
@@ -185,6 +191,7 @@ private extension GuideItemFactory {
                           isLearningPlan: true,
                           isWhatsHot: false,
                           isToBeVision: false,
+                          isPreparation: false,
                           link: URL(string: item.link),
                           featureLink: item.featureLink.flatMap { URL(string: $0) },
                           featureButton: item.featureButton,
@@ -229,6 +236,7 @@ private extension GuideItemFactory {
                           isLearningPlan: isDailyPrep == false ? true : false,
                           isWhatsHot: false,
                           isToBeVision: false,
+                          isPreparation: false,
                           link: URL(string: notification.link),
                           featureLink: buttonInfo?.1,
                           featureButton: buttonInfo?.1 == nil ? nil : buttonInfo?.0,
@@ -275,33 +283,36 @@ private extension GuideItemFactory {
 
     func preparationItemStrings(status: Guide.Item.Status,
                                 representsMultiple: Bool,
-                                startsTomorrow: Bool) -> (title: String, content: String)? {
+                                startsTomorrow: Bool,
+                                preparationLocalID: String?) -> (title: String, content: String)? {
         var titleResource: StringResource
-        var contentResource: StringResource
+        var contentResource: String
         switch (status, representsMultiple, startsTomorrow) {
         case (.todo, false, false):
             titleResource = R.string.localized.guideCardPreparationSingleUnstartedTodayTitle
-            contentResource = R.string.localized.guideCardPreparationSingleUnstartedTodayContent
+            contentResource = services.preparationService.preparation(localID: preparationLocalID ?? "")?.name ??
+                R.string.localized.guideCardPreparationSingleUnstartedTodayContent()
         case (.todo, true, false):
             titleResource = R.string.localized.guideCardPreparationMultipleUnstartedTodayTitle
-            contentResource = R.string.localized.guideCardPreparationMultipleUnstartedTodayContent
+            contentResource = R.string.localized.guideCardPreparationMultipleUnstartedTodayContent()
         case (.todo, false, true):
             titleResource = R.string.localized.guideCardPreparationSingleUnstartedTomorrowTitle
-            contentResource = R.string.localized.guideCardPreparationSingleUnstartedTomorrowContent
+            contentResource = R.string.localized.guideCardPreparationSingleUnstartedTomorrowContent()
         case (.todo, true, true):
             titleResource = R.string.localized.guideCardPreparationMultipleUnstartedTomorrowTitle
-            contentResource = R.string.localized.guideCardPreparationMultipleUnstartedTomorrowContent
+            contentResource = R.string.localized.guideCardPreparationMultipleUnstartedTomorrowContent()
         case (.done, false, false):
             titleResource = R.string.localized.guideCardPreparationSingleStartedTodayTitle
-            contentResource = R.string.localized.guideCardPreparationSingleStartedTodayContent
+            contentResource = services.preparationService.preparation(localID: preparationLocalID ?? "")?.name ??
+                R.string.localized.guideCardPreparationSingleStartedTodayContent()
         case (.done, true, false):
             titleResource = R.string.localized.guideCardPreparationMultipleStartedTodayTitle
-            contentResource = R.string.localized.guideCardPreparationMultipleStartedTodayContent
+            contentResource = R.string.localized.guideCardPreparationMultipleStartedTodayContent()
         default:
             return nil
         }
         return (title: services.settingsService.string(key: titleResource.key) ?? titleResource.localized,
-                content: services.settingsService.string(key: contentResource.key) ?? contentResource.localized)
+                content: services.settingsService.string(key: contentResource) ?? contentResource)
     }
 }
 

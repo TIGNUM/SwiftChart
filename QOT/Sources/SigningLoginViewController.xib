@@ -34,20 +34,17 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundStrategies" translatesAutoresizingMaskIntoConstraints="NO" id="qyz-z2-Ysd">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4S7-tz-dv3">
                     <rect key="frame" x="16" y="84" width="343" height="80"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SIGN IN" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="06r-R7-EqU">
-                            <rect key="frame" x="0.0" y="0.0" width="343" height="29"/>
+                            <rect key="frame" x="0.0" y="0.0" width="343" height="28"/>
                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome back to QOT." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Cyv-OX-tyj">
-                            <rect key="frame" x="0.0" y="37" width="343" height="20.333333333333329"/>
+                            <rect key="frame" x="0.0" y="36" width="343" height="20.333333333333329"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <nil key="highlightedColor"/>
@@ -107,13 +104,10 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="0.091334824090000002" blue="0.34198637189999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="qyz-z2-Ysd" firstAttribute="leading" secondItem="NdG-Pa-N5J" secondAttribute="leading" id="1U3-HY-8N5"/>
                 <constraint firstItem="Xbr-sA-VhL" firstAttribute="leading" secondItem="pQ6-8f-4jr" secondAttribute="leading" id="5Kz-yh-7CG"/>
                 <constraint firstItem="QYY-Vz-p20" firstAttribute="centerX" secondItem="NdG-Pa-N5J" secondAttribute="centerX" id="5Wp-Lh-9Hp"/>
-                <constraint firstAttribute="bottom" secondItem="qyz-z2-Ysd" secondAttribute="bottom" id="7Yq-vM-jJg"/>
-                <constraint firstAttribute="trailing" secondItem="qyz-z2-Ysd" secondAttribute="trailing" id="C9u-JT-6D0"/>
                 <constraint firstItem="QYY-Vz-p20" firstAttribute="leading" secondItem="NdG-Pa-N5J" secondAttribute="leading" id="EXW-ab-dIr"/>
                 <constraint firstItem="zN9-Hf-3nP" firstAttribute="top" secondItem="Xbr-sA-VhL" secondAttribute="bottom" constant="4" id="Hhi-ux-k2c"/>
                 <constraint firstItem="zN9-Hf-3nP" firstAttribute="leading" secondItem="pQ6-8f-4jr" secondAttribute="leading" constant="16" id="J6r-yu-8iC"/>
@@ -121,7 +115,6 @@
                 <constraint firstItem="QYY-Vz-p20" firstAttribute="centerY" secondItem="NdG-Pa-N5J" secondAttribute="centerY" id="KQW-Mn-KAQ"/>
                 <constraint firstItem="tIC-6m-lpB" firstAttribute="leading" secondItem="NdG-Pa-N5J" secondAttribute="leading" constant="16" id="Pxm-mI-cPU"/>
                 <constraint firstItem="Xbr-sA-VhL" firstAttribute="leading" secondItem="NdG-Pa-N5J" secondAttribute="leading" id="XRO-dA-Fbi"/>
-                <constraint firstItem="qyz-z2-Ysd" firstAttribute="top" secondItem="NdG-Pa-N5J" secondAttribute="top" id="Zs9-uM-m0J"/>
                 <constraint firstItem="Xbr-sA-VhL" firstAttribute="top" secondItem="QYY-Vz-p20" secondAttribute="bottom" id="f4X-wF-vLb"/>
                 <constraint firstItem="QYY-Vz-p20" firstAttribute="top" secondItem="nWA-7x-8f1" secondAttribute="bottom" id="gur-5j-Ocv"/>
                 <constraint firstItem="4S7-tz-dv3" firstAttribute="leading" secondItem="pQ6-8f-4jr" secondAttribute="leading" constant="16" id="hQq-Ti-qbq"/>
@@ -138,7 +131,4 @@
             <point key="canvasLocation" x="34" y="53"/>
         </view>
     </objects>
-    <resources>
-        <image name="backgroundStrategies" width="375" height="667"/>
-    </resources>
 </document>

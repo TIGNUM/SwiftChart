@@ -37,10 +37,9 @@ final class SidebarViewController: UIViewController {
     }()
 
     private lazy var versionLabel: UILabel = {
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 25))
+        let label = UILabel()
         let text = Bundle.main.versionAndBuildNumber
         label.attributedText = Style.tag(text, .white20).attributedString(alignment: .center)
-
         return label
     }()
 
@@ -48,7 +47,6 @@ final class SidebarViewController: UIViewController {
 
     init(viewModel: SidebarViewModel) {
         self.viewModel = viewModel
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -60,7 +58,6 @@ final class SidebarViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
     }
 }
@@ -72,12 +69,12 @@ private extension SidebarViewController {
     func setupView() {
         view.addSubview(tableView)
         view.addSubview(versionLabel)
-        tableView.topAnchor == view.topAnchor + 50
-        tableView.bottomAnchor == view.bottomAnchor - 25
-        tableView.horizontalAnchors == view.horizontalAnchors
-        versionLabel.bottomAnchor == view.bottomAnchor - 15
+        versionLabel.bottomAnchor == view.safeBottomAnchor - Layout.padding_24
+        versionLabel.heightAnchor == Layout.height_44
         versionLabel.horizontalAnchors == view.horizontalAnchors
-        versionLabel.topAnchor == tableView.bottomAnchor
+        tableView.topAnchor == view.safeTopAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
+        tableView.bottomAnchor == versionLabel.topAnchor
     }
 }
 

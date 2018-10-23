@@ -18,6 +18,7 @@ final class SigningInfoViewController: UIViewController {
     @IBOutlet private weak var bottomButton: UIButton!
     @IBOutlet private weak var pageControl: PageControl!
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet private weak var headerBackgroundView: UIView!
 
     // MARK: - Init
 
@@ -56,7 +57,7 @@ private extension SigningInfoViewController {
     func setupButtons() {
         let attributedTitle = NSMutableAttributedString(string: "Sign In",
                                                         letterSpacing: 0.8,
-                                                        font: Font.DPText,
+                                                        font: .DPText,
                                                         textColor: .white90,
                                                         alignment: .left)
         bottomButton.backgroundColor = .azure
@@ -82,6 +83,9 @@ private extension SigningInfoViewController {
     }
 
     func setupWebViewBackground() {
+        headerBackgroundView.backgroundColor = .clear
+        view.backgroundColor = .navy
+        webView.backgroundColor = .navy
         let htmlPath = Bundle.main.path(forResource: "WebViewContent", ofType: "html")
         let htmlURL = URL(fileURLWithPath: htmlPath!)
         let html = try? Data(contentsOf: htmlURL)

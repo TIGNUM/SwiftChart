@@ -77,6 +77,10 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
     var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] {
         return worker.visionChatItems
     }
+
+    var navigationItem: NavigationItem {
+        return worker.navItem
+    }
 }
 
 // MARK: - Vision Generator

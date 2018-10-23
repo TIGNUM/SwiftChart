@@ -54,7 +54,8 @@ final class SettingsViewController: UIViewController {
 extension SettingsViewController: SettingsViewControllerInterface {
 
     func setup(_ settings: SettingsModel) {
-        self.settingsModel = settings
+        view.backgroundColor = .navy
+        settingsModel = settings
     }
 }
 

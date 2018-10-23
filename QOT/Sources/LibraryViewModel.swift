@@ -21,10 +21,6 @@ final class LibraryViewModel: LibraryViewModelInterface {
         return categories.count
     }
 
-    var tableViewBackground: UIImageView? {
-        return UIImageView(image: R.image.backgroundSidebar())
-    }
-
     // MARK: - Init
 
     init(services: Services) {

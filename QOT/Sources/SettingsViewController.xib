@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -21,11 +21,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="1_1 learn" translatesAutoresizingMaskIntoConstraints="NO" id="fRT-2d-aah">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                </imageView>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="dqG-uC-3ca">
-                    <rect key="frame" x="30" y="104" width="315" height="674"/>
+                    <rect key="frame" x="30" y="88" width="315" height="690"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="H10-iC-qVT"/>
@@ -36,19 +33,12 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="dqG-uC-3ca" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="KO0-om-FaJ"/>
-                <constraint firstItem="dqG-uC-3ca" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="60" id="Sd5-QK-mcI"/>
+                <constraint firstItem="dqG-uC-3ca" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="44" id="Sd5-QK-mcI"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="dqG-uC-3ca" secondAttribute="bottom" id="aJ0-ZU-6do"/>
-                <constraint firstItem="fRT-2d-aah" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="bLW-yq-Pyf"/>
-                <constraint firstAttribute="bottom" secondItem="fRT-2d-aah" secondAttribute="bottom" id="deO-S1-DEt"/>
-                <constraint firstItem="fRT-2d-aah" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="g3A-3D-8cS"/>
-                <constraint firstItem="fRT-2d-aah" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="iOy-1C-OVf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="dqG-uC-3ca" secondAttribute="trailing" constant="30" id="pCK-dd-zd0"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="33.5" y="54"/>
         </view>
     </objects>
-    <resources>
-        <image name="1_1 learn" width="375" height="667"/>
-    </resources>
 </document>

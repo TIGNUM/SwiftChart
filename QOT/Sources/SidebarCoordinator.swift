@@ -38,8 +38,8 @@ final class SidebarCoordinator: ParentCoordinator {
         sidebarViewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: sidebarViewModel)
         topTabBarController = UINavigationController(withPages: [sideBarViewController],
+                                                     navigationItem: NavigationItem(),
                                                      topBarDelegate: self,
-                                                     backgroundImage: R.image.sidebar(),
                                                      leftButton: UIBarButtonItem(withImage: R.image.ic_close()),
                                                      rightButton: UIBarButtonItem(withImage: R.image.ic_logo()))
         topTabBarController?.modalTransitionStyle = .crossDissolve

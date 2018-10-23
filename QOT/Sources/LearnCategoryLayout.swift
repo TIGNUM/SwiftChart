@@ -44,46 +44,36 @@ final class LearnCategoryLayout: UICollectionViewLayout {
         guard let collectionView = collectionView, let delegate = collectionView.delegate as? LearnCategoryLayoutDelegate else {
             layoutAttributes = []
             contentSize = .zero
-
             return
         }
-
         let multiplier = collectionView.bounds.height
-
         var bubbles: [BubbleLayoutInfo] = []
         for i in 0..<collectionView.numberOfItems(inSection: 0) {
             bubbles.append(delegate.bubbleLayoutInfo(layout: self, index: i))
         }
-
         let frames = bubbles.map { (bubble) -> CGRect in
             let center = CGPoint(x: CGFloat(bubble.centerX) * multiplier, y: CGFloat(bubble.centerY) * multiplier)
             let radius = CGFloat(bubble.radius) * multiplier
-
             return CGRect(x: center.x - radius, y: center.y - radius, width: 2 * radius, height: 2 * radius).integral
         }
-
         layoutAttributes = frames.enumerated().map { (index: Index, frame: CGRect) -> UICollectionViewLayoutAttributes in
             let attrs = UICollectionViewLayoutAttributes(forCellWith: IndexPath(item: index, section: 0))
             attrs.frame = frame
             return attrs
         }
-
         if let first = frames.first {
             var minX: CGFloat = first.minX
             var maxX: CGFloat = first.maxX
             var maxY: CGFloat = first.maxY
-
             for frame in frames {
                 minX = min(minX, frame.minX)
                 maxX = max(maxX, frame.maxX)
                 maxY = max(maxY, frame.maxY)
             }
-
             contentSize = CGSize(width: maxX + minX, height: collectionView.bounds.height)
         } else {
             contentSize = .zero
         }
-
         backgroundImageAttributes.frame = CGRect(origin: CGPoint.zero, size: contentSize)
         backgroundImageAttributes.zIndex = -1
         backgroundImageAttributes.bubbleFrames = frames
@@ -107,7 +97,7 @@ final class LearnCategoryLayout: UICollectionViewLayout {
         return contentSize
     }
 
-    private func centerCollectionView() {
+    func centerCollectionView() {
         if let collectionView = collectionView {
             let xOffset = (contentSize.width - collectionView.frame.width) / 2
             collectionView.contentOffset = CGPoint(x: xOffset, y: collectionView.contentOffset.y)

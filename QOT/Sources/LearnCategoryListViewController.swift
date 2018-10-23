@@ -25,27 +25,22 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
 
     private let viewModel: LearnCategoryListViewModel
     private let disposeBag = DisposeBag()
-    private let backgroundImageView: UIImageView
-
+    private let learnCategoryLayout = LearnCategoryLayout()
     weak var delegate: LearnCategoryListViewControllerDelegate?
     let page = LearnCategoryListPage()
 
     lazy var collectionView: UICollectionView = {
-        return UICollectionView(
-            layout: LearnCategoryLayout(),
-            delegate: self,
-            dataSource: self,
-            dequeables:
-                LearnCategoryCell.self,
-                LearnContentCell.self
-        )
+        return UICollectionView(layout: learnCategoryLayout,
+                                delegate: self,
+                                dataSource: self,
+                                dequeables: LearnCategoryCell.self,
+                                            LearnContentCell.self)
     }()
 
     // MARK: - Init
 
     init(viewModel: LearnCategoryListViewModel) {
         self.viewModel = viewModel
-        backgroundImageView = UIImageView(image: R.image.backgroundStrategies())
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -57,7 +52,6 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupLayout()
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
@@ -76,6 +70,7 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.setStatusBarStyle(.lightContent)
+        learnCategoryLayout.centerCollectionView()
     }
 }
 
@@ -99,10 +94,7 @@ private extension LearnCategoryListViewController {
     }
 
     func setupLayout() {
-        view.addSubview(backgroundImageView)
-        backgroundImageView.edgeAnchors == view.edgeAnchors
         view.addSubview(collectionView)
-
         if #available(iOS 11.0, *) {
             collectionView.verticalAnchors == view.safeVerticalAnchors
             collectionView.horizontalAnchors == view.horizontalAnchors
@@ -112,8 +104,7 @@ private extension LearnCategoryListViewController {
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
         }
-
-        view.backgroundColor = .clear
+        view.backgroundColor = .navy
         view.layoutIfNeeded()
     }
 }
@@ -130,13 +121,11 @@ extension LearnCategoryListViewController: UICollectionViewDataSource, LearnCate
         let category = viewModel.item(at: indexPath.item)
         let cell: LearnCategoryCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(with: category, indexPath: indexPath)
-
         return cell
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         guard let attributes = collectionView.layoutAttributesForItem(at: indexPath) else { return }
-
         let cellFrame = collectionView.convert(attributes.frame, to: view)
         delegate?.didSelectCategory(at: indexPath.row, withFrame: cellFrame, in: self)
         generateFeedback()

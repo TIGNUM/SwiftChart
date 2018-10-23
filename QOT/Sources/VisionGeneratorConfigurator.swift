@@ -46,7 +46,7 @@ final class VisionGeneratorConfigurator: AppStateAccess {
                                                             visionChatItems: visionChatItems)
         let chatViewController = ChatViewController(pageName: .visionGenerator,
                                                     viewModel: chatViewModel,
-                                                    backgroundImage: R.image.backgroundChatBot(),
+                                                    backgroundImage: nil,
                                                     configure: configurator)
         chatViewController.title = R.string.localized.guideToBeVisionNotFisishedTitle()
         return chatViewController

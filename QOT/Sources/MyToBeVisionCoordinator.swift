@@ -33,7 +33,7 @@ final class MyToBeVisionCoordinator: NSObject, ParentCoordinator {
     }
 
     func start() {
-        let configurator = MyToBeVisionConfigurator.make(options)
+        let configurator = MyToBeVisionConfigurator.make(navigationItem: NavigationItem())
         let myToBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
         let currentToBeVision = services.userService.myToBeVision()
         if let toBeVision = currentToBeVision, toBeVision.headline != nil, toBeVision.text != nil {

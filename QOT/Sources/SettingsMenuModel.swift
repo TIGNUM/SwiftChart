@@ -203,7 +203,6 @@ enum SettingsType: Int {
         case general
         case notifications
         case security
-
         case profile
         case settings
 

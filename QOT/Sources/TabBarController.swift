@@ -94,21 +94,31 @@ final class TabBarController: UITabBarController {
 extension TabBarController {
 
     struct Config {
-        var tabBarBackgroundColor: UIColor
-        var tabBarBackgroundImage: UIImage?
-        var tabBarShadowImage: UIImage?
+        var itemImage: UIImage
+        var itemTitle: String
+        var barTitntColor: UIColor
+        var tintColor: UIColor
+        var unselectedItemTintColor: UIColor
+        var isTranslucent: Bool
+        var barStyle: UIBarStyle
+        var hideShadow: Bool
         var useIndicatorView: Bool
         var indicatorViewHeight: CGFloat
         var indicatorViewColor: UIColor
         var indicatorViewSidePadding: CGFloat
 
-        static var `default` = Config(tabBarBackgroundColor: .clear,
-                                      tabBarBackgroundImage: UIImage(),
-                                      tabBarShadowImage: UIImage(),
+        static var `default` = Config(itemImage: UIImage(),
+                                      itemTitle: "",
+                                      barTitntColor: .navy,
+                                      tintColor: .white,
+                                      unselectedItemTintColor: .putty,
+                                      isTranslucent: false,
+                                      barStyle: .black,
+                                      hideShadow: true,
                                       useIndicatorView: true,
                                       indicatorViewHeight: 1,
                                       indicatorViewColor: .white,
-                                      indicatorViewSidePadding: 20)
+                                      indicatorViewSidePadding: 0)
     }
 }
 
@@ -130,9 +140,12 @@ private extension TabBarController {
     }
 
     func apply(_ config: Config) {
-        tabBar.backgroundColor = config.tabBarBackgroundColor
-        tabBar.backgroundImage = config.tabBarBackgroundImage
-        tabBar.shadowImage = config.tabBarShadowImage
+        tabBar.barStyle = config.barStyle
+        tabBar.isTranslucent = config.isTranslucent
+        tabBar.barTintColor = config.barTitntColor
+        tabBar.unselectedItemTintColor = config.unselectedItemTintColor
+        tabBar.tintColor = config.tintColor
+        tabBar.setValue(config.hideShadow, forKey: "_hidesShadow")
     }
 }
 
@@ -145,7 +158,6 @@ extension TabBarController: UITabBarControllerDelegate {
             assertionFailure("index not found")
             return
         }
-
         tabBarControllerDelegate?.tabBarController(self, didSelect: viewController, at: index)
         if config.useIndicatorView == true {
             setIndicatorViewToButtonIndex(index, animated: true)

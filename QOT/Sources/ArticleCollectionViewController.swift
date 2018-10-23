@@ -22,9 +22,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     // MARK: - Properties
 
-    private let backgroundImageView: UIImageView
     private let fadeMaskLocation: UIView.FadeMaskLocation
-
     private(set) var isShowing = false
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let pageName: PageName
@@ -58,8 +56,6 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
         self.pageName = pageName
         self.viewData = viewData
         self.fadeMaskLocation = fadeMaskLocation
-        backgroundImageView = UIImageView(image: R.image.backgroundStrategies())
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -71,7 +67,6 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupLayout()
     }
 
@@ -98,7 +93,6 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
         collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
         collectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
-        view.setFadeMask(at: fadeMaskLocation)
     }
 }
 
@@ -116,11 +110,9 @@ private extension ArticleCollectionViewController {
     }
 
     func setupLayout() {
+        view.backgroundColor = .navy
         automaticallyAdjustsScrollViewInsets = false
-        view.addSubview(backgroundImageView)
-        backgroundImageView.edgeAnchors == view.edgeAnchors
         view.addSubview(collectionView)
-
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
             collectionView.edgeAnchors == view.edgeAnchors
@@ -133,8 +125,6 @@ private extension ArticleCollectionViewController {
             collectionView.trailingAnchor == view.trailingAnchor
             collectionView.contentInset.top = Layout.padding_24
         }
-
-        view.setFadeMask(at: fadeMaskLocation)
     }
 }
 
@@ -186,7 +176,6 @@ extension ArticleCollectionViewController: ArticleCollectionLayoutDelegate {
         let nonPictureWidth: CGFloat = 93
         let pictureRatio: CGFloat = 1.5
         let pictureHeight = (view.bounds.width - nonPictureWidth) / pictureRatio
-
         return pictureHeight + nonPictureHeight
     }
 }

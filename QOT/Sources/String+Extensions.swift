@@ -116,7 +116,7 @@ extension String {
         let range = NSRange(location: 0, length: count)
         style.alignment = .center
         attrString.addAttribute(.paragraphStyle, value: style, range: range)
-        attrString.addAttribute(.font, value: Font.H7Tag, range: range)
+        attrString.addAttribute(.font, value: UIFont.H7Tag, range: range)
         attrString.addAttribute(.kern, value: 2, range: range)
         attrString.addAttribute(.foregroundColor, value: color, range: range)
 

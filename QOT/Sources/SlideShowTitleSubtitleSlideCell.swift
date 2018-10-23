@@ -23,14 +23,14 @@ final class SlideShowTitleSubtitleSlideCell: UICollectionViewCell, Dequeueable {
     func configure(title: String, subtitle: String, imageURL: URL) {
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 1,
-                                                       font: .simpleFont(ofSize: 16),
+                                                       font: .H5SecondaryHeadline,
                                                        lineSpacing: 6,
                                                        textColor: .white,
                                                        alignment: .center,
                                                        lineBreakMode: .byWordWrapping)
         subtitleLabel.attributedText = NSAttributedString(string: subtitle,
                                                           letterSpacing: 1,
-                                                          font: .bentonRegularFont(ofSize: 16),
+                                                          font: .H5SecondaryHeadline,
                                                           lineSpacing: 6,
                                                           textColor: .white,
                                                           alignment: .center,

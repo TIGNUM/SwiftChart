@@ -25,7 +25,6 @@ final class LearnContentListViewController: UIViewController {
 
     weak var pagingCollectionViewTopConstraint: NSLayoutConstraint?
     weak var pagingCollectionViewBottomConstraint: NSLayoutConstraint?
-    private let backgroundImageView = UIImageView(image: R.image._1Learn())
     private let disposeBag = DisposeBag()
     private lazy var collectionViewLayout = LearnStrategyListLayout()
     let viewModel: LearnContentCollectionViewModel
@@ -57,7 +56,6 @@ final class LearnContentListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupAppearance()
         setupHierachy()
         setupLayout()
@@ -84,17 +82,15 @@ private extension LearnContentListViewController {
     }
 
     func setupAppearance() {
-        view.backgroundColor = .clear
+        view.backgroundColor = .navy
         collectionView.backgroundColor = .clear
     }
 
     func setupHierachy() {
-        view.addSubview(backgroundImageView)
         view.addSubview(collectionView)
     }
 
     func setupLayout() {
-        backgroundImageView.edgeAnchors == view.edgeAnchors
         collectionView.topAnchor == view.topAnchor
         collectionView.bottomAnchor == view.safeBottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors

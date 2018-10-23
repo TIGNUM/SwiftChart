@@ -33,9 +33,6 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundStrategies" translatesAutoresizingMaskIntoConstraints="NO" id="kDs-pq-Bj0">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="L3y-YC-Kxh">
                     <rect key="frame" x="16" y="84" width="343" height="144"/>
                     <subviews>
@@ -82,7 +79,7 @@
                     </connections>
                 </button>
             </subviews>
-            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="0.091334824090000002" blue="0.34198637189999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="euR-FJ-Yod" secondAttribute="bottom" constant="48" id="1ol-33-z0E"/>
                 <constraint firstItem="GhC-QJ-h0J" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="BFN-Bb-PYX"/>
@@ -90,19 +87,12 @@
                 <constraint firstItem="euR-FJ-Yod" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="KP9-nu-NOM"/>
                 <constraint firstItem="L3y-YC-Kxh" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="40" id="O99-a8-UJr"/>
                 <constraint firstItem="euR-FJ-Yod" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Oz3-Ch-2PF"/>
-                <constraint firstAttribute="trailing" secondItem="kDs-pq-Bj0" secondAttribute="trailing" id="PdK-Y6-sYW"/>
-                <constraint firstAttribute="bottom" secondItem="kDs-pq-Bj0" secondAttribute="bottom" id="Qhf-m0-f3A"/>
-                <constraint firstItem="kDs-pq-Bj0" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="Vdg-ph-dN6"/>
                 <constraint firstItem="L3y-YC-Kxh" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="Vhb-4d-KR6"/>
                 <constraint firstItem="GhC-QJ-h0J" firstAttribute="top" secondItem="L3y-YC-Kxh" secondAttribute="bottom" constant="79" id="ifB-9s-htg"/>
-                <constraint firstItem="kDs-pq-Bj0" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nKT-5x-9BL"/>
                 <constraint firstItem="GhC-QJ-h0J" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="zmA-lU-qav"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <point key="canvasLocation" x="34.5" y="53.5"/>
         </view>
     </objects>
-    <resources>
-        <image name="backgroundStrategies" width="375" height="667"/>
-    </resources>
 </document>

@@ -28,16 +28,15 @@ final class SlideShowViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .navy
         interactor.viewDidLoad()
         collectionView.registerDequeueable(SlideShowTitleSubtitleSlideCell.self)
         collectionView.registerDequeueable(SlideShowTitleOnlySlideCell.self)
         collectionView.registerDequeueable(SlideShowCompletePromptCell.self)
-        navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        navigationBar.shadowImage = UIImage()
-        navigationBar.isTranslucent = true
+        navigationBar.applyNavyStyle()
         navigationBar.topItem?.title = R.string.localized.sidebarTitleIntroSliders().uppercased()
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline,
-                                             NSAttributedStringKey.foregroundColor: UIColor.white]
+        navigationBar.titleTextAttributes = [.font: UIFont.H5SecondaryHeadline,
+                                             .foregroundColor: UIColor.white]
     }
 
     required init?(coder aDecoder: NSCoder) {

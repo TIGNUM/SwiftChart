@@ -95,7 +95,6 @@ private extension SettingsCalendarListViewController {
         DispatchQueue.main.async {
             self.viewModel.update()
             self.tableView.reloadData()
-
             let authStatus = EKEventStore.authorizationStatus(for: .event)
             switch authStatus {
             case .denied:
@@ -118,15 +117,13 @@ private extension SettingsCalendarListViewController {
     }
 
     func setupView() {
+        view.backgroundColor = .navy
         view.addBlackNavigationView()
 		let fadeContainerView = FadeContainerView()
 		view.addSubview(fadeContainerView)
 		fadeContainerView.edgeAnchors == view.edgeAnchors
-        let backgroundImageView = UIImageView(image: R.image._1_1Learn())
-        fadeContainerView.addSubview(backgroundImageView)
-        backgroundImageView.edgeAnchors == fadeContainerView.edgeAnchors
         fadeContainerView.addSubview(tableView)
-
+        fadeContainerView.backgroundColor = .navy
         tableView.topAnchor == fadeContainerView.topAnchor + 100 // FIXME: constant??
         tableView.leftAnchor == fadeContainerView.leftAnchor + 20 // FIXME: constant??
         tableView.rightAnchor ==  fadeContainerView.rightAnchor
@@ -167,7 +164,6 @@ private extension SettingsCalendarListViewController {
         fadeContainerView.addConstraint(labelCenterX)
         fadeContainerView.addConstraint(labelWidth)
         fadeContainerView.addConstraint(labelPosY)
-
         openSettingButton = UIButton()
         fadeContainerView.addSubview(openSettingButton)
         openSettingButton.setTitle(R.string.localized.alertButtonTitleOpenSettings(), for: UIControlState.normal)

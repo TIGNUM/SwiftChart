@@ -27,7 +27,6 @@ final class OldSettingsViewController: UIViewController {
     private var pickerItems: UserMeasurement?
     private var pickerInitialSelection = [Index]()
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
-    private let fadeContainerView = FadeContainerView()
     let settingsType: SettingsType.SectionType
 
     lazy var pickerContentView: UIView = {
@@ -69,7 +68,6 @@ final class OldSettingsViewController: UIViewController {
         self.services = services
         self.destination = destination
         super.init(nibName: nil, bundle: nil)
-
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(reloadTableView(_:)),
                                                name: .UIApplicationWillEnterForeground,
@@ -84,7 +82,6 @@ final class OldSettingsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupView()
         registerCells()
     }
@@ -151,6 +148,7 @@ private extension OldSettingsViewController {
 private extension OldSettingsViewController {
 
     func setupView() {
+        view.backgroundColor = .navy
         view.addBlackNavigationView()
         tableView = UITableView(frame: .zero, style: .grouped)
         automaticallyAdjustsScrollViewInsets = false
@@ -158,14 +156,12 @@ private extension OldSettingsViewController {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.contentInset.top = view.safeMargins.top + Layout.statusBarHeight + Layout.padding_24
         }
-		view.addSubview(fadeContainerView)
-		fadeContainerView.addSubview(tableView)
-		fadeContainerView.addSubview(pickerContentView)
-		pickerContentView.addSubview(pickerToolBar)
+		view.addSubview(tableView)
+		view.addSubview(pickerContentView)
+		view.addSubview(pickerToolBar)
         pickerContentView.addSubview(pickerView)
-		fadeContainerView.edgeAnchors == view.edgeAnchors
-        tableView.edgeAnchors == fadeContainerView.edgeAnchors
-        tableView.backgroundView = UIImageView(image: R.image.backgroundSidebar())
+        tableView.edgeAnchors == view.edgeAnchors
+        tableView.backgroundColor = .navy
         tableView.delegate = self
         tableView.dataSource = self
         tableView.tableFooterView = UIView()
@@ -174,9 +170,9 @@ private extension OldSettingsViewController {
         tableView.allowsSelection = true
         tableView.rowHeight = 44
 		tableView.isScrollEnabled = false
-        pickerContentView.trailingAnchor == fadeContainerView.trailingAnchor
-        pickerContentView.leadingAnchor == fadeContainerView.leadingAnchor
-        pickerContentView.bottomAnchor == fadeContainerView.safeBottomAnchor
+        pickerContentView.trailingAnchor == view.trailingAnchor
+        pickerContentView.leadingAnchor == view.leadingAnchor
+        pickerContentView.bottomAnchor == view.safeBottomAnchor
         pickerViewHeight = pickerContentView.heightAnchor == 0
         pickerToolBar.topAnchor == pickerContentView.topAnchor
         pickerToolBar.leadingAnchor == pickerContentView.leadingAnchor
@@ -190,9 +186,6 @@ private extension OldSettingsViewController {
         if #available(iOS 11.0, *) {
         } else {
             tableView.contentInset.top = Layout.statusBarHeight + Layout.padding_20
-        }
-        if let navigationBarHeight = navigationController?.navigationBar.bounds.height {
-            fadeContainerView.setFade(top: navigationBarHeight + 32, bottom: 0)
         }
     }
 
@@ -208,9 +201,7 @@ private extension OldSettingsViewController {
     }
 
     func updateViewModelAndReloadTableView() {
-        guard let settingsViewModel = SettingsViewModel(services: services, settingsType: settingsType) else {
-            return
-        }
+        guard let settingsViewModel = SettingsViewModel(services: services, settingsType: settingsType) else { return }
         viewModel = settingsViewModel
         tableView.reloadData()
     }

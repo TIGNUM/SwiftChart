@@ -16,30 +16,20 @@ final class TabBarItem: UITabBarItem {
 
     struct Config {
         var title: String?
-        var isTitleUppercased: Bool
         var titlePositionAdjustment: UIOffset
         var normalTitleTextAttributes: [NSAttributedStringKey: Any]
         var selectedTitleTextAttributes: [NSAttributedStringKey: Any]
         var image: UIImage?
-        var selectedImage: UIImage?
         var tag: Int
 
-        static var `default` = Config(
-            title: nil,
-            isTitleUppercased: true,
-            titlePositionAdjustment: UIOffset(horizontal: 0, vertical: -26),
-            normalTitleTextAttributes: [
-                .font: Font.H5SecondaryHeadline,
-                .foregroundColor: UIColor.white.withAlphaComponent(0.4)
-            ],
-            selectedTitleTextAttributes: [
-                NSAttributedStringKey.font: Font.H5SecondaryHeadline,
-                NSAttributedStringKey.foregroundColor: UIColor.white
-            ],
-            image: UIImage(),
-            selectedImage: R.image.tabBarButtonItemHighlight(),
-            tag: 0
-        )
+        static var `default` = Config(title: nil,
+                                      titlePositionAdjustment: UIOffset(horizontal: 0, vertical: -4),
+                                      normalTitleTextAttributes: [.font: UIFont.TabBar,
+                                                                  .foregroundColor: UIColor.putty],
+                                      selectedTitleTextAttributes: [.font: UIFont.TabBar,
+                                                                    .foregroundColor: UIColor.white],
+                                      image: nil,
+                                      tag: 0)
     }
 
     init(config: Config) {
@@ -55,12 +45,12 @@ final class TabBarItem: UITabBarItem {
     // MARK: - private
 
     private func apply(_ config: Config) {
-        title = config.isTitleUppercased ? config.title?.uppercased() : config.title
+        imageInsets = UIEdgeInsets(top: -4, left: 0, bottom: 0, right: 0)
+        title = config.title?.capitalized
         titlePositionAdjustment = config.titlePositionAdjustment
         setTitleTextAttributes(config.normalTitleTextAttributes, for: .normal)
         setTitleTextAttributes(config.selectedTitleTextAttributes, for: .selected)
-        image = config.image
-        selectedImage = config.selectedImage
+        image = config.image?.withRenderingMode(.alwaysTemplate)
         tag = config.tag
     }
 }

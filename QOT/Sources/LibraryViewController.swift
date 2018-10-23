@@ -56,9 +56,8 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
     // MARK: - private
 
     private func setupView() {
-        view.backgroundColor = .clear
         view.addSubview(tableView)
-
+        tableView.backgroundColor = .navy
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
@@ -73,8 +72,6 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
             tableView.contentInset.top = tableView.contentInset.top + Layout.padding_24
             tableView.contentInset.bottom = view.safeMargins.bottom
         }
-        tableView.backgroundView = viewModel.tableViewBackground
-        view.setFadeMask(at: fadeMaskLocation)
     }
 
     @available(iOS 11.0, *)
@@ -82,7 +79,6 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         super.viewLayoutMarginsDidChange()
         tableView.contentInset.top = view.safeMargins.top + Layout.padding_24
         tableView.contentInset.bottom = view.safeMargins.bottom
-        view.setFadeMask(at: fadeMaskLocation)
     }
 }
 

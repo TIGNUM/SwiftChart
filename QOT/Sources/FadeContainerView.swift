@@ -29,8 +29,8 @@ final class FadeContainerView: UIView {
     }
 
     func setFade(top: CGFloat, bottom: CGFloat) {
-        topFade = top
-        bottomFade = bottom
+        topFade = 0
+        bottomFade = 0
         updateMask()
     }
 

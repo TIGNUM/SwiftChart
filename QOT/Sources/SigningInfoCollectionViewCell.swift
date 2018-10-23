@@ -29,13 +29,13 @@ extension SigningInfoCollectionViewCell {
     func configure(title: String, body: String) {
         titleLabel.attributedText = NSMutableAttributedString(string: title,
                                                               letterSpacing: 1.5,
-                                                              font: .simpleFont(ofSize: 24),
+                                                              font: .H3Subtitle,
                                                               lineSpacing: 2,
                                                               textColor: .white,
                                                               alignment: .left)
         bodyLabel.attributedText = NSMutableAttributedString(string: body,
                                                              letterSpacing: 0.8,
-                                                             font: .apercuLight(ofSize: 16),
+                                                             font: .H5SecondaryHeadline,
                                                              lineSpacing: 8,
                                                              textColor: .white90,
                                                              alignment: .left)

@@ -356,21 +356,21 @@ private extension GuideGenerator {
             var item: Guide.Item?
             if preparationsStartingToday.isEmpty == false {
                 let multiple = preparationsStartingToday.count > 1
-                let localID = preparationsStartingToday.count == 1 ? preparationsStartingToday[0].localID : nil
+                let localID = preparationsStartingToday.count == 1 ? preparationsStartingToday.first?.localID : nil
                 item = factory.makePreparationItem(status: .todo,
                                                    representsMultiple: multiple,
                                                    startsTomorrow: false,
                                                    preparationLocalID: localID)
             } else if preparationsStartingTomorrow.isEmpty == false {
                 let multiple = preparationsStartingTomorrow.count > 1
-                let localID = preparationsStartingTomorrow.count == 1 ? preparationsStartingTomorrow[0].localID : nil
+                let localID = preparationsStartingTomorrow.count == 1 ? preparationsStartingTomorrow.first?.localID : nil
                 item = factory.makePreparationItem(status: .todo,
                                                    representsMultiple: multiple,
                                                    startsTomorrow: true,
                                                    preparationLocalID: localID)
             } else if preparationsStartedToday.isEmpty == false {
                 let multiple = preparationsStartedToday.count > 1
-                let localID = preparationsStartedToday.count == 1 ? preparationsStartedToday[0].localID : nil
+                let localID = preparationsStartedToday.count == 1 ? preparationsStartedToday.first?.localID : nil
                 item = factory.makePreparationItem(status: .done,
                                                    representsMultiple: multiple,
                                                    startsTomorrow: false,

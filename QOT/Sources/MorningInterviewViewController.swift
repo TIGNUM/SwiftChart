@@ -121,13 +121,13 @@ class MorningInterviewViewController: UIViewController, MorningInterviewViewCont
         let headerLabelText = R.string.localized.morningControllerTitleLabel()
         let attributedTitle = NSMutableAttributedString(string: headerLabelText,
                                                         letterSpacing: 1.1,
-                                                        font: Font.H5SecondaryHeadline,
+                                                        font: .H5SecondaryHeadline,
                                                         textColor: .white,
                                                         alignment: .center)
         let progress =  " \(currentIndex + 1)\("/")\(questions.count ) "
         let progressTitle = NSMutableAttributedString(string: progress,
                                                       letterSpacing: 0,
-                                                      font: Font.H5SecondaryHeadline,
+                                                      font: .H5SecondaryHeadline,
                                                       textColor: .white,
                                                       alignment: .center)
         attributedTitle.append(progressTitle)

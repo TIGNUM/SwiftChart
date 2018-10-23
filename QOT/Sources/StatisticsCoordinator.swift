@@ -43,6 +43,7 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
             let statisticsViewController = ChartViewController(viewModel: viewModel)
             statisticsViewController.title = R.string.localized.meMyStatisticsNavigationBarTitle()
             topTabBarController = UINavigationController(withPages: [statisticsViewController],
+                                                         navigationItem: NavigationItem(),
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
             topTabBarController.modalPresentationStyle = .custom

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,7 +17,6 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SettingsMenuViewController" customModule="QOT" customModuleProvider="target">
             <connections>
-                <outlet property="backgroundImage" destination="Av3-II-cLv" id="MRO-cV-eZK"/>
                 <outlet property="collectionView" destination="PeA-6k-dwv" id="jVL-EG-MdL"/>
                 <outlet property="fadeContainerView" destination="XS9-MN-hH5" id="2bb-A8-KWo"/>
                 <outlet property="generalButton" destination="u4X-Qg-MQg" id="BZI-CY-rIi"/>
@@ -34,9 +33,6 @@
             <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundSidebar" translatesAutoresizingMaskIntoConstraints="NO" id="Av3-II-cLv">
-                    <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
-                </imageView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XS9-MN-hH5" userLabel="Fade Container View" customClass="FadeContainerView" customModule="QOT" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                     <subviews>
@@ -51,7 +47,7 @@
                             <rect key="frame" x="165" y="97" width="97" height="104"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BGu-1Y-eaK">
-                                    <rect key="frame" x="0.0" y="80.5" width="152" height="13"/>
+                                    <rect key="frame" x="0.0" y="79" width="152" height="13"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="152" id="nhE-B1-dzc"/>
                                     </constraints>
@@ -60,7 +56,7 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CURTIS PHILLIPS" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sh0-Nn-ZEM">
-                                    <rect key="frame" x="0.0" y="0.0" width="152" height="76.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="152" height="75"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="152" id="zSS-7p-g3T"/>
                                     </constraints>
@@ -160,14 +156,10 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="0.091334824090000002" blue="0.34198637189999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="Av3-II-cLv" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1Ad-8e-4S4"/>
                 <constraint firstItem="XS9-MN-hH5" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="7Kf-7x-HPO"/>
-                <constraint firstAttribute="bottom" secondItem="Av3-II-cLv" secondAttribute="bottom" id="AO9-uJ-BTQ"/>
-                <constraint firstItem="Av3-II-cLv" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="PZG-vy-MPq"/>
                 <constraint firstItem="XS9-MN-hH5" firstAttribute="leading" secondItem="jMP-au-CNM" secondAttribute="leading" id="VKn-CJ-IiK"/>
-                <constraint firstAttribute="trailing" secondItem="Av3-II-cLv" secondAttribute="trailing" id="dRw-iT-7cH"/>
                 <constraint firstItem="jMP-au-CNM" firstAttribute="trailing" secondItem="XS9-MN-hH5" secondAttribute="trailing" id="wPi-gz-SMc"/>
                 <constraint firstItem="jMP-au-CNM" firstAttribute="bottom" secondItem="XS9-MN-hH5" secondAttribute="bottom" id="yzQ-Ve-F0n"/>
             </constraints>
@@ -175,7 +167,4 @@
             <point key="canvasLocation" x="33" y="54"/>
         </view>
     </objects>
-    <resources>
-        <image name="backgroundSidebar" width="375" height="667"/>
-    </resources>
 </document>

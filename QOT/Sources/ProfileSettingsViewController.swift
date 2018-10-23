@@ -177,7 +177,7 @@ private extension ProfileSettingsViewController {
         pickerContentView.addSubview(pickerView)
         fadeContainerView.edgeAnchors == view.edgeAnchors
         tableView.edgeAnchors == fadeContainerView.edgeAnchors
-        tableView.backgroundView = UIImageView(image: R.image._1_1Learn())
+        tableView.backgroundColor = .navy
         pickerContentView.trailingAnchor == fadeContainerView.trailingAnchor
         pickerContentView.leadingAnchor == fadeContainerView.leadingAnchor
         pickerContentView.bottomAnchor == fadeContainerView.safeBottomAnchor
@@ -191,7 +191,7 @@ private extension ProfileSettingsViewController {
         pickerView.trailingAnchor == pickerContentView.trailingAnchor
         pickerView.bottomAnchor == pickerContentView.bottomAnchor
 		pickerToolBar.tintColor = .clear
-        fadeContainerView.setFade(top: 100, bottom: 0)
+        fadeContainerView.setFade(top: 0, bottom: 0)
         view.layoutIfNeeded()
     }
 

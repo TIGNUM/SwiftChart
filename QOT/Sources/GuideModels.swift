@@ -23,6 +23,7 @@ struct Guide {
             case learningPlan(text: String, strategiesCompleted: Int?)
             case dailyPrep(items: [DailyPrepItem], feedback: String?)
 			case whatsHotArticle(title: String, body: String, image: URL?)
+            case preparation(title: String, body: String)
         }
 
         enum Status {
@@ -52,6 +53,7 @@ struct Guide {
         let isLearningPlan: Bool
         let isWhatsHot: Bool
         let isToBeVision: Bool
+        let isPreparation: Bool
         let link: URL?
         let featureLink: URL?
         let featureButton: String?

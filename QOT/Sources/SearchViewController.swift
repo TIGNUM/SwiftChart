@@ -31,6 +31,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .navy
         setupSegementedControl()
         setupSearchBar()
     }
@@ -72,10 +73,10 @@ private extension SearchViewController {
     func setupSegementedControl() {
         segmentedControl.tintColor = .clear
         segmentedControl.backgroundColor = .clear
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: Font.H8Title,
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.H8Title,
                                                  NSAttributedStringKey.foregroundColor: UIColor.white60],
                                                 for: .normal)
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: Font.H8Title,
+        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.H8Title,
                                                  NSAttributedStringKey.foregroundColor: UIColor.white90],
                                                 for: .selected)
     }

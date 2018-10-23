@@ -58,11 +58,9 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     // MARK: - Properties
 
     private let disposeBag = DisposeBag()
-	private let backgroundImageView = UIImageView()
     private var sizingCell = ChatViewCell()
     private var sizeCache: NSCache<GenericCacheKey<SizeCacheKey>, NSValue> = NSCache()
     private var items: [ChatItem<T>] = []
-    private var fadeMaskLocation: UIView.FadeMaskLocation?
     private var visionChoice: VisionGeneratorChoice?
     weak var routerDelegate: ChatViewControllerDelegate?
     var destination: AppCoordinator.Router.Destination?
@@ -115,7 +113,6 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
          fadeMaskLocation: UIView.FadeMaskLocation) {
         self.pageName = pageName
         self.viewModel = viewModel
-        self.fadeMaskLocation = fadeMaskLocation
         super.init(nibName: nil, bundle: nil)
         setupView(withBackgroundImage: backgroundImage) // FIXME: putting this in viewDidLoad() crashes
     }
@@ -139,7 +136,6 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         registerReusableViews()
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
@@ -169,17 +165,11 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         self.visionChoice = nil
     }
 
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        navigationController?.navigationBar.applyDefaultStyle()
-    }
-
     @available(iOS 11.0, *)
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
         collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
         collectionView.contentInset.bottom = view.safeMargins.bottom
-        addFadeMaskLocationIfNeeded()
     }
 
     // MARK: - UICollectionViewDataSource
@@ -263,18 +253,12 @@ private extension ChatViewController {
         } else {
             viewModel.didSelectItem(at: indexPath)
         }
-
         if let cell = collectionView.cellForItem(at: indexPath) as? ChatViewCell {
             let (text, style) = textAndStyle(indexPath: indexPath)
             cell.configure(text: text, style: style)
         }
         let choice = choices[indexPath.row]
         didSelectChoice?(choice, self)
-    }
-
-    func addFadeMaskLocationIfNeeded() {
-        guard let fadeMask = fadeMaskLocation else { return }
-        view.setFadeMask(at: fadeMask)
     }
 
     func scrollToSnapOffset(animated: Bool) {
@@ -287,35 +271,25 @@ private extension ChatViewController {
     }
 
     func setupView(withBackgroundImage backgroundImage: UIImage?) {
-        view.backgroundColor = .clear
-		view.addSubview(backgroundImageView)
+        view.backgroundColor = .navy
         view.addSubview(collectionView)
-
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             collectionView.contentInsetAdjustmentBehavior = .never
             collectionView.edgeAnchors == view.edgeAnchors
             collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
             collectionView.contentInset.bottom = view.safeMargins.bottom
-			backgroundImageView.edgeAnchors == view.edgeAnchors
         } else {
             collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.padding_24
             collectionView.bottomAnchor == view.bottomAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
             collectionView.contentInset.top = Layout.padding_24
-			backgroundImageView.topAnchor == view.topAnchor
-			backgroundImageView.leadingAnchor == view.leadingAnchor
-			backgroundImageView.trailingAnchor == view.trailingAnchor
-			backgroundImageView.bottomAnchor == view.bottomAnchor
         }
-        setupBackgroundImage(backgroundImage)
-        addFadeMaskLocationIfNeeded()
     }
 
     func setupVisionGeneratorView(withBackgroundImage backgroundImage: UIImage?) {
         view.backgroundColor = .clear
-		view.addSubview(backgroundImageView)
         view.addSubview(collectionView)
         view.addSubview(bottomButton)
         bottomButton.centerXAnchor == view.centerXAnchor
@@ -324,10 +298,9 @@ private extension ChatViewController {
         bottomButton.isHidden = true
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
-            backgroundImageView.edgeAnchors == view.edgeAnchors
             bottomButton.bottomAnchor == view.bottomAnchor - Layout.padding_16 - view.safeMargins.bottom
             collectionView.contentInsetAdjustmentBehavior = .never
-            collectionView.topAnchor == view.topAnchor + view.safeMargins.top + Layout.statusBarHeight
+            collectionView.topAnchor == view.topAnchor
             collectionView.bottomAnchor == view.bottomAnchor - view.safeMargins.bottom - Layout.statusBarHeight
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
@@ -340,16 +313,7 @@ private extension ChatViewController {
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
             collectionView.contentInset.top = Layout.padding_24
-			backgroundImageView.topAnchor == view.topAnchor
-			backgroundImageView.leadingAnchor == view.leadingAnchor
-			backgroundImageView.trailingAnchor == view.trailingAnchor
-			backgroundImageView.bottomAnchor == view.bottomAnchor
         }
-		setupBackgroundImage(backgroundImage)
-    }
-
-    func setupBackgroundImage(_ image: UIImage?) {
-        backgroundImageView.image = image
     }
 
     func registerReusableViews() {
@@ -516,7 +480,7 @@ extension ChatViewController: ChatViewControllerInterface {
             return
         }
 
-        let configurator = MyToBeVisionConfigurator.make()
+        let configurator = MyToBeVisionConfigurator.make(navigationItem: NavigationItem())
         let toBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
         navigationController?.pushViewController(toBeVisionViewController, animated: true)
     }

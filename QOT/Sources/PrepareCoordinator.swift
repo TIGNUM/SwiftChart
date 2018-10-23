@@ -170,10 +170,13 @@ extension PrepareCoordinator {
             noteController.viewModel = viewModel
             noteController.title = R.string.localized.topTabBarItemTitlePerpareNotes()
             topTabBarController = UINavigationController(withPages: [prepareController, noteController],
+                                                         navigationItem: NavigationItem(),
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_close()),
                                                          rightButton: rightBarButtonItem,
                                                          navigationItemStyle: Date().isNight ? .dark : .light)
+            topTabBarController.navigationBar.barTintColor = .nightModeBackground
+            topTabBarController.navigationBar.shadowImage = UIImage()
             tabBarController.present(topTabBarController, animated: true)
             prepareListViewController = prepareController
             self.viewModel = viewModel

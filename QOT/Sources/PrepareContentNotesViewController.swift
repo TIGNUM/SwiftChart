@@ -73,7 +73,7 @@ extension PrepareContentNotesViewController: UITextViewDelegate {
 private extension PrepareContentNotesViewController {
 
     static var textViewAttributes = NSAttributedString.makeAttributes(letterSpacing: 2,
-                                                                      font: Font.PText,
+                                                                      font: .PText,
                                                                       lineSpacing: 10,
                                                                       textColor: .nightModeBlack,
                                                                       alignment: .left,

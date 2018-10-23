@@ -15,9 +15,9 @@ extension UIColor {
         return UIColor(white: 255/255, alpha: 0.1)
     }
 
-    /// UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 1)
+    /// UIColor(red: 2/255, green: 18/255, blue: 33/255, alpha: 1)
     class var navy: UIColor {
-        return UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 1)
+        return UIColor(red: 2/255, green: 18/255, blue: 33/255, alpha: 1)
     }
 
     /// UIColor(red: 0, green: 45/255, blue: 78/255, alpha: 0.2)
@@ -250,17 +250,12 @@ extension UIColor {
         return UIColor(red: 80/255, green: 227/255, blue: 194/255, alpha: 1)
     }
 
-    /// UIColor(red: 0/255, green: 12/255, blue: 22/255, alpha: 1)
-    class var hasanBlue: UIColor {
-        return UIColor(red: 0/255, green: 12/255, blue: 22/255, alpha: 1)
-    }
-
     class var addSensorConnectGray: UIColor {
         return UIColor(red: 2/255, green: 149/255, blue: 208/255, alpha: 1)
     }
 
     class var nightModeBackground: UIColor {
-        return Date().isNight ? .hasanBlue : .white
+        return Date().isNight ? .navy : .white
     }
 
     class var nightModeMainFont: UIColor {
@@ -293,6 +288,10 @@ extension UIColor {
 
     class var nightModeBlue: UIColor {
         return Date().isNight ? .azure : .blue
+    }
+
+    class var putty: UIColor {
+        return UIColor(red: 181.0 / 255.0, green: 169.0 / 255.0, blue: 156.0 / 255.0, alpha: 1.0)
     }
 
     static var random: UIColor {

@@ -52,11 +52,11 @@ private extension ActivityChart {
     func xPosition(_ index: Int) -> CGFloat {
         guard labelContentView.subviews.count >= index else { return 0 }
         let labelFrame = labelContentView.subviews[index].frame
-        return (labelFrame.origin.x + labelFrame.width * Layout.multiplier_05)
+        return (labelFrame.origin.x + labelFrame.width * Layout.multiplier_050)
     }
 
     func yPosition(_ value: CGFloat) -> CGFloat {
-        return (bottomPosition - (value * bottomPosition)) + padding * Layout.multiplier_05
+        return (bottomPosition - (value * bottomPosition)) + padding * Layout.multiplier_050
     }
 
     private func drawCapRoundLine(xPos: CGFloat,
@@ -87,8 +87,8 @@ private extension ActivityChart {
         let captionLabel = UILabel(frame: CGRect(x: 0,
                                                  y: yPos - yAxisOffset * Layout.multiplier_025,
                                                  width: yAxisOffset,
-                                                 height: yAxisOffset * Layout.multiplier_05))
-        captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
+                                                 height: yAxisOffset * Layout.multiplier_050))
+        captionLabel.setAttrText(text: text, font: .H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
         addSubview(captionLabel)
     }
 
@@ -145,7 +145,7 @@ private extension ActivityChart {
 
     func dayLabel(text: String, textColor: UIColor) -> UILabel {
         let label = UILabel()
-        label.font = Font.H7Title
+        label.font = .H7Title
         label.textAlignment = .center
         label.textColor = textColor
         label.text = text

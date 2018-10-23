@@ -97,7 +97,6 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
     override func viewLayoutMarginsDidChange() {
         super.viewLayoutMarginsDidChange()
         tableView.contentInset.bottom = view.safeMargins.bottom
-        view.setFadeMask(at: fadeMaskLocation)
     }
 }
 
@@ -110,12 +109,12 @@ private extension ArticleItemViewController {
         let sidePadding = CGFloat(56)
         let frameWidth = tableView.frame.size.width - sidePadding
         let titleHeight = calculateLabelHeight(text: header.articleTitle,
-                                               font: Font.H5SecondaryHeadline,
+                                               font: .H5SecondaryHeadline,
                                                dispayedLineHeight: 18,
                                                frameWidth: frameWidth,
                                                characterSpacing: 1)
         let subTitleHeight = calculateLabelHeight(text: header.articleSubTitle,
-                                                  font: Font.H1MainTitle,
+                                                  font: .H1MainTitle,
                                                   dispayedLineHeight: 46,
                                                   frameWidth: frameWidth,
                                                   characterSpacing: 2)
@@ -141,10 +140,7 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
-        let backgroundImageView = UIImageView(frame: view.frame)
-        backgroundImageView.image = (viewModel.backgroundImage == nil) ? R.image.backgroundSidebar() : viewModel.backgroundImage
-        tableView.backgroundColor = .clear
-        view.addSubview(backgroundImageView)
+        tableView.backgroundColor = .navy
         view.addSubview(tableView)
         view.translatesAutoresizingMaskIntoConstraints = true
 
@@ -185,7 +181,6 @@ private extension ArticleItemViewController {
         tableView.bottomAnchor == view.safeBottomAnchor - 60
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
-        view.setFadeMask(at: fadeMaskLocation)
         view.layoutIfNeeded()
     }
 
@@ -195,7 +190,7 @@ private extension ArticleItemViewController {
         button.setTitleColor(.white40, for: .normal)
         button.setTitle(guideItem.featureButton?.uppercased() ?? "", for: .normal)
         button.titleLabel?.addCharactersSpacing(spacing: 1, text: guideItem.featureButton ?? "")
-        button.titleLabel?.font = Font.DPText
+        button.titleLabel?.font = .DPText
         button.titleLabel?.textAlignment = .center
         return button
     }

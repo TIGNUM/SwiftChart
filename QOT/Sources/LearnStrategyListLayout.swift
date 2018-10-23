@@ -60,12 +60,9 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
             let itemCount = collectionView.numberOfItems(inSection: section)
             let attrs = makeAttributes(section: section, itemCount: itemCount, viewHeight: contentHeight, initialX: initialX, layoutRadius: layoutRadius)
             let sectionMaxX = (attrs.last?.frame.maxX ?? initialX) + LearnStrategyListLayout.sectionPadding
-
             sectionMaxXs.append(sectionMaxX)
             cache.append(contentsOf: attrs)
             sectionMinXs.append(initialX)
-
-            makeDecorationAttributes(for: collectionView, withSectionMinX: sectionMinX, andSectinoMaxX: sectionMaxX, inSection: section, counter: &decorationCounter)
         }
 
         let viewWidth = sectionMaxXs.last ?? 0
@@ -76,29 +73,6 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
 
     func minX(section: Index) -> CGFloat? {
         return section < sectionMinXs.count ? sectionMinXs[section] : nil
-    }
-
-    private func makeDecorationAttributes(for collectionView: UICollectionView, withSectionMinX sectionMinX: CGFloat, andSectinoMaxX sectionMaxX: CGFloat, inSection section: Int, counter: inout Int) {
-        let screenWidth = collectionView.bounds.width
-        var item = 0
-        var xPosition: CGFloat = -collectionView.contentInset.left
-        let yPosition = -collectionView.contentInset.top
-
-        if let attribute = backgroundImageAttributes.last {
-            xPosition = attribute.frame.origin.x + attribute.frame.width
-        }
-
-        while xPosition < sectionMaxX {
-            let decorationAttrs = LearnContentListBackgroundViewLayoutAttributes(forDecorationViewOfKind: LearnContentListBackgroundView.kind, with: IndexPath(item: item, section: section))
-            decorationAttrs.frame = CGRect(origin: CGPoint(x: xPosition, y: yPosition), size: collectionView.bounds.size)
-            decorationAttrs.zIndex = -1
-            decorationAttrs.image = (counter % 2) == 0 ? R.image.learnBack1() : R.image.learnBack2()
-            backgroundImageAttributes.append(decorationAttrs)
-            item += 1
-            counter += 1
-            xPosition += screenWidth
-        }
-
     }
 
     private func makeAttributes(section: Int, itemCount: Int, viewHeight: CGFloat, initialX: CGFloat, layoutRadius: CGFloat) -> [UICollectionViewLayoutAttributes] {

@@ -121,7 +121,7 @@ private extension BadgeManager {
         case .learn:
             guideBadge?.isHidden = newGuideItems.isEmpty
             learnBadge?.isHidden = true
-        case .me, .prepare:
+        default:
             guideBadge?.isHidden = newGuideItems.isEmpty
             learnBadge?.isHidden = badgeValueWhatsHot == 0
         }

@@ -22,8 +22,8 @@ final class NavigationItem: UINavigationItem {
         let tabFont: UIFont
         let defaultColor: UIColor
         let selectedColor: UIColor
-        static var dark = Style(tabFont: Font.H5SecondaryHeadline, defaultColor: .gray, selectedColor: .white)
-        static var light = Style(tabFont: Font.H5SecondaryHeadline, defaultColor: .black40, selectedColor: .black)
+        static var dark = Style(tabFont: .H5SecondaryHeadline, defaultColor: .white, selectedColor: .white)
+        static var light = Style(tabFont: .H5SecondaryHeadline, defaultColor: .black40, selectedColor: .black)
     }
 
     private lazy var tabMenuView: TabMenuView = {

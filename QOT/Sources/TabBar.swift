@@ -11,8 +11,9 @@ import Foundation
 enum TabBar: Index {
     case guide = 0
     case learn = 1
-    case me = 2
-    case prepare = 3
+    case tbv = 2
+    case data = 3
+    case prepare = 4
 
     var index: Index {
        return self.rawValue
@@ -22,15 +23,27 @@ enum TabBar: Index {
         switch self {
         case .guide: return R.string.localized.tabBarItemGuide()
         case .learn: return R.string.localized.tabBarItemLearn()
-        case .me: return R.string.localized.tabBarItemMe()
+        case .data: return R.string.localized.tabBarItemData()
+        case .tbv: return R.string.localized.tabBarItemTbv()
         case .prepare: return R.string.localized.tabBarItemPrepare()
+        }
+    }
+
+    var image: UIImage? {
+        switch self {
+        case .guide: return R.image.tabBarItemCompassRose()
+        case .learn: return R.image.tabBarItemLearn()
+        case .data: return R.image.tabBarItemCharts()
+        case .tbv: return R.image.tabBarItemTignum()
+        case .prepare: return R.image.tabBarItemCalendar()
         }
     }
 
     var itemConfig: TabBarItem.Config {
         var config = TabBarItem.Config.default
-        config.title = title
         config.tag = index
+        config.image = image
+        config.title = title
         return config
     }
 }

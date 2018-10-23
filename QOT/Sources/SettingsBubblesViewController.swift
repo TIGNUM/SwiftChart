@@ -27,6 +27,7 @@ final class SettingsBubblesViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .navy
         bubblesView.selectionDelegate = self
         bubblesView.type = settingsType
         setupNavigationBar()

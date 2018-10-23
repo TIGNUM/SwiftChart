@@ -106,8 +106,8 @@ enum URLScheme: String {
              .meMeeting,
              .meSleep,
              .mePeakPerformance,
-             .meTravel: return AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myData)
-        case .meMyWhy: return AppCoordinator.Router.Destination(tabBar: .me, topTabBar: .myWhy)
+             .meTravel: return AppCoordinator.Router.Destination(tabBar: .data, topTabBar: .data)
+        case .meMyWhy: return AppCoordinator.Router.Destination(tabBar: .data, topTabBar: .data)
         case .guide: return AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide)
         case .prepare: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach)
         case .myPreps,
@@ -117,6 +117,7 @@ enum URLScheme: String {
         case .preferencesSyncCalendar: return AppCoordinator.Router.Destination(preferences: .calendarSync)
         case .preferencesNotification: return AppCoordinator.Router.Destination(preferences: .notifications)
         case .latestWhatsHotArticle: return AppCoordinator.Router.Destination(tabBar: .learn, topTabBar: .whatsHot)
+        case .toBeVision: return AppCoordinator.Router.Destination(tabBar: .tbv, topTabBar: .toBeVision)
         default: return nil
         }
     }
@@ -144,7 +145,6 @@ enum URLScheme: String {
             let urlSchemes = urlTypes[0]["CFBundleURLSchemes"] as? [String] else {
                 return nil
         }
-
         let preparation = URLScheme.preparation
         return "\(urlSchemes[0])://\(preparation.rawValue)\(preparation.queryName)\(localID)"
     }

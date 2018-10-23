@@ -91,6 +91,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             Fabric.with([Crashlytics.self])
             appCoordinator.start()
             UIApplication.shared.setStatusBarStyle(.lightContent)
+            UITabBar.appearance().shadowImage = UIImage()
+            UITabBar.appearance().backgroundImage = UIImage()
             UNUserNotificationCenter.current().delegate = self
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()

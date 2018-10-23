@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -25,11 +25,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="1_1 learn" translatesAutoresizingMaskIntoConstraints="NO" id="2yf-D2-tqH">
-                    <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                </imageView>
                 <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="81f-T6-ujZ">
-                    <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                    <rect key="frame" x="0.0" y="44" width="375" height="44"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <textAttributes key="titleTextAttributes">
@@ -50,7 +47,7 @@
                     </items>
                 </navigationBar>
                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="BXl-bt-w6B">
-                    <rect key="frame" x="0.0" y="64" width="375" height="533"/>
+                    <rect key="frame" x="0.0" y="88" width="375" height="509"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="tNQ-sX-8Oy">
                         <size key="itemSize" width="50" height="50"/>
@@ -79,24 +76,19 @@
                     <rect key="frame" x="168" y="602" width="39" height="37"/>
                 </pageControl>
             </subviews>
-            <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color key="backgroundColor" red="1" green="0.091334824090000002" blue="0.34198637189999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="BXl-bt-w6B" firstAttribute="top" secondItem="81f-T6-ujZ" secondAttribute="bottom" id="304-zq-icE"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="BXl-bt-w6B" secondAttribute="trailing" id="532-hI-AZN"/>
-                <constraint firstItem="81f-T6-ujZ" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="8a8-yL-GXG"/>
-                <constraint firstItem="2yf-D2-tqH" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="Hap-ga-b3S"/>
-                <constraint firstItem="81f-T6-ujZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="20" id="L7J-po-g4l"/>
                 <constraint firstItem="81f-T6-ujZ" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="QiC-TN-i6x"/>
                 <constraint firstItem="aMN-z7-kqa" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="RrT-BK-IyC"/>
-                <constraint firstItem="2yf-D2-tqH" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="nx9-b4-35d"/>
-                <constraint firstAttribute="bottom" secondItem="2yf-D2-tqH" secondAttribute="bottom" id="oHc-DB-bWY"/>
+                <constraint firstItem="81f-T6-ujZ" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="44" id="SpN-JI-eCs"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dmQ-eQ-hYM" secondAttribute="trailing" constant="28" id="okc-WF-MQ5"/>
                 <constraint firstItem="aMN-z7-kqa" firstAttribute="top" secondItem="BXl-bt-w6B" secondAttribute="bottom" constant="5" id="pt4-2g-SEh"/>
                 <constraint firstItem="BXl-bt-w6B" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="qqI-QU-vIg"/>
                 <constraint firstItem="81f-T6-ujZ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="tks-hY-lwW"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="BXl-bt-w6B" secondAttribute="bottom" constant="70" id="wXG-uw-RWU"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="dmQ-eQ-hYM" secondAttribute="bottom" constant="5" id="yUy-iW-HW1"/>
-                <constraint firstAttribute="trailing" secondItem="2yf-D2-tqH" secondAttribute="trailing" id="zm9-IY-zye"/>
             </constraints>
             <nil key="simulatedBottomBarMetrics"/>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
@@ -104,7 +96,6 @@
         </view>
     </objects>
     <resources>
-        <image name="1_1 learn" width="375" height="667"/>
-        <image name="ic_close" width="18" height="18"/>
+        <image name="ic_close" width="36" height="36"/>
     </resources>
 </document>

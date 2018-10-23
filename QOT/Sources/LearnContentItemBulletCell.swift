@@ -21,7 +21,7 @@ final class LearnContentItemBulletCell: UITableViewCell, Dequeueable {
 
     func setupView(bulletText: String) {
         bulletLabel.attributedText = NSMutableAttributedString(string: bulletText,
-                                                               font: Font.DPText,
+                                                               font: .DPText,
                                                                lineSpacing: 14,
                                                                textColor: .nightModeBlackTwo)
         bulletIndicatorLabel.textColor = .nightModeBlackTwo

@@ -38,6 +38,7 @@ final class LearnContentListCoordinator: ParentCoordinator {
                                                                         selectedCategoryIndex: self.selectedCategoryIndex)
         learnContentListViewController.title = LearnContentTitle.allTitles[selectedCategoryIndex].rawValue
         navigationController = UINavigationController(withPages: [learnContentListViewController],
+                                                      navigationItem: NavigationItem(),
                                                       topBarDelegate: self,
                                                       leftButton: UIBarButtonItem(withImage: R.image.ic_close()))
         navigationController?.navigationBar.backgroundColor = .clear

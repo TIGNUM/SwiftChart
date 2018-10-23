@@ -13,7 +13,7 @@ final class AnimatedLaunchScreenViewController: UIViewController {
 
     // MARK: - Properties
 
-    private let backGroundImageView = UIImageView(image: R.image._1_1Learn())
+    private let backGroundImageView = UIImageView(image: UIImage())
     private let tignumImageView = UIImageView(image: R.image.byTignum())
     private var logoImageView = UIImageView()
     private let imageCount = 92
@@ -71,8 +71,7 @@ final class AnimatedLaunchScreenViewController: UIViewController {
 private extension AnimatedLaunchScreenViewController {
 
     func setupHierarchy() {
-        view.backgroundColor = .navy20
-        view.backgroundColor = .red
+        view.backgroundColor = .navy
         view.addSubview(backGroundImageView)
         view.addSubview(tignumImageView)
         view.addSubview(logoImageView)

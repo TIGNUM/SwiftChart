@@ -35,7 +35,7 @@ class CollapsableCell: UITableViewCell {
         label.attributedText = NSMutableAttributedString(
             string: text?.uppercased() ?? "",
             letterSpacing: 2,
-            font: UIFont.simpleFont(ofSize: 15.0),
+            font: .H6NavigationTitle,
             textColor: UIColor.white)
     }
 

@@ -17,7 +17,6 @@ final class NotificationsViewController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         navigationController?.navigationBar.barTintColor = .black
     }
 

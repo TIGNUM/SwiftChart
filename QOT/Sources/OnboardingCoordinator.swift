@@ -59,7 +59,7 @@ final class OnboardingCoordinator: ParentCoordinator {
     func start() {
         let chatViewController = ChatViewController(pageName: .onboardingChat,
                                                     viewModel: chatViewModel,
-                                                    backgroundImage: R.image.backgroundChatBot(),
+                                                    backgroundImage: nil,
                                                     fadeMaskLocation: .top)
         chatViewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
         chatViewController.didSelectChoice = { [unowned self] (choice, viewController) in
@@ -68,11 +68,10 @@ final class OnboardingCoordinator: ParentCoordinator {
 
         let navigationController = UINavigationController(rootViewController: chatViewController)
         let navigationBar = navigationController.navigationBar
-        navigationBar.applyDefaultStyle()
+        navigationBar.applyNavyStyle()
         navigationBar.topItem?.title = R.string.localized.topTabBarItemTitlePerpareCoach().uppercased()
-        navigationBar.titleTextAttributes = [NSAttributedStringKey.font: Font.H5SecondaryHeadline,
-                                             NSAttributedStringKey.foregroundColor: UIColor.white]
-
+        navigationBar.titleTextAttributes = [.font: UIFont.H5SecondaryHeadline,
+                                             .foregroundColor: UIColor.white]
         startOnboarding() // must be called before adding chat vc to window, else chat won't animate
         windowManager.show(navigationController, animated: true, completion: nil)
     }

@@ -42,7 +42,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         label.textColor = .white40
         label.numberOfLines = 0
         label.setAttrText(text: R.string.localized.prepareMyPrepNoSavePreparations(),
-                                          font: Font.DPText,
+                                          font: .DPText,
                                           alignment: .center,
                                           lineSpacing: 7,
                                           characterSpacing: 1)
@@ -54,7 +54,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
     }()
     private func barButtonItem(_ style: UIBarButtonSystemItem, action: Selector?) -> UIBarButtonItem {
         let barButtonTextAttributes: [NSAttributedStringKey: Any] = [.foregroundColor: UIColor.whiteLight40,
-                                                                      .font: Font.H5SecondaryHeadline]
+                                                                      .font: UIFont.H5SecondaryHeadline]
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: style, target: self, action: action)
         barButtonItem.setTitleTextAttributes(barButtonTextAttributes, for: .normal)
         barButtonItem.setTitleTextAttributes(barButtonTextAttributes, for: .selected)
@@ -129,16 +129,12 @@ private extension MyPrepViewController {
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
         }
-        let statusBarHeight = Layout.height_44 + UIApplication.shared.statusBarFrame.height
-        tableView.topAnchor == view.topAnchor + statusBarHeight
+        tableView.topAnchor == view.topAnchor
         tableView.bottomAnchor == view.bottomAnchor
         tableView.leadingAnchor == view.leadingAnchor
         tableView.trailingAnchor == view.trailingAnchor
         tableView.contentInset.top = 0
         tableView.contentInset.bottom = safeAreaInsets.bottom + Layout.padding_64
-
-        fadeContainerView.setFade(top: safeAreaInsets.top,
-                                  bottom: view.frame.height * Layout.multiplier_015)
     }
 
     func updateView() {

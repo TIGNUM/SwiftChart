@@ -19,16 +19,16 @@ final class ChartViewModel {
     static let chartCellOffset: CGFloat = 20
     static let chartRatio: CGFloat = 1.3479623824
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    private let charts: [[Statistics]]
+    private var charts: [[Statistics]] = []
     private let services: Services
     private let permissionsManager: PermissionsManager
-    let allCharts: [Statistics]
+    var allCharts: [Statistics] = []
     var sortedSections = [StatisticsSectionType]()
     var calandarAccessGranted = false
 
     // MARK: - Init
 
-    init(services: Services, permissionsManager: PermissionsManager, startingSection: StatisticsSectionType) throws {
+    init(services: Services, permissionsManager: PermissionsManager, startingSection: StatisticsSectionType) {
         self.services = services
         self.permissionsManager = permissionsManager
         do {
@@ -37,7 +37,7 @@ final class ChartViewModel {
             sortCharts(startingSection: startingSection)
             askPermissionForCalendar()
         } catch let error {
-            throw error
+            log(error)
         }
     }
 

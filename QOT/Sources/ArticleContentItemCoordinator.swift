@@ -65,6 +65,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
 
         if shouldPush == false {
             topTabBarController = UINavigationController(withPages: [fullViewController],
+                                                         navigationItem: NavigationItem(),
                                                          topBarDelegate: self,
                                                          leftButton: UIBarButtonItem(withImage: R.image.ic_close()))
         }
@@ -123,6 +124,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
                                                                      contentInsets: edgeInsets,
                                                                      fadeMaskLocation: .top)
         let navigationController = UINavigationController(withPages: [relatedArticleViewController],
+                                                          navigationItem: NavigationItem(),
                                                           topBarDelegate: self,
                                                           leftButton: UIBarButtonItem(withImage: R.image.ic_close()))
         fullViewController.present(navigationController, animated: true) {

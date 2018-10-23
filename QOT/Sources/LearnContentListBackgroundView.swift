@@ -14,11 +14,8 @@ final class LearnContentListBackgroundView: UICollectionReusableView {
 
     static let kind = "LearnContentListBackgroundViewKind"
 
-    private let imageView = UIImageView()
-
     override init(frame: CGRect) {
         super.init(frame: frame)
-
         setup()
     }
 
@@ -28,24 +25,16 @@ final class LearnContentListBackgroundView: UICollectionReusableView {
 
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
         if let attributes = layoutAttributes as? LearnContentListBackgroundViewLayoutAttributes {
-            imageView.image = attributes.image
             layoutIfNeeded()
         }
     }
 }
 
-final class LearnContentListBackgroundViewLayoutAttributes: UICollectionViewLayoutAttributes {
-
-    var image = R.image.learnBack1()
-}
+final class LearnContentListBackgroundViewLayoutAttributes: UICollectionViewLayoutAttributes {}
 
 private extension LearnContentListBackgroundView {
 
     func setup() {
-        backgroundColor = .clear
-        addSubview(imageView)
-        imageView.image = R.image.learnBack1()
-        imageView.edgeAnchors == edgeAnchors
-        imageView.contentMode = .scaleAspectFill
+        backgroundColor = .navy
     }
 }

@@ -49,10 +49,10 @@ final class SidebarViewModel {
                  .tools,
                  .profile,
                  .settings,
-                 .admin: return screenType == .small ? Font.H3Subtitle : Font.H2SecondaryTitle
+                 .admin: return screenType == .small ? .H3Subtitle : .H2SecondaryTitle
             case .placeholder: return nil
             case .support,
-                 .about: return screenType == .small ? Font.H6NavigationTitle : Font.H5SecondaryHeadline
+                 .about: return screenType == .small ? .H6NavigationTitle : .H5SecondaryHeadline
             }
         }
 

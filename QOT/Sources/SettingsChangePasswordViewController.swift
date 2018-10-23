@@ -132,8 +132,7 @@ private extension SettingsChangePasswordViewController {
     }
 
     func setupTableView() {
-        tableView.backgroundColor = .clear
-        tableView.backgroundView = UIImageView(image: R.image.loginBackground())
+        tableView.backgroundColor = .navy
         tableView.separatorStyle = .none
         tableView.contentInset = UIEdgeInsets(top: 20, left: 0, bottom: -20, right: 0)
     }

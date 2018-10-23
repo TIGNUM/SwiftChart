@@ -20,7 +20,6 @@ final class ResetPasswordViewController: UIViewController {
     private let logoImageView: UIImageView = UIImageView(image: R.image.loginLogo())
     private let crossImageView: UIImageView = UIImageView(image: R.image.crossImage())
     private let emailCorrectImage: UIImageView = UIImageView(image: R.image.correctEmail())
-    private let backgroundImageView: UIImageView = UIImageView(image: R.image.loginBackground())
     private var topConstraint: NSLayoutConstraint? {
         didSet {
             topConstraintOriginalValue = topConstraint?.constant ?? 0.0
@@ -45,7 +44,7 @@ final class ResetPasswordViewController: UIViewController {
         label.attributedText =  NSMutableAttributedString(
             string: text,
             letterSpacing: 1.5,
-            font: Font.DPText,
+            font: .DPText,
             lineSpacing: 5,
             textColor: .cherryRed,
             alignment: .left
@@ -60,7 +59,7 @@ final class ResetPasswordViewController: UIViewController {
         label.attributedText =  NSMutableAttributedString(
             string: text,
             letterSpacing: 1.5,
-            font: Font.H8Title,
+            font: .H8Title,
             lineSpacing: 5,
             textColor: .white,
             alignment: .left
@@ -69,11 +68,11 @@ final class ResetPasswordViewController: UIViewController {
     }()
     private lazy var userInput: UITextField = {
         let input = UITextField()
-        let placeHolder = NSMutableAttributedString(string: R.string.localized.resetPasswordEmailPlaceHolder(), letterSpacing: 1.5, font: Font.H8Title, textColor: .white80, alignment: .left)
+        let placeHolder = NSMutableAttributedString(string: R.string.localized.resetPasswordEmailPlaceHolder(), letterSpacing: 1.5, font: .H8Title, textColor: .white80, alignment: .left)
         input.textColor = .white
         input.tintColor = input.textColor
         input.autocorrectionType = .no
-        input.font = Font.DPText
+        input.font = .DPText
         input.contentVerticalAlignment = .center
         input.keyboardType = .emailAddress
         input.autocapitalizationType = .none
@@ -90,7 +89,7 @@ final class ResetPasswordViewController: UIViewController {
         button.setTitleColor(.white40, for: .normal)
         button.setTitle(R.string.localized.resetPasswordResetMyPassword(), for: .normal)
         button.titleLabel?.addCharactersSpacing(spacing: 1, text: R.string.localized.resetPasswordResetMyPassword())
-        button.titleLabel?.font = Font.DPText
+        button.titleLabel?.font = .DPText
         button.titleLabel?.textAlignment = .center
         return button
     }()
@@ -99,7 +98,7 @@ final class ResetPasswordViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = .navy
         addHierarchy()
         setupLayout()
         hideComponents()
@@ -108,13 +107,11 @@ final class ResetPasswordViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         startObservingKeyboard()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-
         view.endEditing(true)
         stopObservingKeyboard()
     }
@@ -122,7 +119,6 @@ final class ResetPasswordViewController: UIViewController {
     // MARK: - private
 
     private func addHierarchy() {
-        view.addSubview(backgroundImageView)
         view.addSubview(logoImageView)
         view.addSubview(userView)
         view.addSubview(passwordView)
@@ -134,9 +130,6 @@ final class ResetPasswordViewController: UIViewController {
     }
 
     private func setupLayout() {
-        backgroundImageView.horizontalAnchors == view.horizontalAnchors
-        backgroundImageView.verticalAnchors == view.verticalAnchors
-
         topConstraint = logoImageView.topAnchor == view.topAnchor + 81
         logoImageView.heightAnchor == 35
         logoImageView.widthAnchor == 116

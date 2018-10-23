@@ -84,7 +84,7 @@ private extension MeetingsAverageNumberChart {
     func addCaptionLabel(yPos: CGFloat, text: String) {
         let captionLabel = UILabel()
         captionLabel.center = CGPoint(x: 0, y: yPos)
-        captionLabel.setAttrText(text: text, font: Font.H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
+        captionLabel.setAttrText(text: text, font: .H7Title, lineSpacing: 1, characterSpacing: 1, color: .white20)
         captionLabel.sizeToFit()
         addSubview(captionLabel)
     }
@@ -137,7 +137,7 @@ private extension MeetingsAverageNumberChart {
 
     func dayLabel(text: String, textColor: UIColor) -> UILabel {
         let label = UILabel()
-        label.font = Font.H7Title
+        label.font = .H7Title
         label.textAlignment = .center
         label.textColor = textColor
         label.text = text
