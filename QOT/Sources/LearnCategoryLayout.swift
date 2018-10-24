@@ -32,7 +32,6 @@ final class LearnCategoryLayout: UICollectionViewLayout {
 
     override init() {
         super.init()
-
         register(LearnCategoryListBackgroundView.self, forDecorationViewOfKind: backgroundViewDecorationKind)
     }
 
@@ -74,7 +73,7 @@ final class LearnCategoryLayout: UICollectionViewLayout {
         } else {
             contentSize = .zero
         }
-        backgroundImageAttributes.frame = CGRect(origin: CGPoint.zero, size: contentSize)
+        backgroundImageAttributes.frame = CGRect(origin: .zero, size: contentSize)
         backgroundImageAttributes.zIndex = -1
         backgroundImageAttributes.bubbleFrames = frames
     }

@@ -36,7 +36,6 @@ final class LearnCategoryListViewModel {
 
     init(services: Services) {
         self.categories = services.contentService.learnContentCategories()
-
         token = categories.observe { [unowned self] (change) in
             self.updates.next(change.update(section: 0))
         }.handler

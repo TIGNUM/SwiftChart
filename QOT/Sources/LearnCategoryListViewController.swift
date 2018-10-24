@@ -30,11 +30,13 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
     let page = LearnCategoryListPage()
 
     lazy var collectionView: UICollectionView = {
-        return UICollectionView(layout: learnCategoryLayout,
-                                delegate: self,
-                                dataSource: self,
-                                dequeables: LearnCategoryCell.self,
-                                            LearnContentCell.self)
+        let collectionView = UICollectionView(layout: learnCategoryLayout,
+                                              delegate: self,
+                                              dataSource: self,
+                                              dequeables: LearnCategoryCell.self,
+                                              LearnContentCell.self)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        return collectionView
     }()
 
     // MARK: - Init
@@ -96,8 +98,7 @@ private extension LearnCategoryListViewController {
     func setupLayout() {
         view.addSubview(collectionView)
         if #available(iOS 11.0, *) {
-            collectionView.verticalAnchors == view.safeVerticalAnchors
-            collectionView.horizontalAnchors == view.horizontalAnchors
+            collectionView.edgeAnchors == view.safeEdgeAnchors
         } else {
             collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight
             collectionView.bottomAnchor == view.bottomAnchor - Layout.statusBarHeight
