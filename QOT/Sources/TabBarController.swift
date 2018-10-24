@@ -111,11 +111,11 @@ extension TabBarController {
                                       itemTitle: "",
                                       barTitntColor: .navy,
                                       tintColor: .white,
-                                      unselectedItemTintColor: .putty,
+                                      unselectedItemTintColor: .blueGray,
                                       isTranslucent: false,
                                       barStyle: .black,
                                       hideShadow: true,
-                                      useIndicatorView: true,
+                                      useIndicatorView: false,
                                       indicatorViewHeight: 1,
                                       indicatorViewColor: .white,
                                       indicatorViewSidePadding: 0)

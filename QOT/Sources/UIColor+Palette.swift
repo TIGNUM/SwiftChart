@@ -307,8 +307,8 @@ extension UIColor {
         return Date().isNight ? .azure : .blue
     }
 
-    class var putty: UIColor {
-        return UIColor(red: 181.0 / 255.0, green: 169.0 / 255.0, blue: 156.0 / 255.0, alpha: 1.0)
+    class var blueGray: UIColor {
+        return UIColor(red: 142.0 / 255.0, green: 142.0 / 255.0, blue: 147.0 / 255.0, alpha: 1.0)
     }
 
     static var random: UIColor {

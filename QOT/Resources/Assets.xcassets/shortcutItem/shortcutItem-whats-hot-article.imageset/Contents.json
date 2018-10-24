@@ -2,17 +2,17 @@
   "images" : [
     {
       "idiom" : "universal",
-      "filename" : "shortcutItem-whats-hot-article.png",
+      "filename" : "newsPaper.png",
       "scale" : "1x"
     },
     {
       "idiom" : "universal",
-      "filename" : "shortcutItem-whats-hot-article@2x.png",
+      "filename" : "newsPaper@2x.png",
       "scale" : "2x"
     },
     {
       "idiom" : "universal",
-      "filename" : "shortcutItem-whats-hot-article@3x.png",
+      "filename" : "newsPaper@3x.png",
       "scale" : "3x"
     }
   ],

@@ -23,9 +23,9 @@ final class TabBarItem: UITabBarItem {
         var tag: Int
 
         static var `default` = Config(title: nil,
-                                      titlePositionAdjustment: UIOffset(horizontal: 0, vertical: -4),
+                                      titlePositionAdjustment: UIOffset(horizontal: 0, vertical: 0),
                                       normalTitleTextAttributes: [.font: UIFont.TabBar,
-                                                                  .foregroundColor: UIColor.putty],
+                                                                  .foregroundColor: UIColor.blueGray],
                                       selectedTitleTextAttributes: [.font: UIFont.TabBar,
                                                                     .foregroundColor: UIColor.white],
                                       image: nil,
