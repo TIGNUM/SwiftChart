@@ -22,14 +22,11 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
     private static let layoutRadiusFactor: CGFloat = 0.165
     private static let visibleRadiusFactor: CGFloat = 0.92
     private static let sectionPadding: CGFloat = 80
-
     private var contentSize = CGSize.zero
-
     private var backgroundImageAttributes: [LearnContentListBackgroundViewLayoutAttributes] = []
 
     override init() {
         super.init()
-
         register(LearnContentListBackgroundView.self, forDecorationViewOfKind: LearnContentListBackgroundView.kind)
     }
 
@@ -75,7 +72,6 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
     private func makeAttributes(section: Int, itemCount: Int, viewHeight: CGFloat, initialX: CGFloat, layoutRadius: CGFloat) -> [UICollectionViewLayoutAttributes] {
         let randomSource = GKLinearCongruentialRandomSource(seed: 0)
         let randomDistribution = GKRandomDistribution(randomSource: randomSource, lowestValue: 0, highestValue: 5)
-
         var attrs: [UICollectionViewLayoutAttributes] = []
         var current: CGPoint? = nil
         for index in 0..<itemCount {
@@ -86,13 +82,10 @@ final class LearnStrategyListLayout: UICollectionViewLayout {
                 // First item
                 center = CGPoint(x: initialX + layoutRadius, y: viewHeight * LearnStrategyListLayout.initialYPosFactor)
             }
-
             if index % 7 == 0 { // Ensure pattern doesn't drift down/up.
                 center = center.rounded
             }
-
             current = center
-
             let indexPath = IndexPath(item: index, section: section)
             attrs.append(attributesForItem(center: center, layoutRadius: layoutRadius, indexPath: indexPath, distribution: randomDistribution))
         }

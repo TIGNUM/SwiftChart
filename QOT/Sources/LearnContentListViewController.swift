@@ -36,7 +36,7 @@ final class LearnContentListViewController: UIViewController {
                                               delegate: self,
                                               dataSource: self,
                                               dequeables: LearnContentCell.self)
-        collectionView.contentInset = UIEdgeInsets(top: 80, left: 0, bottom: 55, right: 0)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         return collectionView
     }()
 
@@ -57,7 +57,6 @@ final class LearnContentListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupAppearance()
-        setupHierachy()
         setupLayout()
         observeViewModel()
     }
@@ -83,15 +82,12 @@ private extension LearnContentListViewController {
 
     func setupAppearance() {
         view.backgroundColor = .navy
-        collectionView.backgroundColor = .clear
-    }
-
-    func setupHierachy() {
-        view.addSubview(collectionView)
+        collectionView.backgroundColor = .navy
     }
 
     func setupLayout() {
-        collectionView.topAnchor == view.topAnchor
+        view.addSubview(collectionView)
+        collectionView.topAnchor == view.safeTopAnchor
         collectionView.bottomAnchor == view.safeBottomAnchor
         collectionView.horizontalAnchors == view.horizontalAnchors
         view.layoutIfNeeded()

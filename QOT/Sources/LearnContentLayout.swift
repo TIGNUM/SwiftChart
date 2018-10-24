@@ -40,7 +40,7 @@ final class LearnContentLayout: UICollectionViewLayout {
             contentSize = CGSize(width: maxX + horizontalPadding, height: frame.height)
             layoutAttributes = attributes
         } else {
-            contentSize = CGSize.zero
+            contentSize = .zero
             layoutAttributes = []
         }
     }
