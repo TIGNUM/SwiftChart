@@ -28,11 +28,11 @@ final class ProfileSettingsViewController: UIViewController {
     private var tableView = UITableView(frame: .zero, style: .grouped)
     private var pickerItems: UserMeasurement?
     private var pickerViewHeight: NSLayoutConstraint?
+    private var pickerToolBarHeight: NSLayoutConstraint?
     private var pickerInitialSelection = [Index]()
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
     private var settingsViewModel: SettingsViewModel
     private var settingsMenuViewModel: SettingsMenuViewModel
-    private let fadeContainerView = FadeContainerView()
     private let imagePickerController: ImagePickerController
     private let keyboardListener = KeyboardListener()
     private let networkManager: NetworkManager
@@ -54,7 +54,7 @@ final class ProfileSettingsViewController: UIViewController {
 
     private var pickerToolBar: UIToolbar = {
         let toolBar = UIToolbar()
-        toolBar.barTintColor = .white
+        toolBar.barTintColor = .navy
         let cancelButton = UIBarButtonItem(title: R.string.localized.alertButtonTitleCancel(),
                                            style: .plain,
                                            target: self,
@@ -114,7 +114,6 @@ final class ProfileSettingsViewController: UIViewController {
         keyboardListener.onStateChange { [unowned self] (state) in
             self.handleKeyboardChange(state: state)
         }
-
         setLaunchOptions(launchOptions)
     }
 
@@ -153,7 +152,7 @@ extension ProfileSettingsViewController: ProfileSettingsViewControllerInterface 
     }
 
     func update(profile: ProfileSettingsModel) {
-            profileDidUpdate()
+        profileDidUpdate()
     }
 
     func displayImageError() {
@@ -167,31 +166,30 @@ private extension ProfileSettingsViewController {
 
     func setupView() {
         navigationItem.title = R.string.localized.sidebarTitleProfile().uppercased()
+        view.backgroundColor = .navy
         tableView.tableHeaderView = headerView
-        tableView.backgroundColor = .clear
-        tableView.separatorColor = .clear
-        view.addSubview(fadeContainerView)
-        fadeContainerView.addSubview(tableView)
-        fadeContainerView.addSubview(pickerContentView)
-        pickerContentView.addSubview(pickerToolBar)
-        pickerContentView.addSubview(pickerView)
-        fadeContainerView.edgeAnchors == view.edgeAnchors
-        tableView.edgeAnchors == fadeContainerView.edgeAnchors
         tableView.backgroundColor = .navy
-        pickerContentView.trailingAnchor == fadeContainerView.trailingAnchor
-        pickerContentView.leadingAnchor == fadeContainerView.leadingAnchor
-        pickerContentView.bottomAnchor == fadeContainerView.safeBottomAnchor
+        tableView.separatorColor = .clear
+        view.addSubview(tableView)
+        view.addSubview(pickerContentView)
+        view.addSubview(pickerToolBar)
+        view.addSubview(pickerView)
+        tableView.topAnchor == view.safeTopAnchor + Layout.padding_20
+        tableView.bottomAnchor == view.safeBottomAnchor
+        tableView.horizontalAnchors == view.horizontalAnchors
+        pickerContentView.trailingAnchor == view.trailingAnchor
+        pickerContentView.leadingAnchor == view.leadingAnchor
+        pickerContentView.bottomAnchor == view.safeBottomAnchor + Layout.padding_32
         pickerViewHeight = pickerContentView.heightAnchor == 0
         pickerToolBar.topAnchor == pickerContentView.topAnchor
         pickerToolBar.leadingAnchor == pickerContentView.leadingAnchor
         pickerToolBar.trailingAnchor == pickerContentView.trailingAnchor
-        pickerToolBar.heightAnchor == 45
+        pickerToolBarHeight = pickerToolBar.heightAnchor == 0
         pickerView.topAnchor == pickerToolBar.bottomAnchor
         pickerView.leadingAnchor == pickerContentView.leadingAnchor
         pickerView.trailingAnchor == pickerContentView.trailingAnchor
         pickerView.bottomAnchor == pickerContentView.bottomAnchor
 		pickerToolBar.tintColor = .clear
-        fadeContainerView.setFade(top: 0, bottom: 0)
         view.layoutIfNeeded()
     }
 
@@ -283,17 +281,21 @@ extension ProfileSettingsViewController {
     }
 
     func hidePickerView() {
+        pickerToolBar.barTintColor = .clear
 		pickerToolBar.tintColor = .clear
         UIView.animate(withDuration: 0.6) {
             self.pickerViewHeight?.constant = 0
+            self.pickerToolBarHeight?.constant = 0
         }
         tableView.isUserInteractionEnabled = true
     }
 
     func showPickerView() {
+        pickerToolBar.barTintColor = .white
 		pickerToolBar.tintColor = .azure
         UIView.animate(withDuration: 0.6, animations: {
             self.pickerViewHeight?.constant = self.view.frame.height * 0.3
+            self.pickerToolBarHeight?.constant = Layout.height_44
         }, completion: { finished in
             self.pickerView.selectRow(self.pickerInitialSelection[0], inComponent: 0, animated: false)
             self.pickerView.selectRow(self.pickerInitialSelection[1], inComponent: 1, animated: false)
@@ -411,7 +413,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = UIView()
-        footer.backgroundColor = .clear
+        footer.backgroundColor = .navy
         return footer
     }
 

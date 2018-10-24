@@ -68,8 +68,8 @@ private extension PermissionsViewController {
         tableView.backgroundColor = .navy
         tableView.separatorColor = .clear
         tableView.isScrollEnabled = false
-        tableView.topAnchor == view.topAnchor + Layout.padding_100
-        tableView.bottomAnchor == view.bottomAnchor
+        tableView.topAnchor == view.safeTopAnchor + Layout.padding_20
+        tableView.bottomAnchor == view.safeBottomAnchor
         tableView.horizontalAnchors == view.horizontalAnchors
         view.layoutIfNeeded()
     }

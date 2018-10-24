@@ -40,6 +40,7 @@ extension SupportFAQViewController: SupportFAQViewControllerInterface {
         tableView.registerDequeueable(SupportFAQTableViewCell.self)
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = Layout.height_44
+        tableView.backgroundColor = .navy
         title = R.string.localized.sidebarTitleFAQ()
     }
 }
