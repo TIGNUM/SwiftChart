@@ -298,8 +298,8 @@
 "Alert.Title.EmailNotFound" = "Email not found";
 "Alert.Message.EmailNotFound" = "Please try again";
 "Alert.CameraNotAvailable.Message" = "The camera is not currently available on this device";
-"Alert.CameraPermissionNotGranted.Message" = "QOT does not have access to your Camera. To enable access, tap Settings and turn on Camera.";
-"Alert.PhotosPermissionNotGranted.Message" = "QOT does not have access to your photos. To enable access, tap Settings and turn on photos.";
+"Alert.CameraPermissionNotGranted.Message" = "QOT does not have access to your camera. To enable access, tap Settings and turn on Camera.";
+"Alert.PhotosPermissionNotGranted.Message" = "QOT does not have access to your photos. To enable access, tap Settings and turn on Photos.";
 "Alert.PermissionNotGranted.Message" = "Please open your settings to enable permissions for this action";
 "Alert.NotSynced.Message" = "QOT needs to download more data. Please try again later";
 "Alert.Title.Reset.Password" = "Reset Password";
