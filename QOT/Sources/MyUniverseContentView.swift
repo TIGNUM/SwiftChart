@@ -140,7 +140,7 @@ final class MyUniverseContentView: UIView {
             addSubview(label)
             label.sizeToFit()
             let padding = (label.bounds.width / 2) +
-                ((sector.type == .activity || sector.type == .peakPerformance) ? -14 : 7)
+                ((sector.type == .activity) ? -14 : 7)
             label.center = CGPoint(x: center.x + cos(midAngle.degreesToRadians) * (maxDistance + padding),
                                    y: center.y + sin(midAngle.degreesToRadians) * (maxDistance + padding))
 

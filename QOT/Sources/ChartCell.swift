@@ -114,7 +114,6 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var headerLabelLeadingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var headerLabelTrailingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var topView: UIView!
-
     weak var delegate: ChartCellDelegate?
     private var selectedButtonTag = 0
     private var infoViewDestination: AppCoordinator.Router.Destination?
@@ -138,7 +137,6 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         backgroundColor = .clear
         contentView.backgroundColor = .clear
         topContentView.backgroundColor = .clear

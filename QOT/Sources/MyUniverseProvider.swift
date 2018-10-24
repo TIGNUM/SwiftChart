@@ -79,10 +79,8 @@ final class MyUniverseProvider {
             )
         }
         let sectors = [
-            sector(for: .peakPerformance, startAngle: 230, endAngle: 240),
             sector(for: .intensity, startAngle: 210, endAngle: 220),
             sector(for: .meetings, startAngle: 185, endAngle: 205),
-            sector(for: .travel, startAngle: 155, endAngle: 175),
             sector(for: .sleep, startAngle: 135, endAngle: 145),
             sector(for: .activity, startAngle: 115, endAngle: 125)
         ]

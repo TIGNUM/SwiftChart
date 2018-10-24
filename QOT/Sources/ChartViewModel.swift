@@ -24,7 +24,7 @@ final class ChartViewModel {
     private let permissionsManager: PermissionsManager
     private let syncStateObserver: SyncStateObserver
     var allCharts: [Statistics] = []
-    var sortedSections = [StatisticsSectionType]()
+    let sortedSections: [StatisticsSectionType] = [.intensity, .meetings, .sleep, .activity]
     var calandarAccessGranted = false
 
     // MARK: - Init
@@ -37,7 +37,6 @@ final class ChartViewModel {
             do {
                 self.charts = try services.statisticsService.charts()
                 self.allCharts = self.charts.flatMap { $0 }
-                self.sortCharts(startingSection: startingSection)
                 self.askPermissionForCalendar()
                 self.updates.next(.reload)
             } catch let error {
@@ -119,19 +118,6 @@ final class ChartViewModel {
 // MARK: - Private
 
 private extension ChartViewModel {
-
-    func sortCharts(startingSection: StatisticsSectionType) {
-        var criticalSectionTypes = [StatisticsSectionType: CGFloat]()
-        StatisticsSectionType.allValues.forEach { (sectionType: StatisticsSectionType) in
-            let universeValue = (sectionType.universeChartTypes.compactMap {
-                $0.statistics(allCharts)?.universeValue
-            }).reduce(0, +)
-            criticalSectionTypes[sectionType] = universeValue
-        }
-        sortedSections = criticalSectionTypes.sorted { $0.value > $1.value }.compactMap { $0.key }
-        sortedSections.remove(object: startingSection)
-        sortedSections.insert(startingSection, at: 0)
-    }
 
     private func askPermissionForCalendar() {
         permissionsManager.askPermission(for: [.calendar]) { status in

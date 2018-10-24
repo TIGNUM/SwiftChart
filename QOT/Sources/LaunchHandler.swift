@@ -67,8 +67,6 @@ final class LaunchHandler {
         case .meIntensity: navigateToMeCharts(sector: .intensity)
         case .meMeeting: navigateToMeCharts(sector: .meetings)
         case .meSleep: navigateToMeCharts(sector: .sleep)
-        case .mePeakPerformance: navigateToMeCharts(sector: .peakPerformance)
-        case .meTravel: navigateToMeCharts(sector: .travel)
         case .meQotPartner: return
         case .prepare: navigate(to: scheme.destination)
         case .prepareProblem: navigateToPrepare(scheme.destination)
