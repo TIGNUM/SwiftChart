@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -34,23 +34,28 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xep-Tb-3xn">
-                        <rect key="frame" x="69" y="19" width="182" height="24"/>
+                        <rect key="frame" x="77" y="19" width="174" height="23.5"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gj6-wi-6kO">
-                        <rect key="frame" x="30" y="19" width="24" height="24"/>
+                        <rect key="frame" x="30" y="15" width="32" height="32"/>
+                        <color key="backgroundColor" red="0.0028394792260000002" green="1" blue="0.0044057105550000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="32" id="RMI-N4-yE0"/>
+                            <constraint firstAttribute="height" constant="32" id="z3n-A3-ryU"/>
+                        </constraints>
                     </imageView>
                     <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="bhW-Ua-p8J">
-                        <rect key="frame" x="266" y="19.5" width="24" height="24"/>
+                        <rect key="frame" x="266" y="19" width="24" height="24"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="UBi-QZ-jFO"/>
                             <constraint firstAttribute="height" constant="24" id="gu2-Jk-U14"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xj5-nz-ujV">
-                        <rect key="frame" x="69" y="65" width="221" height="0.0"/>
+                        <rect key="frame" x="77" y="64.5" width="213" height="0.0"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -63,7 +68,7 @@
                         </constraints>
                     </view>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CED-n0-T2B">
-                        <rect key="frame" x="206" y="80" width="45" height="30"/>
+                        <rect key="frame" x="208" y="79.5" width="43" height="30"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="30" id="hKg-2b-ow8"/>
                         </constraints>
@@ -87,18 +92,16 @@
                     <constraint firstAttribute="trailing" secondItem="5uP-lK-igH" secondAttribute="trailing" constant="30" id="PUH-ls-5LS"/>
                     <constraint firstItem="gj6-wi-6kO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="30" id="PkD-tn-thh"/>
                     <constraint firstItem="Xj5-nz-ujV" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" priority="750" constant="30" id="Q95-MQ-lxF"/>
-                    <constraint firstItem="gj6-wi-6kO" firstAttribute="width" secondItem="bhW-Ua-p8J" secondAttribute="width" id="TT2-XR-7yd"/>
                     <constraint firstAttribute="bottom" secondItem="5uP-lK-igH" secondAttribute="bottom" id="X1H-5u-KWI"/>
                     <constraint firstItem="CED-n0-T2B" firstAttribute="top" secondItem="Xj5-nz-ujV" secondAttribute="bottom" constant="15" id="Y7d-8q-2HM"/>
                     <constraint firstItem="gj6-wi-6kO" firstAttribute="centerY" secondItem="bhW-Ua-p8J" secondAttribute="centerY" id="axM-kF-kq0"/>
                     <constraint firstAttribute="trailing" secondItem="rvi-Rq-pK3" secondAttribute="trailing" constant="30" id="bzM-Ud-Ob5"/>
-                    <constraint firstItem="gj6-wi-6kO" firstAttribute="height" secondItem="bhW-Ua-p8J" secondAttribute="height" id="clA-bH-nAb"/>
                     <constraint firstItem="Xj5-nz-ujV" firstAttribute="top" secondItem="Xep-Tb-3xn" secondAttribute="bottom" constant="22" id="eay-PB-3aw"/>
                     <constraint firstAttribute="trailing" secondItem="Xj5-nz-ujV" secondAttribute="trailing" constant="30" id="hLD-ec-FeQ"/>
                     <constraint firstItem="rvi-Rq-pK3" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="-1" id="umR-M8-bCt"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <color key="backgroundColor" red="1" green="0.16596179029999999" blue="0.095281278689999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <connections>
                 <outlet property="bottomSeparator" destination="5uP-lK-igH" id="4hO-Tp-lFa"/>
                 <outlet property="checkboxImageView" destination="gj6-wi-6kO" id="JvX-QN-rWh"/>

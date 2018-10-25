@@ -29,6 +29,7 @@ final class PrepareContentHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        checkboxImageView.backgroundColor = .clear
         contentView.backgroundColor = .clear
         backgroundColor = .clear
         readMoreButton.addTarget(self, action: #selector(PrepareContentHeaderTableViewCell.readMore), for: .touchDown)
