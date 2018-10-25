@@ -104,11 +104,11 @@
 	<key>NSHumanReadableCopyright</key>
 	<false/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>QOT needs access to your location update your time zone.</string>
+	<string>QOT needs access to your location to update your time zone.</string>
 	<key>NSLocationAlwaysUsageDescription</key>
-	<string>QOT needs access to your location update your time zone.</string>
+	<string>QOT needs access to your location to update your time zone.</string>
 	<key>NSLocationUsageDescription</key>
-	<string>QOT needs access to your location update your time zone.</string>
+	<string>QOT needs access to your location to update your time zone.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>QOT needs access to your location to track your steps.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
