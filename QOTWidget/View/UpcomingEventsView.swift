@@ -63,7 +63,7 @@ private extension UpcomingEventsView {
         if date.isSameDay(Date()) {
             let hour = calendar.component(.hour, from: date)
             let minute = calendar.component(.minute, from: date)
-            return "\(hour):\(minute)"
+            return String(format: "%02d:%02d", hour, minute)
         } else {
             let day = calendar.component(.day, from: date)
             let month = date.monthDescription
