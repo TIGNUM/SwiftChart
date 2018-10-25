@@ -28,6 +28,7 @@ protocol VisionGeneratorPresenterInterface {
     func updateVisionControllerModel(_ model: MyToBeVisionModel.Model)
     func showLoadingIndicator()
     func hideLoadingIndicator()
+    func updateTabBarItem(visionModel: MyToBeVisionModel.Model?, navigationItem: NavigationItem?)
 }
 
 protocol VisionGeneratorInteractorInterface: Interactor {

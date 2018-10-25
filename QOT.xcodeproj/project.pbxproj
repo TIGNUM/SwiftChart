@@ -638,7 +638,6 @@
 		CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E14A1F279E6700134574 /* SettingsCalendarListViewController.swift */; };
 		CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */; };
 		CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */; };
-		CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */; };
 		CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */; };
 		CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */; };
 		CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13E23C1EB1D72400C3CE46 /* LibraryCollectionViewCell.swift */; };
@@ -1459,7 +1458,6 @@
 		CC02E14A1F279E6700134574 /* SettingsCalendarListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListViewController.swift; sourceTree = "<group>"; };
 		CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Create.swift"; sourceTree = "<group>"; };
-		CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCoordinator.swift; sourceTree = "<group>"; };
 		CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesCoordinator.swift; sourceTree = "<group>"; };
 		CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersCoordinator.swift; sourceTree = "<group>"; };
 		CC13E23C1EB1D72400C3CE46 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -2853,7 +2851,6 @@
 				CBD791461E7172390006C590 /* LearnContentListCoordinator.swift */,
 				CCE06FDF1E8D44FC009C5AD2 /* LibraryCoordinator.swift */,
 				859683401F135C6300A98218 /* LoginCoordinator.swift */,
-				CC0FF8D51EA78C810028D64F /* MyToBeVisionCoordinator.swift */,
 				7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */,
 				CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */,
 				CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */,
@@ -4694,7 +4691,6 @@
 				36796A1C20D3C45200B55429 /* SigningCountryInteractor.swift in Sources */,
 				9150413420FDF40A00D43D18 /* SensorWorker.swift in Sources */,
 				9150413320FDF40A00D43D18 /* SensorPresenter.swift in Sources */,
-				CC0FF8D61EA78C810028D64F /* MyToBeVisionCoordinator.swift in Sources */,
 				366AFD1020BD9F9300109F29 /* SigningEmailViewController.swift in Sources */,
 				CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */,
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,

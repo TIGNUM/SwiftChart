@@ -23,13 +23,15 @@ final class VisionGeneratorWorker {
     private var didLoadLastQuestion = false
     private let createVisionPresentDelay = DispatchTimeInterval.seconds(1)
     private let readingVisionPresentDelay = DispatchTimeInterval.seconds(10)
+    private let navigationItem: NavigationItem?
 
     init(services: Services,
          networkManager: NetworkManager,
          chatViewModel: ChatViewModel<VisionGeneratorChoice>,
          visionModel: MyToBeVisionModel.Model?,
          syncManager: SyncManager,
-         allChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]]) {
+         allChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]],
+         navigationItem: NavigationItem?) {
         self.services = services
         self.questionService = services.questionsService
         self.networkManager = networkManager
@@ -38,6 +40,7 @@ final class VisionGeneratorWorker {
         self.currentVisionModel = visionModel
         self.syncManager = syncManager
         self.allChatItems = allChatItems
+        self.navigationItem = navigationItem
         updateViewModel(with: allChatItems[.intro] ?? [])
     }
 
@@ -51,6 +54,10 @@ final class VisionGeneratorWorker {
 
     var model: MyToBeVisionModel.Model? {
         return visionModel
+    }
+
+    var navItem: NavigationItem? {
+        return navigationItem
     }
 
     private var headline: String? {

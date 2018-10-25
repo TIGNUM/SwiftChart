@@ -79,7 +79,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         let layout = ChatViewLayout()
         layout.delegate = self
         let view = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        view.backgroundColor = .clear
+        view.backgroundColor = .navy
         view.dataSource = self
         view.delegate = self
         return view

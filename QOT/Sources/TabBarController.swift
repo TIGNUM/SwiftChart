@@ -19,6 +19,7 @@ protocol TabBarControllerDelegate: class {
 final class TabBarController: UITabBarController {
 
     weak var tabBarControllerDelegate: TabBarControllerDelegate?
+    weak var topTabBarControllerToBeVision: UINavigationController?
     private var indicatorView: UIView?
     private var indicatorViewLeftConstraint: NSLayoutConstraint?
     private var indicatorViewWidthConstraint: NSLayoutConstraint?

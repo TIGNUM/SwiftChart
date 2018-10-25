@@ -12,10 +12,14 @@ final class VisionGeneratorPresenter {
 
     private weak var viewController: ChatViewControllerInterface?
     private weak var visionController: MyToBeVisionViewController?
+    private weak var delegate: MyToBeVisionViewControllerDelegate?
 
-    init(viewController: ChatViewControllerInterface, visionController: MyToBeVisionViewController) {
+    init(viewController: ChatViewControllerInterface,
+         visionController: MyToBeVisionViewController,
+         delegate: MyToBeVisionViewControllerDelegate?) {
         self.viewController = viewController
         self.visionController = visionController
+        self.delegate = delegate
     }
 }
 
@@ -49,5 +53,20 @@ extension VisionGeneratorPresenter: VisionGeneratorPresenterInterface {
 
     func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice) {
         viewController?.showMedia(mediaURL, choice: choice)
+    }
+
+    func updateTabBarItem(visionModel: MyToBeVisionModel.Model?, navigationItem: NavigationItem?) {
+        if
+            let toBeVision = visionModel, toBeVision.headLine != nil, toBeVision.text != nil,
+            let visionController = visionController,
+            let navigationItem = navigationItem {
+            let topTabBarController = UINavigationController(withPages: [visionController],
+                                                             navigationItem: navigationItem,
+                                                             topBarDelegate: visionController,
+                                                             leftButton: .burger,
+                                                             rightButton: .info)
+            topTabBarController.tabBarItem = TabBarItem(config: TabBar.tbv.itemConfig)
+            delegate?.didUpdateTabBarItemTBV(topBarController: topTabBarController)
+        }
     }
 }

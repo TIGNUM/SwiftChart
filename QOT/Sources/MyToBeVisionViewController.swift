@@ -10,6 +10,10 @@ import UIKit
 import AVKit
 import AVFoundation
 
+protocol MyToBeVisionViewControllerDelegate: class {
+    func didUpdateTabBarItemTBV(topBarController: UINavigationController)
+}
+
 final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
 
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -35,6 +39,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
 	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
     @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var editButton: UIButton!
+    private weak var delegate: MyToBeVisionViewControllerDelegate?
 	private var contentInset = UIEdgeInsets()
     private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()
@@ -118,7 +123,6 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         maskImage()
         resizeTextViewsHeight()
 		updateContainerHeight()
-        fadeContainerView.setFade(top: safeAreaInsets.top + 30, bottom: 0)
         self.title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
     }
 
@@ -146,7 +150,6 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
 
     func setLoading(model: MyToBeVisionModel.Model?) {
         self.toBeVision = model
-        toBeVisionDidUpdate()
         updateReadyState()
         view.layoutIfNeeded()
     }
@@ -154,7 +157,9 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
     func showVisionGenerator() {
         let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(toBeVision: toBeVision,
                                                                                            visionController: self,
-                                                                                           visionChatItems: visionChatItems)
+                                                                                           visionChatItems: visionChatItems,
+                                                                                           navigationItem: interactor?.navigationItem,
+                                                                                           delegate: delegate)
         chatViewController.hidesBottomBarWhenPushed = true
         pushToStart(childViewController: chatViewController)
     }

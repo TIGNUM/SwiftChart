@@ -84,6 +84,7 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
                 presenter.updateVisionControllerModel(model)
             }
             presenter.dismiss()
+            presenter.updateTabBarItem(visionModel: worker.model, navigationItem: worker.navItem)
         default: return
         }
     }
