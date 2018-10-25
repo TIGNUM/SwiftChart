@@ -10,6 +10,7 @@ import UIKit
 
 protocol GuideDailyPrepTableViewCellDelegate: class {
 	func didTapFeedbackButton(for item: Guide.Item)
+    func didTapInfoButton()
 }
 
 final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
@@ -20,7 +21,6 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var feedbackLabel: UILabel!
-    @IBOutlet private weak var typeLabel: UILabel!
     @IBOutlet private weak var loadLabel: UILabel!
     @IBOutlet private weak var recoveryLabel: UILabel!
     @IBOutlet private weak var loadProgressView: GuideProgressView!
@@ -29,7 +29,12 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var recoveryLabelsContainerView: UIView!
     @IBOutlet private weak var nullStateLabel: UILabel!
 	@IBOutlet private weak var receiveFeedbackButton: UIButton!
-	weak var delegate: GuideDailyPrepTableViewCellDelegate?
+    @IBOutlet private weak var infoButton: UIButton!
+    @IBOutlet private weak var loadLabelsContainer: UIView!
+    @IBOutlet private weak var recoveryLabelsContainer: UIView!
+    @IBOutlet private weak var nullStateQuestionLabel: UILabel!
+    private var labelsColors: [UIColor] = [.green, .orange, .red]
+    weak var delegate: GuideDailyPrepTableViewCellDelegate?
 	var itemTapped: Guide.Item?
 
     // MARK: - Lifecycle
@@ -41,58 +46,52 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         receiveFeedbackButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         receiveFeedbackButton.backgroundColor = .azure
 		receiveFeedbackButton.showsTouchWhenHighlighted = true
-        titleLabel.font = .H4Identifier
+        titleLabel.font = .ApercuMedium31
         nullStateLabel.font = .H5SecondaryHeadline
         feedbackLabel.font = .H5SecondaryHeadline
+        loadLabel.font = .H4Identifier
+        recoveryLabel.font = .H4Identifier
+        nullStateQuestionLabel.font = .apercuBold(ofSize: 16)
+        loadLabel.text = "Load"
+        recoveryLabel.text = "Recovery"
         nullStateLabel.text = R.string.localized.guideDailyPrepNotFinishedFeedback()
         titleLabel.text = R.string.localized.morningControllerTitleLabel()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-        typeLabel.attributedText = nil
         feedbackLabel.attributedText = nil
     }
 
     // MARK: - Cell configuration
 
-    func configure(type: String?,
-                   dailyPrepFeedback: String?,
+    func configure(dailyPrepFeedback: String?,
                    dailyPrepItems: [Guide.DailyPrepItem],
                    status: Guide.Item.Status) {
-        if let type = type {
-            typeLabel.isHidden = false
-            typeLabel.attributedText = attributedText(letterSpacing: 2,
-                                                      text: type.uppercased(),
-                                                      font: .H7Tag,
-                                                      textColor: .white40,
-                                                      alignment: .left)
-        }
         if let feedback = dailyPrepFeedback {
             feedbackLabel.isHidden = false
             feedbackLabel.text = feedback
         }
-        loadLabel.attributedText = attributedText(letterSpacing: 1,
-                                                  text: "LOAD",
-                                                  font: .H4Identifier,
-                                                  textColor: .white,
-                                                  alignment: .left)
-        recoveryLabel.attributedText = attributedText(letterSpacing: 1,
-                                                      text: "RECOVERY",
-                                                      font: .H4Identifier,
-                                                      textColor: .white,
-                                                      alignment: .left)
-        syncViews(status: status, dailyPrepItems: dailyPrepItems)
+        loadLabel.textColor = status == .todo ? .dailyPrepNullStateGray : .white
+        recoveryLabel.textColor = status == .todo ? .dailyPrepNullStateGray : .white
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
+        syncViews(status: status, dailyPrepItems: dailyPrepItems)
     }
+}
 
-    // MARK: - Actions
+// MARK: - Actions
+
+private extension GuideDailyPrepTableViewCell {
 
     @IBAction func didTapButton(_ sender: UIButton) {
-		guard let item = itemTapped else { return }
-		delegate?.didTapFeedbackButton(for: item)
-	}
+        guard let item = itemTapped else { return }
+        delegate?.didTapFeedbackButton(for: item)
+    }
+
+    @IBAction func didTapInfoButton(_ sender: UIButton) {
+        delegate?.didTapInfoButton()
+    }
 }
 
 // MARK: - Private
@@ -120,21 +119,30 @@ private extension GuideDailyPrepTableViewCell {
 
     func syncViews(status: Guide.Item.Status, dailyPrepItems: [Guide.DailyPrepItem]) {
         let isHidden: Bool = status == .todo ? true : false
-        loadLabel.isHidden = isHidden
-        loadProgressView.isHidden = isHidden
-        loadLabelsContainerView.isHidden = isHidden
-        recoveryLabel.isHidden = isHidden
-        recoveryProgressView.isHidden = isHidden
-        recoveryLabelsContainerView.isHidden = isHidden
         feedbackLabel.isHidden = isHidden
-        typeLabel.isHidden = isHidden
         nullStateLabel.isHidden = !isHidden
         receiveFeedbackButton.isHidden = !isHidden
+        nullStateQuestionLabel.isHidden = !isHidden
         switch status {
         case .todo:
-			return
+            loadProgressView.trackImage = nil
+            recoveryProgressView.trackImage = nil
+            loadProgressView.progressTintColor = .dailyPrepNullStateGray
+            recoveryProgressView.progressTintColor = .dailyPrepNullStateGray
+            loadLabelsContainer.subviews.forEach { ($0 as? UILabel)?.textColor = .dailyPrepNullStateGray }
+            recoveryLabelsContainer.subviews.forEach { ($0 as? UILabel)?.textColor = .dailyPrepNullStateGray }
+            recoveryProgressView.startNullStateAnimation()
+            loadProgressView.startNullStateAnimation()
         case .done:
+            setGradient(in: loadProgressView, with: [UIColor.green, UIColor.red])
+            setGradient(in: recoveryProgressView, with: [UIColor.red, UIColor.green])
             enableProgressViews(dailyPrepItems: dailyPrepItems)
+            for (index, view) in loadLabelsContainer.subviews.enumerated() {
+                (view as? UILabel)?.textColor = labelsColors[index]
+            }
+            for (index, view) in recoveryLabelsContainer.subviews.enumerated() {
+                (view as? UILabel)?.textColor = labelsColors.reversed()[index]
+            }
         }
     }
 
@@ -153,9 +161,6 @@ private extension GuideDailyPrepTableViewCell {
                 loadCounter += 1
             }
         }
-
-        setGradient(in: loadProgressView, with: [UIColor.green, UIColor.red])
-        setGradient(in: recoveryProgressView, with: [UIColor.red, UIColor.green])
         loadProgressView.setProgress(invertedValue(for: loadResults / Float(loadCounter)), animated: true)
         recoveryProgressView.setProgress(invertedValue(for: recoveryResults / Float(recoveryCounter)), animated: true)
     }
@@ -173,20 +178,5 @@ private extension GuideDailyPrepTableViewCell {
         progressView.trackImage = gradientImage
         progressView.transform = CGAffineTransform(scaleX: -1.0, y: -1.0)
         progressView.progressTintColor = UIColor(red: 0.11, green: 0.22, blue: 0.31, alpha: 1.0)
-    }
-}
-
-// MARK: - GuideProgressView
-
-final class GuideProgressView: UIProgressView {
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        dropShadow(color: .white, opacity: 0.2, offSet: .zero, radius: 6, scale: true)
-        let maskLayerPath = UIBezierPath(roundedRect: bounds, cornerRadius: 4.0)
-        let maskLayer = CAShapeLayer()
-        maskLayer.frame = bounds
-        maskLayer.path = maskLayerPath.cgPath
-        layer.mask = maskLayer
     }
 }

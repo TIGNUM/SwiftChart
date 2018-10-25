@@ -154,27 +154,17 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         switch item.content {
         case .whatsHotArticle(let title, let body, let image):
             let cell: GuideWhatsHotTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title,
-                           body: body,
-                           image: image,
-                           status: item.status)
+            cell.configure(title: title, body: body, image: image, status: item.status)
             return cell
         case .toBeVision(let title, let body, let image):
             let cell: GuideToBeVisionTableViewCell = tableView.dequeueCell(for: indexPath)
-            // FIXME:
-            cell.configure(title: title,
-                           body: body,
-                           status: item.status,
-                           image: image)
+            cell.configure(title: title, body: body, status: item.status, image: image)
             return cell
         case .dailyPrep(let items, let feedback):
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
 			cell.delegate = self
 			cell.itemTapped = itemAt(indexPath: indexPath)
-            cell.configure(type: item.subtitle,
-                           dailyPrepFeedback: feedback,
-                           dailyPrepItems: items,
-                           status: item.status)
+            cell.configure(dailyPrepFeedback: feedback, dailyPrepItems: items, status: item.status)
             return cell
         case .learningPlan(let value, let strategiesCompleted):
             let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -235,4 +225,10 @@ extension GuideViewController: GuideDailyPrepTableViewCellDelegate {
 	func didTapFeedbackButton(for item: Guide.Item) {
 		router?.open(item: item)
 	}
+
+    func didTapInfoButton() {
+        let configurator = ScreenHelpConfigurator.make(.dailyPrep)
+        let infoViewController = ScreenHelpViewController(configurator: configurator)
+        present(infoViewController, animated: true)
+    }
 }

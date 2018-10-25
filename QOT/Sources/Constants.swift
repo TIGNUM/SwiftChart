@@ -163,4 +163,7 @@ extension UIFont {
 
     /// apercu Medium 10
     static let TabBar = UIFont.apercuMedium(ofSize: 10)
+
+    // Apercu Medium 31 // Daily Prep minute card title
+    static let ApercuMedium31 = UIFont.apercuMedium(ofSize: 31)
 }
