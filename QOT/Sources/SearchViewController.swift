@@ -39,13 +39,24 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         searchBar.alpha = 1
-        searchBar.becomeFirstResponder()
         tableView.registerDequeueable(SearchTableViewCell.self)
         UIApplication.shared.setStatusBarStyle(.lightContent)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        segmentedControl.alpha = 1
+        searchBar.becomeFirstResponder()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
         searchBar.alpha = 0
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        segmentedControl.alpha = 0
     }
 
     override func willMove(toParentViewController parent: UIViewController?) {
