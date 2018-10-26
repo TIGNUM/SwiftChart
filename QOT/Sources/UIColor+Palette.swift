@@ -85,6 +85,11 @@ extension UIColor {
         return UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.9)
     }
 
+    /// UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.7)
+    class var cherryRed70: UIColor {
+        return UIColor.cherryRed.withAlphaComponent(0.7)
+    }
+
     /// UIColor(red: 230/255, green: 0, blue: 34/255, alpha: 0.6)
     class var cherryRed60: UIColor {
         return UIColor.cherryRed.withAlphaComponent(0.6)
@@ -103,6 +108,11 @@ extension UIColor {
     /// UIColor(red: 3/255, green: 6/255, blue: 15/255, alpha: 1)
     class var darkIndigoTwo: UIColor {
         return UIColor(red: 3/255, green: 6/255, blue: 15/255, alpha: 1)
+    }
+
+    /// UIColor(red: 0, green: 225/255, blue: 0, alpha: 0.7)
+    class var green70: UIColor {
+        return UIColor.green.withAlphaComponent(0.7)
     }
 
     /// UIColor(white: 1, alpha: 0.02)

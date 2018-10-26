@@ -19,6 +19,7 @@ struct Toggle {
 }
 
 struct Animation {
+    static let duration_01: TimeInterval = 0.1
     static let duration_02: TimeInterval = 0.2
     static let duration: TimeInterval = 0.3
     static let duration_06: TimeInterval = 0.6
@@ -55,6 +56,7 @@ struct Layout {
     static let padding_90: CGFloat = 90
     static let padding_100: CGFloat = 100
     static let height_44: CGFloat = 44
+    static let multiplier_010: CGFloat = 0.10
     static let multiplier_015: CGFloat = 0.15
     static let multiplier_025: CGFloat = 0.25
     static let multiplier_035: CGFloat = 0.35
@@ -62,6 +64,7 @@ struct Layout {
     static let multiplier_065: CGFloat = 0.65
     static let multiplier_075: CGFloat = 0.75
     static let multiplier_080: CGFloat = 0.80
+    static let multiplier_150: CGFloat = 1.50
     static let badgeSize = CGSize(width: padding_20, height: padding_20)
 
     struct TabBarView {

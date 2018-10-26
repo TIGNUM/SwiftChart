@@ -23,15 +23,17 @@ struct MorningInterview {
         let title: String
         let subtitle: String?
         let answers: [Answer]
+        let key: String?
         var selectedAnswerIndex: Int
 
-        init?(remoteID: Int, title: String, subtitle: String?, answers: [Answer], selectedAnswerIndex: Int) {
+        init?(remoteID: Int, title: String, subtitle: String?, answers: [Answer], key: String?, selectedAnswerIndex: Int) {
             guard answers.count > 0 else { return nil }
 
             self.remoteID = remoteID
             self.title = title
             self.subtitle = subtitle
             self.answers = answers
+            self.key = key
             self.selectedAnswerIndex = selectedAnswerIndex
         }
 

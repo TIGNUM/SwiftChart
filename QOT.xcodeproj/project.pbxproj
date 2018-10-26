@@ -385,14 +385,9 @@
 		918D5E2B20EE050900AEAD37 /* QOTWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 918D5E1F20EE050900AEAD37 /* QOTWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91B339DF207F5F5E00F54A62 /* SettingsBubblesViewController.xib */; };
 		91B339E2207F5F7400F54A62 /* SettingsBubblesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91B339E1207F5F7400F54A62 /* SettingsBubblesViewController.swift */; };
-		91C262B91FED0B2D0075664E /* InterviewDialView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B61FED0B2C0075664E /* InterviewDialView.swift */; };
-		91C262BA1FED0B2D0075664E /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */; };
-		91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */; };
 		91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */; };
 		91CC8E842063DE11005A7D17 /* BadgeManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CC8E832063DE11005A7D17 /* BadgeManager.swift */; };
 		91CCC996206938EE00E0C251 /* EventDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CCC995206938EE00E0C251 /* EventDate.swift */; };
-		91CD12ED2036F6F300E27822 /* MorningInterviewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */; };
-		91CD12EE2036F6F300E27822 /* MorningInterviewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */; };
 		91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91CD12EF2037168900E27822 /* CGRect+Convenience.swift */; };
 		91E59F2D2057D23700396225 /* UserMeasurement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91E59F2C2057D23700396225 /* UserMeasurement.swift */; };
 		91F5BE3E2097576800E85A51 /* PermissionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5BE3D2097576800E85A51 /* PermissionsViewController.swift */; };
@@ -431,13 +426,6 @@
 		CB2880221E7050EB0067890A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880211E7050EB0067890A /* Coordinator.swift */; };
 		CB2880241E7051710067890A /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880231E7051710067890A /* AppCoordinator.swift */; };
 		CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2880331E7144E60067890A /* CollectionUpdate.swift */; };
-		CB2C308F203B086A0041044F /* MorningInterviewConfiguator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C308E203B086A0041044F /* MorningInterviewConfiguator.swift */; };
-		CB2C3091203B087C0041044F /* MorningInterviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3090203B087C0041044F /* MorningInterviewInteractor.swift */; };
-		CB2C3093203B08890041044F /* MorningInterviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3092203B08890041044F /* MorningInterviewModels.swift */; };
-		CB2C3095203B089A0041044F /* MorningInterviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3094203B089A0041044F /* MorningInterviewPresenter.swift */; };
-		CB2C3097203B08A70041044F /* MorningInterviewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3096203B08A70041044F /* MorningInterviewProtocols.swift */; };
-		CB2C3099203B08B00041044F /* MorningInterviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C3098203B08B00041044F /* MorningInterviewRouter.swift */; };
-		CB2C309B203B08BC0041044F /* MorningInterviewWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */; };
 		CB2FA0E820762914007F21D1 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB2FA0E720762914007F21D1 /* Environment.swift */; };
 		CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */; };
 		CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3029E72050335A00DD4440 /* KeyboardListener.swift */; };
@@ -759,6 +747,21 @@
 		DB34725221594560004F17D6 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725121594560004F17D6 /* Realm.framework */; };
 		DB34725421594560004F17D6 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725321594560004F17D6 /* RealmSwift.framework */; };
 		DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5E5E55217632C1006BA438 /* RestartRouteHandler.swift */; };
+		DB680595218210E700C2FC69 /* MorningInterviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680585218210E700C2FC69 /* MorningInterviewRouter.swift */; };
+		DB680596218210E700C2FC69 /* MorningInterviewWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680586218210E700C2FC69 /* MorningInterviewWorker.swift */; };
+		DB680597218210E700C2FC69 /* MorningInterviewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680587218210E700C2FC69 /* MorningInterviewModels.swift */; };
+		DB680598218210E700C2FC69 /* MorningInterviewViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680588218210E700C2FC69 /* MorningInterviewViewController.swift */; };
+		DB680599218210E700C2FC69 /* MorningInterviewViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB680589218210E700C2FC69 /* MorningInterviewViewController.storyboard */; };
+		DB68059A218210E700C2FC69 /* MorningInterviewInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68058A218210E700C2FC69 /* MorningInterviewInteractor.swift */; };
+		DB68059B218210E700C2FC69 /* MorningInterviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68058B218210E700C2FC69 /* MorningInterviewPresenter.swift */; };
+		DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68058C218210E700C2FC69 /* MorningInterviewProtocols.swift */; };
+		DB68059D218210E700C2FC69 /* MorningInterviewConfiguator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68058D218210E700C2FC69 /* MorningInterviewConfiguator.swift */; };
+		DB68059E218210E700C2FC69 /* PageIndicatorItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB68058F218210E700C2FC69 /* PageIndicatorItemView.xib */; };
+		DB68059F218210E700C2FC69 /* PageIndicatorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680590218210E700C2FC69 /* PageIndicatorItemView.swift */; };
+		DB6805A0218210E700C2FC69 /* QuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680591218210E700C2FC69 /* QuestionnaireViewController.swift */; };
+		DB6805A1218210E700C2FC69 /* QuestionaryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB680592218210E700C2FC69 /* QuestionaryViewController.storyboard */; };
+		DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */; };
+		DB6805A3218210E700C2FC69 /* MorningQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680594218210E700C2FC69 /* MorningQuestion.swift */; };
 		DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB82EEC32152859C002322B7 /* UIView+Animation.swift */; };
 		DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */; };
 		E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A12130055700C0723E /* PDFReaderViewController.swift */; };
@@ -1191,14 +1194,9 @@
 		918D5E2820EE050900AEAD37 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		91B339DF207F5F5E00F54A62 /* SettingsBubblesViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SettingsBubblesViewController.xib; sourceTree = "<group>"; };
 		91B339E1207F5F7400F54A62 /* SettingsBubblesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsBubblesViewController.swift; sourceTree = "<group>"; };
-		91C262B61FED0B2C0075664E /* InterviewDialView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InterviewDialView.swift; sourceTree = "<group>"; };
-		91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
-		91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MorningInterviewViewController.xib; sourceTree = "<group>"; };
 		91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Convenience.swift"; sourceTree = "<group>"; };
 		91CC8E832063DE11005A7D17 /* BadgeManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BadgeManager.swift; sourceTree = "<group>"; };
 		91CCC995206938EE00E0C251 /* EventDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EventDate.swift; sourceTree = "<group>"; };
-		91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewCell.swift; sourceTree = "<group>"; };
-		91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MorningInterviewCell.xib; sourceTree = "<group>"; };
 		91CD12EF2037168900E27822 /* CGRect+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CGRect+Convenience.swift"; sourceTree = "<group>"; };
 		91E59F2C2057D23700396225 /* UserMeasurement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserMeasurement.swift; sourceTree = "<group>"; };
 		91F5BE3D2097576800E85A51 /* PermissionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionsViewController.swift; sourceTree = "<group>"; };
@@ -1244,13 +1242,6 @@
 		CB2880211E7050EB0067890A /* Coordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		CB2880231E7051710067890A /* AppCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		CB2880331E7144E60067890A /* CollectionUpdate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionUpdate.swift; sourceTree = "<group>"; };
-		CB2C308E203B086A0041044F /* MorningInterviewConfiguator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewConfiguator.swift; sourceTree = "<group>"; };
-		CB2C3090203B087C0041044F /* MorningInterviewInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewInteractor.swift; sourceTree = "<group>"; };
-		CB2C3092203B08890041044F /* MorningInterviewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewModels.swift; sourceTree = "<group>"; };
-		CB2C3094203B089A0041044F /* MorningInterviewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewPresenter.swift; sourceTree = "<group>"; };
-		CB2C3096203B08A70041044F /* MorningInterviewProtocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewProtocols.swift; sourceTree = "<group>"; };
-		CB2C3098203B08B00041044F /* MorningInterviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewRouter.swift; sourceTree = "<group>"; };
-		CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MorningInterviewWorker.swift; sourceTree = "<group>"; };
 		CB2FA0E720762914007F21D1 /* Environment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Environment.swift; sourceTree = "<group>"; };
 		CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewAnimationOptions+Convenience.swift"; sourceTree = "<group>"; };
 		CB3029E72050335A00DD4440 /* KeyboardListener.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyboardListener.swift; sourceTree = "<group>"; };
@@ -1582,6 +1573,21 @@
 		DB34725121594560004F17D6 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB34725321594560004F17D6 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5E5E55217632C1006BA438 /* RestartRouteHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartRouteHandler.swift; sourceTree = "<group>"; };
+		DB680585218210E700C2FC69 /* MorningInterviewRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewRouter.swift; sourceTree = "<group>"; };
+		DB680586218210E700C2FC69 /* MorningInterviewWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewWorker.swift; sourceTree = "<group>"; };
+		DB680587218210E700C2FC69 /* MorningInterviewModels.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewModels.swift; sourceTree = "<group>"; };
+		DB680588218210E700C2FC69 /* MorningInterviewViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewViewController.swift; sourceTree = "<group>"; };
+		DB680589218210E700C2FC69 /* MorningInterviewViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MorningInterviewViewController.storyboard; sourceTree = "<group>"; };
+		DB68058A218210E700C2FC69 /* MorningInterviewInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewInteractor.swift; sourceTree = "<group>"; };
+		DB68058B218210E700C2FC69 /* MorningInterviewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewPresenter.swift; sourceTree = "<group>"; };
+		DB68058C218210E700C2FC69 /* MorningInterviewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewProtocols.swift; sourceTree = "<group>"; };
+		DB68058D218210E700C2FC69 /* MorningInterviewConfiguator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewConfiguator.swift; sourceTree = "<group>"; };
+		DB68058F218210E700C2FC69 /* PageIndicatorItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageIndicatorItemView.xib; sourceTree = "<group>"; };
+		DB680590218210E700C2FC69 /* PageIndicatorItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageIndicatorItemView.swift; sourceTree = "<group>"; };
+		DB680591218210E700C2FC69 /* QuestionnaireViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireViewController.swift; sourceTree = "<group>"; };
+		DB680592218210E700C2FC69 /* QuestionaryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuestionaryViewController.storyboard; sourceTree = "<group>"; };
+		DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireProtocols.swift; sourceTree = "<group>"; };
+		DB680594218210E700C2FC69 /* MorningQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningQuestion.swift; sourceTree = "<group>"; };
 		DB82EEC32152859C002322B7 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
@@ -2471,32 +2477,6 @@
 			name = ContentItem;
 			sourceTree = "<group>";
 		};
-		CB2C308D203B08370041044F /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				CB2C308E203B086A0041044F /* MorningInterviewConfiguator.swift */,
-				CB2C3090203B087C0041044F /* MorningInterviewInteractor.swift */,
-				CB2C3092203B08890041044F /* MorningInterviewModels.swift */,
-				CB2C3094203B089A0041044F /* MorningInterviewPresenter.swift */,
-				CB2C3096203B08A70041044F /* MorningInterviewProtocols.swift */,
-				CB2C3098203B08B00041044F /* MorningInterviewRouter.swift */,
-				CB2C309A203B08BC0041044F /* MorningInterviewWorker.swift */,
-				91C262B71FED0B2C0075664E /* MorningInterviewViewController.swift */,
-				91C262B81FED0B2C0075664E /* MorningInterviewViewController.xib */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		CB2C309C203B08D10041044F /* Other */ = {
-			isa = PBXGroup;
-			children = (
-				91C262B61FED0B2C0075664E /* InterviewDialView.swift */,
-				91CD12EB2036F6F300E27822 /* MorningInterviewCell.swift */,
-				91CD12EC2036F6F300E27822 /* MorningInterviewCell.xib */,
-			);
-			name = Other;
-			sourceTree = "<group>";
-		};
 		CB3333DD20480DA2009480DF /* Share */ = {
 			isa = PBXGroup;
 			children = (
@@ -2673,7 +2653,7 @@
 			children = (
 				9150411C20FDF2C700D43D18 /* Add Sensor */,
 				CBE8808B1FE4368300670C10 /* Guide */,
-				D5B707241F03A21E00C812EB /* Morning Interview */,
+				DB680583218210E600C2FC69 /* MorningInterview */,
 				36FB012D20A63C8800472E6F /* PartnerEdit */,
 				3674FF1F20AADDED008EEB6C /* Partners Overview */,
 				E813F0A02130053700C0723E /* PDFReader */,
@@ -3675,21 +3655,50 @@
 			name = "Log In";
 			sourceTree = "<group>";
 		};
-		D5B707241F03A21E00C812EB /* Morning Interview */ = {
-			isa = PBXGroup;
-			children = (
-				CB2C308D203B08370041044F /* Core */,
-				CB2C309C203B08D10041044F /* Other */,
-			);
-			name = "Morning Interview";
-			sourceTree = "<group>";
-		};
 		DB5E5E5421763264006BA438 /* RestartRouteHandler */ = {
 			isa = PBXGroup;
 			children = (
 				DB5E5E55217632C1006BA438 /* RestartRouteHandler.swift */,
 			);
 			path = RestartRouteHandler;
+			sourceTree = "<group>";
+		};
+		DB680583218210E600C2FC69 /* MorningInterview */ = {
+			isa = PBXGroup;
+			children = (
+				DB680584218210E700C2FC69 /* Core */,
+				DB68058E218210E700C2FC69 /* Other */,
+			);
+			path = MorningInterview;
+			sourceTree = "<group>";
+		};
+		DB680584218210E700C2FC69 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				DB680585218210E700C2FC69 /* MorningInterviewRouter.swift */,
+				DB680586218210E700C2FC69 /* MorningInterviewWorker.swift */,
+				DB680587218210E700C2FC69 /* MorningInterviewModels.swift */,
+				DB680588218210E700C2FC69 /* MorningInterviewViewController.swift */,
+				DB680589218210E700C2FC69 /* MorningInterviewViewController.storyboard */,
+				DB68058A218210E700C2FC69 /* MorningInterviewInteractor.swift */,
+				DB68058B218210E700C2FC69 /* MorningInterviewPresenter.swift */,
+				DB68058C218210E700C2FC69 /* MorningInterviewProtocols.swift */,
+				DB68058D218210E700C2FC69 /* MorningInterviewConfiguator.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		DB68058E218210E700C2FC69 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				DB68058F218210E700C2FC69 /* PageIndicatorItemView.xib */,
+				DB680590218210E700C2FC69 /* PageIndicatorItemView.swift */,
+				DB680591218210E700C2FC69 /* QuestionnaireViewController.swift */,
+				DB680592218210E700C2FC69 /* QuestionaryViewController.storyboard */,
+				DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */,
+				DB680594218210E700C2FC69 /* MorningQuestion.swift */,
+			);
+			path = Other;
 			sourceTree = "<group>";
 		};
 		E813F0A02130053700C0723E /* PDFReader */ = {
@@ -3873,14 +3882,15 @@
 				367564B1206A56B7008D1F71 /* ReviewNotesViewController.storyboard in Resources */,
 				36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */,
 				3674FF3920AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.xib in Resources */,
-				91C262BB1FED0B2D0075664E /* MorningInterviewViewController.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
+				DB68059E218210E700C2FC69 /* PageIndicatorItemView.xib in Resources */,
 				9171647B2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
 				3674FF3120AADEC5008EEB6C /* PartnersOverviewViewController.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */,
+				DB680599218210E700C2FC69 /* MorningInterviewViewController.storyboard in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				CBABB3811FDFF3E0007B5B5C /* SlideShowTitleSubtitleSlideCell.xib in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
@@ -3918,11 +3928,11 @@
 				91086E502092044C0035DA1F /* SettingsCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,
-				91CD12EE2036F6F300E27822 /* MorningInterviewCell.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
 				7F3A9CD21FCF019B000F1744 /* MyUniverseViewController.xib in Resources */,
+				DB6805A1218210E700C2FC69 /* QuestionaryViewController.storyboard in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
@@ -4236,7 +4246,6 @@
 				7F4B98A81FA21FD3000B402C /* WeeklyChoicesAnimation.swift in Sources */,
 				8514A48C1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift in Sources */,
 				CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */,
-				91CD12ED2036F6F300E27822 /* MorningInterviewCell.swift in Sources */,
 				850A50BB1F0A973A00350097 /* PrepareContentTopTabBarView.swift in Sources */,
 				7F9217BB1FD01C4700CAE9E0 /* LocationPermission.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
@@ -4272,6 +4281,7 @@
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
 				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
+				DB68059F218210E700C2FC69 /* PageIndicatorItemView.swift in Sources */,
 				36796A4820D3C49900B55429 /* SigningLoginRouter.swift in Sources */,
 				91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */,
 				CB3437621EFD67B600D89D4F /* AnswerIntermediary.swift in Sources */,
@@ -4301,7 +4311,6 @@
 				CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */,
 				CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */,
 				852DADD61EF051C400A10882 /* UIView+Layers.swift in Sources */,
-				91C262B91FED0B2D0075664E /* InterviewDialView.swift in Sources */,
 				7FBC3E891F38B9D1005BD772 /* UpSyncMediaOperation.swift in Sources */,
 				CBC1DC1B1F0F910600F6D056 /* SettingValueObject.swift in Sources */,
 				CBC1DC291F0FB68000F6D056 /* AnswerDecision.swift in Sources */,
@@ -4337,12 +4346,12 @@
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */,
 				CCAF03251E801B0E00015125 /* OldSettingsViewController.swift in Sources */,
-				CB2C3091203B087C0041044F /* MorningInterviewInteractor.swift in Sources */,
 				914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */,
 				91086E5620920ABF0035DA1F /* SettingsModel.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
+				DB680595218210E700C2FC69 /* MorningInterviewRouter.swift in Sources */,
 				91086E44209202400035DA1F /* SettingsConfigurator.swift in Sources */,
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
@@ -4399,6 +4408,7 @@
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
+				DB68059B218210E700C2FC69 /* MorningInterviewPresenter.swift in Sources */,
 				7FCF5FA41FC2E9FA00CD1E5E /* TabBarItem.swift in Sources */,
 				91F5BE44209757C300E85A51 /* PermissionsConfigurator.swift in Sources */,
 				7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */,
@@ -4453,7 +4463,6 @@
 				CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */,
 				CBB98B00201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift in Sources */,
 				CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */,
-				CB2C3095203B089A0041044F /* MorningInterviewPresenter.swift in Sources */,
 				CB3333E120480DDF009480DF /* ShareConfigurator.swift in Sources */,
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
 				85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */,
@@ -4481,7 +4490,6 @@
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,
 				CC37831C1F5EA91F007A16A3 /* ChartType.swift in Sources */,
 				7F0F02F21F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift in Sources */,
-				CB2C309B203B08BC0041044F /* MorningInterviewWorker.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
 				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,
@@ -4492,6 +4500,7 @@
 				ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */,
 				36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */,
 				CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */,
+				DB680597218210E700C2FC69 /* MorningInterviewModels.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */,
@@ -4500,6 +4509,7 @@
 				3698428520C91EF3007A8C8F /* SigningDigitViewController.swift in Sources */,
 				CB694E09205C1C3600D29B3E /* DailyPrepResultIntermediary.swift in Sources */,
 				9150413720FDF40A00D43D18 /* SensorViewController.swift in Sources */,
+				DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */,
 				CBD4BE9E2018BE25008A0E9E /* GuideProtocols.swift in Sources */,
 				7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
@@ -4518,11 +4528,11 @@
 				7FE674B71F8F5CA600FC7407 /* LogInfo.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
 				CB369CDB1E8D3E5700522293 /* RealmProvider.swift in Sources */,
-				CB2C3097203B08A70041044F /* MorningInterviewProtocols.swift in Sources */,
 				7F4251C31F211BC600EA451D /* PermissionsManager.swift in Sources */,
 				3698428220C91EF3007A8C8F /* SigningDigitWorker.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CB3333E920480E05009480DF /* ShareInteractor.swift in Sources */,
+				DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */,
 				3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
@@ -4574,7 +4584,6 @@
 				CB48814B1EF7B1EA00389C88 /* Data+Convenience.swift in Sources */,
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				CBD4BEA02018BF32008A0E9E /* GuideRouter.swift in Sources */,
-				CB2C3099203B08B00041044F /* MorningInterviewRouter.swift in Sources */,
 				36796A2F20D3C47400B55429 /* SigningProfileDetailPresenter.swift in Sources */,
 				36796A4920D3C49900B55429 /* SigningLoginViewController.swift in Sources */,
 				CBD4BEA62018D30B008A0E9E /* GuideObserver.swift in Sources */,
@@ -4594,7 +4603,6 @@
 				CB35504320597D44000ECAFA /* DailyPrepAnswerObject.swift in Sources */,
 				CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */,
 				CBC1DC171F0F690A00F6D056 /* SystemSettingIntermediary.swift in Sources */,
-				CB2C308F203B086A0041044F /* MorningInterviewConfiguator.swift in Sources */,
 				362632471FD6A4210024C626 /* GuideTableViewCell.swift in Sources */,
 				3674FF2920AADE7D008EEB6C /* PartnersOverviewWorker.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
@@ -4620,6 +4628,7 @@
 				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,
 				CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */,
 				CBAF6FD81F2B88E500E57426 /* UpSyncData.swift in Sources */,
+				DB6805A3218210E700C2FC69 /* MorningQuestion.swift in Sources */,
 				362614AC20CFC1C300AB3659 /* UserCountryList.swift in Sources */,
 				CC0238FF1F4EE2B700DD992B /* IntensityChart.swift in Sources */,
 				36796A0620D3C41F00B55429 /* SigningCreatePasswordPresenter.swift in Sources */,
@@ -4632,6 +4641,8 @@
 				CBCCF3961F7E43EF000E4440 /* ChatViewHeaderFooter.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
 				36796A0D20D3C41F00B55429 /* SigningCreatePasswordInteractor.swift in Sources */,
+				DB68059D218210E700C2FC69 /* MorningInterviewConfiguator.swift in Sources */,
+				DB680596218210E700C2FC69 /* MorningInterviewWorker.swift in Sources */,
 				CB5134141FAB735E00FBDD66 /* ContentReadIntermediary.swift in Sources */,
 				CB35504020597A6A000ECAFA /* DailyPrepResultObject.swift in Sources */,
 				9115F703208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift in Sources */,
@@ -4677,6 +4688,7 @@
 				7F3A9CC91FCEFED1000F1744 /* MyUniverseViewController.swift in Sources */,
 				851676DB1F3C57D4007A1DD6 /* LearnPDFCell.swift in Sources */,
 				7F4276791F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift in Sources */,
+				DB6805A0218210E700C2FC69 /* QuestionnaireViewController.swift in Sources */,
 				3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
@@ -4696,12 +4708,12 @@
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,
 				CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */,
 				CCE6CD7E1F15260D00B66DA3 /* Statistics.swift in Sources */,
+				DB68059A218210E700C2FC69 /* MorningInterviewInteractor.swift in Sources */,
 				91086E402092021D0035DA1F /* SettingsRouter.swift in Sources */,
 				7F4B98AE1FA22851000B402C /* ChartAnimation.swift in Sources */,
 				CB94422E1FD96D9700E2B122 /* SlideShowConfigurator.swift in Sources */,
 				3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */,
 				CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */,
-				91C262BA1FED0B2D0075664E /* MorningInterviewViewController.swift in Sources */,
 				CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */,
 				7F4B98AD1FA22850000B402C /* ChartAnimator.swift in Sources */,
 				36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */,
@@ -4763,6 +4775,7 @@
 				7FE151C81F3DDAE600DA8F37 /* DatabaseBuilder.swift in Sources */,
 				CB6BF031200CB28C0020241B /* RealmInterviewResult.swift in Sources */,
 				7F9217BF1FD01C8000CAE9E0 /* CameraPermission.swift in Sources */,
+				DB680598218210E700C2FC69 /* MorningInterviewViewController.swift in Sources */,
 				36D535E020A711E800F1C2FC /* PartnerEditInteractor.swift in Sources */,
 				36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */,
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,
@@ -4801,7 +4814,6 @@
 				3698428120C91EF3007A8C8F /* SigningDigitPresenter.swift in Sources */,
 				7F1D3D221F8E24620071D322 /* Log.swift in Sources */,
 				91E59F2D2057D23700396225 /* UserMeasurement.swift in Sources */,
-				CB2C3093203B08890041044F /* MorningInterviewModels.swift in Sources */,
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				CBFD47CC200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift in Sources */,
 				7F708EA01FBAFAF8008A3856 /* FullScreenLoadable.swift in Sources */,

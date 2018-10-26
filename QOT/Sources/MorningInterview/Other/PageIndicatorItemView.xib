@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Apercu-Medium.otf">
+            <string>Apercu-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="PageIndicatorButtonView" id="iN0-l3-epB" customClass="PageIndicatorItemView" customModule="RatingAnimation" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="300" height="300"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LZB-zy-Bze">
+                    <rect key="frame" x="75" y="75" width="150" height="150"/>
+                    <constraints>
+                        <constraint firstAttribute="width" secondItem="LZB-zy-Bze" secondAttribute="height" priority="750" id="NJ3-mt-VlT"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="30" id="cOg-xM-Zot"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="Apercu-Medium" family="Apercu" pointSize="21"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="LZB-zy-Bze" firstAttribute="centerX" secondItem="vUN-kp-3ea" secondAttribute="centerX" id="2Ob-BN-kow"/>
+                <constraint firstItem="LZB-zy-Bze" firstAttribute="height" secondItem="iN0-l3-epB" secondAttribute="height" multiplier="0.5" priority="750" id="FtD-nM-tk8"/>
+                <constraint firstItem="LZB-zy-Bze" firstAttribute="centerY" secondItem="vUN-kp-3ea" secondAttribute="centerY" id="upc-g3-XGl"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="titleLabel" destination="LZB-zy-Bze" id="vqC-fE-xTF"/>
+            </connections>
+            <point key="canvasLocation" x="417.60000000000002" y="-123.23838080959521"/>
+        </view>
+    </objects>
+</document>

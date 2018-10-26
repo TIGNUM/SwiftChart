@@ -43,13 +43,14 @@ final class MorningInterviewWorker {
                 }.sorted { (a, b) -> Bool in
                     let left = Int(a.title) ?? 0
                     let right = Int(b.title) ?? 0
-                    return left < right
+                    return left > right
             }
             let selectedAnswerIndex = (answers.count - 1) / 2
             return MorningInterview.Question(remoteID: remoteID,
                                              title: question.title,
                                              subtitle: question.subtitle,
                                              answers: answers,
+                                             key: question.key,
                                              selectedAnswerIndex: selectedAnswerIndex)
         }
     }
