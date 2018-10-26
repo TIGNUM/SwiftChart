@@ -412,6 +412,7 @@
 "Search.Filter.All" = "ALL";
 "Search.Filter.Audio" = "AUDIO";
 "Search.Filter.Video" = "VIDEO";
+"Search.Placeholder" = "Search QOT content";
 
 "guide.card.preparation.subtitle" = "PREPARE";
 "guide.card.foundation.subtitle" = "QOT FOUNDATION";

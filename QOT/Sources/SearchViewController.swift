@@ -98,6 +98,7 @@ private extension SearchViewController {
         searchBar.keyboardAppearance = .dark
         searchBar.barTintColor = .gray
         searchBar.delegate = self
+        searchBar.placeholder = R.string.localized.searchPlaceholder()
         navigationItem.titleView = searchBar
         self.searchBar = searchBar
 		if #available(iOS 11.0, *) {
