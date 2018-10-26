@@ -20,6 +20,7 @@ final class PrepareSectionHeaderView: UIView {
     @IBOutlet private weak var completedTasksLabel: UILabel!
     @IBOutlet private weak var editButton: UIButton!
     weak var delegate: PrepareContentViewControllerDelegate?
+    private var headerID = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -42,7 +43,8 @@ final class PrepareSectionHeaderView: UIView {
                                       for: .selected)
     }
 
-    func configure(eventName: String, eventDate: String, completedTasks: String) {
+    func configure(eventName: String, eventDate: String, completedTasks: String, headerID: Int) {
+        self.headerID = headerID
         eventNameLabel.addCharactersSpacing(spacing: 2, text: eventName, uppercased: true)
         eventDateLabel.addCharactersSpacing(spacing: 2, text: eventDate, uppercased: true)
         completedTasksLabel.addCharactersSpacing(spacing: 2, text: completedTasks, uppercased: true)
@@ -66,6 +68,6 @@ private extension PrepareSectionHeaderView {
     }
 
     @IBAction func didTabEditPreparationButton() {
-        delegate?.didTapAddRemove()
+        delegate?.didTapAddRemove(headerID: headerID)
     }
 }

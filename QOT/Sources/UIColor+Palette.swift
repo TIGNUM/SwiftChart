@@ -280,7 +280,7 @@ extension UIColor {
     class var addSensorConnectGray: UIColor {
         return UIColor(red: 2/255, green: 149/255, blue: 208/255, alpha: 1)
     }
-    
+
     class var dailyPrepNullStateGray: UIColor {
         return UIColor(red: 92/255, green: 109/255, blue: 122/255, alpha: 0.7)
     }

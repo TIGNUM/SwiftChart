@@ -16,7 +16,7 @@ protocol PrepareContentViewControllerDelegate: class {
     func didTapSavePreparation(in viewController: PrepareContentViewController)
     func didTapReadMore(readMoreID: Int, in viewController: PrepareContentViewController)
     func saveNotes(notes: String, preparationID: String)
-    func didTapAddRemove()
+    func didTapAddRemove(headerID: Int)
 }
 
 final class PrepareContentViewController: UIViewController, PageViewControllerNotSwipeable {
@@ -213,7 +213,7 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
             tableView.beginUpdates()
             configure(cell: cell, forIndexPath: indexPath)
             tableView.endUpdates()
-        case .checkItemsHeader: delegate?.didTapAddRemove()
+        case .checkItemsHeader: delegate?.didTapAddRemove(headerID: viewModel.headerID)
         }
     }
 
@@ -268,7 +268,8 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
                 sectionHeaderView = R.nib.prepareSectionHeaderView().instantiate(withOwner: nil).first as? PrepareSectionHeaderView
                 sectionHeaderView?.configure(eventName: viewModel.eventName,
                                              eventDate: viewModel.eventDate,
-                                             completedTasks: viewModel.completedTasksValue)
+                                             completedTasks: viewModel.completedTasksValue,
+                                             headerID: viewModel.headerID)
                 sectionHeaderView?.delegate = delegate
                 return sectionHeaderView
             }

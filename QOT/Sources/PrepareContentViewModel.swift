@@ -133,6 +133,10 @@ final class PrepareContentViewModel {
 
 extension PrepareContentViewModel {
 
+    var headerID: Int {
+        return services.contentService.contentCollection(contentTitle: title)?.remoteID.value ?? 0
+    }
+
     var completedTasksValue: String {
         guard
             let preparationID = preparationID,
