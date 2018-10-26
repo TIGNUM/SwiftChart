@@ -106,11 +106,11 @@ private extension MeetingsIncreasingChart {
             thisWeekValue = statistics.dataPoints[0].value.toInt
         }
 
-        let differenceValue = statistics.userAverage.toInt
+        let differenceValue = lastWeekValue > 0 ? "\(statistics.userAverage.toInt)%" : "+\(thisWeekValue)"
         let percentageColor: UIColor = (thisWeekValue < lastWeekValue || thisWeekValue == lastWeekValue) ? .green : .red
-        thisWeekNumberLabel.text = String(thisWeekValue)
-        lastWeekNumberLabel.text = String(lastWeekValue)
-        percentageLabel.text = String(differenceValue) + "%"
+        thisWeekNumberLabel.text = thisWeekValue.description
+        lastWeekNumberLabel.text = lastWeekValue.description
+        percentageLabel.text = differenceValue
         percentageLabel.textColor = percentageColor
     }
 }
