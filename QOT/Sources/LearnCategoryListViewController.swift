@@ -54,7 +54,6 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLayout()
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
             case .reload:
@@ -67,12 +66,14 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
                 self.reloadCells(indexPaths: modifications)
             }
         }.dispose(in: disposeBag)
+        setupLayout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.setStatusBarStyle(.lightContent)
         learnCategoryLayout.centerCollectionView()
+        collectionView.reloadData()
     }
 }
 
@@ -98,7 +99,10 @@ private extension LearnCategoryListViewController {
     func setupLayout() {
         view.addSubview(collectionView)
         if #available(iOS 11.0, *) {
-            collectionView.edgeAnchors == view.safeEdgeAnchors
+            collectionView.topAnchor == view.safeTopAnchor
+            collectionView.bottomAnchor == view.safeBottomAnchor
+            collectionView.leadingAnchor == view.leadingAnchor
+            collectionView.trailingAnchor == view.trailingAnchor
         } else {
             collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight
             collectionView.bottomAnchor == view.bottomAnchor - Layout.statusBarHeight

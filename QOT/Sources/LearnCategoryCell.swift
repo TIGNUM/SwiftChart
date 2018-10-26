@@ -109,7 +109,7 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         layer.strokeColor = UIColor.white.cgColor
         layer.lineWidth = 5.0
         layer.lineDashPattern = [1]
-        layer.addGlowEffect(color: UIColor.white)
+        layer.addGlowEffect(color: .white)
         shapeDashLayer?.removeFromSuperlayer()
         contentView.layer.addSublayer(layer)
         shapeDashLayer = layer
@@ -124,14 +124,13 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 															textColor: .white,
 															lineBreakMode: .byWordWrapping)
 		let attributedTextCount = NSMutableAttributedString(string: "\(category.viewedCount) OUT OF \(category.itemCount)",
-			letterSpacing: 2,
+            letterSpacing: 2,
 			font: percentageFont,
 			lineSpacing: 2.5,
 			textColor: .white60)
         if percentageLearned != category.percentageLearned {
             percentageLearned = category.percentageLearned
         }
-
         learnedContentLabel.attributedText = attributedTextCount
         titleLabel.attributedText = attributedTextTitle
 		learnedContentLabel.textAlignment = .center
