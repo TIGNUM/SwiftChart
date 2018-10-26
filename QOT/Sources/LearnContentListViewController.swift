@@ -12,10 +12,10 @@ import ReactiveKit
 import Bond
 
 protocol LearnContentListViewControllerDelegate: class {
-
     func didSelectContent(_ content: ContentCollection,
                           category: ContentCategory,
-                          originFrame: CGRect, in viewController: LearnContentListViewController)
+                          originFrame: CGRect,
+                          in viewController: LearnContentListViewController)
 }
 
 /// Displays a collection of items of learn content.
@@ -30,7 +30,6 @@ final class LearnContentListViewController: UIViewController {
     let viewModel: LearnContentCollectionViewModel
     var selectedCategoryIndex: Index
     weak var delegate: LearnContentListViewControllerDelegate?
-
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(layout: self.collectionViewLayout,
                                               delegate: self,
@@ -106,7 +105,6 @@ extension LearnContentListViewController: UICollectionViewDataSource {
         let item = viewModel.item(at: indexPath, categorySelectedIndex: selectedCategoryIndex)
         let cell: LearnContentCell = collectionView.dequeueCell(for: indexPath)
         cell.configure(with: item, index: indexPath.item)
-
         return cell
     }
 }

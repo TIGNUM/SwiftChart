@@ -75,12 +75,10 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     }
 
     private func attributedTitle(text: String) -> NSMutableAttributedString {
-        return NSMutableAttributedString(
-            string: text.uppercased(),
-            letterSpacing: 2.8,
-            font: .H7Tag,
-            lineSpacing: 1.5,
-            textColor: .white60
-        )
+        return NSMutableAttributedString(string: text.uppercased(),
+                                         letterSpacing: 2.8,
+                                         font: .H7Tag,
+                                         lineSpacing: 1.5,
+                                         textColor: .white60)
     }
 }

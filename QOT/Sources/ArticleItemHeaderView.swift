@@ -47,7 +47,7 @@ final class ArticleItemHeaderView: UIView {
 													  textColor: .white20,
 													  alignment: .left)
         if let image = header.thumbnail {
-            articleThumbnail.kf.setImage(with: image)
+            articleThumbnail.kf.setImage(with: image, placeholder: R.image.preloading())
             articleThumbnail.layer.cornerRadius = Layout.CornerRadius.eight.rawValue
             articleThumbnail.contentMode = .scaleAspectFill
             articleThumbnail.layer.masksToBounds = true

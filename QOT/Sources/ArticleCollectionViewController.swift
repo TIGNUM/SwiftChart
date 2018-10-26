@@ -12,7 +12,6 @@ import ReactiveKit
 import Bond
 
 protocol ArticleCollectionViewControllerDelegate: class {
-
     func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: UIViewController)
     func viewWillAppear(in viewController: ArticleCollectionViewController)
     func viewDidDisappear(in viewController: ArticleCollectionViewController)
@@ -22,7 +21,6 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     // MARK: - Properties
 
-    private let fadeMaskLocation: UIView.FadeMaskLocation
     private(set) var isShowing = false
     weak var delegate: ArticleCollectionViewControllerDelegate?
     let pageName: PageName
@@ -41,21 +39,17 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
     private lazy var collectionView: UICollectionView = {
         let layout = ArticleCollectionLayout()
         layout.delegate = self
-
-        return UICollectionView(
-            layout: layout,
-            delegate: self,
-            dataSource: self,
-            dequeables: ArticleCollectionCell.self
-        )
+        return UICollectionView(layout: layout,
+                                delegate: self,
+                                dataSource: self,
+                                dequeables: ArticleCollectionCell.self)
     }()
 
     // MARK: Init
 
-    init(pageName: PageName, viewData: ArticleCollectionViewData, fadeMaskLocation: UIView.FadeMaskLocation) {
+    init(pageName: PageName, viewData: ArticleCollectionViewData) {
         self.pageName = pageName
         self.viewData = viewData
-        self.fadeMaskLocation = fadeMaskLocation
         super.init(nibName: nil, bundle: nil)
     }
 
