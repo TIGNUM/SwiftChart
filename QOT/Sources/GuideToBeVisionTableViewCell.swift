@@ -19,6 +19,7 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
     @IBOutlet private weak var actionLabel: UILabel!
+    @IBOutlet private weak var cardTypeLabel: UILabel!
 
     // MARK: - Lifecycle
 
@@ -43,6 +44,8 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
 private extension GuideToBeVisionTableViewCell {
 
     func setupView() {
+        cardTypeLabel.textColor = .guideCardTypeGray
+        cardTypeLabel.font = .ApercuRegular15
         titleLabel.font = .H4Identifier
         bodyLabel.font = .H5SecondaryHeadline
         statusView.maskPathByRoundingCorners()
@@ -54,7 +57,7 @@ private extension GuideToBeVisionTableViewCell {
         shadowImageView.layer.shadowRadius = 3
         shadowImageView.layer.shadowColor = UIColor.white.cgColor
         shadowImageView.layer.shadowOffset = .zero
-        actionLabel.font = .apercuBold(ofSize: 14)
+        actionLabel.font = .ApercuBold14
         circularImageView(image: toBeVisionImageView)
         circularImageView(image: shadowImageView)
     }

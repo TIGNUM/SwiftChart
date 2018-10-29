@@ -129,6 +129,9 @@ extension UIFont {
     /// BENTON SANS 11 // subtitles, tags
     static let H7Tag = UIFont.apercuRegular(ofSize: 11)
 
+    // APERCU REGULAR 15 // Guide action labels
+    static let ApercuRegular15 = UIFont.apercuRegular(ofSize: 15)
+
     /// BENTON SANS 16 // paragraph, body text
     static let PText = UIFont.apercuRegular(ofSize: 16)
 
@@ -170,4 +173,10 @@ extension UIFont {
 
     // Apercu Medium 31 // Daily Prep minute card title
     static let ApercuMedium31 = UIFont.apercuMedium(ofSize: 31)
+
+    // Apercu Bold 14 // Guide cards action label
+    static let ApercuBold14 = UIFont.apercuBold(ofSize: 14)
+
+    // Apercu Bold 15 // Guide type action label
+    static let ApercuBold15 = UIFont.apercuBold(ofSize: 14)
 }

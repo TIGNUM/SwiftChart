@@ -25,8 +25,8 @@ final class GuidePreparationTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
         statusView.maskPathByRoundingCorners()
         typeLabel.textColor = .guideCardTypeGray
-        actionLabel.font = .apercuBold(ofSize: 14)
-        typeLabel.font = .apercuRegular(ofSize: 15)
+        actionLabel.font = .ApercuBold14
+        typeLabel.font = .ApercuRegular15
         titleLabel.font = .H4Identifier
         bodyLabel.font = .H5SecondaryHeadline
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)

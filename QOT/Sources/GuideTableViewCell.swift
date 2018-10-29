@@ -25,9 +25,9 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         statusView.maskPathByRoundingCorners()
-        actionLabel.font = .apercuBold(ofSize: 14)
+        actionLabel.font = .ApercuBold14
         typeLabel.adjustsFontSizeToFitWidth = true
-        typeLabel.font = .apercuRegular(ofSize: 15)
+        typeLabel.font = .ApercuRegular15
         typeLabel.textColor = .guideCardTypeGray
         titleLabel.font = .H4Identifier
         contentLabel.font = .H5SecondaryHeadline
