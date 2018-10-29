@@ -91,7 +91,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         configurator(self)
         imagePickerController = ImagePickerController(cropShape: .circle,
                                                       imageQuality: .high,
-                                                      imageSize: .large,
+                                                      imageSize: .medium,
                                                       permissionsManager: permissionsManager)
         imagePickerController.delegate = self
         imageTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(didTapImage))
