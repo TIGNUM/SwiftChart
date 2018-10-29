@@ -10,8 +10,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Apercu-Bold.otf">
-            <string>Apercu-Bold</string>
+        <array key="Apercu-Light.otf">
+            <string>Apercu-Light</string>
         </array>
     </customFonts>
     <scenes>
@@ -43,30 +43,43 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oval" translatesAutoresizingMaskIntoConstraints="NO" id="8B0-rZ-wy4">
+                                <rect key="frame" x="19.5" y="64" width="336" height="336"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="8B0-rZ-wy4" secondAttribute="height" multiplier="1:1" id="JQW-7x-euu"/>
+                                </constraints>
+                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3AY-Hh-9td" userLabel="PageView Container">
-                                <rect key="frame" x="0.0" y="184.5" width="375" height="482.5"/>
-                                <color key="backgroundColor" red="0.0078431372550000003" green="0.070588235289999995" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <rect key="frame" x="0.0" y="114" width="375" height="553"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hqp-Rf-tGO" userLabel="Indicator Container">
-                                <rect key="frame" x="0.0" y="64" width="375" height="120.5"/>
+                                <rect key="frame" x="23.5" y="64" width="328" height="50"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="IRV-es-CGe">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="120.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="328" height="50"/>
                                     </stackView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstItem="IRV-es-CGe" firstAttribute="width" secondItem="Hqp-Rf-tGO" secondAttribute="width" id="AaG-Eb-aR0"/>
+                                    <constraint firstAttribute="height" constant="50" id="NVH-FH-vGS"/>
                                     <constraint firstItem="IRV-es-CGe" firstAttribute="centerY" secondItem="Hqp-Rf-tGO" secondAttribute="centerY" id="WLa-CR-TYM"/>
                                     <constraint firstItem="IRV-es-CGe" firstAttribute="height" secondItem="Hqp-Rf-tGO" secondAttribute="height" id="ibt-mK-a3v"/>
                                     <constraint firstItem="IRV-es-CGe" firstAttribute="centerX" secondItem="Hqp-Rf-tGO" secondAttribute="centerX" id="nDJ-gm-QwQ"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="78z-Za-LfU">
-                                <rect key="frame" x="94" y="585.5" width="187.5" height="48"/>
+                                <rect key="frame" x="94" y="611.5" width="187.5" height="39"/>
                                 <color key="backgroundColor" red="0.1833846271" green="0.4211808145" blue="0.86278814079999999" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
-                                <fontDescription key="fontDescription" name="Apercu-Bold" family="Apercu" pointSize="21"/>
-                                <state key="normal" title="Done"/>
+                                <fontDescription key="fontDescription" name="Apercu-Light" family="Apercu" pointSize="17"/>
+                                <state key="normal" title="DONE"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                        <integer key="value" value="8"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didSelectDone" destination="NwQ-ag-k4z" eventType="touchUpInside" id="hIY-5J-orI"/>
                                 </connections>
@@ -74,18 +87,20 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0078431372550000003" green="0.070588235289999995" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Hqp-Rf-tGO" firstAttribute="leading" secondItem="fWS-pV-kXd" secondAttribute="leading" id="1BB-Rl-lPe"/>
+                            <constraint firstItem="Hqp-Rf-tGO" firstAttribute="width" secondItem="MRM-MD-99C" secondAttribute="width" multiplier="0.875" id="1c7-Gl-6BQ"/>
                             <constraint firstItem="Hqp-Rf-tGO" firstAttribute="top" secondItem="fWS-pV-kXd" secondAttribute="top" id="76J-Yo-hJG"/>
-                            <constraint firstItem="3AY-Hh-9td" firstAttribute="height" secondItem="fWS-pV-kXd" secondAttribute="height" multiplier="0.8" id="AlM-3R-JDd"/>
+                            <constraint firstItem="8B0-rZ-wy4" firstAttribute="width" secondItem="3AY-Hh-9td" secondAttribute="height" multiplier="48:79" id="J0L-Nz-PIZ"/>
                             <constraint firstItem="Hqp-Rf-tGO" firstAttribute="bottom" secondItem="3AY-Hh-9td" secondAttribute="top" id="JOS-Pl-2c8"/>
-                            <constraint firstItem="78z-Za-LfU" firstAttribute="bottom" secondItem="3AY-Hh-9td" secondAttribute="bottom" multiplier="0.95" id="P7j-au-Edu"/>
+                            <constraint firstItem="78z-Za-LfU" firstAttribute="bottom" secondItem="3AY-Hh-9td" secondAttribute="bottom" multiplier="0.975" id="P7j-au-Edu"/>
                             <constraint firstItem="78z-Za-LfU" firstAttribute="centerX" secondItem="3AY-Hh-9td" secondAttribute="centerX" id="Xzm-5S-ZEq"/>
                             <constraint firstItem="3AY-Hh-9td" firstAttribute="bottom" secondItem="MRM-MD-99C" secondAttribute="bottom" id="b7B-4e-3tz"/>
+                            <constraint firstItem="Hqp-Rf-tGO" firstAttribute="centerX" secondItem="fWS-pV-kXd" secondAttribute="centerX" id="iox-kq-4gX"/>
                             <constraint firstItem="78z-Za-LfU" firstAttribute="width" secondItem="3AY-Hh-9td" secondAttribute="width" multiplier="0.5" id="lqh-KS-ac9"/>
                             <constraint firstItem="fWS-pV-kXd" firstAttribute="trailing" secondItem="3AY-Hh-9td" secondAttribute="trailing" id="n4f-tJ-nBj"/>
-                            <constraint firstItem="78z-Za-LfU" firstAttribute="height" secondItem="3AY-Hh-9td" secondAttribute="height" multiplier="0.1" id="oke-qs-ilF"/>
-                            <constraint firstItem="fWS-pV-kXd" firstAttribute="trailing" secondItem="Hqp-Rf-tGO" secondAttribute="trailing" id="uok-5J-6XC"/>
+                            <constraint firstItem="78z-Za-LfU" firstAttribute="height" secondItem="3AY-Hh-9td" secondAttribute="height" multiplier="0.07" id="oke-qs-ilF"/>
+                            <constraint firstItem="8B0-rZ-wy4" firstAttribute="centerX" secondItem="fWS-pV-kXd" secondAttribute="centerX" id="ruq-Q7-e1x"/>
                             <constraint firstItem="3AY-Hh-9td" firstAttribute="leading" secondItem="fWS-pV-kXd" secondAttribute="leading" id="vIF-cL-VjE"/>
+                            <constraint firstAttribute="top" secondItem="8B0-rZ-wy4" secondAttribute="top" constant="-64" id="xej-kw-dIN"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fWS-pV-kXd"/>
                     </view>
@@ -110,5 +125,6 @@
     </scenes>
     <resources>
         <image name="ic_close_white" width="36" height="36"/>
+        <image name="oval" width="336" height="336"/>
     </resources>
 </document>

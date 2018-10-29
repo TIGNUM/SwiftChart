@@ -10,39 +10,47 @@ import UIKit
 
 class PageIndicatorItemView: UIView {
     @IBOutlet weak private var titleLabel: UILabel!
+    @IBOutlet weak private var titleLabelCenter: NSLayoutConstraint!
+    @IBOutlet weak private var underbarWidth: NSLayoutConstraint!
     private var selected: Bool = false
     private var enabled: Bool = false
     private var title: String?
+    private var itemIdentifier: Int?
+    private var action: ((_ itemIdentifier: Int) -> Void)? = nil
 
-    static func viewWithTitle(_ title: String?) -> PageIndicatorItemView? {
+    static func viewWithTitle(_ title: String?,
+                              _ itemIdentifier: Int?,
+                              _ action: ((_ itemIdentifier: Int) -> Void)?) -> PageIndicatorItemView? {
         guard let item = Bundle.main.loadNibNamed("PageIndicatorItemView", owner: self, options: nil)?.first,
             let view = item as? PageIndicatorItemView else {
             return nil
         }
         view.setTitle(title)
+        view.itemIdentifier = itemIdentifier
+        view.action = action
         return view
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        titleLabel.layer.cornerRadius = 0.5 * titleLabel.bounds.size.width
-        titleLabel.layer.masksToBounds = true
-        titleLabel.layer.borderWidth = 2.0
+    @IBAction func didSelected() {
+        guard let itemID = itemIdentifier, enabled == true else { return }
+        action?(itemID)
     }
 
     public func enable(_ enable: Bool) {
         enabled = enable
-        titleLabel.backgroundColor = enable == true ? UIColor.clear : UIColor.gray
-        titleLabel.textColor = enable == true ? UIColor.gray : UIColor.clear
-        titleLabel.layer.borderColor = UIColor.gray.cgColor
+        self.titleLabel.textColor = enabled == true ? UIColor.white : UIColor.white40
     }
 
     public func select(_ select: Bool) {
         guard enabled == true else { return }
         selected = select
-        titleLabel.backgroundColor = select == true ? UIColor.white : UIColor.clear
-        titleLabel.layer.borderColor = select == true ? UIColor.white.cgColor : UIColor.gray.cgColor
-        titleLabel.textColor = select == true ? UIColor.black : UIColor.gray
+
+        UIView.animate(withDuration: Animation.duration) {
+            self.underbarWidth.constant = self.selected == false ?  0 : Layout.padding_16
+            self.titleLabelCenter.constant = self.selected == false ? 0 : -Layout.padding_5
+            self.setNeedsUpdateConstraints()
+            self.layoutIfNeeded()
+        }
     }
 
     public func setTitle(_ title: String?) {

@@ -39,7 +39,7 @@ class QuestionnaireViewController: UIViewController {
                                   delegate: QuestionnaireAnswer? = nil,
                                   presentationType: QuestionnairePresentationType = .fill) -> QuestionnaireViewController?
         where T: Questionnaire {
-            let storyBoard = UIStoryboard(name: "QuestionaryViewController", bundle: Bundle.main)
+            let storyBoard = UIStoryboard(name: "QuestionnaireViewController", bundle: Bundle.main)
             guard let viewController = storyBoard.instantiateInitialViewController() as? QuestionnaireViewController else {
                 return nil
             }
@@ -177,6 +177,9 @@ extension QuestionnaireViewController {
         }
         self.progressTopConstraint.constant = newPosition
         let index = itemIndex(with: newPosition)
+        if indexLabel.text != answers[index], isTouch == true {
+            generateFeedback(.light)
+        }
         indexLabel.text = answers[index]
         if isTouch == true {
             answerDelegate?.isSelecting(answer: answers[index], for: questionIdentifier, from: self)
@@ -192,8 +195,9 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "TableViewCell", for: indexPath)
-        cell.textLabel?.text = titles[indexPath.row]?.capitalized
+        let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionnaireTableViewCell", for: indexPath)
+        cell.detailTextLabel?.text = titles[indexPath.row]?.capitalized
+        cell.textLabel?.text = answers[indexPath.row]?.capitalized
         return cell
     }
 

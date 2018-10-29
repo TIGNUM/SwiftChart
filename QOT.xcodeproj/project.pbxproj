@@ -757,11 +757,12 @@
 		DB68059E218210E700C2FC69 /* PageIndicatorItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB68058F218210E700C2FC69 /* PageIndicatorItemView.xib */; };
 		DB68059F218210E700C2FC69 /* PageIndicatorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680590218210E700C2FC69 /* PageIndicatorItemView.swift */; };
 		DB6805A0218210E700C2FC69 /* QuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680591218210E700C2FC69 /* QuestionnaireViewController.swift */; };
-		DB6805A1218210E700C2FC69 /* QuestionaryViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB680592218210E700C2FC69 /* QuestionaryViewController.storyboard */; };
+		DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB680592218210E700C2FC69 /* QuestionnaireViewController.storyboard */; };
 		DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */; };
 		DB6805A3218210E700C2FC69 /* MorningQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680594218210E700C2FC69 /* MorningQuestion.swift */; };
 		DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB82EEC32152859C002322B7 /* UIView+Animation.swift */; };
 		DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */; };
+		DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */; };
 		E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A12130055700C0723E /* PDFReaderViewController.swift */; };
 		E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */; };
 		E813F0A82135280F00C0723E /* PDFReaderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A72135280F00C0723E /* PDFReaderConfigurator.swift */; };
@@ -1581,11 +1582,12 @@
 		DB68058F218210E700C2FC69 /* PageIndicatorItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageIndicatorItemView.xib; sourceTree = "<group>"; };
 		DB680590218210E700C2FC69 /* PageIndicatorItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageIndicatorItemView.swift; sourceTree = "<group>"; };
 		DB680591218210E700C2FC69 /* QuestionnaireViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireViewController.swift; sourceTree = "<group>"; };
-		DB680592218210E700C2FC69 /* QuestionaryViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuestionaryViewController.storyboard; sourceTree = "<group>"; };
+		DB680592218210E700C2FC69 /* QuestionnaireViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuestionnaireViewController.storyboard; sourceTree = "<group>"; };
 		DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireProtocols.swift; sourceTree = "<group>"; };
 		DB680594218210E700C2FC69 /* MorningQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningQuestion.swift; sourceTree = "<group>"; };
 		DB82EEC32152859C002322B7 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
+		DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
 		E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFReaderViewController.storyboard; sourceTree = "<group>"; };
 		E813F0A72135280F00C0723E /* PDFReaderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderConfigurator.swift; sourceTree = "<group>"; };
@@ -3688,7 +3690,8 @@
 				DB68058F218210E700C2FC69 /* PageIndicatorItemView.xib */,
 				DB680590218210E700C2FC69 /* PageIndicatorItemView.swift */,
 				DB680591218210E700C2FC69 /* QuestionnaireViewController.swift */,
-				DB680592218210E700C2FC69 /* QuestionaryViewController.storyboard */,
+				DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */,
+				DB680592218210E700C2FC69 /* QuestionnaireViewController.storyboard */,
 				DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */,
 				DB680594218210E700C2FC69 /* MorningQuestion.swift */,
 			);
@@ -3926,7 +3929,7 @@
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
 				7F3A9CD21FCF019B000F1744 /* MyUniverseViewController.xib in Resources */,
-				DB6805A1218210E700C2FC69 /* QuestionaryViewController.storyboard in Resources */,
+				DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
@@ -4016,7 +4019,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
@@ -4065,7 +4068,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9100195820FC798400049118 /* SwiftLint */ = {
@@ -4088,7 +4091,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JPSimulatorHacks/JPSimulatorHacks.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -4097,7 +4100,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BB0D582FB75DD826F51B67C2 /* [CP] Check Pods Manifest.lock */ = {
@@ -4124,7 +4127,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -4133,7 +4136,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CB8A15401E7981900023B2F9 /* Generate R.Swift */ = {
@@ -4678,6 +4681,7 @@
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
 				366AFD0E20BD9F9300109F29 /* SigningEmailRouter.swift in Sources */,
+				DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */,
 				7F3A9CC91FCEFED1000F1744 /* MyUniverseViewController.swift in Sources */,
 				851676DB1F3C57D4007A1DD6 /* LearnPDFCell.swift in Sources */,
 				7F4276791F585C7F00AEE3D7 /* AppDelegate+DatabaseBuilder.swift in Sources */,

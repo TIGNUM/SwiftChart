@@ -30,14 +30,14 @@ final class MorningInterviewViewController: UIViewController {
         self.pageController = pageController
         self.addChildViewController(pageController)
         view.insertSubview(pageController.view, belowSubview: doneButton)
+        pageController.view.clipsToBounds = false
         interactor?.viewDidLoad()
+        doneButton.backgroundColor = .azure
     }
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pageController?.view.frame = pageContainer.frame
-        doneButton.layer.cornerRadius = doneButton.bounds.height/2
-        doneButton.layer.masksToBounds = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -196,15 +196,15 @@ extension MorningInterviewViewController: MorningInterviewViewControllerInterfac
                 return answer.title
             })
             let descriptions = question.answers.compactMap({ (answer) -> String? in
-                return (answer.subtitle ?? "") + "   " + answer.title
+                return answer.subtitle ?? ""
             })
             var color = UIColor.gray
             if let chartType = ChartType(rawValue: question.key ?? "") {
                 switch chartType {
                 case .intensityRecoveryWeek,
-                     .intensityRecoveryMonth: color =  UIColor.green70
+                     .intensityRecoveryMonth: color =  UIColor.recoveryGreen
                 case .intensityLoadWeek,
-                     .intensityLoadMonth: color = UIColor.cherryRed70
+                     .intensityLoadMonth: color = UIColor.recoveryRed
                 default:
                     break
                 }
@@ -215,7 +215,12 @@ extension MorningInterviewViewController: MorningInterviewViewControllerInterfac
                                                          descriptions: descriptions,
                                                          answerIndex: nil,
                                                          fillColor: color))
-            if let view = PageIndicatorItemView.viewWithTitle(String(pageIndicatorViews.count + 1)) {
+            let itemView = PageIndicatorItemView.viewWithTitle(String(pageIndicatorViews.count + 1), questionIndex) { [weak self] itemID in
+                guard let question = self?.questions[itemID] else { return }
+                guard let nextViewController = self?.questionnaireViewController(with: question) else { return }
+                self?.pageController?.setViewControllers([nextViewController], direction: .forward, animated: false, completion: nil)
+            }
+            if let view = itemView {
                 pageIndicatorViews.append(view)
                 view.enable(false)
                 indicatorStackView.addArrangedSubview(view)

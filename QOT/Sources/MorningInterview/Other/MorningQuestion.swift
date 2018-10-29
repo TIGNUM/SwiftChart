@@ -1,5 +1,5 @@
 //
-//  DailyInterviewQuestion.swift
+//  MorningQuestion.swift
 //  RatingAnimation
 //
 //  Created by Sanggeon Park on 24.10.18.

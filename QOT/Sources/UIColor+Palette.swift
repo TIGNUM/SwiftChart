@@ -114,7 +114,15 @@ extension UIColor {
     class var green70: UIColor {
         return UIColor.green.withAlphaComponent(0.7)
     }
+    /// UIColor(red: 203/255, green: 75/255, blue: 90/255, alpha: 1)
+    class var recoveryRed: UIColor {
+        return UIColor(red: 203/255, green: 75/255, blue: 90/255, alpha: 1)
+    }
 
+    /// UIColor(red: 143/255, green: 189/255, blue: 93/255, alpha: 1)
+    class var recoveryGreen: UIColor {
+        return UIColor(red: 143/255, green: 189/255, blue: 93/255, alpha: 1)
+    }
     /// UIColor(white: 1, alpha: 0.02)
     class var whiteLight2: UIColor {
         return UIColor(white: 1, alpha: 0.062)
