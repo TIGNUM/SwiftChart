@@ -95,10 +95,7 @@ extension LoginCoordinator: LoginViewControllerDelegate {
         }
     }
 
-    func loginViewControllerDidTapResetPassword(_ viewController: UIViewController) {
-        let resetPasswordCoordinator = ResetPasswordCoordinator(rootVC: viewController, parentCoordinator: self, networkManager: networkManager)
-        startChild(child: resetPasswordCoordinator)
-    }
+    func loginViewControllerDidTapResetPassword(_ viewController: UIViewController) {}
 
     private func handleLoginError(_ error: Error, viewController: UIViewController) {
         viewController.handleError(error)

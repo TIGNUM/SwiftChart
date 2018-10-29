@@ -191,15 +191,6 @@ extension LoginViewController: TrackablePage {
     }
 }
 
-extension ResetPasswordViewController: TrackablePage {
-    var pageName: PageName {
-        return .resetPassword
-    }
-    var pageAssociatedObject: PageObject? {
-        return nil
-    }
-}
-
 extension MorningInterviewViewController: TrackablePage {
     var pageName: PageName {
         return .morningInterview

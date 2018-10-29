@@ -307,7 +307,6 @@
 		858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChart.swift */; };
 		85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85945C721F27760500F090C8 /* LearnListAnimator.swift */; };
 		859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683401F135C6300A98218 /* LoginCoordinator.swift */; };
-		859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */; };
 		85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */; };
 		85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */; };
 		85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */; };
@@ -1119,7 +1118,6 @@
 		858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingChart.swift; sourceTree = "<group>"; };
 		85945C721F27760500F090C8 /* LearnListAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnListAnimator.swift; sourceTree = "<group>"; };
 		859683401F135C6300A98218 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordCoordinator.swift; sourceTree = "<group>"; };
 		85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListBackgroundView.swift; sourceTree = "<group>"; };
 		85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsChart.swift; sourceTree = "<group>"; };
 		85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnListAnimation.swift; sourceTree = "<group>"; };
@@ -2832,7 +2830,6 @@
 				7F4251BC1F20F05D00EA451D /* OnboardingCoordinator.swift */,
 				CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */,
 				CBC933071F052DDA00C00007 /* PrepareCoordinator.swift */,
-				859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */,
 				36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */,
 				CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */,
 				CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */,
@@ -4850,7 +4847,6 @@
 				AC7F3DB42177407D0058B343 /* GuidePreparationTableViewCell.swift in Sources */,
 				36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */,
 				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,
-				859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */,
 				36D535E220A711E800F1C2FC /* PartnerEditConfigurator.swift in Sources */,
 				CBC5ACCA1F18EF96007E1E9C /* QOTUsageTimer.swift in Sources */,
 				CB9442341FD97F8D00E2B122 /* SlideShowInteractor.swift in Sources */,
