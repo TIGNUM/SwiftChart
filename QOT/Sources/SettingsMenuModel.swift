@@ -439,7 +439,7 @@ private func companyRows(for user: User?) -> [SettingsRow] {
 
 private func accountRows(for user: User?) -> [SettingsRow] {
     return [
-        .button(title: SettingsType.password.title, value: "", settingsType: .password),
+        .label(title: SettingsType.password.title, value: "", settingsType: .password),
 		.label(title: SettingsType.logout.title, value: "", settingsType: .logout)
 	]
 }
@@ -507,7 +507,11 @@ private func categoryNotifications(services: Services) -> [SettingsRow] {
         if let settingType = SettingsType.notificationType(key: key), let value = service.settingValue(key: key) {
             switch value {
             case .bool(let boolValue):
-                return .control(title: systemSetting.displayName, isOn: boolValue, settingsType: settingType, key: systemSetting.key, source: nil)
+                return .control(title: systemSetting.displayName,
+                                isOn: boolValue,
+                                settingsType: settingType,
+                                key: systemSetting.key,
+                                source: nil)
             default:
                 return nil
             }

@@ -49,6 +49,9 @@
 "Settings.Calendar.Section.OnThisDevice.Header" = "FROM THIS DEVICE";
 "Settings.Calendar.Section.OnOtherDevices.Header" = "FROM OTHER DEVICES";
 
+"Settings.Change.Password.Title" = "Want to change your password? We can send you an email to help with that!";
+"Settings.Change.Password.Button" = "Send email";
+
 "Sidebar.Title.Search" = "Search";
 "Sidebar.Title.Tools" = "QOT TOOLS";
 "Sidebar.Title.Benefits" = "QOT\nBENEFITS";

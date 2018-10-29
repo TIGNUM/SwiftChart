@@ -16,7 +16,7 @@ protocol SettingsViewControllerDelegate: class {
     func didTextFieldChanged(at indexPath: IndexPath, text: String)
     func didTextFieldEndEditing(at indexPath: IndexPath, text: String)
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?)
-    func presentResetPasswordController()
+    func didTapResetPassword(completion: @escaping (NetworkError?) -> Void)
 }
 
 final class ProfileSettingsViewController: UIViewController {
@@ -423,54 +423,68 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 		case .control,
 			 .textField: return
 		case .label(_, _, let settingsType):
-			if settingsType == .logout {
+            switch settingsType {
+            case .logout:
                 showAlert(type: .logout, handlerDestructive: {
                     WidgetDataManager.didUserLogIn(false)
                     UIApplication.shared.shortcutItems?.removeAll()
                     NotificationHandler.postNotification(withName: .logoutNotification)
                 })
-			}
+            case .password:
+                showAlert(type: .changePassword, handlerDestructive: {
+                    self.resetPassword()
+                })
+            default: return
+            }
 		case .datePicker(let title, let selectedDate, _):
 			showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
 		case .stringPicker(let title, let pickerItems, let selectedIndex, _):
 			showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
 		case .multipleStringPicker(let title, let rows, let initialSelection, _):
 			showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
-		case .button(_, _, let settingsType):
-			switch settingsType {
-			case .password:
-				presentResetPasswordController()
-			default: return
-			}
+		case .button: return
 		}
 	}
 }
 
-extension ProfileSettingsViewController: ResetPasswordViewControllerDelegate {
+// MARK: - Reset password
 
-    func didTapResetPassword(withUsername username: String, completion: @escaping (NetworkError?) -> Void) {
-        guard let window = AppDelegate.current.window else {
-            return
-        }
+extension ProfileSettingsViewController {
+
+    func didTapResetPassword(completion: @escaping (NetworkError?) -> Void) {
+        guard let window = AppDelegate.current.window else { return }
         let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
-        networkManager.performResetPasswordRequest(username: username, completion: { error in
+        let user = services.userService.user()?.email ?? ""
+        networkManager.performResetPasswordRequest(username: user, completion: { error in
             progressHUD.hide(animated: true)
             completion(error)
+        })
+    }
+
+    func resetPassword() {
+        didTapResetPassword (completion: { error in
+            if let error = error {
+                switch error.type {
+                case .noNetworkConnection:
+                    self.showAlert(type: .noNetworkConnection)
+                case .notFound:
+                    self.showAlert(type: .emailNotFound)
+                default:
+                    self.showAlert(type: .unknown)
+                }
+                return
+            }
+
+            self.showAlert(type: .resetPassword)
         })
     }
 }
 
 extension ProfileSettingsViewController: SettingsViewControllerDelegate {
-
+    
     func didTextFieldEndEditing(at indexPath: IndexPath, text: String) {
         didTextFieldChanged(at: indexPath, text: text)
         tableView.reloadData()
-    }
-
-    func presentResetPasswordController() {
-        let resetPasswordViewController = ResetPasswordViewController()
-        resetPasswordViewController.delegate = self
-        pushToStart(childViewController: resetPasswordViewController)
     }
 
     func didTextFieldChanged(at indexPath: IndexPath, text: String) {

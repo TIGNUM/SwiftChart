@@ -307,7 +307,6 @@
 		858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChart.swift */; };
 		85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85945C721F27760500F090C8 /* LearnListAnimator.swift */; };
 		859683411F135C6300A98218 /* LoginCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683401F135C6300A98218 /* LoginCoordinator.swift */; };
-		859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683421F1361E900A98218 /* ResetPasswordViewController.swift */; };
 		859683471F137FD600A98218 /* ResetPasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */; };
 		85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */; };
 		85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */; };
@@ -676,7 +675,6 @@
 		CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */; };
 		CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D6D021EC316BF007AE687 /* LearnContentItemViewController.swift */; };
 		CC8D6D051EC316BF007AE687 /* LearnContentItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8D6D031EC316BF007AE687 /* LearnContentItemViewModel.swift */; };
-		CC90EC9B1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC90EC9A1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift */; };
 		CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC90EC9E1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift */; };
 		CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC90ECA21F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard */; };
 		CC944DB61EE804CD00B8423C /* ChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC944DB51EE804CD00B8423C /* ChartTableViewCell.swift */; };
@@ -1120,7 +1118,6 @@
 		858AF6921EF904AB00486605 /* PeakPerformanceUpcomingChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PeakPerformanceUpcomingChart.swift; sourceTree = "<group>"; };
 		85945C721F27760500F090C8 /* LearnListAnimator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnListAnimator.swift; sourceTree = "<group>"; };
 		859683401F135C6300A98218 /* LoginCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginCoordinator.swift; sourceTree = "<group>"; };
-		859683421F1361E900A98218 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResetPasswordCoordinator.swift; sourceTree = "<group>"; };
 		85AAB53B1F447D1F00C2D53F /* LearnContentListBackgroundView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentListBackgroundView.swift; sourceTree = "<group>"; };
 		85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsChart.swift; sourceTree = "<group>"; };
@@ -1501,7 +1498,6 @@
 		CC8813EA1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnContentItemRecommendedCell.xib; sourceTree = "<group>"; };
 		CC8D6D021EC316BF007AE687 /* LearnContentItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemViewController.swift; sourceTree = "<group>"; };
 		CC8D6D031EC316BF007AE687 /* LearnContentItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnContentItemViewModel.swift; sourceTree = "<group>"; };
-		CC90EC9A1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsChangePasswordCoordinator.swift; sourceTree = "<group>"; };
 		CC90EC9E1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsChangePasswordViewController.swift; sourceTree = "<group>"; };
 		CC90ECA21F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SettingsChangePasswordViewController.storyboard; sourceTree = "<group>"; };
 		CC944DB51EE804CD00B8423C /* ChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartTableViewCell.swift; sourceTree = "<group>"; };
@@ -2837,7 +2833,6 @@
 				859683461F137FD600A98218 /* ResetPasswordCoordinator.swift */,
 				36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */,
 				CC02E1451F27996800134574 /* SettingsCalendarListCoordinator.swift */,
-				CC90EC9A1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift */,
 				CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */,
 				CC143A501EC495CE001FB76E /* StatisticsCoordinator.swift */,
 				CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */,
@@ -3650,7 +3645,6 @@
 			isa = PBXGroup;
 			children = (
 				D554CD9C1F0CED50007731DB /* LoginViewController.swift */,
-				859683421F1361E900A98218 /* ResetPasswordViewController.swift */,
 			);
 			name = "Log In";
 			sourceTree = "<group>";
@@ -4624,7 +4618,6 @@
 				91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */,
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
 				CC02E1461F27996800134574 /* SettingsCalendarListCoordinator.swift in Sources */,
-				CC90EC9B1F3074DC00A83DB9 /* SettingsChangePasswordCoordinator.swift in Sources */,
 				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,
 				CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */,
 				CBAF6FD81F2B88E500E57426 /* UpSyncData.swift in Sources */,
@@ -4785,7 +4778,6 @@
 				9150413A20FDF40A00D43D18 /* SensorConfigurator.swift in Sources */,
 				36796A2220D3C45200B55429 /* SigningCountryWorker.swift in Sources */,
 				CBFD47CA200E0E6100A91899 /* RealmCalendarSyncSetting.swift in Sources */,
-				859683431F1361E900A98218 /* ResetPasswordViewController.swift in Sources */,
 				7F1D3D251F8E29050071D322 /* RemoteLogDestination.swift in Sources */,
 				366183EB2162793700634560 /* SupportFAQViewController.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* StatisticsService.swift in Sources */,

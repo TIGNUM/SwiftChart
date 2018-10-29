@@ -75,7 +75,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             self.settingsType = settingsType
             setupTextFieldCell(title: title, value: value, secure: secure, settingsType: settingsType)
         }
-        if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .password || settingsType == .adminSettings {
+        if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .adminSettings {
             accessoryType = .disclosureIndicator
         }
     }
@@ -226,10 +226,6 @@ extension SettingsTableViewCell {
         } else {
             switchControl.layer.removeGlowEffect()
         }
-    }
-
-    @IBAction func didPressButton() {
-        settingsDelegate?.presentResetPasswordController()
     }
 }
 

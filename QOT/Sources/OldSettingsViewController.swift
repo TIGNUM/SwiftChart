@@ -256,7 +256,9 @@ extension OldSettingsViewController: UITableViewDataSource, UITableViewDelegate 
 // MARK: - SettingsViewControllerDelegate
 
 extension OldSettingsViewController: SettingsViewControllerDelegate {
-
+    
+    func didTapResetPassword(completion: @escaping (NetworkError?) -> Void) {}
+    
     func didTextFieldEndEditing(at indexPath: IndexPath, text: String) {}
 
     func presentResetPasswordController() {}

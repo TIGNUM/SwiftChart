@@ -53,6 +53,7 @@ enum AlertType {
     case eventDateNotAvailable
     case photosPermissionNotAuthorized
     case cameraPermissionNotAuthorized
+    case changePassword
 
     var title: String? {
         switch self {
@@ -130,6 +131,7 @@ enum AlertType {
         case .calendarNotSynced: return R.string.localized.alertMessageCalendarNotSynced()
         case .eventDateNotAvailable: return R.string.localized.alertMessageEventDateNotAvailable()
         case .changeNotifications: return R.string.localized.alertMessageSettingsChangeNotifications()
+        case .changePassword: return R.string.localized.settingsChangePasswordTitle()
         default: return nil
         }
     }
@@ -147,7 +149,8 @@ enum AlertType {
              .logout,
              .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized,
-             .addSensor: return R.string.localized.alertButtonTitleCancel()
+             .addSensor,
+             .changePassword: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
     }
@@ -163,7 +166,8 @@ enum AlertType {
              .cameraPermissionNotAuthorized: return R.string.localized.alertButtonTitleSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
-        case .logout: return R.string.localized.alertButtonTitleCancel()
+        case .logout,
+             .changePassword: return R.string.localized.alertButtonTitleCancel()
         case .addSensorCompletion: return R.string.localized.addSensorViewAlertFeedbackSuccessOK()
         default: return R.string.localized.alertButtonTitleOk()
         }
@@ -178,6 +182,7 @@ enum AlertType {
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonCamera()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationRemoveStrategy()
         case .logout: return R.string.localized.sidebarTitleLogout()
+        case .changePassword: return R.string.localized.settingsChangePasswordButton()
         default: return nil
         }
     }
@@ -190,7 +195,8 @@ enum AlertType {
              .addSensor: return [.cancel]
         case .imagePicker,
              .toBeVisionActionSheet: return [.cancel]
-        case .logout: return [.destructive, .cancel]
+        case .logout,
+             .changePassword: return [.destructive, .cancel]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
         case .changePermissions,
              .cameraPermissionNotAuthorized,
@@ -205,7 +211,8 @@ enum AlertType {
         case .imagePicker,
              .prepareEditStrategy,
              .toBeVisionActionSheet,
-             .logout: return .actionSheet
+             .logout,
+             .changePassword: return .actionSheet
         default: return .alert
         }
     }
