@@ -8,7 +8,16 @@
 
 import UIKit
 
+enum ProgressType {
+    case load
+    case recovery
+}
+
 final class GuideProgressView: UIProgressView {
+
+    // MARK: - Properties
+
+    var type: ProgressType?
 
     // MARK: - Lifecycle
 
@@ -25,20 +34,8 @@ final class GuideProgressView: UIProgressView {
     // MARK: - Actions
 
     func startNullStateAnimation() {
-        UIView.animate(withDuration: 7, delay: 0, options: [.repeat], animations: {
-            UIView.animate(withDuration: 2, animations: {
-                self.setProgress(0.3, animated: true)
-            }, completion: { _ in
-                UIView.animate(withDuration: 2, animations: {
-                    self.setProgress(0.6, animated: true)
-                }, completion: { _ in
-                    UIView.animate(withDuration: 2, animations: {
-                        self.setProgress(1.0, animated: true)
-                    })
-                })
-            })
-        }, completion: { _ in
-            self.setProgress(0, animated: false)
+        UIView.animate(withDuration: Animation.duration_1, animations: {
+            self.setProgress(self.type == .load ? 0.3 : 0.8, animated: true)
         })
     }
 }

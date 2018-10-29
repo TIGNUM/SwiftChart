@@ -23,6 +23,7 @@ struct Animation {
     static let duration_02: TimeInterval = 0.2
     static let duration: TimeInterval = 0.3
     static let duration_06: TimeInterval = 0.6
+    static let duration_1: TimeInterval = 1
     static let duration_6: TimeInterval = 6
 }
 

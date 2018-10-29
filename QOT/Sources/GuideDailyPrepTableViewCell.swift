@@ -52,8 +52,6 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         loadLabel.font = .H4Identifier
         recoveryLabel.font = .H4Identifier
         nullStateQuestionLabel.font = .apercuBold(ofSize: 16)
-        loadLabel.text = "Load"
-        recoveryLabel.text = "Recovery"
         nullStateLabel.text = R.string.localized.guideDailyPrepNotFinishedFeedback()
         titleLabel.text = R.string.localized.morningControllerTitleLabel()
     }
@@ -123,6 +121,8 @@ private extension GuideDailyPrepTableViewCell {
         nullStateLabel.isHidden = !isHidden
         receiveFeedbackButton.isHidden = !isHidden
         nullStateQuestionLabel.isHidden = !isHidden
+        recoveryProgressView.type = .recovery
+        loadProgressView.type = .load
         switch status {
         case .todo:
             loadProgressView.trackImage = nil
@@ -131,8 +131,8 @@ private extension GuideDailyPrepTableViewCell {
             recoveryProgressView.progressTintColor = .dailyPrepNullStateGray
             loadLabelsContainer.subviews.forEach { ($0 as? UILabel)?.textColor = .dailyPrepNullStateGray }
             recoveryLabelsContainer.subviews.forEach { ($0 as? UILabel)?.textColor = .dailyPrepNullStateGray }
-            recoveryProgressView.startNullStateAnimation()
             loadProgressView.startNullStateAnimation()
+            recoveryProgressView.startNullStateAnimation()
         case .done:
             setGradient(in: loadProgressView, with: [UIColor.green, UIColor.red])
             setGradient(in: recoveryProgressView, with: [UIColor.red, UIColor.green])
