@@ -133,22 +133,22 @@ private extension SigningProfileDetailViewController {
 
     @IBAction func didTapCreateAccount() {
         guard let interactor = interactor else { return }
-        if interactor.firstName?.isEmpty == true {
+        if interactor.firstName?.isEmpty == true || interactor.firstName == nil {
             firstNameFormView?.showError(message: R.string.localized.signingProfileErrorFirstName())
         } else {
             firstNameFormView?.hideError()
         }
-        if interactor.lastName?.isEmpty == true {
+        if interactor.lastName?.isEmpty == true || interactor.lastName == nil {
             lastNameFormView?.showError(message: R.string.localized.signingProfileErrorLastName())
         } else {
             lastNameFormView?.hideError()
         }
-        if interactor.gender?.isEmpty == true {
+        if interactor.gender?.isEmpty == true || interactor.gender == nil {
             genderFormView?.showError(message: R.string.localized.signingProfileErrorGender())
         } else {
             genderFormView?.hideError()
         }
-        if interactor.dateOfBirth?.isEmpty == true {
+        if interactor.dateOfBirth?.isEmpty == true || interactor.dateOfBirth == nil {
             dateOfBirthFormView?.showError(message: R.string.localized.signingProfileErrorBirthdate())
         } else {
             dateOfBirthFormView?.hideError()
