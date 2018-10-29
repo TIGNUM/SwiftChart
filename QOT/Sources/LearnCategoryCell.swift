@@ -17,19 +17,37 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
     private var shapeDashLayer: CAShapeLayer?
     private var outerLayer: CAGradientLayer?
     private var percentageLearned = 0.0
-    private lazy var titleLabel = UILabel()
     private var indexPath = IndexPath(item: 0, section: 0)
 
     private lazy var learnedContentLabel: UILabel = {
         let label = UILabel()
+        label.textAlignment = .center
+        return label
+    }()
+
+    private lazy var titleLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 1
+        layer.addGlowEffect(color: .white)
+        return label
+    }()
+
+    private lazy var performanceLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 1
         return label
     }()
 
     private lazy var textContainerView: UIView = {
         let view = UIView()
-        view.addSubview(self.learnedContentLabel)
-        view.addSubview(self.titleLabel)
-        self.contentView.addSubview(view)
+        view.addSubview(learnedContentLabel)
+        view.addSubview(titleLabel)
+        view.addSubview(performanceLabel)
+        contentView.addSubview(view)
         return view
     }()
 
@@ -117,26 +135,19 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
 
     func configure(with category: LearnCategoryListViewModel.Item, indexPath: IndexPath) {
         self.indexPath = indexPath
-		let attributedTextTitle = NSMutableAttributedString(string: category.title.uppercased(),
-															letterSpacing: 1.1,
-															font: titleFont,
-															lineSpacing: 2,
-															textColor: .white,
-															lineBreakMode: .byWordWrapping)
 		let attributedTextCount = NSMutableAttributedString(string: "\(category.viewedCount) OUT OF \(category.itemCount)",
             letterSpacing: 2,
 			font: percentageFont,
 			lineSpacing: 2.5,
-			textColor: .white60)
+			textColor: .white60,
+            alignment: .center)
         if percentageLearned != category.percentageLearned {
             percentageLearned = category.percentageLearned
         }
         learnedContentLabel.attributedText = attributedTextCount
-        titleLabel.attributedText = attributedTextTitle
-		learnedContentLabel.textAlignment = .center
-		titleLabel.textAlignment = .center
-		titleLabel.adjustsFontSizeToFitWidth = true
-		titleLabel.numberOfLines = 0
+        titleLabel.attributedText = attributedString(text: category.titleShort, textColor: .white)
+        performanceLabel.attributedText = attributedString(text: R.string.localized.learnContentPerformanceTitle(),
+                                                           textColor: .white60)
     }
 
     private func applyGradient(frame: CGRect) {
@@ -189,12 +200,26 @@ private extension LearnCategoryCell {
         topGuide.heightAnchor == bottomGuide.heightAnchor
 
         // configure the inbtween content
-        titleLabel.topAnchor == topGuide.bottomAnchor
+        performanceLabel.topAnchor == topGuide.bottomAnchor
+        performanceLabel.leadingAnchor == textContainerView.leadingAnchor  + Layout.padding_20
+        performanceLabel.trailingAnchor == textContainerView.trailingAnchor - Layout.padding_20
+
+        titleLabel.topAnchor == performanceLabel.bottomAnchor
         titleLabel.leadingAnchor == textContainerView.leadingAnchor + Layout.padding_20
         titleLabel.trailingAnchor == textContainerView.trailingAnchor - Layout.padding_20
 
         learnedContentLabel.topAnchor == titleLabel.bottomAnchor + Layout.padding_07
         learnedContentLabel.horizontalAnchors == titleLabel.horizontalAnchors
         learnedContentLabel.bottomAnchor == bottomGuide.topAnchor
+    }
+
+    func attributedString(text: String, textColor: UIColor) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: text.uppercased(),
+                                         letterSpacing: 1.1,
+                                         font: titleFont,
+                                         lineSpacing: 2,
+                                         textColor: textColor,
+                                         alignment: .center,
+                                         lineBreakMode: .byWordWrapping)
     }
 }

@@ -24,6 +24,10 @@ final class LearnCategoryListViewModel {
             itemCount = category.itemCount(section: .learnStrategy)
             percentageLearned = Double(viewedCount) / Double(itemCount)
         }
+
+        var titleShort: String {
+            return title.replacingOccurrences(of: R.string.localized.learnContentPerformanceTitle().capitalized, with: "").trimmed
+        }
     }
 
     // MARK: - Properties
