@@ -18,14 +18,12 @@ final class SettingsMenuHeader: UIView {
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var lastNameLabel: UILabel!
     @IBOutlet private weak var positionLabel: UILabel!
-    @IBOutlet private weak var collectionView: UICollectionView!
     private var viewModel: SettingsMenuViewModel?
     weak var delegate: SettingsMenuHeaderDelegate?
 
     override func layoutSubviews() {
         super.layoutSubviews()
         setupImage()
-        setupCollectionView()
     }
 
     func configure(imageURL: URL?, position: String, viewModel: SettingsMenuViewModel) {
@@ -53,36 +51,6 @@ final class SettingsMenuHeader: UIView {
     }
 }
 
-// MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-
-extension SettingsMenuHeader: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 1
-    }
-
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        guard let tileCount = viewModel?.tileCount else { return 2 }
-        return tileCount
-    }
-
-    func collectionView(_ collectionView: UICollectionView,
-                        layout collectionViewLayout: UICollectionViewLayout,
-                        sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: 120.9, height: 119)
-    }
-
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let item = viewModel?.tile(at: indexPath.row)
-        let cell: SettingsMenuCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        if let title = item?.title, let subtitle = item?.subtitle {
-            cell.setup(with: title, subTitle: subtitle)
-        }
-
-        return cell
-    }
-}
-
 // MARK: - Private
 
 private extension SettingsMenuHeader {
@@ -92,13 +60,7 @@ private extension SettingsMenuHeader {
         tapGestureRecognizer.addTarget(self, action: #selector(didTapImage))
         userImageView.isUserInteractionEnabled = true
         userImageView.addGestureRecognizer(tapGestureRecognizer)
-        userImageView.layer.cornerRadius = 10
-        userImageView.layer.masksToBounds = true
-    }
-
-    func setupCollectionView() {
-        collectionView.registerDequeueable(SettingsMenuCollectionViewCell.self)
-        collectionView.contentInset = UIEdgeInsets(top: 0, left: 29, bottom: 0, right: 29)
+        userImageView.corner(radius: Layout.CornerRadius.eight.rawValue)
     }
 
     @objc func didTapImage() {

@@ -12,6 +12,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Outlets / Properties
 
+    @IBOutlet weak var bottomSeperatorView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var valueLabel: UILabel!
     @IBOutlet private weak var switchControl: UISwitch!
@@ -33,11 +34,18 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear
+        if bottomSeperatorView != nil {
+            bottomSeperatorView.backgroundColor = .white40
+            bottomSeperatorView.isHidden = true
+        }
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
         accessoryType = .none
+        if bottomSeperatorView != nil {
+            bottomSeperatorView.isHidden = true
+        }
     }
 
     // MARK: - Setup
@@ -145,8 +153,8 @@ private extension SettingsTableViewCell {
     }
 
 	func setupTextFieldCell(title: String, value: String, secure: Bool, settingsType: SettingsType) {
-        textField.attributedText = Style.tagTitle(value, .white80).attributedString(lineSpacing: 2, alignment: .right)
-        textField.font = .H7Tag
+        textField.attributedText = Style.tagTitle(value, .azure).attributedString(lineSpacing: 2, alignment: .right)
+        textField.font = .PText
         textField.isSecureTextEntry = secure
         textField.delegate = self
         textField.keyboardType = .default
@@ -169,14 +177,22 @@ private extension SettingsTableViewCell {
     }
 
 	@objc func didFinishEnterText() {
-		textField.textColor = .white80
+		textField.textColor = .azure
 		if let text = textField.text {
 			settingsDelegate?.didTextFieldEndEditing(at: indexPath, text: text)
 		}
 	}
 
     func setTitle(title: String) {
-        titleLabel.attributedText = Style.headlineSmall(title.uppercased(), .white).attributedString(lineSpacing: 2)
+        var titleColor = UIColor.white
+        if title.caseInsensitiveCompare(R.string.localized.settingsSecurityPasswordTitle()) == .orderedSame {
+            titleColor = .azure
+        }
+        if title.caseInsensitiveCompare(R.string.localized.sidebarTitleLogout()) == .orderedSame {
+            titleColor = .grapefruit
+        }
+        titleLabel.attributedText = Style.headlineSmall(title.capitalized, titleColor).attributedString(lineSpacing: 2)
+        titleLabel.font = .PText
     }
 
     func setValue(value: String?, alignment: NSTextAlignment = .right) {
@@ -184,7 +200,10 @@ private extension SettingsTableViewCell {
             valueLabel.text = nil
             return
         }
-        valueLabel.attributedText = Style.tagTitle(value, .white80).attributedString(lineSpacing: 2, alignment: alignment)
+        valueLabel.attributedText = Style.tagTitle(value,
+                                                   settingsType.valueTextColor).attributedString(lineSpacing: 2,
+                                                                                                 alignment: alignment)
+        valueLabel.font = .PText
     }
 }
 

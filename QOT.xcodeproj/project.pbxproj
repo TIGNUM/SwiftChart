@@ -485,8 +485,6 @@
 		CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */; };
 		CB8AA2C5205A850A0033F573 /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C4205A850A0033F573 /* ISODate.swift */; };
 		CB8AA2C9205AB6A10033F573 /* NotificationID.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C8205AB6A10033F573 /* NotificationID.swift */; };
-		CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */; };
-		CB8C34501EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C344E1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib */; };
 		CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */; };
 		CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */; };
 		CB8C34561EAF7F200003AB65 /* styles.css in Resources */ = {isa = PBXBuildFile; fileRef = CB8C34551EAF7F200003AB65 /* styles.css */; };
@@ -1302,8 +1300,6 @@
 		CB8A154B1E7A8AD30023B2F9 /* CalendarImportTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarImportTask.swift; sourceTree = "<group>"; };
 		CB8AA2C4205A850A0033F573 /* ISODate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ISODate.swift; sourceTree = "<group>"; };
 		CB8AA2C8205AB6A10033F573 /* NotificationID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationID.swift; sourceTree = "<group>"; };
-		CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuCollectionViewCell.swift; sourceTree = "<group>"; };
-		CB8C344E1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuCollectionViewCell.xib; sourceTree = "<group>"; };
 		CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SettingsMenuViewController.xib; sourceTree = "<group>"; };
 		CB8C34531EAF7F190003AB65 /* MyToBeVisionViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyToBeVisionViewController.xib; sourceTree = "<group>"; };
 		CB8C34551EAF7F200003AB65 /* styles.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = styles.css; sourceTree = "<group>"; };
@@ -2270,7 +2266,6 @@
 			isa = PBXGroup;
 			children = (
 				CCAF03221E801B0E00015125 /* OldSettingsViewController.swift */,
-				CB8C344D1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift */,
 				91086E36208EFA050035DA1F /* SettingsMenuHeader.swift */,
 				CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */,
 				CC311A1C1EAF39DF0020C869 /* SettingsTableViewCell.swift */,
@@ -2278,7 +2273,6 @@
 				CC311A201EAF430B0020C869 /* SettingsButtonTableViewCell.xib */,
 				CC311A221EAF431E0020C869 /* SettingsControlTableViewCell.xib */,
 				CC311A261EAF434F0020C869 /* SettingsLabelTableViewCell.xib */,
-				CB8C344E1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib */,
 				9115F70D208DFFAE00EE5D1D /* SettingsMenuHeader.xib */,
 				CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */,
 				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
@@ -3864,7 +3858,6 @@
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
-				CB8C34501EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.xib in Resources */,
 				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
 				36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */,
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
@@ -4540,7 +4533,6 @@
 				912C9E3F203C721300C1AA76 /* MyToBeVisionProtocols.swift in Sources */,
 				CBC1DC191F0F7E0200F6D056 /* SettingFormat.swift in Sources */,
 				91F5BE48209757E700E85A51 /* PermissionsProtocols.swift in Sources */,
-				CB8C344F1EAF61CE0003AB65 /* SettingsMenuCollectionViewCell.swift in Sources */,
 				36796A3020D3C47400B55429 /* SigningProfileDetailViewController.swift in Sources */,
 				7F0888811F0A4B96005CE966 /* Partner.swift in Sources */,
 				CBC1DC2E1F0FC9E800F6D056 /* Object+Convenience.swift in Sources */,

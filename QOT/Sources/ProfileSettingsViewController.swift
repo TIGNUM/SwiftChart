@@ -395,7 +395,6 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         guard let headerCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? SettingsTableViewCell else {
             fatalError("SettingsHeaderCell does not exist!")
         }
-
         headerCell.setupHeaderCell(title: settingsViewModel.headerTitle(in: section))
         return headerCell.contentView
     }
@@ -408,6 +407,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         }
         settingsCell.settingsDelegate = self
         settingsCell.setup(settingsRow: row, indexPath: indexPath, isSyncFinished: true)
+        settingsCell.bottomSeperatorView.isHidden = false
         return settingsCell
     }
 
@@ -481,7 +481,7 @@ extension ProfileSettingsViewController {
 }
 
 extension ProfileSettingsViewController: SettingsViewControllerDelegate {
-    
+
     func didTextFieldEndEditing(at indexPath: IndexPath, text: String) {
         didTextFieldChanged(at: indexPath, text: text)
         tableView.reloadData()

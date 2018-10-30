@@ -41,7 +41,7 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
                                                permissionsManager: permissionsManager,
                                                startingSection: startingSection)
             let statisticsViewController = ChartViewController(viewModel: viewModel)
-            statisticsViewController.title = R.string.localized.meMyStatisticsNavigationBarTitle()
+            statisticsViewController.title = R.string.localized.tabBarItemData()
             topTabBarController = UINavigationController(withPages: [statisticsViewController],
                                                          navigationItem: NavigationItem(),
                                                          topBarDelegate: self,

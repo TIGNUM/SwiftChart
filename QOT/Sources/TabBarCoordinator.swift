@@ -176,7 +176,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                            permissionsManager: permissionsManager,
                                            startingSection: .sleep)
         let chartViewController = ChartViewController(viewModel: viewModel)
-        chartViewController.title = R.string.localized.meMyStatisticsNavigationBarTitle()
+        chartViewController.title = R.string.localized.tabBarItemData()
         let topTabBarController = UINavigationController(withPages: [chartViewController],
                                                          navigationItem: NavigationItem(),
                                                          topBarDelegate: self,

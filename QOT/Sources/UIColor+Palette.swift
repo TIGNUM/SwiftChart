@@ -203,9 +203,9 @@ extension UIColor {
         return UIColor(red: 39/255, green: 41/255, blue: 57/255, alpha: 1)
     }
 
-    /// UIColor(red: 0, green: 149/255, blue: 255/255, alpha: 1)
+    /// UIColor(red: 1/255, green: 148/255, blue: 255/255, alpha: 1)
     class var azure: UIColor {
-        return UIColor(red: 0/255, green: 149/255, blue: 255/255, alpha: 1)
+        return UIColor(red: 1/255, green: 148/255, blue: 255/255, alpha: 1)
     }
 
     /// UIColor(red: 0/255, green: 149/255, blue: 255/255, alpha: 0.2)
@@ -331,6 +331,10 @@ extension UIColor {
 
     class var blueGray: UIColor {
         return UIColor(red: 142.0 / 255.0, green: 142.0 / 255.0, blue: 147.0 / 255.0, alpha: 1.0)
+    }
+
+    class var grapefruit: UIColor {
+        return UIColor(red: 244.0 / 255.0, green: 96.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
     }
 
     static var random: UIColor {

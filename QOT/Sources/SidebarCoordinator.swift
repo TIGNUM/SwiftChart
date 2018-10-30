@@ -34,7 +34,6 @@ final class SidebarCoordinator: ParentCoordinator {
         self.syncManager = syncManager
         self.permissionsManager = permissionsManager
         self.destination = destination
-
         sidebarViewModel = SidebarViewModel(services: services)
         sideBarViewController = SidebarViewController(viewModel: sidebarViewModel)
         topTabBarController = UINavigationController(withPages: [sideBarViewController],

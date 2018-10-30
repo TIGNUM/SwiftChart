@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -35,19 +35,30 @@
                             </textField>
                         </subviews>
                     </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LKF-Lr-9re">
+                        <rect key="frame" x="16" y="42.5" width="359" height="1"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="vRd-TY-QQt"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
+                    <constraint firstItem="LKF-Lr-9re" firstAttribute="leading" secondItem="kaS-Lt-0Pk" secondAttribute="leading" constant="16" id="GhX-mC-268"/>
                     <constraint firstAttribute="bottom" secondItem="WtU-fy-VrR" secondAttribute="bottom" id="NTJ-UU-d0x"/>
                     <constraint firstItem="WtU-fy-VrR" firstAttribute="top" secondItem="kaS-Lt-0Pk" secondAttribute="top" id="VEb-Zg-lrN"/>
                     <constraint firstAttribute="trailing" secondItem="WtU-fy-VrR" secondAttribute="trailing" constant="16" id="Ykm-QY-TV9"/>
+                    <constraint firstAttribute="trailing" secondItem="LKF-Lr-9re" secondAttribute="trailing" id="nRM-Cl-ScZ"/>
                     <constraint firstItem="WtU-fy-VrR" firstAttribute="leading" secondItem="kaS-Lt-0Pk" secondAttribute="leading" constant="16" id="qI8-yx-GTK"/>
+                    <constraint firstAttribute="bottom" secondItem="LKF-Lr-9re" secondAttribute="bottom" id="u2f-Sb-rGc"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bottomSeperatorView" destination="LKF-Lr-9re" id="Rz3-ky-gfw"/>
                 <outlet property="textField" destination="h77-Nb-jRk" id="Wi9-9H-aYQ"/>
                 <outlet property="titleLabel" destination="j86-2t-SeI" id="YNG-7u-9gQ"/>
             </connections>
-            <point key="canvasLocation" x="-46" y="-124"/>
+            <point key="canvasLocation" x="-47.200000000000003" y="-124.13793103448276"/>
         </tableViewCell>
     </objects>
 </document>

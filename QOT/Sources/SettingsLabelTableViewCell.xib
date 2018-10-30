@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -40,19 +40,30 @@
                             <constraint firstAttribute="bottom" secondItem="Obg-8Z-caX" secondAttribute="bottom" id="txj-Cn-oih"/>
                         </constraints>
                     </stackView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vNT-VS-iat">
+                        <rect key="frame" x="16" y="42.5" width="359" height="1"/>
+                        <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="3aJ-pB-ICu"/>
+                        </constraints>
+                    </view>
                 </subviews>
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="g7c-5b-hX5" secondAttribute="bottom" id="LrP-Ah-MKg"/>
+                    <constraint firstAttribute="bottom" secondItem="vNT-VS-iat" secondAttribute="bottom" id="M46-z5-NhR"/>
+                    <constraint firstAttribute="trailing" secondItem="vNT-VS-iat" secondAttribute="trailing" id="ZYu-QL-UVj"/>
                     <constraint firstItem="g7c-5b-hX5" firstAttribute="top" secondItem="Klu-AQ-DWN" secondAttribute="top" id="jIc-lY-j5d"/>
                     <constraint firstAttribute="trailing" secondItem="g7c-5b-hX5" secondAttribute="trailing" constant="16" id="qxB-Dz-5KO"/>
+                    <constraint firstItem="vNT-VS-iat" firstAttribute="leading" secondItem="Klu-AQ-DWN" secondAttribute="leading" constant="16" id="rkP-zA-BZm"/>
                     <constraint firstItem="g7c-5b-hX5" firstAttribute="leading" secondItem="Klu-AQ-DWN" secondAttribute="leading" constant="16" id="uGe-qm-19b"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="bottomSeperatorView" destination="vNT-VS-iat" id="TXm-xn-KkQ"/>
                 <outlet property="titleLabel" destination="v5f-Rt-IVi" id="MSD-IG-g7u"/>
                 <outlet property="valueLabel" destination="Obg-8Z-caX" id="GoZ-Lm-lII"/>
             </connections>
-            <point key="canvasLocation" x="-130" y="36"/>
+            <point key="canvasLocation" x="-130.40000000000001" y="35.082458770614693"/>
         </tableViewCell>
     </objects>
 </document>

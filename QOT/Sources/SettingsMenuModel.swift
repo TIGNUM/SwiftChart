@@ -34,15 +34,15 @@ final class SettingsMenuViewModel {
     }
 
     var userFirstName: String {
-        return user.givenName.uppercased()
+        return user.givenName.capitalized
     }
 
     var userLastName: String {
-        return user.familyName.uppercased()
+        return user.familyName.capitalized
     }
 
     var userJobTitle: String? {
-        return user.jobTitle?.uppercased()
+        return user.jobTitle
     }
 
     var userProfileImageResource: MediaResource? {
@@ -169,6 +169,36 @@ enum SettingsType: Int {
         }
     }
 
+    var valueTextColor: UIColor {
+        switch self {
+        case .company: return .azure
+        case .jobTitle: return .azure
+        case .email: return .azure
+        case .phone: return .azure
+        case .firstName: return .azure
+        case .lastName: return .azure
+        case .gender: return .azure
+        case .dateOfBirth: return .azure
+        case .weight: return .azure
+        case .height: return .azure
+        case .calendar: return .white40
+        case .calendarOnOtherDevices: return .white40
+        case .tutorial: return .azure
+        case .interview: return .azure
+        case .support: return .azure
+        case .strategies: return .azure
+        case .dailyPrep: return .azure
+        case .weeklyChoices: return .azure
+        case .password: return .azure
+        case .logout: return .azure
+        case .confirm: return .azure
+        case .terms: return .azure
+        case .copyrights: return .azure
+        case .security: return .azure
+        case .adminSettings: return .azure
+        }
+    }
+
     func contentCollection(service: ContentService) -> ContentCollection? {
         switch self {
         case .copyrights: return service.contentCollection(id: 100105)
@@ -186,7 +216,6 @@ enum SettingsType: Int {
         } else if key == SettingsType.weeklyChoices.notificationKey {
             return .weeklyChoices
         }
-
         return nil
     }
 
