@@ -289,7 +289,7 @@ private extension ChatViewController {
     }
 
     func setupVisionGeneratorView(withBackgroundImage backgroundImage: UIImage?) {
-        view.backgroundColor = .clear
+        view.backgroundColor = .navy
         view.addSubview(collectionView)
         view.addSubview(bottomButton)
         bottomButton.centerXAnchor == view.centerXAnchor
