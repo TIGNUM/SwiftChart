@@ -143,6 +143,7 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
             alignment: .center)
         if percentageLearned != category.percentageLearned {
             percentageLearned = category.percentageLearned
+            drawDashedCircle(frame: frame)
         }
         learnedContentLabel.attributedText = attributedTextCount
         titleLabel.attributedText = attributedString(text: category.titleShort, textColor: .white)
