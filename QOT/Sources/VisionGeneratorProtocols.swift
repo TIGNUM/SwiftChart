@@ -18,6 +18,7 @@ protocol ChatViewControllerInterface: class {
     func dismiss()
     func showLoadingIndicator()
     func hideLoadingIndicator()
+    func restartGenerator()
 }
 
 protocol VisionGeneratorPresenterInterface {
@@ -38,6 +39,7 @@ protocol VisionGeneratorInteractorInterface: Interactor {
     func laodLastQuestion()
     func didPressBottomButton(_ choice: VisionGeneratorChoice)
     func bottomButtonTitle(_ choice: VisionGeneratorChoice) -> String
+    func restartGenerator()
     var currentQuestionType: VisionGeneratorChoice.QuestionType { get }
 }
 

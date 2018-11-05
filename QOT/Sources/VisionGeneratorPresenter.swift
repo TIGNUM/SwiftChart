@@ -56,6 +56,9 @@ extension VisionGeneratorPresenter: VisionGeneratorPresenterInterface {
     }
 
     func updateTabBarItem(visionModel: MyToBeVisionModel.Model?, navigationItem: NavigationItem?) {
+        if let _ = ((delegate?.currentTBVController as? UINavigationController)?.viewControllers.first as? PageViewController)?.viewControllers?.first as? MyToBeVisionViewController {
+            return
+        }
         if
             let toBeVision = visionModel, toBeVision.headLine != nil, toBeVision.text != nil,
             let visionController = visionController,

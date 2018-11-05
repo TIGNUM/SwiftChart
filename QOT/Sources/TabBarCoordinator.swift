@@ -28,6 +28,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let articleCollectionProvider: ArticleCollectionProvider
     private let tokenBin = TokenBin()
     private let badgeManager: BadgeManager
+    private let myToBeVision: Results<MyToBeVision>
     private lazy var myUniverseProvider = MyUniverseProvider(services: services)
 
     lazy var prepareCoordinator: PrepareCoordinator = {
@@ -73,7 +74,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         controller.tabBarControllerDelegate = self
         controller.selectedIndex = selectedIndex.value
         controller.viewControllers = [topTabBarControllerGuide,
-                                      topTabBarControllerToBeVision,
+                                      topTabBarControllerToBeVision(services: services),
                                       topTabBarControllerLearn,
                                       topTabBarControllerData,
                                       topTabBarControllerPrepare]
@@ -84,10 +85,11 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         return controller
     }()
 
-    private lazy var topTabBarControllerToBeVision: UINavigationController = {
+    private func topTabBarControllerToBeVision(services: Services) -> UINavigationController {
         let navigationItem = NavigationItem()
         let configurator = MyToBeVisionConfigurator.make(navigationItem: navigationItem)
         let toBeVisionController = MyToBeVisionViewController(configurator: configurator)
+        toBeVisionController.delegate = self
         let currentToBeVision = services.userService.myToBeVision()
         if let toBeVision = currentToBeVision, toBeVision.headline != nil, toBeVision.text != nil {
             let topTabBarController = UINavigationController(withPages: [toBeVisionController],
@@ -119,7 +121,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
             topTabBarController.tabBarItem = TabBarItem(config: TabBar.tbv.itemConfig)
             return topTabBarController
         }
-    }()
+    }
 
     lazy var guideViewController: GuideViewController = {
         let guideViewController = GuideViewController(configurator: GuideConfigurator.make(badgeManager: badgeManager))
@@ -215,12 +217,24 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         self.pageTracker = pageTracker
         self.syncManager = syncManager
         self.networkManager = networkManager
+        self.myToBeVision = services.mainRealm.objects(MyToBeVision.self)
         articleCollectionProvider = ArticleCollectionProvider(services: services)
         badgeManager = BadgeManager(services: services)
         super.init()
         articleCollectionProvider.updateBlock = { [unowned self] viewData in
             self.articleCollectionViewController.viewData = viewData
         }
+        if let _ = ((currentTBVController as? UINavigationController)?.viewControllers.first as? PageViewController)?.viewControllers?.first as? MyToBeVisionViewController {
+            return
+        }
+        tokenBin.addToken(myToBeVision.observe { [unowned self] _ in
+            if let toBeVision = self.myToBeVision.first?.model, toBeVision.headLine != nil, toBeVision.text != nil {
+                DispatchQueue.main.async {
+                    self.didUpdateTabBarItemTBV(topBarController: self.topTabBarControllerToBeVision(services: services))
+                }
+                self.tokenBin.disposeAll()
+            }
+        })
     }
 
     // MARK: -
@@ -445,5 +459,9 @@ extension TabBarCoordinator: MyToBeVisionViewControllerDelegate {
 
     func didUpdateTabBarItemTBV(topBarController: UINavigationController) {
         tabBarController.viewControllers?[TabBar.tbv.index] = topBarController
+    }
+
+    var currentTBVController: UIViewController? {
+        return tabBarController.viewControllers?[TabBar.tbv.index]
     }
 }

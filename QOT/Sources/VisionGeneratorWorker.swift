@@ -19,7 +19,7 @@ final class VisionGeneratorWorker {
     private var currentQuestionType: VisionGeneratorChoice.QuestionType?
     private var visionModel: MyToBeVisionModel.Model?
     private var currentVisionModel: MyToBeVisionModel.Model?
-    private let allChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]]
+    private var allChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]]
     private var didLoadLastQuestion = false
     private let createVisionPresentDelay = DispatchTimeInterval.seconds(1)
     private let readingVisionPresentDelay = DispatchTimeInterval.seconds(10)
@@ -119,6 +119,14 @@ extension VisionGeneratorWorker {
         }
     }
 
+    func restartGenerator() {
+        currentQuestionType = .intro
+        allChatItems = services.questionsService.visionChatItems
+        chatViewModel.resetVisionSelections()
+        chatViewModel.setItems([])
+        updateViewModel(for: .intro)
+    }
+
     func chatItems(for targetID: Int) -> [ChatItem<VisionGeneratorChoice>] {
         if let question = questionService.visionQuestion(for: targetID) {
             setCurrentQuestionType(question)
@@ -199,6 +207,6 @@ private extension VisionGeneratorWorker {
         if let question = question, let type = VisionGeneratorChoice.QuestionType(rawValue: question.key ?? "") {
             return type
         }
-        return VisionGeneratorChoice.QuestionType.intro
+        return .intro
     }
 }

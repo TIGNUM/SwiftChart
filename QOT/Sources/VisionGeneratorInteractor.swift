@@ -28,6 +28,10 @@ final class VisionGeneratorInteractor {
 
 extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
 
+    func restartGenerator() {
+        worker.restartGenerator()
+    }
+
     var currentQuestionType: VisionGeneratorChoice.QuestionType {
         return worker.questionType
     }
@@ -83,8 +87,8 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
             if let model = worker.model {
                 presenter.updateVisionControllerModel(model)
             }
-            presenter.dismiss()
             presenter.updateTabBarItem(visionModel: worker.model, navigationItem: worker.navItem)
+            presenter.dismiss()
         default: return
         }
     }

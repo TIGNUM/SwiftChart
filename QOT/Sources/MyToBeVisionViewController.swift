@@ -12,6 +12,7 @@ import AVFoundation
 
 protocol MyToBeVisionViewControllerDelegate: class {
     func didUpdateTabBarItemTBV(topBarController: UINavigationController)
+    var currentTBVController: UIViewController? { get }
 }
 
 final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
@@ -39,7 +40,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
 	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
     @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var editButton: UIButton!
-    private weak var delegate: MyToBeVisionViewControllerDelegate?
+    weak var delegate: MyToBeVisionViewControllerDelegate?
 	private var contentInset = UIEdgeInsets()
     private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()

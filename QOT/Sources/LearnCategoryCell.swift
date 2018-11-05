@@ -30,7 +30,7 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         label.textAlignment = .center
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 1
-        layer.addGlowEffect(color: .white)
+        layer.addGlowEffect(color: .white20)
         return label
     }()
 
@@ -127,7 +127,7 @@ final class LearnCategoryCell: UICollectionViewCell, Dequeueable {
         layer.strokeColor = UIColor.white.cgColor
         layer.lineWidth = 5.0
         layer.lineDashPattern = [1]
-        layer.addGlowEffect(color: .white)
+        layer.addGlowEffect(color: .white20)
         shapeDashLayer?.removeFromSuperlayer()
         contentView.layer.addSublayer(layer)
         shapeDashLayer = layer

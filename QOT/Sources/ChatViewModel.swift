@@ -99,6 +99,12 @@ final class ChatViewModel<T: ChatChoice> {
         setupQueue()
     }
 
+    func resetVisionSelections() {
+        selectedVisionChoicesIDs.removeAll()
+        visionSelections.removeAll()
+        setItems([])
+    }
+
     func didSelectItem(at indexPath: IndexPath) {
         let item = items[indexPath.section]
         switch item.type {

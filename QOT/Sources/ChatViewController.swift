@@ -160,6 +160,9 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.setStatusBarStyle(.lightContent)
+        if pageName == PageName.visionGenerator {
+            restartGenerator()
+        }
         guard let visionChoice = visionChoice else { return }
         loadNextQuestions(visionChoice)
         self.visionChoice = nil
@@ -465,6 +468,10 @@ extension ChatViewController: ChatViewLayoutDelegate {
 
 extension ChatViewController: ChatViewControllerInterface {
 
+    func restartGenerator() {
+        visionGeneratorInteractor?.restartGenerator()
+    }
+
     func showLoadingIndicator() {
         _ = MBProgressHUD.showAdded(to: view, animated: true)
     }
@@ -479,7 +486,6 @@ extension ChatViewController: ChatViewControllerInterface {
             navigationController?.popViewController(animated: true)
             return
         }
-
         let configurator = MyToBeVisionConfigurator.make(navigationItem: NavigationItem())
         let toBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
         navigationController?.pushViewController(toBeVisionViewController, animated: true)
