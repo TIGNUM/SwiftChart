@@ -36,22 +36,18 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
     }
 
     func start() {
-        do {
-            let viewModel = try ChartViewModel(services: services,
-                                               permissionsManager: permissionsManager,
-                                               startingSection: startingSection)
-            let statisticsViewController = ChartViewController(viewModel: viewModel)
-            statisticsViewController.title = R.string.localized.tabBarItemData()
-            topTabBarController = UINavigationController(withPages: [statisticsViewController],
-                                                         navigationItem: NavigationItem(),
-                                                         topBarDelegate: self,
-                                                         leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
-            topTabBarController.modalPresentationStyle = .custom
-            topTabBarController.transitioningDelegate = transitioningDelegate
-            rootViewController.present(topTabBarController, animated: true)
-        } catch {
-            assertionFailure("Failed to fetch cards with error: \(error)")
-        }
+        let viewModel = ChartViewModel(services: services,
+                                       permissionsManager: permissionsManager,
+                                       startingSection: startingSection)
+        let statisticsViewController = ChartViewController(viewModel: viewModel)
+        statisticsViewController.title = R.string.localized.tabBarItemData()
+        topTabBarController = UINavigationController(withPages: [statisticsViewController],
+                                                     navigationItem: NavigationItem(),
+                                                     topBarDelegate: self,
+                                                     leftButton: UIBarButtonItem(withImage: R.image.ic_minimize()))
+        topTabBarController.modalPresentationStyle = .custom
+        topTabBarController.transitioningDelegate = transitioningDelegate
+        rootViewController.present(topTabBarController, animated: true)
     }
 }
 

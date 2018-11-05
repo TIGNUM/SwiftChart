@@ -24,7 +24,7 @@ final class LearnContentListBackgroundView: UICollectionReusableView {
     }
 
     override func apply(_ layoutAttributes: UICollectionViewLayoutAttributes) {
-        if let attributes = layoutAttributes as? LearnContentListBackgroundViewLayoutAttributes {
+        if layoutAttributes as? LearnContentListBackgroundViewLayoutAttributes != nil {
             layoutIfNeeded()
         }
     }

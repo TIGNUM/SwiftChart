@@ -33,6 +33,7 @@ class QuestionnaireViewController: UIViewController {
     private var currentIndex: Int = 5
     private var presentationType: QuestionnairePresentationType = .fill
     private var fillColor: UIColor? = nil
+    private var showAnimated: Bool = false
     weak open var answerDelegate: QuestionnaireAnswer?
 
     static func viewController<T>(with questionnaire: T,
@@ -63,7 +64,9 @@ class QuestionnaireViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        animationShow()
+        if showAnimated == false {
+            animationShow()
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
@@ -101,11 +104,13 @@ extension QuestionnaireViewController {
         tableView.isHidden = true
         tableView.reloadData()
         progressView.alpha = 0.0
+        showAnimated = false
     }
 
     public func animationShow() {
         // start animation
         tableView.isHidden = true
+        showAnimated = true
         tableView.reloadData()
 
         questionLabel.isHidden = false

@@ -103,10 +103,15 @@ extension MorningInterviewViewController {
         interactor?.saveAnswers(questions: morningInterviews)
         close()
     }
-    func checkAnswers() {
-        if questions.count == (questions.compactMap { (question) -> Int? in
+
+    func hasAllAnswers() -> Bool {
+        return questions.count == (questions.compactMap { (question) -> Int? in
             return question.answerIndex
-        }).count {
+        }).count
+    }
+
+    func checkAnswers() {
+        if hasAllAnswers() {
             showButton()
         } else {
             hideButton()
@@ -150,7 +155,9 @@ extension MorningInterviewViewController: QuestionnaireAnswer {
         guard let answerString = answer as? String else { return }
         questions[questionIndex].answerIndex = questions[questionIndex].answers.lastIndex(of: answerString)
         morningInterviews[questionIndex].selectedAnswerIndex = questions[questionIndex].selectedAnswerIndex()
-        if questions[questionIndex].answerIndex != nil, let nextViewController = next(from: viewController) {
+        if questions[questionIndex].answerIndex != nil,
+            let nextViewController = next(from: viewController),
+            hasAllAnswers() == false {
             nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_06, repeats: false) { timer in
                 self.pageController?.setViewControllers([nextViewController],
                                                         direction: .forward,
