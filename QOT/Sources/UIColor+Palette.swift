@@ -148,6 +148,11 @@ extension UIColor {
         return UIColor(white: 1, alpha: 0.14)
     }
 
+    /// UIColor(white: 255/255, alpha: 0.15)
+    class var white15: UIColor {
+        return UIColor(white: 1, alpha: 0.15)
+    }
+
     /// UIColor(white: 255/255, alpha: 0.2)
     class var white20: UIColor {
         return UIColor(white: 1, alpha: 0.2)

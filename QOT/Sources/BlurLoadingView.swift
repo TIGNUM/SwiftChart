@@ -10,7 +10,7 @@ import UIKit
 import Anchorage
 
 final class BlurLoadingView: UIView {
-    private lazy var blurView = UIVisualEffectView(effect: UIBlurEffect(style: .dark))
+    
     private let activityIndicatorView: UIActivityIndicatorView
     private let label: UILabel = UILabel()
 
@@ -27,25 +27,15 @@ final class BlurLoadingView: UIView {
     // MARK: - private
 
     private func setup(lodingText: String) {
-        // config components
-        backgroundColor = .clear
+        backgroundColor = .navy
         activityIndicatorView.startAnimating()
         label.text = lodingText
         label.font = .DPText2
         label.textColor = .white
         label.numberOfLines = 0
-
-        // add components
-        addSubview(blurView)
         addSubview(activityIndicatorView)
         addSubview(label)
-
-        // setup constraints
-        blurView.horizontalAnchors == horizontalAnchors
-        blurView.verticalAnchors == verticalAnchors
-
         activityIndicatorView.centerAnchors == centerAnchors
-
         label.centerXAnchor == activityIndicatorView.centerXAnchor
         label.topAnchor == activityIndicatorView.bottomAnchor + 20
         label.horizontalAnchors >= horizontalAnchors + 10

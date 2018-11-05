@@ -171,31 +171,31 @@ enum SettingsType: Int {
 
     var valueTextColor: UIColor {
         switch self {
-        case .company: return .azure
-        case .jobTitle: return .azure
-        case .email: return .azure
-        case .phone: return .azure
-        case .firstName: return .azure
-        case .lastName: return .azure
-        case .gender: return .azure
-        case .dateOfBirth: return .azure
-        case .weight: return .azure
-        case .height: return .azure
+        case .company: return .white
+        case .jobTitle: return .white
+        case .email: return .white
+        case .phone: return .white
+        case .firstName: return .white
+        case .lastName: return .white
+        case .gender: return .white
+        case .dateOfBirth: return .white
+        case .weight: return .white
+        case .height: return .white
         case .calendar: return .white40
         case .calendarOnOtherDevices: return .white40
-        case .tutorial: return .azure
-        case .interview: return .azure
-        case .support: return .azure
-        case .strategies: return .azure
-        case .dailyPrep: return .azure
-        case .weeklyChoices: return .azure
-        case .password: return .azure
-        case .logout: return .azure
-        case .confirm: return .azure
-        case .terms: return .azure
-        case .copyrights: return .azure
-        case .security: return .azure
-        case .adminSettings: return .azure
+        case .tutorial: return .white
+        case .interview: return .white
+        case .support: return .white
+        case .strategies: return .white
+        case .dailyPrep: return .white
+        case .weeklyChoices: return .white
+        case .password: return .white
+        case .logout: return .white
+        case .confirm: return .white
+        case .terms: return .white
+        case .copyrights: return .white
+        case .security: return .white
+        case .adminSettings: return .white
         }
     }
 
