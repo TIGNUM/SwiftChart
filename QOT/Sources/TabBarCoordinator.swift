@@ -30,6 +30,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let badgeManager: BadgeManager
     private let myToBeVision: Results<MyToBeVision>
     private lazy var myUniverseProvider = MyUniverseProvider(services: services)
+    private lazy var visionNavigationItem = NavigationItem()
 
     lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: self.services,
@@ -74,7 +75,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         controller.tabBarControllerDelegate = self
         controller.selectedIndex = selectedIndex.value
         controller.viewControllers = [topTabBarControllerGuide,
-                                      topTabBarControllerToBeVision(services: services),
+                                      topTabBarControllerMyToBeVision,
                                       topTabBarControllerLearn,
                                       topTabBarControllerData,
                                       topTabBarControllerPrepare]
@@ -85,20 +86,27 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         return controller
     }()
 
-    private func topTabBarControllerToBeVision(services: Services) -> UINavigationController {
-        let navigationItem = NavigationItem()
-        let configurator = MyToBeVisionConfigurator.make(navigationItem: navigationItem)
+    private lazy var topTabBarControllerMyToBeVision: UINavigationController = {
+        let topTabBarController = UINavigationController(withPages: [myToBeVisionController],
+                                                         navigationItem: visionNavigationItem,
+                                                         topBarDelegate: myToBeVisionController,
+                                                         leftButton: .burger,
+                                                         rightButton: .info)
+        topTabBarController.tabBarItem = TabBarItem(config: TabBar.tbv.itemConfig)
+        return topTabBarController
+    }()
+
+    private lazy var myToBeVisionController: MyToBeVisionViewController = {
+        let configurator = MyToBeVisionConfigurator.make(navigationItem: visionNavigationItem)
         let toBeVisionController = MyToBeVisionViewController(configurator: configurator)
         toBeVisionController.delegate = self
+        return toBeVisionController
+    }()
+
+    private func topTabBarControllerToBeVision(services: Services) -> UINavigationController {
         let currentToBeVision = services.userService.myToBeVision()
         if let toBeVision = currentToBeVision, toBeVision.headline != nil, toBeVision.text != nil {
-            let topTabBarController = UINavigationController(withPages: [toBeVisionController],
-                                                             navigationItem: navigationItem,
-                                                             topBarDelegate: toBeVisionController,
-                                                             leftButton: .burger,
-                                                             rightButton: .info)
-            topTabBarController.tabBarItem = TabBarItem(config: TabBar.tbv.itemConfig)
-            return topTabBarController
+            return topTabBarControllerMyToBeVision
         } else {
             let visionModel = MyToBeVisionModel.Model(headLine: currentToBeVision?.headline,
                                                       imageURL: currentToBeVision?.profileImageResource?.url,
@@ -109,13 +117,13 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                                       homeTags: currentToBeVision?.keywords(for: .home))
             let chatItems = services.questionsService.visionChatItems
             let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(toBeVision: visionModel,
-                                                                                               visionController: toBeVisionController,
+                                                                                               visionController: myToBeVisionController,
                                                                                                visionChatItems: chatItems,
-                                                                                               navigationItem: navigationItem,
+                                                                                               navigationItem: visionNavigationItem,
                                                                                                delegate: self)
             let topTabBarController = UINavigationController(withPages: [chatViewController],
-                                                             navigationItem: navigationItem,
-                                                             topBarDelegate: toBeVisionController,
+                                                             navigationItem: visionNavigationItem,
+                                                             topBarDelegate: myToBeVisionController,
                                                              leftButton: .burger,
                                                              rightButton: .info)
             topTabBarController.tabBarItem = TabBarItem(config: TabBar.tbv.itemConfig)

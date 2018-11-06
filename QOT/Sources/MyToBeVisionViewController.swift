@@ -57,6 +57,12 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
     var isLoading: Bool = false {
         didSet {
             showLoading(isLoading, text: R.string.localized.loadingData())
+            if isLoading == false {
+                scrollToTop()
+                toBeVisionDidUpdate()
+                syncEditingViews(true)
+                view.layoutIfNeeded()
+            }
         }
     }
 
@@ -124,7 +130,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         maskImage()
         resizeTextViewsHeight()
 		updateContainerHeight()
-        self.title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
+        title = R.string.localized.meSectorMyWhyVisionTitle().uppercased()
     }
 
     override func viewWillAppear(_ animated: Bool) {

@@ -10,7 +10,7 @@ import UIKit
 import Anchorage
 
 final class BlurLoadingView: UIView {
-    
+
     private let activityIndicatorView: UIActivityIndicatorView
     private let label: UILabel = UILabel()
 
