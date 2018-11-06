@@ -75,8 +75,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         controller.tabBarControllerDelegate = self
         controller.selectedIndex = selectedIndex.value
         controller.viewControllers = [topTabBarControllerGuide,
-                                      topTabBarControllerMyToBeVision,
                                       topTabBarControllerLearn,
+                                      topTabBarControllerMyToBeVision,
                                       topTabBarControllerData,
                                       topTabBarControllerPrepare]
         badgeManager.guideBadgeContainer = (view: controller.tabBar.subviews[TabBar.guide.index],

@@ -10,8 +10,8 @@ import Foundation
 
 enum TabBar: Index {
     case guide = 0
-    case tbv = 1
-    case learn = 2
+    case learn = 1
+    case tbv = 2
     case data = 3
     case prepare = 4
 
