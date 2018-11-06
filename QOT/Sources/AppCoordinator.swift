@@ -155,14 +155,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         var setupError: Error?
         setupApp { [unowned self] (error) in
             setupError = error
-            if error == nil, let credentials = self.credentialsManager.loginCredentials() {
-                dispatchGroup.enter()
-                let username = credentials.username
-                let password = credentials.password
-                self.networkManager.performAuthenticationRequest(username: username, password: password) { error in
-                    dispatchGroup.leave()
-                }
-            }
             dispatchGroup.leave()
             self.setupBugLife()
             AppDelegate.current.setupSiren(services: self.services)
