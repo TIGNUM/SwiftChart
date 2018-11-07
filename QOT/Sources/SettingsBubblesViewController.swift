@@ -41,6 +41,7 @@ private extension SettingsBubblesViewController {
     func setupNavigationBar() {
         let title = settingsType == .about ? R.string.localized.sidebarTitleAbout() : R.string.localized.sidebarTitleSupport()
         navigationItem.title = title.uppercased()
+        setCustomBackButton()
     }
 }
 

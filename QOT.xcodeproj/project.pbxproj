@@ -402,6 +402,7 @@
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		AC7F3DB42177407D0058B343 /* GuidePreparationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7F3DB22177407D0058B343 /* GuidePreparationTableViewCell.swift */; };
 		AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7F3DB32177407D0058B343 /* GuidePreparationTableViewCell.xib */; };
+		AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */; };
 		AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */; };
 		ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
@@ -1210,6 +1211,7 @@
 		AC7F3DB22177407D0058B343 /* GuidePreparationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePreparationTableViewCell.swift; sourceTree = "<group>"; };
 		AC7F3DB32177407D0058B343 /* GuidePreparationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidePreparationTableViewCell.xib; sourceTree = "<group>"; };
 		AC812B5E79C328CCC051F8B9 /* Pods-QOTWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		ACEF4554218077FA00A4D531 /* GuideProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProgressView.swift; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
@@ -3054,7 +3056,8 @@
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
 				DB82EEC32152859C002322B7 /* UIView+Animation.swift */,
 				DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */,
-				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
+				AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */,
+				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -4588,6 +4591,7 @@
 				CC33CA301EC60447008E6B33 /* DatabaseConstants.swift in Sources */,
 				CBC1DC2B1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift in Sources */,
 				3666769C207CF68500D2F5AD /* VisionGeneratorRouter.swift in Sources */,
+				AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */,
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
 				CB35504320597D44000ECAFA /* DailyPrepAnswerObject.swift in Sources */,
 				CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */,

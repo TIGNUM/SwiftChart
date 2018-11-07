@@ -28,6 +28,7 @@ final class SlideShowViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setCustomBackButton()
         view.backgroundColor = .navy
         interactor.viewDidLoad()
         collectionView.registerDequeueable(SlideShowTitleSubtitleSlideCell.self)

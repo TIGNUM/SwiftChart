@@ -117,6 +117,7 @@ private extension SettingsCalendarListViewController {
     }
 
     func setupView() {
+        setCustomBackButton()
         view.backgroundColor = .navy
         view.addBlackNavigationView()
 		let fadeContainerView = FadeContainerView()

@@ -42,6 +42,7 @@ extension SupportFAQViewController: SupportFAQViewControllerInterface {
         tableView.estimatedRowHeight = Layout.height_44
         tableView.backgroundColor = .navy
         title = R.string.localized.sidebarTitleFAQ()
+        setCustomBackButton()
     }
 }
 

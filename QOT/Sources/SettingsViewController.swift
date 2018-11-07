@@ -40,6 +40,7 @@ final class SettingsViewController: UIViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         tableView.registerDequeueable(SettingsCell.self)
+        setCustomBackButton()
     }
 
     override func viewDidLayoutSubviews() {

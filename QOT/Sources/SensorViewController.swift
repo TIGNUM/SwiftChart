@@ -68,6 +68,7 @@ private extension SensorViewController {
         collectionView.registerDequeueable(RequestDeviceSensorCollectionViewCell.self)
         sensorsTitleLabel.font = .H3Subtitle
         wearablesTitleLabel.font = .H3Subtitle
+        setCustomBackButton()
     }
 }
 

@@ -94,6 +94,7 @@ private extension SearchViewController {
 
     func setupSearchBar() {
         let searchBar = UISearchBar()
+        setCustomBackButton()
         searchBar.tintColor = .navy
         searchBar.keyboardAppearance = .dark
         searchBar.barTintColor = .gray

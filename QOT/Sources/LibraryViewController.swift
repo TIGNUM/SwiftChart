@@ -59,6 +59,7 @@ final class LibraryViewController: UIViewController, PageViewControllerNotSwipea
         view.addSubview(tableView)
         tableView.backgroundColor = .navy
         automaticallyAdjustsScrollViewInsets = false
+        setCustomBackButton()
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.edgeAnchors == view.edgeAnchors

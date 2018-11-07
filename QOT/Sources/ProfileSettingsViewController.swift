@@ -12,7 +12,6 @@ import ActionSheetPicker_3_0
 import MBProgressHUD
 
 protocol SettingsViewControllerDelegate: class {
-
     func didTextFieldChanged(at indexPath: IndexPath, text: String)
     func didTextFieldEndEditing(at indexPath: IndexPath, text: String)
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?)
@@ -190,6 +189,7 @@ private extension ProfileSettingsViewController {
         pickerView.trailingAnchor == pickerContentView.trailingAnchor
         pickerView.bottomAnchor == pickerContentView.bottomAnchor
 		pickerToolBar.tintColor = .clear
+        setCustomBackButton()
         view.layoutIfNeeded()
     }
 

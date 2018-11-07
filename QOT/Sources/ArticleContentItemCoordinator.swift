@@ -79,6 +79,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
             rootViewController.present(navigationController, animated: true)
         } else {
             rootViewController.pushToStart(childViewController: fullViewController)
+            fullViewController.setCustomBackButton()
         }
 
         // FIXME: Add page tracking

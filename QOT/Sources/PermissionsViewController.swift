@@ -64,6 +64,7 @@ private extension PermissionsViewController {
 
     func setupView() {
         view.addSubview(tableView)
+        setCustomBackButton()
         navigationItem.title = R.string.localized.sidebarTitlePermission().uppercased()
         tableView.backgroundColor = .navy
         tableView.separatorColor = .clear
