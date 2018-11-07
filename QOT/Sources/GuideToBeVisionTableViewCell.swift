@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol GuideToBeVisionTableViewCellDelegate: class {
+    func didTapToBeVisionInfoButton()
+}
+
 final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
@@ -22,6 +26,7 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var cardTypeLabel: UILabel!
     @IBOutlet private weak var titleTopConstraintToStatus: NSLayoutConstraint!
     @IBOutlet private weak var titleTopConstraintToSuperview: NSLayoutConstraint!
+    weak var delegate: GuideToBeVisionTableViewCellDelegate?
 
     // MARK: - Lifecycle
 
@@ -48,6 +53,10 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Private
 
 private extension GuideToBeVisionTableViewCell {
+
+    @IBAction func didTapInfoButton(_ sender: UIButton) {
+        delegate?.didTapToBeVisionInfoButton()
+    }
 
     func setupView() {
         cardTypeLabel.font = .ApercuMedium31

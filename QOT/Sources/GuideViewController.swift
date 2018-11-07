@@ -159,6 +159,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         case .toBeVision(let title, let body, let image):
             let cell: GuideToBeVisionTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, body: body, status: item.status, image: image)
+            cell.delegate = self
             return cell
         case .dailyPrep(let items, let feedback):
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -228,6 +229,17 @@ extension GuideViewController: GuideDailyPrepTableViewCellDelegate {
 
     func didTapInfoButton() {
         let configurator = ScreenHelpConfigurator.make(.dailyPrep)
+        let infoViewController = ScreenHelpViewController(configurator: configurator)
+        present(infoViewController, animated: true)
+    }
+}
+
+// MARK: - GuideToBeVisionTableViewCellDelegate
+
+extension GuideViewController: GuideToBeVisionTableViewCellDelegate {
+
+    func didTapToBeVisionInfoButton() {
+        let configurator = ScreenHelpConfigurator.make(.toBeVision)
         let infoViewController = ScreenHelpViewController(configurator: configurator)
         present(infoViewController, animated: true)
     }

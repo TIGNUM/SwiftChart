@@ -16,6 +16,7 @@ enum ScreenHelp {
         case me = 100746
         case prepare = 100747
         case dailyPrep = 101157
+        case toBeVision = 101163
     }
 
     struct Item {

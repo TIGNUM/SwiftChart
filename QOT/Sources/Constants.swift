@@ -33,8 +33,8 @@ enum FontName: String {
     case apercuRegular = "Apercu-Regular"
     case apercuLight = "Apercu-Light"
 
-    func font(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    func font(of size: CGFloat) -> UIFont {
+        return (UIFont(name: rawValue, size: size) ?? UIFont.systemFont(ofSize: size))
     }
 }
 
