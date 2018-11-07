@@ -19,6 +19,8 @@ final class GuideWhatsHotTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var bodyLabel: UILabel!
     @IBOutlet private weak var footerLabel: UILabel!
     @IBOutlet private weak var actionLabel: UILabel!
+    @IBOutlet private weak var titleTopConstraintToStatus: NSLayoutConstraint!
+    @IBOutlet private weak var titleTopConstraintToSuperview: NSLayoutConstraint!
 
     // MARK: - Lifecycle
 
@@ -34,9 +36,13 @@ final class GuideWhatsHotTableViewCell: UITableViewCell, Dequeueable {
         footerLabel.text = R.string.localized.guideCardTypeWhatsHot()
         let bodyAttributedString = NSMutableAttributedString(attributedString: body.attributedString())
         replaceLinks(in: bodyAttributedString)
-        bodyLabel.text = bodyAttributedString.string
+        bodyLabel.attributedText = bodyAttributedText(text: bodyAttributedString.string, font: .ApercuRegular15)
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
+        syncStatusView(with: status,
+                       for: statusView,
+                       firstConstraint: titleTopConstraintToStatus,
+                       secondConstraint: titleTopConstraintToSuperview)
         if let imageURL = image {
             whatsHotImageView.kf.setImage(with: imageURL)
             whatsHotImageView.isHidden = false
@@ -50,7 +56,6 @@ private extension GuideWhatsHotTableViewCell {
 
     func setupView() {
         titleLabel.font = .H4Identifier
-        bodyLabel.font = .H5SecondaryHeadline
         whatsHotImageView.isHidden = true
         statusView.maskPathByRoundingCorners()
         actionLabel.font = .apercuBold(ofSize: 14)

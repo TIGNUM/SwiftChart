@@ -18,6 +18,8 @@ final class GuidePreparationTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var bodyLabel: UILabel!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var actionLabel: UILabel!
+    @IBOutlet private weak var topConstraintToStatus: NSLayoutConstraint!
+    @IBOutlet private weak var topConstraintToSuperview: NSLayoutConstraint!
 
     // MARK: - Lifecycle
 
@@ -35,9 +37,13 @@ final class GuidePreparationTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Cell configruation
 
     func configure(title: String, body: String, status: Guide.Item.Status) {
-        bodyLabel.text = body
+        bodyLabel.attributedText = bodyAttributedText(text: body, font: .ApercuRegular15)
         titleLabel.text = title.uppercased()
         containerView.backgroundColor = status.cardColor
         statusView.backgroundColor = status.statusViewColor
+        syncStatusView(with: status,
+                       for: statusView,
+                       firstConstraint: topConstraintToStatus,
+                       secondConstraint: topConstraintToSuperview)
     }
 }

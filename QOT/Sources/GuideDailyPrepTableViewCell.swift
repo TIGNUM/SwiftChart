@@ -33,7 +33,9 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var loadLabelsContainer: UIView!
     @IBOutlet private weak var recoveryLabelsContainer: UIView!
     @IBOutlet private weak var nullStateQuestionLabel: UILabel!
-    private var labelsColors: [UIColor] = [.green, .orange, .red]
+    @IBOutlet private weak var titleTopConstraintToStatus: NSLayoutConstraint!
+    @IBOutlet private weak var titleTopConstraintToSuperview: NSLayoutConstraint!
+    private var labelsColors: [UIColor] = [.recoveryGreen, .recoveryOrange, .recoveryRed]
     weak var delegate: GuideDailyPrepTableViewCellDelegate?
 	var itemTapped: Guide.Item?
 
@@ -45,15 +47,14 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
         receiveFeedbackButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         receiveFeedbackButton.backgroundColor = .azure
-		receiveFeedbackButton.showsTouchWhenHighlighted = true
+        receiveFeedbackButton.showsTouchWhenHighlighted = true
         titleLabel.font = .ApercuMedium31
-        nullStateLabel.font = .H5SecondaryHeadline
-        feedbackLabel.font = .H5SecondaryHeadline
-        loadLabel.font = .H4Identifier
-        recoveryLabel.font = .H4Identifier
+        loadLabel.font = .H5SecondaryHeadline
+        recoveryLabel.font = .H5SecondaryHeadline
         nullStateQuestionLabel.font = .apercuBold(ofSize: 16)
-        nullStateLabel.text = R.string.localized.guideDailyPrepNotFinishedFeedback()
         titleLabel.text = R.string.localized.morningControllerTitleLabel()
+        nullStateLabel.attributedText = bodyAttributedText(text: R.string.localized.guideDailyPrepNotFinishedFeedback(),
+                                                           font: .ApercuRegular15)
     }
 
     override func prepareForReuse() {
@@ -68,12 +69,16 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                    status: Guide.Item.Status) {
         if let feedback = dailyPrepFeedback {
             feedbackLabel.isHidden = false
-            feedbackLabel.text = feedback
+            feedbackLabel.attributedText = bodyAttributedText(text: feedback, font: .ApercuRegular15)
         }
         loadLabel.textColor = status == .todo ? .dailyPrepNullStateGray : .white
         recoveryLabel.textColor = status == .todo ? .dailyPrepNullStateGray : .white
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
+        syncStatusView(with: status,
+                       for: statusView,
+                       firstConstraint: titleTopConstraintToStatus,
+                       secondConstraint: titleTopConstraintToSuperview)
         syncViews(status: status, dailyPrepItems: dailyPrepItems)
     }
 }
@@ -95,21 +100,6 @@ private extension GuideDailyPrepTableViewCell {
 // MARK: - Private
 
 private extension GuideDailyPrepTableViewCell {
-
-    func attributedText(letterSpacing: CGFloat = 2,
-                        text: String,
-                        font: UIFont,
-                        lineSpacing: CGFloat = 1.4,
-                        textColor: UIColor,
-                        alignment: NSTextAlignment) -> NSMutableAttributedString {
-        return NSMutableAttributedString(string: text,
-                                         letterSpacing: letterSpacing,
-                                         font: font,
-                                         lineSpacing: lineSpacing,
-                                         textColor: textColor,
-                                         alignment: alignment,
-                                         lineBreakMode: .byWordWrapping)
-    }
 
     func invertedValue(for value: Float) -> Float {
         return (10 - value) / 10
@@ -134,8 +124,8 @@ private extension GuideDailyPrepTableViewCell {
             loadProgressView.startNullStateAnimation()
             recoveryProgressView.startNullStateAnimation()
         case .done:
-            setGradient(in: loadProgressView, with: [UIColor.green, UIColor.red])
-            setGradient(in: recoveryProgressView, with: [UIColor.red, UIColor.green])
+            setGradient(in: loadProgressView, with: [.recoveryGreen, .recoveryRed])
+            setGradient(in: recoveryProgressView, with: [.recoveryRed, .recoveryGreen])
             enableProgressViews(dailyPrepItems: dailyPrepItems)
             for (index, view) in loadLabelsContainer.subviews.enumerated() {
                 (view as? UILabel)?.textColor = labelsColors[index]

@@ -19,6 +19,8 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var typeLabel: UILabel!
     @IBOutlet private weak var counterLabel: UILabel!
     @IBOutlet private weak var actionLabel: UILabel!
+    @IBOutlet private weak var topConstraintToStatus: NSLayoutConstraint!
+    @IBOutlet private weak var topConstraintToSuperview: NSLayoutConstraint!
 
     // MARK: - Lifecycle
 
@@ -30,7 +32,6 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
         typeLabel.font = .ApercuRegular15
         typeLabel.textColor = .guideCardTypeGray
         titleLabel.font = .H4Identifier
-        contentLabel.font = .H5SecondaryHeadline
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
     }
 
@@ -41,12 +42,16 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
                    type: String,
                    status: Guide.Item.Status,
                    strategiesCompleted: Int?) {
-        contentLabel.text = content
+        contentLabel.attributedText = bodyAttributedText(text: content, font: .ApercuRegular15)
         typeLabel.text = type.capitalized
         titleLabel.text = title.uppercased()
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
 		counterLabel.isHidden = strategiesCompleted == nil
+        syncStatusView(with: status,
+                       for: statusView,
+                       firstConstraint: topConstraintToStatus,
+                       secondConstraint: topConstraintToSuperview)
 		if let strategiesCompleted = strategiesCompleted {
 			let text = R.string.localized.guideItemCompletedStrategiesCounter(strategiesCompleted,
                                                                               Defaults.totalNumberOfStrategies)
