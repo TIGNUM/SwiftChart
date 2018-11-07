@@ -87,7 +87,6 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
             if let model = worker.model {
                 presenter.updateVisionControllerModel(model)
             }
-            presenter.updateTabBarItem(visionModel: worker.model, navigationItem: worker.navItem)
             presenter.dismiss()
         default: return
         }

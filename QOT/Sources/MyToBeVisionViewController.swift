@@ -10,11 +10,6 @@ import UIKit
 import AVKit
 import AVFoundation
 
-protocol MyToBeVisionViewControllerDelegate: class {
-    func didUpdateTabBarItemTBV(topBarController: UINavigationController)
-    var currentTBVController: UIViewController? { get }
-}
-
 final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
 
     @IBOutlet private weak var scrollView: UIScrollView!
@@ -40,7 +35,6 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
 	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
     @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var editButton: UIButton!
-    weak var delegate: MyToBeVisionViewControllerDelegate?
 	private var contentInset = UIEdgeInsets()
     private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()
@@ -165,8 +159,7 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
         let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(toBeVision: toBeVision,
                                                                                            visionController: self,
                                                                                            visionChatItems: visionChatItems,
-                                                                                           navigationItem: interactor?.navigationItem,
-                                                                                           delegate: delegate)
+                                                                                           navigationItem: interactor?.navigationItem)
         chatViewController.hidesBottomBarWhenPushed = true
         pushToStart(childViewController: chatViewController)
     }

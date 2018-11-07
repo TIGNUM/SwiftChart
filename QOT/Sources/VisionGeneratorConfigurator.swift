@@ -14,8 +14,7 @@ final class VisionGeneratorConfigurator: AppStateAccess {
                      visionModel: MyToBeVisionModel.Model?,
                      visionController: MyToBeVisionViewController,
                      visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]],
-                     navigationItem: NavigationItem?,
-                     delegate: MyToBeVisionViewControllerDelegate?)
+                     navigationItem: NavigationItem?)
         -> (ChatViewController<VisionGeneratorChoice>) -> Void {
         return { (chatViewController) in
             let router = VisionGeneratorRouter(chatViewController: chatViewController,
@@ -28,8 +27,7 @@ final class VisionGeneratorConfigurator: AppStateAccess {
                                                allChatItems: visionChatItems,
                                                navigationItem: navigationItem)
             let presenter = VisionGeneratorPresenter(viewController: chatViewController,
-                                                     visionController: visionController,
-                                                     delegate: delegate)
+                                                     visionController: visionController)
             let interactor = VisionGeneratorInteractor(worker: worker, router: router, presenter: presenter)
             router.setImagePickerDelegate(interactor)
             chatViewController.visionGeneratorInteractor = interactor
@@ -43,15 +41,13 @@ final class VisionGeneratorConfigurator: AppStateAccess {
     static func visionGeneratorViewController(toBeVision: MyToBeVisionModel.Model?,
                                               visionController: MyToBeVisionViewController,
                                               visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]],
-                                              navigationItem: NavigationItem?,
-                                              delegate: MyToBeVisionViewControllerDelegate?) -> UIViewController {
+                                              navigationItem: NavigationItem?) -> UIViewController {
         let chatViewModel = ChatViewModel<VisionGeneratorChoice>(items: [])
         let configurator = VisionGeneratorConfigurator.make(chatViewModel,
                                                             visionModel: toBeVision,
                                                             visionController: visionController,
                                                             visionChatItems: visionChatItems,
-                                                            navigationItem: navigationItem,
-                                                            delegate: delegate)
+                                                            navigationItem: navigationItem)
         let chatViewController = ChatViewController(pageName: .visionGenerator,
                                                     viewModel: chatViewModel,
                                                     backgroundImage: nil,

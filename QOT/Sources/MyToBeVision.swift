@@ -34,6 +34,12 @@ final class MyToBeVision: SyncableObject {
     @objc private dynamic var keywordsWork: String?
 
     @objc private dynamic var keywordsHome: String?
+
+    convenience init(headline: String?, text: String?) {
+        self.init()
+        self.headline = headline
+        self.text = text
+    }
 }
 
 extension MyToBeVision: TwoWaySyncableUniqueObject {

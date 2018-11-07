@@ -252,9 +252,11 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
         do {
             if services.userService.myToBeVision() == nil {
+                let headline = services.contentService.toBeVisionHeadlinePlaceholder()?.uppercased()
+                let text = services.contentService.toBeVisionMessagePlaceholder()
                 let realm = try RealmProvider().realm()
                 try realm.write {
-                    realm.add(MyToBeVision())
+                    realm.add(MyToBeVision(headline: headline, text: text))
                 }
             }
         } catch {
