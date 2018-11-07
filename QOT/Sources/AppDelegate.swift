@@ -97,7 +97,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()
             setupHockeyApp()
-
             #if DEBUG
                 log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
             #endif

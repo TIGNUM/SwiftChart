@@ -60,7 +60,7 @@ final class BadgeManager {
     }
 
     func updateWhatsHotBadge() {
-        whatsHotBadge?.isHidden = newWhatsHotArticles.count == 0 ? true : false
+        whatsHotBadge?.isHidden = badgeValueWhatsHot == 0
     }
 
     func updateGuideBadgeValue(newGuideItems: [Guide.Item]) {
@@ -91,33 +91,47 @@ private extension BadgeManager {
     }
 
     var badgeValueWhatsHot: Int {
+        if
+            let firstInstallDate = UserDefault.firstInstallationTimestamp.object as? Date,
+            firstInstallDate.isSameDay(Date()) == true {
+                return 0
+        } else if UserDefault.firstInstallationTimestamp.object == nil {
+            return 0
+        }
         return newWhatsHotArticles.count
     }
 
     func observeWhatsHotArticleUpdates() {
-        tokenBin.addToken(newWhatsHotArticles.observe { [weak self] changes in
-            switch changes {
-            case .update(let articles, _, _, _):
-                self?.whatsHotBadge?.update(articles.count)
-                self?.learnBadge?.update(articles.count)
-                self?.whatsHotBadge?.isHidden = self?.whatsHotBadge?.isHidden ?? true
-                self?.learnBadge?.isHidden = self?.tabDisplayed == .learn
-                UserDefault.whatsHotBadgeNumber.setDoubleValue(value: Double(articles.count))
-            default:
-                UserDefault.whatsHotBadgeNumber.setDoubleValue(value: 0)
-            }
-        })
+        if
+            let firstInstallDate = UserDefault.firstInstallationTimestamp.object as? Date,
+            firstInstallDate.isSameDay(Date()) == false {
+            tokenBin.addToken(newWhatsHotArticles.observe { [weak self] changes in
+                switch changes {
+                case .update(let articles, _, _, _):
+                    self?.whatsHotBadge?.update(articles.count)
+                    self?.learnBadge?.update(articles.count)
+                    self?.whatsHotBadge?.isHidden = self?.whatsHotBadge?.isHidden ?? true
+                    self?.learnBadge?.isHidden = self?.tabDisplayed == .learn
+                    UserDefault.whatsHotBadgeNumber.setDoubleValue(value: Double(articles.count))
+                default:
+                    UserDefault.whatsHotBadgeNumber.setDoubleValue(value: 0)
+                }
+            })
+        }
     }
 
     func update() {
         switch tabDisplayed {
         case .guide:
             learnBadge?.isHidden = badgeValueWhatsHot == 0
+            whatsHotBadge?.isHidden = badgeValueWhatsHot == 0
         case .learn:
             guideBadge?.isHidden = newGuideItems.isEmpty
+            whatsHotBadge?.isHidden = badgeValueWhatsHot == 0
         default:
             guideBadge?.isHidden = newGuideItems.isEmpty
             learnBadge?.isHidden = badgeValueWhatsHot == 0
+            whatsHotBadge?.isHidden = badgeValueWhatsHot == 0
         }
     }
 }

@@ -66,7 +66,7 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
         bottomSeparator.isHidden = !showSeparator
-        newArticleIndicator.isHidden = !newArticle
+        newArticleIndicator.isHidden = !newArticle || UserDefault.whatsHotBadgeNumber.doubleValue.toInt == 0
     }
 
     override func layoutSubviews() {
