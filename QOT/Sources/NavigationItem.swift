@@ -66,7 +66,7 @@ final class NavigationItem: UINavigationItem {
                                                    target: self,
                                                    action: #selector(didTabSearch(_:)))
                 searchButton.tintColor = style.defaultColor
-                searchButton.imageInsets = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: -24)
+                searchButton.imageInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)
                 rightButtons.append(searchButton)
             }
             rightBarButtonItems = rightButtons
