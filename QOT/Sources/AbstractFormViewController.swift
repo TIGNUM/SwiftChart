@@ -96,6 +96,7 @@ private extension AbstractFormViewController {
                                                               lineSpacing: 2,
                                                               textColor: .white,
                                                               alignment: .left)
+        titleLabel.adjustsFontSizeToFitWidth = true
         subtitleLabel.attributedText = NSMutableAttributedString(string: subtitle,
                                                                  letterSpacing: 0.8,
                                                                  font: .DPText,

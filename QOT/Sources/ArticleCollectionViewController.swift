@@ -113,7 +113,7 @@ private extension ArticleCollectionViewController {
             collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
             collectionView.contentInset.bottom = view.safeMargins.bottom
         } else {
-            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.padding_24
+            collectionView.topAnchor == view.topAnchor
             collectionView.bottomAnchor == view.bottomAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor

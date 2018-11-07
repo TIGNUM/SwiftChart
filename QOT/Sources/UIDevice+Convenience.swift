@@ -13,4 +13,12 @@ extension UIDevice {
     static var isPad: Bool {
         return UIDevice.current.model.contains("iPad")
     }
+    
+    static var isVersion10: Bool {
+        if #available(iOS 11.0, *) {
+            return false
+        } else {
+            return true
+        }
+    }
 }

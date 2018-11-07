@@ -45,7 +45,8 @@ final class TabBarItem: UITabBarItem {
     // MARK: - private
 
     private func apply(_ config: Config) {
-        imageInsets = UIEdgeInsets(top: -4, left: 0, bottom: 0, right: 0)
+        let bottomInset: CGFloat = UIDevice.isVersion10 ? 4 : 0
+        imageInsets = UIEdgeInsets(top: -4, left: 0, bottom: bottomInset, right: 0)
         title = config.title?.capitalized
         titlePositionAdjustment = config.titlePositionAdjustment
         setTitleTextAttributes(config.normalTitleTextAttributes, for: .normal)

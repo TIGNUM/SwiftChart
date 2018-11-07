@@ -157,33 +157,26 @@ enum ChartType: String {
     private var lastFourWeekNumbers: [String] {
         var weekNumbers = [String]()
         var currentWeekNumber = Date().weekOfYear
-
         for _ in 0 ..< 4 {
             currentWeekNumber = currentWeekNumber - 1
-
             if currentWeekNumber <= 0 {
                 currentWeekNumber = 52
             }
-
             weekNumbers.append(String(format: "%d", currentWeekNumber))
         }
-
         return weekNumbers.reversed()
     }
 
     private var nextFourWeekNumbers: [String] {
         var weekNumbers = [String]()
         var currentWeekNumber = Date().weekOfYear
-
         for _ in 0 ..< 4 {
             if currentWeekNumber > 52 {
                 currentWeekNumber = 1
             }
-
             weekNumbers.append(String(format: "%d", currentWeekNumber))
             currentWeekNumber = currentWeekNumber + 1
         }
-
         return weekNumbers
     }
 
@@ -197,16 +190,13 @@ enum ChartType: String {
             breakLabel:
                 if let date = calendar.date(byAdding: .month, value: (index - upperBound), to: now) {
                 let components = calendar.dateComponents([.month], from: date as Date)
-
                 guard let monthOfYear = components.month else {
                     labels.append("")
                     break breakLabel
                 }
-
                 labels.append("\(monthOfYear)")
             }
         }
-
         return labels
     }
 

@@ -283,7 +283,7 @@ private extension ChatViewController {
             collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
             collectionView.contentInset.bottom = view.safeMargins.bottom
         } else {
-            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight + Layout.padding_24
+            collectionView.topAnchor == view.topAnchor
             collectionView.bottomAnchor == view.bottomAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
@@ -310,9 +310,9 @@ private extension ChatViewController {
             collectionView.contentInset.top = Layout.padding_24 + view.safeMargins.top
             collectionView.contentInset.bottom = view.safeMargins.bottom - bottomButton.frame.height - Layout.padding_16
         } else {
-            bottomButton.bottomAnchor == view.bottomAnchor - Layout.padding_16
-            collectionView.topAnchor == view.topAnchor + Layout.padding_24 + Layout.statusBarHeight
-            collectionView.bottomAnchor == bottomButton.topAnchor - Layout.padding_16
+            bottomButton.bottomAnchor == view.bottomAnchor
+            collectionView.topAnchor == view.topAnchor
+            collectionView.bottomAnchor == bottomButton.topAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
             collectionView.contentInset.top = Layout.padding_24

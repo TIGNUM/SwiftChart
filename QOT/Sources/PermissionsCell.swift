@@ -25,7 +25,6 @@ final class PermissionsCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         setupView()
     }
 

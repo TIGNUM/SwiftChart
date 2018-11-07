@@ -102,11 +102,6 @@ private extension SearchViewController {
         searchBar.placeholder = R.string.localized.searchPlaceholder()
         navigationItem.titleView = searchBar
         self.searchBar = searchBar
-		if #available(iOS 11.0, *) {
-
-		} else {
-			topConstraint.constant = Layout.statusBarHeight + Layout.padding_24
-		}
     }
 }
 

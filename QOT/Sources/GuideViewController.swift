@@ -112,10 +112,10 @@ private extension GuideViewController {
 		if #available(iOS 11.0, *) {
 			tableView.edgeAnchors == view.edgeAnchors
 		} else {
-			tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
+			tableView.topAnchor == view.topAnchor
 			tableView.leadingAnchor == view.leadingAnchor
 			tableView.trailingAnchor == view.trailingAnchor
-			tableView.bottomAnchor == view.bottomAnchor - Layout.statusBarHeight
+			tableView.bottomAnchor == view.bottomAnchor
 		}
 		loadingView.edgeAnchors == view.edgeAnchors
         view.layoutIfNeeded()

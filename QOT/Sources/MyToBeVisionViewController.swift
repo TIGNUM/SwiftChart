@@ -110,7 +110,9 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         syncEditingViews(true)
         addKeyboardObservers()
         edit(false)
-        interactor?.setLaunchOptions()
+        if UIDevice.isVersion10 == true {
+            viewWillAppear(true)
+        }
     }
 
     @available(iOS 11.0, *)
@@ -203,7 +205,6 @@ extension MyToBeVisionViewController {
             scrollView.contentInset.bottom = Layout.padding_90
             scrollView.contentInsetAdjustmentBehavior = .never
 		} else {
-            topConstraint.constant = Layout.statusBarHeight + Layout.padding_40
             scrollView.contentInset.bottom = view.bounds.height
 		}
         syncNavigationButtons(false)

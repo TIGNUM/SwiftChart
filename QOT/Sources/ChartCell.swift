@@ -183,13 +183,11 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         let containsLeftCorner = parentRect.contains(cellRect.origin)
         let containsRightCorner = parentRect.contains(rightCorner)
         var hiddenAmount: CGFloat = 0
-
         if containsLeftCorner && !containsRightCorner {
             hiddenAmount = cellRect.width - (parentRect.width - cellRect.origin.x)
         } else if containsRightCorner && !containsLeftCorner {
             hiddenAmount = cellRect.width - (cellRect.width - cellRect.origin.x)
         }
-
         let hidden = hiddenAmount / cellRect.width
         let leadingConstant = cellRect.width * hidden
         headerLabel.alpha = 1 - hidden
@@ -487,10 +485,8 @@ private extension ChartCell {
         seperatorBottomView.isHidden = statistics.chartType.bottomView == false
         seperatorTopView.isHidden = statistics.chartType.topView == false
         topContentView.isHidden = statistics.chartType.topView == false
-
         guard statistics.chartType.labels.isEmpty == false else { return }
         guard isSleepChart else { return }
-
         let labels = statistics.chartType.labels
         let highlightColor = statistics.chartType.hightlightColor
         let highlightedIndex: Int
@@ -536,6 +532,9 @@ private extension ChartCell {
         infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white50).attributedString(lineSpacing: 2),
                                                for: .selected)
         infoScrollBottomFadeView.setFadeMask(at: .top, height: infoScrollBottomFadeView.bounds.height/3)
+        if UIDevice.isVersion10 == true {
+            infoScrollBottomFadeView.backgroundColor = .black15
+        }
     }
 
     func setupInfoViewNavigationButton() {
@@ -562,7 +561,6 @@ private extension ChartCell {
         addSenorView.isHidden = statistics?.chartType.comingSoon == true
         comingSoonView.isHidden = statistics?.chartType.comingSoon == false
         overlayBackgroundImageView.image = statistics?.chartType.overlayImage
-
         if statistics?.chartType.comingSoon == false {
             setLabel(text: text,
                      color: .white40,

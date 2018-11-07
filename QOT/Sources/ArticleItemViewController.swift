@@ -172,7 +172,7 @@ private extension ArticleItemViewController {
             tableView.contentInset.top = paddingTop
             tableView.contentInset.bottom = view.safeMargins.bottom
         } else {
-            tableView.topAnchor == view.topAnchor + Layout.statusBarHeight
+            tableView.topAnchor == view.topAnchor
             tableView.bottomAnchor == view.bottomAnchor
             tableView.rightAnchor == view.rightAnchor
             tableView.leftAnchor == view.leftAnchor

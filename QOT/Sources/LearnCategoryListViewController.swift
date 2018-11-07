@@ -104,8 +104,8 @@ private extension LearnCategoryListViewController {
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
         } else {
-            collectionView.topAnchor == view.topAnchor + Layout.statusBarHeight
-            collectionView.bottomAnchor == view.bottomAnchor - Layout.statusBarHeight
+            collectionView.topAnchor == view.topAnchor
+            collectionView.bottomAnchor == view.bottomAnchor
             collectionView.leadingAnchor == view.leadingAnchor
             collectionView.trailingAnchor == view.trailingAnchor
         }

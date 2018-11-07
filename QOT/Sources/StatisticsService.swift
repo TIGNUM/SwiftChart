@@ -31,24 +31,19 @@ final class StatisticsService {
 
     func chartObjects() -> AnyRealmCollection<Statistics> {
         let results = mainRealm.objects(Statistics.self)
-
         return AnyRealmCollection(results)
     }
 
     func chart(key: String) -> Statistics? {
         let predicate = NSPredicate(format: "key == %@", key)
-
         return chartObjects().filter(predicate).first
     }
 
     func charts() throws -> [[Statistics]] {
         var results = [[Statistics]]()
-
         StatisticsSectionType.allValues.forEach { (sectionType: StatisticsSectionType) in
-
             sectionType.chartTypes.forEach { (chartTypes: [ChartType]) in
                 var chartSections = [Statistics]()
-
                 chartTypes.forEach { (chartType: ChartType) in
                     if let chart = chart(key: chartType.rawValue) {
                         chart.chartType = chartType
@@ -56,11 +51,9 @@ final class StatisticsService {
                         chartSections.append(chart)
                     }
                 }
-
                 results.append(chartSections)
             }
         }
-
         return results
     }
 }

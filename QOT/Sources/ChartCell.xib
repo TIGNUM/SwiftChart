@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -34,7 +33,7 @@
                         <rect key="frame" x="11" y="0.0" width="278" height="42"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R7E-AJ-iMP">
-                                <rect key="frame" x="0.0" y="12" width="254" height="26.5"/>
+                                <rect key="frame" x="0.0" y="12" width="254" height="33"/>
                                 <string key="text">sleep quantity average
 for the last 5 days</string>
                                 <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="14"/>
@@ -80,7 +79,7 @@ for the last 5 days</string>
                                         </constraints>
                                     </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pnq-Ve-28t" userLabel="Personal Average Label">
-                                        <rect key="frame" x="0.0" y="50" width="159" height="50"/>
+                                        <rect key="frame" x="0.0" y="50" width="159.5" height="50"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="PrC-py-f99">
                                                 <rect key="frame" x="16" y="0.0" width="0.0" height="0.0"/>
@@ -214,14 +213,14 @@ Label</string>
                                                         <rect key="frame" x="0.0" y="0.0" width="287" height="36"/>
                                                         <subviews>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LST-fg-ag2">
-                                                                <rect key="frame" x="0.0" y="0.0" width="143" height="36"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="143.5" height="36"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <connections>
                                                                     <action selector="segmentedPressedWithSender:" destination="3zg-UQ-ju6" eventType="touchUpInside" id="HXC-Y2-5c6"/>
                                                                 </connections>
                                                             </button>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MfQ-xR-gFf">
-                                                                <rect key="frame" x="143" y="0.0" width="0.0" height="36"/>
+                                                                <rect key="frame" x="143.5" y="0.0" width="0.0" height="36"/>
                                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" id="gXa-2x-Jhm"/>
@@ -229,7 +228,7 @@ Label</string>
                                                                 </constraints>
                                                             </view>
                                                             <button opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lr8-K7-V76">
-                                                                <rect key="frame" x="143" y="0.0" width="144" height="36"/>
+                                                                <rect key="frame" x="143.5" y="0.0" width="143.5" height="36"/>
                                                                 <state key="normal" title="Button"/>
                                                                 <connections>
                                                                     <action selector="segmentedPressedWithSender:" destination="3zg-UQ-ju6" eventType="touchUpInside" id="WDG-EY-Kch"/>
@@ -450,7 +449,7 @@ Label</string>
                                 <rect key="frame" x="0.0" y="0.0" width="319" height="430"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="COMMING SOON" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xGM-Rk-USG">
-                                        <rect key="frame" x="80" y="200" width="158.5" height="29"/>
+                                        <rect key="frame" x="62" y="201" width="195.5" height="28"/>
                                         <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="24"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
