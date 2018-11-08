@@ -11,31 +11,25 @@ import UIKit
 struct SigningInfoModel {
 
     enum Slide {
-        case first
-        case second
-        case third
-        case fourth
+        case first(title: String, body: String)
+        case second(title: String, body: String)
+        case third(title: String, body: String)
+        case fourth(title: String, body: String)
+
+        var contentID: Int {
+            switch self {
+            case .first: return  101159
+            case .second: return  101160
+            case .third: return  101161
+            case .fourth: return  101162
+            }
+        }
 
         static var allSlides: [Slide] {
-            return [.first, .second, .third, .fourth]
-        }
-
-        var title: String {
-            switch self {
-            case .first: return R.string.localized.signingInfo01Title()
-            case .second: return R.string.localized.signingInfo02Title()
-            case .third: return R.string.localized.signingInfo03Title()
-            case .fourth: return R.string.localized.signingInfo04Title()
-            }
-        }
-
-        var body: String {
-            switch self {
-            case .first: return R.string.localized.signingInfo01Body()
-            case .second: return R.string.localized.signingInfo02Body()
-            case .third: return R.string.localized.signingInfo03Body()
-            case .fourth: return R.string.localized.signingInfo04Body()
-            }
+            return [.first(title: "", body: ""),
+                    .second(title: "", body: ""),
+                    .third(title: "", body: ""),
+                    .fourth(title: "", body: "")]
         }
     }
 }

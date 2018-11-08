@@ -13,7 +13,7 @@ final class SigningInfoConfigurator: AppStateAccess {
     static func make() -> (SigningInfoViewController) -> Void {
         return { (viewController) in
             let router = SigningInfoRouter(viewController: viewController)
-            let worker = SigningInfoWorker(model: SigningInfoModel())
+            let worker = SigningInfoWorker(model: SigningInfoModel(), services: appState.services)
             let presenter = SigningInfoPresenter(viewController: viewController)
             let interactor = SigningInfoInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

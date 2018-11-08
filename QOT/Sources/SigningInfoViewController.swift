@@ -143,9 +143,7 @@ extension SigningInfoViewController: UICollectionViewDelegate, UICollectionViewD
 
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell: SigningInfoCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-        let title = SigningInfoModel.Slide.allSlides[indexPath.item].title
-        let body = SigningInfoModel.Slide.allSlides[indexPath.item].body
-        cell.configure(title: title, body: body)
+        cell.configure(title: interactor?.title(at: indexPath.item), body: interactor?.body(at: indexPath.item))
         return cell
     }
 

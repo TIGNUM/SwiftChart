@@ -37,6 +37,14 @@ final class SigningInfoInteractor {
 
 extension SigningInfoInteractor: SigningInfoInteractorInterface {
 
+    func title(at item: Int) -> String? {
+        return worker.title(at: item)
+    }
+
+    func body(at item: Int) -> String? {
+        return worker.body(at: item)
+    }
+
     func didTapBottomButton() {
         router.presentSigningEmailView()
     }

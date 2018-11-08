@@ -26,7 +26,8 @@ final class SigningInfoCollectionViewCell: UICollectionViewCell, Dequeueable {
 
 extension SigningInfoCollectionViewCell {
 
-    func configure(title: String, body: String) {
+    func configure(title: String?, body: String?) {
+        guard let title = title, let body = body else { return }
         titleLabel.attributedText = NSMutableAttributedString(string: title,
                                                               letterSpacing: 1.5,
                                                               font: .H3Subtitle,

@@ -432,15 +432,6 @@
 "guide.card.preparation.multiple-started-today.content" = "You've got some events coming up today. Tap on the card to prepare.";
 "guide.item.completed.strategies.counter" = "%d of %d STRATEGIES";
 
-"signing.info.01.title" = "Rule Your Impact";
-"signing.info.01.body" = "At work and away from work - today and tomorrow.";
-"signing.info.02.title" = "Learn 55 Performance Strategies";
-"signing.info.02.body" = "Access strategies and insights from leading scientists, nutritionists, and behavior coaches.";
-"signing.info.03.title" = "Show Up At Your Best";
-"signing.info.03.body" = "Improve your impact at high-stake events.";
-"signing.info.04.title" = "Be Aware of Where You Are";
-"signing.info.04.body" = "Track your performance and impact to benchmark yourself over time.";
-
 "signing.email.check.title" = "ENTER EMAIL";
 "signing.email.check.subtitle" = "We use your email to securly verify your account and to protect all data you share with us.";
 "signing.email.check.bottomButtonTitle" = "Next";

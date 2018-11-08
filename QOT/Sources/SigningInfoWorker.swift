@@ -13,11 +13,13 @@ final class SigningInfoWorker {
     // MARK: - Properties
 
     private let model: SigningInfoModel
+    private let services: Services
 
     // MARK: - Init
 
-    init(model: SigningInfoModel) {
+    init(model: SigningInfoModel, services: Services) {
         self.model = model
+        self.services = services
     }
 }
 
@@ -29,11 +31,22 @@ extension SigningInfoWorker {
         return SigningInfoModel.Slide.allSlides.count
     }
 
-    func title(at item: Int) -> String {
-        return SigningInfoModel.Slide.allSlides[item].title
+    func title(at item: Int) -> String? {
+        return contentItem(at: item, format: "title")?.valueText
     }
 
-    func body(at item: Int) -> String {
-        return SigningInfoModel.Slide.allSlides[item].body
+    func body(at item: Int) -> String? {
+        return contentItem(at: item, format: "body")?.valueText
+    }
+}
+
+// MARK: - Private
+
+private extension SigningInfoWorker {
+
+    func contentItem(at item: Int, format: String) -> ContentItem? {
+        let contentID = SigningInfoModel.Slide.allSlides[item].contentID
+        guard let content = services.contentService.contentCollection(id: contentID) else { return nil }
+        return Array(content.contentItems).filter { $0.format == format }.first
     }
 }
