@@ -118,7 +118,7 @@ extension UIColor {
     class var recoveryRed: UIColor {
         return UIColor(red: 203/255, green: 75/255, blue: 90/255, alpha: 1)
     }
-    
+
     // UIColor(red: 212/255, green: 152/255, blue: 63/255, alpha: 1)
     class var recoveryOrange: UIColor {
         return UIColor(red: 212/255, green: 152/255, blue: 63/255, alpha: 1)

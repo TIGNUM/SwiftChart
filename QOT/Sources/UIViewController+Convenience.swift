@@ -39,7 +39,7 @@ extension UIViewController {
         fatalError("keyboardWillDisappear: must be overriden")
     }
 
-    func pushToStart(childViewController: UIViewController) {
+    func pushToStart(childViewController: UIViewController, enableInteractivePop: Bool = true) {
         let navigationBar = navigationController?.navigationBar
         navigationBar?.tintColor = .white
         navigationBar?.topItem?.title = ""
@@ -47,6 +47,7 @@ extension UIViewController {
         navigationBar?.backIndicatorTransitionMaskImage = R.image.ic_back()
         navigationBar?.titleTextAttributes = [.font: UIFont.H5SecondaryHeadline, .foregroundColor: UIColor.white]
         navigationController?.pushViewController(childViewController, animated: true)
+        navigationController?.interactivePopGestureRecognizer?.isEnabled = enableInteractivePop
     }
 
     /**

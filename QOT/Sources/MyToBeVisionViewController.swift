@@ -163,7 +163,7 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
                                                                                            visionChatItems: visionChatItems,
                                                                                            navigationItem: interactor?.navigationItem)
         chatViewController.hidesBottomBarWhenPushed = true
-        pushToStart(childViewController: chatViewController)
+        pushToStart(childViewController: chatViewController, enableInteractivePop: false)
     }
 
     func setup(with toBeVision: MyToBeVisionModel.Model) {
