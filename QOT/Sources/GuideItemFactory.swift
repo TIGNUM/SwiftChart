@@ -178,7 +178,7 @@ private extension GuideItemFactory {
 
     func guideItem(with item: RealmGuideItemLearn) -> Guide.Item? {
         let isStrategy = item.type.caseInsensitiveCompare(RealmGuideItemLearn.ItemType.strategy.rawValue) == .orderedSame
-        let isFoundation = item.remoteID.value == 164672
+        let isFoundation = item.link == "qot://content-category?collectionID=100006" && item.title.lowercased() == "performance foundation"
         let displayType = isFoundation ? nil : item.displayType
         let title = isFoundation ? R.string.localized.guideCardFoundationSubtitle() : item.title
         let strategiesCompleted = isStrategy == true
