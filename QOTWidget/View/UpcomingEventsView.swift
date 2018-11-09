@@ -10,6 +10,7 @@ import UIKit
 
 protocol UpcomingEventsViewDelegate: class {
     func didTapCreateNewEvent()
+    func didTapShowEvent()
 }
 
 final class UpcomingEventsView: UIView {
@@ -35,6 +36,7 @@ final class UpcomingEventsView: UIView {
         if let eventName = event.eventName {
             eventNameLabel.text = eventName
             eventTimeLabel.text = dateDescription(for: event.eventDate ?? nil)
+            addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showLatestEvent)))
             if let tasks = event.numberOfTasks, let tasksCompleted = event.tasksCompleted, tasks > 0 {
                 tasksCompletedLabel.text = "\(tasksCompleted)/\(tasks) Tasks Completed"
                 tasksCompletedLabel.textColor = tasksCompleted == tasks ? .green : .red
@@ -55,6 +57,10 @@ private extension UpcomingEventsView {
         eventTimeLabel.adjustsFontSizeToFitWidth = true
         createNewEventButton.layer.cornerRadius = 6
         eventNameLabel.textColor = .gray
+    }
+    
+    @objc func showLatestEvent() {
+        delegate?.didTapShowEvent()
     }
 
     func dateDescription(for date: Date?) -> String {

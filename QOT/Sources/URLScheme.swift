@@ -18,6 +18,7 @@ enum URLScheme: String {
     case weeklyPeakPerformance = "weekly-peak-performance"
     case toBeVision = "to-be-vision"
     case myPreps = "prepare-my-preps"
+    case comingEvent = "coming-event"
     case weeklyChoicesReminder = "weekly-choices-reminder"
     case contentCategory = "content-category"
     case featureExplainer = "feature-explainer"
@@ -118,6 +119,7 @@ enum URLScheme: String {
         case .preferencesNotification: return AppCoordinator.Router.Destination(preferences: .notifications)
         case .latestWhatsHotArticle: return AppCoordinator.Router.Destination(tabBar: .learn, topTabBar: .whatsHot)
         case .toBeVision: return AppCoordinator.Router.Destination(tabBar: .tbv, topTabBar: .toBeVision)
+        case .comingEvent: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)
         default: return nil
         }
     }
@@ -142,7 +144,7 @@ enum URLScheme: String {
     static func preparationURL(withID localID: String) -> String? {
         guard
             let urlTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? [[String: Any]],
-            let urlSchemes = urlTypes[0]["CFBundleURLSchemes"] as? [String] else {
+            let urlSchemes = urlTypes.first?["CFBundleURLSchemes"] as? [String] else {
                 return nil
         }
         let preparation = URLScheme.preparation
@@ -158,6 +160,7 @@ enum URLScheme: String {
             host == URLScheme.prepareEvent.rawValue ||
             host == URLScheme.weeklyChoices.rawValue ||
             host == URLScheme.featureExplainer.rawValue ||
-            host == URLScheme.profile.rawValue
+            host == URLScheme.profile.rawValue ||
+            host == URLScheme.comingEvent.rawValue
     }
 }

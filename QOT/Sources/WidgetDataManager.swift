@@ -55,7 +55,7 @@ private extension WidgetDataManager {
         let vision = services.userService.myToBeVision()
         WidgetUserDefaults.setToBeVision(headline: vision?.headline,
                                          text: vision?.text,
-                                         url: vision?.profileImageResource?.remoteURL)
+                                         url: vision?.profileImageResource?.remoteURL ?? vision?.profileImageResource?.localURL)
     }
 
     func updateUpcomingEvent() {

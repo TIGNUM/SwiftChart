@@ -32,6 +32,7 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         worker.setMyToBeVisionReminder(false)
         guard let toBeVision = worker.myToBeVision() else { return }
         presenter.loadToBeVision(toBeVision)
+        worker.updateWidget()
     }
 
     func setLaunchOptions() {

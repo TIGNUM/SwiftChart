@@ -7,11 +7,11 @@
 //
 
 import UIKit
-import Kingfisher
 
 protocol MyToBeVisionViewDelegate: class {
-    func didTapCreateToBeVision(in view: UIView)
-    func didTapSignIn(in view: UIView)
+    func didTapCreateToBeVision()
+    func didTapShowToBeVision()
+    func didTapSignIn()
 }
 
 final class MyToBeVisionView: UIView {
@@ -52,20 +52,21 @@ final class MyToBeVisionView: UIView {
         if let text = toBeVision.text {
             toBeVisionText.text = text
 			createToBeVisionButton.isHidden = true
+            addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showToBeVision)))
         }
-        if let imageURL = toBeVision.imageURL {
-            toBeVisionImageView.kf.setImage(with: imageURL)
+        if let imageURL = toBeVision.imageURL, let data = try? Data(contentsOf: imageURL) {
+            toBeVisionImageView.image = UIImage(data: data)
             return
         }
         toBeVisionImageView.image = UIImage(named: "Universe mytobevision")
     }
 
     @IBAction func didTapCreateToBeVision(_ sender: UIButton) {
-        delegate?.didTapCreateToBeVision(in: self)
+        delegate?.didTapCreateToBeVision()
     }
 
     @IBAction func didTapOpenQot(_ sender: UIButton) {
-        delegate?.didTapSignIn(in: self)
+        delegate?.didTapSignIn()
     }
 }
 
@@ -83,5 +84,9 @@ extension MyToBeVisionView {
         openQotButton.layer.cornerRadius = 6
         createToBeVisionButton.layer.cornerRadius = 6
         toBeVisionImageView.layer.cornerRadius = toBeVisionImageView.frame.height / 2
+    }
+    
+    @objc func showToBeVision() {
+        delegate?.didTapShowToBeVision()
     }
 }

@@ -72,6 +72,10 @@ final class LaunchHandler {
         case .prepareProblem: navigateToPrepare(scheme.destination)
         case .prepareEvent: navigateToPrepare(scheme.destination)
         case .prepareDay: navigateToPrepare(scheme.destination)
+        case .comingEvent:
+            navigateToPrepare(scheme.destination, completion: {
+                self.appDelegate.appCoordinator.presentComingEvent()
+            })
         case .library: appDelegate.appCoordinator.presentLibrary()
         case .profile: appDelegate.appCoordinator.presentProfile(options: options)
         case .guide: navigate(to: scheme.destination)
@@ -109,9 +113,10 @@ final class LaunchHandler {
         appDelegate.appCoordinator.presentMeCharts(sector: sector)
     }
 
-    func navigateToPrepare(_ destination: AppCoordinator.Router.Destination?) {
+    func navigateToPrepare(_ destination: AppCoordinator.Router.Destination?, completion: (() -> Void)? = nil) {
         guard let destination = destination else { return }
         appDelegate.appCoordinator.presentPrepare(destination)
+        completion?()
     }
 }
 

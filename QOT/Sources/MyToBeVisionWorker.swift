@@ -66,7 +66,7 @@ final class MyToBeVisionWorker {
 
     func updateMyToBeVision(_ new: MyToBeVisionModel.Model) {
         services.userService.saveVisionAndSync(new, syncManager: syncManager, completion: nil)
-        widgetDataManager.update(.toBeVision)
+        updateWidget()
     }
 
     func saveImage(_ image: UIImage) throws -> URL {
@@ -75,5 +75,9 @@ final class MyToBeVisionWorker {
 
     func isReady() -> Bool {
         return syncStateObserver.hasSynced(MyToBeVision.self) && myToBeVision() != nil
+    }
+
+    func updateWidget() {
+        widgetDataManager.update(.toBeVision)
     }
 }

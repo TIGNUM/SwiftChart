@@ -719,6 +719,11 @@ extension AppCoordinator {
 
 extension AppCoordinator {
 
+    func presentComingEvent() {
+        guard let preparationID = services?.preparationService.preparations().last?.localID else { return }
+        presentPreparationCheckList(localID: preparationID)
+    }
+
     func presentLearnContentItems(contentID: Int, guideItem: Guide.Item? = nil, onDismiss: (() -> Void)? = nil) {
         guard
             let services = services,

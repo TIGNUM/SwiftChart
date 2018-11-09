@@ -11,8 +11,8 @@ import NotificationCenter
 
 enum Scene: String {
     case toBeVision = "qot://to-be-vision"
-    case upComingEvents = "qot://prepare-event"
-    case weeklyChoices = "qot://weekly-choices"
+    case prepareEvent = "qot://prepare-event"
+    case comingEvent = "qot://coming-event"
     case signIn = "qot://"
 }
 
@@ -22,7 +22,6 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
 
     @IBOutlet private weak var myToBeVisionView: MyToBeVisionView!
     @IBOutlet private weak var upcomingEventsView: UpcomingEventsView!
-    @IBOutlet private weak var weeklyChoicesView: WeeklyChoicesView!
 
     private var totalHeight: CGFloat {
         return myToBeVisionView.bounds.height + upcomingEventsView.bounds.height
@@ -43,7 +42,6 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
 		syncDisplayMode()
         myToBeVisionView.delegate = self
         upcomingEventsView.delegate = self
-        weeklyChoicesView.delegate = self
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -90,9 +88,6 @@ private extension WidgetViewController {
         if let upcomingEvent = WidgetUserDefaults.upcomingEvent() {
             upcomingEventsView.configure(event: upcomingEvent)
         }
-		if let weeklyChoices = WidgetUserDefaults.latestWeeklyChoices() {
-			weeklyChoicesView.configure(weeklyChoices: weeklyChoices)
-		}
     }
 }
 
@@ -100,11 +95,15 @@ private extension WidgetViewController {
 
 extension WidgetViewController: MyToBeVisionViewDelegate {
 
-    func didTapCreateToBeVision(in view: UIView) {
+    func didTapCreateToBeVision() {
+        open(.toBeVision)
+    }
+    
+    func didTapShowToBeVision() {
         open(.toBeVision)
     }
 
-    func didTapSignIn(in view: UIView) {
+    func didTapSignIn() {
         open(.signIn)
     }
 }
@@ -114,15 +113,10 @@ extension WidgetViewController: MyToBeVisionViewDelegate {
 extension WidgetViewController: UpcomingEventsViewDelegate {
 
     func didTapCreateNewEvent() {
-        open(.upComingEvents)
+        open(.prepareEvent)
     }
-}
-
-// MARK: - WeeklyChoicesView Delegate
-
-extension WidgetViewController: WeeklyChoicesViewDelegate {
-
-    func didTapSetYourWeeklyChoices(in view: UIView) {
-        open(.weeklyChoices)
+    
+    @objc func didTapShowEvent() {
+        open(.comingEvent)
     }
 }
