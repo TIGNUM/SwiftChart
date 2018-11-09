@@ -36,7 +36,9 @@ final class GuideWhatsHotTableViewCell: UITableViewCell, Dequeueable {
         footerLabel.text = R.string.localized.guideCardTypeWhatsHot()
         let bodyAttributedString = NSMutableAttributedString(attributedString: body.attributedString())
         replaceLinks(in: bodyAttributedString)
-        bodyLabel.attributedText = bodyAttributedText(text: bodyAttributedString.string, font: .ApercuRegular15)
+        bodyLabel.attributedText = bodyAttributedText(text: bodyAttributedString.string,
+                                                      font: .ApercuRegular15,
+                                                      breakMode: .byTruncatingTail)
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
         syncStatusView(with: status,
@@ -44,7 +46,7 @@ final class GuideWhatsHotTableViewCell: UITableViewCell, Dequeueable {
                        firstConstraint: titleTopConstraintToStatus,
                        secondConstraint: titleTopConstraintToSuperview)
         if let imageURL = image {
-            whatsHotImageView.kf.setImage(with: imageURL)
+            whatsHotImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
             whatsHotImageView.isHidden = false
         }
     }

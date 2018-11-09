@@ -33,7 +33,7 @@ final class Badge: BadgeSwift {
 
     override init(frame: CGRect) {
         super.init(frame: frame)
-        setup()
+        setup(frame: frame)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -59,8 +59,8 @@ private extension Badge {
         return NSString(format: "%.0d", value) as String
     }
 
-    func setup() {
-        insets = CGSize(width: 2, height: 2)
+    func setup(frame: CGRect) {
+        insets = CGSize(width: frame.width * Layout.multiplier_015, height: frame.height * Layout.multiplier_015)
         badgeColor = .cherryRed
         textColor = .white
         font = .preferredFont(forTextStyle: .footnote)
@@ -76,14 +76,14 @@ private extension Badge {
 
     func positionLearnBadge(_ parent: UIView, frame: CGRect) {
         parent.addSubview(self)
-        topAnchor == parent.topAnchor - Layout.padding_12
-        trailingAnchor == parent.trailingAnchor - Layout.padding_5
+        topAnchor == parent.topAnchor - (parent.bounds.width * Layout.multiplier_015)
+        trailingAnchor == parent.trailingAnchor - (parent.bounds.width * Layout.multiplier_03)
     }
 
     func positionGuideBadge(_ parent: UIView, frame: CGRect) {
         parent.addSubview(self)
-        topAnchor == parent.topAnchor - Layout.padding_12
-        trailingAnchor == parent.trailingAnchor - Layout.padding_5
+        topAnchor == parent.topAnchor - (parent.bounds.width * Layout.multiplier_015)
+        trailingAnchor == parent.trailingAnchor - (parent.bounds.width * Layout.multiplier_03)
     }
 
     func positionWhatsHotBadge(_ parent: UIView, frame: CGRect) {

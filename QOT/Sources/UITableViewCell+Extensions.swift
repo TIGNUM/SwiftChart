@@ -24,12 +24,13 @@ extension UITableViewCell {
 
     func bodyAttributedText(text: String,
                             font: UIFont,
-                            lineSpacing: CGFloat = 1.4) -> NSMutableAttributedString {
+                            lineSpacing: CGFloat = 10,
+                            breakMode: NSLineBreakMode? = .byWordWrapping) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: text,
                                          font: font,
                                          lineSpacing: lineSpacing,
                                          textColor: .white,
                                          alignment: .left,
-                                         lineBreakMode: .byWordWrapping)
+                                         lineBreakMode: breakMode)
     }
 }

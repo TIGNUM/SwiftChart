@@ -23,15 +23,15 @@
                         <rect key="frame" x="10" y="5" width="666" height="274.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Uuf-0z-hZ8">
-                                <rect key="frame" x="7" y="7" width="7" height="7"/>
+                                <rect key="frame" x="7" y="7" width="10" height="10"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="7" id="a9O-L4-jFx"/>
-                                    <constraint firstAttribute="height" constant="7" id="sR6-a5-DEV"/>
+                                    <constraint firstAttribute="width" constant="10" id="a9O-L4-jFx"/>
+                                    <constraint firstAttribute="height" constant="10" id="sR6-a5-DEV"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VOG-uK-eQE">
-                                <rect key="frame" x="10.5" y="21" width="577" height="18"/>
+                                <rect key="frame" x="10.5" y="24" width="577" height="18"/>
                                 <attributedString key="attributedText">
                                     <fragment content="Prepare">
                                         <attributes>
@@ -43,7 +43,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="PREPARATION CARD TITLE" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CFI-ly-hWb">
-                                <rect key="frame" x="9" y="56" width="642" height="132"/>
+                                <rect key="frame" x="9" y="59" width="642" height="129"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>

@@ -22,33 +22,33 @@
                         <rect key="frame" x="10" y="5" width="589" height="328.5"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jst-ev-Zmq">
-                                <rect key="frame" x="7" y="7" width="7" height="7"/>
+                                <rect key="frame" x="7" y="7" width="10" height="10"/>
                                 <color key="backgroundColor" red="1" green="0.83625805564494604" blue="0.041303153123820824" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="7" id="Lkh-98-Dys"/>
-                                    <constraint firstAttribute="width" constant="7" id="jxl-3k-CD2"/>
+                                    <constraint firstAttribute="height" constant="10" id="Lkh-98-Dys"/>
+                                    <constraint firstAttribute="width" constant="10" id="jxl-3k-CD2"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GMQ-qL-Zkk">
-                                <rect key="frame" x="14" y="59" width="561" height="20.5"/>
+                                <rect key="frame" x="14" y="62" width="561" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8h2-Fq-9f6">
-                                <rect key="frame" x="14" y="93.5" width="561" height="182"/>
+                                <rect key="frame" x="14" y="96.5" width="561" height="179"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wWU-rM-t82">
-                                <rect key="frame" x="10" y="21" width="523" height="21"/>
+                                <rect key="frame" x="10" y="24" width="523" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OS4-7r-d9r">
-                                <rect key="frame" x="533" y="21" width="42" height="21"/>
+                                <rect key="frame" x="533" y="24" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
