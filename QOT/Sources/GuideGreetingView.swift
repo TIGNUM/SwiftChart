@@ -22,6 +22,7 @@ final class GuideGreetingView: UIView {
     func configure(message: String, greeting: String) {
         greetingLabel.attributedText = attributedText(greeting)
         messageLabel.attributedText = attributedText(message)
+        greetingLabel.adjustsFontSizeToFitWidth = true
     }
 
     override func layoutSubviews() {
