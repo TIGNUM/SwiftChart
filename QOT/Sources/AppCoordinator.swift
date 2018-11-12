@@ -945,6 +945,13 @@ extension AppCoordinator {
         currentPresentedNavigationController = navController
     }
 
+    func presentAddSensor(from rootController: UIViewController) {
+        let configurator = SensorConfigurator.make()
+        let sensorViewController = SensorViewController(configure: configurator)
+        sensorViewController.hidesBottomBarWhenPushed = true
+        rootController.pushToStart(childViewController: sensorViewController)
+    }
+
     func presentToBeVision(articleItemController: ArticleItemViewController?,
                            options: [LaunchOption: String?]? = nil) {
         navigate(to: AppCoordinator.Router.Destination(tabBar: .tbv, topTabBar: .toBeVision))
