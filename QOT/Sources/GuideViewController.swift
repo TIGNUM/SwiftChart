@@ -22,9 +22,9 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     var router: GuideRouterInterface?
 
     private lazy var tableView: UITableView = {
-        let topContentInset: CGFloat = UIDevice.isPad ? Layout.padding_64 : -Layout.padding_64
+        let topInset: CGFloat = view.bounds.height * (UIDevice.isPad ? Layout.multiplier_06 : -Layout.multiplier_06)
         return UITableView(style: .grouped,
-                           contentInsets: UIEdgeInsets(top: topContentInset, left: 0, bottom: 16, right: 0),
+                           contentInsets: UIEdgeInsets(top: topInset, left: 0, bottom: 16, right: 0),
                            estimatedRowHeight: 100,
                            delegate: self,
                            dataSource: self,

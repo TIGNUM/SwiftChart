@@ -25,7 +25,7 @@ final class TabMenuView: UIView {
     }
     private var indicatorFrame: CGRect {
         let isLearn = titles.contains(obj: R.string.localized.topTabBarItemTitleLearnWhatsHot().uppercased())
-        let padding = isLearn ? Layout.padding_10 : -Layout.padding_1
+        let padding = isLearn ? (UIDevice.isVersion10 ? 0 : Layout.padding_10) : -Layout.padding_1
         return CGRect(x: buttonFrame.minX, y: bounds.height + padding, width: buttonFrame.width, height: 1)
     }
 
