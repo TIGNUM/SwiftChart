@@ -51,8 +51,7 @@ final class LaunchHandler {
         case .meChoices: weeklyChoiches()
         case .weeklyChoicesReminder: weeklyChoicesReminder()
         case .myPreps: navigate(to: scheme.destination)
-        case .toBeVision:
-            toBeVision(articleItemController: articleItemController, options: options)
+        case .toBeVision: toBeVision(articleItemController: articleItemController, options: options)
         case .weeklyPeakPerformance: navigate(to: scheme.destination)
         case .contentCategory: contentCategory(collectionID: scheme.queryParameter(url: url))
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
@@ -271,7 +270,7 @@ extension LaunchHandler {
         guard
             let contentIDString = scheme.queryParameter(url: url),
             let contentID = Int(contentIDString) else { return }
-        if guideItem?.identifier == "learn#103423" {
+        if guideItem?.identifier == "learn#103423" || guideItem?.link?.description == "qot://random-content?contentID=100101" {
             appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
                                                                          guideItem: guideItem,
                                                                          showHeader: false)
@@ -308,15 +307,20 @@ extension LaunchHandler {
             let guideItem = guideItem,
             let contentIDString = scheme.queryParameter(url: url),
             let contentID = Int(contentIDString) {
+            if guideItem.link?.description == "qot://feature-explainer?contentID=100101" { // QOT Benefits
+                appDelegate.appCoordinator.presentContentItemSettings(contentID: contentID,
+                                                                      controller: appDelegate.window?.rootViewController)
+            } else {
                 appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
                                                                              guideItem: guideItem)
+            }
         } else if
             let contentIDString = scheme.queryParameter(url: url),
             let contentID = Int(contentIDString),
             let notificationIDString = scheme.pushNotificationID(url: url),
             let notificationID = Int(notificationIDString) {
-                appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
-                                                                             notificationID: notificationID)
+            appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
+                                                                         notificationID: notificationID)
         }
     }
 
