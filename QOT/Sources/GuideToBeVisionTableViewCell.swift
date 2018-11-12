@@ -19,6 +19,7 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var toBeVisionImageView: UIImageView!
+    @IBOutlet private weak var toBeVisionGradientImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
     @IBOutlet private weak var actionLabel: UILabel!
@@ -39,9 +40,10 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String, body: String, status: Guide.Item.Status, image: URL?) {
         titleLabel.text = title.uppercased()
         bodyLabel.attributedText = bodyAttributedText(text: body, font: .ApercuRegular15, breakMode: .byTruncatingTail)
-        toBeVisionImageView.kf.setImage(with: image, placeholder: R.image.universeMytobevision())
+        toBeVisionImageView.kf.setImage(with: image, placeholder: R.image.tbv_placeholder())
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
+        toBeVisionGradientImageView.image = status == .todo ? R.image.tbv_gradient_todo() : R.image.tbv_gradient_done()
         syncStatusView(with: status,
                        for: statusView,
                        firstConstraint: titleTopConstraintToStatus,
@@ -59,7 +61,7 @@ private extension GuideToBeVisionTableViewCell {
 
     func setupView() {
         cardTypeLabel.font = .ApercuMedium31
-        titleLabel.font = .H4Identifier
+        titleLabel.font = .H1MainTitle
         statusView.maskPathByRoundingCorners()
         bodyLabel.lineBreakMode = .byTruncatingTail
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
