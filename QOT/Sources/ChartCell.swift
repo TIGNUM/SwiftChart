@@ -238,7 +238,7 @@ private extension ChartCell {
 
     func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
         guard let statistics = statistics.chartType.selectedChart(charts: charts) else { return }
-        setLabel(text: "INFO", color: .white40, label: bottomLabel)
+        setInfoIconLabel()
         setLabel(text: "MY\nTEAM\nAVG.", color: .white40, label: teamLabel, lineSpacing: 2.5)
         setLabel(text: "DATA\nBASE\nAVG.", color: .white40, label: dataLabel, lineSpacing: 2.5)
         setLabel(text: statistics.chartType.personalText, color: .white40, label: userAverageLabel, lineSpacing: 2.5)
@@ -249,6 +249,14 @@ private extension ChartCell {
         setLabel(text: R.string.localized.meChartCommingSoon().uppercased(), color: .white, label: comingSoonLabel, lineSpacing: 2.5, font: .PTextSubtitle)
         teamLabel.sizeToFit()
         dataLabel.sizeToFit()
+    }
+
+    func setInfoIconLabel() {
+        let attachment = NSTextAttachment()
+        attachment.image = R.image.ic_info()
+        attachment.bounds = CGRect(x: 0, y: 0, width: 18, height: 18)
+        let mutableAttributedString = NSAttributedString(attachment: attachment)
+        bottomLabel.attributedText = mutableAttributedString
     }
 
     func setLabel(text: String,
