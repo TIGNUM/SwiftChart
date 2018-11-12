@@ -108,9 +108,6 @@ extension UIFont {
     /// SIMPLE REGUAR 72 // Number title
     static let H0Number = UIFont.apercuRegular(ofSize: 72)
 
-    /// SIMPLE REGULAR 61 // main post title
-    static let H1TBVTitle = UIFont.apercuRegular(ofSize: 61)
-
     /// SIMPLE REGULAR 36 // main post title
     static let H1MainTitle = UIFont.apercuRegular(ofSize: 36)
 

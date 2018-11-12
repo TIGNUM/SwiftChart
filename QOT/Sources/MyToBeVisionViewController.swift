@@ -433,7 +433,7 @@ private extension MyToBeVisionModel.Model {
         guard let headLine = headLine else { return nil }
         return NSAttributedString(string: headLine.uppercased(),
                                   letterSpacing: 2,
-                                  font: .H1TBVTitle,
+                                  font: .H1MainTitle,
                                   lineSpacing: 3,
                                   textColor: .white)
     }
@@ -464,7 +464,7 @@ private extension String {
     var formattedHeadline: NSAttributedString? {
         return NSAttributedString(string: self.uppercased(),
                                   letterSpacing: 2,
-                                  font: .H1TBVTitle,
+                                  font: .H1MainTitle,
                                   lineSpacing: 3,
                                   textColor: .white)
     }

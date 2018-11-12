@@ -18,7 +18,6 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var containerView: UIView!
-    @IBOutlet private weak var shadowImageView: UIImageView!
     @IBOutlet private weak var toBeVisionImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var bodyLabel: UILabel!
@@ -39,7 +38,7 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String, body: String, status: Guide.Item.Status, image: URL?) {
         titleLabel.text = title.uppercased()
-        bodyLabel.attributedText = bodyAttributedText(text: body, font: .ApercuRegular15)
+        bodyLabel.attributedText = bodyAttributedText(text: body, font: .ApercuRegular15, breakMode: .byTruncatingTail)
         toBeVisionImageView.kf.setImage(with: image, placeholder: R.image.universeMytobevision())
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
@@ -65,14 +64,7 @@ private extension GuideToBeVisionTableViewCell {
         bodyLabel.lineBreakMode = .byTruncatingTail
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
         toBeVisionImageView.clipsToBounds = true
-        shadowImageView.clipsToBounds = false
-        shadowImageView.layer.shadowOpacity = 1
-        shadowImageView.layer.shadowRadius = 3
-        shadowImageView.layer.shadowColor = UIColor.white.cgColor
-        shadowImageView.layer.shadowOffset = .zero
         actionLabel.font = .ApercuBold14
-        circularImageView(image: toBeVisionImageView)
-        circularImageView(image: shadowImageView)
     }
 
     func circularImageView(image: UIImageView) {

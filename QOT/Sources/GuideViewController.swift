@@ -106,7 +106,7 @@ private extension GuideViewController {
     func setupView() {
         view.backgroundColor = .navy
         tableView.tableHeaderView = greetingView
-        tableView.estimatedRowHeight = 300
+        tableView.estimatedRowHeight = 427
         view.addSubview(tableView)
         view.addSubview(loadingView)
 		if #available(iOS 11.0, *) {
