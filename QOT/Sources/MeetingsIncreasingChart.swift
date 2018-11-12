@@ -91,14 +91,14 @@ private extension MeetingsIncreasingChart {
     }
 
     func layout() {
-        thisWeekNumberLabel.frame = CGRect(x: 0, y: height * -Layout.multiplier_030, width: width, height: height * Layout.multiplier_015)
-        thisWeekLabel.frame = CGRect(x: 0, y: thisWeekNumberLabel.frame.maxY + height * Layout.multiplier_01, width: width, height: height * Layout.multiplier_010)
-        lastWeekNumberLabel.frame = CGRect(x: 0, y: thisWeekLabel.frame.maxY + height * Layout.multiplier_020, width: width, height: height * Layout.multiplier_015)
-        lastWeekLabel.frame = CGRect(x: 0, y: lastWeekNumberLabel.frame.maxY + height * Layout.multiplier_01, width: width, height: height * Layout.multiplier_010)
-        percentageLabel.frame = CGRect(x: 0, y: lastWeekLabel.frame.maxY + height * Layout.multiplier_020, width: width, height: height * Layout.multiplier_015)
-        changeLabel.frame = CGRect(x: 0, y: percentageLabel.frame.maxY + height * Layout.multiplier_01, width: bounds.width, height: height * Layout.multiplier_010)
-        firstSeparatorView.frame = CGRect(x: 10, y: thisWeekLabel.frame.maxY + height * Layout.multiplier_08, width: width - 20, height: 0.4)
-        secondSeparatorView.frame = CGRect(x: 10, y: lastWeekLabel.frame.maxY + height * Layout.multiplier_08, width: width - 20, height: 0.4)
+        thisWeekNumberLabel.frame = CGRect(x: 0, y: height * -Layout.multiplier_030, width: width, height: 30)
+        thisWeekLabel.frame = CGRect(x: 0, y: thisWeekNumberLabel.frame.maxY + (height * Layout.multiplier_01), width: width, height: 20)
+        lastWeekNumberLabel.frame = CGRect(x: 0, y: thisWeekLabel.frame.maxY + (height * Layout.multiplier_020), width: width, height: 30)
+        lastWeekLabel.frame = CGRect(x: 0, y: lastWeekNumberLabel.frame.maxY + (height * Layout.multiplier_01), width: width, height: 20)
+        percentageLabel.frame = CGRect(x: 0, y: lastWeekLabel.frame.maxY + (height * Layout.multiplier_020), width: width, height: 30)
+        changeLabel.frame = CGRect(x: 0, y: percentageLabel.frame.maxY + (height * Layout.multiplier_01), width: bounds.width, height: 20)
+        firstSeparatorView.frame = CGRect(x: 10, y: thisWeekLabel.frame.maxY + (height * Layout.multiplier_08), width: width - 20, height: 0.4)
+        secondSeparatorView.frame = CGRect(x: 10, y: lastWeekLabel.frame.maxY + (height * Layout.multiplier_08), width: width - 20, height: 0.4)
     }
 
     func setData() {
