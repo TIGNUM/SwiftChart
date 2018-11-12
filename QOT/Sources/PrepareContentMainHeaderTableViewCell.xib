@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -30,7 +30,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="LABEL" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WPw-x3-hck">
-                        <rect key="frame" x="30" y="15" width="244" height="43"/>
+                        <rect key="frame" x="30" y="15" width="244" height="42"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="41" id="M9B-a5-4F4"/>
                         </constraints>
@@ -38,7 +38,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQx-xn-2cN">
-                        <rect key="frame" x="30" y="63" width="28" height="21"/>
+                        <rect key="frame" x="30" y="62" width="27" height="21"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="jQn-ir-Yvl"/>
                         </constraints>
@@ -47,14 +47,14 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_minimize" translatesAutoresizingMaskIntoConstraints="NO" id="UVb-BY-vT7">
-                        <rect key="frame" x="66" y="63.5" width="20" height="20"/>
+                        <rect key="frame" x="65" y="68.5" width="8" height="8"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="20" id="ATk-bV-f4a"/>
-                            <constraint firstAttribute="height" constant="20" id="FBD-OH-NCS"/>
+                            <constraint firstAttribute="width" constant="8" id="ATk-bV-f4a"/>
+                            <constraint firstAttribute="height" constant="8" id="FBD-OH-NCS"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upm-Fr-VYW">
-                        <rect key="frame" x="30" y="134" width="260" height="146.5"/>
+                        <rect key="frame" x="30" y="133" width="260" height="146.5"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="upm-Fr-VYW" secondAttribute="height" multiplier="16:9" id="HfQ-u7-0XH"/>
@@ -65,7 +65,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyg-m3-ejQ">
-                        <rect key="frame" x="30" y="300.5" width="260" height="15.5"/>
+                        <rect key="frame" x="30" y="299.5" width="260" height="19"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -100,7 +100,7 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="ic_minimize" width="36" height="36"/>
+        <image name="ic_minimize" width="23" height="12"/>
         <image name="ic_play_video" width="64" height="64"/>
     </resources>
 </document>
