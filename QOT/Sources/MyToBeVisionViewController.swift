@@ -311,7 +311,6 @@ private extension MyToBeVisionViewController {
     @objc func cancelEdit() {
         edit(false)
         scrollToTop()
-        toBeVisionDidUpdate()
     }
 
     func scrollToTop() {

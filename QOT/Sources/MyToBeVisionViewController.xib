@@ -196,7 +196,6 @@
                                             </state>
                                             <connections>
                                                 <action selector="didTapCreateVision" destination="-1" eventType="touchUpInside" id="rFY-Ib-NpL"/>
-                                                <action selector="didTapEdit" destination="-1" eventType="touchUpInside" id="yb9-wr-TbA"/>
                                             </connections>
                                         </button>
                                         <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" scrollEnabled="NO" editable="NO" text="This is my to be vision." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="HYG-f5-Phv" userLabel="Message">

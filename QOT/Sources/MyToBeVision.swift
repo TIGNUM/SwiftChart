@@ -113,7 +113,7 @@ extension MyToBeVision {
 
     var model: MyToBeVisionModel.Model {
         return MyToBeVisionModel.Model(headLine: headline,
-                                       imageURL: profileImageResource?.url,
+                                       imageURL: profileImageResource?.localURL ?? profileImageResource?.remoteURL,
                                        lastUpdated: date,
                                        text: text,
                                        needsToRemind: needsToRemind,
