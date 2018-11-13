@@ -102,6 +102,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         scrollToTop()
         toBeVisionDidUpdate()
         syncEditingViews(true)
+        updateContainerHeight()
         UIApplication.shared.setStatusBarStyle(.lightContent)
     }
 
@@ -221,11 +222,8 @@ private extension MyToBeVisionViewController {
     }
 
 	func updateContainerHeight() {
-		var height: CGFloat = 0
-		for view in textViewsContainer.subviews {
-			height += view.frame.height
-		}
-		containerHeight.constant = height + 60
+        let height: CGFloat = textViewsContainer.subviews.map { $0.frame.height }.reduce(0, +)
+        containerHeight.constant = height + imageViewVision.bounds.height
 	}
 }
 
@@ -396,6 +394,8 @@ extension MyToBeVisionViewController: UITextViewDelegate {
     func textViewDidChange(_ textView: UITextView) {
         if textView == headlineTextView {
             headlineTextView.attributedText = textView.text.formattedHeadline
+        } else if textView == messageTextView {
+            scrollToBottom()
         }
     }
 
@@ -404,10 +404,15 @@ extension MyToBeVisionViewController: UITextViewDelegate {
             headlineTextView.resignFirstResponder()
             messageTextView.becomeFirstResponder()
             messageTextView.text.removeLast()
-            let scrollPoint: CGPoint = CGPoint(x: 0, y: messageEditingSeparatorView.frame.maxY - 100)
-            scrollView.setContentOffset(scrollPoint, animated: false)
+            scrollToBottom()
         }
         return true
+    }
+
+    func scrollToBottom() {
+        let padding = UIDevice.isVersion10 ? Layout.padding_150 : Layout.padding_50
+        let bottomPoint = CGPoint(x: 0, y: messageTextView.bounds.maxY + padding)
+        scrollView.setContentOffset(bottomPoint, animated: false)
     }
 }
 
@@ -480,12 +485,11 @@ private extension MyToBeVisionViewController {
             let userInfo = notification.userInfo,
             let keyboardFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         let isKeyboardShowing = notification.name == .UIKeyboardWillShow
-        let height = isKeyboardShowing ? keyboardFrame.height + 60 : 90
-        contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
-        scrollView.contentInset = contentInset
+        let height = isKeyboardShowing ? keyboardFrame.height : Layout.padding_64
+        scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: height, right: 0)
         UIView.animate(withDuration: Animation.duration_06, animations: {
             self.view.layoutIfNeeded()
-        }, completion: nil)
+        })
     }
 }
 
