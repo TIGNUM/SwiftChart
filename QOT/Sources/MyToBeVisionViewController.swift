@@ -500,6 +500,7 @@ extension MyToBeVisionViewController: NavigationItemDelegate {
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         if isEditing == true {
             cancelEdit()
+            toBeVisionDidUpdate()
         } else {
             AppDelegate.current.appCoordinator.tabBarCoordinator?.navigationItem(navigationItem,
                                                                                  leftButtonPressed: button)
