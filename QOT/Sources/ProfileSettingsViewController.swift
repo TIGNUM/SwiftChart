@@ -86,7 +86,7 @@ final class ProfileSettingsViewController: UIViewController {
         self.services = services
         self.settingsMenuViewModel = settingsMenuViewModel
         self.settingsViewModel = settingsViewModel
-        imagePickerController = ImagePickerController(cropShape: .circle,
+        imagePickerController = ImagePickerController(cropShape: .rectangle,
                                                       imageQuality: .high,
                                                       imageSize: .large,
                                                       permissionsManager: permissionsManager)

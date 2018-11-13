@@ -18,6 +18,7 @@ class ImageCropper: NSObject {
     enum Shape {
         case circle
         case hexagon
+        case rectangle
 
         var size: CGFloat {
             return 250.0
@@ -76,7 +77,7 @@ extension ImageCropper: RSKImageCropViewControllerDelegate {
 extension ImageCropper: RSKImageCropViewControllerDataSource {
 
     func imageCropViewControllerCustomMaskRect(_ controller: RSKImageCropViewController) -> CGRect {
-        guard let view = viewController?.view else {
+         guard let view = viewController?.view else {
             return .zero
         }
         return CGRect(
@@ -98,6 +99,10 @@ extension ImageCropper: RSKImageCropViewControllerDataSource {
         switch shape {
         case .circle: return UIBezierPath.circlePath(center: view.center, radius: view.bounds.width / 4)
         case .hexagon: return UIBezierPath.hexagonPath(forRect: controller.maskRect)
+        case .rectangle: return UIBezierPath.init(rect: CGRect(x: 0,
+                                                               y: controller.maskRect.origin.y,
+                                                               width: controller.view.frame.width,
+                                                               height: controller.view.frame.width * Layout.multiplier_053))
         }
     }
 }

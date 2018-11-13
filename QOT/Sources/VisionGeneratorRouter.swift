@@ -17,7 +17,8 @@ final class VisionGeneratorRouter {
     init(chatViewController: ChatViewController<VisionGeneratorChoice>, permissionsManager: PermissionsManager) {
         self.chatViewController = chatViewController
         self.permissionsManager = permissionsManager
-        imagePickerController = ImagePickerController(imageQuality: .high,
+        imagePickerController = ImagePickerController(cropShape: .rectangle,
+                                                      imageQuality: .high,
                                                       imageSize: .large,
                                                       permissionsManager: permissionsManager)
     }

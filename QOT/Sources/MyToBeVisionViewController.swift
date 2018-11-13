@@ -60,7 +60,8 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
     init(configurator: Configurator<MyToBeVisionViewController>) {
         super.init(nibName: nil, bundle: nil)
         configurator(self)
-        imagePickerController = ImagePickerController(imageQuality: .medium,
+        imagePickerController = ImagePickerController(cropShape: .rectangle,
+                                                      imageQuality: .medium,
                                                       imageSize: .medium,
                                                       permissionsManager: permissionsManager)
         imagePickerController.delegate = self
