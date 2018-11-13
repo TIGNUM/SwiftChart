@@ -17,8 +17,6 @@ enum MyToBeVisionKeywordType: String {
 
 final class MyToBeVision: SyncableObject {
 
-    @objc dynamic var profileImageResource: MediaResource? = MediaResource()
-
     @objc dynamic var headline: String?
 
     @objc dynamic var subHeadline: String?
@@ -30,6 +28,8 @@ final class MyToBeVision: SyncableObject {
     @objc dynamic var changeStamp: String?
 
     @objc dynamic var needsToRemind = false
+
+    @objc dynamic var profileImageResource: MediaResource? = MediaResource()
 
     @objc private dynamic var keywordsWork: String?
 
@@ -43,6 +43,13 @@ final class MyToBeVision: SyncableObject {
 }
 
 extension MyToBeVision: TwoWaySyncableUniqueObject {
+
+    var imageURL: URL? {
+        if let localPath = profileImageResource?.localURL?.path, FileManager.default.fileExists(atPath: localPath) {
+            return profileImageResource?.localURL
+        }
+        return profileImageResource?.remoteURL
+    }
 
     func setKeywords(_ tags: [String], for type: MyToBeVisionKeywordType) {
         switch type {
@@ -113,7 +120,7 @@ extension MyToBeVision {
 
     var model: MyToBeVisionModel.Model {
         return MyToBeVisionModel.Model(headLine: headline,
-                                       imageURL: profileImageResource?.localURL ?? profileImageResource?.remoteURL,
+                                       imageURL: imageURL,
                                        lastUpdated: date,
                                        text: text,
                                        needsToRemind: needsToRemind,

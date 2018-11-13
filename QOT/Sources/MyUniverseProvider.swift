@@ -85,7 +85,7 @@ final class MyUniverseProvider {
             sector(for: .activity, startAngle: 115, endAngle: 125)
         ]
         return MyUniverseViewData(
-            profileImageURL: myToBeVision?.profileImageResource?.url,
+            profileImageURL: myToBeVision?.imageURL,
             partners: dataPartners  ,
             weeklyChoices: weeklyChoices,
             myToBeVisionHeadline: myToBeVision?.headline ?? R.string.localized.meSectorMyWhyVisionTitle(),

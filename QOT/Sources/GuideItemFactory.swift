@@ -106,7 +106,6 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
         var isToBeVisionDone: Bool = (myToBeVision?.needsToRemind == false)
         var title = myToBeVision?.headline?.uppercased()
         var body = myToBeVision?.text
-        let image = myToBeVision?.profileImageResource?.localURL ?? myToBeVision?.profileImageResource?.remoteURL
         if  title == nil ||
             body == nil ||
             title?.isTrimmedTextEmpty == true ||
@@ -119,7 +118,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
 
         return Guide.Item(status: isToBeVisionDone == true ? .done : .todo,
                           title: "",
-                          content: .toBeVision(title: title ?? "", body: body ?? "", image: image),
+                          content: .toBeVision(title: title ?? "", body: body ?? "", image: myToBeVision?.imageURL),
                           subtitle: "",
                           isDailyPrep: false,
                           isLearningPlan: false,

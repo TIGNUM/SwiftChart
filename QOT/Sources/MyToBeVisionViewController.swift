@@ -35,7 +35,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
     private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()
     private var imagePickerController: ImagePickerController!
-    private var imageRecognizer: UITapGestureRecognizer!
+    private var tempImage: UIImage?
     private var toBeVision: MyToBeVisionModel.Model?
     private var avPlayerObserver: AVPlayerObserver?
     private var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] = [:]
@@ -110,6 +110,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         super.viewWillDisappear(animated)
         headlineTextView.resignFirstResponder()
         messageTextView.resignFirstResponder()
+        tempImage = nil
         if isBeingDismissed == true {
             edit(false)
         }
@@ -267,8 +268,13 @@ private extension MyToBeVisionViewController {
             messageTextView.attributedText = toBeVision?.formattedVision
         }
 
-        imageViewVision.kf.setImage(with: toBeVision?.imageURL, placeholder: R.image.tbv_placeholder())
+        if tempImage != nil {
+            imageViewVision.image = tempImage
+        } else {
+            imageViewVision.kf.setImage(with: toBeVision?.imageURL, placeholder: R.image.tbv_placeholder())
+        }
         syncImageControls(animated: false)
+        view.layoutIfNeeded()
     }
 
     func saveToBeVisison() {
@@ -280,8 +286,7 @@ private extension MyToBeVisionViewController {
             toBeVision.text = messageTextView.text
             toBeVision.lastUpdated = Date()
         }
-        let image = imageViewVision.image
-        interactor?.saveToBeVision(image: image, toBeVision: toBeVision)
+        interactor?.saveToBeVision(image: tempImage, toBeVision: toBeVision)
     }
 
     func edit(_ isEditing: Bool) {
@@ -308,6 +313,7 @@ private extension MyToBeVisionViewController {
     }
 
     @objc func cancelEdit() {
+        tempImage = nil
         edit(false)
         scrollToTop()
     }
@@ -426,7 +432,7 @@ extension MyToBeVisionViewController: ImagePickerControllerDelegate {
     }
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
-        imageViewVision.image = image
+        tempImage = image
         RestartHelper.clearRestartRouteInfo()
     }
 }
