@@ -73,7 +73,12 @@ struct Layout {
     static let multiplier_065: CGFloat = 0.65
     static let multiplier_075: CGFloat = 0.75
     static let multiplier_080: CGFloat = 0.80
+    static let multiplier_105: CGFloat = 1.05
+    static let multiplier_110: CGFloat = 1.10
+    static let multiplier_120: CGFloat = 1.20
+    static let multiplier_125: CGFloat = 1.25
     static let multiplier_150: CGFloat = 1.50
+    static let multiplier_175: CGFloat = 1.75
     static let badgeSize = CGSize(width: padding_20, height: padding_20)
 
     struct TabBarView {

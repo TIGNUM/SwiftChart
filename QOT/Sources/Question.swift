@@ -15,6 +15,8 @@ final class Question: SyncableObject {
 
     @objc private(set) dynamic var title: String = ""
 
+    @objc private(set) dynamic var htmlTitleString: String?
+
     @objc private(set) dynamic var dailyPrepTitle: String = ""
 
     @objc private(set) dynamic var subtitle: String?
@@ -46,6 +48,7 @@ extension Question: OneWaySyncableDown {
 
         sortOrder = data.sortOrder
         title = data.title
+        htmlTitleString = data.htmlTitleString.count > 0 ? data.htmlTitleString : nil
         dailyPrepTitle = data.dailyPrepTitle
         answersDescription = data.answersDescription
         key = data.answers.filter { $0.title == "key" }.first?.subtitle

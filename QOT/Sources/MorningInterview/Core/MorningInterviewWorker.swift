@@ -46,8 +46,16 @@ final class MorningInterviewWorker {
                     return left > right
             }
             let selectedAnswerIndex = (answers.count - 1) / 2
+            var htmlTitleString = question.htmlTitleString
+            // Apply default HTML Style
+            if let htmlString = question.htmlTitleString, htmlString.count > 0 {
+                htmlTitleString = R.string.localized.morningControllerQuestionHTMLStyle() + htmlString
+            } else {
+                htmlTitleString = nil
+            }
             return MorningInterview.Question(remoteID: remoteID,
                                              title: question.title,
+                                             htmlTitle: htmlTitleString,
                                              subtitle: question.subtitle,
                                              answers: answers,
                                              key: question.key,

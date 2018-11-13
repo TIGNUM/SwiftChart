@@ -21,16 +21,18 @@ struct MorningInterview {
 
         let remoteID: Int
         let title: String
+        let htmlTitle: String?
         let subtitle: String?
         let answers: [Answer]
         let key: String?
         var selectedAnswerIndex: Int
 
-        init?(remoteID: Int, title: String, subtitle: String?, answers: [Answer], key: String?, selectedAnswerIndex: Int) {
+        init?(remoteID: Int, title: String, htmlTitle: String?, subtitle: String?, answers: [Answer], key: String?, selectedAnswerIndex: Int) {
             guard answers.count > 0 else { return nil }
 
             self.remoteID = remoteID
             self.title = title
+            self.htmlTitle = htmlTitle
             self.subtitle = subtitle
             self.answers = answers
             self.key = key

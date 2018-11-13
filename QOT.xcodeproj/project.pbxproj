@@ -741,6 +741,7 @@
 		D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34AC1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib */; };
 		D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC34B01EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift */; };
 		D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */; };
+		DB12013C219AC99400BE0E81 /* QuestionaireCellIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB12013B219AC99400BE0E81 /* QuestionaireCellIndicator.swift */; };
 		DB34725221594560004F17D6 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725121594560004F17D6 /* Realm.framework */; };
 		DB34725421594560004F17D6 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725321594560004F17D6 /* RealmSwift.framework */; };
 		DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5E5E55217632C1006BA438 /* RestartRouteHandler.swift */; };
@@ -753,8 +754,6 @@
 		DB68059B218210E700C2FC69 /* MorningInterviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68058B218210E700C2FC69 /* MorningInterviewPresenter.swift */; };
 		DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68058C218210E700C2FC69 /* MorningInterviewProtocols.swift */; };
 		DB68059D218210E700C2FC69 /* MorningInterviewConfiguator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB68058D218210E700C2FC69 /* MorningInterviewConfiguator.swift */; };
-		DB68059E218210E700C2FC69 /* PageIndicatorItemView.xib in Resources */ = {isa = PBXBuildFile; fileRef = DB68058F218210E700C2FC69 /* PageIndicatorItemView.xib */; };
-		DB68059F218210E700C2FC69 /* PageIndicatorItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680590218210E700C2FC69 /* PageIndicatorItemView.swift */; };
 		DB6805A0218210E700C2FC69 /* QuestionnaireViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680591218210E700C2FC69 /* QuestionnaireViewController.swift */; };
 		DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = DB680592218210E700C2FC69 /* QuestionnaireViewController.storyboard */; };
 		DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */; };
@@ -1564,6 +1563,7 @@
 		D5EC34B01EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnStrategyPlaylistAudioCell.swift; sourceTree = "<group>"; };
 		D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyPlaylistAudioCell.xib; sourceTree = "<group>"; };
 		D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB12013B219AC99400BE0E81 /* QuestionaireCellIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionaireCellIndicator.swift; sourceTree = "<group>"; };
 		DB34725121594560004F17D6 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB34725321594560004F17D6 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5E5E55217632C1006BA438 /* RestartRouteHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartRouteHandler.swift; sourceTree = "<group>"; };
@@ -1576,8 +1576,6 @@
 		DB68058B218210E700C2FC69 /* MorningInterviewPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewPresenter.swift; sourceTree = "<group>"; };
 		DB68058C218210E700C2FC69 /* MorningInterviewProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewProtocols.swift; sourceTree = "<group>"; };
 		DB68058D218210E700C2FC69 /* MorningInterviewConfiguator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningInterviewConfiguator.swift; sourceTree = "<group>"; };
-		DB68058F218210E700C2FC69 /* PageIndicatorItemView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PageIndicatorItemView.xib; sourceTree = "<group>"; };
-		DB680590218210E700C2FC69 /* PageIndicatorItemView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageIndicatorItemView.swift; sourceTree = "<group>"; };
 		DB680591218210E700C2FC69 /* QuestionnaireViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireViewController.swift; sourceTree = "<group>"; };
 		DB680592218210E700C2FC69 /* QuestionnaireViewController.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = QuestionnaireViewController.storyboard; sourceTree = "<group>"; };
 		DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionnaireProtocols.swift; sourceTree = "<group>"; };
@@ -3682,13 +3680,12 @@
 		DB68058E218210E700C2FC69 /* Other */ = {
 			isa = PBXGroup;
 			children = (
-				DB68058F218210E700C2FC69 /* PageIndicatorItemView.xib */,
-				DB680590218210E700C2FC69 /* PageIndicatorItemView.swift */,
 				DB680591218210E700C2FC69 /* QuestionnaireViewController.swift */,
 				DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */,
 				DB680592218210E700C2FC69 /* QuestionnaireViewController.storyboard */,
 				DB680593218210E700C2FC69 /* QuestionnaireProtocols.swift */,
 				DB680594218210E700C2FC69 /* MorningQuestion.swift */,
+				DB12013B219AC99400BE0E81 /* QuestionaireCellIndicator.swift */,
 			);
 			path = Other;
 			sourceTree = "<group>";
@@ -3877,7 +3874,6 @@
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
-				DB68059E218210E700C2FC69 /* PageIndicatorItemView.xib in Resources */,
 				9171647B2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
 				3674FF3120AADEC5008EEB6C /* PartnersOverviewViewController.xib in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
@@ -4272,7 +4268,6 @@
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
 				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
-				DB68059F218210E700C2FC69 /* PageIndicatorItemView.swift in Sources */,
 				36796A4820D3C49900B55429 /* SigningLoginRouter.swift in Sources */,
 				91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */,
 				CB3437621EFD67B600D89D4F /* AnswerIntermediary.swift in Sources */,
@@ -4554,6 +4549,7 @@
 				7FBFBC131FC73F18007B6D2D /* WeeklyChoice.swift in Sources */,
 				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
+				DB12013C219AC99400BE0E81 /* QuestionaireCellIndicator.swift in Sources */,
 				91F5BE422097578F00E85A51 /* PermissionsWorker.swift in Sources */,
 				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,

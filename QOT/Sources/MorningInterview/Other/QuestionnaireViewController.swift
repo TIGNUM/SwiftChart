@@ -16,23 +16,32 @@ enum QuestionnairePresentationType {
 class QuestionnaireViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var questionLabel: UILabel!
-    @IBOutlet private weak var indexLabel: UILabel!
     @IBOutlet private weak var progressTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var ovalTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var progressHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var progressView: UIView!
     @IBOutlet private weak var fillView: UIView!
+    @IBOutlet private weak var backlightView: UIImageView!
 
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?
     private var question: String? = nil
+    private var attributedQuestion: NSAttributedString? = nil
     private var answers: [String?] = []
     private var titles: [String?] = []
     private var cellHeight: CGFloat = Layout.padding_32
     private var previousYPosition: CGFloat = 0.0
     private var touchDownYPosition: CGFloat = 0.0
     private var currentIndex: Int = 5
-    private var presentationType: QuestionnairePresentationType = .fill
+    private var temporaryIndex: Int = -1 {
+        didSet {
+            applyGradientColor(at: temporaryIndex)
+        }
+    }
+    private var presentationType: QuestionnairePresentationType = .selection
     private var fillColor: UIColor? = nil
+    private var gradientTopColor: UIColor? = nil
+    private var gradientBottomColor: UIColor? = nil
     private var showAnimated: Bool = false
     weak open var answerDelegate: QuestionnaireAnswer?
 
@@ -47,10 +56,13 @@ class QuestionnaireViewController: UIViewController {
             // setup questions
             viewController.questionIdentifier = questionnaire.questionIdentifier()
             viewController.question = questionnaire.question()
+            viewController.attributedQuestion = questionnaire.attributedQuestion()
             viewController.titles = questionnaire.answerDescriptions()
             viewController.answers = questionnaire.answerStrings()
             viewController.currentIndex = questionnaire.selectedAnswerIndex()
             viewController.fillColor = questionnaire.selectionColor()
+            viewController.gradientTopColor = questionnaire.gradientTopColor()
+            viewController.gradientBottomColor = questionnaire.gradientBottomColor()
             viewController.presentationType = presentationType
             viewController.answerDelegate = delegate
             return viewController
@@ -59,7 +71,7 @@ class QuestionnaireViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         animationHide()
-        progressView.backgroundColor = fillColor ?? progressView.backgroundColor
+        progressView.backgroundColor = UIColor.clear
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -100,10 +112,10 @@ extension QuestionnaireViewController {
 
     func animationHide() {
         questionLabel.isHidden = true
-        indexLabel.isHidden = true
         tableView.isHidden = true
         tableView.reloadData()
         progressView.alpha = 0.0
+        backlightView.alpha = 0.0
         showAnimated = false
     }
 
@@ -117,11 +129,12 @@ extension QuestionnaireViewController {
         questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
         questionLabel.alpha = 0
         questionLabel.text = question
-
-        indexLabel.isHidden = false
-        indexLabel.alpha = 0
+        if let attributed = attributedQuestion {
+            questionLabel.attributedText = attributed
+        }
 
         progressView.alpha = 0.0
+        backlightView.alpha = 0.0
         progressTopConstraint.constant = cellHeight * CGFloat(titles.count * 2 - 1)
         fillView.setNeedsUpdateConstraints()
 
@@ -137,17 +150,17 @@ extension QuestionnaireViewController {
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Animation.duration_02) {
             self.animateToIndex(index: self.currentIndex, isTouch: false)
-            UIView.animate(withDuration: Animation.duration_02, delay: Animation.duration_02,
-                           options: [.curveEaseInOut], animations: {
-                            self.indexLabel.alpha = 1
-            }, completion: { finished in
-                self.answerDelegate?.isPresented(for: self.questionID(), from: self)
-            })
+            self.answerDelegate?.isPresented(for: self.questionID(), from: self)
+            self.applyMagnification()
+        }
+
+        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Animation.duration_02 * 2) {
+            self.applyMagnification()
         }
     }
 
     func itemIndex(with yPosition: CGFloat) -> Int {
-        var index = Int(yPosition/self.cellHeight)
+        var index = Int(yPosition + cellHeight/2)/Int(cellHeight)
         if index > self.titles.count - 1 {
             index = self.titles.count - 1
         }
@@ -156,8 +169,12 @@ extension QuestionnaireViewController {
 
     func adjustSelectedAnswer(yPosition position: CGFloat) {
         let index = itemIndex(with: position)
+        adjustSelectedAnswer(with: index)
+    }
+
+    func adjustSelectedAnswer(with index: Int, duration: TimeInterval = 0.2) {
         currentIndex = index
-        animateTo(yPosition: CGFloat(index) * cellHeight)
+        animateTo(yPosition: CGFloat(index) * cellHeight, duration: duration)
         answerDelegate?.didSelect(answer: answers[currentIndex], for: questionIdentifier, from: self)
     }
 
@@ -165,9 +182,10 @@ extension QuestionnaireViewController {
         animateTo(yPosition: CGFloat(index) * cellHeight, duration: duration, isTouch: isTouch)
     }
 
-    func animateTo(yPosition position: CGFloat, duration: TimeInterval = 0.1, isTouch: Bool = true) {
+    func animateTo(yPosition position: CGFloat, duration: TimeInterval = 0.2, isTouch: Bool = true) {
         UIView.animate(withDuration: duration, delay: 0.0, options: [.curveEaseOut], animations: {
             self.dragTo(yPosition: position, isTouch: isTouch)
+            self.backlightView.alpha = 1
             self.fillView.setNeedsUpdateConstraints()
             self.fillView.layoutIfNeeded()
         }, completion: nil)
@@ -175,19 +193,77 @@ extension QuestionnaireViewController {
 
     func dragTo(yPosition position: CGFloat, isTouch: Bool = true) {
         var newPosition = position
-        if newPosition < 0 {
-            newPosition = 0
-        } else if newPosition > (cellHeight * CGFloat(titles.count - 1)) {
-            newPosition = cellHeight * CGFloat(titles.count - 1)
+        if newPosition < (-cellHeight/2) {
+            newPosition = -cellHeight/2
+        } else if newPosition > (cellHeight * CGFloat(titles.count - 1) + cellHeight/2) {
+            newPosition = cellHeight * CGFloat(titles.count - 1) + cellHeight/2
         }
         self.progressTopConstraint.constant = newPosition
         let index = itemIndex(with: newPosition)
-        if indexLabel.text != answers[index], isTouch == true {
-            generateFeedback(.light)
+        if temporaryIndex != index {
+            temporaryIndex = index
+            ovalTopConstraint.constant = CGFloat(temporaryIndex) * cellHeight
+            DispatchQueue.main.async {
+                if isTouch == true {
+                    self.generateFeedback(.light)
+                }
+            }
         }
-        indexLabel.text = answers[index]
+        DispatchQueue.main.async {
+            self.applyMagnification()
+        }
         if isTouch == true {
             answerDelegate?.isSelecting(answer: answers[index], for: questionIdentifier, from: self)
+        }
+
+    }
+
+    func applyGradientColor(at selectedIndex: Int) {
+        for index in answers.indices {
+            let indexPath = IndexPath(row: index, section: 0)
+            guard let cell = tableView.cellForRow(at: indexPath) as? QuestionnaireTableViewCell else { continue }
+            var targetColor = UIColor.white40
+            if index >= selectedIndex, let topColor = gradientTopColor, let bottomColor = gradientBottomColor {
+                targetColor = topColor.toColor(bottomColor, ratio: CGFloat(index)/CGFloat(answers.count - 1))
+            }
+            UIView.animate(withDuration: Animation.duration_02, delay: 0, options: [.curveEaseInOut], animations: {
+                cell.colorIndicator.setEnable(targetColor != UIColor.white40, with: targetColor)
+                if targetColor != UIColor.white40 {
+                    cell.textLabel?.textColor = UIColor.white
+                } else {
+                    cell.textLabel?.textColor = UIColor.white40
+                }
+                cell.detailTextLabel?.textColor = cell.textLabel?.textColor
+            }, completion: nil)
+        }
+    }
+
+    func applyMagnification() {
+        let adjustment: CGFloat = cellHeight/2
+        for index in answers.indices {
+            let indexPath = IndexPath(row: index, section: 0)
+            guard let cell = tableView.cellForRow(at: indexPath) as? QuestionnaireTableViewCell else { continue }
+            var scaleFactor: CGFloat = 1
+            let basePosition = CGFloat(index) * cellHeight + adjustment
+            let distanceGap = ((progressTopConstraint.constant + adjustment) - basePosition)/cellHeight
+            if  abs(distanceGap) < 2 {
+                // take range -2 < x < 2 and use following Quadratic equation
+                // y = pow(x - 2) * pow(x - 2) / 32
+                scaleFactor = scaleFactor + (pow((distanceGap - 2), 2)*pow((distanceGap + 2), 2))/pow(2, 5)
+            }
+            // adjust scalefacor with screen size, based on cell height
+            let baseCellHeight = Layout.padding_40
+            if cellHeight < baseCellHeight {
+                scaleFactor = scaleFactor * (Layout.padding_32/cellHeight)
+            }
+            guard let size = cell.textLabel?.sizeThatFits(cell.contentView.bounds.size) else { continue }
+            UIView.animate(withDuration: Animation.duration_02, delay: 0, options: [.curveEaseInOut], animations: {
+                cell.valueLabelWidth.constant = size.width
+                cell.valueLabelLeading.constant = Layout.padding_10 * scaleFactor
+                cell.contentView.updateConstraints()
+                cell.contentView.layoutIfNeeded()
+                cell.textLabel?.transform = CGAffineTransform.identity.scaledBy(x: scaleFactor, y: scaleFactor)
+            }, completion: nil)
         }
     }
 }
@@ -200,7 +276,7 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "QuestionnaireTableViewCell", for: indexPath)
+        let cell: QuestionnaireTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.detailTextLabel?.text = titles[indexPath.row]?.capitalized
         cell.textLabel?.text = answers[indexPath.row]?.capitalized
         return cell
@@ -233,15 +309,29 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
                            options: [.curveEaseInOut], animations: {
                             cell.transform = CGAffineTransform(translationX: 0, y: 0)
                             cell.alpha = 1
-            }, completion: nil)
+            }, completion: { finished in
+                if self.finishedLoadingInitialTableCells {
+                    self.applyGradientColor(at: self.currentIndex)
+                }
+            })
         }
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        adjustSelectedAnswer(with: indexPath.row)
+    }
+
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        animateToIndex(index: indexPath.row, duration: Animation.duration_02)
+        generateFeedback(.light)
+        return true
     }
 }
 
 // MARK: GestureRecognizer
 extension QuestionnaireViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldReceive touch: UITouch) -> Bool {
-        guard gestureRecognizer.view != nil else {return false}
+        guard gestureRecognizer.view != nil else { return false }
         let piece = gestureRecognizer.view!
         let yPosition = touch.location(in: piece).y
         if touch.phase == .began {
@@ -260,23 +350,11 @@ extension QuestionnaireViewController: UIGestureRecognizerDelegate {
 }
 
 extension QuestionnaireViewController {
-    @IBAction func tapPiece(_ gestureRecognizer: UITapGestureRecognizer) {
-        guard gestureRecognizer.view != nil else {return}
-        let piece = gestureRecognizer.view!
-        switch gestureRecognizer.state {
-        case .began:
-            touchDownYPosition = gestureRecognizer.location(in: piece).y
-        case .ended:
-            adjustSelectedAnswer(yPosition: touchDownYPosition)
-        default:
-            break
-        }
-    }
-
     @IBAction func panPiece(_ gestureRecognizer: UIPanGestureRecognizer) {
         guard gestureRecognizer.view != nil else {return}
         let piece = gestureRecognizer.view!
         let yPosition = gestureRecognizer.location(in: piece).y
+
         switch gestureRecognizer.state {
         case .began:
             touchDownYPosition = yPosition

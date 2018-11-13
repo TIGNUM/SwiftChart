@@ -11,10 +11,13 @@ import UIKit
 protocol Questionnaire {
     func questionIdentifier() -> Int
     func question() -> String
+    func attributedQuestion() -> NSAttributedString?
     func answerStrings() -> [String]
     func answerDescriptions() -> [String]
     func selectedAnswerIndex() -> Int
     func selectionColor() -> UIColor
+    func gradientTopColor() -> UIColor
+    func gradientBottomColor() -> UIColor
 }
 
 protocol QuestionnaireAnswer: class {

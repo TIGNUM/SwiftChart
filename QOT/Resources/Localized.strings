@@ -335,8 +335,10 @@
 "ImagePicker.Options.Button.Cancel" = "Cancel";
 
 "MorningController.titleLabel" = "DAILY PREP MINUTE";
-"MorningController.nextButton" = "Next";
-"MorningController.doneButton" = "Done";
+"MorningController.previousButton" = "PREVIOUS";
+"MorningController.nextButton" = "NEXT";
+"MorningController.doneButton" = "DONE";
+"MorningController.question.HTML.style" = "<head><style>body{font-family:Apercu-Light;font-size:16px;color:gray;line-height:1.25;}highlight{font-family:Apercu-Light;font-size:21px;color:white;line-height:1.0}</style></head>";
 
 "ActivityView.WeekButton" = "WEEK";
 "ActivityView.MonthButton" = "MONTH";

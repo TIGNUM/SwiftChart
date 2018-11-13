@@ -13,11 +13,13 @@ final class MorningInterviewViewController: UIViewController {
     private var questions: [MorningQuestion] = []
     private var morningInterviews: [MorningInterview.Question] = []
     private var nextPageTimer: Timer?
-    private var pageIndicatorViews: [PageIndicatorItemView?] = []
 
     @IBOutlet weak private var pageContainer: UIView!
-    @IBOutlet weak private var indicatorStackView: UIStackView!
-    @IBOutlet weak private var doneButton: UIButton!
+    @IBOutlet weak private var stackView: UIView!
+    @IBOutlet weak private var pageIndicator: UIPageControl!
+    @IBOutlet weak private var previousButton: UIButton!
+    @IBOutlet weak private var nextButton: UIButton!
+    @IBOutlet weak private var touchAssistantImage: UIView!
 
     var interactor: MorningInterviewInteractorInterface?
     var router: MorningInterviewRouterInterface?
@@ -29,10 +31,9 @@ final class MorningInterviewViewController: UIViewController {
         pageController.dataSource = self
         self.pageController = pageController
         self.addChildViewController(pageController)
-        view.insertSubview(pageController.view, belowSubview: doneButton)
+        view.insertSubview(pageController.view, belowSubview: stackView)
         pageController.view.clipsToBounds = false
         interactor?.viewDidLoad()
-        doneButton.backgroundColor = .azure
     }
 
     override func viewDidLayoutSubviews() {
@@ -45,6 +46,9 @@ final class MorningInterviewViewController: UIViewController {
         if let viewController = questionnaireViewController(with: questions.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
+        UIView.animate(withDuration: Animation.duration_02, delay: Animation.duration_1, options: .curveEaseInOut, animations: {
+            self.touchAssistantImage.alpha = 1
+        }, completion: nil)
     }
 
     func indexOf(_ viewController: UIViewController?) -> Int {
@@ -100,8 +104,34 @@ final class MorningInterviewViewController: UIViewController {
 // DONE Button
 extension MorningInterviewViewController {
     @IBAction func didSelectDone() {
-        interactor?.saveAnswers(questions: morningInterviews)
-        close()
+        if hasAllAnswers() {
+            interactor?.saveAnswers(questions: morningInterviews)
+            close()
+            return
+        }
+
+        guard let currentViewController = pageController?.viewControllers?.first else { return }
+        let index = indexOf(currentViewController)
+        guard index < questions.count - 1 else { return }
+        nextPageTimer?.invalidate()
+        nextPageTimer = nil
+
+        let question = questions[index + 1]
+        guard let viewController = questionnaireViewController(with: question) else { return }
+        pageController?.setViewControllers([viewController], direction: .forward, animated: false, completion: nil)
+
+    }
+
+    @IBAction func didSelectPrevious() {
+        guard let currentViewController = pageController?.viewControllers?.first else { return }
+        let index = indexOf(currentViewController)
+        guard index > 0 else { return }
+        nextPageTimer?.invalidate()
+        nextPageTimer = nil
+
+        let question = questions[index - 1]
+        guard let viewController = questionnaireViewController(with: question) else { return }
+        pageController?.setViewControllers([viewController], direction: .reverse, animated: false, completion: nil)
     }
 
     func hasAllAnswers() -> Bool {
@@ -111,43 +141,70 @@ extension MorningInterviewViewController {
     }
 
     func checkAnswers() {
-        if hasAllAnswers() {
-            showButton()
-        } else {
-            hideButton()
+        guard let currentViewController = pageController?.viewControllers?.first else { return }
+        UIView.animate(withDuration: Animation.duration_01) {
+            let currentPageIndex = self.indexOf(currentViewController)
+            self.previousButton.setTitle(R.string.localized.morningControllerPreviousButton(), for: .normal)
+
+            if currentPageIndex > 0 {
+                self.previousButton.isUserInteractionEnabled = true
+                self.previousButton.alpha = 1
+            } else {
+                self.previousButton.isUserInteractionEnabled = false
+                self.previousButton.alpha = 0
+            }
+            if self.hasAllAnswers() {
+                self.nextButton.setTitle(R.string.localized.morningControllerDoneButton(), for: .normal)
+                self.nextButton.isUserInteractionEnabled = true
+                self.nextButton.alpha = 1
+            } else {
+                if currentPageIndex < self.questions.count - 1 {
+                    self.nextButton.setTitle(R.string.localized.morningControllerNextButton(), for: .normal)
+                    self.nextButton.isUserInteractionEnabled = self.next(from: currentViewController) == nil ? false : true
+                    self.nextButton.alpha = self.nextButton.isUserInteractionEnabled == true ? 1 : 0
+                } else {
+                    self.nextButton.isUserInteractionEnabled = false
+                    self.nextButton.alpha = 0
+                }
+            }
         }
     }
 
-    func hideButton() {
-        self.doneButton.transform = CGAffineTransform(translationX: 0, y: 100)
-        self.doneButton.alpha = 0
-    }
+    @IBAction func pageIndicatorValueChagned() {
+        guard let currentViewController = pageController?.viewControllers?.first else { return }
+        let currentPageIndex = indexOf(currentViewController)
+        let newPageIndex = pageIndicator.currentPage
+        let direction: UIPageViewController.NavigationDirection = currentPageIndex < newPageIndex ? .forward : .reverse
+        if currentPageIndex > newPageIndex, previous(from: currentViewController) == nil {
+            pageIndicator.currentPage = currentPageIndex
+            return
+        } else if currentPageIndex < newPageIndex, next(from: currentViewController) == nil {
+            pageIndicator.currentPage = currentPageIndex
+            return
+        } else if currentPageIndex == newPageIndex {
+            return
+        }
 
-    func showButton() {
-        UIView.animate(withDuration: Animation.duration_02, delay: Animation.duration_02,
-                       options: [.curveEaseInOut], animations: {
-            self.doneButton.transform = CGAffineTransform(translationX: 0, y: 0)
-            self.doneButton.alpha = 1
-        }, completion: nil)
+        nextPageTimer?.invalidate()
+        nextPageTimer = nil
+
+        let question = questions[newPageIndex]
+        guard let nextViewController = questionnaireViewController(with: question) else { return }
+        pageController?.setViewControllers([nextViewController], direction: direction, animated: false, completion: nil)
     }
 }
 
 // MARK: QuestionnaireAnswer
 extension MorningInterviewViewController: QuestionnaireAnswer {
     func isPresented(for questionIdentifier: Int?, from viewController: UIViewController) {
-        let index = indexOf(viewController)
-        pageIndicatorViews.forEach { (view) in
-            view?.select(false)
-        }
-        pageIndicatorViews[index]?.enable(true)
-        pageIndicatorViews[index]?.select(true)
+        pageIndicator.currentPage = indexOf(viewController)
         checkAnswers()
     }
 
     func isSelecting(answer: Any?, for questionIdentifier: Int?, from viewController: UIViewController) {
+        touchAssistantImage.isHidden = true
         nextPageTimer?.invalidate()
         nextPageTimer = nil
-        hideButton()
     }
 
     func didSelect(answer: Any?, for questionIdentifier: Int?, from viewController: UIViewController) {
@@ -156,16 +213,16 @@ extension MorningInterviewViewController: QuestionnaireAnswer {
         questions[questionIndex].answerIndex = questions[questionIndex].answers.lastIndex(of: answerString)
         morningInterviews[questionIndex].selectedAnswerIndex = questions[questionIndex].selectedAnswerIndex()
         if questions[questionIndex].answerIndex != nil,
-            let nextViewController = next(from: viewController),
-            hasAllAnswers() == false {
+            let nextViewController = next(from: viewController) {
             nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_06, repeats: false) { timer in
                 self.pageController?.setViewControllers([nextViewController],
                                                         direction: .forward,
                                                         animated: true,
                                                         completion: nil)
             }
+        } else if questionIndex == questions.count - 1 {
+            checkAnswers()
         }
-        checkAnswers()
     }
 }
 
@@ -191,56 +248,41 @@ extension MorningInterviewViewController: UIPageViewControllerDelegate, UIPageVi
     }
 }
 
+//extension MorningInterviewViewController: UIPageViewControllerDelegate
+
 // MARK: MorningInterviewViewControllerInterface
 extension MorningInterviewViewController: MorningInterviewViewControllerInterface {
     func setQuestions(_ questions: [MorningInterview.Question]) {
-        indicatorStackView.removeSubViews()
-        pageIndicatorViews.removeAll()
         self.morningInterviews = questions
-        var questionIndex: Int = 0
-        for question in questions {
+        pageIndicator.numberOfPages = questions.count
+        for (index, question) in questions.enumerated() {
             let answers = question.answers.compactMap({ (answer) -> String? in
                 return answer.title
             })
             let descriptions = question.answers.compactMap({ (answer) -> String? in
                 return answer.subtitle ?? ""
             })
-            var color = UIColor.gray
+            var topColor = UIColor.recoveryGreen
+            var bottomColor = UIColor.recoveryRed
             if let chartType = ChartType(rawValue: question.key ?? "") {
                 switch chartType {
-                case .intensityRecoveryWeek,
-                     .intensityRecoveryMonth: color =  UIColor.recoveryGreen
                 case .intensityLoadWeek,
-                     .intensityLoadMonth: color = UIColor.recoveryRed
+                     .intensityLoadMonth:
+                    topColor = UIColor.recoveryRed
+                    bottomColor = UIColor.recoveryGreen
                 default:
                     break
                 }
             }
-            self.questions.append(MorningQuestion(questionID: questionIndex,
-                                                         questionString: question.title,
-                                                         answers: answers,
-                                                         descriptions: descriptions,
-                                                         answerIndex: nil,
-                                                         fillColor: color))
-            let itemView = PageIndicatorItemView.viewWithTitle(String(pageIndicatorViews.count + 1), questionIndex) { [weak self] itemID in
-                guard let question = self?.questions[itemID] else { return }
-                guard let nextViewController = self?.questionnaireViewController(with: question) else { return }
-                self?.pageController?.setViewControllers([nextViewController], direction: .forward, animated: false, completion: nil)
-            }
-            if let view = itemView {
-                pageIndicatorViews.append(view)
-                view.enable(false)
-                indicatorStackView.addArrangedSubview(view)
-                view.alpha = 0
-                UIView.animate(withDuration: Animation.duration_02,
-                               delay: Animation.duration_02 * Double(questionIndex),
-                               options: [.curveEaseInOut],
-                               animations: {
-                                view.alpha = 1
-                }, completion: nil)
-            }
-            questionIndex = questionIndex + 1
+            self.questions.append(MorningQuestion(questionID: index,
+                                                  questionString: question.title,
+                                                  attributedQuestionString: question.htmlTitle?.convertHtml(),
+                                                  answers: answers,
+                                                  descriptions: descriptions,
+                                                  answerIndex: nil,
+                                                  fillColor: UIColor.guideCardToDoBackground,
+                                                  topColor: topColor,
+                                                  bottomColor: bottomColor))
         }
-        hideButton()
     }
 }

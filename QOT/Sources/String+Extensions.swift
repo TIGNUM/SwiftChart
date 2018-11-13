@@ -174,3 +174,15 @@ extension String {
         }
     }
 }
+
+extension String {
+    func convertHtml() -> NSAttributedString? {
+        let htmlData = NSString(string: self).data(using: String.Encoding.unicode.rawValue)
+        let options = [NSAttributedString.DocumentReadingOptionKey.documentType:
+            NSAttributedString.DocumentType.html]
+        let attributedString = try? NSMutableAttributedString(data: htmlData ?? Data(),
+                                                              options: options,
+                                                              documentAttributes: nil)
+        return attributedString
+    }
+}

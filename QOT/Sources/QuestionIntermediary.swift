@@ -13,6 +13,7 @@ struct QuestionIntermediary: DownSyncIntermediary {
 
     let sortOrder: Int
     let title: String
+    let htmlTitleString: String
     let dailyPrepTitle: String
     let answersDescription: String?
     let answers: [AnswerIntermediary]
@@ -21,6 +22,7 @@ struct QuestionIntermediary: DownSyncIntermediary {
     init(json: JSON) throws {
         sortOrder = try json.getItemValue(at: .sortOrder, fallback: 0)
         title = try json.getItemValue(at: .question, fallback: "")
+        htmlTitleString = try json.getItemValue(at: .questionRichText, fallback: "")
         dailyPrepTitle = try json.getItemValue(at: .title, fallback: "")
         answersDescription = try json.getItemValue(at: .questionDescription)
         answers = try json.getArray(at: .answers, fallback: [])

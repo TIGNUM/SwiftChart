@@ -158,6 +158,7 @@ enum JsonKey: String {
     case qotId
     case qotPartnerUserId
     case question
+    case questionRichText
     case questionId
     case questionDescription
     case questionGroupId

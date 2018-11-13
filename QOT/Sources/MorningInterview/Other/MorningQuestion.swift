@@ -11,10 +11,13 @@ import Foundation
 struct MorningQuestion: Questionnaire {
     let questionID: Int
     let questionString: String
+    var attributedQuestionString: NSAttributedString? = nil
     let answers: [String]
     let descriptions: [String]
     var answerIndex: Int?
     let fillColor: UIColor
+    let topColor: UIColor
+    let bottomColor: UIColor
 
     func questionIdentifier() -> Int {
         return questionID
@@ -23,6 +26,11 @@ struct MorningQuestion: Questionnaire {
     func question() -> String {
         return questionString
     }
+
+    func attributedQuestion() -> NSAttributedString? {
+        return attributedQuestionString
+    }
+
     func answerStrings() -> [String] {
         return answers
     }
@@ -37,5 +45,13 @@ struct MorningQuestion: Questionnaire {
 
     func selectionColor() -> UIColor {
         return fillColor
+    }
+
+    func gradientTopColor() -> UIColor {
+        return topColor
+    }
+
+    func gradientBottomColor() -> UIColor {
+        return bottomColor
     }
 }
