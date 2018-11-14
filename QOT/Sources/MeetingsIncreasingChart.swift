@@ -15,6 +15,8 @@ enum WeekDatapoint: Int {
 
 final class MeetingsIncreasingChart: UIView {
 
+    // MARK: - Properties
+
     private let statistics: Statistics
     private let thisWeekNumberLabel = UILabel()
     private let thisWeekLabel = UILabel()
@@ -33,6 +35,8 @@ final class MeetingsIncreasingChart: UIView {
         return bounds.width
     }
 
+    // MARK: - Init
+
     init(frame: CGRect, statistics: Statistics) {
         self.statistics = statistics
         super.init(frame: frame)
@@ -43,6 +47,8 @@ final class MeetingsIncreasingChart: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+
+    // MARK: - Lifecycle
 
     override func layoutSubviews() {
         super.layoutSubviews()
@@ -91,7 +97,7 @@ private extension MeetingsIncreasingChart {
     }
 
     func layout() {
-        thisWeekNumberLabel.frame = CGRect(x: 0, y: height * -Layout.multiplier_030, width: width, height: 30)
+        thisWeekNumberLabel.frame = CGRect(x: 0, y: -Layout.padding_35, width: width, height: 30)
         thisWeekLabel.frame = CGRect(x: 0, y: thisWeekNumberLabel.frame.maxY + (height * Layout.multiplier_01), width: width, height: 20)
         lastWeekNumberLabel.frame = CGRect(x: 0, y: thisWeekLabel.frame.maxY + (height * Layout.multiplier_020), width: width, height: 30)
         lastWeekLabel.frame = CGRect(x: 0, y: lastWeekNumberLabel.frame.maxY + (height * Layout.multiplier_01), width: width, height: 20)
