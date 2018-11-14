@@ -39,6 +39,28 @@ final class PrepareNotesViewController: UIViewController {
             case .notes: return 0
             }
         }
+
+        var placeholder: String {
+            switch self {
+            case .intentionPerceiving: return R.string.localized.prepareReviewNotesIntentionsPerceivedPlaceholder()
+            case .intentionKnowing: return R.string.localized.prepareReviewNotesIntentionsPersonGroupPlaceholder()
+            case .intentionFeeling: return R.string.localized.prepareReviewNotesIntentionsPlaceholder()
+            case .reflectionNotes: return R.string.localized.prepareReviewNotesReflectionBrainSuccessPlaceholder()
+            case .reflectionVision: return R.string.localized.prepareReviewNotesReflectionWishPlaceholder()
+            case .notes: return R.string.localized.prepareNotesPlaceholder()
+            }
+        }
+
+        var navBarTitle: String {
+            switch self {
+            case .intentionPerceiving,
+                 .intentionKnowing,
+                 .intentionFeeling: return R.string.localized.prepareReviewNotesIntentionsNavbarTitle()
+            case .reflectionNotes,
+                 .reflectionVision: return R.string.localized.prepareReviewNotesReflectionsNavbarTitle()
+            case .notes: return R.string.localized.prepareReviewNotesGeneralNavbarTitle()
+            }
+        }
     }
 
     enum ReviewNotesType {

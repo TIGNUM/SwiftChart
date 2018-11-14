@@ -37,6 +37,8 @@ final class PrepareContentNotesViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.title = notesType?.navBarTitle
+        textView.becomeFirstResponder()
         keyboardListener.startObserving()
     }
 
@@ -92,7 +94,7 @@ private extension PrepareContentNotesViewController {
         textView.attributedText = NSAttributedString(string: text ?? "", attributes: textViewAttributes)
         textView.contentInset = .zero
         textView.textColor = .nightModeBlack
-        placeholderTextView.attributedText = NSAttributedString(string: placeholder ?? R.string.localized.prepareNotesPlaceholder(),
+        placeholderTextView.attributedText = NSAttributedString(string: notesType?.placeholder ?? R.string.localized.prepareNotesPlaceholder(),
                                                                 attributes: placeholderAttibutes)
         syncPlaceholder()
         syncLayout()

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -16,16 +16,27 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="64"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txU-Tg-I8i">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="txU-Tg-I8i">
                     <rect key="frame" x="20" y="32" width="325" height="32"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ng7-25-1hI">
+                    <rect key="frame" x="20" y="0.0" width="335" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="8zA-Rf-b0p"/>
+                    </constraints>
+                    <viewLayoutGuide key="safeArea" id="rwE-gJ-eqO"/>
+                </view>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
+                <constraint firstItem="ng7-25-1hI" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="9ot-AB-0BN"/>
+                <constraint firstItem="ng7-25-1hI" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="20" id="ADv-EV-lLd"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="txU-Tg-I8i" secondAttribute="trailing" constant="30" id="DEl-G4-VG0"/>
+                <constraint firstAttribute="trailing" secondItem="ng7-25-1hI" secondAttribute="trailing" constant="20" id="WeA-2L-O9R"/>
                 <constraint firstItem="txU-Tg-I8i" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="20" id="fgL-Nc-GvY"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="txU-Tg-I8i" secondAttribute="bottom" id="fkG-VN-kVW"/>
                 <constraint firstItem="txU-Tg-I8i" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="32" id="hue-Xz-jSI"/>

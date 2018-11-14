@@ -26,6 +26,6 @@ final class PrepareNotesHeaderView: UIView {
                                                        letterSpacing: 1,
                                                        font: .DPText,
                                                        textColor: .nightModeSubFont,
-                                                       alignment: .left)
+                                                       alignment: .center)
     }
 }
