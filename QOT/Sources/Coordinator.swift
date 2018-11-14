@@ -13,7 +13,8 @@ import UIKit
 /// `UIViewController`s.
 @objc protocol Coordinator: class {
     /// Starts the coordination process.
-    func start()
+    @objc optional func start()
+    @objc optional func start(completion: (() -> Void))
 }
 
 /// A `Coordinator` with child `Coordinators`.
@@ -34,7 +35,7 @@ extension ParentCoordinator {
 
     func startChild(child: Coordinator) {
         children.append(child)
-        child.start()
+        child.start?()
     }
 
     func removeAllChildren() {

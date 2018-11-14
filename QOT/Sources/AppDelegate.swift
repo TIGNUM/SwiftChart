@@ -89,7 +89,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()
             Fabric.with([Crashlytics.self])
-            appCoordinator.start()
+            appCoordinator.start {
+                self.processURLWhenAppInactive(launchOptions: launchOptions)
+            }
             UIApplication.shared.setStatusBarStyle(.lightContent)
             UITabBar.appearance().shadowImage = UIImage()
             UITabBar.appearance().backgroundImage = UIImage()
@@ -179,7 +181,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         guard
             let linkString = shortcutItem.userInfo?[JsonKey.link.value] as? String,
             let link = URL(string: linkString) else { return }
-
         launchHandler.process(url: link)
     }
 
@@ -187,6 +188,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         if let shortcut = unhandledShortCuts.first {
             handleShortcut(shortcutItem: shortcut)
             unhandledShortCuts.removeAll()
+        }
+    }
+
+    func processURLWhenAppInactive(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
+        if
+            let url = launchOptions?[.url] as? URL,
+            launchHandler.canLaunch(url: url) == true,
+            URLScheme.isLaunchableHost(host: url.host) {
+            launchHandler.process(url: url)
         }
     }
 }

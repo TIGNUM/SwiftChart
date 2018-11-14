@@ -127,7 +127,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         locationManager.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
     }
 
-    func start() {
+    func start(completion: @escaping (() -> Void)) {
         if Bundle.main.isFirstVersion {
             self.credentialsManager.clear()
         }
@@ -166,6 +166,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             } else if self.credentialsManager.hasLoginCredentials {
                 self.showApp(loginViewController: nil)
                 RestartHelper().checkRestartURLAndRoute()
+                completion()
             } else {
                 self.showSigning(controller: viewController)
             }
