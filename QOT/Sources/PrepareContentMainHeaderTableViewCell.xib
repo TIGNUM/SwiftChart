@@ -38,23 +38,20 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RQx-xn-2cN">
-                        <rect key="frame" x="30" y="62" width="27" height="21"/>
-                        <constraints>
-                            <constraint firstAttribute="height" constant="21" id="jQn-ir-Yvl"/>
-                        </constraints>
+                        <rect key="frame" x="30" y="62" width="27" height="13"/>
                         <fontDescription key="fontDescription" name="BentonSans" family="BentonSans" pointSize="11"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_minimize" translatesAutoresizingMaskIntoConstraints="NO" id="UVb-BY-vT7">
-                        <rect key="frame" x="65" y="68.5" width="8" height="8"/>
+                        <rect key="frame" x="65" y="62" width="8" height="8"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="8" id="ATk-bV-f4a"/>
                             <constraint firstAttribute="height" constant="8" id="FBD-OH-NCS"/>
                         </constraints>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="upm-Fr-VYW">
-                        <rect key="frame" x="30" y="133" width="260" height="146.5"/>
+                        <rect key="frame" x="30" y="125" width="260" height="146.5"/>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="width" secondItem="upm-Fr-VYW" secondAttribute="height" multiplier="16:9" id="HfQ-u7-0XH"/>
@@ -65,7 +62,7 @@
                         </connections>
                     </button>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Lyg-m3-ejQ">
-                        <rect key="frame" x="30" y="299.5" width="260" height="19"/>
+                        <rect key="frame" x="30" y="291.5" width="260" height="19"/>
                         <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -77,8 +74,8 @@
                     <constraint firstItem="upm-Fr-VYW" firstAttribute="leading" secondItem="BJI-XG-0Ha" secondAttribute="leading" constant="30" id="5m0-xn-6Ux"/>
                     <constraint firstItem="WPw-x3-hck" firstAttribute="top" secondItem="BJI-XG-0Ha" secondAttribute="top" constant="15" id="8R6-Ky-cb6"/>
                     <constraint firstAttribute="trailing" secondItem="upm-Fr-VYW" secondAttribute="trailing" constant="30" id="8sW-4A-4Jk"/>
+                    <constraint firstItem="UVb-BY-vT7" firstAttribute="top" secondItem="RQx-xn-2cN" secondAttribute="top" id="DoO-X4-Zlz"/>
                     <constraint firstItem="Lyg-m3-ejQ" firstAttribute="top" secondItem="upm-Fr-VYW" secondAttribute="bottom" constant="20" id="F9P-wM-eKP"/>
-                    <constraint firstItem="UVb-BY-vT7" firstAttribute="centerY" secondItem="RQx-xn-2cN" secondAttribute="centerY" id="Jy4-jw-ULQ"/>
                     <constraint firstAttribute="trailingMargin" secondItem="WPw-x3-hck" secondAttribute="trailing" constant="30" id="OAm-D0-2s2"/>
                     <constraint firstAttribute="trailing" secondItem="Lyg-m3-ejQ" secondAttribute="trailing" constant="30" id="Sfx-YV-ems"/>
                     <constraint firstItem="UVb-BY-vT7" firstAttribute="leading" secondItem="RQx-xn-2cN" secondAttribute="trailing" constant="8" id="UHx-8Y-JVS"/>
