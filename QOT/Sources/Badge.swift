@@ -55,12 +55,20 @@ extension Badge {
 
 private extension Badge {
 
+    var trailingMultiplier: CGFloat {
+        return UIDevice.isVersion10 ? Layout.multiplier_015 : Layout.multiplier_018
+    }
+
+    var topPadding: CGFloat {
+        return UIDevice.isVersion10 ? Layout.padding_4 : Layout.padding_12
+    }
+
     func formatBadgeValue(_ value: Int) -> String {
         return NSString(format: "%.0d", value) as String
     }
 
     func setup(frame: CGRect) {
-        insets = CGSize(width: frame.width * Layout.multiplier_015, height: frame.height * Layout.multiplier_015)
+        insets = CGSize(width: frame.width * Layout.multiplier_0015, height: frame.height * Layout.multiplier_0015)
         badgeColor = .cherryRed
         textColor = .white
         font = .preferredFont(forTextStyle: .footnote)
@@ -76,19 +84,19 @@ private extension Badge {
 
     func positionLearnBadge(_ parent: UIView, frame: CGRect) {
         parent.addSubview(self)
-        topAnchor == parent.topAnchor - (parent.bounds.width * Layout.multiplier_015)
-        trailingAnchor == parent.trailingAnchor - (parent.bounds.width * Layout.multiplier_03)
+        topAnchor == parent.topAnchor - (parent.bounds.width * Layout.multiplier_018)
+        trailingAnchor == parent.trailingAnchor - (parent.bounds.width * trailingMultiplier)
     }
 
     func positionGuideBadge(_ parent: UIView, frame: CGRect) {
         parent.addSubview(self)
-        topAnchor == parent.topAnchor - (parent.bounds.width * Layout.multiplier_015)
-        trailingAnchor == parent.trailingAnchor - (parent.bounds.width * Layout.multiplier_03)
+        topAnchor == parent.topAnchor - (parent.bounds.height * Layout.multiplier_018)
+        trailingAnchor == parent.trailingAnchor - (parent.bounds.width * trailingMultiplier)
     }
 
     func positionWhatsHotBadge(_ parent: UIView, frame: CGRect) {
         parent.addSubview(self)
-        topAnchor == parent.topAnchor - Layout.padding_12
-        trailingAnchor == parent.trailingAnchor + Layout.padding_12
+        topAnchor == parent.topAnchor - topPadding
+        trailingAnchor == parent.trailingAnchor + (parent.bounds.width * trailingMultiplier)
     }
 }

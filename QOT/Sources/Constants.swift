@@ -42,6 +42,7 @@ struct Layout {
     static let articleImageHeight: CGFloat = 200
     static let statusBarHeight: CGFloat = 64
     static let padding_1: CGFloat = 1
+    static let padding_4: CGFloat = 4
     static let padding_5: CGFloat = 5
     static let padding_07: CGFloat = 7
     static let padding_10: CGFloat = 10
@@ -61,11 +62,13 @@ struct Layout {
     static let height_44: CGFloat = 44
     static let multiplier_01: CGFloat = 0.01
     static let multiplier_06: CGFloat = 0.06
-    static let multiplier_015: CGFloat = 0.015
+    static let multiplier_0015: CGFloat = 0.015
     static let multiplier_08: CGFloat = 0.08
     static let multiplier_03: CGFloat = 0.3
     static let multiplier_05: CGFloat = 0.5
     static let multiplier_010: CGFloat = 0.10
+    static let multiplier_015: CGFloat = 0.15
+    static let multiplier_018: CGFloat = 0.18
     static let multiplier_020: CGFloat = 0.20
     static let multiplier_025: CGFloat = 0.25
     static let multiplier_030: CGFloat = 0.30
