@@ -36,7 +36,6 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
     private let imageBorder = CAShapeLayer()
     private var imagePickerController: ImagePickerController!
     private var tempImage: UIImage?
-    private var toBeVision: MyToBeVisionModel.Model?
     private var avPlayerObserver: AVPlayerObserver?
     private var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] = [:]
     var interactor: MyToBeVisionInteractor?
@@ -121,14 +120,13 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
 
 extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
 
-    func setLoading(model: MyToBeVisionModel.Model?) {
-        self.toBeVision = model
+    func setLoading() {
         updateReadyState()
         view.layoutIfNeeded()
     }
 
     func showVisionGenerator() {
-        let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(toBeVision: toBeVision,
+        let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(toBeVision: interactor?.myToBeVision,
                                                                                            visionController: self,
                                                                                            visionChatItems: visionChatItems,
                                                                                            navigationItem: interactor?.navigationItem)
@@ -136,15 +134,12 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
         pushToStart(childViewController: chatViewController, enableInteractivePop: false)
     }
 
-    func setup(with toBeVision: MyToBeVisionModel.Model) {
-        self.toBeVision = toBeVision
+    func setup() {
         toBeVisionDidUpdate()
     }
 
-    func update(with toBeVision: MyToBeVisionModel.Model) {
-        if toBeVision != self.toBeVision {
-            self.toBeVision = toBeVision
-        }
+    func update() {
+        toBeVisionDidUpdate()
     }
 
     func setLaunchOptions(_ options: [LaunchOption: String?]) {
@@ -260,6 +255,7 @@ private extension MyToBeVisionViewController {
 private extension MyToBeVisionViewController {
 
     func toBeVisionDidUpdate() {
+        let toBeVision = interactor?.myToBeVision
         subtitleLabel.attributedText = toBeVision?.formattedSubtitle
         if headlineTextView.attributedText != toBeVision?.formattedHeadline && toBeVision?.headLine != nil {
             headlineTextView.attributedText = toBeVision?.formattedHeadline
@@ -278,7 +274,7 @@ private extension MyToBeVisionViewController {
     }
 
     func saveToBeVisison() {
-        guard var toBeVision = toBeVision else { return }
+        guard var toBeVision = interactor?.myToBeVision else { return }
         if toBeVision.headLine != headlineTextView.text {
             toBeVision.headLine = headlineTextView.text
         }
@@ -305,7 +301,7 @@ private extension MyToBeVisionViewController {
     }
 
     @objc func saveEdit() {
-        guard let toBeVision = toBeVision else { return }
+        guard let toBeVision = interactor?.myToBeVision else { return }
         subtitleLabel.attributedText = toBeVision.formattedSubtitle
         edit(false)
         saveToBeVisison()
@@ -360,7 +356,7 @@ private extension MyToBeVisionViewController {
     }
 
     func syncImageControls(animated: Bool) {
-        let hasImage = toBeVision?.imageURL != nil
+        let hasImage = interactor?.myToBeVision?.imageURL != nil
         let buttonAlpha: CGFloat
         if hasImage {
             buttonAlpha = isEditing == true ? 1 : 0

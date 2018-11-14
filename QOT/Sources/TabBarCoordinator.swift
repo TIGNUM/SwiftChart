@@ -240,6 +240,7 @@ extension TabBarCoordinator: TabBarControllerDelegate {
         if index == TabBar.prepare.index {
             prepareCoordinator.focus()
         }
+
         tabBarController.tabBar.subviews.filter {
             return $0 as? UIControl != nil
         }[index].pulsate()

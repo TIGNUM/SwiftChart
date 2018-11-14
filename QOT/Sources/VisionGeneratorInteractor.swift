@@ -67,8 +67,8 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
             presenter.showLoadingIndicator()
             worker.saveVision { [weak self] in
                 self?.presenter.hideLoadingIndicator()
-                guard let model = self?.worker.model else { return }
-                self?.presenter.updateVisionControllerModel(model)
+                guard self?.worker.model != nil else { return }
+                self?.presenter.updateVisionControllerModel()
                 self?.handleChoiceTargets(choice)
             }
             // Set restart URL
@@ -84,8 +84,8 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
             RestartHelper.clearRestartRouteInfo()
             presenter.showLoadingIndicator()
             worker.saveVision(completion: nil)
-            if let model = worker.model {
-                presenter.updateVisionControllerModel(model)
+            if worker.model != nil {
+                presenter.updateVisionControllerModel()
             }
             presenter.dismiss()
         default: return
@@ -141,7 +141,7 @@ extension VisionGeneratorInteractor: ImagePickerControllerDelegate {
             log("Error while saving TBV image: \(error.localizedDescription)")
         }
         router.loadLastQuestion()
-        guard let model = worker.model else { return }
-        presenter.updateVisionControllerModel(model)
+        guard worker.model != nil else { return }
+        presenter.updateVisionControllerModel()
     }
 }

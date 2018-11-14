@@ -18,12 +18,12 @@ final class MyToBeVisionPresenter: MyToBeVisionPresenterInterface {
         self.options = options ?? [:]
     }
 
-    func loadToBeVision(_ toBeVision: MyToBeVisionModel.Model) {
-        viewController?.setup(with: toBeVision)
+    func loadToBeVision() {
+        viewController?.setup()
     }
 
-    func updateToBeVision(_ toBeVision: MyToBeVisionModel.Model) {
-        viewController?.update(with: toBeVision)
+    func updateToBeVision() {
+        viewController?.update()
     }
 
     func presentVisionGenerator() {
@@ -34,7 +34,7 @@ final class MyToBeVisionPresenter: MyToBeVisionPresenterInterface {
         viewController?.setLaunchOptions(options)
     }
 
-    func setLoading(model: MyToBeVisionModel.Model?) {
-        viewController?.setLoading(model: model)
+    func setLoading() {
+        viewController?.setLoading()
     }
 }

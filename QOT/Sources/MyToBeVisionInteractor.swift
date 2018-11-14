@@ -24,14 +24,13 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         self.router = router
         self.options = options ?? [:]
         self.worker.toBeVisionDidChange = { [unowned self] (model: MyToBeVisionModel.Model?) in
-            self.presenter.setLoading(model: model)
+            self.presenter.setLoading()
         }
     }
 
     func viewDidLoad() {
         worker.setMyToBeVisionReminder(false)
         guard let toBeVision = worker.myToBeVision() else { return }
-        presenter.loadToBeVision(toBeVision)
         worker.updateWidget()
     }
 
@@ -68,7 +67,7 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
                 vision.imageURL = try worker.saveImage(visionImage)
             }
             worker.updateMyToBeVision(vision)
-            presenter.updateToBeVision(vision)
+            presenter.updateToBeVision()
         } catch {
             log(error.localizedDescription)
         }
@@ -84,6 +83,10 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
 
     var navigationItem: NavigationItem {
         return worker.navItem
+    }
+
+    var myToBeVision: MyToBeVisionModel.Model? {
+        return worker.myToBeVision()
     }
 
     func isReady() -> Bool {

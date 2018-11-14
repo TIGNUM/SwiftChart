@@ -9,17 +9,17 @@
 import UIKit
 
 protocol MyToBeVisionViewControllerInterface: class {
-    func setup(with toBeVision: MyToBeVisionModel.Model)
-    func update(with toBeVision: MyToBeVisionModel.Model)
+    func setup()
+    func update()
     func showVisionGenerator()
     func setLaunchOptions(_ options: [LaunchOption: String?])
-    func setLoading(model: MyToBeVisionModel.Model?)
+    func setLoading()
 }
 
 protocol MyToBeVisionPresenterInterface {
-    func setLoading(model: MyToBeVisionModel.Model?)
-    func loadToBeVision(_ toBeVision: MyToBeVisionModel.Model)
-    func updateToBeVision(_ toBeVision: MyToBeVisionModel.Model)
+    func setLoading()
+    func loadToBeVision()
+    func updateToBeVision()
     func presentVisionGenerator()
     func setLaunchOptions(_ options: [LaunchOption: String?])
 }
@@ -35,6 +35,7 @@ protocol MyToBeVisionInteractorInterface: Interactor {
     var trackablePageObject: PageObject? { get }
     var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] { get }
     var navigationItem: NavigationItem { get }
+    var myToBeVision: MyToBeVisionModel.Model? { get }
 }
 
 protocol MyToBeVisionRouterInterface {

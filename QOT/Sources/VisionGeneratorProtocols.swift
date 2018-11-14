@@ -26,7 +26,7 @@ protocol VisionGeneratorPresenterInterface {
     func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice)
     func updateBottomButton(_ choice: VisionGeneratorChoice, questionType: VisionGeneratorChoice.QuestionType)
     func dismiss()
-    func updateVisionControllerModel(_ model: MyToBeVisionModel.Model)
+    func updateVisionControllerModel()
     func showLoadingIndicator()
     func hideLoadingIndicator()
 }
