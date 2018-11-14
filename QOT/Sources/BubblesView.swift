@@ -95,7 +95,6 @@ private extension BubblesView {
         bubble3Label.textColor = .white
         bubble3Label.font = .H3Subtitle
         bubble3Label.adjustsFontSizeToFitWidth = true
-        bubble3Label.numberOfLines = 1
 
         bubble4Label.textColor = .white
         bubble4Label.font = .H3Subtitle
@@ -177,7 +176,7 @@ private extension BubblesView {
         let bubble1LabelSize = CGSize(width: 140, height: 100)
         let bubble1LabelCenter = CGPoint(x: bubble1centerPoint.x - 70, y: bubble1centerPoint.y - 45)
         bubble1Label.frame = CGRect(origin: bubble1LabelCenter, size: bubble1LabelSize).integral
-        bubble1Label.text = bubblesValues[0].title
+        bubble1Label.text = bubblesValues.first?.title
 
         let bubble2LabelSize = CGSize(width: 140, height: 100)
         let bubble2LabelCenter = CGPoint(x: bubble2centerPoint.x - 70, y: bubble2centerPoint.y - 45)
@@ -189,8 +188,8 @@ private extension BubblesView {
         bubble3Label.frame = CGRect(origin: bubble3LabelCenter, size: bubble3LabelSize).integral
         bubble3Label.text = bubblesValues[2].title
 
-        let bubble4LabelSize = CGSize(width: 85, height: 70)
-        let bubble4LabelCenter = CGPoint(x: bubble4centerPoint.x - 45, y: bubble4centerPoint.y - 35)
+        let bubble4LabelSize = CGSize(width: 100, height: 70)
+        let bubble4LabelCenter = CGPoint(x: bubble4centerPoint.x - 50, y: bubble4centerPoint.y - 35)
         bubble4Label.frame = CGRect(origin: bubble4LabelCenter, size: bubble4LabelSize).integral
         bubble4Label.text = bubblesValues[3].title
 
