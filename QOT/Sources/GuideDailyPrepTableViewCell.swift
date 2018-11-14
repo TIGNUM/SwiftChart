@@ -17,6 +17,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
 
+    @IBOutlet private weak var feedbackSpinner: UIActivityIndicatorView!
     @IBOutlet private weak var containerView: UIView!
     @IBOutlet private weak var statusView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
@@ -60,6 +61,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     override func prepareForReuse() {
         super.prepareForReuse()
         feedbackLabel.attributedText = nil
+        feedbackSpinner.isHidden = true
     }
 
     // MARK: - Cell configuration
@@ -67,6 +69,13 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     func configure(dailyPrepFeedback: String?,
                    dailyPrepItems: [Guide.DailyPrepItem],
                    status: Guide.Item.Status) {
+        if status == .done && dailyPrepFeedback == nil {
+            feedbackSpinner.startAnimating()
+            feedbackSpinner.isHidden = false
+        } else {
+            feedbackSpinner.stopAnimating()
+            feedbackSpinner.isHidden = true
+        }
         if let feedback = dailyPrepFeedback {
             feedbackLabel.isHidden = false
             feedbackLabel.attributedText = bodyAttributedText(text: feedback, font: .ApercuRegular15)
