@@ -13,15 +13,6 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
     enum CollectionViewCellType: String {
         case latestPost = "LibraryLatestPostCollectionViewCell"
         case category = "LibraryCategoryCollectionViewCell"
-
-        var size: CGSize {
-            switch self {
-            case .latestPost:
-                return CGSize(width: 219.0, height: 220.0)
-            case .category:
-                return CGSize(width: 272.0, height: 170.0)
-            }
-        }
     }
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -32,18 +23,19 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
     private var collectionViewCellType: CollectionViewCellType!
     weak var delegate: LibraryViewControllerDelegate!
 
-    func setUp(delegate: LibraryViewControllerDelegate?, title: NSAttributedString, contentCollection: [ContentCollection], collectionViewCellType: CollectionViewCellType) {
+    func setUp(delegate: LibraryViewControllerDelegate?,
+               title: NSAttributedString,
+               contentCollection: [ContentCollection],
+               collectionViewCellType: CollectionViewCellType) {
         self.delegate = delegate
         titleLabel.attributedText = title
         self.contentCollection = contentCollection
         self.collectionViewCellType = collectionViewCellType
-
+        self.collectionViewCellSize = CGSize(width: bounds.width * Layout.multiplier_080, height: 170)
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-        collectionView.register(
-            UINib(nibName: collectionViewCellType.rawValue, bundle: nil),
-            forCellWithReuseIdentifier: collectionViewCellType.rawValue
-        )
+        collectionView.register(UINib(nibName: collectionViewCellType.rawValue, bundle: nil),
+                                forCellWithReuseIdentifier: collectionViewCellType.rawValue)
         collectionView.dataSource = self
         collectionView.delegate = self
         collectionView.decelerationRate = UIScrollViewDecelerationRateFast
@@ -52,14 +44,12 @@ final class LibraryTableViewCell: UITableViewCell, Dequeueable {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
         collectionView.reloadData()
-
-        collectionViewHeightConstraint.constant = collectionViewCellType.size.height
+        collectionViewHeightConstraint.constant = collectionViewCellSize.height
         layoutIfNeeded()
     }
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
         collectionView.setContentOffset(.zero, animated: false)
     }
 }
@@ -77,11 +67,9 @@ extension LibraryTableViewCell: UICollectionViewDataSource {
             fatalError("missing xib with name \(collectionViewCellType.rawValue)")
         }
         let collection = contentCollection[indexPath.item]
-        cell.setup(
-            headline: collection.title,
-            previewImageURL: collection.thumbnailURL,
-            contentItemValue: collection.items.first?.contentItemValue
-        )
+        cell.setup(headline: collection.title,
+                   previewImageURL: collection.thumbnailURL,
+                   contentItemValue: collection.items.first?.contentItemValue)
         return cell
     }
 }
@@ -90,20 +78,28 @@ extension LibraryTableViewCell: UICollectionViewDataSource {
 
 extension LibraryTableViewCell: UICollectionViewDelegateFlowLayout {
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 19
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
         return 0
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        insetForSectionAt section: Int) -> UIEdgeInsets {
         return UIEdgeInsets(top: 0, left: 28, bottom: 0, right: 28)
     }
 
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return collectionViewCellType.size
+    func collectionView(_ collectionView: UICollectionView,
+                        layout collectionViewLayout: UICollectionViewLayout,
+                        sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return collectionViewCellSize
     }
 
     func scrollViewWillEndDragging(_ scrollView: UIScrollView,
@@ -114,7 +110,7 @@ extension LibraryTableViewCell: UICollectionViewDelegateFlowLayout {
             case stationary
             case right
         }
-        let cellWidth: CGFloat = collectionViewCellType.size.width
+        let cellWidth: CGFloat = collectionViewCellSize.width
         let cellSpaceing: CGFloat = 15
         let originalTargetPage = (targetContentOffset.pointee.x) / (cellWidth + cellSpaceing)
         let scrollDirection: ScrollDirection = (velocity.x < 0) ? .left : (velocity.x > 0) ? .right : .stationary
