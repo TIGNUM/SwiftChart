@@ -111,7 +111,9 @@ extension User: TwoWaySyncableUniqueObject {
         countryName = data.countryName
         zoneID = data.zoneID
         zoneName = data.zoneName
-        userImage?.setRemoteURL(data.userImageURLString.flatMap({ URL(string: $0) }))
+        if let imageData = data.profileImages.last, userImage?.syncStatus == .clean {
+            userImage?.setData(imageData)
+        }
         height.value = data.height
         heightUnit = data.heightUnit
         heightUnitsJSON = data.heightUnitsJSON

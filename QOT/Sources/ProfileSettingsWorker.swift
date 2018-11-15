@@ -21,7 +21,7 @@ final class ProfileSettingsWorker {
     }
 
     func profile() -> ProfileSettingsModel? {
-        return ProfileSettingsModel(imageURL: user?.userImage?.localURL ?? user?.userImage?.remoteURL,
+        return ProfileSettingsModel(imageURL: user?.userImage?.url,
                                     givenName: user?.givenName,
                                     familyName: user?.familyName,
                                     position: user?.jobTitle,
@@ -47,7 +47,9 @@ final class ProfileSettingsWorker {
 
     func updateProfileTelephone(_ new: ProfileSettingsModel) {
         guard let user = user, let old = profile(), old != new else { return }
-        if old.telephone != new.telephone && new.telephone?.isPhoneNumber == true {
+        let numberLength = new.telephone?.count ?? 0
+        if old.telephone != new.telephone &&
+            (numberLength == 0 || (numberLength > 0 && new.telephone?.isPhoneNumber == true)) {
             services.userService.updateUserTelephone(user: user, telephone: new.telephone ?? "")
             upSyncUser()
         }
@@ -110,15 +112,16 @@ final class ProfileSettingsWorker {
         }
     }
 
-    func updateSettingsProfileImage(_ new: URL) {
+    func updateSettingsProfileImage(_ new: URL?) {
         let old = profile()?.imageURL
-        guard let user = user, old == nil || old != new else { return }
-
-        if new.isLocalImageDirectory() {
-            services.userService.updateUser(user: user) { (user) in
+        guard let user = user, old != new else { return }
+        services.userService.updateUser(user: user) { (user) in
+            if let new = new, new.isLocalImageDirectory() {
                 user.userImage?.setLocalURL(new, format: .jpg, entity: .user, entitiyLocalID: user.localID)
-                upSyncUser()
+            } else {
+                user.userImage?.delete()
             }
+            upSyncUser()
         }
     }
 

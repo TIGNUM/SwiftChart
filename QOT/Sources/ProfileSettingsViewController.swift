@@ -543,7 +543,7 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
 extension ProfileSettingsViewController: SettingsMenuHeaderDelegate {
 
     func didTapImage(in view: SettingsMenuHeader?) {
-        imagePickerController.show(in: self)
+        imagePickerController.show(in: self, deletable: (profile?.imageURL != nil))
         RestartHelper.setRestartURLScheme(.profile, options: [.edit: "image"])
     }
 }
@@ -551,6 +551,14 @@ extension ProfileSettingsViewController: SettingsMenuHeaderDelegate {
 // MARK: - ImagePicker delegate
 
 extension ProfileSettingsViewController: ImagePickerControllerDelegate {
+
+    func deleteImage() {
+        guard let profile = profile else { return }
+
+        interactor?.updateSettingsMenuImage(image: nil, settingsMenu: profile)
+        headerView?.updateLocalImage(image: R.image.placeholder_user() ?? UIImage())
+        RestartHelper.clearRestartRouteInfo()
+    }
 
     func cancelSelection() {
         RestartHelper.clearRestartRouteInfo()

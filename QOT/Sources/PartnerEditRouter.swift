@@ -45,7 +45,7 @@ extension PartnerEditRouter: PartnerEditRouterInterface {
     }
 
     func showImagePicker() {
-        imagePicker.show(in: viewController)
+        imagePicker.show(in: viewController, deletable: false)
     }
 
     func showProgressHUD(_ message: String?) {

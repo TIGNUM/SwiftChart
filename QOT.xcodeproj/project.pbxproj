@@ -742,6 +742,7 @@
 		D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5EC34B01EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift */; };
 		D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */; };
 		DB12013C219AC99400BE0E81 /* QuestionaireCellIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB12013B219AC99400BE0E81 /* QuestionaireCellIndicator.swift */; };
+		DB12025A219C55E000BE0E81 /* MediaResourceIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB120259219C55E000BE0E81 /* MediaResourceIntermediary.swift */; };
 		DB34725221594560004F17D6 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725121594560004F17D6 /* Realm.framework */; };
 		DB34725421594560004F17D6 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB34725321594560004F17D6 /* RealmSwift.framework */; };
 		DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB5E5E55217632C1006BA438 /* RestartRouteHandler.swift */; };
@@ -1564,6 +1565,7 @@
 		D5EC34B11EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LearnStrategyPlaylistAudioCell.xib; sourceTree = "<group>"; };
 		D78A1DCB6CFBD03D6588DCB6 /* Pods_DatabaseBuilder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DatabaseBuilder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB12013B219AC99400BE0E81 /* QuestionaireCellIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionaireCellIndicator.swift; sourceTree = "<group>"; };
+		DB120259219C55E000BE0E81 /* MediaResourceIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaResourceIntermediary.swift; sourceTree = "<group>"; };
 		DB34725121594560004F17D6 /* Realm.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Realm.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB34725321594560004F17D6 /* RealmSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = RealmSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DB5E5E55217632C1006BA438 /* RestartRouteHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestartRouteHandler.swift; sourceTree = "<group>"; };
@@ -2187,6 +2189,7 @@
 			isa = PBXGroup;
 			children = (
 				7FBC3E7D1F34AB8D005BD772 /* MediaResource.swift */,
+				DB120259219C55E000BE0E81 /* MediaResourceIntermediary.swift */,
 			);
 			name = MediaResource;
 			sourceTree = "<group>";
@@ -4010,7 +4013,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
@@ -4059,7 +4062,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9100195820FC798400049118 /* SwiftLint */ = {
@@ -4082,7 +4085,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JPSimulatorHacks/JPSimulatorHacks.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -4091,7 +4094,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BB0D582FB75DD826F51B67C2 /* [CP] Check Pods Manifest.lock */ = {
@@ -4118,7 +4121,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -4127,7 +4130,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CB8A15401E7981900023B2F9 /* Generate R.Swift */ = {
@@ -4381,6 +4384,7 @@
 				36796A5E20D3C4B800B55429 /* SigningInfoCollectionViewCell.swift in Sources */,
 				912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */,
 				912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */,
+				DB12025A219C55E000BE0E81 /* MediaResourceIntermediary.swift in Sources */,
 				CB6637B1201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift in Sources */,
 				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
 				36796A0720D3C41F00B55429 /* SigningCreatePasswordConfigurator.swift in Sources */,

@@ -11,14 +11,21 @@ import UIKit
 protocol ImagePickerControllerDelegate: class {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage)
-
+    func deleteImage()
     func cancelSelection()
+}
+
+extension ImagePickerControllerDelegate {
+    func deleteImage() {
+        // empty implementaion - it works as optional
+    }
 }
 
 final class ImagePickerController {
     enum Option {
         case camera
         case photo
+        case delete
     }
 
     let imageQuality: ImageQuality
@@ -53,7 +60,7 @@ final class ImagePickerController {
         imagePicker.delegte = self
     }
 
-    func show(in viewController: UIViewController, completion: (() -> Void)? = nil) {
+    func show(in viewController: UIViewController, deletable: Bool, completion: (() -> Void)? = nil) {
         self.viewController = viewController
         let alertController = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
         let photoAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonPhoto(),
@@ -73,6 +80,13 @@ final class ImagePickerController {
 
         alertController.addAction(photoAction)
         alertController.addAction(cameraAction)
+        if deletable == true {
+            let deleteAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonDelete(),
+                                             style: .destructive) { [unowned self] (alertAction: UIAlertAction) in
+                                                self.delegate?.deleteImage()
+            }
+            alertController.addAction(deleteAction)
+        }
         alertController.addAction(cancelAction)
         self.viewController?.present(alertController, animated: true, completion: nil)
     }
@@ -96,6 +110,8 @@ final class ImagePickerController {
             } catch let error as ImagePicker.ImagePickerError {
                 handleError(error, forOption: option)
             } catch {}
+        case .delete :
+            break
         }
     }
 
@@ -117,6 +133,9 @@ final class ImagePickerController {
             identifier = .camera
         case .photo:
             identifier = .photos
+        case .delete:
+            self.handleOption(option)
+            return
         }
 
         permissionsManager.askPermission(for: [identifier], completion: { [unowned self] status in

@@ -48,7 +48,11 @@ final class MorningInterviewViewController: UIViewController {
         }
         UIView.animate(withDuration: Animation.duration_02, delay: Animation.duration_1, options: .curveEaseInOut, animations: {
             self.touchAssistantImage.alpha = 1
-        }, completion: nil)
+        }, completion: { finished in
+            self.touchAssistantImage.verticalBounce(3,
+                                                    offset: self.touchAssistantImage.frame.height,
+                                                    duration: Animation.duration_075)
+        })
     }
 
     func indexOf(_ viewController: UIViewController?) -> Int {
@@ -214,7 +218,7 @@ extension MorningInterviewViewController: QuestionnaireAnswer {
         morningInterviews[questionIndex].selectedAnswerIndex = questions[questionIndex].selectedAnswerIndex()
         if questions[questionIndex].answerIndex != nil,
             let nextViewController = next(from: viewController) {
-            nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_06, repeats: false) { timer in
+            nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_1, repeats: false) { timer in
                 self.pageController?.setViewControllers([nextViewController],
                                                         direction: .forward,
                                                         animated: true,

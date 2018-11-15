@@ -30,7 +30,7 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
 
     func viewDidLoad() {
         worker.setMyToBeVisionReminder(false)
-        guard let toBeVision = worker.myToBeVision() else { return }
+        guard nil != worker.myToBeVision() else { return }
         worker.updateWidget()
     }
 
@@ -65,6 +65,7 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
             var vision = toBeVision
             if let visionImage = image {
                 vision.imageURL = try worker.saveImage(visionImage)
+                vision.lastUpdated = Date()
             }
             worker.updateMyToBeVision(vision)
             presenter.updateToBeVision()

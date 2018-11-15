@@ -38,6 +38,6 @@ extension VisionGeneratorRouter: VisionGeneratorRouterInterface {
 
     func showPictureActionSheet(_ visionType: VisionGeneratorChoice.QuestionType) {
         chatViewController.resetVisionChoice()
-        imagePickerController?.show(in: chatViewController)
+        imagePickerController?.show(in: chatViewController, deletable: false)
     }
 }

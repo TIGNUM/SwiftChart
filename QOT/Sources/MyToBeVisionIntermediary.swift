@@ -14,15 +14,20 @@ struct MyToBeVisionIntermediary: DownSyncIntermediary {
     var headline: String?
     var subHeadline: String?
     var text: String?
-    var remoteProfileImageURL: String?
     var validFrom: Date
     var validTo: Date?
     var workTags: [String] = []
     var homeTags: [String] = []
+    var profileImages: [MediaResourceIntermediary] = []
 
     init(json: JSON) throws {
-        remoteProfileImageURL = try json.getString(at: JsonKey.images.rawValue, 0, JsonKey.mediaUrl.rawValue,
-                                                   alongPath: [.missingKeyBecomesNil, .nullBecomesNil])
+        let images = try json.getArray(at: JsonKey.images.rawValue)
+        for mediaResource in images {
+            profileImages.append(try MediaResourceIntermediary(json: mediaResource))
+        }
+        if profileImages.count == 0 {
+            profileImages.append(MediaResourceIntermediary.intermediary(for: .toBeVision))
+        }
         headline = try json.getItemValue(at: .title)
         subHeadline = try json.getItemValue(at: .shortDescription)
         text = try json.getItemValue(at: .description)

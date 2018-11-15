@@ -189,6 +189,9 @@ extension UserService {
                                                   entity: .toBeVision,
                                                   entitiyLocalID: old.localID)
         }
+        if newImageURL == nil, old.profileImageResource?.url != nil {
+            old.profileImageResource?.delete()
+        }
     }
 
     func eraseToBeVision() {

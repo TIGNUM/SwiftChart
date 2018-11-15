@@ -332,6 +332,7 @@
 "ImagePicker.Options.Message" = "A short description of the action goes here";
 "ImagePicker.Options.Button.Camera" = "Take a Picture";
 "ImagePicker.Options.Button.Photo" = "Choose Photo";
+"ImagePicker.Options.Button.Delete" = "Delete Photo";
 "ImagePicker.Options.Button.Cancel" = "Cancel";
 
 "MorningController.titleLabel" = "DAILY PREP MINUTE";

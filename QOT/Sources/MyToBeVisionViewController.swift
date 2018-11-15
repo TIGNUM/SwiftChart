@@ -36,6 +36,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
     private let imageBorder = CAShapeLayer()
     private var imagePickerController: ImagePickerController!
     private var tempImage: UIImage?
+    private var tempImageURL: URL?
     private var avPlayerObserver: AVPlayerObserver?
     private var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] = [:]
     var interactor: MyToBeVisionInteractor?
@@ -233,7 +234,7 @@ private extension MyToBeVisionViewController {
     }
 
     @IBAction func didTapImage() {
-        imagePickerController.show(in: self)
+        imagePickerController.show(in: self, deletable: (tempImageURL != nil || tempImage != nil))
         RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
     }
 
@@ -282,6 +283,11 @@ private extension MyToBeVisionViewController {
             toBeVision.text = messageTextView.text
             toBeVision.lastUpdated = Date()
         }
+        if tempImageURL == nil, toBeVision.imageURL != nil {
+            toBeVision.imageURL = nil
+            toBeVision.lastUpdated = Date()
+        }
+
         interactor?.saveToBeVision(image: tempImage, toBeVision: toBeVision)
     }
 
@@ -295,6 +301,7 @@ private extension MyToBeVisionViewController {
         syncEditingViews(!isEditing)
         if isEditing == true {
             headlineTextView.becomeFirstResponder()
+            tempImageURL = interactor?.myToBeVision?.imageURL
         } else {
             view.endEditing(isEditing)
         }
@@ -421,6 +428,12 @@ extension MyToBeVisionViewController: UITextViewDelegate {
 // MARK: - ImagePickerDelegate
 
 extension MyToBeVisionViewController: ImagePickerControllerDelegate {
+    func deleteImage() {
+        tempImage = nil
+        tempImageURL = nil
+        imageViewVision.kf.setImage(with: nil, placeholder: R.image.tbv_placeholder())
+        RestartHelper.clearRestartRouteInfo()
+    }
 
     func cancelSelection() {
         edit(true)

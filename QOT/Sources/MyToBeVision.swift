@@ -45,6 +45,7 @@ final class MyToBeVision: SyncableObject {
 extension MyToBeVision: TwoWaySyncableUniqueObject {
 
     var imageURL: URL? {
+        guard profileImageResource?.syncStatus != .deletedLocally else { return nil }
         if let localPath = profileImageResource?.localURL?.path, FileManager.default.fileExists(atPath: localPath) {
             return profileImageResource?.localURL
         }
@@ -70,22 +71,15 @@ extension MyToBeVision: TwoWaySyncableUniqueObject {
     }
 
     func setData(_ data: MyToBeVisionIntermediary, objectStore: ObjectStore) throws {
-        if let date = date, date > data.validFrom {
-            /*
-             FIXME: HACK!!!! API accepts a dictionary of MyToBeVision properties for upload but returns an array of all
-             previous my to be visions on download rather than the most recent version. So we will only set the data if
-             the data is later then the current data. DISCUSS WITH BACKEND
-             */
-            return
-        }
-
         headline = data.headline
         subHeadline = data.subHeadline
         text = data.text
         date = data.validFrom
-        profileImageResource?.setRemoteURL(data.remoteProfileImageURL.flatMap({ URL(string: $0) }))
         setKeywords(data.workTags, for: .work)
         setKeywords(data.homeTags, for: .home)
+        if let imageData = data.profileImages.last, profileImageResource?.syncStatus == .clean {
+            profileImageResource?.setData(imageData)
+        }
     }
 
     static func object(remoteID: Int, store: ObjectStore, data: MyToBeVisionIntermediary) throws -> MyToBeVision? {

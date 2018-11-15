@@ -63,10 +63,14 @@ extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
         presenter.updateSettingsMenu(profile)
     }
 
-    func updateSettingsMenuImage(image: UIImage, settingsMenu: ProfileSettingsModel) {
+    func updateSettingsMenuImage(image: UIImage?, settingsMenu: ProfileSettingsModel) {
         do {
-            let url = try worker.saveImage(image)
-            worker.updateSettingsProfileImage(url)
+            if let newImage = image {
+                let url = try worker.saveImage(newImage)
+                worker.updateSettingsProfileImage(url)
+            } else {
+                worker.updateSettingsProfileImage(nil)
+            }
             presenter.updateSettingsMenu(settingsMenu)
         } catch {
             presenter.presentImageError(error)

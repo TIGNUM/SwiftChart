@@ -55,9 +55,8 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         do {
             let realm = try realmProvider.realm()
             if let resource = realm.object(ofType: MediaResource.self, forPrimaryKey: localID),
-                let data = try resource.json()?.serialize(),
-                let localURL = resource.localURL {
-                sendData(data, syncToken: syncToken, localURL: localURL)
+                let data = try resource.json()?.serialize() {
+                sendData(data, syncToken: syncToken, localURL: resource.localURL)
             } else {
                 finish(error: nil)
             }
@@ -66,7 +65,7 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         }
     }
 
-    private func sendData(_ data: Data, syncToken: String, localURL: URL) {
+    private func sendData(_ data: Data, syncToken: String, localURL: URL?) {
         guard isCancelled == false else {
             finish(error: .didCancel)
             return
@@ -83,7 +82,7 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         }
     }
 
-    private func handleResult(_ result: UpSyncMediaResult, localURL: URL) {
+    private func handleResult(_ result: UpSyncMediaResult, localURL: URL?) {
         guard isCancelled == false else {
             finish(error: .didCancel)
             return
@@ -96,9 +95,11 @@ final class UpSyncMediaOperation: ConcurrentOperation {
                     let realm = try self.realmProvider.realm()
                     let resource = realm.object(ofType: MediaResource.self, forPrimaryKey: self.localID)
                     try realm.write {
-                        resource?.uploadComplete(remoteURL: result.remoteURL)
+                        resource?.uploadComplete(remoteID: result.remoteID, remoteURL: result.remoteURL)
                     }
-                    try FileManager.default.removeItem(at: localURL)
+                    if let localURL = localURL {
+                        try FileManager.default.removeItem(at: localURL)
+                    }
                     self.finish(error: nil)
                 } catch {
                     self.uncacheImage(withKey: cacheKey, completion: { [unowned self] in
@@ -124,7 +125,11 @@ final class UpSyncMediaOperation: ConcurrentOperation {
         finish()
     }
 
-    private func cacheImage(withURL url: URL, key: String, completion: @escaping () -> Void) throws {
+    private func cacheImage(withURL url: URL?, key: String, completion: @escaping () -> Void) throws {
+        guard let url = url else {
+            completion()
+            return
+        }
         guard let image = UIImage(dataUrl: url) else {
             throw SimpleError(localizedDescription: "couldn't load image with url \(url)")
         }

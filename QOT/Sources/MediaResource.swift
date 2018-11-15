@@ -38,18 +38,54 @@ final class MediaResource: Object {
         return "localID"
     }
 
+    let remoteID = RealmOptional<Int>(nil)
+
+    final func setRemoteIDValue(_ value: Int) {
+        remoteID.value = value
+        didSetRemoteID()
+    }
+
+    // @note we use didSetRemoteID() as using an inverse relationship to a base class (e.g. SyncableObject) doesn't pick superclass changes to remoteID
+    func didSetRemoteID() {
+
+    }
+
     var url: URL? {
         // We must always prefer localURL over remtoteURL. Once a local image has been uploaded localURL is set to nil.
+        if syncStatusValue.value == UpSyncStatus.deletedLocally.rawValue {
+            return nil
+        }
         return localURL ?? remoteURL
+    }
+
+    let syncStatusValue = RealmOptional<Int>(UpSyncStatus.clean.rawValue)
+
+    var syncStatus: UpSyncStatus {
+        return UpSyncStatus(rawValue: syncStatusValue.value ?? -1) ?? .clean
+    }
+
+    func delete() {
+        syncStatusValue.value = UpSyncStatus.deletedLocally.rawValue
+
+        if let localImageURL = localURL {
+            do {
+                try FileManager.default.removeItem(at: localImageURL)
+            } catch {
+                //
+            }
+            localFileName = nil
+            entitiyLocalID = nil
+        }
     }
 
     func setLocalURL(_ localURL: URL, format: Format, entity: Entity, entitiyLocalID: String) {
         assert(localURL.isLocalImageDirectory(), "localURL baseURL must be image directory")
-
+        self.remoteID.value = nil
         self.localFileName = localURL.relativePath
         self.format = format.rawValue
         self.entity = entity.rawValue
         self.entitiyLocalID = entitiyLocalID
+        self.syncStatusValue.value = UpSyncStatus.createdLocally.rawValue
     }
 
     /// Updates `remoteURLString` if there is no `request`.
@@ -60,43 +96,63 @@ final class MediaResource: Object {
     }
 
     /// Updates `remoteURLString` and deletes `request`. Should be called after uploading media successfully.
-    func uploadComplete(remoteURL: URL) {
-        remoteURLString = remoteURL.absoluteString
+    func uploadComplete(remoteID: Int, remoteURL: URL) {
+        remoteURLString = syncStatus == .deletedLocally ? nil : remoteURL.absoluteString
         localFileName = nil
-        format = nil
-        entity = nil
         entitiyLocalID = nil
+        self.remoteID.value = syncStatus == .deletedLocally ? nil : remoteID
+        didSetRemoteID()
+        syncStatusValue.value = UpSyncStatus.clean.rawValue
+    }
+
+    func setData(_ data: MediaResourceIntermediary) {
+        remoteID.value = data.remoteID
+        setRemoteURL(URL(string: data.mediaUrl ?? ""))
+        format = data.mediaFormat
+        entitiyLocalID = nil
+        entity = MediaEntryType(rawValue: data.entryType ?? "")?.mediaEntityType.rawValue
+        syncStatusValue.value = UpSyncStatus.clean.rawValue
     }
 
     func json() -> JSON? {
         guard
-            let entityRemoteID = entityRemoteID,
-            let local = localURL,
-            let format = format,
             let entity = entity else { return nil }
 
-        var byteArray = [Int]()
-        do {
-            let data = try Data(contentsOf: local)
-            byteArray = data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) -> [Int] in
-                var bytes = [Int]()
-                let max = data.count
-                for i in (0..<max) {
-                    bytes.append(Int(pointer[i]))
-                }
-                return bytes
-            })
-        } catch {
-            return nil
+        var dict: [JsonKey: JSONEncodable] = [
+            .qotId: localID,
+            .mediaEntity: entity,
+            .syncStatus: syncStatus.rawValue
+        ]
+
+        if let entityRemoteID = entityRemoteID {
+            dict[.idOfRelatedEntity] = entityRemoteID
+        }
+        if let format = format {
+            dict[.mediaFormat] = format
         }
 
-        let dict: [JsonKey: JSONEncodable] = [
-            .qotId: localID,
-            .mediaFormat: format,
-            .idOfRelatedEntity: entityRemoteID,
-            .mediaEntity: entity,
-            .base64Data: byteArray.toJSON()
-        ]
+        if let remoteIDValue = self.remoteID.value {
+            dict[.id] = remoteIDValue
+        }
+
+        if let local = localURL {
+            var byteArray = [Int]()
+            do {
+                let data = try Data(contentsOf: local)
+                byteArray = data.withUnsafeBytes({ (pointer: UnsafePointer<UInt8>) -> [Int] in
+                    var bytes = [Int]()
+                    let max = data.count
+                    for i in (0..<max) {
+                        bytes.append(Int(pointer[i]))
+                    }
+                    return bytes
+                })
+            } catch {
+                return nil
+            }
+            dict[.base64Data] = byteArray.toJSON()
+        }
+
         return .dictionary(dict.mapKeyValues({ ($0.rawValue, $1.toJSON()) }))
     }
 
@@ -106,6 +162,10 @@ final class MediaResource: Object {
 
     var remoteURL: URL? {
         return remoteURLString.flatMap { URL(string: $0)}
+    }
+
+    var entityType: Entity {
+        return Entity(rawValue: entity ?? "") ?? .partner
     }
 
     private var entityRemoteID: Int? {

@@ -26,7 +26,6 @@ struct UserIntermediary: DownSyncIntermediary {
     let countryName: String
     let zoneID: Int
     let zoneName: String
-    let userImageURLString: String?
     let height: Double?
     let heightUnit: String?
     let heightUnitsJSON: String
@@ -42,6 +41,7 @@ struct UserIntermediary: DownSyncIntermediary {
     let timeZone: String?
     let esbDomain: String
     let fitbitState: String
+    var profileImages: [MediaResourceIntermediary] = []
 
     init(json: JSON) throws {
         self.gender = try json.getItemValue(at: .gender)
@@ -58,7 +58,15 @@ struct UserIntermediary: DownSyncIntermediary {
         self.countryName = try json.getString(at: JsonKey.country.rawValue, JsonKey.name.rawValue)
         self.zoneID = try json.getInt(at: JsonKey.zone.rawValue, JsonKey.id.rawValue)
         self.zoneName = try json.getString(at: JsonKey.zone.rawValue, JsonKey.name.rawValue)
-        self.userImageURLString = try json.getItemValue(at: .userImageURL, alongPath: .nullBecomesNil)
+
+        let images = try json.getArray(at: JsonKey.images.rawValue)
+        for mediaResource in images {
+            profileImages.append(try MediaResourceIntermediary(json: mediaResource))
+        }
+        if profileImages.count == 0 {
+            profileImages.append(MediaResourceIntermediary.intermediary(for: .user))
+        }
+
         self.memberSince = try json.getDate(at: .memberSince)
         self.company = try json.getString(at: JsonKey.employment.rawValue,
                                           JsonKey.company.rawValue,
