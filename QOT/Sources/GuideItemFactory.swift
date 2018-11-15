@@ -71,35 +71,35 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
                           affectsTabBarBadge: false)
     }
 
-	func makeWhatsHotItem() -> [(Date, Guide.Item)] {
-		let whatsHotArticles = services.contentService.whatsHotArticles()
-		var whatsHotItems: [(Date, Guide.Item)] = []
-		for article in whatsHotArticles {
-			if
-				let collectionId = article.remoteID.value,
-				let body = services.contentService.contentItems(contentCollectionID: collectionId).first?.valueText {
-				let link = URL(string: String(format: "qot://feature-explainer?contentID=%d", collectionId))
-				let content = Guide.Item.Content.whatsHotArticle(title: article.title,
-																 body: body,
-																 image: article.thumbnailURL)
-				whatsHotItems.append((article.editedAt, Guide.Item(status: article.viewed == true ? .done : .todo,
-																	title: "",
-																	content: content,
-																	subtitle: "",
-                                                                    isDailyPrep: false,
-                                                                    isLearningPlan: false,
-                                                                    isWhatsHot: true,
-                                                                    isToBeVision: false,
-                                                                    isPreparation: false,
-																	link: link,
-																	featureLink: nil,
-																	featureButton: nil,
-																	identifier: article.localID,
-																	affectsTabBarBadge: true)))
-			}
-		}
-		return whatsHotItems
-	}
+    func makeWhatsHotItem() -> [(Date, Guide.Item)] {
+        let whatsHotArticles = services.contentService.whatsHotArticles()
+        var whatsHotItems: [(Date, Guide.Item)] = []
+        for article in whatsHotArticles {
+            if
+                let collectionId = article.remoteID.value,
+                let body = services.contentService.contentItems(contentCollectionID: collectionId).first?.valueText {
+                let link = URL(string: String(format: "qot://feature-explainer?contentID=%d", collectionId))
+                let content = Guide.Item.Content.whatsHotArticle(title: article.title,
+                                                                 body: body,
+                                                                 image: article.thumbnailURL)
+                whatsHotItems.append((article.editedAt, Guide.Item(status: article.viewed == true ? .done : .todo,
+                                                                   title: "",
+                                                                   content: content,
+                                                                   subtitle: "",
+                                                                   isDailyPrep: false,
+                                                                   isLearningPlan: false,
+                                                                   isWhatsHot: true,
+                                                                   isToBeVision: false,
+                                                                   isPreparation: false,
+                                                                   link: link,
+                                                                   featureLink: nil,
+                                                                   featureButton: nil,
+                                                                   identifier: article.localID,
+                                                                   affectsTabBarBadge: true)))
+            }
+        }
+        return whatsHotItems
+    }
 
     func makeToBeVisionItem() -> Guide.Item {
         let myToBeVision = services.userService.myToBeVision()

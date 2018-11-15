@@ -59,7 +59,7 @@ final class GuideWorker {
         let notificationItems = allNotificationItems.filter("type != 'MORNING_INTERVIEW' AND type != 'WEEKLY_INTERVIEW'")
         let featureItems = learnItems.filter { $0.type == RealmGuideItemLearn.ItemType.feature.rawValue }
         let strategyItems = learnItems.filter { $0.type == RealmGuideItemLearn.ItemType.strategy.rawValue }
-        let guideGenerator = GuideGenerator(maxDays: guideMaxDays, factory: itemFactory)
+        let guideGenerator = GuideGenerator(maxDays: guideMaxDays, factory: itemFactory, realm: services.mainRealm)
         let notificationConfigurations = NotificationConfigurationObject.all()
         let preparations = services.preparationService.preparations()
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 protocol GuidePreparation {
     var localID: String { get }
@@ -67,14 +68,16 @@ struct GuideGenerator {
     let maxDays: Int
     let factory: GuideItemFactoryProtocol
     let guideItemBlockDeterminer: GuideLearnItemBlockDeterminer
+    let realm: Realm
     private static var randIdxWhatsHot = 0
     private static var randIdxToBeVision = 0
     private static var randIdxTodayFinished = 0
 
-    init(localCalendar: Calendar = Calendar.current, maxDays: Int, factory: GuideItemFactoryProtocol) {
+    init(localCalendar: Calendar = Calendar.current, maxDays: Int, factory: GuideItemFactoryProtocol, realm: Realm) {
         self.localCalendar = localCalendar
         self.maxDays = maxDays
         self.factory = factory
+        self.realm = realm
         self.guideItemBlockDeterminer = GuideLearnItemBlockDeterminer(localCalendar: localCalendar)
     }
 
@@ -246,7 +249,6 @@ private extension GuideGenerator {
         }
         for item in items {
             guard let guideItem = factory.makeItem(with: item), let displayAt = item.displayAt else { continue }
-
             days.appendItem(guideItem,
                             hour: displayAt.hour,
                             minute: displayAt.minute,
@@ -268,7 +270,6 @@ private extension GuideGenerator {
                     completedAt <= now,
                     let guideItem = factory.makeItem(with: item),
                     let displayAt = item.displayAt else { continue }
-
                 days.appendItem(guideItem,
                                 hour: displayAt.hour,
                                 minute: displayAt.minute,
@@ -357,14 +358,14 @@ private extension GuideGenerator {
             if preparationsStartingToday.isEmpty == false {
                 let multiple = preparationsStartingToday.count > 1
                 let localID = preparationsStartingToday.count == 1 ? preparationsStartingToday.first?.localID : nil
-                item = factory.makePreparationItem(status: .todo,
+                item = factory.makePreparationItem(status: status(for: preparationsStartingToday),
                                                    representsMultiple: multiple,
                                                    startsTomorrow: false,
                                                    preparationLocalID: localID)
             } else if preparationsStartingTomorrow.isEmpty == false {
                 let multiple = preparationsStartingTomorrow.count > 1
                 let localID = preparationsStartingTomorrow.count == 1 ? preparationsStartingTomorrow.first?.localID : nil
-                item = factory.makePreparationItem(status: .todo,
+                item = factory.makePreparationItem(status: status(for: preparationsStartingTomorrow),
                                                    representsMultiple: multiple,
                                                    startsTomorrow: true,
                                                    preparationLocalID: localID)
@@ -384,6 +385,27 @@ private extension GuideGenerator {
             guard let dayBefore = localCalendar.date(byAdding: .day, value: -1, to: date) else { break }
             date = dayBefore
         }
+    }
+
+    // If all the checks are completed, return `.done` else return `.todo`
+    func status(for preparations: [GuidePreparation]) -> Guide.Item.Status {
+        var completed: [Bool] = []
+        for preparation in preparations {
+            let prepObject = realm.objects(Preparation.self).filter("localID == %@", preparation.localID).first
+            guard let checks = prepObject?.checks else { return .done }
+            var validChecks: [PreparationCheck] = []
+            for check in checks {
+                let contentItem = self.realm.objects(ContentItem.self).filter("localID == %@",
+                                                                              check.contentItem?.localID ?? "").first
+                if contentItem?.format != "video" {
+                    validChecks.append(check)
+                }
+            }
+            let areChecksCompleted = validChecks.filter { $0.covered == nil }.count == 0
+            completed.append(areChecksCompleted)
+        }
+        
+        return completed.filter { $0 == false }.count > 0 ? .todo : .done
     }
 
     /**
