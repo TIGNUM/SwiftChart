@@ -51,7 +51,7 @@ final class RealmGuideItemLearn: SyncableObject {
 
     @objc dynamic var reminderTime: RealmGuideTime?
 
-    @objc dynamic var guideItem: RealmGuideItem?  = RealmGuideItem()
+    @objc dynamic var guideItem: RealmGuideItem? = RealmGuideItem()
 
     func didUpdate() {
         guideItem?.didUpdate()

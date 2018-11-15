@@ -18,6 +18,10 @@ final class GuideRouter: GuideRouterInterface {
 
     func open(item: Guide.Item) {
         guard item.isDailyPrepCompleted == false, let url = item.link else { return }
-        launchHandler.process(url: item.featureLink ?? url, notificationID: item.identifier, guideItem: item)
+        if url.absoluteString.contains("qot://feature-explainer?contentID=") {
+            launchHandler.process(url: url, notificationID: item.identifier, guideItem: item)
+        } else {
+            launchHandler.process(url: item.featureLink ?? url, notificationID: item.identifier, guideItem: item)
+        }
     }
 }

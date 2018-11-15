@@ -903,20 +903,25 @@ extension AppCoordinator {
         currentPresentedNavigationController = navigationController
     }
 
-    func presentCalendar() {
+    func presentCalendar(from rootController: UIViewController?) {
         guard let services = services else { return }
         let calendarsViewModel = SettingsCalendarListViewModel(services: services)
         let calendarsViewController = SettingsCalendarListViewController(viewModel: calendarsViewModel)
-        let navigationController = UINavigationController(rootViewController: calendarsViewController)
-        let leftBarButton = UIBarButtonItem(image: R.image.ic_close_white(),
-                                            style: .plain,
-                                            target: self,
-                                            action: #selector(dismissCurrentPresentedControllers))
-        leftBarButton.tintColor = .white
-        navigationController.navigationBar.applyDefaultStyle()
-        calendarsViewController.navigationItem.leftBarButtonItem = leftBarButton
-        windowManager.showPriority(navigationController, animated: true, completion: nil)
-        currentPresentedNavigationController = navigationController
+        if let rootController = rootController {
+            calendarsViewController.hidesBottomBarWhenPushed = true
+            rootController.pushToStart(childViewController: calendarsViewController)
+        } else {
+            let navigationController = UINavigationController(rootViewController: calendarsViewController)
+            let leftBarButton = UIBarButtonItem(image: R.image.ic_close_white(),
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(dismissCurrentPresentedControllers))
+            leftBarButton.tintColor = .white
+            navigationController.navigationBar.applyDefaultStyle()
+            calendarsViewController.navigationItem.leftBarButtonItem = leftBarButton
+            windowManager.showPriority(navigationController, animated: true, completion: nil)
+            currentPresentedNavigationController = navigationController
+        }
     }
 
     func presentLibrary() {
@@ -931,26 +936,24 @@ extension AppCoordinator {
         currentPresentedController = sidebarCoordinator.sideBarViewController
     }
 
-    func presentAddSensor() {
+    func presentAddSensor(from rootController: UIViewController?) {
         let configurator = SensorConfigurator.make()
         let sensorViewController = SensorViewController(configure: configurator)
-        let navController = UINavigationController(rootViewController: sensorViewController)
-        let leftBarButton = UIBarButtonItem(image: R.image.ic_close_white(),
-                                            style: .plain,
-                                            target: self,
-                                            action: #selector(dismissCurrentPresentedControllers))
-        leftBarButton.tintColor = .white
-        navController.navigationBar.applyDefaultStyle()
-        sensorViewController.navigationItem.leftBarButtonItem = leftBarButton
-        windowManager.showPriority(navController, animated: true, completion: nil)
-        currentPresentedNavigationController = navController
-    }
-
-    func presentAddSensor(from rootController: UIViewController) {
-        let configurator = SensorConfigurator.make()
-        let sensorViewController = SensorViewController(configure: configurator)
-        sensorViewController.hidesBottomBarWhenPushed = true
-        rootController.pushToStart(childViewController: sensorViewController)
+        if let rootController = rootController {
+            sensorViewController.hidesBottomBarWhenPushed = true
+            rootController.pushToStart(childViewController: sensorViewController)
+        } else {
+            let navController = UINavigationController(rootViewController: sensorViewController)
+            let leftBarButton = UIBarButtonItem(image: R.image.ic_close_white(),
+                                                style: .plain,
+                                                target: self,
+                                                action: #selector(dismissCurrentPresentedControllers))
+            leftBarButton.tintColor = .white
+            navController.navigationBar.applyDefaultStyle()
+            sensorViewController.navigationItem.leftBarButtonItem = leftBarButton
+            windowManager.showPriority(navController, animated: true, completion: nil)
+            currentPresentedNavigationController = navController
+        }
     }
 
     func presentToBeVision(articleItemController: ArticleItemViewController?,

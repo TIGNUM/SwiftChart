@@ -58,7 +58,8 @@ final class MyToBeVisionView: UIView {
             toBeVisionImageView.image = UIImage(data: data)
             return
         }
-        toBeVisionImageView.image = UIImage(named: "Universe mytobevision")
+        toBeVisionImageView.image = UIImage(named: "tbv_placeholder")
+        toBeVisionImageView.backgroundColor = UIColor(red: 2/255, green: 18/255, blue: 33/255, alpha: 1)
     }
 
     @IBAction func didTapCreateToBeVision(_ sender: UIButton) {

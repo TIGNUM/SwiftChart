@@ -57,10 +57,10 @@ final class LaunchHandler {
         case .featureExplainer: featureExplainer(url: url, scheme: scheme, guideItem: guideItem)
         case .strategies: navigate(to: scheme.destination)
         case .meUniverse: navigate(to: scheme.destination)
-        case .preferencesSyncCalendar: appDelegate.appCoordinator.presentCalendar()
+        case .preferencesSyncCalendar: appDelegate.appCoordinator.presentCalendar(from: articleItemController)
         case .preferencesNotification: appDelegate.appCoordinator.presentNotificationsSettings()
-        case .addSensor: _ = appDelegate.appCoordinator.presentAddSensor()
-        case .fitbitAuthrefresh: appDelegate.appCoordinator.presentAddSensor()
+        case .addSensor: _ = appDelegate.appCoordinator.presentAddSensor(from: articleItemController)
+        case .fitbitAuthrefresh: appDelegate.appCoordinator.presentAddSensor(from: articleItemController)
         case .meMyWhy: navigate(to: scheme.destination) // TODO the middleButtons are different here.
         case .meActivity: navigateToMeCharts(sector: .activity)
         case .meIntensity: navigateToMeCharts(sector: .intensity)
