@@ -38,7 +38,7 @@ final class LearnContentItemHeaderView: UIView {
         let nib = R.nib.learnContentItemHeaderView()
         let headerView = (nib.instantiate(withOwner: self, options: nil).first as? LearnContentItemHeaderView)!
         headerView.setupView(title: contentTitle, subtitle: categoryTitle)
-        headerView.backgroundColor = .clear
+        headerView.backgroundColor = .nightModeBackground
         return headerView
     }
 
