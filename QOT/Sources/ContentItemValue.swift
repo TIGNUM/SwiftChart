@@ -14,7 +14,7 @@ enum ContentItemValue {
 
     case text(text: String, style: ContentItemTextStyle)
     case listItem(text: String)
-    case video(title: String, description: String?, placeholderURL: URL, videoURL: URL, duration: TimeInterval)
+    case video(title: String, description: String?, placeholderURL: URL?, videoURL: URL, duration: TimeInterval)
     case audio(title: String, description: String?, placeholderURL: URL, audioURL: URL, duration: TimeInterval, waveformData: [Float])
     case image(title: String, description: String?, url: URL)
     case prepareStep(title: String, description: String, relatedContentID: Int?)
@@ -63,8 +63,8 @@ enum ContentItemValue {
                 self = .invalid
             }
         case .video:
-            if let title = text, let placeholder = imageURL, let video = mediaURL, let duration = duration {
-                self = .video(title: title, description: description, placeholderURL: placeholder, videoURL: video, duration: duration)
+            if let title = text, let video = mediaURL, let duration = duration {
+                self = .video(title: title, description: description, placeholderURL: imageURL, videoURL: video, duration: duration)
             } else {
                 self = .invalid
             }

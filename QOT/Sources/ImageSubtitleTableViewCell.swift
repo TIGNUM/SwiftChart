@@ -33,7 +33,7 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
         bottomConstraint.constant = insets.bottom
     }
 
-    func setupData(placeHolder: URL,
+    func setupData(placeHolder: URL?,
                    placeHolderImage: UIImage? = R.image.preloading(),
                    description: NSAttributedString?,
                    canStream: Bool) {

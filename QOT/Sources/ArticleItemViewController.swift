@@ -225,7 +225,7 @@ private extension ArticleItemViewController {
     func mediaStreamCell(tableView: UITableView,
                          indexPath: IndexPath,
                          title: String,
-                         placeholderURL: URL,
+                         placeholderURL: URL?,
                          placeholderImage: UIImage? = R.image.preloading(),
                          attributedString: NSAttributedString,
                          canStream: Bool) -> ImageSubtitleTableViewCell {

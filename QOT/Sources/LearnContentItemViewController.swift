@@ -385,7 +385,7 @@ private extension LearnContentItemViewController {
     func mediaStreamCell(tableView: UITableView,
                          indexPath: IndexPath,
                          title: String,
-                         placeholderURL: URL,
+                         placeholderURL: URL?,
                          attributedString: NSAttributedString,
                          canStream: Bool) -> ImageSubtitleTableViewCell {
         let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
