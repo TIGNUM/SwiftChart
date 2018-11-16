@@ -92,10 +92,9 @@ final class PrepareContentMainHeaderTableViewCell: UITableViewCell, Dequeueable 
 private extension PrepareContentMainHeaderTableViewCell {
 
     func setupLabels(_ title: String, _ subtitle: String) {
-        let displaySubtitle = subtitle.count > 0 ? subtitle: R.string.localized.prepareSubtitleLearnMore()
         headerLabel.addCharactersSpacing(spacing: 2, text: title, uppercased: true)
         subHeaderLabel.addCharactersSpacing(spacing: 2,
-                                            text: displaySubtitle,
+                                            text: subtitle,
                                             uppercased: true)
         headerLabel.font = .H1MainTitle
         subHeaderLabel.font = .H7Title

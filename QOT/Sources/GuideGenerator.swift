@@ -404,7 +404,6 @@ private extension GuideGenerator {
             let areChecksCompleted = validChecks.filter { $0.covered == nil }.count == 0
             completed.append(areChecksCompleted)
         }
-        
         return completed.filter { $0 == false }.count > 0 ? .todo : .done
     }
 

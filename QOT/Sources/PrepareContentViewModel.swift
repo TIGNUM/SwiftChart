@@ -117,6 +117,7 @@ final class PrepareContentViewModel {
         self.prepareItems = items
         self.title = title
         self.video = video?.url
+        self.subTitle = R.string.localized.prepareSubtitleLearnMore()
         self.videoPlaceholder = video?.placeholderURL
         self.contentText = description
         self.checkedIDs = checkedIDs
