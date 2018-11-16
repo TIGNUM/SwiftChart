@@ -41,6 +41,7 @@ extension UINavigationController {
         pageViewController.setPageIndex(0, animated: false)
         navigationBar.backgroundColor = backgroundColor
         navigationBar.barTintColor = .navy
+        navigationBar.tintColor = .white
         navigationBar.isTranslucent = false
         view.backgroundColor = backgroundColor
         viewControllers = [pageViewController]
