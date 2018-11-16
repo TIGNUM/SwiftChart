@@ -294,7 +294,7 @@ extension ProfileSettingsViewController {
         pickerToolBar.barTintColor = .white
 		pickerToolBar.tintColor = .azure
         UIView.animate(withDuration: 0.6, animations: {
-            self.pickerViewHeight?.constant = self.view.frame.height * 0.3
+            self.pickerViewHeight?.constant = self.view.frame.height * (self.screenType == .small ? 0.5 : 0.3)
             self.pickerToolBarHeight?.constant = Layout.height_44
         }, completion: { finished in
             self.pickerView.selectRow(self.pickerInitialSelection[0], inComponent: 0, animated: false)
