@@ -14,12 +14,10 @@ extension UITableViewCell {
                         for statusView: UIView,
                         firstConstraint: NSLayoutConstraint,
                         secondConstraint: NSLayoutConstraint) {
-        if status == .done {
-            statusView.isHidden = true
-            firstConstraint.isActive = false
-            secondConstraint.isActive = true
-            layoutIfNeeded()
-        }
+        statusView.isHidden = status == .done ? true : false
+        firstConstraint.isActive = status == .done ? false : true
+        secondConstraint.isActive = status == .done ? true: false
+        layoutIfNeeded()
     }
 
     func bodyAttributedText(text: String,
