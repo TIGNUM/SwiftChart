@@ -68,7 +68,7 @@ private extension Badge {
     }
 
     func setup(frame: CGRect) {
-        borderWidth = 2
+        borderWidth = UIDevice.isVersion10 ? 0.5 : 2
         borderColor = .cherryRed
         insets = CGSize(width: frame.width * Layout.multiplier_0015, height: frame.height * Layout.multiplier_0015)
         badgeColor = .cherryRed
