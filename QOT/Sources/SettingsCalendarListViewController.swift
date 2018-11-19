@@ -173,7 +173,6 @@ private extension SettingsCalendarListViewController {
         openSettingButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         openSettingButton.backgroundColor = .azure
         openSettingButton.showsTouchWhenHighlighted = true
-
         openSettingButton.translatesAutoresizingMaskIntoConstraints = false
         let buttonCenterX: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: NSLayoutAttribute.centerX,
                                                                    relatedBy: NSLayoutRelation.equal, toItem: noPermissionLabel,
@@ -286,5 +285,6 @@ extension SettingsCalendarListViewController: SettingsCalendarListViewController
 
     func didChangeCalendarSyncValue(sender: UISwitch, calendarIdentifier: String) {
         viewModel.updateCalendarSyncStatus(canSync: sender.isOn, calendarIdentifier: calendarIdentifier)
+        viewModel.update()
     }
 }
