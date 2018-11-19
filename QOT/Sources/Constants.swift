@@ -62,6 +62,7 @@ struct Layout {
     static let padding_150: CGFloat = 150
     static let height_44: CGFloat = 44
     static let multiplier_01: CGFloat = 0.01
+    static let multiplier_003: CGFloat = 0.03
     static let multiplier_06: CGFloat = 0.06
     static let multiplier_0015: CGFloat = 0.015
     static let multiplier_08: CGFloat = 0.08
@@ -107,6 +108,19 @@ struct Layout {
     struct Device {
         static let iPhone5width: CGFloat = 374
     }
+    
+    struct Transparency {
+        static let alpha_01: CGFloat = 0.1
+        static let alpha_02: CGFloat = 0.2
+        static let alpha_03: CGFloat = 0.3
+        static let alpha_04: CGFloat = 0.4
+        static let alpha_05: CGFloat = 0.5
+        static let alpha_06: CGFloat = 0.6
+        static let alpha_07: CGFloat = 0.7
+        static let alpha_08: CGFloat = 0.8
+        static let alpha_09: CGFloat = 0.9
+        static let alpha_1: CGFloat = 1.0
+    }
 }
 
 enum KeychainConstant: String {
@@ -147,6 +161,9 @@ extension UIFont {
 
     /// BENTON SANS 11 // subtitles, tags
     static let H7Tag = UIFont.apercuRegular(ofSize: 11)
+
+    // APERCU REGULAR 13
+    static let ApercuRegular13 = UIFont.apercuRegular(ofSize: 13)
 
     // APERCU REGULAR 15 // Guide action labels
     static let ApercuRegular15 = UIFont.apercuRegular(ofSize: 15)
@@ -198,4 +215,7 @@ extension UIFont {
 
     // Apercu Bold 15 // Guide type action label
     static let ApercuBold15 = UIFont.apercuBold(ofSize: 14)
+
+    // Apercu Bold 18 // Guide Card Title
+    static let ApercuBold18 = UIFont.apercuBold(ofSize: 18)
 }

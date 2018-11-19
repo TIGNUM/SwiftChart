@@ -288,7 +288,7 @@ extension UIColor {
     }
 
     class var guideCardDoneBackground: UIColor {
-        return UIColor(red: 33/255, green: 43/255, blue: 53/255, alpha: 1)
+        return UIColor(red: 33/255, green: 43/255, blue: 53/255, alpha: 0.7)
     }
 
     class var guideCardTypeGray: UIColor {

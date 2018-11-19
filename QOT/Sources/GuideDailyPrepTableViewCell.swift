@@ -52,6 +52,8 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
         titleLabel.font = .ApercuMedium31
         loadLabel.font = .H5SecondaryHeadline
         recoveryLabel.font = .H5SecondaryHeadline
+        feedbackLabel.alpha = 0.8
+        nullStateLabel.alpha = 0.8
         nullStateQuestionLabel.font = .apercuBold(ofSize: 16)
         titleLabel.text = R.string.localized.morningControllerTitleLabel()
         nullStateLabel.attributedText = bodyAttributedText(text: R.string.localized.guideDailyPrepNotFinishedFeedback(),
@@ -80,6 +82,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
             feedbackLabel.isHidden = false
             feedbackLabel.attributedText = bodyAttributedText(text: feedback, font: .ApercuRegular15)
         }
+        containerView.alpha = status == .todo ? 0.7 : 1
         loadLabel.textColor = status == .todo ? .dailyPrepNullStateGray : .white
         recoveryLabel.textColor = status == .todo ? .dailyPrepNullStateGray : .white
         statusView.backgroundColor = status.statusViewColor

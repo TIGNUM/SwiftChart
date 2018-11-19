@@ -18,9 +18,9 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
     private let loadingView = BlurLoadingView(lodingText: R.string.localized.guideLoading(),
                                               activityIndicatorStyle: .whiteLarge)
     private var greetingView = GuideGreetingView.instantiateFromNib()
+    private let backgroundGradientView = UIImageView(image: R.image.background_guide_gradient())
     var interactor: GuideInteractorInterface?
     var router: GuideRouterInterface?
-
     private lazy var tableView: UITableView = {
         let topInset: CGFloat = view.bounds.height * (UIDevice.isPad ? Layout.multiplier_06 : -Layout.multiplier_06)
         return UITableView(style: .grouped,
@@ -107,8 +107,12 @@ private extension GuideViewController {
         view.backgroundColor = .navy
         tableView.tableHeaderView = greetingView
         tableView.estimatedRowHeight = 427
+        view.addSubview(backgroundGradientView)
         view.addSubview(tableView)
         view.addSubview(loadingView)
+        backgroundGradientView.trailingAnchor == view.trailingAnchor
+        backgroundGradientView.topAnchor == view.topAnchor + (view.bounds.height * Layout.multiplier_003)
+        backgroundGradientView.leftAnchor == view.leftAnchor + (view.bounds.width * Layout.multiplier_03)
 		if #available(iOS 11.0, *) {
 			tableView.edgeAnchors == view.edgeAnchors
 		} else {

@@ -29,9 +29,10 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
         statusView.maskPathByRoundingCorners()
         actionLabel.font = .ApercuBold14
         typeLabel.adjustsFontSizeToFitWidth = true
-        typeLabel.font = .ApercuRegular15
+        typeLabel.font = .ApercuRegular13
         typeLabel.textColor = .guideCardTypeGray
-        titleLabel.font = .H4Identifier
+        titleLabel.font = .ApercuBold18
+        contentLabel.alpha = Layout.Transparency.alpha_08
         containerView.corner(radius: Layout.CornerRadius.eight.rawValue)
     }
 
@@ -47,6 +48,7 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
         titleLabel.text = title.uppercased()
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
+        containerView.alpha = status == .todo ? 0.7 : 1
 		counterLabel.isHidden = strategiesCompleted == nil
         syncStatusView(with: status,
                        for: statusView,
