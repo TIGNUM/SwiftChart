@@ -1,14 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Apercu-Regular.otf">
+            <string>Apercu-Regular</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,18 +23,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0A-ow-1GT">
-                        <rect key="frame" x="36" y="16" width="323" height="12"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0A-ow-1GT">
+                        <rect key="frame" x="0.0" y="13.5" width="375" height="17"/>
+                        <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="h0A-ow-1GT" firstAttribute="leading" secondItem="zLo-hZ-DEA" secondAttribute="leadingMargin" constant="20" id="5QO-Ot-Gpj"/>
-                    <constraint firstItem="h0A-ow-1GT" firstAttribute="top" secondItem="zLo-hZ-DEA" secondAttribute="topMargin" constant="5" id="BmM-Ms-4Qg"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="h0A-ow-1GT" secondAttribute="bottom" constant="5" id="FE8-6Z-JfL"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="h0A-ow-1GT" secondAttribute="trailing" id="kbu-mz-lKP"/>
+                    <constraint firstItem="h0A-ow-1GT" firstAttribute="leading" secondItem="zLo-hZ-DEA" secondAttribute="leading" id="IHH-i1-Bc4"/>
+                    <constraint firstItem="h0A-ow-1GT" firstAttribute="centerY" secondItem="zLo-hZ-DEA" secondAttribute="centerY" id="PCq-bO-C3w"/>
+                    <constraint firstAttribute="trailing" secondItem="h0A-ow-1GT" secondAttribute="trailing" id="Qmk-F8-Vjw"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

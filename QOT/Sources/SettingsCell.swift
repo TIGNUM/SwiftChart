@@ -12,16 +12,10 @@ final class SettingsCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
-
     override func layoutSubviews() {
         super.layoutSubviews()
-
         backgroundColor = .clear
         titleLabel.textColor = .white
-        titleLabel.font = .H3Subtitle
     }
 
     func configure(title: String) {
