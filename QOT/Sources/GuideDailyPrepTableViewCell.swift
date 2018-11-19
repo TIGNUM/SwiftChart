@@ -72,7 +72,9 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     func configure(dailyPrepFeedback: String?,
                    dailyPrepItems: [Guide.DailyPrepItem],
                    status: Guide.Item.Status,
-                   yPosition: CGFloat) {
+                   yPosition: CGFloat,
+                   whyDPMTitle: String?,
+                   whyDPMDescription: String?) {
         if yPosition != initialPositionY {
             loadProgressView.setProgress(status == .todo ? 0 : 1, animated: false)
             recoveryProgressView.setProgress(status == .todo ? 0 : 1, animated: false)
@@ -89,6 +91,8 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
             feedbackLabel.attributedText = bodyAttributedText(text: feedback, font: .ApercuRegular15)
         }
         containerView.alpha = status == .todo ? 0.7 : 1
+        nullStateQuestionLabel.text = whyDPMTitle
+        nullStateLabel.attributedText = bodyAttributedText(text: whyDPMDescription ?? "", font: .ApercuRegular15)
         loadLabel.textColor = status == .todo ? .dailyPrepNullStateGray : .white
         recoveryLabel.textColor = status == .todo ? .dailyPrepNullStateGray : .white
         statusView.backgroundColor = status.statusViewColor

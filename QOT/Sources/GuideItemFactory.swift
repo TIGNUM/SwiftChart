@@ -10,6 +10,11 @@ import UIKit
 import Rswift
 
 struct GuideItemFactory: GuideItemFactoryProtocol {
+    enum contentID: Int {
+        case whyDPMCollectionID = 101167
+        case performanceFoundationCategoryID = 100006
+        case QOTBenefitContentID = 100101
+    }
 
     let services: Services
 
@@ -137,7 +142,8 @@ private extension GuideItemFactory {
 
     func guideItem(with result: DailyPrepResultObject) -> Guide.Item? {
         let items = dailyPrepItems(answers: Array(result.answers))
-        let content: Guide.Item.Content = .dailyPrep(items: items, feedback: result.feedback)
+        let content: Guide.Item.Content = .dailyPrep(items: items, feedback: result.feedback,
+                                                     whyDPMTitle: nil, whyDPMDescription: nil)
         return Guide.Item(status: .done,
                           title: result.title,
                           content: content,
@@ -158,7 +164,13 @@ private extension GuideItemFactory {
         guard isoDate.date?.isToday == true else { return nil }
         let questions = item.questionsFor(services: services)
         let items = dailyPrepItems(questions: questions, notification: item, services: services)
-        let content: Guide.Item.Content = .dailyPrep(items: items, feedback: nil)
+        let contentCollection = services.contentService.contentCollection(id: contentID.whyDPMCollectionID.rawValue)
+        let contentItem = contentCollection?.contentItems.first
+        let whyDPMTitle = contentCollection?.title ?? R.string.localized.guideDailyPrepNotFinishedWhyDPM()
+        let whyDPMDescription = contentItem?.valueText ?? R.string.localized.guideDailyPrepNotFinishedFeedback()
+        let content: Guide.Item.Content = .dailyPrep(items: items, feedback: nil,
+                                                     whyDPMTitle: whyDPMTitle,
+                                                     whyDPMDescription: whyDPMDescription)
         return Guide.Item(status: .todo,
                           title: item.title,
                           content: content,
@@ -177,8 +189,9 @@ private extension GuideItemFactory {
 
     func guideItem(with item: RealmGuideItemLearn) -> Guide.Item? {
         let isStrategy = item.type.caseInsensitiveCompare(RealmGuideItemLearn.ItemType.strategy.rawValue) == .orderedSame
-        let isFoundation = item.link == "qot://content-category?collectionID=100006" && item.title.lowercased() == "performance foundation"
-        let isBenefits = item.contentID == 100101
+        let foundationLink = "qot://content-category?collectionID=" + String(contentID.performanceFoundationCategoryID.rawValue)
+        let isFoundation = item.link == foundationLink && item.title.lowercased() == "performance foundation"
+        let isBenefits = item.contentID == contentID.QOTBenefitContentID.rawValue
         let displayType = (isFoundation || isBenefits) ? nil : item.displayType
         let title = isFoundation ? R.string.localized.guideCardFoundationSubtitle() : item.title
         let strategiesCompleted = isStrategy == true
@@ -225,7 +238,8 @@ private extension GuideItemFactory {
         if isDailyPrep {
             let questions = notification.questionsFor(services: services)
             let items = dailyPrepItems(questions: questions, notification: notification, services: services)
-            content = .dailyPrep(items: items, feedback: notification.dailyPrepFeedback)
+            content = .dailyPrep(items: items, feedback: notification.dailyPrepFeedback,
+                                 whyDPMTitle: nil, whyDPMDescription: nil)
         } else {
             content = .learningPlan(text: notification.body, strategiesCompleted: nil)
         }
@@ -253,7 +267,9 @@ private extension GuideItemFactory {
         for question in questions {
             let key = question.key
             let title = question.dailyPrepTitle.replacingOccurrences(of: "#", with: "\n")
-            let item = Guide.DailyPrepItem(result: nil, key: key ?? "", title: title)
+            let item = Guide.DailyPrepItem(result: nil,
+                                           key: key ?? "",
+                                           title: title)
             items.append(item)
         }
         return items

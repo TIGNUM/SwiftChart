@@ -33,6 +33,8 @@ final class MorningInterviewViewController: UIViewController {
         self.addChildViewController(pageController)
         view.insertSubview(pageController.view, belowSubview: stackView)
         pageController.view.clipsToBounds = false
+        previousButton.titleLabel?.font = R.font.apercuBold(size: 14)
+        nextButton.titleLabel?.font = R.font.apercuBold(size: 14)
         interactor?.viewDidLoad()
     }
 
@@ -216,17 +218,8 @@ extension MorningInterviewViewController: QuestionnaireAnswer {
         guard let answerString = answer as? String else { return }
         questions[questionIndex].answerIndex = questions[questionIndex].answers.lastIndex(of: answerString)
         morningInterviews[questionIndex].selectedAnswerIndex = questions[questionIndex].selectedAnswerIndex()
-        if questions[questionIndex].answerIndex != nil,
-            let nextViewController = next(from: viewController) {
-            nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_1, repeats: false) { timer in
-                self.pageController?.setViewControllers([nextViewController],
-                                                        direction: .forward,
-                                                        animated: true,
-                                                        completion: nil)
-            }
-        } else if questionIndex == questions.count - 1 {
-            checkAnswers()
-        }
+        self.checkAnswers()
+        pageController?.setViewControllers([viewController], direction: .reverse, animated: false, completion: nil)
     }
 }
 

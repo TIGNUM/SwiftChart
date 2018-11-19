@@ -21,7 +21,7 @@ struct Guide {
         enum Content {
             case toBeVision(title: String, body: String, image: URL?)
             case learningPlan(text: String, strategiesCompleted: Int?)
-            case dailyPrep(items: [DailyPrepItem], feedback: String?)
+            case dailyPrep(items: [DailyPrepItem], feedback: String?, whyDPMTitle: String?, whyDPMDescription: String?)
 			case whatsHotArticle(title: String, body: String, image: URL?)
             case preparation(title: String, body: String)
         }
@@ -135,7 +135,7 @@ extension Guide.Item.Content: Equatable {
         switch (lhs, rhs) {
         case let (.learningPlan(a), .learningPlan(b)):
             return a == b
-        case let (.dailyPrep(itemsA, feedbackA), .dailyPrep(itemsB, feedbackB)):
+        case let (.dailyPrep(itemsA, feedbackA, _, _), .dailyPrep(itemsB, feedbackB, _, _)):
             return itemsA == itemsB && feedbackA == feedbackB
         default:
             return false
