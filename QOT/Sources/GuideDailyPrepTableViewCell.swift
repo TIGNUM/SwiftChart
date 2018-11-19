@@ -37,8 +37,9 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleTopConstraintToStatus: NSLayoutConstraint!
     @IBOutlet private weak var titleTopConstraintToSuperview: NSLayoutConstraint!
     private var labelsColors: [UIColor] = [.recoveryGreen, .recoveryOrange, .recoveryRed]
+    private var initialPositionY: CGFloat = 0
     weak var delegate: GuideDailyPrepTableViewCellDelegate?
-	var itemTapped: Guide.Item?
+	var itemTapped: Guide.Item? = nil
 
     // MARK: - Lifecycle
 
@@ -70,7 +71,12 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(dailyPrepFeedback: String?,
                    dailyPrepItems: [Guide.DailyPrepItem],
-                   status: Guide.Item.Status) {
+                   status: Guide.Item.Status,
+                   yPosition: CGFloat) {
+        if yPosition != initialPositionY {
+            loadProgressView.setProgress(status == .todo ? 0 : 1, animated: false)
+            recoveryProgressView.setProgress(status == .todo ? 0 : 1, animated: false)
+        }
         if status == .done && dailyPrepFeedback == nil {
             feedbackSpinner.startAnimating()
             feedbackSpinner.isHidden = false
@@ -92,6 +98,7 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
                        firstConstraint: titleTopConstraintToStatus,
                        secondConstraint: titleTopConstraintToSuperview)
         syncViews(status: status, dailyPrepItems: dailyPrepItems)
+        initialPositionY = yPosition
     }
 }
 
@@ -123,8 +130,6 @@ private extension GuideDailyPrepTableViewCell {
         nullStateLabel.isHidden = !isHidden
         receiveFeedbackButton.isHidden = !isHidden
         nullStateQuestionLabel.isHidden = !isHidden
-        recoveryProgressView.type = .recovery
-        loadProgressView.type = .load
         switch status {
         case .todo:
             loadProgressView.trackImage = nil
@@ -133,11 +138,11 @@ private extension GuideDailyPrepTableViewCell {
             recoveryProgressView.progressTintColor = .dailyPrepNullStateGray
             loadLabelsContainer.subviews.forEach { ($0 as? UILabel)?.textColor = .dailyPrepNullStateGray }
             recoveryLabelsContainer.subviews.forEach { ($0 as? UILabel)?.textColor = .dailyPrepNullStateGray }
-            loadProgressView.startNullStateAnimation()
-            recoveryProgressView.startNullStateAnimation()
+            loadProgressView.setProgress(0.3, animated: true)
+            recoveryProgressView.setProgress(0.8, animated: true)
         case .done:
-            setGradient(in: loadProgressView, with: [.recoveryGreen, .recoveryRed])
-            setGradient(in: recoveryProgressView, with: [.recoveryRed, .recoveryGreen])
+            loadProgressView.setGradient(with: [.recoveryGreen, .recoveryRed])
+            recoveryProgressView.setGradient(with: [.recoveryRed, .recoveryGreen])
             enableProgressViews(dailyPrepItems: dailyPrepItems)
             for (index, view) in loadLabelsContainer.subviews.enumerated() {
                 (view as? UILabel)?.textColor = labelsColors[index]
@@ -165,20 +170,5 @@ private extension GuideDailyPrepTableViewCell {
         }
         loadProgressView.setProgress(invertedValue(for: loadResults / Float(loadCounter)), animated: true)
         recoveryProgressView.setProgress(invertedValue(for: recoveryResults / Float(recoveryCounter)), animated: true)
-    }
-
-    func setGradient(in progressView: UIProgressView, with colors: [UIColor]) {
-        let gradientView = UIView(frame: progressView.bounds)
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = progressView.bounds
-        gradientLayer.startPoint =  CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 1, y: 0)
-        gradientLayer.colors = colors.map { $0.cgColor }
-        gradientLayer.locations = [0.0, 1.0]
-        gradientView.layer.insertSublayer(gradientLayer, at: 0)
-        let gradientImage = UIImage(view: gradientView)?.withHorizontallyFlippedOrientation()
-        progressView.trackImage = gradientImage
-        progressView.transform = CGAffineTransform(scaleX: -1.0, y: -1.0)
-        progressView.progressTintColor = UIColor(red: 0.11, green: 0.22, blue: 0.31, alpha: 1.0)
     }
 }

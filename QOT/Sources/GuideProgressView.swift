@@ -8,16 +8,7 @@
 
 import UIKit
 
-enum ProgressType {
-    case load
-    case recovery
-}
-
 final class GuideProgressView: UIProgressView {
-
-    // MARK: - Properties
-
-    var type: ProgressType?
 
     // MARK: - Lifecycle
 
@@ -33,9 +24,18 @@ final class GuideProgressView: UIProgressView {
 
     // MARK: - Actions
 
-    func startNullStateAnimation() {
-        UIView.animate(withDuration: Animation.duration_1, animations: {
-            self.setProgress(self.type == .load ? 0.3 : 0.8, animated: true)
-        })
+    func setGradient(with colors: [UIColor]) {
+        let gradientView = UIView(frame: bounds)
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = bounds
+        gradientLayer.startPoint =  CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 1, y: 0)
+        gradientLayer.colors = colors.map { $0.cgColor }
+        gradientLayer.locations = [0.0, 1.0]
+        gradientView.layer.insertSublayer(gradientLayer, at: 0)
+        let gradientImage = UIImage(view: gradientView)?.withHorizontallyFlippedOrientation()
+        trackImage = gradientImage
+        transform = CGAffineTransform(scaleX: -1.0, y: -1.0)
+        progressTintColor = UIColor(red: 0.11, green: 0.22, blue: 0.31, alpha: 1.0)
     }
 }

@@ -169,7 +169,10 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
 			cell.delegate = self
 			cell.itemTapped = itemAt(indexPath: indexPath)
-            cell.configure(dailyPrepFeedback: feedback, dailyPrepItems: items, status: item.status)
+            cell.configure(dailyPrepFeedback: feedback,
+                           dailyPrepItems: items,
+                           status: item.status,
+                           yPosition: cell.frame.origin.y)
             return cell
         case .learningPlan(let value, let strategiesCompleted):
             let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
