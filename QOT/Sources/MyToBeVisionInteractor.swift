@@ -60,6 +60,13 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         return messageEdited
     }
 
+    func isShareBlocked() -> Bool {
+        let vision = worker.myToBeVision()
+        let visionIsNil = vision?.headLine == nil && vision?.text == nil
+        let visionIsDefault = vision?.text == worker.messagePlaceholder
+        return visionIsNil || visionIsDefault
+    }
+
     func saveToBeVision(image: UIImage?, toBeVision: MyToBeVisionModel.Model) {
         do {
             var vision = toBeVision

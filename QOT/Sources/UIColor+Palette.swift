@@ -213,6 +213,11 @@ extension UIColor {
         return UIColor(red: 39/255, green: 41/255, blue: 57/255, alpha: 1)
     }
 
+    /// UIColor(red: 5/255, green: 40/255, blue: 70/255, alpha: 1)
+    class var darkAzure: UIColor {
+        return UIColor(red: 5/255, green: 40/255, blue: 70/255, alpha: 1)
+    }
+
     /// UIColor(red: 1/255, green: 148/255, blue: 255/255, alpha: 1)
     class var azure: UIColor {
         return UIColor(red: 1/255, green: 148/255, blue: 255/255, alpha: 1)

@@ -103,6 +103,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         toBeVisionDidUpdate()
         syncEditingViews(true)
         updateContainerHeight()
+        syncShareButton()
         UIApplication.shared.setStatusBarStyle(.lightContent)
     }
 
@@ -165,8 +166,8 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
 extension MyToBeVisionViewController {
 
     func setupView() {
-        headlineEditingSeparatorView.backgroundColor = .blueGray
-        messageEditingSeparatorView.backgroundColor = .blueGray
+        headlineEditingSeparatorView.backgroundColor = .darkAzure
+        messageEditingSeparatorView.backgroundColor = .darkAzure
         view.backgroundColor = .navy
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
@@ -289,6 +290,7 @@ private extension MyToBeVisionViewController {
         }
 
         interactor?.saveToBeVision(image: tempImage, toBeVision: toBeVision)
+        syncShareButton()
     }
 
     func edit(_ isEditing: Bool) {
@@ -341,13 +343,19 @@ private extension MyToBeVisionViewController {
                                              style: .dark)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .selected)
-        editButton.imageView?.tintColor = .blueGray
+        editButton.imageView?.tintColor = .azure
         generatorButton.setImage(R.image.ic_generator()?.withRenderingMode(.alwaysTemplate), for: .normal)
         generatorButton.setImage(R.image.ic_generator()?.withRenderingMode(.alwaysTemplate), for: .selected)
-        generatorButton.imageView?.tintColor = .blueGray
+        generatorButton.imageView?.tintColor = .azure
         shareButton.setImage(R.image.ic_share_fancy()?.withRenderingMode(.alwaysTemplate), for: .normal)
         shareButton.setImage(R.image.ic_share_fancy()?.withRenderingMode(.alwaysTemplate), for: .selected)
-        shareButton.imageView?.tintColor = .blueGray
+        syncShareButton()
+    }
+
+    func syncShareButton() {
+        let isSharedBlocked = interactor?.isShareBlocked()
+        shareButton.imageView?.tintColor = isSharedBlocked == true ? .azure20 : .azure
+        shareButton.setTitleColor(isSharedBlocked == true ? .azure20 : .azure, for: .normal)
     }
 
     func syncEditingViews(_ areHidden: Bool) {

@@ -160,7 +160,7 @@
                                             <inset key="titleEdgeInsets" minX="0.0" minY="8" maxX="0.0" maxY="0.0"/>
                                             <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="8" maxY="0.0"/>
                                             <state key="normal" title="Share" image="ic_share_fancy">
-                                                <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleColor" red="0.0039215686269999999" green="0.58039215690000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="didTapShareButton" destination="-1" eventType="touchUpInside" id="8W7-xL-qYg"/>
@@ -176,23 +176,23 @@
                                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <inset key="titleEdgeInsets" minX="8" minY="8" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="Edit" image="ic_edit">
-                                                <color key="titleColor" red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="titleColor" red="0.0039215686269999999" green="0.58039215690000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="didTapEdit" destination="-1" eventType="touchUpInside" id="uh7-as-jnH"/>
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="leading" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wy5-c6-TPV">
-                                            <rect key="frame" x="16" y="110" width="80" height="40"/>
+                                            <rect key="frame" x="16" y="110" width="85" height="40"/>
                                             <constraints>
-                                                <constraint firstAttribute="width" constant="80" id="7Ek-Nt-yof"/>
+                                                <constraint firstAttribute="width" constant="85" id="7Ek-Nt-yof"/>
                                                 <constraint firstAttribute="height" constant="40" id="l8q-ec-nk6"/>
                                             </constraints>
                                             <fontDescription key="fontDescription" name="Apercu-Medium" family="Apercu" pointSize="12"/>
-                                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <color key="tintColor" red="0.0039215686269999999" green="0.58039215690000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <inset key="titleEdgeInsets" minX="8" minY="8" maxX="0.0" maxY="0.0"/>
-                                            <state key="normal" title="New" image="ic_generator">
-                                                <color key="titleColor" red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="calibratedRGB"/>
+                                            <state key="normal" title="Generate" image="ic_generator">
+                                                <color key="titleColor" red="0.0039215686269999999" green="0.58039215690000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             </state>
                                             <connections>
                                                 <action selector="didTapCreateVision" destination="-1" eventType="touchUpInside" id="rFY-Ib-NpL"/>
