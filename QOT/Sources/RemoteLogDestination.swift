@@ -58,7 +58,7 @@ final class RemoteLogDestination: BaseDestination {
 
         super.init()
 
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z"
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         reachabilityManager?.startListening()
     }
 
