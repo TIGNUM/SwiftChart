@@ -14,6 +14,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
         case whyDPMCollectionID = 101167
         case performanceFoundationCategoryID = 100006
         case QOTBenefitContentID = 100101
+        case QOTBenefitsBodyID = 104167
     }
 
     let services: Services
@@ -192,6 +193,7 @@ private extension GuideItemFactory {
         let foundationLink = "qot://content-category?collectionID=" + String(contentID.performanceFoundationCategoryID.rawValue)
         let isFoundation = item.link == foundationLink && item.title.lowercased() == "performance foundation"
         let isBenefits = item.contentID == contentID.QOTBenefitContentID.rawValue
+        let benefitsBody = services.contentService.contentItem(id: contentID.QOTBenefitsBodyID.rawValue)?.valueText ?? ""
         let displayType = (isFoundation || isBenefits) ? nil : item.displayType
         let title = isFoundation ? R.string.localized.guideCardFoundationSubtitle() : item.title
         let strategiesCompleted = isStrategy == true
@@ -200,7 +202,8 @@ private extension GuideItemFactory {
             && item.block <= Defaults.totalNumberOfStrategies ? item.block : nil
         return Guide.Item(status: item.completedAt == nil ? .todo : .done,
                           title: title,
-                          content: .learningPlan(text: item.body, strategiesCompleted: strategiesCompleted),
+                          content: .learningPlan(text: isBenefits ? benefitsBody : item.body,
+                                                 strategiesCompleted: strategiesCompleted),
                           subtitle: displayType ?? "",
                           isDailyPrep: false,
                           isLearningPlan: true,
