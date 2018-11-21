@@ -394,7 +394,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
         case 0: showHelp(.guide)
         case 1: showHelp(.learn)
         case 2: showHelp(.me)
-        case 3: showHelp(.prepare)
+        case 3: showHelp(.data)
         case 4: showHelp(.prepare)
         default: assertionFailure("unhandled switch")
         }

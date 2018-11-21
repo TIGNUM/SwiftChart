@@ -14,6 +14,7 @@ enum ScreenHelp {
         case guide = 100748
         case learn = 100745
         case me = 100746
+        case data = 101169
         case prepare = 100747
         case dailyPrep = 101157
         case toBeVision = 101163
