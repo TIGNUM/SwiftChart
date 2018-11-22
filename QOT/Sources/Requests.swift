@@ -237,7 +237,8 @@ struct UserEmailCheckRequest: URLRequestBuildable {
     let paramaters: [RequestParameter: Any]
 
     init(email: String) {
-        self.paramaters = [.email: email]
+        self.paramaters = [.email: email,
+                           .appBundleIdentifier: Bundle.main.bundleIdentifier ?? "UNKNOWN"]
     }
 }
 

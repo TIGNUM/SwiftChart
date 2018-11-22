@@ -34,4 +34,5 @@ protocol SigningEmailInteractorInterface: SigningInteractor {}
 protocol SigningEmailRouterInterface {
     func openDigitVerificationView(email: String)
     func openSignInView(email: String)
+    func open(_ url: URL, message: String?)
 }

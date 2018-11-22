@@ -81,9 +81,7 @@ private extension SigningDigitInteractor {
             check.userSigning?.verificationCode = worker.code
             let userSigning = check.userSigning ?? UserSigning(email: worker.email, code: worker.code)
             router.openCreatePasswordView(userSigning: userSigning, responseType: check.responseType)
-        case .codeSent,
-             .userExist,
-             .userCreated: return // Do nothing
+        default: return // Do nothing
         }
     }
 }

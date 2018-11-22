@@ -142,10 +142,8 @@ private extension SigningProfileDetailInteractor {
         switch registrationCheck.responseType {
         case .userCreated: handleRegistrationSuccess(registrationCheck: registrationCheck)
         case .userExist: handleRegistrationFailure(registrationCheck: registrationCheck)
-        case .invalid,
-             .codeValid,
-             .codeValidNoPassword,
-             .codeSent: return
+        default:
+            return
         }
     }
 

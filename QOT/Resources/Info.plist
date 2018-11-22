@@ -26,10 +26,20 @@
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
 			<key>CFBundleURLName</key>
-			<string>com.tignum.qot.novartis</string>
+			<string>com.tignum.qot.v2</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>qot</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>INTERNAL_VALIDATION_SCHEME_IDENTIFIER</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>INTERNAL_VALIDATION_SCHEME</string>
 			</array>
 		</dict>
 	</array>

@@ -148,7 +148,11 @@ enum URLScheme: String {
                 return nil
         }
         let preparation = URLScheme.preparation
+        #if DEBUG
         return "\(urlSchemes[0])://\(preparation.rawValue)\(preparation.queryName)\(localID)"
+        #else
+        return "\(urlSchemes[1])://\(preparation.rawValue)\(preparation.queryName)\(localID)"
+        #endif
     }
 
     static func isLaunchableHost(host: String?) -> Bool {

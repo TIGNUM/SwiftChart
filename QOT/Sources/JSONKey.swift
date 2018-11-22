@@ -60,6 +60,7 @@ enum JsonKey: String {
     case displayName
     case displayTime
     case displayType
+    case iosDownloadLink
     case duration
     case email
     case employment
@@ -246,6 +247,7 @@ enum JsonKey: String {
     case userInfo
     case userPreparationId
     case vacation
+    case validAppScheme
     case validFrom
     case validUntil
     case value

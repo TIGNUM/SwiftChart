@@ -17,6 +17,7 @@ struct UserRegistrationCheck {
         case codeValid = "VERIFICATIONCODE_VALID"
         case codeValidNoPassword = "VERIFICATIONCODE_VALID_NO_PASSWORD"
         case userCreated = "USER_CREATED"
+        case invalidAppVersion = "INVALID_APP_VERSION"
         case invalid
     }
 
@@ -26,32 +27,28 @@ struct UserRegistrationCheck {
     let message: String
     let responseType: ResponseType
     var userSigning: UserSigning?
+    var downloadLink: String?
+    var validAppScheme: String?
 
     // MARK: - Init
 
     init(json: JSON) throws {
         response = try json.getItemValue(at: .responseReturnCode)
         message = try json.getItemValue(at: .message)
-        var type = ResponseType.invalid
-        if response == UserRegistrationCheck.ResponseType.userExist.rawValue {
-            type = .userExist
-        }
-        if response == UserRegistrationCheck.ResponseType.codeSent.rawValue {
-            type = .codeSent
-        }
-        if response == UserRegistrationCheck.ResponseType.codeValid.rawValue {
-            type = .codeValid
-        }
-        if response == UserRegistrationCheck.ResponseType.userCreated.rawValue {
-            type = .userCreated
-        }
-        if response == UserRegistrationCheck.ResponseType.codeValidNoPassword.rawValue {
-            type = .codeValidNoPassword
+        var type = ResponseType(rawValue: response)
+        switch type {
+        case .userExist?, .codeSent?, .codeValid?, .userCreated?:
+            break
+        case .codeValidNoPassword?:
             let userSigningJson = try json.json(at: .user)
             userSigning = try UserSigning(json: userSigningJson)
-
+        case .invalidAppVersion?:
+            validAppScheme = try json.getItemValue(at: .validAppScheme)
+            downloadLink = try json.getItemValue(at: .iosDownloadLink)
+        default:
+            type = .invalid
         }
-        responseType = type
+        responseType = type ?? .invalid
     }
 
     static func parse(_ data: Data) throws -> UserRegistrationCheck {

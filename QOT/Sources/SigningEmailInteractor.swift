@@ -84,9 +84,14 @@ private extension SigningEmailInteractor {
         case .codeSent: router.openDigitVerificationView(email: email)
         case .userExist: router.openSignInView(email: email)
         case .invalid: presenter.reload(errorMessage: emailCheck.message, buttonActive: false)
-        case .codeValid,
-             .codeValidNoPassword,
-             .userCreated: return
+        case .invalidAppVersion:
+            if let url = URL(string: (emailCheck.validAppScheme ?? "") + "://"), UIApplication.shared.canOpenURL(url) {
+                router.open(url, message: emailCheck.message)
+            } else if let url = URL(string: emailCheck.downloadLink ?? ""), UIApplication.shared.canOpenURL(url) {
+                router.open(url, message: emailCheck.message)
+            }
+            presenter.reload(errorMessage: emailCheck.message, buttonActive: false)
+        default: return
         }
     }
 }

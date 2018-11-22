@@ -38,4 +38,10 @@ extension SigningEmailRouter: SigningEmailRouterInterface {
         let controller = SigningLoginViewController(configure: configurator)
         viewController.pushToStart(childViewController: controller)
     }
+
+    func open(_ url: URL, message: String?) {
+        viewController.showAlert(type: .message(message ?? ""), handler: {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }, handlerDestructive: nil)
+    }
 }
