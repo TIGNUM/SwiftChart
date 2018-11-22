@@ -140,6 +140,10 @@ extension UIFont {
 
     static let H1TitleLight = UIFont.apercuLight(ofSize: 25)
 
+    static let H1TitleBold = UIFont.apercuBold(ofSize: 25)
+
+    static let H1TitleRegular = UIFont.apercuRegular(ofSize: 25)
+
     static let H2SubtitleLight = UIFont.apercuLight(ofSize: 24)
 
     /// SIMPLE REGULAR 32 // video title, main diagram title, sidemenu

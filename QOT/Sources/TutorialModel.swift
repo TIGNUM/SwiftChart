@@ -18,7 +18,7 @@ struct TutorialModel {
 
         var font: UIFont {
             switch self {
-            case .title: return .H1TitleLight
+            case .title: return .H1TitleRegular
             case .subtitle: return .H2SubtitleLight
             case .body: return .ApercuRegular15
             case .image: return .ApercuRegular15
