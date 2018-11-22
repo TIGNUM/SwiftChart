@@ -55,8 +55,9 @@ private extension SettingsBubblesRouter {
     }
 
     func presentTutorial() {
-        let slideShowViewController = SlideShowViewController(configure: SlideShowConfigurator.makeModal(), type: .helpMenu)
-        viewController.present(slideShowViewController, animated: true, completion: nil)
+        let configurator = TutorialConfigurator.make()
+        let controller = TutorialViewController(configure: configurator)
+        viewController.pushToStart(childViewController: controller)
     }
 
     func presentMailComposer(recipients: [String], subject: String) {

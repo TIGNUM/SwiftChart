@@ -87,6 +87,10 @@
 "Top.Tab.Bar.Item.Title.Perpare.Tools" = "Tools";
 "Top.Tab.Bar.Item.Title.Perpare.Preparation" = "PREPARATION";
 "Top.Tab.Bar.Item.Title.Perpare.Notes" = "NOTES";
+"Top.Tab.Bar.Item.Title.Tutorial" = "TUTORIAL";
+
+"Button.Title.Skip" = "SKIP";
+"Button.Title.Start" = "START";
 
 "Guide.Card.Type.WhatsHot" = "Whats Hot Article";
 "Guide.DailyPrep.NotFinished.WhyDPM" = "WHY DPM ?";

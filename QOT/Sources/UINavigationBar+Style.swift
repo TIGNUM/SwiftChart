@@ -18,6 +18,18 @@ extension UINavigationBar {
         isTranslucent = true
     }
 
+    func applyClearStyle() {
+        titleTextAttributes = [.font: UIFont.ApercuBold15,
+                               .foregroundColor: UIColor.white,
+                               .kern: 0.88]
+        let dummyImage = UIImage()
+        setBackgroundImage(dummyImage, for: .default)
+        shadowImage = dummyImage
+        isTranslucent = true
+        backgroundColor = .clear
+        barTintColor = .clear
+    }
+
     func applyDarkBluryStyle() {
         titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.H6NavigationTitle]
         isTranslucent = true

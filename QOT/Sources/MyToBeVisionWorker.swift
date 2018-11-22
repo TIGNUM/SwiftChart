@@ -74,7 +74,7 @@ final class MyToBeVisionWorker {
     }
 
     func isReady() -> Bool {
-        return syncStateObserver.hasSynced(MyToBeVision.self) && myToBeVision() != nil
+        return syncStateObserver.hasSynced(MyToBeVision.self)
     }
 
     func updateWidget() {

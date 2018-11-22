@@ -108,7 +108,7 @@ struct Layout {
     struct Device {
         static let iPhone5width: CGFloat = 374
     }
-    
+
     struct Transparency {
         static let alpha_01: CGFloat = 0.1
         static let alpha_02: CGFloat = 0.2
@@ -137,6 +137,10 @@ extension UIFont {
 
     /// SIMPLE REGULAR 36 // main post title
     static let H1MainTitle = UIFont.apercuRegular(ofSize: 36)
+
+    static let H1TitleLight = UIFont.apercuLight(ofSize: 25)
+
+    static let H2SubtitleLight = UIFont.apercuLight(ofSize: 24)
 
     /// SIMPLE REGULAR 32 // video title, main diagram title, sidemenu
     static let H2SecondaryTitle = UIFont.apercuRegular(ofSize: 32)
@@ -214,7 +218,7 @@ extension UIFont {
     static let ApercuBold14 = UIFont.apercuBold(ofSize: 14)
 
     // Apercu Bold 15 // Guide type action label
-    static let ApercuBold15 = UIFont.apercuBold(ofSize: 14)
+    static let ApercuBold15 = UIFont.apercuBold(ofSize: 15)
 
     // Apercu Bold 18 // Guide Card Title
     static let ApercuBold18 = UIFont.apercuBold(ofSize: 18)

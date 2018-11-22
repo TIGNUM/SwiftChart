@@ -52,10 +52,6 @@ final class BubblesView: UIView {
         super.awakeFromNib()
         labelsLayout()
         setupHierarchy()
-    }
-
-    override func layoutSubviews() {
-        super.layoutSubviews()
         setupBubblesInfo()
         setupBubbles()
         setupGestureRecognizer()

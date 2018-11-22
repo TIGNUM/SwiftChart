@@ -483,8 +483,9 @@ extension AppCoordinator: LoginCoordinatorDelegate {
         removeChild(child: coordinator)
         QOTUsageTimer.sharedInstance.startTimer()
         if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
-            let viewController = SlideShowViewController(configure: SlideShowConfigurator.makeInitial(), type: .initialInstall)
-            windowManager.show(viewController, animated: true, completion: nil)
+            let configurator = TutorialConfigurator.make()
+            let controller = TutorialViewController(configure: configurator)
+            windowManager.show(controller, animated: true, completion: nil)
             UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
         } else {
             showApp(loginViewController: loginViewController)
@@ -497,8 +498,9 @@ extension AppCoordinator: LoginCoordinatorDelegate {
         addMissingRealmObjectsAfterLogin()
         QOTUsageTimer.sharedInstance.startTimer()
         if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
-            let viewController = SlideShowViewController(configure: SlideShowConfigurator.makeInitial(), type: .initialInstall)
-            windowManager.show(viewController, animated: true, completion: nil)
+            let configurator = TutorialConfigurator.make()
+            let controller = TutorialViewController(configure: configurator)
+            windowManager.show(controller, animated: true, completion: nil)
             UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
         } else {
             showApp(loginViewController: nil)
