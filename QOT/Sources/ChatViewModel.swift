@@ -38,7 +38,7 @@ struct ChatItem<T: ChatChoice>: Equatable {
     let type: ChatItemType<T>
     let chatType: ChatType
     let alignment: ChatViewAlignment
-    let timestamp: Date
+    var timestamp: Date
     let header: String?
     let footer: String?
     let isAutoscrollSnapable: Bool
@@ -69,6 +69,10 @@ struct ChatItem<T: ChatChoice>: Equatable {
         guard case ChatItemType<T>.message(_) = self.type else { return false }
         return true
     }
+
+	mutating func updateTimestamp() {
+		self.timestamp = Date()
+	}
 
     static func == (lhs: ChatItem<T>, rhs: ChatItem<T>) -> Bool {
         return lhs.identifier == rhs.identifier
