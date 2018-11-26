@@ -89,7 +89,9 @@ final class ProfileSettingsViewController: UIViewController {
         imagePickerController = ImagePickerController(cropShape: .rectangle,
                                                       imageQuality: .high,
                                                       imageSize: .large,
-                                                      permissionsManager: permissionsManager)
+                                                      permissionsManager: permissionsManager,
+                                                      pageName: .imagePickerProfile
+        )
         self.launchOptions = launchOptions ?? [:]
         super.init(nibName: nil, bundle: nil)
         configurator(self)

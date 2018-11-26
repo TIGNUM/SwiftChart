@@ -238,7 +238,7 @@ extension GuideViewController: GuideDailyPrepTableViewCellDelegate {
 
     func didTapInfoButton() {
         let configurator = ScreenHelpConfigurator.make(.dailyPrep)
-        let infoViewController = ScreenHelpViewController(configurator: configurator)
+        let infoViewController = ScreenHelpViewController(configurator: configurator, category: .dailyPrep)
         present(infoViewController, animated: true)
     }
 }
@@ -249,7 +249,7 @@ extension GuideViewController: GuideToBeVisionTableViewCellDelegate {
 
     func didTapToBeVisionInfoButton() {
         let configurator = ScreenHelpConfigurator.make(.toBeVision)
-        let infoViewController = ScreenHelpViewController(configurator: configurator)
+        let infoViewController = ScreenHelpViewController(configurator: configurator, category: .toBeVision)
         present(infoViewController, animated: true)
     }
 }

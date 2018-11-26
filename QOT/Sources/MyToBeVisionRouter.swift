@@ -44,7 +44,7 @@ extension MyToBeVisionRouter: MyToBeVisionRouterInterface {
             viewController.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
             return
         }
-        let composer = MFMailComposeViewController()
+        let composer = MFMailComposeViewController(pageName: .shareToBeVision)
         composer.setToRecipients([email])
         composer.setSubject(subject)
         composer.setMessageBody(messageBody, isHTML: true)

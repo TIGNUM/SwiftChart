@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import MessageUI
 
 // MARK: - TrackablePage
 
@@ -27,11 +28,9 @@ enum PageName: String {
     case addSensor = "sidebar.addsensor"
     case about = "sidebar.abouttignum"
     case benefits = "sidebar.benefits"
-    case guide = "guide"
     case faq = "sidebar.faq"
     case featureExplainer = "guide.tools.feature.explainer"
     case launch = "splashscreen"
-    case learnCategoryList = "learn.strategies.categorylist"
     case learnContentItemFull = "learn.strategies.strategy.full"
     case learnContentItemBullet = "learn.strategies.strategy.bullet"
     case learnContentItemAudio = "learn.strategies.strategy.audio"
@@ -42,11 +41,10 @@ enum PageName: String {
     case morningInterview = "notification.dailyprep"
     case myQOTPartners = "me.mywhy.qotpartners"
     case statistics = "me.mydata.charts"
-    case myToBeVision = "me.mywhy.mytobevision"
     case myData = "me.mydata"
     case myWhy = "me.mywhy"
     case myPreparations = "prepare.mypreparations"
-    case onboardingChat = "oboarding.chat"
+    case onboardingChat = "onboarding.chat"
     case prepareChat = "prepare.chat"
     case prepareCheckList = "prepare.preparationchecklist"
     case prepareContent = "prepare.preparationlist"
@@ -64,11 +62,29 @@ enum PageName: String {
     case settingsSecurity = "sidebar.settings.security"
     case sideBar = "sidebar"
     case sidebarLibrary = "sidebar.library"
+    case tabBarItemGuide = "tabBarItem.guide"
+    case tabBarItemLearn = "tabBarItem.learn"
+    case tabBarItemToBeVision = "tabBarItem.toBeVision"
+    case tabBarItemData = "tabBarItem.data"
+    case tabBarItemPrepare = "tabBarItem.prepare"
     case tutorial = "tutorial"
     case visionGenerator = "vision.generator"
     case weeklyChoices = "me.mywhy.weeklychoices"
     case whatsHot = "learn.whatshot.articlelist"
     case whatsHotArticle = "learn.whatshot.article"
+    case infoDailyPrep = "info.dailyprep"
+    case infoToBeVision = "info.tobevision"
+    case infoPrepare = "info.prepare"
+    case infoGuide = "info.guide"
+    case infoLearn = "info.learn"
+    case infoMe = "info.me"
+    case supportContact = "support.contact"
+    case featureRequest = "support.featurerequest"
+    case imagePickerProfile = "imagepicker.profile"
+    case imagePickerToBeVision = "imagepicker.vision"
+    case imagePickerGenerator = "imagepicker.generator"
+    case imagePickerPartner = "imagepicker.partners"
+    case shareToBeVision = "share.tobevision"
 }
 
 struct PageObject {
@@ -96,13 +112,12 @@ extension SensorViewController: TrackablePage {
 }
 
 extension GuideViewController: TrackablePage {
-
     var pageAssociatedObject: PageObject? {
          return nil
     }
 
     var pageName: PageName {
-        return .guide
+        return .tabBarItemGuide
     }
 }
 
@@ -120,15 +135,6 @@ extension ArticleItemViewController: TrackablePage {
     }
 }
 
-//extension PageViewController: TrackablePage {
-//    var pageName: PageName {
-//        return .launchScreen
-//    }
-//    var pageAssociatedObject: PageObject? {
-//        return nil
-//    }
-//}
-
 extension AnimatedLaunchScreenViewController: TrackablePage {
     var pageName: PageName {
         return .launch
@@ -140,7 +146,7 @@ extension AnimatedLaunchScreenViewController: TrackablePage {
 
 extension LearnCategoryListViewController: TrackablePage {
     var pageName: PageName {
-        return .learnCategoryList
+        return .tabBarItemLearn
     }
     var pageAssociatedObject: PageObject? {
         return nil
@@ -211,7 +217,7 @@ extension MyPrepViewController: TrackablePage {
 
 extension ChartViewController: TrackablePage {
     var pageName: PageName {
-        return .statistics
+        return .tabBarItemData
     }
     var pageAssociatedObject: PageObject? {
         return nil
@@ -220,7 +226,7 @@ extension ChartViewController: TrackablePage {
 
 extension MyToBeVisionViewController: TrackablePage {
     var pageName: PageName {
-        return .myToBeVision
+        return .tabBarItemToBeVision
     }
     var pageAssociatedObject: PageObject? {
         return interactor?.trackablePageObject
@@ -343,6 +349,75 @@ extension SidebarViewController: TrackablePage {
 extension WeeklyChoicesViewController: TrackablePage {
     var pageName: PageName {
         return .weeklyChoices
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
+extension ScreenHelpViewController: TrackablePage {
+    var pageName: PageName {
+        switch category {
+        case .toBeVision:
+            return .infoToBeVision
+        case .dailyPrep:
+            return .infoDailyPrep
+        case .learn:
+            return .infoLearn
+        case .guide:
+            return .infoGuide
+        case .prepare:
+            return .infoPrepare
+        case .me:
+            return .infoMe
+        default:
+            return .infoGuide
+        }
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
+extension SupportFAQViewController: TrackablePage {
+    var pageName: PageName {
+        return .faq
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
+extension MFMailComposeViewController: TrackablePage {
+    var pageName: PageName {
+        switch pageType {
+        case .supportContact:
+            return .supportContact
+        case .featureRequest:
+            return .featureRequest
+        case .shareToBeVision:
+            return .shareToBeVision
+        default: return .supportContact
+        }
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
+extension ImagePickerController: TrackablePage {
+    var pageName: PageName {
+        switch page {
+        case .imagePickerToBeVision:
+            return .imagePickerToBeVision
+        case .imagePickerProfile:
+            return .imagePickerProfile
+        case .imagePickerGenerator:
+            return .imagePickerGenerator
+        case .imagePickerPartner:
+            return .imagePickerPartner
+        default: return .imagePickerToBeVision
+        }
     }
     var pageAssociatedObject: PageObject? {
         return nil

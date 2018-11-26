@@ -12,7 +12,7 @@ final class ScreenHelpInteractor {
     private let presenter: ScreenHelpPresenterInterface
     private let router: ScreenHelpRouterInterface
     private let dataWorker: ScreenHelpDataWorker
-    private let screenHelp: ScreenHelp.Category
+    let screenHelp: ScreenHelp.Category
 
     init(presenter: ScreenHelpPresenterInterface,
          router: ScreenHelpRouterInterface,

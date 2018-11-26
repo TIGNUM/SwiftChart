@@ -63,7 +63,8 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         imagePickerController = ImagePickerController(cropShape: .rectangle,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
-                                                      permissionsManager: permissionsManager)
+                                                      permissionsManager: permissionsManager,
+                                                      pageName: .imagePickerToBeVision)
         imagePickerController.delegate = self
         visionChatItems = interactor?.visionChatItems ?? [:]
     }

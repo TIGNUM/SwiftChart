@@ -415,6 +415,7 @@
 		AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7F3DB32177407D0058B343 /* GuidePreparationTableViewCell.xib */; };
 		AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */; };
 		AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */; };
+		AC981A4721A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */; };
 		ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
 		CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB142B722010CC65002DF8FB /* GuideGenerator.swift */; };
@@ -1218,6 +1219,7 @@
 		AC812B5E79C328CCC051F8B9 /* Pods-QOTWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.debug.xcconfig"; sourceTree = "<group>"; };
 		AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
+		AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MFMailComposeViewController+Convenience.swift"; sourceTree = "<group>"; };
 		ACEF4554218077FA00A4D531 /* GuideProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProgressView.swift; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.unittest.xcconfig"; sourceTree = "<group>"; };
@@ -3034,6 +3036,7 @@
 				DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */,
 				AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */,
 				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
+				AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -4523,6 +4526,7 @@
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */,
 				7F65673A1FE2894C00A6CB7F /* ScreenHelpInteractor.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
+				AC981A4721A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				36667696207CF64000D2F5AD /* VisionGeneratorModels.swift in Sources */,
 				7FBFBC131FC73F18007B6D2D /* WeeklyChoice.swift in Sources */,

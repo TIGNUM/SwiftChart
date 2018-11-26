@@ -18,11 +18,13 @@ final class ScreenHelpViewController: UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
     private var avPlayerObserver: AVPlayerObserver?
+    var category: ScreenHelp.Category = .guide
     var interactor: ScreenHelpInteractorInterface!
     var helpItem: ScreenHelp.Item?
 
-    init(configurator: Configurator<ScreenHelpViewController>) {
+    init(configurator: Configurator<ScreenHelpViewController>, category: ScreenHelp.Category) {
         super.init(nibName: nil, bundle: nil)
+        self.category = category
         configurator(self)
     }
 
@@ -53,8 +55,7 @@ final class ScreenHelpViewController: UIViewController {
                                                          letterSpacing: 1.4,
                                                          font: .DPText2,
                                                          lineSpacing: 14,
-                                                         textColor: .white
-        )
+                                                         textColor: .white)
     }
 
     // MARK: - action

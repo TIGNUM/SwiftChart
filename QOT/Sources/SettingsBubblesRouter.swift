@@ -32,8 +32,10 @@ extension SettingsBubblesRouter: SettingsBubblesRouterInterface {
         case .privacy: presentContentItem(id: bubbleTapped.primaryKey)
         case .terms: presentContentItem(id: bubbleTapped.primaryKey)
         case .copyright: presentContentItem(id: bubbleTapped.primaryKey)
-        case .contactSupport: presentMailComposer(recipients: [supportEmail()], subject: "ID: Support")
-        case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail], subject: "ID: Feature")
+        case .contactSupport:
+            presentMailComposer(recipients: [supportEmail()], subject: "ID: Support", id: bubbleTapped)
+        case .featureRequest:
+            presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail], subject: "ID: Feature", id: bubbleTapped)
         case .tutorial: presentTutorial()
         case .faq: presentFAQ()
         }
@@ -60,13 +62,13 @@ private extension SettingsBubblesRouter {
         viewController.pushToStart(childViewController: controller)
     }
 
-    func presentMailComposer(recipients: [String], subject: String) {
+    func presentMailComposer(recipients: [String], subject: String, id: SettingsBubblesModel.SettingsBubblesItem) {
         guard MFMailComposeViewController.canSendMail() == true else {
             viewController.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
             return
         }
-
-        let composer = MFMailComposeViewController()
+        let pageName: PageName = id == .contactSupport ? .supportContact : .featureRequest
+        let composer = MFMailComposeViewController(pageName: pageName)
         composer.setToRecipients(recipients)
         composer.setSubject(subject)
         composer.mailComposeDelegate = self
