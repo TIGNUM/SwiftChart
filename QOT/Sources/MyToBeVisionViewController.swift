@@ -21,6 +21,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
     @IBOutlet private weak var editIconImageView: UIImageView!
     @IBOutlet private weak var headlineHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var messageHeightConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var imageHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var imageEditButton: UIButton!
 	@IBOutlet private weak var textViewsContainer: UIView!
@@ -543,4 +544,16 @@ extension MyToBeVisionViewController: NavigationItemDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
+}
+
+extension MyToBeVisionViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offsetY = scrollView.contentOffset.y
+        if offsetY > 0 {
+            self.imageHeightConstraint.constant = 0
+        } else {
+            self.imageHeightConstraint.constant = -offsetY
+        }
+        self.scrollView?.updateConstraints()
+    }
 }
