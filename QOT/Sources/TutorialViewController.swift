@@ -46,7 +46,6 @@ private extension TutorialViewController {
 
     func setupNavigationBar() {
         title = R.string.localized.topTabBarItemTitleTutorial()
-        navigationController?.navigationBar.applyClearStyle()
     }
 
     func setupCollectionView() {

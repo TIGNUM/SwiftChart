@@ -30,6 +30,10 @@ final class SettingsBubblesViewController: UIViewController {
         view.backgroundColor = .navy
         bubblesView.selectionDelegate = self
         bubblesView.type = settingsType
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setupNavigationBar()
     }
 }
