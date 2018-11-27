@@ -12,14 +12,19 @@ import EventKit
 
 extension EKEvent {
 
-    public func toJSON(id: Int?, createdAt: Date, modifiedAt: Date, syncStatus: Int, localID: String) -> JSON {
+    public func toJSON(id: Int?,
+                       createdAt: Date,
+                       modifiedAt: Date,
+                       syncStatus: Int,
+                       localID: String,
+                       externalIdentifierSuffix: String) -> JSON {
         let dict: [JsonKey: JSONEncodable] = [
             .id: id.toJSONEncodable,
             .createdAt: createdAt,
             .modifiedAt: modifiedAt,
             .syncStatus: syncStatus,
             .qotId: localID,
-            .calendarItemExternalId: (calendarItemExternalIdentifier ?? nil).toJSONEncodable,
+            .calendarItemExternalId: (calendarItemExternalIdentifier + externalIdentifierSuffix ?? nil).toJSONEncodable,
             .calendarId: calendar.toggleIdentifier,
             .title: (title ?? nil).toJSONEncodable,
             .location: location.toJSONEncodable,

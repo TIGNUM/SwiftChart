@@ -45,6 +45,8 @@ final class CalendarImportTask {
                     let predicate = store.predicateForEvents(withStart: start, end: end, calendars: calendars)
                     events = store.events(matching: predicate).compactMap { $0 }
                 }
+
+                checkExternalIdentifierSuffixAndUpdate(realm: realm, with: syncableCalendarIds)
                 createOrUpdateCalendarEvents(with: events, realm: realm, with: syncableCalendarIds)
 
                 deleteDuplicatedCalendarEvents(with: events, realm: realm)
@@ -58,6 +60,31 @@ final class CalendarImportTask {
             result = .failure(error)
         }
         return result
+    }
+
+    private func checkExternalIdentifierSuffixAndUpdate(realm: Realm, with syncableCalendarIds: [String]) {
+        let predicate = NSPredicate(format: "calendarEventItemIdentifierSuffix == nil")
+        let calendarEvents = realm.objects(CalendarEvent.self).filter(predicate)
+        for event in calendarEvents {
+            if syncableCalendarIds.contains(obj: event.calendarIdentifier) == false {
+                continue
+            }
+            if let identifier = event.calendarItemExternalIdentifier {
+                // find it's first event of reapting event.
+                let predicate = NSPredicate(format: "calendarItemExternalIdentifier == \(identifier)")
+                let repeatingEvents = realm.objects(CalendarEvent.self).filter(predicate).sorted(byKeyPath: "startDate", ascending: true)
+                if repeatingEvents.count > 1 {
+                    for repeatingEvent in repeatingEvents[1...] {
+                        repeatingEvent.remoteID.value = nil
+                        event.dirty = true
+                        event.setSuffix(with: event.startDate)
+                    }
+                } else {
+                    event.calendarEventItemIdentifierSuffix = ""
+                    event.dirty = true
+                }
+            }
+        }
     }
 
     // MARK: Private

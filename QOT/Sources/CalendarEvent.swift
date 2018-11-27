@@ -26,6 +26,8 @@ final class CalendarEvent: SyncableObject {
 
     @objc dynamic var calendarItemExternalIdentifier: String?
 
+    @objc dynamic var calendarEventItemIdentifierSuffix: String?
+
     @objc dynamic var calendarIdentifier: String?
 
     var event: EKEvent? {
@@ -33,6 +35,8 @@ final class CalendarEvent: SyncableObject {
 											endDate: self.endDate,
 											identifier: self.calendarItemExternalIdentifier)
     }
+
+    open var suffixDelemeter: String { return "[//]" }
 
     convenience init(event: EKEvent) {
         self.init()
@@ -46,6 +50,13 @@ final class CalendarEvent: SyncableObject {
         self.endDate = event.endDate
         self.calendarItemExternalIdentifier = event.calendarItemExternalIdentifier
         self.calendarIdentifier = event.calendar.toggleIdentifier
+        if self.calendarEventItemIdentifierSuffix == nil {
+            setSuffix(with: startDate)
+        }
+    }
+
+    func setSuffix(with date: Date) {
+        self.calendarEventItemIdentifierSuffix = suffixDelemeter + DateFormatter.iso8601.string(from: date)
     }
 
     func update(event: EKEvent) {
@@ -58,6 +69,9 @@ final class CalendarEvent: SyncableObject {
         self.calendarItemExternalIdentifier = event.calendarItemExternalIdentifier
         self.dirty = true
         self.deleted = false
+        if self.calendarEventItemIdentifierSuffix == nil {
+            setSuffix(with: startDate)
+        }
     }
 
     func delete() {
@@ -152,14 +166,22 @@ extension CalendarEvent: TwoWaySyncable {
     func setData(_ data: CalendarEventIntermediary, objectStore: ObjectStore) throws {
         deleted = data.deleted
         title = data.title
-        calendarItemExternalIdentifier = data.calendarItemExternalIdentifier
-        calendarIdentifier = data.calendarIdentifier
 
         if let milliseconds = Double(data.startDateString) {
             startDate = Date.init(milliseconds: milliseconds)
         }
         if let milliseconds = Double(data.endDateString) {
             endDate = Date.init(milliseconds: milliseconds)
+        }
+
+        calendarIdentifier = data.calendarIdentifier
+
+        if let range = data.calendarItemExternalIdentifier.range(of: suffixDelemeter) {
+            calendarItemExternalIdentifier = String(data.calendarItemExternalIdentifier[..<range.lowerBound])
+            calendarEventItemIdentifierSuffix = String(data.calendarItemExternalIdentifier[range.lowerBound...])
+        } else {
+            calendarItemExternalIdentifier = data.calendarItemExternalIdentifier
+            setSuffix(with: startDate)
         }
     }
 
@@ -172,7 +194,8 @@ extension CalendarEvent: TwoWaySyncable {
                                 createdAt: createdAt,
                                 modifiedAt: modifiedAt,
                                 syncStatus: syncStatus.rawValue,
-                                localID: localID)
+                                localID: localID,
+                                externalIdentifierSuffix: calendarEventItemIdentifierSuffix ?? "")
         } else {
             return nil
         }
