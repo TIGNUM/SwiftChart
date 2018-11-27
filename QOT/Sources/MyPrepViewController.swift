@@ -207,7 +207,7 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
 
         if let headerTitle = headerLabel.text {
             headerLabel.attributedText = Style.headlineSmall(headerTitle.uppercased(), .white).attributedString(lineSpacing: 2)
-            (view as? UITableViewHeaderFooterView)?.backgroundView?.backgroundColor = UIColor.darkIndigo
+            (view as? UITableViewHeaderFooterView)?.backgroundView?.backgroundColor = .darkAzure
             (view as? UITableViewHeaderFooterView)?.contentView.backgroundColor = .clear
         }
     }
