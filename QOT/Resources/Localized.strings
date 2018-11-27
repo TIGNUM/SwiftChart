@@ -494,3 +494,11 @@
 "gender.prefer.not.to.say" = "Prefer not to say";
 "birthdate.title" = "Birthdate";
 "aricle.author.by" = "BY %@";
+
+"Chart.Initial.State.Team.Avg" = "MY\nTEAM\nAVG.";
+"Chart.Initial.State.Database.Avg" = "DATA\nBASE\nAVG.";
+"Chart.Initial.State.User.Avg" = "User's\naverage\nvalue";
+"Chart.Initial.State.Value" = "0";
+"Chart.Initial.State.Week" = "WEEK";
+"Chart.Initial.State.Month" = "MONTH";
+"Chart.Initial.State.Close" = "CLOSE";

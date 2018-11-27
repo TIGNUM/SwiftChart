@@ -51,13 +51,9 @@ var chartViews: [ChartType: UIView?] = [.meetingAverageDay: nil,
                                         .intensityRecoveryMonth: nil]
 
 protocol ChartCellDelegate: class {
-
     func doReload()
-
     func didSelectAddSensor()
-
     func didSelectOpenSettings()
-
 }
 
 final class ChartCell: UICollectionViewCell, Dequeueable {
@@ -157,6 +153,8 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         infoView.layer.borderColor = UIColor.white30.cgColor
         infoView.layer.masksToBounds = true
         overlayView.alpha = 0
+        setupInitialState()
+        setInfoIconLabel()
     }
 
     // MARK: - Public
@@ -176,6 +174,22 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         self.fitbitState = fitbitState
         self.calandarAccessGranted = calandarAccessGranted
         infoView.alpha = 0
+    }
+
+    func setupInitialState() {
+        setLabel(text: R.string.localized.chartInitialStateTeamAvg(), color: .white40, label: teamLabel, lineSpacing: 2.5)
+        setLabel(text: R.string.localized.chartInitialStateDatabaseAvg(), color: .white40, label: dataLabel, lineSpacing: 2.5)
+        setLabel(text: R.string.localized.chartInitialStateUserAvg(), color: .white40, label: userAverageLabel, lineSpacing: 2.5)
+        setLabel(text: R.string.localized.chartInitialStateValue(), color: .white, label: dataAverageValueLabel, font: .H7SectorTitle)
+        setLabel(text: R.string.localized.chartInitialStateValue(), color: .white, label: teamAverageValueLabel, font: .H7SectorTitle)
+        setLabel(text: R.string.localized.chartInitialStateValue(), color: .white, label: userAverageValueLabel, characterSpacing: -2.7, font: .H1MainTitle)
+        infoVieNavigationButton.isHidden = true
+        leftSegmentedButton.setAttributedTitle(R.string.localized.chartInitialStateWeek().attrString(true), for: .normal)
+        rightSegmentedButton.setAttributedTitle(R.string.localized.chartInitialStateMonth().attrString(false), for: .normal)
+        infoViewCloseButton.setAttributedTitle(Style.tag(R.string.localized.chartInitialStateClose(), .white30).attributedString(lineSpacing: 2),
+                                               for: .normal)
+        infoViewCloseButton.setAttributedTitle(Style.tag(R.string.localized.chartInitialStateClose(), .white50).attributedString(lineSpacing: 2),
+                                               for: .selected)
     }
 
     func animateHeader(withCellRect cellRect: CGRect, inParentRect parentRect: CGRect) {
@@ -198,7 +212,6 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
 
     override func prepareForReuse() {
         super.prepareForReuse()
-
         chartSegmentedContentView.removeSubViews()
         labelContentView.removeSubViews()
         chartContentView.removeSubViews()
@@ -238,9 +251,6 @@ private extension ChartCell {
 
     func setupLabels(headerTitle: String, statistics: Statistics, charts: [Statistics]) {
         guard let statistics = statistics.chartType.selectedChart(charts: charts) else { return }
-        setInfoIconLabel()
-        setLabel(text: "MY\nTEAM\nAVG.", color: .white40, label: teamLabel, lineSpacing: 2.5)
-        setLabel(text: "DATA\nBASE\nAVG.", color: .white40, label: dataLabel, lineSpacing: 2.5)
         setLabel(text: statistics.chartType.personalText, color: .white40, label: userAverageLabel, lineSpacing: 2.5)
         setLabel(text: statistics.dataAverageDisplayableValue, color: .white, label: dataAverageValueLabel, font: .H7SectorTitle)
         setLabel(text: statistics.teamAverageDisplayableValue, color: .white, label: teamAverageValueLabel, font: .H7SectorTitle)
