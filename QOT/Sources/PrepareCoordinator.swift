@@ -152,7 +152,7 @@ extension PrepareCoordinator {
         } else {
             tabBarController.showAlert(type: .noContent, handler: { [weak self] in
                 self?.chatDecisionManager.start()
-                }, handlerDestructive: nil)
+            })
         }
     }
 
@@ -177,13 +177,13 @@ extension PrepareCoordinator {
                                                          navigationItemStyle: Date().isNight ? .dark : .light)
             topTabBarController.navigationBar.barTintColor = .nightModeBackground
             topTabBarController.navigationBar.shadowImage = UIImage()
-            tabBarController.present(topTabBarController, animated: true)
+            tabBarController.viewControllers?.last?.present(topTabBarController, animated: true)
             prepareListViewController = prepareController
             self.viewModel = viewModel
         } else {
             tabBarController.showAlert(type: .noContent, handler: { [weak self] in
                 self?.chatDecisionManager.start()
-                }, handlerDestructive: nil)
+            })
         }
     }
 
@@ -540,7 +540,7 @@ extension PrepareCoordinator {
             self.tabBarController.dismiss(animated: true) {
                 self.chatViewController.showAlert(type: alertType, handler: { [weak self] in
                     self?.chatDecisionManager.addQuestions()
-                    }, handlerDestructive: nil)
+                    })
             }
         }
     }
