@@ -11,13 +11,13 @@ import UIKit
 enum ScreenHelp {
 
     enum Category: Int {
-        case guide = 100748
-        case learn = 100745
-        case me = 100746
-        case data = 101169
-        case prepare = 100747
-        case dailyPrep = 101157
-        case toBeVision = 101163
+        case guide = 101180
+        case learn = 101178
+        case me = 101179
+        case data = 101181
+        case prepare = 101182
+        case dailyPrep = 101175
+        case toBeVision = 101176
     }
 
     struct Item {
