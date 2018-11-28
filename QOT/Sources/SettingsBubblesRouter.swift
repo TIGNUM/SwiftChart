@@ -58,7 +58,7 @@ private extension SettingsBubblesRouter {
 
     func presentTutorial() {
         let configurator = TutorialConfigurator.make()
-        let controller = TutorialViewController(configure: configurator)
+        let controller = TutorialViewController(configure: configurator, from: .settings)
         viewController.pushToStart(childViewController: controller)
     }
 

@@ -484,7 +484,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
         QOTUsageTimer.sharedInstance.startTimer()
         if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
             let configurator = TutorialConfigurator.make()
-            let controller = TutorialViewController(configure: configurator)
+            let controller = TutorialViewController(configure: configurator, from: .login)
             windowManager.show(controller, animated: true, completion: nil)
             UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
         } else {
@@ -499,7 +499,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
         QOTUsageTimer.sharedInstance.startTimer()
         if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
             let configurator = TutorialConfigurator.make()
-            let controller = TutorialViewController(configure: configurator)
+            let controller = TutorialViewController(configure: configurator, from: .login)
             windowManager.show(controller, animated: true, completion: nil)
             UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
         } else {

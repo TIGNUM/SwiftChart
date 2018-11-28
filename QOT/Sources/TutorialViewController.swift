@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum TutorialOrigin {
+    case login
+    case settings
+}
+
 final class TutorialViewController: UIViewController {
 
     // MARK: - Properties
@@ -16,12 +21,14 @@ final class TutorialViewController: UIViewController {
     @IBOutlet private weak var endButton: UIButton!
     @IBOutlet private weak var pageControl: UIPageControl!
     @IBOutlet private weak var controlView: UIView!
+    private var origin: TutorialOrigin = .login
     var interactor: TutorialInteractorInterface?
 
     // MARK: - Init
 
-    init(configure: Configurator<TutorialViewController>) {
+    init(configure: Configurator<TutorialViewController>, from origin: TutorialOrigin) {
         super.init(nibName: nil, bundle: nil)
+        self.origin = origin
         configure(self)
     }
 
@@ -42,6 +49,7 @@ private extension TutorialViewController {
     func setupView() {
         view.backgroundColor = .navy
         controlView.backgroundColor = .navy
+        endButton.isHidden = origin == .settings
     }
 
     func setupNavigationBar() {
