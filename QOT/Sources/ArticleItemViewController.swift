@@ -153,7 +153,7 @@ private extension ArticleItemViewController {
             URLScheme.isSupportedURL(featureLink) == true {
                 let button = featureLinkButton(guideItem: guideItem)
                 view.addSubview(button)
-                button.bottomAnchor == view.safeBottomAnchor
+                button.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_002)
                 button.widthAnchor == view.widthAnchor - (view.bounds.width * Layout.multiplier_08)
                 button.heightAnchor == 19
                 button.layer.borderColor = UIColor.azure.cgColor
@@ -177,7 +177,7 @@ private extension ArticleItemViewController {
             tableView.leftAnchor == view.leftAnchor
             tableView.contentInset.top = paddingTop
         }
-        tableView.bottomAnchor == view.safeBottomAnchor - 60
+        tableView.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_06)
         tableView.estimatedSectionHeaderHeight = 100
         view.backgroundColor = .clear
         view.layoutIfNeeded()
