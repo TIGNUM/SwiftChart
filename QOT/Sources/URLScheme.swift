@@ -142,17 +142,15 @@ enum URLScheme: String {
     }
 
     static func preparationURL(withID localID: String) -> String? {
-        guard
-            let urlTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? [[String: Any]],
-            let urlSchemes = urlTypes.first?["CFBundleURLSchemes"] as? [String] else {
-                return nil
-        }
-        let preparation = URLScheme.preparation
+        guard let urlTypes = Bundle.main.infoDictionary?["CFBundleURLTypes"] as? [[String: Any]] else { return nil }
         #if DEBUG
-        return "\(urlSchemes[0])://\(preparation.rawValue)\(preparation.queryName)\(localID)"
+        let schemes = urlTypes.first?["CFBundleURLSchemes"] as? [String]
         #else
-        return "\(urlSchemes[1])://\(preparation.rawValue)\(preparation.queryName)\(localID)"
+        let schemes = urlTypes.last?["CFBundleURLSchemes"] as? [String]
         #endif
+        guard let urlSchemes = schemes else { return nil }
+        let preparation = URLScheme.preparation
+        return "\(urlSchemes[0])://\(preparation.rawValue)\(preparation.queryName)\(localID)"
     }
 
     static func isLaunchableHost(host: String?) -> Bool {

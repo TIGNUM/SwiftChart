@@ -36,7 +36,7 @@ final class CalendarEvent: SyncableObject {
 											identifier: self.calendarItemExternalIdentifier)
     }
 
-    open var suffixDelemeter: String { return "[//]" }
+    var suffixDelemeter: String { return "[//]" }
 
     convenience init(event: EKEvent) {
         self.init()
