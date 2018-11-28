@@ -224,6 +224,9 @@ extension UIFont {
     // Apercu Bold 15 // Guide type action label
     static let ApercuBold15 = UIFont.apercuBold(ofSize: 15)
 
+    // Apercu Bold 16 // Feature explainers action button
+    static let ApercuBold16 = UIFont.apercuBold(ofSize: 16)
+
     // Apercu Bold 18 // Guide Card Title
     static let ApercuBold18 = UIFont.apercuBold(ofSize: 18)
 }

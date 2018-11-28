@@ -154,13 +154,12 @@ private extension ArticleItemViewController {
                 let button = featureLinkButton(guideItem: guideItem)
                 view.addSubview(button)
                 button.bottomAnchor == view.safeBottomAnchor
-                button.centerXAnchor == view.centerXAnchor
-                button.widthAnchor == 242
-                button.heightAnchor == 45
-                button.layer.cornerRadius = 45/2
-                button.layer.borderWidth = 2
+                button.widthAnchor == view.widthAnchor - (view.bounds.width * Layout.multiplier_08)
+                button.heightAnchor == 19
                 button.layer.borderColor = UIColor.azure.cgColor
                 button.setTitleColor(.azure, for: .normal)
+                button.titleLabel?.font = .ApercuBold16
+                button.contentHorizontalAlignment = .right
         }
 
         automaticallyAdjustsScrollViewInsets = false

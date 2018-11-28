@@ -39,11 +39,7 @@ final class ImageSubtitleTableViewCell: UITableViewCell, Dequeueable {
                    canStream: Bool) {
         label.isHidden = (description == nil)
         label.attributedText = description
-        mainImageView.kf.setImage(with: placeHolder,
-                                  placeholder: placeHolderImage,
-                                  options: nil,
-                                  progressBlock: nil,
-                                  completionHandler: nil)
+        mainImageView.kf.setImage(with: placeHolder, placeholder: placeHolderImage)
         mainImageView.kf.indicatorType = .activity
         playImageView.isHidden = canStream == false
         playImageView.image = R.image.ic_play_video()

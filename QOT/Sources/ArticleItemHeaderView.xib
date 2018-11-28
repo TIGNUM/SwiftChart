@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -20,35 +20,35 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ArticleItemHeaderView" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="465" height="313"/>
+            <rect key="frame" x="0.0" y="0.0" width="542" height="401"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T5e-o1-72O">
-                    <rect key="frame" x="28" y="17.5" width="409" height="150"/>
+                    <rect key="frame" x="28" y="55" width="486" height="200"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="150" id="0Hc-WT-Wic"/>
+                        <constraint firstAttribute="height" constant="200" id="0Hc-WT-Wic"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label TIGNUM THOUGHTS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="heR-bY-EbL">
-                    <rect key="frame" x="28" y="177.5" width="409" height="19"/>
+                    <rect key="frame" x="28" y="265" width="486" height="19"/>
                     <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="16"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HARNESS THE POWER OF WORDS IN YOUR LIFE" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Oy-Ph-XGt">
-                    <rect key="frame" x="28" y="204.5" width="409" height="86"/>
+                    <rect key="frame" x="28" y="292" width="486" height="84"/>
                     <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="36"/>
                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="24/12/2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8uF-Nr-OZC">
-                    <rect key="frame" x="28" y="302.5" width="64" height="10.5"/>
+                    <rect key="frame" x="28" y="388" width="56.5" height="13"/>
                     <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="11"/>
                     <color key="textColor" white="1" alpha="0.29946082746478875" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="23 MINUTES TO READ" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CE2-X6-Sye">
-                    <rect key="frame" x="122" y="302.5" width="114" height="10.5"/>
+                    <rect key="frame" x="114.5" y="388" width="114" height="13"/>
                     <fontDescription key="fontDescription" name="BentonSans-Book" family="BentonSans" pointSize="11"/>
                     <color key="textColor" white="1" alpha="0.29946082750000003" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
@@ -86,7 +86,7 @@
                 <outlet property="titleLabel" destination="heR-bY-EbL" id="qCl-Br-UVC"/>
                 <outlet property="titleTopContraint" destination="cqC-gU-tze" id="VES-mw-KGU"/>
             </connections>
-            <point key="canvasLocation" x="78.5" y="83.5"/>
+            <point key="canvasLocation" x="139.19999999999999" y="43.628185907046479"/>
         </view>
     </objects>
 </document>

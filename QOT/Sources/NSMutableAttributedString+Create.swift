@@ -99,7 +99,7 @@ enum Style {
         case .tagTitle: return .H8Title
         case .paragraph: return .H7Title
         case .qoute: return .Qoute
-        case .article: return .DPText
+        case .article: return .ApercuRegular15
         case .mediaDescription: return .DPText
         case .question: return .H9Title
         case .sub: return .H8Subtitle
