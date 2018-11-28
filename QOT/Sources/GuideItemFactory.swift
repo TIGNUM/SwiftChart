@@ -318,7 +318,8 @@ private extension GuideItemFactory {
             contentResource = R.string.localized.guideCardPreparationMultipleUnstartedTodayContent()
         case (.todo, false, true):
             titleResource = R.string.localized.guideCardPreparationSingleUnstartedTomorrowTitle
-            contentResource = R.string.localized.guideCardPreparationSingleUnstartedTomorrowContent()
+            contentResource = services.preparationService.preparation(localID: preparationLocalID ?? "")?.name ??
+                R.string.localized.guideCardPreparationSingleUnstartedTomorrowContent()
         case (.todo, true, true):
             titleResource = R.string.localized.guideCardPreparationMultipleUnstartedTomorrowTitle
             contentResource = R.string.localized.guideCardPreparationMultipleUnstartedTomorrowContent()
