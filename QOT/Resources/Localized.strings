@@ -441,7 +441,7 @@
 "guide.item.completed.strategies.counter" = "%d of %d STRATEGIES";
 
 "signing.email.check.title" = "ENTER EMAIL";
-"signing.email.check.subtitle" = "We use your email securely verify your account and protect all data you share with us.";
+"signing.email.check.subtitle" = "We use your email to securely verify your account and protect all data you share with us.";
 "signing.email.check.bottomButtonTitle" = "Next";
 
 "signing.login.title" = "SIGN IN";
