@@ -38,18 +38,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oval" translatesAutoresizingMaskIntoConstraints="NO" id="zmq-hJ-sRF" userLabel="bgCircle1">
-                                <rect key="frame" x="-47" y="0.0" width="187.5" height="187.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="zmq-hJ-sRF" secondAttribute="height" id="uaE-6K-mh3"/>
-                                </constraints>
-                            </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="oval" translatesAutoresizingMaskIntoConstraints="NO" id="pQQ-7P-NWX" userLabel="bgCircle2">
-                                <rect key="frame" x="272" y="47" width="187.5" height="187.5"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="pQQ-7P-NWX" secondAttribute="height" id="m6W-3Q-hWa"/>
-                                </constraints>
-                            </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3AY-Hh-9td" userLabel="PageView Container">
                                 <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                                 <subviews>
@@ -107,20 +95,12 @@
                         </subviews>
                         <color key="backgroundColor" red="0.0078431372550000003" green="0.070588235289999995" blue="0.12941176469999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="pQQ-7P-NWX" firstAttribute="centerX" secondItem="fWS-pV-kXd" secondAttribute="centerX" multiplier="1.95" id="4e6-56-hhr"/>
                             <constraint firstItem="jP7-a2-Nqe" firstAttribute="centerX" secondItem="fWS-pV-kXd" secondAttribute="centerX" id="C57-Lp-fSc"/>
                             <constraint firstItem="3AY-Hh-9td" firstAttribute="bottom" secondItem="MRM-MD-99C" secondAttribute="bottom" id="CMU-Dr-8ji"/>
                             <constraint firstItem="3AY-Hh-9td" firstAttribute="top" secondItem="fWS-pV-kXd" secondAttribute="top" id="GZb-dg-r6n"/>
-                            <constraint firstItem="zmq-hJ-sRF" firstAttribute="top" secondItem="MRM-MD-99C" secondAttribute="top" id="P2q-9e-SwF"/>
-                            <constraint firstItem="pQQ-7P-NWX" firstAttribute="centerY" secondItem="zmq-hJ-sRF" secondAttribute="centerY" multiplier="1.5" id="P76-Qs-Ri0"/>
-                            <constraint firstItem="pQQ-7P-NWX" firstAttribute="height" secondItem="zmq-hJ-sRF" secondAttribute="height" id="PgA-FV-UHO"/>
-                            <constraint firstItem="zmq-hJ-sRF" firstAttribute="width" secondItem="MRM-MD-99C" secondAttribute="width" multiplier="0.5" id="Wvk-ZD-4WS"/>
-                            <constraint firstItem="zmq-hJ-sRF" firstAttribute="centerX" secondItem="fWS-pV-kXd" secondAttribute="centerX" multiplier="0.25" id="XsO-gj-K8g"/>
-                            <constraint firstItem="pQQ-7P-NWX" firstAttribute="width" secondItem="pQQ-7P-NWX" secondAttribute="height" id="awu-qE-VCQ"/>
                             <constraint firstItem="fWS-pV-kXd" firstAttribute="bottom" secondItem="jP7-a2-Nqe" secondAttribute="bottom" id="jie-Kq-OGN"/>
                             <constraint firstItem="jP7-a2-Nqe" firstAttribute="width" secondItem="MRM-MD-99C" secondAttribute="width" id="l5x-Zp-fC5"/>
                             <constraint firstItem="fWS-pV-kXd" firstAttribute="trailing" secondItem="3AY-Hh-9td" secondAttribute="trailing" id="n4f-tJ-nBj"/>
-                            <constraint firstItem="pQQ-7P-NWX" firstAttribute="width" secondItem="zmq-hJ-sRF" secondAttribute="width" id="peC-eO-71c"/>
                             <constraint firstItem="3AY-Hh-9td" firstAttribute="leading" secondItem="fWS-pV-kXd" secondAttribute="leading" id="vIF-cL-VjE"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fWS-pV-kXd"/>
@@ -150,6 +130,5 @@
     <resources>
         <image name="DPM_ScrollAssistant" width="34" height="38"/>
         <image name="ic_close_white" width="20" height="20"/>
-        <image name="oval" width="336" height="336"/>
     </resources>
 </document>
