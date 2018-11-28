@@ -186,9 +186,8 @@ final class SyncManager {
 
     func syncForSharing(completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
-        excute(operations: [syncOperation(MyToBeVision.self, context: context, shouldDownload: true),
-                            syncOperation(UserChoice.self, context: context, shouldDownload: true),
-                            syncOperation(Partner.self, context: context, shouldDownload: true)], context: context, completion: completion)
+        excute(operations: [syncOperation(MyToBeVision.self, context: context, shouldDownload: true)],
+               context: context, completion: completion)
         uploadMedia()
     }
 
@@ -359,17 +358,15 @@ private extension SyncManager {
 
     func userDependentSyncOperations(context: SyncContext) -> [Operation] {
         var operations: [Operation?] = [syncOperation(User.self, context: context, shouldDownload: true),
-                                        syncOperation(UserChoice.self, context: context, shouldDownload: true),
                                         syncOperation(UserAnswer.self, context: context, shouldDownload: true),
                                         syncOperation(MyToBeVision.self, context: context, shouldDownload: true),
-                                        syncOperation(Partner.self, context: context, shouldDownload: true),
                                         syncOperation(DailyPrepResultObject.self, context: context, shouldDownload: true),
-                                        syncOperation(Statistics.self, context: context, shouldDownload: true),
                                         syncOperation(UserSetting.self, context: context, shouldDownload: true),
                                         syncOperation(SystemSetting.self, context: context, shouldDownload: true),
                                         syncOperation(AppContent.self, context: context, shouldDownload: true)]
         operations.append(contentsOf: preparationSyncOperations(context: context))
         operations.append(contentsOf: calendarSyncOperations(context: context))
+        operations.append(contentsOf: [syncOperation(Statistics.self, context: context, shouldDownload: true)])
         return operations.compactMap({ $0 })
     }
 
