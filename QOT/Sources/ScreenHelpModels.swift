@@ -22,8 +22,8 @@ enum ScreenHelp {
 
     struct Item {
         let title: String
-        let imageURL: URL
-        let videoURL: URL
+        let imageURL: URL?
+        let videoURL: URL?
         let message: String
     }
 }

@@ -472,7 +472,7 @@
 
 
 "signing.profile.title" = "PROFILE DETAILS";
-"signing.profile.subtitle" = "We use your email to securly verify your account and to protect all data you share with us.";
+"signing.profile.subtitle" = "We use your email to securely verify your account and to protect all data you share with us.";
 "signing.profile.bottomButtonTitle" = "Create account";
 "signing.profile.check.box.text" = "By creating an account, you agree to our [Terms of Use](termsOfUse://) and [Privacy Policy](privacyPolicy://).";
 "signing.profile.check.box.error" = "To use Tignum QOT, you must agree to the conditons.";

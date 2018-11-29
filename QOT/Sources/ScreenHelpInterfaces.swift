@@ -10,7 +10,7 @@ import Foundation
 
 protocol ScreenHelpRouterInterface {
     func dismiss()
-    func showVideo(with url: URL)
+    func showVideo(with url: URL?)
 }
 
 protocol ScreenHelpPresenterInterface {
@@ -19,12 +19,12 @@ protocol ScreenHelpPresenterInterface {
 
 protocol ScreenHelpInteractorInterface: Interactor {
     func didTapMinimiseButton()
-    func didTapVideo(with url: URL)
+    func didTapVideo(with url: URL?)
 }
 
 protocol ScreenHelpViewControllerInterface: class {
     var interactor: ScreenHelpInteractorInterface! { get set }
 
     func updateHelpItem(_ helpItem: ScreenHelp.Item?)
-    func streamVideo(videoURL: URL)
+    func streamVideo(videoURL: URL?)
 }

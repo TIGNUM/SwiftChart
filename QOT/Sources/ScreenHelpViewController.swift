@@ -17,6 +17,7 @@ final class ScreenHelpViewController: UIViewController {
     @IBOutlet weak var contentView: UIView!
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var imageView: UIImageView!
+    @IBOutlet weak var playButtonImageView: UIImageView!
     private var avPlayerObserver: AVPlayerObserver?
     var category: ScreenHelp.Category = .guide
     var interactor: ScreenHelpInteractorInterface!
@@ -56,6 +57,7 @@ final class ScreenHelpViewController: UIViewController {
                                                          font: .DPText2,
                                                          lineSpacing: 14,
                                                          textColor: .white)
+        playButtonImageView.isHidden = helpItem.imageURL == nil
     }
 
     // MARK: - action
@@ -74,7 +76,8 @@ final class ScreenHelpViewController: UIViewController {
 
 extension ScreenHelpViewController: ScreenHelpViewControllerInterface {
 
-    func streamVideo(videoURL: URL) {
+    func streamVideo(videoURL: URL?) {
+        guard let videoURL = videoURL else { return }
         let playerViewController = stream(videoURL: videoURL)
         if let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)

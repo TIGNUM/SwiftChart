@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 final class ScreenHelpDataWorker {
 
@@ -29,20 +30,31 @@ final class ScreenHelpDataWorker {
         let helpItems = helpContent.items.sorted(by: [.sortOrder()])
         guard
             let headline = (helpItems.filter { $0.format == ContentItemTextStyle.h3.rawValue }).first,
-            let video = (helpItems.filter { $0.format == "video" }).first,
             let message = (helpItems.filter { $0.format == ContentItemTextStyle.paragraph.rawValue }).first,
             let headlineValue = headline.valueText,
-            let imageURLStgring = video.valueImageURL,
-            let imageURL = URL(string: imageURLStgring),
-            let videoURLString = video.valueMediaURL,
-            let videoURL = URL(string: videoURLString),
             let messageValue = message.valueText else {
                 throw DataError.missingData
         }
-
         return ScreenHelp.Item(title: headlineValue,
-                               imageURL: imageURL,
-                               videoURL: videoURL,
+                               imageURL: imageURL(helpItems),
+                               videoURL: videoURL(helpItems),
                                message: messageValue)
+    }
+}
+
+private extension ScreenHelpDataWorker {
+
+    func imageURL(_ helpItems: Results<ContentItem>) -> URL? {
+        guard let imageURLStgring = mediaItem(helpItems)?.valueImageURL else { return nil }
+        return URL(string: imageURLStgring)
+    }
+
+    func videoURL(_ helpItems: Results<ContentItem>) -> URL? {
+        guard let videoURLString = mediaItem(helpItems)?.valueMediaURL else { return nil }
+        return URL(string: videoURLString)
+    }
+
+    func mediaItem(_ helpItems: Results<ContentItem>) -> ContentItem? {
+        return (helpItems.filter { $0.format == "video" }).first
     }
 }

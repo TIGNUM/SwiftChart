@@ -52,7 +52,7 @@ class DatabaseBuilder {
             return
         }
 
-        networkManager.performAuthenticationRequest(username: "qotapptester@tignum.com", password: "1111") { (error) in
+        networkManager.performAuthenticationRequest(username: "qotapptester@tignum.com", password: "Tignum@1234") { (error) in
             if let error = error {
                 log(error)
             } else {

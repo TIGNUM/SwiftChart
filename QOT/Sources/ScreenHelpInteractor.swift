@@ -40,7 +40,7 @@ extension ScreenHelpInteractor: ScreenHelpInteractorInterface {
         router.dismiss()
     }
 
-    func didTapVideo(with url: URL) {
+    func didTapVideo(with url: URL?) {
         router.showVideo(with: url)
     }
 }
