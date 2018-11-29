@@ -112,12 +112,7 @@ private extension VisionGeneratorInteractor {
 
     func updateViewModel(_ choice: VisionGeneratorChoice, questionID: Int) {
         let nextChatItems = worker.chatItems(for: questionID)
-		var updatedItems: [ChatItem<VisionGeneratorChoice>] = []
-		for var item in nextChatItems {
-			item.updateTimestamp()
-			updatedItems.append(item)
-		}
-        worker.updateViewModel(with: updatedItems)
+        worker.updateViewModel(with: nextChatItems)
         presenter.updateBottomButton(choice, questionType: worker.questionType)
     }
 

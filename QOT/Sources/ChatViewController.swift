@@ -215,7 +215,8 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         case .header:
             text = item.header
         case .footer:
-            text = item.footer
+            let time = DateFormatter.displayTime.string(from: Date())
+            text = R.string.localized.prepareChatFooterDeliveredTime(time)
         case .avatar:
             text = nil
         }

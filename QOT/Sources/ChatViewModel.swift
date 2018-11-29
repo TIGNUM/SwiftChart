@@ -70,10 +70,6 @@ struct ChatItem<T: ChatChoice>: Equatable {
         return true
     }
 
-	mutating func updateTimestamp() {
-		self.timestamp = Date()
-	}
-
     static func == (lhs: ChatItem<T>, rhs: ChatItem<T>) -> Bool {
         return lhs.identifier == rhs.identifier
     }
