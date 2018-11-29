@@ -53,12 +53,10 @@ final class RemoteLogDestination: BaseDestination {
             remoteURL = URL(string: "https://esb.tignum.com/personal/p/qot/log")
         #endif
         headers = [HTTPHeader.contentType.rawValue: "application/json"]
-        dateFormatter = DateFormatter()
+        dateFormatter = DateFormatter.iso8601
         realmProvider = RealmProvider()
 
         super.init()
-
-        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
         reachabilityManager?.startListening()
     }
 
