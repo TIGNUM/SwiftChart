@@ -120,7 +120,8 @@ private extension ArticleItemViewController {
                                                   characterSpacing: 2)
         let dateHeight = CGFloat(14)
         let spacing: CGFloat = 20
-        let height = titleHeight + subTitleHeight + dateHeight + spacing
+        let minimumHeight: CGFloat = 150
+        let height = max(titleHeight + subTitleHeight + dateHeight + spacing, minimumHeight)
         var headerFrame = headerView.frame
         if height != headerFrame.size.height {
             headerFrame.size.height = height

@@ -189,9 +189,10 @@ private extension BubblesView {
         bubble3Label.text = bubblesValues[2].title
 
         let bubble4LabelSize = CGSize(width: 100, height: 70)
-        let bubble4LabelCenter = CGPoint(x: bubble4centerPoint.x - 50, y: bubble4centerPoint.y - 35)
+        let bubble4LabelCenter = CGPoint(x: bubble4centerPoint.x - 45, y: bubble4centerPoint.y - 35)
         bubble4Label.frame = CGRect(origin: bubble4LabelCenter, size: bubble4LabelSize).integral
         bubble4Label.text = bubblesValues[3].title
+        bubble4Label.font = type == .about ? .ApercuRegular15 : .H3Subtitle
 
         if type == .about {
             let yBubblePadding: CGFloat = UIDevice.isPad ? 145 : 170
