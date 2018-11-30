@@ -134,6 +134,19 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
         }
     }
 
+    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: ArticleItemViewController) {
+        let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
+        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
+            return
+        }
+        guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
+            return
+        }
+        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title ?? "", url: url)
+        pdfReaderConfigurator(readerViewController)
+        viewController.present(navigationController, animated: true, completion: nil)
+    }
+
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController) {
         if url.scheme == "mailto" && UIApplication.shared.canOpenURL(url) == true {
             UIApplication.shared.open(url)

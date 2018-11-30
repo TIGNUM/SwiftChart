@@ -13,6 +13,7 @@ import Anchorage
 protocol ArticleItemViewControllerDelegate: class {
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController)
     func didTapClose(in viewController: ArticleItemViewController)
+    func didTapPDFLink(_ title: String?, _ itemID : Int, _ url: URL, in viewController: ArticleItemViewController)
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
     func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
 }
@@ -402,8 +403,8 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                         }
                     }
                 }
-            case .pdf(_, _, let pdfURL, _):
-                delegate?.didTapLink(pdfURL, in: self)
+            case .pdf(let title, _, let pdfURL, let itemID):
+                delegate?.didTapPDFLink(title, itemID, pdfURL, in: self)
             default: return
             }
         case 1:
