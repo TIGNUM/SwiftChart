@@ -1166,11 +1166,12 @@ extension AppCoordinator {
 	}
 
     func presentContentItem(contentID: Int, searchViewController: SearchViewController?) {
+        let isWhatsHot = services?.contentService.whatsHotArticles().filter { $0.remoteID.value == contentID }.count ?? 0 > 0
         guard
             let searchViewController = searchViewController,
             let services = services,
             let content = services.contentService.contentCollection(id: contentID),
-            let coordinator = ArticleContentItemCoordinator(pageName: .featureExplainer,
+            let coordinator = ArticleContentItemCoordinator(pageName: isWhatsHot ? .whatsHotArticle : .featureExplainer,
                                                             root: searchViewController,
                                                             services: services,
                                                             contentCollection: content,

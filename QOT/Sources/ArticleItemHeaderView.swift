@@ -27,7 +27,7 @@ final class ArticleItemHeaderView: UIView {
         return dateFormatter
     }()
 
-    func setupView(header: ArticleCollectionHeader) {
+    func setupView(header: ArticleCollectionHeader, pageName: PageName) {
 		let duration = header.articleDuration.uppercased() == "0 MIN" ? "1 MIN" : header.articleDuration.uppercased()
 		titleLabel.attributedText = attributedText(letterSpacing: 1,
 												   text: header.articleTitle.uppercased(),
@@ -46,7 +46,7 @@ final class ArticleItemHeaderView: UIView {
 													  font: .H7Tag,
 													  textColor: .white20,
 													  alignment: .left)
-        if let image = header.thumbnail {
+        if let image = header.thumbnail, pageName != .featureExplainer {
             articleThumbnail.kf.setImage(with: image, placeholder: R.image.preloading())
             articleThumbnail.layer.cornerRadius = Layout.CornerRadius.eight.rawValue
             articleThumbnail.contentMode = .scaleAspectFill

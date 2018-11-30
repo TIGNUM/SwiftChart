@@ -207,7 +207,7 @@ private extension ArticleItemViewController {
         guard let headerView = (nib.instantiate(withOwner: self, options: nil).first as? ArticleItemHeaderView) else {
             return
         }
-        headerView.setupView(header: header)
+        headerView.setupView(header: header, pageName: pageName)
         headerView.backgroundColor = .clear
         tableView.tableHeaderView = headerView
     }
