@@ -61,7 +61,7 @@ extension TutorialInteractor: TutorialInteractorInterface {
         return worker.imageURL(at: index)
     }
 
-    func attributedbuttonTitle(at index: Index) -> NSAttributedString {
-        return worker.attributedbuttonTitle(at: index)
+    func attributedbuttonTitle(at index: Index, for origin: TutorialOrigin) -> NSAttributedString {
+        return worker.attributedbuttonTitle(at: index, for: origin)
     }
 }

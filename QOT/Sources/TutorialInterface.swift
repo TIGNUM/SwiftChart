@@ -23,7 +23,7 @@ protocol TutorialInteractorInterface: Interactor {
     func subtitle(at index: Index) -> String?
     func body(at index: Index) -> String?
     func imageURL(at index: Index) -> URL?
-    func attributedbuttonTitle(at index: Index) -> NSAttributedString
+    func attributedbuttonTitle(at index: Index, for origin: TutorialOrigin) -> NSAttributedString
 }
 
 protocol TutorialRouterInterface {

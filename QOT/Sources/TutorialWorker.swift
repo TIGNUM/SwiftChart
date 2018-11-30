@@ -46,9 +46,9 @@ extension TutorialWorker {
         return URL(string: imageURLString)
     }
 
-    func attributedbuttonTitle(at index: Index) -> NSAttributedString {
+    func attributedbuttonTitle(at index: Index, for origin: TutorialOrigin) -> NSAttributedString {
         let title = index == TutorialModel.Slide.allSlides.count - 1 ? R.string.localized.buttonTitleStart() : R.string.localized.buttonTitleSkip()
-        return NSAttributedString(string: title,
+        return NSAttributedString(string: origin == .login ? title : R.string.localized.morningControllerDoneButton(),
                                   letterSpacing: 0,
                                   font: .ApercuBold14,
                                   textColor: .azure,

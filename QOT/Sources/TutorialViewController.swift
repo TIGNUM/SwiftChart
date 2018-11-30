@@ -67,13 +67,14 @@ private extension TutorialViewController {
     }
 
     func setupEndButton(at index: Index) {
-        endButton.setAttributedTitle(interactor?.attributedbuttonTitle(at: index), for: .normal)
+        endButton.setAttributedTitle(interactor?.attributedbuttonTitle(at: index, for: origin), for: .normal)
     }
 
     func syncControlsForCurrentPage() {
         let index = currentPageIndex()
         pageControl.currentPage = index
         setupEndButton(at: index)
+        endButton.isHidden = origin == .login ? false : index + 1 != interactor?.numberOfSlides
     }
 
     func currentPageIndex() -> Int {
