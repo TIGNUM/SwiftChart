@@ -561,9 +561,7 @@ extension PrepareCoordinator: NavigationItemDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-        let configurator = ScreenHelpConfigurator.make(.prepare)
-        let viewController = ScreenHelpViewController(configurator: configurator, category: .prepare)
-        AppDelegate.current.windowManager.showPriority(viewController, animated: true, completion: nil)
+        AppDelegate.current.windowManager.showInfo(helpSection: .prepare)
     }
 
     func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}

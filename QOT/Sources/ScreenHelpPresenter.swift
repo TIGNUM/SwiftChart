@@ -19,6 +19,11 @@ class ScreenHelpPresenter {
 // MARK: - ScreenHelpPresenterInterface
 
 extension ScreenHelpPresenter: ScreenHelpPresenterInterface {
+
+    func shouldShowPlayButton(hasVideo: Bool) {
+        viewController?.shouldShowPlayButton(hasVideo: hasVideo)
+    }
+
     func load(_ helpItem: ScreenHelp.Item?) {
         viewController?.updateHelpItem(helpItem)
     }

@@ -57,7 +57,6 @@ final class ScreenHelpViewController: UIViewController {
                                                          font: .DPText2,
                                                          lineSpacing: 14,
                                                          textColor: .white)
-        playButtonImageView.isHidden = helpItem.imageURL == nil
     }
 
     // MARK: - action
@@ -75,6 +74,10 @@ final class ScreenHelpViewController: UIViewController {
 // MARK: - ScreenHelpViewControllerInterface
 
 extension ScreenHelpViewController: ScreenHelpViewControllerInterface {
+
+    func shouldShowPlayButton(hasVideo: Bool) {
+        playButtonImageView.isHidden = hasVideo == false
+    }
 
     func streamVideo(videoURL: URL?) {
         guard let videoURL = videoURL else { return }

@@ -88,6 +88,12 @@ final class WindowManager {
         presentViewController(viewController, atLevel: level, animated: animated, completion: completion)
     }
 
+    func showInfo(helpSection: ScreenHelp.Category) {
+        let configurator = ScreenHelpConfigurator.make(helpSection)
+        let infoViewController = ScreenHelpViewController(configurator: configurator, category: helpSection)
+        showPriority(infoViewController, animated: true, completion: nil)
+    }
+
     func showAlert(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let level = Level.alert
         showWindow(atLevel: .alert)

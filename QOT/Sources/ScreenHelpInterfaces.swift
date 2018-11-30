@@ -15,6 +15,7 @@ protocol ScreenHelpRouterInterface {
 
 protocol ScreenHelpPresenterInterface {
     func load(_ helpItem: ScreenHelp.Item?)
+    func shouldShowPlayButton(hasVideo: Bool)
 }
 
 protocol ScreenHelpInteractorInterface: Interactor {
@@ -24,7 +25,7 @@ protocol ScreenHelpInteractorInterface: Interactor {
 
 protocol ScreenHelpViewControllerInterface: class {
     var interactor: ScreenHelpInteractorInterface! { get set }
-
     func updateHelpItem(_ helpItem: ScreenHelp.Item?)
     func streamVideo(videoURL: URL?)
+    func shouldShowPlayButton(hasVideo: Bool)
 }

@@ -30,7 +30,9 @@ final class ScreenHelpInteractor {
 extension ScreenHelpInteractor: ScreenHelpInteractorInterface {
     func viewDidLoad() {
         do {
-            presenter.load(try dataWorker.getItem(for: screenHelp))
+            let helpItem = try dataWorker.getItem(for: screenHelp)
+            presenter.load(helpItem)
+            presenter.shouldShowPlayButton(hasVideo: helpItem?.videoURL != nil)
         } catch {
             assertionFailure(error.localizedDescription)
         }
