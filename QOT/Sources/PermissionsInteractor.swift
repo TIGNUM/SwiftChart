@@ -23,9 +23,7 @@ final class PermissionsInteractor {
     }
 
     func viewDidLoad() {
-        worker.permissions(completion: {
-            self.presenter.load($0)
-        })
+        updatePermissions()
     }
 }
 
@@ -33,5 +31,11 @@ extension PermissionsInteractor: PermissionsInteractorInterface {
 
     func didTapPermission(permission: PermissionsManager.Permission.Identifier) {
         router.didTapPermission(permission: permission)
+    }
+
+    func updatePermissions() {
+        worker.permissions(completion: {
+            self.presenter.load($0)
+        })
     }
 }

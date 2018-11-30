@@ -44,8 +44,7 @@ final class PermissionsViewController: UIViewController {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        interactor?.viewDidLoad()
-        tableView.reloadData()
+        interactor?.updatePermissions()
     }
 
     func permissionIndexPath(for permission: PermissionsManager.Permission.Identifier) -> IndexPath? {
@@ -59,7 +58,7 @@ final class PermissionsViewController: UIViewController {
 private extension PermissionsViewController {
 
     @objc func reload() {
-        tableView.reloadData()
+        interactor?.updatePermissions()
     }
 
     func setupView() {

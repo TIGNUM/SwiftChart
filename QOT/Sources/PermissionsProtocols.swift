@@ -18,6 +18,7 @@ protocol PermissionsPresenterInterface {
 
 protocol PermissionsInteractorInterface: Interactor {
     func didTapPermission(permission: PermissionsManager.Permission.Identifier)
+    func updatePermissions()
 }
 
 protocol PermissionsRouterInterface {
