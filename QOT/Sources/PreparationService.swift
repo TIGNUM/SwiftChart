@@ -109,14 +109,16 @@ final class PreparationService {
 
     func deletePreparationChecks(_ checks: List<PreparationCheck>, realm: Realm) throws {
         try realm.transactionSafeWrite {
+            var checkArrayToDelete = [PreparationCheck]()
             checks.dropFirst().forEach { (check: PreparationCheck) in
                 if check.remoteID.value == nil {
-                    realm.delete(check)
+                    checkArrayToDelete.append(check)
                 } else {
                     check.deleted = true
                     check.didUpdate()
                 }
             }
+            realm.delete(checkArrayToDelete)
         }
     }
 

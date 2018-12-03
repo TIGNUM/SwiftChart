@@ -220,9 +220,7 @@ extension PrepareCoordinator {
                                                                             name: name,
                                                                             subtitle: context.listTitle)
             completion?(localID)
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
-                self.addPreparationLink(preparationID: localID, preperationName: name, calendarEvent: event)
-            }
+            self.addPreparationLink(preparationID: localID, preperationName: name, calendarEvent: event)
         } catch {
             log(error, level: .error)
             return
