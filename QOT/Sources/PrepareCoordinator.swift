@@ -10,6 +10,7 @@ import UIKit
 import EventKit
 import EventKitUI
 import MBProgressHUD
+import RealmSwift
 
 final class PrepareCoordinator: ParentCoordinator {
 
@@ -218,8 +219,10 @@ extension PrepareCoordinator {
                                                                             event: event,
                                                                             name: name,
                                                                             subtitle: context.listTitle)
-            addPreparationLink(preparationID: localID, preperationName: name, calendarEvent: event)
             completion?(localID)
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                self.addPreparationLink(preparationID: localID, preperationName: name, calendarEvent: event)
+            }
         } catch {
             log(error, level: .error)
             return
@@ -364,11 +367,7 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
     }
 
     func saveNotes(notes: String, preparationID: String) {
-        do {
-            try services.preparationService.saveNotes(notes, preparationID: preparationID)
-        } catch {
-            log("saveNotes - failed: \(error.localizedDescription)", level: .error)
-        }
+        services.preparationService.saveNotes(notes, preparationID: preparationID)
         NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
     }
 
@@ -462,7 +461,7 @@ extension PrepareCoordinator: PrepareEventsViewControllerDelegate {
 
     func didTapEvent(event: CalendarEvent, viewController: PrepareEventsViewController) {
         createPreparation(name: event.title, event: event) { (preparationID) in
-            self.tabBarController.dismiss(animated: true)
+            self.tabBarController.dismiss(animated: false)
             NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
             if let id = preparationID {
                 self.showPrepareCheckList(preparationID: id, chatDecisionManager: self.chatDecisionManager)
@@ -524,16 +523,13 @@ extension PrepareCoordinator {
             // Do nothing, any how the event exists on the device and will be synchronized next time.
         }
         if calendarSyncAvailable == true && dateInValidRange == true {
-            AppCoordinator.appState.syncManager.syncCalendarEvents { (error) in
-                if let createdEvent = self.services.eventsService.calendarEvent(ekEvent: ekEvent) {
-                    self.createPreparation(name: createdEvent.title, event: createdEvent) { (preparationID) in
-                        self.tabBarController.dismiss(animated: true)
-                        NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
-                        if let id = preparationID {
-                            self.showPrepareCheckList(preparationID: id, chatDecisionManager: self.chatDecisionManager)
-                        }
-                    }
+            do {
+                let realm = try self.services.realmProvider.realm()
+                if let createdEvent = realm.syncableObject(ofType: CalendarEvent.self, localID: event.localID) {
+                    createEventWithCreatedCalendar(event: createdEvent, realm: realm)
                 }
+            } catch {
+                //
             }
         } else {
             let alertType: AlertType = calendarSyncAvailable == false ? .calendarNotSynced : .eventDateNotAvailable
@@ -541,6 +537,27 @@ extension PrepareCoordinator {
                 self.chatViewController.showAlert(type: alertType, handler: { [weak self] in
                     self?.chatDecisionManager.addQuestions()
                     })
+            }
+        }
+    }
+
+    func createEventWithCreatedCalendar(event: CalendarEvent, realm: Realm) {
+        self.createPreparation(name: event.title, event: event) { (preparationID) in
+            self.tabBarController.dismiss(animated: true)
+            NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
+            if let id = preparationID {
+                self.showPrepareCheckList(preparationID: id, chatDecisionManager: self.chatDecisionManager)
+                AppCoordinator.appState.syncManager.syncCalendarEvents { (error) in
+                    if let createdPreparation = realm.syncableObject(ofType: Preparation.self, localID: id),
+                        let createdEvent = realm.syncableObject(ofType: CalendarEvent.self, localID: event.localID) {
+                        do {
+                            try realm.transactionSafeWrite {
+                                createdPreparation.calendarEventRemoteID.value = createdEvent.remoteID.value
+                                createdPreparation.dirty = true
+                            }
+                        } catch {}
+                    }
+                }
             }
         }
     }

@@ -125,7 +125,7 @@ final class DownSyncTask<T>: SyncTask where T: SyncableObject, T: DownSyncable, 
 
         do {
             let realm = try realmProvider.realm()
-            try realm.write {
+            try realm.transactionSafeWrite {
                 let importer = DownSyncImporter<T>()
                 try importer.importChanges(changes, store: realm)
             }

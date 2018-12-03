@@ -67,17 +67,25 @@ final class PreparationService {
         let check = PreparationCheck(preparation: preparation, contentItem: videoItem, covered: nil)
         preparation.checks.insert(check, at: 0)
 
-        try realm.write {
+        try realm.transactionSafeWrite {
             realm.add(preparation)
         }
         return preparation.localID
     }
 
-    func saveNotes(_ notes: String, preparationID: String) throws {
-        guard let preparation = preparation(localID: preparationID) else { return }
-        let realm = try self.realmProvider.realm()
-        try realm.write {
-            preparation.notes = notes
+    func saveNotes(_ notes: String, preparationID: String) {
+        DispatchQueue.global().async {
+            do {
+                let realm = try self.realmProvider.realm()
+                guard let preparation = realm.syncableObject(ofType: Preparation.self, localID: preparationID) else {
+                    return
+                }
+                try realm.transactionSafeWrite {
+                    preparation.notes = notes
+                }
+            } catch {
+                log("saveNotes - failed: \(error.localizedDescription)", level: .error)
+            }
         }
     }
 
@@ -87,8 +95,8 @@ final class PreparationService {
             throw SimpleError(localizedDescription: "No preparation with local id: \(localID)")
         }
         try removeLinkFromEventNotes(forPreparation: preparation)
-        try deletePreparationChecks(preparation.checks)
-        try realm.write {
+        try deletePreparationChecks(preparation.checks, realm: realm)
+        try realm.transactionSafeWrite {
             if preparation.remoteID.value == nil {
                 realm.delete(preparation)
             } else {
@@ -99,9 +107,8 @@ final class PreparationService {
         NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
     }
 
-    func deletePreparationChecks(_ checks: List<PreparationCheck>) throws {
-        let realm = try self.realmProvider.realm()
-        try realm.write {
+    func deletePreparationChecks(_ checks: List<PreparationCheck>, realm: Realm) throws {
+        try realm.transactionSafeWrite {
             checks.dropFirst().forEach { (check: PreparationCheck) in
                 if check.remoteID.value == nil {
                     realm.delete(check)
@@ -116,8 +123,9 @@ final class PreparationService {
     func updatePreparationChecks(preparationID: String,
                                  checkedIDs: [Int: Date?],
                                  selectedStrategies: [WeeklyChoice]) throws {
-        guard let preparation = preparation(localID: preparationID) else { return }
-        try deletePreparationChecks(preparation.checks)
+        let realm = try self.realmProvider.realm()
+        guard let preparation = realm.syncableObject(ofType: Preparation.self, localID: preparationID) else { return }
+        try deletePreparationChecks(preparation.checks, realm: realm)
         var checks = [PreparationCheck]()
         let contentIDs = selectedStrategies.compactMap { $0.contentCollectionID }
         let relatedContents = mainRealm.syncableObjects(ofType: ContentCollection.self, remoteIDs: contentIDs)
@@ -129,15 +137,14 @@ final class PreparationService {
             }
             checks.append(PreparationCheck(preparation: preparation, contentItem: item, covered: covered))
         }
-        let realm = try self.realmProvider.realm()
-        try realm.write {
+        try realm.transactionSafeWrite {
             preparation.checks.append(objectsIn: checks)
         }
     }
 
     func eraseData() {
         do {
-            try mainRealm.write {
+            try mainRealm.transactionSafeWrite {
                 mainRealm.delete(preparations())
             }
         } catch {
@@ -166,7 +173,7 @@ final class PreparationService {
         let realm = try self.realmProvider.realm()
         guard let preparation = realm.syncableObject(ofType: Preparation.self, localID: localID) else { return }
         let checkObjects = preparationChecks(preparationID: localID)
-        try realm.write {
+        try realm.transactionSafeWrite {
             preparation.notes = notes
             preparation.answers.removeAll()
             let answers = createPreparationAnswers(notesDictionary, preparationID: preparation.localID, realm: realm)

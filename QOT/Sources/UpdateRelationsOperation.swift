@@ -36,7 +36,7 @@ final class UpdateRelationsOperation: ConcurrentOperation {
 
         do {
             let realm = try realmProvider.realm()
-            try realm.write {
+            try realm.transactionSafeWrite {
                 let collections: [[BuildRelations]] = [
                     Array(realm.objects(ContentCategory.self)),
                     Array(realm.objects(ContentCollection.self)),

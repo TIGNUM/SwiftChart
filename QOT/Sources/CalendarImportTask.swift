@@ -36,7 +36,7 @@ final class CalendarImportTask {
         do {
             let realm = try realmProvider.realm()
             let existingCalendarEvents: Results<CalendarEvent> = realm.objects(CalendarEvent.self)
-            try realm.write {
+            try realm.transactionSafeWrite {
                 let events: [EKEvent]
                 if calendars.count == 0 {
                     events = []

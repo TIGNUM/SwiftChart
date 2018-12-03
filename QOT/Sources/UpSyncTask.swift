@@ -117,7 +117,7 @@ final class UpSyncTask<T>: SyncTask where T: SyncableObject, T: UpSyncable {
 
         do {
             let realm = try realmProvider.realm()
-            try realm.write {
+            try realm.transactionSafeWrite {
                 try data.completion(result.remoteIDs, realm)
             }
             completion(nil)

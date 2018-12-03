@@ -166,7 +166,6 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
             cell.delegate = self
             return cell
         case .dailyPrep(let items, let feedback, let whyDPMTitle, let whyDPMDescription):
-            // FIXME: set whyDPM TITLE and Description
             let cell: GuideDailyPrepTableViewCell = tableView.dequeueCell(for: indexPath)
 			cell.delegate = self
 			cell.itemTapped = itemAt(indexPath: indexPath)
