@@ -28,6 +28,14 @@ extension UILabel {
         self.attributedText = attrString
     }
 
+    func addCharacterSpacing(_ value: CGFloat) {
+        if let text = text, text.count > 0 {
+            let attributedString = NSMutableAttributedString(string: text)
+            attributedString.addAttribute(.kern, value: value, range: NSRange(location: 0, length: text.count))
+            attributedText = attributedString
+        }
+    }
+
     func startBlinking(duration: CGFloat = 0.75) {
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: .repeat, animations: { [unowned self] in
             self.alpha = 0

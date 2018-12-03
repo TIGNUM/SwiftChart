@@ -115,7 +115,7 @@ private extension ArticleItemViewController {
                                                frameWidth: frameWidth,
                                                characterSpacing: 1)
         let subTitleHeight = calculateLabelHeight(text: header.articleSubTitle,
-                                                  font: .H1MainTitle,
+                                                  font: (headerView as? ArticleItemHeaderView)?.resizedFont() ?? .H1MainTitle,
                                                   dispayedLineHeight: 46,
                                                   frameWidth: frameWidth,
                                                   characterSpacing: 2)

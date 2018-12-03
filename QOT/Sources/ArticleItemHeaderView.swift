@@ -58,6 +58,13 @@ final class ArticleItemHeaderView: UIView {
         }
     }
 
+    func resizedFont() -> UIFont {
+        subTitleLabel.font = .apercuRegular(ofSize: bounds.width * Layout.multiplier_09)
+        subTitleLabel.addCharacterSpacing(subTitleLabel.font.pointSize * Layout.multiplier_004)
+        layoutIfNeeded()
+        return .apercuRegular(ofSize: bounds.width * Layout.multiplier_09)
+    }
+
     private func attributedText(letterSpacing: CGFloat = 2,
 								text: String,
 								font: UIFont,

@@ -64,7 +64,9 @@ struct Layout {
     static let multiplier_01: CGFloat = 0.01
     static let multiplier_002: CGFloat = 0.02
     static let multiplier_003: CGFloat = 0.03
+    static let multiplier_004: CGFloat = 0.04
     static let multiplier_06: CGFloat = 0.06
+    static let multiplier_09: CGFloat = 0.09
     static let multiplier_0015: CGFloat = 0.015
     static let multiplier_08: CGFloat = 0.08
     static let multiplier_03: CGFloat = 0.3
