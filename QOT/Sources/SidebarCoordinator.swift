@@ -87,7 +87,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
 
     func didTapSearchCell(in viewController: SidebarViewController) {
         let configurator = SearchConfigurator.make()
-        let searchViewController = SearchViewController(configure: configurator)
+        let searchViewController = SearchViewController(configure: configurator, pageName: .sideBarSearch)
         let navController = UINavigationController(rootViewController: searchViewController)
         navController.navigationBar.applyDefaultStyle()
         navController.modalTransitionStyle = .crossDissolve

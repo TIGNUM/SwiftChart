@@ -44,6 +44,7 @@ enum PageName: String {
     case myData = "me.mydata"
     case myWhy = "me.mywhy"
     case myPreparations = "prepare.mypreparations"
+    case myPreparationsNotes = "prepare.mypreparations.prepare.mypreparations.noteList"
     case onboardingChat = "onboarding.chat"
     case prepareChat = "prepare.chat"
     case prepareCheckList = "prepare.preparationchecklist"
@@ -61,14 +62,17 @@ enum PageName: String {
     case settingsNotifications = "sidebar.settings.notifications"
     case settingsSecurity = "sidebar.settings.security"
     case sideBar = "sidebar"
+    case sideBarSearch = "sidebar.search"
     case sidebarLibrary = "sidebar.library"
     case tabBarItemGuide = "tabBarItem.guide"
     case tabBarItemLearn = "tabBarItem.learn"
     case tabBarItemToBeVision = "tabBarItem.toBeVision"
+    case tabBarItemToBeVisionGenerator = "tabBarItem.toBeVision.generator"
     case tabBarItemData = "tabBarItem.data"
     case tabBarItemPrepare = "tabBarItem.prepare"
+    case tabBarItemGuideSearch = "tabBarItem.guide.tabBarItem.guide.search"
     case tutorial = "tutorial"
-    case visionGenerator = "vision.generator"
+    case visionGenerator = "tabBarItem.toBeVision.visiongenerator"
     case weeklyChoices = "me.mywhy.weeklychoices"
     case whatsHot = "learn.whatshot.articlelist"
     case whatsHotArticle = "learn.whatshot.article"
@@ -273,9 +277,6 @@ extension PrepareEventsViewController: TrackablePage {
 }
 
 extension SearchViewController: TrackablePage {
-    var pageName: PageName {
-        return .search
-    }
     var pageAssociatedObject: PageObject? {
         return nil
     }
@@ -427,6 +428,15 @@ extension ImagePickerController: TrackablePage {
             return .imagePickerPartner
         default: return .imagePickerToBeVision
         }
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
+extension PrepareNotesViewController: TrackablePage {
+    var pageName: PageName {
+        return .myPreparationsNotes
     }
     var pageAssociatedObject: PageObject? {
         return nil

@@ -44,7 +44,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
     lazy var prepareChatViewController: ChatViewController<PrepareAnswer> = {
         let viewModel = ChatViewModel<PrepareAnswer>(items: [])
-        let viewController = ChatViewController(pageName: .prepareChat,
+        let viewController = ChatViewController(pageName: .tabBarItemPrepare,
                                                 viewModel: viewModel,
                                                 fadeMaskLocation: .topAndBottom)
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
@@ -401,7 +401,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
 
     func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {
         let configurator = SearchConfigurator.make()
-        let searchViewController = SearchViewController(configure: configurator)
+        let searchViewController = SearchViewController(configure: configurator, pageName: .tabBarItemGuideSearch)
         searchViewController.hidesBottomBarWhenPushed = true
         let navController = UINavigationController(rootViewController: searchViewController)
         navController.navigationBar.applyDefaultStyle()

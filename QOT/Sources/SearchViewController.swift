@@ -14,13 +14,15 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
 	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
+    let pageName: PageName
     private var avPlayerObserver: AVPlayerObserver?
     private var searchBar = UISearchBar()
     private var searchResults = [Search.Result]()
     private var searchFilter = Search.Filter.all
     private var searchQuery = ""
 
-    init(configure: Configurator<SearchViewController>) {
+    init(configure: Configurator<SearchViewController>, pageName: PageName) {
+        self.pageName = pageName
         super.init(nibName: nil, bundle: nil)
         configure(self)
     }
