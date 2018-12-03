@@ -355,6 +355,15 @@ extension WeeklyChoicesViewController: TrackablePage {
     }
 }
 
+extension TutorialViewController: TrackablePage {
+    var pageName: PageName {
+        return .tutorial
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
 extension ScreenHelpViewController: TrackablePage {
     var pageName: PageName {
         switch category {
