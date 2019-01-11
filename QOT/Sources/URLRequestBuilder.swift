@@ -31,6 +31,11 @@ final class URLRequestBuilder {
         httpHeaders[.versionPlain] = version
         httpHeaders[.versionX] = version
         httpHeaders[.build] = build
+        #if DEBUG
+        httpHeaders[.bundleIdentifier] = "DEV.DEBUG." + (Bundle.main.bundleIdentifier ?? "UNKNOWN")
+        #else
+        httpHeaders[.bundleIdentifier] = Bundle.main.bundleIdentifier
+        #endif
         httpHeaders[.os] = "iOS \(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
 
         let url = buildable.endpoint.url(baseURL: environment.baseURL)
