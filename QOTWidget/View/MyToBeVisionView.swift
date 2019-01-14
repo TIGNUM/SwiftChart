@@ -44,7 +44,7 @@ final class MyToBeVisionView: UIView {
 
     func configure(toBeVision: WidgetModel.ToBeVision, isNetworkAvailable: Bool, isSignedIn: Bool) {
         noNetworkLabel.isHidden = isNetworkAvailable == true
-        signinContainer.isHidden = isSignedIn == true
+        signinContainer.isHidden = isSignedIn == true || isNetworkAvailable == false
         toBeVisionContainer?.isHidden = isSignedIn == false || isNetworkAvailable == false
         if let headline = toBeVision.headline {
             toBeVisionHeadline.text = headline.capitalized
@@ -54,12 +54,7 @@ final class MyToBeVisionView: UIView {
 			createToBeVisionButton.isHidden = true
             addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showToBeVision)))
         }
-        if let imageURL = toBeVision.imageURL, let data = try? Data(contentsOf: imageURL) {
-            toBeVisionImageView.image = UIImage(data: data)
-            return
-        }
-        toBeVisionImageView.image = UIImage(named: "tbv_placeholder")
-        toBeVisionImageView.backgroundColor = UIColor(red: 2/255, green: 18/255, blue: 33/255, alpha: 1)
+        toBeVisionImageView.setImage(from: toBeVision.imageURL, placeholder: UIImage(named: "tbv_placeholder"))
     }
 
     @IBAction func didTapCreateToBeVision(_ sender: UIButton) {

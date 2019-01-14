@@ -21,8 +21,4 @@ struct WidgetModel {
         let numberOfTasks: Int?
         let tasksCompleted: Int?
     }
-
-    struct WeeklyChoices {
-        let latestWeeklyChoices: [String]?
-    }
 }

@@ -7,6 +7,7 @@
 */
 
 // An example
+"splash.view.rule.your.impact" = "RULE YOUR IMPACT";
 "learn.category-list-view.title" = "Categories";
 "learn.content-list-view.minutes-label" = "%@ MIN TO READ";
 "learn.content.duration.video" = "%@ MIN VIDEO";
@@ -333,6 +334,7 @@
 "Alert.message.event.date.not.available" = "QOT could not create the event for the selected date. Please choose date in next 30 days.";
 "Alert.Title.Settings.Change.Notifications" = "Change Notifications";
 "Alert.Message.Settings.Change.Notifications" = "Go to System Settings to edit your notification settings.";
+"Alert.Message.signinMissingConnection" = "Turn on mobile data or use Wi-Fi to access data.";
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
 "ImagePicker.Options.Button.Camera" = "Take a Picture";

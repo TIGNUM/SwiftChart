@@ -82,6 +82,9 @@ private extension PrepareContentNotesViewController {
                                                                       lineBreakMode: .byWordWrapping)
 
     func setup() {
+        navigationController?.navigationBar.isTranslucent = false
+        navigationController?.navigationBar.barTintColor = .nightModeBackground
+        navigationController?.navigationBar.titleTextAttributes = [.foregroundColor: UIColor.nightModeBlack]
         saveButtonItem.tintColor = UIColor.gray.withAlphaComponent(0.5)
         cancelButtonItem.tintColor = .gray
         textView.backgroundColor = .clear

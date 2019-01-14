@@ -40,7 +40,7 @@ struct MorningQuestion: Questionnaire {
     }
 
     func selectedAnswerIndex() -> Int {
-        return answerIndex ?? answers.count / 2
+        return answerIndex ?? answers.count
     }
 
     func selectionColor() -> UIColor {

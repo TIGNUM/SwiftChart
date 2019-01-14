@@ -8,7 +8,7 @@
 
 import UIKit
 
-class QuestionnaireTableViewCell: UITableViewCell, Dequeueable {
+final class QuestionnaireTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak private var titleLabel: UILabel!
     @IBOutlet weak private var descriptionLabel: UILabel!
     @IBOutlet weak public  var valueLabelWidth: NSLayoutConstraint!
@@ -16,11 +16,11 @@ class QuestionnaireTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak public  var colorIndicator: QuestionaireCellIndicator!
     @IBOutlet weak public  var colorIndicatorTrailing: NSLayoutConstraint!
 
-    override open var textLabel: UILabel? {
-            return titleLabel
+    override var textLabel: UILabel? {
+        return titleLabel
     }
 
-    override open var detailTextLabel: UILabel? {
+    override var detailTextLabel: UILabel? {
         return descriptionLabel
     }
 }

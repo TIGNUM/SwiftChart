@@ -48,7 +48,6 @@ final class GuideTableViewCell: UITableViewCell, Dequeueable {
         titleLabel.text = title.uppercased()
         statusView.backgroundColor = status.statusViewColor
         containerView.backgroundColor = status.cardColor
-        containerView.alpha = status == .todo ? 0.7 : 1
 		counterLabel.isHidden = strategiesCompleted == nil
         syncStatusView(with: status,
                        for: statusView,

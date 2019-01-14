@@ -190,6 +190,7 @@ private extension SettingsTableViewCell {
         }
         titleLabel.attributedText = Style.headlineSmall(title.capitalized, titleColor).attributedString(lineSpacing: 2)
         titleLabel.font = .PText
+        titleLabel.lineBreakMode = .byTruncatingTail
     }
 
     func setValue(value: String?, alignment: NSTextAlignment = .right) {
@@ -201,6 +202,7 @@ private extension SettingsTableViewCell {
                                                    settingsType.valueTextColor).attributedString(lineSpacing: 2,
                                                                                                  alignment: alignment)
         valueLabel.font = .PText
+        valueLabel.lineBreakMode = .byTruncatingTail
     }
 }
 

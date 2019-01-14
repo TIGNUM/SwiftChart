@@ -52,7 +52,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     // MARK: - Actions
     
     func widgetPerformUpdate(completionHandler: (@escaping (NCUpdateResult) -> Void)) {
-        completionHandler(NCUpdateResult.newData)
+        completionHandler(.newData)
     }
 
     func widgetActiveDisplayModeDidChange(_ activeDisplayMode: NCWidgetDisplayMode, withMaximumSize maxSize: CGSize) {

@@ -116,7 +116,6 @@ extension SelectWeeklyChoicesDataModel {
                 endDate: choice.endDate
             )
         }
-        widgetDataManager.update(.weeklyChoices)
     }
 
     func contentCollection(forIndexPath indexPath: IndexPath) -> ContentCollection? {

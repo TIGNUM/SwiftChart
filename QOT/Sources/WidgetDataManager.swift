@@ -11,7 +11,6 @@ import Foundation
 enum WidgetData {
     case toBeVision
     case upcomingEvent
-    case weeklyChoices
     case all
 }
 
@@ -35,8 +34,6 @@ final class WidgetDataManager {
             updateToBeVision()
         case .upcomingEvent:
             updateUpcomingEvent()
-        case .weeklyChoices:
-            updateWeeklyChoices()
         case .all:
             updateAll()
         }
@@ -66,24 +63,8 @@ private extension WidgetDataManager {
                                             tasksCompleted: event?.coveredChecks.count)
     }
 
-    func updateWeeklyChoices() {
-        let weeklyChoices = services.userService.userChoices().sorted { $0.startDate > $1.startDate }.prefix(5)
-        let choicesTitles = weeklyChoices.prefix(5).compactMap { choice -> WeeklyChoice in
-            return WeeklyChoice(localID: choice.localID,
-                                contentCollectionID: choice.contentCollectionID ?? 0,
-                                categoryID: choice.contentCategoryID ?? 0,
-                                categoryName: "",
-                                title: choice.contentCollection?.title,
-                                covered: nil,
-                                startDate: choice.startDate,
-                                endDate: choice.endDate,
-                                selected: true) }.compactMap { $0.title }
-        WidgetUserDefaults.setWeeklyChoices(weeklyChoices: choicesTitles)
-    }
-
     func updateAll() {
         updateToBeVision()
         updateUpcomingEvent()
-        updateWeeklyChoices()
     }
 }

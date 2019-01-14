@@ -101,7 +101,7 @@ extension SensorViewController: UICollectionViewDelegate, UICollectionViewDataSo
         switch item.sensor {
         case .fitbit:
             let cell: SensorCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-            cell.configure(image: item.sensor.image, sensorName: item.sensor.title, fitbitState: item.state ?? nil)
+            cell.configure(image: item.sensor.image, sensorName: item.sensor.title, fitbitState: item.state)
             return cell
         case .requestDevice:
             let cell: RequestDeviceSensorCollectionViewCell = collectionView.dequeueCell(for: indexPath)

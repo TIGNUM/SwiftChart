@@ -32,10 +32,9 @@ extension SettingsBubblesRouter: SettingsBubblesRouterInterface {
         case .privacy: presentContentItem(id: bubbleTapped.primaryKey)
         case .terms: presentContentItem(id: bubbleTapped.primaryKey)
         case .copyright: presentContentItem(id: bubbleTapped.primaryKey)
-        case .contactSupport:
-            presentMailComposer(recipients: [supportEmail()], subject: "ID: Support", id: bubbleTapped)
-        case .featureRequest:
-            presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail], subject: "ID: Feature", id: bubbleTapped)
+        case .contactSupport: showNovartisSupportIfNeeded(bubbleTapped: bubbleTapped)
+        case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail],
+                                                  subject: "ID: Feature", id: bubbleTapped)
         case .tutorial: presentTutorial()
         case .faq: presentFAQ()
         }
@@ -45,6 +44,14 @@ extension SettingsBubblesRouter: SettingsBubblesRouterInterface {
 // MARK: - Private
 
 private extension SettingsBubblesRouter {
+
+    func showNovartisSupportIfNeeded(bubbleTapped: SettingsBubblesModel.SettingsBubblesItem) {
+        if Bundle.main.bundleIdentifier?.contains("novartis") == true {
+            presentContentItem(id: bubbleTapped.primaryKey)
+        } else {
+            presentMailComposer(recipients: [supportEmail()], subject: "ID: Support", id: bubbleTapped)
+        }
+    }
 
     func presentContentItem(id: Int) {
         AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id, controller: viewController)

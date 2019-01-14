@@ -13,7 +13,7 @@ import Anchorage
 protocol ArticleItemViewControllerDelegate: class {
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController)
     func didTapClose(in viewController: ArticleItemViewController)
-    func didTapPDFLink(_ title: String?, _ itemID : Int, _ url: URL, in viewController: ArticleItemViewController)
+    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: ArticleItemViewController)
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
     func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
 }
@@ -226,18 +226,16 @@ private extension ArticleItemViewController {
     func mediaStreamCell(tableView: UITableView,
                          indexPath: IndexPath,
                          title: String,
-                         placeholderURL: URL?,
+                         imageURL: URL?,
                          placeholderImage: UIImage? = R.image.preloading(),
                          attributedString: NSAttributedString,
                          canStream: Bool) -> ImageSubtitleTableViewCell {
         let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        imageCell.setupData(placeHolder: placeholderURL,
-                            placeHolderImage: placeholderImage,
+        imageCell.setupData(imageURL: imageURL,
+                            placeholderImage: placeholderImage,
                             description: attributedString,
                             canStream: canStream)
         imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
-        imageCell.backgroundColor = .clear
-        imageCell.contentView.backgroundColor = .clear
         return imageCell
     }
 
@@ -246,7 +244,7 @@ private extension ArticleItemViewController {
                             attributeString: NSAttributedString,
                             url: URL) -> ImageSubtitleTableViewCell {
         let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        imageCell.setupData(placeHolder: url, description: attributeString, canStream: false)
+        imageCell.setupData(imageURL: url, description: attributeString, canStream: false)
         imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
         imageCell.backgroundColor = .clear
         imageCell.contentView.backgroundColor = .clear
@@ -309,12 +307,12 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
         case 0:
             let item = viewModel.articleItem(at: indexPath)
             switch item.contentItemValue {
-            case .audio(let title, _, let placeholderURL, _, _, _):
+            case .audio(let title, _, let imageURL, _, _, _):
                 return mediaStreamCell(
                     tableView: tableView,
                     indexPath: indexPath,
                     title: title,
-                    placeholderURL: placeholderURL,
+                    imageURL: imageURL,
                     placeholderImage: R.image.audioPlaceholder(),
                     attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
                     canStream: true)
@@ -349,8 +347,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     tableView: tableView,
                     indexPath: indexPath,
                     title: title,
-                    placeholderURL: placeholderURL,
-                    placeholderImage: R.image.preloading(),
+                    imageURL: placeholderURL,
                     attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
                     canStream: true)
             case .pdf(let title, _, _, _):

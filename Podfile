@@ -4,7 +4,7 @@ platform :ios, '10.0'
 inhibit_all_warnings!
 
 def shared_pods
-  pod 'Kingfisher'
+  # Add here the pods you want to share between different targets
 end
 
 target 'QOTWidget' do
@@ -40,6 +40,7 @@ target 'QOT' do
   pod 'Siren', '~> 3.2.0'
   pod 'HockeySDK', '~> 5.1.2'
   pod 'BadgeSwift', '~> 5.0'
+  pod 'Kingfisher'
 
   target 'QOTTests' do
     inherit! :search_paths

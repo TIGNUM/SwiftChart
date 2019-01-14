@@ -17,12 +17,14 @@ final class User: SyncableObject {
         case connected = "CONNECTED"
         case disconnected = "DISCONNECTED"
         case pending = "PENDING"
+        case request = "REQUEST"
 
         var addSensorText: String {
             switch self {
             case .connected: return ""
             case .disconnected: return R.string.localized.meChartAddSensor()
             case .pending: return R.string.localized.meChartAddSensorPending()
+            case .request: return R.string.localized.sidebarSensorsMenuRequestSensor()
             }
         }
     }

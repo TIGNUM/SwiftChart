@@ -410,12 +410,14 @@
 		91F5BE5220975E1300E85A51 /* PermissionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5BE5120975E1300E85A51 /* PermissionsInteractor.swift */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
-		AC266743219594DA007DD88B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367EA0F021776920003025CE /* Assets.xcassets */; };
 		AC7F3DB42177407D0058B343 /* GuidePreparationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7F3DB22177407D0058B343 /* GuidePreparationTableViewCell.swift */; };
 		AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7F3DB32177407D0058B343 /* GuidePreparationTableViewCell.xib */; };
 		AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */; };
 		AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */; };
 		AC981A4721A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */; };
+		ACCCBC8B21E36AAA008D744D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367EA0F021776920003025CE /* Assets.xcassets */; };
+		ACCCBC9421E38B19008D744D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
+		ACCCBC9521E38D27008D744D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
 		ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
 		CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB142B722010CC65002DF8FB /* GuideGenerator.swift */; };
@@ -1220,6 +1222,7 @@
 		AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extensions.swift"; sourceTree = "<group>"; };
 		AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MFMailComposeViewController+Convenience.swift"; sourceTree = "<group>"; };
+		ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		ACEF4554218077FA00A4D531 /* GuideProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProgressView.swift; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.unittest.xcconfig"; sourceTree = "<group>"; };
@@ -3037,6 +3040,7 @@
 				AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */,
 				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
 				AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */,
+				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -3829,7 +3833,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AC266743219594DA007DD88B /* Assets.xcassets in Resources */,
+				ACCCBC8B21E36AAA008D744D /* Assets.xcassets in Resources */,
 				9130CD6C20EE0C3E0094A594 /* WidgetViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -3990,8 +3994,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
+				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ActionSheetPicker-3.0/ActionSheetPicker_3_0.framework",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/Anchorage/Anchorage.framework",
@@ -4003,6 +4006,7 @@
 				"${BUILT_PRODUCTS_DIR}/Freddy/Freddy.framework",
 				"${BUILT_PRODUCTS_DIR}/JSONWebToken/JWT.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
+				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
 				"${BUILT_PRODUCTS_DIR}/RSKImageCropper/RSKImageCropper.framework",
@@ -4015,7 +4019,6 @@
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ActionSheetPicker_3_0.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Anchorage.framework",
@@ -4027,6 +4030,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Freddy.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JWT.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RSKImageCropper.framework",
@@ -4039,7 +4043,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		9100195820FC798400049118 /* SwiftLint */ = {
@@ -4062,7 +4066,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/JPSimulatorHacks/JPSimulatorHacks.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -4071,7 +4075,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		BB0D582FB75DD826F51B67C2 /* [CP] Check Pods Manifest.lock */ = {
@@ -4098,7 +4102,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh",
 				"${PODS_CONFIGURATION_BUILD_DIR}/HockeySDK/HockeySDKResources.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
@@ -4107,7 +4111,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-QOT/Pods-QOT-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		CB8A15401E7981900023B2F9 /* Generate R.Swift */ = {
@@ -4179,6 +4183,7 @@
 			files = (
 				9100195520F88F1A00049118 /* ISODate.swift in Sources */,
 				91842AE320F63CAD007605FD /* WidgetModel.swift in Sources */,
+				ACCCBC9521E38D27008D744D /* UIImageView+Extensions.swift in Sources */,
 				9100195420F88F0700049118 /* DateFormatter+Convenience.swift in Sources */,
 				9130CD7020EE15020094A594 /* MyToBeVisionView.swift in Sources */,
 				914FEFF120EF5A9600999D6A /* Connectivity.swift in Sources */,
@@ -4701,6 +4706,7 @@
 				DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */,
 				366183EC2162793800634560 /* SupportFAQInteractor.swift in Sources */,
 				36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */,
+				ACCCBC9421E38B19008D744D /* UIImageView+Extensions.swift in Sources */,
 				85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */,
 				36796A0A20D3C41F00B55429 /* SigningCreatePasswordInterface.swift in Sources */,
 				36E4B7AB219EBFED00049EE8 /* TutorialPresenter.swift in Sources */,

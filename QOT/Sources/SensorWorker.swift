@@ -27,7 +27,7 @@ final class SensorWorker {
 
     func sensors() -> [SensorModel]? {
         return [SensorModel(state: fitbitState(), sensor: .fitbit),
-                SensorModel(state: nil, sensor: .requestDevice)]
+                SensorModel(state: User.FitbitState.request, sensor: .requestDevice)]
     }
 
     func headline() -> String? {

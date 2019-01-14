@@ -39,7 +39,6 @@ final class GuidePreparationTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String, body: String, status: Guide.Item.Status) {
         bodyLabel.attributedText = bodyAttributedText(text: body, font: .ApercuRegular15)
         titleLabel.text = title.uppercased()
-        containerView.alpha = status == .todo ? 0.7 : 1
         containerView.backgroundColor = status.cardColor
         statusView.backgroundColor = status.statusViewColor
         syncStatusView(with: status,

@@ -34,7 +34,6 @@ final class GuideWhatsHotTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String, body: String, image: URL?, status: Guide.Item.Status) {
         titleLabel.text = title.uppercased()
         footerLabel.text = R.string.localized.guideCardTypeWhatsHot()
-        containerView.alpha = status == .todo ? 0.7 : 1
         let bodyAttributedString = NSMutableAttributedString(attributedString: body.attributedString())
         replaceLinks(in: bodyAttributedString)
         bodyLabel.attributedText = bodyAttributedText(text: bodyAttributedString.string,

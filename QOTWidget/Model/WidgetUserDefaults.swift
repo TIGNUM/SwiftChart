@@ -20,7 +20,6 @@ enum WidgetUserDefaults: String {
 	case eventDate = "qot.userdefault.key.upcomingEventDate"
 	case eventNumberOfTasks = "qot.userdefault.key.upcomingEventNumberOfTasks"
 	case eventTasksCompleted = "qot.userdefault.key.upcomingEventTasksCompleted"
-	case weeklyChoices = "qot.userdefault.key.weeklyChoices"
 	case isUserSignedIn = "qot.userdefault.key.isUserSignedIn"
 	
 	func value() -> Any? {
@@ -41,7 +40,6 @@ enum WidgetUserDefaults: String {
 				.eventDate,
 				.eventNumberOfTasks,
 				.eventTasksCompleted,
-                .weeklyChoices,
 				.isUserSignedIn]
 	}
 	
@@ -62,12 +60,6 @@ enum WidgetUserDefaults: String {
 		userDefaults?.synchronize()
 	}
 	
-	static func setWeeklyChoices(weeklyChoices: [String]?) {
-		let userDefaults = UserDefaults(suiteName: SuiteName.widget.rawValue)
-		userDefaults?.set(weeklyChoices, forKey: self.weeklyChoices.rawValue)
-		userDefaults?.synchronize()
-	}
-	
 	static func setIsUserSignedIn(value: Bool) {
 		UserDefaults(suiteName: SuiteName.widget.rawValue)?.set(value, forKey: isUserSignedIn.rawValue)
 	}
@@ -85,10 +77,5 @@ enum WidgetUserDefaults: String {
 										 eventDate: userDefaults.object(forKey: eventDate.rawValue) as? Date,
 										 numberOfTasks: userDefaults.integer(forKey: eventNumberOfTasks.rawValue),
 										 tasksCompleted: userDefaults.integer(forKey: eventTasksCompleted.rawValue))
-	}
-	
-	static func latestWeeklyChoices() -> WidgetModel.WeeklyChoices? {
-		guard let userDefaults = UserDefaults(suiteName: SuiteName.widget.rawValue) else { return nil }
-		return WidgetModel.WeeklyChoices(latestWeeklyChoices: userDefaults.stringArray(forKey: weeklyChoices.rawValue))
 	}
 }

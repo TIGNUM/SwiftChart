@@ -48,7 +48,10 @@ final class MorningInterviewViewController: UIViewController {
         if let viewController = questionnaireViewController(with: questions.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }
-        UIView.animate(withDuration: Animation.duration_02, delay: Animation.duration_1, options: .curveEaseInOut, animations: {
+        UIView.animate(withDuration: Animation.duration_02,
+                       delay: Animation.duration_1,
+                       options: .curveEaseInOut,
+                       animations: {
             self.touchAssistantImage.alpha = 1
         }, completion: { finished in
             self.touchAssistantImage.verticalBounce(3,
@@ -104,28 +107,17 @@ final class MorningInterviewViewController: UIViewController {
     @IBAction func close() {
         router?.close()
     }
-
 }
 
 // DONE Button
 extension MorningInterviewViewController {
+
     @IBAction func didSelectDone() {
         if hasAllAnswers() {
             interactor?.saveAnswers(questions: morningInterviews)
             close()
             return
         }
-
-        guard let currentViewController = pageController?.viewControllers?.first else { return }
-        let index = indexOf(currentViewController)
-        guard index < questions.count - 1 else { return }
-        nextPageTimer?.invalidate()
-        nextPageTimer = nil
-
-        let question = questions[index + 1]
-        guard let viewController = questionnaireViewController(with: question) else { return }
-        pageController?.setViewControllers([viewController], direction: .forward, animated: false, completion: nil)
-
     }
 
     @IBAction func didSelectPrevious() {
@@ -160,18 +152,11 @@ extension MorningInterviewViewController {
                 self.previousButton.alpha = 0
             }
             if self.hasAllAnswers() {
-                self.nextButton.setTitle(R.string.localized.morningControllerDoneButton(), for: .normal)
                 self.nextButton.isUserInteractionEnabled = true
                 self.nextButton.alpha = 1
             } else {
-                if currentPageIndex < self.questions.count - 1 {
-                    self.nextButton.setTitle(R.string.localized.morningControllerNextButton(), for: .normal)
-                    self.nextButton.isUserInteractionEnabled = self.next(from: currentViewController) == nil ? false : true
-                    self.nextButton.alpha = self.nextButton.isUserInteractionEnabled == true ? 1 : 0
-                } else {
-                    self.nextButton.isUserInteractionEnabled = false
-                    self.nextButton.alpha = 0
-                }
+                self.nextButton.alpha = 0
+                self.nextButton.isUserInteractionEnabled = false
             }
         }
     }
@@ -218,28 +203,40 @@ extension MorningInterviewViewController: QuestionnaireAnswer {
         guard let answerString = answer as? String else { return }
         questions[questionIndex].answerIndex = questions[questionIndex].answers.lastIndex(of: answerString)
         morningInterviews[questionIndex].selectedAnswerIndex = questions[questionIndex].selectedAnswerIndex()
-        self.checkAnswers()
-        pageController?.setViewControllers([viewController], direction: .reverse, animated: false, completion: nil)
+        if questions[questionIndex].answerIndex != nil,
+            let nextViewController = next(from: viewController) {
+            nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_1, repeats: false) { timer in
+                self.pageController?.setViewControllers([nextViewController],
+                                                        direction: .forward,
+                                                        animated: true,
+                                                        completion: nil)
+            }
+        } else if questionIndex == questions.count - 1 {
+            checkAnswers()
+        }
     }
 }
 
 // MARK: UIPageViewControllerDelegate, UIPageViewControllerDataSource
 extension MorningInterviewViewController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerBefore viewController: UIViewController) -> UIViewController? {
         guard let previous = previous(from: viewController) else { return nil }
         nextPageTimer?.invalidate()
         nextPageTimer = nil
         return previous
     }
 
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let next = next(from: viewController) else { return nil }
         nextPageTimer?.invalidate()
         nextPageTimer = nil
         return next
     }
 
-    func pageViewController(_ pageViewController: UIPageViewController, willTransitionTo pendingViewControllers: [UIViewController]) {
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            willTransitionTo pendingViewControllers: [UIViewController]) {
         nextPageTimer?.invalidate()
         nextPageTimer = nil
     }

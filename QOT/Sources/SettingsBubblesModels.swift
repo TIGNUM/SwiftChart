@@ -44,8 +44,8 @@ final class SettingsBubblesModel {
             case .privacy: return 100163
             case .terms: return 100102
             case .copyright: return 100105
-            case .contactSupport,
-                 .featureRequest,
+            case .contactSupport: return 101192
+            case .featureRequest,
                  .tutorial: return 0
             case .faq: return 100704
 
@@ -68,8 +68,8 @@ final class SettingsBubblesModel {
 
         func contentCollection(for service: ContentService) -> ContentCollection? {
             switch self {
-            case .contactSupport,
-                 .featureRequest,
+            case .contactSupport: return service.contentCollection(id: primaryKey)
+            case .featureRequest,
                  .tutorial: return nil
             case .benefits: return service.contentCollection(id: primaryKey)
             case .about: return service.contentCollection(id: primaryKey)

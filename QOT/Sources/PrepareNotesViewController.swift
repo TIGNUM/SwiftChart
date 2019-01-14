@@ -171,6 +171,8 @@ private extension PrepareNotesViewController {
     func setupView() {
         tableView.registerDequeueable(PrepareNotesTableViewCell.self)
         tableView.estimatedRowHeight = Layout.padding_80
+        tableView.backgroundColor = .nightModeBackground
+        view.backgroundColor = .nightModeBackground
     }
 }
 

@@ -39,7 +39,6 @@ final class GuideToBeVisionTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String, body: String, status: Guide.Item.Status, image: URL?) {
         titleLabel.text = title.uppercased()
-        containerView.alpha = status == .todo ? 0.7 : 1
         bodyLabel.attributedText = bodyAttributedText(text: body, font: .ApercuRegular15, breakMode: .byTruncatingTail)
         toBeVisionImageView.kf.setImage(with: image, placeholder: R.image.tbv_placeholder())
         statusView.backgroundColor = status.statusViewColor

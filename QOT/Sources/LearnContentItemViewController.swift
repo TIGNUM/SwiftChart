@@ -389,12 +389,7 @@ private extension LearnContentItemViewController {
                          attributedString: NSAttributedString,
                          canStream: Bool) -> ImageSubtitleTableViewCell {
         let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        imageCell.mainImageView.backgroundColor = .nightModeBlack
-        imageCell.mainImageView.layer.borderColor = UIColor.nightModeBlack.cgColor
-        imageCell.mainImageView.layer.borderWidth = 0.5
-        imageCell.setupData(placeHolder: placeholderURL,
-                            description: attributedString,
-                            canStream: canStream)
+        imageCell.setupData(imageURL: placeholderURL, description: attributedString, canStream: canStream)
         imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
         return imageCell
     }
@@ -404,7 +399,7 @@ private extension LearnContentItemViewController {
                             attributeString: NSAttributedString,
                             url: URL) -> ImageSubtitleTableViewCell {
         let imageCell: ImageSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        imageCell.setupData(placeHolder: url, description: attributeString, canStream: false)
+        imageCell.setupData(imageURL: url, description: attributeString, canStream: false)
         imageCell.setInsets(insets: UIEdgeInsets(top: 14, left: 28, bottom: 14, right: 28))
         return imageCell
     }

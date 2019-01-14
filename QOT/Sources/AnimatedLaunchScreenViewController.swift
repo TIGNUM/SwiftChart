@@ -14,7 +14,7 @@ final class AnimatedLaunchScreenViewController: UIViewController {
     // MARK: - Properties
 
     private let backGroundImageView = UIImageView(image: UIImage())
-    private let tignumImageView = UIImageView(image: R.image.byTignum())
+    private let bottomLabel = UILabel()
     private var logoImageView = UIImageView()
     private let imageCount = 92
 
@@ -22,6 +22,9 @@ final class AnimatedLaunchScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bottomLabel.setAttrText(text: R.string.localized.splashViewRuleYourImpact(),
+                                font: UIFont.H5SecondaryHeadline,
+                                color: .white60)
         setupHierarchy()
         setupLayout()
     }
@@ -29,42 +32,29 @@ final class AnimatedLaunchScreenViewController: UIViewController {
     // MARK: - Public
 
     func fadeInLogo(withCompletion completion: (() -> Void)? = nil) {
-        #if DEBUG
-            completion?()
-            return
-        #else
         UIView.animate(withDuration: 2, animations: {
             self.logoImageView.alpha = 1
         }, completion: { (_: Bool) in
             completion?()
         })
-        #endif // #if DEBUG
     }
 
     func fadeOutLogo(withCompletion completion: (() -> Void)? = nil) {
-        #if DEBUG
-            completion?()
-            return
-        #else
+
         UIView.animate(withDuration: 0.5, animations: {
             self.logoImageView.alpha = 0
+            self.bottomLabel.alpha = 0
         }, completion: { (_: Bool) in
             completion?()
         })
-        #endif // #if DEBUG
     }
 
     func startAnimatingImages(withCompletion completion: (() -> Void)? = nil) {
-        #if DEBUG
-            completion?()
-            return
-        #else
         logoImageView.startAnimating()
         let estimatedTime = Double(imageCount) * (1 / 30) // 30 fps. @see UIImageView animationDuration
         DispatchQueue.main.asyncAfter(deadline: .now() + estimatedTime) {
             completion?()
         }
-        #endif // #if DEBUG
     }
 }
 
@@ -73,7 +63,7 @@ private extension AnimatedLaunchScreenViewController {
     func setupHierarchy() {
         view.backgroundColor = .navy
         view.addSubview(backGroundImageView)
-        view.addSubview(tignumImageView)
+        view.addSubview(bottomLabel)
         view.addSubview(logoImageView)
         configureAnimation()
     }
@@ -81,8 +71,8 @@ private extension AnimatedLaunchScreenViewController {
     func setupLayout() {
         backGroundImageView.horizontalAnchors == view.horizontalAnchors
         backGroundImageView.verticalAnchors == view.verticalAnchors
-        tignumImageView.bottomAnchor == view.bottomAnchor - 34
-        tignumImageView.centerXAnchor == view.centerXAnchor
+        bottomLabel.bottomAnchor == view.bottomAnchor - 34
+        bottomLabel.centerXAnchor == view.centerXAnchor
         logoImageView.heightAnchor == 48
         logoImageView.widthAnchor == 138
         logoImageView.centerAnchors == view.centerAnchors

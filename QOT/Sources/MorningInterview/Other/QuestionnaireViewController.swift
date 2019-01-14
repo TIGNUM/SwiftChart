@@ -13,7 +13,7 @@ enum QuestionnairePresentationType {
     case fill
 }
 
-class QuestionnaireViewController: UIViewController {
+final class QuestionnaireViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var progressTopConstraint: NSLayoutConstraint!
@@ -33,17 +33,13 @@ class QuestionnaireViewController: UIViewController {
     private var previousYPosition: CGFloat = 0.0
     private var touchDownYPosition: CGFloat = 0.0
     private var currentIndex: Int = 5
-    private var temporaryIndex: Int = -1 {
-        didSet {
-            applyGradientColor(at: temporaryIndex)
-        }
-    }
+    private var temporaryIndex: Int = -1
     private var presentationType: QuestionnairePresentationType = .selection
     private var fillColor: UIColor? = nil
     private var gradientTopColor: UIColor? = nil
     private var gradientBottomColor: UIColor? = nil
     private var showAnimated: Bool = false
-    weak open var answerDelegate: QuestionnaireAnswer?
+    weak var answerDelegate: QuestionnaireAnswer?
 
     static func viewController<T>(with questionnaire: T,
                                   delegate: QuestionnaireAnswer? = nil,
@@ -138,8 +134,10 @@ extension QuestionnaireViewController {
         progressTopConstraint.constant = cellHeight * CGFloat(titles.count * 2 - 1)
         fillView.setNeedsUpdateConstraints()
 
-        UIView.animate(withDuration: Animation.duration_02, delay: Animation.duration_02,
-                       options: [.curveEaseInOut], animations: {
+        UIView.animate(withDuration: Animation.duration_02,
+                       delay: Animation.duration_02,
+                       options: [.curveEaseInOut],
+                       animations: {
                 self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
                 self.questionLabel.alpha = 1
                 self.progressView.alpha = 1
@@ -188,7 +186,7 @@ extension QuestionnaireViewController {
             self.backlightView.alpha = 1
             self.fillView.setNeedsUpdateConstraints()
             self.fillView.layoutIfNeeded()
-        }, completion: nil)
+        })
     }
 
     func dragTo(yPosition position: CGFloat, isTouch: Bool = true) {
@@ -200,6 +198,7 @@ extension QuestionnaireViewController {
         }
         self.progressTopConstraint.constant = newPosition
         let index = itemIndex(with: newPosition)
+        applyGradientColor(at: index)
         if temporaryIndex != index {
             temporaryIndex = index
             ovalTopConstraint.constant = CGFloat(temporaryIndex) * cellHeight
@@ -222,19 +221,23 @@ extension QuestionnaireViewController {
         for index in answers.indices {
             let indexPath = IndexPath(row: index, section: 0)
             guard let cell = tableView.cellForRow(at: indexPath) as? QuestionnaireTableViewCell else { continue }
-            var targetColor = UIColor.white40
+            var targetColor: UIColor = .white40
+            var detailTextTargetColor: UIColor = .white40
             if index >= selectedIndex, let topColor = gradientTopColor, let bottomColor = gradientBottomColor {
-                targetColor = topColor.toColor(bottomColor, ratio: CGFloat(index)/CGFloat(answers.count - 1))
+                targetColor = topColor.toColor(bottomColor, ratio: CGFloat(index)/CGFloat(answers.dropLast().count))
+            }
+            if index == selectedIndex {
+                detailTextTargetColor = detailTextTargetColor == .white40 ? .white : .white40
             }
             UIView.animate(withDuration: Animation.duration_02, delay: 0, options: [.curveEaseInOut], animations: {
-                cell.colorIndicator.setEnable(targetColor != UIColor.white40, with: targetColor)
-                if targetColor != UIColor.white40 {
-                    cell.textLabel?.textColor = UIColor.white
+                cell.colorIndicator.setEnable(targetColor != .white40, with: targetColor)
+                if targetColor != .white40 {
+                    cell.textLabel?.textColor = .white
                 } else {
-                    cell.textLabel?.textColor = UIColor.white40
+                    cell.textLabel?.textColor = .white40
                 }
-                cell.detailTextLabel?.textColor = cell.textLabel?.textColor
-            }, completion: nil)
+                cell.detailTextLabel?.textColor = detailTextTargetColor
+            })
         }
     }
 
@@ -263,7 +266,7 @@ extension QuestionnaireViewController {
                 cell.contentView.updateConstraints()
                 cell.contentView.layoutIfNeeded()
                 cell.textLabel?.transform = CGAffineTransform.identity.scaledBy(x: scaleFactor, y: scaleFactor)
-            }, completion: nil)
+            })
         }
     }
 }

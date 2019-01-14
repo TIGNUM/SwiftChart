@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class AbstractFormViewController: UIViewController {
 
@@ -19,11 +20,14 @@ class AbstractFormViewController: UIViewController {
     @IBOutlet internal weak var titleContentView: UIView!
     private let keyboardListener = KeyboardListener()
     private var defaultTextInputTopConstant = CGFloat(0)
+    let reachability = NetworkReachabilityManager()
+    var alert = UIAlertController()
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        listenForConnection()
         if UIDevice.isPad {
             defaultTextInputTopConstant = 0
             textInputTopConstraint?.constant = 0
@@ -35,11 +39,19 @@ class AbstractFormViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         keyboardListener.startObserving()
+        if let reachability = NetworkReachabilityManager() {
+            if reachability.isReachable == true {
+                 self.alert.dismiss(animated: true, completion: nil)
+            } else {
+                showSettingsCustomAlert()
+            }
+        }
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         keyboardListener.stopObserving()
+        NetworkReachabilityManager()?.stopListening()
     }
 }
 
@@ -68,6 +80,21 @@ extension AbstractFormViewController {
     @objc func updateBottomButton(_ active: Bool) {
         bottomButton.backgroundColor = active == false ? .clear : .azure
         bottomButton.layer.borderColor = active == false ? UIColor.white36.cgColor : UIColor.azure.cgColor
+    }
+
+    func showSettingsCustomAlert() {
+        alert = UIAlertController(
+            title: R.string.localized.alertTitleNoNetworkConnection(),
+            message: R.string.localized.alertMessageSigninMissingConnection(),
+            preferredStyle: .alert)
+        let settingsAction = UIAlertAction(title: R.string.localized.alertButtonTitleSettings(), style: .default) { (_) -> Void in
+            let settingsUrl = URL(string: "App-Prefs:root=WIFI")
+            if let url = settingsUrl {
+                UIApplication.shared.open(url)
+            }
+        }
+        alert.addAction(settingsAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 
@@ -117,5 +144,16 @@ private extension AbstractFormViewController {
         bottomButton.layer.borderWidth = 1
         bottomButton.layer.borderColor = UIColor.white36.cgColor
         bottomButton.corner(radius: Layout.CornerRadius.eight.rawValue)
+    }
+
+    func listenForConnection() {
+        reachability?.startListening()
+        reachability?.listener = { (status) -> Void in
+            switch status {
+            case .notReachable:
+                  self.showSettingsCustomAlert()
+            default: self.alert.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 }

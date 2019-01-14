@@ -15,6 +15,7 @@ import RealmSwift
 import Buglife
 import Siren
 import Appsee
+import Alamofire
 
 protocol LocalNotificationHandlerDelegate: class {
 
@@ -89,9 +90,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()
             Fabric.with([Crashlytics.self])
-            appCoordinator.start {
+            appCoordinator.start(completion: {
                 self.processURLWhenAppInactive(launchOptions: launchOptions)
-            }
+            })
             UIApplication.shared.setStatusBarStyle(.lightContent)
             UITabBar.appearance().shadowImage = UIImage()
             UITabBar.appearance().backgroundImage = UIImage()
@@ -111,6 +112,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
             return
         #else
+            reachabilityOfSinging()
             checkVersionIfNeeded()
             appCoordinator.sendAppEvent(.foreground)
         #endif //#if UNIT_TEST || BUILD_DATABASE
@@ -128,7 +130,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
             return
         #else
-            WidgetDataManager.didUserLogIn(false)
             appCoordinator.sendAppEvent(.termination)
         #endif
     }
@@ -150,6 +151,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #else
             QOTUsageTimer.sharedInstance.stopTimer()
             appCoordinator.sendAppEvent(.background)
+            updateBadgeNumber()
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -216,6 +218,16 @@ private extension AppDelegate {
         DispatchQueue.main.async {
             let badgeNumber = UserDefault.whatsHotBadgeNumber.doubleValue.toInt + UserDefault.guideBadgeNumber.doubleValue.toInt
             UIApplication.shared.applicationIconBadgeNumber = badgeNumber
+        }
+    }
+
+    func reachabilityOfSinging() {
+        if let abstractController = AppDelegate.topViewController() as? AbstractFormViewController {
+            if ((abstractController.reachability?.isReachable) ?? false) == false {
+                abstractController.showSettingsCustomAlert()
+            } else {
+            abstractController.alert.dismiss(animated: true, completion: nil)
+            }
         }
     }
 

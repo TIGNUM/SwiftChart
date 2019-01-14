@@ -30,6 +30,7 @@ final class PrepareSectionHeaderView: UIView {
         eventNameLabel.font = .H6NavigationTitle
         eventDateLabel.font = .H7SectorTitle
         completedTasksLabel.font = .H7Title
+        completedTasksLabel.adjustsFontSizeToFitWidth = true
         topSeperatorView.backgroundColor = .nightModeBlack30
         bottomSeperatorView.backgroundColor = .nightModeBlack30
         calendarImageView.image = R.image.shortcutItemPrepare()?.withRenderingMode(.alwaysTemplate)

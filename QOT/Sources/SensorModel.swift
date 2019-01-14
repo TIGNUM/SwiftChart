@@ -9,11 +9,13 @@
 import UIKit
 
 struct SensorModel {
-    let state: User.FitbitState?
+    let state: User.FitbitState
     let sensor: Sensor
+
     enum Sensor {
         case fitbit
         case requestDevice
+
         var image: UIImage {
             switch self {
             case .fitbit: return R.image.fitbitLogo()!

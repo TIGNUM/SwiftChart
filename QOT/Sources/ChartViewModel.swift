@@ -66,8 +66,7 @@ final class ChartViewModel {
     }
 
     func numberOfItems(in section: Int) -> Int {
-        let sectionKeys = sectionType(in: section).chartTypes.map { $0.map { $0.rawValue } }.map { $0.first }
-        return allCharts.filter { sectionKeys.contains( $0.key ) }.count
+        return sortedSections[section].chartTypes.count
     }
 
     func sectionType(in section: Int) -> StatisticsSectionType {

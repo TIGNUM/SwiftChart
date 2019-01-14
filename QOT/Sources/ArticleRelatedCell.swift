@@ -19,13 +19,11 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
 
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-
         setupCell()
     }
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-
         setupCell()
     }
 
@@ -40,15 +38,13 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
     func setupView(title: String, subTitle: String, previewImageURL: URL?) {
         contentView.backgroundColor = .clear
         backgroundColor = .clear
-        previewImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
+        previewImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading())
         previewImageView.layer.cornerRadius = 8
         previewImageView.layer.masksToBounds = true
         titleLabel.attributedText = Style.headline(title.uppercased(), .white).attributedString()
-        subTitleLabel.attributedText = NSMutableAttributedString(
-            string: subTitle.uppercased(),
-            letterSpacing: 2,
-            font: .H7Title,
-            textColor: .whiteLight40
-        )
+        subTitleLabel.attributedText = NSMutableAttributedString(string: subTitle.uppercased(),
+                                                                 letterSpacing: 2,
+                                                                 font: .H7Title,
+                                                                 textColor: .whiteLight40)
     }
 }

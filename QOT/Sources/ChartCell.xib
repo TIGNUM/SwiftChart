@@ -566,7 +566,7 @@ see this card</string>
                 <outlet property="userAverageLabel" destination="PrC-py-f99" id="bvc-Zt-cgJ"/>
                 <outlet property="userAverageValueLabel" destination="gEj-vj-1rK" id="6F7-Cl-5G5"/>
             </connections>
-            <point key="canvasLocation" x="322.5" y="-19"/>
+            <point key="canvasLocation" x="-70" y="-40"/>
         </collectionViewCell>
     </objects>
     <resources>

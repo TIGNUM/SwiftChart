@@ -90,7 +90,6 @@ final class GuideDailyPrepTableViewCell: UITableViewCell, Dequeueable {
             feedbackLabel.isHidden = false
             feedbackLabel.attributedText = bodyAttributedText(text: feedback, font: .ApercuRegular15)
         }
-        containerView.alpha = status == .todo ? 0.7 : 1
         nullStateQuestionLabel.text = whyDPMTitle
         nullStateLabel.attributedText = bodyAttributedText(text: whyDPMDescription ?? "", font: .ApercuRegular15)
         loadLabel.textColor = status == .todo ? .dailyPrepNullStateGray : .white

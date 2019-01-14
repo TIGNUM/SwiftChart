@@ -40,7 +40,7 @@ struct Guide {
             var statusViewColor: UIColor {
                 switch self {
                 case .done: return .charcoalGreyMedium
-                case .todo: return .cherryRed90
+                case .todo: return .cherryRed
                 }
             }
         }

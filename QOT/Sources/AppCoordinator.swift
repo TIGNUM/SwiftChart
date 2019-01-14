@@ -168,6 +168,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 RestartHelper().checkRestartURLAndRoute()
                 completion()
             } else {
+                UserDefault.clearAllDataLogOut()
                 self.showSigning(controller: viewController)
             }
         }

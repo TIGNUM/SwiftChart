@@ -499,7 +499,7 @@ private extension ChartCell {
 
     func setupChartViewLabels(_ statistics: Statistics?) {
         guard let statistics = statistics else { return }
-        let isSleepChart = statistics.chartType != .sleepQuantityTime && statistics.chartType != .sleepQuality
+        let isSleepChart: Bool = statistics.chartType != .sleepQuantityTime && statistics.chartType != .sleepQuality
         seperatorBottomView.isHidden = statistics.chartType.bottomView == false
         seperatorTopView.isHidden = statistics.chartType.topView == false
         topContentView.isHidden = statistics.chartType.topView == false

@@ -201,7 +201,6 @@ class CenterCellCollectionViewFlowLayout: UICollectionViewFlowLayout {
                 mostRecentOffset = CGPoint(x: floor(candidateAttributes!.center.x - halfWidth),
                                            y: proposedContentOffset.y)
                 return mostRecentOffset
-
             }
         }
 
