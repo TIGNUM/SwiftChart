@@ -222,12 +222,10 @@ class CalendarEventTests: XCTestCase {
     }
     
     func importChanges() {
-        do {
             let day: TimeInterval = 60 * 60 * 24
             let start = Date().addingTimeInterval(-(day * 30))
             let end = Date().addingTimeInterval(day * 30)
-            let realm = try realmProvider?.realm()
-            let task = CalendarImportTask(startDate: start, endDate: end, realm: realm!)
+            let task = CalendarImportTask(startDate: start, endDate: end, realmProvider: realmProvider!)
             let result = task.sync(calendars: eventStore!.calendars(for: .event))
             for calendar in eventStore!.calendars(for: .event) {
                 print (calendar)
@@ -235,9 +233,6 @@ class CalendarEventTests: XCTestCase {
                 print (calendar.source)
             }
             print("\(result)")
-        } catch {
-            XCTFail()
-        }
     }
     
     func sync (shouldUpload: Bool = true, shouldDownload: Bool = true) {
