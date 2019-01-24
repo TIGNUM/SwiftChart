@@ -43,9 +43,9 @@ struct TutorialModel {
 
         var contentID: Int {
             switch self {
-            case .guide: return 100759
-            case .learn: return 100760
-            case .tbv: return 100770
+            case .guide: return 100770
+            case .learn: return 100759
+            case .tbv: return 100760
             case .data: return 100771
             case .prepare: return 100776
             }
