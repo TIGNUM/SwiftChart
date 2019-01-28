@@ -89,6 +89,7 @@ enum PageName: String {
     case imagePickerGenerator = "imagepicker.generator"
     case imagePickerPartner = "imagepicker.partners"
     case shareToBeVision = "share.tobevision"
+    case editToBeVision = "tabBarItem.toBeVision.edit"
 }
 
 struct PageObject {
@@ -230,7 +231,7 @@ extension ChartViewController: TrackablePage {
 
 extension MyToBeVisionViewController: TrackablePage {
     var pageName: PageName {
-        return .tabBarItemToBeVision
+        return page
     }
     var pageAssociatedObject: PageObject? {
         return interactor?.trackablePageObject

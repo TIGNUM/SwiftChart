@@ -62,6 +62,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     private var sizeCache: NSCache<GenericCacheKey<SizeCacheKey>, NSValue> = NSCache()
     private var items: [ChatItem<T>] = []
     private var visionChoice: VisionGeneratorChoice?
+    private var eventTracker: EventTracker?
     weak var routerDelegate: ChatViewControllerDelegate?
     var destination: AppCoordinator.Router.Destination?
     let viewModel: ChatViewModel<T>
@@ -110,9 +111,11 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     init(pageName: PageName,
          viewModel: ChatViewModel<T>,
          backgroundImage: UIImage? = nil,
-         fadeMaskLocation: UIView.FadeMaskLocation) {
+         fadeMaskLocation: UIView.FadeMaskLocation,
+         eventTracker: EventTracker? = nil) {
         self.pageName = pageName
         self.viewModel = viewModel
+        self.eventTracker = eventTracker
         super.init(nibName: nil, bundle: nil)
         setupView(withBackgroundImage: backgroundImage) // FIXME: putting this in viewDidLoad() crashes
     }
@@ -485,7 +488,7 @@ extension ChatViewController: ChatViewControllerInterface {
             return
         }
         let configurator = MyToBeVisionConfigurator.make(navigationItem: NavigationItem())
-        let toBeVisionViewController = MyToBeVisionViewController(configurator: configurator)
+        let toBeVisionViewController = MyToBeVisionViewController(configurator: configurator, eventTracker: eventTracker)
         navigationController?.pushViewController(toBeVisionViewController, animated: true)
     }
 

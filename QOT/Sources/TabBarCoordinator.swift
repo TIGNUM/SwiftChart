@@ -46,7 +46,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         let viewModel = ChatViewModel<PrepareAnswer>(items: [])
         let viewController = ChatViewController(pageName: .tabBarItemPrepare,
                                                 viewModel: viewModel,
-                                                fadeMaskLocation: .topAndBottom)
+                                                fadeMaskLocation: .topAndBottom,
+                                                eventTracker: eventTracker)
         viewController.title = R.string.localized.topTabBarItemTitlePerpareCoach()
         return viewController
     }()
@@ -98,7 +99,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
 
     private lazy var myToBeVisionController: MyToBeVisionViewController = {
         let configurator = MyToBeVisionConfigurator.make(navigationItem: visionNavigationItem)
-        let toBeVisionController = MyToBeVisionViewController(configurator: configurator)
+        let toBeVisionController = MyToBeVisionViewController(configurator: configurator, eventTracker: eventTracker)
         return toBeVisionController
     }()
 

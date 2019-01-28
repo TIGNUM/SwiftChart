@@ -32,6 +32,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
     @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var generatorButton: UIButton!
+    private var eventTracker: EventTracker?
 	private var contentInset = UIEdgeInsets()
     private var initialImage = UIImage()
     private let imageBorder = CAShapeLayer()
@@ -40,6 +41,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
     private var tempImageURL: URL?
     private var avPlayerObserver: AVPlayerObserver?
     private var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] = [:]
+    var page: PageName = .tabBarItemToBeVision
     var interactor: MyToBeVisionInteractor?
     var router: MyToBeVisionRouter?
     var permissionsManager: PermissionsManager!
@@ -58,9 +60,10 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
 
     // MARK: - Lifecycle
 
-    init(configurator: Configurator<MyToBeVisionViewController>) {
+    init(configurator: Configurator<MyToBeVisionViewController>, eventTracker: EventTracker? = nil) {
         super.init(nibName: nil, bundle: nil)
         configurator(self)
+        self.eventTracker = eventTracker
         imagePickerController = ImagePickerController(cropShape: .rectangle,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
@@ -306,7 +309,11 @@ private extension MyToBeVisionViewController {
         if isEditing == true {
             headlineTextView.becomeFirstResponder()
             tempImageURL = interactor?.myToBeVision?.imageURL
+            page = .editToBeVision
+            eventTracker?.track(.didShowPage(self, from: nil))
         } else {
+            page = .tabBarItemToBeVision
+            eventTracker?.track(.didShowPage(self, from: nil))
             view.endEditing(isEditing)
         }
     }
