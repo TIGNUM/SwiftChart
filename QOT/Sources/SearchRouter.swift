@@ -22,19 +22,23 @@ final class SearchRouter {
 extension SearchRouter: SearchRouterInterface {
 
     func handleSelection(searchResult: Search.Result) {
-        guard let section = searchResult.section else { return }
-        switch section {
-        case .learnStrategy:
-            if let link = link(with: searchResult.contentID, urlFormat: "qot://random-content?contentID=%d") {
-                presentArticle(with: link)
+        if searchResult.displayType == .pdf, let url = searchResult.mediaURL {
+            didTapPDF(withURL: url, in: searchViewController, title: searchResult.title, itemID: searchResult.contentItemID ?? 0)
+        }
+        if let section = searchResult.section {
+            switch section {
+            case .learnStrategy:
+                if let link = link(with: searchResult.contentID, urlFormat: "qot://random-content?contentID=%d") {
+                    presentArticle(with: link)
+                }
+            case .learnWhatsHot,
+                 .library,
+                 .tools:
+                if let link = link(with: searchResult.contentID, urlFormat: "qot://contentItem?contentID=%d") {
+                    presentArticle(with: link)
+                }
+            default: return
             }
-        case .learnWhatsHot,
-             .library,
-             .tools:
-            if let link = link(with: searchResult.contentID, urlFormat: "qot://contentItem?contentID=%d") {
-                presentArticle(with: link)
-            }
-        default: return
         }
     }
 
@@ -54,5 +58,18 @@ private extension SearchRouter {
 
     func presentArticle(with link: URL) {
         LaunchHandler().process(url: link, searchViewController: searchViewController)
+    }
+
+    func didTapPDF(withURL url: URL, in viewController: SearchViewController, title: String, itemID: Int) {
+        let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
+        guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
+            return
+        }
+        guard let readerViewController = navigationController.viewControllers.first as? PDFReaderViewController else {
+            return
+        }
+        let pdfReaderConfigurator = PDFReaderConfigurator.make(contentItemID: itemID, title: title, url: url)
+        pdfReaderConfigurator(readerViewController)
+        viewController.present(navigationController, animated: true, completion: nil)
     }
 }

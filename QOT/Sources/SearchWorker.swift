@@ -37,7 +37,31 @@ final class SearchWorker {
         }
         allResults.append(contentsOf: contentItemsAudio)
         allResults.append(contentsOf: contentItemsVideo)
+        allResults.append(contentsOf: contentItemsPDF)
         return allResults.sorted { $0.title < $1.title }
+    }()
+
+    private lazy var contentItemsPDF: [Search.Result] = {
+        let pdfItems = Array(services.contentService.contentItemsPDF())
+        var allResults = [Search.Result]()
+        pdfItems.forEach { (item) in
+            var mediaURL: URL?
+            if let urlString = item.valueMediaURL {
+                mediaURL = URL(string: urlString)
+            }
+            let searchResult = Search.Result(filter: .all,
+                                             title: item.valueText ?? "",
+                                             contentID: nil,
+                                             contentItemID: item.remoteID.value,
+                                             createdAt: item.createdAt,
+                                             searchTags: item.searchTags,
+                                             section: nil,
+                                             mediaURL: mediaURL,
+                                             displayType: .pdf,
+                                             duration: item.durationString)
+            allResults.append(searchResult)
+        }
+        return allResults
     }()
 
     private lazy var contentItemsVideo: [Search.Result] = {

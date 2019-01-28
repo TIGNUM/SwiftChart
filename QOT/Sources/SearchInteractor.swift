@@ -45,3 +45,4 @@ extension SearchInteractor: SearchInteractorInterface {
         presenter.reload(searchResults)
     }
 }
+               

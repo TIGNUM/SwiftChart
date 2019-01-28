@@ -28,6 +28,7 @@ struct Search {
         case article
         case audio
         case video
+        case pdf
     }
 
     struct Result: Equatable {

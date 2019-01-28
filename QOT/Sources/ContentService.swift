@@ -58,6 +58,11 @@ final class ContentService {
         return mainRealm.objects(ContentItem.self).filter(NSPredicate(format: "format == %@", videoFormat))
     }
 
+    func contentItemsPDF() -> Results<ContentItem> {
+        let pdfFormat = "pdf"
+        return mainRealm.objects(ContentItem.self).filter(NSPredicate(format: "format == %@", pdfFormat))
+    }
+
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
         return mainRealm.contentCategories(section: .library)
     }
