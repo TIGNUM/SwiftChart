@@ -37,6 +37,7 @@ final class QOTUsageTimer {
 
     @objc func update() {
         userService?.updateTotalUsageTime(totalSeconds)
+        self.started = Date()
     }
 
     var totalSeconds: TimeInterval {
@@ -53,6 +54,9 @@ final class QOTUsageTimer {
     }
 
     func totalTimeString(_ seconds: TimeInterval) -> String {
-        return DateComponentsFormatter.timeIntervalToString(seconds)?.replacingOccurrences(of: ", ", with: "\n").uppercased() ?? R.string.localized.qotUsageTimerDefault()
+        return DateComponentsFormatter
+            .timeIntervalToString(seconds)?
+            .replacingOccurrences(of: ", ", with: "\n")
+            .uppercased() ?? R.string.localized.qotUsageTimerDefault()
     }
 }
