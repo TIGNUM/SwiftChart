@@ -221,8 +221,11 @@ struct AppEventRequest: URLRequestBuildable {
         case start = "APP_START"
         case termination = "TERMINATION"
         case login = "APP_LOGIN"
+        case logout = "APP_LOGOUT"
         case background = "BACKGROUND"
         case foreground = "FOREGROUND"
+        case didBecomeActive = "DID_BECOME_ACTIVE"
+        case willResignActive = "WILL_RESIGN_ACTIVE"
     }
 
     init(eventType: EventType) {

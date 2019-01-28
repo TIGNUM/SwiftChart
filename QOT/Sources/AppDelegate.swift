@@ -141,7 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             QOTUsageTimer.sharedInstance.startTimer()
             appCoordinator.appDidBecomeActive()
             checkVersionIfNeeded()
-            appCoordinator.sendAppEvent(.start)
+            appCoordinator.sendAppEvent(.didBecomeActive)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -150,7 +150,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return
         #else
             QOTUsageTimer.sharedInstance.stopTimer()
-            appCoordinator.sendAppEvent(.background)
+            appCoordinator.sendAppEvent(.willResignActive)
             updateBadgeNumber()
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }

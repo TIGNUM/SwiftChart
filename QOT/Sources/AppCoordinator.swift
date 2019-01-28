@@ -175,10 +175,10 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func restart() {
+        sendAppEvent(.logout)
         networkManager.cancelAllRequests()
         navigate(to: AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide))
         logout()
-        sendAppEvent(.termination)
         showSigning(controller: nil)
     }
 
@@ -534,16 +534,15 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
         dismiss(viewController, level: .priority)
     }
 
-    func didTapRow(_ viewController: SelectWeeklyChoicesViewController, contentCollection: ContentCollection, contentCategory: ContentCategory) {
+    func didTapRow(_ viewController: SelectWeeklyChoicesViewController,
+                   contentCollection: ContentCollection,
+                   contentCategory: ContentCategory) {
         guard let services = services else { return }
-
-        let coordinator = LearnContentItemCoordinator(
-            root: viewController,
-            eventTracker: eventTracker,
-            services: services,
-            content: contentCollection,
-            category: contentCategory
-        )
+        let coordinator = LearnContentItemCoordinator(root: viewController,
+                                                      eventTracker: eventTracker,
+                                                      services: services,
+                                                      content: contentCollection,
+                                                      category: contentCategory)
         startChild(child: coordinator)
     }
 }
