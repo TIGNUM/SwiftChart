@@ -14,7 +14,6 @@ import CoreLocation
 import RealmSwift
 import Buglife
 import Siren
-import Appsee
 import Alamofire
 
 protocol LocalNotificationHandlerDelegate: class {

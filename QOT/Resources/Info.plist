@@ -165,7 +165,5 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
-	<key>com.appsee.ApiKey</key>
-	<string>502a6a70465640deb21ce32c26a7970d</string>
 </dict>
 </plist>

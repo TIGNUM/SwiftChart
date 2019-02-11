@@ -2,7 +2,6 @@ PODS:
   - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.7.3)
   - Anchorage (4.2.4)
-  - Appsee (2.4.4)
   - BadgeSwift (5.0.1)
   - Bond (6.10.0):
     - Differ (~> 1.2)
@@ -42,7 +41,6 @@ DEPENDENCIES:
   - ActionSheetPicker-3.0
   - Alamofire
   - Anchorage
-  - Appsee (~> 2.4.4)
   - BadgeSwift (~> 5.0)
   - Bond
   - BonMot
@@ -68,7 +66,6 @@ SPEC REPOS:
     - ActionSheetPicker-3.0
     - Alamofire
     - Anchorage
-    - Appsee
     - BadgeSwift
     - Bond
     - BonMot
@@ -97,7 +94,6 @@ SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
   Anchorage: f855157310859280c706cc0b9c9281c21702f515
-  Appsee: ee95b522257365d162c2c83f28e32386053bd980
   BadgeSwift: 3defa56f504bfb46f2300122c4a565ec9e405c1e
   Bond: 86b0a343dcb8c8ad18c8a31fc9faa2ba45280b30
   BonMot: 0104d1b4eda54f4a4b7393d6559539ef25498fbd
@@ -122,6 +118,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
   UrbanAirship-iOS-SDK: 49d6f0f960f5b631af049522102fc5502111290f
 
-PODFILE CHECKSUM: aefb823ed4e9f4aac5980517080779390a56d5b9
+PODFILE CHECKSUM: 8e5a5971e5cef7eecb993d0123afee641ee34325
 
-COCOAPODS: 1.5.3
+COCOAPODS: 1.6.0

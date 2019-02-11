@@ -15,7 +15,6 @@ import Crashlytics
 import ReactiveKit
 import Bond
 import Buglife
-import Appsee
 
 final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
@@ -297,11 +296,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     func sendLocationUpdate(location: CLLocation) {
         timeZoneDidChange()
         guard authenticator.hasLoginCredentials() else { return }
-        Appsee.setLocation(location.coordinate.latitude,
-                           longitude: location.coordinate.longitude,
-                           horizontalAccuracy: Float(location.horizontalAccuracy),
-                           verticalAccuracy: Float(location.verticalAccuracy)
-        )
         networkManager.performUserLocationUpdateRequest(location: location) { (error: NetworkError?) in
             if let error = error {
                 log("Error while trying to update user location: \(error)")
@@ -413,7 +407,6 @@ extension AppCoordinator {
     }
 
     func logout() {
-		Appsee.stop()
         permissionsManager.reset()
         credentialsManager.clear()
         setupBugLife()

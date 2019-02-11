@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Appsee
 
 final class SigningEmailInteractor {
 
@@ -56,11 +55,6 @@ extension SigningEmailInteractor: SigningEmailInteractorInterface {
     func didTapNext() {
         if let email = worker.email, worker.isEmail == true {
             presenter.endEditing()
-			if email.lowercased().contains("@tignum.com") == false {
-				Appsee.start()
-			} else {
-				Appsee.stop()
-			}
             worker.userEmailCheck { [weak self] (emailCheck: UserRegistrationCheck?) in
                 self?.handleResponse(emailCheck: emailCheck, email: email)
             }

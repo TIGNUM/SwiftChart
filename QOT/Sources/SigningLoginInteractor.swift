@@ -8,7 +8,6 @@
 
 import UIKit
 import MBProgressHUD
-import Appsee
 
 final class SigningLoginInteractor {
 
@@ -82,7 +81,6 @@ extension SigningLoginInteractor: SigningLoginInteractorInterface {
 									} else {
 										LoginCoordinator.add3DTouchShortcuts()
 										AppDelegate.current.appCoordinator.didLogin()
-										self?.setAppseeUser()
 									}
 		}
 	}
@@ -91,12 +89,6 @@ extension SigningLoginInteractor: SigningLoginInteractorInterface {
         let active = worker.email.isEmail == true && worker.password.count > 3
         presenter.activateButton(active)
     }
-
-	func setAppseeUser() {
-		if let userID = worker.userIDForAppsee() {
-			Appsee.setUserID(String(userID))
-		}
-	}
 
     var email: String {
         return worker.email
