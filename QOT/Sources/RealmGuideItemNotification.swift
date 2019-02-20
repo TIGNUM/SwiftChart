@@ -56,11 +56,7 @@ final class RealmGuideItemNotification: SyncableObject {
 
     @objc dynamic var localNofiticationScheduled: Bool = false
 
-    /*
-     We init this as dirty to force an update after first creation. We do this so that the servers serverPush value is
-     updated after a logout etc.
-    */
-    @objc dynamic var guideItem: RealmGuideItem? = RealmGuideItem(dirty: true)
+    @objc dynamic var guideItem: RealmGuideItem? = RealmGuideItem(dirty: false)
 
     func didUpdate() {
         guideItem?.didUpdate()

@@ -26,6 +26,10 @@ final class SettingsService {
 
 extension SettingsService {
 
+    var guideDays: Int? {
+        return integer(key: "system.notification.guidedays")
+    }
+
     var releaseManagerMinimalVersion: String? {
         return string(key: "system.qot.release-manager-minimal-version")
     }
@@ -41,6 +45,17 @@ extension SettingsService {
             return userSetting(systemSetting: systemSetting)?.value ?? systemSetting.value
         }
         return nil
+    }
+
+    func integer(key: String) -> Int? {
+        guard let value = settingValue(key: key) else { return nil }
+
+        switch value {
+        case .int(let int, _, _):
+            return int
+        default:
+            return nil
+        }
     }
 
     func string(key: String) -> String? {

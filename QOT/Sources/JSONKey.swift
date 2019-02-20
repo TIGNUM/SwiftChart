@@ -184,7 +184,6 @@ enum JsonKey: String {
     case secondsRequired
     case section
     case seconds
-    case serverPush
     case setPositions
     case settingBoolValue
     case settingBoolValueDtos

@@ -196,7 +196,8 @@ private extension SettingsAdminViewController {
     }
 
     @IBAction private func didUpdateValue(_ sender: UISegmentedControl) {
-        guideMaxDays = Int(sender.titleForSegment(at: sender.selectedSegmentIndex) ?? "3") ?? 3
+        let guideDays = String(services?.settingsService.guideDays ?? 1)
+        guideMaxDays = Int(sender.titleForSegment(at: sender.selectedSegmentIndex) ?? guideDays) ?? 1
     }
 }
 

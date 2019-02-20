@@ -200,6 +200,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             } else {
                 do {
                     let services = try Services()
+                    guideMaxDays = services.settingsService.guideDays ?? 3
                     self.services = services
                     self.syncManager.userNotificationsManager = services.userNotificationsManager
                     AppCoordinator.appState.services = services

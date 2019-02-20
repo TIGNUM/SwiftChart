@@ -28,6 +28,9 @@ final class SyncRecordService {
     func lastSync<T>(_ type: T.Type) throws -> Int64? {
         let realm = try realmProvider.realm()
         let className = String(describing: T.self)
+        if type == RealmGuideItemNotification.self {
+            return Int64(Date(timeIntervalSinceNow: -TimeInterval(days: guideMaxDays)).timeIntervalSince1970) * 1000
+        }
         if let savedDate = realm.object(ofType: SyncRecord.self, forPrimaryKey: className)?.date {
             return savedDate
         }
