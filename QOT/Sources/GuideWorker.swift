@@ -14,13 +14,13 @@ final class GuideWorker {
     private let badgeManager: BadgeManager?
     private let syncStateObserver: SyncStateObserver
     private let services: Services
-    private let widgetDataManager: WidgetDataManager
+    private let widgetDataManager: ExtensionsDataManager
     private let backgroudQueue = DispatchQueue(label: "guide worker", qos: .background)
 
     init(services: Services, badgeManager: BadgeManager?) {
         self.badgeManager = badgeManager
         self.services = services
-        self.widgetDataManager = WidgetDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager(services: services)
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
     }
 

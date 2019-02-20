@@ -211,7 +211,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let item = itemAt(indexPath: indexPath)
-		if item.isDailyPrep == true { return }
+        if item.isDailyPrep == true { return }
         router?.open(item: item)
         interactor?.didTapItem(item)
 

@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum WidgetData {
+enum ExtensionDataType {
     case toBeVision
     case upcomingEvent
     case all
@@ -28,8 +28,8 @@ final class ExtensionsDataManager {
 
     // MARK: - Update cases
 
-    func update(_ widgetData: WidgetData) {
-        switch widgetData {
+    func update(_ dataType: ExtensionDataType) {
+        switch dataType {
         case .toBeVision:
             updateToBeVision()
         case .upcomingEvent:
@@ -60,6 +60,7 @@ private extension ExtensionsDataManager {
         let events = Array(services.preparationService
             .preparations()
             .filter { $0.eventStartDate?.isPast == false })
+            .sorted { $0.eventStartDate ?? Date() < $1.eventStartDate ?? Date() }
             .map { preparation in
                 return ExtensionModel.UpcomingEvent(localID: preparation.localID,
                                                     eventName: preparation.name,

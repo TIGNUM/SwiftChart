@@ -1,0 +1,59 @@
+//
+//  UserDefaultValues.swift
+//  QOTWidget
+//
+//  Created by Javier Sanz Rozalen on 09/07/2018.
+//  Copyright © 2018 Tignum. All rights reserved.
+//
+
+import Foundation
+
+enum SuiteName: String, CaseIterable {
+    case widget = "group.widget.com.tignum.qot.novartis"
+    case siri = "group.siri.com.tignum"
+}
+
+enum ExtensionUserDefaults: String, CaseIterable {
+    case toBeVision = "qot.userdefault.key.toBeVision"
+    case isUserSignedIn = "qot.userdefault.key.isUserSignedIn"
+    case whatsHot = "qot.userdefault.key.whatshotarticles"
+    case upcomingEvents = "qot.userdefault.key.upcomingEvents"
+
+    // MARK: - DELETE
+
+    func clearWidgetObject() {
+        for suiteName in SuiteName.allCases {
+            let userDefaults = UserDefaults(suiteName: suiteName.rawValue)
+            userDefaults?.removeObject(forKey: self.rawValue)
+            userDefaults?.synchronize()
+        }
+    }
+
+    // MARK: - SET
+    
+    static func set<T: Encodable>(_ object: T, for key: ExtensionUserDefaults) {
+        for suiteName in SuiteName.allCases {
+            let userDefaults = UserDefaults(suiteName: suiteName.rawValue)
+            userDefaults?.set(try? PropertyListEncoder().encode(object), forKey: key.rawValue)
+        }
+    }
+
+    static func setIsUserSignedIn(value: Bool) {
+        for suiteName in SuiteName.allCases {
+            UserDefaults(suiteName: suiteName.rawValue)?.set(value, forKey: isUserSignedIn.rawValue)
+        }
+    }
+
+    // MARK: - GET
+
+    func value(for suiteName: SuiteName) -> Any? {
+        return UserDefaults(suiteName: suiteName.rawValue)?.object(forKey: rawValue)
+    }
+
+    static func object<T: Decodable>(for suiteName: SuiteName, key: ExtensionUserDefaults) -> T? {
+        guard
+            let userDefaults = UserDefaults(suiteName: suiteName.rawValue),
+            let data = userDefaults.value(forKey: key.rawValue) as? Data else { return nil }
+        return try? PropertyListDecoder().decode(T.self, from: data)
+    }
+}

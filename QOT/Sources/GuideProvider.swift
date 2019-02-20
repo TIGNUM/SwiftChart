@@ -15,6 +15,10 @@ extension Preparation: GuidePreparation {
         return self.calendarEvent()?.startDate
     }
 
+    var eventEndDate: Date? {
+        return self.calendarEvent()?.endDate
+    }
+
     var priority: Int {
         return 9999 // FIXME: Dont hard code
     }

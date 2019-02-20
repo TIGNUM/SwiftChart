@@ -308,12 +308,12 @@ final class NetworkManager {
                     switch mainResult {
                     case .success(let value):
                         completion(.success(value))
-                        WidgetDataManager.didUserLogIn(true)
+                        ExtensionsDataManager.didUserLogIn(true)
                     case .failure(let error):
                         completion(.failure(error))
                         if error.isUnauthenticated && notifyDelegateOfFailure {
                             self.notifyDelegateOfAuthenticationFailure(error)
-                            WidgetDataManager.didUserLogIn(false)
+                            ExtensionsDataManager.didUserLogIn(false)
                         }
                     }
                 }

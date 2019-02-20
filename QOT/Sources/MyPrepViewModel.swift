@@ -30,7 +30,7 @@ final class MyPrepViewModel {
     }
 
     private let services: Services
-    private let widgetDataManager: WidgetDataManager
+    private let widgetDataManager: ExtensionsDataManager
     private var preparations: AnyRealmCollection<Preparation>?
     private var preparationChecks: AnyRealmCollection<PreparationCheck>?
     private var preparationsNotificationHandler: NotificationTokenHandler?
@@ -54,7 +54,7 @@ final class MyPrepViewModel {
 
     init(services: Services) {
         self.services = services
-        self.widgetDataManager = WidgetDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager(services: services)
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         preparations = try? services.preparationService.preparationsOnBackground(predicate: NSPredicate(format: "deleted == false"))
         preparationChecks = try? services.preparationService.preparationChecksOnBackground()
@@ -132,6 +132,7 @@ final class MyPrepViewModel {
     func deleteItem(at indexPath: IndexPath) throws {
         try services.preparationService.deletePreparation(withLocalID: item(at: indexPath).localID)
         refresh()
+        widgetDataManager.update(.upcomingEvent)
     }
 
     func isReady() -> Bool {

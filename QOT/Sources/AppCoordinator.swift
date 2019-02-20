@@ -693,6 +693,7 @@ extension AppCoordinator {
             case guide
             case strategies
             case whatsHot
+            case whatsHotList
             case toBeVision
             case data
             case coach
@@ -703,6 +704,7 @@ extension AppCoordinator {
                 case .guide: return nil
                 case .strategies: return 0
                 case .whatsHot: return 1
+                case .whatsHotList: return 1
                 case .toBeVision: return nil
                 case .data: return nil
                 case .coach: return 0
@@ -956,11 +958,28 @@ extension AppCoordinator {
         navigate(to: AppCoordinator.Router.Destination(tabBar: .tbv, topTabBar: .toBeVision))
     }
 
+    func presentToBeVisionGenerator() {
+        navigate(to: AppCoordinator.Router.Destination(tabBar: .tbv, topTabBar: .toBeVision))
+        let visionViewController = ((currentPresentedController as? UINavigationController)?
+            .viewControllers.first as? PageViewController)?
+            .currentPage as? MyToBeVisionViewController
+        visionViewController?.showVisionGenerator()
+    }
+
     func presentWhatsHotArticle() {
         guard
             let services = services,
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
             let content = services.contentService.whatsHotArticles().first else { return }
+        tabBarCoordinator?.didTapItem(articleHeader: ArticleCollectionHeader(content: content), in: rootViewController)
+        destination = nil
+    }
+
+    func presentWhatsHotArticle(with remoteID: Int) {
+        guard
+            let services = services,
+            let rootViewController = windowManager.rootViewController(atLevel: .normal),
+            let content = services.contentService.whatsHotArticle(with: remoteID).first else { return }
         tabBarCoordinator?.didTapItem(articleHeader: ArticleCollectionHeader(content: content), in: rootViewController)
         destination = nil
     }

@@ -72,14 +72,16 @@ extension Date {
         return Calendar.sharedUTC.date(byAdding: .day, value: days, to: self) ?? self
     }
 
-    func isSameDay(_ date: Date) -> Bool {
-        let componentsFirst = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: date)
-        let componentsSecond = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: self)
-        let sameYear = componentsFirst.year == componentsSecond.year
-        let sameMonth = componentsFirst.month == componentsSecond.month
-        let sameDay = componentsFirst.day == componentsSecond.day
-
-        return sameYear && sameMonth && sameDay
+    func isSameDay(_ date: Date?) -> Bool {
+        if let date = date {
+            let componentsFirst = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: date)
+            let componentsSecond = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: self)
+            let sameYear = componentsFirst.year == componentsSecond.year
+            let sameMonth = componentsFirst.month == componentsSecond.month
+            let sameDay = componentsFirst.day == componentsSecond.day
+            return sameYear && sameMonth && sameDay
+        }
+        return false
     }
 
     var minutesSinceMidnight: Int {

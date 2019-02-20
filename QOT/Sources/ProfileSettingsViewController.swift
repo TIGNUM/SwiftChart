@@ -428,7 +428,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             switch settingsType {
             case .logout:
                 showAlert(type: .logout, handlerDestructive: {
-                    WidgetDataManager.didUserLogIn(false)
+                    ExtensionsDataManager.didUserLogIn(false)
                     UIApplication.shared.shortcutItems?.removeAll()
                     NotificationHandler.postNotification(withName: .logoutNotification)
                 })

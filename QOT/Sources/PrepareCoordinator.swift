@@ -27,7 +27,7 @@ final class PrepareCoordinator: ParentCoordinator {
     // MARK: Properties
 
     private let services: Services
-    private let widgetDataManager: WidgetDataManager
+    private let widgetDataManager: ExtensionsDataManager
     private let eventTracker: EventTracker
     private let permissionsManager: PermissionsManager
     private let tabBarController: TabBarController
@@ -70,7 +70,7 @@ final class PrepareCoordinator: ParentCoordinator {
         self.services = services
         self.eventTracker = eventTracker
         self.permissionsManager = permissionsManager
-        self.widgetDataManager = WidgetDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager(services: services)
         self.tabBarController = tabBarController
         self.topTabBarController = topTabBarController
         self.chatViewController = chatViewController

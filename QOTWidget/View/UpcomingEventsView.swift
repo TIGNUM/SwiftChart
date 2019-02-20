@@ -32,10 +32,10 @@ final class UpcomingEventsView: UIView {
 
     // MARK: - Actions
 
-    func configure(event: WidgetModel.UpcomingEvent) {
-        if let eventName = event.eventName {
+    func configure(event: ExtensionModel.UpcomingEvent?) {
+        if let event = event, let eventName = event.eventName {
             eventNameLabel.text = eventName
-            eventTimeLabel.text = dateDescription(for: event.eventDate ?? nil)
+            eventTimeLabel.text = dateDescription(for: event.startDate ?? nil)
             addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showLatestEvent)))
             if let tasks = event.numberOfTasks, let tasksCompleted = event.tasksCompleted, tasks > 0 {
                 tasksCompletedLabel.text = "\(tasksCompleted)/\(tasks) Tasks Completed"

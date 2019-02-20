@@ -125,6 +125,12 @@
 	<string>QOT needs access to your Library to set your images.</string>
 	<key>NSRemindersUsageDescription</key>
 	<string>QOT needs access to reminder to remind you and to help you</string>
+	<key>NSUserActivityTypes</key>
+	<array>
+		<string>ReadVisionIntent</string>
+		<string>UpcomingEventIntent</string>
+		<string>WhatsHotIntent</string>
+	</array>
 	<key>UIAppFonts</key>
 	<array>
 		<string>Apercu-Regular.otf</string>

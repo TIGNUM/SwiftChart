@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct ArticleCollectionViewData {
-    struct Item {
+struct ArticleCollectionViewData: Codable {
+    struct Item: Codable {
         let author: String
         let title: String
         let description: String

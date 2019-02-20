@@ -16,7 +16,7 @@ enum Scene: String {
     case signIn = "qot://"
 }
 
-class WidgetViewController: UIViewController, NCWidgetProviding {
+final class WidgetViewController: UIViewController, NCWidgetProviding {
 
     // MARK: - Properties
 
@@ -32,7 +32,7 @@ class WidgetViewController: UIViewController, NCWidgetProviding {
     }
 
     private var isSignedIn: Bool {
-        return WidgetUserDefaults.isUserSignedIn.value() as? Bool ?? false
+        return ExtensionUserDefaults.isUserSignedIn.value(for: .widget) as? Bool ?? false
     }
 
     // MARK: - Lifecycle
@@ -80,13 +80,14 @@ private extension WidgetViewController {
     }
 
     func setData() {
-        if let toBeVision = WidgetUserDefaults.toBeVision() {
-            myToBeVisionView.configure(toBeVision: toBeVision,
+        if let vision: ExtensionModel.ToBeVision = ExtensionUserDefaults.object(for: .widget, key: .toBeVision) {
+            myToBeVisionView.configure(toBeVision: vision,
                                        isNetworkAvailable: isNetworkAvailable,
                                        isSignedIn: isSignedIn)
         }
-        if let upcomingEvent = WidgetUserDefaults.upcomingEvent() {
-            upcomingEventsView.configure(event: upcomingEvent)
+        if let upcomingEvents: [ExtensionModel.UpcomingEvent] = ExtensionUserDefaults.object(for: .widget,
+                                                                                             key: .upcomingEvents) {
+            upcomingEventsView.configure(event: upcomingEvents.first)
         }
     }
 }

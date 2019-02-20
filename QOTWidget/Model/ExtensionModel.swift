@@ -8,16 +8,19 @@
 
 import Foundation
 
-struct WidgetModel {
-    struct ToBeVision {
+struct ExtensionModel {
+
+    struct ToBeVision: Codable {
         let headline: String?
         let text: String?
         let imageURL: URL?
     }
 
-    struct UpcomingEvent {
+    struct UpcomingEvent: Codable {
+        let localID: String
         let eventName: String?
-        let eventDate: Date?
+        let startDate: Date?
+        let endDate: Date?
         let numberOfTasks: Int?
         let tasksCompleted: Int?
     }

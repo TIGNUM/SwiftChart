@@ -54,6 +54,8 @@ final class ArticleCollectionProvider {
                 contentCollectionID: content.remoteID.value ?? 0,
                 newArticle: isNewArticle)
         }
-        return ArticleCollectionViewData(items: items)
+        let articleCollectionViewData = ArticleCollectionViewData(items: items)
+        ExtensionUserDefaults.set(articleCollectionViewData, for: .whatsHot)
+        return articleCollectionViewData
     }
 }

@@ -126,6 +126,11 @@ final class ContentService {
         return AnyRealmCollection(mainRealm.objects(ContentCollection.self).filter(predicate).sorted(by: [.sortOrder()]))
     }
 
+    func whatsHotArticle(with remoteID: Int) -> AnyRealmCollection<ContentCollection> {
+        let predicate = NSPredicate(remoteID: remoteID)
+        return AnyRealmCollection(mainRealm.objects(ContentCollection.self).filter(predicate).sorted(by: [.sortOrder()]))
+    }
+
     func whatsHotArticlesNew() -> Results<ContentCollection> {
         return mainRealm.objects(ContentCollection.self).filter(.newWhatsHotArticles)
     }

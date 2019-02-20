@@ -87,7 +87,7 @@ extension UserDefault {
     }
 
     static func clearAllDataLogOut() {
-        WidgetUserDefaults.widgetObjectsToClearOnLogout().forEach { $0.clearWidgetObject() }
+        ExtensionUserDefaults.allCases.forEach { $0.clearWidgetObject() }
         self.objectsToClearOnLogout().forEach { $0.clearObject() }
     }
 

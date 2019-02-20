@@ -163,6 +163,33 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         return launchHandler.canLaunch(url: url)
     }
 
+    func application(_ application: UIApplication,
+                     continue userActivity: NSUserActivity,
+                     restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
+        var didHandleActivity = true
+        appCoordinator.start { [weak self] in
+            switch userActivity.activityType {
+            case NSUserActivity.ActivityType.toBeVision.rawValue:
+                self?.appCoordinator.presentToBeVision(articleItemController: nil)
+            case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
+                self?.appCoordinator.presentToBeVisionGenerator()
+            case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
+                let id = Int(userActivity.contentAttributeSet?.keywords?.first ?? "0") ?? 0
+                self?.appCoordinator.presentWhatsHotArticle(with: id)
+            case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
+                self?.appCoordinator.navigate(to: .init(tabBar: .learn, topTabBar: .whatsHotList))
+            case NSUserActivity.ActivityType.eventsList.rawValue:
+                self?.appCoordinator.navigate(to: .init(tabBar: .prepare, topTabBar: .myPrep))
+            case NSUserActivity.ActivityType.event.rawValue:
+                let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
+                self?.appCoordinator.presentPreparationCheckList(localID: id)
+            default:
+                didHandleActivity = false
+            }
+        }
+        return didHandleActivity
+    }
+
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
         let deviceToken = UAUtils.deviceTokenString(fromDeviceToken: deviceToken)
         appCoordinator.apnsDeviceTokenRegistrar.registerDeviceToken(deviceToken)

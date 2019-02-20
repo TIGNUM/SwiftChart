@@ -19,7 +19,7 @@ final class SelectWeeklyChoicesDataModel {
     // MARK: - Properties
 
     private var services: Services
-    private let widgetDataManager: WidgetDataManager
+    private let widgetDataManager: ExtensionsDataManager
     private let rawData: AnyRealmCollection<ContentCategory>
     private let strategies = [String: [ContentCollection]]()
     private var dataSource = [CollapsableNode]()
@@ -49,7 +49,7 @@ final class SelectWeeklyChoicesDataModel {
 
     init(services: Services, maxSelectionCount: Int, startDate: Date, endDate: Date) {
         self.services = services
-        self.widgetDataManager = WidgetDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager(services: services)
         self.maxSelectionCount = maxSelectionCount
         self.selectionType = SelectionType.weeklyChoices
         self.rawData = services.contentService.learnContentCategories()
@@ -58,7 +58,7 @@ final class SelectWeeklyChoicesDataModel {
 
     init(services: Services, relatedContent: [ContentCollection], selectedIDs: [Int]) {
         self.services = services
-        self.widgetDataManager = WidgetDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager(services: services)
         self.maxSelectionCount = relatedContent.count
         self.selectionType = SelectionType.prepareStrategies
         self.rawData = services.contentService.learnContentCategories()

@@ -13,7 +13,7 @@ final class MyToBeVisionWorker {
 
     private let services: Services
     private let syncManager: SyncManager
-    private let widgetDataManager: WidgetDataManager
+    private let widgetDataManager: ExtensionsDataManager
     private let navigationItem: NavigationItem
     private let syncStateObserver: SyncStateObserver
     var toBeVisionDidChange: ((MyToBeVisionModel.Model?) -> Void)?
@@ -22,7 +22,7 @@ final class MyToBeVisionWorker {
         self.navigationItem = navigationItem
         self.services = services
         self.syncManager = syncManager
-        self.widgetDataManager = WidgetDataManager(services: services)
+        self.widgetDataManager = ExtensionsDataManager(services: services)
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)
         syncStateObserver.onUpdate { [unowned self] _ in
             self.toBeVisionDidChange?(self.myToBeVision())
