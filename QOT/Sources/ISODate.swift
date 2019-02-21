@@ -21,6 +21,11 @@ struct ISODate {
     var date: Date? {
         return DateFormatter.isoDate.date(from: self.string)
     }
+
+    var isToday: Bool {
+        let dateComponents = Calendar.current.dateComponents([.year, .month, .day], from: Date())
+        return dateComponents.year == year && dateComponents.month == month && dateComponents.day == day
+    }
 }
 
 extension ISODate {

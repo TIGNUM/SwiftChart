@@ -162,7 +162,7 @@ private extension GuideItemFactory {
     }
 
     func guideItem(with item: NotificationConfigurationObject, isoDate: ISODate) -> Guide.Item? {
-        guard isoDate.date?.isToday == true else { return nil }
+        guard isoDate.isToday == true else { return nil }
         let questions = item.questionsFor(services: services)
         let items = dailyPrepItems(questions: questions, notification: item, services: services)
         let contentCollection = services.contentService.contentCollection(id: contentID.whyDPMCollectionID.rawValue)

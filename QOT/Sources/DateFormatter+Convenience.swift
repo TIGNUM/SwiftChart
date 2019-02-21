@@ -93,14 +93,6 @@ extension DateFormatter {
     static var isoDate: DateFormatter {
         return isoDateFormatter
     }
-
-    static var utcYearMonthDay: DateFormatter = {
-        let formatter = DateFormatter()
-        formatter.locale = Locale.posix
-        formatter.timeZone = TimeZone(abbreviation: "UTC")
-        formatter.dateFormat = "yyyyMMdd"
-        return formatter
-    }()
 }
 
 extension Locale {
