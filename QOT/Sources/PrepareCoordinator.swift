@@ -157,13 +157,16 @@ extension PrepareCoordinator {
         }
     }
 
-    func showPrepareCheckList(preparationID: String, chatDecisionManager: PrepareChatDecisionManager? = nil) {
+    func showPrepareCheckList(preparationID: String,
+                              chatDecisionManager: PrepareChatDecisionManager? = nil,
+                              progressHUD: MBProgressHUD? = nil) {
         guard let preparation = services.preparationService.preparation(localID: preparationID) else { return }
         self.preparationID = preparationID
         if let viewModel = prepareChecklistViewModel(preparation: preparation) {
             let prepareController = PrepareContentViewController(pageName: .prepareCheckList,
                                                                  viewModel: viewModel,
-                                                                 chatDecisionManager: chatDecisionManager)
+                                                                 chatDecisionManager: chatDecisionManager,
+                                                                 progressHUD: progressHUD)
             prepareController.delegate = self
             prepareController.title = R.string.localized.topTabBarItemTitlePerparePreparation()
             let storyboard = R.storyboard.reviewNotesViewController()
@@ -542,9 +545,12 @@ extension PrepareCoordinator {
     func createEventWithCreatedCalendar(event: CalendarEvent, realm: Realm) {
         self.createPreparation(name: event.title, event: event) { (preparationID) in
             self.tabBarController.dismiss(animated: true)
+            let hud = MBProgressHUD.showAdded(to: self.tabBarController.view, animated: true)
             NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
             if let id = preparationID {
-                self.showPrepareCheckList(preparationID: id, chatDecisionManager: self.chatDecisionManager)
+                self.showPrepareCheckList(preparationID: id,
+                                          chatDecisionManager: self.chatDecisionManager,
+                                          progressHUD: hud)
                 AppCoordinator.appState.syncManager.syncCalendarEvents { (error) in
                     if let createdPreparation = realm.syncableObject(ofType: Preparation.self, localID: id),
                         let createdEvent = realm.syncableObject(ofType: CalendarEvent.self, localID: event.localID) {

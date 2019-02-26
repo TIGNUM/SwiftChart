@@ -239,7 +239,6 @@ final class SyncManager {
                     self.isSynchronsingPreparation = false
                 })
             })
-
         })
     }
 

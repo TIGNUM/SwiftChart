@@ -10,6 +10,7 @@ import UIKit
 import Bond
 import ReactiveKit
 import Anchorage
+import MBProgressHUD
 
 protocol PrepareContentViewControllerDelegate: class {
     func didTapClose(in viewController: PrepareContentViewController)
@@ -27,6 +28,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     private let disposeBag = DisposeBag()
     private var avPlayerObserver: AVPlayerObserver?
     private var sectionHeaderView: PrepareSectionHeaderView?
+    private var progressHUD: MBProgressHUD?
     private weak var chatDecisionManager: PrepareChatDecisionManager?
     weak var delegate: PrepareContentViewControllerDelegate?
     let pageName: PageName
@@ -56,10 +58,14 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     // MARK: - Life Cycle
 
-    init(pageName: PageName, viewModel: PrepareContentViewModel, chatDecisionManager: PrepareChatDecisionManager? = nil) {
+    init(pageName: PageName,
+         viewModel: PrepareContentViewModel,
+         chatDecisionManager: PrepareChatDecisionManager? = nil,
+         progressHUD: MBProgressHUD? = nil) {
         self.pageName = pageName
         self.viewModel = viewModel
         self.chatDecisionManager = chatDecisionManager
+        self.progressHUD = progressHUD
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -76,6 +82,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        progressHUD?.hide(animated: true)
         UIApplication.shared.setStatusBarStyle(Date().isNight ? .lightContent : .default)
         tableView.reloadData()
     }
