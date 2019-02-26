@@ -34,9 +34,7 @@ final class SigningLoginViewController: AbstractFormViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        if UIDevice.isPad == true {
-            addKeyboardObserver()
-        }
+        addKeyboardObserver()
     }
 }
 
@@ -167,10 +165,14 @@ extension SigningLoginViewController {
     }
 
     @objc func keyboardWillShow(notification: Notification) {
+        titleContentView?.frame.origin.y -= Layout.padding_32
+        formViewEmail?.frame.origin.y -= Layout.padding_40
         formViewPassword?.frame.origin.y -= Layout.padding_50
     }
 
     @objc func keyboardWillHide(notification: Notification) {
+        titleContentView?.frame.origin.y += Layout.padding_32
+        formViewEmail?.frame.origin.y += Layout.padding_40
         formViewPassword?.frame.origin.y += Layout.padding_50
     }
 }
