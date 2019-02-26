@@ -152,7 +152,7 @@ extension UserService {
         }
     }
 
-    func saveVisionAndSync(_ new: MyToBeVisionModel.Model?, syncManager: SyncManager, completion: (() -> Void)?) {
+    func saveVision(_ new: MyToBeVisionModel.Model?) {
         guard
             let old = myToBeVision(),
             let new = new, old.model != new else { return }
@@ -164,6 +164,10 @@ extension UserService {
             $0.setKeywords(new.homeTags ?? [], for: .home)
             updateVisionImage(newImageURL: new.imageURL, old: $0)
         }
+    }
+
+    func saveVisionAndSync(_ new: MyToBeVisionModel.Model?, syncManager: SyncManager, completion: (() -> Void)?) {
+        saveVision(new)
         syncManager.syncMyToBeVision { (error) in
             completion?()
         }

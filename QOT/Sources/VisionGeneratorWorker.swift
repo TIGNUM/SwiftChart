@@ -72,12 +72,9 @@ final class VisionGeneratorWorker {
 
 extension VisionGeneratorWorker {
 
-    func saveVision(completion: (() -> Void)?) {
-        services.userService.saveVisionAndSync(currentVisionModel,
-                                               syncManager: syncManager) { [weak self] in
-                                                self?.visionModel = self?.currentVisionModel
-                                                completion?()
-        }
+    func saveVision() {
+        services.userService.saveVision(currentVisionModel)
+        syncManager.syncMyToBeVision()
     }
 
     func saveImage(_ image: UIImage) throws {

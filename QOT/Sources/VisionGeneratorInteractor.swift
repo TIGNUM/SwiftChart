@@ -64,13 +64,10 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
         case .work,
              .home: handleChoiceDecision(choice)
         case .next:
-            presenter.showLoadingIndicator()
-            worker.saveVision { [weak self] in
-                self?.presenter.hideLoadingIndicator()
-                guard self?.worker.model != nil else { return }
-                self?.presenter.updateVisionControllerModel()
-                self?.handleChoiceTargets(choice)
-            }
+            worker.saveVision()
+            guard self.worker.model != nil else { return }
+            self.presenter.updateVisionControllerModel()
+            self.handleChoiceTargets(choice)
             // Set restart URL
             RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
         case .picture:
@@ -83,7 +80,7 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
             // Remove RestartInfo because we don't need it in this case.
             RestartHelper.clearRestartRouteInfo()
             presenter.showLoadingIndicator()
-            worker.saveVision(completion: nil)
+            worker.saveVision()
             if worker.model != nil {
                 presenter.updateVisionControllerModel()
             }

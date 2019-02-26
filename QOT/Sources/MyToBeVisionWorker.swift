@@ -69,6 +69,10 @@ final class MyToBeVisionWorker {
         updateWidget()
     }
 
+    func syncToBeVisionIfNeeded(completion: ((Error?) -> Void)?) {
+        syncManager.syncMyToBeVision(completion: completion)
+    }
+
     func saveImage(_ image: UIImage) throws -> URL {
         return try image.save(withName: UUID().uuidString)
     }
