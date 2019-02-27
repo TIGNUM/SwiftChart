@@ -80,11 +80,10 @@ private extension WidgetViewController {
     }
 
     func setData() {
-        if let vision: ExtensionModel.ToBeVision = ExtensionUserDefaults.object(for: .widget, key: .toBeVision) {
-            myToBeVisionView.configure(toBeVision: vision,
-                                       isNetworkAvailable: isNetworkAvailable,
-                                       isSignedIn: isSignedIn)
-        }
+        let vision: ExtensionModel.ToBeVision? = ExtensionUserDefaults.object(for: .widget, key: .toBeVision)
+        myToBeVisionView.configure(toBeVision: vision,
+                                   isNetworkAvailable: isNetworkAvailable,
+                                   isSignedIn: isSignedIn)
         if let upcomingEvents: [ExtensionModel.UpcomingEvent] = ExtensionUserDefaults.object(for: .widget,
                                                                                              key: .upcomingEvents) {
             upcomingEventsView.configure(event: upcomingEvents.first)
