@@ -6,7 +6,7 @@
 //  Copyright © 2018 Tignum. All rights reserved.
 //
 
-import Foundation
+import UIKit
 
 extension UIImage {
     convenience init?(view: UIView) {

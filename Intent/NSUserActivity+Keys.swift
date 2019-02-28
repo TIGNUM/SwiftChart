@@ -15,6 +15,7 @@ extension NSUserActivity {
     // MARK: - Keys
     
     enum ActivityType: String {
+        case dailyPrep = "com.qot.nsuseractivity.dailyPrep"
         case toBeVision = "com.qot.nsuseractivity.tobevision"
         case toBeVisionGenerator = "com.qot.nsuseractivity.tobevision.generator"
         case whatsHotArticle = "com.qot.nsuseractivity.whatshotArticle"

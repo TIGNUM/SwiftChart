@@ -31,7 +31,6 @@ final class GuideService {
 
     func setNotificationItemComplete(remoteID: Int, date: Date) throws {
         guard let item = notificationItem(remoteID: remoteID) else { return }
-
         try realm.write {
             item.completedAt = date
             item.didUpdate()
@@ -41,7 +40,6 @@ final class GuideService {
     func setLearnItemComplete(remoteID: Int, date: Date) throws {
         let type = RealmGuideItemLearn.self
         guard let item = realm.syncableObject(ofType: type, remoteID: remoteID) else { return }
-
         try realm.write {
             item.completedAt = date
             item.didUpdate()

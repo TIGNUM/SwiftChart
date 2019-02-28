@@ -44,6 +44,12 @@ final class IntentViewController: UIViewController, INUIHostedViewControlling {
             attachChild(viewController)
             completion(shouldDisplay, parameters, size)
         }
+        if let response = interaction.intentResponse as? DailyPrepIntentResponse {
+            let viewController = DailyPrepViewController(for: response)
+            let shouldDisplay = response.code != .notCompleted
+            attachChild(viewController)
+            completion(shouldDisplay, parameters, viewController.viewSize)
+        }
         completion(false, parameters, .zero)
     }
 }
@@ -66,11 +72,10 @@ private extension IntentViewController {
     }
 }
 
-
 // MARK: - UIViewController
 
 fileprivate extension UIViewController {
-    
+
     var viewSize: CGSize {
         return CGSize(width: view.bounds.width, height: view.bounds.height)
     }

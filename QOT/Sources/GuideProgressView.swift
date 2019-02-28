@@ -14,7 +14,6 @@ final class GuideProgressView: UIProgressView {
 
     override func layoutSubviews() {
         super.layoutSubviews()
-        dropShadow(color: .white, opacity: 0.2, offSet: .zero, radius: 6, scale: true)
         let maskLayerPath = UIBezierPath(roundedRect: bounds, cornerRadius: 4.0)
         let maskLayer = CAShapeLayer()
         maskLayer.frame = bounds
@@ -24,7 +23,7 @@ final class GuideProgressView: UIProgressView {
 
     // MARK: - Actions
 
-    func setGradient(with colors: [UIColor]) {
+    func setGradient(with colors: [UIColor], progressColor: UIColor = .guideProgressTintColor) {
         let gradientView = UIView(frame: bounds)
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds
@@ -36,6 +35,6 @@ final class GuideProgressView: UIProgressView {
         let gradientImage = UIImage(view: gradientView)?.withHorizontallyFlippedOrientation()
         trackImage = gradientImage
         transform = CGAffineTransform(scaleX: -1.0, y: -1.0)
-        progressTintColor = UIColor(red: 0.11, green: 0.22, blue: 0.31, alpha: 1.0)
+        progressTintColor = progressColor
     }
 }

@@ -14,10 +14,12 @@ enum SuiteName: String, CaseIterable {
 }
 
 enum ExtensionUserDefaults: String, CaseIterable {
+
     case toBeVision = "qot.userdefault.key.toBeVision"
     case isUserSignedIn = "qot.userdefault.key.isUserSignedIn"
     case whatsHot = "qot.userdefault.key.whatshotarticles"
     case upcomingEvents = "qot.userdefault.key.upcomingEvents"
+    case dailyPrep = "qot.userdefault.key.dailyPrep"
 
     // MARK: - DELETE
 

@@ -26,6 +26,7 @@
 		<dict>
 			<key>IntentsSupported</key>
 			<array>
+				<string>DailyPrepIntent</string>
 				<string>ReadVisionIntent</string>
 				<string>UpcomingEventIntent</string>
 				<string>WhatsHotIntent</string>

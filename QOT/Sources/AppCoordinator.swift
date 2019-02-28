@@ -1043,19 +1043,25 @@ extension AppCoordinator {
     }
 
     func presentMorningInterview(groupID: Int, date: ISODate) {
-        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let configurator = MorningInterviewConfigurator.make(questionGroupID: groupID, date: date)
-        let storyBoard = UIStoryboard(name: "MorningInterviewViewController", bundle: Bundle.main)
-        guard let naviController = storyBoard.instantiateInitialViewController() as? UINavigationController else {
-            return
+        do {
+            if try realmProvider.realm()
+                .objects(DailyPrepResultObject.self)
+                .filter("isoDate == %@", date.string)
+                .count == 0 {
+                AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
+                let configurator = MorningInterviewConfigurator.make(questionGroupID: groupID, date: date)
+                guard
+                    let navController = R.storyboard.morningInterviewViewController.instantiateInitialViewController(),
+                    let interviewController = navController.viewControllers.first as? MorningInterviewViewController
+                    else { return }
+                configurator(interviewController)
+                windowManager.showPriority(navController, animated: true, completion: nil)
+                currentPresentedController = navController
+                navController.navigationBar.applyDefaultStyle()
+            }
+        } catch {
+            log(error.localizedDescription, level: .error)
         }
-        guard let interviewViewCpontroller = naviController.viewControllers.first as? MorningInterviewViewController else {
-            return
-        }
-        configurator(interviewViewCpontroller)
-        windowManager.showPriority(naviController, animated: true, completion: nil)
-        currentPresentedController = naviController
-        naviController.navigationBar.applyDefaultStyle()
     }
 
     func presentWeeklyChoicesReminder() {

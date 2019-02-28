@@ -18,6 +18,8 @@ final class IntentHandler: INExtension {
             return WhatsHotIntentHandler()
         case is UpcomingEventIntent:
             return UpcomingEventHandler()
+        case is DailyPrepIntent:
+            return DailyPrepIntentHandler()
         default:
             return self
         }

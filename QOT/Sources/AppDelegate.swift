@@ -183,6 +183,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             case NSUserActivity.ActivityType.event.rawValue:
                 let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
                 self?.appCoordinator.presentPreparationCheckList(localID: id)
+            case NSUserActivity.ActivityType.dailyPrep.rawValue:
+                let groupID: Int = Date().isWeekend ? 100010 : 100002
+                let date: ISODate = Calendar.current.isoDate(from: Date())
+                self?.appCoordinator.presentMorningInterview(groupID: groupID, date: date)
+                return
             default:
                 didHandleActivity = false
             }
@@ -267,7 +272,6 @@ private extension AppDelegate {
 
     func incomingLocationEvent(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
         guard let locationEvent = launchOptions?[UIApplicationLaunchOptionsKey.location] as? NSNumber else { return }
-
         if locationEvent.boolValue == true {
             // needs a restart at this point
             locationManager.startSignificantLocationMonitoring(didUpdateLocations: appCoordinator.sendLocationUpdate)

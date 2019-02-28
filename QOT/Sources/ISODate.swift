@@ -31,8 +31,8 @@ struct ISODate {
 extension ISODate {
 
     init?(string: String) {
-        let componants = string.components(separatedBy: "-").compactMap { Int($0) }
-        guard componants.count == 3 else { return nil }
-        self.init(year: componants[0], month: componants[1], day: componants[2])
+        let components = string.components(separatedBy: "-").compactMap { Int($0) }
+        guard components.count == 3 else { return nil }
+        self.init(year: components[0], month: components[1], day: components[2])
     }
 }

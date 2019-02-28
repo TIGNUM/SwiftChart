@@ -35,8 +35,6 @@ final class WhatsHotIntentHandler: NSObject, WhatsHotIntentHandling {
                                                                          firstArticleTitle: firstTitle,
                                                                          secondArticleAuthor: secondAuthor,
                                                                          secondArticleTitle: secondTitle)
-                response.firstArticleDuration = unReadArticles[0].duration
-                response.firstArticleImageURL = unReadArticles[0].previewImageURL
                 response.secondArticleDuration = unReadArticles[1].duration
                 response.secondArticleImageURL = unReadArticles[1].previewImageURL
                 response.userActivity = userActivity

@@ -344,6 +344,10 @@ extension UIColor {
         return Date().isNight ? .azure : .blue
     }
 
+    class var guideProgressTintColor: UIColor {
+        return UIColor(red: 0.11, green: 0.22, blue: 0.31, alpha: 1.0)
+    }
+
     class var blueGray: UIColor {
         return UIColor(red: 142.0 / 255.0, green: 142.0 / 255.0, blue: 147.0 / 255.0, alpha: 1.0)
     }
@@ -366,7 +370,6 @@ extension UIColor {
             var (r2, g2, b2, a2): (CGFloat, CGFloat, CGFloat, CGFloat) = (0, 0, 0, 0)
             guard self.getRed(&r1, green: &g1, blue: &b1, alpha: &a1) else { return self }
             guard color.getRed(&r2, green: &g2, blue: &b2, alpha: &a2) else { return self }
-
             return UIColor(red: CGFloat(r1 + (r2 - r1) * percentage),
                            green: CGFloat(g1 + (g2 - g1) * percentage),
                            blue: CGFloat(b1 + (b2 - b1) * percentage),

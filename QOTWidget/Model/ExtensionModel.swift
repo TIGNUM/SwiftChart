@@ -24,4 +24,11 @@ struct ExtensionModel {
         let numberOfTasks: Int?
         let tasksCompleted: Int?
     }
+
+    struct DailyPrep: Codable {
+        let loadValue: Float
+        let recoveryValue: Float
+        let feedback: String?
+        let displayDate: Date
+    }
 }

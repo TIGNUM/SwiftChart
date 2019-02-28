@@ -11,6 +11,7 @@ import Foundation
 enum ExtensionDataType {
     case toBeVision
     case upcomingEvent
+    case dailyPrep(items: [Guide.DailyPrepItem], feedback: String?, displayDate: Date)
     case all
 }
 
@@ -34,6 +35,8 @@ final class ExtensionsDataManager {
             updateToBeVision()
         case .upcomingEvent:
             updateUpcomingEvents()
+        case .dailyPrep(let items, let feedback, let displayDate):
+            updateDailyPrep(items: items, feedback: feedback, displayDate: displayDate)
         case .all:
             updateAll()
         }
@@ -67,9 +70,25 @@ private extension ExtensionsDataManager {
                                                     startDate: preparation.eventStartDate,
                                                     endDate: preparation.eventEndDate,
                                                     numberOfTasks: preparation.checkableItems.count,
-                                                    tasksCompleted: preparation.coveredChecks.count)
-        }
+                                                    tasksCompleted: preparation.coveredChecks.count) }
         ExtensionUserDefaults.set(events, for: .upcomingEvents)
+    }
+
+    func updateDailyPrep(items: [Guide.DailyPrepItem], feedback: String?, displayDate: Date) {
+        let loadItems = items.filter {
+            $0.title.lowercased().contains("length") ||
+            $0.title.lowercased().contains("load") ||
+            $0.title.lowercased().contains("pressure") }
+        let loadValue = Float(loadItems.map { $0.result ?? 1 }.reduce(0, +)) / max(Float(loadItems.count), 1)
+        let recoveryItems =  items.filter {
+            $0.title.lowercased().contains("quality") ||
+            $0.title.lowercased().contains("quantity") }
+        let recoveryValue = Float(recoveryItems.map { $0.result ?? 1 }.reduce(0, +)) / max(Float(recoveryItems.count), 1)
+        let dailyPrep = ExtensionModel.DailyPrep(loadValue: loadValue,
+                                                 recoveryValue: recoveryValue,
+                                                 feedback: feedback,
+                                                 displayDate: displayDate)
+        ExtensionUserDefaults.set(dailyPrep, for: .dailyPrep)
     }
 
     func updateAll() {

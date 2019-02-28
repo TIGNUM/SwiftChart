@@ -218,8 +218,7 @@ extension LaunchHandler {
         if alreadyCompleted == true {
             navigate(to: URLScheme.guide.destination)
         } else {
-            let coordinator = appDelegate.appCoordinator
-            coordinator.presentMorningInterview(groupID: groupIDIntValue, date: date)
+            appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue, date: date)
         }
     }
 }

@@ -410,6 +410,10 @@
 		91F5BE5220975E1300E85A51 /* PermissionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5BE5120975E1300E85A51 /* PermissionsInteractor.swift */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
+		AC199035221EDF4300D53F01 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
+		AC199036221EDF7F00D53F01 /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */; };
+		AC199037221EE05C00D53F01 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
+		AC199038221EE07000D53F01 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
 		AC4DA0E422157DAD00BAF914 /* UpcomingEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */; };
 		AC4DA0E6221581E000BAF914 /* UpcomingEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E5221581E000BAF914 /* UpcomingEventViewController.swift */; };
 		AC4DA0E82215836300BAF914 /* UpcomingEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */; };
@@ -455,6 +459,9 @@
 		ACC68C88221C2F4B00ED899B /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C4205A850A0033F573 /* ISODate.swift */; };
 		ACC68C89221C2F5D00ED899B /* ISODate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB8AA2C4205A850A0033F573 /* ISODate.swift */; };
 		ACC68C8A221C2F7000ED899B /* DateFormatter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */; };
+		ACC68C8C221C4E3500ED899B /* DailyPrepIntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC68C8B221C4E3500ED899B /* DailyPrepIntentHandler.swift */; };
+		ACC68C8E221C4E8B00ED899B /* DailyPrepViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC68C8D221C4E8B00ED899B /* DailyPrepViewController.swift */; };
+		ACC68C90221C4F4F00ED899B /* DailyPrepView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACC68C8F221C4F4F00ED899B /* DailyPrepView.xib */; };
 		ACCCBC8B21E36AAA008D744D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367EA0F021776920003025CE /* Assets.xcassets */; };
 		ACCCBC9421E38B19008D744D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
 		ACCCBC9521E38D27008D744D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
@@ -1299,6 +1306,9 @@
 		ACA4B18F2212DEA600552A54 /* WhatsHotIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotIntentHandler.swift; sourceTree = "<group>"; };
 		ACA4B1942212FEAA00552A54 /* WhatsHotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotViewController.swift; sourceTree = "<group>"; };
 		ACA4B196221300BD00552A54 /* WhatsHotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotView.xib; sourceTree = "<group>"; };
+		ACC68C8B221C4E3500ED899B /* DailyPrepIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPrepIntentHandler.swift; sourceTree = "<group>"; };
+		ACC68C8D221C4E8B00ED899B /* DailyPrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPrepViewController.swift; sourceTree = "<group>"; };
+		ACC68C8F221C4F4F00ED899B /* DailyPrepView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyPrepView.xib; sourceTree = "<group>"; };
 		ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		ACEF4554218077FA00A4D531 /* GuideProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProgressView.swift; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
@@ -2532,6 +2542,7 @@
 				AC87A7A0220D961800622C90 /* ReadVisionIntentHandler.swift */,
 				ACA4B18F2212DEA600552A54 /* WhatsHotIntentHandler.swift */,
 				AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */,
+				ACC68C8B221C4E3500ED899B /* DailyPrepIntentHandler.swift */,
 				AC87A79D220D953F00622C90 /* Intents.intentdefinition */,
 			);
 			path = Intent;
@@ -2546,10 +2557,12 @@
 				AC87A7AF220DBAE000622C90 /* ReadVisionView.xib */,
 				ACA4B196221300BD00552A54 /* WhatsHotView.xib */,
 				AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */,
+				ACC68C8F221C4F4F00ED899B /* DailyPrepView.xib */,
 				AC87A785220D94F900622C90 /* IntentViewController.swift */,
 				ACA4B1942212FEAA00552A54 /* WhatsHotViewController.swift */,
 				AC87A7AB220DBA2200622C90 /* ReadVisionViewController.swift */,
 				AC4DA0E5221581E000BAF914 /* UpcomingEventViewController.swift */,
+				ACC68C8D221C4E8B00ED899B /* DailyPrepViewController.swift */,
 			);
 			path = IntentUI;
 			sourceTree = "<group>";
@@ -4041,6 +4054,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AC87A7B0220DBAE000622C90 /* ReadVisionView.xib in Resources */,
+				ACC68C90221C4F4F00ED899B /* DailyPrepView.xib in Resources */,
 				AC4DA0E82215836300BAF914 /* UpcomingEventView.xib in Resources */,
 				ACA4B1892211CDB400552A54 /* Assets.xcassets in Resources */,
 				ACA4B197221300BD00552A54 /* WhatsHotView.xib in Resources */,
@@ -4421,6 +4435,7 @@
 				ACC68C84221C2CB000ED899B /* Calendar+Convenience.swift in Sources */,
 				AC87A77B220D94F800622C90 /* IntentHandler.swift in Sources */,
 				AC87A7A6220D989800622C90 /* ExtensionModel.swift in Sources */,
+				ACC68C8C221C4E3500ED899B /* DailyPrepIntentHandler.swift in Sources */,
 				AC87A7A4220D987B00622C90 /* ExtensionUserDefaults.swift in Sources */,
 				AC87A7A1220D961800622C90 /* ReadVisionIntentHandler.swift in Sources */,
 				ACC68C89221C2F5D00ED899B /* ISODate.swift in Sources */,
@@ -4431,6 +4446,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AC199035221EDF4300D53F01 /* GuideProgressView.swift in Sources */,
+				AC199037221EE05C00D53F01 /* UIColor+Palette.swift in Sources */,
 				ACC68C8A221C2F7000ED899B /* DateFormatter+Convenience.swift in Sources */,
 				AC87A7B2220DBDAC00622C90 /* UIImageView+Extensions.swift in Sources */,
 				ACC68C83221C181300ED899B /* Date+Extension.swift in Sources */,
@@ -4438,9 +4455,12 @@
 				ACC68C88221C2F4B00ED899B /* ISODate.swift in Sources */,
 				ACA4B18D2211D1E900552A54 /* NSUserActivity+Keys.swift in Sources */,
 				AC87A7A5220D987F00622C90 /* ExtensionUserDefaults.swift in Sources */,
+				ACC68C8E221C4E8B00ED899B /* DailyPrepViewController.swift in Sources */,
 				ACA4B1952212FEAA00552A54 /* WhatsHotViewController.swift in Sources */,
 				AC87A7A7220D989A00622C90 /* ExtensionModel.swift in Sources */,
 				ACC68C85221C2CB100ED899B /* Calendar+Convenience.swift in Sources */,
+				AC199036221EDF7F00D53F01 /* UIImage+Convenience.swift in Sources */,
+				AC199038221EE07000D53F01 /* Math.swift in Sources */,
 				AC87A7A3220D981700622C90 /* Intents.intentdefinition in Sources */,
 				AC87A7AD220DBA2200622C90 /* ReadVisionViewController.swift in Sources */,
 				AC87A786220D94F900622C90 /* IntentViewController.swift in Sources */,

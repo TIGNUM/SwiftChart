@@ -34,7 +34,6 @@ extension NotificationID {
     private var componants: (prefix: Prefix, content: String)? {
         let componants = string.components(separatedBy: "#")
         guard componants.count == 2, let prefix = Prefix(rawValue: componants[0]) else { return nil }
-
         return (prefix, componants[1])
     }
 }

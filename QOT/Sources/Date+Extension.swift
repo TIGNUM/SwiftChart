@@ -86,7 +86,6 @@ extension Date {
 
     var minutesSinceMidnight: Int {
         let components = Calendar.current.dateComponents([.hour, .minute], from: self)
-
         return 60 * (components.hour ?? 0) + (components.minute ?? 0)
     }
 
@@ -155,5 +154,13 @@ extension Date {
 
     var isToday: Bool {
         return self.isSameDay(Date())
+    }
+
+    var isWeekend: Bool {
+        return Calendar.current.isDateInWeekend(self)
+    }
+
+    var is24hoursOld: Bool {
+        return Calendar.current.dateComponents([.hour], from: self, to: Date()).hour ?? 0 > 24
     }
 }

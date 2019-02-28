@@ -145,6 +145,10 @@ private extension GuideItemFactory {
         let items = dailyPrepItems(answers: Array(result.answers))
         let content: Guide.Item.Content = .dailyPrep(items: items, feedback: result.feedback,
                                                      whyDPMTitle: nil, whyDPMDescription: nil)
+        let extensionDataManager = ExtensionsDataManager(services: services)
+        extensionDataManager.update(.dailyPrep(items: items,
+                                               feedback: result.feedback,
+                                               displayDate: result.displayAt?.date.date ?? Date()))
         return Guide.Item(status: .done,
                           title: result.title,
                           content: content,
@@ -169,7 +173,8 @@ private extension GuideItemFactory {
         let contentItem = contentCollection?.contentItems.first
         let whyDPMTitle = contentCollection?.title ?? R.string.localized.guideDailyPrepNotFinishedWhyDPM()
         let whyDPMDescription = contentItem?.valueText ?? R.string.localized.guideDailyPrepNotFinishedFeedback()
-        let content: Guide.Item.Content = .dailyPrep(items: items, feedback: nil,
+        let content: Guide.Item.Content = .dailyPrep(items: items,
+                                                     feedback: nil,
                                                      whyDPMTitle: whyDPMTitle,
                                                      whyDPMDescription: whyDPMDescription)
         return Guide.Item(status: .todo,
@@ -241,8 +246,14 @@ private extension GuideItemFactory {
         if isDailyPrep {
             let questions = notification.questionsFor(services: services)
             let items = dailyPrepItems(questions: questions, notification: notification, services: services)
-            content = .dailyPrep(items: items, feedback: notification.dailyPrepFeedback,
-                                 whyDPMTitle: nil, whyDPMDescription: nil)
+            content = .dailyPrep(items: items,
+                                 feedback: notification.dailyPrepFeedback,
+                                 whyDPMTitle: nil,
+                                 whyDPMDescription: nil)
+            let extensionDataManager = ExtensionsDataManager(services: services)
+            extensionDataManager.update(.dailyPrep(items: items,
+                                                   feedback: notification.dailyPrepFeedback,
+                                                   displayDate: notification.displayAt?.utcDate ?? Date()))
         } else {
             content = .learningPlan(text: notification.body, strategiesCompleted: nil)
         }
@@ -270,9 +281,7 @@ private extension GuideItemFactory {
         for question in questions {
             let key = question.key
             let title = question.dailyPrepTitle.replacingOccurrences(of: "#", with: "\n")
-            let item = Guide.DailyPrepItem(result: nil,
-                                           key: key ?? "",
-                                           title: title)
+            let item = Guide.DailyPrepItem(result: nil, key: key ?? "", title: title)
             items.append(item)
         }
         return items
