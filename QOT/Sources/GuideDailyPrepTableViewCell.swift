@@ -141,8 +141,8 @@ private extension GuideDailyPrepTableViewCell {
             recoveryProgressView.progressTintColor = .dailyPrepNullStateGray
             loadLabelsContainer.subviews.forEach { ($0 as? UILabel)?.textColor = .dailyPrepNullStateGray }
             recoveryLabelsContainer.subviews.forEach { ($0 as? UILabel)?.textColor = .dailyPrepNullStateGray }
-            loadProgressView.setProgress(0.3, animated: true)
-            recoveryProgressView.setProgress(0.8, animated: true)
+            loadProgressView.setProgress(0.3, animated: false)
+            recoveryProgressView.setProgress(0.8, animated: false)
         case .done:
             loadProgressView.setGradient(with: [.recoveryGreen, .recoveryRed])
             recoveryProgressView.setGradient(with: [.recoveryRed, .recoveryGreen])
