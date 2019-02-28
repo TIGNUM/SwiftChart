@@ -21,6 +21,7 @@ struct ContentCollectionData {
     let categoryIDs: [Int]
     let thumbnailURLString: String?
     let relatedContentList: [ContentRelationIntermediary]
+    let publishDate: Date?
 }
 
 // MARK: - Parser
@@ -38,5 +39,6 @@ extension ContentCollectionData: DownSyncIntermediary {
         self.layoutInfo = try json.serializeString(at: .layoutInfo)
         self.thumbnailURLString = try json.getItemValue(at: .thumbnail, alongPath: .nullBecomesNil)
         self.relatedContentList = try json.getArray(at: .relatedContents)
+        self.publishDate = try json.getDate(at: .publishDate, alongPath: .nullBecomesNil)
     }
 }

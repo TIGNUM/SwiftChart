@@ -157,6 +157,7 @@ enum JsonKey: String {
     case preparationId
     case prepareAnswers
     case priority
+    case publishDate
     case qotId
     case qotPartnerUserId
     case question

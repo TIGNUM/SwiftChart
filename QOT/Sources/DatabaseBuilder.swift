@@ -48,11 +48,8 @@ class DatabaseBuilder {
     }
 
     func build() {
-        guard let operations = operations else {
-            return
-        }
-
-        networkManager.performAuthenticationRequest(username: "m.karbe@tignum.com", password: "1111") { (error) in
+        guard let operations = operations else { return }
+        networkManager.performAuthenticationRequest(username: "m.karbe@tignum.com", password: "Tignum@1234") { (error) in
             if let error = error {
                 log(error)
             } else {

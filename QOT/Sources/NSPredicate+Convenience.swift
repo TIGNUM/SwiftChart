@@ -16,7 +16,7 @@ extension NSPredicate {
 
     static var unReadArticles: NSPredicate {
         if let date = UserDefault.firstInstallationTimestamp.object as? NSDate {
-            return NSPredicate(format: "contentRead == nil AND modifiedAt > %@", date)
+            return NSPredicate(format: "contentRead == nil AND publishDate > %@", date)
         }
         return NSPredicate(format: "contentRead == nil")
     }
