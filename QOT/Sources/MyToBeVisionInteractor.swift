@@ -112,26 +112,7 @@ extension MyToBeVisionInteractor {
 }
 
 extension MyToBeVisionInteractor: AppStateAccess {
-    func shareMyToBeVision(completion: @escaping (Error?) -> Void) {
-        self.router.showProgressHUD(nil)
-        worker.syncToBeVisionIfNeeded { [weak self] (error) in
-            if error == nil {
-                let networkManager = MyToBeVisionInteractor.appState.networkManager
-                networkManager?.performPartnerSharingRequest(partnerID: 0,
-                                                             sharingType: Partners.SharingType.toBeVision) { result in
-                                                                switch result {
-                                                                case .success(let value):
-                                                                    self?.router.showMailComposer(email: "", subject: value.subject, messageBody: value.body)
-                                                                    completion(nil)
-                                                                case .failure(let error):
-                                                                    completion(error)
-                                                                }
-                                                                self?.router.hideProgressHUD()
-                }
-            } else {
-                completion(error)
-                self?.router.hideProgressHUD()
-            }
-        }
+    func shareMyToBeVision() {
+        self.router.showShareController(body: worker.toBeVisionToShare())
     }
 }

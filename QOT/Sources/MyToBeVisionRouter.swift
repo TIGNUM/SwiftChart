@@ -34,21 +34,22 @@ final class MyToBeVisionRouter: NSObject {
 }
 
 extension MyToBeVisionRouter: MyToBeVisionRouterInterface {
+    func showShareController(body: String) {
+        let activityVC = UIActivityViewController(activityItems: [body], applicationActivities: nil)
+        activityVC.excludedActivityTypes = [UIActivityType.openInIBooks,
+                                            UIActivityType.airDrop,
+                                            UIActivityType.postToTencentWeibo,
+                                            UIActivityType.postToVimeo,
+                                            UIActivityType.postToFlickr,
+                                            UIActivityType.addToReadingList,
+                                            UIActivityType.saveToCameraRoll,
+                                            UIActivityType.assignToContact,
+                                            UIActivityType.postToFacebook,
+                                            UIActivityType.postToTwitter]
+        viewController.present(activityVC, animated: true, completion: nil)
+    }
 
     func close() {
         viewController.dismiss(animated: true, completion: nil)
-    }
-
-    func showMailComposer(email: String, subject: String, messageBody: String) {
-        guard MFMailComposeViewController.canSendMail() == true else {
-            viewController.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))
-            return
-        }
-        let composer = MFMailComposeViewController(pageName: .shareToBeVision)
-        composer.setToRecipients([email])
-        composer.setSubject(subject)
-        composer.setMessageBody(messageBody, isHTML: true)
-        composer.mailComposeDelegate = self.viewController
-        viewController.present(composer, animated: true, completion: nil)
     }
 }

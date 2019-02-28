@@ -11,6 +11,25 @@ import ReactiveKit
 
 final class MyToBeVisionWorker {
 
+    private enum SharingKeys: String {
+        case firstName = "*|FIRSTNAME|*"
+        case tbv = "*|MTBV|*"
+        case genderHerHis = "*|GENDER-HER-HIS|*"
+        case genderSheHe = "*|GENDER-SHE-HE|*"
+        case genderHerHim = "*|GENDER-HER-HIM|*"
+        case genderHerselfHimself = "*|GENDER-HERSELF-HIMSELF|*"
+
+        func pronoun(_ gender: Gender) -> String {
+            switch self {
+            case .genderHerHim: return gender == .female ? "her" : (gender == .male ? "him" : "them")
+            case .genderSheHe: return gender == .female ? "she" : (gender == .male ? "he" : "they")
+            case .genderHerHis: return gender == .female ? "her" : (gender == .male ? "his" : "their")
+            case .genderHerselfHimself: return gender == .female ? "herself" : (gender == .male ? "himself" : "themself")
+            default: return ""
+            }
+        }
+    }
+
     private let services: Services
     private let syncManager: SyncManager
     private let widgetDataManager: ExtensionsDataManager
@@ -58,6 +77,30 @@ final class MyToBeVisionWorker {
 
     func myToBeVision() -> MyToBeVisionModel.Model? {
         return services.userService.myToBeVision()?.model
+    }
+
+    func toBeVisionToShare() -> String {
+        var tbvToSahre = ""
+        if
+            let tbvText = myToBeVision()?.text,
+            let user = services.userService.user(),
+            let gender = Gender.init(rawValue: user.gender),
+            let tbvTemplate = services.contentService.contentItem(id: 104080)?.valueText {
+            tbvToSahre = tbvTemplate.replacingOccurrences(of: SharingKeys.firstName.rawValue,
+                                                          with: user.givenName)
+                .replacingOccurrences(of: SharingKeys.genderHerHim.rawValue,
+                                      with: SharingKeys.genderHerHim.pronoun(gender))
+                .replacingOccurrences(of: SharingKeys.genderHerHim.rawValue,
+                                      with: SharingKeys.genderHerHim.pronoun(gender))
+                .replacingOccurrences(of: SharingKeys.genderSheHe.rawValue,
+                                      with: SharingKeys.genderSheHe.pronoun(gender))
+                .replacingOccurrences(of: SharingKeys.genderHerHis.rawValue,
+                                      with: SharingKeys.genderHerHis.pronoun(gender))
+                .replacingOccurrences(of: SharingKeys.genderHerselfHimself.rawValue,
+                                      with: SharingKeys.genderHerselfHimself.pronoun(gender))
+                .replacingOccurrences(of: SharingKeys.tbv.rawValue, with: tbvText)
+        }
+        return tbvToSahre
     }
 
     func setMyToBeVisionReminder(_ remind: Bool) {

@@ -27,7 +27,7 @@ protocol MyToBeVisionPresenterInterface {
 protocol MyToBeVisionInteractorInterface: Interactor {
     func saveToBeVision(image: UIImage?, toBeVision: MyToBeVisionModel.Model)
     func makeVisionGeneratorAndPresent()
-    func shareMyToBeVision(completion: @escaping (Error?) -> Void)
+    func shareMyToBeVision()
     func setLaunchOptions()
     func isReady() -> Bool
 
@@ -40,5 +40,5 @@ protocol MyToBeVisionInteractorInterface: Interactor {
 
 protocol MyToBeVisionRouterInterface {
     func close()
-    func showMailComposer(email: String, subject: String, messageBody: String)
+    func showShareController(body: String)
 }

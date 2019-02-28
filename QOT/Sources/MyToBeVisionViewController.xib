@@ -278,7 +278,7 @@
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="fhs-xD-0nf" secondAttribute="trailing" id="v8q-L3-CJN"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <point key="canvasLocation" x="-120.8" y="248.72563718140933"/>
+            <point key="canvasLocation" x="-120.8" y="248.27586206896552"/>
         </view>
     </objects>
     <resources>

@@ -249,11 +249,7 @@ private extension MyToBeVisionViewController {
     }
 
     @IBAction func didTapShareButton() {
-        interactor?.shareMyToBeVision { error in
-            if let error = error {
-                self.showAlert(type: .message(error.localizedDescription))
-            }
-        }
+        interactor?.shareMyToBeVision()
     }
 }
 
