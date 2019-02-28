@@ -11,6 +11,10 @@ import Alamofire
 
 typealias AuthenticationCompletion = (Result<String, NetworkError>) -> Void
 
+protocol AuthenticatorDelegate: class {
+    func didAutoLogin()
+}
+
 final class Authenticator {
 
     private let queue = DispatchQueue(label: "Authenticator", qos: .background)
@@ -21,6 +25,7 @@ final class Authenticator {
     private let notificationCenter: NotificationCenter
     private var completions: [AuthenticationCompletion] = []
     private var currentRequest: (token: Token, request: DataRequest)?
+    weak var delegate: AuthenticatorDelegate?
 
     init(sessionManager: SessionManager,
          requestBuilder: URLRequestBuilder,
@@ -60,7 +65,6 @@ private extension Authenticator {
 
     func _authenticate(username: String, password: String, completion: @escaping AuthenticationCompletion) {
         dispatchPrecondition(condition: .onQueue(queue))
-
         cancelCurrentRequest()
         completions.append(completion)
         authenticateAndCallCompletions(username: username, password: password, saveCredentials: true)
@@ -74,6 +78,7 @@ private extension Authenticator {
         } else if let existingAuthToken = validAuthToken(now: now) {
             completion(.success(existingAuthToken))
         } else if let (username, password) = loginCredentials() {
+            delegate?.didAutoLogin()
             completions.append(completion)
             authenticateAndCallCompletions(username: username, password: password, saveCredentials: false)
         } else {
@@ -83,7 +88,6 @@ private extension Authenticator {
 
     private func cancelCurrentRequest() {
         dispatchPrecondition(condition: .onQueue(queue))
-
         if let request = currentRequest {
             request.token.invalidate()
             request.request.cancel()
@@ -131,25 +135,21 @@ private extension Authenticator {
 
     private func save(username: String, password: String, authToken: String) {
         dispatchPrecondition(condition: .onQueue(queue))
-
         store.save(username: username, password: password, authToken: authToken)
     }
 
     private func save(authToken: String) {
         dispatchPrecondition(condition: .onQueue(queue))
-
         store.save(authToken: authToken)
     }
 
     private func clearLoginCredentialsAndAuthToken() {
         dispatchPrecondition(condition: .onQueue(queue))
-
         store.clear()
     }
 
     private func performCompletions(with result: Result<String, NetworkError>) {
         dispatchPrecondition(condition: .onQueue(queue))
-
         for completion in completions {
             DispatchQueue.main.async {
                 completion(result)
@@ -160,7 +160,6 @@ private extension Authenticator {
 
     private func validAuthToken(now: Date) -> String? {
         dispatchPrecondition(condition: .onQueue(queue))
-
         guard let existingToken = store.authToken() else { return nil }
         let isValid = authTokenValidator.isValid(token: existingToken, now: now)
         return isValid ? existingToken : nil
@@ -168,7 +167,6 @@ private extension Authenticator {
 
     private func loginCredentials() -> (username: String, password: String)? {
         dispatchPrecondition(condition: .onQueue(queue))
-
         return store.loginCredentials()
     }
 }

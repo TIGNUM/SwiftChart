@@ -222,6 +222,8 @@ struct AppEventRequest: URLRequestBuildable {
         case termination = "TERMINATION"
         case login = "APP_LOGIN"
         case logout = "APP_LOGOUT"
+        case automaticLogin = "APP_LOGIN_AUTO"
+        case automaticLogout = "APP_LOGOUT_AUTO"
         case background = "BACKGROUND"
         case foreground = "FOREGROUND"
         case didBecomeActive = "DID_BECOME_ACTIVE"
