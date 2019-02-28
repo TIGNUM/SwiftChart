@@ -219,7 +219,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         let message = "There was a problem initializing the app's data. Please restart the app and try again"
         self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
             exit(0)
-        }, handlerDestructive: nil)
+        })
     }
 
     func showApp(loginViewController: LoginViewController?) {
@@ -231,8 +231,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
         self.registerRemoteNotifications()
         self.calendarImportManager.importEvents()
-        if self.isRestart == false {
-            self.startTabBarCoordinator(services: services!, permissionsManager: self.permissionsManager)
+        if self.isRestart == false, let services = services {
+            self.startTabBarCoordinator(services: services, permissionsManager: self.permissionsManager)
         } else {
             self.isRestart = false
             self.windowManager.rootViewController(atLevel: .normal)?.dismiss(animated: true, completion: nil)
@@ -878,7 +878,7 @@ extension AppCoordinator {
     func presentNotificationsSettings() {
         AppDelegate.topViewController()?.showAlert(type: .changeNotifications, handler: {
             UIApplication.openAppSettings()
-        }, handlerDestructive: nil)
+        })
     }
 
     func navigateToNotificationsSettings() {
