@@ -167,30 +167,37 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
         var didHandleActivity = true
+        guard appCoordinator.isAlreadyInitialised == false else { return self.handleActivity(userActivity: userActivity) }
         appCoordinator.start { [weak self] in
-            switch userActivity.activityType {
-            case NSUserActivity.ActivityType.toBeVision.rawValue:
-                self?.appCoordinator.presentToBeVision(articleItemController: nil)
-            case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
-                self?.appCoordinator.presentToBeVisionGenerator()
-            case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
-                let id = Int(userActivity.contentAttributeSet?.keywords?.first ?? "0") ?? 0
-                self?.appCoordinator.presentWhatsHotArticle(with: id)
-            case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
-                self?.appCoordinator.navigate(to: .init(tabBar: .learn, topTabBar: .whatsHotList))
-            case NSUserActivity.ActivityType.eventsList.rawValue:
-                self?.appCoordinator.navigate(to: .init(tabBar: .prepare, topTabBar: .myPrep))
-            case NSUserActivity.ActivityType.event.rawValue:
-                let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
-                self?.appCoordinator.presentPreparationCheckList(localID: id)
-            case NSUserActivity.ActivityType.dailyPrep.rawValue:
-                let groupID: Int = Date().isWeekend ? 100010 : 100002
-                let date: ISODate = Calendar.current.isoDate(from: Date())
-                self?.appCoordinator.presentMorningInterview(groupID: groupID, date: date)
-                return
+            didHandleActivity = self?.handleActivity(userActivity: userActivity) ?? false
+        }
+        return didHandleActivity
+    }
+
+    private func handleActivity(userActivity: NSUserActivity) -> Bool {
+        var didHandleActivity = true
+        switch userActivity.activityType {
+        case NSUserActivity.ActivityType.toBeVision.rawValue:
+            self.appCoordinator.presentToBeVision(articleItemController: nil)
+        case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
+            self.appCoordinator.presentToBeVisionGenerator()
+        case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
+            let id = Int(userActivity.contentAttributeSet?.keywords?.first ?? "0") ?? 0
+            self.appCoordinator.presentWhatsHotArticle(with: id)
+        case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
+            self.appCoordinator.navigate(to: .init(tabBar: .learn, topTabBar: .whatsHotList))
+        case NSUserActivity.ActivityType.eventsList.rawValue:
+            self.appCoordinator.navigate(to: .init(tabBar: .prepare, topTabBar: .myPrep))
+        case NSUserActivity.ActivityType.event.rawValue:
+            let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
+            self.appCoordinator.presentPreparationCheckList(localID: id)
+        case NSUserActivity.ActivityType.dailyPrep.rawValue:
+            let groupID: Int = Date().isWeekend ? 100010 : 100002
+            let date: ISODate = Calendar.current.isoDate(from: Date())
+            self.appCoordinator.presentMorningInterview(groupID: groupID, date: date)
+            return true
             default:
-                didHandleActivity = false
-            }
+            didHandleActivity = false
         }
         return didHandleActivity
     }

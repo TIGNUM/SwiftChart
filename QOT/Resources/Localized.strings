@@ -79,7 +79,7 @@
 "SiriShortcuts.WhatsHotArticle.Title" = "Your What's Hot? Article";
 "SiriShortcuts.ToBeVision.suggestedInvocation" = "Read my To Be Vision";
 "SiriShortcuts.WhatsHotArticle.suggestedInvocation" = "Show me the latest What's Hot? article";
-"SiriShortcuts.UpcomingEvent.suggestedInvocation" = "What's my Upcoming Preparation Event?";
+"SiriShortcuts.UpcomingEvent.suggestedInvocation" = "What's my Upcoming QOT Preparation Event?";
 "SiriShortcuts.DailyPrep.suggestedInvocation" = "Show my Morning Interview feedback";
 
 "Tab.Bar.Item.Guide" = "GUIDE";
@@ -482,7 +482,6 @@
 "signing.password.hint.character" = "• Eight characters minimum";
 "signing.password.hint.uppercase" = "• One uppercase character";
 "signing.password.hint.special" = "• One special character";
-
 
 "signing.profile.title" = "PROFILE DETAILS";
 "signing.profile.subtitle" = "We use your email to securely verify your account and to protect all data you share with us.";

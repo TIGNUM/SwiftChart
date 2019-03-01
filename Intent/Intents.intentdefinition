@@ -81,7 +81,7 @@
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>You need to log into QOT first</string>
+						<string>You need to sign in to QOT first</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>iWNwww</string>
 						<key>INIntentResponseCodeName</key>
@@ -232,7 +232,7 @@
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>You need to log into QOT first</string>
+						<string>You need to sign in to QOT first</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>YdYXEb</string>
 						<key>INIntentResponseCodeName</key>
@@ -433,7 +433,7 @@
 					</dict>
 					<dict>
 						<key>INIntentResponseCodeFormatString</key>
-						<string>You need to log into QOT first</string>
+						<string>You need to sign in to QOT first</string>
 						<key>INIntentResponseCodeFormatStringID</key>
 						<string>pRjY1w</string>
 						<key>INIntentResponseCodeName</key>
@@ -581,6 +581,16 @@
 						<string>YQIyt1</string>
 						<key>INIntentResponseCodeName</key>
 						<string>notCompleted</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>You need to sign in to QOT first</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>vaqqu5</string>
+						<key>INIntentResponseCodeName</key>
+						<string>signedOut</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
 					</dict>

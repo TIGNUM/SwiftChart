@@ -35,7 +35,7 @@ final class SiriShortcutsViewController: UIViewController {
         UIApplication.shared.setStatusBarStyle(.lightContent)
         navigationItem.title = R.string.localized.settingsSiriShortcutsTitle()
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()

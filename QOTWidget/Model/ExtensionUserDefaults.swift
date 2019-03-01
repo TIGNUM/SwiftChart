@@ -46,6 +46,10 @@ enum ExtensionUserDefaults: String, CaseIterable {
         }
     }
 
+    static var isSignedIn: Bool {
+        return ExtensionUserDefaults.isUserSignedIn.value(for: .siri) as? Bool ?? false
+    }
+
     // MARK: - GET
 
     func value(for suiteName: SuiteName) -> Any? {

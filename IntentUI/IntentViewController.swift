@@ -24,6 +24,10 @@ final class IntentViewController: UIViewController, INUIHostedViewControlling {
                        interactiveBehavior: INUIInteractiveBehavior,
                        context: INUIHostedViewContext,
                        completion: @escaping (Bool, Set<INParameter>, CGSize) -> Void) {
+        guard ExtensionUserDefaults.isSignedIn == true else {
+           completion(true, parameters, .zero)
+           return
+        }
         if let response = interaction.intentResponse as? ReadVisionIntentResponse {
             let viewController = ReadVisionViewController(for: response)
             let shouldDisplay = response.code != .noVision

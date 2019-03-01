@@ -131,8 +131,8 @@ final class MyPrepViewModel {
 
     func deleteItem(at indexPath: IndexPath) throws {
         try services.preparationService.deletePreparation(withLocalID: item(at: indexPath).localID)
-        refresh()
         widgetDataManager.update(.upcomingEvent)
+        refresh()
     }
 
     func isReady() -> Bool {

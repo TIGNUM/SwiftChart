@@ -11,6 +11,11 @@ import Foundation
 final class UpcomingEventHandler: NSObject, UpcomingEventIntentHandling {
     
     func handle(intent: UpcomingEventIntent, completion: @escaping (UpcomingEventIntentResponse) -> Void) {
+        guard ExtensionUserDefaults.isSignedIn == true else {
+            let response = UpcomingEventIntentResponse(code: .signedOut, userActivity: nil)
+            completion(response)
+            return
+        }
         if let events: [ExtensionModel.UpcomingEvent] = ExtensionUserDefaults.object(for: .siri, key: .upcomingEvents) {
             if events.count > 0 {
                 let response = responseForOneEvent(events.first)

@@ -12,6 +12,11 @@ import Intents
 final class ReadVisionIntentHandler: NSObject, ReadVisionIntentHandling {
 
     func handle(intent: ReadVisionIntent, completion: @escaping (ReadVisionIntentResponse) -> Void) {
+        guard ExtensionUserDefaults.isSignedIn == true else {
+            let response = ReadVisionIntentResponse(code: .signedOut, userActivity: nil)
+            completion(response)
+            return
+        }
         guard let vision: ExtensionModel.ToBeVision = ExtensionUserDefaults.object(for: .siri, key: .toBeVision) else {
             completion(ReadVisionIntentResponse(code: .failure, userActivity: nil))
             return

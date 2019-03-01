@@ -11,8 +11,12 @@ import Foundation
 final class DailyPrepIntentHandler: NSObject, DailyPrepIntentHandling {
 
     func handle(intent: DailyPrepIntent, completion: @escaping (DailyPrepIntentResponse) -> Void) {
-        if
-            let dailyPrepResult: ExtensionModel.DailyPrep = ExtensionUserDefaults.object(for: .siri, key: .dailyPrep),
+        guard ExtensionUserDefaults.isSignedIn == true else {
+            let response = DailyPrepIntentResponse(code: .signedOut, userActivity: nil)
+            completion(response)
+            return
+        }
+        if let dailyPrepResult: ExtensionModel.DailyPrep = ExtensionUserDefaults.object(for: .siri, key: .dailyPrep),
             dailyPrepResult.displayDate.is24hoursOld == false {
             let response = completedResponse(for: dailyPrepResult)
             completion(response)

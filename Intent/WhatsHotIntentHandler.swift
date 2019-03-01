@@ -12,6 +12,11 @@ import Intents
 final class WhatsHotIntentHandler: NSObject, WhatsHotIntentHandling {
 
     func handle(intent: WhatsHotIntent, completion: @escaping (WhatsHotIntentResponse) -> Void) {
+        guard ExtensionUserDefaults.isSignedIn == true else {
+            let response = WhatsHotIntentResponse(code: .signedOut, userActivity: nil)
+            completion(response)
+            return
+        }
         if let articles: ArticleCollectionViewData = ExtensionUserDefaults.object(for: .siri, key: .whatsHot) {
             let unReadArticles = articles.items.filter { $0.newArticle == true }
             if unReadArticles.count == 1 {

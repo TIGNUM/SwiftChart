@@ -41,6 +41,10 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     lazy var logoutNotificationHandler = NotificationHandler(name: .logoutNotification)
     lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: networkManager,
                                                                  credentialsManager: credentialsManager)
+    var isAlreadyInitialised: Bool {
+        return services != nil
+    }
+
     weak var tabBarCoordinator: TabBarCoordinator?
     lazy var networkManager: NetworkManager = {
         let manager = NetworkManager(delegate: self, authenticator: authenticator)
