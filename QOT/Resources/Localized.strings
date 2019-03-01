@@ -47,6 +47,8 @@
 "Settings.Security.Copyrights.Title" = "CONTENT\nAND\nCOPYRIGHTS";
 "Settings.Security.Privacy.Policy.Title" = "PRIVACY\nPOLICY";
 
+"Settings.SiriShortcuts.Title" = "SIRI SHORTCUTS";
+
 "Settings.Calendar.Section.OnThisDevice.Header" = "FROM THIS DEVICE";
 "Settings.Calendar.Section.OnOtherDevices.Header" = "FROM OTHER DEVICES";
 
@@ -70,6 +72,15 @@
 "Sidebar.Title.Intro.Sliders" = "TUTORIAL";
 "Sidebar.User.Titles.Member.Since" = "MEMBER SINCE";
 "Sidebar.User.Titles.Member.QOT.Usage" = "QOT USAGE";
+
+"SiriShortcuts.ToBeVision.Title" = "Your To Be Vision";
+"SiriShortcuts.UpcomingEventPrep.Title" = "Your Upcoming Event Preparation";
+"SiriShortcuts.DailyPrep.Title" = "Your Morning Interview Feedback";
+"SiriShortcuts.WhatsHotArticle.Title" = "Your What's Hot? Article";
+"SiriShortcuts.ToBeVision.suggestedInvocation" = "Read my To Be Vision";
+"SiriShortcuts.WhatsHotArticle.suggestedInvocation" = "Show me the latest What's Hot? article";
+"SiriShortcuts.UpcomingEvent.suggestedInvocation" = "What's my Upcoming Preparation Event?";
+"SiriShortcuts.DailyPrep.suggestedInvocation" = "Show my Morning Interview feedback";
 
 "Tab.Bar.Item.Guide" = "GUIDE";
 "Tab.Bar.Item.Learn" = "LEARN";

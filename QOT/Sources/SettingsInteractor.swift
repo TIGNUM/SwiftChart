@@ -10,9 +10,9 @@ import Foundation
 
 final class SettingsInteractor {
 
-	let worker: SettingsWorker
-    let router: SettingsRouterInterface
-    let presenter: SettingsPresenterInterface
+    private let worker: SettingsWorker
+    private let router: SettingsRouterInterface
+    private let presenter: SettingsPresenterInterface
 
 	init(worker: SettingsWorker, router: SettingsRouterInterface, presenter: SettingsPresenterInterface) {
 		self.worker = worker

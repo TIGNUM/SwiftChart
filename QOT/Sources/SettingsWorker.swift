@@ -10,12 +10,18 @@ import Foundation
 
 final class SettingsWorker {
 
+    // MARK: - Properties
+
     private let services: Services
+
+    // MARK: - Init
 
     init(services: Services) {
         self.services = services
         NotificationCenter.default.post(Notification(name: .startSyncCalendarRelatedData))
     }
+
+    // MARK: - Actions
 
     func settings() -> SettingsModel {
         return SettingsModel(services: services)

@@ -15,9 +15,10 @@ struct SettingsModel {
         case notifications
         case calendars
         case sensors
+        case siriShortcuts
 
         static var settingsValues: [Setting] {
-            return [.permissions, .notifications, .calendars, .sensors]
+            return [.permissions, .notifications, .calendars, .sensors, .siriShortcuts]
         }
 
         var title: String {
@@ -26,6 +27,7 @@ struct SettingsModel {
             case .notifications: return R.string.localized.settingsTitleNotifications()
             case .calendars: return R.string.localized.settingsGeneralCalendarTitle()
             case .sensors: return R.string.localized.sidebarTitleSensor()
+            case .siriShortcuts: return R.string.localized.settingsSiriShortcutsTitle()
             }
         }
 

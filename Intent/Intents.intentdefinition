@@ -22,7 +22,7 @@
 			<key>INIntentDescriptionID</key>
 			<string>FCJPbG</string>
 			<key>INIntentLastParameterTag</key>
-			<integer>0</integer>
+			<integer>1</integer>
 			<key>INIntentName</key>
 			<string>ReadVision</string>
 			<key>INIntentParameterCombinations</key>
@@ -76,6 +76,16 @@
 						<string>9OQ8lu</string>
 						<key>INIntentResponseCodeName</key>
 						<string>noVision</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>You need to log into QOT first</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>iWNwww</string>
+						<key>INIntentResponseCodeName</key>
+						<string>signedOut</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
 					</dict>
@@ -217,6 +227,16 @@
 						<string>bLUYM8</string>
 						<key>INIntentResponseCodeName</key>
 						<string>noNewArticles</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>You need to log into QOT first</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>YdYXEb</string>
+						<key>INIntentResponseCodeName</key>
+						<string>signedOut</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
 					</dict>
@@ -408,6 +428,16 @@
 						<string>Eqwor5</string>
 						<key>INIntentResponseCodeName</key>
 						<string>noUpcomingEvents</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeFormatString</key>
+						<string>You need to log into QOT first</string>
+						<key>INIntentResponseCodeFormatStringID</key>
+						<string>pRjY1w</string>
+						<key>INIntentResponseCodeName</key>
+						<string>signedOut</string>
 						<key>INIntentResponseCodeSuccess</key>
 						<true/>
 					</dict>

@@ -41,6 +41,10 @@ extension SettingsRouter: SettingsRouterInterface {
             let configurator = SensorConfigurator.make()
             let sensorViewController = SensorViewController(configure: configurator)
             settingsViewController.pushToStart(childViewController: sensorViewController)
+        case .siriShortcuts:
+            let configurator = SiriShortcutsConfigurator.make()
+            let siriShortcutsViewController = SiriShortcutsViewController(configure: configurator, services: services)
+            settingsViewController.pushToStart(childViewController: siriShortcutsViewController)
         }
     }
 }
