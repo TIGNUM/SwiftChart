@@ -57,7 +57,6 @@ final class DownSyncTask<T>: SyncTask where T: SyncableObject, T: DownSyncable, 
                         self?.fetchRemoteChanges(syncToken: startSyncResult.syncToken, syncDate: lastSyncDate) { (remoteChangesResult) in
                             switch remoteChangesResult {
                             case .success(let (changes, syncToken)):
-                                self?.confirmDownSync(syncToken: syncToken)
                                 self?.importChanges(changes: changes, syncDate: startSyncResult.syncDate) { (error) in
                                     completion(error)
                                 }
@@ -97,22 +96,6 @@ final class DownSyncTask<T>: SyncTask where T: SyncableObject, T: DownSyncable, 
                 completion(.success(result))
             case .failure(let error):
                 completion(.failure(.downSyncFetchIntermediatesFailed(type: syncDescription, error: error)))
-            }
-        }
-    }
-
-    private func confirmDownSync(syncToken: String) {
-        guard isCancelled == false else {
-            return
-        }
-
-        let endpoint = DownSyncConfirmRequest(endpoint: .downSyncConfirm, syncToken: syncToken)
-        currentRequest = networkManager.request(endpoint, parser: DownSyncComplete.parse) { result in
-            switch result {
-            case .success:
-                break
-            case .failure(let error):
-                log("Down sync confirm error: \(error)")
             }
         }
     }
