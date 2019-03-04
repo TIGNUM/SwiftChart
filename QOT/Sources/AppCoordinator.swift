@@ -885,6 +885,14 @@ extension AppCoordinator {
         })
     }
 
+    func navigateToSiriSettings() {
+        guard let services = services else { return }
+        let configurator = SiriShortcutsConfigurator.make()
+        let siriShortcutsViewController = SiriShortcutsViewController(configure: configurator, services: services)
+        siriShortcutsViewController.hidesBottomBarWhenPushed = true
+        AppDelegate.topViewController()?.pushToStart(childViewController: siriShortcutsViewController)
+    }
+
     func navigateToNotificationsSettings() {
         guard
             let services = services,

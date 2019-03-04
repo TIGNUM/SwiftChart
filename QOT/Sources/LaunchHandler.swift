@@ -42,8 +42,9 @@ final class LaunchHandler {
         }
 
         switch scheme {
-        case .dailyPrep:
-            dailyPrep(groupID: scheme.queryParameter(url: url), notificationID: notificationID, guideItem: guideItem)
+        case .dailyPrep: dailyPrep(groupID: scheme.queryParameter(url: url),
+                                   notificationID: notificationID,
+                                   guideItem: guideItem)
         case .fitbit: fitbit(accessToken: scheme.queryParameter(url: url))
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
         case .randomContent: randomContent(url: url, scheme: scheme, guideItem: guideItem)
@@ -81,6 +82,7 @@ final class LaunchHandler {
         case .latestWhatsHotArticle: navigate(to: scheme.destination)
         case .contentItem: contentItem(url: url, scheme: scheme, searchViewController: searchViewController)
         case .signingVerificationCode: signingVerificationCode(url: url)
+        case .siriSettings: appDelegate.appCoordinator.navigateToSiriSettings()
         default:
             return
         }

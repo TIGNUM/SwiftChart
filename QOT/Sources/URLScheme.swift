@@ -47,6 +47,7 @@ enum URLScheme: String {
     case fitbitApp = "fitbit"
     case signingVerificationCode = "verificationCode"
     case profile = "profile"
+    case siriSettings = "siri-settings"
 
     var queryName: String {
         switch self {
@@ -84,7 +85,8 @@ enum URLScheme: String {
              .library,
              .guide,
              .latestWhatsHotArticle,
-             .profile: return ""
+             .profile,
+             .siriSettings: return ""
         default:
             return ""
         }
@@ -163,6 +165,8 @@ enum URLScheme: String {
             host == URLScheme.weeklyChoices.rawValue ||
             host == URLScheme.featureExplainer.rawValue ||
             host == URLScheme.profile.rawValue ||
-            host == URLScheme.comingEvent.rawValue
+            host == URLScheme.comingEvent.rawValue ||
+            host == URLScheme.siriSettings.rawValue ||
+            host == URLScheme.contentCategory.rawValue
     }
 }
