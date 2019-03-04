@@ -228,10 +228,14 @@ struct AppEventRequest: URLRequestBuildable {
         case foreground = "FOREGROUND"
         case didBecomeActive = "DID_BECOME_ACTIVE"
         case willResignActive = "WILL_RESIGN_ACTIVE"
+        case siriToBeVision = "SIRI_TOBEVISION"
+        case siriWhatsHot = "SIRI_WHATSHOT"
+        case siriUpcomingEvent = "SIRI_UPCOMINGEVENT"
+        case siriDailyPrep = "SIRI_DAILYPREP"
     }
 
-    init(eventType: EventType) {
-        self.paramaters = [.eventDate: DateFormatter.iso8601.string(from: Date()),
+    init(eventType: EventType, date: Date) {
+        self.paramaters = [.eventDate: DateFormatter.iso8601.string(from: date),
                            .qotAppEventType: eventType.rawValue]
     }
 }

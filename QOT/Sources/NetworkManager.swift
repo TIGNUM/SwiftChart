@@ -201,9 +201,10 @@ final class NetworkManager {
     }
 
     @discardableResult func performAppEventRequest(appEvent: AppEventRequest.EventType,
+                                                   date: Date = Date(),
                                                    completion: @escaping (NetworkError?) -> Void) -> SerialRequest {
         let current = SerialRequest()
-        performAuthenticatingRequest(AppEventRequest(eventType: appEvent),
+        performAuthenticatingRequest(AppEventRequest(eventType: appEvent, date: date),
                                      parser: GenericParser.parse,
                                      notifyDelegateOfFailure: false,
                                      current: current) { (result) in

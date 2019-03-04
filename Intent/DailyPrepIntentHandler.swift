@@ -16,6 +16,7 @@ final class DailyPrepIntentHandler: NSObject, DailyPrepIntentHandling {
             completion(response)
             return
         }
+        track(intent)
         if let dailyPrepResult: ExtensionModel.DailyPrep = ExtensionUserDefaults.object(for: .siri, key: .dailyPrep),
             dailyPrepResult.displayDate.is24hoursOld == false {
             let response = completedResponse(for: dailyPrepResult)
@@ -29,14 +30,14 @@ final class DailyPrepIntentHandler: NSObject, DailyPrepIntentHandling {
 // MARK: - Private
 
 private extension DailyPrepIntentHandler {
-    
+
     func completedResponse(for dailyPrepResult: ExtensionModel.DailyPrep) -> DailyPrepIntentResponse {
         let response = DailyPrepIntentResponse.success(feedback: dailyPrepResult.feedback ?? "")
         response.loadValue = NSNumber(value: dailyPrepResult.loadValue)
         response.recoveryValue = NSNumber(value: dailyPrepResult.recoveryValue)
         return response
     }
-    
+
     func incompletedResponse() -> DailyPrepIntentResponse {
         let response = DailyPrepIntentResponse(code: .notCompleted, userActivity: nil)
         response.userActivity = NSUserActivity.activity(for: .dailyPrep)

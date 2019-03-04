@@ -20,6 +20,7 @@ enum ExtensionUserDefaults: String, CaseIterable {
     case whatsHot = "qot.userdefault.key.whatshotarticles"
     case upcomingEvents = "qot.userdefault.key.upcomingEvents"
     case dailyPrep = "qot.userdefault.key.dailyPrep"
+    case siriAppEvents = "qot.userdefault.key.siriAppEvents"
 
     // MARK: - DELETE
 

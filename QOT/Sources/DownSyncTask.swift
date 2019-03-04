@@ -56,7 +56,7 @@ final class DownSyncTask<T>: SyncTask where T: SyncableObject, T: DownSyncable, 
                     case .success(let startSyncResult):
                         self?.fetchRemoteChanges(syncToken: startSyncResult.syncToken, syncDate: lastSyncDate) { (remoteChangesResult) in
                             switch remoteChangesResult {
-                            case .success(let (changes, syncToken)):
+                            case .success(let (changes, _)):
                                 self?.importChanges(changes: changes, syncDate: startSyncResult.syncDate) { (error) in
                                     completion(error)
                                 }

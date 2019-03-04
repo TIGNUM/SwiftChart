@@ -41,9 +41,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     lazy var logoutNotificationHandler = NotificationHandler(name: .logoutNotification)
     lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: networkManager,
                                                                  credentialsManager: credentialsManager)
-    var isAlreadyInitialised: Bool {
-        return services != nil
-    }
 
     weak var tabBarCoordinator: TabBarCoordinator?
     lazy var networkManager: NetworkManager = {
@@ -308,8 +305,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         }
     }
 
-    func sendAppEvent(_ event: AppEventRequest.EventType) {
-        networkManager.performAppEventRequest(appEvent: event) { (error) in
+    func sendAppEvent(_ event: AppEventRequest.EventType, date: Date = Date()) {
+        networkManager.performAppEventRequest(appEvent: event, date: date) { (error) in
             if error != nil {
                 log("Failed to performAppEventRequest for event: \(event.rawValue) with: \(String(describing: error))",
                     level: .error)

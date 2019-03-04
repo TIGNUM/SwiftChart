@@ -17,6 +17,7 @@ final class WhatsHotIntentHandler: NSObject, WhatsHotIntentHandling {
             completion(response)
             return
         }
+        track(intent)
         if let articles: ArticleCollectionViewData = ExtensionUserDefaults.object(for: .siri, key: .whatsHot) {
             let unReadArticles = articles.items.filter { $0.newArticle == true }
             if unReadArticles.count == 1 {

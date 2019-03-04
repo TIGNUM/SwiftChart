@@ -16,14 +16,17 @@ final class UpcomingEventHandler: NSObject, UpcomingEventIntentHandling {
             completion(response)
             return
         }
+        track(intent)
         if let events: [ExtensionModel.UpcomingEvent] = ExtensionUserDefaults.object(for: .siri, key: .upcomingEvents) {
             if events.count > 0 {
                 let response = responseForOneEvent(events.first)
                 completion(response)
+                return
             } else {
                 let response = UpcomingEventIntentResponse(code: .noUpcomingEvents, userActivity: nil)
                 response.userActivity = NSUserActivity.activity(for: .eventsList)
                 completion(response)
+                return
             }
         }
         completion(UpcomingEventIntentResponse(code: .failure, userActivity: nil))

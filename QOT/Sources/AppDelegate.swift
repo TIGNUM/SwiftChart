@@ -103,6 +103,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
                 log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
             #endif
             appCoordinator.sendAppEvent(.start)
+            sendSiriEvents()
             return true
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
@@ -140,6 +141,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             QOTUsageTimer.sharedInstance.startTimer()
             appCoordinator.appDidBecomeActive()
             checkVersionIfNeeded()
+            sendSiriEvents()
             appCoordinator.sendAppEvent(.didBecomeActive)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
@@ -166,40 +168,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     func application(_ application: UIApplication,
                      continue userActivity: NSUserActivity,
                      restorationHandler: @escaping ([Any]?) -> Void) -> Bool {
-        var didHandleActivity = true
-        guard appCoordinator.isAlreadyInitialised == false else { return self.handleActivity(userActivity: userActivity) }
-        appCoordinator.start { [weak self] in
-            didHandleActivity = self?.handleActivity(userActivity: userActivity) ?? false
-        }
-        return didHandleActivity
-    }
-
-    private func handleActivity(userActivity: NSUserActivity) -> Bool {
-        var didHandleActivity = true
-        switch userActivity.activityType {
-        case NSUserActivity.ActivityType.toBeVision.rawValue:
-            self.appCoordinator.presentToBeVision(articleItemController: nil)
-        case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
-            self.appCoordinator.presentToBeVisionGenerator()
-        case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
-            let id = Int(userActivity.contentAttributeSet?.keywords?.first ?? "0") ?? 0
-            self.appCoordinator.presentWhatsHotArticle(with: id)
-        case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
-            self.appCoordinator.navigate(to: .init(tabBar: .learn, topTabBar: .whatsHotList))
-        case NSUserActivity.ActivityType.eventsList.rawValue:
-            self.appCoordinator.navigate(to: .init(tabBar: .prepare, topTabBar: .myPrep))
-        case NSUserActivity.ActivityType.event.rawValue:
-            let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
-            self.appCoordinator.presentPreparationCheckList(localID: id)
-        case NSUserActivity.ActivityType.dailyPrep.rawValue:
-            let groupID: Int = Date().isWeekend ? 100010 : 100002
-            let date: ISODate = Calendar.current.isoDate(from: Date())
-            self.appCoordinator.presentMorningInterview(groupID: groupID, date: date)
-            return true
-            default:
-            didHandleActivity = false
-        }
-        return didHandleActivity
+        return handleActivity(userActivity: userActivity)
     }
 
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
@@ -381,5 +350,63 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             unhandledNotifications.append(response.notification)
         }
         completionHandler()
+    }
+}
+
+// MARK: - NSUserActivity
+
+extension AppDelegate {
+
+    private func handleActivity(userActivity: NSUserActivity) -> Bool {
+        var didHandleActivity = true
+        appCoordinator.start { [weak self] in
+            switch userActivity.activityType {
+            case NSUserActivity.ActivityType.toBeVision.rawValue:
+                self?.appCoordinator.presentToBeVision(articleItemController: nil)
+            case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
+                self?.appCoordinator.presentToBeVisionGenerator()
+            case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
+                let id = Int(userActivity.contentAttributeSet?.keywords?.first ?? "0") ?? 0
+                self?.appCoordinator.presentWhatsHotArticle(with: id)
+            case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
+                self?.appCoordinator.navigate(to: .init(tabBar: .learn, topTabBar: .whatsHotList))
+            case NSUserActivity.ActivityType.eventsList.rawValue:
+                self?.appCoordinator.navigate(to: .init(tabBar: .prepare, topTabBar: .myPrep))
+            case NSUserActivity.ActivityType.event.rawValue:
+                let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
+                self?.appCoordinator.presentPreparationCheckList(localID: id)
+            case NSUserActivity.ActivityType.dailyPrep.rawValue:
+                let groupID: Int = Date().isWeekend ? 100010 : 100002
+                let date: ISODate = Calendar.current.isoDate(from: Date())
+                self?.appCoordinator.presentMorningInterview(groupID: groupID, date: date)
+            default:
+                didHandleActivity = false
+            }
+        }
+        return didHandleActivity
+    }
+}
+
+// MARK: - SiriAppEvents
+
+extension AppDelegate {
+
+    func sendSiriEvents() {
+        if let events: SiriEventsModel = ExtensionUserDefaults.object(for: .siri, key: .siriAppEvents) {
+            events.events.forEach {
+                switch $0.key {
+                case ExtensionUserDefaults.toBeVision.rawValue:
+                    appCoordinator.sendAppEvent(.siriToBeVision, date: $0.date)
+                case ExtensionUserDefaults.whatsHot.rawValue:
+                    appCoordinator.sendAppEvent(.siriWhatsHot, date: $0.date)
+                case ExtensionUserDefaults.upcomingEvents.rawValue:
+                    appCoordinator.sendAppEvent(.siriUpcomingEvent, date: $0.date)
+                case ExtensionUserDefaults.dailyPrep.rawValue:
+                    appCoordinator.sendAppEvent(.siriDailyPrep, date: $0.date)
+                default: break
+                }
+            }
+            ExtensionUserDefaults.siriAppEvents.clearWidgetObject()
+        }
     }
 }

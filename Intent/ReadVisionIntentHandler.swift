@@ -17,6 +17,7 @@ final class ReadVisionIntentHandler: NSObject, ReadVisionIntentHandling {
             completion(response)
             return
         }
+        track(intent)
         guard let vision: ExtensionModel.ToBeVision = ExtensionUserDefaults.object(for: .siri, key: .toBeVision) else {
             completion(ReadVisionIntentResponse(code: .failure, userActivity: nil))
             return

@@ -419,6 +419,9 @@
 		AC4DA0E82215836300BAF914 /* UpcomingEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */; };
 		AC7F3DB42177407D0058B343 /* GuidePreparationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7F3DB22177407D0058B343 /* GuidePreparationTableViewCell.swift */; };
 		AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7F3DB32177407D0058B343 /* GuidePreparationTableViewCell.xib */; };
+		AC84FFC02229379B0056F9EA /* SiriEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84FFBF2229379B0056F9EA /* SiriEventsModel.swift */; };
+		AC84FFC122293BEB0056F9EA /* SiriEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84FFBF2229379B0056F9EA /* SiriEventsModel.swift */; };
+		AC84FFC42229477A0056F9EA /* IntentHandler+AppEvents.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84FFC32229477A0056F9EA /* IntentHandler+AppEvents.swift */; };
 		AC87A77B220D94F800622C90 /* IntentHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87A77A220D94F800622C90 /* IntentHandler.swift */; };
 		AC87A783220D94F900622C90 /* IntentsUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC87A782220D94F900622C90 /* IntentsUI.framework */; };
 		AC87A786220D94F900622C90 /* IntentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC87A785220D94F900622C90 /* IntentViewController.swift */; };
@@ -1298,6 +1301,8 @@
 		AC7F3DB22177407D0058B343 /* GuidePreparationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePreparationTableViewCell.swift; sourceTree = "<group>"; };
 		AC7F3DB32177407D0058B343 /* GuidePreparationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidePreparationTableViewCell.xib; sourceTree = "<group>"; };
 		AC812B5E79C328CCC051F8B9 /* Pods-QOTWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.debug.xcconfig"; sourceTree = "<group>"; };
+		AC84FFBF2229379B0056F9EA /* SiriEventsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriEventsModel.swift; sourceTree = "<group>"; };
+		AC84FFC32229477A0056F9EA /* IntentHandler+AppEvents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "IntentHandler+AppEvents.swift"; sourceTree = "<group>"; };
 		AC87A778220D94F800622C90 /* Intent.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = Intent.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		AC87A77A220D94F800622C90 /* IntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandler.swift; sourceTree = "<group>"; };
 		AC87A77C220D94F900622C90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -2562,6 +2567,8 @@
 				AC87A77C220D94F900622C90 /* Info.plist */,
 				ACA4B18A2211CFAF00552A54 /* Intent.entitlements */,
 				AC87A77A220D94F800622C90 /* IntentHandler.swift */,
+				AC84FFC32229477A0056F9EA /* IntentHandler+AppEvents.swift */,
+				AC84FFBF2229379B0056F9EA /* SiriEventsModel.swift */,
 				ACA4B18B2211D13800552A54 /* NSUserActivity+Keys.swift */,
 				AC87A7A0220D961800622C90 /* ReadVisionIntentHandler.swift */,
 				ACA4B18F2212DEA600552A54 /* WhatsHotIntentHandler.swift */,
@@ -4490,7 +4497,9 @@
 				ACC68C82221C181300ED899B /* Date+Extension.swift in Sources */,
 				AC4DA0E422157DAD00BAF914 /* UpcomingEventHandler.swift in Sources */,
 				ACA4B1902212DEA600552A54 /* WhatsHotIntentHandler.swift in Sources */,
+				AC84FFC42229477A0056F9EA /* IntentHandler+AppEvents.swift in Sources */,
 				ACC68C86221C2F2A00ED899B /* DateFormatter+Convenience.swift in Sources */,
+				AC84FFC02229379B0056F9EA /* SiriEventsModel.swift in Sources */,
 				AC87A7B1220DBDAB00622C90 /* UIImageView+Extensions.swift in Sources */,
 				ACA4B18C2211D13800552A54 /* NSUserActivity+Keys.swift in Sources */,
 				AC87A79E220D953F00622C90 /* Intents.intentdefinition in Sources */,
@@ -4851,6 +4860,7 @@
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChart.swift in Sources */,
+				AC84FFC122293BEB0056F9EA /* SiriEventsModel.swift in Sources */,
 				7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */,
 				7F65673C1FE2895B00A6CB7F /* ScreenHelpModels.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,

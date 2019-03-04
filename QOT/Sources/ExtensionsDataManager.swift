@@ -96,3 +96,23 @@ private extension ExtensionsDataManager {
         updateUpcomingEvents()
     }
 }
+
+// MARK: - Siri Event Tracking
+
+extension ExtensionsDataManager {
+
+    func eventType(for siriEvent: SiriEventsModel.Event) -> AppEventRequest.EventType? {
+        switch siriEvent.key {
+        case ExtensionUserDefaults.toBeVision.rawValue:
+            return .siriToBeVision
+        case ExtensionUserDefaults.whatsHot.rawValue:
+            return .siriWhatsHot
+        case ExtensionUserDefaults.upcomingEvents.rawValue:
+            return .siriUpcomingEvent
+        case ExtensionUserDefaults.dailyPrep.rawValue:
+            return .siriDailyPrep
+        default:
+            return nil
+        }
+    }
+}
