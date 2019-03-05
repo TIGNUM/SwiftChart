@@ -212,12 +212,16 @@ final class SyncManager {
 
     func syncCalendarEvents(completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
-        excute(operations: [syncOperation(CalendarEvent.self, context: context, shouldDownload: true)], context: context, completion: completion)
+        excute(operations: [syncOperation(CalendarEvent.self, context: context, shouldDownload: true)],
+               context: context,
+               completion: completion)
     }
 
     func syncCalendarSyncSettings(completion: ((Error?) -> Void)? = nil) {
         let context = SyncContext()
-        excute(operations: [syncOperation(RealmCalendarSyncSetting.self, context: context, shouldDownload: true)], context: context, completion: completion)
+        excute(operations: [syncOperation(RealmCalendarSyncSetting.self, context: context, shouldDownload: true)],
+               context: context,
+               completion: completion)
     }
 
     func syncPreparations(shouldDownload: Bool, completion: ((Error?) -> Void)? = nil) {

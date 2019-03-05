@@ -11,7 +11,6 @@ import EventKit
 import Anchorage
 
 protocol SettingsCalendarListViewControllerDelegate: class {
-
     func didChangeCalendarSyncValue(sender: UISwitch, calendarIdentifier: String)
 }
 
@@ -22,7 +21,6 @@ final class SettingsCalendarListViewController: UIViewController {
     private var tableView = UITableView(frame: CGRect.zero, style: .grouped)
     private var noPermissionLabel: UILabel = UILabel()
     private var openSettingButton: UIButton = UIButton()
-
     private let viewModel: SettingsCalendarListViewModel
     private let notificationHandler: NotificationHandler
 
@@ -78,15 +76,6 @@ final class SettingsCalendarListViewController: UIViewController {
     }
 }
 
-// MARK: - Internal
-
-extension SettingsCalendarListViewController {
-
-    func setTableViewBackgound(_ view: UIView?) {
-        tableView.backgroundView = view
-    }
-}
-
 // MARK: - Private
 
 private extension SettingsCalendarListViewController {
@@ -110,6 +99,7 @@ private extension SettingsCalendarListViewController {
             }
         }
     }
+
     func addEventStoreNotificationHandler() {
         notificationHandler.handler = { [weak self] (notificationCenter) in
             self?.update()
@@ -147,19 +137,19 @@ private extension SettingsCalendarListViewController {
         noPermissionLabel.numberOfLines = 0
         fadeContainerView.addSubview(noPermissionLabel)
         noPermissionLabel.translatesAutoresizingMaskIntoConstraints = false
-        let labelCenterX: NSLayoutConstraint = NSLayoutConstraint(item: noPermissionLabel, attribute: NSLayoutAttribute.centerX,
-                                                                  relatedBy: NSLayoutRelation.equal, toItem: fadeContainerView,
-                                                                  attribute: NSLayoutAttribute.centerX,
+        let labelCenterX: NSLayoutConstraint = NSLayoutConstraint(item: noPermissionLabel, attribute: .centerX,
+                                                                  relatedBy: .equal, toItem: fadeContainerView,
+                                                                  attribute: .centerX,
                                                                   multiplier: 1,
                                                                   constant: 0)
-        let labelWidth: NSLayoutConstraint = NSLayoutConstraint(item: noPermissionLabel, attribute: NSLayoutAttribute.width,
-                                                                relatedBy: NSLayoutRelation.equal, toItem: fadeContainerView,
-                                                                attribute: NSLayoutAttribute.width,
+        let labelWidth: NSLayoutConstraint = NSLayoutConstraint(item: noPermissionLabel, attribute: .width,
+                                                                relatedBy: .equal, toItem: fadeContainerView,
+                                                                attribute: .width,
                                                                 multiplier: 0.75,
                                                                 constant: 0)
-        let labelPosY: NSLayoutConstraint = NSLayoutConstraint(item: noPermissionLabel, attribute: NSLayoutAttribute.bottom,
-                                                               relatedBy: NSLayoutRelation.equal, toItem: fadeContainerView,
-                                                               attribute: NSLayoutAttribute.centerY,
+        let labelPosY: NSLayoutConstraint = NSLayoutConstraint(item: noPermissionLabel, attribute: .bottom,
+                                                               relatedBy: .equal, toItem: fadeContainerView,
+                                                               attribute: .centerY,
                                                                multiplier: 1,
                                                                constant: 0)
         fadeContainerView.addConstraint(labelCenterX)
@@ -174,19 +164,19 @@ private extension SettingsCalendarListViewController {
         openSettingButton.backgroundColor = .azure
         openSettingButton.showsTouchWhenHighlighted = true
         openSettingButton.translatesAutoresizingMaskIntoConstraints = false
-        let buttonCenterX: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: NSLayoutAttribute.centerX,
-                                                                   relatedBy: NSLayoutRelation.equal, toItem: noPermissionLabel,
-                                                                   attribute: NSLayoutAttribute.centerX,
+        let buttonCenterX: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: .centerX,
+                                                                   relatedBy: .equal, toItem: noPermissionLabel,
+                                                                   attribute: .centerX,
                                                                    multiplier: 1,
                                                                    constant: 0)
-        let buttonWidth: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: NSLayoutAttribute.width,
-                                                                 relatedBy: NSLayoutRelation.equal, toItem: fadeContainerView,
-                                                                 attribute: NSLayoutAttribute.width,
+        let buttonWidth: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: .width,
+                                                                 relatedBy: .equal, toItem: fadeContainerView,
+                                                                 attribute: .width,
                                                                  multiplier: 0.5,
                                                                  constant: 0)
-        let buttonPosY: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: NSLayoutAttribute.top,
-                                                                relatedBy: NSLayoutRelation.equal, toItem: noPermissionLabel,
-                                                                attribute: NSLayoutAttribute.bottom,
+        let buttonPosY: NSLayoutConstraint = NSLayoutConstraint(item: openSettingButton, attribute: .top,
+                                                                relatedBy: .equal, toItem: noPermissionLabel,
+                                                                attribute: .bottom,
                                                                 multiplier: 1,
                                                                 constant: 20)
         fadeContainerView.addConstraint(buttonCenterX)
@@ -211,9 +201,9 @@ private extension SettingsCalendarListViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension SettingsCalendarListViewController: UITableViewDelegate, UITableViewDataSource {
-    // MARK: UITableViewDataSource
+
     func numberOfSections(in tableView: UITableView) -> Int {
-        var sectionCount = Int(0)
+        var sectionCount: Int = 0
         if viewModel.calendarCountOnThisDevice > 0 { sectionCount += 1 }
         if viewModel.calendarCountOnOtherDevices > 0 { sectionCount += 1 }
         return sectionCount
@@ -273,7 +263,6 @@ extension SettingsCalendarListViewController: UITableViewDelegate, UITableViewDa
         return settingsCell
     }
 
-    // MARK: UITableViewDelegate
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return viewModel.cellHeight
     }
