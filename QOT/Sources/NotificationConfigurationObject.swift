@@ -9,7 +9,7 @@
 import UserNotifications
 
 // FIXME: Make realm obj and sync from server
-final class NotificationConfigurationObject {
+struct NotificationConfigurationObject {
 
     let localID: String
     let minute: Int
@@ -19,7 +19,7 @@ final class NotificationConfigurationObject {
     let body: String
     let link: String
 
-    init(localID: String, minute: Int, hour: Int, weekday: Int, title: String, body: String, link: String) {
+    private init(localID: String, minute: Int, hour: Int, weekday: Int, title: String, body: String, link: String) {
         self.localID = localID
         self.minute = minute
         self.hour = hour
@@ -29,7 +29,7 @@ final class NotificationConfigurationObject {
         self.link = link
     }
 
-    var notificationRequest: UNNotificationRequest? {
+    private var notificationRequest: UNNotificationRequest {
         let componants = DateComponents(hour: hour, minute: minute, weekday: weekday)
         let content = UNMutableNotificationContent(title: title, body: body, soundName: nil, link: link)
         let trigger = UNCalendarNotificationTrigger(dateMatching: componants, repeats: true)
@@ -39,6 +39,22 @@ final class NotificationConfigurationObject {
 }
 
 extension NotificationConfigurationObject {
+
+    static func scheduleDailyNotificationsIfNeeded() {
+        NotificationConfigurationObject.needsSchedule { (isNeeded) in
+            if isNeeded == true {
+                NotificationConfigurationObject.all().forEach {
+                    UNUserNotificationCenter.current().add( $0.notificationRequest)
+                }
+            }
+        }
+    }
+
+    private static func needsSchedule(completion: ((Bool) -> Void)?) {
+        UNUserNotificationCenter.current().getPendingNotificationRequests { requests in
+            completion?(requests.filter { $0.identifier.contains("daily-prep-") }.count != 7)
+        }
+    }
 
     // FIXME: These should be defined on the server. For now we hard code them.
     static func all() -> [NotificationConfigurationObject] {

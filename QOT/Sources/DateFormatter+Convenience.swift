@@ -33,7 +33,7 @@ private let isoDateFormatter: DateFormatter = {
 private let dailyPrepDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
-    formatter.timeZone = TimeZone(abbreviation: "UTC")
+    formatter.timeZone = TimeZone.current
     return formatter
 }()
 

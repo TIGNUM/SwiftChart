@@ -22,7 +22,6 @@ final class NotificationsViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-
         getPendingNotifications()
     }
 
@@ -49,9 +48,8 @@ final class NotificationsViewController: UITableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScheduledNotificationTableViewCell_ID",
                                                  for: indexPath) as? ScheduledNotificationTableViewCell
         let notification = pendingNotifications[indexPath.row]
-        let displayDate = notification.nextTriggerDate().map { String(describing: $0) } ?? "No Date"
-        cell?.configure(title: notification.content.title, subtitle: displayDate)
-
+        let trigger = (notification.trigger as? UNCalendarNotificationTrigger)?.dateComponents.description ?? "No trigger"
+        cell?.configure(title: notification.content.title + " " + notification.identifier, subtitle: trigger)
         return cell ?? UITableViewCell()
     }
 
@@ -59,7 +57,6 @@ final class NotificationsViewController: UITableViewController {
         let componants: Set<Calendar.Component> = [.year, .month, .day, .hour, .minute, .second]
         let triggerComponants = Calendar.current.dateComponents(componants, from: Date().addingTimeInterval(20))
         let trigger = UNCalendarNotificationTrigger(dateMatching: triggerComponants, repeats: false)
-
         let existingNotification = pendingNotifications[indexPath.row]
         let newNotification = UNNotificationRequest(identifier: existingNotification.identifier,
                                                     content: existingNotification.content,
@@ -74,7 +71,6 @@ final class NotificationsViewController: UITableViewController {
     func trigger(_ issueDate: Date) -> UNCalendarNotificationTrigger {
         let triggerDate = Calendar.current.dateComponents([.year, .month, .day, .hour, .minute, .second],
                                                           from: issueDate)
-        return UNCalendarNotificationTrigger(dateMatching: triggerDate,
-                                             repeats: false)
+        return UNCalendarNotificationTrigger(dateMatching: triggerDate, repeats: false)
     }
 }

@@ -119,19 +119,27 @@ final class SidebarViewModel {
     }
 
     var itemCount: Int {
+        #if DEBUG
+            return SidebbarItem.allValues.count
+        #else
         if services.settingsService.allowAdminSettings() == true {
             return SidebbarItem.allValues.count
         } else {
             return SidebbarItem.restrictedValues.count
         }
+        #endif
     }
 
     func sidebarItem(at indexPath: IndexPath) -> SidebbarItem? {
+        #if DEBUG
+             return SidebbarItem.allValues.item(at: indexPath.row)
+        #else
         if services.settingsService.allowAdminSettings() == true {
             return SidebbarItem.allValues.item(at: indexPath.row)
         } else {
             return SidebbarItem.restrictedValues.item(at: indexPath.row)
         }
+        #endif
     }
 
     func contentCollection(_ sidebarItem: SidebbarItem) -> ContentCollection? {

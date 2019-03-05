@@ -25,6 +25,7 @@ final class UserNotificationsManager {
     }
 
     func scheduleNotifications() {
+        NotificationConfigurationObject.scheduleDailyNotificationsIfNeeded()
         do {
             let now = Date()
             let realm = try realmProvider.realm()
@@ -36,12 +37,10 @@ final class UserNotificationsManager {
             let learnItems = realm.objects(RealmGuideItemLearn.self)
             let featureItems = todaysLearnItems(from: learnItems, type: .feature, now: now)
             let strategyItems = todaysLearnItems(from: learnItems, type: .strategy, now: now)
-            let noficationConfigurations = NotificationConfigurationObject.all()
             var requests: [UNNotificationRequest] = []
             requests.append(contentsOf: notificationItems.compactMap({ $0.notificationRequest }))
             requests.append(contentsOf: featureItems.compactMap({ $0.notificationRequest }))
             requests.append(contentsOf: strategyItems.compactMap({ $0.notificationRequest }))
-            requests.append(contentsOf: noficationConfigurations.compactMap({ $0.notificationRequest }))
             scheduler.scheduleNotifications(requests)
         } catch {
             log("Error scheduling notifications: \(error)", level: .error)
