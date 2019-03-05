@@ -24,6 +24,7 @@ final class VisionGeneratorWorker {
     private let createVisionPresentDelay = DispatchTimeInterval.seconds(1)
     private let readingVisionPresentDelay = DispatchTimeInterval.seconds(10)
     private let navigationItem: NavigationItem?
+    private var visionSaved = false
 
     init(services: Services,
          networkManager: NetworkManager,
@@ -60,6 +61,14 @@ final class VisionGeneratorWorker {
         return navigationItem
     }
 
+    var shouldShowAlertVisionNotSaved: Bool {
+        return questionType.visionGenerated == true && visionSaved == false
+    }
+
+    var alertModel: VisionGeneratorAlertModel? {
+        return services.contentService.visionGeneratorAlertModelNotSaved()
+    }
+
     private var headline: String? {
 		let currentHeadline = services.userService.myToBeVision()?.headline
 		let initialHeadlinePlaceholder = services.contentService.toBeVisionHeadlinePlaceholder()
@@ -75,6 +84,7 @@ extension VisionGeneratorWorker {
     func saveVision() {
         services.userService.saveVision(currentVisionModel)
         syncManager.syncMyToBeVision()
+        visionSaved = true
     }
 
     func saveImage(_ image: UIImage) throws {

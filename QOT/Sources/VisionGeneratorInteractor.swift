@@ -28,6 +28,14 @@ final class VisionGeneratorInteractor {
 
 extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
 
+    var alertModel: VisionGeneratorAlertModel? {
+        return worker.alertModel
+    }
+
+    var shouldShowAlertVisionNotSaved: Bool {
+        return worker.shouldShowAlertVisionNotSaved
+    }
+
     func restartGenerator() {
         worker.restartGenerator()
     }

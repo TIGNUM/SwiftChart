@@ -76,6 +76,13 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         return R.string.localized.prepareChatFooterDeliveredTime(time)
     }
 
+    private lazy var backButton: UIBarButtonItem = {
+        return UIBarButtonItem(image: R.image.ic_back(),
+                               style: .plain,
+                               target: self,
+                               action: #selector(didTabBackButton))
+    }()
+
     private lazy var collectionView: UICollectionView = {
         let layout = ChatViewLayout()
         layout.delegate = self
@@ -139,6 +146,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        replaceBackButtonIfNeeded()
         registerReusableViews()
         viewModel.updates.observeNext { [unowned self] (update) in
             switch update {
@@ -166,6 +174,22 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         guard let visionChoice = visionChoice else { return }
         loadNextQuestions(visionChoice)
         self.visionChoice = nil
+    }
+
+    @objc func didTabBackButton() {
+        guard pageName == PageName.visionGenerator else { return }
+        if let alertModel = viewModel.visionGeneratorInteractor?.alertModel,
+            viewModel.visionGeneratorInteractor?.shouldShowAlertVisionNotSaved == true {
+            let type = AlertType.tbvGeneratorNotSaved(title: alertModel.title,
+                                                      message: alertModel.message,
+                                                      buttonTitleCancel: alertModel.buttonTitleCancel,
+                                                      buttonTitleDefault: alertModel.buttonTitleDefault)
+            showAlert(type: type, handler: {}, handlerDestructive: { [weak self] in
+                self?.dismiss()
+            })
+        } else {
+            self.dismiss()
+        }
     }
 
     @available(iOS 11.0, *)
@@ -250,6 +274,12 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
 // MARK: - Private
 
 private extension ChatViewController {
+
+    func replaceBackButtonIfNeeded() {
+        guard pageName == PageName.visionGenerator else { return }
+        navigationItem.setHidesBackButton(true, animated: false)
+        navigationItem.leftBarButtonItem = backButton
+    }
 
     func handleItemSelection(at indexPath: IndexPath, choices: [T]) {
         if pageName == PageName.visionGenerator {

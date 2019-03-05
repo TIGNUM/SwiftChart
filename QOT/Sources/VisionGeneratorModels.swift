@@ -53,6 +53,19 @@ struct VisionGeneratorChoice: ChatChoice {
             }
         }
 
+        var visionGenerated: Bool {
+            switch self {
+            case .intro,
+                 .instructions,
+                 .home,
+                 .work,
+                 .next: return false
+            case .create,
+                 .picture,
+                 .review: return true
+            }
+        }
+
         var bottomButtonIsHidden: Bool {
             switch self {
             case .work,
@@ -76,4 +89,22 @@ struct VisionGeneratorChoice: ChatChoice {
     let target: AnswerDecision.Target?
 
     static let expectedChoiceCount = 4
+}
+
+struct VisionGeneratorAlertModel {
+    let title: String
+    let message: String
+    let buttonTitleCancel: String
+    let buttonTitleDefault: String
+
+    enum Tags: String {
+        case title = "tbv_generator_alert_not_saved_title"
+        case message = "tbv_generator_alert_not_saved_message"
+        case buttonTitleCancel = "tbv_generator_alert_not_saved_button_title_cancel"
+        case buttonTitleDefault = "tbv_generator_alert_not_saved_button_title_default"
+
+        var predicate: NSPredicate {
+            return NSPredicate(tag: rawValue)
+        }
+    }
 }
