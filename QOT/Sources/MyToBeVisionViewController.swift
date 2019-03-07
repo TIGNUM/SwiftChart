@@ -41,7 +41,8 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
     private var tempImageURL: URL?
     private var avPlayerObserver: AVPlayerObserver?
     private var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] = [:]
-    var page: PageName = .tabBarItemToBeVision
+    static var page: PageName = .tabBarItemToBeVision
+    static var generatorPage: PageName = .visionGenerator
     var interactor: MyToBeVisionInteractor?
     var router: MyToBeVisionRouter?
     var permissionsManager: PermissionsManager!
@@ -133,7 +134,8 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
     }
 
     func showVisionGenerator() {
-        let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(toBeVision: interactor?.myToBeVision,
+        let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(pageName: pageName,
+                                                                                           toBeVision: interactor?.myToBeVision,
                                                                                            visionController: self,
                                                                                            visionChatItems: visionChatItems,
                                                                                            navigationItem: interactor?.navigationItem)
@@ -305,10 +307,10 @@ private extension MyToBeVisionViewController {
         if isEditing == true {
             headlineTextView.becomeFirstResponder()
             tempImageURL = interactor?.myToBeVision?.imageURL
-            page = .editToBeVision
+            MyToBeVisionViewController.page = .editToBeVision
             eventTracker?.track(.didShowPage(self, from: nil))
         } else {
-            page = .tabBarItemToBeVision
+            MyToBeVisionViewController.page = .tabBarItemToBeVision
             eventTracker?.track(.didShowPage(self, from: nil))
             view.endEditing(isEditing)
         }

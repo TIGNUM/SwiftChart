@@ -144,7 +144,8 @@ extension PrepareCoordinator {
                                                     description: description ?? "",
                                                     items: items,
                                                     services: services)
-            let viewController = PrepareContentViewController(pageName: .prepareContent, viewModel: viewModel)
+            let viewController = PrepareContentViewController(viewModel: viewModel)
+            PrepareContentViewController.pageName = .prepareContent
             viewController.delegate = self
             viewController.title = viewControllerTitle
             tabBarController.present(viewController, animated: true)
@@ -163,10 +164,10 @@ extension PrepareCoordinator {
         guard let preparation = services.preparationService.preparation(localID: preparationID) else { return }
         self.preparationID = preparationID
         if let viewModel = prepareChecklistViewModel(preparation: preparation) {
-            let prepareController = PrepareContentViewController(pageName: .prepareCheckList,
-                                                                 viewModel: viewModel,
+            let prepareController = PrepareContentViewController(viewModel: viewModel,
                                                                  chatDecisionManager: chatDecisionManager,
                                                                  progressHUD: progressHUD)
+            PrepareContentViewController.pageName = .prepareCheckList
             prepareController.delegate = self
             prepareController.title = R.string.localized.topTabBarItemTitlePerparePreparation()
             let storyboard = R.storyboard.reviewNotesViewController()
@@ -537,7 +538,7 @@ extension PrepareCoordinator {
             self.tabBarController.dismiss(animated: true) {
                 self.chatViewController.showAlert(type: alertType, handler: { [weak self] in
                     self?.chatDecisionManager.addQuestions()
-                    })
+                })
             }
         }
     }
@@ -572,7 +573,7 @@ extension PrepareCoordinator {
 extension PrepareCoordinator: NavigationItemDelegate {
 
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
-		topTabBarController.dismiss(animated: true, completion: nil)
+        topTabBarController.dismiss(animated: true, completion: nil)
     }
 
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {

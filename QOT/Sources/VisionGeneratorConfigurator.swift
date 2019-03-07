@@ -38,7 +38,8 @@ final class VisionGeneratorConfigurator: AppStateAccess {
         }
     }
 
-    static func visionGeneratorViewController(toBeVision: MyToBeVisionModel.Model?,
+    static func visionGeneratorViewController(pageName: PageName,
+                                              toBeVision: MyToBeVisionModel.Model?,
                                               visionController: MyToBeVisionViewController,
                                               visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]],
                                               navigationItem: NavigationItem?) -> UIViewController {
@@ -48,7 +49,7 @@ final class VisionGeneratorConfigurator: AppStateAccess {
                                                             visionController: visionController,
                                                             visionChatItems: visionChatItems,
                                                             navigationItem: navigationItem)
-        let chatViewController = ChatViewController(pageName: .visionGenerator,
+        let chatViewController = ChatViewController(pageName: pageName,
                                                     viewModel: chatViewModel,
                                                     backgroundImage: nil,
                                                     configure: configurator)

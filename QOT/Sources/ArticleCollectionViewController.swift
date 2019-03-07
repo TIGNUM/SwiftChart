@@ -23,7 +23,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     private(set) var isShowing = false
     weak var delegate: ArticleCollectionViewControllerDelegate?
-    let pageName: PageName
+    static var pageName: PageName = .whatsHot
     var loadingView: BlurLoadingView?
     var isLoading: Bool = false {
         didSet {
@@ -47,8 +47,7 @@ final class ArticleCollectionViewController: UIViewController, FullScreenLoadabl
 
     // MARK: Init
 
-    init(pageName: PageName, viewData: ArticleCollectionViewData) {
-        self.pageName = pageName
+    init(viewData: ArticleCollectionViewData) {
         self.viewData = viewData
         super.init(nibName: nil, bundle: nil)
     }

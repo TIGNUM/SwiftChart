@@ -31,8 +31,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     private var progressHUD: MBProgressHUD?
     private weak var chatDecisionManager: PrepareChatDecisionManager?
     weak var delegate: PrepareContentViewControllerDelegate?
-    let pageName: PageName
-
+    static var pageName: PageName = .prepareCheckList
     private lazy var tableView: UITableView = {
         return UITableView(estimatedRowHeight: 140,
                            delegate: self,
@@ -58,11 +57,9 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     // MARK: - Life Cycle
 
-    init(pageName: PageName,
-         viewModel: PrepareContentViewModel,
+    init(viewModel: PrepareContentViewModel,
          chatDecisionManager: PrepareChatDecisionManager? = nil,
          progressHUD: MBProgressHUD? = nil) {
-        self.pageName = pageName
         self.viewModel = viewModel
         self.chatDecisionManager = chatDecisionManager
         self.progressHUD = progressHUD
@@ -121,7 +118,7 @@ private extension PrepareContentViewController {
 
     func setupView() {
         view.backgroundColor = .nightModeBackground
-        if pageName == .prepareContent {
+        if PrepareContentViewController.pageName == .prepareContent {
             view.addSubview(topBarView)
             view.addSubview(tableView)
             topBarView.topAnchor == view.topAnchor + UIApplication.shared.statusBarFrame.height
@@ -130,7 +127,7 @@ private extension PrepareContentViewController {
             tableView.topAnchor == topBarView.bottomAnchor
             tableView.bottomAnchor == view.safeBottomAnchor - Layout.padding_24
             tableView.horizontalAnchors == view.horizontalAnchors
-        } else if pageName == .prepareCheckList {
+        } else if PrepareContentViewController.pageName == .prepareCheckList {
             view.addSubview(tableView)
 			if #available(iOS 11.0, *) {
 				tableView.topAnchor == view.safeTopAnchor + Layout.padding_16
@@ -158,7 +155,7 @@ private extension PrepareContentViewController {
                                videoPlaceholder: placeholderURL,
                                videoURL: videoURL,
                                isExpanded: isExpanded,
-                               displayMode: pageName == .prepareCheckList ? .checkbox : .normal)
+                               displayMode: PrepareContentViewController.pageName == .prepareCheckList ? .checkbox : .normal)
             castedCell.contentView.layoutIfNeeded()
             castedCell.iconImageView.isHidden = (viewModel.preparationType == .prepContentProblem) && (indexPath.row == 0)
             return castedCell

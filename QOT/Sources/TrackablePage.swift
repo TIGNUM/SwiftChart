@@ -39,6 +39,8 @@ enum PageName: String {
     case loading = "loading"
     case login = "login"
     case morningInterview = "notification.dailyprep"
+    case morningInterviewFromSiri = "dailyprep.fromsiri"
+    case morningInterviewFromPush = "dailyprep.frompush"
     case myQOTPartners = "me.mywhy.qotpartners"
     case statistics = "me.mydata.charts"
     case myData = "me.mydata"
@@ -47,7 +49,10 @@ enum PageName: String {
     case myPreparationsNotes = "prepare.mypreparations.prepare.mypreparations.noteList"
     case onboardingChat = "onboarding.chat"
     case prepareChat = "prepare.chat"
+    case preparationListFromSiri = "prepare.preparationlist.formsiri"
     case prepareCheckList = "prepare.preparationchecklist"
+    case prepareChecklistFromSiri = "prepare.preparationchecklist.fromsiri"
+    case prepareChecklistFromWidget = "prepare.preparationchecklist.fromwidget"
     case prepareContent = "prepare.preparationlist"
     case prepareEvents = "prepare.preparationlist.save"
     case privacy = "sidebar.dataprivacy"
@@ -67,6 +72,9 @@ enum PageName: String {
     case tabBarItemGuide = "tabBarItem.guide"
     case tabBarItemLearn = "tabBarItem.learn"
     case tabBarItemToBeVision = "tabBarItem.toBeVision"
+    case tabBarItemToBeVisionFromSiri = "tabBarItem.toBeVision.fromsiri"
+    case tabBarItemToBeVisionFromPush = "tabBarItem.toBeVision.frompush"
+    case tabBarItemToBeVisionFromWidget = "tabBarItem.toBeVision.fromwidget"
     case tabBarItemToBeVisionGenerator = "tabBarItem.toBeVision.generator"
     case tabBarItemData = "tabBarItem.data"
     case tabBarItemPrepare = "tabBarItem.prepare"
@@ -75,13 +83,16 @@ enum PageName: String {
     case visionGenerator = "tabBarItem.toBeVision.visiongenerator"
     case weeklyChoices = "me.mywhy.weeklychoices"
     case whatsHot = "learn.whatshot.articlelist"
+    case whatsHotListFromSiri = "whatshot.list.fromsiri"
     case whatsHotArticle = "learn.whatshot.article"
+    case whatsHotArticleFromSiri = "learn.whatshot.article.fromsiri"
     case infoDailyPrep = "info.dailyprep"
     case infoToBeVision = "info.tobevision"
     case infoPrepare = "info.prepare"
     case infoGuide = "info.guide"
     case infoLearn = "info.learn"
     case infoMe = "info.me"
+    case visionGeneratorFromSiri = "tabBarItem.toBeVision.generator.fromsiri"
     case supportContact = "support.contact"
     case featureRequest = "support.featurerequest"
     case imagePickerProfile = "imagepicker.profile"
@@ -127,13 +138,18 @@ extension GuideViewController: TrackablePage {
 }
 
 extension ArticleCollectionViewController: TrackablePage {
-    // @see implementation
+    var pageName: PageName {
+        return ArticleCollectionViewController.pageName
+    }
     var pageAssociatedObject: PageObject? {
         return nil
     }
 }
 
 extension ArticleItemViewController: TrackablePage {
+    var pageName: PageName {
+        return ArticleItemViewController.page
+    }
     // @see implementation
     var pageAssociatedObject: PageObject? {
         return PageObject(object: viewModel.contentCollection, identifier: .contentCollection)
@@ -204,7 +220,7 @@ extension LoginViewController: TrackablePage {
 
 extension MorningInterviewViewController: TrackablePage {
     var pageName: PageName {
-        return .morningInterview
+        return MorningInterviewViewController.page
     }
     var pageAssociatedObject: PageObject? {
         return nil
@@ -213,7 +229,7 @@ extension MorningInterviewViewController: TrackablePage {
 
 extension MyPrepViewController: TrackablePage {
     var pageName: PageName {
-        return .myPreparations
+        return MyPrepViewController.page
     }
     var pageAssociatedObject: PageObject? {
         return nil
@@ -231,7 +247,7 @@ extension ChartViewController: TrackablePage {
 
 extension MyToBeVisionViewController: TrackablePage {
     var pageName: PageName {
-        return page
+        return MyToBeVisionViewController.page
     }
     var pageAssociatedObject: PageObject? {
         return interactor?.trackablePageObject
@@ -262,7 +278,9 @@ extension ChatViewController: TrackablePage {
 }
 
 extension PrepareContentViewController: TrackablePage {
-    //@see implementation
+    var pageName: PageName {
+        return PrepareContentViewController.pageName
+    }
     var pageAssociatedObject: PageObject? {
         return nil
     }

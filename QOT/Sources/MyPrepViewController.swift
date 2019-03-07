@@ -19,6 +19,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
 
     // MARK: - Properties
 
+    static var page: PageName = .myPreparations
     private let syncManager: SyncManager
     let viewModel: MyPrepViewModel
     let fadeContainerView = FadeContainerView()

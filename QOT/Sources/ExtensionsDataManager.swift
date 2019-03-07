@@ -1,5 +1,5 @@
 //
-//  WidgetDataManager.swift
+//  ExtensionsDataManager.swift
 //  QOT
 //
 //  Created by Javier Sanz Rozalen on 13/07/2018.

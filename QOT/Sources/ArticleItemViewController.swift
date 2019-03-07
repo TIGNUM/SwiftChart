@@ -26,7 +26,7 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
     private let fadeMaskLocation: UIView.FadeMaskLocation
     private let guideItem: Guide.Item?
     private var avPlayerObserver: AVPlayerObserver?
-    let pageName: PageName
+    static var page: PageName = .whatsHotArticle
     var viewModel: ArticleItemViewModel
     weak var delegate: ArticleItemViewControllerDelegate?
 
@@ -54,13 +54,11 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
 
     // MARK: - Init
 
-    init(pageName: PageName,
-         viewModel: ArticleItemViewModel,
+    init(viewModel: ArticleItemViewModel,
          title: String? = nil,
          guideItem: Guide.Item? = nil,
          contentInsets: UIEdgeInsets,
          fadeMaskLocation: UIView.FadeMaskLocation) {
-        self.pageName = pageName
         self.viewModel = viewModel
         self.contentInsets = contentInsets
         self.fadeMaskLocation = fadeMaskLocation

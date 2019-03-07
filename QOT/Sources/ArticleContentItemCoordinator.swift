@@ -55,8 +55,8 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                                          contentCollection: contentCollection,
                                          articleHeader: articleHeader,
                                          backgroundImage: backgroundImage)
-        fullViewController = ArticleItemViewController(pageName: pageName,
-                                                       viewModel: viewModel,
+        ArticleItemViewController.page = pageName
+        fullViewController = ArticleItemViewController(viewModel: viewModel,
                                                        guideItem: guideItem,
                                                        contentInsets: contentInsets,
                                                        fadeMaskLocation: .top)
@@ -120,8 +120,8 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
                                          articleHeader: articleHeader)
         let topInset = fullViewController.view.bounds.height * Layout.multiplier_025
         let edgeInsets = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
-        let relatedArticleViewController = ArticleItemViewController(pageName: .whatsHotArticle,
-                                                                     viewModel: viewModel,
+        ArticleItemViewController.page = .whatsHotArticle
+        let relatedArticleViewController = ArticleItemViewController(viewModel: viewModel,
                                                                      contentInsets: edgeInsets,
                                                                      fadeMaskLocation: .top)
         relatedArticleViewController.delegate = self

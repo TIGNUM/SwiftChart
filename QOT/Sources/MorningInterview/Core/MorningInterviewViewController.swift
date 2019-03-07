@@ -13,6 +13,7 @@ final class MorningInterviewViewController: UIViewController {
     private var questions: [MorningQuestion] = []
     private var morningInterviews: [MorningInterview.Question] = []
     private var nextPageTimer: Timer?
+    static var page: PageName = .morningInterview
 
     @IBOutlet weak private var pageContainer: UIView!
     @IBOutlet weak private var stackView: UIView!

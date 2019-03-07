@@ -60,8 +60,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     private lazy var articleCollectionViewController: ArticleCollectionViewController = {
-        let viewController = ArticleCollectionViewController(pageName: .whatsHot,
-                                                             viewData: articleCollectionProvider.provideViewData())
+        let viewController = ArticleCollectionViewController(viewData: articleCollectionProvider.provideViewData())
+        ArticleCollectionViewController.pageName = .whatsHot
         viewController.title = R.string.localized.topTabBarItemTitleLearnWhatsHot()
         viewController.delegate = self
         return viewController
