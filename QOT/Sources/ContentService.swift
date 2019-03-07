@@ -11,6 +11,19 @@ import RealmSwift
 
 final class ContentService {
 
+    enum Tags: String {
+        case tbvGeneratorAlertNotSavedTitle = "tbv_generator_alert_not_saved_title"
+        case tbvGeneratorAlertNotSavedMessage = "tbv_generator_alert_not_saved_message"
+        case tbvGeneratorAlertNotSavedButtonTitleCancel = "tbv_generator_alert_not_saved_button_title_cancel"
+        case tbvGeneratorAlertNotSavedButtonTitleDefault = "tbv_generator_alert_not_saved_button_title_default"
+        case tbvGeneratorAlertNotSavedButtonTitleDestructive = "tbv_generator_alert_not_saved_button_title_destructive"
+        case tbvSharing = "tbv_sharing"
+
+        var predicate: NSPredicate {
+            return NSPredicate(tag: rawValue)
+        }
+    }
+
     // MARK: - Properties
 
     private let mainRealm: Realm
@@ -253,25 +266,24 @@ extension ContentService {
 
     func visionGeneratorAlertModelNotSaved() -> VisionGeneratorAlertModel? {
         guard
-            let title = contentItem(for: VisionGeneratorAlertModel.Tags.title.predicate)?.valueText,
-            let message = contentItem(for: VisionGeneratorAlertModel.Tags.message.predicate)?.valueText,
-            let buttonTitleCancel = contentItem(for: VisionGeneratorAlertModel.Tags.buttonTitleCancel.predicate)?.valueText,
-            let buttonTitleDefault = contentItem(for: VisionGeneratorAlertModel.Tags.buttonTitleDefault.predicate)?.valueText,
-            let buttonTitleDestructive = contentItem(for: VisionGeneratorAlertModel.Tags.buttonTitleDestructive.predicate)?.valueText else {
+            let title = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedTitle.predicate)?.valueText,
+            let message = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedMessage.predicate)?.valueText,
+            let buttonTitleCancel = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleCancel.predicate)?.valueText,
+            let buttonTitleDefault = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleDefault.predicate)?.valueText,
+            let buttonTitleDestructive = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleDefault.predicate)?.valueText else {
                 return nil
         }
         return VisionGeneratorAlertModel(title: title,
                                          message: message,
                                          buttonTitleCancel: buttonTitleCancel,
                                          buttonTitleDefault: buttonTitleDefault,
-                                         buttonTitleDestructive: buttonTitleDestructive)                                         
+                                         buttonTitleDestructive: buttonTitleDestructive)
     }
 }
 
 // MARK: - Release Manager
 
 extension ContentService {
-
     private func releaseManagerCategory() -> ContentCategory? {
         let feedbackMessageCategories = mainRealm.contentCategories(section: .feedbackMessage)
         return feedbackMessageCategories.filter(NSPredicate(title: "Release Manager")).first

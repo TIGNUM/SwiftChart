@@ -114,16 +114,4 @@ struct VisionGeneratorAlertModel {
         alert.addAction(cancelAction)
         return alert
     }
-
-    enum Tags: String {
-        case title = "tbv_generator_alert_not_saved_title"
-        case message = "tbv_generator_alert_not_saved_message"
-        case buttonTitleCancel = "tbv_generator_alert_not_saved_button_title_cancel"
-        case buttonTitleDefault = "tbv_generator_alert_not_saved_button_title_default"
-        case buttonTitleDestructive = "tbv_generator_alert_not_saved_button_title_destructive"
-
-        var predicate: NSPredicate {
-            return NSPredicate(tag: rawValue)
-        }
-    }
 }

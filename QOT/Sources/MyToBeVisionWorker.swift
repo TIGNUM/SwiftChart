@@ -85,7 +85,7 @@ final class MyToBeVisionWorker {
             let tbvText = myToBeVision()?.text,
             let user = services.userService.user(),
             let gender = Gender.init(rawValue: user.gender),
-            let tbvTemplate = services.contentService.contentItem(id: 104080)?.valueText {
+            let tbvTemplate = services.contentService.contentItem(for: ContentService.Tags.tbvSharing.predicate)?.valueText {
             tbvToSahre = tbvTemplate.replacingOccurrences(of: SharingKeys.firstName.rawValue,
                                                           with: user.givenName)
                 .replacingOccurrences(of: SharingKeys.genderHerHim.rawValue,
