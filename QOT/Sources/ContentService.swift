@@ -256,13 +256,15 @@ extension ContentService {
             let title = contentItem(for: VisionGeneratorAlertModel.Tags.title.predicate)?.valueText,
             let message = contentItem(for: VisionGeneratorAlertModel.Tags.message.predicate)?.valueText,
             let buttonTitleCancel = contentItem(for: VisionGeneratorAlertModel.Tags.buttonTitleCancel.predicate)?.valueText,
-            let buttonTitleDefault = contentItem(for: VisionGeneratorAlertModel.Tags.buttonTitleDefault.predicate)?.valueText else {
+            let buttonTitleDefault = contentItem(for: VisionGeneratorAlertModel.Tags.buttonTitleDefault.predicate)?.valueText,
+            let buttonTitleDestructive = contentItem(for: VisionGeneratorAlertModel.Tags.buttonTitleDestructive.predicate)?.valueText else {
                 return nil
         }
         return VisionGeneratorAlertModel(title: title,
                                          message: message,
                                          buttonTitleCancel: buttonTitleCancel,
-                                         buttonTitleDefault: buttonTitleDefault)
+                                         buttonTitleDefault: buttonTitleDefault,
+                                         buttonTitleDestructive: buttonTitleDestructive)                                         
     }
 }
 

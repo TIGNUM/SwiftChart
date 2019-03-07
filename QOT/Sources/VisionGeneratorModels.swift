@@ -96,12 +96,31 @@ struct VisionGeneratorAlertModel {
     let message: String
     let buttonTitleCancel: String
     let buttonTitleDefault: String
+    let buttonTitleDestructive: String
+
+    func showActionSheet(continueAction: (() -> Void)?, saveAndExit: (() -> Void)?, exit: (() -> Void)?) -> UIAlertController {
+        let alert = UIAlertController(title: self.title, message: self.message, preferredStyle: .actionSheet)
+        let defaultAction = UIAlertAction(title: self.buttonTitleDefault, style: .default) { (_) -> Void in
+            continueAction?()
+        }
+        let destructiveAction = UIAlertAction(title: self.buttonTitleDestructive, style: .default) { (_) -> Void in
+            saveAndExit?()
+        }
+        let cancelAction = UIAlertAction(title: self.buttonTitleCancel, style: .cancel) { (_) -> Void in
+            exit?()
+        }
+        alert.addAction(defaultAction)
+        alert.addAction(destructiveAction)
+        alert.addAction(cancelAction)
+        return alert
+    }
 
     enum Tags: String {
         case title = "tbv_generator_alert_not_saved_title"
         case message = "tbv_generator_alert_not_saved_message"
         case buttonTitleCancel = "tbv_generator_alert_not_saved_button_title_cancel"
         case buttonTitleDefault = "tbv_generator_alert_not_saved_button_title_default"
+        case buttonTitleDestructive = "tbv_generator_alert_not_saved_button_title_destructive"
 
         var predicate: NSPredicate {
             return NSPredicate(tag: rawValue)

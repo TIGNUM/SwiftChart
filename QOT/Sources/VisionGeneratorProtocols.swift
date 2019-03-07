@@ -39,6 +39,7 @@ protocol VisionGeneratorInteractorInterface: Interactor {
     func didPressBottomButton(_ choice: VisionGeneratorChoice)
     func bottomButtonTitle(_ choice: VisionGeneratorChoice) -> String
     func restartGenerator()
+    func saveVision()
     var currentQuestionType: VisionGeneratorChoice.QuestionType { get }
     var shouldShowAlertVisionNotSaved: Bool { get }
     var alertModel: VisionGeneratorAlertModel? { get }

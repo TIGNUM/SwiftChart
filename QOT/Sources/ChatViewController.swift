@@ -180,13 +180,15 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         guard pageName == PageName.visionGenerator else { return }
         if let alertModel = viewModel.visionGeneratorInteractor?.alertModel,
             viewModel.visionGeneratorInteractor?.shouldShowAlertVisionNotSaved == true {
-            let type = AlertType.tbvGeneratorNotSaved(title: alertModel.title,
-                                                      message: alertModel.message,
-                                                      buttonTitleCancel: alertModel.buttonTitleCancel,
-                                                      buttonTitleDefault: alertModel.buttonTitleDefault)
-            showAlert(type: type, handler: {}, handlerDestructive: { [weak self] in
-                self?.dismiss()
+            let alertController = alertModel.showActionSheet(continueAction: {
+                // Do nothing
+            }, saveAndExit: {
+                self.viewModel.visionGeneratorInteractor?.saveVision()
+                self.dismiss()
+            }, exit: {
+                self.dismiss()
             })
+            present(alertController, animated: true, completion: nil)
         } else {
             self.dismiss()
         }

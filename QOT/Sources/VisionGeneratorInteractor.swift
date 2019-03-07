@@ -44,6 +44,10 @@ extension VisionGeneratorInteractor: VisionGeneratorInteractorInterface {
         return worker.questionType
     }
 
+    func saveVision() {
+        worker.saveVision()
+    }
+
     func visionSelectionCount(for questionType: VisionGeneratorChoice.QuestionType) -> Int {
         return worker.visionSelectionCount(for: questionType)
     }

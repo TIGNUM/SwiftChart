@@ -54,7 +54,6 @@ enum AlertType {
     case photosPermissionNotAuthorized
     case cameraPermissionNotAuthorized
     case changePassword
-    case tbvGeneratorNotSaved(title: String, message: String, buttonTitleCancel: String, buttonTitleDefault: String)
 
     var title: String? {
         switch self {
@@ -92,7 +91,6 @@ enum AlertType {
         case .calendarNotSynced: return R.string.localized.alertTitleCalendarNotSynced()
         case .eventDateNotAvailable: return R.string.localized.alertTitleEventDateNotAvailable()
         case .changeNotifications: return R.string.localized.alertTitleSettingsChangeNotifications()
-        case .tbvGeneratorNotSaved(let title, _, _, _): return title
         default: return nil
         }
     }
@@ -134,7 +132,6 @@ enum AlertType {
         case .eventDateNotAvailable: return R.string.localized.alertMessageEventDateNotAvailable()
         case .changeNotifications: return R.string.localized.alertMessageSettingsChangeNotifications()
         case .changePassword: return R.string.localized.settingsChangePasswordTitle()
-        case .tbvGeneratorNotSaved(_, let message, _, _): return message
         default: return nil
         }
     }
@@ -172,7 +169,6 @@ enum AlertType {
         case .logout,
              .changePassword: return R.string.localized.alertButtonTitleCancel()
         case .addSensorCompletion: return R.string.localized.addSensorViewAlertFeedbackSuccessOK()
-        case .tbvGeneratorNotSaved(_, _, _, let buttonTitleDefault): return buttonTitleDefault
         default: return R.string.localized.alertButtonTitleOk()
         }
     }
@@ -187,7 +183,6 @@ enum AlertType {
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationRemoveStrategy()
         case .logout: return R.string.localized.sidebarTitleLogout()
         case .changePassword: return R.string.localized.settingsChangePasswordButton()
-         case .tbvGeneratorNotSaved(_, _, let buttonTitleCancel, _): return buttonTitleCancel
         default: return nil
         }
     }
@@ -206,8 +201,7 @@ enum AlertType {
         case .changePermissions,
              .cameraPermissionNotAuthorized,
              .photosPermissionNotAuthorized,
-             .changeNotifications,
-             .tbvGeneratorNotSaved: return [.destructive, .default]
+             .changeNotifications: return [.destructive, .default]
         default: return [.default]
         }
     }
@@ -275,7 +269,8 @@ extension UIViewController {
 
     private class func addActionStyle(style: UIAlertActionStyle,
                                       alertController: UIAlertController,
-                                      type: AlertType, handler: (() -> Void)?,
+                                      type: AlertType,
+                                      handler: (() -> Void)?,
                                       handlerDestructive: (() -> Void)?) {
         switch style {
         case .cancel: alertController.addAction(UIViewController.cancelAction(type: type))
