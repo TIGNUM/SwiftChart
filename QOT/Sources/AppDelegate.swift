@@ -314,19 +314,26 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func handleNotification(notification: UNNotification) {
         log("dailyPrep://handleNotification, notification:: \(notification)")
-        guard
-            let linkString = notification.request.content.userInfo["link"] as? String,
-            let link = URL(string: linkString), launchHandler.canLaunch(url: link) == true else {
-                return
+        var link: URL?
+        if let linkString = notification.request.content.userInfo["link"] as? String {
+            link = URL(string: linkString)
+        } else if let urlString = notification.request.content.userInfo["url"] as? String {
+            link = URL(string: urlString)
+        } else {
+            let stringValues = notification.request.content.userInfo.values.filter { ($0 is String) } as? [String]
+            let userInfoUrlString = stringValues?.filter { $0.contains("qot://") }.first
+            if let urlString = userInfoUrlString {
+                link = URL(string: urlString)
+            }
         }
-
+        guard let notificationLink = link, launchHandler.canLaunch(url: notificationLink) == true else { return }
         var notificationID = notification.request.identifier
         if notificationID.starts(with: NotificationID.Prefix.dailyPrep.rawValue) {
             notificationID = NotificationID.dailyPrep(date: Calendar.current.isoDate(from: notification.date)).string
         }
-        launchHandler.process(url: link, notificationID: notificationID)
+        launchHandler.process(url: notificationLink, notificationID: notificationID)
         guard
-            let host = link.host,
+            let host = notificationLink.host,
             let scheme = URLScheme(rawValue: host), scheme != .dailyPrep,
             let id = try? GuideItemID(stringRepresentation: notificationID) else { return }
         let guideWorker = GuideWorker(services: AppDelegate.appState.services, badgeManager: nil)
