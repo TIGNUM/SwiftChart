@@ -23,6 +23,11 @@ final class SiriShortcutsWorker {
     // MARK: - Functions
 
     func siriShortcuts() -> SiriShortcutsModel {
-        return SiriShortcutsModel(services: services)
+        let explanation = services.contentService.siriExplanation()
+        let shortcuts = ShortcutType.allCases.map {
+            return SiriShortcutsModel.Shortcut(type: $0,
+                                               title: services.contentService.siriTitle(for: $0),
+                                               suggestion: services.contentService.siriSuggestionPhrase(for: $0)) }
+        return SiriShortcutsModel(explanation: explanation, shortcuts: shortcuts)
     }
 }

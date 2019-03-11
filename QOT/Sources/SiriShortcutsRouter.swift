@@ -12,11 +12,9 @@ import IntentsUI
 final class SiriShortcutsRouter {
 
     private let siriShortcutsViewController: SiriShortcutsViewController
-    private let services: Services
 
     init(siriShortcutsViewController: SiriShortcutsViewController, services: Services) {
         self.siriShortcutsViewController = siriShortcutsViewController
-        self.services = services
     }
 }
 
@@ -24,25 +22,26 @@ final class SiriShortcutsRouter {
 
 extension SiriShortcutsRouter: SiriShortcutsRouterInterface {
 
-    func handleTap(for shortcut: SiriShortcutsModel.Shortcut) {
+    func handleTap(for shortcut: SiriShortcutsModel.Shortcut?) {
         if #available(iOS 12.0, *) {
-            switch shortcut {
-            case .toBeVision:
+            switch shortcut?.type {
+            case .toBeVision?:
                 let intent = ReadVisionIntent()
-                intent.suggestedInvocationPhrase = R.string.localized.siriShortcutsToBeVisionSuggestedInvocation()
+                intent.suggestedInvocationPhrase = shortcut?.suggestion
                 presentShortcutViewController(with: intent)
-            case .morningInterview:
+            case .morningInterview?:
                 let intent = DailyPrepIntent()
-                intent.suggestedInvocationPhrase = R.string.localized.siriShortcutsDailyPrepSuggestedInvocation()
+                intent.suggestedInvocationPhrase = shortcut?.suggestion
                 presentShortcutViewController(with: intent)
-            case .upcomingEventPrep:
+            case .upcomingEventPrep?:
                 let intent = UpcomingEventIntent()
-                intent.suggestedInvocationPhrase = R.string.localized.siriShortcutsUpcomingEventSuggestedInvocation()
+                intent.suggestedInvocationPhrase = shortcut?.suggestion
                 presentShortcutViewController(with: intent)
-            case .whatsHot:
+            case .whatsHot?:
                 let intent = WhatsHotIntent()
-                intent.suggestedInvocationPhrase = R.string.localized.siriShortcutsWhatsHotArticleSuggestedInvocation()
+                intent.suggestedInvocationPhrase = shortcut?.suggestion
                 presentShortcutViewController(with: intent)
+            default: return
             }
         }
     }

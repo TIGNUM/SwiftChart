@@ -35,7 +35,7 @@ final class SiriShortcutsInteractor {
 
 extension SiriShortcutsInteractor: SiriShortcutsInteractorInterface {
 
-    func handleTap(for shortcut: SiriShortcutsModel.Shortcut) {
+    func handleTap(for shortcut: SiriShortcutsModel.Shortcut?) {
         router.handleTap(for: shortcut)
     }
 }

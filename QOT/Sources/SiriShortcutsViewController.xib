@@ -4,6 +4,7 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,6 +12,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SiriShortcutsViewController" customModule="QOT" customModuleProvider="target">
             <connections>
+                <outlet property="explanationLabel" destination="74d-LX-Mga" id="ZLO-Rl-j2j"/>
                 <outlet property="tableView" destination="VaR-LA-eSD" id="i78-XW-dH8"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -20,8 +22,14 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="74d-LX-Mga">
+                    <rect key="frame" x="15" y="40" width="345" height="0.0"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="VaR-LA-eSD">
-                    <rect key="frame" x="30" y="50" width="325" height="573"/>
+                    <rect key="frame" x="30" y="60" width="325" height="563"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <connections>
                         <outlet property="dataSource" destination="-1" id="mWp-Rp-QMU"/>
@@ -31,9 +39,12 @@
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="VaR-LA-eSD" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="30" id="M8m-bJ-x8F"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="74d-LX-Mga" secondAttribute="trailing" constant="15" id="AGD-cG-1xb"/>
+                <constraint firstItem="VaR-LA-eSD" firstAttribute="top" secondItem="74d-LX-Mga" secondAttribute="bottom" constant="20" id="M8m-bJ-x8F"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="VaR-LA-eSD" secondAttribute="bottom" constant="44" id="bsO-te-Mf7"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="VaR-LA-eSD" secondAttribute="trailing" constant="20" id="hP3-Jz-cui"/>
+                <constraint firstItem="74d-LX-Mga" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="20" id="nPP-Xa-L8w"/>
+                <constraint firstItem="74d-LX-Mga" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="15" id="oJ9-rd-qYe"/>
                 <constraint firstItem="VaR-LA-eSD" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="30" id="oxM-up-4zf"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>

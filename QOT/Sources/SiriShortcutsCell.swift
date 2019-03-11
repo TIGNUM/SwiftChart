@@ -19,7 +19,7 @@ final class SiriShortcutsCell: UITableViewCell, Dequeueable {
         accessoryType = .disclosureIndicator
     }
 
-    func configure(title: String) {
-        titleLabel.text = title
+    func configure(title: String?) {
+        titleLabel.text = title ?? ""
     }
 }

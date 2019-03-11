@@ -17,9 +17,9 @@ protocol SiriShortcutsPresenterInterface {
 }
 
 protocol SiriShortcutsInteractorInterface: Interactor {
-    func handleTap(for shortcut: SiriShortcutsModel.Shortcut)
+    func handleTap(for shortcut: SiriShortcutsModel.Shortcut?)
 }
 
 protocol SiriShortcutsRouterInterface {
-    func handleTap(for shortcut: SiriShortcutsModel.Shortcut)
+    func handleTap(for shortcut: SiriShortcutsModel.Shortcut?)
 }

@@ -13,13 +13,13 @@ final class SiriShortcutsViewController: UIViewController {
     // MARK: - Properties
 
     @IBOutlet private weak var tableView: UITableView!
-    private var siriShortcutsModel: SiriShortcutsModel
+    @IBOutlet private weak var explanationLabel: UILabel!
+    private var siriShortcutsModel: SiriShortcutsModel?
     var interactor: SiriShortcutsInteractorInterface?
 
      // MARK: - Init
 
     init(configure: Configurator<SiriShortcutsViewController>, services: Services) {
-        siriShortcutsModel = SiriShortcutsModel(services: services)
         super.init(nibName: nil, bundle: nil)
         configure(self)
     }
@@ -51,6 +51,7 @@ extension SiriShortcutsViewController: SiriShortcutsViewControllerInterface {
     func setup(for shortcut: SiriShortcutsModel) {
         view.backgroundColor = .navy
         siriShortcutsModel = shortcut
+        explanationLabel.text = siriShortcutsModel?.explanation
     }
 }
 
@@ -59,20 +60,18 @@ extension SiriShortcutsViewController: SiriShortcutsViewControllerInterface {
 extension SiriShortcutsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return siriShortcutsModel.itemCount
+        return siriShortcutsModel?.shortcuts.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: SiriShortcutsCell = tableView.dequeueCell(for: indexPath)
-        let model = siriShortcutsModel.shortcutItem(at: indexPath)
         cell.accessoryType = .disclosureIndicator
-        cell.configure(title: model.title)
+        cell.configure(title: siriShortcutsModel?.shortcuts[indexPath.row].title)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let shortcutTapped = siriShortcutsModel.shortcutItem(at: indexPath)
-        interactor?.handleTap(for: shortcutTapped)
+        interactor?.handleTap(for: siriShortcutsModel?.shortcuts[indexPath.row])
     }
 }
