@@ -55,7 +55,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private lazy var credentialsManager = CredentialsManager.shared
     private lazy var authenticator = Authenticator(sessionManager: SessionManager.default,
                                                    requestBuilder: URLRequestBuilder(deviceID: deviceID))
-
     private lazy var realmProvider: RealmProvider = {
         return RealmProvider()
     }()
@@ -65,15 +64,15 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         PageTracker.setStaticTracker(pageTracker: tracker)
         return tracker
     }()
-
     private lazy var eventTracker: EventTracker = {
         return EventTracker(realmProvider: self.realmProvider)
     }()
-
     private lazy var syncRecordService: SyncRecordService = {
         return SyncRecordService(realmProvider: self.realmProvider)
     }()
-
+    lazy var userLoggedIn: Bool = {
+        return credentialsManager.hasLoginCredentials
+    }()
     lazy var syncManager: SyncManager = {
         let manager = SyncManager(networkManager: self.networkManager,
                            syncRecordService: self.syncRecordService,
@@ -222,8 +221,11 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         })
     }
 
-    func showApp(loginViewController: LoginViewController?) {
+    func startSync() {
         self.syncManager.start()
+    }
+
+    func showApp(loginViewController: LoginViewController?) {
         guard OnboardingCoordinator.isOnboardingComplete == true else {
             self.showOnboarding()
             return
@@ -475,6 +477,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 
     func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator, loginViewController: LoginViewController?) {
         addMissingRealmObjectsAfterLogin()
+        startSync()
         removeChild(child: coordinator)
         QOTUsageTimer.sharedInstance.startTimer()
         if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
@@ -491,6 +494,7 @@ extension AppCoordinator: LoginCoordinatorDelegate {
 
     func didLogin() {
         addMissingRealmObjectsAfterLogin()
+        startSync()
         QOTUsageTimer.sharedInstance.startTimer()
         if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
             let configurator = TutorialConfigurator.make()

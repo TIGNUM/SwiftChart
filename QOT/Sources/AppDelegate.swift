@@ -89,6 +89,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()
             Fabric.with([Crashlytics.self])
+            if appCoordinator.userLoggedIn == true {
+                appCoordinator.startSync()
+            }
             appCoordinator.start(completion: {
                 self.processURLWhenAppInactive(launchOptions: launchOptions)
             })
