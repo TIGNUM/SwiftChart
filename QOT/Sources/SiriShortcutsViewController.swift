@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IntentsUI
 
 final class SiriShortcutsViewController: UIViewController {
 
@@ -75,5 +76,23 @@ extension SiriShortcutsViewController: UITableViewDelegate, UITableViewDataSourc
         tableView.deselectRow(at: indexPath, animated: true)
         shortcutType = siriShortcutsModel?.shortcuts[indexPath.row].type ?? .toBeVision
         interactor?.handleTap(for: siriShortcutsModel?.shortcuts[indexPath.row])
+    }
+}
+
+// MARK: - INUIAddVoiceShortcutViewControllerDelegate
+
+extension SiriShortcutsViewController: INUIAddVoiceShortcutViewControllerDelegate {
+
+    @available(iOS 12.0, *)
+    func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController,
+                                        didFinishWith voiceShortcut: INVoiceShortcut?,
+                                        error: Error?) {
+        interactor?.sendSiriRecordingAppEvent(shortcutType: shortcutType)
+        dismiss(animated: true, completion: nil)
+    }
+
+    @available(iOS 12.0, *)
+    func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
+        dismiss(animated: true, completion: nil)
     }
 }

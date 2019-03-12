@@ -47,24 +47,6 @@ extension SiriShortcutsRouter: SiriShortcutsRouterInterface {
     }
 }
 
-// MARK: - INUIAddVoiceShortcutViewControllerDelegate
-
-extension SiriShortcutsViewController: INUIAddVoiceShortcutViewControllerDelegate {
-
-    @available(iOS 12.0, *)
-    func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController,
-                                        didFinishWith voiceShortcut: INVoiceShortcut?,
-                                        error: Error?) {
-        interactor?.sendSiriRecordingAppEvent(shortcutType: shortcutType)
-        dismiss(animated: true, completion: nil)
-    }
-
-    @available(iOS 12.0, *)
-    func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
-        dismiss(animated: true, completion: nil)
-    }
-}
-
 // MARK: - Private
 
 private extension SiriShortcutsRouter {
