@@ -16,6 +16,7 @@ final class SiriShortcutsViewController: UIViewController {
     @IBOutlet private weak var explanationLabel: UILabel!
     private var siriShortcutsModel: SiriShortcutsModel?
     var interactor: SiriShortcutsInteractorInterface?
+    private var shortcutType: ShortcutType = .toBeVision
 
      // MARK: - Init
 
@@ -72,6 +73,7 @@ extension SiriShortcutsViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        shortcutType = siriShortcutsModel?.shortcuts[indexPath.row].type ?? .toBeVision
         interactor?.handleTap(for: siriShortcutsModel?.shortcuts[indexPath.row])
     }
 }

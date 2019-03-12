@@ -18,6 +18,7 @@ protocol SiriShortcutsPresenterInterface {
 
 protocol SiriShortcutsInteractorInterface: Interactor {
     func handleTap(for shortcut: SiriShortcutsModel.Shortcut?)
+    func sendSiriRecordingAppEvent(shortcutType: ShortcutType)
 }
 
 protocol SiriShortcutsRouterInterface {

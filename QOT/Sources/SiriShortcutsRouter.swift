@@ -55,6 +55,7 @@ extension SiriShortcutsViewController: INUIAddVoiceShortcutViewControllerDelegat
     func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController,
                                         didFinishWith voiceShortcut: INVoiceShortcut?,
                                         error: Error?) {
+        interactor?.sendSiriRecordingAppEvent(shortcutType: shortcutType)
         dismiss(animated: true, completion: nil)
     }
 
