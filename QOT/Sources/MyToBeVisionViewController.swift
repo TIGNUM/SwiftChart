@@ -134,7 +134,7 @@ extension MyToBeVisionViewController: MyToBeVisionViewControllerInterface {
     }
 
     func showVisionGenerator() {
-        let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(pageName: pageName,
+        let chatViewController = VisionGeneratorConfigurator.visionGeneratorViewController(pageName: MyToBeVisionViewController.generatorPage,
                                                                                            toBeVision: interactor?.myToBeVision,
                                                                                            visionController: self,
                                                                                            visionChatItems: visionChatItems,
