@@ -209,7 +209,7 @@ extension LibraryViewController: TrackablePage {
     }
 }
 
-extension LoginViewController: TrackablePage {
+extension SigningLoginViewController: TrackablePage {
     var pageName: PageName {
         return .login
     }

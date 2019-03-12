@@ -41,7 +41,18 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     lazy var logoutNotificationHandler = NotificationHandler(name: .logoutNotification)
     lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: networkManager,
                                                                  credentialsManager: credentialsManager)
-    weak var tabBarCoordinator: TabBarCoordinator?
+    lazy var tabBarCoordinator: TabBarCoordinator? = {
+        guard let services = services else { return nil }
+        let selectedIndex = checkListIDToPresent != nil ? 2 : 0
+        return TabBarCoordinator(windowManager: windowManager,
+                                 selectedIndex: selectedIndex,
+                                 services: services,
+                                 eventTracker: eventTracker,
+                                 permissionsManager: permissionsManager,
+                                 pageTracker: pageTracker,
+                                 syncManager: syncManager,
+                                 networkManager: networkManager)
+    }()
     lazy var networkManager: NetworkManager = {
         let manager = NetworkManager(delegate: self, authenticator: authenticator)
         AppCoordinator.appState.networkManager = manager
@@ -126,8 +137,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func start(completion: @escaping (() -> Void)) {
-        if Bundle.main.isFirstVersion {
-            self.credentialsManager.clear()
+        if Bundle.main.isFirstVersion == true {
+            credentialsManager.clear()
         }
         UserDefault.lastInstaledAppVersion.setStringValue(value: Bundle.main.versionNumber)
         if UserDefault.firstInstallationTimestamp.object == nil {
@@ -138,36 +149,30 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         let dispatchGroup = DispatchGroup()
         let viewController = AnimatedLaunchScreenViewController()
         dispatchGroup.enter()
-        windowManager.show(viewController, animated: false, completion: {
-            viewController.fadeInLogo()
-            viewController.startAnimatingImages { [unowned viewController] in
-                viewController.fadeOutLogo {
-                    self.showIpadSupportViewIfNeeded {
-                        dispatchGroup.leave()
-                    }
+        var setupError: Error?
+        setupApp { error in
+            setupError = error
+            dispatchGroup.leave()
+        }
+        dispatchGroup.enter()
+        windowManager.show(viewController, duration: Animation.duration_01, animated: false, completion: {
+            viewController.startAnimatingImages {
+                self.showIpadSupportViewIfNeeded {
+                    dispatchGroup.leave()
                 }
             }
         })
-
-        dispatchGroup.enter()
-        var setupError: Error?
-        setupApp { [unowned self] (error) in
-            setupError = error
-            dispatchGroup.leave()
-            self.setupBugLife()
-            AppDelegate.current.setupSiren(services: self.services)
-        }
 
         dispatchGroup.notify(queue: .main) {
             if let error = setupError {
                 self.handleSetupError(error: error)
             } else if self.credentialsManager.hasLoginCredentials {
-                self.showApp(loginViewController: nil)
+                self.showApp()
                 RestartHelper().checkRestartURLAndRoute()
                 completion()
             } else {
                 UserDefault.clearAllDataLogOut()
-                self.showSigning(controller: viewController)
+                self.showSigning()
             }
         }
     }
@@ -177,7 +182,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         networkManager.cancelAllRequests()
         navigate(to: AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide))
         logout()
-        showSigning(controller: nil)
+        showSigning()
     }
 
     func setupBugLife() {
@@ -199,11 +204,14 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             } else {
                 do {
                     let services = try Services()
-                    guideMaxDays = services.settingsService.guideDays ?? 3
                     self.services = services
+                    guideMaxDays = services.settingsService.guideDays ?? 3
                     self.syncManager.userNotificationsManager = services.userNotificationsManager
                     AppCoordinator.appState.services = services
                     QOTUsageTimer.sharedInstance.userService = services.userService
+                    _ = self.tabBarCoordinator
+                    AppDelegate.current.setupSiren(services: self.services)
+                    self.setupBugLife()
                     completion(nil)
                 } catch {
                     completion(error)
@@ -225,20 +233,19 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         self.syncManager.start()
     }
 
-    func showApp(loginViewController: LoginViewController?) {
+    func showApp() {
         guard OnboardingCoordinator.isOnboardingComplete == true else {
             self.showOnboarding()
             return
         }
-
-        self.registerRemoteNotifications()
-        self.calendarImportManager.importEvents()
-        if self.isRestart == false, let services = services {
-            self.startTabBarCoordinator(services: services, permissionsManager: self.permissionsManager)
+        if self.isRestart == false {
+            self.startTabBarCoordinator()
         } else {
             self.isRestart = false
             self.windowManager.rootViewController(atLevel: .normal)?.dismiss(animated: true, completion: nil)
         }
+        self.registerRemoteNotifications()
+        self.calendarImportManager.importEvents()
         self.canProcessRemoteNotifications = true
         self.canProcessLocalNotifications = true
         self.remoteNotificationHandler.processOutstandingNotifications()
@@ -354,20 +361,11 @@ private extension AppCoordinator {
         }
     }
 
-    func startTabBarCoordinator(services: Services, permissionsManager: PermissionsManager) {
-        let selectedIndex = checkListIDToPresent != nil ? 2 : 0
-        let coordinator = TabBarCoordinator(windowManager: windowManager,
-                                            selectedIndex: selectedIndex,
-                                            services: services,
-                                            eventTracker: eventTracker,
-                                            permissionsManager: permissionsManager,
-                                            pageTracker: pageTracker,
-                                            syncManager: syncManager,
-                                            networkManager: networkManager)
-        self.tabBarCoordinator = coordinator
-        startChild(child: coordinator)
+    func startTabBarCoordinator() {
+        guard let tabBarCoordinator = tabBarCoordinator else { return }
+        startChild(child: tabBarCoordinator)
         guard let localID = checkListIDToPresent else { return }
-        coordinator.showPreparationCheckList(localID: localID)
+        tabBarCoordinator.showPreparationCheckList(localID: localID)
         checkListIDToPresent = nil
     }
 }
@@ -388,6 +386,13 @@ extension AppCoordinator {
         currentPresentedController = alert
     }
 
+    func showTutorial() {
+        let configurator = TutorialConfigurator.make()
+        let controller = TutorialViewController(configure: configurator, from: .login)
+        windowManager.show(controller, animated: true, completion: nil)
+        UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
+    }
+
     func showOnboarding() {
         let userName = self.services?.userService.user()?.givenName ?? ""
         let coordinator = OnboardingCoordinator(windowManager: windowManager,
@@ -397,7 +402,7 @@ extension AppCoordinator {
         startChild(child: coordinator)
     }
 
-    func showSigning(controller: UIViewController?) {
+    func showSigning() {
         guard userIsLoggingIn.value == false else { return }
         userIsLoggingIn.value = true
         let configurator = SigningInfoConfigurator.make()
@@ -425,6 +430,20 @@ extension AppCoordinator {
         notificationCenter.removeAllPendingNotificationRequests()
         notificationCenter.removeAllDeliveredNotifications()
     }
+
+    func didLogin() {
+        addMissingRealmObjectsAfterLogin()
+        startSync()
+        QOTUsageTimer.sharedInstance.startTimer()
+        if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
+            showTutorial()
+        } else {
+            showApp()
+        }
+        sendAppEvent(.login)
+        networkManager.performDeviceRequest()
+        userIsLoggingIn.value = false
+    }
 }
 
 extension AppCoordinator: NavigationItemDelegate {
@@ -435,7 +454,6 @@ extension AppCoordinator: NavigationItemDelegate {
         topTabBarController?.dismiss(animated: true) {
             self.windowManager.resignWindow(atLevel: .priority)
         }
-
         AppCoordinator.updateStatusBarStyleIfNeeded()
     }
 
@@ -468,45 +486,6 @@ extension AppCoordinator: CalendarImportMangerDelegate {
         // FIXME: Handle error
         log("Calendar import failed: with error: \(error.localizedDescription))", level: .error)
         assertionFailure("Calendar import failed: \(error)")
-    }
-}
-
-// MARK: - LoginCoordinatorDelegate
-
-extension AppCoordinator: LoginCoordinatorDelegate {
-
-    func loginCoordinatorDidLogin(_ coordinator: LoginCoordinator, loginViewController: LoginViewController?) {
-        addMissingRealmObjectsAfterLogin()
-        startSync()
-        removeChild(child: coordinator)
-        QOTUsageTimer.sharedInstance.startTimer()
-        if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
-            let configurator = TutorialConfigurator.make()
-            let controller = TutorialViewController(configure: configurator, from: .login)
-            windowManager.show(controller, animated: true, completion: nil)
-            UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
-        } else {
-            showApp(loginViewController: loginViewController)
-        }
-        networkManager.performDeviceRequest()
-        userIsLoggingIn.value = false
-    }
-
-    func didLogin() {
-        addMissingRealmObjectsAfterLogin()
-        startSync()
-        QOTUsageTimer.sharedInstance.startTimer()
-        if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
-            let configurator = TutorialConfigurator.make()
-            let controller = TutorialViewController(configure: configurator, from: .login)
-            windowManager.show(controller, animated: true, completion: nil)
-            UserDefault.hasShownOnbordingSlideShowInAppBuild.setStringValue(value: Bundle.main.buildNumber)
-        } else {
-            showApp(loginViewController: nil)
-        }
-        sendAppEvent(.login)
-        networkManager.performDeviceRequest()
-        userIsLoggingIn.value = false
     }
 }
 
@@ -551,7 +530,7 @@ extension AppCoordinator: OnboardingCoordinatorDelegate {
 
     func onboardingCoordinatorDidFinish(_ onboardingCoordinator: OnboardingCoordinator) {
         removeChild(child: onboardingCoordinator)
-        showApp(loginViewController: nil)
+        showApp()
     }
 }
 

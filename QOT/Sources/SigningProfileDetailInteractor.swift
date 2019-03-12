@@ -142,8 +142,7 @@ private extension SigningProfileDetailInteractor {
         switch registrationCheck.responseType {
         case .userCreated: handleRegistrationSuccess(registrationCheck: registrationCheck)
         case .userExist: handleRegistrationFailure(registrationCheck: registrationCheck)
-        default:
-            return
+        default: return
         }
     }
 
@@ -155,7 +154,7 @@ private extension SigningProfileDetailInteractor {
                                     message: registrationCheck.message
                 ).hide(animated: true, afterDelay: 3)
         }
-        LoginCoordinator.add3DTouchShortcuts()
+        router.add3DTouchShortcuts()
         UserDefault.clearAllDataRegistration()
         UserDefault.lastInstaledAppVersion.setStringValue(value: Bundle.main.versionNumber)
         AppDelegate.current.appCoordinator.didLogin()

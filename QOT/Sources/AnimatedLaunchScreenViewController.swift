@@ -22,50 +22,45 @@ final class AnimatedLaunchScreenViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bottomLabel.setAttrText(text: R.string.localized.splashViewRuleYourImpact(),
-                                font: UIFont.H5SecondaryHeadline,
-                                color: .white60)
         setupHierarchy()
+        configureAnimation()
         setupLayout()
+        setupBottomLabel()
     }
 
     // MARK: - Public
 
-    func fadeInLogo(withCompletion completion: (() -> Void)? = nil) {
-        UIView.animate(withDuration: 2, animations: {
-            self.logoImageView.alpha = 1
-        }, completion: { (_: Bool) in
-            completion?()
-        })
-    }
-
-    func fadeOutLogo(withCompletion completion: (() -> Void)? = nil) {
-
-        UIView.animate(withDuration: 0.5, animations: {
-            self.logoImageView.alpha = 0
-            self.bottomLabel.alpha = 0
-        }, completion: { (_: Bool) in
-            completion?()
-        })
-    }
-
-    func startAnimatingImages(withCompletion completion: (() -> Void)? = nil) {
+    func startAnimatingImages(withCompletion completion: (() -> Void)?) {
         logoImageView.startAnimating()
         let estimatedTime = Double(imageCount) * (1 / 30) // 30 fps. @see UIImageView animationDuration
         DispatchQueue.main.asyncAfter(deadline: .now() + estimatedTime) {
-            completion?()
+            self.fadeOutLogo(withCompletion: completion)
         }
     }
 }
 
 private extension AnimatedLaunchScreenViewController {
 
+    func fadeOutLogo(withCompletion completion: (() -> Void)?) {
+        UIView.animate(withDuration: Animation.duration_01, animations: {
+            self.logoImageView.alpha = 0
+            self.bottomLabel.alpha = 0
+        }, completion: { _ in
+            completion?()
+        })
+    }
+
+    func setupBottomLabel() {
+        bottomLabel.setAttrText(text: R.string.localized.splashViewRuleYourImpact(),
+                                font: UIFont.H5SecondaryHeadline,
+                                color: .white60)
+    }
+
     func setupHierarchy() {
         view.backgroundColor = .navy
         view.addSubview(backGroundImageView)
         view.addSubview(bottomLabel)
         view.addSubview(logoImageView)
-        configureAnimation()
     }
 
     func setupLayout() {
@@ -80,10 +75,7 @@ private extension AnimatedLaunchScreenViewController {
     }
 
     func configureAnimation() {
-        let images = logoImages()
-        logoImageView.alpha = 0
-        logoImageView.image = images.last
-        logoImageView.animationImages = images
+        logoImageView.animationImages = logoImages()
         logoImageView.animationRepeatCount = 1
     }
 

@@ -29,7 +29,7 @@ extension TutorialRouter: TutorialRouterInterface {
         if viewController.navigationController != nil {
             viewController.navigationController?.popViewController(animated: true)
         } else {
-            AppDelegate.current.appCoordinator.showApp(loginViewController: nil)
+            AppDelegate.current.appCoordinator.showApp()
         }
     }
 }

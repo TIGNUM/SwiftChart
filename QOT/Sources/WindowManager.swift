@@ -70,10 +70,15 @@ final class WindowManager {
         return window.rootViewController?.presentedViewController
     }
 
-    func show(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
+    func show(_ viewController: UIViewController, duration: Double = 0.7, animated: Bool, completion: (() -> Void)?) {
         let level = Level.normal
         showWindow(atLevel: level)
-        setRootViewController(viewController, transitionStyle: .transitionCrossDissolve, duration: 0.7, atLevel: level, animated: animated, completion: completion)
+        setRootViewController(viewController,
+                              transitionStyle: .transitionCrossDissolve,
+                              duration: duration,
+                              atLevel: level,
+                              animated: animated,
+                              completion: completion)
     }
 
     func showOverlay(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {

@@ -43,4 +43,5 @@ protocol SigningProfileDetailRouterInterface {
     func showPrivacyPolicy()
     func showAlert(message: String)
     func handleError(_ error: Error?)
+    func add3DTouchShortcuts()
 }

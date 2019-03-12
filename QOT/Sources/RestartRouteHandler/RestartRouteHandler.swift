@@ -35,7 +35,6 @@ class RestartHelper {
                 RestartHelper.clearRestartRouteInfo()
                 return
         }
-
         UIApplication.shared.open(restartRouteURL, options: [ : ], completionHandler: nil)
         RestartHelper.clearRestartRouteInfo()
     }

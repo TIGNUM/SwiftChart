@@ -79,7 +79,7 @@ extension SigningLoginInteractor: SigningLoginInteractorInterface {
 									if let error = error {
 										self?.router.handleLoginError(error)
 									} else {
-										LoginCoordinator.add3DTouchShortcuts()
+										self?.router.add3DTouchShortcuts()
 										AppDelegate.current.appCoordinator.didLogin()
 									}
 		}

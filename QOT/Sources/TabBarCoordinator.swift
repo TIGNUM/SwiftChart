@@ -213,7 +213,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }
 
     func start() {
-        windowManager.show(tabBarController, animated: true, completion: nil)
+        windowManager.show(tabBarController, duration: 0, animated: false, completion: nil)
     }
 
     // MARK: - private
