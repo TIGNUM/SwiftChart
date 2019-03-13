@@ -39,6 +39,7 @@ extension SigningLoginWorker {
             if let error = error {
                 completion?(error)
             } else {
+                ExtensionsDataManager.didUserLogIn(true)
                 self?.downSyncUser(completion: completion)
             }
         }

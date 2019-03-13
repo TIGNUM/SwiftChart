@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOSApplicationExtension 12.0, *)
 final class DailyPrepIntentHandler: NSObject, DailyPrepIntentHandling {
 
     func handle(intent: DailyPrepIntent, completion: @escaping (DailyPrepIntentResponse) -> Void) {
@@ -17,7 +18,8 @@ final class DailyPrepIntentHandler: NSObject, DailyPrepIntentHandling {
             return
         }
         track(intent)
-        if let dailyPrepResult: ExtensionModel.DailyPrep = ExtensionUserDefaults.object(for: .siri, key: .dailyPrep),
+        if
+            let dailyPrepResult: ExtensionModel.DailyPrep = ExtensionUserDefaults.object(for: .siri, key: .dailyPrep),
             dailyPrepResult.displayDate.is24hoursOld == false {
             let response = completedResponse(for: dailyPrepResult)
             completion(response)
@@ -29,6 +31,7 @@ final class DailyPrepIntentHandler: NSObject, DailyPrepIntentHandling {
 
 // MARK: - Private
 
+@available(iOSApplicationExtension 12.0, *)
 private extension DailyPrepIntentHandler {
 
     func completedResponse(for dailyPrepResult: ExtensionModel.DailyPrep) -> DailyPrepIntentResponse {

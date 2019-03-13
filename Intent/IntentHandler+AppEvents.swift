@@ -8,6 +8,7 @@
 
 import Intents
 
+@available(iOSApplicationExtension 12.0, *)
 extension NSObjectProtocol {
 
     private func intentEventKey(for intent: INIntent) -> String? {

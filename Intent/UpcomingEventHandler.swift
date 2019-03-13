@@ -8,6 +8,7 @@
 
 import Foundation
 
+@available(iOSApplicationExtension 12.0, *)
 final class UpcomingEventHandler: NSObject, UpcomingEventIntentHandling {
     
     func handle(intent: UpcomingEventIntent, completion: @escaping (UpcomingEventIntentResponse) -> Void) {
@@ -21,13 +22,12 @@ final class UpcomingEventHandler: NSObject, UpcomingEventIntentHandling {
             if events.count > 0 {
                 let response = responseForOneEvent(events.first)
                 completion(response)
-                return
             } else {
                 let response = UpcomingEventIntentResponse(code: .noUpcomingEvents, userActivity: nil)
                 response.userActivity = NSUserActivity.activity(for: .eventsList)
                 completion(response)
-                return
             }
+            return
         }
         completion(UpcomingEventIntentResponse(code: .failure, userActivity: nil))
     }
@@ -35,8 +35,9 @@ final class UpcomingEventHandler: NSObject, UpcomingEventIntentHandling {
 
 // MARK: - Private
 
+@available(iOSApplicationExtension 12.0, *)
 private extension UpcomingEventHandler {
-    
+
     func responseForOneEvent(_ event: ExtensionModel.UpcomingEvent?) -> UpcomingEventIntentResponse {
         let title = event?.eventName ?? ""
         let startDate = event?.startDate
@@ -51,14 +52,14 @@ private extension UpcomingEventHandler {
 // MARK: - Date
 
 fileprivate extension Date {
-    
+
     func eventsDate() -> String {
-        // Format like: Wed, Feb 6
+        // Format like: Wednesday, February 6
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "E, MMM d"
+        dateFormatter.dateFormat = "EEEE, MMMM d"
         return dateFormatter.string(from: self)
     }
-    
+
     func durationDate(until endDate: Date?) -> String {
         // Format like: 9:30 AM to 10:30 PM
         let dateFormatter = DateFormatter()

@@ -17,17 +17,15 @@ import Siren
 import Alamofire
 
 protocol LocalNotificationHandlerDelegate: class {
-
     func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool
 }
 
 protocol ShortcutHandlerDelegate: class {
-
     func shortcutHandler(_ handler: AppDelegate, canProcessShortcut shortcutItem: UIApplicationShortcutItem) -> Bool
 }
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
+final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     // MARK: - Properties
 
@@ -74,18 +72,25 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         return app
     }
 
+    private var isRunning = false
+
     // MARK: - Life Cycle
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        Logger.shared.setup()
         #if UNIT_TEST || BUILD_DATABASE
+            Logger.shared.setup()
             #if BUILD_DATABASE
                 // @warning REINSTALL before running. Must be logged in
                 __buildDatabase()
             #endif
             return true
         #else
+            if isRunning {
+                return true
+            }
+            isRunning = true
+            Logger.shared.setup()
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()
             Fabric.with([Crashlytics.self])
@@ -106,7 +111,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
                 log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
             #endif
             appCoordinator.sendAppEvent(.start)
-            sendSiriEvents()
+            sendSiriEventsIfNeeded()
             return true
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
@@ -144,7 +149,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             QOTUsageTimer.sharedInstance.startTimer()
             appCoordinator.appDidBecomeActive()
             checkVersionIfNeeded()
-            sendSiriEvents()
+            sendSiriEventsIfNeeded()
             appCoordinator.sendAppEvent(.didBecomeActive)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
@@ -237,7 +242,7 @@ private extension AppDelegate {
             if ((abstractController.reachability?.isReachable) ?? false) == false {
                 abstractController.showSettingsCustomAlert()
             } else {
-            abstractController.alert.dismiss(animated: true, completion: nil)
+                abstractController.alert.dismiss(animated: true, completion: nil)
             }
         }
     }
@@ -370,36 +375,34 @@ extension AppDelegate {
 
     private func handleActivity(userActivity: NSUserActivity) -> Bool {
         var didHandleActivity = true
-        appCoordinator.start { [weak self] in
-            switch userActivity.activityType {
-            case NSUserActivity.ActivityType.toBeVision.rawValue:
-                MyToBeVisionViewController.page = .tabBarItemToBeVisionFromSiri
-                self?.appCoordinator.presentToBeVision(articleItemController: nil)
-            case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
-                MyToBeVisionViewController.generatorPage = .visionGeneratorFromSiri
-                self?.appCoordinator.presentToBeVisionGenerator()
-            case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
-                let id = Int(userActivity.contentAttributeSet?.keywords?.first ?? "0") ?? 0
-                ArticleItemViewController.page = .whatsHotArticleFromSiri
-                self?.appCoordinator.presentWhatsHotArticle(with: id)
-            case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
-                ArticleCollectionViewController.pageName = .whatsHotListFromSiri
-                self?.appCoordinator.navigate(to: .init(tabBar: .learn, topTabBar: .whatsHotList))
-            case NSUserActivity.ActivityType.eventsList.rawValue:
-                MyPrepViewController.page = .preparationListFromSiri
-                self?.appCoordinator.navigate(to: .init(tabBar: .prepare, topTabBar: .myPrep))
-            case NSUserActivity.ActivityType.event.rawValue:
-                let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
-                PrepareContentViewController.pageName = .prepareChecklistFromSiri
-                self?.appCoordinator.presentPreparationCheckList(localID: id)
-            case NSUserActivity.ActivityType.dailyPrep.rawValue:
-                let groupID: Int = Date().isWeekend ? 100010 : 100002
-                let date: ISODate = Calendar.current.isoDate(from: Date())
-                MorningInterviewViewController.page = .morningInterviewFromSiri
-                self?.appCoordinator.presentMorningInterview(groupID: groupID, date: date)
-            default:
-                didHandleActivity = false
-            }
+        switch userActivity.activityType {
+        case NSUserActivity.ActivityType.toBeVision.rawValue:
+            MyToBeVisionViewController.page = .tabBarItemToBeVisionFromSiri
+            appCoordinator.presentToBeVision(articleItemController: nil)
+        case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
+            MyToBeVisionViewController.generatorPage = .visionGeneratorFromSiri
+            appCoordinator.presentToBeVisionGenerator()
+        case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
+            let id = Int(userActivity.contentAttributeSet?.keywords?.first ?? "0") ?? 0
+            ArticleItemViewController.page = .whatsHotArticleFromSiri
+            appCoordinator.presentWhatsHotArticle(with: id)
+        case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
+            ArticleCollectionViewController.pageName = .whatsHotListFromSiri
+            appCoordinator.navigate(to: .init(tabBar: .learn, topTabBar: .whatsHotList))
+        case NSUserActivity.ActivityType.eventsList.rawValue:
+            MyPrepViewController.page = .preparationListFromSiri
+            appCoordinator.navigate(to: .init(tabBar: .prepare, topTabBar: .myPrep))
+        case NSUserActivity.ActivityType.event.rawValue:
+            let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
+            PrepareContentViewController.pageName = .prepareChecklistFromSiri
+            appCoordinator.presentPreparationCheckList(localID: id)
+        case NSUserActivity.ActivityType.dailyPrep.rawValue:
+            let groupID: Int = Date().isWeekend ? 100010 : 100002
+            let date: ISODate = Calendar.current.isoDate(from: Date())
+            MorningInterviewViewController.page = .morningInterviewFromSiri
+            appCoordinator.presentMorningInterview(groupID: groupID, date: date)
+        default:
+            didHandleActivity = false
         }
         return didHandleActivity
     }
@@ -421,7 +424,7 @@ extension AppDelegate {
         }
     }
 
-    func sendSiriEvents() {
+    func sendSiriEventsIfNeeded() {
         if let events: SiriEventsModel = ExtensionUserDefaults.object(for: .siri, key: .siriAppEvents) {
             events.events.forEach {
                 switch $0.key {

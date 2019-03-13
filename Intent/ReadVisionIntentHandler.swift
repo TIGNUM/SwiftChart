@@ -9,6 +9,7 @@
 import Foundation
 import Intents
 
+@available(iOSApplicationExtension 12.0, *)
 final class ReadVisionIntentHandler: NSObject, ReadVisionIntentHandling {
 
     func handle(intent: ReadVisionIntent, completion: @escaping (ReadVisionIntentResponse) -> Void) {

@@ -9,6 +9,7 @@
 import Foundation
 import Intents
 
+@available(iOSApplicationExtension 12.0, *)
 final class WhatsHotIntentHandler: NSObject, WhatsHotIntentHandling {
 
     func handle(intent: WhatsHotIntent, completion: @escaping (WhatsHotIntentResponse) -> Void) {
@@ -62,7 +63,7 @@ fileprivate extension String {
     
     func displayableAuthor() -> String {
         let authorPlaceholder: String = "TEAM TIGNUM"
-        let author: String = replacingOccurrences(of: "by ", with: "")
+        let author: String = replacingOccurrences(of: "BY ", with: "")
         return author == "" ? authorPlaceholder : author
     }
 }

@@ -8,8 +8,9 @@
 
 import Intents
 
+@available(iOSApplicationExtension 12.0, *)
 final class IntentHandler: INExtension {
-    
+
     override func handler(for intent: INIntent) -> Any {
         switch intent {
         case is ReadVisionIntent:

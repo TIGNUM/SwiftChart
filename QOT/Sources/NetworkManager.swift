@@ -310,7 +310,6 @@ final class NetworkManager {
                     switch mainResult {
                     case .success(let value):
                         completion(.success(value))
-                        ExtensionsDataManager.didUserLogIn(true)
                     case .failure(let error):
                         completion(.failure(error))
                         if error.isUnauthenticated && notifyDelegateOfFailure {

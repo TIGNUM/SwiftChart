@@ -8,7 +8,12 @@
 
 import IntentsUI
 
+@available(iOSApplicationExtension 12.0, *)
 final class IntentViewController: UIViewController, INUIHostedViewControlling {
+
+    // MARK: - Properties
+
+    @IBOutlet private weak var signInLabel: UILabel!
 
     // MARK: - Lifecycle
 
@@ -18,21 +23,23 @@ final class IntentViewController: UIViewController, INUIHostedViewControlling {
     }
 
     // MARK: - INUIHostedViewControlling
-    
+
     func configureView(for parameters: Set<INParameter>,
                        of interaction: INInteraction,
                        interactiveBehavior: INUIInteractiveBehavior,
                        context: INUIHostedViewContext,
                        completion: @escaping (Bool, Set<INParameter>, CGSize) -> Void) {
         guard ExtensionUserDefaults.isSignedIn == true else {
-           completion(true, parameters, .zero)
-           return
+            signInLabel.isHidden = false
+            completion(true, parameters, CGSize(width: 320, height: 130))
+            return
         }
         if let response = interaction.intentResponse as? ReadVisionIntentResponse {
             let viewController = ReadVisionViewController(for: response)
             let shouldDisplay = response.code != .noVision
             attachChild(viewController)
             completion(shouldDisplay, parameters, viewController.viewSize)
+            return
         }
         if let response = interaction.intentResponse as? WhatsHotIntentResponse {
             let viewController = WhatsHotViewController(for: response)
@@ -40,6 +47,7 @@ final class IntentViewController: UIViewController, INUIHostedViewControlling {
             let shouldDisplay = response.code != .noNewArticles
             attachChild(viewController)
             completion(shouldDisplay, parameters, size)
+            return
         }
         if let response = interaction.intentResponse as? UpcomingEventIntentResponse {
             let viewController = UpcomingEventViewController(for: response)
@@ -47,12 +55,14 @@ final class IntentViewController: UIViewController, INUIHostedViewControlling {
             let shouldDisplay = response.code != .noUpcomingEvents
             attachChild(viewController)
             completion(shouldDisplay, parameters, size)
+            return
         }
         if let response = interaction.intentResponse as? DailyPrepIntentResponse {
             let viewController = DailyPrepViewController(for: response)
             let shouldDisplay = response.code != .notCompleted
             attachChild(viewController)
             completion(shouldDisplay, parameters, viewController.viewSize)
+            return
         }
         completion(false, parameters, .zero)
     }
@@ -60,8 +70,9 @@ final class IntentViewController: UIViewController, INUIHostedViewControlling {
 
 // MARK: - Private
 
+@available(iOSApplicationExtension 12.0, *)
 private extension IntentViewController {
-    
+
     func attachChild(_ viewController: UIViewController) {
         addChild(viewController)
         if let subview = viewController.view {

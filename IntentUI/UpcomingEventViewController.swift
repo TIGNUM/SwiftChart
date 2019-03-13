@@ -9,6 +9,7 @@
 import UIKit
 import Intents
 
+@available(iOSApplicationExtension 12.0, *)
 final class UpcomingEventViewController: UIViewController {
 
     // MARK: - Properties
