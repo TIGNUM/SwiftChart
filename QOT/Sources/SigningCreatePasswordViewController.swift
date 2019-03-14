@@ -21,6 +21,7 @@ final class SigningCreatePasswordViewController: AbstractFormViewController {
     @IBOutlet private weak var passwordInfoSpecialCharacterLabel: UILabel!
 	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
 	var interactor: SigningCreatePasswordInteractorInterface?
+    @IBOutlet private weak var centerContentViewTopConstraint: NSLayoutConstraint!
 
     private lazy var formView: FormView? = {
         let form = R.nib.formView().instantiate(withOwner: nil, options: nil).first as? FormView
@@ -82,6 +83,9 @@ private extension SigningCreatePasswordViewController {
         guard let formView = formView else { return }
         centerContentView.addSubview(formView)
         formView.configure(formType: .password(""))
+        if UIDevice.isPad {
+            centerContentViewTopConstraint.constant = Layout.padding_1
+        }
 		if #available(iOS 11.0, *) {
 
 		} else {

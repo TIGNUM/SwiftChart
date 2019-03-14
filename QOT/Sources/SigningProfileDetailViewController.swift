@@ -27,6 +27,9 @@ final class SigningProfileDetailViewController: AbstractFormViewController {
     private lazy var genderFormView: FormView? = formView()
     private lazy var dateOfBirthFormView: FormView? = formView()
     var interactor: SigningProfileDetailInteractorInterface?
+    @IBOutlet private weak var firstNameTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var buttonToCheckboxConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var safeAreaBottomConstraint: NSLayoutConstraint!
 
     // MARK: - Init
 
@@ -88,6 +91,12 @@ private extension SigningProfileDetailViewController {
 		} else {
 			topConstraint.constant = Layout.statusBarHeight
 		}
+        if UIDevice.isPad {
+            firstNameTopConstraint.constant = Layout.padding_1
+            topConstraint.constant = Layout.padding_1
+            safeAreaBottomConstraint.constant = Layout.padding_4
+            buttonToCheckboxConstraint.constant = Layout.padding_12
+        }
     }
 
     func setupCheckView() {
