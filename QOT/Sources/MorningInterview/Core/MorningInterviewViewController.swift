@@ -206,7 +206,7 @@ extension MorningInterviewViewController: QuestionnaireAnswer {
         morningInterviews[questionIndex].selectedAnswerIndex = questions[questionIndex].selectedAnswerIndex()
         if questions[questionIndex].answerIndex != nil,
             let nextViewController = next(from: viewController) {
-            nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_1, repeats: false) { timer in
+            nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_04, repeats: false) { timer in
                 self.pageController?.setViewControllers([nextViewController],
                                                         direction: .forward,
                                                         animated: true,
