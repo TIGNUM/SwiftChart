@@ -195,6 +195,8 @@ extension MyToBeVisionViewController {
         messageTextView.alpha = 1
         messageTextView.textContainer.lineFragmentPadding = 0
         messageTextView.textContainerInset = UIEdgeInsets(top: 14, left: 0, bottom: 10, right: 0)
+        editIconImageView.image = R.image.ic_camera()?.withRenderingMode(.alwaysTemplate)
+        editIconImageView.tintColor = .azure
     }
 
     func resizeTextViewsHeight() {
@@ -336,33 +338,39 @@ private extension MyToBeVisionViewController {
     }
 
     func syncNavigationButtons(_ isEditing: Bool) {
+        let attributedTitle: [NSAttributedString.Key: UIColor] = [.foregroundColor: isEditing ? .azure : .white]
         let leftButton = UIBarButtonItem()
-        leftButton.tintColor = .white
-        leftButton.image =  isEditing == true ? nil : R.image.ic_menu()
+        leftButton.setTitleTextAttributes(attributedTitle, for: .normal)
+        leftButton.image = isEditing == true ? nil : R.image.ic_menu()
         leftButton.title = isEditing == true ? R.string.localized.alertButtonTitleCancel() : nil
         let rightButton = UIBarButtonItem()
         rightButton.image = isEditing == true ? nil : R.image.explainer_ico()
         rightButton.title = isEditing == true ? R.string.localized.alertButtonTitleSave() : nil
-        rightButton.tintColor = .white
+        rightButton.setTitleTextAttributes(attributedTitle, for: .normal)
         interactor?.navigationItem.configure(leftButton: leftButton,
                                              rightButton: rightButton,
                                              tabTitles: [R.string.localized.meSectorMyWhyVisionTitle().uppercased()],
                                              style: .dark)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .selected)
-        editButton.imageView?.tintColor = .azure
+        editButton.imageView?.tintColor = isEditing == true ? .azure40 : .azure
         generatorButton.setImage(R.image.ic_generator()?.withRenderingMode(.alwaysTemplate), for: .normal)
         generatorButton.setImage(R.image.ic_generator()?.withRenderingMode(.alwaysTemplate), for: .selected)
-        generatorButton.imageView?.tintColor = .azure
+        generatorButton.imageView?.tintColor = isEditing == true ? .azure40 : .azure
         shareButton.setImage(R.image.ic_share_fancy()?.withRenderingMode(.alwaysTemplate), for: .normal)
         shareButton.setImage(R.image.ic_share_fancy()?.withRenderingMode(.alwaysTemplate), for: .selected)
+        editButton.isUserInteractionEnabled = isEditing == false
+        generatorButton.isUserInteractionEnabled = isEditing == false
+        shareButton.isUserInteractionEnabled = isEditing == false
+        editButton.setTitleColor(isEditing == true ? .azure40 : .azure, for: .normal)
+        generatorButton.setTitleColor(isEditing == true ? .azure40 : .azure, for: .normal)
         syncShareButton()
     }
 
     func syncShareButton() {
         let isSharedBlocked = interactor?.isShareBlocked()
-        shareButton.imageView?.tintColor = isSharedBlocked == true ? .azure20 : .azure
-        shareButton.setTitleColor(isSharedBlocked == true ? .azure20 : .azure, for: .normal)
+        shareButton.imageView?.tintColor = isSharedBlocked == true || isEditing == true ? .azure40 : .azure
+        shareButton.setTitleColor(isSharedBlocked == true || isEditing == true ? .azure40 : .azure, for: .normal)
     }
 
     func syncEditingViews(_ areHidden: Bool) {
@@ -550,6 +558,8 @@ extension MyToBeVisionViewController: NavigationItemDelegate {
 
     func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
 }
+
+// MARK: - UIScrollViewDelegate
 
 extension MyToBeVisionViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {

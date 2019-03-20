@@ -228,6 +228,10 @@ extension UIColor {
         return UIColor(red: 0/255, green: 149/255, blue: 255/255, alpha: 0.2)
     }
 
+    class var azure40: UIColor {
+        return UIColor(red: 0/255, green: 149/255, blue: 255/255, alpha: 0.4)
+    }
+
     /// UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.08)
     class var white8: UIColor {
         return UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.08)
