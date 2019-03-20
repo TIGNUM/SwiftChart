@@ -1033,6 +1033,10 @@ extension AppCoordinator {
         calendarImportManager.importEvents()
     }
 
+    func presentGuide() {
+        navigate(to: AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide))
+    }
+
     func presentMorningInterview(groupID: Int, date: ISODate) {
         do {
             if try realmProvider.realm()
@@ -1049,6 +1053,8 @@ extension AppCoordinator {
                 windowManager.showPriority(navController, animated: true, completion: nil)
                 currentPresentedController = navController
                 navController.navigationBar.applyDefaultStyle()
+            } else {
+                presentGuide()
             }
         } catch {
             log(error.localizedDescription, level: .error)

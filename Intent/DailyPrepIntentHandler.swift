@@ -38,6 +38,7 @@ private extension DailyPrepIntentHandler {
         let response = DailyPrepIntentResponse.success(feedback: dailyPrepResult.feedback ?? "")
         response.loadValue = NSNumber(value: dailyPrepResult.loadValue)
         response.recoveryValue = NSNumber(value: dailyPrepResult.recoveryValue)
+        response.userActivity = NSUserActivity.activity(for: .dailyPrep)
         return response
     }
 
