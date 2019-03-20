@@ -86,8 +86,11 @@ private extension SigningCreatePasswordViewController {
         if UIDevice.isPad {
             centerContentViewTopConstraint.constant = Layout.padding_1
         }
+        let model = UIDevice.current.deviceName
+        if model.contains("iPhone 5") || model.contains("iPhone 4") || model.contains("iPhone 3") {
+             centerContentViewTopConstraint.constant = Layout.padding_32
+        }
 		if #available(iOS 11.0, *) {
-
 		} else {
 			topConstraint.constant = Layout.statusBarHeight
 		}
