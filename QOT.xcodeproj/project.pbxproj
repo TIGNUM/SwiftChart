@@ -36,6 +36,7 @@
 		363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */; };
 		363178E71FDEECDE00833958 /* RealmGuideItemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */; };
 		36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F1F1FCEB90B004E9034 /* GuideViewController.swift */; };
+		3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */; };
 		36424980214A55CB0018A4A7 /* IPadAdviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */; };
 		36424982214A55E80018A4A7 /* IPadAdviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36424981214A55E80018A4A7 /* IPadAdviceView.xib */; };
 		3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0321FE323EE001F4249 /* RealmGuideTime.swift */; };
@@ -917,6 +918,7 @@
 		363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmGuideItemLearn.swift; sourceTree = "<group>"; };
 		363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItemNotification.swift; sourceTree = "<group>"; };
 		36328F1F1FCEB90B004E9034 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotArticleHeaderView.xib; sourceTree = "<group>"; };
 		3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadAdviceView.swift; sourceTree = "<group>"; };
 		36424981214A55E80018A4A7 /* IPadAdviceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IPadAdviceView.xib; sourceTree = "<group>"; };
 		3649C0321FE323EE001F4249 /* RealmGuideTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideTime.swift; sourceTree = "<group>"; };
@@ -3700,6 +3702,7 @@
 				D58BD8761E9F65F7005676DE /* ArticleCollectionCell.xib */,
 				CC41A54A1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib */,
 				CC3E5D4B1F0109B700B9E11F /* ArticleRelatedCell.xib */,
+				3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */,
 			);
 			name = Article;
 			sourceTree = "<group>";
@@ -4174,6 +4177,7 @@
 				36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */,
 				367564AD206A4420008D1F71 /* PrepareContentNotesViewController.storyboard in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
+				3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */,
 				91086E502092044C0035DA1F /* SettingsCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,

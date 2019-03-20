@@ -147,21 +147,23 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         pageTracker.start()
         observeTimeZoneChange()
         let dispatchGroup = DispatchGroup()
-        let viewController = AnimatedLaunchScreenViewController()
         dispatchGroup.enter()
         var setupError: Error?
         setupApp { error in
             setupError = error
             dispatchGroup.leave()
         }
-        dispatchGroup.enter()
-        windowManager.show(viewController, duration: Animation.duration_01, animated: false, completion: {
-            viewController.startAnimatingImages {
-                self.showIpadSupportViewIfNeeded {
-                    dispatchGroup.leave()
+        #if !DEBUG
+            dispatchGroup.enter()
+            let viewController = AnimatedLaunchScreenViewController()
+            windowManager.show(viewController, duration: Animation.duration_01, animated: false, completion: {
+                viewController.startAnimatingImages {
+                    self.showIpadSupportViewIfNeeded {
+                        dispatchGroup.leave()
+                    }
                 }
-            }
-        })
+            })
+        #endif
 
         dispatchGroup.notify(queue: .main) {
             if let error = setupError {

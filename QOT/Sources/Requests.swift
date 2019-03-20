@@ -53,7 +53,7 @@ struct DownSyncRequest: URLRequestBuildable {
     let headers: [HTTPHeader: String]
     let paramaters: [RequestParameter: Any]
 
-    init(endpoint: Endpoint, syncToken: String, page: Int, pageSize: Int = 500) {
+    init(endpoint: Endpoint, syncToken: String, page: Int, pageSize: Int = 250) {
         self.endpoint = endpoint
         self.headers = [.syncToken: syncToken]
         self.paramaters = [.page: page, .size: pageSize]

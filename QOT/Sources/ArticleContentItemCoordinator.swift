@@ -60,9 +60,9 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                                                        guideItem: guideItem,
                                                        contentInsets: contentInsets,
                                                        fadeMaskLocation: .top)
-        fullViewController.title = topTabBarTitle
+        let title = viewModel.isWhatsHot == true ? R.string.localized.topTabBarItemTitleLearnWhatsHot() : topTabBarTitle
+        fullViewController.title = title
         fullViewController.delegate = self
-
         if shouldPush == false {
             topTabBarController = UINavigationController(withPages: [fullViewController],
                                                          navigationItem: NavigationItem(),
@@ -81,7 +81,6 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
             rootViewController.pushToStart(childViewController: fullViewController)
             fullViewController.setCustomBackButton()
         }
-
         // FIXME: Add page tracking
     }
 }
@@ -104,6 +103,11 @@ extension ArticleContentItemCoordinator: NavigationItemDelegate {
 // MARK: - ArticleItemViewControllerDelegate
 
 extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
+
+    func didTapShare(shareableLink: String) {
+        let activityVC = UIActivityViewController(activityItems: [shareableLink], applicationActivities: nil)
+        fullViewController.present(activityVC, animated: true, completion: nil)
+    }
 
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController) {
         self.selectedContent = selectedArticle

@@ -274,7 +274,7 @@ class CalendarEventTests: XCTestCase {
     
     func login() {
         let loginExpectation = XCTestExpectation.init(description: "Waiting for login.....")
-        authenticator?.authenticate(username: "s.park@tignum.com", password: "tignum1234", completion: { (result) in
+        authenticator?.authenticate(username: "m.karbe@tignum.com", password: "Tignum@1234", completion: { (result) in
           loginExpectation.fulfill()
         })
         

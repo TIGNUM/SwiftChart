@@ -279,7 +279,7 @@ extension ContentService {
             let message = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedMessage.predicate)?.valueText,
             let buttonTitleCancel = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleCancel.predicate)?.valueText,
             let buttonTitleDefault = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleDefault.predicate)?.valueText,
-            let buttonTitleDestructive = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleDefault.predicate)?.valueText else {
+            let buttonTitleDestructive = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleDestructive.predicate)?.valueText else {
                 return nil
         }
         return VisionGeneratorAlertModel(title: title,

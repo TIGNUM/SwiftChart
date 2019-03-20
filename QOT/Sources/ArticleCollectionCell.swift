@@ -15,7 +15,6 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var date: UILabel!
     @IBOutlet private weak var sortTag: UILabel!
-    @IBOutlet private weak var subTitle: UILabel!
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var mediaInformation: UILabel!
     @IBOutlet private weak var authorLabel: UILabel!
@@ -24,8 +23,7 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
 
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
-        dateFormatter.setLocalizedDateFormatFromTemplate("MMMdd")
-        dateFormatter.locale = .current
+        dateFormatter.dateFormat = "dd. MMM"
         return dateFormatter
     }()
 
@@ -40,28 +38,26 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
     func configure(author: String,
                    articleDate: Date,
                    sortOrder: String,
-                   title: String,
                    description: String,
                    imageURL: URL?,
                    duration: String,
                    showSeparator: Bool,
                    newArticle: Bool) {
         let attributedCustomDate = NSMutableAttributedString(string: dateFormatter.string(from: articleDate).uppercased(),
-                                                             letterSpacing: 0.5,
-                                                             font: .H7Tag,
+                                                             letterSpacing: 0,
+                                                             font: .H12Tag,
                                                              lineSpacing: 0)
         let attributedSortTag = NSMutableAttributedString(string: sortOrder,
-                                                          letterSpacing: -0.72,
+                                                          letterSpacing: 0,
                                                           font: .H4Identifier,
                                                           lineSpacing: 0)
         date.attributedText = attributedCustomDate
-        date.alpha = 0.6
+        date.alpha = 0.5
         date.textAlignment = .right
         sortTag.attributedText = attributedSortTag
         sortTag.textAlignment = .right
-        subTitle.attributedText = attributedTitle(text: title)
         authorLabel.attributedText = attributedTitle(text: author)
-        textLabel.attributedText = Style.headline(description.uppercased(), .white).attributedString()
+        textLabel.attributedText = Style.subTitle(description.uppercased(), .white).attributedString(lineSpacing: 8)
         mediaInformation.attributedText = attributedTitle(text: duration)
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
@@ -69,16 +65,11 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         newArticleIndicator.isHidden = !newArticle || UserDefault.whatsHotBadgeNumber.doubleValue.toInt == 0
     }
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        subTitle.sizeToFit()
-    }
-
     private func attributedTitle(text: String) -> NSMutableAttributedString {
         return NSMutableAttributedString(string: text.uppercased(),
-                                         letterSpacing: 2.8,
-                                         font: .H7Tag,
-                                         lineSpacing: 1.5,
-                                         textColor: .white60)
+                                         letterSpacing: 0.5,
+                                         font: .H12Tag,
+                                         lineSpacing: 0,
+                                         textColor: .white30)
     }
 }

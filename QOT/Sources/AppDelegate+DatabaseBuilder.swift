@@ -61,7 +61,7 @@
             if authenticator.hasLoginCredentials() == true {
                 databaseBuilder.build()
             } else {
-                authenticator.authenticate(username: "s.park@tignum.com", password: "tignum1234", completion: { (result) in
+                authenticator.authenticate(username: "m.karbe@tignum.com", password: "Tignum@1234", completion: { (result) in
                     databaseBuilder.build()
                 })
             }

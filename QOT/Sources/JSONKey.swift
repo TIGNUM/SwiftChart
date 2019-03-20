@@ -197,6 +197,7 @@ enum JsonKey: String {
     case settingsIds
     case settingTextValue
     case settingTextValueDtos
+    case shareableLink
     case shortDescription
     case sortOrder
     case sound

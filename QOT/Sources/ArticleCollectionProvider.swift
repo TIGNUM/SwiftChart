@@ -52,7 +52,8 @@ final class ArticleCollectionProvider {
                 sortOrder: String(format: "#%002d", content.sortOrder), //TODO Localise?
                 previewImageURL: content.thumbnailURL,
                 contentCollectionID: content.remoteID.value ?? 0,
-                newArticle: isNewArticle)
+                newArticle: isNewArticle,
+                shareableLink: content.shareableLink)
         }
         let articleCollectionViewData = ArticleCollectionViewData(items: items)
         ExtensionUserDefaults.set(articleCollectionViewData, for: .whatsHot)

@@ -43,6 +43,8 @@ final class ContentCollection: SyncableObject {
 
     @objc private(set) dynamic var publishDate: Date?
 
+    @objc private(set) dynamic var shareableLink: String?
+
     @objc dynamic var contentRead: ContentRead?
 
     // MARK: Relationships
@@ -169,5 +171,6 @@ extension ContentCollection: OneWaySyncableDown {
         objectStore.delete(categoryIDs)
         categoryIDs.append(objectsIn: data.categoryIDs.map({ IntObject(int: $0) }))
         publishDate = data.publishDate
+        shareableLink = data.shareableLink
     }
 }

@@ -16,6 +16,7 @@ protocol ArticleItemViewControllerDelegate: class {
     func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: ArticleItemViewController)
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
     func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
+    func didTapShare(shareableLink: String)
 }
 
 final class ArticleItemViewController: UIViewController, PageViewControllerNotSwipeable {
@@ -47,7 +48,7 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
         switch pageName {
         case .libraryArticle,
              .featureExplainer: return Layout.padding_24
-        case .whatsHotArticle: return view.safeMargins.top + Layout.articleImageHeight
+        case .whatsHotArticle: return view.safeMargins.top
         default: return 0
         }
     }
@@ -63,10 +64,7 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
         self.contentInsets = contentInsets
         self.fadeMaskLocation = fadeMaskLocation
         self.guideItem = guideItem
-
         super.init(nibName: nil, bundle: nil)
-
-        self.title = title
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -105,22 +103,23 @@ private extension ArticleItemViewController {
 
     func resizeHeaderView() {
         guard let headerView = tableView.tableHeaderView, let header = viewModel.articleHeader else { return }
-        let sidePadding = CGFloat(56)
+        let sidePadding = CGFloat(48)
         let frameWidth = tableView.frame.size.width - sidePadding
-        let titleHeight = calculateLabelHeight(text: header.articleTitle,
-                                               font: .H5SecondaryHeadline,
-                                               dispayedLineHeight: 18,
-                                               frameWidth: frameWidth,
-                                               characterSpacing: 1)
+        let titleHeight = viewModel.isWhatsHot ? 0 : calculateLabelHeight(text: header.articleTitle,
+                                                                          font: .H5SecondaryHeadline,
+                                                                          dispayedLineHeight: 18,
+                                                                          frameWidth: frameWidth,
+                                                                          characterSpacing: 1)
         let subTitleHeight = calculateLabelHeight(text: header.articleSubTitle,
                                                   font: (headerView as? ArticleItemHeaderView)?.resizedFont() ?? .H1MainTitle,
                                                   dispayedLineHeight: 46,
                                                   frameWidth: frameWidth,
                                                   characterSpacing: 2)
-        let dateHeight = CGFloat(14)
-        let spacing: CGFloat = 20
-        let minimumHeight: CGFloat = 150
-        let height = max(titleHeight + subTitleHeight + dateHeight + spacing, minimumHeight)
+        let dateHeight: CGFloat = viewModel.isWhatsHot ? 66 : 14
+        let spacing: CGFloat = 16
+        let minimumHeight: CGFloat = viewModel.isWhatsHot ? 390 : 150
+        let imageHeight: CGFloat = viewModel.isWhatsHot ? 200 : 0
+        let height = max(titleHeight + subTitleHeight + dateHeight + spacing + imageHeight, minimumHeight)
         var headerFrame = headerView.frame
         if height != headerFrame.size.height {
             headerFrame.size.height = height
@@ -151,15 +150,15 @@ private extension ArticleItemViewController {
             guideItem.identifier != "learn#119928",
             guideItem.featureLink?.absoluteString != "qot://morning-interview?groupID=",
             URLScheme.isSupportedURL(featureLink) == true {
-                let button = featureLinkButton(guideItem: guideItem)
-                view.addSubview(button)
-                button.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_002)
-                button.widthAnchor == view.widthAnchor - (view.bounds.width * Layout.multiplier_08)
-                button.heightAnchor == 19
-                button.layer.borderColor = UIColor.azure.cgColor
-                button.setTitleColor(.azure, for: .normal)
-                button.titleLabel?.font = .ApercuBold16
-                button.contentHorizontalAlignment = .right
+            let button = featureLinkButton(guideItem: guideItem)
+            view.addSubview(button)
+            button.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_002)
+            button.widthAnchor == view.widthAnchor - (view.bounds.width * Layout.multiplier_08)
+            button.heightAnchor == 19
+            button.layer.borderColor = UIColor.azure.cgColor
+            button.setTitleColor(.azure, for: .normal)
+            button.titleLabel?.font = .ApercuBold16
+            button.contentHorizontalAlignment = .right
         }
 
         automaticallyAdjustsScrollViewInsets = false
@@ -201,11 +200,11 @@ private extension ArticleItemViewController {
 
     func setTableViewHeader() {
         guard let header = viewModel.articleHeader else { return }
-        let nib = R.nib.articleItemHeaderView()
+        let nib = viewModel.isWhatsHot ? R.nib.whatsHotArticleHeaderView() : R.nib.articleItemHeaderView()
         guard let headerView = (nib.instantiate(withOwner: self, options: nil).first as? ArticleItemHeaderView) else {
             return
         }
-        headerView.setupView(header: header, pageName: pageName)
+        headerView.setupView(header: header, pageName: pageName, delegate: delegate)
         headerView.backgroundColor = .clear
         tableView.tableHeaderView = headerView
     }

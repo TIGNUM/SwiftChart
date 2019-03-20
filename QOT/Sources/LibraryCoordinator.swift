@@ -49,7 +49,9 @@ extension LibraryCoordinator: LibraryViewControllerDelegate {
 												articleDate: item.createdAt,
 												articleDuration: duration,
 												articleContentCollectionID: item.remoteID.value ?? 0,
-												thumbnail: nil)
+                                                thumbnail: nil,
+                                                author: item.author,
+                                                shareableLink: item.shareableLink)
         guard let coordinator = ArticleContentItemCoordinator(
             pageName: .libraryArticle,
             root: libraryViewController,

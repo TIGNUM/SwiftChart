@@ -20,6 +20,7 @@ struct ArticleCollectionViewData: Codable {
         let previewImageURL: URL?
         let contentCollectionID: Int
         let newArticle: Bool
+        let shareableLink: String?
     }
 
     let items: [Item]

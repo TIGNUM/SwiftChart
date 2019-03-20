@@ -16,6 +16,8 @@ struct ArticleCollectionHeader {
     let articleDuration: String
     let articleContentCollectionID: Int
 	let thumbnail: URL?
+    let author: String?
+    let shareableLink: String?
 
     init(content: ContentCollection) {
         articleTitle = content.contentCategories.first?.title ?? ""
@@ -24,6 +26,8 @@ struct ArticleCollectionHeader {
         articleDuration = "\(content.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN"
         articleContentCollectionID = content.remoteID.value ?? 0
 		thumbnail = content.thumbnailURL
+        author = content.author
+        shareableLink = content.shareableLink
     }
 
     init(articleTitle: String,
@@ -31,12 +35,16 @@ struct ArticleCollectionHeader {
          articleDate: Date,
          articleDuration: String,
          articleContentCollectionID: Int,
-		 thumbnail: URL?) {
+		 thumbnail: URL?,
+         author: String?,
+         shareableLink: String?) {
         self.articleTitle = articleTitle
         self.articleSubTitle = articleSubTitle
         self.articleDate = articleDate
         self.articleDuration = articleDuration
         self.articleContentCollectionID = articleContentCollectionID
 		self.thumbnail = thumbnail
+        self.author = author
+        self.shareableLink = shareableLink
     }
 }

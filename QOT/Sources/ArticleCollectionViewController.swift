@@ -135,7 +135,6 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
         cell.configure(author: item.author,
                        articleDate: item.articleDate,
                        sortOrder: item.sortOrder,
-                       title: item.title,
                        description: item.description,
                        imageURL: item.previewImageURL,
                        duration: item.duration,
@@ -151,7 +150,9 @@ extension ArticleCollectionViewController: UICollectionViewDataSource, UICollect
 													articleDate: item.articleDate,
 													articleDuration: item.duration,
 													articleContentCollectionID: item.contentCollectionID,
-													thumbnail: item.previewImageURL)
+													thumbnail: item.previewImageURL,
+                                                    author: item.author,
+                                                    shareableLink: item.shareableLink)
         delegate?.didTapItem(articleHeader: articleHeader, in: self)
     }
 }

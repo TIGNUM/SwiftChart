@@ -171,8 +171,16 @@ extension UIFont {
     /// SIMPLE REGULAR 11 // MyUniverse sector title
     static let H7SectorTitle = UIFont.apercuRegular(ofSize: 11)
 
+    static let H10Tag = UIFont.apercuRegular(ofSize: 10)
+
     /// BENTON SANS 11 // subtitles, tags
     static let H7Tag = UIFont.apercuRegular(ofSize: 11)
+
+    /// BENTON SANS 11 // subtitles, tags
+    static let H12Tag = UIFont.apercuRegular(ofSize: 12)
+
+    // APERCU REGULAR 13
+    static let ApercuRegular11 = UIFont.apercuRegular(ofSize: 11)
 
     // APERCU REGULAR 13
     static let ApercuRegular13 = UIFont.apercuRegular(ofSize: 13)

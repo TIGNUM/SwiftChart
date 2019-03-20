@@ -22,6 +22,7 @@ struct ContentCollectionData {
     let thumbnailURLString: String?
     let relatedContentList: [ContentRelationIntermediary]
     let publishDate: Date?
+    let shareableLink: String?
 }
 
 // MARK: - Parser
@@ -40,5 +41,6 @@ extension ContentCollectionData: DownSyncIntermediary {
         self.thumbnailURLString = try json.getItemValue(at: .thumbnail, alongPath: .nullBecomesNil)
         self.relatedContentList = try json.getArray(at: .relatedContents)
         self.publishDate = try json.getDate(at: .publishDate, alongPath: .nullBecomesNil)
+        self.shareableLink = try json.getItemValue(at: .shareableLink, alongPath: .nullBecomesNil)
     }
 }
