@@ -18,6 +18,7 @@ final class SigningDigitViewController: AbstractFormViewController {
     @IBOutlet private var digitTextFields: [TextField]!
 	@IBOutlet private weak var topConstraint: NSLayoutConstraint!
 	@IBOutlet private var digitLines: [UIView]!
+    @IBOutlet private weak var errorLabelTopConstraint: NSLayoutConstraint!
     private var showingError = false
     var interactor: SigningDigitInteractorInterface?
 
@@ -55,6 +56,10 @@ private extension SigningDigitViewController {
                                                                  font: .H2SecondaryTitle,
                                                                  textColor: .white,
                                                                  alignment: .center)
+            if UIDevice.isPad {
+                topConstraint.constant = Layout.padding_1
+                errorLabelTopConstraint.constant = Layout.padding_24
+            }
 			if #available(iOS 11.0, *) {
 
 			} else {

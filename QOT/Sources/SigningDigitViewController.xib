@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina5_9" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -20,6 +20,7 @@
                 <outlet property="bottomButton" destination="L3b-bz-4V2" id="M7u-bH-BDg"/>
                 <outlet property="centerContentView" destination="iqD-oe-mCk" id="1qp-GJ-ocE"/>
                 <outlet property="errorLabel" destination="2tL-V1-fmj" id="yTn-zp-Ehf"/>
+                <outlet property="errorLabelTopConstraint" destination="hoF-gs-y4F" id="jD1-Vu-eZr"/>
                 <outlet property="resendCodeButton" destination="LB6-ZC-aBM" id="XB9-hk-EV5"/>
                 <outlet property="subtitleLabel" destination="6eY-P8-apY" id="SM3-Ej-PSe"/>
                 <outlet property="textInputTopConstraint" destination="VmJ-6r-2YD" id="TeJ-Kx-4AS"/>
