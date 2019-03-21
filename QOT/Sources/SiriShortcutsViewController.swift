@@ -18,6 +18,7 @@ final class SiriShortcutsViewController: UIViewController {
     private var siriShortcutsModel: SiriShortcutsModel?
     var interactor: SiriShortcutsInteractorInterface?
     private var shortcutType: ShortcutType = .toBeVision
+    var selectedShortCutPage: PageName?
 
      // MARK: - Init
 
@@ -40,6 +41,7 @@ final class SiriShortcutsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        selectedShortCutPage = nil
         interactor?.viewDidLoad()
         tableView.registerDequeueable(SiriShortcutsCell.self)
         setCustomBackButton()
@@ -75,6 +77,7 @@ extension SiriShortcutsViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         shortcutType = siriShortcutsModel?.shortcuts[indexPath.row].type ?? .toBeVision
+        selectedShortCutPage = shortcutType.pageName
         interactor?.handleTap(for: siriShortcutsModel?.shortcuts[indexPath.row])
     }
 }

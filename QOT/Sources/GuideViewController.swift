@@ -246,6 +246,6 @@ extension GuideViewController: GuideDailyPrepTableViewCellDelegate {
 extension GuideViewController: GuideToBeVisionTableViewCellDelegate {
 
     func didTapToBeVisionInfoButton() {
-        AppDelegate.current.windowManager.showInfo(helpSection: .toBeVision)
+        AppDelegate.current.windowManager.showInfo(helpSection: .toBeVisionGuide)
     }
 }

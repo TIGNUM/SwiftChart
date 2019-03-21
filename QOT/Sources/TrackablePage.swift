@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 import MessageUI
+import AVKit
 
 // MARK: - TrackablePage
 
@@ -56,6 +57,8 @@ enum PageName: String {
     case prepareContent = "prepare.preparationlist"
     case prepareEvents = "prepare.preparationlist.save"
     case privacy = "sidebar.dataprivacy"
+    case terms = "sidebar.termsAndConditions"
+    case copyrights = "sidebar.copyrights"
     case resetPassword = "resetpassword"
     case search = "search"
     case selectWeeklyChoices = "notification.weeklychoices"
@@ -66,9 +69,16 @@ enum PageName: String {
     case settingsGeneral = "sidebar.settings.general"
     case settingsNotifications = "sidebar.settings.notifications"
     case settingsSecurity = "sidebar.settings.security"
+    case settingsPermissions = "settings.permissions"
+    case settingsSiriShortCuts = "settings.siriShortCuts"
+    case settingsSiriShortCutsTBV = "settings.siriShortCuts.tbv"
+    case settingsSiriShortCutsEvents = "settings.siriShortCuts.events"
+    case settingsSiriShortCutsDPMFeedback = "settings.siriShortCuts.dpmFeedback"
+    case settingsSiriShortCutsWhatsHot = "settings.siriShortCuts.whatsHot"
     case sideBar = "sidebar"
     case sideBarSearch = "sidebar.search"
     case sidebarLibrary = "sidebar.library"
+    case sidebarSupport = "sidebar.support"
     case tabBarItemGuide = "tabBarItem.guide"
     case tabBarItemLearn = "tabBarItem.learn"
     case tabBarItemToBeVision = "tabBarItem.toBeVision"
@@ -91,7 +101,8 @@ enum PageName: String {
     case infoPrepare = "info.prepare"
     case infoGuide = "info.guide"
     case infoLearn = "info.learn"
-    case infoMe = "info.me"
+    case infoToBeVisionGuide = "info.tobevision.guide"
+    case infoData = "info.data"
     case visionGeneratorFromSiri = "tabBarItem.toBeVision.generator.fromsiri"
     case supportContact = "support.contact"
     case featureRequest = "support.featurerequest"
@@ -101,6 +112,22 @@ enum PageName: String {
     case imagePickerPartner = "imagepicker.partners"
     case shareToBeVision = "share.tobevision"
     case editToBeVision = "tabBarItem.toBeVision.edit"
+    case chartInfoIntensityPerceivedLoad = "chart.info.intensity.PerceivedLoad"
+    case chartInfoIntensityPerceivedRecovery = "chart.info.intensity.PerceivedRecovery"
+    case chartInfoMeetingsNumber = "chart.info.meetings.number"
+    case chartInfoMeetingsTimeBetween = "chart.info.meetings.timeBetween"
+    case chartInfoMeetingsTimeIn = "chart.info.meetings.timeIn"
+    case chartInfoMeetingsIncreaseDiff = "chart.info.meetings.increaseDiff"
+    case chartInfoSleepQuality = "chart.info.sleep.quality"
+    case chartInfoSleepQuantity = "chart.info.sleep.quantity"
+    case chartInfoActivityMovement = "chart.info.activity.movement"
+    case chartInfoActivityLevel = "chart.info.activity.level"
+    case prepareNotesIntentionsPreceived = "prepare.notes.intensions.perceived"
+    case prepareNotesIntentionsFeel = "prepare.notes.intensions.feel"
+    case prepareNotesIntentionsKnow = "prepare.notes.intensions.know"
+    case prepareNotesReflectionGood = "prepare.notes.reflection.good"
+    case prepareNotesReflectionNotGood = "prepare.notes.reflection.notGood"
+    case prepareNotesGeneral = "prepare.notes.general"
 }
 
 struct PageObject {
@@ -238,6 +265,9 @@ extension MyPrepViewController: TrackablePage {
 
 extension ChartViewController: TrackablePage {
     var pageName: PageName {
+        if let infoPageName = infoPageName {
+            return infoPageName
+        }
         return .tabBarItemData
     }
     var pageAssociatedObject: PageObject? {
@@ -304,6 +334,48 @@ extension SearchViewController: TrackablePage {
 extension SelectWeeklyChoicesViewController: TrackablePage {
     var pageName: PageName {
         return .selectWeeklyChoices
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
+extension SettingsViewController: TrackablePage {
+    var pageName: PageName {
+        return .settings
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
+extension PermissionsViewController: TrackablePage {
+    var pageName: PageName {
+        return .settingsPermissions
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
+extension SiriShortcutsViewController: TrackablePage {
+    var pageName: PageName {
+        if let shortcutPageName = selectedShortCutPage {
+            return shortcutPageName
+        }
+        return .settingsSiriShortCuts
+    }
+    var pageAssociatedObject: PageObject? {
+        return nil
+    }
+}
+
+extension SettingsBubblesViewController: TrackablePage {
+    var pageName: PageName {
+        switch settingsType {
+        case .about: return .about
+        case .support: return .sidebarSupport
+        }
     }
     var pageAssociatedObject: PageObject? {
         return nil
@@ -387,20 +459,13 @@ extension TutorialViewController: TrackablePage {
 extension ScreenHelpViewController: TrackablePage {
     var pageName: PageName {
         switch category {
-        case .toBeVision:
-            return .infoToBeVision
-        case .dailyPrep:
-            return .infoDailyPrep
-        case .learn:
-            return .infoLearn
-        case .guide:
-            return .infoGuide
-        case .prepare:
-            return .infoPrepare
-        case .me:
-            return .infoMe
-        default:
-            return .infoGuide
+        case .toBeVision: return .infoToBeVision
+        case .dailyPrep: return .infoDailyPrep
+        case .learn: return .infoLearn
+        case .guide: return .infoGuide
+        case .prepare: return .infoPrepare
+        case .toBeVisionGuide: return .infoToBeVisionGuide
+        case .data: return .infoData
         }
     }
     var pageAssociatedObject: PageObject? {
@@ -455,9 +520,19 @@ extension ImagePickerController: TrackablePage {
 
 extension PrepareNotesViewController: TrackablePage {
     var pageName: PageName {
-        return .myPreparationsNotes
+        return selectedNotes.pageName
     }
     var pageAssociatedObject: PageObject? {
         return nil
+    }
+}
+
+extension AVPlayerViewController: TrackablePage {
+    var pageName: PageName {
+        return pageType
+    }
+    var pageAssociatedObject: PageObject? {
+        guard let contentItem = contentItem else { return nil }
+        return PageObject(object: contentItem, identifier: .contentItem)
     }
 }

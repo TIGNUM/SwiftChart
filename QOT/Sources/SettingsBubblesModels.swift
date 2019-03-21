@@ -11,7 +11,6 @@ import ReactiveKit
 import RealmSwift
 
 enum SettingsBubblesType {
-
     case about
     case support
 }
@@ -63,6 +62,20 @@ final class SettingsBubblesModel {
             case .featureRequest: return R.string.localized.sidebarTitleFeatureRequest()
             case .tutorial: return R.string.localized.settingsGeneralTutorialTitle()
             case .faq: return R.string.localized.sidebarTitleFAQ()
+            }
+        }
+
+        var pageName: PageName {
+            switch self {
+            case .benefits: return .benefits
+            case .about: return .about
+            case .privacy: return .privacy
+            case .terms: return .terms
+            case .copyright: return .copyrights
+            case .contactSupport: return .supportContact
+            case .featureRequest: return .featureRequest
+            case .tutorial: return .tutorial
+            case .faq: return .faq
             }
         }
 

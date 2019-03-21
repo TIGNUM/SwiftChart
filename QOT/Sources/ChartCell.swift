@@ -111,6 +111,7 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
     @IBOutlet private weak var headerLabelTrailingConstraint: NSLayoutConstraint!
     @IBOutlet private weak var topView: UIView!
     weak var delegate: ChartCellDelegate?
+    weak var controllerDelegate: ChartViewControllerDelegate?
     private var selectedButtonTag = 0
     private var infoViewDestination: AppCoordinator.Router.Destination?
     private var chartTypes = [ChartType]()
@@ -459,6 +460,7 @@ private extension ChartCell {
     }
 
     @IBAction func infoButtonPressed(sender: UIButton) {
+        controllerDelegate?.didTabInfoView(pageName: statistics?.chartType.pageName)
         infoView.alpha = 0
         UIView.animate(withDuration: 0.5) {
             self.infoView.alpha = 1
@@ -470,6 +472,7 @@ private extension ChartCell {
     }
 
     @IBAction func closeInfoView() {
+        controllerDelegate?.didTabInfoView(pageName: .tabBarItemData)
         UIView.animate(withDuration: 0.5) {
             self.infoView.alpha = 0
         }

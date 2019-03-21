@@ -61,6 +61,17 @@ final class PrepareNotesViewController: UIViewController {
             case .notes: return R.string.localized.prepareReviewNotesGeneralNavbarTitle()
             }
         }
+
+        var pageName: PageName {
+            switch self {
+            case .intentionPerceiving: return .prepareNotesIntentionsPreceived
+            case .intentionKnowing: return .prepareNotesIntentionsKnow
+            case .intentionFeeling: return .prepareNotesIntentionsFeel
+            case .reflectionNotes: return .prepareNotesReflectionGood
+            case .reflectionVision: return .prepareNotesReflectionNotGood
+            case .notes: return .prepareNotesGeneral
+            }
+        }
     }
 
     enum ReviewNotesType {
@@ -145,11 +156,16 @@ final class PrepareNotesViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     var viewModel: PrepareContentViewModel?
-    private var selectedNotes = NotesType.notes
+    var selectedNotes = NotesType.notes
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        selectedNotes = NotesType.notes
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -199,6 +215,7 @@ extension PrepareNotesViewController: UITableViewDataSource, UITableViewDelegate
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         selectedNotes = ReviewNotesType.allValues[indexPath.section].notesType(at: indexPath.row)
+        viewModel?.pageTracker.track(self)
         performSegue(withIdentifier: R.segue.prepareNotesViewController.prepareNotesSegueIdentifier, sender: nil)
     }
 

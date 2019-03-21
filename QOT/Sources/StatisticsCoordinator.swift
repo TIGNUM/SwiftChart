@@ -18,6 +18,7 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
     private let permissionsManager: PermissionsManager
     private let transitioningDelegate: UIViewControllerTransitioningDelegate // swiftlint:disable:this weak_delegate
     private let startingSection: StatisticsSectionType
+    private let pageTracker: PageTracker
     private var topTabBarController: UINavigationController!
     var children: [Coordinator] = []
 
@@ -27,7 +28,9 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
          services: Services,
          transitioningDelegate: UIViewControllerTransitioningDelegate,
          startingSection: StatisticsSectionType? = nil,
-         permissionsManager: PermissionsManager) {
+         permissionsManager: PermissionsManager,
+         pageTracker: PageTracker) {
+        self.pageTracker = pageTracker
         self.rootViewController = root
         self.services = services
         self.transitioningDelegate = transitioningDelegate
@@ -38,7 +41,8 @@ final class StatisticsCoordinator: NSObject, ParentCoordinator {
     func start() {
         let viewModel = ChartViewModel(services: services,
                                        permissionsManager: permissionsManager,
-                                       startingSection: startingSection)
+                                       startingSection: startingSection,
+                                       pageTracker: pageTracker)
         let statisticsViewController = ChartViewController(viewModel: viewModel)
         statisticsViewController.title = R.string.localized.tabBarItemData()
         topTabBarController = UINavigationController(withPages: [statisticsViewController],

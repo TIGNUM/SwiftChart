@@ -48,7 +48,7 @@ extension VisionGeneratorPresenter: VisionGeneratorPresenterInterface {
         viewController?.showContent(contentID, choice: choice)
     }
 
-    func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice) {
-        viewController?.showMedia(mediaURL, choice: choice)
+    func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice, contentItem: ContentItem?) {
+        viewController?.showMedia(mediaURL, choice: choice, contentItem: contentItem)
     }
 }

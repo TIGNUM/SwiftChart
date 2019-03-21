@@ -44,4 +44,8 @@ extension SearchInteractor: SearchInteractorInterface {
         let searchResults = worker.search(searchText, searchFilter: searchFilter)
         presenter.reload(searchResults)
     }
+
+    func contentItem(for searchResult: Search.Result) -> ContentItem? {
+        return worker.contentItem(for: searchResult)
+    }
 }

@@ -322,6 +322,26 @@ enum ChartType: String {
         }
     }
 
+    var pageName: PageName? {
+        switch self {
+        case .meetingAverageDay,
+             .meetingAverageWeek: return .chartInfoMeetingsNumber
+        case .meetingLength: return .chartInfoMeetingsTimeIn
+        case .meetingIncreaseDiff: return .chartInfoMeetingsIncreaseDiff
+        case .meetingTimeBetween: return .chartInfoMeetingsTimeBetween
+        case .sleepQuality: return .chartInfoSleepQuality
+        case .sleepQuantity,
+             .sleepQuantityTime: return .chartInfoSleepQuantity
+        case .activitySittingMovementRatio: return .chartInfoActivityMovement
+        case .activityLevel: return .chartInfoActivityLevel
+        case .intensityLoadWeek,
+             .intensityLoadMonth: return .chartInfoIntensityPerceivedLoad
+        case .intensityRecoveryWeek,
+             .intensityRecoveryMonth: return .chartInfoIntensityPerceivedRecovery
+        default: return nil
+        }
+    }
+
     var segmentedView: Bool {
         switch self {
         case .meetingAverageDay: return true

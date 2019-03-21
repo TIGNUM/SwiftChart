@@ -14,6 +14,7 @@ final class SettingsViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     private var settingsModel: SettingsModel
+    var selectedSettings: SettingsModel.Setting?
     var interactor: SettingsInteractorInterface?
 
     // MARK: - Init
@@ -32,6 +33,7 @@ final class SettingsViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        selectedSettings = nil
         UIApplication.shared.setStatusBarStyle(.lightContent)
         navigationItem.title = R.string.localized.settingsTitle().uppercased()
     }
@@ -78,6 +80,7 @@ extension SettingsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let settingsTapped = settingsModel.settingItem(at: indexPath)
+        selectedSettings = settingsTapped
         interactor?.handleTap(setting: settingsTapped)
     }
 }

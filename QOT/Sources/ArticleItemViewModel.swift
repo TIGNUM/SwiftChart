@@ -56,6 +56,12 @@ final class ArticleItemViewModel {
 
 extension ArticleItemViewModel {
 
+    func articleItemVideo(for mediaURL: URL?) -> ContentItem? {
+        let audioItem = services.contentService.contentItemsAudio().filter { $0.valueMediaURL ?? "" == mediaURL?.absoluteString ?? "" }.first
+        let videoItem = services.contentService.contentItemsVideo().filter { $0.valueMediaURL ?? "" == mediaURL?.absoluteString ?? "" }.first
+        return audioItem ?? videoItem
+    }
+
     func markContentAsRead() {
         services.contentService.setContentCollectionViewed(localID: contentCollection.localID)
     }

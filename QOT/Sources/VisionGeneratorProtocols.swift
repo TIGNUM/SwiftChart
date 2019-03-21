@@ -10,7 +10,7 @@ import Foundation
 
 protocol ChatViewControllerInterface: class {
     func showContent(_ contentID: Int, choice: VisionGeneratorChoice)
-    func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice)
+    func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice, contentItem: ContentItem?)
     func loadNextQuestions(_ choice: VisionGeneratorChoice)
     func laodLastQuestion()
     func updateBottomButton(_ choice: VisionGeneratorChoice, questionType: VisionGeneratorChoice.QuestionType)
@@ -23,7 +23,7 @@ protocol ChatViewControllerInterface: class {
 
 protocol VisionGeneratorPresenterInterface {
     func showContent(_ contentID: Int, choice: VisionGeneratorChoice)
-    func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice)
+    func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice, contentItem: ContentItem?)
     func updateBottomButton(_ choice: VisionGeneratorChoice, questionType: VisionGeneratorChoice.QuestionType)
     func dismiss()
     func updateVisionControllerModel()

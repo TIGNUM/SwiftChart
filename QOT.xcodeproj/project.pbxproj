@@ -135,6 +135,7 @@
 		36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */; };
 		3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3686678320D3835900B400FE /* AbstractFormViewController.swift */; };
 		368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368BE2EA20EF4A9600A6B809 /* UserSigning.swift */; };
+		368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */; };
 		3691175E20650B0A007D28D3 /* PageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691175D20650B09007D28D3 /* PageViewController.swift */; };
 		3691176D20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3691176720656CD6007D28D3 /* PrepareContentSubHeaderTableViewCell.xib */; };
 		3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */; };
@@ -1017,6 +1018,7 @@
 		36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Siren.swift"; sourceTree = "<group>"; };
 		3686678320D3835900B400FE /* AbstractFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractFormViewController.swift; sourceTree = "<group>"; };
 		368BE2EA20EF4A9600A6B809 /* UserSigning.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserSigning.swift; sourceTree = "<group>"; };
+		368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AVPlayerViewController+Pagetrack.swift"; sourceTree = "<group>"; };
 		3691175D20650B09007D28D3 /* PageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PageViewController.swift; sourceTree = "<group>"; };
 		3691176720656CD6007D28D3 /* PrepareContentSubHeaderTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareContentSubHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentNotesViewController.swift; sourceTree = "<group>"; };
@@ -3211,6 +3213,7 @@
 				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
 				AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */,
 				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
+				368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -5010,6 +5013,7 @@
 				3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
+				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */,

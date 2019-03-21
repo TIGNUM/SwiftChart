@@ -23,13 +23,18 @@ final class ChartViewModel {
     private let services: Services
     private let permissionsManager: PermissionsManager
     private let syncStateObserver: SyncStateObserver
+    let pageTracker: PageTracker
     var allCharts: [Statistics] = []
     let sortedSections: [StatisticsSectionType] = [.intensity, .meetings, .sleep, .activity]
     var calandarAccessGranted = false
 
     // MARK: - Init
 
-    init(services: Services, permissionsManager: PermissionsManager, startingSection: StatisticsSectionType) {
+    init(services: Services,
+         permissionsManager: PermissionsManager,
+         startingSection: StatisticsSectionType,
+         pageTracker: PageTracker) {
+        self.pageTracker = pageTracker
         self.services = services
         self.permissionsManager = permissionsManager
         syncStateObserver = SyncStateObserver(realm: services.mainRealm)

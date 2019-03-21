@@ -13,10 +13,12 @@ final class EventTracker {
 
     private enum EventName: String {
         case contentItemRead = "event.contentitemread"
+        case contentItemPlayAudio = "event.contentItemPlayAudio"
     }
     enum Event {
         case didShowPage(TrackablePage, from: TrackablePage?)
         case didReadContentItem(ContentItem)
+        case didPlayAudioItem(ContentItem)
     }
 
     let realmProvider: RealmProvider
@@ -31,6 +33,8 @@ final class EventTracker {
             handleDidShowPage(trackablePage, from: referrerTrackablePage)
         case .didReadContentItem(let contentItem):
             handleEvent(.contentItemRead, withObject: contentItem)
+        case .didPlayAudioItem(let contentItem):
+            handleEvent(.contentItemPlayAudio, withObject: contentItem)
         }
     }
 

@@ -551,9 +551,9 @@ extension ChatViewController: ChatViewControllerInterface {
         visionGeneratorInteractor?.loadNextQuestions(choice)
     }
 
-    func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice) {
+    func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice, contentItem: ContentItem?) {
         visionChoice = choice
-        stream(videoURL: mediaURL)
+        stream(videoURL: mediaURL, contentItem: contentItem, pageName: pageName)
     }
 
     func showContent(_ contentID: Int, choice: VisionGeneratorChoice) {

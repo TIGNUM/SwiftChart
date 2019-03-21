@@ -79,9 +79,9 @@ extension ScreenHelpViewController: ScreenHelpViewControllerInterface {
         playButtonImageView.isHidden = hasVideo == false
     }
 
-    func streamVideo(videoURL: URL?) {
+    func streamVideo(videoURL: URL?, contentItem: ContentItem?) {
         guard let videoURL = videoURL else { return }
-        let playerViewController = stream(videoURL: videoURL)
+        let playerViewController = stream(videoURL: videoURL, contentItem: contentItem, pageName: pageName)
         if let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
             avPlayerObserver?.onStatusUpdate { (player) in

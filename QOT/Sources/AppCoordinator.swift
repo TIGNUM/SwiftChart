@@ -1165,12 +1165,12 @@ extension AppCoordinator {
             }
     }
 
-	func presentContentItemSettings(contentID: Int, controller: UIViewController?) {
+    func presentContentItemSettings(contentID: Int, controller: UIViewController?, pageName: PageName) {
 		guard
 			let settingsViewController = controller,
 			let services = services,
 			let content = services.contentService.contentCollection(id: contentID),
-			let coordinator = ArticleContentItemCoordinator(pageName: .featureExplainer,
+			let coordinator = ArticleContentItemCoordinator(pageName: pageName,
 															root: settingsViewController,
 															services: services,
 															contentCollection: content,

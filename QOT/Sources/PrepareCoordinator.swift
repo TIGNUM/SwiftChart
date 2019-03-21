@@ -29,6 +29,7 @@ final class PrepareCoordinator: ParentCoordinator {
     private let services: Services
     private let widgetDataManager: ExtensionsDataManager
     private let eventTracker: EventTracker
+    private let pageTracker: PageTracker
     private let permissionsManager: PermissionsManager
     private let tabBarController: TabBarController
     private var topTabBarController: UINavigationController
@@ -66,7 +67,9 @@ final class PrepareCoordinator: ParentCoordinator {
          tabBarController: TabBarController,
          topTabBarController: UINavigationController,
          chatViewController: ChatViewController<PrepareAnswer>,
-         myPrepViewController: MyPrepViewController) {
+         myPrepViewController: MyPrepViewController,
+         pageTracker: PageTracker) {
+        self.pageTracker = pageTracker
         self.services = services
         self.eventTracker = eventTracker
         self.permissionsManager = permissionsManager
@@ -143,7 +146,8 @@ extension PrepareCoordinator {
                                                     video: video,
                                                     description: description ?? "",
                                                     items: items,
-                                                    services: services)
+                                                    services: services,
+                                                    pageTracker: pageTracker)
             let viewController = PrepareContentViewController(viewModel: viewModel)
             PrepareContentViewController.pageName = .prepareContent
             viewController.delegate = self
@@ -325,7 +329,8 @@ private extension PrepareCoordinator {
                                            contentCollectionTitle: preparation.subtitle,
                                            notes: preparation.notes,
                                            notesDictionary: preparation.notesDictionary,
-                                           services: services)
+                                           services: services,
+                                           pageTracker: pageTracker)
         }
         return nil
     }

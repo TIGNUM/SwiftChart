@@ -145,4 +145,9 @@ final class SearchWorker {
                                                         }
         }
     }
+
+    func contentItem(for searchResult: Search.Result) -> ContentItem? {
+        guard let contentItemID = searchResult.contentItemID else { return nil }
+        return services.contentService.contentItem(id: contentItemID)
+    }
 }

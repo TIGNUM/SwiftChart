@@ -123,6 +123,7 @@ extension ChartTableViewCell: UICollectionViewDelegateFlowLayout, UICollectionVi
                         configuration: config,
                         fitbitState: viewModel.fitbitState,
                         calandarAccessGranted: viewModel.calandarAccessGranted)
+        chartCell.controllerDelegate = delegate
         chartCell.delegate = self
         let cellRect = collectionView.convert(chartCell.frame, to: collectionView.superview)
         chartCell.animateHeader(withCellRect: cellRect, inParentRect: collectionView.frame)

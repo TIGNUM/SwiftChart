@@ -12,12 +12,12 @@ import Anchorage
 final class SettingsBubblesViewController: UIViewController {
 
     @IBOutlet weak var bubblesView: BubblesView!
-    private var settingsType: SettingsBubblesType?
+    var settingsType: SettingsBubblesType
     var interactor: SettingsBubblesInteractorInterface?
 
     init(configurator: Configurator<SettingsBubblesViewController>, settingsType: SettingsBubblesType) {
-        super.init(nibName: nil, bundle: nil)
         self.settingsType = settingsType
+        super.init(nibName: nil, bundle: nil)
         configurator(self)
     }
 

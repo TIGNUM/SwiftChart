@@ -27,11 +27,11 @@ extension SettingsBubblesRouter: SettingsBubblesRouterInterface {
 
     func handleSelection(bubbleTapped: SettingsBubblesModel.SettingsBubblesItem) {
         switch bubbleTapped {
-        case .benefits: presentContentItem(id: bubbleTapped.primaryKey)
-        case .about: presentContentItem(id: bubbleTapped.primaryKey)
-        case .privacy: presentContentItem(id: bubbleTapped.primaryKey)
-        case .terms: presentContentItem(id: bubbleTapped.primaryKey)
-        case .copyright: presentContentItem(id: bubbleTapped.primaryKey)
+        case .benefits: presentContentItem(id: bubbleTapped.primaryKey, pageName: bubbleTapped.pageName)
+        case .about: presentContentItem(id: bubbleTapped.primaryKey, pageName: bubbleTapped.pageName)
+        case .privacy: presentContentItem(id: bubbleTapped.primaryKey, pageName: bubbleTapped.pageName)
+        case .terms: presentContentItem(id: bubbleTapped.primaryKey, pageName: bubbleTapped.pageName)
+        case .copyright: presentContentItem(id: bubbleTapped.primaryKey, pageName: bubbleTapped.pageName)
         case .contactSupport: showNovartisSupportIfNeeded(bubbleTapped: bubbleTapped)
         case .featureRequest: presentMailComposer(recipients: [Defaults.firstLevelFeatureEmail],
                                                   subject: "ID: Feature", id: bubbleTapped)
@@ -47,14 +47,16 @@ private extension SettingsBubblesRouter {
 
     func showNovartisSupportIfNeeded(bubbleTapped: SettingsBubblesModel.SettingsBubblesItem) {
         if Bundle.main.bundleIdentifier?.contains("novartis") == true {
-            presentContentItem(id: bubbleTapped.primaryKey)
+            presentContentItem(id: bubbleTapped.primaryKey, pageName: bubbleTapped.pageName)
         } else {
             presentMailComposer(recipients: [supportEmail()], subject: "ID: Support", id: bubbleTapped)
         }
     }
 
-    func presentContentItem(id: Int) {
-        AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id, controller: viewController)
+    func presentContentItem(id: Int, pageName: PageName) {
+        AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id,
+                                                                      controller: viewController,
+                                                                      pageName: pageName)
     }
 
     func presentFAQ() {

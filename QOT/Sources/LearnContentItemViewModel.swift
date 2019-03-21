@@ -419,6 +419,10 @@ extension LearnContentItemViewModel {
         audioPlayerViewDelegate?.startBlinking()
         player?.volume = 1.0
         player?.play()
+        if let indexPath = playingIndexPath {
+            let contentItem = learnContentItem(at: indexPath, tabType: .audio)
+            eventTracker.track(.didPlayAudioItem(contentItem))
+        }
         isPlaying = true
         observePlayerTime()
         observePlayerItem()

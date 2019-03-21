@@ -33,13 +33,14 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private lazy var visionNavigationItem = NavigationItem()
 
     lazy var prepareCoordinator: PrepareCoordinator = {
-        return PrepareCoordinator(services: self.services,
-                                  eventTracker: self.eventTracker,
-                                  permissionsManager: self.permissionsManager,
-                                  tabBarController: self.tabBarController,
-                                  topTabBarController: self.topTabBarControllerPrepare,
-                                  chatViewController: self.prepareChatViewController,
-                                  myPrepViewController: self.myPrepViewController)
+        return PrepareCoordinator(services: services,
+                                  eventTracker: eventTracker,
+                                  permissionsManager: permissionsManager,
+                                  tabBarController: tabBarController,
+                                  topTabBarController: topTabBarControllerPrepare,
+                                  chatViewController: prepareChatViewController,
+                                  myPrepViewController: myPrepViewController,
+                                  pageTracker: pageTracker)
     }()
 
     lazy var prepareChatViewController: ChatViewController<PrepareAnswer> = {
@@ -156,7 +157,8 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private lazy var topTabBarControllerData: UINavigationController = {
         let viewModel = ChartViewModel(services: services,
                                            permissionsManager: permissionsManager,
-                                           startingSection: .sleep)
+                                           startingSection: .sleep,
+                                           pageTracker: pageTracker)
         let chartViewController = ChartViewController(viewModel: viewModel)
         chartViewController.title = R.string.localized.tabBarItemData()
         let topTabBarController = UINavigationController(withPages: [chartViewController],
@@ -288,7 +290,8 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
             services: services,
             transitioningDelegate: transitioningDelegate,
             startingSection: sector,
-            permissionsManager: permissionsManager
+            permissionsManager: permissionsManager,
+            pageTracker: pageTracker
         )
         startChild(child: coordinator)
     }
@@ -332,7 +335,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     func myUniverseViewController(_ viewController: MyUniverseViewController,
                                   didTapRightBarButtonItem buttonItem: UIBarButtonItem,
                                   in topnavigationBar: NavigationItem) {
-        showHelp(.me)
+        showHelp(.toBeVision)
     }
 }
 
@@ -393,7 +396,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
         switch selectedIndex.value {
         case 0: showHelp(.guide)
         case 1: showHelp(.learn)
-        case 2: showHelp(.me)
+        case 2: showHelp(.toBeVision)
         case 3: showHelp(.data)
         case 4: showHelp(.prepare)
         default: assertionFailure("unhandled switch")

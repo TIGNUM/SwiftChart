@@ -13,6 +13,7 @@ import ReactiveKit
 protocol ChartViewControllerDelegate: class {
     func didSelectAddSensor()
     func didSelectOpenSettings()
+    func didTabInfoView(pageName: PageName?)
 }
 
 final class ChartViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
@@ -25,6 +26,7 @@ final class ChartViewController: UIViewController, FullScreenLoadable, PageViewC
     private let headerHeight: CGFloat = 20
     private let footerHeight: CGFloat = 30
     private let disposeBag = DisposeBag()
+    var infoPageName: PageName?
     var loadingView: BlurLoadingView?
     var isLoading: Bool = false {
         didSet {
@@ -64,6 +66,7 @@ final class ChartViewController: UIViewController, FullScreenLoadable, PageViewC
         super.viewWillAppear(animated)
         chartViews.keys.forEach { chartViews[$0] = nil }
         tableView.reloadData()
+        infoPageName = nil
         updateReadyState()
     }
 
@@ -176,6 +179,14 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - StatisticsViewControllerDelegate
 
 extension ChartViewController: ChartViewControllerDelegate {
+    func didTabInfoView(pageName: PageName?) {
+        if pageName == .tabBarItemData {
+            infoPageName = nil
+        } else {
+            infoPageName = pageName
+            viewModel.pageTracker.track(self)
+        }
+    }
 
     func didSelectAddSensor() {
         AppDelegate.current.appCoordinator.presentAddSensor(from: self)

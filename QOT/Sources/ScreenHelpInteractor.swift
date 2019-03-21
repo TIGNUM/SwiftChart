@@ -43,6 +43,6 @@ extension ScreenHelpInteractor: ScreenHelpInteractorInterface {
     }
 
     func didTapVideo(with url: URL?) {
-        router.showVideo(with: url)
+        router.showVideo(with: url, contentItem: dataWorker.contentItemVideo(for: url))
     }
 }

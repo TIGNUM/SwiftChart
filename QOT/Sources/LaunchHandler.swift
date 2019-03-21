@@ -310,7 +310,8 @@ extension LaunchHandler {
             let contentID = Int(contentIDString) {
             if guideItem.link?.description == "qot://feature-explainer?contentID=100101" { // QOT Benefits
                 appDelegate.appCoordinator.presentContentItemSettings(contentID: contentID,
-                                                                      controller: appDelegate.window?.rootViewController)
+                                                                      controller: appDelegate.window?.rootViewController,
+                                                                      pageName: .featureExplainer)
             } else {
                 appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
                                                                              guideItem: guideItem)

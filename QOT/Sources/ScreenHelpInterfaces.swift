@@ -10,7 +10,7 @@ import Foundation
 
 protocol ScreenHelpRouterInterface {
     func dismiss()
-    func showVideo(with url: URL?)
+    func showVideo(with url: URL?, contentItem: ContentItem?)
 }
 
 protocol ScreenHelpPresenterInterface {
@@ -26,6 +26,6 @@ protocol ScreenHelpInteractorInterface: Interactor {
 protocol ScreenHelpViewControllerInterface: class {
     var interactor: ScreenHelpInteractorInterface! { get set }
     func updateHelpItem(_ helpItem: ScreenHelp.Item?)
-    func streamVideo(videoURL: URL?)
+    func streamVideo(videoURL: URL?, contentItem: ContentItem?)
     func shouldShowPlayButton(hasVideo: Bool)
 }

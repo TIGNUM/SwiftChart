@@ -28,6 +28,7 @@ final class SidebarViewController: UIViewController {
     // MARK: - Properties
 
     private let viewModel: SidebarViewModel
+    var sidebarItem = SidebarViewModel.SidebarItem.about
     weak var delegate: SidebarViewControllerDelegate?
 
     private lazy var tableView: UITableView = {
@@ -111,9 +112,9 @@ extension SidebarViewController: UITableViewDelegate, UITableViewDataSource, Pag
 
 private extension SidebarViewController {
 
-    func handleSelection(sidebarItem: SidebarViewModel.SidebbarItem?) {
+    func handleSelection(sidebarItem: SidebarViewModel.SidebarItem?) {
         guard let sidebarItem = sidebarItem else { return }
-
+        self.sidebarItem = sidebarItem
         switch sidebarItem {
         case .search: delegate?.didTapSearchCell(in: self)
         case .tools: delegate?.didTapLibraryCell(in: self)

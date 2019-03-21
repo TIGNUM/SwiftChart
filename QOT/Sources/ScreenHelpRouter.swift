@@ -27,7 +27,7 @@ extension ScreenHelpRouter: ScreenHelpRouterInterface {
         })
     }
 
-    func showVideo(with url: URL?) {
-        viewController?.streamVideo(videoURL: url)
+    func showVideo(with url: URL?, contentItem: ContentItem?) {
+        viewController?.streamVideo(videoURL: url, contentItem: contentItem)
     }
 }

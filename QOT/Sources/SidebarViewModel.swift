@@ -12,7 +12,7 @@ import RealmSwift
 
 final class SidebarViewModel {
 
-    enum SidebbarItem: Int {
+    enum SidebarItem: Int {
         case profile = 0
         case tools
         case search
@@ -22,11 +22,11 @@ final class SidebarViewModel {
         case support
         case about
 
-        static var allValues: [SidebbarItem] {
+        static var allValues: [SidebarItem] {
             return [.profile, .tools, .search, .settings, .admin, .placeholder, .support, .about]
         }
 
-        static var restrictedValues: [SidebbarItem] {
+        static var restrictedValues: [SidebarItem] {
             return [.profile, .tools, .search, .settings, .placeholder, .support, .about]
         }
 
@@ -112,7 +112,7 @@ final class SidebarViewModel {
     // MARK: - Properties
 
     let updates = PublishSubject<CollectionUpdate, NoError>()
-    let services: Services
+    let services: Services    
 
     init(services: Services) {
         self.services = services
@@ -120,7 +120,7 @@ final class SidebarViewModel {
 
     var itemCount: Int {
         #if DEBUG
-            return SidebbarItem.allValues.count
+            return SidebarItem.allValues.count
         #else
         if services.settingsService.allowAdminSettings() == true {
             return SidebbarItem.allValues.count
@@ -130,9 +130,9 @@ final class SidebarViewModel {
         #endif
     }
 
-    func sidebarItem(at indexPath: IndexPath) -> SidebbarItem? {
+    func sidebarItem(at indexPath: IndexPath) -> SidebarItem? {
         #if DEBUG
-             return SidebbarItem.allValues.item(at: indexPath.row)
+             return SidebarItem.allValues.item(at: indexPath.row)
         #else
         if services.settingsService.allowAdminSettings() == true {
             return SidebbarItem.allValues.item(at: indexPath.row)
@@ -142,7 +142,7 @@ final class SidebarViewModel {
         #endif
     }
 
-    func contentCollection(_ sidebarItem: SidebbarItem) -> ContentCollection? {
+    func contentCollection(_ sidebarItem: SidebarItem) -> ContentCollection? {
         return sidebarItem.contentCollection(for: services.contentService)
     }
 }

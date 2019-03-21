@@ -180,7 +180,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case .audio,
              .video:
             if let url = selectedSearchResult.mediaURL {
-                handleMediaSelection(mediaURL: url)
+                handleMediaSelection(mediaURL: url, contentItem: interactor?.contentItem(for: selectedSearchResult))
             }
         }
     }
@@ -190,8 +190,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 private extension SearchViewController {
 
-    func handleMediaSelection(mediaURL: URL) {
-        let playerViewController = stream(videoURL: mediaURL)
+    func handleMediaSelection(mediaURL: URL, contentItem: ContentItem?) {
+        let playerViewController = stream(videoURL: mediaURL, contentItem: contentItem, pageName: pageName)
         if let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
             avPlayerObserver?.onStatusUpdate { (player) in

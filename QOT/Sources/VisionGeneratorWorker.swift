@@ -45,6 +45,10 @@ final class VisionGeneratorWorker {
         updateViewModel(with: allChatItems[.intro] ?? [])
     }
 
+    func contentItem(for contentItemID: Int) -> ContentItem? {
+        return services.contentService.contentItem(id: contentItemID)
+    }
+
     func visionSelectionCount(for questionType: VisionGeneratorChoice.QuestionType) -> Int {
         return chatViewModel.visionSelectionCount(for: questionType)
     }

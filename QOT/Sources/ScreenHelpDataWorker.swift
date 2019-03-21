@@ -40,6 +40,10 @@ final class ScreenHelpDataWorker {
                                videoURL: videoURL(helpItems),
                                message: messageValue)
     }
+
+    func contentItemVideo(for mediaURL: URL?) -> ContentItem? {
+        return services.contentService.contentItemsVideo().filter { $0.valueMediaURL ?? "" == mediaURL?.absoluteString ?? "" }.first
+    }
 }
 
 private extension ScreenHelpDataWorker {

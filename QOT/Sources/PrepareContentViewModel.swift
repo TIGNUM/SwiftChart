@@ -73,6 +73,7 @@ final class PrepareContentViewModel {
     let preparationType: PreparationContentType
     private let prepareItems: [PrepareItem]
     private let services: Services
+    let pageTracker: PageTracker
 
     var checkedCount: Int {
         return checkedIDs.reduce(0) { (result: Int, check: (key: Int, value: Date?)) -> Int in
@@ -88,7 +89,9 @@ final class PrepareContentViewModel {
          video: Video?,
          description: String,
          items: [PrepareItem],
-         services: Services) {
+         services: Services,
+         pageTracker: PageTracker) {
+        self.pageTracker = pageTracker
         self.preparationType = type
         self.prepareItems = items
         self.title = title
@@ -112,7 +115,9 @@ final class PrepareContentViewModel {
          contentCollectionTitle: String,
          notes: String,
          notesDictionary: [Int: String],
-         services: Services) {
+         services: Services,
+         pageTracker: PageTracker) {
+        self.pageTracker = pageTracker
         self.preparationType = type
         self.prepareItems = items
         self.title = title
@@ -237,6 +242,10 @@ extension PrepareContentViewModel {
         } catch {
             log(error.localizedDescription, level: .error)
         }
+    }
+
+    func contentItemHeaderVideo() -> ContentItem? {
+        return services.contentService.contentCollection(id: headerID)?.items.first
     }
 }
 
