@@ -123,9 +123,9 @@ final class SidebarViewModel {
             return SidebarItem.allValues.count
         #else
         if services.settingsService.allowAdminSettings() == true {
-            return SidebbarItem.allValues.count
+            return SidebarItem.allValues.count
         } else {
-            return SidebbarItem.restrictedValues.count
+            return SidebarItem.restrictedValues.count
         }
         #endif
     }
@@ -135,9 +135,9 @@ final class SidebarViewModel {
              return SidebarItem.allValues.item(at: indexPath.row)
         #else
         if services.settingsService.allowAdminSettings() == true {
-            return SidebbarItem.allValues.item(at: indexPath.row)
+            return SidebarItem.allValues.item(at: indexPath.row)
         } else {
-            return SidebbarItem.restrictedValues.item(at: indexPath.row)
+            return SidebarItem.restrictedValues.item(at: indexPath.row)
         }
         #endif
     }
