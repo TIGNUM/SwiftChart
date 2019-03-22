@@ -435,6 +435,10 @@
 "Search.Filter.All" = "ALL";
 "Search.Filter.Audio" = "AUDIO";
 "Search.Filter.Video" = "VIDEO";
+"Search.Filter.Read" = "READ";
+"Search.Filter.Listen" = "LISTEN";
+"Search.Filter.Watch" = "WATCH";
+"Search.Filter.Tools" = "TOOLS";
 "Search.Placeholder" = "Search QOT content";
 
 "guide.card.preparation.subtitle" = "PREPARE";

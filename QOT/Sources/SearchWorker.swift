@@ -38,6 +38,7 @@ final class SearchWorker {
         allResults.append(contentsOf: contentItemsAudio)
         allResults.append(contentsOf: contentItemsVideo)
         allResults.append(contentsOf: contentItemsPDF)
+        allResults.append(contentsOf: contentItemsTools)
         return allResults.sorted { $0.title < $1.title }
     }()
 
@@ -72,7 +73,7 @@ final class SearchWorker {
             if let urlString = item.valueMediaURL {
                 mediaURL = URL(string: urlString)
             }
-            let searchResult = Search.Result(filter: .video,
+            let searchResult = Search.Result(filter: .watch,
                                              title: item.valueText ?? "",
                                              contentID: nil,
                                              contentItemID: item.remoteID.value,
@@ -95,7 +96,7 @@ final class SearchWorker {
             if let urlString = item.valueMediaURL {
                 mediaURL = item.bundledAudioURL ?? URL(string: urlString)
             }
-            let searchResult = Search.Result(filter: .audio,
+            let searchResult = Search.Result(filter: .listen,
                                              title: item.valueText ?? "",
                                              contentID: nil,
                                              contentItemID: item.remoteID.value,
@@ -110,12 +111,56 @@ final class SearchWorker {
         return allResults
     }()
 
+    private lazy var contentItemsTools: [Search.Result] = {
+        let categories = Array(services.contentService.toolsCategories())
+        let toolsCollections = categories.map { return Array($0.contentCollections(section: .library)) }
+        var allResults: [Search.Result] = []
+        for collections in toolsCollections {
+            for collection in collections {
+                let result = Search.Result(filter: .tools,
+                                           title: collection.title,
+                                           contentID: collection.remoteID.value,
+                                           contentItemID: collection.remoteID.value,
+                                           createdAt: collection.createdAt,
+                                           searchTags: collection.searchTags,
+                                           section: Database.Section(rawValue: collection.section),
+                                           mediaURL: nil,
+                                           displayType: .tool,
+                                           duration: collection.durationString)
+                allResults.append(result)
+            }
+        }
+        return allResults
+    }()
+
+    private lazy var contentItemsRead: [Search.Result] = {
+        let readContentCollections: [ContentCollection] = Array(services.contentService.searchReadContentCollections())
+        var allResults: [Search.Result] = []
+        for collection in readContentCollections {
+            let result = Search.Result(filter: .read,
+                                       title: collection.title,
+                                       contentID: collection.remoteID.value ?? 0,
+                                       contentItemID: nil,
+                                       createdAt: collection.createdAt,
+                                       searchTags: collection.searchTags,
+                                       section: Database.Section(rawValue: collection.section),
+                                       mediaURL: nil,
+                                       displayType: .article,
+                                       duration: collection.durationString)
+            allResults.append(result)
+        }
+        allResults.append(contentsOf: contentItemsPDF)
+        return allResults
+    }()
+
     func search(_ searchText: String, searchFilter: Search.Filter) -> [Search.Result] {
         var searchArray = [Search.Result]()
         switch searchFilter {
         case .all: searchArray = contentCollectionsAll
-        case .video: searchArray = contentItemsVideo
-        case .audio: searchArray = contentItemsAudio
+        case .read: searchArray = contentItemsRead
+        case .listen: searchArray = contentItemsAudio
+        case .watch: searchArray = contentItemsVideo
+        case .tools: searchArray = contentItemsTools
         }
         let searchResults = searchArray.filter { (item) -> Bool in
             return item.title.lowercased().contains(searchText.lowercased())
@@ -144,6 +189,11 @@ final class SearchWorker {
                                                                 level: .error)
                                                         }
         }
+    }
+
+    func suggestions() -> SearchSuggestions {
+        return SearchSuggestions(header: services.contentService.searchSuggestionsHeader(),
+                                 suggestions: services.contentService.searchSuggestions())
     }
 
     func contentItem(for searchResult: Search.Result) -> ContentItem? {

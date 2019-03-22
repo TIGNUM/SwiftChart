@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="Apercu-Regular.otf">
+            <string>Apercu-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" restorationIdentifier="SuggestionHeader" id="iN0-l3-epB" customClass="SuggestionsHeaderView" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="423" height="25"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUGGESTED SEARCHES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRu-ni-qRj">
+                    <rect key="frame" x="24" y="0.0" width="375" height="12"/>
+                    <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="12"/>
+                    <color key="textColor" red="0.99519230769230771" green="0.99038461538461542" blue="1" alpha="0.40200128424657539" colorSpace="custom" customColorSpace="displayP3"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYG-Bu-BeL">
+                    <rect key="frame" x="24" y="19" width="375" height="1"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="wM3-YD-E7Q"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="JRu-ni-qRj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Kuh-SW-YcK"/>
+                <constraint firstItem="JRu-ni-qRj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="M3j-3c-FCb"/>
+                <constraint firstItem="CYG-Bu-BeL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="VOa-e3-zNs"/>
+                <constraint firstItem="CYG-Bu-BeL" firstAttribute="top" secondItem="JRu-ni-qRj" secondAttribute="bottom" constant="7" id="eEG-UY-XNt"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="CYG-Bu-BeL" secondAttribute="trailing" constant="24" id="her-F9-qsZ"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JRu-ni-qRj" secondAttribute="trailing" constant="24" id="kLw-Yj-oyx"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="titleLabel" destination="JRu-ni-qRj" id="o60-dy-EpF"/>
+            </connections>
+            <point key="canvasLocation" x="176.80000000000001" y="186.20689655172416"/>
+        </view>
+    </objects>
+</document>

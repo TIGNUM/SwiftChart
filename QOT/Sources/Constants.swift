@@ -19,6 +19,7 @@ struct Toggle {
 }
 
 struct Animation {
+    static let duration_00: TimeInterval = 00
     static let duration_01: TimeInterval = 0.1
     static let duration_02: TimeInterval = 0.2
     static let duration: TimeInterval = 0.3
@@ -56,6 +57,7 @@ struct Layout {
     static let padding_35: CGFloat = 35
     static let padding_40: CGFloat = 40
     static let padding_50: CGFloat = 50
+    static let padding_58: CGFloat = 58
     static let padding_64: CGFloat = 64
     static let padding_80: CGFloat = 80
     static let padding_90: CGFloat = 90

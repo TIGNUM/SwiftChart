@@ -25,11 +25,15 @@ final class SearchInteractor {
 
 extension SearchInteractor: SearchInteractorInterface {
 
+    func showSuggestions() {
+        let suggestions = worker.suggestions()
+        presenter.load(suggestions)
+    }
+
     func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String) {
-        worker.sendUserSearchResult(contentId: contentId,
-                                    contentItemId: contentItemId,
-                                    filter: filter,
-                                    query: query)
+        if query.isEmpty == false {
+            worker.sendUserSearchResult(contentId: contentId, contentItemId: contentItemId, filter: filter, query: query)
+        }
     }
 
     func handleSelection(searchResult: Search.Result) {

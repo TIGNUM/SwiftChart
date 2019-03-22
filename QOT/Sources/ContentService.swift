@@ -11,7 +11,7 @@ import RealmSwift
 
 final class ContentService {
 
-    enum Tags: String {
+    enum Tags: String, CaseIterable {
         case tbvGeneratorAlertNotSavedTitle = "tbv_generator_alert_not_saved_title"
         case tbvGeneratorAlertNotSavedMessage = "tbv_generator_alert_not_saved_message"
         case tbvGeneratorAlertNotSavedButtonTitleCancel = "tbv_generator_alert_not_saved_button_title_cancel"
@@ -27,6 +27,20 @@ final class ContentService {
         case siriUpcomingEventSuggestionPhrase = "siri_suggestionphrase_upcomingevent"
         case siriDailyPrepSuggestionPhrase = "siri_suggestionphrase_dailyprep"
         case siriWhatsHotSuggestionPhrase = "siri_suggestionphrase_whatshot"
+        case searchSuggestionSelfImage = "search_suggestion_self_image"
+        case searchSuggestionDailyPrep = "search_suggestion_daily_prep"
+        case searchSuggestionNoExcuse = "search_suggestion_no_excuse"
+        case searchSuggestionBuildCapacity = "search_suggestion_build_capacity"
+        case searchSuggestionSleepRitual = "search_suggestion_sleep_ritual"
+        case searchSuggestionPowerNap = "search_suggestion_power_nap"
+        case searchSuggestionMindsetShifter = "search_suggestion_mindset_shifter"
+        case searchSuggestionReframe = "search_suggestion_reframe"
+        case searchSuggestionBreathing = "search_suggestion_breathing"
+        case searchSuggestionHPSnacks = "search_suggestion_hp_snacks"
+        case searchSuggestionBrainPerformance = "search_suggestion_brain_performance"
+        case searchSuggestionWorkToHome = "search_suggestion_work_to_home"
+        case searchSuggestionTravel = "search_suggestion_travel"
+        case searchSuggestionHeader = "search_header_suggestion"
 
         var predicate: NSPredicate {
             return NSPredicate(tag: rawValue)
@@ -65,8 +79,18 @@ final class ContentService {
         let tools = Database.Section.tools.rawValue
         let learnStrategy = Database.Section.learnStrategy.rawValue
         let whatsHot = Database.Section.learnWhatsHot.rawValue
-
         let predicate = NSPredicate(format: "section == %@ || section == %@ || section == %@ || section == %@", library, tools, learnStrategy, whatsHot)
+        return mainRealm.objects(ContentCollection.self).filter(predicate)
+    }
+
+    func searchReadContentCollections() -> Results<ContentCollection> {
+        let library = Database.Section.library.rawValue
+        let learnStrategy = Database.Section.learnStrategy.rawValue
+        let whatsHot = Database.Section.learnWhatsHot.rawValue
+        let predicate = NSPredicate(format: "section == %@ || section == %@ || section == %@",
+                                    library,
+                                    learnStrategy,
+                                    whatsHot)
         return mainRealm.objects(ContentCollection.self).filter(predicate)
     }
 
@@ -83,6 +107,14 @@ final class ContentService {
     func contentItemsPDF() -> Results<ContentItem> {
         let pdfFormat = "pdf"
         return mainRealm.objects(ContentItem.self).filter(NSPredicate(format: "format == %@", pdfFormat))
+    }
+
+    func contentItemsRead() -> Results<ContentItem> {
+        let pdfFormat = "pdf"
+        let textFormat = "text.paragraph"
+        return mainRealm.objects(ContentItem.self).filter(NSPredicate(format: "format == %@ || format == %@",
+                                                                      pdfFormat,
+                                                                      textFormat))
     }
 
     func contentItem(for predicate: NSPredicate) -> ContentItem? {
@@ -372,5 +404,22 @@ extension ContentService {
                                    message: message,
                                    buttonTitle: buttonTitle,
                                    defaultProfilePicture: R.image.partnerPlaceholder())
+    }
+}
+
+// MARK: - Search Suggestions
+
+extension ContentService {
+
+    func searchSuggestionsHeader() -> String {
+        return contentItem(for: Tags.searchSuggestionHeader.predicate)?.valueText ?? ""
+    }
+
+    func searchSuggestions() -> [String] {
+        var suggestions: [String] = []
+        for tag in Tags.allCases where tag.rawValue.contains("search_suggestion") {
+            suggestions.append(contentItem(for: tag.predicate)?.valueText ?? "")
+        }
+        return suggestions
     }
 }

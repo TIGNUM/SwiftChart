@@ -9,15 +9,18 @@
 import Foundation
 
 protocol SearchViewControllerInterface: class {
+    func load(_ searchSuggestions: SearchSuggestions)
     func reload(_ searchResults: [Search.Result])
 }
 
 protocol SearchPresenterInterface {
+    func load(_ searchSuggestions: SearchSuggestions)
     func reload(_ searchResults: [Search.Result])
 }
 
 protocol SearchInteractorInterface: Interactor {
     func didTapClose()
+    func showSuggestions()
     func didChangeSearchText(searchText: String, searchFilter: Search.Filter)
     func handleSelection(searchResult: Search.Result)
     func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String)

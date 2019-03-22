@@ -205,7 +205,6 @@ extension MyPrepViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let headerLabel = (view as? UITableViewHeaderFooterView)?.textLabel else { return }
-
         if let headerTitle = headerLabel.text {
             headerLabel.attributedText = Style.headlineSmall(headerTitle.uppercased(), .white).attributedString(lineSpacing: 0)
             (view as? UITableViewHeaderFooterView)?.backgroundView?.backgroundColor = .darkAzure

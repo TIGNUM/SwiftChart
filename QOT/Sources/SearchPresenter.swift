@@ -21,6 +21,10 @@ final class SearchPresenter {
 
 extension SearchPresenter: SearchPresenterInterface {
 
+    func load(_ searchSuggestions: SearchSuggestions) {
+        viewController?.load(searchSuggestions)
+    }
+
     func reload(_ searchResults: [Search.Result]) {
         viewController?.reload(searchResults)
     }

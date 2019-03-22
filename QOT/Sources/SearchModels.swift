@@ -12,14 +12,18 @@ struct Search {
 
     enum Filter: Int {
         case all = 0
-        case audio
-        case video
+        case read
+        case listen
+        case watch
+        case tools
 
         var title: String {
             switch self {
             case .all: return R.string.localized.searchFilterAll()
-            case .video: return R.string.localized.searchFilterVideo()
-            case .audio: return R.string.localized.searchFilterAudio()
+            case .read: return R.string.localized.searchFilterRead()
+            case .listen: return R.string.localized.searchFilterListen()
+            case .watch: return R.string.localized.searchFilterWatch()
+            case .tools: return R.string.localized.searchFilterTools()
             }
         }
     }
@@ -29,6 +33,7 @@ struct Search {
         case audio
         case video
         case pdf
+        case tool
     }
 
     struct Result: Equatable {
@@ -44,9 +49,12 @@ struct Search {
         let duration: String
 
         static func == (lhs: Search.Result, rhs: Search.Result) -> Bool {
-            return
-                lhs.title == rhs.title &&
-                lhs.displayType == rhs.displayType
+            return lhs.title == rhs.title && lhs.displayType == rhs.displayType
         }
     }
+}
+
+struct SearchSuggestions {
+    let header: String
+    let suggestions: [String]
 }

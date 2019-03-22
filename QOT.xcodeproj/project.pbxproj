@@ -411,10 +411,14 @@
 		91F5BE5220975E1300E85A51 /* PermissionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5BE5120975E1300E85A51 /* PermissionsInteractor.swift */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
+		AC18381F22418DC6004A538D /* SuggestionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */; };
+		AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC183820224190A0004A538D /* SuggestionsHeaderView.swift */; };
 		AC199035221EDF4300D53F01 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
 		AC199036221EDF7F00D53F01 /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */; };
 		AC199037221EE05C00D53F01 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
 		AC199038221EE07000D53F01 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
+		AC2BABB1223FAAB300769B1A /* SuggestionSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */; };
+		AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */; };
 		AC4DA0E422157DAD00BAF914 /* UpcomingEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */; };
 		AC4DA0E6221581E000BAF914 /* UpcomingEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E5221581E000BAF914 /* UpcomingEventViewController.swift */; };
 		AC4DA0E82215836300BAF914 /* UpcomingEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */; };
@@ -1296,6 +1300,10 @@
 		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionsHeaderView.xib; sourceTree = "<group>"; };
+		AC183820224190A0004A538D /* SuggestionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsHeaderView.swift; sourceTree = "<group>"; };
+		AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSearchTableViewCell.swift; sourceTree = "<group>"; };
+		AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionSearchTableViewCell.xib; sourceTree = "<group>"; };
 		AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventHandler.swift; sourceTree = "<group>"; };
 		AC4DA0E5221581E000BAF914 /* UpcomingEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventViewController.swift; sourceTree = "<group>"; };
 		AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingEventView.xib; sourceTree = "<group>"; };
@@ -3251,11 +3259,15 @@
 				360256E52051838600862B0E /* SearchPresenter.swift */,
 				360256E9205183B300862B0E /* SearchProtocols.swift */,
 				360256E12051836200862B0E /* SearchRouter.swift */,
-				360256EF20528DBD00862B0E /* SearchTableViewCell.swift */,
 				D5485F211ED57AE200A08D1A /* SearchViewController.swift */,
 				360256E32051837300862B0E /* SearchWorker.swift */,
+				360256EF20528DBD00862B0E /* SearchTableViewCell.swift */,
+				AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */,
+				AC183820224190A0004A538D /* SuggestionsHeaderView.swift */,
 				360256F120528E9F00862B0E /* SearchTableViewCell.xib */,
 				360256ED205197AB00862B0E /* SearchViewController.xib */,
+				AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */,
+				AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */,
 			);
 			name = Search;
 			sourceTree = "<group>";
@@ -4141,6 +4153,7 @@
 				36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */,
 				3674FF3920AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
+				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
 				9171647B2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
@@ -4166,6 +4179,7 @@
 				7F6567321FE13BFB00A6CB7F /* ScreenHelpViewController.xib in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
+				AC18381F22418DC6004A538D /* SuggestionsHeaderView.xib in Resources */,
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				9171647C2101E43B00F42D8F /* SensorCollectionViewCell.xib in Resources */,
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
@@ -4629,6 +4643,7 @@
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */,
 				7F6738AF1FE2BB70004DDAE1 /* ScreenHelpDataWorker.swift in Sources */,
+				AC2BABB1223FAAB300769B1A /* SuggestionSearchTableViewCell.swift in Sources */,
 				850312ED1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift in Sources */,
 				36796A5D20D3C4B800B55429 /* SigningInfoWorker.swift in Sources */,
 				7FBFBC0F1FC731FB007B6D2D /* WeeklyChoicesProvider.swift in Sources */,
@@ -4893,6 +4908,7 @@
 				36796A3520D3C47400B55429 /* SigningProfileDetailWorker.swift in Sources */,
 				3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
+				AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */,
 				CB9BB0C01F0CCC30009067D7 /* EventsService.swift in Sources */,
 				91F5BE46209757D300E85A51 /* PermissionsPresenter.swift in Sources */,
 				366AFD0D20BD9F9300109F29 /* SigningEmailWorker.swift in Sources */,
