@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Anchorage
 
 var selectedChartTypes: [ChartType: Bool] = [.peakPerformanceUpcomingWeek: true,
                                              .peakPerformanceUpcomingNextWeek: false,
