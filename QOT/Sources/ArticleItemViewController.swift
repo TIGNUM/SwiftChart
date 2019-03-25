@@ -16,7 +16,7 @@ protocol ArticleItemViewControllerDelegate: class {
     func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: ArticleItemViewController)
     func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
     func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
-    func didTapShare(shareableLink: String)
+    func didTapShare(header: ArticleCollectionHeader)
 }
 
 final class ArticleItemViewController: UIViewController, PageViewControllerNotSwipeable {

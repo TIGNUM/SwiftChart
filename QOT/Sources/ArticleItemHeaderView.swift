@@ -24,6 +24,7 @@ final class ArticleItemHeaderView: UIView {
     @IBOutlet private weak var shareButtonWidthConstraint: NSLayoutConstraint!
     private var shareableLink: String?
     private weak var delegate: ArticleItemViewControllerDelegate?
+    private var header: ArticleCollectionHeader!
 
     private lazy var dateFormatter: DateFormatter = {
         let dateFormatter = DateFormatter()
@@ -34,6 +35,7 @@ final class ArticleItemHeaderView: UIView {
 
     func setupView(header: ArticleCollectionHeader, pageName: PageName, delegate: ArticleItemViewControllerDelegate?) {
         self.delegate = delegate
+        self.header = header
 		var duration = header.articleDuration.uppercased() == "0 MIN" ? "1 MIN" : header.articleDuration.lowercased()
         setupImageView(header: header, pageName: pageName)
         if pageName == .whatsHotArticle {
@@ -126,6 +128,6 @@ extension ArticleItemHeaderView {
 
     @IBAction func didTabShareButton() {
         guard let shareableLink = self.shareableLink else { return }
-        delegate?.didTapShare(shareableLink: shareableLink)
+        delegate?.didTapShare(header: header)
     }
 }

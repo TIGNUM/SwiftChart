@@ -104,8 +104,11 @@ extension ArticleContentItemCoordinator: NavigationItemDelegate {
 
 extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
 
-    func didTapShare(shareableLink: String) {
-        let activityVC = UIActivityViewController(activityItems: [shareableLink], applicationActivities: nil)
+    func didTapShare(header: ArticleCollectionHeader) {
+        let whatsHotShareable = WhatsHotShareable(message: header.articleSubTitle,
+                                                  imageURL: header.thumbnail,
+                                                  shareableLink: header.shareableLink)
+        let activityVC = UIActivityViewController(activityItems: [whatsHotShareable], applicationActivities: nil)
         fullViewController.present(activityVC, animated: true, completion: nil)
     }
 
@@ -187,5 +190,48 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
                 }
             }
         }
+    }
+}
+
+// // MARK: - Private / UIActivityItemSource
+
+private final class WhatsHotShareable: NSObject, UIActivityItemSource {
+    var message: String
+    var imageURL: URL?
+    var shareableLink: String?
+
+    init(message: String, imageURL: URL?, shareableLink: String?) {
+        self.message = message
+        self.imageURL = imageURL
+        self.shareableLink = shareableLink
+    }
+
+    func activityViewControllerPlaceholderItem(_ activityViewController: UIActivityViewController) -> Any {
+        if let shareableLink = shareableLink {
+            return URL(string: shareableLink) ?? message
+        }
+        return message
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController,
+                                itemForActivityType activityType: UIActivityType?) -> Any? {
+        if let shareableLink = shareableLink {
+            return URL(string: shareableLink)
+        }
+        return shareableLink
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController,
+                                subjectForActivityType activityType: UIActivityType?) -> String {
+        return message
+    }
+
+    func activityViewController(_ activityViewController: UIActivityViewController,
+                                thumbnailImageForActivityType activityType: UIActivityType?,
+                                suggestedSize size: CGSize) -> UIImage? {
+        if let imageURL = imageURL, let data = try? Data(contentsOf: imageURL) {
+            return UIImage(data: data)
+        }
+        return nil
     }
 }

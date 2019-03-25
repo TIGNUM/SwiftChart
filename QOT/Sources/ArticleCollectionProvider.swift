@@ -48,7 +48,7 @@ final class ArticleCollectionProvider {
                 description: content.title,
                 date: content.createdAt,
                 duration: "\(content.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN", //TODO Localise?
-                articleDate: content.editedAt,
+                articleDate: content.publishDate ?? content.createdAt,
                 sortOrder: String(format: "#%002d", content.sortOrder), //TODO Localise?
                 previewImageURL: content.thumbnailURL,
                 contentCollectionID: content.remoteID.value ?? 0,

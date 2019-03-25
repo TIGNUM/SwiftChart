@@ -54,6 +54,6 @@ extension ContentCollection {
     }
 
     var editedAt: Date {
-        return self.modifiedAt
+        return publishDate ?? createdAt
     }
 }

@@ -153,18 +153,15 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             setupError = error
             dispatchGroup.leave()
         }
-        #if !DEBUG
-            dispatchGroup.enter()
-            let viewController = AnimatedLaunchScreenViewController()
-            windowManager.show(viewController, duration: Animation.duration_01, animated: false, completion: {
-                viewController.startAnimatingImages {
-                    self.showIpadSupportViewIfNeeded {
-                        dispatchGroup.leave()
-                    }
+        dispatchGroup.enter()
+        let viewController = AnimatedLaunchScreenViewController()
+        windowManager.show(viewController, duration: Animation.duration_01, animated: false, completion: {
+            viewController.startAnimatingImages {
+                self.showIpadSupportViewIfNeeded {
+                    dispatchGroup.leave()
                 }
-            })
-        #endif
-
+            }
+        })
         dispatchGroup.notify(queue: .main) {
             if let error = setupError {
                 self.handleSetupError(error: error)
