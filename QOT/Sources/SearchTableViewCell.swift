@@ -25,7 +25,7 @@ final class SearchTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Public
 
     func configure(title: String, contentType: String?, duration: String?) {
-        titleLabel.attributedText = Style.headline(title.uppercased(), .white80).attributedString()
+        titleLabel.attributedText = Style.headline(title.uppercased(), .white).attributedString()
         titleLabel.lineBreakMode = .byTruncatingTail
         if let contentType = contentType {
             contentTypeLabel.attributedText = Style.paragraph(contentType.uppercased(), .white60).attributedString()
