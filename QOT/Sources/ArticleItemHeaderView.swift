@@ -89,7 +89,7 @@ final class ArticleItemHeaderView: UIView {
         articleThumbnail.layer.cornerRadius = Layout.CornerRadius.eight.rawValue
         articleThumbnail.contentMode = .scaleAspectFill
         articleThumbnail.layer.masksToBounds = true
-        if pageName == .featureExplainer {
+        if pageName == .featureExplainer || pageName == .libraryArticle {
             articleThumbnail.removeFromSuperview()
             if let titleTopContraint = titleTopContraint {
                 titleTopContraint.isActive = true
