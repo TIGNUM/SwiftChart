@@ -20,7 +20,7 @@ struct Guide {
     struct Item {
         enum Content {
             case toBeVision(title: String, body: String, image: URL?)
-            case learningPlan(text: String, strategiesCompleted: Int?)
+            case learningPlan(text: String, strategiesCompleted: Int?, displayDate: Date?)
             case dailyPrep(items: [DailyPrepItem], feedback: String?, whyDPMTitle: String?, whyDPMDescription: String?)
 			case whatsHotArticle(title: String, body: String, image: URL?)
             case preparation(title: String, body: String)

@@ -176,7 +176,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
                            whyDPMTitle: whyDPMTitle,
                            whyDPMDescription: whyDPMDescription)
             return cell
-        case .learningPlan(let value, let strategiesCompleted):
+        case .learningPlan(let value, let strategiesCompleted, _):
             let cell: GuideTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: item.title,
                            content: value,

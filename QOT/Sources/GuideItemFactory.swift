@@ -210,7 +210,8 @@ private extension GuideItemFactory {
         return Guide.Item(status: item.completedAt == nil ? .todo : .done,
                           title: title,
                           content: .learningPlan(text: isBenefits ? benefitsBody : item.body,
-                                                 strategiesCompleted: strategiesCompleted),
+                                                 strategiesCompleted: strategiesCompleted,
+                                                 displayDate: nil),
                           subtitle: displayType ?? "",
                           isDailyPrep: false,
                           isLearningPlan: true,
@@ -257,7 +258,7 @@ private extension GuideItemFactory {
                                                    feedback: notification.dailyPrepFeedback,
                                                    displayDate: notification.displayAt?.utcDate ?? Date()))
         } else {
-            content = .learningPlan(text: notification.body, strategiesCompleted: nil)
+            content = .learningPlan(text: notification.body, strategiesCompleted: nil, displayDate: notification.issueDate)
         }
 
         return Guide.Item(status: notification.completedAt == nil ? .todo : .done,

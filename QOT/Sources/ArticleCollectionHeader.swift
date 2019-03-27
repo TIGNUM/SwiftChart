@@ -19,10 +19,10 @@ struct ArticleCollectionHeader {
     let author: String?
     let shareableLink: String?
 
-    init(content: ContentCollection) {
+    init(content: ContentCollection, displayDate: Date? = nil) {
         articleTitle = content.contentCategories.first?.title ?? ""
         articleSubTitle = content.title
-        articleDate = content.createdAt
+        articleDate = displayDate ?? content.createdAt
         articleDuration = "\(content.items.reduce(0) { $0 + $1.secondsRequired } / 60) MIN"
         articleContentCollectionID = content.remoteID.value ?? 0
 		thumbnail = content.thumbnailURL

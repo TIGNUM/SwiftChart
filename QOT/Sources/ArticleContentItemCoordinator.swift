@@ -120,7 +120,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
             AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID, categoryID: categoryID)
             return
         }
-        articleHeader = ArticleCollectionHeader(content: selectedArticle)
+        articleHeader = ArticleCollectionHeader(content: selectedArticle, displayDate: nil)
         viewModel = ArticleItemViewModel(services: services,
                                          items: Array(selectedArticle.articleItems),
                                          contentCollection: selectedArticle,

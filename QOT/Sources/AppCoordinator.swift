@@ -1116,7 +1116,8 @@ extension AppCoordinator {
                                                             root: rootViewController,
                                                             services: services,
                                                             contentCollection: content,
-                                                            articleHeader: showHeader ? ArticleCollectionHeader(content: content) : nil,
+                                                            articleHeader: showHeader ? ArticleCollectionHeader(content: content,
+                                                                                                                displayDate: displayDate(guideItem: guideItem)) : nil,
                                                             topTabBarTitle: guideItem?.subtitle.uppercased(),
                                                             shouldPush: false,
                                                             guideItem: guideItem) else { return }
@@ -1126,13 +1127,24 @@ extension AppCoordinator {
 
     }
 
+    private func displayDate(guideItem: Guide.Item?) -> Date? {
+        guard let content = guideItem?.content else { return nil }
+        switch content {
+        case .learningPlan(_, _, let displayDate): return displayDate
+        default: return nil
+        }
+    }
+
     func presentFeatureArticelContentItems(contentID: Int, notificationID: Int) {
         if
             let rootViewController = windowManager.rootViewController(atLevel: .normal),
             let services = services,
             let content = services.contentService.contentCollection(id: contentID) {
+                let displayDate = services.guideService.notificationItem(remoteID: notificationID)?.issueDate
                 let guideItemContent = Guide.Item.Content.learningPlan(text: content.guideBody ?? "",
-                                                                       strategiesCompleted: nil)
+                                                                       strategiesCompleted: nil,
+                                                                       displayDate: displayDate)
+                let issueDate = services.guideService.notificationItem(remoteID: notificationID)?.issueDate
                 let guideItem = Guide.Item(status: .done,
                                            title: content.guideTitle ?? "",
                                            content: guideItemContent,
@@ -1190,7 +1202,7 @@ extension AppCoordinator {
                                                             root: searchViewController,
                                                             services: services,
                                                             contentCollection: content,
-                                                            articleHeader: ArticleCollectionHeader(content: content),
+                                                            articleHeader: ArticleCollectionHeader(content: content, displayDate: nil),
                                                             topTabBarTitle: nil,
                                                             shouldPush: false,
                                                             isSearch: true) else { return }
