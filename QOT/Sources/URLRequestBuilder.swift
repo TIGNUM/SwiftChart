@@ -26,7 +26,9 @@ final class URLRequestBuilder {
         }
 
         var httpHeaders = buildable.headers
-        httpHeaders[.authToken] = authToken ?? ""
+        if let token = authToken, token.isEmpty == false {
+            httpHeaders[.authToken] = token
+        }
         httpHeaders[.contentType] = "application/json"
         httpHeaders[.deviceID] = deviceID
         httpHeaders[.versionPlain] = version
