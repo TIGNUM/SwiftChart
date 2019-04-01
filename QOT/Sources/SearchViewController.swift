@@ -84,10 +84,6 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         self.searchResults = searchResults
         tableView.isUserInteractionEnabled = searchResults.isEmpty == false
         tableView.reloadData()
-        if searchResults.isEmpty == true {
-            let filter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
-            interactor?.sendUserSearchResult(contentId: nil, contentItemId: nil, filter: filter, query: searchQuery)
-        }
     }
 
     func load(_ searchSuggestions: SearchSuggestions) {
@@ -121,6 +117,11 @@ private extension SearchViewController {
         searchBar.placeholder = R.string.localized.searchPlaceholder()
         navigationItem.titleView = searchBar
         self.searchBar = searchBar
+    }
+
+    func sendSearchResult(for query: String) {
+        let filter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
+        interactor?.sendUserSearchResult(contentId: nil, contentItemId: nil, filter: filter, query: query)
     }
 }
 
@@ -228,8 +229,10 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.tableView:
             handleSelection(for: indexPath)
         case self.suggestionsTableView:
-            searchBar.text = searchSuggestions?.suggestions[indexPath.row]
-            searchQuery = searchSuggestions?.suggestions[indexPath.row] ?? ""
+            let suggestion = searchSuggestions?.suggestions[indexPath.row] ?? ""
+            sendSearchResult(for: suggestion)
+            searchBar.text = suggestion
+            searchQuery = suggestion
             searchBar.becomeFirstResponder()
             updateSearchResults()
         default:

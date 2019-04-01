@@ -31,9 +31,7 @@ extension SearchInteractor: SearchInteractorInterface {
     }
 
     func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String) {
-        if query.isEmpty == false {
-            worker.sendUserSearchResult(contentId: contentId, contentItemId: contentItemId, filter: filter, query: query)
-        }
+        worker.sendUserSearchResult(contentId: contentId, contentItemId: contentItemId, filter: filter, query: query)
     }
 
     func handleSelection(searchResult: Search.Result) {
