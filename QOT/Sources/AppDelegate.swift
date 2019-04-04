@@ -51,14 +51,12 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         return windowManager
     }()
     lazy var appCoordinator: AppCoordinator = {
-        return AppCoordinator(
-            windowManager: self.windowManager,
-            remoteNotificationHandler: self.remoteNotificationHandler,
-            locationManager: locationManager
-        )
+        return AppCoordinator(windowManager: windowManager,
+                              remoteNotificationHandler: remoteNotificationHandler,
+                              locationManager: locationManager)
     }()
     lazy var remoteNotificationHandler: RemoteNotificationHandler = {
-        return RemoteNotificationHandler(launchHandler: self.launchHandler)
+        return RemoteNotificationHandler(launchHandler: launchHandler)
     }()
     lazy var launchHandler: LaunchHandler = {
         let launchHandler = LaunchHandler()
@@ -104,6 +102,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             UITabBar.appearance().shadowImage = UIImage()
             UITabBar.appearance().backgroundImage = UIImage()
             UNUserNotificationCenter.current().delegate = self
+            UIApplication.shared.statusBarView?.backgroundColor = .carbonDark
+            UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.apercuMedium(ofSize: 20),
+                                                                .foregroundColor: UIColor.white]
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()
             setupHockeyApp()

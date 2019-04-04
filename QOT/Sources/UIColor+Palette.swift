@@ -10,6 +10,32 @@ import UIKit
 
 extension UIColor {
 
+    // MARK: - 3.0
+
+    class var accent: UIColor {
+        return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
+    }
+
+    class var sand30: UIColor {
+        return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.3)
+    }
+
+    class var sand60: UIColor {
+        return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.6)
+    }
+
+    class var sand: UIColor {
+        return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 1)
+    }
+
+    class var carbonDark: UIColor {
+        return UIColor(red: 8/255, green: 8/255, blue: 7/255, alpha: 1)
+    }
+
+    class var carbon: UIColor {
+        return UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: 1)
+    }
+
     /// UIColor(white: 255/255, alpha: 0.1)
     class var whiteLight: UIColor {
         return UIColor(white: 255/255, alpha: 0.1)

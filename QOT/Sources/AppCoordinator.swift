@@ -136,6 +136,17 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         locationManager.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
     }
 
+    func basicSetup() {
+        do {
+            let services = try Services()
+            self.services = services
+            guideMaxDays = services.settingsService.guideDays ?? 3
+            AppCoordinator.appState.services = services
+        } catch {
+
+        }
+    }
+
     func start(completion: @escaping (() -> Void)) {
         if Bundle.main.isFirstVersion == true {
             credentialsManager.clear()
@@ -238,7 +249,10 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             return
         }
         if self.isRestart == false {
-            self.startTabBarCoordinator()
+            guard let coachPageViewController = R.storyboard.main().instantiateViewController(withIdentifier: "CoachPageViewController") as? CoachPageViewController else { return }
+            coachPageViewController.services = services
+            self.windowManager.show(coachPageViewController, animated: true, completion: nil)
+//            self.startTabBarCoordinator()
         } else {
             self.isRestart = false
             self.windowManager.rootViewController(atLevel: .normal)?.dismiss(animated: true, completion: nil)
@@ -722,7 +736,7 @@ extension AppCoordinator {
         startLearnContentItemCoordinator(services: services, content: content, category: category)
     }
 
-    private func startLearnContentItemCoordinator(services: Services,
+    func startLearnContentItemCoordinator(services: Services,
                                                   content: ContentCollection,
                                                   category: ContentCategory,
                                                   guideItem: Guide.Item? = nil) {

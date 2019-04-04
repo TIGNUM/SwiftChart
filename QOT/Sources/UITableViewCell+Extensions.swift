@@ -32,3 +32,28 @@ extension UITableViewCell {
                                          lineBreakMode: breakMode)
     }
 }
+
+extension UICollectionViewCell {
+
+    func syncStatusView(with status: Guide.Item.Status,
+                        for statusView: UIView,
+                        firstConstraint: NSLayoutConstraint,
+                        secondConstraint: NSLayoutConstraint) {
+        statusView.isHidden = status == .done ? true : false
+        firstConstraint.isActive = status == .done ? false : true
+        secondConstraint.isActive = status == .done ? true: false
+        layoutIfNeeded()
+    }
+
+    func bodyAttributedText(text: String,
+                            font: UIFont,
+                            lineSpacing: CGFloat = 10,
+                            breakMode: NSLineBreakMode? = .byWordWrapping) -> NSMutableAttributedString {
+        return NSMutableAttributedString(string: text,
+                                         font: font,
+                                         lineSpacing: lineSpacing,
+                                         textColor: .white,
+                                         alignment: .left,
+                                         lineBreakMode: breakMode)
+    }
+}

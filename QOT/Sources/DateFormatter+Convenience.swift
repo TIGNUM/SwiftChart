@@ -37,6 +37,13 @@ private let dailyPrepDateFormatter: DateFormatter = {
     return formatter
 }()
 
+private let whatsHotFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd. LLLL"
+    formatter.timeZone = TimeZone.current
+    return formatter
+}()
+
 private let displayTimeFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.locale = Locale.current
@@ -92,6 +99,10 @@ extension DateFormatter {
 
     static var isoDate: DateFormatter {
         return isoDateFormatter
+    }
+
+    static var whatsHot: DateFormatter {
+        return whatsHotFormatter
     }
 }
 

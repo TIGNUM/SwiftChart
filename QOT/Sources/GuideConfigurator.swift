@@ -9,7 +9,7 @@
 import Foundation
 
 final class GuideConfigurator: AppStateAccess {
-    static func make(badgeManager: BadgeManager) -> Configurator<GuideViewController> {
+    static func make(badgeManager: BadgeManager?) -> Configurator<GuideViewController> {
         return { viewController in
             let router = GuideRouter(launchHandler: appState.launchHandler)
             let presenter = GuidePresenter(viewController: viewController)

@@ -36,7 +36,77 @@
 		363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */; };
 		363178E71FDEECDE00833958 /* RealmGuideItemNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */; };
 		36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36328F1F1FCEB90B004E9034 /* GuideViewController.swift */; };
+		3632D0C6225347DD00A4F234 /* ComponentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */; };
+		3632D0C822534E6400A4F234 /* ComponentHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */; };
+		3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */; };
+		3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */; };
+		3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */; };
+		3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */; };
 		3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */; };
+		363765FB223A4BD200C2C429 /* KnowingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F3223A4BD200C2C429 /* KnowingPresenter.swift */; };
+		363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F4223A4BD200C2C429 /* KnowingWorker.swift */; };
+		363765FD223A4BD200C2C429 /* KnowingRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F5223A4BD200C2C429 /* KnowingRouter.swift */; };
+		363765FE223A4BD200C2C429 /* KnowingInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F6223A4BD200C2C429 /* KnowingInterface.swift */; };
+		363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F7223A4BD200C2C429 /* KnowingViewController.swift */; };
+		36376600223A4BD200C2C429 /* KnowingInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F8223A4BD200C2C429 /* KnowingInteractor.swift */; };
+		36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F9223A4BD200C2C429 /* KnowingModel.swift */; };
+		36376602223A4BD200C2C429 /* KnowingConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765FA223A4BD200C2C429 /* KnowingConfigurator.swift */; };
+		3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376603223A4BEC00C2C429 /* DailyBriefPresenter.swift */; };
+		3637660C223A4BEC00C2C429 /* DailyBriefWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376604223A4BEC00C2C429 /* DailyBriefWorker.swift */; };
+		3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376605223A4BEC00C2C429 /* DailyBriefRouter.swift */; };
+		3637660E223A4BEC00C2C429 /* DailyBriefInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */; };
+		3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376607223A4BEC00C2C429 /* DailyBriefViewController.swift */; };
+		36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */; };
+		36376611223A4BEC00C2C429 /* DailyBriefModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376609223A4BEC00C2C429 /* DailyBriefModel.swift */; };
+		36376612223A4BEC00C2C429 /* DailyBriefConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */; };
+		3637661B223A4C0400C2C429 /* MyQotPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376613223A4C0400C2C429 /* MyQotPresenter.swift */; };
+		3637661C223A4C0400C2C429 /* MyQotWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376614223A4C0400C2C429 /* MyQotWorker.swift */; };
+		3637661D223A4C0400C2C429 /* MyQotRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376615223A4C0400C2C429 /* MyQotRouter.swift */; };
+		3637661E223A4C0400C2C429 /* MyQotInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376616223A4C0400C2C429 /* MyQotInterface.swift */; };
+		3637661F223A4C0400C2C429 /* MyQotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376617223A4C0400C2C429 /* MyQotViewController.swift */; };
+		36376620223A4C0400C2C429 /* MyQotInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376618223A4C0400C2C429 /* MyQotInteractor.swift */; };
+		36376621223A4C0400C2C429 /* MyQotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376619223A4C0400C2C429 /* MyQotModel.swift */; };
+		36376622223A4C0400C2C429 /* MyQotConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637661A223A4C0400C2C429 /* MyQotConfigurator.swift */; };
+		36376624223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */; };
+		3637662E223A66AF00C2C429 /* CoachPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376626223A66AF00C2C429 /* CoachPresenter.swift */; };
+		3637662F223A66AF00C2C429 /* CoachWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376627223A66AF00C2C429 /* CoachWorker.swift */; };
+		36376630223A66AF00C2C429 /* CoachRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376628223A66AF00C2C429 /* CoachRouter.swift */; };
+		36376631223A66AF00C2C429 /* CoachInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376629223A66AF00C2C429 /* CoachInterface.swift */; };
+		36376632223A66AF00C2C429 /* CoachViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637662A223A66AF00C2C429 /* CoachViewController.swift */; };
+		36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637662B223A66AF00C2C429 /* CoachInteractor.swift */; };
+		36376634223A66AF00C2C429 /* CoachModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637662C223A66AF00C2C429 /* CoachModel.swift */; };
+		36376635223A66AF00C2C429 /* CoachConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637662D223A66AF00C2C429 /* CoachConfigurator.swift */; };
+		3637663A223A6F3B00C2C429 /* AbstractTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376639223A6F3B00C2C429 /* AbstractTableViewCell.swift */; };
+		3637663C223A6F8500C2C429 /* AbstractTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3637663B223A6F8500C2C429 /* AbstractTableViewCell.xib */; };
+		36376647223A7DE100C2C429 /* LevelTwoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637663F223A7DE100C2C429 /* LevelTwoPresenter.swift */; };
+		36376648223A7DE100C2C429 /* LevelTwoWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376640223A7DE100C2C429 /* LevelTwoWorker.swift */; };
+		36376649223A7DE100C2C429 /* LevelTwoRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376641223A7DE100C2C429 /* LevelTwoRouter.swift */; };
+		3637664A223A7DE100C2C429 /* LevelTwoInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376642223A7DE100C2C429 /* LevelTwoInterface.swift */; };
+		3637664B223A7DE100C2C429 /* LevelTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376643223A7DE100C2C429 /* LevelTwoViewController.swift */; };
+		3637664C223A7DE100C2C429 /* LevelTwoInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376644223A7DE100C2C429 /* LevelTwoInteractor.swift */; };
+		3637664D223A7DE100C2C429 /* LevelTwoModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376645223A7DE100C2C429 /* LevelTwoModel.swift */; };
+		3637664E223A7DE100C2C429 /* LevelTwoConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376646223A7DE100C2C429 /* LevelTwoConfigurator.swift */; };
+		36376650223A851500C2C429 /* AbstractLevelTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637664F223A851500C2C429 /* AbstractLevelTwoViewController.swift */; };
+		36376652223A9CD300C2C429 /* AbstractLevelThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376651223A9CD300C2C429 /* AbstractLevelThreeViewController.swift */; };
+		3637665C223AA61100C2C429 /* LevelThreePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376654223AA61100C2C429 /* LevelThreePresenter.swift */; };
+		3637665D223AA61100C2C429 /* LevelThreeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376655223AA61100C2C429 /* LevelThreeWorker.swift */; };
+		3637665E223AA61100C2C429 /* LevelThreeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376656223AA61100C2C429 /* LevelThreeRouter.swift */; };
+		3637665F223AA61100C2C429 /* LevelThreeInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376657223AA61100C2C429 /* LevelThreeInterface.swift */; };
+		36376660223AA61100C2C429 /* LevelThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376658223AA61100C2C429 /* LevelThreeViewController.swift */; };
+		36376661223AA61100C2C429 /* LevelThreeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376659223AA61100C2C429 /* LevelThreeInteractor.swift */; };
+		36376662223AA61100C2C429 /* LevelThreeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637665A223AA61100C2C429 /* LevelThreeModel.swift */; };
+		36376663223AA61100C2C429 /* LevelThreeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637665B223AA61100C2C429 /* LevelThreeConfigurator.swift */; };
+		36376668223ABB2D00C2C429 /* StrategyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376666223ABB2D00C2C429 /* StrategyTableViewCell.swift */; };
+		36376669223ABB2D00C2C429 /* StrategyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36376667223ABB2D00C2C429 /* StrategyTableViewCell.xib */; };
+		3637666B223BC4D300C2C429 /* Model.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637666A223BC4D300C2C429 /* Model.swift */; };
+		36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637666D223BFF3800C2C429 /* StrategyListPresenter.swift */; };
+		36376676223BFF3800C2C429 /* StrategyListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637666E223BFF3800C2C429 /* StrategyListWorker.swift */; };
+		36376677223BFF3800C2C429 /* StrategyListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637666F223BFF3800C2C429 /* StrategyListRouter.swift */; };
+		36376678223BFF3800C2C429 /* StrategyListInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376670223BFF3800C2C429 /* StrategyListInterface.swift */; };
+		36376679223BFF3800C2C429 /* StrategyListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376671223BFF3800C2C429 /* StrategyListViewController.swift */; };
+		3637667A223BFF3800C2C429 /* StrategyListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376672223BFF3800C2C429 /* StrategyListInteractor.swift */; };
+		3637667B223BFF3800C2C429 /* StrategyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376673223BFF3800C2C429 /* StrategyListModel.swift */; };
+		3637667C223BFF3800C2C429 /* StrategyListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376674223BFF3800C2C429 /* StrategyListConfigurator.swift */; };
 		36424980214A55CB0018A4A7 /* IPadAdviceView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */; };
 		36424982214A55E80018A4A7 /* IPadAdviceView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36424981214A55E80018A4A7 /* IPadAdviceView.xib */; };
 		3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0321FE323EE001F4249 /* RealmGuideTime.swift */; };
@@ -44,6 +114,14 @@
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
 		36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
+		365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */; };
+		365EC0B1224A314C0019AFF9 /* PresentComponentTransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */; };
+		365EC0B3224A33E60019AFF9 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0B2224A33E60019AFF9 /* HomeViewController.swift */; };
+		365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */; };
+		365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */; };
+		365EC0BD224A744C0019AFF9 /* WhatsHotComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */; };
+		365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 365EC0BE224A74850019AFF9 /* WhatsHotComponentView.xib */; };
+		365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */; };
 		366183E72162793700634560 /* SupportFAQPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183DF2162793700634560 /* SupportFAQPresenter.swift */; };
 		366183E82162793700634560 /* SupportFAQWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183E02162793700634560 /* SupportFAQWorker.swift */; };
 		366183EA2162793700634560 /* SupportFAQInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366183E22162793700634560 /* SupportFAQInterface.swift */; };
@@ -131,6 +209,8 @@
 		36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */; };
 		3679A4E12175E3BA00DF761A /* WebViewContent.html in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E02175E3BA00DF761A /* WebViewContent.html */; };
 		3679A4E32175E45300DF761A /* qot_clip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E22175E45200DF761A /* qot_clip.gif */; };
+		367BB014223956A700282AB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367BB013223956A700282AB6 /* Main.storyboard */; };
+		367BB0162239570B00282AB6 /* CoachPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367BB0152239570B00282AB6 /* CoachPageViewController.swift */; };
 		367EA0F121776921003025CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367EA0F021776920003025CE /* Assets.xcassets */; };
 		36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */; };
 		3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3686678320D3835900B400FE /* AbstractFormViewController.swift */; };
@@ -192,6 +272,14 @@
 		36E4B7B4219EC19C00049EE8 /* TutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E4B7B3219EC19C00049EE8 /* TutorialViewController.xib */; };
 		36E4B7B7219EC6EE00049EE8 /* TutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4B7B5219EC6EE00049EE8 /* TutorialCollectionViewCell.swift */; };
 		36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E4B7B6219EC6EE00049EE8 /* TutorialCollectionViewCell.xib */; };
+		36E6E3E8224911CF001BE9C7 /* ComponentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */; };
+		36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */; };
+		36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */; };
+		36E6E3EF22492AFF001BE9C7 /* GlobalConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3EE22492AFF001BE9C7 /* GlobalConstants.swift */; };
+		36E6E3F122493016001BE9C7 /* ComponentDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3F022493016001BE9C7 /* ComponentDetailViewController.swift */; };
+		36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3F322493922001BE9C7 /* ComponentTransition.swift */; };
+		36E6E3F622493B39001BE9C7 /* ComponentPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3F522493B39001BE9C7 /* ComponentPresentationController.swift */; };
+		36E6E3F822493C8A001BE9C7 /* DismissComponentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3F722493C8A001BE9C7 /* DismissComponentAnimator.swift */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
 		36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */; };
 		36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */; };
@@ -923,7 +1011,77 @@
 		363178E41FDEE8D700833958 /* RealmGuideItemLearn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmGuideItemLearn.swift; sourceTree = "<group>"; };
 		363178E61FDEECDE00833958 /* RealmGuideItemNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideItemNotification.swift; sourceTree = "<group>"; };
 		36328F1F1FCEB90B004E9034 /* GuideViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideViewController.swift; sourceTree = "<group>"; };
+		3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComponentHeaderView.xib; sourceTree = "<group>"; };
+		3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentHeaderView.swift; sourceTree = "<group>"; };
+		3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
+		3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyFoundationCollectionViewCell.xib; sourceTree = "<group>"; };
+		3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyFoundationCollectionViewCell.swift; sourceTree = "<group>"; };
 		3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotArticleHeaderView.xib; sourceTree = "<group>"; };
+		363765F3223A4BD200C2C429 /* KnowingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingPresenter.swift; sourceTree = "<group>"; };
+		363765F4223A4BD200C2C429 /* KnowingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingWorker.swift; sourceTree = "<group>"; };
+		363765F5223A4BD200C2C429 /* KnowingRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingRouter.swift; sourceTree = "<group>"; };
+		363765F6223A4BD200C2C429 /* KnowingInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingInterface.swift; sourceTree = "<group>"; };
+		363765F7223A4BD200C2C429 /* KnowingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingViewController.swift; sourceTree = "<group>"; };
+		363765F8223A4BD200C2C429 /* KnowingInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingInteractor.swift; sourceTree = "<group>"; };
+		363765F9223A4BD200C2C429 /* KnowingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingModel.swift; sourceTree = "<group>"; };
+		363765FA223A4BD200C2C429 /* KnowingConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingConfigurator.swift; sourceTree = "<group>"; };
+		36376603223A4BEC00C2C429 /* DailyBriefPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefPresenter.swift; sourceTree = "<group>"; };
+		36376604223A4BEC00C2C429 /* DailyBriefWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefWorker.swift; sourceTree = "<group>"; };
+		36376605223A4BEC00C2C429 /* DailyBriefRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefRouter.swift; sourceTree = "<group>"; };
+		36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefInterface.swift; sourceTree = "<group>"; };
+		36376607223A4BEC00C2C429 /* DailyBriefViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefViewController.swift; sourceTree = "<group>"; };
+		36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefInteractor.swift; sourceTree = "<group>"; };
+		36376609223A4BEC00C2C429 /* DailyBriefModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefModel.swift; sourceTree = "<group>"; };
+		3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefConfigurator.swift; sourceTree = "<group>"; };
+		36376613223A4C0400C2C429 /* MyQotPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotPresenter.swift; sourceTree = "<group>"; };
+		36376614223A4C0400C2C429 /* MyQotWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotWorker.swift; sourceTree = "<group>"; };
+		36376615223A4C0400C2C429 /* MyQotRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotRouter.swift; sourceTree = "<group>"; };
+		36376616223A4C0400C2C429 /* MyQotInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotInterface.swift; sourceTree = "<group>"; };
+		36376617223A4C0400C2C429 /* MyQotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotViewController.swift; sourceTree = "<group>"; };
+		36376618223A4C0400C2C429 /* MyQotInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotInteractor.swift; sourceTree = "<group>"; };
+		36376619223A4C0400C2C429 /* MyQotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotModel.swift; sourceTree = "<group>"; };
+		3637661A223A4C0400C2C429 /* MyQotConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotConfigurator.swift; sourceTree = "<group>"; };
+		36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLevelOneViewConroller.swift; sourceTree = "<group>"; };
+		36376626223A66AF00C2C429 /* CoachPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachPresenter.swift; sourceTree = "<group>"; };
+		36376627223A66AF00C2C429 /* CoachWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachWorker.swift; sourceTree = "<group>"; };
+		36376628223A66AF00C2C429 /* CoachRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachRouter.swift; sourceTree = "<group>"; };
+		36376629223A66AF00C2C429 /* CoachInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachInterface.swift; sourceTree = "<group>"; };
+		3637662A223A66AF00C2C429 /* CoachViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachViewController.swift; sourceTree = "<group>"; };
+		3637662B223A66AF00C2C429 /* CoachInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachInteractor.swift; sourceTree = "<group>"; };
+		3637662C223A66AF00C2C429 /* CoachModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachModel.swift; sourceTree = "<group>"; };
+		3637662D223A66AF00C2C429 /* CoachConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachConfigurator.swift; sourceTree = "<group>"; };
+		36376639223A6F3B00C2C429 /* AbstractTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractTableViewCell.swift; sourceTree = "<group>"; };
+		3637663B223A6F8500C2C429 /* AbstractTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AbstractTableViewCell.xib; sourceTree = "<group>"; };
+		3637663F223A7DE100C2C429 /* LevelTwoPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTwoPresenter.swift; sourceTree = "<group>"; };
+		36376640223A7DE100C2C429 /* LevelTwoWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTwoWorker.swift; sourceTree = "<group>"; };
+		36376641223A7DE100C2C429 /* LevelTwoRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTwoRouter.swift; sourceTree = "<group>"; };
+		36376642223A7DE100C2C429 /* LevelTwoInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTwoInterface.swift; sourceTree = "<group>"; };
+		36376643223A7DE100C2C429 /* LevelTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTwoViewController.swift; sourceTree = "<group>"; };
+		36376644223A7DE100C2C429 /* LevelTwoInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTwoInteractor.swift; sourceTree = "<group>"; };
+		36376645223A7DE100C2C429 /* LevelTwoModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTwoModel.swift; sourceTree = "<group>"; };
+		36376646223A7DE100C2C429 /* LevelTwoConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelTwoConfigurator.swift; sourceTree = "<group>"; };
+		3637664F223A851500C2C429 /* AbstractLevelTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLevelTwoViewController.swift; sourceTree = "<group>"; };
+		36376651223A9CD300C2C429 /* AbstractLevelThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLevelThreeViewController.swift; sourceTree = "<group>"; };
+		36376654223AA61100C2C429 /* LevelThreePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelThreePresenter.swift; sourceTree = "<group>"; };
+		36376655223AA61100C2C429 /* LevelThreeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelThreeWorker.swift; sourceTree = "<group>"; };
+		36376656223AA61100C2C429 /* LevelThreeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelThreeRouter.swift; sourceTree = "<group>"; };
+		36376657223AA61100C2C429 /* LevelThreeInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelThreeInterface.swift; sourceTree = "<group>"; };
+		36376658223AA61100C2C429 /* LevelThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelThreeViewController.swift; sourceTree = "<group>"; };
+		36376659223AA61100C2C429 /* LevelThreeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelThreeInteractor.swift; sourceTree = "<group>"; };
+		3637665A223AA61100C2C429 /* LevelThreeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelThreeModel.swift; sourceTree = "<group>"; };
+		3637665B223AA61100C2C429 /* LevelThreeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LevelThreeConfigurator.swift; sourceTree = "<group>"; };
+		36376666223ABB2D00C2C429 /* StrategyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyTableViewCell.swift; sourceTree = "<group>"; };
+		36376667223ABB2D00C2C429 /* StrategyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyTableViewCell.xib; sourceTree = "<group>"; };
+		3637666A223BC4D300C2C429 /* Model.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Model.swift; sourceTree = "<group>"; };
+		3637666D223BFF3800C2C429 /* StrategyListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListPresenter.swift; sourceTree = "<group>"; };
+		3637666E223BFF3800C2C429 /* StrategyListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListWorker.swift; sourceTree = "<group>"; };
+		3637666F223BFF3800C2C429 /* StrategyListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListRouter.swift; sourceTree = "<group>"; };
+		36376670223BFF3800C2C429 /* StrategyListInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListInterface.swift; sourceTree = "<group>"; };
+		36376671223BFF3800C2C429 /* StrategyListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListViewController.swift; sourceTree = "<group>"; };
+		36376672223BFF3800C2C429 /* StrategyListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListInteractor.swift; sourceTree = "<group>"; };
+		36376673223BFF3800C2C429 /* StrategyListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListModel.swift; sourceTree = "<group>"; };
+		36376674223BFF3800C2C429 /* StrategyListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyListConfigurator.swift; sourceTree = "<group>"; };
 		3642497F214A55CB0018A4A7 /* IPadAdviceView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPadAdviceView.swift; sourceTree = "<group>"; };
 		36424981214A55E80018A4A7 /* IPadAdviceView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IPadAdviceView.xib; sourceTree = "<group>"; };
 		3649C0321FE323EE001F4249 /* RealmGuideTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideTime.swift; sourceTree = "<group>"; };
@@ -931,6 +1089,14 @@
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSharingEmail.swift; sourceTree = "<group>"; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
+		365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentComponentAnimator.swift; sourceTree = "<group>"; };
+		365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentComponentTransitionDriver.swift; sourceTree = "<group>"; };
+		365EC0B2224A33E60019AFF9 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotCollectionViewCell.swift; sourceTree = "<group>"; };
+		365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotCollectionViewCell.xib; sourceTree = "<group>"; };
+		365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotComponentView.swift; sourceTree = "<group>"; };
+		365EC0BE224A74850019AFF9 /* WhatsHotComponentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotComponentView.xib; sourceTree = "<group>"; };
+		365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotDetailViewController.swift; sourceTree = "<group>"; };
 		366183DF2162793700634560 /* SupportFAQPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQPresenter.swift; sourceTree = "<group>"; };
 		366183E02162793700634560 /* SupportFAQWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQWorker.swift; sourceTree = "<group>"; };
 		366183E22162793700634560 /* SupportFAQInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportFAQInterface.swift; sourceTree = "<group>"; };
@@ -1018,6 +1184,8 @@
 		36796A5620D3C4B800B55429 /* SigningInfoPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SigningInfoPresenter.swift; sourceTree = "<group>"; };
 		3679A4E02175E3BA00DF761A /* WebViewContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = WebViewContent.html; sourceTree = "<group>"; };
 		3679A4E22175E45200DF761A /* qot_clip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = qot_clip.gif; path = Media/qot_clip.gif; sourceTree = "<group>"; };
+		367BB013223956A700282AB6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		367BB0152239570B00282AB6 /* CoachPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachPageViewController.swift; sourceTree = "<group>"; };
 		367EA0F021776920003025CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		36845A5B20A196E400AC2F1B /* AppDelegate+Siren.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Siren.swift"; sourceTree = "<group>"; };
 		3686678320D3835900B400FE /* AbstractFormViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractFormViewController.swift; sourceTree = "<group>"; };
@@ -1079,6 +1247,14 @@
 		36E4B7B3219EC19C00049EE8 /* TutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialViewController.xib; sourceTree = "<group>"; };
 		36E4B7B5219EC6EE00049EE8 /* TutorialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionViewCell.swift; sourceTree = "<group>"; };
 		36E4B7B6219EC6EE00049EE8 /* TutorialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialCollectionViewCell.xib; sourceTree = "<group>"; };
+		36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewCell.swift; sourceTree = "<group>"; };
+		36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComponentCollectionViewCell.xib; sourceTree = "<group>"; };
+		36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContentView.swift; sourceTree = "<group>"; };
+		36E6E3EE22492AFF001BE9C7 /* GlobalConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalConstants.swift; sourceTree = "<group>"; };
+		36E6E3F022493016001BE9C7 /* ComponentDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentDetailViewController.swift; sourceTree = "<group>"; };
+		36E6E3F322493922001BE9C7 /* ComponentTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentTransition.swift; sourceTree = "<group>"; };
+		36E6E3F522493B39001BE9C7 /* ComponentPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentPresentationController.swift; sourceTree = "<group>"; };
+		36E6E3F722493C8A001BE9C7 /* DismissComponentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissComponentAnimator.swift; sourceTree = "<group>"; };
 		36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKCalendar+Convenience.swift"; sourceTree = "<group>"; };
 		36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemLearnIntermediary.swift; sourceTree = "<group>"; };
 		36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemNotificationIntermediary.swift; sourceTree = "<group>"; };
@@ -1792,6 +1968,136 @@
 			name = Guide;
 			sourceTree = "<group>";
 		};
+		363765F0223A4B9B00C2C429 /* knowing */ = {
+			isa = PBXGroup;
+			children = (
+				363765FA223A4BD200C2C429 /* KnowingConfigurator.swift */,
+				363765F8223A4BD200C2C429 /* KnowingInteractor.swift */,
+				363765F6223A4BD200C2C429 /* KnowingInterface.swift */,
+				363765F9223A4BD200C2C429 /* KnowingModel.swift */,
+				363765F3223A4BD200C2C429 /* KnowingPresenter.swift */,
+				363765F5223A4BD200C2C429 /* KnowingRouter.swift */,
+				363765F7223A4BD200C2C429 /* KnowingViewController.swift */,
+				363765F4223A4BD200C2C429 /* KnowingWorker.swift */,
+			);
+			name = knowing;
+			sourceTree = "<group>";
+		};
+		363765F1223A4BA400C2C429 /* daily brief */ = {
+			isa = PBXGroup;
+			children = (
+				3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */,
+				36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */,
+				36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */,
+				36376609223A4BEC00C2C429 /* DailyBriefModel.swift */,
+				36376603223A4BEC00C2C429 /* DailyBriefPresenter.swift */,
+				36376605223A4BEC00C2C429 /* DailyBriefRouter.swift */,
+				36376607223A4BEC00C2C429 /* DailyBriefViewController.swift */,
+				36376604223A4BEC00C2C429 /* DailyBriefWorker.swift */,
+			);
+			name = "daily brief";
+			sourceTree = "<group>";
+		};
+		363765F2223A4BB500C2C429 /* myQOT */ = {
+			isa = PBXGroup;
+			children = (
+				3637661A223A4C0400C2C429 /* MyQotConfigurator.swift */,
+				36376618223A4C0400C2C429 /* MyQotInteractor.swift */,
+				36376616223A4C0400C2C429 /* MyQotInterface.swift */,
+				36376619223A4C0400C2C429 /* MyQotModel.swift */,
+				36376613223A4C0400C2C429 /* MyQotPresenter.swift */,
+				36376615223A4C0400C2C429 /* MyQotRouter.swift */,
+				36376617223A4C0400C2C429 /* MyQotViewController.swift */,
+				36376614223A4C0400C2C429 /* MyQotWorker.swift */,
+			);
+			name = myQOT;
+			sourceTree = "<group>";
+		};
+		36376625223A668F00C2C429 /* coach */ = {
+			isa = PBXGroup;
+			children = (
+				36376626223A66AF00C2C429 /* CoachPresenter.swift */,
+				36376627223A66AF00C2C429 /* CoachWorker.swift */,
+				36376628223A66AF00C2C429 /* CoachRouter.swift */,
+				36376629223A66AF00C2C429 /* CoachInterface.swift */,
+				3637662A223A66AF00C2C429 /* CoachViewController.swift */,
+				3637662B223A66AF00C2C429 /* CoachInteractor.swift */,
+				3637662C223A66AF00C2C429 /* CoachModel.swift */,
+				3637662D223A66AF00C2C429 /* CoachConfigurator.swift */,
+			);
+			name = coach;
+			sourceTree = "<group>";
+		};
+		36376638223A6F0E00C2C429 /* components */ = {
+			isa = PBXGroup;
+			children = (
+				36376639223A6F3B00C2C429 /* AbstractTableViewCell.swift */,
+				3637663B223A6F8500C2C429 /* AbstractTableViewCell.xib */,
+				36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */,
+				36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */,
+				36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */,
+				36E6E3F022493016001BE9C7 /* ComponentDetailViewController.swift */,
+				3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */,
+				3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */,
+				36376666223ABB2D00C2C429 /* StrategyTableViewCell.swift */,
+				36376667223ABB2D00C2C429 /* StrategyTableViewCell.xib */,
+				365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */,
+				365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */,
+				365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */,
+				365EC0BE224A74850019AFF9 /* WhatsHotComponentView.xib */,
+				3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */,
+				3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */,
+				3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */,
+				3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */,
+			);
+			name = components;
+			sourceTree = "<group>";
+		};
+		3637663E223A7DC400C2C429 /* levelTwo */ = {
+			isa = PBXGroup;
+			children = (
+				36376646223A7DE100C2C429 /* LevelTwoConfigurator.swift */,
+				36376644223A7DE100C2C429 /* LevelTwoInteractor.swift */,
+				36376642223A7DE100C2C429 /* LevelTwoInterface.swift */,
+				36376645223A7DE100C2C429 /* LevelTwoModel.swift */,
+				3637663F223A7DE100C2C429 /* LevelTwoPresenter.swift */,
+				36376641223A7DE100C2C429 /* LevelTwoRouter.swift */,
+				36376643223A7DE100C2C429 /* LevelTwoViewController.swift */,
+				36376640223A7DE100C2C429 /* LevelTwoWorker.swift */,
+			);
+			name = levelTwo;
+			sourceTree = "<group>";
+		};
+		36376653223AA5EA00C2C429 /* levelThree */ = {
+			isa = PBXGroup;
+			children = (
+				3637665B223AA61100C2C429 /* LevelThreeConfigurator.swift */,
+				36376659223AA61100C2C429 /* LevelThreeInteractor.swift */,
+				36376657223AA61100C2C429 /* LevelThreeInterface.swift */,
+				3637665A223AA61100C2C429 /* LevelThreeModel.swift */,
+				36376654223AA61100C2C429 /* LevelThreePresenter.swift */,
+				36376656223AA61100C2C429 /* LevelThreeRouter.swift */,
+				36376658223AA61100C2C429 /* LevelThreeViewController.swift */,
+				36376655223AA61100C2C429 /* LevelThreeWorker.swift */,
+			);
+			name = levelThree;
+			sourceTree = "<group>";
+		};
+		3637666C223BFF1100C2C429 /* strategyList */ = {
+			isa = PBXGroup;
+			children = (
+				36376674223BFF3800C2C429 /* StrategyListConfigurator.swift */,
+				36376672223BFF3800C2C429 /* StrategyListInteractor.swift */,
+				36376670223BFF3800C2C429 /* StrategyListInterface.swift */,
+				36376673223BFF3800C2C429 /* StrategyListModel.swift */,
+				3637666D223BFF3800C2C429 /* StrategyListPresenter.swift */,
+				3637666F223BFF3800C2C429 /* StrategyListRouter.swift */,
+				36376671223BFF3800C2C429 /* StrategyListViewController.swift */,
+				3637666E223BFF3800C2C429 /* StrategyListWorker.swift */,
+			);
+			name = strategyList;
+			sourceTree = "<group>";
+		};
 		3642496C214A50DE0018A4A7 /* iPad Advice */ = {
 			isa = PBXGroup;
 			children = (
@@ -2014,6 +2320,31 @@
 			name = SigningInfo;
 			sourceTree = "<group>";
 		};
+		367BB012223955D200282AB6 /* 3.0 Main Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				36E6E3F2224938D8001BE9C7 /* transition */,
+				3637666C223BFF1100C2C429 /* strategyList */,
+				36376653223AA5EA00C2C429 /* levelThree */,
+				3637663E223A7DC400C2C429 /* levelTwo */,
+				36376638223A6F0E00C2C429 /* components */,
+				36376625223A668F00C2C429 /* coach */,
+				363765F2223A4BB500C2C429 /* myQOT */,
+				363765F1223A4BA400C2C429 /* daily brief */,
+				363765F0223A4B9B00C2C429 /* knowing */,
+				367BB013223956A700282AB6 /* Main.storyboard */,
+				367BB0152239570B00282AB6 /* CoachPageViewController.swift */,
+				36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */,
+				3637664F223A851500C2C429 /* AbstractLevelTwoViewController.swift */,
+				36376651223A9CD300C2C429 /* AbstractLevelThreeViewController.swift */,
+				3637666A223BC4D300C2C429 /* Model.swift */,
+				36E6E3EE22492AFF001BE9C7 /* GlobalConstants.swift */,
+				365EC0B2224A33E60019AFF9 /* HomeViewController.swift */,
+				365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */,
+			);
+			name = "3.0 Main Navigation";
+			sourceTree = "<group>";
+		};
 		3693F62121625E6700E286A9 /* AppContent */ = {
 			isa = PBXGroup;
 			children = (
@@ -2094,6 +2425,18 @@
 				36E4B7B3219EC19C00049EE8 /* TutorialViewController.xib */,
 			);
 			name = Tutorial;
+			sourceTree = "<group>";
+		};
+		36E6E3F2224938D8001BE9C7 /* transition */ = {
+			isa = PBXGroup;
+			children = (
+				36E6E3F322493922001BE9C7 /* ComponentTransition.swift */,
+				36E6E3F522493B39001BE9C7 /* ComponentPresentationController.swift */,
+				36E6E3F722493C8A001BE9C7 /* DismissComponentAnimator.swift */,
+				365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */,
+				365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */,
+			);
+			name = transition;
 			sourceTree = "<group>";
 		};
 		36FB012D20A63C8800472E6F /* PartnerEdit */ = {
@@ -2944,6 +3287,7 @@
 		CBB4DD171EE07B010071494A /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				367BB012223955D200282AB6 /* 3.0 Main Navigation */,
 				CBD4BE9C2018BDD3008A0E9E /* VIP-Architecture */,
 				CCA834E51F17663800FAAA2B /* Animation */,
 				CBB4DD3D1EE08DDB0071494A /* App */,
@@ -4146,6 +4490,7 @@
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
 				366AFD1820BDAD3000109F29 /* FormView.xib in Resources */,
 				CCAE22D01F6BD7F80017C9EF /* ChartCell.xib in Resources */,
+				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
 				9166ECEB20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
@@ -4156,8 +4501,10 @@
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
+				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
 				9171647B2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
 				3674FF3120AADEC5008EEB6C /* PartnersOverviewViewController.xib in Resources */,
+				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */,
 				DB680599218210E700C2FC69 /* MorningInterviewViewController.storyboard in Resources */,
@@ -4172,6 +4519,7 @@
 				367EA0F121776921003025CE /* Assets.xcassets in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
+				36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */,
 				91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				3631232E20C7CC5C00D97D01 /* SigningEmailViewController.xib in Resources */,
@@ -4182,17 +4530,21 @@
 				AC18381F22418DC6004A538D /* SuggestionsHeaderView.xib in Resources */,
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				9171647C2101E43B00F42D8F /* SensorCollectionViewCell.xib in Resources */,
+				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
 				AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */,
 				CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
 				CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */,
+				3632D0C6225347DD00A4F234 /* ComponentHeaderView.xib in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */,
+				3637663C223A6F8500C2C429 /* AbstractTableViewCell.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */,
 				36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */,
 				367564AD206A4420008D1F71 /* PrepareContentNotesViewController.storyboard in Resources */,
+				36376669223ABB2D00C2C429 /* StrategyTableViewCell.xib in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
 				3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */,
 				91086E502092044C0035DA1F /* SettingsCell.xib in Resources */,
@@ -4206,6 +4558,7 @@
 				36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */,
 				DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
+				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
@@ -4553,9 +4906,11 @@
 				CB9B07531EF7FE410017F6C3 /* LearnCategoryListPage.swift in Sources */,
 				91086E48209202740035DA1F /* SettingsPresenter.swift in Sources */,
 				7F0F02FB1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift in Sources */,
+				36376631223A66AF00C2C429 /* CoachInterface.swift in Sources */,
 				7FBFBC111FC7320B007B6D2D /* WeeklyChoicesViewData.swift in Sources */,
 				36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */,
 				36E3AD562073783400FB27F1 /* PreparationAnswer.swift in Sources */,
+				3637660C223A4BEC00C2C429 /* DailyBriefWorker.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
 				36796A4420D3C49900B55429 /* SigningLoginConfigurator.swift in Sources */,
@@ -4569,12 +4924,17 @@
 				9100194F20F63E4C00049118 /* ExtensionUserDefaults.swift in Sources */,
 				7F4B98A81FA21FD3000B402C /* WeeklyChoicesAnimation.swift in Sources */,
 				8514A48C1EE9663A0086C70E /* PrepareContentMainHeaderTableViewCell.swift in Sources */,
+				3637664A223A7DE100C2C429 /* LevelTwoInterface.swift in Sources */,
+				36E6E3E8224911CF001BE9C7 /* ComponentCollectionViewCell.swift in Sources */,
 				CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */,
 				850A50BB1F0A973A00350097 /* PrepareContentTopTabBarView.swift in Sources */,
 				7F9217BB1FD01C4700CAE9E0 /* LocationPermission.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				CC143A4F1EC47810001FB76E /* ChartViewModel.swift in Sources */,
+				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
+				365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */,
 				E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */,
+				36E6E3EF22492AFF001BE9C7 /* GlobalConstants.swift in Sources */,
 				F9C1D8B2220DD8EC00B40DD2 /* SiriShortcutsRouter.swift in Sources */,
 				CB8AA2C5205A850A0033F573 /* ISODate.swift in Sources */,
 				CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */,
@@ -4591,6 +4951,7 @@
 				91086E4A209202800035DA1F /* SettingsProtocols.swift in Sources */,
 				36796A4620D3C49900B55429 /* SigningLoginInteractor.swift in Sources */,
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
+				36376652223A9CD300C2C429 /* AbstractLevelThreeViewController.swift in Sources */,
 				CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */,
 				CBB017BB1F9741F200CC1048 /* SyncTask.swift in Sources */,
 				36796A1F20D3C45200B55429 /* SigningCountryInterface.swift in Sources */,
@@ -4600,6 +4961,7 @@
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
 				F9C1D8BE220DDA2D00B40DD2 /* SiriShortcutsInteractor.swift in Sources */,
+				36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */,
 				362614AA20CFB4E500AB3659 /* UserCountry.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
 				36796A3720D3C47400B55429 /* SigningProfileDetailInteractor.swift in Sources */,
@@ -4621,6 +4983,7 @@
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				36A7B9422166454A006C18F0 /* PrepareSectionHeaderView.swift in Sources */,
 				36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */,
+				36376648223A7DE100C2C429 /* LevelTwoWorker.swift in Sources */,
 				7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */,
 				7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */,
 				D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */,
@@ -4643,6 +5006,7 @@
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */,
 				7F6738AF1FE2BB70004DDAE1 /* ScreenHelpDataWorker.swift in Sources */,
+				3637663A223A6F3B00C2C429 /* AbstractTableViewCell.swift in Sources */,
 				AC2BABB1223FAAB300769B1A /* SuggestionSearchTableViewCell.swift in Sources */,
 				850312ED1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift in Sources */,
 				36796A5D20D3C4B800B55429 /* SigningInfoWorker.swift in Sources */,
@@ -4673,6 +5037,7 @@
 				914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */,
 				91086E5620920ABF0035DA1F /* SettingsModel.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
+				36376679223BFF3800C2C429 /* StrategyListViewController.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
 				DB680595218210E700C2FC69 /* MorningInterviewRouter.swift in Sources */,
@@ -4688,15 +5053,20 @@
 				CB3333F320494D27009480DF /* AuthTokenValidator.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				36D58A562149727600D5E6D2 /* UIDevice+Convenience.swift in Sources */,
+				3637661B223A4C0400C2C429 /* MyQotPresenter.swift in Sources */,
+				3637667C223BFF3800C2C429 /* StrategyListConfigurator.swift in Sources */,
 				CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */,
 				CBD4BE97201246D4008A0E9E /* GuideProvider.swift in Sources */,
 				9166ECED20A07C2F006DF113 /* GuideToBeVisionTableViewCell.swift in Sources */,
 				CB810E661EF00DCA0043E3E5 /* UserIntermediary.swift in Sources */,
 				7FE38DBD1F2210D60061E98F /* WaitBlockOperation.swift in Sources */,
+				3637666B223BC4D300C2C429 /* Model.swift in Sources */,
 				366183E82162793700634560 /* SupportFAQWorker.swift in Sources */,
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
+				3637664D223A7DE100C2C429 /* LevelTwoModel.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
 				366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */,
+				36376660223AA61100C2C429 /* LevelThreeViewController.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
 				914A5E29207FB54A00092121 /* BubblesView.swift in Sources */,
 				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
@@ -4710,6 +5080,7 @@
 				CB3BD4191F2877E50071F51E /* UpSyncable.swift in Sources */,
 				36D535DF20A711E800F1C2FC /* PartnerEditViewController.swift in Sources */,
 				36796A4720D3C49900B55429 /* SigningLoginPresenter.swift in Sources */,
+				365EC0B1224A314C0019AFF9 /* PresentComponentTransitionDriver.swift in Sources */,
 				7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */,
 				36DA661620EBBF9E007089E3 /* TextField.swift in Sources */,
 				91796F2820B6D97C00AC60BA /* MeetingsIncreasingChart.swift in Sources */,
@@ -4734,28 +5105,35 @@
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
+				36376611223A4BEC00C2C429 /* DailyBriefModel.swift in Sources */,
 				DB68059B218210E700C2FC69 /* MorningInterviewPresenter.swift in Sources */,
 				7FCF5FA41FC2E9FA00CD1E5E /* TabBarItem.swift in Sources */,
 				91F5BE44209757C300E85A51 /* PermissionsConfigurator.swift in Sources */,
 				7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */,
+				365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */,
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
 				CBD4BEA42018CDA7008A0E9E /* GuideInteractor.swift in Sources */,
 				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
+				3637665F223AA61100C2C429 /* LevelThreeInterface.swift in Sources */,
 				CB7F046E1F8E0999001F4DE6 /* SyncOperation.swift in Sources */,
 				36D348EC216BAA4E006C8D10 /* PrepareNotesHeaderView.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
 				0B40DC151E9CA71400E1659B /* PrepareContentHeaderTableViewCell.swift in Sources */,
 				CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */,
 				91086E37208EFA050035DA1F /* SettingsMenuHeader.swift in Sources */,
+				365EC0BD224A744C0019AFF9 /* WhatsHotComponentView.swift in Sources */,
 				3691177220656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift in Sources */,
 				D5A64D941EE801970095D01C /* SleepChart.swift in Sources */,
+				363765FB223A4BD200C2C429 /* KnowingPresenter.swift in Sources */,
 				CBD097351F72644B00F71D91 /* ChatViewController.swift in Sources */,
 				91086E4C209202CC0035DA1F /* SettingsViewController.swift in Sources */,
 				36FEA86320A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift in Sources */,
+				36376600223A4BD200C2C429 /* KnowingInteractor.swift in Sources */,
 				3674FF2C20AADE7D008EEB6C /* PartnersOverviewViewController.swift in Sources */,
 				366183EE2162793800634560 /* SupportFAQConfigurator.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
+				36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CB3333E720480DF8009480DF /* ShareRouter.swift in Sources */,
 				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
@@ -4768,12 +5146,14 @@
 				360E99552167BAFE0084CEFB /* PrepareNotesTableViewCell.swift in Sources */,
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
 				36D535DE20A711E800F1C2FC /* PartnerEditInterface.swift in Sources */,
+				3637661F223A4C0400C2C429 /* MyQotViewController.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				36E4B7AF219EBFED00049EE8 /* TutorialViewController.swift in Sources */,
 				CC143A511EC495CE001FB76E /* StatisticsCoordinator.swift in Sources */,
 				91086E3B20909E7A0035DA1F /* ProfileSettingsModel.swift in Sources */,
 				CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */,
 				CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */,
+				36376661223AA61100C2C429 /* LevelThreeInteractor.swift in Sources */,
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
 				7FB32D151F44793F0027BF4E /* TrackablePage.swift in Sources */,
 				360E99522167A93D0084CEFB /* PrepareNotesViewController.swift in Sources */,
@@ -4805,6 +5185,8 @@
 				CC7D21B01EFC1348007A062E /* WeeklyChoicesCell.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				7F2B77D11FC5C33700203D90 /* ToolsViewModel.swift in Sources */,
+				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,
+				3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */,
 				F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */,
 				CCE6CD881F15357600B66DA3 /* StatisticsPeriodIntermediary.swift in Sources */,
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
@@ -4818,11 +5200,17 @@
 				CC37831C1F5EA91F007A16A3 /* ChartType.swift in Sources */,
 				7F0F02F21F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
+				36376663223AA61100C2C429 /* LevelThreeConfigurator.swift in Sources */,
+				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
+				36376622223A4C0400C2C429 /* MyQotConfigurator.swift in Sources */,
 				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,
+				36376668223ABB2D00C2C429 /* StrategyTableViewCell.swift in Sources */,
 				CBD4BE9B201752F0008A0E9E /* GuideItemFactory.swift in Sources */,
 				36780AB6215528EA00507D1E /* TabMenuView.swift in Sources */,
 				36E4B7AC219EBFED00049EE8 /* TutorialWorker.swift in Sources */,
+				3637661C223A4C0400C2C429 /* MyQotWorker.swift in Sources */,
+				36376649223A7DE100C2C429 /* LevelTwoRouter.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
 				ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */,
 				36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */,
@@ -4832,9 +5220,11 @@
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */,
 				E871E8542136EA50005E787C /* ContentItemSharing.swift in Sources */,
+				3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */,
 				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
 				3698428520C91EF3007A8C8F /* SigningDigitViewController.swift in Sources */,
 				CB694E09205C1C3600D29B3E /* DailyPrepResultIntermediary.swift in Sources */,
+				363765FD223A4BD200C2C429 /* KnowingRouter.swift in Sources */,
 				9150413720FDF40A00D43D18 /* SensorViewController.swift in Sources */,
 				DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */,
 				CBD4BE9E2018BE25008A0E9E /* GuideProtocols.swift in Sources */,
@@ -4862,7 +5252,9 @@
 				CB3333E920480E05009480DF /* ShareInteractor.swift in Sources */,
 				DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */,
 				3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */,
+				36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
+				3637661E223A4C0400C2C429 /* MyQotInterface.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
@@ -4871,6 +5263,7 @@
 				7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */,
 				7F65673C1FE2895B00A6CB7F /* ScreenHelpModels.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
+				3637661D223A4C0400C2C429 /* MyQotRouter.swift in Sources */,
 				CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */,
 				912C9E3F203C721300C1AA76 /* MyToBeVisionProtocols.swift in Sources */,
 				CBC1DC191F0F7E0200F6D056 /* SettingFormat.swift in Sources */,
@@ -4904,9 +5297,11 @@
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
 				CB6637AD201A323200A995D6 /* UserNotificationsScheduler.swift in Sources */,
 				CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */,
+				3637664E223A7DE100C2C429 /* LevelTwoConfigurator.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				36796A3520D3C47400B55429 /* SigningProfileDetailWorker.swift in Sources */,
 				3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */,
+				3637665D223AA61100C2C429 /* LevelThreeWorker.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
 				AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */,
 				CB9BB0C01F0CCC30009067D7 /* EventsService.swift in Sources */,
@@ -4930,6 +5325,7 @@
 				9171647A2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.swift in Sources */,
 				CC33CA301EC60447008E6B33 /* DatabaseConstants.swift in Sources */,
 				CBC1DC2B1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift in Sources */,
+				36376632223A66AF00C2C429 /* CoachViewController.swift in Sources */,
 				3666769C207CF68500D2F5AD /* VisionGeneratorRouter.swift in Sources */,
 				AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */,
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
@@ -4937,6 +5333,7 @@
 				CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */,
 				CBC1DC171F0F690A00F6D056 /* SystemSettingIntermediary.swift in Sources */,
 				362632471FD6A4210024C626 /* GuideTableViewCell.swift in Sources */,
+				365EC0B3224A33E60019AFF9 /* HomeViewController.swift in Sources */,
 				3674FF2920AADE7D008EEB6C /* PartnersOverviewWorker.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				CB9442251FD80B5700E2B122 /* AppState.swift in Sources */,
@@ -4949,16 +5346,20 @@
 				CBB98B082020A4AF00B8EAD7 /* Authenticator.swift in Sources */,
 				CB9AFD171F014BF800D067F2 /* PreparationIntermediary.swift in Sources */,
 				F9C1D8C3220DDBB200B40DD2 /* SiriShortcutsViewController.swift in Sources */,
+				36376662223AA61100C2C429 /* LevelThreeModel.swift in Sources */,
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChart.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
+				3637665E223AA61100C2C429 /* LevelThreeRouter.swift in Sources */,
 				F9C1D8B4220DD90300B40DD2 /* SiriShortcutsWorker.swift in Sources */,
 				852DADE81EF26B1D00A10882 /* PeakPerformanceAverageChart.swift in Sources */,
 				36796A4A20D3C49900B55429 /* SigningLoginWorker.swift in Sources */,
 				AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */,
+				36376678223BFF3800C2C429 /* StrategyListInterface.swift in Sources */,
 				CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */,
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
 				91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */,
+				3637662E223A66AF00C2C429 /* CoachPresenter.swift in Sources */,
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
 				CC02E1461F27996800134574 /* SettingsCalendarListCoordinator.swift in Sources */,
 				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,
@@ -4977,6 +5378,7 @@
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
 				36E4B7B7219EC6EE00049EE8 /* TutorialCollectionViewCell.swift in Sources */,
 				36796A0D20D3C41F00B55429 /* SigningCreatePasswordInteractor.swift in Sources */,
+				36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */,
 				DB68059D218210E700C2FC69 /* MorningInterviewConfiguator.swift in Sources */,
 				DB680596218210E700C2FC69 /* MorningInterviewWorker.swift in Sources */,
 				CB5134141FAB735E00FBDD66 /* ContentReadIntermediary.swift in Sources */,
@@ -4984,10 +5386,12 @@
 				9115F703208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift in Sources */,
 				3698428620C91EF3007A8C8F /* SigningDigitInteractor.swift in Sources */,
 				7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */,
+				363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */,
 				91086E462092024F0035DA1F /* SettingsInteractor.swift in Sources */,
 				912C9E39203C716400C1AA76 /* MyToBeVisionInteractor.swift in Sources */,
 				7F3277951FB4B22E00C7717C /* BlurLoadingView.swift in Sources */,
 				CB1D5E3E1EC5E25A00BCDF8D /* ContentItemIntermediary.swift in Sources */,
+				3637667A223BFF3800C2C429 /* StrategyListInteractor.swift in Sources */,
 				CC944DB81EE8096100B8423C /* ChartCell.swift in Sources */,
 				CB93B3732006980F001F19DC /* RealmStatisticsThreshold.swift in Sources */,
 				8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */,
@@ -4998,14 +5402,17 @@
 				91F5BE3E2097576800E85A51 /* PermissionsViewController.swift in Sources */,
 				CBB4DCE41ED827840071494A /* SyncContext.swift in Sources */,
 				CBB98B04201F850100B8EAD7 /* UNCalendarNotificationTrigger+Convenience.swift in Sources */,
+				36376624223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift in Sources */,
 				CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */,
 				36667694207CF62700D2F5AD /* VisionGeneratorInteractor.swift in Sources */,
 				7FB9AD0B1F39BD1400E0D621 /* UpSyncMediaResultParser.swift in Sources */,
 				CCCC21231E8981CA00133839 /* PrepareContentViewModel.swift in Sources */,
+				3637664B223A7DE100C2C429 /* LevelTwoViewController.swift in Sources */,
 				7F4B98A71FA21FD3000B402C /* WeeklyChoicesAnimator.swift in Sources */,
 				CB9AFD0F1F012A2800D067F2 /* QuestionsService.swift in Sources */,
 				36796A3620D3C47400B55429 /* SigningProfileDetailConfigurator.swift in Sources */,
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
+				36376647223A7DE100C2C429 /* LevelTwoPresenter.swift in Sources */,
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
@@ -5019,6 +5426,7 @@
 				CC16578C1F75194900D52660 /* CLLocation+Convenience.swift in Sources */,
 				CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */,
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
+				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
 				366AFD0E20BD9F9300109F29 /* SigningEmailRouter.swift in Sources */,
 				DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */,
@@ -5032,10 +5440,12 @@
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
+				36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */,
 				CB53F0D820235A9C007C624B /* Atomic.swift in Sources */,
 				CC944DB61EE804CD00B8423C /* ChartTableViewCell.swift in Sources */,
 				368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */,
+				36376677223BFF3800C2C429 /* StrategyListRouter.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
 				36796A1C20D3C45200B55429 /* SigningCountryInteractor.swift in Sources */,
 				9150413420FDF40A00D43D18 /* SensorWorker.swift in Sources */,
@@ -5044,12 +5454,15 @@
 				CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */,
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,
 				CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */,
+				36376630223A66AF00C2C429 /* CoachRouter.swift in Sources */,
 				CCE6CD7E1F15260D00B66DA3 /* Statistics.swift in Sources */,
+				36E6E3F122493016001BE9C7 /* ComponentDetailViewController.swift in Sources */,
 				DB68059A218210E700C2FC69 /* MorningInterviewInteractor.swift in Sources */,
 				91086E402092021D0035DA1F /* SettingsRouter.swift in Sources */,
 				7F4B98AE1FA22851000B402C /* ChartAnimation.swift in Sources */,
 				3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */,
 				CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */,
+				36376602223A4BD200C2C429 /* KnowingConfigurator.swift in Sources */,
 				CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */,
 				7F4B98AD1FA22850000B402C /* ChartAnimator.swift in Sources */,
 				36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */,
@@ -5076,6 +5489,7 @@
 				851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */,
 				9150413620FDF40A00D43D18 /* SensorInterface.swift in Sources */,
 				36796A1D20D3C45200B55429 /* SigningCountryRouter.swift in Sources */,
+				36E6E3F822493C8A001BE9C7 /* DismissComponentAnimator.swift in Sources */,
 				3674FF2D20AADE7D008EEB6C /* PartnersOverviewInteractor.swift in Sources */,
 				366AFD0F20BD9F9300109F29 /* SigningEmailInterface.swift in Sources */,
 				36D535DC20A711E800F1C2FC /* PartnerEditWorker.swift in Sources */,
@@ -5085,16 +5499,21 @@
 				7F9217B71FD01C1600CAE9E0 /* CalendarPermission.swift in Sources */,
 				CB3333E520480DEF009480DF /* ShareProtocols.swift in Sources */,
 				7FE674B91F8F8F3600FC7407 /* ArticleCollectionHeader.swift in Sources */,
+				367BB0162239570B00282AB6 /* CoachPageViewController.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
+				3637660E223A4BEC00C2C429 /* DailyBriefInterface.swift in Sources */,
 				CBC1DC351F14D34000F6D056 /* SettingValue.swift in Sources */,
+				36E6E3F622493B39001BE9C7 /* ComponentPresentationController.swift in Sources */,
 				CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */,
 				36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */,
 				858AF6931EF904AB00486605 /* PeakPerformanceUpcomingChart.swift in Sources */,
 				0BEE8ABF1EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift in Sources */,
+				36376635223A66AF00C2C429 /* CoachConfigurator.swift in Sources */,
 				F9C1D8BA220DD96B00B40DD2 /* SiriShortcutsProtocols.swift in Sources */,
+				3637662F223A66AF00C2C429 /* CoachWorker.swift in Sources */,
 				7F08887F1F0A4101005CE966 /* PartnerService.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				36667692207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift in Sources */,
@@ -5107,8 +5526,10 @@
 				36E4B7AD219EBFED00049EE8 /* TutorialRouter.swift in Sources */,
 				366183F721635FAA00634560 /* SupportFAQTableViewCell.swift in Sources */,
 				3666769E207CF69800D2F5AD /* VisionGeneratorWorker.swift in Sources */,
+				36376650223A851500C2C429 /* AbstractLevelTwoViewController.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				91F5BE4E2097584E00E85A51 /* PermissionsCell.swift in Sources */,
+				363765FE223A4BD200C2C429 /* KnowingInterface.swift in Sources */,
 				7F5A25BF1F3CB71100A11466 /* DatabaseManager.swift in Sources */,
 				CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */,
 				7FE151C81F3DDAE600DA8F37 /* DatabaseBuilder.swift in Sources */,
@@ -5134,6 +5555,7 @@
 				7FDFF3691F18FF0B00F7A7EC /* NotificationTokenHandler.swift in Sources */,
 				CBB017B41F96084A00CC1048 /* Syncable.swift in Sources */,
 				36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */,
+				36376676223BFF3800C2C429 /* StrategyListWorker.swift in Sources */,
 				360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
@@ -5147,11 +5569,14 @@
 				91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */,
 				7F3A9CC21FCDC89D000F1744 /* ArticleCollectionViewData.swift in Sources */,
 				CBFED33A1F7938970006270D /* ChatItemQueue.swift in Sources */,
+				36376621223A4C0400C2C429 /* MyQotModel.swift in Sources */,
+				36376620223A4C0400C2C429 /* MyQotInteractor.swift in Sources */,
 				CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */,
 				91F5BE4A209757F900E85A51 /* PermissionsModel.swift in Sources */,
 				3698428120C91EF3007A8C8F /* SigningDigitPresenter.swift in Sources */,
 				7F1D3D221F8E24620071D322 /* Log.swift in Sources */,
 				91E59F2D2057D23700396225 /* UserMeasurement.swift in Sources */,
+				3632D0C822534E6400A4F234 /* ComponentHeaderView.swift in Sources */,
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				CBFD47CC200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift in Sources */,
 				7F708EA01FBAFAF8008A3856 /* FullScreenLoadable.swift in Sources */,
@@ -5160,6 +5585,7 @@
 				7F3A9CBE1FCDBA51000F1744 /* FeedbackService.swift in Sources */,
 				CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */,
 				36796A3220D3C47400B55429 /* SigningProfileDetailRouter.swift in Sources */,
+				363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */,
 				3693F62321625E8700E286A9 /* AppContent.swift in Sources */,
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,
 				914A5E21207FB38500092121 /* SettingsBubblesInteractor.swift in Sources */,
@@ -5167,6 +5593,7 @@
 				CB873294202AEDA80081F522 /* GradientView.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				CB2FA0E820762914007F21D1 /* Environment.swift in Sources */,
+				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,
@@ -5174,13 +5601,16 @@
 				CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */,
 				CB3333EB20480E16009480DF /* SharePresenter.swift in Sources */,
 				3698428420C91EF3007A8C8F /* SigningDigitInterface.swift in Sources */,
+				3637664C223A7DE100C2C429 /* LevelTwoInteractor.swift in Sources */,
 				CB84CDF71FA2345D00970E71 /* SyncStateObserver.swift in Sources */,
 				CB5134121FAB721000FBDD66 /* ContentRead.swift in Sources */,
 				852DADC41EEED5D600A10882 /* MeetingsAverageChart.swift in Sources */,
 				3666769A207CF66600D2F5AD /* VisionGeneratorProtocols.swift in Sources */,
 				F9C1D8CB220DEA0E00B40DD2 /* SiriShortcutsCell.swift in Sources */,
 				36796A5920D3C4B800B55429 /* SigningInfoInterface.swift in Sources */,
+				3637667B223BFF3800C2C429 /* StrategyListModel.swift in Sources */,
 				360256F020528DBD00862B0E /* SearchTableViewCell.swift in Sources */,
+				365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */,
 				CBD4BEA82018DFD9008A0E9E /* GuidePresenter.swift in Sources */,
 				36796A2420D3C45200B55429 /* SigningCountryViewController.swift in Sources */,
 				7F3A9CC01FCDC894000F1744 /* ArticleCollectionProvider.swift in Sources */,
@@ -5199,9 +5629,11 @@
 				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
 				E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */,
 				CCE6CD861F15313300B66DA3 /* StatisticsIntermediary.swift in Sources */,
+				3637665C223AA61100C2C429 /* LevelThreePresenter.swift in Sources */,
 				CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */,
 				3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */,
 				36780AB22154D3D300507D1E /* TabBar.swift in Sources */,
+				36376612223A4BEC00C2C429 /* DailyBriefConfigurator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
