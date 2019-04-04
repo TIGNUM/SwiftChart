@@ -45,7 +45,7 @@ final class MorningInterviewViewController: UIViewController {
     }
 
     override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+        super.viewDidAppear(animated)
         if let viewController = questionnaireViewController(with: questions.first) {
             pageController?.setViewControllers([viewController], direction: .forward, animated: true, completion: nil)
         }

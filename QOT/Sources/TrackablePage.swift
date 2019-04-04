@@ -85,12 +85,11 @@ enum PageName: String {
     case tabBarItemToBeVisionFromSiri = "tabBarItem.toBeVision.fromsiri"
     case tabBarItemToBeVisionFromPush = "tabBarItem.toBeVision.frompush"
     case tabBarItemToBeVisionFromWidget = "tabBarItem.toBeVision.fromwidget"
-    case tabBarItemToBeVisionGenerator = "tabBarItem.toBeVision.generator"
     case tabBarItemData = "tabBarItem.data"
     case tabBarItemPrepare = "tabBarItem.prepare"
     case tabBarItemGuideSearch = "tabBarItem.guide.tabBarItem.guide.search"
     case tutorial = "tutorial"
-    case visionGenerator = "tabBarItem.toBeVision.visiongenerator"
+    case visionGenerator = "tabBarItem.toBeVision.generator"
     case weeklyChoices = "me.mywhy.weeklychoices"
     case whatsHot = "learn.whatshot.articlelist"
     case whatsHotListFromSiri = "whatshot.list.fromsiri"
@@ -100,9 +99,9 @@ enum PageName: String {
     case infoToBeVision = "info.tobevision"
     case infoPrepare = "info.prepare"
     case infoGuide = "info.guide"
-    case infoLearn = "info.learn"
+    case infoLearn = "tutorial.info.learn"
     case infoToBeVisionGuide = "info.tobevision.guide"
-    case infoData = "info.data"
+    case infoData = "tutorial.info.data"
     case visionGeneratorFromSiri = "tabBarItem.toBeVision.generator.fromsiri"
     case supportContact = "support.contact"
     case featureRequest = "support.featurerequest"
@@ -247,7 +246,7 @@ extension SigningLoginViewController: TrackablePage {
 
 extension MorningInterviewViewController: TrackablePage {
     var pageName: PageName {
-        return MorningInterviewViewController.page
+        return .morningInterview
     }
     var pageAssociatedObject: PageObject? {
         return nil
@@ -301,6 +300,9 @@ extension PartnersOverviewViewController: TrackablePage {
 }
 
 extension ChatViewController: TrackablePage {
+    var pageName: PageName {
+        return page
+    }
     //@see implementation
     var pageAssociatedObject: PageObject? {
         return nil

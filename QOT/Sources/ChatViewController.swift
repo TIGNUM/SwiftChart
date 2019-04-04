@@ -66,7 +66,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
     weak var routerDelegate: ChatViewControllerDelegate?
     var destination: AppCoordinator.Router.Destination?
     let viewModel: ChatViewModel<T>
-    let pageName: PageName
+    let page: PageName
     var didSelectChoice: ((T, ChatViewController) -> Void)?
     var visionGeneratorInteractor: VisionGeneratorInteractorInterface?
 
@@ -120,7 +120,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
          backgroundImage: UIImage? = nil,
          fadeMaskLocation: UIView.FadeMaskLocation,
          eventTracker: EventTracker? = nil) {
-        self.pageName = pageName
+        self.page = pageName
         self.viewModel = viewModel
         self.eventTracker = eventTracker
         super.init(nibName: nil, bundle: nil)
@@ -131,7 +131,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
          viewModel: ChatViewModel<T>,
          backgroundImage: UIImage?,
          configure: Configurator<ChatViewController>) {
-        self.pageName = pageName
+        self.page = pageName
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
         setupVisionGeneratorView(withBackgroundImage: backgroundImage)

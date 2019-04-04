@@ -58,7 +58,7 @@ final class EventTracker {
                 ))
             }
         } catch {
-            log(error)
+            log(error, level: .error)
         }
     }
 
