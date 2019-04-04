@@ -167,7 +167,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
     func application(_ app: UIApplication,
                      open url: URL,
                      options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
-        pageTrack(url: url)
         if launchHandler.canLaunch(url: url) == true && URLScheme.isLaunchableHost(host: url.host) == true {
             launchHandler.process(url: url)
         }
@@ -377,29 +376,22 @@ extension AppDelegate {
         var didHandleActivity = true
         switch userActivity.activityType {
         case NSUserActivity.ActivityType.toBeVision.rawValue:
-            MyToBeVisionViewController.page = .tabBarItemToBeVisionFromSiri
             appCoordinator.presentToBeVision(articleItemController: nil)
         case NSUserActivity.ActivityType.toBeVisionGenerator.rawValue:
-            MyToBeVisionViewController.generatorPage = .visionGeneratorFromSiri
             appCoordinator.presentToBeVisionGenerator()
         case NSUserActivity.ActivityType.whatsHotArticle.rawValue:
             let id = Int(userActivity.contentAttributeSet?.keywords?.first ?? "0") ?? 0
-            ArticleItemViewController.page = .whatsHotArticleFromSiri
             appCoordinator.presentWhatsHotArticle(with: id)
         case NSUserActivity.ActivityType.whatsHotArticlesList.rawValue:
-            ArticleCollectionViewController.pageName = .whatsHotListFromSiri
             appCoordinator.navigate(to: .init(tabBar: .learn, topTabBar: .whatsHotList))
         case NSUserActivity.ActivityType.eventsList.rawValue:
-            MyPrepViewController.page = .preparationListFromSiri
             appCoordinator.navigate(to: .init(tabBar: .prepare, topTabBar: .myPrep))
         case NSUserActivity.ActivityType.event.rawValue:
             let id = userActivity.contentAttributeSet?.keywords?.first ?? ""
-            PrepareContentViewController.pageName = .prepareChecklistFromSiri
             appCoordinator.presentPreparationCheckList(localID: id)
         case NSUserActivity.ActivityType.dailyPrep.rawValue:
             let groupID: Int = Date().isWeekend ? 100010 : 100002
             let date: ISODate = Calendar.current.isoDate(from: Date())
-            MorningInterviewViewController.page = .morningInterviewFromSiri
             appCoordinator.presentMorningInterview(groupID: groupID, date: date)
         default:
             didHandleActivity = false
@@ -411,18 +403,6 @@ extension AppDelegate {
 // MARK: - AppEvents/PageTracking
 
 extension AppDelegate {
-
-    func pageTrack(url: URL) {
-        if url.absoluteString == "qot://to-be-vision" {
-            MyToBeVisionViewController.page = .tabBarItemToBeVisionFromWidget
-        } else if url.absoluteString == "qot://prepare-event" {
-            PrepareContentViewController.pageName = .prepareChecklistFromWidget
-        } else if url.absoluteString.contains("to-be-vision?nid") {
-            MyToBeVisionViewController.page = .tabBarItemToBeVisionFromPush
-        } else if url.absoluteString.contains("qot://morning-interview") {
-            MorningInterviewViewController.page = .morningInterviewFromPush
-        }
-    }
 
     func sendSiriEventsIfNeeded() {
         if let events: SiriEventsModel = ExtensionUserDefaults.object(for: .siri, key: .siriAppEvents) {
