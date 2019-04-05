@@ -30,6 +30,11 @@ extension SettingsService {
         return integer(key: "system.notification.guidedays")
     }
 
+    var daysToExpire: Int? {
+        guard let stringValue = string(key: "system.qot.subscription.daysToExpire") else { return nil }
+        return Int(stringValue)
+    }
+
     var releaseManagerMinimalVersion: String? {
         return string(key: "system.qot.release-manager-minimal-version")
     }

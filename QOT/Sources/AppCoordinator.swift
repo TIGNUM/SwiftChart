@@ -363,9 +363,21 @@ private extension AppCoordinator {
     func startTabBarCoordinator() {
         guard let tabBarCoordinator = tabBarCoordinator else { return }
         startChild(child: tabBarCoordinator)
+        showSubscriptionReminderIfNeeded()
         guard let localID = checkListIDToPresent else { return }
         tabBarCoordinator.showPreparationCheckList(localID: localID)
         checkListIDToPresent = nil
+    }
+
+    func showSubscriptionReminderIfNeeded() {
+        guard let user = services?.userService.user() else { return }
+        let lastShownDate = UserDefault.subscriptionInfoShow.object as? Date
+        if user.subscriptionExpired == true {
+            windowManager.showSubscriptionReminder(isExpired: true)
+        } else if user.subscriptionExpireSoon == true && (lastShownDate == nil || lastShownDate?.isToday == false) {
+            UserDefault.subscriptionInfoShow.setObject(Date())
+            windowManager.showSubscriptionReminder(isExpired: false)
+        }
     }
 }
 

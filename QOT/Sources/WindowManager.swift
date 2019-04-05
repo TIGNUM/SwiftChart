@@ -99,6 +99,12 @@ final class WindowManager {
         presentViewController(infoViewController, atLevel: .normal, animated: true, completion: nil)
     }
 
+    func showSubscriptionReminder(isExpired: Bool) {
+        let configurator = SubsriptionReminderConfigurator.make(isExpired: isExpired)
+        let controller = SubsriptionReminderViewController(configure: configurator)
+        showPriority(controller, animated: true, completion: nil)
+    }
+
     func showAlert(_ viewController: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let level = Level.alert
         showWindow(atLevel: .alert)

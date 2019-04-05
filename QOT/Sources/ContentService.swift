@@ -306,8 +306,8 @@ extension ContentService {
     }
 
     func visionGeneratorAlertModelNotSaved() -> VisionGeneratorAlertModel? {
+        let title = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedTitle.predicate)?.valueText
         guard
-            let title = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedTitle.predicate)?.valueText,
             let message = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedMessage.predicate)?.valueText,
             let buttonTitleCancel = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleCancel.predicate)?.valueText,
             let buttonTitleDefault = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleDefault.predicate)?.valueText,

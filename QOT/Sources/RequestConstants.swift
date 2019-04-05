@@ -85,6 +85,7 @@ enum RequestParameter: String {
     case password
     case birthdate
     case appBundleIdentifier
+    case type
 }
 
 enum HTTPHeader: String {

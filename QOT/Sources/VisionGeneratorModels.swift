@@ -92,7 +92,7 @@ struct VisionGeneratorChoice: ChatChoice {
 }
 
 struct VisionGeneratorAlertModel {
-    let title: String
+    let title: String?
     let message: String
     let buttonTitleCancel: String
     let buttonTitleDefault: String
