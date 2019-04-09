@@ -14,12 +14,16 @@ final class SubsriptionReminderRouter {
 
     private let windowManager: WindowManager
     private weak var viewController: (SubsriptionReminderViewController & UIViewControllerInterface)?
+    lazy var showSigningInfoViewNotificationHandler = NotificationHandler(name: .showSigningInfoView)
 
     // MARK: - Init
 
     init(windowManager: WindowManager, viewController: SubsriptionReminderViewController & UIViewControllerInterface) {
         self.windowManager = windowManager
         self.viewController = viewController
+        showSigningInfoViewNotificationHandler.handler = { [weak self] (_: Notification) in
+            self?.dismiss()
+        }
     }
 }
 
@@ -33,11 +37,10 @@ extension SubsriptionReminderRouter: SubsriptionReminderRouterInterface {
     }
 
     func showLogoutDialog() {
-        viewController?.showAlert(type: .logout, handlerDestructive: { [weak self] in
+        viewController?.showAlert(type: .logout, handlerDestructive: {
             ExtensionsDataManager.didUserLogIn(false)
             UIApplication.shared.shortcutItems?.removeAll()
             NotificationHandler.postNotification(withName: .logoutNotification)
-            self?.dismiss()
         })
     }
 }

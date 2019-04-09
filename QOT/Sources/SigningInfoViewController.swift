@@ -36,6 +36,7 @@ final class SigningInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        NotificationHandler.postNotification(withName: .showSigningInfoView)
     }
 
     override func viewWillAppear(_ animated: Bool) {

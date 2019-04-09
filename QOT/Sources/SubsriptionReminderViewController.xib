@@ -280,10 +280,10 @@ Check out all the benefits QOT has to offer below.</string>
                         <constraint firstItem="4np-ZD-3W3" firstAttribute="top" secondItem="Wdv-5d-mLD" secondAttribute="bottom" constant="31" id="adF-kz-V3e"/>
                         <constraint firstAttribute="trailing" secondItem="4np-ZD-3W3" secondAttribute="trailing" constant="24" id="jpW-US-b5k"/>
                         <constraint firstItem="Wdv-5d-mLD" firstAttribute="leading" secondItem="uAF-bk-4Lu" secondAttribute="leading" constant="16" id="lCB-7F-nGs"/>
+                        <constraint firstAttribute="bottom" secondItem="4np-ZD-3W3" secondAttribute="bottom" constant="44" id="lgS-mu-WbY"/>
                         <constraint firstItem="aLo-at-zP1" firstAttribute="top" secondItem="Y8i-zJ-3h5" secondAttribute="bottom" constant="16" id="mCp-d3-j8t"/>
                         <constraint firstItem="Y8i-zJ-3h5" firstAttribute="centerX" secondItem="uAF-bk-4Lu" secondAttribute="centerX" id="oPK-8q-B9J"/>
                         <constraint firstAttribute="trailing" secondItem="Y8i-zJ-3h5" secondAttribute="trailing" constant="24" id="rhp-bz-bii"/>
-                        <constraint firstAttribute="bottom" secondItem="Wdv-5d-mLD" secondAttribute="bottom" constant="30" id="vCH-Nq-PWF"/>
                         <constraint firstItem="Y8i-zJ-3h5" firstAttribute="leading" secondItem="uAF-bk-4Lu" secondAttribute="leading" constant="24" id="xy7-pM-aHu"/>
                         <constraint firstItem="4np-ZD-3W3" firstAttribute="centerX" secondItem="uAF-bk-4Lu" secondAttribute="centerX" id="y3P-GH-sND"/>
                         <constraint firstAttribute="trailing" secondItem="Wdv-5d-mLD" secondAttribute="trailing" constant="16" id="zWl-xU-g5c"/>
