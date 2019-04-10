@@ -25,6 +25,7 @@ final class NavigationItem: UINavigationItem {
         let selectedColor: UIColor
         static var dark = Style(tabFont: .H5SecondaryHeadline, defaultColor: .white, selectedColor: .white)
         static var light = Style(tabFont: .H5SecondaryHeadline, defaultColor: .black40, selectedColor: .black)
+        static var sand = Style(tabFont: UIFont.apercuRegular(ofSize: 20), defaultColor: .sand, selectedColor: .sand)
     }
 
     private lazy var tabMenuView: TabMenuView = {

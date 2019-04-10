@@ -75,7 +75,7 @@ final class PresentComponentTransitionDriver {
             }()
             let cardConstraints = [
                 verticalAnchor,
-                componentDetailView.centerXAnchor.constraint(equalTo: animatedContainerView.centerXAnchor),]
+                componentDetailView.centerXAnchor.constraint(equalTo: animatedContainerView.centerXAnchor), ]
             NSLayoutConstraint.activate(cardConstraints)
         }
         let componentWidthConstraint = componentDetailView.widthAnchor.constraint(equalToConstant: fromComponentFrame.width)
@@ -150,4 +150,3 @@ final class PresentComponentTransitionDriver {
         self.animator = baseAnimator
     }
 }
-

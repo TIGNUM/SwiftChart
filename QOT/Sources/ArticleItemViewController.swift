@@ -418,3 +418,11 @@ extension ArticleItemViewController: ClickableLabelDelegate {
         self.delegate?.didTapLink(url, in: self)
     }
 }
+
+extension ArticleItemViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y < -(view.frame.height * 0.25) {
+            dismiss(animated: true, completion: nil)
+        }
+    }
+}

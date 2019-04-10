@@ -59,4 +59,8 @@ extension KnowingInteractor: KnowingInteractorInterface {
     func whatsHotArticles() -> [Knowing.WhatsHotItem] {
         return worker.whatsHotItems
     }
+
+    func header(for section: Knowing.Section) -> (title: String?, subtitle: String?) {
+        return worker.header(for: section)
+    }
 }

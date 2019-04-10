@@ -10,9 +10,23 @@ import UIKit
 
 struct Knowing {
 
-    enum Sections: CaseIterable {
-        case strategies
+    enum Section: Int, CaseIterable {
+        case strategies = 0
         case whatsHot
+
+        var titlePredicate: NSPredicate {
+            switch self {
+            case .strategies: return ContentService.Tags.Navigation.FirstLevel.knowSectionTitleStrategies.predicate
+            case .whatsHot: return ContentService.Tags.Navigation.FirstLevel.knowSectionTitleWhatsHot.predicate
+            }
+        }
+
+        var subtitlePredicate: NSPredicate {
+            switch self {
+            case .strategies: return ContentService.Tags.Navigation.FirstLevel.knowSectionSubtitleStrategies.predicate
+            case .whatsHot: return ContentService.Tags.Navigation.FirstLevel.knowSectionSubtitleWhatsHot.predicate
+            }
+        }
     }
 
     struct WhatsHotItem: Equatable {

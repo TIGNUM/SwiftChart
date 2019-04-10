@@ -12,22 +12,40 @@ import Anchorage
 protocol CoachPageViewControllerDelegate: class {
     func presentCoach(from viewController: UIViewController)
     func navigateToKnowingViewController()
-    func navigateToDailyBriedViewController()
+    func navigateToDailyBriefViewController()
     func navigateToMyQotViewController()
 }
 
 final class CoachPageViewController: UIPageViewController {
 
+    enum Pages: Int, CaseIterable {
+        case know = 0
+        case dailyBrief
+        case myQot
+    }
+
     // MARK: - Properties
 
     var services: Services?
+    private var currentPage = Pages.dailyBrief
+
+    lazy var pageTitle: String? = {
+        let predicate = ContentService.Tags.Navigation.FirstLevel.knowPageTitle.predicate
+        return services?.contentService.contentItem(for: predicate)?.valueText
+    }()
 
     lazy var navigationBar: UINavigationBar = {
         let navBar = UINavigationBar()
         navBar.barTintColor = .carbonDark
         navBar.tintColor = .white
         navBar.isTranslucent = false
-        let navigationItem = UINavigationItem(title: "Know Feed")
+        let navigationItem = NavigationItem()
+        navigationItem.delegate = self
+        let rightBarButtonItem = UIBarButtonItem(withImage: R.image.ic_navbar_arrow_right())
+        navigationItem.configure(leftButton: nil,
+                                 rightButton: rightBarButtonItem,
+                                 tabTitles: [pageTitle ?? ""],
+                                 style: NavigationItem.Style.sand)
         navBar.items = [navigationItem]
         return navBar
     }()
@@ -67,6 +85,7 @@ final class CoachPageViewController: UIPageViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
+        delegate = self
         setupiew()
         addScrollViewDelegate()
         setupViewControllers()
@@ -105,9 +124,11 @@ private extension CoachPageViewController {
     func setupFloatingButton() {
         let button = UIButton(type: .custom)
         button.addTarget(self, action: #selector(didTabCoachButton), for: .touchUpInside)
-        let center = CGPoint(x: view.center.x, y: view.frame.height - 100)
-        button.frame = CGRect(center: center, size: CGSize(width: 69, height: 69))
-        button.backgroundColor = .yellow
+        button.setImage(R.image.ic_coach(), for: .normal)
+        let size = CGSize(width: 80, height: 80)
+        let offset = (24 + size.width * 0.5)
+        let center = CGPoint(x: view.frame.width - offset, y: view.frame.height - offset)
+        button.frame = CGRect(center: center, size: size)
         let radius = button.bounds.width / 2
         button.corner(radius: radius)
         view.addSubview(button)
@@ -122,9 +143,9 @@ extension CoachPageViewController {
     }
 }
 
-// MARK: - UIPageViewControllerDataSource
+// MARK: - UIPageViewControllerDataSource, UIPageViewControllerDelegate
 
-extension CoachPageViewController: UIPageViewControllerDataSource {
+extension CoachPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
         guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else { return nil }
@@ -142,6 +163,22 @@ extension CoachPageViewController: UIPageViewControllerDataSource {
         guard orderedViewControllersCount != nextIndex else { return nil }
         guard orderedViewControllersCount > nextIndex else { return nil }
         return orderedViewControllers[nextIndex]
+    }
+
+    func pageViewController(_ pageViewController: UIPageViewController,
+                            didFinishAnimating finished: Bool,
+                            previousViewControllers: [UIViewController],
+                            transitionCompleted completed: Bool) {
+        guard completed == true else { return }
+        if pageViewController.viewControllers?.first is KnowingViewController {
+            currentPage = .know
+        }
+        if pageViewController.viewControllers?.first is DailyBriefViewController {
+            currentPage = .dailyBrief
+        }
+        if pageViewController.viewControllers?.first is MyQotViewController {
+            currentPage = .myQot
+        }
     }
 }
 
@@ -163,7 +200,7 @@ extension CoachPageViewController: CoachPageViewControllerDelegate {
                            completion: nil)
     }
 
-    func navigateToDailyBriedViewController() {
+    func navigateToDailyBriefViewController() {
         setViewControllers([dailyBriefViewController],
                            direction: .forward,
                            animated: false,
@@ -176,4 +213,27 @@ extension CoachPageViewController: CoachPageViewControllerDelegate {
                            animated: false,
                            completion: nil)
     }
+}
+
+// MARK: - NavigationItemDelegate
+
+extension CoachPageViewController: NavigationItemDelegate {
+    func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {}
+
+    func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {}
+
+    func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
+        var nexController: UIViewController = dailyBriefViewController
+        switch currentPage {
+        case .know: nexController = dailyBriefViewController
+        case .dailyBrief,
+             .myQot: nexController = myQotViewController
+        }
+        setViewControllers([nexController],
+                           direction: .forward,
+                           animated: true,
+                           completion: nil)
+    }
+
+    func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
 }

@@ -16,7 +16,6 @@ enum GlobalConstants {
 
     static let cardVerticalExpandingStyle: CardVerticalExpandingStyle = .fromTop
 
-
     /// Without this, there'll be weird offset (probably from scrollView) that obscures the card content view of the cardDetailView.
     static let isEnabledWeirdTopInsetsFix = true
 

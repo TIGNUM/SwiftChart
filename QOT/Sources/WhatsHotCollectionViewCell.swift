@@ -36,7 +36,7 @@ final class WhatsHotCollectionViewCell: ComponentCollectionViewCell {
                                         publishDate: publishDate,
                                         author: author,
                                         timeToRead: timeToRead,
-                                        imageURL: imageURL)        
+                                        imageURL: imageURL)
 //        titleLabel.text = title.uppercased()
 //        footerLabel.text = R.string.localized.guideCardTypeWhatsHot()
 //        let bodyAttributedString = NSMutableAttributedString(attributedString: body.attributedString())

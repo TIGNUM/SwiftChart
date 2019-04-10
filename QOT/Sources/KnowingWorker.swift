@@ -69,4 +69,10 @@ final class KnowingWorker {
         guard let contentList = services?.contentService.contentCategory(id: selectedStrategyID)?.contentCollections else { return [] }
         return Array(contentList)
     }
+
+    func header(for section: Knowing.Section) -> (title: String?, subtitle: String?) {
+        let title = services?.contentService.contentItem(for: section.titlePredicate)?.valueText
+        let subtitle = services?.contentService.contentItem(for: section.subtitlePredicate)?.valueText
+        return (title: title, subtitle: subtitle)
+    }
 }

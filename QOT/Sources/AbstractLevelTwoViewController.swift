@@ -33,7 +33,7 @@ extension AbstractLevelTwoViewController {
     }
 
     @objc func didTabbLevelOneDailyriefButton() {
-        delegate?.navigateToDailyBriedViewController()
+        delegate?.navigateToDailyBriefViewController()
         dismiss(animated: true)
     }
 

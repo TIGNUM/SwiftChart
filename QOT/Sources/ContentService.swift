@@ -9,9 +9,13 @@
 import Foundation
 import RealmSwift
 
+protocol Predicatable {
+    var predicate: NSPredicate { get }
+}
+
 final class ContentService {
 
-    enum Tags: String, CaseIterable {
+    enum Tags: String, CaseIterable, Predicatable {
         case tbvGeneratorAlertNotSavedTitle = "tbv_generator_alert_not_saved_title"
         case tbvGeneratorAlertNotSavedMessage = "tbv_generator_alert_not_saved_message"
         case tbvGeneratorAlertNotSavedButtonTitleCancel = "tbv_generator_alert_not_saved_button_title_cancel"
@@ -41,6 +45,20 @@ final class ContentService {
         case searchSuggestionWorkToHome = "search_suggestion_work_to_home"
         case searchSuggestionTravel = "search_suggestion_travel"
         case searchSuggestionHeader = "search_header_suggestion"
+
+        struct Navigation {
+            enum FirstLevel: String, CaseIterable, Predicatable {
+                case knowPageTitle = "know-feed-level-01-page-title"
+                case knowSectionTitleStrategies = "know-feed-level-01-section-title-strategies"
+                case knowSectionSubtitleStrategies = "know-feed-level-01-section-subtitle-strategies"
+                case knowSectionTitleWhatsHot = "know-feed-level-01-section-title-whats-hot"
+                case knowSectionSubtitleWhatsHot = "know-feed-level-01-section-subtitle-whats-hot"
+
+                var predicate: NSPredicate {
+                    return NSPredicate(tag: rawValue)
+                }
+            }
+        }
 
         var predicate: NSPredicate {
             return NSPredicate(tag: rawValue)

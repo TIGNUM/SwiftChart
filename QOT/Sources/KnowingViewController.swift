@@ -15,6 +15,7 @@ final class KnowingViewController: HomeViewController {
 
     var interactor: KnowingInteractorInterface?
     weak var delegate: CoachPageViewControllerDelegate?
+    private let headerViewID = "ComponentHeaderView"
 
     // MARK: - Init
 
@@ -49,6 +50,7 @@ private extension KnowingViewController {
 
 extension KnowingViewController: KnowingViewControllerInterface {
     func setupView() {
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbonDark)
         view.backgroundColor = .carbonDark
         collectionView.backgroundColor = .carbonDark
         collectionView.registerDequeueable(WhatsHotCollectionViewCell.self)
@@ -56,17 +58,17 @@ extension KnowingViewController: KnowingViewControllerInterface {
         collectionView.registerDequeueable(StrategyFoundationCollectionViewCell.self)
         collectionView.register(R.nib.componentHeaderView(),
                                 forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
-                                withReuseIdentifier: "ComponentHeaderView")
+                                withReuseIdentifier: headerViewID)
     }
 }
 
 extension KnowingViewController {
     override func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return 2
+        return Knowing.Section.allCases.count
     }
 
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if section == 0 {
+        if section == Knowing.Section.strategies.rawValue {
             return interactor?.strategies().count ?? 0
         }
         return interactor?.whatsHotArticles().count ?? 0
@@ -74,7 +76,7 @@ extension KnowingViewController {
 
     override func collectionView(_ collectionView: UICollectionView,
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if indexPath.section == 0 {
+        if indexPath.section == Knowing.Section.strategies.rawValue {
             if indexPath.item == 0 {
                 let cell: StrategyFoundationCollectionViewCell = collectionView.dequeueCell(for: indexPath)
                 let strategy = interactor?.foundationStrategy()
@@ -104,11 +106,11 @@ extension KnowingViewController {
     override func collectionView(_ collectionView: UICollectionView,
                                  layout collectionViewLayout: UICollectionViewLayout,
                                  sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if indexPath.section == 0 {
+        if indexPath.section == Knowing.Section.strategies.rawValue {
             if indexPath.item == 0 {
                 return CGSize(width: view.frame.width, height: 80)
             }
-            return CGSize(width: view.frame.width * 0.5, height: 95)
+            return CGSize(width: view.frame.width * 0.5, height: 96)
         }
         return CGSize(width: view.frame.width, height: 214)
     }
@@ -128,15 +130,15 @@ extension KnowingViewController {
         switch kind {
         case UICollectionElementKindSectionHeader:
             let headerView = collectionView.dequeueReusableSupplementaryView(ofKind: kind,
-                                                                             withReuseIdentifier: "ComponentHeaderView",
+                                                                             withReuseIdentifier: headerViewID,
                                                                              for: indexPath as IndexPath) as? ComponentHeaderView
-            if indexPath.section == 0 {
-                headerView?.configure(title: "55 Impact Strategies",
-                                      subtitle: "Learn about our strategies and how to apply them to your life. Let’s start from the foundation")
+            if indexPath.section == Knowing.Section.strategies.rawValue {
+                let header = interactor?.header(for: Knowing.Section.strategies)
+                headerView?.configure(title: header?.title, subtitle: header?.subtitle)
                 headerView?.backgroundColor = .clear
             } else {
-                headerView?.configure(title: "What´s Hot",
-                                      subtitle: "Curated information that impacts your day.")
+                let header = interactor?.header(for: Knowing.Section.whatsHot)
+                headerView?.configure(title: header?.title, subtitle: header?.subtitle)
                 headerView?.backgroundColor = .carbon
             }
             return headerView ?? UICollectionReusableView()
@@ -146,17 +148,11 @@ extension KnowingViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == 0 {
+        if indexPath.section == Knowing.Section.strategies.rawValue {
 
         } else {
-            let controller = R.storyboard.main().instantiateViewController(withIdentifier: "WhatsHotDetailViewControllerID") as? WhatsHotDetailViewController
-            presentComponentDetailViewController(indexPath: indexPath, controller: controller)
             let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item]
-            controller?.configure(title: whatsHotArticle?.title,
-                                  publishDate: whatsHotArticle?.publishDate,
-                                  author: whatsHotArticle?.author,
-                                  timeToRead: whatsHotArticle?.timeToRead,
-                                  imageURL: whatsHotArticle?.image)
+            AppDelegate.current.appCoordinator.presentWhatsHotArticle(with: whatsHotArticle?.remoteID ?? 0)
         }
     }
 }
