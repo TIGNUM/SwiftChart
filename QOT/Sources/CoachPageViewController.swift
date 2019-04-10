@@ -225,9 +225,12 @@ extension CoachPageViewController: NavigationItemDelegate {
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         var nexController: UIViewController = dailyBriefViewController
         switch currentPage {
-        case .know: nexController = dailyBriefViewController
+        case .know:
+            nexController = dailyBriefViewController
+            currentPage = .dailyBrief
         case .dailyBrief,
              .myQot: nexController = myQotViewController
+            currentPage = .myQot
         }
         setViewControllers([nexController],
                            direction: .forward,
