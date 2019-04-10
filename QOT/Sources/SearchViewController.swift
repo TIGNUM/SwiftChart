@@ -43,6 +43,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         setupSegementedControl()
         setupSearchBar()
         interactor?.showSuggestions()
+        suggestionsHeader.autoresizingMask = []
         suggestionsTableView.tableHeaderView = suggestionsHeader
     }
 
@@ -137,6 +138,7 @@ extension SearchViewController {
         searchFilter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
         updateSearchResults()
         updateIndicator()
+        tableView.scrollToTop(animated: true)
     }
 }
 

@@ -236,6 +236,8 @@ struct AppEventRequest: URLRequestBuildable {
         case siriWhatsHotDonated = "SIRI_WHATSHOT_DONATED"
         case siriUpcomingEventDonated = "SIRI_UPCOMINGEVENT_DONATED"
         case siriDailyPrepDonated = "SIRI_DAILYPREP_DONATED"
+        case didStartEditingVision = "VISION_DID_START_EDITING"
+        case didFinishEditingVision = "VISION_DID_FINISH_EDITING"
     }
 
     init(eventType: EventType, date: Date) {

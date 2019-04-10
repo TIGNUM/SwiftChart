@@ -69,6 +69,8 @@ enum JsonKey: String {
     case entryType
     case esbDomain
     case eventId
+    case expired
+    case expireSoon
     case feature
     case featureButton
     case featureLink
@@ -207,6 +209,7 @@ enum JsonKey: String {
     case street
     case streetNumber
     case subject
+    case subscriptionInfoDto
     case subtitle
     case syncEnabled
     case syncStatus

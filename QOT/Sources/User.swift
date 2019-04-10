@@ -85,6 +85,10 @@ final class User: SyncableObject {
 
     @objc private(set) dynamic var memberSince: Date = Date()
 
+    @objc private(set) dynamic var subscriptionExpireSoon: Bool = false
+
+    @objc private(set) dynamic var subscriptionExpired: Bool = false
+
     @objc dynamic var totalUsageTime: Int = 0
 
     @objc dynamic var timeZone: String = TimeZone.hoursFromGMT
@@ -131,6 +135,8 @@ extension User: TwoWaySyncableUniqueObject {
         timeZone = TimeZone.hoursFromGMT // We never want to update the timezone based on remote timezone
         environment.dynamicBaseURL = URL(string: data.esbDomain)
         fitbitStateValue = data.fitbitState
+        subscriptionExpired = data.subscriptionExpired
+        subscriptionExpireSoon = data.subscriptionExpireSoon
         updateUAirshipTags(data.urbanAirshipTags + [data.email])
         AppDelegate.current.appCoordinator.setupBugLife()
         AppDelegate.current.setupSiren(services: AppCoordinator.appState.services)

@@ -102,7 +102,6 @@ extension GuideViewController: GuideViewControllerInterface {
 // MARK: - Private
 
 private extension GuideViewController {
-
     func setupView() {
         view.backgroundColor = .navy
         tableView.tableHeaderView = greetingView
