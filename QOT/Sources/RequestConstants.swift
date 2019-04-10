@@ -100,6 +100,7 @@ enum HTTPHeader: String {
     case build = "X-Tignum-Qot-Build"
     case bundleIdentifier = "X-Tignum-Qot-Bundle-Identifier"
     case os = "X-Tignum-Qot-Os"
+    case osVersion = "X-Tignum-Qot-Os-Version"
     case altitude = "X-Tignum-Qot-Altitude"
     case latitude = "X-Tignum-Qot-Latitude"
     case longitude = "X-Tignum-Qot-Longitude"
