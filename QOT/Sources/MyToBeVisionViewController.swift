@@ -309,11 +309,9 @@ private extension MyToBeVisionViewController {
         if isEditing == true {
             headlineTextView.becomeFirstResponder()
             tempImageURL = interactor?.myToBeVision?.imageURL
-            MyToBeVisionViewController.page = .editToBeVision
-            eventTracker?.track(.didShowPage(self, from: nil))
+            AppDelegate.current.appCoordinator.sendAppEvent(.didStartEditingVision)
         } else {
-            MyToBeVisionViewController.page = .tabBarItemToBeVision
-            eventTracker?.track(.didShowPage(self, from: nil))
+            AppDelegate.current.appCoordinator.sendAppEvent(.didFinishEditingVision)
             view.endEditing(isEditing)
         }
     }

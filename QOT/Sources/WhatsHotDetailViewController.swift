@@ -16,11 +16,17 @@ final class WhatsHotDetailViewController: ComponentDetailViewController {
         super.viewDidLoad()
     }
 
-    func configure(title: String?, publishDate: Date?, author: String?, timeToRead: String?, imageURL: URL?) {
+    func configure(title: String?,
+                   publishDate: Date?,
+                   author: String?,
+                   timeToRead: String?,
+                   imageURL: URL?,
+                   isNew: Bool) {
         whatsHotComponentView.configure(title: title,
                                         publishDate: publishDate,
                                         author: author,
                                         timeToRead: timeToRead,
-                                        imageURL: imageURL)
+                                        imageURL: imageURL,
+                                        isNew: isNew)
     }
 }

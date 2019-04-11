@@ -37,6 +37,7 @@ struct Knowing {
         let author: String
         let publishDate: Date?
         let timeToRead: String?
+        let isNew: Bool
     }
 
     struct StrategyItem: Equatable {

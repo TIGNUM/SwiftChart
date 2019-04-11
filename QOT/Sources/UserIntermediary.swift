@@ -41,6 +41,8 @@ struct UserIntermediary: DownSyncIntermediary {
     let timeZone: String?
     let esbDomain: String
     let fitbitState: String
+    let subscriptionExpireSoon: Bool
+    let subscriptionExpired: Bool
     var profileImages: [MediaResourceIntermediary] = []
 
     init(json: JSON) throws {
@@ -85,7 +87,10 @@ struct UserIntermediary: DownSyncIntermediary {
         self.totalUsageTime = try json.getItemValue(at: .totalUsageTime)
         self.esbDomain = try json.getItemValue(at: .esbDomain)
         self.fitbitState = try json.getItemValue(at: .fitbitState)
-
+        self.subscriptionExpired = try json.getBool(at: JsonKey.subscriptionInfoDto.rawValue,
+                                                      JsonKey.expired.rawValue)
+        self.subscriptionExpireSoon = try json.getBool(at: JsonKey.subscriptionInfoDto.rawValue,
+                                                         JsonKey.expireSoon.rawValue)
         let userInfo = try json.json(at: .userInfo)
         self.height = try userInfo.getItemValue(at: .height, alongPath: .nullBecomesNil)
         self.heightUnit = try userInfo.getItemValue(at: .heightUnit, alongPath: .nullBecomesNil)

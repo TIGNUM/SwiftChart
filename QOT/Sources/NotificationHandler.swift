@@ -11,6 +11,7 @@ import Foundation
 extension Notification.Name {
     static let logoutNotification = Notification.Name(rawValue: "qot_logoutNotification")
     static let fitbitAccessTokenReceivedNotification = Notification.Name(rawValue: "qot_fitbitAccessTokenReceivedNotification")
+    static let showSigningInfoView = Notification.Name(rawValue: "qot_show_signing_info_view_controller")
 }
 
 final class NotificationHandler {

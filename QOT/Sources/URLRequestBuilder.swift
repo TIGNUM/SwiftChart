@@ -22,7 +22,6 @@ final class URLRequestBuilder {
     func make(buildable: URLRequestBuildable, authToken: String? = nil) -> URLRequestConvertible {
         if buildable.requiresAuthentication && authToken == nil {
             log("\(buildable) needs authToken, endPoint: \(buildable.endpoint)", level: .error)
-//            assertionFailure("\(buildable) needs authToken")
         }
 
         var httpHeaders = buildable.headers
@@ -39,7 +38,8 @@ final class URLRequestBuilder {
         #else
         httpHeaders[.bundleIdentifier] = Bundle.main.bundleIdentifier
         #endif
-        httpHeaders[.os] = "iOS \(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
+        httpHeaders[.os] = "iOS"
+        httpHeaders[.osVersion] = "\(osVersion.majorVersion).\(osVersion.minorVersion).\(osVersion.patchVersion)"
 
         let url = buildable.endpoint.url(baseURL: environment.baseURL)
         let method = buildable.httpMethod

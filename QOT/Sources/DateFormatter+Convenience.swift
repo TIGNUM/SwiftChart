@@ -39,7 +39,7 @@ private let dailyPrepDateFormatter: DateFormatter = {
 
 private let whatsHotFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateFormat = "dd. LLLL"
+    formatter.dateFormat = "dd. MMM" // 18. JUL    ..:: "dd. LLLL" 18. JULY ..::
     formatter.timeZone = TimeZone.current
     return formatter
 }()

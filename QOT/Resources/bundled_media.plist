@@ -4,7 +4,7 @@
 <array>
 	<dict>
 		<key>mediaID</key>
-		<integer>100600</integer>
+		<real>100602</real>
 		<key>fileName</key>
 		<string>15_min_power_nap_no_voice.m4a</string>
 	</dict>
@@ -16,7 +16,7 @@
 	</dict>
 	<dict>
 		<key>mediaID</key>
-		<real>100602</real>
+		<real>100600</real>
 		<key>fileName</key>
 		<string>15_min_power_nap_with_voice.m4a</string>
 	</dict>

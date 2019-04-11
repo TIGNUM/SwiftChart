@@ -40,7 +40,7 @@ enum Endpoint: String {
     case userFeedback = "/personal/p/qot/userFeedback"
     case userLocationUpdate = "/personal/p/qot/geolocation"
     case calendarSettingSync = "/personal/p/qot/calendar"
-    case guideItemsLearn = "/personal/p/qot/guide/learnItem/v2"
+    case guideItemsLearn = "/personal/p/qot/guide/learnItem/v3"
     case guideItemsNotification = "/personal/p/qot/guide/notificationItem"
     case guide = "/personal/p/qot/guide"
     case device = "/personal/p/qot/device"
@@ -85,6 +85,7 @@ enum RequestParameter: String {
     case password
     case birthdate
     case appBundleIdentifier
+    case type
 }
 
 enum HTTPHeader: String {
@@ -99,6 +100,7 @@ enum HTTPHeader: String {
     case build = "X-Tignum-Qot-Build"
     case bundleIdentifier = "X-Tignum-Qot-Bundle-Identifier"
     case os = "X-Tignum-Qot-Os"
+    case osVersion = "X-Tignum-Qot-Os-Version"
     case altitude = "X-Tignum-Qot-Altitude"
     case latitude = "X-Tignum-Qot-Latitude"
     case longitude = "X-Tignum-Qot-Longitude"

@@ -149,6 +149,15 @@
 		366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1E20BEA2F200109F29 /* Apercu-Light.otf */; };
 		366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1C20BEA2F100109F29 /* Apercu-Medium.otf */; };
 		366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1D20BEA2F200109F29 /* Apercu-Regular.otf */; };
+		36718B40224CDC050042881E /* SubsriptionReminderViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36718B3F224CDC050042881E /* SubsriptionReminderViewController.xib */; };
+		36718B4B224D20030042881E /* SubsriptionReminderPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B43224D20030042881E /* SubsriptionReminderPresenter.swift */; };
+		36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B44224D20030042881E /* SubsriptionReminderWorker.swift */; };
+		36718B4D224D20030042881E /* SubsriptionReminderRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B45224D20030042881E /* SubsriptionReminderRouter.swift */; };
+		36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B46224D20030042881E /* SubsriptionReminderInterface.swift */; };
+		36718B4F224D20030042881E /* SubsriptionReminderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B47224D20030042881E /* SubsriptionReminderViewController.swift */; };
+		36718B50224D20030042881E /* SubsriptionReminderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B48224D20030042881E /* SubsriptionReminderInteractor.swift */; };
+		36718B51224D20030042881E /* SubsriptionReminderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B49224D20030042881E /* SubsriptionReminderModel.swift */; };
+		36718B52224D20030042881E /* SubsriptionReminderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36718B4A224D20030042881E /* SubsriptionReminderConfigurator.swift */; };
 		3674FF2820AADE7D008EEB6C /* PartnersOverviewPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3674FF2020AADE7D008EEB6C /* PartnersOverviewPresenter.swift */; };
 		3674FF2920AADE7D008EEB6C /* PartnersOverviewWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3674FF2120AADE7D008EEB6C /* PartnersOverviewWorker.swift */; };
 		3674FF2A20AADE7D008EEB6C /* PartnersOverviewRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3674FF2220AADE7D008EEB6C /* PartnersOverviewRouter.swift */; };
@@ -1124,6 +1133,15 @@
 		366AFD1C20BEA2F100109F29 /* Apercu-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apercu-Medium.otf"; sourceTree = "<group>"; };
 		366AFD1D20BEA2F200109F29 /* Apercu-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apercu-Regular.otf"; sourceTree = "<group>"; };
 		366AFD1E20BEA2F200109F29 /* Apercu-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apercu-Light.otf"; sourceTree = "<group>"; };
+		36718B3F224CDC050042881E /* SubsriptionReminderViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SubsriptionReminderViewController.xib; sourceTree = "<group>"; };
+		36718B43224D20030042881E /* SubsriptionReminderPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderPresenter.swift; sourceTree = "<group>"; };
+		36718B44224D20030042881E /* SubsriptionReminderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderWorker.swift; sourceTree = "<group>"; };
+		36718B45224D20030042881E /* SubsriptionReminderRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderRouter.swift; sourceTree = "<group>"; };
+		36718B46224D20030042881E /* SubsriptionReminderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderInterface.swift; sourceTree = "<group>"; };
+		36718B47224D20030042881E /* SubsriptionReminderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderViewController.swift; sourceTree = "<group>"; };
+		36718B48224D20030042881E /* SubsriptionReminderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderInteractor.swift; sourceTree = "<group>"; };
+		36718B49224D20030042881E /* SubsriptionReminderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderModel.swift; sourceTree = "<group>"; };
+		36718B4A224D20030042881E /* SubsriptionReminderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubsriptionReminderConfigurator.swift; sourceTree = "<group>"; };
 		3674FF2020AADE7D008EEB6C /* PartnersOverviewPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersOverviewPresenter.swift; sourceTree = "<group>"; };
 		3674FF2120AADE7D008EEB6C /* PartnersOverviewWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersOverviewWorker.swift; sourceTree = "<group>"; };
 		3674FF2220AADE7D008EEB6C /* PartnersOverviewRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnersOverviewRouter.swift; sourceTree = "<group>"; };
@@ -2194,6 +2212,22 @@
 			name = Signing;
 			sourceTree = "<group>";
 		};
+		36718B2E224CDB7B0042881E /* Subscription */ = {
+			isa = PBXGroup;
+			children = (
+				36718B4A224D20030042881E /* SubsriptionReminderConfigurator.swift */,
+				36718B48224D20030042881E /* SubsriptionReminderInteractor.swift */,
+				36718B46224D20030042881E /* SubsriptionReminderInterface.swift */,
+				36718B49224D20030042881E /* SubsriptionReminderModel.swift */,
+				36718B43224D20030042881E /* SubsriptionReminderPresenter.swift */,
+				36718B45224D20030042881E /* SubsriptionReminderRouter.swift */,
+				36718B47224D20030042881E /* SubsriptionReminderViewController.swift */,
+				36718B44224D20030042881E /* SubsriptionReminderWorker.swift */,
+				36718B3F224CDC050042881E /* SubsriptionReminderViewController.xib */,
+			);
+			name = Subscription;
+			sourceTree = "<group>";
+		};
 		3674FF1F20AADDED008EEB6C /* Partners Overview */ = {
 			isa = PBXGroup;
 			children = (
@@ -3160,7 +3194,6 @@
 		CB94423A1FDFE4B400E2B122 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				F9C1D8AC220DD7D900B40DD2 /* SiriShortcuts */,
 				9150411C20FDF2C700D43D18 /* Add Sensor */,
 				CBE8808B1FE4368300670C10 /* Guide */,
 				DB680583218210E600C2FC69 /* MorningInterview */,
@@ -3173,6 +3206,8 @@
 				913C7174209C61B2001C4185 /* Settings */,
 				CB3333DD20480DA2009480DF /* Share */,
 				366AFD2320BEC8D200109F29 /* Signing */,
+				F9C1D8AC220DD7D900B40DD2 /* SiriShortcuts */,
+				36718B2E224CDB7B0042881E /* Subscription */,
 				366183DE2162790000634560 /* Support - FAQ */,
 				912C9E32203C701300C1AA76 /* ToBeVision */,
 				36E4B7A2219EBFB900049EE8 /* Tutorial */,
@@ -4428,6 +4463,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -4520,6 +4556,7 @@
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
 				36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */,
+				36718B40224CDC050042881E /* SubsriptionReminderViewController.xib in Resources */,
 				91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				3631232E20C7CC5C00D97D01 /* SigningEmailViewController.xib in Resources */,
@@ -5025,6 +5062,7 @@
 				CB3437721F00ED3200D89D4F /* RealmObserver.swift in Sources */,
 				914A5E1B207FB33200092121 /* SettingsBubblesRouter.swift in Sources */,
 				36796A0520D3C41F00B55429 /* SigningCreatePasswordViewController.swift in Sources */,
+				36718B52224D20030042881E /* SubsriptionReminderConfigurator.swift in Sources */,
 				36424980214A55CB0018A4A7 /* IPadAdviceView.swift in Sources */,
 				CBE880931FE9153200670C10 /* GuideItemID.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
@@ -5094,6 +5132,7 @@
 				DB12025A219C55E000BE0E81 /* MediaResourceIntermediary.swift in Sources */,
 				CB6637B1201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift in Sources */,
 				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
+				36718B4F224D20030042881E /* SubsriptionReminderViewController.swift in Sources */,
 				36796A0720D3C41F00B55429 /* SigningCreatePasswordConfigurator.swift in Sources */,
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,
 				7F6567441FE28FBC00A6CB7F /* Clean.swift in Sources */,
@@ -5175,6 +5214,7 @@
 				CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */,
 				CBB4DCDC1ED475F00071494A /* DownSyncChange.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
+				36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */,
 				CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */,
 				CB3437701EFE937000D89D4F /* ContentService.swift in Sources */,
 				36796A0C20D3C41F00B55429 /* SigningCreatePasswordRouter.swift in Sources */,
@@ -5191,6 +5231,7 @@
 				CCE6CD881F15357600B66DA3 /* StatisticsPeriodIntermediary.swift in Sources */,
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
+				36718B4D224D20030042881E /* SubsriptionReminderRouter.swift in Sources */,
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
 				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
@@ -5234,6 +5275,7 @@
 				854708E21F306628007AB971 /* ContentItemAnimation.swift in Sources */,
 				CBC1DC1D1F0F988E00F6D056 /* SettingsService.swift in Sources */,
 				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
+				36718B50224D20030042881E /* SubsriptionReminderInteractor.swift in Sources */,
 				7F65672F1FE13BCA00A6CB7F /* ScreenHelpViewController.swift in Sources */,
 				914A5E1D207FB35600092121 /* SettingsBubblesWorker.swift in Sources */,
 				3674FF3820AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.swift in Sources */,
@@ -5296,6 +5338,7 @@
 				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
 				CB6637AD201A323200A995D6 /* UserNotificationsScheduler.swift in Sources */,
+				36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */,
 				CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */,
 				3637664E223A7DE100C2C429 /* LevelTwoConfigurator.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
@@ -5471,6 +5514,7 @@
 				854708E31F306628007AB971 /* ContentItemAnimator.swift in Sources */,
 				CB9AFD201F029D1500D067F2 /* PreparationService.swift in Sources */,
 				CB3437641EFD6B0100D89D4F /* Answer+Convenience.swift in Sources */,
+				36718B51224D20030042881E /* SubsriptionReminderModel.swift in Sources */,
 				3674FF2820AADE7D008EEB6C /* PartnersOverviewPresenter.swift in Sources */,
 				7F1711ED1FB3161C00ED08D8 /* Badge.swift in Sources */,
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,
@@ -5604,6 +5648,7 @@
 				3637664C223A7DE100C2C429 /* LevelTwoInteractor.swift in Sources */,
 				CB84CDF71FA2345D00970E71 /* SyncStateObserver.swift in Sources */,
 				CB5134121FAB721000FBDD66 /* ContentRead.swift in Sources */,
+				36718B4B224D20030042881E /* SubsriptionReminderPresenter.swift in Sources */,
 				852DADC41EEED5D600A10882 /* MeetingsAverageChart.swift in Sources */,
 				3666769A207CF66600D2F5AD /* VisionGeneratorProtocols.swift in Sources */,
 				F9C1D8CB220DEA0E00B40DD2 /* SiriShortcutsCell.swift in Sources */,
@@ -5750,6 +5795,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Database;
@@ -5793,7 +5839,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = Database;
@@ -6229,6 +6275,7 @@
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6271,7 +6318,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = AppStore;
@@ -6331,6 +6378,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -6382,6 +6430,7 @@
 				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -6453,7 +6502,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = Debug;
@@ -6468,7 +6517,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = Release;
@@ -6528,6 +6577,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = UnitTest;
@@ -6576,7 +6626,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
 			};
 			name = UnitTest;
