@@ -311,7 +311,6 @@ private extension MyToBeVisionViewController {
             tempImageURL = interactor?.myToBeVision?.imageURL
             AppDelegate.current.appCoordinator.sendAppEvent(.didStartEditingVision)
         } else {
-            AppDelegate.current.appCoordinator.sendAppEvent(.didFinishEditingVision)
             view.endEditing(isEditing)
         }
     }
@@ -537,6 +536,7 @@ extension MyToBeVisionViewController: NavigationItemDelegate {
         if isEditing == true {
             cancelEdit()
             toBeVisionDidUpdate()
+            AppDelegate.current.appCoordinator.sendAppEvent(.didCancelEditingVision)
         } else {
             AppDelegate.current.appCoordinator.tabBarCoordinator?.navigationItem(navigationItem,
                                                                                  leftButtonPressed: button)
@@ -548,6 +548,7 @@ extension MyToBeVisionViewController: NavigationItemDelegate {
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
         if isEditing == true {
             saveEdit()
+            AppDelegate.current.appCoordinator.sendAppEvent(.didTapSaveVision)
         } else {
             AppDelegate.current.appCoordinator.tabBarCoordinator?.navigationItem(navigationItem,
                                                                                  rightButtonPressed: button)
