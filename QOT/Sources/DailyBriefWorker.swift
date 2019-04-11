@@ -20,6 +20,10 @@ final class DailyBriefWorker {
         self.services = services
     }
 
+    private lazy var firstInstallTimeStamp: Date? = {
+        return UserDefault.firstInstallationTimestamp.object as? Date
+    }()
+
     lazy var strategies: [Knowing.StrategyItem] = {
         guard let strategies = services?.contentService.learnContentCategories() else { return [] }
         var strategyItems: [Knowing.StrategyItem] = []
@@ -50,7 +54,8 @@ final class DailyBriefWorker {
                                                           remoteID: collectionId,
                                                           author: article.author ?? "",
                                                           publishDate: article.publishDate,
-                                                          timeToRead: article.durationString))
+                                                          timeToRead: article.durationString,
+                                                          isNew: isNew(article)))
             }
         }
         return whatsHotItems
@@ -59,5 +64,15 @@ final class DailyBriefWorker {
     func contentList(selectedStrategyID: Int) -> [ContentCollection] {
         guard let contentList = services?.contentService.contentCategory(id: selectedStrategyID)?.contentCollections else { return [] }
         return Array(contentList)
+    }
+}
+
+private extension DailyBriefWorker {
+    func isNew(_ article: ContentCollection) -> Bool {
+        var isNewArticle = article.contentRead == nil
+        if let firstInstallTimeStamp = self.firstInstallTimeStamp {
+            isNewArticle = article.contentRead == nil && article.modifiedAt > firstInstallTimeStamp
+        }
+        return isNewArticle
     }
 }

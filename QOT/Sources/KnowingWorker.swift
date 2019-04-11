@@ -13,6 +13,9 @@ final class KnowingWorker {
     // MARK: - Properties
 
     private let services: Services?
+    private lazy var firstInstallTimeStamp: Date? = {
+        return UserDefault.firstInstallationTimestamp.object as? Date
+    }()
 
     // MARK: - Init
 
@@ -59,7 +62,8 @@ final class KnowingWorker {
                                                           remoteID: collectionId,
                                                           author: article.author ?? "",
                                                           publishDate: article.publishDate,
-                                                          timeToRead: article.durationString))
+                                                          timeToRead: article.durationString,
+                                                          isNew: isNew(article)))
             }
         }
         return whatsHotItems
@@ -74,5 +78,17 @@ final class KnowingWorker {
         let title = services?.contentService.contentItem(for: section.titlePredicate)?.valueText
         let subtitle = services?.contentService.contentItem(for: section.subtitlePredicate)?.valueText
         return (title: title, subtitle: subtitle)
+    }
+}
+
+// MARK: - Private
+
+private extension KnowingWorker {
+    func isNew(_ article: ContentCollection) -> Bool {
+        var isNewArticle = article.contentRead == nil
+        if let firstInstallTimeStamp = self.firstInstallTimeStamp {
+            isNewArticle = article.contentRead == nil && article.modifiedAt > firstInstallTimeStamp
+        }
+        return isNewArticle
     }
 }

@@ -99,7 +99,8 @@ extension KnowingViewController {
                        publishDate: whatsHotArticle?.publishDate,
                        author: whatsHotArticle?.author,
                        timeToRead: whatsHotArticle?.timeToRead,
-                       imageURL: whatsHotArticle?.image)
+                       imageURL: whatsHotArticle?.image,
+                       isNew: whatsHotArticle?.isNew ?? false)
         return cell
     }
 

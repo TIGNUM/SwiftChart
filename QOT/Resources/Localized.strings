@@ -9,10 +9,10 @@
 // An example
 "splash.view.rule.your.impact" = "RULE YOUR IMPACT";
 "learn.category-list-view.title" = "Categories";
-"learn.content-list-view.minutes-label" = "%@ MIN TO READ";
-"learn.content.duration.video" = "%@ MIN VIDEO";
-"learn.content-list-view.minutes-label-watch" = "%@ MIN VIDEO";
-"learn.content-list-view.minutes-label-listen" = "%@ MIN AUDIO";
+"learn.content-list-view.minutes-label" = "%@ min read";
+"learn.content.duration.video" = "%@ min video";
+"learn.content-list-view.minutes-label-watch" = "%@ min video";
+"learn.content-list-view.minutes-label-listen" = "%@ min audio";
 
 "Settings.Tutorial.Reset.Title" = "Tutorial reset";
 
