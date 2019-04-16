@@ -106,7 +106,7 @@ private extension MeetingsAverageNumberChart {
             let yPos = yPosition(dataPoint.percentageValue)
             drawCapRoundLine(xPos: xPos,
                              startYPos: bottomPosition,
-                             endYPos: yPos,
+                             endYPos: dataPoint.percentageValue > 1 ? yPosition(1) : yPos,
                              strokeColor: dataPoint.color,
                              hasShadow: hasShadow(dataPoint))
         }

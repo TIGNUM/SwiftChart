@@ -35,8 +35,8 @@ final class GuideWorker {
                 case .notification:
                     try service.setNotificationItemComplete(remoteID: id.remoteID, date: now)
                 }
-
-                self.services.userNotificationsManager.removeNotifications(withIdentifiers: [id.stringRepresentation])
+                self.services.userNotificationsManager.removeNotifications(withIdentifiers: [id.stringRepresentation],
+                                                                           completion: nil)
             } catch {
                 log("Failed to set item completed: \(error)", level: .error)
             }

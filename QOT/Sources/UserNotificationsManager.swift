@@ -13,8 +13,8 @@ import UserNotifications
 final class UserNotificationsManager {
 
     private let realmProvider: RealmProvider
-    private let scheduler = UserNotificationsScheduler(center: UNUserNotificationCenter.current(),
-                                                       calendar: Calendar.current)
+    private lazy var scheduler = UserNotificationsScheduler(center: UNUserNotificationCenter.current(),
+                                                            calendar: Calendar.current)
     private let guideItemBlockDeterminer = GuideLearnItemBlockDeterminer(localCalendar: Calendar.current)
 
     init(realmProvider: RealmProvider) {
@@ -33,22 +33,25 @@ final class UserNotificationsManager {
                 guard $0.completedAt == nil, let triggerDate = $0.localNotificationDate else { return false }
                 return triggerDate >= now
             }
-
             let learnItems = realm.objects(RealmGuideItemLearn.self)
             let featureItems = todaysLearnItems(from: learnItems, type: .feature, now: now)
             let strategyItems = todaysLearnItems(from: learnItems, type: .strategy, now: now)
+            let notificationItemRequests = notificationItems.compactMap { $0.notificationRequest }
             var requests: [UNNotificationRequest] = []
-            requests.append(contentsOf: notificationItems.compactMap({ $0.notificationRequest }))
+            requests.append(contentsOf: notificationItems.compactMap { $0.notificationRequest })
             requests.append(contentsOf: featureItems.compactMap({ $0.notificationRequest }))
             requests.append(contentsOf: strategyItems.compactMap({ $0.notificationRequest }))
-            scheduler.scheduleNotifications(requests)
+            let notificationItemRequestsIDs = Array(notificationItemRequests.compactMap { $0.identifier })
+            removeNotifications(withIdentifiers: notificationItemRequestsIDs) { [weak self] in
+                self?.scheduler.scheduleNotifications(requests)
+            }
         } catch {
             log("Error scheduling notifications: \(error)", level: .error)
         }
     }
 
-    func removeNotifications(withIdentifiers identifiers: [String]) {
-        scheduler.removeNotifications(withIdentifiers: identifiers)
+    func removeNotifications(withIdentifiers identifiers: [String], completion: (() -> Void)?) {
+        scheduler.removeNotifications(withIdentifiers: identifiers, completion: completion)
     }
 
     private func updateScheduledStates(pendingNofiticationIDs: Set<String>) {
