@@ -45,8 +45,8 @@ final class UserNotificationsScheduler {
         queue.async { self._scheduleNotifications(requests, now: now) }
     }
 
-    func removeNotifications(withIdentifiers identifiers: [String]) {
-        queue.async { self._removeNotifications(withIdentifiers: identifiers)}
+    func removeNotifications(withIdentifiers identifiers: [String], completion: (() -> Void)?) {
+        queue.async { self._removeNotifications(withIdentifiers: identifiers, completion: completion)}
     }
 
     // MARK: The following methods must be called on `queue`!
@@ -69,9 +69,10 @@ final class UserNotificationsScheduler {
         }
     }
 
-    func _removeNotifications(withIdentifiers identifiers: [String]) {
+    func _removeNotifications(withIdentifiers identifiers: [String], completion: (() -> Void)?) {
         center.removeNotifications(withIdentifiers: identifiers, queue: queue) { [weak self] (pending) in
             self?._updateScheduledNotificationIDs(requests: pending)
+            completion?()
         }
     }
 
@@ -85,7 +86,6 @@ final class UserNotificationsScheduler {
 }
 
 extension UNUserNotificationCenter {
-
     func scheduleNofications(_ requests: [UNNotificationRequest],
                              queue: DispatchQueue,
                              completion: @escaping (_ pendingRequests: [UNNotificationRequest]) -> Void) {
