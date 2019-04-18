@@ -7,18 +7,18 @@
 	<key>INIntentDefinitionModelVersion</key>
 	<string>1.0</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>18C54</string>
+	<string>18E226</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
-	<string>10B61</string>
+	<string>10E125</string>
 	<key>INIntentDefinitionToolsVersion</key>
-	<string>10.1</string>
+	<string>10.2</string>
 	<key>INIntents</key>
 	<array>
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
 			<key>INIntentDescription</key>
-			<string>Siri will read and display your To Be Vision.</string>
+			<string>QOT will read and display your To Be Vision.</string>
 			<key>INIntentDescriptionID</key>
 			<string>FCJPbG</string>
 			<key>INIntentLastParameterTag</key>
@@ -149,7 +149,7 @@
 			<key>INIntentCategory</key>
 			<string>information</string>
 			<key>INIntentDescription</key>
-			<string>Siri will display the newest What's Hot articles.</string>
+			<string>QOT will display the newest What's Hot articles.</string>
 			<key>INIntentDescriptionID</key>
 			<string>cCU33I</string>
 			<key>INIntentLastParameterTag</key>
@@ -360,7 +360,7 @@
 			<key>INIntentCategory</key>
 			<string>information</string>
 			<key>INIntentDescription</key>
-			<string>Siri will display your upcoming events.</string>
+			<string>QOT will display your upcoming events.</string>
 			<key>INIntentDescriptionID</key>
 			<string>hSpsP8</string>
 			<key>INIntentLastParameterTag</key>
@@ -524,6 +524,8 @@
 		<dict>
 			<key>INIntentCategory</key>
 			<string>information</string>
+			<key>INIntentDescription</key>
+			<string>QOT will lead you to Daily Prep Minute</string>
 			<key>INIntentDescriptionID</key>
 			<string>KRbSNC</string>
 			<key>INIntentLastParameterTag</key>
