@@ -31,7 +31,9 @@ final class CredentialsManager {
     }
 
     var hasLoginCredentials: Bool {
-        return loginCredentials() != nil
+        let hasCredentials = loginCredentials() != nil
+        ExtensionsDataManager.didUserLogIn(hasCredentials)
+        return hasCredentials
     }
 
     func save(username: String, password: String, authToken: String) {
