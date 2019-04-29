@@ -142,6 +142,13 @@
 		<string>Simple-Regular.ttf</string>
 		<string>BentonSans_Regular.otf</string>
 		<string>BentonSans_Book.otf</string>
+		<string>SF-Pro-Display-Light.otf</string>
+		<string>SF-Pro-Display-Regular.otf</string>
+		<string>SF-Pro-Display-Thin.otf</string>
+		<string>SF-Pro-Display-Ultralight.otf</string>
+		<string>SF-Pro-Text-Medium.otf</string>
+		<string>SF-Pro-Text-Light.otf</string>
+		<string>SF-Pro-Text-Regular.otf</string>
 	</array>
 	<key>UIApplicationShortcutItems</key>
 	<array/>

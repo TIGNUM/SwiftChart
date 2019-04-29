@@ -508,6 +508,13 @@
 		91F5BE5220975E1300E85A51 /* PermissionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5BE5120975E1300E85A51 /* PermissionsInteractor.swift */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
+		AC0E82FD227702C700B60AD9 /* SF-Pro-Text-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC0E82FA227702C600B60AD9 /* SF-Pro-Text-Regular.otf */; };
+		AC0E82FE227702C700B60AD9 /* SF-Pro-Text-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC0E82FB227702C700B60AD9 /* SF-Pro-Text-Light.otf */; };
+		AC0E82FF227702C700B60AD9 /* SF-Pro-Text-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC0E82FC227702C700B60AD9 /* SF-Pro-Text-Medium.otf */; };
+		AC0E83042277030D00B60AD9 /* SF-Pro-Display-Thin.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC0E83002277030D00B60AD9 /* SF-Pro-Display-Thin.otf */; };
+		AC0E83052277030D00B60AD9 /* SF-Pro-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC0E83012277030D00B60AD9 /* SF-Pro-Display-Regular.otf */; };
+		AC0E83062277030D00B60AD9 /* SF-Pro-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC0E83022277030D00B60AD9 /* SF-Pro-Display-Light.otf */; };
+		AC0E83072277030D00B60AD9 /* SF-Pro-Display-Ultralight.otf in Resources */ = {isa = PBXBuildFile; fileRef = AC0E83032277030D00B60AD9 /* SF-Pro-Display-Ultralight.otf */; };
 		AC18381F22418DC6004A538D /* SuggestionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */; };
 		AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC183820224190A0004A538D /* SuggestionsHeaderView.swift */; };
 		AC199035221EDF4300D53F01 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
@@ -1494,6 +1501,13 @@
 		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC0E82FA227702C600B60AD9 /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Text-Regular.otf"; path = "../../../../../../../../Volumes/SF-Font 1/SF Pro/SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
+		AC0E82FB227702C700B60AD9 /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Text-Light.otf"; path = "../../../../../../../../Volumes/SF-Font 1/SF Pro/SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
+		AC0E82FC227702C700B60AD9 /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Text-Medium.otf"; path = "../../../../../../../../Volumes/SF-Font 1/SF Pro/SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
+		AC0E83002277030D00B60AD9 /* SF-Pro-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Thin.otf"; path = "../../../../../../../../Volumes/SF-Font 1/SF Pro/SF-Pro-Display-Thin.otf"; sourceTree = "<group>"; };
+		AC0E83012277030D00B60AD9 /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Regular.otf"; path = "../../../../../../../../Volumes/SF-Font 1/SF Pro/SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
+		AC0E83022277030D00B60AD9 /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Light.otf"; path = "../../../../../../../../Volumes/SF-Font 1/SF Pro/SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
+		AC0E83032277030D00B60AD9 /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Ultralight.otf"; path = "../../../../../../../../Volumes/SF-Font 1/SF Pro/SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
 		AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionsHeaderView.xib; sourceTree = "<group>"; };
 		AC183820224190A0004A538D /* SuggestionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsHeaderView.swift; sourceTree = "<group>"; };
 		AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -3764,6 +3778,13 @@
 				366AFD1E20BEA2F200109F29 /* Apercu-Light.otf */,
 				366AFD1C20BEA2F100109F29 /* Apercu-Medium.otf */,
 				366AFD1D20BEA2F200109F29 /* Apercu-Regular.otf */,
+				AC0E83022277030D00B60AD9 /* SF-Pro-Display-Light.otf */,
+				AC0E83012277030D00B60AD9 /* SF-Pro-Display-Regular.otf */,
+				AC0E83002277030D00B60AD9 /* SF-Pro-Display-Thin.otf */,
+				AC0E83032277030D00B60AD9 /* SF-Pro-Display-Ultralight.otf */,
+				AC0E82FB227702C700B60AD9 /* SF-Pro-Text-Light.otf */,
+				AC0E82FC227702C700B60AD9 /* SF-Pro-Text-Medium.otf */,
+				AC0E82FA227702C600B60AD9 /* SF-Pro-Text-Regular.otf */,
 			);
 			name = Fonts;
 			sourceTree = "<group>";
@@ -4520,6 +4541,7 @@
 				366AFD1F20BEAA6700109F29 /* Apercu-Bold.otf in Resources */,
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
+				AC0E82FD227702C700B60AD9 /* SF-Pro-Text-Regular.otf in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
 				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
 				36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */,
@@ -4538,16 +4560,19 @@
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
 				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
+				AC0E83042277030D00B60AD9 /* SF-Pro-Display-Thin.otf in Resources */,
 				9171647B2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
 				3674FF3120AADEC5008EEB6C /* PartnersOverviewViewController.xib in Resources */,
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
+				AC0E83052277030D00B60AD9 /* SF-Pro-Display-Regular.otf in Resources */,
 				91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */,
 				DB680599218210E700C2FC69 /* MorningInterviewViewController.storyboard in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
 				36DC825120D54A6900CDEC34 /* SigningCountryTableViewCell.xib in Resources */,
 				851676DF1F3C694B007A1DD6 /* LearnReadMoreCell.xib in Resources */,
+				AC0E83072277030D00B60AD9 /* SF-Pro-Display-Ultralight.otf in Resources */,
 				F9C1D8CC220DEA0E00B40DD2 /* SiriShortcutsCell.xib in Resources */,
 				36424982214A55E80018A4A7 /* IPadAdviceView.xib in Resources */,
 				36E4B7B4219EC19C00049EE8 /* TutorialViewController.xib in Resources */,
@@ -4568,6 +4593,7 @@
 				CC311A211EAF430B0020C869 /* SettingsButtonTableViewCell.xib in Resources */,
 				9171647C2101E43B00F42D8F /* SensorCollectionViewCell.xib in Resources */,
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
+				AC0E83062277030D00B60AD9 /* SF-Pro-Display-Light.otf in Resources */,
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
 				AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */,
 				CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */,
@@ -4583,6 +4609,7 @@
 				367564AD206A4420008D1F71 /* PrepareContentNotesViewController.storyboard in Resources */,
 				36376669223ABB2D00C2C429 /* StrategyTableViewCell.xib in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
+				AC0E82FF227702C700B60AD9 /* SF-Pro-Text-Medium.otf in Resources */,
 				3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */,
 				91086E502092044C0035DA1F /* SettingsCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
@@ -4618,6 +4645,7 @@
 				36796A0B20D3C41F00B55429 /* SigningCreatePasswordViewController.xib in Resources */,
 				CB3333F120480E50009480DF /* ShareViewController.xib in Resources */,
 				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
+				AC0E82FE227702C700B60AD9 /* SF-Pro-Text-Light.otf in Resources */,
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
 				9150413C20FDF4FF00D43D18 /* SensorViewController.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
