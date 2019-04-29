@@ -36,7 +36,7 @@ target 'QOT' do
   pod 'Buglife'
   pod 'SwiftyBeaver'
   pod 'JSONWebToken'
-  pod 'Siren', '~> 3.2.0'
+  pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift4.1'
   pod 'HockeySDK', '~> 5.1.2'
   pod 'BadgeSwift', '~> 5.0'
   pod 'Kingfisher'

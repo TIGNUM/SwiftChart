@@ -15,6 +15,7 @@ import Crashlytics
 import ReactiveKit
 import Bond
 import Buglife
+import Siren
 
 final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
@@ -216,6 +217,16 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                     completion(error)
                 }
             }
+        }
+    }
+
+    func checkVersionIfNeeded() {
+        guard services?.userService.user()?.appUpdatePrompt == true else { return }
+        if Siren.shared.alertType == .force {
+            Siren.shared.checkVersion(checkType: .immediately)
+        }
+        if Siren.shared.alertType == .option {
+            Siren.shared.checkVersion(checkType: .daily)
         }
     }
 
