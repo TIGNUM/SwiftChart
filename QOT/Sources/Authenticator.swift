@@ -78,7 +78,6 @@ private extension Authenticator {
         } else if let existingAuthToken = validAuthToken(now: now) {
             completion(.success(existingAuthToken))
         } else if let (username, password) = loginCredentials() {
-            delegate?.didAutoLogin()
             completions.append(completion)
             authenticateAndCallCompletions(username: username, password: password, saveCredentials: false)
         } else {
@@ -140,7 +139,13 @@ private extension Authenticator {
 
     private func save(authToken: String) {
         dispatchPrecondition(condition: .onQueue(queue))
-        store.save(authToken: authToken)
+        if store.authToken() == nil {
+            store.save(authToken: authToken)
+            delegate?.didAutoLogin()
+        } else if let currentToken = store.authToken(), currentToken != authToken {
+            store.save(authToken: authToken)
+            delegate?.didAutoLogin()
+        }
     }
 
     private func clearLoginCredentialsAndAuthToken() {
