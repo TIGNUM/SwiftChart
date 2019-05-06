@@ -59,6 +59,11 @@ private extension StrategyListViewController {
     func setupAudioPlayerView() {
         audioPlayerBar = AudioPlayerBar.instantiateFromNib()
         view.addSubview(audioPlayerBar)
+        audioPlayerBar.trailingAnchor == view.trailingAnchor
+        audioPlayerBar.leadingAnchor == view.leadingAnchor
+        audioPlayerBar.bottomAnchor == view.bottomAnchor - 24
+        audioPlayerBar.heightAnchor == 40
+        audioPlayerBar.layoutIfNeeded()
         audioPlayerBar.isHidden = true
         audioPlayerBar.viewDelegate = self
     }
@@ -68,7 +73,6 @@ private extension StrategyListViewController {
 
 extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
-//        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbonDark)
         view.backgroundColor = .carbon
         setupTableView()
         setupNavigationButtons()
@@ -142,7 +146,7 @@ extension StrategyListViewController: AudioPlayerViewDelegate {
     func didTabClose(for view: AudioPlayer.View) {
         switch view {
         case .bar:
-            showHideCoachButton()
+            showHideNavigationButtons()
             audioPlayerBar.isHidden = true
         case .fullScreen:
             audioPlayerBar.updateView()
@@ -152,7 +156,7 @@ extension StrategyListViewController: AudioPlayerViewDelegate {
 
     func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int) {
         if audioPlayerBar.isHidden == true {
-            showHideCoachButton()
+            showHideNavigationButtons()
             audioPlayerBar.isHidden = false
         }
         audioPlayerBar.configure(categoryTitle: categoryTitle, title: title, audioURL: audioURL, remoteID: remoteID)

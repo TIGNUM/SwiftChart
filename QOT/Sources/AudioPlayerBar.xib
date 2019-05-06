@@ -83,10 +83,10 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="599-bu-Tcd" firstAttribute="top" secondItem="ajf-Ym-YFW" secondAttribute="top" id="FcR-M1-iel"/>
                 <constraint firstItem="599-bu-Tcd" firstAttribute="leading" secondItem="pLb-ue-hWx" secondAttribute="leading" constant="16" id="P9W-EY-w5B"/>
                 <constraint firstItem="599-bu-Tcd" firstAttribute="trailing" secondItem="pLb-ue-hWx" secondAttribute="trailing" constant="-16" id="THJ-2o-mLD"/>
-                <constraint firstItem="599-bu-Tcd" firstAttribute="bottom" secondItem="pLb-ue-hWx" secondAttribute="bottom" id="w8v-R5-Ufd"/>
-                <constraint firstItem="599-bu-Tcd" firstAttribute="top" secondItem="pLb-ue-hWx" secondAttribute="top" id="wqy-Gl-JFS"/>
+                <constraint firstAttribute="bottom" secondItem="599-bu-Tcd" secondAttribute="bottom" id="WO1-y9-bMi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="pLb-ue-hWx"/>

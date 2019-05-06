@@ -28,10 +28,12 @@ class AbstractLevelTwoViewController: UIViewController {
     lazy var backButton: UIButton = {
         let button = UIButton(type: .custom)
         button.addTarget(self, action: #selector(didTabBackButton), for: .touchUpInside)
-        button.setImage(R.image.ic_back(), for: .normal)
+        button.setImage(R.image.arrowBack(), for: .normal)
+        button.layer.borderWidth = 1
+        button.layer.borderColor = UIColor.accent.cgColor
         let size = CGSize(width: 40, height: 40)
         let offset = (24 + size.width * 0.5)
-        let center = CGPoint(x: 24, y: view.frame.height - offset)
+        let center = CGPoint(x: 48, y: coachButton.center.y)
         button.frame = CGRect(center: center, size: size)
         let radius = button.bounds.width / 2
         button.corner(radius: radius)
@@ -39,15 +41,17 @@ class AbstractLevelTwoViewController: UIViewController {
     }()
 
     func setupNavigationButtons() {
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         setupCoachButton()
         setupBackButton()
-        setupLevelNavigationuttonKnowing()
-        setupLevelNavigationuttonDailyBried()
-        setupLevelNavigationuttonMyQot()
+//        setupLevelNavigationuttonKnowing()
+//        setupLevelNavigationuttonDailyBried()
+//        setupLevelNavigationuttonMyQot()
     }
 
-    func showHideCoachButton() {
+    func showHideNavigationButtons() {
         coachButton.isHidden = !coachButton.isHidden
+        backButton.isHidden = !backButton.isHidden
     }
 }
 
