@@ -165,7 +165,6 @@ extension ContentCollection: OneWaySyncableDown {
         layoutInfo = data.layoutInfo
         searchTags = data.searchTags
         thumbnailURLString = data.thumbnailURLString
-        relatedContent = data.relatedContentIDs
         objectStore.delete(relatedContentList)
         relatedContentList.append(objectsIn: data.relatedContentList.map({ ContentRelation(intermediary: $0) }))
         objectStore.delete(categoryIDs)

@@ -346,6 +346,7 @@
 "Alert.Title.Settings.Change.Notifications" = "Change Notifications";
 "Alert.Message.Settings.Change.Notifications" = "Go to System Settings to edit your notification settings.";
 "Alert.Message.signinMissingConnection" = "Turn on mobile data or use Wi-Fi to access data.";
+"Alert.Button.Title.Ok" = "OK";
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
 "ImagePicker.Options.Button.Camera" = "Take a Picture";

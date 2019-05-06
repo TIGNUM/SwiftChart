@@ -13,7 +13,6 @@ import AirshipKit
 import CoreLocation
 import RealmSwift
 import Buglife
-import Siren
 import Alamofire
 
 protocol LocalNotificationHandlerDelegate: class {
@@ -122,7 +121,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return
         #else
             reachabilityOfSinging()
-            checkVersionIfNeeded()
+            appCoordinator.checkVersionIfNeeded()
             appCoordinator.sendAppEvent(.foreground)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
@@ -149,7 +148,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #else
             QOTUsageTimer.sharedInstance.startTimer()
             appCoordinator.appDidBecomeActive()
-            checkVersionIfNeeded()
+            appCoordinator.checkVersionIfNeeded()
             sendSiriEventsIfNeeded()
             appCoordinator.sendAppEvent(.didBecomeActive)
         #endif //#if UNIT_TEST || BUILD_DATABASE
@@ -244,14 +243,6 @@ private extension AppDelegate {
             } else {
                 abstractController.alert.dismiss(animated: true, completion: nil)
             }
-        }
-    }
-
-    func checkVersionIfNeeded() {
-        if Siren.shared.alertType == .force {
-            Siren.shared.checkVersion(checkType: .immediately)
-        } else {
-            Siren.shared.checkVersion(checkType: .daily)
         }
     }
 

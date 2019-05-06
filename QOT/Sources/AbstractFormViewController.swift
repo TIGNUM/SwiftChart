@@ -87,12 +87,7 @@ extension AbstractFormViewController {
             title: R.string.localized.alertTitleNoNetworkConnection(),
             message: R.string.localized.alertMessageSigninMissingConnection(),
             preferredStyle: .alert)
-        let settingsAction = UIAlertAction(title: R.string.localized.alertButtonTitleSettings(), style: .default) { (_) -> Void in
-            let settingsUrl = URL(string: "App-Prefs:root=WIFI")
-            if let url = settingsUrl {
-                UIApplication.shared.open(url)
-            }
-        }
+        let settingsAction = UIAlertAction(title: R.string.localized.alertButtonTitleOk(), style: .default)
         alert.addAction(settingsAction)
         present(alert, animated: true, completion: nil)
     }

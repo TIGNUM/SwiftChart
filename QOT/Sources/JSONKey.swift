@@ -177,7 +177,6 @@ enum JsonKey: String {
     case referrerPageId
     case relatedContent
     case relatedContents
-    case relatedContentIds
     case relationship
     case reminderTime
     case responseReturnCode
