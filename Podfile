@@ -23,7 +23,7 @@ target 'QOT' do
   pod 'Anchorage'
   pod 'R.swift'
   pod 'RealmSwift'
-  pod 'Freddy
+  pod 'Freddy'
   pod 'Alamofire'
   pod 'KeychainAccess'
   pod 'ActionSheetPicker-3.0'
