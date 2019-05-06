@@ -12,11 +12,28 @@ class AbstractLevelTwoViewController: UIViewController {
 
     weak var delegate: CoachPageViewControllerDelegate?
 
+    lazy var coachButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: #selector(didTabCoachButton), for: .touchUpInside)
+        button.setImage(R.image.ic_coach(), for: .normal)
+        let size = CGSize(width: 80, height: 80)
+        let offset = (24 + size.width * 0.5)
+        let center = CGPoint(x: view.frame.width - offset, y: view.frame.height - offset)
+        button.frame = CGRect(center: center, size: size)
+        let radius = button.bounds.width / 2
+        button.corner(radius: radius)
+        return button
+    }()
+
     func setupNavigationButtons() {
         setupCoachButton()
         setupLevelNavigationuttonKnowing()
         setupLevelNavigationuttonDailyBried()
         setupLevelNavigationuttonMyQot()
+    }
+
+    func showHideCoachButton() {
+        coachButton.isHidden = !coachButton.isHidden
     }
 }
 
@@ -47,14 +64,7 @@ extension AbstractLevelTwoViewController {
 
 private extension AbstractLevelTwoViewController {
     func setupCoachButton() {
-        let button = UIButton(type: .custom)
-        button.addTarget(self, action: #selector(didTabCoachButton), for: .touchUpInside)
-        let center = CGPoint(x: view.center.x, y: view.frame.height - 100)
-        button.frame = CGRect(center: center, size: CGSize(width: 69, height: 69))
-        button.backgroundColor = .yellow
-        let radius = button.bounds.width / 2
-        button.corner(radius: radius)
-        view.addSubview(button)
+        view.addSubview(coachButton)
     }
 
     func setupLevelNavigationuttonKnowing() {

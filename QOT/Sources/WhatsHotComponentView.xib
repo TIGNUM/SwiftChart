@@ -53,13 +53,13 @@
                         <constraint firstItem="Q9w-QE-Oti" firstAttribute="centerX" secondItem="9xz-8G-eLg" secondAttribute="centerX" id="jmh-KN-4g8"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAN LITTLE THINGS REALLY MAKE A DIFFERENCE?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6z-mu-Agk">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="CAN LITTLE THINGS REALLY MAKE A DIFFERENCE?" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t6z-mu-Agk">
                     <rect key="frame" x="24" y="123" width="327" height="32"/>
                     <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="16"/>
                     <color key="textColor" red="0.90196078431372551" green="0.90196078431372551" blue="0.90196078431372551" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9M-Tu-WXz">
+                <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9M-Tu-WXz">
                     <rect key="frame" x="191.5" y="167" width="159.5" height="15"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
@@ -89,17 +89,16 @@
             <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="w9M-Tu-WXz" firstAttribute="centerY" secondItem="4HJ-mG-j8W" secondAttribute="centerY" id="0K8-cS-WqN"/>
-                <constraint firstItem="owU-Ln-oxy" firstAttribute="trailing" secondItem="w9M-Tu-WXz" secondAttribute="trailing" constant="24" id="3Fd-ae-Iwg"/>
                 <constraint firstItem="RW2-4W-t45" firstAttribute="leading" secondItem="4HJ-mG-j8W" secondAttribute="trailing" constant="4" id="7FA-wg-T58"/>
                 <constraint firstItem="xlM-wO-waH" firstAttribute="top" secondItem="owU-Ln-oxy" secondAttribute="top" constant="31" id="8l6-xN-paE"/>
                 <constraint firstItem="w9M-Tu-WXz" firstAttribute="leading" secondItem="RW2-4W-t45" secondAttribute="trailing" constant="4" id="IIR-bN-MXq"/>
-                <constraint firstItem="owU-Ln-oxy" firstAttribute="trailing" secondItem="t6z-mu-Agk" secondAttribute="trailing" constant="24" id="ITR-9l-ofk"/>
                 <constraint firstItem="t6z-mu-Agk" firstAttribute="top" secondItem="xlM-wO-waH" secondAttribute="bottom" constant="12" id="KSm-7V-qVk"/>
                 <constraint firstItem="4HJ-mG-j8W" firstAttribute="leading" secondItem="owU-Ln-oxy" secondAttribute="leading" constant="24" id="MHg-2L-5Ek"/>
                 <constraint firstItem="xlM-wO-waH" firstAttribute="leading" secondItem="owU-Ln-oxy" secondAttribute="leading" constant="24" id="Naw-QP-ah2"/>
                 <constraint firstItem="9xz-8G-eLg" firstAttribute="bottom" secondItem="xlM-wO-waH" secondAttribute="bottom" id="OpG-md-ya1"/>
                 <constraint firstItem="9xz-8G-eLg" firstAttribute="leading" secondItem="xlM-wO-waH" secondAttribute="leading" id="Pi7-6A-Hlx"/>
                 <constraint firstItem="w9M-Tu-WXz" firstAttribute="top" secondItem="t6z-mu-Agk" secondAttribute="bottom" constant="12" id="PuH-ld-5sV"/>
+                <constraint firstAttribute="trailing" secondItem="t6z-mu-Agk" secondAttribute="trailing" constant="24" id="Tlp-vs-zME"/>
                 <constraint firstItem="UmN-eW-kpX" firstAttribute="leading" secondItem="owU-Ln-oxy" secondAttribute="leading" id="TwE-8Y-uWh"/>
                 <constraint firstItem="owU-Ln-oxy" firstAttribute="trailing" secondItem="xlM-wO-waH" secondAttribute="trailing" id="V97-gn-JBl"/>
                 <constraint firstItem="RW2-4W-t45" firstAttribute="centerX" secondItem="5li-s9-CSZ" secondAttribute="centerX" id="W6o-JF-pBs"/>
@@ -108,6 +107,7 @@
                 <constraint firstItem="owU-Ln-oxy" firstAttribute="trailing" secondItem="UmN-eW-kpX" secondAttribute="trailing" id="kXV-fP-jut"/>
                 <constraint firstItem="RW2-4W-t45" firstAttribute="top" secondItem="owU-Ln-oxy" secondAttribute="top" id="no5-1G-sFU"/>
                 <constraint firstItem="t6z-mu-Agk" firstAttribute="leading" secondItem="owU-Ln-oxy" secondAttribute="leading" constant="24" id="uhU-ey-foL"/>
+                <constraint firstAttribute="trailing" secondItem="w9M-Tu-WXz" secondAttribute="trailing" constant="24" id="wE8-WH-bWE"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="owU-Ln-oxy"/>

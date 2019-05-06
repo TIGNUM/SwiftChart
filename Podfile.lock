@@ -1,6 +1,7 @@
 PODS:
   - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.7.3)
+  - AMScrollingNavbar (5.2.0)
   - Anchorage (4.2.4)
   - BadgeSwift (5.0.1)
   - Bond (6.10.0):
@@ -40,6 +41,7 @@ PODS:
 DEPENDENCIES:
   - ActionSheetPicker-3.0
   - Alamofire
+  - AMScrollingNavbar
   - Anchorage
   - BadgeSwift (~> 5.0)
   - Bond
@@ -65,6 +67,7 @@ SPEC REPOS:
   https://github.com/cocoapods/specs.git:
     - ActionSheetPicker-3.0
     - Alamofire
+    - AMScrollingNavbar
     - Anchorage
     - BadgeSwift
     - Bond
@@ -102,6 +105,7 @@ CHECKOUT OPTIONS:
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: c7287b6e5d7da964a70935e5db17046b7fde6568
+  AMScrollingNavbar: 9df3652d6757f1a24646d8e90cb458591d8b1a6a
   Anchorage: f855157310859280c706cc0b9c9281c21702f515
   BadgeSwift: 3defa56f504bfb46f2300122c4a565ec9e405c1e
   Bond: 86b0a343dcb8c8ad18c8a31fc9faa2ba45280b30
@@ -127,6 +131,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: ccfcdf85a04d429f1633f668650b0ce8020bda3a
   UrbanAirship-iOS-SDK: 49d6f0f960f5b631af049522102fc5502111290f
 
-PODFILE CHECKSUM: bdd940be526ee84e24674cedde825898f803f81b
+PODFILE CHECKSUM: 4558f1376d50190498332fcb24c6606e8a8031e8
 
 COCOAPODS: 1.6.1

@@ -81,6 +81,10 @@ extension NSPredicate {
         self.init(format: "searchTags == %@", tag)
     }
 
+    convenience init(searchTag: String) {
+        self.init(format: "searchTags contains[c] %@", searchTag)
+    }
+
     convenience init(title: String) {
         self.init(format: "title == %@", title)
     }

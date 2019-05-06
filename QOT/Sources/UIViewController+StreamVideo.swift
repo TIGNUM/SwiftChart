@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Anchorage
 import AVFoundation
 import AVKit
 
@@ -18,18 +19,17 @@ extension UIViewController {
         let player = AVPlayer(url: videoURL)
         let playerController = AVPlayerViewController(pageName: pageName, contentItem: contentItem)
         playerController.player = player
-
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
             try AVAudioSession.sharedInstance().setActive(true)
         } catch {
             print(error.localizedDescription)
         }
-
         present(playerController, animated: true) {
             player.volume = 1
             player.play()
         }
+        addOverlay(to: playerController)
         return playerController
     }
 
@@ -38,10 +38,19 @@ extension UIViewController {
             playerViewController.dismiss(animated: true, completion: nil)
         })
     }
+
+    private func addOverlay(to playerController: AVPlayerViewController) {
+        let overlay = MediaPlayerOverlay.instantiateFromNib()
+        if let contentView = playerController.contentOverlayView {
+            playerController.contentOverlayView?.addSubview(overlay)
+            overlay.bottomAnchor == contentView.safeBottomAnchor - playerController.view.frame.height / 6
+            overlay.trailingAnchor == contentView.trailingAnchor
+            overlay.leadingAnchor == contentView.leadingAnchor
+        }
+    }
 }
 
 class AVPlayerObserver: NSObject {
-
     private var updateHandler: ((AVPlayerItem) -> Void)?
     let playerItem: AVPlayerItem
     var observation: NSKeyValueObservation?

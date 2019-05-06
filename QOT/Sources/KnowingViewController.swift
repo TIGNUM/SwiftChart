@@ -9,6 +9,10 @@
 import UIKit
 import Anchorage
 
+final class KnowingNavigationController: UINavigationController {
+    static var storyboardID = NSStringFromClass(KnowingNavigationController.classForCoder())
+}
+
 final class KnowingViewController: HomeViewController {
 
     // MARK: - Properties
@@ -17,34 +21,34 @@ final class KnowingViewController: HomeViewController {
     weak var delegate: CoachPageViewControllerDelegate?
     private let headerViewID = "ComponentHeaderView"
 
-    // MARK: - Init
-
-    init(configure: Configurator<KnowingViewController>) {
-        super.init(nibName: nil, bundle: nil)
-        configure(self)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? StrategyListViewController {
+            StrategyListConfigurator.configure(viewController: controller,
+                                               selectedStrategyID: sender as? Int,
+                                               delegate: delegate)
+        }
+        if
+            let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? ArticleViewController,
+            let selectedID = sender as? Int {
+                ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
+        }
+    }
 }
 
 // MARK: - Private
 
-private extension KnowingViewController {
-
-}
+private extension KnowingViewController {}
 
 // MARK: - Actions
 
-private extension KnowingViewController {
-
-}
+private extension KnowingViewController {}
 
 // MARK: - KnowingViewControllerInterface
 
@@ -145,15 +149,19 @@ extension KnowingViewController {
             return headerView ?? UICollectionReusableView()
         default:
             assert(false, "Unexpected element kind")
+
         }
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.section == Knowing.Section.strategies.rawValue {
-
+        if indexPath.section == Knowing.Section.strategies.rawValue && indexPath.item == 0 {
+            interactor?.presentStrategyList(selectedStrategyID: nil)
+        } else if indexPath.section == Knowing.Section.strategies.rawValue {
+            let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1]
+            interactor?.presentStrategyList(selectedStrategyID: strategy?.remoteID)
         } else {
             let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item]
-            AppDelegate.current.appCoordinator.presentWhatsHotArticle(with: whatsHotArticle?.remoteID ?? 0)
+            interactor?.presentWhatsHotArticle(selectedID: whatsHotArticle?.remoteID ?? 0)
         }
     }
 }

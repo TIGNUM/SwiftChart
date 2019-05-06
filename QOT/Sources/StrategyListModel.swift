@@ -8,6 +8,15 @@
 
 import UIKit
 
-struct StrategyListModel {
+struct Strategy {
 
+    struct Item {
+        let remoteID: Int
+        let categoryTitle: String
+        let title: String
+        let durationString: String
+        let imageURL: URL?
+        let mediaURL: URL?
+        let duration: Double
+    }
 }

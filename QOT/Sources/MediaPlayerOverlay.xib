@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina5_9" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="otv-Ax-RUX" customClass="MediaPlayerOverlay" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="40"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HYC-a4-xQY">
+                    <rect key="frame" x="223" y="0.0" width="128" height="40"/>
+                    <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.29999999999999999" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="128" id="6Jb-xR-9Yf"/>
+                        <constraint firstAttribute="height" constant="40" id="tzS-lJ-nSO"/>
+                    </constraints>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="4" maxY="0.0"/>
+                    <state key="normal" title="Download" image="ic_download">
+                        <color key="titleColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTabDownloadButton" destination="otv-Ax-RUX" eventType="touchUpInside" id="uBs-07-61R"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TjA-Yn-GU0">
+                    <rect key="frame" x="167" y="0.0" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="U76-gB-tcb"/>
+                        <constraint firstAttribute="width" constant="40" id="fhJ-Xb-2HI"/>
+                    </constraints>
+                    <state key="normal" image="ic_bookmark"/>
+                    <connections>
+                        <action selector="didTabBookmarkButton" destination="otv-Ax-RUX" eventType="touchUpInside" id="ob3-RL-Nvz"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="HYC-a4-xQY" firstAttribute="leading" secondItem="TjA-Yn-GU0" secondAttribute="trailing" constant="16" id="CEE-fU-nbz"/>
+                <constraint firstItem="TjA-Yn-GU0" firstAttribute="centerY" secondItem="otv-Ax-RUX" secondAttribute="centerY" id="Vfi-CD-2hf"/>
+                <constraint firstItem="HYC-a4-xQY" firstAttribute="centerY" secondItem="otv-Ax-RUX" secondAttribute="centerY" id="WGJ-RM-Pxt"/>
+                <constraint firstItem="K05-hR-c15" firstAttribute="trailing" secondItem="HYC-a4-xQY" secondAttribute="trailing" constant="24" id="cse-yM-42b"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="K05-hR-c15"/>
+            <connections>
+                <outlet property="bookmarkButton" destination="TjA-Yn-GU0" id="5UU-5r-dLT"/>
+                <outlet property="downloadButton" destination="HYC-a4-xQY" id="OK0-Zw-XC6"/>
+            </connections>
+            <point key="canvasLocation" x="404" y="121.92118226600985"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_bookmark" width="14" height="16"/>
+        <image name="ic_download" width="16" height="16"/>
+    </resources>
+</document>

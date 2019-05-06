@@ -107,7 +107,6 @@ extension DateFormatter {
 }
 
 extension Locale {
-
     static var posix: Locale {
         return Locale(identifier: "en_US_POSIX")
     }

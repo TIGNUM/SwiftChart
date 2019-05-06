@@ -45,6 +45,7 @@ final class ContentService {
         case searchSuggestionWorkToHome = "search_suggestion_work_to_home"
         case searchSuggestionTravel = "search_suggestion_travel"
         case searchSuggestionHeader = "search_header_suggestion"
+        case learnStrategiesFoundation = "learn_strategies_foundation"
 
         struct Navigation {
             enum FirstLevel: String, CaseIterable, Predicatable {
@@ -61,7 +62,10 @@ final class ContentService {
         }
 
         var predicate: NSPredicate {
-            return NSPredicate(tag: rawValue)
+            switch self {
+            case .learnStrategiesFoundation: return NSPredicate(searchTag: rawValue)
+            default: return NSPredicate(tag: rawValue)
+            }
         }
     }
 
@@ -133,6 +137,11 @@ final class ContentService {
         return mainRealm.objects(ContentItem.self).filter(NSPredicate(format: "format == %@ || format == %@",
                                                                       pdfFormat,
                                                                       textFormat))
+    }
+
+    func learnStrategiesFoundation() -> [ContentCollection] {
+        let predicate = Tags.learnStrategiesFoundation.predicate
+        return Array(mainRealm.objects(ContentCollection.self).filter(predicate))
     }
 
     func contentItem(for predicate: NSPredicate) -> ContentItem? {
@@ -278,6 +287,23 @@ final class ContentService {
             } catch let error {
                 assertionFailure("UpdateViewedAt, contentId: \(localID), error: \(error)")
             }
+        }
+    }
+
+    func setContentViewed(remoteID: Int) {
+        do {
+            let realm = try self.realmProvider.realm()
+            try realm.write {
+                if let content = self.contentCollection(id: remoteID) {
+                    if let contentRead = content.contentRead {
+                        contentRead.viewedAt = Date()
+                    } else {
+                        content.contentRead = ContentRead(contentCollection: content)
+                    }
+                }
+            }
+        } catch let error {
+            assertionFailure("UpdateViewedAt, contentId: \(remoteID), error: \(error)")
         }
     }
 }

@@ -36,14 +36,27 @@ final class StrategyListInteractor {
 // MARK: - StrategyListInteractorInterface
 
 extension StrategyListInteractor: StrategyListInteractorInterface {
-    func contentList() -> [ContentCollection] {
-        return worker.contentList
+    var headerTitle: String {
+        return worker.headerTitle
     }
 
-    func presentArticle(for selectedContent: ContentCollection) {
-        guard let category = selectedContent.contentCategories.first else { return }
-        router.presentArticle(services: worker.services,
-                              content: selectedContent,
-                              contentCategory: category)
+    var isFoundation: Bool {
+        return worker.isFoundation
+    }
+
+    var rowCount: Int {
+        return worker.rowCount
+    }
+
+    var foundationStrategies: [Strategy.Item] {
+        return worker.foundationStrategies
+    }
+
+    var strategies: [Strategy.Item] {
+        return worker.strategies
+    }
+
+    func presentArticle(selectedID: Int?) {
+        router.presentArticle(selectedID: selectedID)
     }
 }

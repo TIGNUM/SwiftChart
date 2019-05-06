@@ -61,6 +61,11 @@ final class ContentCollection: SyncableObject {
         return contentRead?.viewedAt
     }
 
+    var imageURL: URL? {
+        guard let urlString = thumbnailURLString else { return nil }
+        return URL(string: urlString)
+    }
+
     var relatedContentIDs: [Int] {
         guard
             let relatedContent = relatedContent,
@@ -88,6 +93,10 @@ final class ContentCollection: SyncableObject {
             durationString = R.string.localized.learnContentListViewMinutesLabel(min)
         }
         return durationString
+    }
+
+    var isWhatsHot: Bool {
+        return section.caseInsensitiveCompare(Database.Section.learnWhatsHot.value) == .orderedSame
     }
 
     var isFoundation: Bool {

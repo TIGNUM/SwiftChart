@@ -8,6 +8,10 @@
 
 import UIKit
 
+final class MyQotNavigationController: UINavigationController {
+    static var storyboardID = NSStringFromClass(MyQotNavigationController.classForCoder())
+}
+
 final class MyQotViewController: AbstractLevelOneViewConroller {
 
     // MARK: - Properties
@@ -15,16 +19,7 @@ final class MyQotViewController: AbstractLevelOneViewConroller {
     var interactor: MyQotInteractorInterface?
     weak var delegate: CoachPageViewControllerDelegate?
 
-    // MARK: - Init
-
-    init(configure: Configurator<MyQotViewController>) {
-        super.init(nibName: nil, bundle: nil)
-        configure(self)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

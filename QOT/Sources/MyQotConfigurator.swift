@@ -10,14 +10,12 @@ import Foundation
 
 final class MyQotConfigurator {
 
-    static func make(delegate: CoachPageViewControllerDelegate?) -> (MyQotViewController) -> Void {
-        return { (viewController) in
-            let router = MyQotRouter(viewController: viewController)
-            let worker = MyQotWorker()
-            let presenter = MyQotPresenter(viewController: viewController)
-            let interactor = MyQotInteractor(worker: worker, presenter: presenter, router: router)
-            viewController.interactor = interactor
-            viewController.delegate = delegate
-        }
+    static func configure(delegate: CoachPageViewControllerDelegate?, viewController: MyQotViewController) {
+        let router = MyQotRouter(viewController: viewController)
+        let worker = MyQotWorker()
+        let presenter = MyQotPresenter(viewController: viewController)
+        let interactor = MyQotInteractor(worker: worker, presenter: presenter, router: router)
+        viewController.interactor = interactor
+        viewController.delegate = delegate
     }
 }

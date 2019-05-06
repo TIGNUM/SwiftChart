@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ydv-oc-Z9W" customClass="AudioButton" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2:35" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pR4-DZ-m6L">
+                    <rect key="frame" x="42" y="12" width="26" height="15"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_audio" translatesAutoresizingMaskIntoConstraints="NO" id="ZI4-0Z-Rql">
+                    <rect key="frame" x="12" y="12" width="16" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="1pW-WV-Xm7"/>
+                        <constraint firstAttribute="width" constant="16" id="lC6-iF-DR3"/>
+                    </constraints>
+                </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yHm-yB-7Lo">
+                    <rect key="frame" x="0.0" y="0.0" width="80" height="40"/>
+                    <connections>
+                        <action selector="didTabAudiButton" destination="Ydv-oc-Z9W" eventType="touchUpInside" id="gku-1O-IrM"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.031372549020000001" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="calibratedRGB"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="pR4-DZ-m6L" secondAttribute="bottom" constant="13" id="3JH-bz-Nlp"/>
+                <constraint firstItem="abJ-6a-cvH" firstAttribute="trailing" secondItem="yHm-yB-7Lo" secondAttribute="trailing" id="3MF-75-knc"/>
+                <constraint firstAttribute="trailing" secondItem="pR4-DZ-m6L" secondAttribute="trailing" constant="12" id="4Bl-16-2bc"/>
+                <constraint firstItem="abJ-6a-cvH" firstAttribute="bottom" secondItem="yHm-yB-7Lo" secondAttribute="bottom" id="9ae-7W-7fX"/>
+                <constraint firstItem="ZI4-0Z-Rql" firstAttribute="centerY" secondItem="Ydv-oc-Z9W" secondAttribute="centerY" id="BYE-sr-89F"/>
+                <constraint firstAttribute="width" constant="80" id="Pmn-hN-tMf"/>
+                <constraint firstItem="yHm-yB-7Lo" firstAttribute="top" secondItem="abJ-6a-cvH" secondAttribute="top" id="USY-lQ-oKG"/>
+                <constraint firstItem="ZI4-0Z-Rql" firstAttribute="leading" secondItem="Ydv-oc-Z9W" secondAttribute="leading" constant="12" id="ehx-wo-6NF"/>
+                <constraint firstItem="pR4-DZ-m6L" firstAttribute="top" secondItem="Ydv-oc-Z9W" secondAttribute="top" constant="12" id="joz-a9-QPr"/>
+                <constraint firstItem="yHm-yB-7Lo" firstAttribute="leading" secondItem="abJ-6a-cvH" secondAttribute="leading" id="ojw-9N-YHt"/>
+                <constraint firstAttribute="height" constant="40" id="rbi-QB-grC"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="abJ-6a-cvH"/>
+            <connections>
+                <outlet property="audioIcon" destination="ZI4-0Z-Rql" id="rkt-Di-ndk"/>
+                <outlet property="button" destination="yHm-yB-7Lo" id="Wl7-ps-AvL"/>
+                <outlet property="durationLabel" destination="pR4-DZ-m6L" id="5pp-jj-ey6"/>
+            </connections>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_audio" width="16" height="16"/>
+    </resources>
+</document>

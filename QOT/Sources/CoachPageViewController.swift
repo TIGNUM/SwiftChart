@@ -34,40 +34,31 @@ final class CoachPageViewController: UIPageViewController {
         return services?.contentService.contentItem(for: predicate)?.valueText
     }()
 
-    lazy var navigationBar: UINavigationBar = {
-        let navBar = UINavigationBar()
-        navBar.barTintColor = .carbonDark
-        navBar.tintColor = .white
-        navBar.isTranslucent = false
-        let navigationItem = NavigationItem()
-        navigationItem.delegate = self
-        let rightBarButtonItem = UIBarButtonItem(withImage: R.image.ic_navbar_arrow_right())
-        navigationItem.configure(leftButton: nil,
-                                 rightButton: rightBarButtonItem,
-                                 tabTitles: [pageTitle ?? ""],
-                                 style: NavigationItem.Style.sand)
-        navBar.items = [navigationItem]
-        return navBar
+    lazy var knowingNavigationController: KnowingNavigationController? = {
+        let navController = R.storyboard.main().instantiateViewController(withIdentifier: KnowingNavigationController.storyboardID) as? KnowingNavigationController
+        guard let knowingViewController = navController?.viewControllers.first  as? KnowingViewController else {
+            return nil
+        }
+        KnowingConfigurator.configure(delegate: self, services: services, viewController: knowingViewController)
+        return navController
     }()
 
-    lazy var knowingViewController: KnowingViewController = {
-        let knowingViewController = KnowingViewController(configure: KnowingConfigurator.make(delegate: self,
-                                                                                              services: services))
-        knowingViewController.title = R.string.localized.topTabBarItemTitleGuide()
-        return knowingViewController
+    lazy var dailyBriefNavigationController: DailyBriefNavigationController? = {
+        let navController = R.storyboard.main().instantiateViewController(withIdentifier: DailyBriefNavigationController.storyboardID) as? DailyBriefNavigationController
+        guard let dailyBriefViewController = navController?.viewControllers.first  as? DailyBriefViewController else {
+            return nil
+        }
+        DailyBriefConfigurator.configure(delegate: self, services: services, viewController: dailyBriefViewController)
+        return navController
     }()
 
-    lazy var dailyBriefViewController: DailyBriefViewController = {
-        let dailyBriefViewController = DailyBriefViewController(configure: DailyBriefConfigurator.make(delegate: self,
-                                                                                                       services: services))
-        dailyBriefViewController.title = R.string.localized.topTabBarItemTitleGuide()
-        return dailyBriefViewController
-    }()
-
-    lazy var myQotViewController: MyQotViewController = {
-        let myQotViewController = MyQotViewController(configure: MyQotConfigurator.make(delegate: self))
-        myQotViewController.title = R.string.localized.topTabBarItemTitleGuide()
-        return myQotViewController
+    lazy var myQotNavigationController: MyQotNavigationController? = {
+        let navController = R.storyboard.main().instantiateViewController(withIdentifier: MyQotNavigationController.storyboardID) as? MyQotNavigationController
+        guard let myQotViewController = navController?.viewControllers.first  as? MyQotViewController else {
+            return nil
+        }
+        MyQotConfigurator.configure(delegate: self, viewController: myQotViewController)
+        return navController
     }()
 
     lazy var coachViewController: CoachViewController = {
@@ -76,17 +67,22 @@ final class CoachPageViewController: UIPageViewController {
         return coachViewController
     }()
 
-    private lazy var orderedViewControllers: [UIViewController] = {
-        return [myQotViewController,
-                dailyBriefViewController,
-                knowingViewController]
+    private lazy var orderedControllers: [UIViewController] = {
+        if
+            let knowController = knowingNavigationController,
+            let dailyBriefController = dailyBriefNavigationController,
+            let myQotController = myQotNavigationController {
+            return [myQotController,
+                    dailyBriefController,
+                    knowController]
+        }
+        return []
     }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         dataSource = self
         delegate = self
-        setupiew()
         addScrollViewDelegate()
         setupViewControllers()
         setupFloatingButton()
@@ -96,29 +92,18 @@ final class CoachPageViewController: UIPageViewController {
 // MARK: - Private
 
 private extension CoachPageViewController {
-    func setupiew() {
-        view.addSubview(navigationBar)
-        if #available(iOS 11.0, *) {
-            navigationBar.topAnchor == view.safeTopAnchor
-            navigationBar.leadingAnchor == view.leadingAnchor
-            navigationBar.trailingAnchor == view.trailingAnchor
-        } else {
-            navigationBar.topAnchor == view.topAnchor
-            navigationBar.leadingAnchor == view.leadingAnchor
-            navigationBar.trailingAnchor == view.trailingAnchor
-        }
-        navigationBar.heightAnchor == 44
-    }
 
     func addScrollViewDelegate() {
         (view.subviews.filter { $0 is UIScrollView }.first as? UIScrollView)?.delegate = self
     }
 
     func setupViewControllers() {
-        setViewControllers([dailyBriefViewController],
-                           direction: .forward,
-                           animated: true,
-                           completion: nil)
+        if let dailyBriefController = knowingNavigationController {
+            setViewControllers([dailyBriefController],
+                               direction: .forward,
+                               animated: true,
+                               completion: nil)
+        }
     }
 
     func setupFloatingButton() {
@@ -148,21 +133,21 @@ extension CoachPageViewController {
 extension CoachPageViewController: UIPageViewControllerDataSource, UIPageViewControllerDelegate {
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else { return nil }
+        guard let viewControllerIndex = orderedControllers.firstIndex(of: viewController) else { return nil }
         let previousIndex = viewControllerIndex - 1
         guard previousIndex >= 0 else { return nil }
-        guard orderedViewControllers.count > previousIndex else { return nil }
-        return orderedViewControllers[previousIndex]
+        guard orderedControllers.count > previousIndex else { return nil }
+        return orderedControllers[previousIndex]
     }
 
     func pageViewController(_ pageViewController: UIPageViewController,
                             viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        guard let viewControllerIndex = orderedViewControllers.firstIndex(of: viewController) else { return nil }
+        guard let viewControllerIndex = orderedControllers.firstIndex(of: viewController) else { return nil }
         let nextIndex = viewControllerIndex + 1
-        let orderedViewControllersCount = orderedViewControllers.count
+        let orderedViewControllersCount = orderedControllers.count
         guard orderedViewControllersCount != nextIndex else { return nil }
         guard orderedViewControllersCount > nextIndex else { return nil }
-        return orderedViewControllers[nextIndex]
+        return orderedControllers[nextIndex]
     }
 
     func pageViewController(_ pageViewController: UIPageViewController,
@@ -189,29 +174,20 @@ extension CoachPageViewController: UIScrollViewDelegate {
 }
 
 extension CoachPageViewController: CoachPageViewControllerDelegate {
-    func presentCoach(from viewController: UIViewController) {
-        viewController.present(coachViewController, animated: true, completion: nil)
-    }
-
     func navigateToKnowingViewController() {
-        setViewControllers([knowingViewController],
-                           direction: .forward,
-                           animated: false,
-                           completion: nil)
+
     }
 
     func navigateToDailyBriefViewController() {
-        setViewControllers([dailyBriefViewController],
-                           direction: .forward,
-                           animated: false,
-                           completion: nil)
+
     }
 
     func navigateToMyQotViewController() {
-        setViewControllers([myQotViewController],
-                           direction: .reverse,
-                           animated: false,
-                           completion: nil)
+
+    }
+
+    func presentCoach(from viewController: UIViewController) {
+        viewController.present(coachViewController, animated: true, completion: nil)
     }
 }
 
@@ -223,19 +199,21 @@ extension CoachPageViewController: NavigationItemDelegate {
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {}
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-        var nexController: UIViewController = dailyBriefViewController
+        var nextController: UINavigationController? = dailyBriefNavigationController
         switch currentPage {
         case .know:
-            nexController = dailyBriefViewController
+            nextController = dailyBriefNavigationController
             currentPage = .dailyBrief
         case .dailyBrief,
-             .myQot: nexController = myQotViewController
+             .myQot: nextController = myQotNavigationController
             currentPage = .myQot
         }
-        setViewControllers([nexController],
-                           direction: .forward,
-                           animated: true,
-                           completion: nil)
+        if let nextController = nextController {
+            setViewControllers([nextController],
+                               direction: .forward,
+                               animated: true,
+                               completion: nil)
+        }
     }
 
     func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}

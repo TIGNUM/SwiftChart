@@ -112,7 +112,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
         fullViewController.present(activityVC, animated: true, completion: nil)
     }
 
-    func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController) {
+    func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: UIViewController) {
         self.selectedContent = selectedArticle
         if selectedArticle.section == Database.Section.learnStrategy.rawValue,
             let contentID = selectedArticle.remoteID.value,
@@ -141,7 +141,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
         }
     }
 
-    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: ArticleItemViewController) {
+    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: UIViewController) {
         let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
         guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
             return
@@ -154,7 +154,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
         viewController.present(navigationController, animated: true, completion: nil)
     }
 
-    func didTapLink(_ url: URL, in viewController: ArticleItemViewController) {
+    func didTapLink(_ url: URL, in viewController: UIViewController) {
         if url.scheme == "mailto" && UIApplication.shared.canOpenURL(url) == true {
             UIApplication.shared.open(url)
         } else {
@@ -167,11 +167,11 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
         }
     }
 
-    func didTapClose(in viewController: ArticleItemViewController) {
+    func didTapClose(in viewController: UIViewController) {
         viewController.dismiss(animated: true, completion: nil)
     }
 
-    func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController) {
+    func didTapMedia(withURL url: URL, in viewController: UIViewController) {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         } catch let error {

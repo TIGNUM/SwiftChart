@@ -24,10 +24,13 @@ final class KnowingRouter {
 // MARK: - KnowingRouterInterface
 
 extension KnowingRouter: KnowingRouterInterface {
-    func presentStrategyList(selectedStrategyID: Int) {
-        let configurator = StrategyListConfigurator.make(selectedStrategyID: selectedStrategyID,
-                                                         delegate: viewController.delegate)
-        let controller = StrategyListViewController(configure: configurator)
-        viewController.present(controller, animated: true, completion: nil)
+    func presentWhatsHotArticle(selectedID: Int) {
+        viewController.performSegue(withIdentifier: R.segue.knowingViewController.knowArticleSegueIdentifier,
+                                    sender: selectedID)
+    }
+
+    func presentStrategyList(selectedStrategyID: Int?) {
+        viewController.performSegue(withIdentifier: R.segue.knowingViewController.knowStrategyListSegueIdentifier,
+                                    sender: selectedStrategyID)
     }
 }

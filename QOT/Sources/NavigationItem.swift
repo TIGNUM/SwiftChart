@@ -42,35 +42,29 @@ final class NavigationItem: UINavigationItem {
     weak var delegate: NavigationItemDelegate?
     private var tabTitles = [String]()
 
+    func configure(leftButtons: [UIBarButtonItem],
+                   rightButtons: [UIBarButtonItem],
+                   tabTitles: [String],
+                   style: Style) {
+        setupView(tabTitles: tabTitles, style: style)
+        addLeftButtons(leftButtons: leftButtons, style: style)
+        addRightButtons(rightButtons: rightButtons, style: style)
+    }
+
     func configure(leftButton: UIBarButtonItem?,
                    rightButton: UIBarButtonItem?,
                    tabTitles: [String],
                    style: Style,
                    hasSearchButton: Bool = false) {
-        self.tabTitles = tabTitles
-        tabMenuView.setTitles(tabTitles)
-        tabMenuView.setStyle(style)
-        let tabMenuSize = CGSize(width: tabMenuView.intrinsicContentSize.width, height: 44)
-        tabMenuView.frame = CGRect(origin: .zero, size: tabMenuSize) // We need set the size for iOS 10
-        leftButton?.tintColor = style.defaultColor
-        leftButton?.target = self
-        leftButton?.action = #selector(didTapLeftButton(_:))
-        leftBarButtonItem = leftButton
+        setupView(tabTitles: tabTitles, style: style)
+        if let leftButton = leftButton {
+            addLeftButtons(leftButtons: [leftButton], style: style)
+        }
         if let rightButton = rightButton {
-            var rightButtons = [rightButton]
-            rightButton.tintColor = style.defaultColor
-            rightButton.target = self
-            rightButton.action = #selector(didTapRightButton(_:))
+            addRightButtons(rightButtons: [rightButton], style: style)
             if hasSearchButton == true {
-                let searchButton = UIBarButtonItem(image: R.image.ic_search(),
-                                                   style: .plain,
-                                                   target: self,
-                                                   action: #selector(didTabSearch(_:)))
-                searchButton.tintColor = style.defaultColor
-                searchButton.imageInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)
-                rightButtons.append(searchButton)
+                addSearchButton(style: style)
             }
-            rightBarButtonItems = rightButtons
         }
     }
 
@@ -102,6 +96,50 @@ final class NavigationItem: UINavigationItem {
             self?.leftBarButtonItem?.tintColor = self?.tabMenuView.style.defaultColor
             self?.rightBarButtonItem?.tintColor = self?.tabMenuView.style.defaultColor
         }
+    }
+}
+
+// MARK: - Private
+
+private extension NavigationItem {
+    func setupView(tabTitles: [String], style: Style) {
+        self.tabTitles = tabTitles
+        tabMenuView.setTitles(tabTitles)
+        tabMenuView.setStyle(style)
+        let tabMenuSize = CGSize(width: tabMenuView.intrinsicContentSize.width, height: 44)
+        tabMenuView.frame = CGRect(origin: .zero, size: tabMenuSize) // We need set the size for iOS 10
+    }
+
+    func addSearchButton(style: Style) {
+        let searchButton = UIBarButtonItem(image: R.image.ic_search(),
+                                           style: .plain,
+                                           target: self,
+                                           action: #selector(didTabSearch(_:)))
+        searchButton.tintColor = style.defaultColor
+        searchButton.imageInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)
+        addRightButtons(rightButtons: [searchButton], style: style)
+    }
+
+    func addLeftButtons(leftButtons: [UIBarButtonItem], style: Style) {
+        var leftItems = [UIBarButtonItem]()
+        leftButtons.forEach { leftButton in
+            leftButton.tintColor = style.defaultColor
+            leftButton.target = self
+            leftButton.action = #selector(didTapLeftButton(_:))
+            leftItems.append(leftButton)
+        }
+        leftBarButtonItems = leftItems
+    }
+
+    func addRightButtons(rightButtons: [UIBarButtonItem], style: Style) {
+        var rightItems = [UIBarButtonItem]()
+        rightButtons.forEach { rightButton in
+            rightButton.tintColor = style.defaultColor
+            rightButton.target = self
+            rightButton.action = #selector(didTapRightButton(_:))
+            rightItems.append(rightButton)
+        }
+        rightBarButtonItems = rightItems
     }
 }
 

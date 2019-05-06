@@ -11,11 +11,11 @@ import Rswift
 import Anchorage
 
 protocol ArticleItemViewControllerDelegate: class {
-    func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: ArticleItemViewController)
-    func didTapClose(in viewController: ArticleItemViewController)
-    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: ArticleItemViewController)
-    func didTapLink(_ url: URL, in viewController: ArticleItemViewController)
-    func didTapMedia(withURL url: URL, in viewController: ArticleItemViewController)
+    func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: UIViewController)
+    func didTapClose(in viewController: UIViewController)
+    func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL, in viewController: UIViewController)
+    func didTapLink(_ url: URL, in viewController: UIViewController)
+    func didTapMedia(withURL url: URL, in viewController: UIViewController)
     func didTapShare(header: ArticleCollectionHeader)
 }
 
@@ -142,7 +142,6 @@ private extension ArticleItemViewController {
         tableView.backgroundColor = .navy
         view.addSubview(tableView)
         view.translatesAutoresizingMaskIntoConstraints = true
-
         if
             let guideItem = guideItem,
             let featureLink = guideItem.link,
@@ -160,7 +159,6 @@ private extension ArticleItemViewController {
             button.titleLabel?.font = .ApercuBold16
             button.contentHorizontalAlignment = .right
         }
-
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never

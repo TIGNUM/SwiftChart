@@ -9,6 +9,10 @@
 import UIKit
 import Anchorage
 
+final class DailyBriefNavigationController: UINavigationController {
+    static var storyboardID = NSStringFromClass(DailyBriefNavigationController.classForCoder())
+}
+
 final class DailyBriefViewController: HomeViewController {
 
     // MARK: - Properties
@@ -19,16 +23,7 @@ final class DailyBriefViewController: HomeViewController {
         return LevelTwoViewController(configure: LevelTwoConfigurator.make(delegate: delegate))
     }()
 
-    // MARK: - Init
-
-    init(configure: Configurator<DailyBriefViewController>) {
-        super.init(nibName: nil, bundle: nil)
-        configure(self)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
+    // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()

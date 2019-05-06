@@ -24,9 +24,8 @@ final class StrategyListRouter {
 // MARK: - StrategyListRouterInterface
 
 extension StrategyListRouter: StrategyListRouterInterface {
-    func presentArticle(services: Services, content: ContentCollection, contentCategory: ContentCategory) {
-        AppDelegate.current.appCoordinator.startLearnContentItemCoordinator(services: services,
-                                                                            content: content,
-                                                                            category: contentCategory)
+    func presentArticle(selectedID: Int?) {
+        viewController.performSegue(withIdentifier: R.segue.strategyListViewController.knowStrategyArticleSegueIdentifier,
+                                    sender: selectedID)
     }
 }

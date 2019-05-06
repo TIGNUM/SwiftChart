@@ -12,13 +12,18 @@ import Freddy
 // FIXME: Unit test
 enum ContentItemValue {
 
+    case articleRelatedWhatsHot(relatedArticle: Article.RelatedArticle)
+    case articleRelatedStrategy(relatedArticle: Article.RelatedArticle)
+    case headerText(header: Article.Header)
+    case headerImage(imageURLString: String?)
     case text(text: String, style: ContentItemTextStyle)
     case listItem(text: String)
     case video(title: String, description: String?, placeholderURL: URL?, videoURL: URL, duration: TimeInterval)
-    case audio(title: String, description: String?, placeholderURL: URL, audioURL: URL, duration: TimeInterval, waveformData: [Float])
+    case audio(title: String, description: String?, placeholderURL: URL?, audioURL: URL, duration: TimeInterval, waveformData: [Float])
     case image(title: String, description: String?, url: URL)
     case prepareStep(title: String, description: String, relatedContentID: Int?)
     case pdf(title: String, description: String?, pdfURL: URL, itemID: Int)
+    case button(selected: Bool)
     case guide
     case guideButton
     case invalid
@@ -105,6 +110,13 @@ enum ContentItemValue {
         case .h6: return Style.navigationTitle(text, textColor).attributedString(lineSpacing: 2, lineHeight: lineHeight)
         case .paragraph: return Style.paragraph(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
         case .quote: return Style.qoute(text, .white60).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
+        }
+    }
+
+    var duration: Int {
+        switch self {
+        case .audio(_, _, _, _, let duration, _): return duration.toInt
+        default: return 0
         }
     }
 }

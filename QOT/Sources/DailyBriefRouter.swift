@@ -25,10 +25,7 @@ final class DailyBriefRouter {
 
 extension DailyBriefRouter: DailyBriefRouterInterface {
     func presentStrategyList(selectedStrategyID: Int) {
-        let configurator = StrategyListConfigurator.make(selectedStrategyID: selectedStrategyID,
-                                                         delegate: viewController.delegate)
-        let controller = StrategyListViewController(configure: configurator)
-        viewController.present(controller, animated: true, completion: nil)
+
     }
 
     func didTabCell(at: IndexPath) {

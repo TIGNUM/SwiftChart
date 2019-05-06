@@ -17,10 +17,14 @@ protocol StrategyListPresenterInterface {
 }
 
 protocol StrategyListInteractorInterface: Interactor {
-    func contentList() -> [ContentCollection]
-    func presentArticle(for selectedContent: ContentCollection)
+    var isFoundation: Bool { get }
+    var foundationStrategies: [Strategy.Item] { get }
+    var strategies: [Strategy.Item] { get }
+    var rowCount: Int { get }
+    var headerTitle: String { get }
+    func presentArticle(selectedID: Int?)
 }
 
 protocol StrategyListRouterInterface {
-    func presentArticle(services: Services, content: ContentCollection, contentCategory: ContentCategory)
+    func presentArticle(selectedID: Int?)
 }

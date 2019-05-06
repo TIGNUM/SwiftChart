@@ -23,7 +23,7 @@ target 'QOT' do
   pod 'Anchorage'
   pod 'R.swift'
   pod 'RealmSwift'
-  pod 'Freddy'
+  pod 'Freddy
   pod 'Alamofire'
   pod 'KeychainAccess'
   pod 'ActionSheetPicker-3.0'
@@ -40,6 +40,7 @@ target 'QOT' do
   pod 'HockeySDK', '~> 5.1.2'
   pod 'BadgeSwift', '~> 5.0'
   pod 'Kingfisher'
+  pod 'AMScrollingNavbar'
 
   target 'QOTTests' do
     inherit! :search_paths

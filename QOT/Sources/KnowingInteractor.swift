@@ -36,7 +36,7 @@ final class KnowingInteractor {
 // MARK: - KnowingInteractorInterface
 
 extension KnowingInteractor: KnowingInteractorInterface {
-    func presentStrategyList(selectedStrategyID: Int) {
+    func presentStrategyList(selectedStrategyID: Int?) {
         router.presentStrategyList(selectedStrategyID: selectedStrategyID)
     }
 
@@ -52,8 +52,8 @@ extension KnowingInteractor: KnowingInteractorInterface {
         return worker.foundationStrategy
     }
 
-    func presentWhatsHotArticle(at indexPath: IndexPath) {
-
+    func presentWhatsHotArticle(selectedID: Int) {
+        router.presentWhatsHotArticle(selectedID: selectedID)
     }
 
     func whatsHotArticles() -> [Knowing.WhatsHotItem] {
