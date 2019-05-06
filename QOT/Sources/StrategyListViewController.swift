@@ -22,7 +22,7 @@ final class StrategyListViewController: AbstractLevelTwoViewController {
 
     var interactor: StrategyListInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var bottomToolBar: UIToolbar!
+//    @IBOutlet private weak var bottomToolBar: UIToolbar!
     private var audioPlayerBar = AudioPlayerBar()
     private var audioPlayerFullScreen = AudioPlayerFullScreen()
 
@@ -58,17 +58,9 @@ private extension StrategyListViewController {
 
     func setupAudioPlayerView() {
         audioPlayerBar = AudioPlayerBar.instantiateFromNib()
-        bottomToolBar.addSubview(audioPlayerBar)
+        view.addSubview(audioPlayerBar)
         audioPlayerBar.isHidden = true
         audioPlayerBar.viewDelegate = self
-    }
-}
-
-// MARK: - Actions
-
-private extension StrategyListViewController {
-    @IBAction func didTabBackButton() {
-        dismiss(animated: true, completion: nil)
     }
 }
 
@@ -76,7 +68,7 @@ private extension StrategyListViewController {
 
 extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
-        bottomToolBar.barTintColor = .carbon
+//        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbonDark)
         view.backgroundColor = .carbon
         setupTableView()
         setupNavigationButtons()

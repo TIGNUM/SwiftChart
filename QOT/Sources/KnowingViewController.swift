@@ -148,7 +148,7 @@ extension KnowingViewController {
             }
             return headerView ?? UICollectionReusableView()
         default:
-            assert(false, "Unexpected element kind")
+            return UICollectionReusableView()
         }
     }
 

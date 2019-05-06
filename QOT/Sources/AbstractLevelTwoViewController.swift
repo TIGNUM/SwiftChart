@@ -25,8 +25,22 @@ class AbstractLevelTwoViewController: UIViewController {
         return button
     }()
 
+    lazy var backButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.addTarget(self, action: #selector(didTabBackButton), for: .touchUpInside)
+        button.setImage(R.image.ic_back(), for: .normal)
+        let size = CGSize(width: 40, height: 40)
+        let offset = (24 + size.width * 0.5)
+        let center = CGPoint(x: 24, y: view.frame.height - offset)
+        button.frame = CGRect(center: center, size: size)
+        let radius = button.bounds.width / 2
+        button.corner(radius: radius)
+        return button
+    }()
+
     func setupNavigationButtons() {
         setupCoachButton()
+        setupBackButton()
         setupLevelNavigationuttonKnowing()
         setupLevelNavigationuttonDailyBried()
         setupLevelNavigationuttonMyQot()
@@ -40,6 +54,10 @@ class AbstractLevelTwoViewController: UIViewController {
 // MARK: - Actions
 
 extension AbstractLevelTwoViewController {
+    @objc func didTabBackButton() {
+        dismiss(animated: true)
+    }
+
     @objc func didTabCoachButton() {
         delegate?.presentCoach(from: self)
     }
@@ -65,6 +83,10 @@ extension AbstractLevelTwoViewController {
 private extension AbstractLevelTwoViewController {
     func setupCoachButton() {
         view.addSubview(coachButton)
+    }
+
+    func setupBackButton() {
+        view.addSubview(backButton)
     }
 
     func setupLevelNavigationuttonKnowing() {
