@@ -18,7 +18,6 @@ final class StrategyListHeaderView: UIView {
         guard let headerView = R.nib.strategyListHeaderView.instantiate(withOwner: self).first as? StrategyListHeaderView else {
             fatalError("Cannot load header view")
         }
-        headerView.backgroundColor = .clear
         headerView.configure(title: title)
         return headerView
     }

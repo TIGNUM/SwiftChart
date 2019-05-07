@@ -767,4 +767,10 @@ extension UIApplication {
         }
         return nil
     }
+
+    func setStatusBar(background: UIColor) {
+        if let statusBar = UIApplication.shared.statusBarView, statusBar.responds(to: "setBackgroundColor:") {
+            statusBar.backgroundColor = background
+        }
+    }
 }

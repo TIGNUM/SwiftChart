@@ -102,7 +102,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             UITabBar.appearance().shadowImage = UIImage()
             UITabBar.appearance().backgroundImage = UIImage()
             UNUserNotificationCenter.current().delegate = self
-            UIApplication.shared.statusBarView?.backgroundColor = ColorMode.dark.backgroundColor
+            UIApplication.shared.setStatusBar(background: ColorMode.dark.backgroundColor) 
             UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.apercuMedium(ofSize: 20),
                                                                 .foregroundColor: UIColor.white]
             incomingLocationEvent(launchOptions: launchOptions)

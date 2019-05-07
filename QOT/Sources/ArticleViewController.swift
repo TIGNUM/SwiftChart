@@ -22,7 +22,7 @@ enum ColorMode {
 
     var backgroundColor: UIColor {
         switch self {
-        case .dark: return .carbonDark
+        case .dark: return .carbon
         case .darkNot: return .sand
         }
     }
@@ -126,7 +126,7 @@ final class ArticleViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.statusBarView?.backgroundColor = ColorMode.darkNot.backgroundColor
+        UIApplication.shared.setStatusBar(background: ColorMode.darkNot.backgroundColor)
     }
 }
 
@@ -178,7 +178,7 @@ private extension ArticleViewController {
         UIApplication.shared.setStatusBarStyle(colorMode.statusBarStyle)
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.apercuMedium(ofSize: 20),
                                                             .foregroundColor: colorMode.textColor]
-        UIApplication.shared.statusBarView?.backgroundColor = colorMode.backgroundColor
+        UIApplication.shared.setStatusBar(background: colorMode.backgroundColor)
         navigationController?.navigationBar.barTintColor = colorMode.backgroundColor
         view.backgroundColor = colorMode.backgroundColor
         bottombar.barTintColor = colorMode.backgroundColor

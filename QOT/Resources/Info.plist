@@ -61,8 +61,6 @@
 	</dict>
 	<key>HOCKEY_APP_ID</key>
 	<string>4f2cc0d018ea4a2884e052d72eb9c456</string>
-	<key>HOCKEY_APP_ID_3_0</key>
-	<string>b0fc48625edc47fcbd1d83a5a5f9f8a4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>

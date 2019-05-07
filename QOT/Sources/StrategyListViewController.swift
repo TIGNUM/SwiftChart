@@ -22,7 +22,6 @@ final class StrategyListViewController: AbstractLevelTwoViewController {
 
     var interactor: StrategyListInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
-//    @IBOutlet private weak var bottomToolBar: UIToolbar!
     private var audioPlayerBar = AudioPlayerBar()
     private var audioPlayerFullScreen = AudioPlayerFullScreen()
 
@@ -43,7 +42,7 @@ final class StrategyListViewController: AbstractLevelTwoViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.statusBarView?.backgroundColor = ColorMode.dark.backgroundColor
+        UIApplication.shared.setStatusBar(background: ColorMode.dark.backgroundColor)
     }
 }
 

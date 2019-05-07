@@ -101,6 +101,7 @@
                     <constraint firstItem="LYb-v5-V3v" firstAttribute="leading" secondItem="ehM-mL-nRb" secondAttribute="trailing" constant="12" id="tyQ-TT-C8i"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="XSK-0F-Ydj"/>
             <connections>
                 <outlet property="audioButton" destination="6Si-9q-0Zf" id="hJg-Qt-JTB"/>
