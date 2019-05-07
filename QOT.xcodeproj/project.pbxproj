@@ -1304,13 +1304,6 @@
 		36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerOverlay.swift; sourceTree = "<group>"; };
 		36A5E75622786014006A522C /* MediaPlayerOverlay.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaPlayerOverlay.xib; sourceTree = "<group>"; };
 		36A5E7582278612C006A522C /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
-		36A3494322801FAD0091246F /* SF-Pro-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Regular.otf"; sourceTree = "<group>"; };
-		36A3494422801FAD0091246F /* SF-Pro-Text-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Regular.otf"; sourceTree = "<group>"; };
-		36A3494522801FAE0091246F /* SF-Pro-Display-Thin.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Thin.otf"; sourceTree = "<group>"; };
-		36A3494622801FAE0091246F /* SF-Pro-Display-Ultralight.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Ultralight.otf"; sourceTree = "<group>"; };
-		36A3494722801FAE0091246F /* SF-Pro-Text-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Medium.otf"; sourceTree = "<group>"; };
-		36A3494822801FAF0091246F /* SF-Pro-Text-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Light.otf"; sourceTree = "<group>"; };
-		36A3494922801FAF0091246F /* SF-Pro-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Display-Light.otf"; sourceTree = "<group>"; };
 		36A7B9412166454A006C18F0 /* PrepareSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareSectionHeaderView.swift; sourceTree = "<group>"; };
 		36A7B9432166455C006C18F0 /* PrepareSectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareSectionHeaderView.xib; sourceTree = "<group>"; };
 		36AD001F20EA8D8100F7227C /* PartnerEditViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PartnerEditViewController.xib; sourceTree = "<group>"; };
@@ -2164,49 +2157,49 @@
 			children = (
 				36376639223A6F3B00C2C429 /* AbstractTableViewCell.swift */,
 				3637663B223A6F8500C2C429 /* AbstractTableViewCell.xib */,
+				36E86D492270511100371C67 /* ArticleBulletPointTableViewCell.swift */,
+				36E86D4A2270511100371C67 /* ArticleBulletPointTableViewCell.xib */,
+				360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */,
+				360CC3C52268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib */,
+				36E86D512270651A00371C67 /* ArticleRelatedTableViewCell.swift */,
+				36E86D522270651A00371C67 /* ArticleRelatedTableViewCell.xib */,
+				360CC3C82268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift */,
+				360CC3C92268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib */,
+				360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */,
+				360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */,
+				3662433D227C56E500FFED3A /* AudioButton.swift */,
+				3662433F227C570200FFED3A /* AudioButton.xib */,
+				3604C9232272176F00A681B3 /* AudioPlayer.swift */,
+				36AEA4DC2271AC6E00EC9C55 /* AudioPlayerBar.swift */,
+				36AEA4DE2271AC8F00EC9C55 /* AudioPlayerBar.xib */,
+				3604C91F22720CAC00A681B3 /* AudioPlayerFullScreen.swift */,
+				3604C92122720CB900A681B3 /* AudioPlayerFullScreen.xib */,
 				36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */,
 				36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */,
 				36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */,
 				36E6E3F022493016001BE9C7 /* ComponentDetailViewController.swift */,
 				3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */,
 				3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */,
+				366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */,
+				366F1FD6226A1CE90034D8FD /* FoundationTableViewCell.xib */,
+				36E86D4D227059A100371C67 /* MarkAsReadTableViewCell.swift */,
+				36E86D4E227059A100371C67 /* MarkAsReadTableViewCell.xib */,
+				36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */,
+				36A5E75622786014006A522C /* MediaPlayerOverlay.xib */,
+				3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */,
+				3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */,
+				36E86D55227091CB00371C67 /* StrategyContentTableViewCell.swift */,
+				36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */,
+				3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */,
+				3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */,
+				36E86D45226F452C00371C67 /* StrategyListHeaderView.swift */,
+				36E86D47226F45BC00371C67 /* StrategyListHeaderView.xib */,
 				36376666223ABB2D00C2C429 /* StrategyTableViewCell.swift */,
 				36376667223ABB2D00C2C429 /* StrategyTableViewCell.xib */,
 				365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */,
 				365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */,
 				365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */,
 				365EC0BE224A74850019AFF9 /* WhatsHotComponentView.xib */,
-				3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */,
-				3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */,
-				3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */,
-				3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */,
-				360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */,
-				360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */,
-				360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */,
-				360CC3C52268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib */,
-				360CC3C82268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift */,
-				360CC3C92268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib */,
-				366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */,
-				366F1FD6226A1CE90034D8FD /* FoundationTableViewCell.xib */,
-				36E86D45226F452C00371C67 /* StrategyListHeaderView.swift */,
-				36E86D47226F45BC00371C67 /* StrategyListHeaderView.xib */,
-				36E86D492270511100371C67 /* ArticleBulletPointTableViewCell.swift */,
-				36E86D4A2270511100371C67 /* ArticleBulletPointTableViewCell.xib */,
-				36E86D4D227059A100371C67 /* MarkAsReadTableViewCell.swift */,
-				36E86D4E227059A100371C67 /* MarkAsReadTableViewCell.xib */,
-				36E86D512270651A00371C67 /* ArticleRelatedTableViewCell.swift */,
-				36E86D522270651A00371C67 /* ArticleRelatedTableViewCell.xib */,
-				36E86D55227091CB00371C67 /* StrategyContentTableViewCell.swift */,
-				36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */,
-				36AEA4DC2271AC6E00EC9C55 /* AudioPlayerBar.swift */,
-				36AEA4DE2271AC8F00EC9C55 /* AudioPlayerBar.xib */,
-				3604C91F22720CAC00A681B3 /* AudioPlayerFullScreen.swift */,
-				3604C92122720CB900A681B3 /* AudioPlayerFullScreen.xib */,
-				3604C9232272176F00A681B3 /* AudioPlayer.swift */,
-				36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */,
-				36A5E75622786014006A522C /* MediaPlayerOverlay.xib */,
-				3662433D227C56E500FFED3A /* AudioButton.swift */,
-				3662433F227C570200FFED3A /* AudioButton.xib */,
 			);
 			name = components;
 			sourceTree = "<group>";
