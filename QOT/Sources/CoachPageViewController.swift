@@ -124,7 +124,11 @@ private extension CoachPageViewController {
 
 extension CoachPageViewController {
     @objc func didTabCoachButton() {
-        present(coachViewController, animated: true, completion: nil)
+        let permissionsManager = AppDelegate.appState.permissionsManager!
+        let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator, permissionsManager: permissionsManager)
+        let viewController = DecisionTreeViewController(configure: configurator)
+        present(viewController, animated: true)
+//        present(coachViewController, animated: true, completion: nil)
     }
 }
 

@@ -25,6 +25,8 @@ final class Question: SyncableObject {
 
     @objc private(set) dynamic var answersDescription: String?
 
+    @objc private(set) dynamic var answerType: String = ""
+
     let answers = List<Answer>()
 
     let groups = List<QuestionGroup>()
@@ -51,8 +53,11 @@ extension Question: OneWaySyncableDown {
         htmlTitleString = data.htmlTitleString.count > 0 ? data.htmlTitleString : nil
         dailyPrepTitle = data.dailyPrepTitle
         answersDescription = data.answersDescription
+        answerType = data.answerType
         key = data.answers.filter { $0.title == "key" }.first?.subtitle
-        answers.append(objectsIn: data.answers.filter { $0.sortOrder >= 0 && $0.title != "key" && $0.syncStatus != 2 /*2 = DELETED*/ }.map({ Answer(intermediary: $0) }))
+        answers.append(objectsIn: data.answers
+            .filter { $0.sortOrder >= 0 && $0.title != "key" && $0.syncStatus != 2 /*2 = DELETED*/ }
+            .map({ Answer(intermediary: $0) }))
         groups.append(objectsIn: data.groups.map({ QuestionGroup(intermediary: $0) }))
     }
 }

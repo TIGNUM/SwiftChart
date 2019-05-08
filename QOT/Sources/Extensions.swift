@@ -715,6 +715,18 @@ extension DoubleObject {
 
 extension Int {
 
+    mutating func plus(_ value: Int) {
+        self += value
+    }
+
+    mutating func minus(_ value: Int) {
+        self -= value
+    }
+
+    mutating func reset() {
+        self = 0
+    }
+
     var toFloat: CGFloat {
         return CGFloat(self)
     }

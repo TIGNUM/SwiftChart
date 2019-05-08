@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="76" id="KGk-i7-Jjw" customClass="SingleSelectionTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="362" height="76"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="362" height="75.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b56-4f-yRy" customClass="DecisionTreeButton" customModule="QOT" customModuleProvider="target">
+                        <rect key="frame" x="254" y="24" width="75" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="bbM-xI-YbS"/>
+                            <constraint firstAttribute="height" constant="40" id="u1V-Z8-JJW"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
+                        <state key="normal" title="0"/>
+                        <connections>
+                            <action selector="didTapRightOption:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="yfD-yn-kPk"/>
+                        </connections>
+                    </button>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVR-md-gAZ" customClass="DecisionTreeButton" customModule="QOT" customModuleProvider="target">
+                        <rect key="frame" x="156" y="24" width="75" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="Odc-ig-eIh"/>
+                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="y2U-7L-wdh"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
+                        <state key="normal" title="1"/>
+                        <connections>
+                            <action selector="didTapLeftOption:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="91e-u1-HzX"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <color key="backgroundColor" red="0.91723662614822388" green="0.90605789422988892" blue="0.89410656690597534" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RVR-md-gAZ" secondAttribute="bottom" constant="10" id="AFq-Hg-uHa"/>
+                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="b56-4f-yRy" secondAttribute="bottom" constant="10" id="Frb-sO-22n"/>
+                    <constraint firstItem="b56-4f-yRy" firstAttribute="leading" secondItem="RVR-md-gAZ" secondAttribute="trailing" multiplier="1.1" id="Odi-e8-58e"/>
+                    <constraint firstItem="b56-4f-yRy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="Tv7-Y3-SPy"/>
+                    <constraint firstAttribute="right" secondItem="b56-4f-yRy" secondAttribute="right" multiplier="1.1" id="mqD-oW-Vww"/>
+                    <constraint firstItem="RVR-md-gAZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="q5A-Xb-7jo"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="leftOptionButton" destination="RVR-md-gAZ" id="coK-Up-52D"/>
+                <outlet property="leftWidthConstraint" destination="y2U-7L-wdh" id="6aZ-Ur-d0r"/>
+                <outlet property="rightOptionButton" destination="b56-4f-yRy" id="jxD-sf-TDx"/>
+                <outlet property="rightWidthContraint" destination="bbM-xI-YbS" id="V46-50-WWi"/>
+            </connections>
+            <point key="canvasLocation" x="89.599999999999994" y="62.968515742128943"/>
+        </tableViewCell>
+    </objects>
+</document>

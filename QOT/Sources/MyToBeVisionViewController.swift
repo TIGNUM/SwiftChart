@@ -71,7 +71,7 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
                                                       permissionsManager: permissionsManager,
                                                       pageName: .imagePickerToBeVision)
         imagePickerController.delegate = self
-        visionChatItems = interactor?.visionChatItems ?? [:]
+        visionChatItems = /*interactor?.visionChatItems ??*/ [:]
     }
 
     required init?(coder aDecoder: NSCoder) {

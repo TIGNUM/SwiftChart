@@ -63,44 +63,36 @@ final class QuestionsService {
         return Array(visionQuestions())
     }
 
-    private var introChatItems: [ChatItem<VisionGeneratorChoice>] {
-        guard let question = questionFor(.intro) else { return [] }
-        return chatItems(for: question)
+    private var introChatItems: Question? {
+        return questionFor(.intro)
     }
 
-    private var instructionChatItems: [ChatItem<VisionGeneratorChoice>] {
-        guard let question = questionFor(.instructions) else { return [] }
-        return chatItems(for: question)
+    private var instructionChatItems: Question? {
+        return questionFor(.instructions)
     }
 
-    private var workChatItems: [ChatItem<VisionGeneratorChoice>] {
-        guard let question = questionFor(.work) else { return [] }
-        return chatItems(for: question)
+    private var workChatItems: Question? {
+        return questionFor(.work)
     }
 
-    private var homeChatItems: [ChatItem<VisionGeneratorChoice>] {
-        guard let question = questionFor(.home) else { return [] }
-        return chatItems(for: question)
+    private var homeChatItems: Question? {
+        return questionFor(.home)
     }
 
-    private var nextChatItems: [ChatItem<VisionGeneratorChoice>] {
-        guard let question = questionFor(.next) else { return [] }
-        return chatItems(for: question)
+    private var nextChatItems: Question? {
+        return questionFor(.next)
     }
 
-    private var createChatItems: [ChatItem<VisionGeneratorChoice>] {
-        guard let question = questionFor(.create) else { return [] }
-        return chatItems(for: question)
+    private var createChatItems: Question? {
+        return questionFor(.create)
     }
 
-    private var pictureChatItems: [ChatItem<VisionGeneratorChoice>] {
-        guard let question = questionFor(.picture) else { return [] }
-        return chatItems(for: question)
+    private var pictureChatItems: Question? {
+        return questionFor(.picture)
     }
 
-    private var reviewChatItems: [ChatItem<VisionGeneratorChoice>] {
-        guard let question = questionFor(.review) else { return [] }
-        return chatItems(for: question)
+    private var reviewChatItems: Question? {
+        return questionFor(.review)
     }
 }
 
@@ -136,7 +128,7 @@ extension QuestionsService {
         return answers
     }
 
-    var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] {
+    var visionChatItems: [VisionGeneratorChoice.QuestionType: Question?] {
         return [VisionGeneratorChoice.QuestionType.intro: introChatItems,
                 VisionGeneratorChoice.QuestionType.instructions: instructionChatItems,
                 VisionGeneratorChoice.QuestionType.work: workChatItems,
@@ -149,6 +141,10 @@ extension QuestionsService {
 
     func questionFor(_ type: VisionGeneratorChoice.QuestionType) -> Question? {
         return (questions.filter { $0.key == type.key }).first
+    }
+
+    func question(for key: String) -> Question? {
+        return questions.filter { $0.key == key }.first
     }
 
     func chatItems(for question: Question) -> [ChatItem<VisionGeneratorChoice>] {

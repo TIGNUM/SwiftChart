@@ -63,7 +63,7 @@ final class MyToBeVisionWorker {
         return services.userService.myToBeVision().map { PageObject(object: $0, identifier: .myToBeVision) }
     }
 
-    var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] {
+    var visionChatItems: [VisionGeneratorChoice.QuestionType: Question?] {
         return services.questionsService.visionChatItems
     }
 

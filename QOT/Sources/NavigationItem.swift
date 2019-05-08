@@ -78,7 +78,7 @@ final class NavigationItem: UINavigationItem {
     }
 
     func hideTabMenuView() {
-        UIView.animate(withDuration: Animation.duration) { [weak self] in
+        UIView.animate(withDuration: Animation.duration_03) { [weak self] in
             self?.tabMenuView.alpha = 0
             self?.tabMenuView.buttons.forEach { $0.setTitleColor(.clear, for: .normal) }
             self?.tabMenuView.indicatorView.alpha = 0
@@ -89,7 +89,7 @@ final class NavigationItem: UINavigationItem {
 
     func showTabMenuView(titles: [String]) {
         tabMenuView.setTitles(titles)
-        UIView.animate(withDuration: Animation.duration) { [weak self] in
+        UIView.animate(withDuration: Animation.duration_03) { [weak self] in
             self?.tabMenuView.alpha = 1
             self?.tabMenuView.syncAppearance()
             self?.tabMenuView.indicatorView.alpha = 1

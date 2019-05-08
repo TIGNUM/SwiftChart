@@ -132,7 +132,7 @@ extension VisionGeneratorWorker {
 
     func restartGenerator() {
         currentQuestionType = .intro
-        allChatItems = services.questionsService.visionChatItems
+        allChatItems = /*services.questionsService.visionChatItems*/ [:]
         chatViewModel.resetVisionSelections()
         chatViewModel.setItems([])
         updateViewModel(for: .intro)

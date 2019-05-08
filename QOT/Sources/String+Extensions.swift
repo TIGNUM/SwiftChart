@@ -10,6 +10,10 @@ import UIKit
 
 extension String {
 
+    func size(with font: UIFont) -> CGSize {
+        return (self as NSString).size(withAttributes: [NSAttributedStringKey.font: font])
+    }
+
     func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
         let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
         let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil)

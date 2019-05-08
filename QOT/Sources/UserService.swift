@@ -198,6 +198,13 @@ extension UserService {
         }
     }
 
+    func updateVision(_ text: String) {
+        guard let old = myToBeVision() else { return }
+        updateMyToBeVision(old) {
+            $0.text = text
+        }
+    }
+
     func eraseToBeVision() {
         guard let toBeVision = myToBeVision() else {
             return

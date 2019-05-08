@@ -9,6 +9,10 @@
 import UIKit
 
 final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
+    var visionChatItems: [VisionGeneratorChoice.QuestionType : [ChatItem<VisionGeneratorChoice>]] {
+        return [:]
+    }
+    
 
     let presenter: MyToBeVisionPresenterInterface
     let worker: MyToBeVisionWorker
@@ -85,7 +89,7 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
         return worker.trackablePageObject
     }
 
-    var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] {
+    var newModelChatItemsTest: [VisionGeneratorChoice.QuestionType: Question?] {
         return worker.visionChatItems
     }
 

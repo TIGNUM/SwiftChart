@@ -12,7 +12,7 @@ final class LearnListAnimator: NSObject {
 
     private let duration: TimeInterval
 
-    init(duration: TimeInterval = Animation.duration) {
+    init(duration: TimeInterval = Animation.duration_03) {
         self.duration = duration
         super.init()
     }

@@ -10,8 +10,12 @@ import Foundation
 import UIKit
 
 extension UILabel {
-
-    func setAttrText(text: String, font: UIFont, alignment: NSTextAlignment = .natural, lineSpacing: CGFloat = 13, characterSpacing: CGFloat = 0, color: UIColor? = nil) {
+    func setAttrText(text: String,
+                     font: UIFont,
+                     alignment: NSTextAlignment = .natural,
+                     lineSpacing: CGFloat = 13,
+                     characterSpacing: CGFloat = 0,
+                     color: UIColor? = nil) {
         let attrString = NSMutableAttributedString(string: text)
         let style = NSMutableParagraphStyle()
         let range = NSRange(location: 0, length: text.count)
@@ -39,11 +43,39 @@ extension UILabel {
     func startBlinking(duration: CGFloat = 0.75) {
         UIView.animate(withDuration: TimeInterval(duration), delay: 0, options: .repeat, animations: { [unowned self] in
             self.alpha = 0
-        }, completion: nil)
+        })
     }
 
     func stopBlinking() {
         alpha = 1
         layer.removeAllAnimations()
+    }
+}
+
+extension UILabel {
+    /// Adds space to out .xib/.storyboards
+    @IBInspectable
+    var letterSpace: CGFloat {
+        set {
+            let attributedString: NSMutableAttributedString!
+            if let currentAttrString = attributedText {
+                attributedString = NSMutableAttributedString(attributedString: currentAttrString)
+            } else {
+                attributedString = NSMutableAttributedString(string: text ?? "")
+                text = nil
+            }
+            attributedString.addAttribute(.kern,
+                                          value: newValue,
+                                          range: NSRange(location: 0, length: attributedString.length))
+            attributedText = attributedString
+        }
+
+        get {
+            if let currentLetterSpace = attributedText?.attribute(.kern, at: 0, effectiveRange: .none) as? CGFloat {
+                return currentLetterSpace
+            } else {
+                return 0
+            }
+        }
     }
 }

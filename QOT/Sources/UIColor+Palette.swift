@@ -56,6 +56,10 @@ extension UIColor {
         return UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: 1)
     }
 
+    class var carbon05: UIColor {
+        return UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: 0.05)
+    }
+
     /// UIColor(white: 255/255, alpha: 0.1)
     class var whiteLight: UIColor {
         return UIColor(white: 255/255, alpha: 0.1)

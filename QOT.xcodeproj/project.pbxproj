@@ -563,6 +563,8 @@
 		AC4DA0E422157DAD00BAF914 /* UpcomingEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */; };
 		AC4DA0E6221581E000BAF914 /* UpcomingEventViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E5221581E000BAF914 /* UpcomingEventViewController.swift */; };
 		AC4DA0E82215836300BAF914 /* UpcomingEventView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */; };
+		AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC516C6A228059CC009C4D30 /* CellAnimator.swift */; };
+		AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */ = {isa = PBXBuildFile; fileRef = 36A5E7582278612C006A522C /* SF-Pro-Text-Semibold.otf */; };
 		AC7F3DB42177407D0058B343 /* GuidePreparationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC7F3DB22177407D0058B343 /* GuidePreparationTableViewCell.swift */; };
 		AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC7F3DB32177407D0058B343 /* GuidePreparationTableViewCell.xib */; };
 		AC84FFC02229379B0056F9EA /* SiriEventsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC84FFBF2229379B0056F9EA /* SiriEventsModel.swift */; };
@@ -600,6 +602,11 @@
 		ACA4B1932212E21F00552A54 /* ArticleCollectionViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F3A9CC11FCDC89D000F1744 /* ArticleCollectionViewData.swift */; };
 		ACA4B1952212FEAA00552A54 /* WhatsHotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA4B1942212FEAA00552A54 /* WhatsHotViewController.swift */; };
 		ACA4B197221300BD00552A54 /* WhatsHotView.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACA4B196221300BD00552A54 /* WhatsHotView.xib */; };
+		ACB449962260EB4F00B0E79F /* DecisionTreeButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB449952260EB4F00B0E79F /* DecisionTreeButton.swift */; };
+		ACB99E7622661F2400A73709 /* DecisionTreeQuestionnaireController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB99E7522661F2400A73709 /* DecisionTreeQuestionnaireController.swift */; };
+		ACB99E7922687D2000A73709 /* MultipleSelectionCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB99E7722687D1F00A73709 /* MultipleSelectionCollectionViewCell.swift */; };
+		ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACB99E7822687D1F00A73709 /* MultipleSelectionCollectionViewCell.xib */; };
+		ACB99E8C226F3A4600A73709 /* DotsLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACB99E8B226F3A4500A73709 /* DotsLoadingView.swift */; };
 		ACC68C82221C181300ED899B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E9BF1F1628B50000D20D /* Date+Extension.swift */; };
 		ACC68C83221C181300ED899B /* Date+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8523E9BF1F1628B50000D20D /* Date+Extension.swift */; };
 		ACC68C84221C2CB000ED899B /* Calendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */; };
@@ -615,6 +622,23 @@
 		ACCCBC9421E38B19008D744D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
 		ACCCBC9521E38D27008D744D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
 		ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
+		ACF0B944225FC41F008CFAEC /* DecisionTreePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B93C225FC41F008CFAEC /* DecisionTreePresenter.swift */; };
+		ACF0B945225FC41F008CFAEC /* DecisionTreeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */; };
+		ACF0B946225FC41F008CFAEC /* DecisionTreeRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B93E225FC41F008CFAEC /* DecisionTreeRouter.swift */; };
+		ACF0B947225FC41F008CFAEC /* DecisionTreeInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B93F225FC41F008CFAEC /* DecisionTreeInterface.swift */; };
+		ACF0B948225FC41F008CFAEC /* DecisionTreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */; };
+		ACF0B949225FC41F008CFAEC /* DecisionTreeInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B941225FC41F008CFAEC /* DecisionTreeInteractor.swift */; };
+		ACF0B94A225FC41F008CFAEC /* DecisionTreeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B942225FC41F008CFAEC /* DecisionTreeModel.swift */; };
+		ACF0B94B225FC41F008CFAEC /* DecisionTreeConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B943225FC41F008CFAEC /* DecisionTreeConfigurator.swift */; };
+		ACF0B950225FC4D6008CFAEC /* DecisionTreeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */; };
+		ACF0B9702260B905008CFAEC /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B96E2260B905008CFAEC /* QuestionTableViewCell.swift */; };
+		ACF0B9712260B905008CFAEC /* QuestionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACF0B96F2260B905008CFAEC /* QuestionTableViewCell.xib */; };
+		ACF0B9742260BAD2008CFAEC /* SingleSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B9722260BAD2008CFAEC /* SingleSelectionTableViewCell.swift */; };
+		ACF0B9752260BAD2008CFAEC /* SingleSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACF0B9732260BAD2008CFAEC /* SingleSelectionTableViewCell.xib */; };
+		ACF0B9782260BC80008CFAEC /* TextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B9762260BC80008CFAEC /* TextTableViewCell.swift */; };
+		ACF0B9792260BC80008CFAEC /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACF0B9772260BC80008CFAEC /* TextTableViewCell.xib */; };
+		ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B97A2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift */; };
+		ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
 		CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB142B722010CC65002DF8FB /* GuideGenerator.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
@@ -1590,6 +1614,7 @@
 		AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventHandler.swift; sourceTree = "<group>"; };
 		AC4DA0E5221581E000BAF914 /* UpcomingEventViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventViewController.swift; sourceTree = "<group>"; };
 		AC4DA0E72215836300BAF914 /* UpcomingEventView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UpcomingEventView.xib; sourceTree = "<group>"; };
+		AC516C6A228059CC009C4D30 /* CellAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellAnimator.swift; sourceTree = "<group>"; };
 		AC7F3DB22177407D0058B343 /* GuidePreparationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuidePreparationTableViewCell.swift; sourceTree = "<group>"; };
 		AC7F3DB32177407D0058B343 /* GuidePreparationTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidePreparationTableViewCell.xib; sourceTree = "<group>"; };
 		AC812B5E79C328CCC051F8B9 /* Pods-QOTWidget.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.debug.xcconfig"; sourceTree = "<group>"; };
@@ -1616,11 +1641,33 @@
 		ACA4B18F2212DEA600552A54 /* WhatsHotIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotIntentHandler.swift; sourceTree = "<group>"; };
 		ACA4B1942212FEAA00552A54 /* WhatsHotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotViewController.swift; sourceTree = "<group>"; };
 		ACA4B196221300BD00552A54 /* WhatsHotView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotView.xib; sourceTree = "<group>"; };
+		ACB449952260EB4F00B0E79F /* DecisionTreeButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeButton.swift; sourceTree = "<group>"; };
+		ACB99E7522661F2400A73709 /* DecisionTreeQuestionnaireController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeQuestionnaireController.swift; sourceTree = "<group>"; };
+		ACB99E7722687D1F00A73709 /* MultipleSelectionCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionCollectionViewCell.swift; sourceTree = "<group>"; };
+		ACB99E7822687D1F00A73709 /* MultipleSelectionCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSelectionCollectionViewCell.xib; sourceTree = "<group>"; };
+		ACB99E8B226F3A4500A73709 /* DotsLoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DotsLoadingView.swift; sourceTree = "<group>"; };
 		ACC68C8B221C4E3500ED899B /* DailyPrepIntentHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPrepIntentHandler.swift; sourceTree = "<group>"; };
 		ACC68C8D221C4E8B00ED899B /* DailyPrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPrepViewController.swift; sourceTree = "<group>"; };
 		ACC68C8F221C4F4F00ED899B /* DailyPrepView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyPrepView.xib; sourceTree = "<group>"; };
 		ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
 		ACEF4554218077FA00A4D531 /* GuideProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProgressView.swift; sourceTree = "<group>"; };
+		ACF0B93C225FC41F008CFAEC /* DecisionTreePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreePresenter.swift; sourceTree = "<group>"; };
+		ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeWorker.swift; sourceTree = "<group>"; };
+		ACF0B93E225FC41F008CFAEC /* DecisionTreeRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeRouter.swift; sourceTree = "<group>"; };
+		ACF0B93F225FC41F008CFAEC /* DecisionTreeInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeInterface.swift; sourceTree = "<group>"; };
+		ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeViewController.swift; sourceTree = "<group>"; };
+		ACF0B941225FC41F008CFAEC /* DecisionTreeInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeInteractor.swift; sourceTree = "<group>"; };
+		ACF0B942225FC41F008CFAEC /* DecisionTreeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeModel.swift; sourceTree = "<group>"; };
+		ACF0B943225FC41F008CFAEC /* DecisionTreeConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeConfigurator.swift; sourceTree = "<group>"; };
+		ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DecisionTreeViewController.xib; sourceTree = "<group>"; };
+		ACF0B96E2260B905008CFAEC /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		ACF0B96F2260B905008CFAEC /* QuestionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = QuestionTableViewCell.xib; sourceTree = "<group>"; };
+		ACF0B9722260BAD2008CFAEC /* SingleSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		ACF0B9732260BAD2008CFAEC /* SingleSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SingleSelectionTableViewCell.xib; sourceTree = "<group>"; };
+		ACF0B9762260BC80008CFAEC /* TextTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextTableViewCell.swift; sourceTree = "<group>"; };
+		ACF0B9772260BC80008CFAEC /* TextTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TextTableViewCell.xib; sourceTree = "<group>"; };
+		ACF0B97A2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MultipleSelectionTableViewCell.swift; sourceTree = "<group>"; };
+		ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.unittest.xcconfig"; sourceTree = "<group>"; };
 		BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.appstore.xcconfig"; sourceTree = "<group>"; };
@@ -3117,6 +3164,59 @@
 			path = IntentUI;
 			sourceTree = "<group>";
 		};
+		ACB0ED4B225FC28500BBF243 /* Chat */ = {
+			isa = PBXGroup;
+			children = (
+				ACF0B94C225FC436008CFAEC /* Core */,
+				ACF0B94E225FC46E008CFAEC /* Cells */,
+				ACB449922260E13700B0E79F /* Views */,
+			);
+			name = Chat;
+			sourceTree = "<group>";
+		};
+		ACB449922260E13700B0E79F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				ACB449952260EB4F00B0E79F /* DecisionTreeButton.swift */,
+				ACB99E8B226F3A4500A73709 /* DotsLoadingView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		ACF0B94C225FC436008CFAEC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				ACF0B93C225FC41F008CFAEC /* DecisionTreePresenter.swift */,
+				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
+				ACF0B93E225FC41F008CFAEC /* DecisionTreeRouter.swift */,
+				ACF0B93F225FC41F008CFAEC /* DecisionTreeInterface.swift */,
+				ACF0B941225FC41F008CFAEC /* DecisionTreeInteractor.swift */,
+				ACF0B942225FC41F008CFAEC /* DecisionTreeModel.swift */,
+				ACF0B943225FC41F008CFAEC /* DecisionTreeConfigurator.swift */,
+				ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */,
+				ACB99E7522661F2400A73709 /* DecisionTreeQuestionnaireController.swift */,
+				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		ACF0B94E225FC46E008CFAEC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				ACF0B96E2260B905008CFAEC /* QuestionTableViewCell.swift */,
+				ACF0B96F2260B905008CFAEC /* QuestionTableViewCell.xib */,
+				ACF0B9722260BAD2008CFAEC /* SingleSelectionTableViewCell.swift */,
+				ACF0B9732260BAD2008CFAEC /* SingleSelectionTableViewCell.xib */,
+				ACF0B9762260BC80008CFAEC /* TextTableViewCell.swift */,
+				ACF0B9772260BC80008CFAEC /* TextTableViewCell.xib */,
+				ACF0B97A2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift */,
+				ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */,
+				ACB99E7722687D1F00A73709 /* MultipleSelectionCollectionViewCell.swift */,
+				ACB99E7822687D1F00A73709 /* MultipleSelectionCollectionViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		B1B85C4C58D59EA1163CE83B /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -3328,6 +3428,7 @@
 		CB94423A1FDFE4B400E2B122 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				ACB0ED4B225FC28500BBF243 /* Chat */,
 				9150411C20FDF2C700D43D18 /* Add Sensor */,
 				CBE8808B1FE4368300670C10 /* Guide */,
 				DB680583218210E600C2FC69 /* MorningInterview */,
@@ -3735,6 +3836,7 @@
 				AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */,
 				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
 				368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */,
+				AC516C6A228059CC009C4D30 /* CellAnimator.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -4680,6 +4782,7 @@
 				3674FF3920AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
+				ACF0B9712260B905008CFAEC /* QuestionTableViewCell.xib in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
 				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
@@ -4699,8 +4802,10 @@
 				36424982214A55E80018A4A7 /* IPadAdviceView.xib in Resources */,
 				36E4B7B4219EC19C00049EE8 /* TutorialViewController.xib in Resources */,
 				36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */,
+				ACF0B950225FC4D6008CFAEC /* DecisionTreeViewController.xib in Resources */,
 				367EA0F121776921003025CE /* Assets.xcassets in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
+				ACF0B9752260BAD2008CFAEC /* SingleSelectionTableViewCell.xib in Resources */,
 				360CC3C72268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
 				36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */,
@@ -4725,6 +4830,7 @@
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
 				AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */,
 				CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */,
+				ACF0B9792260BC80008CFAEC /* TextTableViewCell.xib in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
 				CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */,
 				36A5E75722786014006A522C /* MediaPlayerOverlay.xib in Resources */,
@@ -4749,6 +4855,7 @@
 				7F3A9CD21FCF019B000F1744 /* MyUniverseViewController.xib in Resources */,
 				F9C1D8C4220DDBB200B40DD2 /* SiriShortcutsViewController.xib in Resources */,
 				36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */,
+				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
 				DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
@@ -4760,6 +4867,7 @@
 				CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				9115F70E208DFFAE00EE5D1D /* SettingsMenuHeader.xib in Resources */,
+				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
 				36DC825320D552D000CDEC34 /* SigningCountryViewController.xib in Resources */,
 				91182ACD20A1A4E9006D5435 /* SettingsViewController.xib in Resources */,
 				360E99562167BAFE0084CEFB /* PrepareNotesTableViewCell.xib in Resources */,
@@ -4793,6 +4901,7 @@
 				CBC5A57C1FA08077007B9A5B /* 20_min_power_nap_with_voice_B.m4a in Resources */,
 				851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */,
 				36B515CC216395B600A7B405 /* SupportFAQTableViewCell.xib in Resources */,
+				ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */,
 				36A7B9442166455C006C18F0 /* PrepareSectionHeaderView.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
 				D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */,
@@ -5134,6 +5243,7 @@
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				CC143A4F1EC47810001FB76E /* ChartViewModel.swift in Sources */,
 				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
+				ACB449962260EB4F00B0E79F /* DecisionTreeButton.swift in Sources */,
 				365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */,
 				E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */,
 				36E6E3EF22492AFF001BE9C7 /* GlobalConstants.swift in Sources */,
@@ -5159,6 +5269,7 @@
 				36796A1F20D3C45200B55429 /* SigningCountryInterface.swift in Sources */,
 				CBBC00FC1FC5B10600C544D8 /* Filters.swift in Sources */,
 				CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */,
+				ACF0B9782260BC80008CFAEC /* TextTableViewCell.swift in Sources */,
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
 				36E4B7B2219EBFED00049EE8 /* TutorialConfigurator.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
@@ -5166,6 +5277,7 @@
 				F9C1D8BE220DDA2D00B40DD2 /* SiriShortcutsInteractor.swift in Sources */,
 				36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */,
 				362614AA20CFB4E500AB3659 /* UserCountry.swift in Sources */,
+				ACF0B949225FC41F008CFAEC /* DecisionTreeInteractor.swift in Sources */,
 				CBD7914A1E71797C0006C590 /* Typealiases.swift in Sources */,
 				36796A3720D3C47400B55429 /* SigningProfileDetailInteractor.swift in Sources */,
 				917164792101E43B00F42D8F /* SensorCollectionViewCell.swift in Sources */,
@@ -5184,9 +5296,11 @@
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				36D535DD20A711E800F1C2FC /* PartnerEditRouter.swift in Sources */,
 				36796A5F20D3C4B800B55429 /* SigningInfoViewController.swift in Sources */,
+				ACF0B9702260B905008CFAEC /* QuestionTableViewCell.swift in Sources */,
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				36A7B9422166454A006C18F0 /* PrepareSectionHeaderView.swift in Sources */,
+				ACB99E8C226F3A4600A73709 /* DotsLoadingView.swift in Sources */,
 				36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */,
 				36376648223A7DE100C2C429 /* LevelTwoWorker.swift in Sources */,
 				7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */,
@@ -5238,6 +5352,7 @@
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
+				ACF0B94A225FC41F008CFAEC /* DecisionTreeModel.swift in Sources */,
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */,
@@ -5249,6 +5364,7 @@
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
 				DB680595218210E700C2FC69 /* MorningInterviewRouter.swift in Sources */,
+				ACF0B947225FC41F008CFAEC /* DecisionTreeInterface.swift in Sources */,
 				91086E44209202400035DA1F /* SettingsConfigurator.swift in Sources */,
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
@@ -5310,6 +5426,7 @@
 				7F6567441FE28FBC00A6CB7F /* Clean.swift in Sources */,
 				8514A4861EE810750086C70E /* DownSyncComplete.swift in Sources */,
 				CC41A5411EFD241100B9AE8E /* ArticleRelatedCell.swift in Sources */,
+				ACF0B94B225FC41F008CFAEC /* DecisionTreeConfigurator.swift in Sources */,
 				CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */,
 				7F3A9CCC1FCEFEFB000F1744 /* MyUniverseViewData.swift in Sources */,
 				CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */,
@@ -5417,6 +5534,7 @@
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,
 				CC37831C1F5EA91F007A16A3 /* ChartType.swift in Sources */,
 				7F0F02F21F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift in Sources */,
+				ACF0B944225FC41F008CFAEC /* DecisionTreePresenter.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				36376663223AA61100C2C429 /* LevelThreeConfigurator.swift in Sources */,
 				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
@@ -5435,6 +5553,7 @@
 				CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */,
 				DB680597218210E700C2FC69 /* MorningInterviewModels.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
+				ACB99E7622661F2400A73709 /* DecisionTreeQuestionnaireController.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */,
 				E871E8542136EA50005E787C /* ContentItemSharing.swift in Sources */,
@@ -5461,6 +5580,7 @@
 				F9C1D8C0220DDB7C00B40DD2 /* SiriShortcutsConfigurator.swift in Sources */,
 				CC7A91121F0F978E00F791B9 /* UIViewController+ScreenType.swift in Sources */,
 				CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */,
+				ACF0B9742260BAD2008CFAEC /* SingleSelectionTableViewCell.swift in Sources */,
 				7F4251BD1F20F05D00EA451D /* OnboardingCoordinator.swift in Sources */,
 				7FE674B71F8F5CA600FC7407 /* LogInfo.swift in Sources */,
 				CCC0C4DB1E82BDEF002A8362 /* TabBarCoordinator.swift in Sources */,
@@ -5638,6 +5758,7 @@
 				36796A3620D3C47400B55429 /* SigningProfileDetailConfigurator.swift in Sources */,
 				360CC3CA2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift in Sources */,
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
+				ACF0B946225FC41F008CFAEC /* DecisionTreeRouter.swift in Sources */,
 				36083828225F3ED000664B9B /* ArticleRouter.swift in Sources */,
 				36376647223A7DE100C2C429 /* LevelTwoPresenter.swift in Sources */,
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
@@ -5667,6 +5788,7 @@
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				3662433E227C56E500FFED3A /* AudioButton.swift in Sources */,
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
+				ACF0B948225FC41F008CFAEC /* DecisionTreeViewController.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */,
@@ -5730,6 +5852,7 @@
 				7F9217B71FD01C1600CAE9E0 /* CalendarPermission.swift in Sources */,
 				CB3333E520480DEF009480DF /* ShareProtocols.swift in Sources */,
 				7FE674B91F8F8F3600FC7407 /* ArticleCollectionHeader.swift in Sources */,
+				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
 				367BB0162239570B00282AB6 /* CoachPageViewController.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
@@ -5757,6 +5880,7 @@
 				36E4B7AD219EBFED00049EE8 /* TutorialRouter.swift in Sources */,
 				366183F721635FAA00634560 /* SupportFAQTableViewCell.swift in Sources */,
 				3666769E207CF69800D2F5AD /* VisionGeneratorWorker.swift in Sources */,
+				ACB99E7922687D2000A73709 /* MultipleSelectionCollectionViewCell.swift in Sources */,
 				36376650223A851500C2C429 /* AbstractLevelTwoViewController.swift in Sources */,
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				91F5BE4E2097584E00E85A51 /* PermissionsCell.swift in Sources */,
@@ -5825,6 +5949,7 @@
 				CB873294202AEDA80081F522 /* GradientView.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
 				CB2FA0E820762914007F21D1 /* Environment.swift in Sources */,
+				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
@@ -5856,6 +5981,7 @@
 				36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */,
 				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,
 				36D535E220A711E800F1C2FC /* PartnerEditConfigurator.swift in Sources */,
+				ACF0B945225FC41F008CFAEC /* DecisionTreeWorker.swift in Sources */,
 				CBC5ACCA1F18EF96007E1E9C /* QOTUsageTimer.swift in Sources */,
 				CB53F0DA20237507007C624B /* Keychain.swift in Sources */,
 				366AFD1320BD9F9300109F29 /* SigningEmailConfigurator.swift in Sources */,

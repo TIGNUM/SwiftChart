@@ -10,7 +10,7 @@ import Foundation
 
 extension UIView {
     func pulsate(_ times: Float = 1,
-                 duration: TimeInterval = Animation.duration,
+                 duration: TimeInterval = Animation.duration_03,
                  autoreverse: Bool = false) {
         let pulse = CASpringAnimation(keyPath: "transform.scale")
         pulse.duration = duration
@@ -23,7 +23,7 @@ extension UIView {
 
     func verticalBounce(_ times: Float = 1,
                         offset: CGFloat = 0,
-                        duration: TimeInterval = Animation.duration,
+                        duration: TimeInterval = Animation.duration_03,
                         autoreverse: Bool = true) {
         let bounce = CABasicAnimation(keyPath: "position.y")
         let center  = frame.midY

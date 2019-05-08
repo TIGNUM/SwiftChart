@@ -18,6 +18,7 @@ struct QuestionIntermediary: DownSyncIntermediary {
     let answersDescription: String?
     let answers: [AnswerIntermediary]
     let groups: [QuestionGroupIntermediary]
+    let answerType: String
 
     init(json: JSON) throws {
         sortOrder = try json.getItemValue(at: .sortOrder, fallback: 0)
@@ -27,5 +28,6 @@ struct QuestionIntermediary: DownSyncIntermediary {
         answersDescription = try json.getItemValue(at: .questionDescription)
         answers = try json.getArray(at: .answers, fallback: [])
         groups = try json.getArray(at: .questionGroups, fallback: [])
+        answerType = try json.getItemValue(at: .answerType)
     }
 }

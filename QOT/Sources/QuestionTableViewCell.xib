@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="266" id="KGk-i7-Jjw" customClass="QuestionTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="487" height="266"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="487" height="265.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1dN-A5-6PZ">
+                        <rect key="frame" x="24" y="10" width="29" height="2"/>
+                        <color key="backgroundColor" red="0.37254901960784315" green="0.36470588235294116" blue="0.35686274509803922" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="2" id="6Dm-3s-RAN"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbh-FF-z5j">
+                        <rect key="frame" x="24" y="26" width="439" height="239.5"/>
+                        <attributedString key="attributedText">
+                            <fragment content="Label">
+                                <attributes>
+                                    <color key="NSColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <font key="NSFont" size="16" name="SFProText-Light"/>
+                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="24" tighteningFactorForTruncation="0.0"/>
+                                </attributes>
+                            </fragment>
+                        </attributedString>
+                        <nil key="highlightedColor"/>
+                        <userDefinedRuntimeAttributes>
+                            <userDefinedRuntimeAttribute type="number" keyPath="characterSpacing">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                            <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
+                                <real key="value" value="0.5"/>
+                            </userDefinedRuntimeAttribute>
+                        </userDefinedRuntimeAttributes>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.91723662614822388" green="0.90605789422988892" blue="0.89410656690597534" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <constraints>
+                    <constraint firstItem="pbh-FF-z5j" firstAttribute="top" secondItem="1dN-A5-6PZ" secondAttribute="bottom" constant="14" id="GUY-SK-yWn"/>
+                    <constraint firstItem="pbh-FF-z5j" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottom" id="Mi3-5b-Sip"/>
+                    <constraint firstItem="1dN-A5-6PZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Tm7-HV-YWB"/>
+                    <constraint firstItem="pbh-FF-z5j" firstAttribute="left" secondItem="H2p-sc-9uM" secondAttribute="left" constant="24" id="bGx-sW-bcc"/>
+                    <constraint firstItem="1dN-A5-6PZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="eRW-10-m55"/>
+                    <constraint firstAttribute="right" secondItem="pbh-FF-z5j" secondAttribute="right" constant="24" id="fdt-MV-yAq"/>
+                </constraints>
+            </tableViewCellContentView>
+            <constraints>
+                <constraint firstItem="1dN-A5-6PZ" firstAttribute="width" secondItem="njF-e1-oar" secondAttribute="width" multiplier="0.06" id="cGB-0F-Nkc"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="questionLabel" destination="pbh-FF-z5j" id="Ulg-M1-gb9"/>
+            </connections>
+            <point key="canvasLocation" x="274.39999999999998" y="254.57271364317842"/>
+        </tableViewCell>
+    </objects>
+</document>
