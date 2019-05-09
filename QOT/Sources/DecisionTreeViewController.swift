@@ -245,7 +245,7 @@ private extension DecisionTreeViewController {
         switch questionKey {
         case QuestionKey.home.rawValue, QuestionKey.work.rawValue:
             continueButton.update(with: multiSelectionCounter, questionKey: questionKey)
-        case QuestionKey.home.rawValue:
+        case QuestionKey.next.rawValue:
             continueButton.setTitle("Yes, let's continue", for: .normal)
         default:
             continueButton.setTitle("Continue", for: .normal)
@@ -283,7 +283,9 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         guard let questionID = currentQuestion?.remoteID.value else { return }
         let selection = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
         decisionTree?.addOrRemove(selection, addCompletion: {
-            multiSelectionCounter.plus(1)
+            if multiSelectionCounter < maxMultipleAnswers {
+                multiSelectionCounter.plus(1)
+            }
             if multiSelectionCounter == maxMultipleAnswers {
                 DispatchQueue.main.async {
                     self.loadNextQuestion(from: answer)
@@ -295,8 +297,11 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
                     self.decisionTree?.removeLastQuestion()
                 }
             }
-            multiSelectionCounter.minus(1)
+            if multiSelectionCounter > 0 {
+                multiSelectionCounter.minus(1)
+            }
         })
         continueButton.pulsate()
+        interactor?.notifyCounterChanged(with: multiSelectionCounter, selectedAnswers: selectedAnswers)
     }
 }
