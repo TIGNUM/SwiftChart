@@ -27,4 +27,8 @@ extension CoachPresenter: CoachPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func present(for coachSection: CoachModel) {
+        viewController?.setup(for: coachSection)
+    }
 }

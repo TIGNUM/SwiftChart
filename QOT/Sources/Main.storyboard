@@ -64,6 +64,50 @@
             </objects>
             <point key="canvasLocation" x="92" y="-118"/>
         </scene>
+        <!--Coach View Controller-->
+        <scene sceneID="peo-8x-KSp">
+            <objects>
+                <viewController storyboardIdentifier="CoachViewControllerID" id="6ce-2X-6uz" customClass="CoachViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="587-XW-kNb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" bounces="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="100" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Wp3-Zh-A4v">
+                                <rect key="frame" x="0.0" y="90" width="375" height="462"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="sectionIndexBackgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="6ce-2X-6uz" id="r4a-cT-mki"/>
+                                    <outlet property="delegate" destination="6ce-2X-6uz" id="LXF-uz-br1"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tbU-lG-YKl">
+                                <rect key="frame" x="40" y="582" width="40" height="40"/>
+                                <state key="normal" image="ic_close_rounded"/>
+                                <connections>
+                                    <action selector="closeButton:" destination="6ce-2X-6uz" eventType="touchUpInside" id="aYv-9E-cMf"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="lPD-69-TWt" firstAttribute="bottom" secondItem="tbU-lG-YKl" secondAttribute="bottom" constant="45" id="0iZ-5E-alM"/>
+                            <constraint firstItem="tbU-lG-YKl" firstAttribute="leading" secondItem="lPD-69-TWt" secondAttribute="leading" constant="40" id="GCX-xs-smO"/>
+                            <constraint firstItem="lPD-69-TWt" firstAttribute="bottom" secondItem="Wp3-Zh-A4v" secondAttribute="bottom" constant="115" id="Ize-Bx-3Ww" userLabel="Safe Area.bottom = Table View.bottom + 90"/>
+                            <constraint firstItem="Wp3-Zh-A4v" firstAttribute="trailing" secondItem="lPD-69-TWt" secondAttribute="trailing" id="RH7-p2-1wO"/>
+                            <constraint firstItem="Wp3-Zh-A4v" firstAttribute="top" secondItem="lPD-69-TWt" secondAttribute="top" constant="70" id="g8X-dm-SOD"/>
+                            <constraint firstItem="Wp3-Zh-A4v" firstAttribute="leading" secondItem="lPD-69-TWt" secondAttribute="leading" id="ysO-lW-Ywa"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="lPD-69-TWt"/>
+                    </view>
+                    <connections>
+                        <outlet property="tableView" destination="Wp3-Zh-A4v" id="xoh-Ha-RrG"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="oUS-IM-hoP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1871.2" y="-130.88455772113943"/>
+        </scene>
         <!--Component Detail View Controller-->
         <scene sceneID="KvB-Ce-erf">
             <objects>
@@ -469,6 +513,7 @@
     </scenes>
     <resources>
         <image name="ic_close" width="20" height="20"/>
+        <image name="ic_close_rounded" width="40" height="40"/>
         <image name="ic_more_unselected" width="16" height="16"/>
         <image name="ic_navbar_arrow_left" width="24" height="24"/>
         <image name="ic_navbar_arrow_right" width="24" height="24"/>

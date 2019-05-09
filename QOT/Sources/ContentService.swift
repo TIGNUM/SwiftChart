@@ -16,6 +16,18 @@ protocol Predicatable {
 final class ContentService {
 
     enum Tags: String, CaseIterable, Predicatable {
+        case coachHeaderTitle = "coach_header_title"
+        case coachHeaderSubtitle = "coach_header_subtitle"
+        case coachSearchSectionTitle = "coach_search_section_title"
+        case coachApplyToolsSectionTitle = "coach_apply_tools_section_title"
+        case coachPlanSprintSectionTitle = "coach_plan_sprint_section_title"
+        case coachPrepareEventSectionTitle = "coach_prepare_event_section_title"
+        case coachSolveChallengeSectionTitle = "coach_solve_challenge_section_title"
+        case coachSearchSectionSubtitle = "coach_search_section_subtitle"
+        case coachApplyToolsSectionSubtitle = "coach_apply_tools_section_subtitle"
+        case coachPlanSprintSectionSubtitle = "coach_plan_sprint_section_subtitle"
+        case coachPrepareEventSectionSubtitle = "coach_prepare_event_section_subtitle"
+        case coachSolveChallengeSectionSubtitle = "coach_solve_challenge_section_subtitle"
         case tbvGeneratorAlertNotSavedTitle = "tbv_generator_alert_not_saved_title"
         case tbvGeneratorAlertNotSavedMessage = "tbv_generator_alert_not_saved_message"
         case tbvGeneratorAlertNotSavedButtonTitleCancel = "tbv_generator_alert_not_saved_button_title_cancel"
@@ -399,6 +411,50 @@ extension ContentService {
             return contentItem(for: ContentService.Tags.siriDailyPrepSuggestionPhrase.predicate)?.valueText
         }
     }
+}
+
+// MARK: - Coach
+
+extension ContentService {
+
+    func coachSectionTitles(for coachItem: CoachSection) -> String? {
+        switch coachItem {
+        case .search:
+            return contentItem(for: ContentService.Tags.coachSearchSectionTitle.predicate)?.valueText
+        case .tools:
+            return contentItem(for: ContentService.Tags.coachApplyToolsSectionTitle.predicate)?.valueText
+        case .sprint:
+            return contentItem(for: ContentService.Tags.coachPlanSprintSectionTitle.predicate)?.valueText
+        case .event:
+            return contentItem(for: ContentService.Tags.coachPrepareEventSectionTitle.predicate)?.valueText
+        case .challenge:
+            return contentItem(for: ContentService.Tags.coachSolveChallengeSectionTitle.predicate)?.valueText
+        }
+    }
+
+    func coachSectionSubtitles(for coachItem: CoachSection) -> String? {
+        switch coachItem {
+        case .search:
+            return contentItem(for: ContentService.Tags.coachSearchSectionSubtitle.predicate)?.valueText
+        case .tools:
+            return contentItem(for: ContentService.Tags.coachApplyToolsSectionSubtitle.predicate)?.valueText
+        case .sprint:
+            return contentItem(for: ContentService.Tags.coachPlanSprintSectionSubtitle.predicate)?.valueText
+        case .event:
+            return contentItem(for: ContentService.Tags.coachPrepareEventSectionSubtitle.predicate)?.valueText
+        case .challenge:
+            return contentItem(for: ContentService.Tags.coachSolveChallengeSectionSubtitle.predicate)?.valueText
+        }
+    }
+
+   func coachHeaderTitle() -> String? {
+        return contentItem(for: ContentService.Tags.coachHeaderTitle.predicate)?.valueText
+    }
+
+    func coachHeaderSubtitle() -> String? {
+        return contentItem(for: ContentService.Tags.coachHeaderSubtitle.predicate)?.valueText
+    }
+
 }
 
 // MARK: - Release Manager
