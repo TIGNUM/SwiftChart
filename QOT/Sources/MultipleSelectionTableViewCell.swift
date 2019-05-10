@@ -63,7 +63,7 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
         let cell: MultipleSelectionCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         let answer: Answer = answers[indexPath.row]
         let isSelected = selectedAnswers.filter { $0.answer.remoteID.value == answer.remoteID.value }.isEmpty == false
-        cell.configure(with: answer.title, at: indexPath, isSelected: isSelected)
+        cell.configure(for: answer, isSelected: isSelected)
         cell.delegate = self
         return cell
     }
@@ -73,9 +73,9 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
 
 extension MultipleSelectionTableViewCell: MultipleSelectionCollectionViewCellDelegate {
 
-    func didTapButton(at indexPath: IndexPath) {
+    func didTapButton(for answer: Answer) {
         if selectedAnswers.count < 4 {
-            delegate?.didTap(answers[indexPath.row])
+            delegate?.didTap(answer)
         }
     }
 }

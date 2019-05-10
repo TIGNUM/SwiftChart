@@ -29,12 +29,11 @@ final class CoachInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
+        presenter.present(for: worker.coachSections())
         presenter.setupView()
     }
 }
 
 // MARK: - CoachInteractorInterface
 
-extension CoachInteractor: CoachInteractorInterface {
-
-}
+extension CoachInteractor: CoachInteractorInterface {}

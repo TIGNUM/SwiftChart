@@ -12,7 +12,7 @@ final class SettingsViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet private weak var tableView: UITableView!
     private var settingsModel: SettingsModel
     var selectedSettings: SettingsModel.Setting?
     var interactor: SettingsInteractorInterface?

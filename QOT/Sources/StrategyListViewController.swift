@@ -32,17 +32,17 @@ final class StrategyListViewController: AbstractLevelTwoViewController {
         interactor?.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.setStatusBar(background: ColorMode.dark.backgroundColor)
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if
             let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? ArticleViewController,
             let selectedID = sender as? Int {
             ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
         }
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBar(background: ColorMode.dark.backgroundColor)
     }
 }
 

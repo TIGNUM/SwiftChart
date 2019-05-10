@@ -1005,6 +1005,10 @@
 		F9C1D8C4220DDBB200B40DD2 /* SiriShortcutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C1D8C2220DDBB200B40DD2 /* SiriShortcutsViewController.xib */; };
 		F9C1D8CB220DEA0E00B40DD2 /* SiriShortcutsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1D8C9220DEA0E00B40DD2 /* SiriShortcutsCell.swift */; };
 		F9C1D8CC220DEA0E00B40DD2 /* SiriShortcutsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C1D8CA220DEA0E00B40DD2 /* SiriShortcutsCell.xib */; };
+		F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */; };
+		F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */; };
+		F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */; };
+		F9FA08F522806C7A00A917A4 /* CoachTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FA08F422806C7A00A917A4 /* CoachTableHeaderView.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -2046,6 +2050,10 @@
 		F9C1D8C2220DDBB200B40DD2 /* SiriShortcutsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SiriShortcutsViewController.xib; sourceTree = "<group>"; };
 		F9C1D8C9220DEA0E00B40DD2 /* SiriShortcutsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsCell.swift; sourceTree = "<group>"; };
 		F9C1D8CA220DEA0E00B40DD2 /* SiriShortcutsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SiriShortcutsCell.xib; sourceTree = "<group>"; };
+		F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableViewCell.swift; sourceTree = "<group>"; };
+		F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTableViewCell.xib; sourceTree = "<group>"; };
+		F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableHeaderView.swift; sourceTree = "<group>"; };
+		F9FA08F422806C7A00A917A4 /* CoachTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTableHeaderView.xib; sourceTree = "<group>"; };
 		FD551F312BF873A8D050014D /* Pods-QOTTests.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.appstore.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -2247,6 +2255,41 @@
 				365EC0B9224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib */,
 				365EC0BC224A744C0019AFF9 /* WhatsHotComponentView.swift */,
 				365EC0BE224A74850019AFF9 /* WhatsHotComponentView.xib */,
+				3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */,
+				3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */,
+				3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */,
+				3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */,
+				360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */,
+				360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */,
+				360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */,
+				360CC3C52268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib */,
+				360CC3C82268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift */,
+				360CC3C92268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib */,
+				366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */,
+				366F1FD6226A1CE90034D8FD /* FoundationTableViewCell.xib */,
+				36E86D45226F452C00371C67 /* StrategyListHeaderView.swift */,
+				36E86D47226F45BC00371C67 /* StrategyListHeaderView.xib */,
+				36E86D492270511100371C67 /* ArticleBulletPointTableViewCell.swift */,
+				36E86D4A2270511100371C67 /* ArticleBulletPointTableViewCell.xib */,
+				36E86D4D227059A100371C67 /* MarkAsReadTableViewCell.swift */,
+				36E86D4E227059A100371C67 /* MarkAsReadTableViewCell.xib */,
+				36E86D512270651A00371C67 /* ArticleRelatedTableViewCell.swift */,
+				36E86D522270651A00371C67 /* ArticleRelatedTableViewCell.xib */,
+				36E86D55227091CB00371C67 /* StrategyContentTableViewCell.swift */,
+				36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */,
+				36AEA4DC2271AC6E00EC9C55 /* AudioPlayerBar.swift */,
+				36AEA4DE2271AC8F00EC9C55 /* AudioPlayerBar.xib */,
+				3604C91F22720CAC00A681B3 /* AudioPlayerFullScreen.swift */,
+				3604C92122720CB900A681B3 /* AudioPlayerFullScreen.xib */,
+				3604C9232272176F00A681B3 /* AudioPlayer.swift */,
+				36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */,
+				36A5E75622786014006A522C /* MediaPlayerOverlay.xib */,
+				3662433D227C56E500FFED3A /* AudioButton.swift */,
+				3662433F227C570200FFED3A /* AudioButton.xib */,
+				F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */,
+				F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */,
+				F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */,
+				F9FA08F422806C7A00A917A4 /* CoachTableHeaderView.xib */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -4826,6 +4869,7 @@
 				368A125D2277387900866DB0 /* SF-Pro-Display-Light.otf in Resources */,
 				36E86D4C2270511100371C67 /* ArticleBulletPointTableViewCell.xib in Resources */,
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
+				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
 				AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */,
@@ -4838,6 +4882,7 @@
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
 				368A125E2277387900866DB0 /* SF-Pro-Display-Regular.otf in Resources */,
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
+				F9FA08F522806C7A00A917A4 /* CoachTableHeaderView.xib in Resources */,
 				CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */,
 				3637663C223A6F8500C2C429 /* AbstractTableViewCell.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */,
@@ -5616,6 +5661,7 @@
 				36796A5C20D3C4B800B55429 /* SigningInfoInteractor.swift in Sources */,
 				CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */,
 				9150413820FDF40A00D43D18 /* SensorInteractor.swift in Sources */,
+				F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */,
 				7F65673A1FE2894C00A6CB7F /* ScreenHelpInteractor.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
@@ -5856,6 +5902,7 @@
 				367BB0162239570B00282AB6 /* CoachPageViewController.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
+				F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				3637660E223A4BEC00C2C429 /* DailyBriefInterface.swift in Sources */,

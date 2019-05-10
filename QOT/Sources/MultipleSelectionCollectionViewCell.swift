@@ -9,7 +9,7 @@
 import UIKit
 
 protocol MultipleSelectionCollectionViewCellDelegate: class {
-    func didTapButton(at indexPath: IndexPath)
+    func didTapButton(for answer: Answer)
 }
 
 final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
@@ -17,14 +17,18 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
     // MARK: - Properties
 
     @IBOutlet private weak var answerButton: DecisionTreeButton!
-    private var indexPath = IndexPath(row: 0, section: 0)
     weak var delegate: MultipleSelectionCollectionViewCellDelegate?
+    private var answer: Answer?
 
     // MARK: - Lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
         answerButton.corner(radius: bounds.height * 0.25)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(syncButton(_:)),
+                                               name: .multiSelectionCounter,
+                                               object: nil)
     }
 }
 
@@ -32,9 +36,9 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
 
 extension MultipleSelectionCollectionViewCell {
 
-    func configure(with title: String, at indexPath: IndexPath, isSelected: Bool) {
-        self.indexPath = indexPath
-        answerButton.configure(with: title,
+    func configure(for answer: Answer, isSelected: Bool) {
+        self.answer = answer
+        answerButton.configure(with: answer.title,
                                selectedBackgroundColor: isSelected ? .sand : .accent30,
                                defaultBackgroundColor: isSelected ? .accent30 : .sand,
                                borderColor: .accent30,
@@ -47,7 +51,25 @@ extension MultipleSelectionCollectionViewCell {
 extension MultipleSelectionCollectionViewCell {
 
     @IBAction func didTapButton(_ sender: DecisionTreeButton) {
-        delegate?.didTapButton(at: indexPath)
+        guard let answer = answer else { return }
+        delegate?.didTapButton(for: answer)
         answerButton.update()
+    }
+}
+
+// MARK: - Private
+
+private extension MultipleSelectionCollectionViewCell {
+
+    @objc func syncButton(_ notification: Notification) {
+        if
+            let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int,
+            let selectedAnswers = notification.userInfo?[UserInfo.selectedAnswers.rawValue] as? [Answer] {
+            let reachedLimit = counter == 4
+            let isAlreadyAnswered = selectedAnswers.filter { $0.remoteID.value == answer?.remoteID.value }.isEmpty
+            if reachedLimit == true {
+                answerButton.isUserInteractionEnabled = isAlreadyAnswered == false
+            }
+        }
     }
 }

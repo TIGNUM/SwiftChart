@@ -57,6 +57,15 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     func uploadPhoto() {
         router.openImagePicker()
     }
+
+    func notifyCounterChanged(with value: Int, selectedAnswers: [Answer]) {
+        let multiSelectionCounter = UserInfo.multiSelectionCounter.pair(for: value)
+        let selectedAnswers = UserInfo.selectedAnswers.pair(for: selectedAnswers)
+        NotificationCenter.default.post(name: .multiSelectionCounter,
+                                        object: nil,
+                                        userInfo: [multiSelectionCounter.key: multiSelectionCounter.value,
+                                                   selectedAnswers.key: selectedAnswers.value])
+    }
 }
 
 // MARK: - Private

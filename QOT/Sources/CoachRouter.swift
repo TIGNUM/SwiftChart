@@ -23,6 +23,4 @@ final class CoachRouter {
 
 // MARK: - CoachRouterInterface
 
-extension CoachRouter: CoachRouterInterface {
-
-}
+extension CoachRouter: CoachRouterInterface {}

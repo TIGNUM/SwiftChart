@@ -19,6 +19,7 @@ protocol DecisionTreePresenterInterface {
 }
 
 protocol DecisionTreeInteractorInterface: Interactor {
+    func notifyCounterChanged(with value: Int, selectedAnswers: [Answer])
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer])
     func displayContent(with id: Int)
     func streamContentItem(with id: Int)

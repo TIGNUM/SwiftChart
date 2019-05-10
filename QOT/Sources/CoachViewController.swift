@@ -13,16 +13,11 @@ final class CoachViewController: UIViewController {
     // MARK: - Properties
 
     var interactor: CoachInteractorInterface?
-
-    // MARK: - Init
-
-    init(configure: Configurator<CoachViewController>) {
-        super.init(nibName: nil, bundle: nil)
-        configure(self)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    @IBOutlet private weak var tableView: UITableView!
+    private var coachModel: CoachModel?
+    private enum CellType: Int, CaseIterable {
+        case header = 0
+        case sections
     }
 
     override func viewDidLoad() {
@@ -34,31 +29,63 @@ final class CoachViewController: UIViewController {
 // MARK: - Private
 
 private extension CoachViewController {
-    func setupCloseButton() {
-        let button = UIButton(type: .custom)
-        let origin = CGPoint(x: 22, y: view.frame.size.height - 100)
-        button.frame = CGRect(origin: origin, size: CGSize(width: 44, height: 44))
-        button.backgroundColor = .gray
-        let radius = button.bounds.width / 2
-        button.corner(radius: radius)
-        button.addTarget(self, action: #selector(didTabClose), for: .touchUpInside)
-        view.addSubview(button)
+
+    func setupTableView() {
+        tableView.registerDequeueable(CoachTableViewCell.self)
     }
 }
 
 // MARK: - Actions
 
 private extension CoachViewController {
+
     @objc func didTabClose() {
         dismiss(animated: true, completion: nil)
+    }
+
+    @IBAction func closeButton(_ sender: Any) {
+          dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - CoachViewControllerInterface
 
 extension CoachViewController: CoachViewControllerInterface {
+
     func setupView() {
-        view.backgroundColor = .yellow
-        setupCloseButton()
+        setupTableView()
+    }
+
+    func setup(for coachSection: CoachModel) {
+        coachModel = coachSection
+    }
+}
+
+extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+         return coachModel?.coachItems.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cellType = CellType.allCases[section]
+        switch cellType {
+        case .header:
+            return CoachTableHeaderView.instantiateFromNib(title: coachModel?.headerTitle ?? "", subtitle: coachModel?.headerSubtitle ?? "")
+        default: return nil
+        }
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: CoachTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: (coachModel?.coachItems[indexPath.row].title) ?? "", subtitle: (coachModel?.coachItems[indexPath.row].subtitle) ?? "")
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.5)
+        cell.selectedBackgroundView = backgroundView
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }

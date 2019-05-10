@@ -10,10 +10,12 @@ import Foundation
 
 protocol CoachViewControllerInterface: class {
     func setupView()
+    func setup(for coachSection: CoachModel)
 }
 
 protocol CoachPresenterInterface {
     func setupView()
+    func present(for coachSection: CoachModel)
 }
 
 protocol CoachInteractorInterface: Interactor {}

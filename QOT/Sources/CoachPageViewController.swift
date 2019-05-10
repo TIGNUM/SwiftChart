@@ -61,9 +61,10 @@ final class CoachPageViewController: UIPageViewController {
         return navController
     }()
 
-    lazy var coachViewController: CoachViewController = {
-        let coachViewController = CoachViewController(configure: CoachConfigurator.make())
-        coachViewController.title = R.string.localized.topTabBarItemTitleGuide()
+    lazy var coachViewController: CoachViewController? = {
+        let coachViewController = R.storyboard.main().instantiateViewController(withIdentifier: R.storyboard.main.coachViewControllerID.identifier) as? CoachViewController
+        CoachConfigurator.make(viewController: coachViewController)
+        coachViewController?.title = R.string.localized.topTabBarItemTitleGuide()
         return coachViewController
     }()
 
@@ -92,7 +93,6 @@ final class CoachPageViewController: UIPageViewController {
 // MARK: - Private
 
 private extension CoachPageViewController {
-
     func addScrollViewDelegate() {
         (view.subviews.filter { $0 is UIScrollView }.first as? UIScrollView)?.delegate = self
     }
@@ -124,11 +124,8 @@ private extension CoachPageViewController {
 
 extension CoachPageViewController {
     @objc func didTabCoachButton() {
-        let permissionsManager = AppDelegate.appState.permissionsManager!
-        let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator, permissionsManager: permissionsManager)
-        let viewController = DecisionTreeViewController(configure: configurator)
-        present(viewController, animated: true)
-//        present(coachViewController, animated: true, completion: nil)
+        guard let controller = coachViewController else { return }
+        present(controller, animated: true, completion: nil)
     }
 }
 
@@ -191,7 +188,8 @@ extension CoachPageViewController: CoachPageViewControllerDelegate {
     }
 
     func presentCoach(from viewController: UIViewController) {
-        viewController.present(coachViewController, animated: true, completion: nil)
+        guard let controller = coachViewController else { return }
+        viewController.present(controller, animated: true, completion: nil)
     }
 }
 

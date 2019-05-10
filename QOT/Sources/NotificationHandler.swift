@@ -8,10 +8,20 @@
 
 import Foundation
 
+enum UserInfo: String {
+    case multiSelectionCounter
+    case selectedAnswers
+
+    func pair<T>(for value: T) -> (key: String, value: T) {
+        return (self.rawValue, value)
+    }
+}
+
 extension Notification.Name {
     static let logoutNotification = Notification.Name(rawValue: "qot_logoutNotification")
     static let fitbitAccessTokenReceivedNotification = Notification.Name(rawValue: "qot_fitbitAccessTokenReceivedNotification")
     static let showSigningInfoView = Notification.Name(rawValue: "qot_show_signing_info_view_controller")
+    static let multiSelectionCounter = Notification.Name(rawValue: "qot_decision_tree_multi_selection_counter")
 }
 
 final class NotificationHandler {
