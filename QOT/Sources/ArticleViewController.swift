@@ -20,21 +20,56 @@ enum ColorMode {
     case dark
     case darkNot
 
-    var backgroundColor: UIColor {
+    var background: UIColor {
         switch self {
         case .dark: return .carbon
         case .darkNot: return .sand
         }
     }
 
-    var tintColor: UIColor {
+    var audioBackground: UIColor {
+        switch self {
+        case .dark: return .sand
+        case .darkNot: return .carbonDark
+        }
+    }
+
+    var audioVissualEffect: UIBlurEffect.Style {
+        switch self {
+        case .dark: return .dark
+        case .darkNot: return .light
+        }
+    }
+
+    var audioText: UIColor {
+        switch self {
+        case .dark: return UIColor.carbon.withAlphaComponent(0.6)
+        case .darkNot: return UIColor.sand.withAlphaComponent(0.6)
+        }
+    }
+
+    var fade: UIColor {
+        switch self {
+        case .dark: return UIColor.carbon.withAlphaComponent(0.1)
+        case .darkNot: return UIColor.sand.withAlphaComponent(0.1)
+        }
+    }
+
+    var seperator: UIColor {
+        switch self {
+        case .dark: return UIColor.sand.withAlphaComponent(0.1)
+        case .darkNot: return UIColor.carbon.withAlphaComponent(0.1)
+        }
+    }
+
+    var tint: UIColor {
         switch self {
         case .dark: return .accent
         case .darkNot: return .accent
         }
     }
 
-    var textColor: UIColor {
+    var text: UIColor {
         switch self {
         case .dark: return .sand
         case .darkNot: return .carbonDark
@@ -60,11 +95,20 @@ final class ArticleViewController: UIViewController {
     private var audioPlayerBar = AudioPlayerBar()
     private var audioPlayerFullScreen = AudioPlayerFullScreen()
     private var audioButton = AudioButton()
+    private var currentFadeView = GradientView(colors: [], locations: [])
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var topTitleNavigationItem: UINavigationItem!
-    @IBOutlet private weak var bottombar: UIToolbar!
     @IBOutlet private weak var moreBarButtonItem: UIBarButtonItem!
-    @IBOutlet private weak var closeButtonItem: UIBarButtonItem!
+    @IBOutlet private weak var closeButton: UIButton!
+
+    private lazy var customMoreButton: UIButton = {
+        let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        button.setImage(R.image.ic_more_unselected(), for: .normal)
+        button.backgroundColor = UIColor.accent.withAlphaComponent(0.3)
+        button.corner(radius: button.frame.width * 0.5)
+        button.addTarget(self, action: #selector(didTabMoreButton), for: .touchUpInside)
+        return button
+    }()
 
     private lazy var bookMarkBarButtonItem: UIBarButtonItem = {
         let item = UIBarButtonItem(image: R.image.ic_bookmark(),
@@ -72,7 +116,7 @@ final class ArticleViewController: UIViewController {
                                    target: self,
                                    action: #selector(didTabBookmarkItem))
         item.width = view.frame.width * 0.25 //TODO calculations depends on the number of new items, do we show share etc...
-        item.tintColor = colorMode.tintColor
+        item.tintColor = colorMode.tint
         return item
     }()
 
@@ -82,7 +126,7 @@ final class ArticleViewController: UIViewController {
                                    target: self,
                                    action: #selector(didTabDarkModeItem))
         item.width = view.frame.width * 0.25
-        item.tintColor = colorMode.tintColor
+        item.tintColor = colorMode.tint
         return item
     }()
 
@@ -92,7 +136,7 @@ final class ArticleViewController: UIViewController {
                                    target: self,
                                    action: #selector(didTabTextScaleItem))
         item.width = view.frame.width * 0.25
-        item.tintColor = colorMode.tintColor
+        item.tintColor = colorMode.tint
         return item
     }()
 
@@ -102,8 +146,20 @@ final class ArticleViewController: UIViewController {
                                    target: self,
                                    action: #selector(didTabShareItem))
         item.width = view.frame.width * 0.25
-        item.tintColor = colorMode.tintColor
+        item.tintColor = colorMode.tint
         return item
+    }()
+
+    private lazy var topBarButtonItems: [UIBarButtonItem] = {
+        if interactor?.isShareable == true {
+            return [bookMarkBarButtonItem,
+                    nightModeBarButtonItem,
+                    textScaleBarButtonItem,
+                    shareBarButtonItem]
+        }
+        return [bookMarkBarButtonItem,
+                nightModeBarButtonItem,
+                textScaleBarButtonItem]
     }()
 
     // MARK: - Life Cycle
@@ -116,9 +172,7 @@ final class ArticleViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         if let navigationController = navigationController as? ScrollingNavigationController {
-            navigationController.followScrollView(tableView, delay: 50,
-                                                  followers: [NavigationBarFollower(view: bottombar,
-                                                                                    direction: .scrollDown)])
+            navigationController.followScrollView(tableView, delay: 50)
         }
         setColorMode()
         tableView.reloadData()
@@ -126,7 +180,7 @@ final class ArticleViewController: UIViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.setStatusBar(background: ColorMode.darkNot.backgroundColor)
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
     }
 }
 
@@ -146,12 +200,17 @@ private extension ArticleViewController {
         tableView.registerDequeueable(MarkAsReadTableViewCell.self)
         tableView.registerDequeueable(ArticleRelatedTableViewCell.self)
         tableView.registerDequeueable(FoundationTableViewCell.self)
+        tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
     }
 
     func setupAudioPlayerView() {
         audioPlayerBar = AudioPlayerBar.instantiateFromNib()
-        bottombar.addSubview(audioPlayerBar)
+        view.addSubview(audioPlayerBar)
+        audioPlayerBar.trailingAnchor == view.trailingAnchor
+        audioPlayerBar.leadingAnchor == view.leadingAnchor
+        audioPlayerBar.bottomAnchor == view.bottomAnchor - 24
+        audioPlayerBar.heightAnchor == 40
         audioPlayerBar.isHidden = true
         audioPlayerBar.viewDelegate = self
     }
@@ -165,23 +224,47 @@ private extension ArticleViewController {
                               remoteID: interactor?.remoteID ?? 0,
                               duration: audioItem.type.duration,
                               viewDelegate: self)
-        bottombar.addSubview(audioButton)
-        audioButton.trailingAnchor == bottombar.trailingAnchor - 24
+        view.addSubview(audioButton)
+        audioButton.trailingAnchor == view.trailingAnchor - 24
+        audioButton.bottomAnchor == view.bottomAnchor - 48
+        audioButton.heightAnchor == 40
+    }
+
+    func updateCloseButton() {
+        closeButton.layer.borderWidth = 1
+        closeButton.layer.borderColor = UIColor.accent.cgColor
+        closeButton.corner(radius: closeButton.bounds.width * 0.5)
+        view.bringSubview(toFront: closeButton)
     }
 
     func showHideCloseButton() {
-        closeButtonItem.isEnabled = !closeButtonItem.isEnabled
-        closeButtonItem.tintColor = closeButtonItem.isEnabled == true ? colorMode.tintColor : .clear
+        closeButton.isHidden = !closeButton.isHidden
     }
 
     func setColorMode() {
         UIApplication.shared.setStatusBarStyle(colorMode.statusBarStyle)
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.apercuMedium(ofSize: 20),
-                                                            .foregroundColor: colorMode.textColor]
-        UIApplication.shared.setStatusBar(background: colorMode.backgroundColor)
-        navigationController?.navigationBar.barTintColor = colorMode.backgroundColor
-        view.backgroundColor = colorMode.backgroundColor
-        bottombar.barTintColor = colorMode.backgroundColor
+                                                            .foregroundColor: colorMode.text]
+        UIApplication.shared.setStatusBar(colorMode: colorMode)
+        navigationController?.navigationBar.barTintColor = colorMode.background
+        view.backgroundColor = colorMode.background
+        tableView.backgroundColor = colorMode.background
+        currentFadeView.removeFromSuperview()
+        currentFadeView = view.addFadeView(at: .bottom,
+                                           height: 120,
+                                           primaryColor: colorMode.background,
+                                           fadeColor: colorMode.fade)
+        audioButton.setColorMode()
+        view.bringSubview(toFront: closeButton)
+        view.bringSubview(toFront: audioButton)
+        if audioPlayerBar.isHidden == false {
+            audioPlayerBar.setColorMode()
+            view.bringSubview(toFront: audioPlayerBar)
+        }
+    }
+
+    func updateMoreButton(customView: UIView?) {
+        moreBarButtonItem.customView = customView
     }
 }
 
@@ -195,12 +278,11 @@ private extension ArticleViewController {
     @IBAction func didTabMoreButton() {
         if topTitleNavigationItem.leftBarButtonItems == nil ||
             topTitleNavigationItem.leftBarButtonItems?.isEmpty == true {
+            updateMoreButton(customView: customMoreButton)
             topTitleNavigationItem.title = nil
-            topTitleNavigationItem.setLeftBarButtonItems([bookMarkBarButtonItem,
-                                                          nightModeBarButtonItem,
-                                                          textScaleBarButtonItem,
-                                                          shareBarButtonItem], animated: true)
+            topTitleNavigationItem.setLeftBarButtonItems(topBarButtonItems, animated: true)
         } else {
+            updateMoreButton(customView: nil)
             topTitleNavigationItem.setLeftBarButtonItems([], animated: true)
             if topTitleNavigationItem.title == nil {
                 if (tableView.visibleCells.filter { $0.tag == 111 }).isEmpty == true {
@@ -211,27 +293,34 @@ private extension ArticleViewController {
     }
 
     @objc func didTabBookmarkItem() {
-        dismiss(animated: true, completion: nil)
+        showAlert(type: .comingSoon)
     }
 
     @objc func didTabDarkModeItem() {
         colorMode = colorMode == .dark ? .darkNot : .dark
         setColorMode()
         tableView.reloadData()
+        didTabMoreButton()
     }
 
     @objc func didTabTextScaleItem() {
-        dismiss(animated: true, completion: nil)
+        showAlert(type: .comingSoon)
     }
 
     @objc func didTabShareItem() {
-        dismiss(animated: true, completion: nil)
+        showAlert(type: .comingSoon)
     }
 }
 
 // MARK: - ArticleViewControllerInterface
 
 extension ArticleViewController: ArticleViewControllerInterface {
+    func reloadData() {
+        (navigationController as? ScrollingNavigationController)?.showNavbar(animated: true, duration: 0.3)
+        tableView.reloadData()
+        tableView.scrollToTop(animated: true)
+    }
+
     func setupArticleHeader(header: Article.Header) {
         self.header = header
     }
@@ -241,7 +330,7 @@ extension ArticleViewController: ArticleViewControllerInterface {
         setupAudioPlayerView()
         setupAudioItem()
         setColorMode()
-        bottombar.setShadowImage(UIImage(), forToolbarPosition: .any)
+        updateCloseButton()
     }
 }
 
@@ -316,7 +405,8 @@ extension ArticleViewController {
                                      author: relatedArticle?.author,
                                      timeToRead: relatedArticle?.timeToRead,
                                      imageURL: relatedArticle?.imageURL,
-                                     isNew: relatedArticle?.isNew ?? false)
+                                     isNew: relatedArticle?.isNew ?? false,
+                                     colorMode: colorMode)
         return relatedArticleCell
     }
 
@@ -344,10 +434,6 @@ extension ArticleViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return interactor?.sectionCount ?? 0
-//    }
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor?.itemCount(in: section) ?? 0
     }
@@ -395,38 +481,32 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                 imageURL: imageURL,
                 placeholderImage: R.image.audioPlaceholder(),
                 attributedString: Style.mediaDescription(title,
-                                                         colorMode.textColor.withAlphaComponent(0.6)).attributedString(lineHeight: 2),
+                                                         colorMode.text.withAlphaComponent(0.6)).attributedString(lineHeight: 2),
                 canStream: true)
         case .image(let title, _, let url):
             return imageTableViweCell(
                 tableView: tableView,
                 indexPath: indexPath,
                 attributeString: Style.mediaDescription(title,
-                                                        colorMode.textColor.withAlphaComponent(0.6)).attributedString(lineHeight: 2),
+                                                        colorMode.text.withAlphaComponent(0.6)).attributedString(lineHeight: 2),
                 url: url)
         case .listItem(let bullet):
             let cell: ArticleBulletPointTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(bullet: bullet)
             return cell
-//            return articleItemTextViewCell(tableView: tableView,
-//                                           indexPath: indexPath,
-//                                           topText: item.type.style(textStyle: .paragraph,
-//                                                                    text: text,
-//                                                                    textColor: .white),
-//                                           bottomText: nil)
         case .text(let text, let style):
             var attributedTopText = item.type.style(textStyle: style,
                                                     text: text,
-                                                    textColor: colorMode.textColor)
+                                                    textColor: colorMode.text)
             if style.headline == true {
                 attributedTopText = item.type.style(textStyle: style,
                                                     text: text.uppercased(),
-                                                    textColor: colorMode.textColor)
+                                                    textColor: colorMode.text)
             } else if style == .paragraph {
-                attributedTopText = Style.article(text, colorMode.textColor).attributedString(lineHeight: 1.8)
+                attributedTopText = Style.article(text, colorMode.text).attributedString(lineHeight: 1.8)
             } else if style == .quote {
                 attributedTopText = Style.qoute(text,
-                                                colorMode.textColor.withAlphaComponent(0.6)).attributedString(lineHeight: 1.8)
+                                                colorMode.text.withAlphaComponent(0.6)).attributedString(lineHeight: 1.8)
             }
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
@@ -450,12 +530,19 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                            author: relatedArticle.author,
                            timeToRead: relatedArticle.timeToRead,
                            imageURL: relatedArticle.imageURL,
-                           isNew: relatedArticle.isNew)
+                           isNew: relatedArticle.isNew,
+                           colorMode: colorMode)
             return cell
         case .button(let selected):
             let cell: MarkAsReadTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(selected: selected)
             cell.delegate = self
+            return cell
+        case .articleRelatedStrategy(let title, let description, _):
+            let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(title: title,
+                           durationString: description,
+                           icon: R.image.ic_seen_of())
             return cell
         default:
             return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
@@ -468,7 +555,8 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         }
         switch item.type {
         case .articleRelatedWhatsHot: return 215
-        case .pdf: return 95
+        case .pdf,
+             .articleRelatedStrategy: return 95
         default: return UITableViewAutomaticDimension
         }
     }
@@ -492,6 +580,10 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case .pdf(let title, _, let pdfURL, let itemID):
             didTapPDFLink(title, itemID, pdfURL)
+        case .articleRelatedWhatsHot(let relatedArticle):
+            interactor?.showRelatedArticle(remoteID: relatedArticle.remoteID)
+        case .articleRelatedStrategy(_, _, let remoteID):
+            interactor?.showRelatedArticle(remoteID: remoteID)
         default: return
         }
     }
@@ -533,9 +625,13 @@ extension ArticleViewController: AudioPlayerViewDelegate {
         if audioPlayerBar.isHidden == true {
             showHideCloseButton()
             audioPlayerBar.isHidden = false
+            view.bringSubview(toFront: audioPlayerBar)
         }
         audioButton.isHidden = !audioPlayerBar.isHidden
-        audioPlayerBar.configure(categoryTitle: categoryTitle, title: title, audioURL: audioURL, remoteID: remoteID)
+        audioPlayerBar.configure(categoryTitle: categoryTitle,
+                                 title: title,
+                                 audioURL: audioURL,
+                                 remoteID: remoteID)
     }
 
     func didFinishAudio() {
@@ -555,8 +651,8 @@ extension ArticleViewController: AudioPlayerViewDelegate {
         view.layoutIfNeeded()
         audioPlayerFullScreen.layoutIfNeeded()
         audioPlayerFullScreen.configure()
+        (navigationController as? ScrollingNavigationController)?.hideNavbar()
         UIView.animate(withDuration: 0.6) {
-            self.navigationController?.navigationBar.isHidden = true
             self.audioPlayerFullScreen.isHidden = false
         }
     }

@@ -23,14 +23,16 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
                                                        letterSpacing: 0.5,
                                                        font: .apercuLight(ofSize: 16),
                                                        lineSpacing: 8,
-                                                       textColor: colorMode.textColor,
+                                                       textColor: colorMode.text,
                                                        alignment: .left)
         detailLabel.attributedText = NSAttributedString(string: timeToWatch,
                                                         letterSpacing: 0.4,
                                                         font: .apercuMedium(ofSize: 12),
-                                                        textColor: colorMode.textColor.withAlphaComponent(0.3),
+                                                        textColor: colorMode.text.withAlphaComponent(0.3),
                                                         alignment: .left)
         previewImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
-        mediaIconImageView.image = R.image.ic_camera_sand()
+        mediaIconImageView.image = R.image.ic_camera_sand()?.withRenderingMode(.alwaysTemplate)
+        mediaIconImageView.tintColor = colorMode.tint
+        contentView.backgroundColor = colorMode.background
     }
 }

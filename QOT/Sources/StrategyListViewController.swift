@@ -34,7 +34,7 @@ final class StrategyListViewController: AbstractLevelTwoViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBar(background: ColorMode.dark.backgroundColor)
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -158,7 +158,10 @@ extension StrategyListViewController: AudioPlayerViewDelegate {
             showHideNavigationButtons()
             audioPlayerBar.isHidden = false
         }
-        audioPlayerBar.configure(categoryTitle: categoryTitle, title: title, audioURL: audioURL, remoteID: remoteID)
+        audioPlayerBar.configure(categoryTitle: categoryTitle,
+                                 title: title,
+                                 audioURL: audioURL,
+                                 remoteID: remoteID)
     }
 
     func didFinishAudio() {

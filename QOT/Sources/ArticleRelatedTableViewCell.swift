@@ -20,14 +20,15 @@ final class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
         titleLabel.attributedText = NSAttributedString(string: title,
                                                        letterSpacing: 0.5,
                                                        font: .apercuLight(ofSize: 16),
-                                                       lineSpacing: 8,
-                                                       textColor: colorMode.textColor,
+                                                       lineSpacing: 1,
+                                                       textColor: colorMode.text,
                                                        alignment: .left)
         detailLabel.attributedText = NSAttributedString(string: durationString,
                                                         letterSpacing: 0.5,
                                                         font: .apercuMedium(ofSize: 12),
-                                                        textColor: colorMode.textColor.withAlphaComponent(0.3),
+                                                        textColor: colorMode.text.withAlphaComponent(0.3),
                                                         alignment: .left)
         iconImageView.image = icon
+        contentView.backgroundColor = colorMode.background
     }
 }

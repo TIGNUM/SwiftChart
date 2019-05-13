@@ -17,7 +17,7 @@ final class ArticleBulletPointTableViewCell: UITableViewCell, Dequeueable {
                                                        letterSpacing: 0.5,
                                                        font: .apercuLight(ofSize: 16),
                                                        lineSpacing: 8,
-                                                       textColor: colorMode.textColor.withAlphaComponent(0.6),
+                                                       textColor: colorMode.text.withAlphaComponent(0.6),
                                                        alignment: .left)
     }
 }

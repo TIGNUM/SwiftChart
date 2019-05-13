@@ -55,7 +55,7 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
     }()
     private func barButtonItem(_ style: UIBarButtonSystemItem, action: Selector?) -> UIBarButtonItem {
         let barButtonTextAttributes: [NSAttributedStringKey: Any] = [.foregroundColor: UIColor.whiteLight40,
-                                                                      .font: UIFont.H5SecondaryHeadline]
+                                                                     .font: UIFont.H5SecondaryHeadline]
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: style, target: self, action: action)
         barButtonItem.setTitleTextAttributes(barButtonTextAttributes, for: .normal)
         barButtonItem.setTitleTextAttributes(barButtonTextAttributes, for: .selected)

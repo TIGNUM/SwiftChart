@@ -12,8 +12,8 @@ final class ArticleWorker {
 
     // MARK: - Properties
 
-    private let services: Services
-    private let selectedID: Int
+    let services: Services
+    private var selectedID: Int
 
     private lazy var content: ContentCollection? = {
         return services.contentService.contentCollection(id: selectedID)
@@ -21,7 +21,7 @@ final class ArticleWorker {
 
     private lazy var relatedContent: [ContentCollection] = {
         guard let content = content else { return [] }
-        return services.contentService.relatedArticles(for: content)
+        return services.contentService.relatedContentList(for: content)
     }()
 
     private lazy var isWhatsHot: Bool = {
@@ -41,16 +41,28 @@ final class ArticleWorker {
                               imageURL: content?.thumbnailURLString)
     }()
 
-    lazy var relatedArticles: [Article.RelatedArticle] = {
-        var articles = [Article.RelatedArticle]()
+    lazy var relatedArticlesWhatsHot: [Article.RelatedArticleWhatsHot] = {
+        var articles = [Article.RelatedArticleWhatsHot]()
         relatedContent.forEach { content in
-            articles.append(Article.RelatedArticle(remoteID: content.remoteID.value ?? 0,
-                                                   title: content.title,
-                                                   publishDate: content.publishDate,
-                                                   author: content.author,
-                                                   timeToRead: content.durationString,
-                                                   imageURL: content.imageURL,
-                                                   isNew: false))
+            if content.isWhatsHot == true {
+                articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID.value ?? 0,
+                                                               title: content.title,
+                                                               publishDate: content.publishDate,
+                                                               author: content.author,
+                                                               timeToRead: content.durationString,
+                                                               imageURL: content.imageURL,
+                                                               isNew: false))
+            }
+        }
+        return articles
+    }()
+
+    lazy var relatedArticlesStrategy: [Article.RelatedArticleStrategy] = {
+        var articles = [Article.RelatedArticleStrategy]()
+        relatedContent.forEach { content in
+            articles.append(Article.RelatedArticleStrategy(title: content.title,
+                                                           durationString: content.durationString,
+                                                           remoteID: content.remoteID.value ?? 0))
         }
         return articles
     }()
@@ -83,6 +95,10 @@ final class ArticleWorker {
         return URL(string: articleAudioItem?.valueMediaURL ?? "")
     }()
 
+    lazy var isShareable: Bool = {
+        return content?.shareableLink != nil
+    }()
+
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
     private lazy var whatsHotItems: [Article.Item] = {
         var items = [Article.Item]()
@@ -96,7 +112,7 @@ final class ArticleWorker {
                                       bundledAudioURL: item.bundledAudioURL,
                                       thumbnailURL: item.valueImageURL))
         }
-        relatedArticles.forEach { relatedArticle in
+        relatedArticlesWhatsHot.forEach { relatedArticle in
             items.append(Article.Item(type: ContentItemValue.articleRelatedWhatsHot(relatedArticle: relatedArticle)))
         }
         return items
@@ -112,12 +128,12 @@ final class ArticleWorker {
             items.append(Article.Item(type: item.contentItemValue, content: item.valueText ?? ""))
         }
         items.append(Article.Item(type: ContentItemValue.button(selected: content?.contentRead != nil), content: ""))
-        content?.articleItems.filter { $0.tabs == "FULL" && $0.format == "pdf"  && $0.format != "video" }.forEach { item in
+        content?.articleItems.filter { $0.tabs == "FULL" && $0.format == "pdf" && $0.format != "video" }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
                 let date = Date().addingTimeInterval(TimeInterval(item.secondsRequired))
                 var timeToReadText = ""
                 if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
-                    timeToReadText = "\(timeString)  \(R.string.localized.learnContentItemToRead())".uppercased()
+                    timeToReadText = "PDF | \(timeString)  \(R.string.localized.learnContentItemToRead())"
                 }
                 items.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText ?? "",
                                                                      description: timeToReadText,
@@ -134,6 +150,11 @@ final class ArticleWorker {
                                                                        duration: Double(item.secondsRequired))))
             }
         }
+        relatedArticlesStrategy.forEach { relatedArticle in
+            items.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: relatedArticle.title,
+                                                                                    description: relatedArticle.durationString,
+                                                                                    itemID: relatedArticle.remoteID)))
+        }
         return items
     }()
 
@@ -145,11 +166,11 @@ final class ArticleWorker {
     }
 
     var sectionCount: Int {
-        return relatedArticles.count > 0 ? 2 : 1
+        return relatedArticlesWhatsHot.count > 0 ? 2 : 1
     }
 
-    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticle {
-        return relatedArticles[indexPath.item]
+    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot {
+        return relatedArticlesWhatsHot[indexPath.item]
     }
 
     func articleItem(at indexPath: IndexPath) -> Article.Item {
@@ -162,5 +183,9 @@ final class ArticleWorker {
 
     func itemCount(in section: Int) -> Int {
         return isWhatsHot == true ? whatsHotItems.count : learnStrategyItems.count
+    }
+
+    func updateSelectedContent(selectedID: Int) {
+        self.selectedID = selectedID
     }
 }

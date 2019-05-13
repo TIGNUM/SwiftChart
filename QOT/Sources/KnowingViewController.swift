@@ -28,6 +28,11 @@ final class KnowingViewController: HomeViewController {
         interactor?.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)        
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? StrategyListViewController {
             StrategyListConfigurator.configure(viewController: controller,
@@ -104,7 +109,8 @@ extension KnowingViewController {
                        author: whatsHotArticle?.author,
                        timeToRead: whatsHotArticle?.timeToRead,
                        imageURL: whatsHotArticle?.image,
-                       isNew: whatsHotArticle?.isNew ?? false)
+                       isNew: whatsHotArticle?.isNew ?? false,
+                       colorMode: ColorMode.dark)
         return cell
     }
 

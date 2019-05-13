@@ -21,10 +21,11 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dKk-81-efE" customClass="WhatsHotComponentView" customModule="QOT" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="173"/>
-                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstAttribute="bottom" secondItem="dKk-81-efE" secondAttribute="bottom" id="5ZP-aA-VOn"/>
                 <constraint firstItem="dKk-81-efE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="cy7-zZ-ueM"/>

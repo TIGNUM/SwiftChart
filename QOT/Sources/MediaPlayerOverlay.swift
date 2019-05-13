@@ -8,12 +8,17 @@
 
 import UIKit
 
+protocol MediaPlayerOverlayDelegate: class {
+    func showAlert()
+}
+
 final class MediaPlayerOverlay: UIView {
 
     // MARK: - Properties
 
     @IBOutlet private weak var downloadButton: UIButton!
     @IBOutlet private weak var bookmarkButton: UIButton!
+    weak var delegate: MediaPlayerOverlayDelegate?
 
     static func instantiateFromNib() -> MediaPlayerOverlay {
         guard let mediaPlayerOverlay = R.nib.mediaPlayerOverlay.instantiate(withOwner: self).first as? MediaPlayerOverlay else {
@@ -47,10 +52,10 @@ private extension MediaPlayerOverlay {
 
 private extension MediaPlayerOverlay {
     @IBAction func didTabDownloadButton() {
-        print("didTabDownloadButton ------------- ")
+        delegate?.showAlert()
     }
 
     @IBAction func didTabBookmarkButton() {
-        print("didTabBookmarkButton ------------- ")
+        delegate?.showAlert()
     }
 }

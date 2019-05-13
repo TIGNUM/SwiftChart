@@ -12,7 +12,7 @@ final class ArticleInteractor {
 
     // MARK: - Properties
 
-    private let worker: ArticleWorker
+    private var worker: ArticleWorker
     private let presenter: ArticlePresenterInterface
     private let router: ArticleRouterInterface
 
@@ -37,12 +37,16 @@ final class ArticleInteractor {
 // MARK: - ArticleInteractorInterface
 
 extension ArticleInteractor: ArticleInteractorInterface {
+    var isShareable: Bool {
+        return worker.isShareable
+    }
+
     var sectionCount: Int {
         return worker.sectionCount
     }
 
-    var relatedArticles: [Article.RelatedArticle] {
-        return worker.relatedArticles
+    var relatedArticles: [Article.RelatedArticleWhatsHot] {
+        return worker.relatedArticlesWhatsHot
     }
 
     var audioItem: Article.Item? {
@@ -65,7 +69,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.audioURL
     }
 
-    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticle {
+    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot {
         return worker.relatedArticle(at: indexPath)
     }
 
@@ -83,5 +87,12 @@ extension ArticleInteractor: ArticleInteractorInterface {
 
     func didTapLink(_ url: URL) {
         router.didTapLink(url)
+    }
+
+    func showRelatedArticle(remoteID: Int) {
+        let services = worker.services
+        worker = ArticleWorker(services: services, selectedID: remoteID)
+        presenter.setupArticleHeader(header: worker.articleHeader)
+        presenter.reloadData()
     }
 }

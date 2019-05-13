@@ -11,26 +11,30 @@ import Foundation
 protocol ArticleViewControllerInterface: class {
     func setupView()
     func setupArticleHeader(header: Article.Header)
+    func reloadData()
 }
 
 protocol ArticlePresenterInterface {
     func setupView()
     func setupArticleHeader(header: Article.Header)
+    func reloadData()
 }
 
 protocol ArticleInteractorInterface: Interactor {
     var sectionCount: Int { get }
-    var relatedArticles: [Article.RelatedArticle] { get }
+    var relatedArticles: [Article.RelatedArticleWhatsHot] { get }
     var audioItem: Article.Item? { get }
     var categoryTitle: String { get }
     var title: String { get }
     var remoteID: Int { get }
     var audioURL: URL? { get }
+    var isShareable: Bool { get }
     func itemCount(in section: Int) -> Int
-    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticle
+    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot
     func articleItem(at indexPath: IndexPath) -> Article.Item
     func markArticleAsRead()
     func didTapLink(_ url: URL)
+    func showRelatedArticle(remoteID: Int)
 }
 
 protocol ArticleRouterInterface {

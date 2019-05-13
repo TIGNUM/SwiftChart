@@ -21,8 +21,10 @@ final class AudioPlayerFullScreen: UIView {
     @IBOutlet private weak var bookmarkButton: UIButton!
     @IBOutlet private weak var playPauseButton: UIButton!
     @IBOutlet private weak var audioPlayerContentView: UIView!
+    @IBOutlet private weak var verticalDivider: UIView!
     @IBOutlet private weak var audioSlider: UISlider!
     @IBOutlet private weak var audioProgressView: UIProgressView!
+    @IBOutlet private weak var visualEffectView: UIVisualEffectView!
     private let audioPlayer = AudioPlayer.current
     weak var viewDelegate: AudioPlayerViewDelegate?
 
@@ -33,25 +35,23 @@ final class AudioPlayerFullScreen: UIView {
         return audioPlayer
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        setupView()
-    }
-
     func configure() {
+        setupView()
+        verticalDivider.backgroundColor = colorMode.audioText
         audioPlayer.delegate = self
         audioSlider.addTarget(self, action: #selector(sliderValueDidChange(_:)), for: .valueChanged)
         categorytitleLabel.attributedText = NSAttributedString(string: audioPlayer.categoryTitle,
                                                                letterSpacing: 0.4,
                                                                font: .apercuMedium(ofSize: 12),
-                                                               textColor: .sand30,
+                                                               textColor: colorMode.text.withAlphaComponent(0.3),
                                                                alignment: .left)
         titleLabel.attributedText = NSAttributedString(string: audioPlayer.title,
                                                        letterSpacing: 0.2,
                                                        font: .apercuLight(ofSize: 34),
-                                                       textColor: .sand,
+                                                       textColor: colorMode.text,
                                                        alignment: .left)
         playPauseButton.setImage(audioPlayer.isPlaying ? R.image.ic_pause_sand() : R.image.ic_play_sand(), for: .normal)
+        visualEffectView.effect = UIBlurEffect(style: colorMode.audioVissualEffect)
         drawCircles()
     }
 }
@@ -67,7 +67,7 @@ private extension AudioPlayerFullScreen {
 
     func setupPlayerBar() {
         audioSlider.setThumbImage(R.image.ic_audio_slider(), for: .normal)
-        audioPlayerContentView.backgroundColor = .sand
+        audioPlayerContentView.backgroundColor = colorMode.audioBackground
         audioPlayerContentView.corner(radius: 20)
     }
 
@@ -97,12 +97,12 @@ private extension AudioPlayerFullScreen {
         currentTimeLabel.attributedText = NSAttributedString(string: timeString(for: currentTime),
                                                              letterSpacing: 0.4,
                                                              font: .apercuMedium(ofSize: 12),
-                                                             textColor: .carbon60,
+                                                             textColor: colorMode.audioText,
                                                              alignment: .right)
         totalTimeLabel.attributedText = NSAttributedString(string: timeString(for: totalTime),
                                                            letterSpacing: 0.4,
                                                            font: .apercuMedium(ofSize: 12),
-                                                           textColor: .carbon60,
+                                                           textColor: colorMode.audioText,
                                                            alignment: .left)
     }
 
