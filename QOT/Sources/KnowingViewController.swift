@@ -18,7 +18,7 @@ final class KnowingViewController: HomeViewController {
     // MARK: - Properties
 
     var interactor: KnowingInteractorInterface?
-    weak var delegate: CoachPageViewControllerDelegate?
+    weak var delegate: CoachCollectionViewControllerDelegate?
     private let headerViewID = "ComponentHeaderView"
 
     // MARK: - Life Cycle
@@ -51,10 +51,6 @@ final class KnowingViewController: HomeViewController {
 
 private extension KnowingViewController {}
 
-// MARK: - Actions
-
-private extension KnowingViewController {}
-
 // MARK: - KnowingViewControllerInterface
 
 extension KnowingViewController: KnowingViewControllerInterface {
@@ -62,6 +58,8 @@ extension KnowingViewController: KnowingViewControllerInterface {
         view.addFadeView(at: .bottom, height: 120, primaryColor: .carbonDark)
         view.backgroundColor = .carbonDark
         collectionView.backgroundColor = .carbonDark
+        collectionView.bounces = false
+        collectionView.alwaysBounceVertical = false
         collectionView.registerDequeueable(WhatsHotCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyCategoryCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyFoundationCollectionViewCell.self)
@@ -168,5 +166,13 @@ extension KnowingViewController {
             let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item]
             interactor?.presentWhatsHotArticle(selectedID: whatsHotArticle?.remoteID ?? 0)
         }
+    }
+}
+
+extension KnowingViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

@@ -31,6 +31,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let myToBeVision: Results<MyToBeVision>
     private lazy var myUniverseProvider = MyUniverseProvider(services: services)
     private lazy var visionNavigationItem = NavigationItem()
+    weak var delegate: CoachCollectionViewControllerDelegate?
 
     lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: services,
@@ -404,7 +405,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {
-        let configurator = SearchConfigurator.make()
+        let configurator = SearchConfigurator.make(delegate: delegate)
         let searchViewController = SearchViewController(configure: configurator, pageName: .tabBarItemGuideSearch)
         searchViewController.hidesBottomBarWhenPushed = true
         let navController = UINavigationController(rootViewController: searchViewController)

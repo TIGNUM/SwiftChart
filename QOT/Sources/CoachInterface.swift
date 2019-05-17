@@ -18,6 +18,10 @@ protocol CoachPresenterInterface {
     func present(for coachSection: CoachModel)
 }
 
-protocol CoachInteractorInterface: Interactor {}
+protocol CoachInteractorInterface: Interactor {
+    func handleTap(coachSection: CoachSection)
+}
 
-protocol CoachRouterInterface {}
+protocol CoachRouterInterface {
+     func handleTap(coachSection: CoachSection)
+}

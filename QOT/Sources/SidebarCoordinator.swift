@@ -21,6 +21,7 @@ final class SidebarCoordinator: ParentCoordinator {
     let sideBarViewController: SidebarViewController!
     var topTabBarController: UINavigationController?
     var children = [Coordinator]()
+    weak var delegate: CoachCollectionViewControllerDelegate?
 
     init(root: UIViewController,
          services: Services,
@@ -86,7 +87,7 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     }
 
     func didTapSearchCell(in viewController: SidebarViewController) {
-        let configurator = SearchConfigurator.make()
+        let configurator = SearchConfigurator.make(delegate: delegate)
         let searchViewController = SearchViewController(configure: configurator, pageName: .sideBarSearch)
         let navController = UINavigationController(rootViewController: searchViewController)
         navController.navigationBar.applyDefaultStyle()

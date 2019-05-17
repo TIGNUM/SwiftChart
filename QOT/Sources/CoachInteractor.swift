@@ -36,4 +36,9 @@ final class CoachInteractor {
 
 // MARK: - CoachInteractorInterface
 
-extension CoachInteractor: CoachInteractorInterface {}
+extension CoachInteractor: CoachInteractorInterface {
+
+    func handleTap(coachSection: CoachSection) {
+        router.handleTap(coachSection: coachSection)
+    }
+}

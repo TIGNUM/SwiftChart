@@ -17,7 +17,7 @@ final class MyQotViewController: AbstractLevelOneViewConroller {
     // MARK: - Properties
 
     var interactor: MyQotInteractorInterface?
-    weak var delegate: CoachPageViewControllerDelegate?
+    weak var delegate: CoachCollectionViewControllerDelegate?
 
     // MARK: - Life Cycle
 
@@ -47,12 +47,6 @@ private extension MyQotViewController {
         let viewController = DecisionTreeViewController(configure: configurator)
         present(viewController, animated: true)
     }
-}
-
-// MARK: - Actions
-
-private extension MyQotViewController {
-
 }
 
 // MARK: - MyQotViewControllerInterface

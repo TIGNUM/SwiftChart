@@ -17,9 +17,20 @@ extension UIViewController {
                                                            action: #selector(backToPreviousViewController))
     }
 
+    func setCustomBackButtonSearch() {
+        let backButtonItem = UIBarButtonItem(image: R.image.ic_cancel(),
+                                             style: .plain,
+                                             target: self,
+                                             action: #selector(backToPreviousViewController))
+        backButtonItem.tintColor = .accent
+        navigationItem.rightBarButtonItem = backButtonItem
+    }
+
     @objc func backToPreviousViewController() {
         if let previousVC = navigationController?.viewControllers.dropLast().last {
+            if previousVC is CoachViewController {
             navigationController?.popToViewController(previousVC, animated: true)
+            }
         }
     }
 

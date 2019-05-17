@@ -240,7 +240,7 @@
 		3679A4E12175E3BA00DF761A /* WebViewContent.html in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E02175E3BA00DF761A /* WebViewContent.html */; };
 		3679A4E32175E45300DF761A /* qot_clip.gif in Resources */ = {isa = PBXBuildFile; fileRef = 3679A4E22175E45200DF761A /* qot_clip.gif */; };
 		367BB014223956A700282AB6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 367BB013223956A700282AB6 /* Main.storyboard */; };
-		367BB0162239570B00282AB6 /* CoachPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367BB0152239570B00282AB6 /* CoachPageViewController.swift */; };
+		367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */; };
 		367EA0F121776921003025CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367EA0F021776920003025CE /* Assets.xcassets */; };
 		3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3681A5222260C99700E3F4B8 /* ArticleHeaderView.xib */; };
 		3681A52522647FE600E3F4B8 /* ArticleHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3681A52422647FE600E3F4B8 /* ArticleHeaderView.swift */; };
@@ -1296,7 +1296,7 @@
 		3679A4E02175E3BA00DF761A /* WebViewContent.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = WebViewContent.html; sourceTree = "<group>"; };
 		3679A4E22175E45200DF761A /* qot_clip.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; name = qot_clip.gif; path = Media/qot_clip.gif; sourceTree = "<group>"; };
 		367BB013223956A700282AB6 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		367BB0152239570B00282AB6 /* CoachPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachPageViewController.swift; sourceTree = "<group>"; };
+		367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachCollectionViewController.swift; sourceTree = "<group>"; };
 		367EA0F021776920003025CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		3681A5222260C99700E3F4B8 /* ArticleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleHeaderView.xib; sourceTree = "<group>"; };
 		3681A52422647FE600E3F4B8 /* ArticleHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleHeaderView.swift; sourceTree = "<group>"; };
@@ -2212,43 +2212,12 @@
 			children = (
 				36376639223A6F3B00C2C429 /* AbstractTableViewCell.swift */,
 				3637663B223A6F8500C2C429 /* AbstractTableViewCell.xib */,
-				36E86D492270511100371C67 /* ArticleBulletPointTableViewCell.swift */,
-				36E86D4A2270511100371C67 /* ArticleBulletPointTableViewCell.xib */,
-				360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */,
-				360CC3C52268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib */,
-				36E86D512270651A00371C67 /* ArticleRelatedTableViewCell.swift */,
-				36E86D522270651A00371C67 /* ArticleRelatedTableViewCell.xib */,
-				360CC3C82268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift */,
-				360CC3C92268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib */,
-				360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */,
-				360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */,
-				3662433D227C56E500FFED3A /* AudioButton.swift */,
-				3662433F227C570200FFED3A /* AudioButton.xib */,
-				3604C9232272176F00A681B3 /* AudioPlayer.swift */,
-				36AEA4DC2271AC6E00EC9C55 /* AudioPlayerBar.swift */,
-				36AEA4DE2271AC8F00EC9C55 /* AudioPlayerBar.xib */,
-				3604C91F22720CAC00A681B3 /* AudioPlayerFullScreen.swift */,
-				3604C92122720CB900A681B3 /* AudioPlayerFullScreen.xib */,
 				36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */,
 				36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */,
 				36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */,
 				36E6E3F022493016001BE9C7 /* ComponentDetailViewController.swift */,
 				3632D0C722534E6400A4F234 /* ComponentHeaderView.swift */,
 				3632D0C5225347DD00A4F234 /* ComponentHeaderView.xib */,
-				366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */,
-				366F1FD6226A1CE90034D8FD /* FoundationTableViewCell.xib */,
-				36E86D4D227059A100371C67 /* MarkAsReadTableViewCell.swift */,
-				36E86D4E227059A100371C67 /* MarkAsReadTableViewCell.xib */,
-				36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */,
-				36A5E75622786014006A522C /* MediaPlayerOverlay.xib */,
-				3632D0C92253699600A4F234 /* StrategyCategoryCollectionViewCell.swift */,
-				3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */,
-				36E86D55227091CB00371C67 /* StrategyContentTableViewCell.swift */,
-				36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */,
-				3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */,
-				3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */,
-				36E86D45226F452C00371C67 /* StrategyListHeaderView.swift */,
-				36E86D47226F45BC00371C67 /* StrategyListHeaderView.xib */,
 				36376666223ABB2D00C2C429 /* StrategyTableViewCell.swift */,
 				36376667223ABB2D00C2C429 /* StrategyTableViewCell.xib */,
 				365EC0B8224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift */,
@@ -2580,6 +2549,7 @@
 		367BB012223955D200282AB6 /* 3.0 Main Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				CBB4DD361EE08A5C0071494A /* Search */,
 				3608381D225F3E9E00664B9B /* article */,
 				36E6E3F2224938D8001BE9C7 /* transition */,
 				3637666C223BFF1100C2C429 /* strategyList */,
@@ -2591,7 +2561,7 @@
 				363765F1223A4BA400C2C429 /* daily brief */,
 				363765F0223A4B9B00C2C429 /* knowing */,
 				367BB013223956A700282AB6 /* Main.storyboard */,
-				367BB0152239570B00282AB6 /* CoachPageViewController.swift */,
+				367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */,
 				36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */,
 				3637664F223A851500C2C429 /* AbstractLevelTwoViewController.swift */,
 				36376651223A9CD300C2C429 /* AbstractLevelThreeViewController.swift */,
@@ -3480,7 +3450,6 @@
 				E813F0A02130053700C0723E /* PDFReader */,
 				91F5BE3C2097573500E85A51 /* Permissions */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
-				CBB4DD361EE08A5C0071494A /* Search */,
 				913C7174209C61B2001C4185 /* Settings */,
 				CB3333DD20480DA2009480DF /* Share */,
 				366AFD2320BEC8D200109F29 /* Signing */,
@@ -5899,7 +5868,7 @@
 				CB3333E520480DEF009480DF /* ShareProtocols.swift in Sources */,
 				7FE674B91F8F8F3600FC7407 /* ArticleCollectionHeader.swift in Sources */,
 				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
-				367BB0162239570B00282AB6 /* CoachPageViewController.swift in Sources */,
+				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
 				F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */,

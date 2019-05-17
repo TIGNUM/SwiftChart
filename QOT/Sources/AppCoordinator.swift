@@ -260,9 +260,9 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             return
         }
         if self.isRestart == false {
-            guard let coachPageViewController = R.storyboard.main().instantiateViewController(withIdentifier: "CoachPageViewController") as? CoachPageViewController else { return }
-            coachPageViewController.services = services
-            self.windowManager.show(coachPageViewController, animated: true, completion: nil)
+            guard let coachCollectionViewController = R.storyboard.main().instantiateViewController(withIdentifier: "CoachCollectionViewController") as? CoachCollectionViewController else { return }
+            coachCollectionViewController.services = services
+            self.windowManager.show(coachCollectionViewController, animated: true, completion: nil)
 //            self.startTabBarCoordinator()
         } else {
             self.isRestart = false

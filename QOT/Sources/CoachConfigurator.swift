@@ -12,7 +12,7 @@ final class CoachConfigurator: AppStateAccess {
 
     static func make(viewController: CoachViewController?) {
         guard let viewController = viewController else { return }
-        let router = CoachRouter(viewController: viewController)
+        let router = CoachRouter(viewController: viewController, services: appState.services)
         let worker = CoachWorker(services: appState.services)
         let presenter = CoachPresenter(viewController: viewController)
         let interactor = CoachInteractor(worker: worker, presenter: presenter, router: router)
