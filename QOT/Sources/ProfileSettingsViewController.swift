@@ -40,7 +40,7 @@ final class ProfileSettingsViewController: UIViewController {
     private var launchOptions: [LaunchOption: String?]
 
     private lazy var headerView: SettingsMenuHeader? = {
-        let headerView = R.nib.settingsMenuHeader().instantiate(withOwner: nil, options: nil).first as? SettingsMenuHeader
+        let headerView = UINib(resource: R.nib.settingsMenuHeader).instantiate(withOwner: nil, options: nil).first as? SettingsMenuHeader
         headerView?.delegate = self
         return headerView
     }()
@@ -244,13 +244,13 @@ private extension ProfileSettingsViewController {
     }
 
     func registerCells() {
-        tableView.register(R.nib.settingsLabelTableViewCell(),
+        tableView.register(UINib(resource: R.nib.settingsLabelTableViewCell),
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Label.identifier)
-        tableView.register(R.nib.settingsButtonTableViewCell(),
+        tableView.register(UINib(resource: R.nib.settingsButtonTableViewCell),
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Button.identifier)
-        tableView.register(R.nib.settingsControlTableViewCell(),
+        tableView.register(UINib(resource: R.nib.settingsControlTableViewCell),
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
-        tableView.register(R.nib.settingsTextFieldTableViewCell(),
+        tableView.register(UINib(resource: R.nib.settingsTextFieldTableViewCell),
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_TextField.identifier)
     }
 

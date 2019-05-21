@@ -13,9 +13,7 @@ import UserNotifications
 import AirshipKit
 import Crashlytics
 import ReactiveKit
-import Bond
 import Buglife
-import Siren
 
 final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
@@ -104,7 +102,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }()
 
     private lazy var iPadAdviceView: IPadAdviceView? = {
-        let advice = R.nib.iPadAdviceView().instantiate(withOwner: nil, options: nil).first as? IPadAdviceView
+        let advice = UINib(resource: R.nib.iPadAdviceView).instantiate(withOwner: nil, options: nil).first as? IPadAdviceView
         if
             let title = IPadAdviceViewType.title.value(contentService: services?.contentService),
             let body = IPadAdviceViewType.body.value(contentService: services?.contentService),
@@ -221,7 +219,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                     AppCoordinator.appState.services = services
                     QOTUsageTimer.sharedInstance.userService = services.userService
                     _ = self.tabBarCoordinator
-                    AppDelegate.current.setupSiren(services: self.services)
                     self.setupBugLife()
                     completion(nil)
                 } catch {
@@ -233,12 +230,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     func checkVersionIfNeeded() {
         guard services?.userService.user()?.appUpdatePrompt == true else { return }
-        if Siren.shared.alertType == .force {
-            Siren.shared.checkVersion(checkType: .immediately)
-        }
-        if Siren.shared.alertType == .option {
-            Siren.shared.checkVersion(checkType: .daily)
-        }
     }
 
     private func handleSetupError(error: Error) {
@@ -1181,7 +1172,6 @@ extension AppCoordinator {
                 let guideItemContent = Guide.Item.Content.learningPlan(text: content.guideBody ?? "",
                                                                        strategiesCompleted: nil,
                                                                        displayDate: displayDate)
-                let issueDate = services.guideService.notificationItem(remoteID: notificationID)?.issueDate
                 let guideItem = Guide.Item(status: .done,
                                            title: content.guideTitle ?? "",
                                            content: guideItemContent,

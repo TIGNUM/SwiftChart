@@ -1,0 +1,3 @@
+[submodule "qot_dal"]
+	path = qot_dal
+	url = git@github.com:TIGNUM/qot_dal.git

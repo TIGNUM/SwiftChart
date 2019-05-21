@@ -88,7 +88,7 @@ final class ChatViewModel<T: ChatChoice> {
     private var selectedVisionChoicesIDs = [String]()
     private var visionSelections = [VisionGeneratorChoice]()
     var visionGeneratorInteractor: VisionGeneratorInteractorInterface?
-    let updates = PublishSubject<Update, NoError>()
+    let updates = PublishSubject<Update, Never>()
 
     var visionChoiceSelections: [VisionGeneratorChoice] {
         return visionSelections

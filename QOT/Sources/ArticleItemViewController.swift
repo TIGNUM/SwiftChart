@@ -198,7 +198,7 @@ private extension ArticleItemViewController {
 
     func setTableViewHeader() {
         guard let header = viewModel.articleHeader else { return }
-        let nib = viewModel.isWhatsHot ? R.nib.whatsHotArticleHeaderView() : R.nib.articleItemHeaderView()
+        let nib = viewModel.isWhatsHot ? UINib(resource: R.nib.whatsHotArticleHeaderView) : UINib(resource: R.nib.articleItemHeaderView)
         guard let headerView = (nib.instantiate(withOwner: self, options: nil).first as? ArticleItemHeaderView) else {
             return
         }

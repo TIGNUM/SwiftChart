@@ -112,9 +112,9 @@ extension DismissComponentAnimator: UIViewControllerAnimatedTransitioning {
 
             UIView.animate(withDuration: transitionDuration(using: ctx), delay: 0, usingSpringWithDamping: 0.7, initialSpringVelocity: 0.0, options: [], animations: {
                 animateCardViewBackToPlace()
-            }) { (finished) in
+            }, completion: { (finished) in
                 completeEverything()
-            }
+            })
 
             UIView.animate(withDuration: transitionDuration(using: ctx) * 0.6) {
                 screens.cardDetail?.scrollView.contentOffset = .zero

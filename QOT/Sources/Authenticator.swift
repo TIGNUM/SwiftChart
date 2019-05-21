@@ -18,7 +18,6 @@ protocol AuthenticatorDelegate: class {
 final class Authenticator {
 
     private let queue = DispatchQueue(label: "Authenticator", qos: .background)
-    private let authTokenValidator: AuthTokenValidator
     private let sessionManager: SessionManager
     private let requestBuilder: URLRequestBuilder
     private let store = CredentialsManager.shared
@@ -29,12 +28,10 @@ final class Authenticator {
 
     init(sessionManager: SessionManager,
          requestBuilder: URLRequestBuilder,
-         notificationCenter: NotificationCenter = NotificationCenter.default,
-         authTokenValidator: AuthTokenValidator = AuthTokenValidator()) {
+         notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.sessionManager = sessionManager
         self.requestBuilder = requestBuilder
         self.notificationCenter = notificationCenter
-        self.authTokenValidator = authTokenValidator
     }
 
     func authenticate(username: String, password: String, completion: @escaping AuthenticationCompletion) {
@@ -165,9 +162,7 @@ private extension Authenticator {
 
     private func validAuthToken(now: Date) -> String? {
         dispatchPrecondition(condition: .onQueue(queue))
-        guard let existingToken = store.authToken() else { return nil }
-        let isValid = authTokenValidator.isValid(token: existingToken, now: now)
-        return isValid ? existingToken : nil
+        return store.authToken()
     }
 
     private func loginCredentials() -> (username: String, password: String)? {

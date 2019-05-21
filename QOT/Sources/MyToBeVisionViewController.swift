@@ -451,7 +451,7 @@ extension MyToBeVisionViewController: ImagePickerControllerDelegate {
     func deleteImage() {
         tempImage = nil
         tempImageURL = nil
-        imageViewVision.kf.setImage(with: nil, placeholder: R.image.tbv_placeholder())
+        imageViewVision.kf.setImage(with: tempImageURL, placeholder: R.image.tbv_placeholder())
         RestartHelper.clearRestartRouteInfo()
     }
 

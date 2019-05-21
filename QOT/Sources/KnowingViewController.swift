@@ -30,7 +30,7 @@ final class KnowingViewController: HomeViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)        
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,7 +63,7 @@ extension KnowingViewController: KnowingViewControllerInterface {
         collectionView.registerDequeueable(WhatsHotCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyCategoryCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyFoundationCollectionViewCell.self)
-        collectionView.register(R.nib.componentHeaderView(),
+        collectionView.register(UINib(resource: R.nib.componentHeaderView),
                                 forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                 withReuseIdentifier: headerViewID)
     }

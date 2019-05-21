@@ -139,7 +139,6 @@ extension User: TwoWaySyncableUniqueObject {
         subscriptionExpireSoon = data.subscriptionExpireSoon
         updateUAirshipTags(data.urbanAirshipTags + [data.email])
         AppDelegate.current.appCoordinator.setupBugLife()
-        AppDelegate.current.setupSiren(services: AppCoordinator.appState.services)
     }
 
     private func updateUAirshipTags(_ tags: [String]) {

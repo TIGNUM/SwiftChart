@@ -127,7 +127,7 @@ final class ArticleItemHeaderView: UIView {
 extension ArticleItemHeaderView {
 
     @IBAction func didTabShareButton() {
-        guard let shareableLink = self.shareableLink else { return }
+        guard self.shareableLink != nil else { return }
         delegate?.didTapShare(header: header)
     }
 }

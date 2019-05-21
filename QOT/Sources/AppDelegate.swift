@@ -337,7 +337,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let host = notificationLink.host,
             let scheme = URLScheme(rawValue: host), scheme != .dailyPrep,
             let id = try? GuideItemID(stringRepresentation: notificationID) else { return }
-        let guideWorker = GuideWorker(services: AppDelegate.appState.services, badgeManager: nil)
+        let guideWorker = GuideWorker(services: AppDelegate.appState.services)
         guideWorker.setItemCompleted(id: id)
     }
 

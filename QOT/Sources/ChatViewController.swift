@@ -34,6 +34,10 @@ private struct SizeCacheKey: Hashable {
     var hashValue: Int {
         return text.hashValue ^ styleID.hashValue ^ maxWidth.hashValue
     }
+
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(text.hashValue ^ styleID.hashValue ^ maxWidth.hashValue)
+    }
 }
 
 final class GenericCacheKey<T: Hashable>: NSObject {

@@ -23,7 +23,7 @@ final class SettingsMenuViewModel {
 
     private lazy var tiles: [Tile] = userTiles(user: self.user)
     private let user: User
-    let tileUpdates = PublishSubject<CollectionUpdate, NoError>()
+    let tileUpdates = PublishSubject<CollectionUpdate, Never>()
     private let settingTitles = [R.string.localized.sidebarSettingsMenuGeneralButton(),
                                  R.string.localized.sidebarSettingsMenuNotificationsButton(),
                                  R.string.localized.sidebarSettingsMenuSecurityButton()]
@@ -330,7 +330,7 @@ final class SettingsViewModel {
     private let services: Services
     private let user: User
     private let settingsType: SettingsType.SectionType
-    let updates = PublishSubject<CollectionUpdate, NoError>()
+    let updates = PublishSubject<CollectionUpdate, Never>()
 
     var sectionCount: Int {
         return settingsSections.count

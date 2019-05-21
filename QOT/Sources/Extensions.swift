@@ -774,14 +774,14 @@ extension NSMutableAttributedString {
 
 extension UIApplication {
     var statusBarView: UIView? {
-        if responds(to: Selector("statusBar")) {
+        if responds(to: Selector(("statusBar"))) {
             return value(forKey: "statusBar") as? UIView
         }
         return nil
     }
 
     func setStatusBar(colorMode: ColorMode) {
-        if let statusBar = UIApplication.shared.statusBarView, statusBar.responds(to: "setBackgroundColor:") {
+        if let statusBar = UIApplication.shared.statusBarView, statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
             statusBar.backgroundColor = colorMode.background
             UIApplication.shared.setStatusBarStyle(colorMode.statusBarStyle)
         }
