@@ -9,7 +9,6 @@
 import Foundation
 import RealmSwift
 import EventKit
-import Crashlytics
 
 final class CalendarImportTask {
 

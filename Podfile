@@ -28,8 +28,6 @@ target 'QOT' do
   pod 'RSKImageCropper'
   pod 'BonMot'
   pod 'MBProgressHUD'
-  pod 'Fabric'
-  pod 'Crashlytics'
   pod 'UrbanAirship-iOS-SDK'
   pod 'Buglife'
   pod 'SwiftyBeaver'

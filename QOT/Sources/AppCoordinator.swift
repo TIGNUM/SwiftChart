@@ -11,7 +11,6 @@ import RealmSwift
 import Alamofire
 import UserNotifications
 import AirshipKit
-import Crashlytics
 import ReactiveKit
 import Buglife
 
@@ -234,7 +233,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     private func handleSetupError(error: Error) {
         log("Error setting up database: \(error)", level: .error)
-        Crashlytics.sharedInstance().recordError(error)
         let message = "There was a problem initializing the app's data. Please restart the app and try again"
         self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
             exit(0)

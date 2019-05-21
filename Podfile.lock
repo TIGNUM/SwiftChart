@@ -8,10 +8,7 @@ PODS:
     - ReactiveKit (~> 3.10)
   - BonMot (5.3)
   - Buglife (2.10.1)
-  - Crashlytics (3.13.1):
-    - Fabric (~> 1.10.1)
   - Differ (1.4.1)
-  - Fabric (1.10.1)
   - Freddy (3.0.3)
   - HockeySDK (5.1.4):
     - HockeySDK/DefaultLib (= 5.1.4)
@@ -41,8 +38,6 @@ DEPENDENCIES:
   - "Bond (from `git@github.com:SanggeonPark/Bond.git`)"
   - BonMot
   - Buglife
-  - Crashlytics
-  - Fabric
   - Freddy
   - HockeySDK
   - JPSimulatorHacks
@@ -63,9 +58,7 @@ SPEC REPOS:
     - Anchorage
     - BonMot
     - Buglife
-    - Crashlytics
     - Differ
-    - Fabric
     - Freddy
     - HockeySDK
     - JPSimulatorHacks
@@ -101,9 +94,7 @@ SPEC CHECKSUMS:
   Bond: c5f2519382a501f45e4907c7846d53828d163aaf
   BonMot: 0104d1b4eda54f4a4b7393d6559539ef25498fbd
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
-  Crashlytics: 5aa8e90dcbf2f34898b4f5a0037787531246cca0
   Differ: ca4350872e32a1aeedf3d9e2d9e47127833bfa9c
-  Fabric: f6f21452846788bb44595d73e9909d79d328e617
   Freddy: 7c62db262a0d0e3b3e2b8b40f2c0cc51e122fbc4
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JPSimulatorHacks: 28428b30259eb93ad558ac3f2c608acd2133a14b
@@ -118,6 +109,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
   UrbanAirship-iOS-SDK: a5ff86dcdb2582590aec635299931278cfeb53c4
 
-PODFILE CHECKSUM: 7d7c92974b8335ee1f3c537f12117dbd5dfdc4d2
+PODFILE CHECKSUM: 33b94c54981e5c381bfecfc1fd66904a30315548
 
 COCOAPODS: 1.6.2

@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import AirshipKit
 import CoreLocation
 import RealmSwift
@@ -90,7 +88,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             Logger.shared.setup()
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()
-            Fabric.with([Crashlytics.self])
             if appCoordinator.userLoggedIn == true {
                 appCoordinator.startSync()
             }
