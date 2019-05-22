@@ -16,8 +16,7 @@
     extension AppDelegate {
         func __buildDatabase() {
             let realmProvider = BuilderRealmProvider()
-            let authenticator = Authenticator(sessionManager: SessionManager.default,
-                                              requestBuilder: URLRequestBuilder(deviceID: deviceID))
+            let authenticator = Authenticator()
             databaseBuilder = DatabaseBuilder(
                 networkManager: NetworkManager(authenticator: authenticator),
                 syncRecordService: SyncRecordService(realmProvider: realmProvider),
