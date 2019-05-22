@@ -22,7 +22,6 @@ final class AudioPlayerBar: UIView {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = .sand
         audioPlayer.delegate = self
         contentView.corner(radius: 20)
         progressView.corner(radius: 20)
@@ -38,11 +37,7 @@ final class AudioPlayerBar: UIView {
     func configure(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int) {
         audioPlayer.delegate = self
         progressView.progress = 0
-        titleLabel.attributedText = NSAttributedString(string: title,
-                                                       letterSpacing: 0.4,
-                                                       font: .apercuMedium(ofSize: 12),
-                                                       textColor: .carbon60,
-                                                       alignment: .left)
+        setTitleLabel(title: title)
         audioPlayer.resetPlayer()
         audioPlayer.prepareToPlay(categoryTitle: categoryTitle, title: title, audioURL: audioURL, remoteID: remoteID)
     }
@@ -50,6 +45,23 @@ final class AudioPlayerBar: UIView {
     func updateView() {
         audioPlayer.delegate = self
         playPauseButton.setImage(audioPlayer.isPlaying ? R.image.ic_pause_sand() : R.image.ic_play_sand(), for: .normal)
+    }
+
+    func setColorMode() {
+        contentView.backgroundColor = colorMode.audioBackground
+        setTitleLabel(title: titleLabel.text ?? "")
+    }
+}
+
+// MARK: - Private
+
+private extension AudioPlayerBar {
+    func setTitleLabel(title: String) {
+        titleLabel.attributedText = NSAttributedString(string: title,
+                                                       letterSpacing: 0.4,
+                                                       font: .apercuMedium(ofSize: 12),
+                                                       textColor: colorMode.audioText,
+                                                       alignment: .left)
     }
 }
 

@@ -11,7 +11,7 @@ import Foundation
 final class StrategyListConfigurator: AppStateAccess {
     static func configure(viewController: StrategyListViewController,
                           selectedStrategyID: Int?,
-                          delegate: CoachPageViewControllerDelegate?) {
+                          delegate: CoachCollectionViewControllerDelegate?) {
         let router = StrategyListRouter(viewController: viewController)
         let worker = StrategyListWorker(services: appState.services,
                                         selectedStrategyID: selectedStrategyID)

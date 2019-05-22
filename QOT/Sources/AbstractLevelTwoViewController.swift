@@ -10,7 +10,7 @@ import UIKit
 
 class AbstractLevelTwoViewController: UIViewController {
 
-    weak var delegate: CoachPageViewControllerDelegate?
+    weak var delegate: CoachCollectionViewControllerDelegate?
 
     lazy var coachButton: UIButton = {
         let button = UIButton(type: .custom)

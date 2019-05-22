@@ -7,7 +7,7 @@
 //
 
 import UIKit
-
+import qot_dal
 final class SigningLoginWorker {
 
     // MARK: - Properties
@@ -34,11 +34,12 @@ final class SigningLoginWorker {
 extension SigningLoginWorker {
 
     func sendLoginRequest(email: String, password: String, completion: ((_ error: Error?) -> Void)?) {
-        networkManager.performAuthenticationRequest(username: email.trimmed,
-                                                    password: password.trimmed) { [weak self] (error) in
-            if let error = error {
+        let authenticator = Authenticator()
+        authenticator.authenticate(username: email.trimmed, password: password.trimmed) { [weak self] (result) in
+            switch result {
+            case .failure(let error):
                 completion?(error)
-            } else {
+            case .success(let _):
                 ExtensionsDataManager.didUserLogIn(true)
                 self?.downSyncUser(completion: completion)
             }
@@ -46,8 +47,8 @@ extension SigningLoginWorker {
     }
 
     func sendResetPassword(completion: @escaping (NetworkError?) -> Void) {
-        networkManager.performResetPasswordRequest(username: email.trimmed) { error in
-            completion(error)
+        QOTService.main.resetPassword(email.trimmed) { (request, requestError) in
+            completion(requestError?.networkError)
         }
     }
 }

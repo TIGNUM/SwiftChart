@@ -31,4 +31,8 @@ extension ArticlePresenter: ArticlePresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func reloadData() {
+        viewController?.reloadData()
+    }
 }

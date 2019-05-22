@@ -10,13 +10,14 @@ import Foundation
 
 final class SearchConfigurator: AppStateAccess {
 
-    static func make() -> (SearchViewController) -> Void {
+    static func make(delegate: CoachCollectionViewControllerDelegate?) -> (SearchViewController) -> Void {
         return { (searchViewController) in
             let router = SearchRouter(searchViewController: searchViewController)
             let worker = SearchWorker(services: appState.services, networkManager: appState.networkManager)
             let presenter = SearchPresenter(viewController: searchViewController)
             let interactor = SearchInteractor(worker: worker, router: router, presenter: presenter)
             searchViewController.interactor = interactor
+            searchViewController.delegate = delegate
         }
     }
 }

@@ -69,9 +69,9 @@ final class SettingsCalendarListViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        tableView.register(R.nib.settingsControlTableViewCell(),
+        tableView.register(UINib(resource: R.nib.settingsControlTableViewCell),
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Control.identifier)
-        tableView.register(R.nib.settingsLabelTableViewCell(),
+        tableView.register(UINib(resource: R.nib.settingsLabelTableViewCell),
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Label.identifier)
     }
 }

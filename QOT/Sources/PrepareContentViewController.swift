@@ -269,7 +269,8 @@ extension PrepareContentViewController: UITableViewDelegate, UITableViewDataSour
         switch viewModel.displayMode {
         case .checkbox:
             if section == 1 {
-                sectionHeaderView = R.nib.prepareSectionHeaderView().instantiate(withOwner: nil).first as? PrepareSectionHeaderView
+                sectionHeaderView = UINib(resource: R.nib.prepareSectionHeaderView)
+                    .instantiate(withOwner: nil).first as? PrepareSectionHeaderView
                 sectionHeaderView?.configure(eventName: viewModel.eventName,
                                              eventDate: viewModel.eventDate,
                                              completedTasks: viewModel.completedTasksValue,

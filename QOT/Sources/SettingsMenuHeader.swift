@@ -30,11 +30,7 @@ final class SettingsMenuHeader: UIView {
         self.viewModel = viewModel
         updateUserName()
         updateJobTitle(title: position)
-        userImageView.kf.setImage(with: imageURL,
-                                  placeholder: R.image.placeholder_user(),
-                                  options: nil,
-                                  progressBlock: nil,
-                                  completionHandler: nil)
+        userImageView.kf.setImage(with: imageURL, placeholder: R.image.placeholder_user())
     }
 
     func updateLocalImage(image: UIImage) {

@@ -15,7 +15,7 @@ final class ToolsViewModel: LibraryViewModelInterface {
     // MARK: - Properties
 
     private let categories: AnyRealmCollection<ContentCategory>
-    let updates = PublishSubject<CollectionUpdate, NoError>()
+    let updates = PublishSubject<CollectionUpdate, Never>()
 
     var sectionCount: Int {
         return categories.count

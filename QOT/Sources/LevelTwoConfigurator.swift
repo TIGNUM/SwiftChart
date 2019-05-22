@@ -10,7 +10,7 @@ import Foundation
 
 final class LevelTwoConfigurator {
 
-    static func make(delegate: CoachPageViewControllerDelegate?) -> (LevelTwoViewController) -> Void {
+    static func make(delegate: CoachCollectionViewControllerDelegate?) -> (LevelTwoViewController) -> Void {
         return { (viewController) in
             let router = LevelTwoRouter(viewController: viewController)
             let worker = LevelTwoWorker()

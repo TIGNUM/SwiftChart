@@ -45,10 +45,23 @@ final class AudioButton: UIView {
         self.remoteID = remoteID
         self.viewDelegate = viewDelegate
         let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
-        durationLabel.attributedText = NSAttributedString(string: mediaDescription,
+        setDutationLabel(text: mediaDescription)
+        setColorMode()
+    }
+
+    func setColorMode() {
+        backgroundColor = colorMode.tint.withAlphaComponent(0.3)
+     }
+}
+
+// MARK: - Private
+
+private extension AudioButton {
+    func setDutationLabel(text: String) {
+        durationLabel.attributedText = NSAttributedString(string: text,
                                                           letterSpacing: 0.4,
                                                           font: .apercuMedium(ofSize: 12),
-                                                          textColor: .sand,
+                                                          textColor: colorMode.tint,
                                                           alignment: .center)
     }
 }

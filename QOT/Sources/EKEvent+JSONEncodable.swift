@@ -24,7 +24,7 @@ extension EKEvent {
             .modifiedAt: modifiedAt,
             .syncStatus: syncStatus,
             .qotId: localID,
-            .calendarItemExternalId: (calendarItemExternalIdentifier + externalIdentifierSuffix ?? nil).toJSONEncodable,
+            .calendarItemExternalId: (calendarItemExternalIdentifier + externalIdentifierSuffix),
             .calendarId: calendar.toggleIdentifier,
             .title: (title ?? nil).toJSONEncodable,
             .location: location.toJSONEncodable,

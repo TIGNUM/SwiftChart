@@ -9,7 +9,7 @@
 import Foundation
 
 final class KnowingConfigurator {
-    static func configure(delegate: CoachPageViewControllerDelegate?,
+    static func configure(delegate: CoachCollectionViewControllerDelegate?,
                           services: Services?,
                           viewController: KnowingViewController) {
         let router = KnowingRouter(viewController: viewController)

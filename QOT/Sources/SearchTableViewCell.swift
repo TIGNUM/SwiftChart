@@ -25,13 +25,13 @@ final class SearchTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Public
 
     func configure(title: String, contentType: String?, duration: String?) {
-        titleLabel.attributedText = Style.headline(title.uppercased(), .white).attributedString()
+        titleLabel.attributedText = Style.headline(title.uppercased(), .sand).attributedString()
         titleLabel.lineBreakMode = .byTruncatingTail
         if let contentType = contentType {
-            contentTypeLabel.attributedText = Style.paragraph(contentType.uppercased(), .white60).attributedString()
+            contentTypeLabel.attributedText = Style.paragraph(contentType.uppercased(), .sand).attributedString()
         }
         if let duration = duration {
-            durationLabel.attributedText = Style.paragraph(duration, .white40).attributedString()
+            durationLabel.attributedText = Style.paragraph(duration, .sand).attributedString()
         }
     }
 }

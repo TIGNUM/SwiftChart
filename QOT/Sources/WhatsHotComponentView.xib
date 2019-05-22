@@ -20,6 +20,7 @@
                 <outlet property="authorLabel" destination="4HJ-mG-j8W" id="0cx-Rr-xhQ"/>
                 <outlet property="detailLabel" destination="w9M-Tu-WXz" id="yDI-FG-XY8"/>
                 <outlet property="newIndicatorView" destination="9xz-8G-eLg" id="pfx-OM-Noo"/>
+                <outlet property="seperator" destination="UmN-eW-kpX" id="kSX-rQ-Gf8"/>
                 <outlet property="titleLabel" destination="t6z-mu-Agk" id="4J6-ZE-Kfc"/>
                 <outlet property="whatsHotImageView" destination="xlM-wO-waH" id="IVE-ir-fF2"/>
             </connections>
@@ -72,7 +73,7 @@
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UmN-eW-kpX">
-                    <rect key="frame" x="0.0" y="213" width="375" height="1"/>
+                    <rect key="frame" x="24" y="213" width="351" height="1"/>
                     <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="displayP3"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="MTs-7J-LRh"/>
@@ -86,7 +87,7 @@
                     </constraints>
                 </view>
             </subviews>
-            <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="w9M-Tu-WXz" firstAttribute="centerY" secondItem="4HJ-mG-j8W" secondAttribute="centerY" id="0K8-cS-WqN"/>
                 <constraint firstItem="RW2-4W-t45" firstAttribute="leading" secondItem="4HJ-mG-j8W" secondAttribute="trailing" constant="4" id="7FA-wg-T58"/>
@@ -99,7 +100,7 @@
                 <constraint firstItem="9xz-8G-eLg" firstAttribute="leading" secondItem="xlM-wO-waH" secondAttribute="leading" id="Pi7-6A-Hlx"/>
                 <constraint firstItem="w9M-Tu-WXz" firstAttribute="top" secondItem="t6z-mu-Agk" secondAttribute="bottom" constant="12" id="PuH-ld-5sV"/>
                 <constraint firstAttribute="trailing" secondItem="t6z-mu-Agk" secondAttribute="trailing" constant="24" id="Tlp-vs-zME"/>
-                <constraint firstItem="UmN-eW-kpX" firstAttribute="leading" secondItem="owU-Ln-oxy" secondAttribute="leading" id="TwE-8Y-uWh"/>
+                <constraint firstItem="UmN-eW-kpX" firstAttribute="leading" secondItem="owU-Ln-oxy" secondAttribute="leading" constant="24" id="TwE-8Y-uWh"/>
                 <constraint firstItem="owU-Ln-oxy" firstAttribute="trailing" secondItem="xlM-wO-waH" secondAttribute="trailing" id="V97-gn-JBl"/>
                 <constraint firstItem="RW2-4W-t45" firstAttribute="centerX" secondItem="5li-s9-CSZ" secondAttribute="centerX" id="W6o-JF-pBs"/>
                 <constraint firstItem="owU-Ln-oxy" firstAttribute="bottom" secondItem="UmN-eW-kpX" secondAttribute="bottom" id="atx-9Y-9MA"/>

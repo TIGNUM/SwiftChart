@@ -21,10 +21,11 @@
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KGf-CP-6K5" customClass="ComponentContentView" customModule="QOT" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="340" height="233"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </subviews>
             </view>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="KGf-CP-6K5" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="8HT-dI-aeX"/>
                 <constraint firstAttribute="trailing" secondItem="KGf-CP-6K5" secondAttribute="trailing" id="NcX-yd-jVW"/>

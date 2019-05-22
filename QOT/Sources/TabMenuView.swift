@@ -14,7 +14,6 @@ final class TabMenuView: UIView {
     private let minFontScale: CGFloat = 0.5
     private let spacing: CGFloat = 15
     private(set) var buttons: [UIButton] = []
-    private(set) var badges: [Int: Badge] = [:]
     private(set) var style: NavigationItem.Style = .dark
     private(set) var selectedIndex: Int?
     private(set) var titles: [String] = []

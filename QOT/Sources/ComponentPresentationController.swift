@@ -32,7 +32,9 @@ final class ComponentPresentationController: UIPresentationController {
                 self.blurView.effect = UIBlurEffect(style: .light)
                 self.blurView.alpha = 1
             })
-        }) { (ctx) in }
+        }, completion: { (ctx) in
+            // DO NOTHING
+        })
     }
 
     override func presentationTransitionDidEnd(_ completed: Bool) {

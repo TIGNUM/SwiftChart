@@ -27,10 +27,10 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     private let syncManager: SyncManager
     private let articleCollectionProvider: ArticleCollectionProvider
     private let tokenBin = TokenBin()
-    private let badgeManager: BadgeManager
     private let myToBeVision: Results<MyToBeVision>
     private lazy var myUniverseProvider = MyUniverseProvider(services: services)
     private lazy var visionNavigationItem = NavigationItem()
+    weak var delegate: CoachCollectionViewControllerDelegate?
 
     lazy var prepareCoordinator: PrepareCoordinator = {
         return PrepareCoordinator(services: services,
@@ -81,10 +81,6 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                       topTabBarControllerMyToBeVision,
                                       topTabBarControllerData,
                                       topTabBarControllerPrepare]
-        badgeManager.guideBadgeContainer = (view: controller.tabBar.subviews[TabBar.guide.index],
-                                            frame: controller.frameForButton(at: TabBar.guide.index) ?? .zero)
-        badgeManager.learnBadgeContainer = (view: controller.tabBar.subviews[TabBar.learn.index],
-                                            frame: controller.frameForButton(at: TabBar.learn.index) ?? .zero)
         return controller
     }()
 
@@ -105,7 +101,7 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
     }()
 
     lazy var guideViewController: GuideViewController = {
-        let guideViewController = GuideViewController(configurator: GuideConfigurator.make(badgeManager: badgeManager))
+        let guideViewController = GuideViewController(configurator: GuideConfigurator.make())
         guideViewController.title = R.string.localized.topTabBarItemTitleGuide()
         return guideViewController
     }()
@@ -133,12 +129,6 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
                                                    leftButton: .burger,
                                                    rightButton: .info)
         navController.tabBarItem = TabBarItem(config: TabBar.learn.itemConfig)
-        if
-            let pageViewController = navController.viewControllers.first as? PageViewController,
-            let navItem = pageViewController.navigationItem as? NavigationItem,
-            let whatsHotButton = navItem.middleButton(index: 1) {
-                badgeManager.whatsHotBadgeContainer = (view: whatsHotButton, frame: whatsHotButton.frame)
-        }
         return navController
     }()
 
@@ -201,7 +191,6 @@ final class TabBarCoordinator: NSObject, ParentCoordinator {
         self.networkManager = networkManager
         self.myToBeVision = services.mainRealm.objects(MyToBeVision.self)
         articleCollectionProvider = ArticleCollectionProvider(services: services)
-        badgeManager = BadgeManager(services: services)
         super.init()
         articleCollectionProvider.updateBlock = { [unowned self] viewData in
             self.articleCollectionViewController.viewData = viewData
@@ -236,9 +225,6 @@ extension TabBarCoordinator: TabBarControllerDelegate {
             NotificationCenter.default.post(Notification(name: .startSyncConversionRelatedData))
         }
         selectedIndex.value = index
-        if let tabBarIndex = TabBar(rawValue: index) {
-            badgeManager.tabDisplayed = tabBarIndex
-        }
         if index == TabBar.prepare.index {
             prepareCoordinator.focus()
         }
@@ -389,7 +375,6 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
                 return
         }
         pageViewController.setPageIndex(index, animated: true)
-        badgeManager.updateWhatsHotBadge()
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
@@ -404,7 +389,7 @@ extension TabBarCoordinator: ArticleCollectionViewControllerDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {
-        let configurator = SearchConfigurator.make()
+        let configurator = SearchConfigurator.make(delegate: delegate)
         let searchViewController = SearchViewController(configure: configurator, pageName: .tabBarItemGuideSearch)
         searchViewController.hidesBottomBarWhenPushed = true
         let navController = UINavigationController(rootViewController: searchViewController)

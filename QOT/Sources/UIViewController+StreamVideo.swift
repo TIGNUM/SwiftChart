@@ -41,12 +41,19 @@ extension UIViewController {
 
     private func addOverlay(to playerController: AVPlayerViewController) {
         let overlay = MediaPlayerOverlay.instantiateFromNib()
+        overlay.delegate = self
         if let contentView = playerController.contentOverlayView {
             playerController.contentOverlayView?.addSubview(overlay)
             overlay.bottomAnchor == contentView.safeBottomAnchor - playerController.view.frame.height / 6
             overlay.trailingAnchor == contentView.trailingAnchor
             overlay.leadingAnchor == contentView.leadingAnchor
         }
+    }
+}
+
+extension UIViewController: MediaPlayerOverlayDelegate {
+    func showAlert() {
+        showAlert(type: .comingSoon)
     }
 }
 

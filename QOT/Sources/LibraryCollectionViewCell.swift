@@ -32,7 +32,13 @@ final class LibraryCollectionViewCell: UICollectionViewCell, Dequeueable {
         }
 
         headlineLabel.attributedText = Style.headlineSmall(headline.makingTwoLines().uppercased(), .white).attributedString()
-        latestPostImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading(), options: nil, progressBlock: nil, completionHandler: nil)
+        latestPostImageView.kf.setImage(
+            with: previewImageURL,
+            placeholder: R.image.preloading(),
+            options: [
+                .transition(.fade(1)),
+                .cacheOriginalImage
+            ])
         backgroundColor = .clear
     }
 

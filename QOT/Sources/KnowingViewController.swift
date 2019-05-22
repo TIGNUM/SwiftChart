@@ -18,7 +18,7 @@ final class KnowingViewController: HomeViewController {
     // MARK: - Properties
 
     var interactor: KnowingInteractorInterface?
-    weak var delegate: CoachPageViewControllerDelegate?
+    weak var delegate: CoachCollectionViewControllerDelegate?
     private let headerViewID = "ComponentHeaderView"
 
     // MARK: - Life Cycle
@@ -26,6 +26,11 @@ final class KnowingViewController: HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -46,10 +51,6 @@ final class KnowingViewController: HomeViewController {
 
 private extension KnowingViewController {}
 
-// MARK: - Actions
-
-private extension KnowingViewController {}
-
 // MARK: - KnowingViewControllerInterface
 
 extension KnowingViewController: KnowingViewControllerInterface {
@@ -57,10 +58,12 @@ extension KnowingViewController: KnowingViewControllerInterface {
         view.addFadeView(at: .bottom, height: 120, primaryColor: .carbonDark)
         view.backgroundColor = .carbonDark
         collectionView.backgroundColor = .carbonDark
+        collectionView.bounces = false
+        collectionView.alwaysBounceVertical = false
         collectionView.registerDequeueable(WhatsHotCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyCategoryCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyFoundationCollectionViewCell.self)
-        collectionView.register(R.nib.componentHeaderView(),
+        collectionView.register(UINib(resource: R.nib.componentHeaderView),
                                 forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                 withReuseIdentifier: headerViewID)
     }
@@ -104,7 +107,8 @@ extension KnowingViewController {
                        author: whatsHotArticle?.author,
                        timeToRead: whatsHotArticle?.timeToRead,
                        imageURL: whatsHotArticle?.image,
-                       isNew: whatsHotArticle?.isNew ?? false)
+                       isNew: whatsHotArticle?.isNew ?? false,
+                       colorMode: ColorMode.dark)
         return cell
     }
 
@@ -162,5 +166,13 @@ extension KnowingViewController {
             let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item]
             interactor?.presentWhatsHotArticle(selectedID: whatsHotArticle?.remoteID ?? 0)
         }
+    }
+}
+
+extension KnowingViewController: UIGestureRecognizerDelegate {
+
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
+                           shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

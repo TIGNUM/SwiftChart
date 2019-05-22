@@ -11,14 +11,12 @@ import RealmSwift
 
 final class GuideWorker {
 
-    private let badgeManager: BadgeManager?
     private let syncStateObserver: SyncStateObserver
     private let services: Services
     private let widgetDataManager: ExtensionsDataManager
     private let backgroudQueue = DispatchQueue(label: "guide worker", qos: .background)
 
-    init(services: Services, badgeManager: BadgeManager?) {
-        self.badgeManager = badgeManager
+    init(services: Services) {
         self.services = services
         self.widgetDataManager = ExtensionsDataManager(services: services)
         self.syncStateObserver = SyncStateObserver(realm: services.mainRealm)
@@ -103,7 +101,6 @@ final class GuideWorker {
                 }
             }
         }
-        badgeManager?.updateGuideBadgeValue(newGuideItems: newItems)
     }
 
     func markWhatsHotRead(item: Guide.Item) {

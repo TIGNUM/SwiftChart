@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Fabric
-import Crashlytics
 import AirshipKit
 import CoreLocation
 import RealmSwift
@@ -90,7 +88,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             Logger.shared.setup()
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()
-            Fabric.with([Crashlytics.self])
             if appCoordinator.userLoggedIn == true {
                 appCoordinator.startSync()
             }
@@ -102,7 +99,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             UITabBar.appearance().shadowImage = UIImage()
             UITabBar.appearance().backgroundImage = UIImage()
             UNUserNotificationCenter.current().delegate = self
-            UIApplication.shared.setStatusBar(background: ColorMode.dark.backgroundColor)
+            UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
             UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.apercuMedium(ofSize: 20),
                                                                 .foregroundColor: UIColor.white]
             incomingLocationEvent(launchOptions: launchOptions)
@@ -110,6 +107,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             setupHockeyApp()
             #if DEBUG
                 log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
+                log("\nopen -a \"Realm Studio\" \(DatabaseManager.databaseURL)\n")
             #endif
             appCoordinator.sendAppEvent(.start)
             sendSiriEventsIfNeeded()
@@ -336,7 +334,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
             let host = notificationLink.host,
             let scheme = URLScheme(rawValue: host), scheme != .dailyPrep,
             let id = try? GuideItemID(stringRepresentation: notificationID) else { return }
-        let guideWorker = GuideWorker(services: AppDelegate.appState.services, badgeManager: nil)
+        let guideWorker = GuideWorker(services: AppDelegate.appState.services)
         guideWorker.setItemCompleted(id: id)
     }
 

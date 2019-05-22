@@ -41,8 +41,8 @@ final class MyPrepViewModel {
             updates.next(.reload)
         }
     }
-    let updates = PublishSubject<CollectionUpdate, NoError>()
-    let itemCountUpdate = ReplayOneSubject<Int, NoError>()
+    let updates = PublishSubject<CollectionUpdate, Never>()
+    let itemCountUpdate = ReplayOneSubject<Int, Never>()
 
     enum Section {
         case future

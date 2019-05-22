@@ -11,12 +11,14 @@ import UIKit
 final class SearchViewController: UIViewController, SearchViewControllerInterface {
 
     var interactor: SearchInteractorInterface?
+    weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var suggestionsTableView: UITableView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var indicatorView: UIView!
     @IBOutlet private weak var topConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var mySearchBar: UISearchBar!
     @IBOutlet private weak var indicatorViewLeadingConstraing: NSLayoutConstraint!
     let pageName: PageName
     private let suggestionsHeader = SuggestionsHeaderView.instantiateFromNib()
@@ -39,27 +41,33 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .navy
+        searchBar.tintColor = .accent
+        view.backgroundColor = UIColor.carbonNew
+        self.navigationItem.hidesBackButton = true
+        self.navigationController?.view.backgroundColor = UIColor.carbonNew
         setupSegementedControl()
-        setupSearchBar()
         interactor?.showSuggestions()
         suggestionsHeader.autoresizingMask = []
         suggestionsTableView.tableHeaderView = suggestionsHeader
+        tableView.registerDequeueable(SearchTableViewCell.self)
+        suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
+        setupSearchBar()
+
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        searchBar.alpha = 1
-        tableView.registerDequeueable(SearchTableViewCell.self)
-        suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
+        self.navigationController?.isNavigationBarHidden = true
         UIApplication.shared.setStatusBarStyle(.lightContent)
+        setupSearchBar()
+        setupSegementedControl()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         segmentedControl.alpha = 1
         if searchQuery.isEmpty == false {
-            searchBar.becomeFirstResponder()
+            mySearchBar.becomeFirstResponder()
             updateViewsState(true)
         } else {
             updateViewsState(false)
@@ -69,16 +77,11 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        searchBar.alpha = 0
     }
 
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         segmentedControl.alpha = 0
-    }
-
-    override func willMove(toParentViewController parent: UIViewController?) {
-        searchBar.resignFirstResponder()
     }
 
     func reload(_ searchResults: [Search.Result]) {
@@ -109,15 +112,20 @@ private extension SearchViewController {
     }
 
     func setupSearchBar() {
-        let searchBar = UISearchBar()
-        setCustomBackButton()
-        searchBar.tintColor = .navy
-        searchBar.keyboardAppearance = .dark
-        searchBar.barTintColor = .gray
-        searchBar.delegate = self
-        searchBar.placeholder = R.string.localized.searchPlaceholder()
-        navigationItem.titleView = searchBar
-        self.searchBar = searchBar
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .accent
+        mySearchBar.keyboardAppearance = .dark
+        mySearchBar.placeholder = R.string.localized.searchPlaceholder()
+        mySearchBar.showsCancelButton = true
+        mySearchBar.setShowsCancelButton(true, animated: false)
+        if let txfSearchField = mySearchBar.value(forKey: "_searchField") as? UITextField {
+            txfSearchField.corner(radius: 20)
+            txfSearchField.backgroundColor = .carbon
+            txfSearchField.textColor = .sand
+        }
+        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.isEnabled = true
+        }
+        mySearchBar.delegate = self
     }
 
     func sendSearchResult(for query: String) {
@@ -167,6 +175,16 @@ extension SearchViewController: UISearchBarDelegate {
         }
     }
 
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        if let previousVC = navigationController?.viewControllers.dropLast().last {
+            if previousVC is CoachViewController {
+                navigationController?.popToViewController(previousVC, animated: true)
+            }
+        } else {
+            delegate?.didTapCancel()
+        }
+    }
+
     func updateSearchResults() {
         interactor?.didChangeSearchText(searchText: searchQuery, searchFilter: searchFilter)
     }
@@ -202,12 +220,17 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                 let result = searchResults[indexPath.row]
                 searchCell.configure(title: result.title,
                                      contentType: result.displayType.rawValue,
-                                     duration: result.duration)
-            }
+                                     duration: result.duration)            }
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+            searchCell.selectedBackgroundView = backgroundView
             return searchCell
         case self.suggestionsTableView:
             let suggestionCell: SuggestionSearchTableViewCell = tableView.dequeueCell(for: indexPath)
             suggestionCell.configrue(suggestion: searchSuggestions?.suggestions[indexPath.row] ?? "")
+            let backgroundView = UIView()
+            backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+            suggestionCell.selectedBackgroundView = backgroundView
             return suggestionCell
         default:
             preconditionFailure()

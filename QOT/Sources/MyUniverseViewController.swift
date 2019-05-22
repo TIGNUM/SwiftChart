@@ -91,7 +91,7 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
     }
 
     let contentView: MyUniverseContentView = {
-        let nib = R.nib.myUniverseContentView()
+        let nib = UINib(resource: R.nib.myUniverseContentView)
         guard let view = nib.instantiate(withOwner: nil, options: nil).first as? MyUniverseContentView else {
             fatalError("error loading \(MyUniverseContentView.self)")
         }
@@ -173,6 +173,18 @@ private extension MyUniverseViewController {
 	func reload() {
 		navItem.showTabMenuView(titles: config.pages.map { $0.pageTitle })
 		isLoading = viewData.isLoading
+//        contentView.profileButton.kf.setBackgroundImage(
+//            with: viewData.profileImageURL,
+//            for: .normal,
+//            placeholder: config.profileImagePlaceholder) { [weak self] (result) in
+//                guard let `self` = self else { return }
+//                switch result {
+//                case .success(let value):
+//                    //
+//                case .failure(let error):
+//                    //
+//                }
+//        }
 		contentView.profileButton.kf.setBackgroundImage(
 			with: viewData.profileImageURL,
 			for: .normal,

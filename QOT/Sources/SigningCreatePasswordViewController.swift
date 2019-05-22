@@ -24,7 +24,7 @@ final class SigningCreatePasswordViewController: AbstractFormViewController {
     @IBOutlet private weak var centerContentViewTopConstraint: NSLayoutConstraint!
 
     private lazy var formView: FormView? = {
-        let form = R.nib.formView().instantiate(withOwner: nil, options: nil).first as? FormView
+        let form = UINib(resource: R.nib.formView).instantiate(withOwner: nil, options: nil).first as? FormView
         form?.delegate = self
         return form
     }()

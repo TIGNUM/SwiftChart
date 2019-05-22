@@ -18,7 +18,7 @@ final class DailyBriefViewController: HomeViewController {
     // MARK: - Properties
 
     var interactor: DailyBriefInteractorInterface?
-    weak var delegate: CoachPageViewControllerDelegate?
+    weak var delegate: CoachCollectionViewControllerDelegate?
     private lazy var levelTwoViewController: LevelTwoViewController = {
         return LevelTwoViewController(configure: LevelTwoConfigurator.make(delegate: delegate))
     }()
@@ -40,7 +40,6 @@ private extension DailyBriefViewController {
 // MARK: - Actions
 
 private extension DailyBriefViewController {
-
 }
 
 // MARK: - DailyBriefViewControllerInterface

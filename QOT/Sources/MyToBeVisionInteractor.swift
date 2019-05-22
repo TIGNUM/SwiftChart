@@ -9,10 +9,9 @@
 import UIKit
 
 final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
-    var visionChatItems: [VisionGeneratorChoice.QuestionType : [ChatItem<VisionGeneratorChoice>]] {
+    var visionChatItems: [VisionGeneratorChoice.QuestionType: [ChatItem<VisionGeneratorChoice>]] {
         return [:]
     }
-    
 
     let presenter: MyToBeVisionPresenterInterface
     let worker: MyToBeVisionWorker

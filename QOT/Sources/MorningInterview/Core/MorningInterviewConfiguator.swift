@@ -13,7 +13,7 @@ final class MorningInterviewConfigurator: AppStateAccess {
         return { viewController in
             let router = MorningInterviewRouter(viewController: viewController, appCoordinator: appState.appCoordinator)
             let presenter = MorningInterviewPresenter(viewController: viewController)
-            let guideWorker = GuideWorker(services: appState.services, badgeManager: nil) // FIXME: Shouldn't couple this to guide
+            let guideWorker = GuideWorker(services: appState.services) // FIXME: Shouldn't couple this to guide
             let worker = MorningInterviewWorker(services: appState.services,
                                                 questionGroupID: questionGroupID,
                                                 date: date,

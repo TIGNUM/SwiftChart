@@ -17,15 +17,15 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
     func configure(selected: Bool) {
         isRead = selected
         markAsReadButton.setAttributedTitle(attributed(selected: selected), for: .normal)
-        markAsReadButton.backgroundColor = selected == true ? colorMode.tintColor.withAlphaComponent(0.3) : .clear
+        markAsReadButton.backgroundColor = selected == true ? colorMode.tint.withAlphaComponent(0.3) : .clear
         markAsReadButton.corner(radius: 20)
-        markAsReadButton.layer.borderColor = colorMode.tintColor.withAlphaComponent(0.3).cgColor
+        markAsReadButton.layer.borderColor = colorMode.tint.withAlphaComponent(0.3).cgColor
         markAsReadButton.layer.borderWidth = 1
     }
 
     func setMarkAsReadStatus(read: Bool) {
         isRead = read
-        markAsReadButton.backgroundColor = read == true ? colorMode.tintColor.withAlphaComponent(0.3) : .clear
+        markAsReadButton.backgroundColor = read == true ? colorMode.tint.withAlphaComponent(0.3) : .clear
         markAsReadButton.setAttributedTitle(attributed(selected: read), for: .normal)
     }
 }
@@ -37,7 +37,7 @@ extension MarkAsReadTableViewCell {
         return NSAttributedString(string: selected == true ? "Mark as unread" : "Mark as read",
                                   letterSpacing: 0.4,
                                   font: .apercuMedium(ofSize: 12),
-                                  textColor: colorMode.textColor.withAlphaComponent(0.6),
+                                  textColor: colorMode.text.withAlphaComponent(0.6),
                                   alignment: .left)
     }
 }

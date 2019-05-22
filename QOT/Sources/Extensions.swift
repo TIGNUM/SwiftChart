@@ -289,10 +289,10 @@ extension UIView {
         case bottom
     }
 
-    @discardableResult func addFadeView(at location: FadeViewLocation, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear) -> UIView {
+    @discardableResult func addFadeView(at location: FadeViewLocation, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear) -> GradientView {
         guard height > 0 else {
             assertionFailure("height must be > 0")
-            return UIView()
+            return GradientView(colors: [], locations: [])
         }
 
         let fadeView: GradientView
@@ -774,15 +774,16 @@ extension NSMutableAttributedString {
 
 extension UIApplication {
     var statusBarView: UIView? {
-        if responds(to: Selector("statusBar")) {
+        if responds(to: Selector(("statusBar"))) {
             return value(forKey: "statusBar") as? UIView
         }
         return nil
     }
 
-    func setStatusBar(background: UIColor) {
-        if let statusBar = UIApplication.shared.statusBarView, statusBar.responds(to: "setBackgroundColor:") {
-            statusBar.backgroundColor = background
+    func setStatusBar(colorMode: ColorMode) {
+        if let statusBar = UIApplication.shared.statusBarView, statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
+            statusBar.backgroundColor = colorMode.background
+            UIApplication.shared.setStatusBarStyle(colorMode.statusBarStyle)
         }
     }
 }

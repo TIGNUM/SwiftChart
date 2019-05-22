@@ -34,7 +34,7 @@ final class LearnCategoryListViewModel {
 
     private let categories: AnyRealmCollection<ContentCategory>
     private var token: NotificationTokenHandler?
-    let updates = PublishSubject<CollectionUpdate, NoError>()
+    let updates = PublishSubject<CollectionUpdate, Never>()
 
     // MARK: - Init
 

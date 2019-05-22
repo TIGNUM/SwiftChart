@@ -9,11 +9,11 @@
 import Foundation
 
 final class GuideConfigurator: AppStateAccess {
-    static func make(badgeManager: BadgeManager?) -> Configurator<GuideViewController> {
+    static func make() -> Configurator<GuideViewController> {
         return { viewController in
             let router = GuideRouter(launchHandler: appState.launchHandler)
             let presenter = GuidePresenter(viewController: viewController)
-            let worker = GuideWorker(services: appState.services, badgeManager: badgeManager)
+            let worker = GuideWorker(services: appState.services)
             let guideObserver = GuideObserver(services: appState.services)
             let interactor = GuideInteractor(presenter: presenter, guideObserver: guideObserver, worker: worker)
             viewController.interactor = interactor

@@ -14,14 +14,6 @@ final class WhatsHotCollectionViewCell: ComponentCollectionViewCell {
 
     @IBOutlet weak var whatsHotComponentView: WhatsHotComponentView!
 
-    // MARK: - Lifecycle
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        backgroundColor = .carbon
-        contentView.backgroundColor = .carbon
-    }
-
     // MARK: - Cell configuration
 
     func configure(title: String?,
@@ -29,12 +21,14 @@ final class WhatsHotCollectionViewCell: ComponentCollectionViewCell {
                    author: String?,
                    timeToRead: String?,
                    imageURL: URL?,
-                   isNew: Bool) {
+                   isNew: Bool,
+                   colorMode: ColorMode) {
         whatsHotComponentView.configure(title: title,
                                         publishDate: publishDate,
                                         author: author,
                                         timeToRead: timeToRead,
                                         imageURL: imageURL,
-                                        isNew: isNew)
+                                        isNew: isNew,
+                                        colorMode: colorMode)
     }
 }

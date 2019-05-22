@@ -12,7 +12,6 @@ final class TabBarItem: UITabBarItem {
 
     private let config: Config
     var badgeCounter = 0
-    var badge: Badge?
 
     struct Config {
         var title: String?

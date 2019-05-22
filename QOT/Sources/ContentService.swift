@@ -269,7 +269,13 @@ final class ContentService {
     func relatedArticles(for articleCollection: ContentCollection) -> [ContentCollection] {
         let predicate = NSPredicate(remoteIDs: articleCollection.relatedContentIDs)
         let results = mainRealm.objects(ContentCollection.self).sorted(by: [.sortOrder()]).filter(predicate)
+        return Array(AnyRealmCollection<ContentCollection>(results))
+    }
 
+    func relatedContentList(for articleCollection: ContentCollection) -> [ContentCollection] {
+        let remoteIDs = Array(articleCollection.relatedContentList).compactMap { $0.contentID }
+        let predicate = NSPredicate(remoteIDs: remoteIDs)
+        let results = mainRealm.objects(ContentCollection.self).sorted(by: [.sortOrder()]).filter(predicate)
         return Array(AnyRealmCollection<ContentCollection>(results))
     }
 

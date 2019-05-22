@@ -63,6 +63,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="343" height="40"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="progressTintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                                        <color key="trackTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </progressView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eKB-5h-a6i">
                                         <rect key="frame" x="171" y="12" width="1" height="16"/>
@@ -137,6 +138,7 @@
                                 <state key="normal" image="ic_bookmark"/>
                             </button>
                         </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="1pL-9y-d30" firstAttribute="leading" secondItem="uT2-hX-mbP" secondAttribute="leading" constant="24" id="0LZ-oq-3dW"/>
                             <constraint firstAttribute="bottom" secondItem="e15-HN-Nii" secondAttribute="bottom" constant="44" id="5c2-8i-63D"/>
@@ -181,6 +183,8 @@
                 <outlet property="playPauseButton" destination="W7b-3W-XCt" id="2ac-wW-nvG"/>
                 <outlet property="titleLabel" destination="SVr-C0-iw1" id="yLj-9w-Veh"/>
                 <outlet property="totalTimeLabel" destination="utI-OA-kxE" id="qPh-50-wgz"/>
+                <outlet property="verticalDivider" destination="eKB-5h-a6i" id="wM5-ha-KaO"/>
+                <outlet property="visualEffectView" destination="rnv-Us-as4" id="odQ-VS-rFN"/>
             </connections>
             <point key="canvasLocation" x="160.80000000000001" y="221.73913043478262"/>
         </view>

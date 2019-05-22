@@ -31,7 +31,6 @@ final class NetworkManager {
         self.sessionManager = sessionManager
         self.authenticator = authenticator
         self.requestBuilder = requestBuilder
-        authenticator.delegate = self
     }
 
     func cancelAllRequests() {
@@ -321,7 +320,6 @@ final class NetworkManager {
             case .failure(let error):
                 completion(.failure(error))
                 if error.isUnauthenticated && notifyDelegateOfFailure {
-                    self.didAutoLogout()
                     self.notifyDelegateOfAuthenticationFailure(error)
                 }
             }
@@ -380,26 +378,5 @@ extension SessionManager {
                 }
                 completion(response, result)
         }
-    }
-}
-
-// MARK: - AuthenticatorDelegate
-
-extension NetworkManager: AuthenticatorDelegate {
-
-    func didAutoLogin() {
-        self.performAppEventRequest(appEvent: .automaticLogin) { (error) in
-            if let error = error {
-                log(error.localizedDescription, level: .error)
-            }
-        }
-    }
-
-    private func didAutoLogout() {
-        self.performAppEventRequest(appEvent: .automaticLogout, completion: { (error) in
-            if let error = error {
-                log(error.localizedDescription, level: .error)
-            }
-        })
     }
 }

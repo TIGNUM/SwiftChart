@@ -62,7 +62,7 @@ final class LearnContentItemViewModel: NSObject {
     weak var audioConnectionDelegate: AudioConnectionDelegate?
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
-    let updates = PublishSubject<CollectionUpdate, NoError>()
+    let updates = PublishSubject<CollectionUpdate, Never>()
 
     lazy var trackDuration: ReactiveKit.Property<TimeInterval> = {
         let item = self.contentItems(at: TabType.audio).first
@@ -400,7 +400,7 @@ extension LearnContentItemViewModel {
     // MARK: - private
 
     private func play(url: URL, cell: LearnStrategyPlaylistAudioCell?, playingIndexPath: IndexPath?) {
-        log("Did start to play item at index: \(index)")
+        log("Did start to play item at index: \(String(describing: index))")
 
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback, with: [])

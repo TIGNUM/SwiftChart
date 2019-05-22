@@ -8,6 +8,10 @@
 
 import UIKit
 
+final class CoachNavigationController: UINavigationController {
+    static var storyboardID = NSStringFromClass(CoachNavigationController.classForCoder())
+}
+
 final class CoachViewController: UIViewController {
 
     // MARK: - Properties
@@ -22,6 +26,7 @@ final class CoachViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .sand
         interactor?.viewDidLoad()
     }
 }
@@ -80,12 +85,14 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
         let cell: CoachTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(title: (coachModel?.coachItems[indexPath.row].title) ?? "", subtitle: (coachModel?.coachItems[indexPath.row].subtitle) ?? "")
         let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.5)
+        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
         cell.selectedBackgroundView = backgroundView
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        let sectionTapped = coachModel?.sectionItem(at: indexPath)
+        interactor?.handleTap(coachSection: sectionTapped ?? .search)
     }
 }

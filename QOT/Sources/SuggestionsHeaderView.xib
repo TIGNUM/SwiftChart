@@ -21,10 +21,10 @@
             <rect key="frame" x="0.0" y="0.0" width="423" height="25"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SUGGESTED SEARCHES" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRu-ni-qRj">
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="EXPLORE TOPICS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JRu-ni-qRj">
                     <rect key="frame" x="24" y="0.0" width="375" height="12"/>
                     <fontDescription key="fontDescription" name="Apercu-Regular" family="Apercu" pointSize="12"/>
-                    <color key="textColor" red="0.99519230769230771" green="0.99038461538461542" blue="1" alpha="0.40200128424657539" colorSpace="custom" customColorSpace="displayP3"/>
+                    <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.52418664383561642" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYG-Bu-BeL">

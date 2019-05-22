@@ -60,7 +60,7 @@ struct Article {
         let imageURL: String?
     }
 
-    struct RelatedArticle {
+    struct RelatedArticleWhatsHot {
         let remoteID: Int
         let title: String
         let publishDate: Date?
@@ -68,5 +68,11 @@ struct Article {
         let timeToRead: String
         let imageURL: URL?
         let isNew: Bool
+    }
+
+    struct RelatedArticleStrategy {
+        let title: String
+        let durationString: String
+        let remoteID: Int
     }
 }

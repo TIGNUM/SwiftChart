@@ -19,10 +19,8 @@ target 'QOT' do
 
   # Pods for QOT
   shared_pods
-  pod 'Bond'
   pod 'Anchorage'
   pod 'R.swift'
-  pod 'RealmSwift'
   pod 'Freddy'
   pod 'Alamofire'
   pod 'KeychainAccess'
@@ -30,17 +28,14 @@ target 'QOT' do
   pod 'RSKImageCropper'
   pod 'BonMot'
   pod 'MBProgressHUD'
-  pod 'Fabric'
-  pod 'Crashlytics'
   pod 'UrbanAirship-iOS-SDK'
   pod 'Buglife'
   pod 'SwiftyBeaver'
-  pod 'JSONWebToken'
-  pod 'Siren', :git => 'https://github.com/ArtSabintsev/Siren.git', :branch => 'swift4.1'
-  pod 'HockeySDK', '~> 5.1.2'
-  pod 'BadgeSwift', '~> 5.0'
+  pod 'HockeySDK'
   pod 'Kingfisher'
   pod 'AMScrollingNavbar'
+  pod 'Bond', :git => 'git@github.com:SanggeonPark/Bond.git'
+  pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
 
   target 'QOTTests' do
     inherit! :search_paths
@@ -52,9 +47,9 @@ end
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-        if target.name == 'JSONWebToken'
-            system("rm -rf Pods/JSONWebToken/CommonCrypto")
-        end
+      if target.name == 'Bond'
+        config.build_settings['SWIFT_VERSION'] = '4.0'
+      end
       config.build_settings['CLANG_WARN_DOCUMENTATION_COMMENTS'] = 'NO'
     end
   end

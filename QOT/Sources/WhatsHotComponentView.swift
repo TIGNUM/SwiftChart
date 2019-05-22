@@ -17,6 +17,7 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
     @IBOutlet private weak var authorLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var newIndicatorView: UIView!
+    @IBOutlet private weak var seperator: UIView!
 
     // MARK: - Lifecycle
 
@@ -43,14 +44,15 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
                    author: String?,
                    timeToRead: String?,
                    imageURL: URL?,
-                   isNew: Bool) {
+                   isNew: Bool,
+                   colorMode: ColorMode) {
         newIndicatorView.isHidden = (isNew == false)
         whatsHotImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
         titleLabel.attributedText = NSAttributedString(string: title ?? "",
                                                        letterSpacing: 0.5,
                                                        font: .apercuRegular(ofSize: 16),
                                                        lineSpacing: 8,
-                                                       textColor: .sand,
+                                                       textColor: colorMode.text,
                                                        alignment: .left)
         let dateFormatter = DateFormatter.whatsHot
         let displayDate = dateFormatter.string(from: publishDate ?? Date())
@@ -58,17 +60,14 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
         detailLabel.attributedText = NSAttributedString(string: detailText,
                                                         letterSpacing: 0.4,
                                                         font: .apercuMedium(ofSize: 12),
-                                                        textColor: .sand30,
+                                                        textColor: colorMode.text.withAlphaComponent(0.3),
                                                         alignment: .right)
         authorLabel.attributedText = NSAttributedString(string: author ?? "",
                                                         letterSpacing: 0.4,
                                                         font: .apercuMedium(ofSize: 12),
-                                                        textColor: .sand60,
+                                                        textColor: colorMode.text.withAlphaComponent(0.6),
                                                         alignment: .left)
-        backgroundColor = .carbon
+        backgroundColor = colorMode.background
+        seperator.backgroundColor = colorMode.seperator
     }
 }
-
-// MARK: - Private
-
-private extension WhatsHotComponentView {}

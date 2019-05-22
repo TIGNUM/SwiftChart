@@ -10,7 +10,7 @@ import Foundation
 
 final class MyQotConfigurator {
 
-    static func configure(delegate: CoachPageViewControllerDelegate?, viewController: MyQotViewController) {
+    static func configure(delegate: CoachCollectionViewControllerDelegate?, viewController: MyQotViewController) {
         let router = MyQotRouter(viewController: viewController)
         let worker = MyQotWorker()
         let presenter = MyQotPresenter(viewController: viewController)

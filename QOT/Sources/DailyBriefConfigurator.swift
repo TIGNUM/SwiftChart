@@ -10,7 +10,7 @@ import Foundation
 
 final class DailyBriefConfigurator {
 
-    static func configure(delegate: CoachPageViewControllerDelegate?,
+    static func configure(delegate: CoachCollectionViewControllerDelegate?,
                      services: Services?,
                      viewController: DailyBriefViewController) {
         let router = DailyBriefRouter(viewController: viewController)

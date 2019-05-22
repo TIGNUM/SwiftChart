@@ -18,7 +18,7 @@ final class ChartViewModel {
     static let chartViewPadding: CGFloat = 56
     static let chartCellOffset: CGFloat = 20
     static let chartRatio: CGFloat = 1.3479623824
-    let updates = PublishSubject<CollectionUpdate, NoError>()
+    let updates = PublishSubject<CollectionUpdate, Never>()
     private var charts: [[Statistics]] = []
     private let services: Services
     private let permissionsManager: PermissionsManager
