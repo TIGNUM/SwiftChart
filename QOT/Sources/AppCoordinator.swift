@@ -13,6 +13,7 @@ import UserNotifications
 import AirshipKit
 import ReactiveKit
 import Buglife
+import qot_dal
 
 final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
@@ -37,8 +38,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private weak var currentPresentedNavigationController: UINavigationController?
     static var currentStatusBarStyle: UIStatusBarStyle?
     lazy var logoutNotificationHandler = NotificationHandler(name: .logoutNotification)
-    lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar(networkManager: networkManager,
-                                                                 credentialsManager: credentialsManager)
+    lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar()
     lazy var tabBarCoordinator: TabBarCoordinator? = {
         guard let services = services else { return nil }
         let selectedIndex = checkListIDToPresent != nil ? 2 : 0
@@ -61,9 +61,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         AppCoordinator.appState.permissionsManager = manager
         return manager
     }()
-    private lazy var credentialsManager = CredentialsManager.shared
-    private lazy var authenticator = Authenticator(sessionManager: SessionManager.default,
-                                                   requestBuilder: URLRequestBuilder(deviceID: deviceID))
+    private lazy var authenticator = Authenticator()
     private lazy var realmProvider: RealmProvider = {
         return RealmProvider()
     }()
@@ -80,7 +78,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         return SyncRecordService(realmProvider: self.realmProvider)
     }()
     lazy var userLoggedIn: Bool = {
-        return credentialsManager.hasLoginCredentials
+        return authenticator.hasLoginCredentials()
     }()
     lazy var syncManager: SyncManager = {
         let manager = SyncManager(networkManager: self.networkManager,
@@ -130,6 +128,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         remoteNotificationHandler.delegate = self
         logoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
+            SessionService.main.logout()
+
         }
         locationManager.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
     }
@@ -147,7 +147,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     func start(completion: @escaping (() -> Void)) {
         if Bundle.main.isFirstVersion == true {
-            credentialsManager.clear()
+            SessionService.main.logout()
         }
         UserDefault.lastInstaledAppVersion.setStringValue(value: Bundle.main.versionNumber)
         if UserDefault.firstInstallationTimestamp.object == nil {
@@ -174,7 +174,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         dispatchGroup.notify(queue: .main) {
             if let error = setupError {
                 self.handleSetupError(error: error)
-            } else if self.credentialsManager.hasLoginCredentials {
+            } else if self.authenticator.hasLoginCredentials() {
                 self.showApp()
                 RestartHelper().checkRestartURLAndRoute()
                 completion()
@@ -232,7 +232,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     private func handleSetupError(error: Error) {
-        log("Error setting up database: \(error)", level: .error)
+        log("Error setting up database: \(error)", level: Logger.Level.error)
         let message = "There was a problem initializing the app's data. Please restart the app and try again"
         self.showMajorAlert(type: .custom(title: "Error", message: message), handler: {
             exit(0)
@@ -269,7 +269,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private func addMissingRealmObjectsAfterLogin() {
         guard let services = services else {
             let error = SimpleError(localizedDescription: "Missing services after login")
-            log(error, level: .error)
+            log(error, level: Logger.Level.error)
             handleSetupError(error: error)
             return
         }
@@ -321,7 +321,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         guard authenticator.hasLoginCredentials() else { return }
         networkManager.performUserLocationUpdateRequest(location: location) { (error: NetworkError?) in
             if let error = error {
-                log("Error while trying to update user location: \(error)")
+                log("Error while trying to update user location: \(error)", level: Logger.Level.error)
             }
         }
     }
@@ -330,9 +330,9 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         networkManager.performAppEventRequest(appEvent: event, date: date) { (error) in
             if error != nil {
                 log("Failed to performAppEventRequest for event: \(event.rawValue) with: \(String(describing: error))",
-                    level: .error)
+                    level: Logger.Level.error)
             } else {
-                log("Success to performAppEventRequest for event: \(event.rawValue)", level: .info)
+                log("Success to performAppEventRequest for event: \(event.rawValue)", level: Logger.Level.info)
             }
         }
     }
@@ -441,7 +441,6 @@ extension AppCoordinator {
 
     func logout() {
         permissionsManager.reset()
-        credentialsManager.clear()
         setupBugLife()
         UserDefault.clearAllDataLogOut()
         environment.dynamicBaseURL = nil
@@ -449,7 +448,7 @@ extension AppCoordinator {
             syncManager.stop()
             try DatabaseManager.shared.resetDatabase(syncRecordService: syncRecordService)
         } catch {
-            log(error.localizedDescription, level: .error)
+            log(error.localizedDescription, level: Logger.Level.error)
         }
         let notificationCenter = UNUserNotificationCenter.current()
         notificationCenter.removeAllPendingNotificationRequests()
@@ -488,7 +487,7 @@ extension AppCoordinator: NavigationItemDelegate {
     }
 
     func navigationItem(_ navigationItem: NavigationItem, rightButtonPressed button: UIBarButtonItem) {
-        log("did select book mark")
+        log("did select book mark", level: Logger.Level.info)
     }
 
     func navigationItem(_ navigationItem: NavigationItem, searchButtonPressed button: UIBarButtonItem) {}
@@ -509,7 +508,7 @@ extension AppCoordinator: CalendarImportMangerDelegate {
 
     func calendarImportDidFail(error: Error) {
         // FIXME: Handle error
-        log("Calendar import failed: with error: \(error.localizedDescription))", level: .error)
+        log("Calendar import failed: with error: \(error.localizedDescription))", level: Logger.Level.error)
         assertionFailure("Calendar import failed: \(error)")
     }
 }
@@ -519,7 +518,21 @@ extension AppCoordinator: CalendarImportMangerDelegate {
 extension AppCoordinator: NetworkManagerDelegate {
 
     func networkManagerFailedToAuthenticate(_ networkManager: NetworkManager) {
-        restart()
+        if authenticator.hasLoginCredentials() {
+            authenticator.refreshSession { [weak self] (result) in
+                switch result {
+                case .failure(let error):
+                    if error.isUnauthenticated {
+                        self?.restart()
+                    } else {
+                        return
+                    }
+                default: return // do nothing
+                }
+            }
+        } else {
+            restart()
+        }
     }
 }
 
@@ -624,9 +637,9 @@ extension AppCoordinator: PermissionManagerDelegate {
             }
             self.networkManager.performDevicePermissionsRequest(with: data, completion: { error in
                 if let error = error {
-                    log("failed to report permissions: \(error.localizedDescription)")
+                    log("failed to report permissions: \(error.localizedDescription)", level: Logger.Level.info)
                 } else {
-                    log("successfully reported permissions: \(permissions.map({ $0.identifier }))")
+                    log("successfully reported permissions: \(permissions.map({ $0.identifier }))", level: Logger.Level.info)
                 }
             })
         }
@@ -1082,7 +1095,7 @@ extension AppCoordinator {
                 presentGuide()
             }
         } catch {
-            log(error.localizedDescription, level: .error)
+            log(error.localizedDescription, level: Logger.Level.error)
         }
     }
 

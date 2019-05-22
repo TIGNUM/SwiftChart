@@ -974,6 +974,7 @@
 		DB6805A3218210E700C2FC69 /* MorningQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680594218210E700C2FC69 /* MorningQuestion.swift */; };
 		DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB82EEC32152859C002322B7 /* UIView+Animation.swift */; };
 		DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */; };
+		DBAC1E6B2294616900B9F829 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = DBAC1E6A2294616900B9F829 /* default.realm */; };
 		DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */; };
 		E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A12130055700C0723E /* PDFReaderViewController.swift */; };
 		E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */; };
@@ -984,7 +985,6 @@
 		E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0B12135285A00C0723E /* PDFReaderWorker.swift */; };
 		E871E8542136EA50005E787C /* ContentItemSharing.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871E8532136EA50005E787C /* ContentItemSharing.swift */; };
 		E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = E871E8552136F17F005E787C /* PDFReaderInterface.swift */; };
-		E8F43D3320B6F7E500C9FF4F /* CalendarEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */; };
 		E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */; };
 		E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */; };
 		F6E88A76FF398AFB812AA0B4 /* Pods_QOTWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */; };
@@ -2018,6 +2018,7 @@
 		DB680594218210E700C2FC69 /* MorningQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningQuestion.swift; sourceTree = "<group>"; };
 		DB82EEC32152859C002322B7 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
+		DBAC1E6A2294616900B9F829 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
 		E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFReaderViewController.storyboard; sourceTree = "<group>"; };
@@ -2028,7 +2029,6 @@
 		E813F0B12135285A00C0723E /* PDFReaderWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderWorker.swift; sourceTree = "<group>"; };
 		E871E8532136EA50005E787C /* ContentItemSharing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentItemSharing.swift; sourceTree = "<group>"; };
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
-		E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventTests.swift; sourceTree = "<group>"; };
 		E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventIntermediary.swift; sourceTree = "<group>"; };
 		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
 		F9C1D8B1220DD8EC00B40DD2 /* SiriShortcutsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsRouter.swift; sourceTree = "<group>"; };
@@ -3572,7 +3572,6 @@
 			isa = PBXGroup;
 			children = (
 				CBDB98F81E7BD26A003EC73F /* Realm+TestUtils.swift */,
-				E8F43D3220B6F7E500C9FF4F /* CalendarEventTests.swift */,
 				E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */,
 			);
 			path = Sources;
@@ -4266,6 +4265,7 @@
 		CBD791571E72F10E0006C590 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				DBAC1E692294616900B9F829 /* Resource */,
 				7F99ABB01F3DF38E009CA587 /* Database */,
 				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
 				CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */,
@@ -4470,6 +4470,15 @@
 			path = Other;
 			sourceTree = "<group>";
 		};
+		DBAC1E692294616900B9F829 /* Resource */ = {
+			isa = PBXGroup;
+			children = (
+				DBAC1E6A2294616900B9F829 /* default.realm */,
+			);
+			name = Resource;
+			path = Pods/qot_dal/qot_dal/Resource;
+			sourceTree = SOURCE_ROOT;
+		};
 		E813F0A02130053700C0723E /* PDFReader */ = {
 			isa = PBXGroup;
 			children = (
@@ -4587,8 +4596,7 @@
 				CBB237E91E6FFF1200AB5AEF /* Frameworks */,
 				CBB237EA1E6FFF1200AB5AEF /* Resources */,
 				81E2E98BE745C586EA31F424 /* [CP] Embed Pods Frameworks */,
-				CBC5ACC41F177F0E007E1E9C /* Crashlytics */,
-				3649815620A3427000F5046D /* ShellScript */,
+				3649815620A3427000F5046D /* HockeySDK Build Agent */,
 				C3683032C904FFA0E0CA62DE /* [CP] Copy Pods Resources */,
 				918D5E3220EE050900AEAD37 /* Embed App Extensions */,
 			);
@@ -4786,6 +4794,7 @@
 				91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
 				DB680599218210E700C2FC69 /* MorningInterviewViewController.storyboard in Resources */,
+				DBAC1E6B2294616900B9F829 /* default.realm in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
 				36DC825120D54A6900CDEC34 /* SigningCountryTableViewCell.xib in Resources */,
@@ -4913,13 +4922,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3649815620A3427000F5046D /* ShellScript */ = {
+		3649815620A3427000F5046D /* HockeySDK Build Agent */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
+			name = "HockeySDK Build Agent";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -5078,7 +5088,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -5097,20 +5107,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\n  swiftlint\nelse\n  echo \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
-		};
-		CBC5ACC41F177F0E007E1E9C /* Crashlytics */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Crashlytics;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "releaseConfig=\"Release\"\n\nif [ \"$releaseConfig\" = \"${CONFIGURATION}\" ]; then\necho \"Running Crashlytics\"\n\"${PODS_ROOT}/Fabric/run\" c5b6a77e0ac832aeb121a8444afaba1522a28469 d4ca106b8d4d308cc6c505618f78c345e3e6bd462c0bd7a433abfc3f733a4783\nfi\n";
 		};
 		DB7893EC228F0E5500D086E6 /* Retouch Generated R.generated.swift */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -6011,7 +6007,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */,
-				E8F43D3320B6F7E500C9FF4F /* CalendarEventTests.swift in Sources */,
 				F921DED1221D53BF00FEB01D /* Intents.intentdefinition in Sources */,
 				CBDB98F91E7BD26A003EC73F /* Realm+TestUtils.swift in Sources */,
 			);

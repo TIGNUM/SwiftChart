@@ -7,35 +7,18 @@
 //
 
 import UIKit
-import Alamofire
 import AirshipKit
+import qot_dal
 
 final class APNSDeviceTokenRegistrar {
 
     private let timerDelay: TimeInterval = 60
-    private let networkManager: NetworkManager
     private var token: String?
-    private var timer: Timer?
-    private let credentialsManager: CredentialsManager
     private let becomeActiveHandler = NotificationHandler(name: .UIApplicationDidBecomeActive)
-    private let resignActiveHandler = NotificationHandler(name: .UIApplicationWillResignActive)
 
-    init(networkManager: NetworkManager, credentialsManager: CredentialsManager) {
-        self.networkManager = networkManager
-        self.credentialsManager = credentialsManager
-
+    init() {
         becomeActiveHandler.handler = { [unowned self] _ in
             self.uploadToken()
-        }
-        resignActiveHandler.handler = { [unowned self] _ in
-            self.timer?.invalidate()
-        }
-        credentialsManager.onCredentialChange { [weak self] _ in
-            guard let `self` = self else { return }
-
-            if self.credentialsManager.hasLoginCredentials {
-                self.uploadToken()
-            }
         }
     }
 
@@ -44,35 +27,16 @@ final class APNSDeviceTokenRegistrar {
         uploadToken()
     }
 
-    deinit {
-        timer?.invalidate()
-    }
-
     private func uploadToken() {
-        guard let token = token, let appKey = UAConfig.default().appKey, credentialsManager.hasLoginCredentials else {
+        guard let token = token, let appKey = UAConfig.default().appKey else {
             return
         }
 
-        networkManager.performAPNSDeviceTokenRequest(token: token, urbanAirshipAppKey: appKey) { [weak self] (error) in
-            if let error = error {
-                self?.scheduleUpload()
-                log("Failed to upload APNS Token: \(token), error: \(error)")
-            } else {
-                self?.didUploadToken(token)
-                log("Did upload APNS Token: \(token)")
-            }
-        }
-    }
-
-    private func scheduleUpload() {
-        timer = Timer.scheduledTimer(withTimeInterval: timerDelay, repeats: false) { [weak self] (_) in
-            self?.uploadToken()
-        }
-    }
-
-    private func didUploadToken(_ token: String) {
-        if self.token == token {
-            self.token = nil
-        }
+        let qotService = QOTService.main
+        #if DEBUG
+        qotService.reportDeviceToken(token, appKey: appKey, inProduction: false)
+        #else
+        qotService.reportDeviceToken(token, appKey: appKey, inProduction: true)
+        #endif
     }
 }

@@ -7,166 +7,60 @@
 //
 
 import Foundation
-import Alamofire
+import qot_dal
 
 typealias AuthenticationCompletion = (Result<String, NetworkError>) -> Void
 
-protocol AuthenticatorDelegate: class {
-    func didAutoLogin()
-}
-
 final class Authenticator {
-
-    private let queue = DispatchQueue(label: "Authenticator", qos: .background)
-    private let sessionManager: SessionManager
-    private let requestBuilder: URLRequestBuilder
-    private let store = CredentialsManager.shared
+    private let sessionSerivce = SessionService.main
     private let notificationCenter: NotificationCenter
-    private var completions: [AuthenticationCompletion] = []
-    private var currentRequest: (token: Token, request: DataRequest)?
-    weak var delegate: AuthenticatorDelegate?
 
-    init(sessionManager: SessionManager,
-         requestBuilder: URLRequestBuilder,
-         notificationCenter: NotificationCenter = NotificationCenter.default) {
-        self.sessionManager = sessionManager
-        self.requestBuilder = requestBuilder
+    init(notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.notificationCenter = notificationCenter
     }
 
     func authenticate(username: String, password: String, completion: @escaping AuthenticationCompletion) {
-        queue.async { self._authenticate(username: username, password: password, completion: completion) }
+        _authenticate(username: username, password: password, completion: completion)
     }
 
     func fetchAuthToken(now: Date = Date(), completion: @escaping AuthenticationCompletion) {
-        queue.async { self._fetchAuthToken(now: now, completion: completion) }
+        _fetchAuthToken(now: now, completion: completion)
     }
 
     func hasLoginCredentials() -> Bool {
-        return store.hasLoginCredentials
+        return sessionSerivce.getCurrentSession() != nil
     }
 
-    private func getLocation(completion: @escaping (CLLocation?) -> Void) {
-        DispatchQueue.main.async { [weak self] in
-            var location: CLLocation? = nil
-            if LocationManager.locationServiceEnabled {
-                location = LocationManager().location
+    func refreshSession(completion: @escaping AuthenticationCompletion) {
+        sessionSerivce.refreshSession { (newSession, error) in
+            if let session = newSession {
+                completion(.success(session.sessionToken ?? ""))
+            } else {
+                completion(.failure(error!.networkError))
             }
-            self?.queue.async { completion(location) }
         }
     }
+
 }
 
 // MARK: NOT THREAD SAFE! Methods in this extension MUST all be called on `queue`.
 private extension Authenticator {
 
     func _authenticate(username: String, password: String, completion: @escaping AuthenticationCompletion) {
-        dispatchPrecondition(condition: .onQueue(queue))
-        cancelCurrentRequest()
-        completions.append(completion)
-        authenticateAndCallCompletions(username: username, password: password, saveCredentials: true)
+        sessionSerivce.createSession(username: username, password: password) { (newSession, error) in
+            if let session = newSession {
+                completion(.success(session.sessionToken ?? ""))
+            } else {
+                completion(.failure(error!.networkError))
+            }
+        }
     }
 
     func _fetchAuthToken(now: Date, completion: @escaping AuthenticationCompletion) {
-        dispatchPrecondition(condition: .onQueue(queue))
-
-        if currentRequest != nil {
-            completions.append(completion)
-        } else if let existingAuthToken = validAuthToken(now: now) {
-            completion(.success(existingAuthToken))
-        } else if let (username, password) = loginCredentials() {
-            completions.append(completion)
-            authenticateAndCallCompletions(username: username, password: password, saveCredentials: false)
+        if let session = sessionSerivce.getCurrentSession() {
+            completion(.success(session.sessionToken ?? ""))
         } else {
             completion(.failure(NetworkError(type: .unauthenticated)))
         }
-    }
-
-    private func cancelCurrentRequest() {
-        dispatchPrecondition(condition: .onQueue(queue))
-        if let request = currentRequest {
-            request.token.invalidate()
-            request.request.cancel()
-            currentRequest = nil
-        }
-        performCompletions(with: .failure(NetworkError(type: .cancelled)))
-    }
-
-    private func authenticateAndCallCompletions(username: String, password: String, saveCredentials: Bool) {
-        dispatchPrecondition(condition: .onQueue(queue))
-
-        getLocation { [unowned self] (location) in
-            let token = Token()
-            let buildableReq = AuthenticationRequest(username: username, password: password, location: location)
-            let req = self.requestBuilder.make(buildable: buildableReq)
-            let parser = AuthenticationTokenParser.make()
-            let request = self.sessionManager.request(req,
-                                                      parser: parser,
-                                                      completionQueue: self.queue) { [weak self] (result) in
-                guard let `self` = self, token.isValid() == true else { return }
-
-                switch result {
-                case .success(let authToken):
-                    if saveCredentials == true {
-                        self.store.save(username: username, password: password, authToken: authToken)
-                    } else {
-                        self.save(authToken: authToken)
-                    }
-                case .failure(let error):
-                    if error.isUnauthenticated {
-                        if let savedCredentials = self.loginCredentials(), savedCredentials == (username, password) {
-                            // Login failed with saved credentials which might be a bug
-                            log("authentication unexpectedly failed: \(error)", level: .error)
-                        }
-
-                        self.clearLoginCredentialsAndAuthToken()
-                    }
-                }
-                self.performCompletions(with: result)
-                self.currentRequest = nil
-            }
-            self.currentRequest = (token: token, request: request)
-        }
-    }
-
-    private func save(username: String, password: String, authToken: String) {
-        dispatchPrecondition(condition: .onQueue(queue))
-        store.save(username: username, password: password, authToken: authToken)
-    }
-
-    private func save(authToken: String) {
-        dispatchPrecondition(condition: .onQueue(queue))
-        if store.authToken() == nil {
-            store.save(authToken: authToken)
-            delegate?.didAutoLogin()
-        } else if let currentToken = store.authToken(), currentToken != authToken {
-            store.save(authToken: authToken)
-            delegate?.didAutoLogin()
-        }
-    }
-
-    private func clearLoginCredentialsAndAuthToken() {
-        dispatchPrecondition(condition: .onQueue(queue))
-        store.clear()
-    }
-
-    private func performCompletions(with result: Result<String, NetworkError>) {
-        dispatchPrecondition(condition: .onQueue(queue))
-        for completion in completions {
-            DispatchQueue.main.async {
-                completion(result)
-            }
-        }
-        completions = []
-    }
-
-    private func validAuthToken(now: Date) -> String? {
-        dispatchPrecondition(condition: .onQueue(queue))
-        return store.authToken()
-    }
-
-    private func loginCredentials() -> (username: String, password: String)? {
-        dispatchPrecondition(condition: .onQueue(queue))
-        return store.loginCredentials()
     }
 }

@@ -8,6 +8,7 @@
 
 import Foundation
 import Alamofire
+import qot_dal
 
 enum HTTPStatusCode: Int {
     case unauthorized = 401
@@ -81,11 +82,38 @@ struct NetworkError: Error {
 
 extension Error {
 
+    func convertQOTNetworkError(_ qotError: QOTNetworkError?) -> NetworkError? {
+        var networkError: NetworkError?
+        if let error = qotError {
+            switch error.type {
+            case .unknown(let err, let statusCode):
+                networkError = NetworkError(type: .unknown(error: err, statusCode: statusCode))
+            case .cancelled:
+                networkError = NetworkError(type: .cancelled, request: error.request, response: error.response, data: error.data)
+            case .forbidden:
+                networkError = NetworkError(type: .unknown(error: error, statusCode: 403))
+            case .unknownError:
+                networkError = NetworkError(type: .unknown(error: error, statusCode: nil))
+            case .noNetworkConnection:
+                networkError = NetworkError(type: .noNetworkConnection)
+            case .unauthenticated:
+                networkError = NetworkError(type: .unauthenticated)
+            case .notFound:
+                networkError = NetworkError(type: .notFound)
+            }
+        }
+
+        return networkError
+    }
+
     var networkError: NetworkError {
+        if let qotError = convertQOTNetworkError(self as? QOTNetworkError) {
+            return qotError
+        }
         guard let error = self as? NetworkError else {
             return NetworkError(type: .unknown(error: self, statusCode: nil))
         }
-        log("NetworkError: \(error.localizedDescription))", level: .error)
+        log("NetworkError: \(error.localizedDescription))", level: Logger.Level.error)
         return error
     }
 }
