@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MindsetShifterChecklistViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="confirmationButton" destination="rfo-1W-7ew" id="TWB-47-IuD"/>
+                <outlet property="tableView" destination="oho-Ej-Lk8" id="SRE-ej-5Id"/>
+                <outlet property="view" destination="iN0-l3-epB" id="03B-qQ-15d"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="oho-Ej-Lk8">
+                    <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="sectionIndexBackgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="9bA-Fd-UpX"/>
+                        <outlet property="delegate" destination="-1" id="han-G1-1C9"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50I-WP-zmI">
+                    <rect key="frame" x="24" y="603" width="40" height="40"/>
+                    <state key="normal" image="ic_close_rounded"/>
+                    <connections>
+                        <action selector="didTapClose:" destination="-1" eventType="touchUpInside" id="NAF-Pc-Dz6"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfo-1W-7ew">
+                    <rect key="frame" x="216" y="603" width="135" height="40"/>
+                    <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="fOJ-2X-H18"/>
+                        <constraint firstAttribute="width" constant="135" id="siV-wD-GCr"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
+                    <state key="normal" title="Button">
+                        <color key="titleColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapSave:" destination="-1" eventType="touchUpInside" id="6cO-sP-GkZ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="50I-WP-zmI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="17w-2m-2xX"/>
+                <constraint firstItem="oho-Ej-Lk8" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="87I-Xr-5qn"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rfo-1W-7ew" secondAttribute="trailing" constant="24" id="8uu-0r-5Ac"/>
+                <constraint firstItem="oho-Ej-Lk8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="8yR-uP-aKd"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="50I-WP-zmI" secondAttribute="bottom" constant="24" id="BYU-cw-X7N"/>
+                <constraint firstItem="oho-Ej-Lk8" firstAttribute="height" secondItem="vUN-kp-3ea" secondAttribute="height" id="MD3-LN-VfU"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rfo-1W-7ew" secondAttribute="bottom" constant="24" id="Xv1-Je-0do"/>
+                <constraint firstItem="oho-Ej-Lk8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="wHs-cJ-k11"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_close_rounded" width="40" height="40"/>
+    </resources>
+</document>

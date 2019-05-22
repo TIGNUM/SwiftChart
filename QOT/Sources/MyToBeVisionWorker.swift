@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ReactiveKit
 
 final class MyToBeVisionWorker {
 
@@ -64,7 +63,7 @@ final class MyToBeVisionWorker {
     }
 
     var visionChatItems: [VisionGeneratorChoice.QuestionType: Question?] {
-        return services.questionsService.visionChatItems
+        return [:]//services.questionsService.visionChatItems
     }
 
     var headlinePlaceholder: String? {

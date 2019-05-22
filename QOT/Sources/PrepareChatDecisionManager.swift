@@ -90,8 +90,8 @@ final class PrepareChatDecisionManager {
         items.append(botMessage)
         let answers = Array(question.prepareChatAnswers(groupID: questionGroupID))
         let prepareAnswers: [PrepareAnswer] = answers.map {
-            let target = questionsService.target(answer: $0, questionGroupID: questionGroupID)
-            return PrepareAnswer(title: $0.title, target: target)
+//            let target = questionsService.target(answer: $0, questionGroupID: questionGroupID)
+            return PrepareAnswer(title: $0.title, target: nil)
         }
         let item = ChatItem(type: .choiceList(prepareAnswers),
                             chatType: .prepare,

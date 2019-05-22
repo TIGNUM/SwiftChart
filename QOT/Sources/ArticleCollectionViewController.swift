@@ -8,8 +8,6 @@
 
 import UIKit
 import Anchorage
-import ReactiveKit
-import Bond
 
 protocol ArticleCollectionViewControllerDelegate: class {
     func didTapItem(articleHeader: ArticleCollectionHeader, in viewController: UIViewController)

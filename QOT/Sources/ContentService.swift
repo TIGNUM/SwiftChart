@@ -73,6 +73,33 @@ final class ContentService {
             }
         }
 
+        enum ConfirmationView: String, Predicatable {
+            case leaveTitle = "confirmation_title_leave_without_saving"
+            case progressDescription = "confirmation_description_progress_will_be_lost"
+            case buttonYes = "confirmation_button_yes"
+            case buttonNo = "confirmation_button_no"
+
+            var predicate: NSPredicate {
+                return NSPredicate(tag: rawValue)
+            }
+        }
+
+        enum MindsetShifterCheclist: String, Predicatable {
+            case headerTitle = "mindset-shifter-checklist-header-title"
+            case headerSubtitle = "mindset-shifter-checklist-header-subtitle"
+            case triggerTitle = "mindset-shifter-checklist-trigger-title"
+            case reactionsTitle = "mindset-shifter-checklist-reactions-title"
+            case negativeToPositiveTitle = "mindset-shifter-checklist-negativeToPositive-title"
+            case negativeToPositiveLowTitle = "mindset-shifter-checklist-negativeToPositive-lowTitle"
+            case negativeToPositiveHighTitle = "mindset-shifter-checklist-negativeToPositive-highTitle"
+            case visionTitle = "mindset-shifter-checklist-vision-Title"
+            case buttonText = "mindset-shifter-checklist-save-button-text"
+
+            var predicate: NSPredicate {
+                return NSPredicate(tag: rawValue)
+            }
+        }
+
         var predicate: NSPredicate {
             switch self {
             case .learnStrategiesFoundation: return NSPredicate(searchTag: rawValue)
@@ -527,5 +554,67 @@ extension ContentService {
             suggestions.append(contentItem(for: tag.predicate)?.valueText ?? "")
         }
         return suggestions
+    }
+}
+
+// MARK: - ConfirmationView
+
+extension ContentService {
+
+    var confirmationTitle: String {
+        return contentItem(for: Tags.ConfirmationView.leaveTitle.predicate)?.valueText ?? ""
+    }
+
+    var confirmationDescription: String {
+        return contentItem(for: Tags.ConfirmationView.progressDescription.predicate)?.valueText ?? ""
+    }
+
+    var confirmationButtonYes: String {
+        return contentItem(for: Tags.ConfirmationView.buttonYes.predicate)?.valueText ?? ""
+    }
+
+    var confirmationButtonNo: String {
+        return contentItem(for: Tags.ConfirmationView.buttonNo.predicate)?.valueText ?? ""
+    }
+}
+
+// MARK: - Mindset Shifter Checklist
+
+extension ContentService {
+
+    var mindsetShifterHeaderTitle: String {
+        return contentItem(for: Tags.MindsetShifterCheclist.headerTitle.predicate)?.valueText ?? ""
+    }
+
+    var mindsetShifterHeaderSubtitle: String {
+        return contentItem(for: Tags.MindsetShifterCheclist.headerSubtitle.predicate)?.valueText ?? ""
+    }
+
+    var mindsetShifterTriggerTitle: String {
+        return contentItem(for: Tags.MindsetShifterCheclist.triggerTitle.predicate)?.valueText ?? ""
+    }
+
+    var mindsetShifterReactionsTitle: String {
+        return contentItem(for: Tags.MindsetShifterCheclist.reactionsTitle.predicate)?.valueText ?? ""
+    }
+
+    var mindsetShifterNegativeToPositiveTitle: String {
+        return contentItem(for: Tags.MindsetShifterCheclist.negativeToPositiveTitle.predicate)?.valueText ?? ""
+    }
+
+    var mindsetShifterNegativeToPositiveLowTitle: String {
+        return contentItem(for: Tags.MindsetShifterCheclist.negativeToPositiveLowTitle.predicate)?.valueText ?? ""
+    }
+
+    var mindsetShifterNegativeToPositiveHighTitle: String {
+        return contentItem(for: Tags.MindsetShifterCheclist.negativeToPositiveHighTitle.predicate)?.valueText ?? ""
+    }
+
+    var mindsetShifterVisionTitle: String {
+        return contentItem(for: Tags.MindsetShifterCheclist.visionTitle.predicate)?.valueText ?? ""
+    }
+
+    var mindsetShifterSaveButtonText: String {
+        return contentItem(for: Tags.MindsetShifterCheclist.buttonText.predicate)?.valueText ?? ""
     }
 }

@@ -139,11 +139,12 @@ extension VisionGeneratorWorker {
     }
 
     func chatItems(for targetID: Int) -> [ChatItem<VisionGeneratorChoice>] {
-        if let question = questionService.visionQuestion(for: targetID) {
-            setCurrentQuestionType(question)
-        }
-        guard let type = currentQuestionType else { return [] }
-        return allChatItems[type] ?? []
+//        if let question = questionService.visionQuestion(for: targetID) {
+//            setCurrentQuestionType(question)
+//        }
+//        guard let type = currentQuestionType else { return [] }
+//        return allChatItems[type] ?? []
+        return []
     }
 
     func fetchMediaURL(contentItemID: Int) -> URL? {
@@ -157,24 +158,24 @@ extension VisionGeneratorWorker {
 private extension VisionGeneratorWorker {
 
     func displayCreatedVision(for questionType: VisionGeneratorChoice.QuestionType) {
-        let createQuestion = questionService.questionFor(questionType)
-        updateViewModel(with: [questionService.messageChatItem(text: createQuestion?.title ?? "",
-                                                               date: Date(),
-                                                               includeFooter: false,
-                                                               isAutoscrollSnapable: true,
-                                                               questionType: questionType)])
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + createVisionPresentDelay) {
-            self.updateViewModel(with: [self.questionService.messageChatItem(text: self.createVision(),
-                                                                             date: Date(),
-                                                                             includeFooter: false,
-                                                                             isAutoscrollSnapable: false,
-                                                                             questionType: questionType)])
-        }
-        if let nextQuestion = questionService.visionQuestion(for: questionType.nextType) {
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + readingVisionPresentDelay) {
-                self.updateViewModel(with: self.questionService.chatItems(for: nextQuestion))
-            }
-        }
+//        let createQuestion = questionService.questionFor(questionType)
+//        updateViewModel(with: [questionService.messageChatItem(text: createQuestion?.title ?? "",
+//                                                               date: Date(),
+//                                                               includeFooter: false,
+//                                                               isAutoscrollSnapable: true,
+//                                                               questionType: questionType)])
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + createVisionPresentDelay) {
+//            self.updateViewModel(with: [self.questionService.messageChatItem(text: self.createVision(),
+//                                                                             date: Date(),
+//                                                                             includeFooter: false,
+//                                                                             isAutoscrollSnapable: false,
+//                                                                             questionType: questionType)])
+//        }
+//        if let nextQuestion = questionService.visionQuestion(for: questionType.nextType) {
+//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + readingVisionPresentDelay) {
+//                self.updateViewModel(with: self.questionService.chatItems(for: nextQuestion))
+//            }
+//        }
     }
 
     func string(from visionChoices: [VisionGeneratorChoice]) -> String {
