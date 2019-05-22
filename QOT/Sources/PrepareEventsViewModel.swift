@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ReactiveKit
 import EventKit
 
 final class PrepareEventsViewModel {

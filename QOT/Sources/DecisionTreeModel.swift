@@ -12,31 +12,9 @@ import Foundation
 
 enum DecisionTreeType {
     case toBeVisionGenerator
+    case mindsetShifter
+    case mindsetShifterTBV
     case prepare
-}
-
-// MARK: - AnswerType
-
-enum AnswerType: String {
-    case singleSelection = "DECISION_TREE_SINGLE_SELECTION"
-    case multiSelection = "DECISION_TREE_MULTI_SELECTION"
-    case text = "DECISION_TREE_TEXT"
-    case userInput = "DECISION_TREE_USER_INPUT"
-    case onlyExistingAnswer = "ONLY_EXISTING_ANSWER"
-    case noAnswerRequired = "NO_ANSWER_REQUIRED"
-}
-
-// MARK: - Question Key
-
-enum QuestionKey: String {
-    case intro = "tbv-generator-key-intro"
-    case instructions = "tbv-generator-key-instructions"
-    case home = "tbv-generator-key-home"
-    case work = "tbv-generator-key-work"
-    case next = "tbv-generator-key-next"
-    case create = "tbv-generator-key-create"
-    case picture = "tbv-generator-key-picture"
-    case review = "tbv-generator-key-review"
 }
 
 // MARK: - Model
@@ -68,7 +46,7 @@ extension DecisionTreeModel: DecisionTreeModelInterface {
     }
 
     mutating func addOrRemove(_ selection: DecisionTreeModel.SelectedAnswer,
-                              addCompletion: (() -> Void),
+                              addCompletion: () -> Void,
                               removeCompletion: () -> Void) {
         if let index = selectedAnswers.firstIndex(where: { $0.answer.remoteID.value == selection.answer.remoteID.value }) {
             selectedAnswers.remove(at: index)

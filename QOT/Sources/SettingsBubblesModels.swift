@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import ReactiveKit
 import RealmSwift
 
 enum SettingsBubblesType {

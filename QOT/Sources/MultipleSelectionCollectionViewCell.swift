@@ -18,6 +18,7 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
 
     @IBOutlet private weak var answerButton: DecisionTreeButton!
     weak var delegate: MultipleSelectionCollectionViewCellDelegate?
+    private var maxPossibleSelections: Int = 0
     private var answer: Answer?
 
     // MARK: - Lifecycle
@@ -36,8 +37,9 @@ final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueab
 
 extension MultipleSelectionCollectionViewCell {
 
-    func configure(for answer: Answer, isSelected: Bool) {
+    func configure(for answer: Answer, isSelected: Bool, maxPossibleSelections: Int) {
         self.answer = answer
+        self.maxPossibleSelections = maxPossibleSelections
         answerButton.configure(with: answer.title,
                                selectedBackgroundColor: isSelected ? .sand : .accent30,
                                defaultBackgroundColor: isSelected ? .accent30 : .sand,
@@ -65,9 +67,8 @@ private extension MultipleSelectionCollectionViewCell {
         if
             let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int,
             let selectedAnswers = notification.userInfo?[UserInfo.selectedAnswers.rawValue] as? [Answer] {
-            let reachedLimit = counter == 4
             let isAlreadyAnswered = selectedAnswers.filter { $0.remoteID.value == answer?.remoteID.value }.isEmpty
-            if reachedLimit == true {
+            if counter == maxPossibleSelections {
                 answerButton.isUserInteractionEnabled = isAlreadyAnswered == false
             }
         }

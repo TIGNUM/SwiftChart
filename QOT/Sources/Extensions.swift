@@ -289,7 +289,10 @@ extension UIView {
         case bottom
     }
 
-    @discardableResult func addFadeView(at location: FadeViewLocation, height: CGFloat = 70.0, primaryColor: UIColor = .darkIndigo, fadeColor: UIColor = .clear) -> GradientView {
+    @discardableResult func addFadeView(at location: FadeViewLocation,
+                                        height: CGFloat = 70.0,
+                                        primaryColor: UIColor = .darkIndigo,
+                                        fadeColor: UIColor = .clear) -> GradientView {
         guard height > 0 else {
             assertionFailure("height must be > 0")
             return GradientView(colors: [], locations: [])
@@ -322,13 +325,13 @@ extension UIView {
         case topAndBottom
     }
 
-    @discardableResult func setFadeMask(at location: FadeMaskLocation, height: CGFloat = 70.0) -> CALayer {
+    @discardableResult func setFadeMask(at location: FadeMaskLocation,
+                                        height: CGFloat = 70.0,
+                                        primaryColor: CGColor = UIColor.black.cgColor) -> CALayer {
         guard height > 0 else {
             assertionFailure("height must be > 0")
             return CALayer()
         }
-
-        let primaryColor = UIColor.black.cgColor
         let fadeColor = UIColor.clear.cgColor
 
         let wrapperLayer = CALayer()

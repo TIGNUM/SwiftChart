@@ -9,7 +9,7 @@
 import Foundation
 
 protocol DecisionTreeQuestionnaireDelegate: class {
-    func didTapSingleSelection(_ answer: Answer)
+    func didTapBinarySelection(_ answer: Answer)
     func didTapMultiSelection(_ answer: Answer)
     func textCellDidAppear(targetID: Int)
 }
@@ -27,6 +27,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     private var selectedAnswers: [DecisionTreeModel.SelectedAnswer]
     private let extraAnswer: String?
     private let question: Question
+    private let maxPossibleSelections: Int
     private lazy var tableView: UITableView = {
         return UITableView(delegate: self,
                            dataSource: self,
@@ -40,10 +41,12 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
 
     init(for question: Question,
          with selectedAnswers: [DecisionTreeModel.SelectedAnswer],
-         extraAnswer: String?) {
+         extraAnswer: String?,
+         maxPossibleSelections: Int) {
         self.question = question
         self.selectedAnswers = selectedAnswers
         self.extraAnswer = extraAnswer
+        self.maxPossibleSelections = maxPossibleSelections
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -111,16 +114,19 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.onlyExistingAnswer.rawValue:
                 let cell = UITableViewCell()
                 cell.backgroundColor = .sand
-                delegate?.textCellDidAppear(targetID: 100257)
+                delegate?.textCellDidAppear(targetID: 100308 /*add here target id*/)
                 return cell
-            case AnswerType.singleSelection.rawValue:
+            case AnswerType.yesOrNo.rawValue, AnswerType.uploadImage.rawValue:
                 let cell: SingleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(for: question, selectedAnswers: selectedAnswers)
                 cell.delegate = self
                 return cell
-            case AnswerType.multiSelection.rawValue:
+            case AnswerType.singleSelection.rawValue, AnswerType.multiSelection.rawValue:
                 let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(for: Array(question.answers), question: question, selectedAnswers: selectedAnswers)
+                cell.configure(for: Array(question.answers),
+                               question: question,
+                               selectedAnswers: selectedAnswers,
+                               maxPossibleSelections: maxPossibleSelections)
                 cell.delegate = self
                 return cell
             case AnswerType.text.rawValue:
@@ -131,7 +137,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.noAnswerRequired.rawValue:
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(with: extraAnswer ?? "")
-                delegate?.textCellDidAppear(targetID: 100256 /*add here target id*/)
+                delegate?.textCellDidAppear(targetID: 100307 /*add here target id*/)
                 return cell
             default:
                 preconditionFailure()
@@ -159,7 +165,7 @@ private extension DecisionTreeQuestionnaireViewController {
 extension DecisionTreeQuestionnaireViewController: SingleSelectionCellDelegate {
 
     func didSelect(_ answer: Answer) {
-        delegate?.didTapSingleSelection(answer)
+        delegate?.didTapBinarySelection(answer)
     }
 }
 
@@ -168,8 +174,6 @@ extension DecisionTreeQuestionnaireViewController: SingleSelectionCellDelegate {
 extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate {
 
     func didTap(_ answer: Answer) {
-        if selectedAnswers.count <= 4 {
-            delegate?.didTapMultiSelection(answer)
-        }
+        delegate?.didTapMultiSelection(answer)
     }
 }

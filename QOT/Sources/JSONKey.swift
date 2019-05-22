@@ -271,6 +271,10 @@ enum JsonKey: String {
     case zone
     case maxValueOf
     case decimalPlaces
+    case defaultButtonText
+    case confirmationButtonText
+    case maxPossibleSelections
+    case keys
 
     var value: String {
         return rawValue

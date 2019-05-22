@@ -21,19 +21,20 @@ final class Answer: Object {
 
     let decisions = List<AnswerDecision>()
 
+    let keys = List<String>()
+
     convenience init(intermediary: AnswerIntermediary) {
         self.init()
-
         self.remoteID.value = intermediary.remoteID
         self.sortOrder = intermediary.sortOrder
         self.title = intermediary.title
         self.subtitle = intermediary.subtitle
         self.decisions.append(objectsIn: intermediary.decisions.map { AnswerDecision(intermediary: $0) })
+        intermediary.keys.forEach { keys.append($0) }
     }
 
     func delete() {
         decisions.forEach { $0.delete() }
-
         if let realm = realm {
             realm.delete(self)
         }
