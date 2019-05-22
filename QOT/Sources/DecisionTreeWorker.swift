@@ -28,7 +28,11 @@ final class DecisionTreeWorker {
     func fetchFirstQuestion() -> Question? {
         switch type {
         case .toBeVisionGenerator:
-            return services.questionsService.visionQuestion(for: .intro)
+            return services.questionsService.tbvGeneratorIntroQuestion()
+        case .mindsetShifter:
+            return services.questionsService.mindsetShifterIntroQuestion()
+        case .mindsetShifterTBV:
+            return services.questionsService.mindsetShifterTBV()
         case .prepare:
             return nil
         }
@@ -39,7 +43,7 @@ final class DecisionTreeWorker {
         let question = services.questionsService.question(id: targetID)
         var extraAnswer: String?
         switch question?.key {
-        case QuestionKey.create.rawValue:
+        case QuestionKey.ToBeVision.create.rawValue:
             extraAnswer = createVision(from: selectedAnswers)
         default: // TODO: generate different extra answers
             extraAnswer = createVision(from: selectedAnswers)
@@ -90,7 +94,8 @@ extension DecisionTreeWorker {
             let userGender = (services.userService.user()?.gender ?? "NEUTRAL").uppercased()
             let genderQueryNeutral = "GENDER_NEUTRAL"
             let genderQuery = String(format: "GENDER_%@", userGender)
-            let filteredItems = Array(contentItems.filter { $0.searchTags.contains(genderQuery) || $0.searchTags.contains(genderQueryNeutral) })
+            let filteredItems = Array(contentItems.filter { $0.searchTags.contains(genderQuery)
+                || $0.searchTags.contains(genderQueryNeutral) })
             guard filteredItems.isEmpty == false else { continue }
             if let randomItemText = filteredItems[filteredItems.randomIndex].valueText {
                 visionList.append(randomItemText)

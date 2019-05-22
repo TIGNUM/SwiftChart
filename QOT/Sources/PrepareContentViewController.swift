@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import Bond
-import ReactiveKit
 import Anchorage
 import MBProgressHUD
 
@@ -25,7 +23,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     // MARK: - Properties
 
     var viewModel: PrepareContentViewModel
-    private let disposeBag = DisposeBag()
     private var avPlayerObserver: AVPlayerObserver?
     private var sectionHeaderView: PrepareSectionHeaderView?
     private var progressHUD: MBProgressHUD?

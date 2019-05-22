@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import ReactiveKit
 import RealmSwift
 import UIKit
 
@@ -18,7 +17,7 @@ final class ChartViewModel {
     static let chartViewPadding: CGFloat = 56
     static let chartCellOffset: CGFloat = 20
     static let chartRatio: CGFloat = 1.3479623824
-    let updates = PublishSubject<CollectionUpdate, Never>()
+//    let updates = PublishSubject<CollectionUpdate, Never>()
     private var charts: [[Statistics]] = []
     private let services: Services
     private let permissionsManager: PermissionsManager
@@ -43,7 +42,7 @@ final class ChartViewModel {
                 self.charts = try services.statisticsService.charts()
                 self.allCharts = self.charts.flatMap { $0 }
                 self.askPermissionForCalendar()
-                self.updates.next(.reload)
+//                self.updates.next(.reload)
             } catch let error {
                 log(error)
             }

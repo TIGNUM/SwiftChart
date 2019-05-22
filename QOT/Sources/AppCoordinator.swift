@@ -11,7 +11,6 @@ import RealmSwift
 import Alamofire
 import UserNotifications
 import AirshipKit
-import ReactiveKit
 import Buglife
 import qot_dal
 

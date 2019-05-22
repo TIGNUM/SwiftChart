@@ -91,14 +91,14 @@ private extension ChartViewController {
     }
 
     func observeViewModel() {
-        viewModel.updates.observeNext { [unowned self] (update) in
-            switch update {
-            case .reload, .update:
-                self.createPageControls()
-                self.tableView.reloadData()
-                self.updateReadyState()
-            }
-        }.dispose(in: disposeBag)
+//        viewModel.updates.observeNext { [unowned self] (update) in
+//            switch update {
+//            case .reload, .update:
+//                self.createPageControls()
+//                self.tableView.reloadData()
+//                self.updateReadyState()
+//            }
+//        }.dispose(in: disposeBag)
     }
 
     func setupView() {

@@ -17,6 +17,7 @@ struct AnswerIntermediary: JSONDecodable {
     let subtitle: String?
     let decisions: [AnswerDecisionIntermediary]
     let syncStatus: Int // FIXME: Deleted answers are also returned. We need a better way of hanling this.
+    let keys: [String]
 
     init(json: JSON) throws {
         remoteID = try json.getItemValue(at: .id)
@@ -25,5 +26,6 @@ struct AnswerIntermediary: JSONDecodable {
         subtitle = try json.getItemValue(at: .title)
         decisions = try json.getArray(at: .decisions, fallback: [])
         syncStatus = try json.getItemValue(at: .syncStatus, fallback: 0)
+        keys = try json.getArray(at: .keys, fallback: [])
     }
 }

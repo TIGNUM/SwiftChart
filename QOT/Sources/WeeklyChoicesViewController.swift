@@ -8,7 +8,6 @@
 
 import UIKit
 import Anchorage
-import ReactiveKit
 
 protocol WeeklyChoicesViewControllerDelegate: class {
 

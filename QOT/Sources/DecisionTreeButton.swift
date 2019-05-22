@@ -14,6 +14,7 @@ final class DecisionTreeButton: UIButton {
 
     private var selectedBackgroundColor: UIColor? = .clear
     private var defaultBackgroundColor: UIColor? = .red
+    private var maxPossibleSelections: Int = 0
 
     // MARK: - Lifecycle
 
@@ -31,23 +32,24 @@ extension DecisionTreeButton {
                    selectedBackgroundColor: UIColor,
                    defaultBackgroundColor: UIColor,
                    borderColor: UIColor?,
-                   titleColor: UIColor) {
+                   titleColor: UIColor,
+                   maxPossibleSelections: Int? = nil) {
         setTitle(title, for: .normal)
         setTitleColor(titleColor, for: .normal)
         self.layer.borderColor = borderColor?.cgColor
         self.selectedBackgroundColor = selectedBackgroundColor
         self.defaultBackgroundColor = defaultBackgroundColor
         self.backgroundColor = defaultBackgroundColor
+        self.maxPossibleSelections = maxPossibleSelections ?? 0
     }
 
     func update() {
         backgroundColor = backgroundColor == defaultBackgroundColor ? selectedBackgroundColor : defaultBackgroundColor
     }
 
-    func update(with value: Int, questionKey: String) {
-        let pickTitle = questionKey == QuestionKey.work.rawValue ? "Continue" : "Create my To Be Vision"
-        let title = value == 4 ? pickTitle : "Pick \(4 - value) to continue"
-        backgroundColor = value == 4 ? selectedBackgroundColor : defaultBackgroundColor
+    func update(with value: Int, defaultTitle: String, confirmationTitle: String, questionKey: String, maxSelections: Int) {
+        let title = value == maxSelections ? confirmationTitle : "Pick \(maxSelections - value) to continue"
+        backgroundColor = value == maxPossibleSelections ? selectedBackgroundColor : defaultBackgroundColor
         setTitle(title, for: .normal)
         if value == 4 {
             layer.shadowOffset = CGSize(width: 0, height: 1)

@@ -550,6 +550,34 @@
 		91F5BE5220975E1300E85A51 /* PermissionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5BE5120975E1300E85A51 /* PermissionsInteractor.swift */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
+		AC103E2C22847AB500F426F0 /* ConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */; };
+		AC103E2D22847AB500F426F0 /* ConfirmationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */; };
+		AC103E2E22847AB500F426F0 /* ConfirmationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2622847AB500F426F0 /* ConfirmationRouter.swift */; };
+		AC103E2F22847AB500F426F0 /* ConfirmationInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */; };
+		AC103E3022847AB500F426F0 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */; };
+		AC103E3122847AB500F426F0 /* ConfirmationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */; };
+		AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2A22847AB500F426F0 /* ConfirmationModel.swift */; };
+		AC103E3322847AB500F426F0 /* ConfirmationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */; };
+		AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */; };
+		AC103E402285B27200F426F0 /* MindsetShifterChecklistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */; };
+		AC103E412285B27200F426F0 /* MindsetShifterChecklistWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E392285B27200F426F0 /* MindsetShifterChecklistWorker.swift */; };
+		AC103E422285B27200F426F0 /* MindsetShifterChecklistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3A2285B27200F426F0 /* MindsetShifterChecklistRouter.swift */; };
+		AC103E432285B27200F426F0 /* MindsetShifterChecklistInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3B2285B27200F426F0 /* MindsetShifterChecklistInterface.swift */; };
+		AC103E442285B27200F426F0 /* MindsetShifterChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3C2285B27200F426F0 /* MindsetShifterChecklistViewController.swift */; };
+		AC103E452285B27200F426F0 /* MindsetShifterChecklistInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3D2285B27200F426F0 /* MindsetShifterChecklistInteractor.swift */; };
+		AC103E462285B27200F426F0 /* MindsetShifterChecklistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3E2285B27200F426F0 /* MindsetShifterChecklistModel.swift */; };
+		AC103E472285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3F2285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift */; };
+		AC103E492285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E482285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib */; };
+		AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E4C2285CDC700F426F0 /* MindsetShifterHeaderCell.swift */; };
+		AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E4D2285CDC700F426F0 /* MindsetShifterHeaderCell.xib */; };
+		AC103E522289621900F426F0 /* TriggerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E502289621900F426F0 /* TriggerTableViewCell.swift */; };
+		AC103E532289621900F426F0 /* TriggerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E512289621900F426F0 /* TriggerTableViewCell.xib */; };
+		AC103E56228969EF00F426F0 /* ReactionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E54228969EF00F426F0 /* ReactionsTableViewCell.swift */; };
+		AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */; };
+		AC103E5A2289725C00F426F0 /* MindsetVisionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E582289725C00F426F0 /* MindsetVisionTableViewCell.swift */; };
+		AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */; };
+		AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E5C2289942100F426F0 /* NegativeToPositiveTableViewCell.swift */; };
+		AC103E5F2289942100F426F0 /* NegativeToPositiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */; };
 		AC18381F22418DC6004A538D /* SuggestionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */; };
 		AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC183820224190A0004A538D /* SuggestionsHeaderView.swift */; };
 		AC199035221EDF4300D53F01 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
@@ -619,6 +647,10 @@
 		ACCCBC8B21E36AAA008D744D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 367EA0F021776920003025CE /* Assets.xcassets */; };
 		ACCCBC9421E38B19008D744D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
 		ACCCBC9521E38D27008D744D /* UIImageView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */; };
+		ACD399F1229402A300DDE1BD /* AnswerType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD399F0229402A300DDE1BD /* AnswerType.swift */; };
+		ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD399F2229402C500DDE1BD /* QuestionKey.swift */; };
+		ACD399F5229402EC00DDE1BD /* AnswerKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD399F4229402EC00DDE1BD /* AnswerKeys.swift */; };
+		ACD399F72294030F00DDE1BD /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD399F62294030F00DDE1BD /* TargetType.swift */; };
 		ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
 		ACF0B944225FC41F008CFAEC /* DecisionTreePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B93C225FC41F008CFAEC /* DecisionTreePresenter.swift */; };
 		ACF0B945225FC41F008CFAEC /* DecisionTreeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */; };
@@ -676,7 +708,6 @@
 		CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34375D1EFD653B00D89D4F /* Answer.swift */; };
 		CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34375F1EFD675900D89D4F /* QuestionIntermediary.swift */; };
 		CB3437621EFD67B600D89D4F /* AnswerIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437611EFD67B600D89D4F /* AnswerIntermediary.swift */; };
-		CB3437641EFD6B0100D89D4F /* Answer+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437631EFD6B0100D89D4F /* Answer+Convenience.swift */; };
 		CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437661EFE74C700D89D4F /* ContentCollection+Convenience.swift */; };
 		CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB3437681EFE75C400D89D4F /* ContentItem+Convenience.swift */; };
 		CB34376B1EFE799D00D89D4F /* ContentCategory+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB34376A1EFE799D00D89D4F /* ContentCategory+Convenience.swift */; };
@@ -1605,6 +1636,34 @@
 		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationPresenter.swift; sourceTree = "<group>"; };
+		AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationWorker.swift; sourceTree = "<group>"; };
+		AC103E2622847AB500F426F0 /* ConfirmationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationRouter.swift; sourceTree = "<group>"; };
+		AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationInterface.swift; sourceTree = "<group>"; };
+		AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
+		AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationInteractor.swift; sourceTree = "<group>"; };
+		AC103E2A22847AB500F426F0 /* ConfirmationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationModel.swift; sourceTree = "<group>"; };
+		AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationConfigurator.swift; sourceTree = "<group>"; };
+		AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmationViewController.xib; sourceTree = "<group>"; };
+		AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistPresenter.swift; sourceTree = "<group>"; };
+		AC103E392285B27200F426F0 /* MindsetShifterChecklistWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistWorker.swift; sourceTree = "<group>"; };
+		AC103E3A2285B27200F426F0 /* MindsetShifterChecklistRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistRouter.swift; sourceTree = "<group>"; };
+		AC103E3B2285B27200F426F0 /* MindsetShifterChecklistInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistInterface.swift; sourceTree = "<group>"; };
+		AC103E3C2285B27200F426F0 /* MindsetShifterChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistViewController.swift; sourceTree = "<group>"; };
+		AC103E3D2285B27200F426F0 /* MindsetShifterChecklistInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistInteractor.swift; sourceTree = "<group>"; };
+		AC103E3E2285B27200F426F0 /* MindsetShifterChecklistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistModel.swift; sourceTree = "<group>"; };
+		AC103E3F2285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistConfigurator.swift; sourceTree = "<group>"; };
+		AC103E482285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetShifterChecklistViewController.xib; sourceTree = "<group>"; };
+		AC103E4C2285CDC700F426F0 /* MindsetShifterHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterHeaderCell.swift; sourceTree = "<group>"; };
+		AC103E4D2285CDC700F426F0 /* MindsetShifterHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetShifterHeaderCell.xib; sourceTree = "<group>"; };
+		AC103E502289621900F426F0 /* TriggerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerTableViewCell.swift; sourceTree = "<group>"; };
+		AC103E512289621900F426F0 /* TriggerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TriggerTableViewCell.xib; sourceTree = "<group>"; };
+		AC103E54228969EF00F426F0 /* ReactionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionsTableViewCell.swift; sourceTree = "<group>"; };
+		AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReactionsTableViewCell.xib; sourceTree = "<group>"; };
+		AC103E582289725C00F426F0 /* MindsetVisionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetVisionTableViewCell.swift; sourceTree = "<group>"; };
+		AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetVisionTableViewCell.xib; sourceTree = "<group>"; };
+		AC103E5C2289942100F426F0 /* NegativeToPositiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeToPositiveTableViewCell.swift; sourceTree = "<group>"; };
+		AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveTableViewCell.xib; sourceTree = "<group>"; };
 		AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionsHeaderView.xib; sourceTree = "<group>"; };
 		AC183820224190A0004A538D /* SuggestionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsHeaderView.swift; sourceTree = "<group>"; };
 		AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSearchTableViewCell.swift; sourceTree = "<group>"; };
@@ -1648,6 +1707,10 @@
 		ACC68C8D221C4E8B00ED899B /* DailyPrepViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPrepViewController.swift; sourceTree = "<group>"; };
 		ACC68C8F221C4F4F00ED899B /* DailyPrepView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyPrepView.xib; sourceTree = "<group>"; };
 		ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extensions.swift"; sourceTree = "<group>"; };
+		ACD399F0229402A300DDE1BD /* AnswerType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerType.swift; sourceTree = "<group>"; };
+		ACD399F2229402C500DDE1BD /* QuestionKey.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionKey.swift; sourceTree = "<group>"; };
+		ACD399F4229402EC00DDE1BD /* AnswerKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnswerKeys.swift; sourceTree = "<group>"; };
+		ACD399F62294030F00DDE1BD /* TargetType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TargetType.swift; sourceTree = "<group>"; };
 		ACEF4554218077FA00A4D531 /* GuideProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideProgressView.swift; sourceTree = "<group>"; };
 		ACF0B93C225FC41F008CFAEC /* DecisionTreePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreePresenter.swift; sourceTree = "<group>"; };
 		ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionTreeWorker.swift; sourceTree = "<group>"; };
@@ -1710,7 +1773,6 @@
 		CB34375D1EFD653B00D89D4F /* Answer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Answer.swift; sourceTree = "<group>"; };
 		CB34375F1EFD675900D89D4F /* QuestionIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionIntermediary.swift; sourceTree = "<group>"; };
 		CB3437611EFD67B600D89D4F /* AnswerIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnswerIntermediary.swift; sourceTree = "<group>"; };
-		CB3437631EFD6B0100D89D4F /* Answer+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Answer+Convenience.swift"; sourceTree = "<group>"; };
 		CB3437661EFE74C700D89D4F /* ContentCollection+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContentCollection+Convenience.swift"; sourceTree = "<group>"; };
 		CB3437681EFE75C400D89D4F /* ContentItem+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContentItem+Convenience.swift"; sourceTree = "<group>"; };
 		CB34376A1EFE799D00D89D4F /* ContentCategory+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "ContentCategory+Convenience.swift"; sourceTree = "<group>"; };
@@ -2543,6 +2605,9 @@
 				363765F2223A4BB500C2C429 /* myQOT */,
 				363765F1223A4BA400C2C429 /* daily brief */,
 				363765F0223A4B9B00C2C429 /* knowing */,
+				AC103E362285AF4700F426F0 /* Mindset Shifter Checklist */,
+				AC103E2322847A9A00F426F0 /* Confirmation */,
+				ACB0ED4B225FC28500BBF243 /* Decision Tree */,
 				367BB013223956A700282AB6 /* Main.storyboard */,
 				367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */,
 				36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */,
@@ -3123,6 +3188,56 @@
 			name = "Settings Help Bubbles";
 			sourceTree = "<group>";
 		};
+		AC103E2322847A9A00F426F0 /* Confirmation */ = {
+			isa = PBXGroup;
+			children = (
+				AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */,
+				AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */,
+				AC103E2622847AB500F426F0 /* ConfirmationRouter.swift */,
+				AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */,
+				AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */,
+				AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */,
+				AC103E2A22847AB500F426F0 /* ConfirmationModel.swift */,
+				AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */,
+				AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */,
+			);
+			name = Confirmation;
+			sourceTree = "<group>";
+		};
+		AC103E362285AF4700F426F0 /* Mindset Shifter Checklist */ = {
+			isa = PBXGroup;
+			children = (
+				AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */,
+				AC103E392285B27200F426F0 /* MindsetShifterChecklistWorker.swift */,
+				AC103E3A2285B27200F426F0 /* MindsetShifterChecklistRouter.swift */,
+				AC103E3B2285B27200F426F0 /* MindsetShifterChecklistInterface.swift */,
+				AC103E3C2285B27200F426F0 /* MindsetShifterChecklistViewController.swift */,
+				AC103E3D2285B27200F426F0 /* MindsetShifterChecklistInteractor.swift */,
+				AC103E3E2285B27200F426F0 /* MindsetShifterChecklistModel.swift */,
+				AC103E3F2285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift */,
+				AC103E482285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib */,
+				AC103E4B2285CD2C00F426F0 /* Cells */,
+			);
+			name = "Mindset Shifter Checklist";
+			sourceTree = "<group>";
+		};
+		AC103E4B2285CD2C00F426F0 /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AC103E4C2285CDC700F426F0 /* MindsetShifterHeaderCell.swift */,
+				AC103E502289621900F426F0 /* TriggerTableViewCell.swift */,
+				AC103E54228969EF00F426F0 /* ReactionsTableViewCell.swift */,
+				AC103E582289725C00F426F0 /* MindsetVisionTableViewCell.swift */,
+				AC103E5C2289942100F426F0 /* NegativeToPositiveTableViewCell.swift */,
+				AC103E4D2285CDC700F426F0 /* MindsetShifterHeaderCell.xib */,
+				AC103E512289621900F426F0 /* TriggerTableViewCell.xib */,
+				AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */,
+				AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */,
+				AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		AC87A779220D94F800622C90 /* Intent */ = {
 			isa = PBXGroup;
 			children = (
@@ -3160,14 +3275,15 @@
 			path = IntentUI;
 			sourceTree = "<group>";
 		};
-		ACB0ED4B225FC28500BBF243 /* Chat */ = {
+		ACB0ED4B225FC28500BBF243 /* Decision Tree */ = {
 			isa = PBXGroup;
 			children = (
+				ACD399EF2294026D00DDE1BD /* Keys */,
 				ACF0B94C225FC436008CFAEC /* Core */,
 				ACF0B94E225FC46E008CFAEC /* Cells */,
 				ACB449922260E13700B0E79F /* Views */,
 			);
-			name = Chat;
+			name = "Decision Tree";
 			sourceTree = "<group>";
 		};
 		ACB449922260E13700B0E79F /* Views */ = {
@@ -3177,6 +3293,17 @@
 				ACB99E8B226F3A4500A73709 /* DotsLoadingView.swift */,
 			);
 			name = Views;
+			sourceTree = "<group>";
+		};
+		ACD399EF2294026D00DDE1BD /* Keys */ = {
+			isa = PBXGroup;
+			children = (
+				ACD399F0229402A300DDE1BD /* AnswerType.swift */,
+				ACD399F2229402C500DDE1BD /* QuestionKey.swift */,
+				ACD399F4229402EC00DDE1BD /* AnswerKeys.swift */,
+				ACD399F62294030F00DDE1BD /* TargetType.swift */,
+			);
+			name = Keys;
 			sourceTree = "<group>";
 		};
 		ACF0B94C225FC436008CFAEC /* Core */ = {
@@ -3296,7 +3423,6 @@
 			isa = PBXGroup;
 			children = (
 				CB34375D1EFD653B00D89D4F /* Answer.swift */,
-				CB3437631EFD6B0100D89D4F /* Answer+Convenience.swift */,
 				CB3437611EFD67B600D89D4F /* AnswerIntermediary.swift */,
 			);
 			name = Answer;
@@ -3424,7 +3550,6 @@
 		CB94423A1FDFE4B400E2B122 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				ACB0ED4B225FC28500BBF243 /* Chat */,
 				9150411C20FDF2C700D43D18 /* Add Sensor */,
 				CBE8808B1FE4368300670C10 /* Guide */,
 				DB680583218210E600C2FC69 /* MorningInterview */,
@@ -4763,9 +4888,12 @@
 			files = (
 				3679A4E12175E3BA00DF761A /* WebViewContent.html in Resources */,
 				366AFD1F20BEAA6700109F29 /* Apercu-Bold.otf in Resources */,
+				AC103E5F2289942100F426F0 /* NegativeToPositiveTableViewCell.xib in Resources */,
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
+				AC103E492285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
+				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
 				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
 				36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */,
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
@@ -4776,6 +4904,7 @@
 				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
 				9166ECEB20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
+				AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */,
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				367564B1206A56B7008D1F71 /* ReviewNotesViewController.storyboard in Resources */,
 				36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */,
@@ -4813,6 +4942,7 @@
 				36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */,
 				368A12602277387900866DB0 /* SF-Pro-Display-Ultralight.otf in Resources */,
 				36718B40224CDC050042881E /* SubsriptionReminderViewController.xib in Resources */,
+				AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */,
 				91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				3631232E20C7CC5C00D97D01 /* SigningEmailViewController.xib in Resources */,
@@ -4830,6 +4960,7 @@
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
+				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
 				AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */,
 				CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */,
@@ -4896,6 +5027,7 @@
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */,
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
+				AC103E532289621900F426F0 /* TriggerTableViewCell.xib in Resources */,
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
 				7F99ABB11F3DF38E009CA587 /* Database in Resources */,
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
@@ -5292,6 +5424,7 @@
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
 				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
+				ACD399F5229402EC00DDE1BD /* AnswerKeys.swift in Sources */,
 				36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */,
 				36796A4820D3C49900B55429 /* SigningLoginRouter.swift in Sources */,
 				91086E39208F0BE60035DA1F /* ProfileSettingsViewController.swift in Sources */,
@@ -5311,6 +5444,7 @@
 				36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */,
 				36376648223A7DE100C2C429 /* LevelTwoWorker.swift in Sources */,
 				7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */,
+				ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */,
 				7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */,
 				D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */,
 				7FE38DD31F2B2E230061E98F /* UINavigationController+Convenience.swift in Sources */,
@@ -5344,6 +5478,7 @@
 				7F904F661FBF1A550040EF11 /* TabBarController.swift in Sources */,
 				CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */,
 				9115F706208DE01E00EE5D1D /* ProfileSettingsInteractor.swift in Sources */,
+				AC103E412285B27200F426F0 /* MindsetShifterChecklistWorker.swift in Sources */,
 				36796A0820D3C41F00B55429 /* SigningCreatePasswordWorker.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
@@ -5359,6 +5494,7 @@
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				ACF0B94A225FC41F008CFAEC /* DecisionTreeModel.swift in Sources */,
+				AC103E5A2289725C00F426F0 /* MindsetVisionTableViewCell.swift in Sources */,
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */,
@@ -5395,6 +5531,7 @@
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				3637664D223A7DE100C2C429 /* LevelTwoModel.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
+				AC103E472285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift in Sources */,
 				366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */,
 				36376660223AA61100C2C429 /* LevelThreeViewController.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
@@ -5423,6 +5560,7 @@
 				912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */,
 				912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */,
 				DB12025A219C55E000BE0E81 /* MediaResourceIntermediary.swift in Sources */,
+				AC103E3022847AB500F426F0 /* ConfirmationViewController.swift in Sources */,
 				CB6637B1201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift in Sources */,
 				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
 				36718B4F224D20030042881E /* SubsriptionReminderViewController.swift in Sources */,
@@ -5442,6 +5580,7 @@
 				DB68059B218210E700C2FC69 /* MorningInterviewPresenter.swift in Sources */,
 				7FCF5FA41FC2E9FA00CD1E5E /* TabBarItem.swift in Sources */,
 				91F5BE44209757C300E85A51 /* PermissionsConfigurator.swift in Sources */,
+				AC103E462285B27200F426F0 /* MindsetShifterChecklistModel.swift in Sources */,
 				7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */,
 				365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */,
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
@@ -5547,9 +5686,11 @@
 				36376622223A4C0400C2C429 /* MyQotConfigurator.swift in Sources */,
 				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,
 				36376668223ABB2D00C2C429 /* StrategyTableViewCell.swift in Sources */,
+				ACD399F1229402A300DDE1BD /* AnswerType.swift in Sources */,
 				CBD4BE9B201752F0008A0E9E /* GuideItemFactory.swift in Sources */,
 				36780AB6215528EA00507D1E /* TabMenuView.swift in Sources */,
 				36E4B7AC219EBFED00049EE8 /* TutorialWorker.swift in Sources */,
+				AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */,
 				3637661C223A4C0400C2C429 /* MyQotWorker.swift in Sources */,
 				36376649223A7DE100C2C429 /* LevelTwoRouter.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
@@ -5580,6 +5721,7 @@
 				7F65672F1FE13BCA00A6CB7F /* ScreenHelpViewController.swift in Sources */,
 				914A5E1D207FB35600092121 /* SettingsBubblesWorker.swift in Sources */,
 				3674FF3820AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.swift in Sources */,
+				ACD399F72294030F00DDE1BD /* TargetType.swift in Sources */,
 				CB369CE21E8D5E3D00522293 /* Services.swift in Sources */,
 				CC8D6D051EC316BF007AE687 /* LearnContentItemViewModel.swift in Sources */,
 				F9C1D8C0220DDB7C00B40DD2 /* SiriShortcutsConfigurator.swift in Sources */,
@@ -5633,6 +5775,8 @@
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
 				DB12013C219AC99400BE0E81 /* QuestionaireCellIndicator.swift in Sources */,
 				91F5BE422097578F00E85A51 /* PermissionsWorker.swift in Sources */,
+				AC103E56228969EF00F426F0 /* ReactionsTableViewCell.swift in Sources */,
+				AC103E3322847AB500F426F0 /* ConfirmationConfigurator.swift in Sources */,
 				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				7F5A25B01F3C4BC700A11466 /* PageTracker.swift in Sources */,
@@ -5668,12 +5812,14 @@
 				CB1467651EF2779700A60E31 /* Page.swift in Sources */,
 				CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */,
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
+				AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */,
 				7F47E8401F8E4FE000ED4446 /* UIDevice+Utility.swift in Sources */,
 				9171647A2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.swift in Sources */,
 				CC33CA301EC60447008E6B33 /* DatabaseConstants.swift in Sources */,
 				CBC1DC2B1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift in Sources */,
 				36376632223A66AF00C2C429 /* CoachViewController.swift in Sources */,
 				3666769C207CF68500D2F5AD /* VisionGeneratorRouter.swift in Sources */,
+				AC103E422285B27200F426F0 /* MindsetShifterChecklistRouter.swift in Sources */,
 				AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */,
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
 				CB35504320597D44000ECAFA /* DailyPrepAnswerObject.swift in Sources */,
@@ -5696,10 +5842,13 @@
 				F9C1D8C3220DDBB200B40DD2 /* SiriShortcutsViewController.swift in Sources */,
 				36376662223AA61100C2C429 /* LevelThreeModel.swift in Sources */,
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
+				AC103E2E22847AB500F426F0 /* ConfirmationRouter.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChart.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
 				3637665E223AA61100C2C429 /* LevelThreeRouter.swift in Sources */,
+				AC103E432285B27200F426F0 /* MindsetShifterChecklistInterface.swift in Sources */,
 				F9C1D8B4220DD90300B40DD2 /* SiriShortcutsWorker.swift in Sources */,
+				AC103E452285B27200F426F0 /* MindsetShifterChecklistInteractor.swift in Sources */,
 				852DADE81EF26B1D00A10882 /* PeakPerformanceAverageChart.swift in Sources */,
 				36796A4A20D3C49900B55429 /* SigningLoginWorker.swift in Sources */,
 				AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */,
@@ -5769,6 +5918,7 @@
 				36376647223A7DE100C2C429 /* LevelTwoPresenter.swift in Sources */,
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
+				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
@@ -5827,7 +5977,6 @@
 				7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */,
 				854708E31F306628007AB971 /* ContentItemAnimator.swift in Sources */,
 				CB9AFD201F029D1500D067F2 /* PreparationService.swift in Sources */,
-				CB3437641EFD6B0100D89D4F /* Answer+Convenience.swift in Sources */,
 				36718B51224D20030042881E /* SubsriptionReminderModel.swift in Sources */,
 				3674FF2820AADE7D008EEB6C /* PartnersOverviewPresenter.swift in Sources */,
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,
@@ -5858,6 +6007,8 @@
 				CB3333E520480DEF009480DF /* ShareProtocols.swift in Sources */,
 				7FE674B91F8F8F3600FC7407 /* ArticleCollectionHeader.swift in Sources */,
 				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
+				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
+				AC103E402285B27200F426F0 /* MindsetShifterChecklistPresenter.swift in Sources */,
 				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
@@ -5891,6 +6042,7 @@
 				CCE373081E8D32CF00B79352 /* LibraryViewController.swift in Sources */,
 				91F5BE4E2097584E00E85A51 /* PermissionsCell.swift in Sources */,
 				363765FE223A4BD200C2C429 /* KnowingInterface.swift in Sources */,
+				AC103E522289621900F426F0 /* TriggerTableViewCell.swift in Sources */,
 				7F5A25BF1F3CB71100A11466 /* DatabaseManager.swift in Sources */,
 				CBC933051F05253000C00007 /* JSON+Convenience.swift in Sources */,
 				7FE151C81F3DDAE600DA8F37 /* DatabaseBuilder.swift in Sources */,
@@ -5901,12 +6053,14 @@
 				36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */,
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,
 				9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */,
+				AC103E2F22847AB500F426F0 /* ConfirmationInterface.swift in Sources */,
 				CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */,
 				CC7C7A051F064F3F00DAAC14 /* User+Convenience.swift in Sources */,
 				9150413A20FDF40A00D43D18 /* SensorConfigurator.swift in Sources */,
 				36796A2220D3C45200B55429 /* SigningCountryWorker.swift in Sources */,
 				CBFD47CA200E0E6100A91899 /* RealmCalendarSyncSetting.swift in Sources */,
 				7F1D3D251F8E29050071D322 /* RemoteLogDestination.swift in Sources */,
+				AC103E3122847AB500F426F0 /* ConfirmationInteractor.swift in Sources */,
 				366183EB2162793700634560 /* SupportFAQViewController.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* StatisticsService.swift in Sources */,
 				CB34376B1EFE799D00D89D4F /* ContentCategory+Convenience.swift in Sources */,
@@ -5922,6 +6076,7 @@
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				91CCC996206938EE00E0C251 /* EventDate.swift in Sources */,
+				AC103E2D22847AB500F426F0 /* ConfirmationWorker.swift in Sources */,
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
 				7F0F45B81FE922D400293942 /* MeetingsAverageNumberChart.swift in Sources */,
 				9150413520FDF40A00D43D18 /* SensorRouter.swift in Sources */,
@@ -5951,6 +6106,7 @@
 				3693F62321625E8700E286A9 /* AppContent.swift in Sources */,
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,
 				914A5E21207FB38500092121 /* SettingsBubblesInteractor.swift in Sources */,
+				AC103E2C22847AB500F426F0 /* ConfirmationPresenter.swift in Sources */,
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
 				CB873294202AEDA80081F522 /* GradientView.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,
@@ -5976,6 +6132,7 @@
 				360256F020528DBD00862B0E /* SearchTableViewCell.swift in Sources */,
 				365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */,
 				CBD4BEA82018DFD9008A0E9E /* GuidePresenter.swift in Sources */,
+				AC103E442285B27200F426F0 /* MindsetShifterChecklistViewController.swift in Sources */,
 				36796A2420D3C45200B55429 /* SigningCountryViewController.swift in Sources */,
 				7F3A9CC01FCDC894000F1744 /* ArticleCollectionProvider.swift in Sources */,
 				D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */,

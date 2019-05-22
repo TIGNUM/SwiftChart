@@ -29,7 +29,7 @@ extension UIViewController {
     @objc func backToPreviousViewController() {
         if let previousVC = navigationController?.viewControllers.dropLast().last {
             if previousVC is CoachViewController {
-            navigationController?.popToViewController(previousVC, animated: true)
+                navigationController?.popToViewController(previousVC, animated: true)
             }
         }
     }

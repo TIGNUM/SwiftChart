@@ -20,6 +20,7 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var collectionViewHeight: NSLayoutConstraint!
     private var selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     weak var delegate: MultipleSelectionCellDelegate?
+    private var maxPossibleSelections: Int = 0
     private var answers: [Answer] = []
     private var question: Question?
     private let layout = ChatViewLayout()
@@ -39,13 +40,17 @@ final class MultipleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
 extension MultipleSelectionTableViewCell {
 
-    func configure(for answers: [Answer], question: Question, selectedAnswers: [DecisionTreeModel.SelectedAnswer]) {
+    func configure(for answers: [Answer],
+                   question: Question,
+                   selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                   maxPossibleSelections: Int) {
         self.answers = answers
         self.question = question
         self.selectedAnswers = selectedAnswers
+        self.maxPossibleSelections = maxPossibleSelections
         collectionView.reloadData()
         collectionViewHeight.constant = layout.collectionViewContentSize.height
-        collectionView.isUserInteractionEnabled = (selectedAnswers.isEmpty || selectedAnswers.count < 4)
+        collectionView.isUserInteractionEnabled = (selectedAnswers.isEmpty || selectedAnswers.count < maxPossibleSelections)
         layoutIfNeeded()
     }
 }
@@ -63,7 +68,7 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
         let cell: MultipleSelectionCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         let answer: Answer = answers[indexPath.row]
         let isSelected = selectedAnswers.filter { $0.answer.remoteID.value == answer.remoteID.value }.isEmpty == false
-        cell.configure(for: answer, isSelected: isSelected)
+        cell.configure(for: answer, isSelected: isSelected, maxPossibleSelections: maxPossibleSelections)
         cell.delegate = self
         return cell
     }
@@ -74,7 +79,7 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
 extension MultipleSelectionTableViewCell: MultipleSelectionCollectionViewCellDelegate {
 
     func didTapButton(for answer: Answer) {
-        if selectedAnswers.count < 4 {
+        if selectedAnswers.count < maxPossibleSelections {
             delegate?.didTap(answer)
         }
     }

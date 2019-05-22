@@ -37,7 +37,7 @@ private extension MyQotViewController {
         let button = UIButton(frame: buttonFrame)
         button.backgroundColor = .black
         button.addTarget(self, action: #selector(triggerForTesting), for: .touchUpInside)
-        button.setTitle("DecisionTree TBV", for: .normal)
+        button.setTitle("TBV Generator", for: .normal)
         view.addSubview(button)
     }
 

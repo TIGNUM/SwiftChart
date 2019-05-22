@@ -14,7 +14,6 @@ final class DecisionTreeViewController: UIViewController {
 
     var interactor: DecisionTreeInteractorInterface?
     private var extraAnswer: String? = ""
-    private let maxMultipleAnswers: Int = 4
     private var pageController: UIPageViewController?
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
@@ -29,6 +28,18 @@ final class DecisionTreeViewController: UIViewController {
 
     private var currentQuestion: Question? {
         return decisionTree?.questions[pageIndex]
+    }
+
+    private var maxPossibleSelections: Int {
+        return currentQuestion?.maxPossibleSelections ?? 0
+    }
+
+    private var defaultButtonText: String {
+        return currentQuestion?.defaultButtonText ?? ""
+    }
+
+    private var confirmationButtonText: String {
+        return currentQuestion?.confirmationButtonText ?? ""
     }
 
     private var pageIndex: Int = 0 {
@@ -51,7 +62,9 @@ final class DecisionTreeViewController: UIViewController {
 
     private var questionIsAnswered: Bool {
         guard decisionTree?.selectedAnswers.count ?? 0 > pageIndex else { return false }
-        return decisionTree?.selectedAnswers.filter { $0.questionID == currentQuestion?.remoteID.value }.isEmpty == false
+        return decisionTree?.selectedAnswers
+            .filter { $0.questionID == currentQuestion?.remoteID.value }
+            .isEmpty == false
     }
 
     // MARK: - Init
@@ -89,11 +102,12 @@ private extension DecisionTreeViewController {
     func setupView() {
         continueButtonWidth.constant += view.bounds.width * 0.025
         continueButton.corner(radius: continueButton.bounds.height / 2)
-        continueButton.configure(with: "Continue",
+        continueButton.configure(with: defaultButtonText,
                                  selectedBackgroundColor: .carbonDark,
                                  defaultBackgroundColor: .carbon05,
                                  borderColor: .clear,
-                                 titleColor: .accent)
+                                 titleColor: .accent,
+                                 maxPossibleSelections: currentQuestion?.maxPossibleSelections)
         pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
         pageController?.view.backgroundColor = .sand
         if let pageController = pageController {
@@ -103,7 +117,7 @@ private extension DecisionTreeViewController {
     }
 
     func showFirstQuestion() {
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) { [unowned self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_1_5) { [unowned self] in
             self.dotsLoadingView.stopAnimation()
             if let firstQuestion = self.decisionTree?.questions.first {
                 let firstQuestionnaireVC = self.questionnaireController(for: firstQuestion)
@@ -130,7 +144,7 @@ private extension DecisionTreeViewController {
     }
 
     @IBAction func didTapContinue(_ sender: UIButton) {
-        if currentQuestion?.remoteID.value == 100258 {// latest question
+        if currentQuestion?.key == QuestionKey.ToBeVision.review.rawValue {
             dismiss(animated: true, completion: nil)
         } else {
             moveForward()
@@ -150,8 +164,11 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
     func loadNext(_ question: Question, with extraAnswer: String?) {
         decisionTree?.add(question)
         self.extraAnswer = extraAnswer
-        if currentQuestion?.answerType == AnswerType.singleSelection.rawValue {
+        switch currentQuestion?.answerType {
+        case AnswerType.singleSelection.rawValue,
+             AnswerType.yesOrNo.rawValue:
             moveForward()
+        default: return
         }
     }
 }
@@ -176,13 +193,14 @@ private extension DecisionTreeViewController {
         let selectedAnswers = decisionTree?.selectedAnswers.filter { $0.questionID == question.remoteID.value } ?? []
         let controller = DecisionTreeQuestionnaireViewController(for: question,
                                                                  with: selectedAnswers,
-                                                                 extraAnswer: extraAnswer)
+                                                                 extraAnswer: extraAnswer,
+                                                                 maxPossibleSelections: question.maxPossibleSelections)
         controller.delegate = self
         return controller
     }
 
     func loadNextQuestion(from answer: Answer) {
-        if let nextQuestionID = answer.decisions.last(where: { $0.targetType == "QUESTION" })?.targetID {
+        if let nextQuestionID = answer.decisions.last(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
             if decisionTree?.questions.filter ({ $0.remoteID.value == nextQuestionID }).isEmpty ?? false {
                 interactor?.loadNextQuestion(from: nextQuestionID, selectedAnswers: selectedAnswers)
             }
@@ -198,12 +216,14 @@ private extension DecisionTreeViewController {
         previousButton.isHidden = pageIndex == 0
         updateBottomButtonTitle()
         switch currentQuestion?.answerType {
-        case AnswerType.singleSelection.rawValue:
+        case AnswerType.singleSelection.rawValue,
+             AnswerType.yesOrNo.rawValue,
+             AnswerType.uploadImage.rawValue:
             continueButton.isHidden = questionIsAnswered == false
             continueButton.isUserInteractionEnabled = true
             continueButton.backgroundColor = .carbonDark
         case AnswerType.multiSelection.rawValue:
-            let selectionIsCompleted = multiSelectionCounter == maxMultipleAnswers
+            let selectionIsCompleted = multiSelectionCounter == maxPossibleSelections
             continueButton.backgroundColor = selectionIsCompleted ? .carbonDark : .carbon05
             continueButton.isUserInteractionEnabled = selectionIsCompleted
         default: return
@@ -243,12 +263,15 @@ private extension DecisionTreeViewController {
     func updateBottomButtonTitle() {
         guard let questionKey = currentQuestion?.key else { return }
         switch questionKey {
-        case QuestionKey.home.rawValue, QuestionKey.work.rawValue:
-            continueButton.update(with: multiSelectionCounter, questionKey: questionKey)
-        case QuestionKey.next.rawValue:
-            continueButton.setTitle("Yes, let's continue", for: .normal)
+        case QuestionKey.ToBeVision.home.rawValue,
+             QuestionKey.ToBeVision.work.rawValue:
+            continueButton.update(with: multiSelectionCounter,
+                                  defaultTitle: defaultButtonText,
+                                  confirmationTitle: confirmationButtonText,
+                                  questionKey: questionKey,
+                                  maxSelections: maxPossibleSelections)
         default:
-            continueButton.setTitle("Continue", for: .normal)
+            continueButton.setTitle(confirmationButtonText, for: .normal)
         }
     }
 }
@@ -257,22 +280,8 @@ private extension DecisionTreeViewController {
 
 extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
 
-    func didTapSingleSelection(_ answer: Answer) {
-        guard let questionID = currentQuestion?.remoteID.value else { return }
-        let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
-        decisionTree?.add(selectedAnswer)
-        if let contentID = answer.decisions.first(where: { $0.targetType == "CONTENT" })?.targetID {
-            interactor?.displayContent(with: contentID)
-        }
-        if let contentItemID = answer.decisions.first(where: { $0.targetType == "CONTENT_ITEM" })?.targetID {
-            interactor?.streamContentItem(with: contentItemID)
-        }
-        if let remoteID = answer.remoteID.value, remoteID == 100901 {
-            interactor?.uploadPhoto()
-        }
-        if let targetID = answer.decisions.first(where: { $0.targetType == "QUESTION" })?.targetID {
-            interactor?.loadNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
-        }
+    func didTapBinarySelection(_ answer: Answer) {
+        handleSingleSelection(for: answer)
     }
 
     func textCellDidAppear(targetID: Int) {
@@ -280,19 +289,51 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 
     func didTapMultiSelection(_ answer: Answer) {
+        switch currentQuestion?.answerType {
+        case AnswerType.multiSelection.rawValue: handleMultiSelection(for: answer)
+        case AnswerType.singleSelection.rawValue: handleSingleSelection(for: answer)
+        default: break
+        }
+        interactor?.notifyCounterChanged(with: multiSelectionCounter, selectedAnswers: selectedAnswers)
+    }
+}
+
+// MARK: - Handling selections
+
+private extension DecisionTreeViewController {
+
+    func handleSingleSelection(for answer: Answer) {
+        guard let questionID = currentQuestion?.remoteID.value else { return }
+        let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
+        decisionTree?.add(selectedAnswer)
+        if let contentID = answer.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID {
+            interactor?.displayContent(with: contentID)
+        }
+        if let contentItemID = answer.decisions.first(where: { $0.targetType == TargetType.contentItem.rawValue })?.targetID {
+            interactor?.streamContentItem(with: contentItemID)
+        }
+        if answer.keys.contains(AnswerKey.ToBeVision.uploadImage.rawValue) {
+            interactor?.uploadPhoto()
+        }
+        if let targetID = answer.decisions.first(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
+            interactor?.loadNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
+        }
+    }
+
+    func handleMultiSelection(for answer: Answer) {
         guard let questionID = currentQuestion?.remoteID.value else { return }
         let selection = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
         decisionTree?.addOrRemove(selection, addCompletion: {
-            if multiSelectionCounter < maxMultipleAnswers {
+            if multiSelectionCounter < maxPossibleSelections {
                 multiSelectionCounter.plus(1)
             }
-            if multiSelectionCounter == maxMultipleAnswers {
+            if multiSelectionCounter == maxPossibleSelections {
                 DispatchQueue.main.async {
                     self.loadNextQuestion(from: answer)
                 }
             }
         }, removeCompletion: {
-            if multiSelectionCounter == maxMultipleAnswers {
+            if multiSelectionCounter == maxPossibleSelections {
                 DispatchQueue.main.async {
                     self.decisionTree?.removeLastQuestion()
                 }
@@ -302,6 +343,5 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
             }
         })
         continueButton.pulsate()
-        interactor?.notifyCounterChanged(with: multiSelectionCounter, selectedAnswers: selectedAnswers)
     }
 }
