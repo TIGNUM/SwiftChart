@@ -95,4 +95,8 @@ extension ArticleInteractor: ArticleInteractorInterface {
         presenter.setupArticleHeader(header: worker.articleHeader)
         presenter.reloadData()
     }
+
+    var whatsHotShareable: WhatsHotShareable {
+        return worker.whatsHotShareable
+    }
 }

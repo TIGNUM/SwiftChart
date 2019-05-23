@@ -35,6 +35,7 @@ protocol ArticleInteractorInterface: Interactor {
     func markArticleAsRead()
     func didTapLink(_ url: URL)
     func showRelatedArticle(remoteID: Int)
+    var whatsHotShareable: WhatsHotShareable { get }
 }
 
 protocol ArticleRouterInterface {

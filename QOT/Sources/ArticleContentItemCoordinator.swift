@@ -195,7 +195,7 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
 
 // // MARK: - Private / UIActivityItemSource
 
-private final class WhatsHotShareable: NSObject, UIActivityItemSource {
+final class WhatsHotShareable: NSObject, UIActivityItemSource {
     var message: String
     var imageURL: URL?
     var shareableLink: String?
