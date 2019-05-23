@@ -36,6 +36,14 @@ enum FontName: String {
     case apercuMedium = "Apercu-Medium"
     case apercuRegular = "Apercu-Regular"
     case apercuLight = "Apercu-Light"
+    case sfProDisplayLight = "SF-Pro-Display-Light"
+    case sfProDisplayRegular = "SF-Pro-Display-Regular"
+    case sfProDisplayThin = "SF-Pro-Display-Thin"
+    case sfProDisplayUltralight = "SF-Pro-Display-Ultralight"
+    case sfProTextLight = "SF-Pro-Text-Light"
+    case sfProTextMedium = "SF-Pro-Text-Medium"
+    case sfProTextRegular = "SF-Pro-Text-Regular"
+    case sfProTextSemibold = "SF-Pro-Text-Semibold"
 
     func font(of size: CGFloat) -> UIFont {
         return (UIFont(name: rawValue, size: size) ?? UIFont.systemFont(ofSize: size))

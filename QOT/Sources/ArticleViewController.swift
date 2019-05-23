@@ -15,6 +15,7 @@ protocol ArticleDelegate: class {
 }
 
 var colorMode = ColorMode.dark
+var textScale = TextScale.scaleNot
 
 enum ColorMode {
     case dark
@@ -80,6 +81,46 @@ enum ColorMode {
         switch self {
         case .dark: return .lightContent
         case .darkNot: return .default
+        }
+    }
+}
+
+enum TextScale {
+    case scale
+    case scaleNot
+
+    var categoryHeadline: UIFont {
+        switch self {
+        case .scale: return .sfProTextMedium(ofSize: 14)
+        case .scaleNot: return .sfProTextMedium(ofSize: 12)
+        }
+    }
+
+    var contentHeadline: UIFont {
+        switch self {
+        case .scale: return .sfProDisplayLight(ofSize: 40)
+        case .scaleNot: return .sfProDisplayLight(ofSize: 34)
+        }
+    }
+
+    var details: UIFont {
+        switch self {
+        case .scale: return .sfProTextMedium(ofSize: 14)
+        case .scaleNot: return .sfProTextMedium(ofSize: 12)
+        }
+    }
+
+    var bullet: UIFont {
+        switch self {
+        case .scale: return .sfProTextLight(ofSize: 24)
+        case .scaleNot: return .sfProTextLight(ofSize: 16)
+        }
+    }
+
+    var content: UIFont {
+        switch self {
+        case .scale: return .sfProTextRegular(ofSize: 24)
+        case .scaleNot: return .sfProTextRegular(ofSize: 16)
         }
     }
 }
@@ -304,7 +345,9 @@ private extension ArticleViewController {
     }
 
     @objc func didTabTextScaleItem() {
-        showAlert(type: .comingSoon)
+        textScale = textScale == .scaleNot ? .scale : .scaleNot
+        tableView.reloadData()
+        didTabMoreButton()
     }
 
     @objc func didTabShareItem() {

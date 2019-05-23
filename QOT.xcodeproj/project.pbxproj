@@ -130,6 +130,7 @@
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
 		36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */; };
+		3659B7DE2295333D0039FF30 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 3659B7DD2295333D0039FF30 /* default.realm */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
 		365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */; };
 		365EC0B1224A314C0019AFF9 /* PresentComponentTransitionDriver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */; };
@@ -1005,7 +1006,6 @@
 		DB6805A3218210E700C2FC69 /* MorningQuestion.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB680594218210E700C2FC69 /* MorningQuestion.swift */; };
 		DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB82EEC32152859C002322B7 /* UIView+Animation.swift */; };
 		DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */; };
-		DBAC1E6B2294616900B9F829 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = DBAC1E6A2294616900B9F829 /* default.realm */; };
 		DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */; };
 		E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A12130055700C0723E /* PDFReaderViewController.swift */; };
 		E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */; };
@@ -1213,6 +1213,7 @@
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
 		36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSharingEmail.swift; sourceTree = "<group>"; };
+		3659B7DD2295333D0039FF30 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = QOT/Resources/default.realm; sourceTree = SOURCE_ROOT; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
 		365EC0AE224A23070019AFF9 /* PresentComponentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentComponentAnimator.swift; sourceTree = "<group>"; };
 		365EC0B0224A314C0019AFF9 /* PresentComponentTransitionDriver.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentComponentTransitionDriver.swift; sourceTree = "<group>"; };
@@ -2080,7 +2081,6 @@
 		DB680594218210E700C2FC69 /* MorningQuestion.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MorningQuestion.swift; sourceTree = "<group>"; };
 		DB82EEC32152859C002322B7 /* UIView+Animation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Animation.swift"; sourceTree = "<group>"; };
 		DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
-		DBAC1E6A2294616900B9F829 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; path = default.realm; sourceTree = "<group>"; };
 		DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
 		E813F0A3213005AD00C0723E /* PDFReaderViewController.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PDFReaderViewController.storyboard; sourceTree = "<group>"; };
@@ -4598,7 +4598,7 @@
 		DBAC1E692294616900B9F829 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
-				DBAC1E6A2294616900B9F829 /* default.realm */,
+				3659B7DD2295333D0039FF30 /* default.realm */,
 			);
 			name = Resource;
 			path = Pods/qot_dal/qot_dal/Resource;
@@ -4923,9 +4923,9 @@
 				91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
 				DB680599218210E700C2FC69 /* MorningInterviewViewController.storyboard in Resources */,
-				DBAC1E6B2294616900B9F829 /* default.realm in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
+				3659B7DE2295333D0039FF30 /* default.realm in Resources */,
 				36DC825120D54A6900CDEC34 /* SigningCountryTableViewCell.xib in Resources */,
 				851676DF1F3C694B007A1DD6 /* LearnReadMoreCell.xib in Resources */,
 				36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */,

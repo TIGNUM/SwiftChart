@@ -23,12 +23,12 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
         guard let articleHeader = articleHeader else { return }
         categoryTitleLabel.attributedText = NSAttributedString(string: articleHeader.categoryTitle,
                                                                letterSpacing: 0.4,
-                                                               font: .apercuMedium(ofSize: 12),
+                                                               font: textScale.categoryHeadline,
                                                                textColor: colorMode.text.withAlphaComponent(0.3),
                                                                alignment: .left)
         titleLabel.attributedText = NSAttributedString(string: articleHeader.title.uppercased(),
                                                        letterSpacing: 0.2,
-                                                       font: .apercuLight(ofSize: 34),
+                                                       font: textScale.contentHeadline,
                                                        lineSpacing: 4,
                                                        textColor: colorMode.text,
                                                        alignment: .left)
@@ -44,7 +44,7 @@ private extension ArticleTextHeaderTableViewCell {
         if let author = author {
             authorLabel.attributedText = NSAttributedString(string: author,
                                                             letterSpacing: 0.2,
-                                                            font: .apercuMedium(ofSize: 12),
+                                                            font: textScale.details,
                                                             textColor: colorMode.text.withAlphaComponent(0.6),
                                                             alignment: .left)
         } else {
@@ -59,7 +59,7 @@ private extension ArticleTextHeaderTableViewCell {
             let detailText = String(format: "%@ | %d min read", displayDate, timeToRead)
             detailLabel.attributedText = NSAttributedString(string: detailText,
                                                             letterSpacing: 0.4,
-                                                            font: .apercuRegular(ofSize: 12),
+                                                            font: textScale.details,
                                                             textColor: colorMode.text.withAlphaComponent(0.3),
                                                             alignment: .left)
         } else {

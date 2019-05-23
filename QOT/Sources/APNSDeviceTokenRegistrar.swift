@@ -28,10 +28,8 @@ final class APNSDeviceTokenRegistrar {
     }
 
     private func uploadToken() {
-        guard let token = token, let appKey = UAConfig.default().appKey else {
-            return
-        }
-
+        guard let token = token else { return }
+        let appKey = UAConfig.default().appKey
         let qotService = QOTService.main
         #if DEBUG
         qotService.reportDeviceToken(token, appKey: appKey, inProduction: false)
