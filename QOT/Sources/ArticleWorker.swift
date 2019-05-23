@@ -99,6 +99,12 @@ final class ArticleWorker {
         return content?.shareableLink != nil
     }()
 
+    lazy var whatsHotShareable: WhatsHotShareable = {
+        return WhatsHotShareable(message: content?.title ?? "",
+                                 imageURL: content?.thumbnailURL,
+                                 shareableLink: content?.shareableLink)
+    }()
+
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
     private lazy var whatsHotItems: [Article.Item] = {
         var items = [Article.Item]()

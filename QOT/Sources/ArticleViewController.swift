@@ -156,7 +156,7 @@ final class ArticleViewController: UIViewController {
                                    style: .plain,
                                    target: self,
                                    action: #selector(didTabBookmarkItem))
-        item.width = view.frame.width * 0.25 //TODO calculations depends on the number of new items, do we show share etc...
+        item.width = view.frame.width * multiplier
         item.tintColor = colorMode.tint
         return item
     }()
@@ -166,7 +166,7 @@ final class ArticleViewController: UIViewController {
                                    style: .plain,
                                    target: self,
                                    action: #selector(didTabDarkModeItem))
-        item.width = view.frame.width * 0.25
+        item.width = view.frame.width * multiplier
         item.tintColor = colorMode.tint
         return item
     }()
@@ -176,7 +176,7 @@ final class ArticleViewController: UIViewController {
                                    style: .plain,
                                    target: self,
                                    action: #selector(didTabTextScaleItem))
-        item.width = view.frame.width * 0.25
+        item.width = view.frame.width * multiplier
         item.tintColor = colorMode.tint
         return item
     }()
@@ -186,10 +186,17 @@ final class ArticleViewController: UIViewController {
                                    style: .plain,
                                    target: self,
                                    action: #selector(didTabShareItem))
-        item.width = view.frame.width * 0.25
+        item.width = view.frame.width * multiplier
         item.tintColor = colorMode.tint
         return item
     }()
+
+    private var multiplier: CGFloat {
+        if interactor?.isShareable == true {
+            return 0.2
+        }
+        return 0.25
+    }
 
     private lazy var topBarButtonItems: [UIBarButtonItem] = {
         if interactor?.isShareable == true {
@@ -351,7 +358,9 @@ private extension ArticleViewController {
     }
 
     @objc func didTabShareItem() {
-        showAlert(type: .comingSoon)
+        guard let whatsHotShareable = interactor?.whatsHotShareable else { return }
+        let activityVC = UIActivityViewController(activityItems: [whatsHotShareable], applicationActivities: nil)
+        present(activityVC, animated: true, completion: nil)
     }
 }
 
