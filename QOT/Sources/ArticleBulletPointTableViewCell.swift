@@ -15,7 +15,7 @@ final class ArticleBulletPointTableViewCell: UITableViewCell, Dequeueable {
     func configure(bullet: String) {
         bulletLabel.attributedText = NSAttributedString(string: bullet,
                                                        letterSpacing: 0.5,
-                                                       font: .apercuLight(ofSize: 16),
+                                                       font: textScale.bullet,
                                                        lineSpacing: 8,
                                                        textColor: colorMode.text.withAlphaComponent(0.6),
                                                        alignment: .left)
