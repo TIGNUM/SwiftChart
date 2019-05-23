@@ -156,6 +156,9 @@ final class ArticleWorker {
                                                                        duration: Double(item.secondsRequired))))
             }
         }
+        if let nextUp = nextUp() {
+            items.append(nextUp)
+        }
         relatedArticlesStrategy.forEach { relatedArticle in
             items.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: relatedArticle.title,
                                                                                     description: relatedArticle.durationString,
@@ -193,5 +196,12 @@ final class ArticleWorker {
 
     func updateSelectedContent(selectedID: Int) {
         self.selectedID = selectedID
+    }
+
+    func nextUp() -> Article.Item? {
+        guard let nextUpContent = services.contentService.nextUp(for: content) else { return nil }
+        return Article.Item(type: ContentItemValue.articleNextUp(title: nextUpContent.title,
+                                                                 description: nextUpContent.durationString,
+                                                                 itemID: nextUpContent.remoteID.value ?? 0))
     }
 }

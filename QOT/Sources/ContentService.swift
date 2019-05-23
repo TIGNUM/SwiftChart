@@ -300,10 +300,18 @@ final class ContentService {
     }
 
     func relatedContentList(for articleCollection: ContentCollection) -> [ContentCollection] {
-        let remoteIDs = Array(articleCollection.relatedContentList).compactMap { $0.contentID }
+        let relatedContents = Array(articleCollection.relatedContentList).filter { $0.type != "NEXT_UP" }
+        let remoteIDs = relatedContents.compactMap { $0.contentID }
         let predicate = NSPredicate(remoteIDs: remoteIDs)
         let results = mainRealm.objects(ContentCollection.self).sorted(by: [.sortOrder()]).filter(predicate)
         return Array(AnyRealmCollection<ContentCollection>(results))
+    }
+
+    func nextUp(for content: ContentCollection?) -> ContentCollection? {
+        guard
+            let content = content,
+            let contentID = (content.relatedContentList.filter { $0.type == "NEXT_UP" }).first?.contentID else { return nil }
+        return contentCollection(id: contentID)
     }
 
     func relatedPrepareStrategies(_ contentTitle: String) -> [ContentCollection] {

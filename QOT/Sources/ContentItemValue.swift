@@ -12,6 +12,7 @@ import Freddy
 // FIXME: Unit test
 enum ContentItemValue {
 
+    case articleNextUp(title: String, description: String, itemID: Int)
     case articleRelatedWhatsHot(relatedArticle: Article.RelatedArticleWhatsHot)
     case articleRelatedStrategy(title: String, description: String, itemID: Int)
     case headerText(header: Article.Header)
