@@ -46,7 +46,7 @@ extension MindsetShifterChecklistWorker: MindsetShifterChecklistWorkerInterface 
 
     var mindsetReactions: MindsetShifterChecklistModel.Section {
         return MindsetShifterChecklistModel.Section.reactions(title: services.contentService.mindsetShifterReactionsTitle,
-                                                              items: ["item1", "item2", "item3"])
+                                                              items: reactions)
     }
 
     var positiveToNegative: MindsetShifterChecklistModel.Section {
@@ -61,8 +61,9 @@ extension MindsetShifterChecklistWorker: MindsetShifterChecklistWorkerInterface 
     }
 
     var vision: MindsetShifterChecklistModel.Section {
+        guard let vision = services.userService.myToBeVision()?.text else { preconditionFailure() }
         return MindsetShifterChecklistModel.Section.vision(title: services.contentService.mindsetShifterVisionTitle,
-                                                           text: services.userService.myToBeVision()?.text ?? "")
+                                                           text: vision)
     }
 
     var model: MindsetShifterChecklistModel {

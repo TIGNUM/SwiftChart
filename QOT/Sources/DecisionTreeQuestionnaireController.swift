@@ -114,7 +114,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.onlyExistingAnswer.rawValue:
                 let cell = UITableViewCell()
                 cell.backgroundColor = .sand
-                delegate?.textCellDidAppear(targetID: 100308 /*add here target id*/)
+                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetID ?? 0)
                 return cell
             case AnswerType.yesOrNo.rawValue, AnswerType.uploadImage.rawValue:
                 let cell: SingleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -129,15 +129,14 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                                maxPossibleSelections: maxPossibleSelections)
                 cell.delegate = self
                 return cell
-            case AnswerType.text.rawValue:
-                let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
-                return cell
             case AnswerType.userInput.rawValue:
                 return UITableViewCell()
-            case AnswerType.noAnswerRequired.rawValue:
+            case AnswerType.noAnswerRequired.rawValue,
+                 AnswerType.text.rawValue,
+                 AnswerType.lastQuestion.rawValue:
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(with: extraAnswer ?? "")
-                delegate?.textCellDidAppear(targetID: 100307 /*add here target id*/)
+                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetID ?? 0)
                 return cell
             default:
                 preconditionFailure()
@@ -155,7 +154,7 @@ private extension DecisionTreeQuestionnaireViewController {
         let difference = tableView.frame.height - cellsHeight
         let padding = tableView.frame.height * 0.1
         let topPadding = tableView.frame.height * 0.2
-        let topInset = question.answerType != AnswerType.multiSelection.rawValue ? difference - padding : topPadding
+        let topInset = question.answers.count < 3 ? difference - padding : topPadding
         tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
     }
 }
