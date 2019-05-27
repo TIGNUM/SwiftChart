@@ -13,14 +13,12 @@ final class CoachRouter {
     // MARK: - Properties
 
     private let viewController: CoachViewController
-    private let services: Services
     weak var delegate: CoachCollectionViewControllerDelegate?
 
     // MARK: - Init
 
-    init(viewController: CoachViewController, services: Services) {
+    init(viewController: CoachViewController) {
         self.viewController = viewController
-        self.services = services
     }
 }
 
@@ -37,9 +35,14 @@ extension CoachRouter: CoachRouterInterface {
             navController.navigationBar.applyDefaultStyle()
             navController.modalTransitionStyle = .crossDissolve
             viewController.pushToStart(childViewController: searchViewController)
-            print ("search")
         case .tools:
-            print("tools")
+            let storyboardID = R.storyboard.tools.toolsViewControllerID.identifier
+            let toolsViewController = R.storyboard
+                .tools().instantiateViewController(withIdentifier: storyboardID) as? ToolsViewController
+            if let toolsViewController = toolsViewController {
+                ToolsConfigurator.make(viewController: toolsViewController)
+                viewController.pushToStart(childViewController: toolsViewController)
+            }
         case .sprint:
             print("sprint")
         case .event:

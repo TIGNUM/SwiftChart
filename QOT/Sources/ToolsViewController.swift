@@ -1,0 +1,118 @@
+//
+//  ToolsViewController.swift
+//  QOT
+//
+//  Created by Anais Plancoulaine on 17.05.19.
+//  Copyright © 2019 Tignum. All rights reserved.
+//
+
+import UIKit
+
+final class ToolsViewController: UIViewController {
+
+    // MARK: - Properties
+
+    var interactor: ToolsInteractorInterface?
+    @IBOutlet private weak var tableView: UITableView!
+    private var toolModel: ToolModel?
+    private enum CellType: Int, CaseIterable {
+        case header = 0
+        case sections
+    }
+
+    init(configure: Configurator<ToolsViewController>) {
+        super.init(nibName: nil, bundle: nil)
+        configure(self)
+    }
+
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        view.backgroundColor = .sand
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
+        setCustomBackButton()
+        interactor?.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+         setCustomBackButton()
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let controller = segue.destination as? ToolsCollectionsViewController {
+            ToolsCollectionsConfigurator.make(viewController: controller, selectedToolID: sender as? Int)
+        }
+    }
+}
+
+// MARK: - Private
+
+private extension ToolsViewController {
+
+    func setupTableView() {
+        tableView.registerDequeueable(ToolsTableViewCell.self)
+    }
+}
+
+// MARK: - Actions
+
+private extension ToolsViewController {
+
+    @IBAction func closeButton(_ sender: Any) {
+        navigationController?.popToRootViewController(animated: true)
+    }
+}
+
+// MARK: - CoachViewControllerInterface
+
+extension ToolsViewController: ToolsViewControllerInterface {
+
+    func setupView() {
+        setupTableView()
+        setCustomBackButton()
+    }
+
+    func setup(for toolSection: ToolModel) {
+        toolModel = toolSection
+    }
+}
+
+extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 5
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let cellType = CellType.allCases[section]
+        switch cellType {
+        case .header:
+            return ToolsTableHeaderView.instantiateFromNib(title: toolModel?.headerTitle ?? "", subtitle: toolModel?.headerSubtitle ?? "")
+        default: return nil
+        }
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIImageView(image: R.image.footer_light())
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell: ToolsTableViewCell = tableView.dequeueCell(for: indexPath)
+        let toolCount = interactor?.tools()[indexPath.item].itemCount
+        let toolNumber = toolCount.map({String($0)})
+        let number = toolNumber ?? ""
+        cell.configure(title: (toolModel?.toolItems[indexPath.row].title) ?? "", subtitle: number + " tools")
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
+        cell.selectedBackgroundView = backgroundView
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+         tableView.deselectRow(at: indexPath, animated: true)
+        interactor?.presentToolsCollections(selectedToolID: interactor?.tools()[indexPath.item].remoteID)
+    }
+}

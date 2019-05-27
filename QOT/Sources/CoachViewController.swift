@@ -27,8 +27,14 @@ final class CoachViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .sand
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
         interactor?.viewDidLoad()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
+    }
+
 }
 
 // MARK: - Private
@@ -44,12 +50,9 @@ private extension CoachViewController {
 
 private extension CoachViewController {
 
-    @objc func didTabClose() {
-        dismiss(animated: true, completion: nil)
-    }
-
     @IBAction func closeButton(_ sender: Any) {
-          dismiss(animated: true, completion: nil)
+         dismiss(animated: true, completion: nil)
+         UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }
 }
 

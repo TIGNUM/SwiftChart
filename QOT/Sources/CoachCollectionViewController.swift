@@ -90,7 +90,10 @@ final class CoachCollectionViewController: UIViewController {
         }
         view.addSubview(collectionView)
         view.bringSubview(toFront: coachButton)
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }
 }
 

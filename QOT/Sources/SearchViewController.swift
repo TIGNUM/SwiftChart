@@ -52,6 +52,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         tableView.registerDequeueable(SearchTableViewCell.self)
         suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
         setupSearchBar()
+        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
 
     }
 

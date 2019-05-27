@@ -1022,6 +1022,40 @@
 		F6E88A76FF398AFB812AA0B4 /* Pods_QOTWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */; };
 		F921DED1221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
+		F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */; };
+		F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9231228EAE46000DEAEC /* ToolsWorker.swift */; };
+		F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */; };
+		F95B9236228EAE69000DEAEC /* ToolsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9235228EAE69000DEAEC /* ToolsInterface.swift */; };
+		F95B9238228EAE82000DEAEC /* ToolsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9237228EAE82000DEAEC /* ToolsViewController.swift */; };
+		F95B923A228EAE96000DEAEC /* ToolsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9239228EAE96000DEAEC /* ToolsInteractor.swift */; };
+		F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B923B228EAEAC000DEAEC /* ToolsModel.swift */; };
+		F95B923E228EAECB000DEAEC /* ToolsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B923D228EAECB000DEAEC /* ToolsConfigurator.swift */; };
+		F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95B923F228EC732000DEAEC /* Tools.storyboard */; };
+		F95B9242228EE273000DEAEC /* ToolsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9241228EE273000DEAEC /* ToolsTableViewCell.swift */; };
+		F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */; };
+		F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */; };
+		F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */; };
+		F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */; };
+		F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */; };
+		F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */; };
+		F99DF5F82292D72600341DAB /* ToolsCollectionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F72292D72600341DAB /* ToolsCollectionsRouter.swift */; };
+		F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F92292D74100341DAB /* ToolsCollectionsInterface.swift */; };
+		F99DF5FC2292D75A00341DAB /* ToolsCollectionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5FB2292D75A00341DAB /* ToolsCollectionsInteractor.swift */; };
+		F99DF5FE2292D77000341DAB /* ToolsCollectionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5FD2292D77000341DAB /* ToolsCollectionsModel.swift */; };
+		F99DF6002292D78900341DAB /* ToolsCollectionsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5FF2292D78900341DAB /* ToolsCollectionsConfigurator.swift */; };
+		F99DF6062292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99DF6052292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib */; };
+		F99DF6082292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF6072292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift */; };
+		F99DF60F2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF60E2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift */; };
+		F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */; };
+		F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99DF6122295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib */; };
+		F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF614229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift */; };
+		F9A8A01522967FA300DE3A9C /* ToolsItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A01422967FA300DE3A9C /* ToolsItemsViewController.swift */; };
+		F9A8A01722967FE600DE3A9C /* ToolsItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A01622967FE600DE3A9C /* ToolsItemsPresenter.swift */; };
+		F9A8A0192296800000DE3A9C /* ToolsItemsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A0182296800000DE3A9C /* ToolsItemsWorker.swift */; };
+		F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A01C229681E500DE3A9C /* ToolsItemsInterface.swift */; };
+		F9A8A01F2296821400DE3A9C /* ToolsItemsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A01E2296821400DE3A9C /* ToolsItemsInteractor.swift */; };
+		F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A020229682B000DE3A9C /* ToolsItemsModel.swift */; };
+		F9A8A023229682D300DE3A9C /* ToolsItemsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A022229682D300DE3A9C /* ToolsItemsConfigurator.swift */; };
 		F9C1D8B2220DD8EC00B40DD2 /* SiriShortcutsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1D8B1220DD8EC00B40DD2 /* SiriShortcutsRouter.swift */; };
 		F9C1D8B4220DD90300B40DD2 /* SiriShortcutsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1D8B3220DD90300B40DD2 /* SiriShortcutsWorker.swift */; };
 		F9C1D8B8220DD93000B40DD2 /* SiriShortcutsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1D8B7220DD93000B40DD2 /* SiriShortcutsPresenter.swift */; };
@@ -2095,6 +2129,40 @@
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
 		E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventIntermediary.swift; sourceTree = "<group>"; };
 		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
+		F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsPresenter.swift; sourceTree = "<group>"; };
+		F95B9231228EAE46000DEAEC /* ToolsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsWorker.swift; sourceTree = "<group>"; };
+		F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsRouter.swift; sourceTree = "<group>"; };
+		F95B9235228EAE69000DEAEC /* ToolsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsInterface.swift; sourceTree = "<group>"; };
+		F95B9237228EAE82000DEAEC /* ToolsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsViewController.swift; sourceTree = "<group>"; };
+		F95B9239228EAE96000DEAEC /* ToolsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsInteractor.swift; sourceTree = "<group>"; };
+		F95B923B228EAEAC000DEAEC /* ToolsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsModel.swift; sourceTree = "<group>"; };
+		F95B923D228EAECB000DEAEC /* ToolsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsConfigurator.swift; sourceTree = "<group>"; };
+		F95B923F228EC732000DEAEC /* Tools.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Tools.storyboard; sourceTree = "<group>"; };
+		F95B9241228EE273000DEAEC /* ToolsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableViewCell.swift; sourceTree = "<group>"; };
+		F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableViewCell.xib; sourceTree = "<group>"; };
+		F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableHeaderView.swift; sourceTree = "<group>"; };
+		F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableHeaderView.xib; sourceTree = "<group>"; };
+		F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsViewController.swift; sourceTree = "<group>"; };
+		F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsPresenter.swift; sourceTree = "<group>"; };
+		F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsWorker.swift; sourceTree = "<group>"; };
+		F99DF5F72292D72600341DAB /* ToolsCollectionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsRouter.swift; sourceTree = "<group>"; };
+		F99DF5F92292D74100341DAB /* ToolsCollectionsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsInterface.swift; sourceTree = "<group>"; };
+		F99DF5FB2292D75A00341DAB /* ToolsCollectionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsInteractor.swift; sourceTree = "<group>"; };
+		F99DF5FD2292D77000341DAB /* ToolsCollectionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsModel.swift; sourceTree = "<group>"; };
+		F99DF5FF2292D78900341DAB /* ToolsCollectionsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsConfigurator.swift; sourceTree = "<group>"; };
+		F99DF6052292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsCollectionsVideoTableViewCell.xib; sourceTree = "<group>"; };
+		F99DF6072292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsVideoTableViewCell.swift; sourceTree = "<group>"; };
+		F99DF60E2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsAudioTableViewCell.swift; sourceTree = "<group>"; };
+		F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsCollectionsAudioTableViewCell.xib; sourceTree = "<group>"; };
+		F99DF6122295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsCollectionsGroupTableViewCell.xib; sourceTree = "<group>"; };
+		F99DF614229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsGroupTableViewCell.swift; sourceTree = "<group>"; };
+		F9A8A01422967FA300DE3A9C /* ToolsItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsViewController.swift; sourceTree = "<group>"; };
+		F9A8A01622967FE600DE3A9C /* ToolsItemsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsPresenter.swift; sourceTree = "<group>"; };
+		F9A8A0182296800000DE3A9C /* ToolsItemsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsWorker.swift; sourceTree = "<group>"; };
+		F9A8A01C229681E500DE3A9C /* ToolsItemsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsInterface.swift; sourceTree = "<group>"; };
+		F9A8A01E2296821400DE3A9C /* ToolsItemsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsInteractor.swift; sourceTree = "<group>"; };
+		F9A8A020229682B000DE3A9C /* ToolsItemsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsModel.swift; sourceTree = "<group>"; };
+		F9A8A022229682D300DE3A9C /* ToolsItemsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsConfigurator.swift; sourceTree = "<group>"; };
 		F9C1D8B1220DD8EC00B40DD2 /* SiriShortcutsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsRouter.swift; sourceTree = "<group>"; };
 		F9C1D8B3220DD90300B40DD2 /* SiriShortcutsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsWorker.swift; sourceTree = "<group>"; };
 		F9C1D8B7220DD93000B40DD2 /* SiriShortcutsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsPresenter.swift; sourceTree = "<group>"; };
@@ -2315,6 +2383,16 @@
 				F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */,
 				F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */,
 				F9FA08F422806C7A00A917A4 /* CoachTableHeaderView.xib */,
+				F95B9241228EE273000DEAEC /* ToolsTableViewCell.swift */,
+				F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */,
+				F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */,
+				F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */,
+				F99DF614229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift */,
+				F99DF6122295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib */,
+				F99DF6072292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift */,
+				F99DF6052292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib */,
+				F99DF60E2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift */,
+				F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */,
 				368F2AF42296D74D0008A36D /* ArticleNextUpTableViewCell.xib */,
 			);
 			name = components;
@@ -2597,13 +2675,14 @@
 		367BB012223955D200282AB6 /* 3.0 Main Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				36376638223A6F0E00C2C429 /* components */,
 				CBB4DD361EE08A5C0071494A /* Search */,
 				3608381D225F3E9E00664B9B /* article */,
 				36E6E3F2224938D8001BE9C7 /* transition */,
 				3637666C223BFF1100C2C429 /* strategyList */,
 				36376653223AA5EA00C2C429 /* levelThree */,
 				3637663E223A7DC400C2C429 /* levelTwo */,
-				36376638223A6F0E00C2C429 /* components */,
+				F99DF60D2292E38F00341DAB /* TOOLS */,
 				36376625223A668F00C2C429 /* coach */,
 				363765F2223A4BB500C2C429 /* myQOT */,
 				363765F1223A4BA400C2C429 /* daily brief */,
@@ -2612,6 +2691,7 @@
 				AC103E2322847A9A00F426F0 /* Confirmation */,
 				ACB0ED4B225FC28500BBF243 /* Decision Tree */,
 				367BB013223956A700282AB6 /* Main.storyboard */,
+				F95B923F228EC732000DEAEC /* Tools.storyboard */,
 				367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */,
 				36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */,
 				3637664F223A851500C2C429 /* AbstractLevelTwoViewController.swift */,
@@ -4622,6 +4702,60 @@
 			path = PDFReader;
 			sourceTree = "<group>";
 		};
+		F95B922E228EADF4000DEAEC /* tools */ = {
+			isa = PBXGroup;
+			children = (
+				F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */,
+				F95B9231228EAE46000DEAEC /* ToolsWorker.swift */,
+				F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */,
+				F95B9235228EAE69000DEAEC /* ToolsInterface.swift */,
+				F95B9237228EAE82000DEAEC /* ToolsViewController.swift */,
+				F95B9239228EAE96000DEAEC /* ToolsInteractor.swift */,
+				F95B923B228EAEAC000DEAEC /* ToolsModel.swift */,
+				F95B923D228EAECB000DEAEC /* ToolsConfigurator.swift */,
+			);
+			name = tools;
+			sourceTree = "<group>";
+		};
+		F99DF5F02292D45400341DAB /* toolsCollections */ = {
+			isa = PBXGroup;
+			children = (
+				F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */,
+				F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */,
+				F99DF5F72292D72600341DAB /* ToolsCollectionsRouter.swift */,
+				F99DF5F92292D74100341DAB /* ToolsCollectionsInterface.swift */,
+				F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */,
+				F99DF5FB2292D75A00341DAB /* ToolsCollectionsInteractor.swift */,
+				F99DF5FD2292D77000341DAB /* ToolsCollectionsModel.swift */,
+				F99DF5FF2292D78900341DAB /* ToolsCollectionsConfigurator.swift */,
+			);
+			name = toolsCollections;
+			sourceTree = "<group>";
+		};
+		F99DF60D2292E38F00341DAB /* TOOLS */ = {
+			isa = PBXGroup;
+			children = (
+				F99DF61622959B4000341DAB /* toolsItems */,
+				F99DF5F02292D45400341DAB /* toolsCollections */,
+				F95B922E228EADF4000DEAEC /* tools */,
+			);
+			name = TOOLS;
+			sourceTree = "<group>";
+		};
+		F99DF61622959B4000341DAB /* toolsItems */ = {
+			isa = PBXGroup;
+			children = (
+				F9A8A01622967FE600DE3A9C /* ToolsItemsPresenter.swift */,
+				F9A8A0182296800000DE3A9C /* ToolsItemsWorker.swift */,
+				F9A8A01C229681E500DE3A9C /* ToolsItemsInterface.swift */,
+				F9A8A01422967FA300DE3A9C /* ToolsItemsViewController.swift */,
+				F9A8A01E2296821400DE3A9C /* ToolsItemsInteractor.swift */,
+				F9A8A020229682B000DE3A9C /* ToolsItemsModel.swift */,
+				F9A8A022229682D300DE3A9C /* ToolsItemsConfigurator.swift */,
+			);
+			name = toolsItems;
+			sourceTree = "<group>";
+		};
 		F9C1D8AC220DD7D900B40DD2 /* SiriShortcuts */ = {
 			isa = PBXGroup;
 			children = (
@@ -4928,6 +5062,7 @@
 				DB680599218210E700C2FC69 /* MorningInterviewViewController.storyboard in Resources */,
 				CC7E80BA1F614F1B006F9515 /* QotNotification.aiff in Resources */,
 				36796A5A20D3C4B800B55429 /* SigningInfoViewController.xib in Resources */,
+				F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */,
 				3659B7DE2295333D0039FF30 /* default.realm in Resources */,
 				36DC825120D54A6900CDEC34 /* SigningCountryTableViewCell.xib in Resources */,
 				851676DF1F3C694B007A1DD6 /* LearnReadMoreCell.xib in Resources */,
@@ -4962,6 +5097,7 @@
 				36E86D4C2270511100371C67 /* ArticleBulletPointTableViewCell.xib in Resources */,
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
+				F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
@@ -4989,13 +5125,16 @@
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
+				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
 				7F3A9CD21FCF019B000F1744 /* MyUniverseViewController.xib in Resources */,
+				F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */,
 				F9C1D8C4220DDBB200B40DD2 /* SiriShortcutsViewController.xib in Resources */,
 				36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
 				DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */,
+				F99DF6062292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
@@ -5011,6 +5150,7 @@
 				91182ACD20A1A4E9006D5435 /* SettingsViewController.xib in Resources */,
 				360E99562167BAFE0084CEFB /* PrepareNotesTableViewCell.xib in Resources */,
 				36AEA4DF2271AC8F00EC9C55 /* AudioPlayerBar.xib in Resources */,
+				F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
 				36B515CA21638CA800A7B405 /* SupportFAQViewController.xib in Resources */,
 				36D348EE216BAA86006C8D10 /* PrepareNotesHeaderView.xib in Resources */,
@@ -5367,10 +5507,12 @@
 				3637660C223A4BEC00C2C429 /* DailyBriefWorker.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
+				F99DF60F2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift in Sources */,
 				36796A4420D3C49900B55429 /* SigningLoginConfigurator.swift in Sources */,
 				366183E72162793700634560 /* SupportFAQPresenter.swift in Sources */,
 				CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */,
 				366AFD1120BD9F9300109F29 /* SigningEmailInteractor.swift in Sources */,
+				F9A8A01522967FA300DE3A9C /* ToolsItemsViewController.swift in Sources */,
 				7F2B77D31FC5C3E800203D90 /* LibraryViewModelInterface.swift in Sources */,
 				36E4B7B1219EBFED00049EE8 /* TutorialModel.swift in Sources */,
 				9100195020F6413900049118 /* ExtensionModel.swift in Sources */,
@@ -5383,6 +5525,7 @@
 				CC8D6D041EC316BF007AE687 /* LearnContentItemViewController.swift in Sources */,
 				850A50BB1F0A973A00350097 /* PrepareContentTopTabBarView.swift in Sources */,
 				7F9217BB1FD01C4700CAE9E0 /* LocationPermission.swift in Sources */,
+				F9A8A01722967FE600DE3A9C /* ToolsItemsPresenter.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				CC143A4F1EC47810001FB76E /* ChartViewModel.swift in Sources */,
 				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
@@ -5414,6 +5557,7 @@
 				CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */,
 				ACF0B9782260BC80008CFAEC /* TextTableViewCell.swift in Sources */,
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
+				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
 				36E4B7B2219EBFED00049EE8 /* TutorialConfigurator.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
@@ -5514,6 +5658,7 @@
 				91086E44209202400035DA1F /* SettingsConfigurator.swift in Sources */,
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
+				F99DF5FE2292D77000341DAB /* ToolsCollectionsModel.swift in Sources */,
 				7F6567461FE297ED00A6CB7F /* ScreenHelpInterfaces.swift in Sources */,
 				3674FF2B20AADE7D008EEB6C /* PartnersOverviewInterface.swift in Sources */,
 				36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */,
@@ -5533,6 +5678,7 @@
 				366183E82162793700634560 /* SupportFAQWorker.swift in Sources */,
 				366F1FD7226A1CE90034D8FD /* FoundationTableViewCell.swift in Sources */,
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
+				F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */,
 				3637664D223A7DE100C2C429 /* LevelTwoModel.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
 				AC103E472285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift in Sources */,
@@ -5541,6 +5687,8 @@
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
 				914A5E29207FB54A00092121 /* BubblesView.swift in Sources */,
 				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
+				F95B923A228EAE96000DEAEC /* ToolsInteractor.swift in Sources */,
+				F99DF6082292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift in Sources */,
 				7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */,
 				36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */,
 				36D535DB20A711E700F1C2FC /* PartnerEditPresenter.swift in Sources */,
@@ -5560,6 +5708,7 @@
 				36667698207CF65000D2F5AD /* VisionGeneratorPresenter.swift in Sources */,
 				7F3A9CBB1FCDB8FF000F1744 /* UserFeedback.swift in Sources */,
 				36796A5E20D3C4B800B55429 /* SigningInfoCollectionViewCell.swift in Sources */,
+				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
 				36E4B7AE219EBFED00049EE8 /* TutorialInterface.swift in Sources */,
 				912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */,
 				912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */,
@@ -5598,6 +5747,7 @@
 				CB1D5E391EC5E25A00BCDF8D /* ContentCategory.swift in Sources */,
 				3604C92022720CAC00A681B3 /* AudioPlayerFullScreen.swift in Sources */,
 				91086E37208EFA050035DA1F /* SettingsMenuHeader.swift in Sources */,
+				F9A8A023229682D300DE3A9C /* ToolsItemsConfigurator.swift in Sources */,
 				365EC0BD224A744C0019AFF9 /* WhatsHotComponentView.swift in Sources */,
 				3691177220656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift in Sources */,
 				D5A64D941EE801970095D01C /* SleepChart.swift in Sources */,
@@ -5624,6 +5774,7 @@
 				360E99552167BAFE0084CEFB /* PrepareNotesTableViewCell.swift in Sources */,
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
 				36D535DE20A711E800F1C2FC /* PartnerEditInterface.swift in Sources */,
+				F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */,
 				3637661F223A4C0400C2C429 /* MyQotViewController.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				36E4B7AF219EBFED00049EE8 /* TutorialViewController.swift in Sources */,
@@ -5714,6 +5865,7 @@
 				363765FD223A4BD200C2C429 /* KnowingRouter.swift in Sources */,
 				9150413720FDF40A00D43D18 /* SensorViewController.swift in Sources */,
 				DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */,
+				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				CBD4BE9E2018BE25008A0E9E /* GuideProtocols.swift in Sources */,
 				7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
@@ -5758,6 +5910,7 @@
 				912C9E3F203C721300C1AA76 /* MyToBeVisionProtocols.swift in Sources */,
 				CBC1DC191F0F7E0200F6D056 /* SettingFormat.swift in Sources */,
 				91F5BE48209757E700E85A51 /* PermissionsProtocols.swift in Sources */,
+				F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */,
 				36796A3020D3C47400B55429 /* SigningProfileDetailViewController.swift in Sources */,
 				7F0888811F0A4B96005CE966 /* Partner.swift in Sources */,
 				CBC1DC2E1F0FC9E800F6D056 /* Object+Convenience.swift in Sources */,
@@ -5770,6 +5923,7 @@
 				F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */,
 				CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */,
 				7F65673A1FE2894C00A6CB7F /* ScreenHelpInteractor.swift in Sources */,
+				F95B9236228EAE69000DEAEC /* ToolsInterface.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
 				AC981A4721A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
@@ -5790,6 +5944,7 @@
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
 				CB6637AD201A323200A995D6 /* UserNotificationsScheduler.swift in Sources */,
 				36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */,
+				F9A8A01F2296821400DE3A9C /* ToolsItemsInteractor.swift in Sources */,
 				CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */,
 				3637664E223A7DE100C2C429 /* LevelTwoConfigurator.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
@@ -5809,6 +5964,7 @@
 				36796A4920D3C49900B55429 /* SigningLoginViewController.swift in Sources */,
 				CBD4BEA62018D30B008A0E9E /* GuideObserver.swift in Sources */,
 				CB3333ED20480E3E009480DF /* ShareWorker.swift in Sources */,
+				F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
@@ -5883,6 +6039,7 @@
 				36796A0D20D3C41F00B55429 /* SigningCreatePasswordInteractor.swift in Sources */,
 				36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */,
 				DB68059D218210E700C2FC69 /* MorningInterviewConfiguator.swift in Sources */,
+				F9A8A0192296800000DE3A9C /* ToolsItemsWorker.swift in Sources */,
 				DB680596218210E700C2FC69 /* MorningInterviewWorker.swift in Sources */,
 				CB5134141FAB735E00FBDD66 /* ContentReadIntermediary.swift in Sources */,
 				CB35504020597A6A000ECAFA /* DailyPrepResultObject.swift in Sources */,
@@ -5918,6 +6075,7 @@
 				360CC3CA2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift in Sources */,
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
 				ACF0B946225FC41F008CFAEC /* DecisionTreeRouter.swift in Sources */,
+				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
 				36083828225F3ED000664B9B /* ArticleRouter.swift in Sources */,
 				36376647223A7DE100C2C429 /* LevelTwoPresenter.swift in Sources */,
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
@@ -5946,6 +6104,7 @@
 				3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
+				F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */,
 				3662433E227C56E500FFED3A /* AudioButton.swift in Sources */,
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
 				ACF0B948225FC41F008CFAEC /* DecisionTreeViewController.swift in Sources */,
@@ -5957,9 +6116,12 @@
 				CC944DB61EE804CD00B8423C /* ChartTableViewCell.swift in Sources */,
 				368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */,
 				36376677223BFF3800C2C429 /* StrategyListRouter.swift in Sources */,
+				F95B9242228EE273000DEAEC /* ToolsTableViewCell.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
+				F99DF5F82292D72600341DAB /* ToolsCollectionsRouter.swift in Sources */,
 				36796A1C20D3C45200B55429 /* SigningCountryInteractor.swift in Sources */,
 				9150413420FDF40A00D43D18 /* SensorWorker.swift in Sources */,
+				F95B923E228EAECB000DEAEC /* ToolsConfigurator.swift in Sources */,
 				9150413320FDF40A00D43D18 /* SensorPresenter.swift in Sources */,
 				366AFD1020BD9F9300109F29 /* SigningEmailViewController.swift in Sources */,
 				CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */,
@@ -6030,10 +6192,12 @@
 				F9C1D8BA220DD96B00B40DD2 /* SiriShortcutsProtocols.swift in Sources */,
 				3637662F223A66AF00C2C429 /* CoachWorker.swift in Sources */,
 				7F08887F1F0A4101005CE966 /* PartnerService.swift in Sources */,
+				F95B9238228EAE82000DEAEC /* ToolsViewController.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				36667692207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */,
+				F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */,
 				CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */,
 				CBD4BEAA2018E7D4008A0E9E /* GuideConfigurator.swift in Sources */,
 				ACA4B18E2211D1EA00552A54 /* NSUserActivity+Keys.swift in Sources */,
@@ -6072,6 +6236,7 @@
 				7F3A9CCE1FCEFF05000F1744 /* MyUniverseProvider.swift in Sources */,
 				36796A5820D3C4B800B55429 /* SigningInfoRouter.swift in Sources */,
 				7FDFF3691F18FF0B00F7A7EC /* NotificationTokenHandler.swift in Sources */,
+				F99DF5FC2292D75A00341DAB /* ToolsCollectionsInteractor.swift in Sources */,
 				CBB017B41F96084A00CC1048 /* Syncable.swift in Sources */,
 				36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */,
 				36376676223BFF3800C2C429 /* StrategyListWorker.swift in Sources */,
@@ -6100,6 +6265,7 @@
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				CBFD47CC200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift in Sources */,
 				7F708EA01FBAFAF8008A3856 /* FullScreenLoadable.swift in Sources */,
+				F99DF6002292D78900341DAB /* ToolsCollectionsConfigurator.swift in Sources */,
 				36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */,
 				CB73991F1FBDA0D900C5FF57 /* Token.swift in Sources */,
 				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,
@@ -6136,8 +6302,10 @@
 				360256F020528DBD00862B0E /* SearchTableViewCell.swift in Sources */,
 				365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */,
 				CBD4BEA82018DFD9008A0E9E /* GuidePresenter.swift in Sources */,
+				F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */,
 				AC103E442285B27200F426F0 /* MindsetShifterChecklistViewController.swift in Sources */,
 				36796A2420D3C45200B55429 /* SigningCountryViewController.swift in Sources */,
+				F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */,
 				7F3A9CC01FCDC894000F1744 /* ArticleCollectionProvider.swift in Sources */,
 				D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,

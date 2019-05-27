@@ -11,10 +11,12 @@ import Foundation
 extension UIViewController {
 
     func setCustomBackButton() {
-        navigationItem.leftBarButtonItem = UIBarButtonItem(image: R.image.ic_back(),
+        let backButton = UIBarButtonItem(image: R.image.arrowBack(),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(backToPreviousViewController))
+        backButton.tintColor = .accent
+        navigationItem.leftBarButtonItem = backButton
     }
 
     func setCustomBackButtonSearch() {
@@ -28,10 +30,8 @@ extension UIViewController {
 
     @objc func backToPreviousViewController() {
         if let previousVC = navigationController?.viewControllers.dropLast().last {
-            if previousVC is CoachViewController {
                 navigationController?.popToViewController(previousVC, animated: true)
             }
-        }
     }
 
     func attachToEdge(_ subview: UIView) {
