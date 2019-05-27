@@ -247,6 +247,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(ArticleBulletPointTableViewCell.self)
         tableView.registerDequeueable(MarkAsReadTableViewCell.self)
         tableView.registerDequeueable(ArticleRelatedTableViewCell.self)
+        tableView.registerDequeueable(ArticleNextUpTableViewCell.self)
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
@@ -596,6 +597,13 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                            durationString: description,
                            icon: R.image.ic_seen_of())
             return cell
+        case .articleNextUp(let title, let description, _):
+            let cell: ArticleNextUpTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(header: "NEXT UP",
+                           title: title,
+                           durationString: description,
+                           icon: R.image.ic_seen_of())
+            return cell
         default:
             return invalidContentCell(tableView: tableView, indexPath: indexPath, item: item)
         }
@@ -609,6 +617,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .articleRelatedWhatsHot: return 215
         case .pdf,
              .articleRelatedStrategy: return 95
+        case .articleNextUp: return 144
         default: return UITableViewAutomaticDimension
         }
     }
@@ -634,7 +643,8 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             didTapPDFLink(title, itemID, pdfURL)
         case .articleRelatedWhatsHot(let relatedArticle):
             interactor?.showRelatedArticle(remoteID: relatedArticle.remoteID)
-        case .articleRelatedStrategy(_, _, let remoteID):
+        case .articleRelatedStrategy(_, _, let remoteID),
+             .articleNextUp(_, _, let remoteID):
             interactor?.showRelatedArticle(remoteID: remoteID)
         default: return
         }

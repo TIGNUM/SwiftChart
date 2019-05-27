@@ -144,9 +144,15 @@ private extension DecisionTreeViewController {
     }
 
     @IBAction func didTapContinue(_ sender: UIButton) {
-        if currentQuestion?.key == QuestionKey.ToBeVision.review.rawValue {
+        if currentQuestion?.answerType == AnswerType.lastQuestion.rawValue ||
+            currentQuestion?.key == QuestionKey.MindsetShifterTBV.review.rawValue {
             dismiss(animated: true, completion: nil)
         } else {
+            switch currentQuestion?.key {
+            case QuestionKey.MindsetShifter.openTBV.rawValue: interactor?.openShortTBVGenerator()
+            case QuestionKey.MindsetShifter.check.rawValue: interactor?.openMindsetShifterChecklist(from: selectedAnswers)
+            default: break
+            }
             moveForward()
             updateMultipleSelectionCounter()
         }
@@ -261,10 +267,11 @@ private extension DecisionTreeViewController {
     }
 
     func updateBottomButtonTitle() {
-        guard let questionKey = currentQuestion?.key else { return }
-        switch questionKey {
-        case QuestionKey.ToBeVision.home.rawValue,
-             QuestionKey.ToBeVision.work.rawValue:
+        guard
+            let questionKey = currentQuestion?.key,
+            let answerType = currentQuestion?.answerType else { return }
+        switch answerType {
+        case AnswerType.multiSelection.rawValue:
             continueButton.update(with: multiSelectionCounter,
                                   defaultTitle: defaultButtonText,
                                   confirmationTitle: confirmationButtonText,

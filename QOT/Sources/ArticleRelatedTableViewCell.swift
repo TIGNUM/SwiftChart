@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
+class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
 
@@ -19,16 +19,33 @@ final class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String, durationString: String, icon: UIImage?) {
         titleLabel.attributedText = NSAttributedString(string: title,
                                                        letterSpacing: 0.5,
-                                                       font: .apercuLight(ofSize: 16),
+                                                       font: .sfProTextLight(ofSize: 16),
                                                        lineSpacing: 1,
                                                        textColor: colorMode.text,
                                                        alignment: .left)
         detailLabel.attributedText = NSAttributedString(string: durationString,
                                                         letterSpacing: 0.5,
-                                                        font: .apercuMedium(ofSize: 12),
+                                                        font: .sfProTextMedium(ofSize: 12),
                                                         textColor: colorMode.text.withAlphaComponent(0.3),
                                                         alignment: .left)
         iconImageView.image = icon
         contentView.backgroundColor = colorMode.background
+    }
+}
+
+final class ArticleNextUpTableViewCell: ArticleRelatedTableViewCell {
+
+    // MARK: - Properties
+
+    @IBOutlet private weak var headerLabel: UILabel!
+
+    func configure(header: String, title: String, durationString: String, icon: UIImage?) {
+        super.configure(title: title, durationString: durationString, icon: icon)
+        headerLabel.attributedText = NSAttributedString(string: header,
+                                                       letterSpacing: 0.5,
+                                                       font: .sfProTextMedium(ofSize: 16),
+                                                       lineSpacing: 1,
+                                                       textColor: colorMode.text.withAlphaComponent(0.4),
+                                                       alignment: .left)
     }
 }

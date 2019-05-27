@@ -24,9 +24,15 @@ enum QuestionKey {
 
     enum MindsetShifter: String {
         case intro = "mindsetshifter-key-intro"
+        case openTBV = "mindsetshifter-open-tbv"
+        case showTBV = "mindsetshifter-show-tbv"
+        case check = "mindsetshifter-check-plan"
     }
 
     enum MindsetShifterTBV: String {
-        case intro = "mindsetshifter-tbv-key-intro"
+        case intro = "mindsetshifter-tbv-generator-key-intro"
+        case work = "mindsetshifter-tbv-generator-key-work"
+        case home = "mindsetshifter-tbv-generator-home-work"
+        case review = "mindsetshifter-tbv-generator-key-review"
     }
 }

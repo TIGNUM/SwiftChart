@@ -40,7 +40,7 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer]) {
         let node = worker.fetchNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
         if let question = node.question {
-            presenter.presentNext(question, with: node.extraAnswer)
+            presenter.presentNext(question, with: node.generatedAnswer)
         }
     }
 
@@ -65,6 +65,20 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
                                         object: nil,
                                         userInfo: [selectionCounter.key: selectionCounter.value,
                                                    selectedAnswers.key: selectedAnswers.value])
+    }
+
+    func openShortTBVGenerator() {
+        if worker.userHasToBeVision == false {
+            router.openShortTBVGenerator()
+        }
+    }
+
+    func openMindsetShifterChecklist(from answers: [Answer]) {
+        if let trigger = answers.first(where: { $0.keys.filter { $0.contains("trigger") }.isEmpty == false })?.title {
+            let reactions = answers.filter { $0.keys.filter { $0.contains("reaction") }.isEmpty == false }.map { $0.title }
+            let lowItems = answers.filter { $0.keys.filter { $0.contains("lowperformance") }.isEmpty == false }.map { $0.title }
+            router.openMindsetShifterChecklist(trigger: trigger, reactions: reactions, lowPerformanceItems: lowItems)
+        }
     }
 }
 

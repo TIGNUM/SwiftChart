@@ -8,7 +8,7 @@
 
 import UIKit
 
-typealias DecisionTreeNode = (question: Question?, extraAnswer: String?)
+typealias DecisionTreeNode = (question: Question?, generatedAnswer: String?)
 
 final class DecisionTreeWorker {
 
@@ -22,6 +22,15 @@ final class DecisionTreeWorker {
     init(services: Services, type: DecisionTreeType) {
         self.services = services
         self.type = type
+    }
+}
+
+// MARK: - DecisionTreeWorkerInterface
+
+extension DecisionTreeWorker: DecisionTreeWorkerInterface {
+
+    var userHasToBeVision: Bool {
+        return services.userService.myToBeVision()?.text != nil
     }
 
     /// Returns the first question in order to start the decision tree
@@ -38,13 +47,16 @@ final class DecisionTreeWorker {
         }
     }
 
-    /// Returns the first question based on `AnswerDecision.targetID`
+    /// Returns the first question based on `AnswerDecision.targetID` and an answer which is generated in our side.
     func fetchNextQuestion(from targetID: Int, selectedAnswers: [Answer]) -> DecisionTreeNode {
         let question = services.questionsService.question(id: targetID)
         var extraAnswer: String?
         switch question?.key {
-        case QuestionKey.ToBeVision.create.rawValue:
+        case QuestionKey.ToBeVision.create.rawValue,
+             QuestionKey.MindsetShifterTBV.review.rawValue:
             extraAnswer = createVision(from: selectedAnswers)
+        case QuestionKey.MindsetShifter.showTBV.rawValue:
+            extraAnswer = services.userService.myToBeVision()?.text
         default: // TODO: generate different extra answers
             extraAnswer = createVision(from: selectedAnswers)
         }
@@ -64,10 +76,24 @@ final class DecisionTreeWorker {
 
 extension DecisionTreeWorker {
 
+    var workQuestion: Question? {
+        switch type {
+        case .toBeVisionGenerator: return services.questionsService.question(for: QuestionKey.ToBeVision.work.rawValue)
+        case .mindsetShifterTBV: return services.questionsService.question(for: QuestionKey.MindsetShifterTBV.work.rawValue)
+        default: return nil
+        }
+    }
+
+    var homeQuestion: Question? {
+        switch type {
+        case .toBeVisionGenerator: return services.questionsService.question(for: QuestionKey.ToBeVision.home.rawValue)
+        case .mindsetShifterTBV: return services.questionsService.question(for: QuestionKey.MindsetShifterTBV.home.rawValue)
+        default: return nil
+        }
+    }
+
     /// Generates the vision based on the list of selected `Answer`
     func createVision(from answers: [Answer]) -> String {
-        let workQuestion = services.questionsService.question(for: "tbv-generator-key-work")
-        let homeQuestion = services.questionsService.question(for: "tbv-generator-key-home")
         var workSelections: [Answer] = []
         var homeSelections: [Answer] = []
         for answer in answers {
@@ -89,7 +115,8 @@ extension DecisionTreeWorker {
 
     func string(from answers: [Answer]) -> String {
         var visionList: [String] = []
-        for targetID in answers.compactMap({ $0.decisions.first?.targetID }) {
+        let targetIDs = answers.compactMap { $0.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID }
+        for targetID in targetIDs {
             let contentItems = services.contentService.contentItems(contentCollectionID: targetID)
             let userGender = (services.userService.user()?.gender ?? "NEUTRAL").uppercased()
             let genderQueryNeutral = "GENDER_NEUTRAL"

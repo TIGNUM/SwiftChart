@@ -45,6 +45,20 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
     func openImagePicker() {
         imagePickerController?.show(in: viewController, deletable: true)
     }
+
+    func openShortTBVGenerator() {
+        let configurator = DecisionTreeConfigurator.make(for: .mindsetShifterTBV, permissionsManager: permissionsManager)
+        let decisionTreeVC = DecisionTreeViewController(configure: configurator)
+        viewController.present(decisionTreeVC, animated: true)
+    }
+    
+    func openMindsetShifterChecklist(trigger: String, reactions: [String], lowPerformanceItems: [String]) {
+        let configurator = MindsetShifterChecklistConfigurator.make(trigger: trigger,
+                                                                    reactions: reactions,
+                                                                    lowPerformanceItems: lowPerformanceItems)
+        let mindsetShifterChecklistVC = MindsetShifterChecklistViewController(configure: configurator)
+        viewController.present(mindsetShifterChecklistVC, animated: true)
+    }
 }
 
 // MARK: - ImagePickerDelegate

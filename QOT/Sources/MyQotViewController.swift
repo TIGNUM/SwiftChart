@@ -43,7 +43,7 @@ private extension MyQotViewController {
 
     @objc func triggerForTesting() {
         let permissionsManager = AppCoordinator.appState.permissionsManager!
-        let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator, permissionsManager: permissionsManager)
+        let configurator = DecisionTreeConfigurator.make(for: .mindsetShifter, permissionsManager: permissionsManager)
         let viewController = DecisionTreeViewController(configure: configurator)
         present(viewController, animated: true)
     }
