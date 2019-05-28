@@ -154,7 +154,8 @@ private extension DecisionTreeQuestionnaireViewController {
         let difference = tableView.frame.height - cellsHeight
         let padding = tableView.frame.height * 0.1
         let topPadding = tableView.frame.height * 0.2
-        let topInset = question.answers.count < 3 ? difference - padding : topPadding
+        var topInset = question.answerType != AnswerType.multiSelection.rawValue ? difference - padding : topPadding
+        topInset = question.answers.count > 2 ? topInset * 0.5 : topInset
         tableView.contentInset = UIEdgeInsets(top: topInset, left: 0, bottom: 0, right: 0)
     }
 }

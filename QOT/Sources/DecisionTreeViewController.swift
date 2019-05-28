@@ -314,7 +314,11 @@ private extension DecisionTreeViewController {
         let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
         decisionTree?.add(selectedAnswer)
         if let contentID = answer.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID {
-            interactor?.displayContent(with: contentID)
+            if answer.keys.contains(AnswerKey.Prepare.openCheckList.rawValue) {
+                interactor?.openPrepareChecklist(with: contentID)
+            } else {
+                interactor?.displayContent(with: contentID)
+            }
         }
         if let contentItemID = answer.decisions.first(where: { $0.targetType == TargetType.contentItem.rawValue })?.targetID {
             interactor?.streamContentItem(with: contentItemID)

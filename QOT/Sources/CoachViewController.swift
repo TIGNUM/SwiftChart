@@ -26,15 +26,15 @@ final class CoachViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        addObserver()
         view.backgroundColor = .sand
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
         interactor?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
     }
-
 }
 
 // MARK: - Private
@@ -44,13 +44,20 @@ private extension CoachViewController {
     func setupTableView() {
         tableView.registerDequeueable(CoachTableViewCell.self)
     }
+
+    func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(closeButton),
+                                               name: .dismissCoachView,
+                                               object: nil)
+    }
 }
 
 // MARK: - Actions
 
 private extension CoachViewController {
 
-    @IBAction func closeButton(_ sender: Any) {
+    @objc @IBAction func closeButton() {
          dismiss(animated: true, completion: nil)
          UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }

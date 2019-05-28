@@ -33,6 +33,12 @@ final class DecisionTreeRouter {
 // MARK: - DecisionTreeRouterInterface
 
 extension DecisionTreeRouter: DecisionTreeRouterInterface {
+    func openPrepareChecklist(with contentID: Int) {
+        print("openPrepareChecklist with contentID: ", contentID)
+        let configurator = PrepareCheckListConfigurator.make(contentID: contentID)
+        let controller = PrepareCheckListViewController(configure: configurator)
+        viewController.present(controller, animated: true, completion: nil)
+    }
 
     func openArticle(with contentID: Int) {
         AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID)

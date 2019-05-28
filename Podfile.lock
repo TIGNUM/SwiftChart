@@ -8,7 +8,7 @@ PODS:
     - ReactiveKit (~> 3.10)
   - BonMot (5.3)
   - Buglife (2.10.1)
-  - Differ (1.4.1)
+  - Differ (1.4.3)
   - Freddy (3.0.3)
   - HockeySDK (5.1.4):
     - HockeySDK/DefaultLib (= 5.1.4)
@@ -83,7 +83,7 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: 341c7b6ac40233efb069b71326ecca5f3fd83604
+    :commit: 9df4688ff7cf35f8564bd44d79fdc0fca0ddeba0
     :git: "git@github.com:TIGNUM/qot_dal.git"
 
 SPEC CHECKSUMS:
@@ -91,10 +91,10 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AMScrollingNavbar: 9df3652d6757f1a24646d8e90cb458591d8b1a6a
   Anchorage: 21a98675245188427f0bcea21404d42a824a766f
-  Bond: c5f2519382a501f45e4907c7846d53828d163aaf
+  Bond: 17f2d81e08cea3d95713eed33611176376f9056d
   BonMot: 0104d1b4eda54f4a4b7393d6559539ef25498fbd
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
-  Differ: ca4350872e32a1aeedf3d9e2d9e47127833bfa9c
+  Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
   Freddy: 7c62db262a0d0e3b3e2b8b40f2c0cc51e122fbc4
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JPSimulatorHacks: 28428b30259eb93ad558ac3f2c608acd2133a14b
@@ -111,4 +111,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7baea489464a18c27ac2c4436eb730ded91c0f7e
 
-COCOAPODS: 1.6.2
+COCOAPODS: 1.7.0

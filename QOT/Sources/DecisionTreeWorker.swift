@@ -43,7 +43,7 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         case .mindsetShifterTBV:
             return services.questionsService.mindsetShifterTBV()
         case .prepare:
-            return nil
+            return services.questionsService.prepareIntro()
         }
     }
 

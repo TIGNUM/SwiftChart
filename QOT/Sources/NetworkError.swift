@@ -87,7 +87,7 @@ extension Error {
         if let error = qotError {
             switch error.type {
             case .unknown(let err, let statusCode):
-                networkError = NetworkError(type: .unknown(error: err, statusCode: statusCode))
+                networkError = NetworkError(type: .unknown(error: err!, statusCode: statusCode))
             case .cancelled:
                 networkError = NetworkError(type: .cancelled, request: error.request, response: error.response, data: error.data)
             case .forbidden:

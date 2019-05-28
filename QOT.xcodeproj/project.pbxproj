@@ -262,6 +262,16 @@
 		3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */; };
 		3691177220656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176C20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
+		369353A122983AB9008BBB72 /* PrepareCheckListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareCheckListPresenter.swift */; };
+		369353A222983AB9008BBB72 /* PrepareCheckListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539A22983AB9008BBB72 /* PrepareCheckListWorker.swift */; };
+		369353A322983AB9008BBB72 /* PrepareCheckListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539B22983AB9008BBB72 /* PrepareCheckListRouter.swift */; };
+		369353A422983AB9008BBB72 /* PrepareCheckListInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareCheckListInterface.swift */; };
+		369353A522983AB9008BBB72 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539D22983AB9008BBB72 /* PrepareCheckListViewController.swift */; };
+		369353A622983AB9008BBB72 /* PrepareCheckListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539E22983AB9008BBB72 /* PrepareCheckListInteractor.swift */; };
+		369353A722983AB9008BBB72 /* PrepareCheckListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539F22983AB9008BBB72 /* PrepareCheckListModel.swift */; };
+		369353A822983AB9008BBB72 /* PrepareCheckListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A022983AB9008BBB72 /* PrepareCheckListConfigurator.swift */; };
+		369353AB22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A922984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift */; };
+		369353AC22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369353AA22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib */; };
 		36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */; };
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
 		3693F62321625E8700E286A9 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693F62221625E8700E286A9 /* AppContent.swift */; };
@@ -1380,6 +1390,16 @@
 		3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentNotesViewController.swift; sourceTree = "<group>"; };
 		3691176C20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentSubHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
+		3693539922983AB9008BBB72 /* PrepareCheckListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListPresenter.swift; sourceTree = "<group>"; };
+		3693539A22983AB9008BBB72 /* PrepareCheckListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListWorker.swift; sourceTree = "<group>"; };
+		3693539B22983AB9008BBB72 /* PrepareCheckListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListRouter.swift; sourceTree = "<group>"; };
+		3693539C22983AB9008BBB72 /* PrepareCheckListInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListInterface.swift; sourceTree = "<group>"; };
+		3693539D22983AB9008BBB72 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
+		3693539E22983AB9008BBB72 /* PrepareCheckListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListInteractor.swift; sourceTree = "<group>"; };
+		3693539F22983AB9008BBB72 /* PrepareCheckListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListModel.swift; sourceTree = "<group>"; };
+		369353A022983AB9008BBB72 /* PrepareCheckListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListConfigurator.swift; sourceTree = "<group>"; };
+		369353A922984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrePareCheckListContentItemTableViewCell.swift; sourceTree = "<group>"; };
+		369353AA22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrePareCheckListContentItemTableViewCell.xib; sourceTree = "<group>"; };
 		36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDailyPrepTableViewCell.swift; sourceTree = "<group>"; };
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		3693F62221625E8700E286A9 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
@@ -2319,14 +2339,14 @@
 		36376625223A668F00C2C429 /* coach */ = {
 			isa = PBXGroup;
 			children = (
-				36376626223A66AF00C2C429 /* CoachPresenter.swift */,
-				36376627223A66AF00C2C429 /* CoachWorker.swift */,
-				36376628223A66AF00C2C429 /* CoachRouter.swift */,
-				36376629223A66AF00C2C429 /* CoachInterface.swift */,
-				3637662A223A66AF00C2C429 /* CoachViewController.swift */,
-				3637662B223A66AF00C2C429 /* CoachInteractor.swift */,
-				3637662C223A66AF00C2C429 /* CoachModel.swift */,
 				3637662D223A66AF00C2C429 /* CoachConfigurator.swift */,
+				3637662B223A66AF00C2C429 /* CoachInteractor.swift */,
+				36376629223A66AF00C2C429 /* CoachInterface.swift */,
+				3637662C223A66AF00C2C429 /* CoachModel.swift */,
+				36376626223A66AF00C2C429 /* CoachPresenter.swift */,
+				36376628223A66AF00C2C429 /* CoachRouter.swift */,
+				3637662A223A66AF00C2C429 /* CoachViewController.swift */,
+				36376627223A66AF00C2C429 /* CoachWorker.swift */,
 			);
 			name = coach;
 			sourceTree = "<group>";
@@ -2702,6 +2722,23 @@
 				365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */,
 			);
 			name = "3.0 Main Navigation";
+			sourceTree = "<group>";
+		};
+		3693539822983A78008BBB72 /* PrepareCheckList */ = {
+			isa = PBXGroup;
+			children = (
+				369353A022983AB9008BBB72 /* PrepareCheckListConfigurator.swift */,
+				3693539E22983AB9008BBB72 /* PrepareCheckListInteractor.swift */,
+				3693539C22983AB9008BBB72 /* PrepareCheckListInterface.swift */,
+				3693539F22983AB9008BBB72 /* PrepareCheckListModel.swift */,
+				3693539922983AB9008BBB72 /* PrepareCheckListPresenter.swift */,
+				3693539B22983AB9008BBB72 /* PrepareCheckListRouter.swift */,
+				3693539D22983AB9008BBB72 /* PrepareCheckListViewController.swift */,
+				3693539A22983AB9008BBB72 /* PrepareCheckListWorker.swift */,
+				369353A922984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift */,
+				369353AA22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib */,
+			);
+			name = PrepareCheckList;
 			sourceTree = "<group>";
 		};
 		3693F62121625E6700E286A9 /* AppContent */ = {
@@ -3392,16 +3429,16 @@
 		ACF0B94C225FC436008CFAEC /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				ACF0B93C225FC41F008CFAEC /* DecisionTreePresenter.swift */,
-				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
-				ACF0B93E225FC41F008CFAEC /* DecisionTreeRouter.swift */,
-				ACF0B93F225FC41F008CFAEC /* DecisionTreeInterface.swift */,
-				ACF0B941225FC41F008CFAEC /* DecisionTreeInteractor.swift */,
-				ACF0B942225FC41F008CFAEC /* DecisionTreeModel.swift */,
 				ACF0B943225FC41F008CFAEC /* DecisionTreeConfigurator.swift */,
-				ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */,
+				ACF0B941225FC41F008CFAEC /* DecisionTreeInteractor.swift */,
+				ACF0B93F225FC41F008CFAEC /* DecisionTreeInterface.swift */,
+				ACF0B942225FC41F008CFAEC /* DecisionTreeModel.swift */,
+				ACF0B93C225FC41F008CFAEC /* DecisionTreePresenter.swift */,
 				ACB99E7522661F2400A73709 /* DecisionTreeQuestionnaireController.swift */,
+				ACF0B93E225FC41F008CFAEC /* DecisionTreeRouter.swift */,
+				ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */,
 				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
+				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -3640,6 +3677,7 @@
 				3674FF1F20AADDED008EEB6C /* Partners Overview */,
 				E813F0A02130053700C0723E /* PDFReader */,
 				91F5BE3C2097573500E85A51 /* Permissions */,
+				3693539822983A78008BBB72 /* PrepareCheckList */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
 				913C7174209C61B2001C4185 /* Settings */,
 				CB3333DD20480DA2009480DF /* Share */,
@@ -5030,6 +5068,7 @@
 				AC103E492285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
+				369353AC22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
 				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
 				36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */,
@@ -5569,6 +5608,7 @@
 				36796A3720D3C47400B55429 /* SigningProfileDetailInteractor.swift in Sources */,
 				917164792101E43B00F42D8F /* SensorCollectionViewCell.swift in Sources */,
 				36796A5720D3C4B800B55429 /* SigningInfoModel.swift in Sources */,
+				369353A722983AB9008BBB72 /* PrepareCheckListModel.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
 				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
@@ -5707,6 +5747,7 @@
 				91086E52209204670035DA1F /* SettingsCell.swift in Sources */,
 				36667698207CF65000D2F5AD /* VisionGeneratorPresenter.swift in Sources */,
 				7F3A9CBB1FCDB8FF000F1744 /* UserFeedback.swift in Sources */,
+				369353AB22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift in Sources */,
 				36796A5E20D3C4B800B55429 /* SigningInfoCollectionViewCell.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
 				36E4B7AE219EBFED00049EE8 /* TutorialInterface.swift in Sources */,
@@ -5758,6 +5799,7 @@
 				36376600223A4BD200C2C429 /* KnowingInteractor.swift in Sources */,
 				3674FF2C20AADE7D008EEB6C /* PartnersOverviewViewController.swift in Sources */,
 				366183EE2162793800634560 /* SupportFAQConfigurator.swift in Sources */,
+				369353A422983AB9008BBB72 /* PrepareCheckListInterface.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */,
@@ -5818,6 +5860,7 @@
 				CC7D21B01EFC1348007A062E /* WeeklyChoicesCell.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				7F2B77D11FC5C33700203D90 /* ToolsViewModel.swift in Sources */,
+				369353A622983AB9008BBB72 /* PrepareCheckListInteractor.swift in Sources */,
 				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,
 				3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */,
 				F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */,
@@ -5896,6 +5939,7 @@
 				3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */,
 				36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
+				369353A122983AB9008BBB72 /* PrepareCheckListPresenter.swift in Sources */,
 				3637661E223A4C0400C2C429 /* MyQotInterface.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
@@ -6020,6 +6064,7 @@
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
 				CC02E1461F27996800134574 /* SettingsCalendarListCoordinator.swift in Sources */,
 				36083829225F3ED000664B9B /* ArticleInterface.swift in Sources */,
+				369353A222983AB9008BBB72 /* PrepareCheckListWorker.swift in Sources */,
 				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,
 				CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */,
 				CBAF6FD81F2B88E500E57426 /* UpSyncData.swift in Sources */,
@@ -6095,6 +6140,7 @@
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
+				369353A522983AB9008BBB72 /* PrepareCheckListViewController.swift in Sources */,
 				366AFD0E20BD9F9300109F29 /* SigningEmailRouter.swift in Sources */,
 				DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */,
 				7F3A9CC91FCEFED1000F1744 /* MyUniverseViewController.swift in Sources */,
@@ -6108,6 +6154,7 @@
 				3662433E227C56E500FFED3A /* AudioButton.swift in Sources */,
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
 				ACF0B948225FC41F008CFAEC /* DecisionTreeViewController.swift in Sources */,
+				369353A822983AB9008BBB72 /* PrepareCheckListConfigurator.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */,
@@ -6232,6 +6279,7 @@
 				366183EB2162793700634560 /* SupportFAQViewController.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* StatisticsService.swift in Sources */,
 				CB34376B1EFE799D00D89D4F /* ContentCategory+Convenience.swift in Sources */,
+				369353A322983AB9008BBB72 /* PrepareCheckListRouter.swift in Sources */,
 				7FE38DCF1F2A48480061E98F /* NavigationItem.swift in Sources */,
 				7F3A9CCE1FCEFF05000F1744 /* MyUniverseProvider.swift in Sources */,
 				36796A5820D3C4B800B55429 /* SigningInfoRouter.swift in Sources */,

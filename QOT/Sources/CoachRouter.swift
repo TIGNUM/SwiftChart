@@ -46,7 +46,11 @@ extension CoachRouter: CoachRouterInterface {
         case .sprint:
             print("sprint")
         case .event:
-            print("event")
+            let permissionsManager = AppCoordinator.appState.permissionsManager!
+            let configurator = DecisionTreeConfigurator.make(for: .prepare, permissionsManager: permissionsManager)
+            let controller = DecisionTreeViewController(configure: configurator)
+            viewController.present(controller, animated: true)
+            UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
         case .challenge:
             print("challenge")
         }

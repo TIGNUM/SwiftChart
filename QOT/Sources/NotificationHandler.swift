@@ -22,6 +22,7 @@ extension Notification.Name {
     static let fitbitAccessTokenReceivedNotification = Notification.Name(rawValue: "qot_fitbitAccessTokenReceivedNotification")
     static let showSigningInfoView = Notification.Name(rawValue: "qot_show_signing_info_view_controller")
     static let multiSelectionCounter = Notification.Name(rawValue: "qot_decision_tree_multi_selection_counter")
+    static let dismissCoachView = Notification.Name(rawValue: "qot_coach_view_dismiss")
 }
 
 final class NotificationHandler {
