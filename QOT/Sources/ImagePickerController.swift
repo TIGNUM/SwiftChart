@@ -9,7 +9,6 @@
 import UIKit
 
 protocol ImagePickerControllerDelegate: class {
-
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage)
     func deleteImage()
     func cancelSelection()

@@ -26,7 +26,8 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func openMindsetShifterChecklist(from answers: [Answer])
     func streamContentItem(with id: Int)
     func openShortTBVGenerator()
-    func uploadPhoto()
+    func openImagePicker()
+    func save(_ image: UIImage)
 }
 
 protocol DecisionTreeRouterInterface {
@@ -50,7 +51,8 @@ protocol DecisionTreeModelInterface {
 
 protocol DecisionTreeWorkerInterface {
     var userHasToBeVision: Bool { get }
-    func fetchFirstQuestion() -> Question?
     func fetchNextQuestion(from targetID: Int, selectedAnswers: [Answer]) -> DecisionTreeNode
     func mediaURL(from contentItemID: Int) -> URL?
+    func fetchFirstQuestion() -> Question?
+    func save(_ image: UIImage)
 }

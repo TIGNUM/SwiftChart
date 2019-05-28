@@ -57,7 +57,7 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         let decisionTreeVC = DecisionTreeViewController(configure: configurator)
         viewController.present(decisionTreeVC, animated: true)
     }
-    
+
     func openMindsetShifterChecklist(trigger: String, reactions: [String], lowPerformanceItems: [String]) {
         let configurator = MindsetShifterChecklistConfigurator.make(trigger: trigger,
                                                                     reactions: reactions,
@@ -72,12 +72,9 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
 extension DecisionTreeRouter: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
-        // 1. saveImage
-        // 2. load next question
-        // 3. go next
+        viewController.interactor?.save(image)
     }
 
     func cancelSelection() {
-        // 1. load next question
     }
 }

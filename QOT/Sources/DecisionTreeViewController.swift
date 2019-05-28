@@ -8,10 +8,15 @@
 
 import UIKit
 
+protocol DecisionTreeViewControllerDelegate: class {
+    func toBeVisionDidChange()
+}
+
 final class DecisionTreeViewController: UIViewController {
 
     // MARK: - Properties
 
+    weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
     private var extraAnswer: String? = ""
     private var pageController: UIPageViewController?
@@ -151,6 +156,8 @@ private extension DecisionTreeViewController {
             switch currentQuestion?.key {
             case QuestionKey.MindsetShifter.openTBV.rawValue: interactor?.openShortTBVGenerator()
             case QuestionKey.MindsetShifter.check.rawValue: interactor?.openMindsetShifterChecklist(from: selectedAnswers)
+            case QuestionKey.ToBeVision.create.rawValue,
+                 QuestionKey.ToBeVision.review.rawValue: delegate?.toBeVisionDidChange()
             default: break
             }
             moveForward()
@@ -172,6 +179,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
         self.extraAnswer = extraAnswer
         switch currentQuestion?.answerType {
         case AnswerType.singleSelection.rawValue,
+             AnswerType.uploadImage.rawValue,
              AnswerType.yesOrNo.rawValue:
             moveForward()
         default: return
@@ -324,7 +332,7 @@ private extension DecisionTreeViewController {
             interactor?.streamContentItem(with: contentItemID)
         }
         if answer.keys.contains(AnswerKey.ToBeVision.uploadImage.rawValue) {
-            interactor?.uploadPhoto()
+            interactor?.openImagePicker()
         }
         if let targetID = answer.decisions.first(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
             interactor?.loadNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
