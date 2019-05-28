@@ -16,6 +16,13 @@ protocol Predicatable {
 final class ContentService {
 
     enum Tags: String, CaseIterable, Predicatable {
+        case toolsHeaderTitle = "tools_header_title"
+        case toolsHeaderSubtitle = "tools_header_subtitle"
+        case toolsMindsetSectionTitle = "tools_mindset_section_title"
+        case toolsNutritionSectionTitle = "tools_nutrition_section_title"
+        case toolsMovementSectionTitle = "tools_movement_section_title"
+        case toolsRecoverySectionTitle = "tools_recovery_section_title"
+        case toolsHabituationSectionTitle = "tools_habituation_section_title"
         case coachHeaderTitle = "coach_header_title"
         case coachHeaderSubtitle = "coach_header_subtitle"
         case coachSearchSectionTitle = "coach_search_section_title"
@@ -194,7 +201,7 @@ final class ContentService {
     func toolsCategories() -> AnyRealmCollection<ContentCategory> {
         let library = Database.Section.library.rawValue
         let predicate = NSPredicate(format: "ANY contentCollections.section == %@ AND remoteID != %d", library, 100037)
-        return AnyRealmCollection(mainRealm.objects(ContentCategory.self).filter(predicate).sorted(by: [.sortOrder()]))
+        return AnyRealmCollection(mainRealm.objects(ContentCategory.self).filter(predicate))
 //        return sortedResults(for: predicate)
     }
 
@@ -495,7 +502,34 @@ extension ContentService {
     func coachHeaderSubtitle() -> String? {
         return contentItem(for: ContentService.Tags.coachHeaderSubtitle.predicate)?.valueText
     }
+}
 
+// MARK: - Tools
+
+extension ContentService {
+
+    func toolSectionTitles(for toolItem: ToolSection) -> String? {
+        switch toolItem {
+        case .mindset:
+            return contentItem(for: ContentService.Tags.toolsMindsetSectionTitle.predicate)?.valueText
+        case .nutrition:
+            return contentItem(for: ContentService.Tags.toolsNutritionSectionTitle.predicate)?.valueText
+        case .movement:
+            return contentItem(for: ContentService.Tags.toolsMovementSectionTitle.predicate)?.valueText
+        case .recovery:
+            return contentItem(for: ContentService.Tags.toolsRecoverySectionTitle.predicate)?.valueText
+        case .habituation:
+            return contentItem(for: ContentService.Tags.toolsHabituationSectionTitle.predicate)?.valueText
+        }
+    }
+
+    func toolsHeaderTitle() -> String? {
+        return contentItem(for: ContentService.Tags.toolsHeaderTitle.predicate)?.valueText
+    }
+
+    func toolsHeaderSubtitle() -> String? {
+        return contentItem(for: ContentService.Tags.toolsHeaderSubtitle.predicate)?.valueText
+    }
 }
 
 // MARK: - Release Manager

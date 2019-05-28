@@ -45,8 +45,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         self.title = title
         self.remoteID = remoteID
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
-        let editedTitle = title.replacingOccurrences(of: "PERFORMANCE ", with: "")
-        titleLabel.attributedText = NSAttributedString(string: editedTitle,
+        titleLabel.attributedText = NSAttributedString(string: title,
                                                        letterSpacing: 0.5,
                                                        font: .apercuLight(ofSize: 16),
                                                        lineSpacing: 8,
@@ -82,6 +81,7 @@ extension StrategyContentTableViewCell {
 // MARK: - Private
 
 private extension StrategyContentTableViewCell {
+
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
         audioView.backgroundColor = .carbon
         if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {

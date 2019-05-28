@@ -61,9 +61,9 @@
                     <constraint firstItem="Fgz-4W-0Ag" firstAttribute="leading" secondItem="Vbk-c1-2fK" secondAttribute="trailing" constant="24" id="7ec-9A-MFX"/>
                     <constraint firstItem="qDp-yF-1ih" firstAttribute="top" secondItem="Quo-XB-TpG" secondAttribute="bottom" constant="12" id="FFz-yZ-5ny"/>
                     <constraint firstItem="tUh-XS-im7" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Nbj-CQ-GaA"/>
+                    <constraint firstItem="tUh-XS-im7" firstAttribute="top" secondItem="Fgz-4W-0Ag" secondAttribute="bottom" constant="31" id="QUp-nf-1eb"/>
                     <constraint firstItem="Quo-XB-TpG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="Tan-j9-cLH"/>
                     <constraint firstItem="Fgz-4W-0Ag" firstAttribute="leading" secondItem="Quo-XB-TpG" secondAttribute="trailing" constant="16" id="VOD-B6-7h2"/>
-                    <constraint firstItem="tUh-XS-im7" firstAttribute="top" secondItem="Fgz-4W-0Ag" secondAttribute="bottom" constant="31" id="Wah-9H-sTU"/>
                     <constraint firstItem="Vbk-c1-2fK" firstAttribute="centerY" secondItem="qDp-yF-1ih" secondAttribute="centerY" id="YE3-z3-8pV"/>
                     <constraint firstItem="Fgz-4W-0Ag" firstAttribute="top" secondItem="Quo-XB-TpG" secondAttribute="top" id="Zr6-4A-jgC"/>
                     <constraint firstItem="tUh-XS-im7" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fCi-OE-GG5"/>

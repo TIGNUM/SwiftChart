@@ -27,6 +27,7 @@ final class AudioPlayerFullScreen: UIView {
     @IBOutlet private weak var visualEffectView: UIVisualEffectView!
     private let audioPlayer = AudioPlayer.current
     weak var viewDelegate: AudioPlayerViewDelegate?
+    weak var toolViewDelegate: AudioToolPlayerDelegate?
 
     static func instantiateFromNib() -> AudioPlayerFullScreen {
         guard let audioPlayer = R.nib.audioPlayerFullScreen.instantiate(withOwner: self).first as? AudioPlayerFullScreen else {
@@ -121,6 +122,7 @@ private extension AudioPlayerFullScreen {
 extension AudioPlayerFullScreen {
     @IBAction func didTabCloseButton() {
         viewDelegate?.didTabClose(for: .fullScreen)
+        toolViewDelegate?.didTabClose(for: .fullScreen)
     }
 
     @IBAction func didTabPlayPauseButton() {
@@ -154,5 +156,6 @@ extension AudioPlayerFullScreen: AudioPlayerDelegate {
 
     func didFinishAudio() {
         viewDelegate?.didFinishAudio()
+        toolViewDelegate?.didFinishAudio()
     }
 }

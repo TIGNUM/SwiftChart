@@ -12,7 +12,8 @@ final class AudioPlayerBar: UIView {
 
     private let audioPlayer = AudioPlayer.current
     weak var viewDelegate: AudioPlayerViewDelegate?
-    @IBOutlet private weak var contentView: UIView!
+    weak var toolViewDelegate: AudioToolPlayerDelegate?
+    @IBOutlet weak var contentView: UIView!
     @IBOutlet private weak var progressView: UIProgressView!
     @IBOutlet private weak var playPauseButton: UIButton!
     @IBOutlet private weak var closeButton: UIButton!
@@ -34,12 +35,15 @@ final class AudioPlayerBar: UIView {
         return audioPlayerBar
     }
 
-    func configure(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int) {
+    func configure(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int, titleColor: UIColor? = nil) {
         audioPlayer.delegate = self
         progressView.progress = 0
         setTitleLabel(title: title)
         audioPlayer.resetPlayer()
         audioPlayer.prepareToPlay(categoryTitle: categoryTitle, title: title, audioURL: audioURL, remoteID: remoteID)
+        if let titleColor = titleColor {
+            titleLabel.textColor = titleColor.withAlphaComponent(0.7)
+        }
     }
 
     func updateView() {
@@ -57,10 +61,10 @@ final class AudioPlayerBar: UIView {
 
 private extension AudioPlayerBar {
     func setTitleLabel(title: String) {
-        titleLabel.attributedText = NSAttributedString(string: title,
+        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 0.4,
                                                        font: .apercuMedium(ofSize: 12),
-                                                       textColor: colorMode.audioText,
+                                                       textColor: UIColor.carbon.withAlphaComponent(0.6),
                                                        alignment: .left)
     }
 }
@@ -84,10 +88,12 @@ private extension AudioPlayerBar {
     @IBAction func didTabCloseButton() {
         audioPlayer.resetPlayer()
         viewDelegate?.didTabClose(for: .bar)
+        toolViewDelegate?.didTabClose(for: .bar)
     }
 
     @IBAction func didTabFullScreenButton() {
         viewDelegate?.openFullScreen()
+        toolViewDelegate?.openFullScreen()
     }
 }
 
@@ -105,5 +111,6 @@ extension AudioPlayerBar: AudioPlayerDelegate {
 
     func didFinishAudio() {
         viewDelegate?.didFinishAudio()
+        toolViewDelegate?.didFinishAudio()
     }
 }

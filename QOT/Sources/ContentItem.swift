@@ -55,6 +55,9 @@ final class ContentItem: SyncableObject {
         if format == "audio" {
             return R.string.localized.learnContentListViewMinutesLabelListen(String(format: "%d", max(min, 1)))
         }
+        if format == "pdf" {
+            return R.string.localized.learnContentListViewMinutesLabel(String(format: "%d", max(min, 1)))
+        }
         return ""
     }
 
