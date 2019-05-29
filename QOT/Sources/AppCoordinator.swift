@@ -18,6 +18,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     // MARK: - Properties
 
+    private var isReadyToProcessURL = false
+
     var checkListIDToPresent: String?
     var children = [Coordinator]()
     private let windowManager: WindowManager
@@ -176,6 +178,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             } else if self.authenticator.hasLoginCredentials() {
                 self.showApp()
                 RestartHelper().checkRestartURLAndRoute()
+                self.isReadyToProcessURL = true
                 completion()
             } else {
                 UserDefault.clearAllDataLogOut()
@@ -334,6 +337,10 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 log("Success to performAppEventRequest for event: \(event.rawValue)", level: Logger.Level.info)
             }
         }
+    }
+
+    func isReadyToOpenURL() -> Bool {
+        return isReadyToProcessURL
     }
 }
 
@@ -1274,6 +1281,16 @@ extension AppCoordinator {
 
         if let signingInfoController = topViewController as? SigningInfoViewController {
             pushSigningDigitController(code: code, email: email, root: signingInfoController)
+        }
+    }
+
+    func presentQRCodeURL(_ url: URL) {
+        guard let urlString = services?.settingsService.string(key: url.absoluteString),
+            let targetURL = URL(string: urlString) else {
+            return
+        }
+        DispatchQueue.main.async {
+            UIApplication.shared.open(targetURL, options: [:], completionHandler: nil)
         }
     }
 

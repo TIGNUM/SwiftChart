@@ -34,6 +34,12 @@ final class LaunchHandler {
             return
         }
 
+        if !appDelegate.appCoordinator.isReadyToOpenURL() {
+            RestartHelper.setRestartURL(url)
+            return
+        }
+        RestartHelper.clearRestartRouteInfo()
+
         var options: [LaunchOption: String?] = [:]
         for queryItem in url.queryItems() {
             if let option = LaunchOption(rawValue: queryItem.name) {
@@ -83,6 +89,10 @@ final class LaunchHandler {
         case .contentItem: contentItem(url: url, scheme: scheme, searchViewController: searchViewController)
         case .signingVerificationCode: signingVerificationCode(url: url)
         case .siriSettings: appDelegate.appCoordinator.navigateToSiriSettings()
+        case .qrcode0001,
+             .qrcode0002,
+             .qrcode0003,
+             .qrcode0004: appDelegate.appCoordinator.presentQRCodeURL(url)
         default:
             return
         }

@@ -48,7 +48,10 @@ enum URLScheme: String {
     case signingVerificationCode = "verificationCode"
     case profile = "profile"
     case siriSettings = "siri-settings"
-
+    case qrcode0001 = "qrcode-open-0001"
+    case qrcode0002 = "qrcode-open-0002"
+    case qrcode0003 = "qrcode-open-0003"
+    case qrcode0004 = "qrcode-open-0004"
     var queryName: String {
         switch self {
         case .fitbit: return "code"
@@ -167,6 +170,10 @@ enum URLScheme: String {
             host == URLScheme.profile.rawValue ||
             host == URLScheme.comingEvent.rawValue ||
             host == URLScheme.siriSettings.rawValue ||
-            host == URLScheme.contentCategory.rawValue
+            host == URLScheme.contentCategory.rawValue ||
+            host == URLScheme.qrcode0001.rawValue ||
+            host == URLScheme.qrcode0002.rawValue ||
+            host == URLScheme.qrcode0003.rawValue ||
+            host == URLScheme.qrcode0004.rawValue
     }
 }

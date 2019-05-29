@@ -29,6 +29,8 @@ final class SystemSetting: SyncableObject {
 
     @objc private(set) dynamic var isDefault: Bool = true
 
+    @objc private(set) dynamic var textValue: String = ""
+
     var value: SettingValue {
         guard let value = _value else {
             return .invalid
@@ -52,7 +54,10 @@ extension SystemSetting: OneWaySyncableDown {
         settingDescription = data.settingDescription
         pageIDs = data.pageIDs
         isDefault = data.isDefault
+        textValue = data.textValue
         _value?.delete()
-        _value = SettingValueObject(with: data.value)
+        if let newValue = data.value {
+            _value = SettingValueObject(with: newValue)
+        }
     }
 }
