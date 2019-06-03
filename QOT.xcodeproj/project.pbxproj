@@ -596,6 +596,7 @@
 		AC199036221EDF7F00D53F01 /* UIImage+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */; };
 		AC199037221EE05C00D53F01 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
 		AC199038221EE07000D53F01 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
+		AC1A40D0229E88920022156C /* UIViewController+PageTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40CF229E88920022156C /* UIViewController+PageTrack.swift */; };
 		AC2BABB1223FAAB300769B1A /* SuggestionSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */; };
 		AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */; };
 		AC4DA0E422157DAD00BAF914 /* UpcomingEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */; };
@@ -1723,6 +1724,7 @@
 		AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveTableViewCell.xib; sourceTree = "<group>"; };
 		AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionsHeaderView.xib; sourceTree = "<group>"; };
 		AC183820224190A0004A538D /* SuggestionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsHeaderView.swift; sourceTree = "<group>"; };
+		AC1A40CF229E88920022156C /* UIViewController+PageTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PageTrack.swift"; sourceTree = "<group>"; };
 		AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSearchTableViewCell.swift; sourceTree = "<group>"; };
 		AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionSearchTableViewCell.xib; sourceTree = "<group>"; };
 		AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventHandler.swift; sourceTree = "<group>"; };
@@ -3437,8 +3439,8 @@
 				ACB99E7522661F2400A73709 /* DecisionTreeQuestionnaireController.swift */,
 				ACF0B93E225FC41F008CFAEC /* DecisionTreeRouter.swift */,
 				ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */,
-				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
 				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
+				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -4076,6 +4078,7 @@
 				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
 				368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */,
 				AC516C6A228059CC009C4D30 /* CellAnimator.swift */,
+				AC1A40CF229E88920022156C /* UIViewController+PageTrack.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -5983,6 +5986,7 @@
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
 				7F5A25B01F3C4BC700A11466 /* PageTracker.swift in Sources */,
 				8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */,
+				AC1A40D0229E88920022156C /* UIViewController+PageTrack.swift in Sources */,
 				36B67B9C1FE1D9C90066A515 /* RealmGuideItem.swift in Sources */,
 				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,

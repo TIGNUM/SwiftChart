@@ -37,6 +37,10 @@ final class DecisionTreeInteractor {
 
 extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
 
+    var type: DecisionTreeType {
+        return worker.type
+    }
+
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer]) {
         let node = worker.fetchNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
         if let question = node.question {

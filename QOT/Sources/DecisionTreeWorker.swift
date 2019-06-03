@@ -15,7 +15,7 @@ final class DecisionTreeWorker {
     // MARK: - Properties
 
     private let services: Services
-    private let type: DecisionTreeType
+    let type: DecisionTreeType
 
     // MARK: - Init
 
@@ -141,7 +141,7 @@ private extension DecisionTreeWorker {
             vision.lastUpdated = Date()
             services.userService.saveVisionAndSync(vision, syncManager: AppDelegate.appState.syncManager, completion: nil)
         } catch {
-            log("Error while saving TBV image: \(error.localizedDescription)")
+            print("Error while saving TBV image: \(error.localizedDescription)")
         }
     }
 }

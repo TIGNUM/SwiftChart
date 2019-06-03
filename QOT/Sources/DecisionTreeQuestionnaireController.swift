@@ -28,6 +28,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     private let extraAnswer: String?
     private let question: Question
     private let maxPossibleSelections: Int
+    private let answersFilter: String?
     private lazy var tableView: UITableView = {
         return UITableView(delegate: self,
                            dataSource: self,
@@ -37,16 +38,26 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
                            TextTableViewCell.self)
     }()
 
+    /// Use filtered answers in order to relate answers between different questions.
+    /// E.g.: Based on Question A answer, filter Question B answers to display.
+    /// If `answersFilter` is nil, we'll display all possible answers.
+    private var filteredAnswers: [Answer] {
+        guard let filter = answersFilter else { return Array(question.answers) }
+        return Array(question.answers).filter { $0.keys.contains(filter) }
+    }
+
     // MARK: - Init
 
     init(for question: Question,
          with selectedAnswers: [DecisionTreeModel.SelectedAnswer],
          extraAnswer: String?,
-         maxPossibleSelections: Int) {
+         maxPossibleSelections: Int,
+         answersFilter: String?) {
         self.question = question
         self.selectedAnswers = selectedAnswers
         self.extraAnswer = extraAnswer
         self.maxPossibleSelections = maxPossibleSelections
+        self.answersFilter = answersFilter
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -121,9 +132,10 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 cell.configure(for: question, selectedAnswers: selectedAnswers)
                 cell.delegate = self
                 return cell
-            case AnswerType.singleSelection.rawValue, AnswerType.multiSelection.rawValue:
+            case AnswerType.singleSelection.rawValue,
+                 AnswerType.multiSelection.rawValue:
                 let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(for: Array(question.answers),
+                cell.configure(for: filteredAnswers,
                                question: question,
                                selectedAnswers: selectedAnswers,
                                maxPossibleSelections: maxPossibleSelections)

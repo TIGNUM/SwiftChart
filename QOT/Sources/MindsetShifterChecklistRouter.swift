@@ -28,7 +28,18 @@ extension MindsetShifterChecklistRouter: MindsetShifterChecklistRouterInterface 
     func dismiss() {
         let configurator = ConfirmationConfigurator.make()
         let confirmationVC = ConfirmationViewController(configure: configurator)
+        confirmationVC.delegate = self
         confirmationVC.modalPresentationStyle = .overCurrentContext
         viewController.present(confirmationVC, animated: true, completion: nil)
+    }
+}
+
+extension MindsetShifterChecklistRouter: ConfirmationViewControllerDelegate {
+
+    func didTapLeave() {
+        viewController.dismiss(animated: true, completion: nil)
+    }
+
+    func didTapStay() {
     }
 }

@@ -25,6 +25,12 @@ final class ConfirmationRouter {
 
 extension ConfirmationRouter: ConfirmationRouterInterface {
 
+    func leave() {
+        viewController.dismiss(animated: true, completion: {
+            self.viewController.delegate?.didTapLeave()
+        })
+    }
+
     func dismiss() {
         viewController.dismiss(animated: true, completion: nil)
     }

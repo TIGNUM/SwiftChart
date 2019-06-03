@@ -36,6 +36,11 @@ final class MindsetShifterChecklistViewController: UIViewController {
         registerCells()
         setupView()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
 }
 
 // MARK: - MindsetShifterChecklistViewControllerInterface
@@ -76,10 +81,12 @@ private extension MindsetShifterChecklistViewController {
 private extension MindsetShifterChecklistViewController {
 
     @IBAction func didTapClose(_ sender: UIButton) {
+        trackUserEvent(.CLOSE, action: .TAP)
         interactor?.didTapClose()
     }
 
     @IBAction func didTapSave(_ sender: UIButton) {
+        trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.didTapSave()
     }
 }

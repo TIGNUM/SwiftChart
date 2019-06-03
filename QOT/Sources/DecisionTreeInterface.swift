@@ -19,6 +19,7 @@ protocol DecisionTreePresenterInterface {
 }
 
 protocol DecisionTreeInteractorInterface: Interactor {
+    var type: DecisionTreeType { get }
     func notifyCounterChanged(with value: Int, selectedAnswers: [Answer])
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer])
     func openPrepareChecklist(with contentID: Int)

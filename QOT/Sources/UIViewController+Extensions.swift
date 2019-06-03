@@ -30,8 +30,8 @@ extension UIViewController {
 
     @objc func backToPreviousViewController() {
         if let previousVC = navigationController?.viewControllers.dropLast().last {
-                navigationController?.popToViewController(previousVC, animated: true)
-            }
+            navigationController?.popToViewController(previousVC, animated: true)
+        }
     }
 
     func attachToEdge(_ subview: UIView) {
