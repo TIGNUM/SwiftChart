@@ -43,8 +43,8 @@
 
 "Settings.Security.Password.Title" = "Change Password";
 "Settings.Security.Confirm.Title" = "Confirm";
-"Settings.Security.Terms.Title" = "TERMS\nAND\nCONDITIONS";
-"Settings.Security.Copyrights.Title" = "CONTENT\nAND\nCOPYRIGHTS";
+"Settings.Security.Terms.Title" = "TERMS AND CONDITIONS";
+"Settings.Security.Copyrights.Title" = "CONTENT AND COPYRIGHTS";
 "Settings.Security.Privacy.Policy.Title" = "PRIVACY\nPOLICY";
 
 "Settings.SiriShortcuts.Title" = "SIRI SHORTCUTS";
@@ -57,7 +57,7 @@
 
 "Sidebar.Title.Search" = "Search";
 "Sidebar.Title.Tools" = "QOT TOOLS";
-"Sidebar.Title.Benefits" = "QOT\nBENEFITS";
+"Sidebar.Title.Benefits" = "QOT BENEFITS";
 "Sidebar.Title.Profile" = "Profile";
 "Sidebar.Title.Sensor" = "CONNECT ACTIVITY TRACKER";
 "Sidebar.Title.Support" = "Support";
@@ -278,6 +278,12 @@
 
 "Sidebar.SensorsMenu.Sensors" = "ACTIVITY TRACKERS";
 "Sidebar.SensorsMenu.Fitbit" = "FITBIT";
+"Sidebar.SensorsMenu.Sensors.Disconnected" = "Disconnected";
+"Sidebar.SensorsMenu.Sensors.Connected" = "Connected";
+"Sidebar.SensorsMenu.Sensors.Syncing" = "Syncing...";
+"Sidebar.SensorsMenu.Seonsors.NoData" = "No data";
+"Sidebar.SensorsMenu.OuraRing" = "OURA RING";
+"Sidebar.SensorsMenu.HealthKit" = "HEALTH KIT";
 "Sidebar.SensorsMenu.RequestSensor" = "Request activity tracker";
 "Sidebar.SensorsMenu.Connect" = "CONNECT";
 "Sidebar.SensorsMenu.Fitbit.Success" = "Fitbit successfully linked";

@@ -176,6 +176,7 @@ enum AlertType {
     var buttonTitleDestructive: String? {
         switch self {
         case .changePermissions,
+             .settingsCalendars,
              .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized,
              .changeNotifications: return R.string.localized.alertButtonTitleCancel()
@@ -191,7 +192,6 @@ enum AlertType {
         switch self {
         case .notificationsNotAuthorized,
              .settingsLoccationService,
-             .settingsCalendars,
              .addSensor: return [.cancel]
         case .imagePicker,
              .toBeVisionActionSheet: return [.cancel]
@@ -199,6 +199,7 @@ enum AlertType {
              .changePassword: return [.destructive, .cancel]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
         case .changePermissions,
+             .settingsCalendars,
              .cameraPermissionNotAuthorized,
              .photosPermissionNotAuthorized,
              .changeNotifications: return [.destructive, .default]

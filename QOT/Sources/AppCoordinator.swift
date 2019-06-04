@@ -1218,7 +1218,7 @@ extension AppCoordinator {
             }
     }
 
-    func presentContentItemSettings(contentID: Int, controller: UIViewController?, pageName: PageName) {
+    func presentContentItemSettings(contentID: Int, controller: UIViewController?, pageName: PageName, topBarTitle: String? = nil) {
 		guard
 			let settingsViewController = controller,
 			let services = services,
@@ -1229,6 +1229,7 @@ extension AppCoordinator {
 															contentCollection: content,
 															articleHeader: nil,
 															topTabBarTitle: nil,
+                                                            topSmallTitle: topBarTitle,
 															shouldPush: false,
 															isSearch: false) else { return }
 		startChild(child: coordinator)

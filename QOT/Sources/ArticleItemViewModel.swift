@@ -19,7 +19,8 @@ final class ArticleItemViewModel {
     let backgroundImage: UIImage?
     let articleHeader: ArticleCollectionHeader?
     let contentCollection: ContentCollection
-
+    let topSmallTitle: String?
+    
     var isWhatsHot: Bool {
         return contentCollection.section.caseInsensitiveCompare(Database.Section.learnWhatsHot.value) == .orderedSame
     }
@@ -34,17 +35,19 @@ final class ArticleItemViewModel {
          items: [ContentItem],
          contentCollection: ContentCollection,
          articleHeader: ArticleCollectionHeader?,
-         backgroundImage: UIImage? = nil) {
+         backgroundImage: UIImage? = nil,
+         topSmallTitle: String? = nil) {
         self.services = services
         self.articleHeader = articleHeader
         self.backgroundImage = backgroundImage
         self.contentCollection = contentCollection
+        self.topSmallTitle = topSmallTitle
         let relatedArticles = services.contentService.relatedArticles(for: contentCollection)
 
         self.relatedArticles = relatedArticles.sorted { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
             return lhs.sortOrder < rhs.sortOrder
         }
-
+        
         self.items = items.sorted { (lhs: ContentItem, rhs: ContentItem) -> Bool in
             return lhs.sortOrder > rhs.sortOrder
         }
@@ -66,16 +69,28 @@ extension ArticleItemViewModel {
     }
 
     func articleItem(at indexPath: IndexPath) -> ContentItem {
-        return items[indexPath.row]
+        var row = indexPath.row
+        if topSmallTitle != nil {
+            row -= 1
+        }
+        return items[row]
     }
 
     func relatedArticle(at indexPath: IndexPath) -> ContentCollection {
-        return relatedArticles[indexPath.row]
+        var row = indexPath.row
+        if topSmallTitle != nil {
+            row = -1
+        }
+        return relatedArticles[row]
     }
 
     func itemCount(in section: Index) -> Int {
         switch section {
-        case 0: return items.count
+        case 0:
+            if topSmallTitle != nil {
+                return items.count + 1
+            }
+            return items.count
         case 1: return relatedArticles.count > 3 ? 3 : relatedArticles.count
         default: return 0
         }

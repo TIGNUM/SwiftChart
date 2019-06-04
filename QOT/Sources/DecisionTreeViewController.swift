@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol DecisionTreeViewControllerDelegate: class {
     func toBeVisionDidChange()
@@ -331,7 +332,7 @@ private extension DecisionTreeViewController {
         let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
         decisionTree?.add(selectedAnswer)
         if let remoteID = answer.remoteID.value {
-            trackUserEvent(.SELECT, value: remoteID, valueType: .ANSWER_DECISION, action: .TAP)
+            trackUserEvent(.SELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
         }
         if let contentID = answer.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID {
             if answer.keys.contains(AnswerKey.Prepare.openCheckList.rawValue) {
@@ -364,7 +365,7 @@ private extension DecisionTreeViewController {
                 }
             }
             if let remoteID = answer.remoteID.value {
-                trackUserEvent(.SELECT, value: remoteID, valueType: .ANSWER_DECISION, action: .TAP)
+                trackUserEvent(.SELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
             }
         }, removeCompletion: {
             if multiSelectionCounter == maxPossibleSelections {
@@ -376,7 +377,7 @@ private extension DecisionTreeViewController {
                 multiSelectionCounter.minus(1)
             }
             if let remoteID = answer.remoteID.value {
-                trackUserEvent(.DESELECT, value: remoteID, valueType: .ANSWER_DECISION, action: .TAP)
+                trackUserEvent(.DESELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
             }
         })
         continueButton.pulsate()

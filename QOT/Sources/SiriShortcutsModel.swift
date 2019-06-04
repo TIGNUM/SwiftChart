@@ -31,6 +31,7 @@ struct SiriShortcutsModel {
     struct Shortcut {
         let type: ShortcutType
         let title: String?
+        let trackingKey: String?
         let suggestion: String?
     }
 }

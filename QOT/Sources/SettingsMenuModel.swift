@@ -8,6 +8,7 @@
 
 import Foundation
 import ReactiveKit
+import qot_dal
 
 final class SettingsMenuViewModel {
 
@@ -328,7 +329,7 @@ final class SettingsViewModel {
 
     private var settingsSections = [SettingsSection]()
     private let services: Services
-    private let user: User
+    var user: QDMUser?
     private let settingsType: SettingsType.SectionType
     let updates = PublishSubject<CollectionUpdate, Never>()
 
@@ -349,30 +350,30 @@ final class SettingsViewModel {
     }
 
     func updateJobTitle(title: String) {
-        services.userService.updateUserJobTitle(user: user, title: title)
+//        services.userService.updateUserJobTitle(user: user, title: title)
     }
 
     func updateTelephone(telephone: String) {
-        services.userService.updateUserTelephone(user: user, telephone: telephone)
+//        services.userService.updateUserTelephone(user: user, telephone: telephone)
     }
 
     func updateDateOfBirth(dateOfBirth: String) {
-        services.userService.updateUserDateOfBirth(user: user, dateOfBirth: dateOfBirth)
+//        services.userService.updateUserDateOfBirth(user: user, dateOfBirth: dateOfBirth)
     }
 
     func updateGender(gender: String) {
-        services.userService.updateUserGender(user: user, gender: gender.uppercased())
+//        services.userService.updateUserGender(user: user, gender: gender.uppercased())
     }
 
     func updateHeight(height: Double) {
-        services.userService.updateUserHeight(user: user, height: height)
+//        services.userService.updateUserHeight(user: user, height: height)
     }
 
     func updateNotificationSetting(key: String, value: Bool) {
         do {
             try services.settingsService.setSettingValue(SettingValue.bool(value), key: key)
         } catch let error {
-            log(error)
+//            log(error)
         }
     }
 
@@ -380,7 +381,7 @@ final class SettingsViewModel {
         return settingsSections[section].rows
     }
 
-    private func settingSections(user: User?, settingsType: SettingsType.SectionType) -> [SettingsSection] {
+    private func settingSections(user: QDMUser?, settingsType: SettingsType.SectionType) -> [SettingsSection] {
         switch settingsType {
         case .general: return generalSettingsSection(for: user, services: services)
         case .notifications: return notificationsSettingsSection(services: services)
@@ -394,10 +395,15 @@ final class SettingsViewModel {
 
     init?(services: Services, settingsType: SettingsType.SectionType) {
         self.services = services
-        guard let user = services.userService.user() else { return nil }
-        self.user = user
         self.settingsType = settingsType
-        self.settingsSections = settingSections(user: user, settingsType: settingsType)
+        qot_dal.UserService.main.getUserData({ [weak self] userData in
+            self?.user = userData
+            self?.generateSections()
+        })
+    }
+    
+    func generateSections() {
+        settingsSections = settingSections(user: user, settingsType: settingsType)
     }
 }
 
@@ -449,15 +455,14 @@ private func notificationsSettingsSection(services: Services) -> [SettingsSectio
     ]
 }
 
-private func generalSettingsSection(for user: User?, services: Services) -> [SettingsSection] {
+private func generalSettingsSection(for user: QDMUser?, services: Services) -> [SettingsSection] {
     return [
+        Sections(title: "Personal Data", rows: personalRows(for: user)),
         Sections(title: "Contact", rows: companyRows(for: user)),
-        Sections(title: "Personal", rows: personalRows(for: user)),
-        Sections(title: "Account", rows: accountRows(for: user))
     ]
 }
 
-private func companyRows(for user: User?) -> [SettingsRow] {
+private func companyRows(for user: QDMUser?) -> [SettingsRow] {
     return [
         .label(title: SettingsType.company.title, value: user?.company, settingsType: .company),
         .textField(title: SettingsType.jobTitle.title, value: user?.jobTitle ?? "", secure: false, settingsType: .jobTitle),
@@ -466,19 +471,17 @@ private func companyRows(for user: User?) -> [SettingsRow] {
     ]
 }
 
-private func accountRows(for user: User?) -> [SettingsRow] {
+private func accountRows(for user: QDMUser?) -> [SettingsRow] {
     return [
         .label(title: SettingsType.password.title, value: "", settingsType: .password),
 		.label(title: SettingsType.logout.title, value: "", settingsType: .logout)
 	]
 }
 
-private func personalRows(for user: User?) -> [SettingsRow] {
+private func personalRows(for user: QDMUser?) -> [SettingsRow] {
     guard let user = user else { return [] }
     var date = Date()
-    if let dateOfBirth = user.dateOfBirth {
-        date = DateFormatter.settingsUser.date(from: dateOfBirth) ?? Date()
-    }
+    date = DateFormatter.settingsUser.date(from: user.dateOfBirth) ?? Date()
     let heightItems = user.heightPickerItems
     let weightItems = user.weightPickerItems
     let selectedHeightIndex = heightItems.valueIndex
@@ -503,14 +506,14 @@ private func personalRows(for user: User?) -> [SettingsRow] {
         .datePicker(title: SettingsType.dateOfBirth.title,
                     selectedDate: date,
                     settingsType: .dateOfBirth),
+        .multipleStringPicker(title: SettingsType.height.title.components(separatedBy: ".")[0],
+                              rows: user.heightPickerItems,
+                              initialSelection: [selectedHeightIndex, selectedHeightUnitIndex],
+                              settingsType: .height),
         .multipleStringPicker(title: SettingsType.weight.title.components(separatedBy: ".")[0],
                               rows: user.weightPickerItems,
                               initialSelection: [selectedWeightIndex, selectedWeightUnitIndex],
                               settingsType: .weight),
-        .multipleStringPicker(title: SettingsType.height.title.components(separatedBy: ".")[0],
-                              rows: user.heightPickerItems,
-                              initialSelection: [selectedHeightIndex, selectedHeightUnitIndex],
-                              settingsType: .height)
     ]
 }
 

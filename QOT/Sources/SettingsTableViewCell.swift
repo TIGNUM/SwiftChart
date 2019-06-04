@@ -12,7 +12,8 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Outlets / Properties
 
-    @IBOutlet weak var bottomSeperatorView: UIView!
+    @IBOutlet private weak var expandArrow: UIImageView!
+    @IBOutlet private weak var bottomSeperatorView: UIView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var valueLabel: UILabel!
     @IBOutlet private weak var switchControl: UISwitch!
@@ -58,6 +59,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
         self.indexPath = indexPath
         self.calendarIdentifier = calendarIdentifier
         self.calendarSource = calendarSource
+        self.bottomSeperatorView.isHidden = false
         switch settingsRow {
         case .button(let title, let value, let settingsType):
             self.settingsType = settingsType
@@ -68,20 +70,29 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
             setupControls(isSyncFinished: isSyncFinished)
         case .datePicker(let title, let selectedDate, let settingsType):
             self.settingsType = settingsType
-            setupDateCell(title: title, selectedDate: selectedDate)
+            setupDateCell(title: title, selectedDate: selectedDate, settingsType: settingsType)
         case .label(let title, let value, let settingsType):
+            if settingsType == .dateOfBirth,
+                settingsType == .height,
+                settingsType == .weight,
+                settingsType == .gender {
+                expandArrow.isHidden = false
+            }else {
+                expandArrow.isHidden = true
+            }
             self.settingsType = settingsType
-            setupLabelCell(title: title, value: value)
+            self.bottomSeperatorView.isHidden = true
+            setupTextFieldCell(title: title, value: value ?? "", settingsType: settingsType)
         case .stringPicker(let title, let pickerItems, let selectedIndex, let settingsType):
             self.settingsType = settingsType
-            setupLabelCell(title: title, value: pickerItems[selectedIndex])
+            setupTextFieldCell(title: title, value: pickerItems[selectedIndex], settingsType: settingsType)
         case .multipleStringPicker(let title, let userMeasurement, _, let settingsType):
             self.settingsType = settingsType
             let displayableValue = userMeasurement.currentTitle()
-            setupLabelCell(title: title, value: displayableValue)
-        case .textField(let title, let value, let secure, let settingsType):
+            setupTextFieldCell(title: title, value: displayableValue, settingsType: settingsType)
+        case .textField(let title, let value, _, let settingsType):
             self.settingsType = settingsType
-            setupTextFieldCell(title: title, value: value, secure: secure, settingsType: settingsType)
+            setupTextFieldCell(title: title, value: value, settingsType: settingsType)
         }
         if (settingsType == .calendar && settingsDelegate != nil) || settingsType == .adminSettings {
             accessoryType = .disclosureIndicator
@@ -130,10 +141,10 @@ private extension SettingsTableViewCell {
         setValue(value: source, alignment: .left)
     }
 
-    func setupDateCell(title: String, selectedDate: Date) {
+    func setupDateCell(title: String, selectedDate: Date, settingsType: SettingsType) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy"
-        setupLabelCell(title: title, value: dateFormatter.string(from: selectedDate))
+        setupTextFieldCell(title: title, value: dateFormatter.string(from: selectedDate), settingsType: settingsType)
     }
 
     func setupLabelCell(title: String, value: String?) {
@@ -152,10 +163,8 @@ private extension SettingsTableViewCell {
         }
     }
 
-	func setupTextFieldCell(title: String, value: String, secure: Bool, settingsType: SettingsType) {
-        textField.attributedText = Style.tagTitle(value, .white).attributedString(lineSpacing: 2, alignment: .right)
-        textField.font = .PText
-        textField.isSecureTextEntry = secure
+	func setupTextFieldCell(title: String, value: String, settingsType: SettingsType) {
+        textField.text = value
         textField.delegate = self
         textField.keyboardType = .default
         textField.autocapitalizationType = UITextAutocapitalizationType.words
@@ -170,26 +179,26 @@ private extension SettingsTableViewCell {
 														target: self,
 														action: #selector(didFinishEnterText))
 			doneToolbar.barStyle = .default
+            doneToolbar.barTintColor = .carbonDark
 			doneToolbar.setItems([flexSpace, done], animated: false)
 			doneToolbar.sizeToFit()
 			textField.inputAccessoryView = doneToolbar
 		}
     }
+    
+    private func separatorView(isEnabled: Bool) {
+        bottomSeperatorView.backgroundColor = isEnabled ? .accent : .sand
+    }
 
 	@objc func didFinishEnterText() {
-		textField.textColor = .white
 		if let text = textField.text {
+            separatorView(isEnabled: false)
 			settingsDelegate?.didTextFieldEndEditing(at: indexPath, text: text)
 		}
 	}
 
     func setTitle(title: String) {
-        var titleColor = UIColor.white60
-        if title.caseInsensitiveCompare(R.string.localized.sidebarTitleLogout()) == .orderedSame {
-            titleColor = .grapefruit
-        }
-        titleLabel.attributedText = Style.headlineSmall(title.capitalized, titleColor).attributedString(lineSpacing: 2)
-        titleLabel.font = .PText
+        titleLabel.text = title
         titleLabel.lineBreakMode = .byTruncatingTail
     }
 
@@ -272,17 +281,27 @@ extension SettingsTableViewCell: UIPickerViewDataSource, UIPickerViewDelegate {
 
 extension SettingsTableViewCell: UITextFieldDelegate {
 
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        separatorView(isEnabled: true)
+    }
+    
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text {
             settingsDelegate?.didTextFieldChanged(at: indexPath, text: text)
         }
         return endEditing(true)
     }
-
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.textColor = .white
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        if let text = textField.text,
+            let textRange = Range(range, in: text) {
+            let updatedText = text.replacingCharacters(in: textRange,
+                                                       with: string)
+            settingsDelegate?.didTextFieldChanged(at: indexPath, text: updatedText)
+        }
+        return true
     }
-
+    
 	@objc func textFieldDidEndEditing(_ textField: UITextField) {
 		didFinishEnterText()
 	}

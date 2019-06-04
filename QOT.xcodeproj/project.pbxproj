@@ -76,14 +76,14 @@
 		36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */; };
 		36376611223A4BEC00C2C429 /* DailyBriefModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376609223A4BEC00C2C429 /* DailyBriefModel.swift */; };
 		36376612223A4BEC00C2C429 /* DailyBriefConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */; };
-		3637661B223A4C0400C2C429 /* MyQotPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376613223A4C0400C2C429 /* MyQotPresenter.swift */; };
-		3637661C223A4C0400C2C429 /* MyQotWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376614223A4C0400C2C429 /* MyQotWorker.swift */; };
-		3637661D223A4C0400C2C429 /* MyQotRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376615223A4C0400C2C429 /* MyQotRouter.swift */; };
-		3637661E223A4C0400C2C429 /* MyQotInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376616223A4C0400C2C429 /* MyQotInterface.swift */; };
-		3637661F223A4C0400C2C429 /* MyQotViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376617223A4C0400C2C429 /* MyQotViewController.swift */; };
-		36376620223A4C0400C2C429 /* MyQotInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376618223A4C0400C2C429 /* MyQotInteractor.swift */; };
-		36376621223A4C0400C2C429 /* MyQotModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376619223A4C0400C2C429 /* MyQotModel.swift */; };
-		36376622223A4C0400C2C429 /* MyQotConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637661A223A4C0400C2C429 /* MyQotConfigurator.swift */; };
+		3637661B223A4C0400C2C429 /* MyQotProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376613223A4C0400C2C429 /* MyQotProfilePresenter.swift */; };
+		3637661C223A4C0400C2C429 /* MyQotProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */; };
+		3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376615223A4C0400C2C429 /* MyQotProfileRouter.swift */; };
+		3637661E223A4C0400C2C429 /* MyQotProfileInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376616223A4C0400C2C429 /* MyQotProfileInterface.swift */; };
+		3637661F223A4C0400C2C429 /* MyQotProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376617223A4C0400C2C429 /* MyQotProfileViewController.swift */; };
+		36376620223A4C0400C2C429 /* MyQotProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376618223A4C0400C2C429 /* MyQotProfileInteractor.swift */; };
+		36376621223A4C0400C2C429 /* MyQotProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376619223A4C0400C2C429 /* MyQotProfileModel.swift */; };
+		36376622223A4C0400C2C429 /* MyQotProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637661A223A4C0400C2C429 /* MyQotProfileConfigurator.swift */; };
 		36376624223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */; };
 		3637662E223A66AF00C2C429 /* CoachPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376626223A66AF00C2C429 /* CoachPresenter.swift */; };
 		3637662F223A66AF00C2C429 /* CoachWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376627223A66AF00C2C429 /* CoachWorker.swift */; };
@@ -350,6 +350,95 @@
 		36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */; };
 		36FEA86320A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */; };
 		36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA86220A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib */; };
+		5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F10D0C1228EC60100CC3C7A /* ArticleItemViewController.xib */; };
+		5F2E87432292F6D60082323E /* ProfileSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2E87422292F6D60082323E /* ProfileSettingsFooterView.swift */; };
+		5F2E87452292F6E80082323E /* ProfileSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F2E87442292F6E80082323E /* ProfileSettingsFooterView.xib */; };
+		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
+		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
+		5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */; };
+		5F360726228BECCC0074FEC4 /* MyQotSensorsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360725228BECCC0074FEC4 /* MyQotSensorsWorker.swift */; };
+		5F360728228BECD70074FEC4 /* MyQotSensorsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360727228BECD70074FEC4 /* MyQotSensorsRouter.swift */; };
+		5F36072A228BECE40074FEC4 /* MyQotSensorsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360729228BECE40074FEC4 /* MyQotSensorsConfigurator.swift */; };
+		5F36072C228BEDA20074FEC4 /* MyQotSensorsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36072B228BEDA20074FEC4 /* MyQotSensorsInterface.swift */; };
+		5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36072D228BEEB90074FEC4 /* MyQotSensorsModel.swift */; };
+		5F360730228C021F0074FEC4 /* ContentService+Sensors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36072F228C021F0074FEC4 /* ContentService+Sensors.swift */; };
+		5F360733228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360732228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift */; };
+		5F360735228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360734228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift */; };
+		5F360737228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360736228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift */; };
+		5F36073B228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36073A228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift */; };
+		5F36073F228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36073E228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift */; };
+		5F360743228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360742228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift */; };
+		5F360749228C42570074FEC4 /* MyQotSyncedCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360747228C42570074FEC4 /* MyQotSyncedCalendarCell.swift */; };
+		5F36074A228C42570074FEC4 /* MyQotSyncedCalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F360748228C42570074FEC4 /* MyQotSyncedCalendarCell.xib */; };
+		5F36074C228C520F0074FEC4 /* ContentService+SyncedCalendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36074B228C520F0074FEC4 /* ContentService+SyncedCalendars.swift */; };
+		5F544FD122967FE500616626 /* ContentService+EditAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F544FD022967FE500616626 /* ContentService+EditAccount.swift */; };
+		5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */; };
+		5F57F9E42282E65B003A9EDF /* ContentService+MyQotProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9E32282E65B003A9EDF /* ContentService+MyQotProfile.swift */; };
+		5F57F9E62282E741003A9EDF /* ContentService+Knowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9E52282E741003A9EDF /* ContentService+Knowing.swift */; };
+		5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9EA228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift */; };
+		5F57F9ED22831711003A9EDF /* MyQotAccountSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9EC22831711003A9EDF /* MyQotAccountSettingsWorker.swift */; };
+		5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9EE22831727003A9EDF /* MyQotAccountSettingsPresenter.swift */; };
+		5F57F9F122831768003A9EDF /* MyQotAccountSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F022831768003A9EDF /* MyQotAccountSettingsInteractor.swift */; };
+		5F57F9F3228317AA003A9EDF /* MyQotAccountSettingsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F2228317AA003A9EDF /* MyQotAccountSettingsInterface.swift */; };
+		5F57F9F5228317C2003A9EDF /* MyQotAccountSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F4228317C2003A9EDF /* MyQotAccountSettingsRouter.swift */; };
+		5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9F622831895003A9EDF /* MyQotAccountSettingsViewController.swift */; };
+		5F62BE8E228AB5D700852F7E /* MyQotSupportFaqViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8D228AB5D700852F7E /* MyQotSupportFaqViewController.swift */; };
+		5F62BE90228AB5E900852F7E /* MyQotSupportFaqInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */; };
+		5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */; };
+		5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */; };
+		5F62BE96228AB63A00852F7E /* MyQotSupportFaqPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */; };
+		5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */; };
+		5F62BE9A228AB66100852F7E /* MyQotSupportFaqWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */; };
+		5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE9F228AE71700852F7E /* MyQotSiriShortcutsViewController.swift */; };
+		5F62BEA2228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA1228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift */; };
+		5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA3228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift */; };
+		5F62BEA6228AE74900852F7E /* MyQotSiriShortcutsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA5228AE74900852F7E /* MyQotSiriShortcutsPresenter.swift */; };
+		5F62BEA8228AE75400852F7E /* MyQotSiriShortcutsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA7228AE75400852F7E /* MyQotSiriShortcutsWorker.swift */; };
+		5F62BEAA228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA9228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift */; };
+		5F62BEAC228AE77000852F7E /* MyQotSiriShortcutsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEAB228AE77000852F7E /* MyQotSiriShortcutsRouter.swift */; };
+		5F6B38572284074200704676 /* UserProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B38562284074200704676 /* UserProfileManager.swift */; };
+		5F6B38592284079800704676 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B38582284079800704676 /* UserProfileModel.swift */; };
+		5F6B385B228414F700704676 /* ContentService+AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B385A228414F700704676 /* ContentService+AccountSettings.swift */; };
+		5F7BE77E2289586E00BA5DCF /* MyQotSupportInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE77D2289586E00BA5DCF /* MyQotSupportInterface.swift */; };
+		5F7BE7802289588100BA5DCF /* MyQotSupportInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE77F2289588100BA5DCF /* MyQotSupportInteractor.swift */; };
+		5F7BE7822289588F00BA5DCF /* MyQotSupportWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE7812289588F00BA5DCF /* MyQotSupportWorker.swift */; };
+		5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE7832289589B00BA5DCF /* MyQotSupportPresenter.swift */; };
+		5F7BE786228958AE00BA5DCF /* MyQotSupportConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE785228958AE00BA5DCF /* MyQotSupportConfigurator.swift */; };
+		5F7BE788228958BE00BA5DCF /* MyQotSupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE787228958BE00BA5DCF /* MyQotSupportViewController.swift */; };
+		5F7BE78A22895B6900BA5DCF /* MyQotSupportRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE78922895B6900BA5DCF /* MyQotSupportRouter.swift */; };
+		5F7BE78C22895ED200BA5DCF /* MyQotSupportModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE78B22895ED200BA5DCF /* MyQotSupportModel.swift */; };
+		5F7BE78F22896E0700BA5DCF /* ContentService+Support.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE78E22896E0700BA5DCF /* ContentService+Support.swift */; };
+		5F7BE79422899EA100BA5DCF /* MyQotAboutUsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE79322899EA100BA5DCF /* MyQotAboutUsInterface.swift */; };
+		5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE79522899EDD00BA5DCF /* MyQotAboutUsInteractor.swift */; };
+		5F7BE79822899F2B00BA5DCF /* MyQotAboutUsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE79722899F2B00BA5DCF /* MyQotAboutUsPresenter.swift */; };
+		5F7BE79A22899F5F00BA5DCF /* MyQotAboutUsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE79922899F5F00BA5DCF /* MyQotAboutUsWorker.swift */; };
+		5F7BE79C22899F8500BA5DCF /* MyQotAboutUsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE79B22899F8500BA5DCF /* MyQotAboutUsRouter.swift */; };
+		5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE79D22899FA800BA5DCF /* MyQotAboutUsViewController.swift */; };
+		5F7BE7A022899FC000BA5DCF /* MyQotAboutUsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE79F22899FC000BA5DCF /* MyQotAboutUsModel.swift */; };
+		5F7BE7A22289A93300BA5DCF /* ContentService+AboutUs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE7A12289A93300BA5DCF /* ContentService+AboutUs.swift */; };
+		5F7BE7A42289AC2800BA5DCF /* MyQotAboutUsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F7BE7A32289AC2800BA5DCF /* MyQotAboutUsConfigurator.swift */; };
+		5F8DA6DC228D6DE100E61397 /* BottomNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8DA6DB228D6DE100E61397 /* BottomNavigationBarView.swift */; };
+		5F8DA6DE228D6DED00E61397 /* BottomNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F8DA6DD228D6DED00E61397 /* BottomNavigationBarView.xib */; };
+		5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5FD8909C2280766900B1CE7F /* MyQot.storyboard */; };
+		5FD890A822807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD890A622807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift */; };
+		5FD890A922807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD890A722807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib */; };
+		5FD890AB22807C6800B1CE7F /* MyQotProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FD890AA22807C6800B1CE7F /* MyQotProfileHeaderView.swift */; };
+		5FD890AF22807CC900B1CE7F /* MyQotProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FD890AE22807CC900B1CE7F /* MyQotProfileHeaderView.xib */; };
+		5FF1A0E22285618E00D76D55 /* TitleSubtitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0E02285618E00D76D55 /* TitleSubtitleTableViewCell.swift */; };
+		5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */; };
+		5FF1A0E6228561A000D76D55 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0E4228561A000D76D55 /* TitleTableViewCell.swift */; };
+		5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */; };
+		5FF1A0E9228561C800D76D55 /* TitleTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0E8228561C800D76D55 /* TitleTableHeaderView.swift */; };
+		5FF1A0EB228561FE00D76D55 /* TitleTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5FF1A0EA228561FE00D76D55 /* TitleTableHeaderView.xib */; };
+		5FF1A0F422857B2C00D76D55 /* MyQotAppSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0F322857B2C00D76D55 /* MyQotAppSettingsViewController.swift */; };
+		5FF1A0F622857B4300D76D55 /* MyQotAppSettingsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0F522857B4300D76D55 /* MyQotAppSettingsInterface.swift */; };
+		5FF1A0F822857B6100D76D55 /* MyQotAppSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0F722857B6100D76D55 /* MyQotAppSettingsWorker.swift */; };
+		5FF1A0FA22857B9400D76D55 /* MyQotAppSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0F922857B9400D76D55 /* MyQotAppSettingsPresenter.swift */; };
+		5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0FB22857BA300D76D55 /* MyQotAppSettingsInteractor.swift */; };
+		5FF1A0FE22857BB300D76D55 /* MyQotAppSettingsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0FD22857BB300D76D55 /* MyQotAppSettingsRouter.swift */; };
+		5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */; };
+		5FF1A10322858A7400D76D55 /* ContentService+AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */; };
+		5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */; };
 		7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */; };
 		7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */; };
 		7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6251F98D5E3002C7B72 /* ImageQuality.swift */; };
@@ -1205,14 +1294,14 @@
 		36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefInteractor.swift; sourceTree = "<group>"; };
 		36376609223A4BEC00C2C429 /* DailyBriefModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefModel.swift; sourceTree = "<group>"; };
 		3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyBriefConfigurator.swift; sourceTree = "<group>"; };
-		36376613223A4C0400C2C429 /* MyQotPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotPresenter.swift; sourceTree = "<group>"; };
-		36376614223A4C0400C2C429 /* MyQotWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotWorker.swift; sourceTree = "<group>"; };
-		36376615223A4C0400C2C429 /* MyQotRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotRouter.swift; sourceTree = "<group>"; };
-		36376616223A4C0400C2C429 /* MyQotInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotInterface.swift; sourceTree = "<group>"; };
-		36376617223A4C0400C2C429 /* MyQotViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotViewController.swift; sourceTree = "<group>"; };
-		36376618223A4C0400C2C429 /* MyQotInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotInteractor.swift; sourceTree = "<group>"; };
-		36376619223A4C0400C2C429 /* MyQotModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotModel.swift; sourceTree = "<group>"; };
-		3637661A223A4C0400C2C429 /* MyQotConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotConfigurator.swift; sourceTree = "<group>"; };
+		36376613223A4C0400C2C429 /* MyQotProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfilePresenter.swift; sourceTree = "<group>"; };
+		36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileWorker.swift; sourceTree = "<group>"; };
+		36376615223A4C0400C2C429 /* MyQotProfileRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileRouter.swift; sourceTree = "<group>"; };
+		36376616223A4C0400C2C429 /* MyQotProfileInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileInterface.swift; sourceTree = "<group>"; };
+		36376617223A4C0400C2C429 /* MyQotProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileViewController.swift; sourceTree = "<group>"; };
+		36376618223A4C0400C2C429 /* MyQotProfileInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileInteractor.swift; sourceTree = "<group>"; };
+		36376619223A4C0400C2C429 /* MyQotProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileModel.swift; sourceTree = "<group>"; };
+		3637661A223A4C0400C2C429 /* MyQotProfileConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileConfigurator.swift; sourceTree = "<group>"; };
 		36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AbstractLevelOneViewConroller.swift; sourceTree = "<group>"; };
 		36376626223A66AF00C2C429 /* CoachPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachPresenter.swift; sourceTree = "<group>"; };
 		36376627223A66AF00C2C429 /* CoachWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachWorker.swift; sourceTree = "<group>"; };
@@ -1483,6 +1572,95 @@
 		42795728C4F3229DFB18981E /* Pods-QOT.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.debug.xcconfig"; sourceTree = "<group>"; };
 		5085A062A04C07A736CE9E5F /* Pods-QOTWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.release.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
+		5F10D0C1228EC60100CC3C7A /* ArticleItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleItemViewController.xib; sourceTree = "<group>"; };
+		5F2E87422292F6D60082323E /* ProfileSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsFooterView.swift; sourceTree = "<group>"; };
+		5F2E87442292F6E80082323E /* ProfileSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsFooterView.xib; sourceTree = "<group>"; };
+		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
+		5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsPresenter.swift; sourceTree = "<group>"; };
+		5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsInteractor.swift; sourceTree = "<group>"; };
+		5F360725228BECCC0074FEC4 /* MyQotSensorsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsWorker.swift; sourceTree = "<group>"; };
+		5F360727228BECD70074FEC4 /* MyQotSensorsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsRouter.swift; sourceTree = "<group>"; };
+		5F360729228BECE40074FEC4 /* MyQotSensorsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsConfigurator.swift; sourceTree = "<group>"; };
+		5F36072B228BEDA20074FEC4 /* MyQotSensorsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsInterface.swift; sourceTree = "<group>"; };
+		5F36072D228BEEB90074FEC4 /* MyQotSensorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsModel.swift; sourceTree = "<group>"; };
+		5F36072F228C021F0074FEC4 /* ContentService+Sensors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Sensors.swift"; sourceTree = "<group>"; };
+		5F360732228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsInteractor.swift; sourceTree = "<group>"; };
+		5F360734228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsInterface.swift; sourceTree = "<group>"; };
+		5F360736228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsWorker.swift; sourceTree = "<group>"; };
+		5F36073A228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsPresenter.swift; sourceTree = "<group>"; };
+		5F36073E228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsViewController.swift; sourceTree = "<group>"; };
+		5F360742228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsConfigurator.swift; sourceTree = "<group>"; };
+		5F360747228C42570074FEC4 /* MyQotSyncedCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarCell.swift; sourceTree = "<group>"; };
+		5F360748228C42570074FEC4 /* MyQotSyncedCalendarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotSyncedCalendarCell.xib; sourceTree = "<group>"; };
+		5F36074B228C520F0074FEC4 /* ContentService+SyncedCalendars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+SyncedCalendars.swift"; sourceTree = "<group>"; };
+		5F544FD022967FE500616626 /* ContentService+EditAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+EditAccount.swift"; sourceTree = "<group>"; };
+		5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsViewController.xib; sourceTree = "<group>"; };
+		5F57F9E32282E65B003A9EDF /* ContentService+MyQotProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+MyQotProfile.swift"; sourceTree = "<group>"; };
+		5F57F9E52282E741003A9EDF /* ContentService+Knowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Knowing.swift"; sourceTree = "<group>"; };
+		5F57F9EA228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsConfigurator.swift; sourceTree = "<group>"; };
+		5F57F9EC22831711003A9EDF /* MyQotAccountSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsWorker.swift; sourceTree = "<group>"; };
+		5F57F9EE22831727003A9EDF /* MyQotAccountSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsPresenter.swift; sourceTree = "<group>"; };
+		5F57F9F022831768003A9EDF /* MyQotAccountSettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsInteractor.swift; sourceTree = "<group>"; };
+		5F57F9F2228317AA003A9EDF /* MyQotAccountSettingsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsInterface.swift; sourceTree = "<group>"; };
+		5F57F9F4228317C2003A9EDF /* MyQotAccountSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsRouter.swift; sourceTree = "<group>"; };
+		5F57F9F622831895003A9EDF /* MyQotAccountSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsViewController.swift; sourceTree = "<group>"; };
+		5F62BE8D228AB5D700852F7E /* MyQotSupportFaqViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqViewController.swift; sourceTree = "<group>"; };
+		5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqInteractor.swift; sourceTree = "<group>"; };
+		5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqConfigurator.swift; sourceTree = "<group>"; };
+		5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqInterface.swift; sourceTree = "<group>"; };
+		5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqPresenter.swift; sourceTree = "<group>"; };
+		5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqRouter.swift; sourceTree = "<group>"; };
+		5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportFaqWorker.swift; sourceTree = "<group>"; };
+		5F62BE9F228AE71700852F7E /* MyQotSiriShortcutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsViewController.swift; sourceTree = "<group>"; };
+		5F62BEA1228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsInteractor.swift; sourceTree = "<group>"; };
+		5F62BEA3228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsInterface.swift; sourceTree = "<group>"; };
+		5F62BEA5228AE74900852F7E /* MyQotSiriShortcutsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsPresenter.swift; sourceTree = "<group>"; };
+		5F62BEA7228AE75400852F7E /* MyQotSiriShortcutsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsWorker.swift; sourceTree = "<group>"; };
+		5F62BEA9228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsConfigurator.swift; sourceTree = "<group>"; };
+		5F62BEAB228AE77000852F7E /* MyQotSiriShortcutsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsRouter.swift; sourceTree = "<group>"; };
+		5F6B38562284074200704676 /* UserProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileManager.swift; sourceTree = "<group>"; };
+		5F6B38582284079800704676 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		5F6B385A228414F700704676 /* ContentService+AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AccountSettings.swift"; sourceTree = "<group>"; };
+		5F7BE77D2289586E00BA5DCF /* MyQotSupportInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportInterface.swift; sourceTree = "<group>"; };
+		5F7BE77F2289588100BA5DCF /* MyQotSupportInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportInteractor.swift; sourceTree = "<group>"; };
+		5F7BE7812289588F00BA5DCF /* MyQotSupportWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportWorker.swift; sourceTree = "<group>"; };
+		5F7BE7832289589B00BA5DCF /* MyQotSupportPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportPresenter.swift; sourceTree = "<group>"; };
+		5F7BE785228958AE00BA5DCF /* MyQotSupportConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportConfigurator.swift; sourceTree = "<group>"; };
+		5F7BE787228958BE00BA5DCF /* MyQotSupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportViewController.swift; sourceTree = "<group>"; };
+		5F7BE78922895B6900BA5DCF /* MyQotSupportRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportRouter.swift; sourceTree = "<group>"; };
+		5F7BE78B22895ED200BA5DCF /* MyQotSupportModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSupportModel.swift; sourceTree = "<group>"; };
+		5F7BE78E22896E0700BA5DCF /* ContentService+Support.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Support.swift"; sourceTree = "<group>"; };
+		5F7BE79322899EA100BA5DCF /* MyQotAboutUsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAboutUsInterface.swift; sourceTree = "<group>"; };
+		5F7BE79522899EDD00BA5DCF /* MyQotAboutUsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAboutUsInteractor.swift; sourceTree = "<group>"; };
+		5F7BE79722899F2B00BA5DCF /* MyQotAboutUsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAboutUsPresenter.swift; sourceTree = "<group>"; };
+		5F7BE79922899F5F00BA5DCF /* MyQotAboutUsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAboutUsWorker.swift; sourceTree = "<group>"; };
+		5F7BE79B22899F8500BA5DCF /* MyQotAboutUsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAboutUsRouter.swift; sourceTree = "<group>"; };
+		5F7BE79D22899FA800BA5DCF /* MyQotAboutUsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAboutUsViewController.swift; sourceTree = "<group>"; };
+		5F7BE79F22899FC000BA5DCF /* MyQotAboutUsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAboutUsModel.swift; sourceTree = "<group>"; };
+		5F7BE7A12289A93300BA5DCF /* ContentService+AboutUs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AboutUs.swift"; sourceTree = "<group>"; };
+		5F7BE7A32289AC2800BA5DCF /* MyQotAboutUsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAboutUsConfigurator.swift; sourceTree = "<group>"; };
+		5F8DA6DB228D6DE100E61397 /* BottomNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigationBarView.swift; sourceTree = "<group>"; };
+		5F8DA6DD228D6DED00E61397 /* BottomNavigationBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomNavigationBarView.xib; sourceTree = "<group>"; };
+		5FD8909C2280766900B1CE7F /* MyQot.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyQot.storyboard; sourceTree = "<group>"; };
+		5FD890A622807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileOptionsTableViewCell.swift; sourceTree = "<group>"; };
+		5FD890A722807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotProfileOptionsTableViewCell.xib; sourceTree = "<group>"; };
+		5FD890AA22807C6800B1CE7F /* MyQotProfileHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileHeaderView.swift; sourceTree = "<group>"; };
+		5FD890AE22807CC900B1CE7F /* MyQotProfileHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotProfileHeaderView.xib; sourceTree = "<group>"; };
+		5FF1A0E02285618E00D76D55 /* TitleSubtitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleSubtitleTableViewCell.swift; sourceTree = "<group>"; };
+		5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleSubtitleTableViewCell.xib; sourceTree = "<group>"; };
+		5FF1A0E4228561A000D76D55 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
+		5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableViewCell.xib; sourceTree = "<group>"; };
+		5FF1A0E8228561C800D76D55 /* TitleTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleTableHeaderView.swift; sourceTree = "<group>"; };
+		5FF1A0EA228561FE00D76D55 /* TitleTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleTableHeaderView.xib; sourceTree = "<group>"; };
+		5FF1A0F322857B2C00D76D55 /* MyQotAppSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsViewController.swift; sourceTree = "<group>"; };
+		5FF1A0F522857B4300D76D55 /* MyQotAppSettingsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsInterface.swift; sourceTree = "<group>"; };
+		5FF1A0F722857B6100D76D55 /* MyQotAppSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsWorker.swift; sourceTree = "<group>"; };
+		5FF1A0F922857B9400D76D55 /* MyQotAppSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsPresenter.swift; sourceTree = "<group>"; };
+		5FF1A0FB22857BA300D76D55 /* MyQotAppSettingsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsInteractor.swift; sourceTree = "<group>"; };
+		5FF1A0FD22857BB300D76D55 /* MyQotAppSettingsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsRouter.swift; sourceTree = "<group>"; };
+		5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsModel.swift; sourceTree = "<group>"; };
+		5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AppSettings.swift"; sourceTree = "<group>"; };
+		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
 		7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropper.swift; sourceTree = "<group>"; };
 		7F01A6251F98D5E3002C7B72 /* ImageQuality.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageQuality.swift; sourceTree = "<group>"; };
@@ -2304,6 +2482,7 @@
 				363765F5223A4BD200C2C429 /* KnowingRouter.swift */,
 				363765F7223A4BD200C2C429 /* KnowingViewController.swift */,
 				363765F4223A4BD200C2C429 /* KnowingWorker.swift */,
+				5F57F9E52282E741003A9EDF /* ContentService+Knowing.swift */,
 			);
 			name = knowing;
 			sourceTree = "<group>";
@@ -2326,14 +2505,8 @@
 		363765F2223A4BB500C2C429 /* myQOT */ = {
 			isa = PBXGroup;
 			children = (
-				3637661A223A4C0400C2C429 /* MyQotConfigurator.swift */,
-				36376618223A4C0400C2C429 /* MyQotInteractor.swift */,
-				36376616223A4C0400C2C429 /* MyQotInterface.swift */,
-				36376619223A4C0400C2C429 /* MyQotModel.swift */,
-				36376613223A4C0400C2C429 /* MyQotPresenter.swift */,
-				36376615223A4C0400C2C429 /* MyQotRouter.swift */,
-				36376617223A4C0400C2C429 /* MyQotViewController.swift */,
-				36376614223A4C0400C2C429 /* MyQotWorker.swift */,
+				5F7BE77A2289564900BA5DCF /* Screens */,
+				5FF1A0DE2285614D00D76D55 /* Shared */,
 			);
 			name = myQOT;
 			sourceTree = "<group>";
@@ -2852,6 +3025,377 @@
 			name = PartnerEdit;
 			sourceTree = "<group>";
 		};
+		5F36071D228BEC660074FEC4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */,
+				5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */,
+				5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */,
+				5F360725228BECCC0074FEC4 /* MyQotSensorsWorker.swift */,
+				5F360727228BECD70074FEC4 /* MyQotSensorsRouter.swift */,
+				5F360729228BECE40074FEC4 /* MyQotSensorsConfigurator.swift */,
+				5F36072B228BEDA20074FEC4 /* MyQotSensorsInterface.swift */,
+				5F36072D228BEEB90074FEC4 /* MyQotSensorsModel.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		5F36071E228BEC6C0074FEC4 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				5F36072F228C021F0074FEC4 /* ContentService+Sensors.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		5F360731228C1EBA0074FEC4 /* MyQotSyncedCalendars */ = {
+			isa = PBXGroup;
+			children = (
+				5F360745228C42140074FEC4 /* Core */,
+				5F360744228C420C0074FEC4 /* Others */,
+			);
+			name = MyQotSyncedCalendars;
+			sourceTree = "<group>";
+		};
+		5F360744228C420C0074FEC4 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				5F360746228C42220074FEC4 /* Components */,
+				5F36074B228C520F0074FEC4 /* ContentService+SyncedCalendars.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		5F360745228C42140074FEC4 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5F360732228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift */,
+				5F360734228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift */,
+				5F360736228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift */,
+				5F36073A228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift */,
+				5F36073E228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift */,
+				5F360742228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		5F360746228C42220074FEC4 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5F360747228C42570074FEC4 /* MyQotSyncedCalendarCell.swift */,
+				5F360748228C42570074FEC4 /* MyQotSyncedCalendarCell.xib */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		5F544FCF22967FBC00616626 /* MyQotEditAccount */ = {
+			isa = PBXGroup;
+			children = (
+				5F544FD022967FE500616626 /* ContentService+EditAccount.swift */,
+			);
+			name = MyQotEditAccount;
+			sourceTree = "<group>";
+		};
+		5F57F9DF2282D2C0003A9EDF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3637661A223A4C0400C2C429 /* MyQotProfileConfigurator.swift */,
+				36376618223A4C0400C2C429 /* MyQotProfileInteractor.swift */,
+				36376616223A4C0400C2C429 /* MyQotProfileInterface.swift */,
+				36376619223A4C0400C2C429 /* MyQotProfileModel.swift */,
+				36376613223A4C0400C2C429 /* MyQotProfilePresenter.swift */,
+				36376615223A4C0400C2C429 /* MyQotProfileRouter.swift */,
+				36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */,
+				36376617223A4C0400C2C429 /* MyQotProfileViewController.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		5F57F9E02282D2C6003A9EDF /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				5F57F9E32282E65B003A9EDF /* ContentService+MyQotProfile.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		5F57F9E72283131C003A9EDF /* MyQotAccountSettings */ = {
+			isa = PBXGroup;
+			children = (
+				5F57F9E922831341003A9EDF /* Others */,
+				5F57F9E822831334003A9EDF /* Core */,
+			);
+			name = MyQotAccountSettings;
+			sourceTree = "<group>";
+		};
+		5F57F9E822831334003A9EDF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5F57F9EA228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift */,
+				5F57F9EC22831711003A9EDF /* MyQotAccountSettingsWorker.swift */,
+				5F57F9EE22831727003A9EDF /* MyQotAccountSettingsPresenter.swift */,
+				5F57F9F022831768003A9EDF /* MyQotAccountSettingsInteractor.swift */,
+				5F57F9F2228317AA003A9EDF /* MyQotAccountSettingsInterface.swift */,
+				5F57F9F4228317C2003A9EDF /* MyQotAccountSettingsRouter.swift */,
+				5F57F9F622831895003A9EDF /* MyQotAccountSettingsViewController.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		5F57F9E922831341003A9EDF /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				5F6B385A228414F700704676 /* ContentService+AccountSettings.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		5F62BE8A228AB57F00852F7E /* MyQotSupportFaq */ = {
+			isa = PBXGroup;
+			children = (
+				5F62BE8C228AB5B800852F7E /* Other */,
+				5F62BE8B228AB5AD00852F7E /* Core */,
+			);
+			name = MyQotSupportFaq;
+			sourceTree = "<group>";
+		};
+		5F62BE8B228AB5AD00852F7E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5F62BE8D228AB5D700852F7E /* MyQotSupportFaqViewController.swift */,
+				5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */,
+				5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */,
+				5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */,
+				5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */,
+				5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */,
+				5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		5F62BE8C228AB5B800852F7E /* Other */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		5F62BE9D228AE6EF00852F7E /* MyQotSiriShortcuts */ = {
+			isa = PBXGroup;
+			children = (
+				5F62BE9E228AE70300852F7E /* Core */,
+			);
+			name = MyQotSiriShortcuts;
+			sourceTree = "<group>";
+		};
+		5F62BE9E228AE70300852F7E /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5F62BE9F228AE71700852F7E /* MyQotSiriShortcutsViewController.swift */,
+				5F62BEA1228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift */,
+				5F62BEA3228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift */,
+				5F62BEA5228AE74900852F7E /* MyQotSiriShortcutsPresenter.swift */,
+				5F62BEA7228AE75400852F7E /* MyQotSiriShortcutsWorker.swift */,
+				5F62BEA9228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift */,
+				5F62BEAB228AE77000852F7E /* MyQotSiriShortcutsRouter.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		5F62BEAF228B0AA700852F7E /* MyQotSensors */ = {
+			isa = PBXGroup;
+			children = (
+				5F36071E228BEC6C0074FEC4 /* Others */,
+				5F36071D228BEC660074FEC4 /* Core */,
+			);
+			name = MyQotSensors;
+			sourceTree = "<group>";
+		};
+		5F7BE7792289563000BA5DCF /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				5F6B38582284079800704676 /* UserProfileModel.swift */,
+				5F6B38562284074200704676 /* UserProfileManager.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		5F7BE77A2289564900BA5DCF /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				5F544FCF22967FBC00616626 /* MyQotEditAccount */,
+				5F360731228C1EBA0074FEC4 /* MyQotSyncedCalendars */,
+				5F62BEAF228B0AA700852F7E /* MyQotSensors */,
+				5F62BE9D228AE6EF00852F7E /* MyQotSiriShortcuts */,
+				5F62BE8A228AB57F00852F7E /* MyQotSupportFaq */,
+				5F7BE79022899E2800BA5DCF /* MyQotAboutUs */,
+				5F7BE77B2289581F00BA5DCF /* MyQotSupport */,
+				5F57F9E72283131C003A9EDF /* MyQotAccountSettings */,
+				5FF1A0F122857AC900D76D55 /* MyQotAppSettings */,
+				5FD89098228065EB00B1CE7F /* myQotProfile */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		5F7BE77B2289581F00BA5DCF /* MyQotSupport */ = {
+			isa = PBXGroup;
+			children = (
+				5F7BE78D22896DDB00BA5DCF /* Others */,
+				5F7BE77C2289585500BA5DCF /* Core */,
+			);
+			name = MyQotSupport;
+			sourceTree = "<group>";
+		};
+		5F7BE77C2289585500BA5DCF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5F7BE77D2289586E00BA5DCF /* MyQotSupportInterface.swift */,
+				5F7BE77F2289588100BA5DCF /* MyQotSupportInteractor.swift */,
+				5F7BE7812289588F00BA5DCF /* MyQotSupportWorker.swift */,
+				5F7BE7832289589B00BA5DCF /* MyQotSupportPresenter.swift */,
+				5F7BE785228958AE00BA5DCF /* MyQotSupportConfigurator.swift */,
+				5F7BE787228958BE00BA5DCF /* MyQotSupportViewController.swift */,
+				5F7BE78922895B6900BA5DCF /* MyQotSupportRouter.swift */,
+				5F7BE78B22895ED200BA5DCF /* MyQotSupportModel.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		5F7BE78D22896DDB00BA5DCF /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				5F7BE78E22896E0700BA5DCF /* ContentService+Support.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		5F7BE79022899E2800BA5DCF /* MyQotAboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				5F7BE79222899E8C00BA5DCF /* Other */,
+				5F7BE79122899E8700BA5DCF /* Core */,
+			);
+			name = MyQotAboutUs;
+			sourceTree = "<group>";
+		};
+		5F7BE79122899E8700BA5DCF /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5F7BE79322899EA100BA5DCF /* MyQotAboutUsInterface.swift */,
+				5F7BE79522899EDD00BA5DCF /* MyQotAboutUsInteractor.swift */,
+				5F7BE79722899F2B00BA5DCF /* MyQotAboutUsPresenter.swift */,
+				5F7BE79922899F5F00BA5DCF /* MyQotAboutUsWorker.swift */,
+				5F7BE79B22899F8500BA5DCF /* MyQotAboutUsRouter.swift */,
+				5F7BE79D22899FA800BA5DCF /* MyQotAboutUsViewController.swift */,
+				5F7BE79F22899FC000BA5DCF /* MyQotAboutUsModel.swift */,
+				5F7BE7A32289AC2800BA5DCF /* MyQotAboutUsConfigurator.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		5F7BE79222899E8C00BA5DCF /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				5F7BE7A12289A93300BA5DCF /* ContentService+AboutUs.swift */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		5FD89098228065EB00B1CE7F /* myQotProfile */ = {
+			isa = PBXGroup;
+			children = (
+				5F57F9E02282D2C6003A9EDF /* Others */,
+				5F57F9DF2282D2C0003A9EDF /* Core */,
+				5FD8909E22807AA400B1CE7F /* Components */,
+			);
+			name = myQotProfile;
+			sourceTree = "<group>";
+		};
+		5FD8909E22807AA400B1CE7F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				5FD890AD22807CB000B1CE7F /* MyQotProfileHeaderView */,
+				5FD890AC22807C9A00B1CE7F /* MyQotProfileOptionsTableViewCell */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		5FD890AC22807C9A00B1CE7F /* MyQotProfileOptionsTableViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				5FD890A622807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift */,
+				5FD890A722807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib */,
+			);
+			name = MyQotProfileOptionsTableViewCell;
+			sourceTree = "<group>";
+		};
+		5FD890AD22807CB000B1CE7F /* MyQotProfileHeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				5FD890AA22807C6800B1CE7F /* MyQotProfileHeaderView.swift */,
+				5FD890AE22807CC900B1CE7F /* MyQotProfileHeaderView.xib */,
+			);
+			name = MyQotProfileHeaderView;
+			sourceTree = "<group>";
+		};
+		5FF1A0DE2285614D00D76D55 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				5F7BE7792289563000BA5DCF /* Others */,
+				5FF1A0DF2285615700D76D55 /* Views */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+		5FF1A0DF2285615700D76D55 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				5FD8909C2280766900B1CE7F /* MyQot.storyboard */,
+				5FF1A0E02285618E00D76D55 /* TitleSubtitleTableViewCell.swift */,
+				5FF1A0E12285618E00D76D55 /* TitleSubtitleTableViewCell.xib */,
+				5FF1A0E4228561A000D76D55 /* TitleTableViewCell.swift */,
+				5FF1A0E5228561A000D76D55 /* TitleTableViewCell.xib */,
+				5FF1A0E8228561C800D76D55 /* TitleTableHeaderView.swift */,
+				5FF1A0EA228561FE00D76D55 /* TitleTableHeaderView.xib */,
+				5F8DA6DB228D6DE100E61397 /* BottomNavigationBarView.swift */,
+				5F8DA6DD228D6DED00E61397 /* BottomNavigationBarView.xib */,
+				5F10D0C1228EC60100CC3C7A /* ArticleItemViewController.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		5FF1A0F122857AC900D76D55 /* MyQotAppSettings */ = {
+			isa = PBXGroup;
+			children = (
+				5FF1A10122858A4A00D76D55 /* Others */,
+				5FF1A0F222857AFF00D76D55 /* Core */,
+			);
+			name = MyQotAppSettings;
+			sourceTree = "<group>";
+		};
+		5FF1A0F222857AFF00D76D55 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				5FF1A0F322857B2C00D76D55 /* MyQotAppSettingsViewController.swift */,
+				5FF1A0F522857B4300D76D55 /* MyQotAppSettingsInterface.swift */,
+				5FF1A0F722857B6100D76D55 /* MyQotAppSettingsWorker.swift */,
+				5FF1A0F922857B9400D76D55 /* MyQotAppSettingsPresenter.swift */,
+				5FF1A0FB22857BA300D76D55 /* MyQotAppSettingsInteractor.swift */,
+				5FF1A0FD22857BB300D76D55 /* MyQotAppSettingsRouter.swift */,
+				5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */,
+				5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		5FF1A10122858A4A00D76D55 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -3173,6 +3717,8 @@
 				9115F70D208DFFAE00EE5D1D /* SettingsMenuHeader.xib */,
 				CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */,
 				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
+				5F2E87422292F6D60082323E /* ProfileSettingsFooterView.swift */,
+				5F2E87442292F6E80082323E /* ProfileSettingsFooterView.xib */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -3187,6 +3733,7 @@
 				9115F709208DE05100EE5D1D /* ProfileSettingsProtocols.swift */,
 				9115F6FE208DDFD700EE5D1D /* ProfileSettingsRouter.swift */,
 				91086E38208F0BE50035DA1F /* ProfileSettingsViewController.swift */,
+				5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */,
 				9115F700208DDFEB00EE5D1D /* ProfileSettingsWorker.swift */,
 			);
 			name = Core;
@@ -5081,6 +5628,7 @@
 				3604C92222720CB900A681B3 /* AudioPlayerFullScreen.xib in Resources */,
 				CCAE22D01F6BD7F80017C9EF /* ChartCell.xib in Resources */,
 				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
+				5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */,
 				9166ECEB20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
 				AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */,
@@ -5089,7 +5637,9 @@
 				36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */,
 				360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */,
 				3674FF3920AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.xib in Resources */,
+				5F2E87452292F6E80082323E /* ProfileSettingsFooterView.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
+				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
 				ACF0B9712260B905008CFAEC /* QuestionTableViewCell.xib in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
@@ -5116,16 +5666,19 @@
 				ACF0B950225FC4D6008CFAEC /* DecisionTreeViewController.xib in Resources */,
 				367EA0F121776921003025CE /* Assets.xcassets in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
+				5FD890AF22807CC900B1CE7F /* MyQotProfileHeaderView.xib in Resources */,
 				ACF0B9752260BAD2008CFAEC /* SingleSelectionTableViewCell.xib in Resources */,
 				360CC3C72268BAC00064A991 /* ArticleImageHeaderTableViewCell.xib in Resources */,
 				CCA2DC691EF17BFA00D1DF6A /* LearnContentItemHeaderView.xib in Resources */,
 				36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */,
+				5FD890A922807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.xib in Resources */,
 				368A12602277387900866DB0 /* SF-Pro-Display-Ultralight.otf in Resources */,
 				36718B40224CDC050042881E /* SubsriptionReminderViewController.xib in Resources */,
 				AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */,
 				91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				3631232E20C7CC5C00D97D01 /* SigningEmailViewController.xib in Resources */,
+				5FF1A0EB228561FE00D76D55 /* TitleTableHeaderView.xib in Resources */,
 				3679A4E32175E45300DF761A /* qot_clip.gif in Resources */,
 				7F6567321FE13BFB00A6CB7F /* ScreenHelpViewController.xib in Resources */,
 				36E86D542270651A00371C67 /* ArticleRelatedTableViewCell.xib in Resources */,
@@ -5165,6 +5718,7 @@
 				3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */,
 				91086E502092044C0035DA1F /* SettingsCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
+				5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
@@ -5174,12 +5728,14 @@
 				F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */,
 				F9C1D8C4220DDBB200B40DD2 /* SiriShortcutsViewController.xib in Resources */,
 				36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */,
+				5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
 				DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */,
 				F99DF6062292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
+				5F36074A228C42570074FEC4 /* MyQotSyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */,
@@ -5194,7 +5750,9 @@
 				36AEA4DF2271AC8F00EC9C55 /* AudioPlayerBar.xib in Resources */,
 				F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
+				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
 				36B515CA21638CA800A7B405 /* SupportFAQViewController.xib in Resources */,
+				5F8DA6DE228D6DED00E61397 /* BottomNavigationBarView.xib in Resources */,
 				36D348EE216BAA86006C8D10 /* PrepareNotesHeaderView.xib in Resources */,
 				3698428A20C91F10007A8C8F /* SigningDigitViewController.xib in Resources */,
 				D5EC34AD1EB0D32D00F86B09 /* LearnStrategyAudioPlayerView.xib in Resources */,
@@ -5548,6 +6106,7 @@
 				36E3AD562073783400FB27F1 /* PreparationAnswer.swift in Sources */,
 				3637660C223A4BEC00C2C429 /* DailyBriefWorker.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
+				5F6B38592284079800704676 /* UserProfileModel.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
 				F99DF60F2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift in Sources */,
 				36796A4420D3C49900B55429 /* SigningLoginConfigurator.swift in Sources */,
@@ -5577,6 +6136,7 @@
 				36E6E3EF22492AFF001BE9C7 /* GlobalConstants.swift in Sources */,
 				F9C1D8B2220DD8EC00B40DD2 /* SiriShortcutsRouter.swift in Sources */,
 				CB8AA2C5205A850A0033F573 /* ISODate.swift in Sources */,
+				5F7BE7802289588100BA5DCF /* MyQotSupportInteractor.swift in Sources */,
 				CB3029E82050335A00DD4440 /* KeyboardListener.swift in Sources */,
 				91F5BE402097578300E85A51 /* PermissionsRouter.swift in Sources */,
 				7F6567381FE2893800A6CB7F /* ScreenHelpConfigurator.swift in Sources */,
@@ -5595,6 +6155,7 @@
 				CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */,
 				CBB017BB1F9741F200CC1048 /* SyncTask.swift in Sources */,
 				36796A1F20D3C45200B55429 /* SigningCountryInterface.swift in Sources */,
+				5F62BEA6228AE74900852F7E /* MyQotSiriShortcutsPresenter.swift in Sources */,
 				CBBC00FC1FC5B10600C544D8 /* Filters.swift in Sources */,
 				CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */,
 				ACF0B9782260BC80008CFAEC /* TextTableViewCell.swift in Sources */,
@@ -5602,6 +6163,7 @@
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
 				36E4B7B2219EBFED00049EE8 /* TutorialConfigurator.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
+				5F544FD122967FE500616626 /* ContentService+EditAccount.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
 				F9C1D8BE220DDA2D00B40DD2 /* SiriShortcutsInteractor.swift in Sources */,
 				36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */,
@@ -5614,7 +6176,9 @@
 				369353A722983AB9008BBB72 /* PrepareCheckListModel.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
+				5F2E87432292F6D60082323E /* ProfileSettingsFooterView.swift in Sources */,
 				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
+				5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */,
 				ACD399F5229402EC00DDE1BD /* AnswerKeys.swift in Sources */,
 				36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */,
 				36796A4820D3C49900B55429 /* SigningLoginRouter.swift in Sources */,
@@ -5623,6 +6187,7 @@
 				CBC5ACC61F17C58F007E1E9C /* UpdateRelationsOperation.swift in Sources */,
 				CBFECCAA1F33492D0076ACE6 /* EKEventStore+Convenience.swift in Sources */,
 				CB9B07651EF929E50017F6C3 /* EKEvent+JSONEncodable.swift in Sources */,
+				5FF1A0FE22857BB300D76D55 /* MyQotAppSettingsRouter.swift in Sources */,
 				3608382A225F3ED000664B9B /* ArticleViewController.swift in Sources */,
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				36D535DD20A711E800F1C2FC /* PartnerEditRouter.swift in Sources */,
@@ -5633,7 +6198,10 @@
 				36A7B9422166454A006C18F0 /* PrepareSectionHeaderView.swift in Sources */,
 				ACB99E8C226F3A4600A73709 /* DotsLoadingView.swift in Sources */,
 				36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */,
+				5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */,
+				5F57F9F3228317AA003A9EDF /* MyQotAccountSettingsInterface.swift in Sources */,
 				36376648223A7DE100C2C429 /* LevelTwoWorker.swift in Sources */,
+				5F7BE79C22899F8500BA5DCF /* MyQotAboutUsRouter.swift in Sources */,
 				7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */,
 				ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */,
 				7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */,
@@ -5653,6 +6221,7 @@
 				CBC1DC291F0FB68000F6D056 /* AnswerDecision.swift in Sources */,
 				CBB237F01E6FFF1200AB5AEF /* AppDelegate.swift in Sources */,
 				7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */,
+				5F62BE90228AB5E900852F7E /* MyQotSupportFaqInteractor.swift in Sources */,
 				7F6567401FE2897A00A6CB7F /* ScreenHelpRouter.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */,
@@ -5672,10 +6241,14 @@
 				AC103E412285B27200F426F0 /* MindsetShifterChecklistWorker.swift in Sources */,
 				36796A0820D3C41F00B55429 /* SigningCreatePasswordWorker.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
+				5F62BE96228AB63A00852F7E /* MyQotSupportFaqPresenter.swift in Sources */,
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
+				5F62BE9A228AB66100852F7E /* MyQotSupportFaqWorker.swift in Sources */,
 				366AFD0C20BD9F9300109F29 /* SigningEmailPresenter.swift in Sources */,
+				5F36072C228BEDA20074FEC4 /* MyQotSensorsInterface.swift in Sources */,
 				CB3437721F00ED3200D89D4F /* RealmObserver.swift in Sources */,
+				5F7BE7822289588F00BA5DCF /* MyQotSupportWorker.swift in Sources */,
 				914A5E1B207FB33200092121 /* SettingsBubblesRouter.swift in Sources */,
 				36796A0520D3C41F00B55429 /* SigningCreatePasswordViewController.swift in Sources */,
 				36718B52224D20030042881E /* SubsriptionReminderConfigurator.swift in Sources */,
@@ -5689,7 +6262,9 @@
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				363178E51FDEE8D700833958 /* RealmGuideItemLearn.swift in Sources */,
+				5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */,
 				CCAF03251E801B0E00015125 /* OldSettingsViewController.swift in Sources */,
+				5F360728228BECD70074FEC4 /* MyQotSensorsRouter.swift in Sources */,
 				914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */,
 				91086E5620920ABF0035DA1F /* SettingsModel.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
@@ -5700,6 +6275,7 @@
 				ACF0B947225FC41F008CFAEC /* DecisionTreeInterface.swift in Sources */,
 				91086E44209202400035DA1F /* SettingsConfigurator.swift in Sources */,
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
+				5F6B38572284074200704676 /* UserProfileManager.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
 				F99DF5FE2292D77000341DAB /* ToolsCollectionsModel.swift in Sources */,
 				7F6567461FE297ED00A6CB7F /* ScreenHelpInterfaces.swift in Sources */,
@@ -5710,7 +6286,7 @@
 				CCA2DC6C1EF290DF00D1DF6A /* LearnContentItemBulletCell.swift in Sources */,
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				36D58A562149727600D5E6D2 /* UIDevice+Convenience.swift in Sources */,
-				3637661B223A4C0400C2C429 /* MyQotPresenter.swift in Sources */,
+				3637661B223A4C0400C2C429 /* MyQotProfilePresenter.swift in Sources */,
 				3637667C223BFF3800C2C429 /* StrategyListConfigurator.swift in Sources */,
 				CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */,
 				CBD4BE97201246D4008A0E9E /* GuideProvider.swift in Sources */,
@@ -5729,6 +6305,8 @@
 				36376660223AA61100C2C429 /* LevelThreeViewController.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
 				914A5E29207FB54A00092121 /* BubblesView.swift in Sources */,
+				5F62BEA8228AE75400852F7E /* MyQotSiriShortcutsWorker.swift in Sources */,
+				5FF1A0E9228561C800D76D55 /* TitleTableHeaderView.swift in Sources */,
 				850312EB1F33670900DB5A6B /* ClickableLabel.swift in Sources */,
 				F95B923A228EAE96000DEAEC /* ToolsInteractor.swift in Sources */,
 				F99DF6082292DB5D00341DAB /* ToolsCollectionsVideoTableViewCell.swift in Sources */,
@@ -5776,13 +6354,16 @@
 				36376611223A4BEC00C2C429 /* DailyBriefModel.swift in Sources */,
 				DB68059B218210E700C2FC69 /* MorningInterviewPresenter.swift in Sources */,
 				7FCF5FA41FC2E9FA00CD1E5E /* TabBarItem.swift in Sources */,
+				5F360743228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift in Sources */,
 				91F5BE44209757C300E85A51 /* PermissionsConfigurator.swift in Sources */,
 				AC103E462285B27200F426F0 /* MindsetShifterChecklistModel.swift in Sources */,
 				7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */,
+				5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */,
 				365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */,
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
 				CBD4BEA42018CDA7008A0E9E /* GuideInteractor.swift in Sources */,
 				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
+				5F360735228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift in Sources */,
 				3637665F223AA61100C2C429 /* LevelThreeInterface.swift in Sources */,
 				CB7F046E1F8E0999001F4DE6 /* SyncOperation.swift in Sources */,
 				36D348EC216BAA4E006C8D10 /* PrepareNotesHeaderView.swift in Sources */,
@@ -5809,10 +6390,12 @@
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CB3333E720480DF8009480DF /* ShareRouter.swift in Sources */,
 				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
+				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
+				5FF1A0F822857B6100D76D55 /* MyQotAppSettingsWorker.swift in Sources */,
 				365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */,
 				36796A2320D3C45200B55429 /* SigningCountryPresenter.swift in Sources */,
 				360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */,
@@ -5820,13 +6403,16 @@
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
 				36D535DE20A711E800F1C2FC /* PartnerEditInterface.swift in Sources */,
 				F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */,
-				3637661F223A4C0400C2C429 /* MyQotViewController.swift in Sources */,
+				3637661F223A4C0400C2C429 /* MyQotProfileViewController.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				36E4B7AF219EBFED00049EE8 /* TutorialViewController.swift in Sources */,
+				5F57F9ED22831711003A9EDF /* MyQotAccountSettingsWorker.swift in Sources */,
 				CC143A511EC495CE001FB76E /* StatisticsCoordinator.swift in Sources */,
 				91086E3B20909E7A0035DA1F /* ProfileSettingsModel.swift in Sources */,
 				CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */,
+				5FD890A822807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift in Sources */,
 				CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */,
+				5F7BE78C22895ED200BA5DCF /* MyQotSupportModel.swift in Sources */,
 				36376661223AA61100C2C429 /* LevelThreeInteractor.swift in Sources */,
 				36083826225F3ED000664B9B /* ArticlePresenter.swift in Sources */,
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
@@ -5848,25 +6434,30 @@
 				CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */,
 				CB3333E120480DDF009480DF /* ShareConfigurator.swift in Sources */,
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
+				5F7BE79422899EA100BA5DCF /* MyQotAboutUsInterface.swift in Sources */,
 				85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */,
 				CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */,
 				CBB4DCDC1ED475F00071494A /* DownSyncChange.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
 				36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */,
 				CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */,
+				5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */,
 				CB3437701EFE937000D89D4F /* ContentService.swift in Sources */,
 				36796A0C20D3C41F00B55429 /* SigningCreatePasswordRouter.swift in Sources */,
+				5FF1A0FA22857B9400D76D55 /* MyQotAppSettingsPresenter.swift in Sources */,
 				912C9E3D203C71F900C1AA76 /* MyToBeVisionPresenter.swift in Sources */,
 				CBFD47CE200E146200A91899 /* CalendarSyncSettingsManager.swift in Sources */,
 				36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */,
 				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
 				CC7D21B01EFC1348007A062E /* WeeklyChoicesCell.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
+				5F57F9E62282E741003A9EDF /* ContentService+Knowing.swift in Sources */,
 				7F2B77D11FC5C33700203D90 /* ToolsViewModel.swift in Sources */,
 				369353A622983AB9008BBB72 /* PrepareCheckListInteractor.swift in Sources */,
 				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,
 				3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */,
 				F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */,
+				5F36074C228C520F0074FEC4 /* ContentService+SyncedCalendars.swift in Sources */,
 				CCE6CD881F15357600B66DA3 /* StatisticsPeriodIntermediary.swift in Sources */,
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
@@ -5884,7 +6475,7 @@
 				36376663223AA61100C2C429 /* LevelThreeConfigurator.swift in Sources */,
 				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
-				36376622223A4C0400C2C429 /* MyQotConfigurator.swift in Sources */,
+				36376622223A4C0400C2C429 /* MyQotProfileConfigurator.swift in Sources */,
 				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,
 				36376668223ABB2D00C2C429 /* StrategyTableViewCell.swift in Sources */,
 				ACD399F1229402A300DDE1BD /* AnswerType.swift in Sources */,
@@ -5892,7 +6483,7 @@
 				36780AB6215528EA00507D1E /* TabMenuView.swift in Sources */,
 				36E4B7AC219EBFED00049EE8 /* TutorialWorker.swift in Sources */,
 				AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */,
-				3637661C223A4C0400C2C429 /* MyQotWorker.swift in Sources */,
+				3637661C223A4C0400C2C429 /* MyQotProfileWorker.swift in Sources */,
 				36376649223A7DE100C2C429 /* LevelTwoRouter.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
 				ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */,
@@ -5917,10 +6508,12 @@
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				854708E21F306628007AB971 /* ContentItemAnimation.swift in Sources */,
+				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
 				CBC1DC1D1F0F988E00F6D056 /* SettingsService.swift in Sources */,
 				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
 				36718B50224D20030042881E /* SubsriptionReminderInteractor.swift in Sources */,
 				7F65672F1FE13BCA00A6CB7F /* ScreenHelpViewController.swift in Sources */,
+				5F7BE79A22899F5F00BA5DCF /* MyQotAboutUsWorker.swift in Sources */,
 				914A5E1D207FB35600092121 /* SettingsBubblesWorker.swift in Sources */,
 				3674FF3820AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.swift in Sources */,
 				ACD399F72294030F00DDE1BD /* TargetType.swift in Sources */,
@@ -5938,12 +6531,16 @@
 				3698428220C91EF3007A8C8F /* SigningDigitWorker.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CB3333E920480E05009480DF /* ShareInteractor.swift in Sources */,
+				5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */,
 				DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */,
+				5F360749228C42570074FEC4 /* MyQotSyncedCalendarCell.swift in Sources */,
 				3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */,
+				5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */,
 				36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
+				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
+				3637661E223A4C0400C2C429 /* MyQotProfileInterface.swift in Sources */,
 				369353A122983AB9008BBB72 /* PrepareCheckListPresenter.swift in Sources */,
-				3637661E223A4C0400C2C429 /* MyQotInterface.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
@@ -5952,7 +6549,7 @@
 				7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */,
 				7F65673C1FE2895B00A6CB7F /* ScreenHelpModels.swift in Sources */,
 				CCE373161E8D330100B79352 /* LibraryViewModel.swift in Sources */,
-				3637661D223A4C0400C2C429 /* MyQotRouter.swift in Sources */,
+				3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */,
 				CB38DBDF1EF52D5C000E0F92 /* LearnStrategyListLayout.swift in Sources */,
 				912C9E3F203C721300C1AA76 /* MyToBeVisionProtocols.swift in Sources */,
 				CBC1DC191F0F7E0200F6D056 /* SettingFormat.swift in Sources */,
@@ -5961,6 +6558,7 @@
 				36796A3020D3C47400B55429 /* SigningProfileDetailViewController.swift in Sources */,
 				7F0888811F0A4B96005CE966 /* Partner.swift in Sources */,
 				CBC1DC2E1F0FC9E800F6D056 /* Object+Convenience.swift in Sources */,
+				5F57F9F122831768003A9EDF /* MyQotAccountSettingsInteractor.swift in Sources */,
 				CBB4DD091EDDC6550071494A /* StartSyncResult.swift in Sources */,
 				CBB017B91F96688900CC1048 /* DownSyncTask.swift in Sources */,
 				91086E42209202280035DA1F /* SettingsWorker.swift in Sources */,
@@ -5972,6 +6570,7 @@
 				7F65673A1FE2894C00A6CB7F /* ScreenHelpInteractor.swift in Sources */,
 				F95B9236228EAE69000DEAEC /* ToolsInterface.swift in Sources */,
 				852DADC61EEEE63500A10882 /* Math.swift in Sources */,
+				5F7BE7A022899FC000BA5DCF /* MyQotAboutUsModel.swift in Sources */,
 				AC981A4721A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				36667696207CF64000D2F5AD /* VisionGeneratorModels.swift in Sources */,
@@ -5989,6 +6588,7 @@
 				AC1A40D0229E88920022156C /* UIViewController+PageTrack.swift in Sources */,
 				36B67B9C1FE1D9C90066A515 /* RealmGuideItem.swift in Sources */,
 				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
+				5FF1A0E22285618E00D76D55 /* TitleSubtitleTableViewCell.swift in Sources */,
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
 				CB6637AD201A323200A995D6 /* UserNotificationsScheduler.swift in Sources */,
 				36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */,
@@ -5997,10 +6597,13 @@
 				3637664E223A7DE100C2C429 /* LevelTwoConfigurator.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				36796A3520D3C47400B55429 /* SigningProfileDetailWorker.swift in Sources */,
+				5F360737228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift in Sources */,
 				3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */,
 				3637665D223AA61100C2C429 /* LevelThreeWorker.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
+				5F57F9F5228317C2003A9EDF /* MyQotAccountSettingsRouter.swift in Sources */,
 				AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */,
+				5FF1A0F422857B2C00D76D55 /* MyQotAppSettingsViewController.swift in Sources */,
 				CB9BB0C01F0CCC30009067D7 /* EventsService.swift in Sources */,
 				91F5BE46209757D300E85A51 /* PermissionsPresenter.swift in Sources */,
 				366AFD0D20BD9F9300109F29 /* SigningEmailWorker.swift in Sources */,
@@ -6008,6 +6611,7 @@
 				CCC1B6AB1E8B9B7300D1461F /* LearnCategoryListViewModel.swift in Sources */,
 				AC87A7A2220D981600622C90 /* Intents.intentdefinition in Sources */,
 				CBD4BEA02018BF32008A0E9E /* GuideRouter.swift in Sources */,
+				5F8DA6DC228D6DE100E61397 /* BottomNavigationBarView.swift in Sources */,
 				36796A2F20D3C47400B55429 /* SigningProfileDetailPresenter.swift in Sources */,
 				36796A4920D3C49900B55429 /* SigningLoginViewController.swift in Sources */,
 				CBD4BEA62018D30B008A0E9E /* GuideObserver.swift in Sources */,
@@ -6040,6 +6644,7 @@
 				CB9442251FD80B5700E2B122 /* AppState.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
+				5F7BE78F22896E0700BA5DCF /* ContentService+Support.swift in Sources */,
 				CC143A531EC49641001FB76E /* ChartViewController.swift in Sources */,
 				36E86D532270651A00371C67 /* ArticleRelatedTableViewCell.swift in Sources */,
 				3674FF2A20AADE7D008EEB6C /* PartnersOverviewRouter.swift in Sources */,
@@ -6049,10 +6654,12 @@
 				CB9AFD171F014BF800D067F2 /* PreparationIntermediary.swift in Sources */,
 				F9C1D8C3220DDBB200B40DD2 /* SiriShortcutsViewController.swift in Sources */,
 				36376662223AA61100C2C429 /* LevelThreeModel.swift in Sources */,
+				5F36073B228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift in Sources */,
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
 				AC103E2E22847AB500F426F0 /* ConfirmationRouter.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChart.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
+				5F6B385B228414F700704676 /* ContentService+AccountSettings.swift in Sources */,
 				3637665E223AA61100C2C429 /* LevelThreeRouter.swift in Sources */,
 				AC103E432285B27200F426F0 /* MindsetShifterChecklistInterface.swift in Sources */,
 				F9C1D8B4220DD90300B40DD2 /* SiriShortcutsWorker.swift in Sources */,
@@ -6063,6 +6670,7 @@
 				36376678223BFF3800C2C429 /* StrategyListInterface.swift in Sources */,
 				CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */,
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
+				5F36072A228BECE40074FEC4 /* MyQotSensorsConfigurator.swift in Sources */,
 				91CD12F02037168900E27822 /* CGRect+Convenience.swift in Sources */,
 				3637662E223A66AF00C2C429 /* CoachPresenter.swift in Sources */,
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
@@ -6088,6 +6696,7 @@
 				36796A0D20D3C41F00B55429 /* SigningCreatePasswordInteractor.swift in Sources */,
 				36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */,
 				DB68059D218210E700C2FC69 /* MorningInterviewConfiguator.swift in Sources */,
+				5F7BE79822899F2B00BA5DCF /* MyQotAboutUsPresenter.swift in Sources */,
 				F9A8A0192296800000DE3A9C /* ToolsItemsWorker.swift in Sources */,
 				DB680596218210E700C2FC69 /* MorningInterviewWorker.swift in Sources */,
 				CB5134141FAB735E00FBDD66 /* ContentReadIntermediary.swift in Sources */,
@@ -6108,6 +6717,7 @@
 				CB9AFD191F014C0800D067F2 /* PreparationCheckIntermediary.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,
 				CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */,
+				5F360726228BECCC0074FEC4 /* MyQotSensorsWorker.swift in Sources */,
 				91F5BE3E2097576800E85A51 /* PermissionsViewController.swift in Sources */,
 				CBB4DCE41ED827840071494A /* SyncContext.swift in Sources */,
 				CBB98B04201F850100B8EAD7 /* UNCalendarNotificationTrigger+Convenience.swift in Sources */,
@@ -6126,13 +6736,16 @@
 				ACF0B946225FC41F008CFAEC /* DecisionTreeRouter.swift in Sources */,
 				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
 				36083828225F3ED000664B9B /* ArticleRouter.swift in Sources */,
+				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
 				36376647223A7DE100C2C429 /* LevelTwoPresenter.swift in Sources */,
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
+				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
 				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
+				5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				9115F708208DE03F00EE5D1D /* ProfileSettingsPresenter.swift in Sources */,
 				CCE6CD801F15299F00B66DA3 /* StatisticsPeriod.swift in Sources */,
@@ -6141,6 +6754,7 @@
 				7FCF0EF91FD9777100138D77 /* MyUniverseContentView.swift in Sources */,
 				CC16578C1F75194900D52660 /* CLLocation+Convenience.swift in Sources */,
 				CC02E1441F2789FE00134574 /* CLLocationManager+Convenience.swift in Sources */,
+				5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */,
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
@@ -6163,9 +6777,11 @@
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */,
+				5F57F9E42282E65B003A9EDF /* ContentService+MyQotProfile.swift in Sources */,
 				CB53F0D820235A9C007C624B /* Atomic.swift in Sources */,
 				CC944DB61EE804CD00B8423C /* ChartTableViewCell.swift in Sources */,
 				368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */,
+				5F7BE788228958BE00BA5DCF /* MyQotSupportViewController.swift in Sources */,
 				36376677223BFF3800C2C429 /* StrategyListRouter.swift in Sources */,
 				F95B9242228EE273000DEAEC /* ToolsTableViewCell.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
@@ -6175,6 +6791,7 @@
 				F95B923E228EAECB000DEAEC /* ToolsConfigurator.swift in Sources */,
 				9150413320FDF40A00D43D18 /* SensorPresenter.swift in Sources */,
 				366AFD1020BD9F9300109F29 /* SigningEmailViewController.swift in Sources */,
+				5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */,
 				CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */,
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,
 				CB34375E1EFD653B00D89D4F /* Answer.swift in Sources */,
@@ -6198,6 +6815,7 @@
 				3674FF2820AADE7D008EEB6C /* PartnersOverviewPresenter.swift in Sources */,
 				CC7D21AA1EFC0856007A062E /* ArticleContentItemCoordinator.swift in Sources */,
 				360256E42051837300862B0E /* SearchWorker.swift in Sources */,
+				5F7BE77E2289586E00BA5DCF /* MyQotSupportInterface.swift in Sources */,
 				91F5BE5220975E1300E85A51 /* PermissionsInteractor.swift in Sources */,
 				85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
@@ -6209,28 +6827,33 @@
 				85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */,
 				36796A0A20D3C41F00B55429 /* SigningCreatePasswordInterface.swift in Sources */,
 				36E4B7AB219EBFED00049EE8 /* TutorialPresenter.swift in Sources */,
+				5F7BE786228958AE00BA5DCF /* MyQotSupportConfigurator.swift in Sources */,
 				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,
 				851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */,
 				9150413620FDF40A00D43D18 /* SensorInterface.swift in Sources */,
 				36796A1D20D3C45200B55429 /* SigningCountryRouter.swift in Sources */,
 				36E6E3F822493C8A001BE9C7 /* DismissComponentAnimator.swift in Sources */,
 				3674FF2D20AADE7D008EEB6C /* PartnersOverviewInteractor.swift in Sources */,
+				5F7BE78A22895B6900BA5DCF /* MyQotSupportRouter.swift in Sources */,
 				366AFD0F20BD9F9300109F29 /* SigningEmailInterface.swift in Sources */,
 				36D535DC20A711E800F1C2FC /* PartnerEditWorker.swift in Sources */,
 				3691175E20650B0A007D28D3 /* PageViewController.swift in Sources */,
+				5F62BE8E228AB5D700852F7E /* MyQotSupportFaqViewController.swift in Sources */,
 				852DADDA1EF147AA00A10882 /* MeetingsTimeBetweenChart.swift in Sources */,
 				7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */,
 				7F9217B71FD01C1600CAE9E0 /* CalendarPermission.swift in Sources */,
 				CB3333E520480DEF009480DF /* ShareProtocols.swift in Sources */,
 				7FE674B91F8F8F3600FC7407 /* ArticleCollectionHeader.swift in Sources */,
-				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
 				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
+				5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */,
+				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
 				AC103E402285B27200F426F0 /* MindsetShifterChecklistPresenter.swift in Sources */,
 				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
 				F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,
+				5F62BEAA228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				3637660E223A4BEC00C2C429 /* DailyBriefInterface.swift in Sources */,
 				CBC1DC351F14D34000F6D056 /* SettingValue.swift in Sources */,
@@ -6251,7 +6874,10 @@
 				F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */,
 				CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */,
 				CBD4BEAA2018E7D4008A0E9E /* GuideConfigurator.swift in Sources */,
+				5FF1A10322858A7400D76D55 /* ContentService+AppSettings.swift in Sources */,
 				ACA4B18E2211D1EA00552A54 /* NSUserActivity+Keys.swift in Sources */,
+				5F62BEAC228AE77000852F7E /* MyQotSiriShortcutsRouter.swift in Sources */,
+				5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */,
 				7F8DB4AB1FA2047D00DFE006 /* PartnersAnimation.swift in Sources */,
 				36E4B7AD219EBFED00049EE8 /* TutorialRouter.swift in Sources */,
 				366183F721635FAA00634560 /* SupportFAQTableViewCell.swift in Sources */,
@@ -6279,6 +6905,7 @@
 				36796A2220D3C45200B55429 /* SigningCountryWorker.swift in Sources */,
 				CBFD47CA200E0E6100A91899 /* RealmCalendarSyncSetting.swift in Sources */,
 				7F1D3D251F8E29050071D322 /* RemoteLogDestination.swift in Sources */,
+				5F360733228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift in Sources */,
 				AC103E3122847AB500F426F0 /* ConfirmationInteractor.swift in Sources */,
 				366183EB2162793700634560 /* SupportFAQViewController.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* StatisticsService.swift in Sources */,
@@ -6295,6 +6922,7 @@
 				360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
+				5F7BE7A22289A93300BA5DCF /* ContentService+AboutUs.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				91CCC996206938EE00E0C251 /* EventDate.swift in Sources */,
 				AC103E2D22847AB500F426F0 /* ConfirmationWorker.swift in Sources */,
@@ -6306,8 +6934,10 @@
 				91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */,
 				7F3A9CC21FCDC89D000F1744 /* ArticleCollectionViewData.swift in Sources */,
 				CBFED33A1F7938970006270D /* ChatItemQueue.swift in Sources */,
-				36376621223A4C0400C2C429 /* MyQotModel.swift in Sources */,
-				36376620223A4C0400C2C429 /* MyQotInteractor.swift in Sources */,
+				36376621223A4C0400C2C429 /* MyQotProfileModel.swift in Sources */,
+				5F62BEA2228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift in Sources */,
+				5F360730228C021F0074FEC4 /* ContentService+Sensors.swift in Sources */,
+				36376620223A4C0400C2C429 /* MyQotProfileInteractor.swift in Sources */,
 				CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */,
 				91F5BE4A209757F900E85A51 /* PermissionsModel.swift in Sources */,
 				3698428120C91EF3007A8C8F /* SigningDigitPresenter.swift in Sources */,
@@ -6320,6 +6950,7 @@
 				F99DF6002292D78900341DAB /* ToolsCollectionsConfigurator.swift in Sources */,
 				36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */,
 				CB73991F1FBDA0D900C5FF57 /* Token.swift in Sources */,
+				5FF1A0E6228561A000D76D55 /* TitleTableViewCell.swift in Sources */,
 				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,
 				7F3A9CBE1FCDBA51000F1744 /* FeedbackService.swift in Sources */,
 				CBB4DCF11EDC0C420071494A /* SyncRecord.swift in Sources */,
@@ -6336,9 +6967,11 @@
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
+				5F36073F228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,
 				CBC191131F603055009E483B /* URL+Convenience.swift in Sources */,
+				5FF1A0F622857B4300D76D55 /* MyQotAppSettingsInterface.swift in Sources */,
 				CBC1DC151F0F68F900F6D056 /* SystemSetting.swift in Sources */,
 				CB3333EB20480E16009480DF /* SharePresenter.swift in Sources */,
 				3698428420C91EF3007A8C8F /* SigningDigitInterface.swift in Sources */,
@@ -6351,6 +6984,7 @@
 				F9C1D8CB220DEA0E00B40DD2 /* SiriShortcutsCell.swift in Sources */,
 				36796A5920D3C4B800B55429 /* SigningInfoInterface.swift in Sources */,
 				3637667B223BFF3800C2C429 /* StrategyListModel.swift in Sources */,
+				5F7BE7A42289AC2800BA5DCF /* MyQotAboutUsConfigurator.swift in Sources */,
 				360256F020528DBD00862B0E /* SearchTableViewCell.swift in Sources */,
 				365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */,
 				CBD4BEA82018DFD9008A0E9E /* GuidePresenter.swift in Sources */,
@@ -6373,12 +7007,14 @@
 				CB53F0DA20237507007C624B /* Keychain.swift in Sources */,
 				366AFD1320BD9F9300109F29 /* SigningEmailConfigurator.swift in Sources */,
 				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
+				5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */,
 				E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */,
 				CCE6CD861F15313300B66DA3 /* StatisticsIntermediary.swift in Sources */,
 				3637665C223AA61100C2C429 /* LevelThreePresenter.swift in Sources */,
 				CB1D5E3A1EC5E25A00BCDF8D /* ContentCategoryData.swift in Sources */,
 				3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */,
 				36780AB22154D3D300507D1E /* TabBar.swift in Sources */,
+				5FD890AB22807C6800B1CE7F /* MyQotProfileHeaderView.swift in Sources */,
 				36376612223A4BEC00C2C429 /* DailyBriefConfigurator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

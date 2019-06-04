@@ -31,6 +31,12 @@ struct Animation {
     static let duration_6: TimeInterval = 6
 }
 
+struct FontSize {
+    static let fontSize12: CGFloat = 12.0
+    static let fontSize14: CGFloat = 14.0
+    static let fontSize16: CGFloat = 16.0
+}
+
 enum FontName: String {
     case apercuBold = "Apercu-Bold"
     case apercuMedium = "Apercu-Medium"
@@ -111,6 +117,8 @@ struct Layout {
 
     enum CornerRadius: CGFloat {
         case eight = 8
+        case cornerRadius12 = 12
+        case cornerRadius20 = 20
         case chatLabelOptionNavigation = 5
         case chatLabelOptionUpdate = 10
     }

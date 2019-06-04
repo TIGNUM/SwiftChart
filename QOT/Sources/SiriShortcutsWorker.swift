@@ -27,6 +27,7 @@ final class SiriShortcutsWorker {
         let shortcuts = ShortcutType.allCases.map {
             return SiriShortcutsModel.Shortcut(type: $0,
                                                title: services.contentService.siriTitle(for: $0),
+                                               trackingKey: services.contentService.siriTrackingKey(for: $0),
                                                suggestion: services.contentService.siriSuggestionPhrase(for: $0)) }
         return SiriShortcutsModel(explanation: explanation, shortcuts: shortcuts)
     }

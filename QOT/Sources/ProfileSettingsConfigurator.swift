@@ -7,18 +7,19 @@
 //
 
 import Foundation
+import qot_dal
 
 final class ProfileSettingsConfigurator: AppStateAccess {
 
-    static func make() -> (ProfileSettingsViewController) -> Void {
-        return { (settingsMenuViewController) in
-            // FIXME: Do we need router here?
-            //let router = ProfileSettingsRouter(settingsMenuViewController: settingsMenuViewController)
-            let worker = ProfileSettingsWorker(services: appState.services,
-                                            syncManger: appState.appCoordinator.syncManager)
-            let presenter = ProfileSettingsPresenter(viewController: settingsMenuViewController)
-            let interactor = ProfileSettingsInteractor(worker: worker, presenter: presenter)
-            settingsMenuViewController.interactor = interactor
-        }
+    static func configure(viewController: ProfileSettingsViewController) {
+        guard let menuViewModel = SettingsMenuViewModel(services: appState.services),
+        let settingsViewModel = SettingsViewModel(services: appState.services, settingsType: .profile) else { return }
+        let worker = ProfileSettingsWorker(services: appState.services)
+        let presenter = ProfileSettingsPresenter(viewController: viewController)
+        let interactor = ProfileSettingsInteractor(worker: worker, presenter: presenter)
+        viewController.services = appState.services
+        viewController.networkManager = appState.networkManager
+        viewController.launchOptions = nil
+        viewController.interactor = interactor
     }
 }

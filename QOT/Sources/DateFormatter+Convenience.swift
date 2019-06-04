@@ -30,6 +30,13 @@ private let isoDateFormatter: DateFormatter = {
     return formatter
 }()
 
+private let memberSinceDateFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "d MMMM yyy"
+    formatter.timeZone = TimeZone(abbreviation: "UTC")
+    return formatter
+}()
+
 private let dailyPrepDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
@@ -73,8 +80,13 @@ private let mediumDateFormatter: DateFormatter = {
 
 extension DateFormatter {
     // FIXME: MUST MUST MUST be unit tested.
+    
     static var iso8601: DateFormatter {
         return iso8601DateFormatter
+    }
+    
+    static var memberSince: DateFormatter {
+        return memberSinceDateFormatter
     }
 
     static var displayTime: DateFormatter {

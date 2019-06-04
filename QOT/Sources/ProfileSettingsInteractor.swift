@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 enum ProfileField {
 
@@ -29,10 +30,12 @@ final class ProfileSettingsInteractor {
         self.worker = worker
         self.presenter = presenter
     }
-
+    
     func viewDidLoad() {
-        guard let settingsMenu = worker.profile() else { return }
-        presenter.loadSettingsMenu(settingsMenu)
+        worker.profile({[weak self] user in
+            guard let userData = user else { return }
+            self?.presenter.loadSettingsMenu(userData)
+        })
     }
 }
 
@@ -40,40 +43,40 @@ final class ProfileSettingsInteractor {
 
 extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
 
-    func updateProfile(field: ProfileField, profile: ProfileSettingsModel) {
-        switch field {
-        case .telephone:
-            worker.updateProfileTelephone(profile)
-        case .jobTitle:
-            worker.updateJobTitle(profile)
-        case .givenName:
-            worker.updateProfileGivenName(profile)
-        case .familyName:
-            worker.updateProfileFamilyName(profile)
-        case .gender:
-            worker.updateProfileGender(profile)
-        case .birthday:
-            worker.updateProfileBirthday(profile)
-        case .height:
-            worker.updateHeight(profile)
-        case .weight:
-            worker.updateWeight(profile)
-        }
-
-        presenter.updateSettingsMenu(profile)
+    var editAccountTitle: String {
+        return worker.editAccountTitle
     }
-
-    func updateSettingsMenuImage(image: UIImage?, settingsMenu: ProfileSettingsModel) {
-        do {
-            if let newImage = image {
-                let url = try worker.saveImage(newImage)
-                worker.updateSettingsProfileImage(url)
-            } else {
-                worker.updateSettingsProfileImage(nil)
-            }
-            presenter.updateSettingsMenu(settingsMenu)
-        } catch {
-            presenter.presentImageError(error)
+    
+    var profile: QDMUser? {
+        get {
+            return worker.profile
         }
+        set {
+            worker.profile = newValue
+        }
+    }
+    
+    func updateUser(_ profile: QDMUser) {
+        worker.update(user: profile)
+    }
+    
+    func numberOfSections() -> Int {
+        return worker.numberOfSections()
+    }
+    
+    func numberOfItemsInSection(in section: Int) -> Int {
+        return worker.numberOfItemsInSection(in: section)
+    }
+    
+    func row(at indexPath: IndexPath) -> SettingsRow {
+        return worker.row(at: indexPath)
+    }
+    
+    func generateSections() {
+        worker.generateSections()
+    }
+    
+    func headerTitle(in section: Int) -> String {
+        return worker.headerTitle(in: section)
     }
 }

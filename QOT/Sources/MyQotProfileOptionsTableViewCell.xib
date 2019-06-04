@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Light.otf">
+            <string>SFProDisplay-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="98" id="KGk-i7-Jjw" customClass="MyQotProfileOptionsTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="357" height="98"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="357" height="97.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wT8-LD-4jv">
+                        <rect key="frame" x="24" y="24" width="293" height="24"/>
+                        <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="20"/>
+                        <color key="textColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcl-rv-hhm">
+                        <rect key="frame" x="24" y="56" width="293" height="17.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                        <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mac-w3-gAK">
+                        <rect key="frame" x="24" y="96.5" width="333" height="1"/>
+                        <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="2tj-Zc-YmX"/>
+                        </constraints>
+                    </view>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="arrowFront" translatesAutoresizingMaskIntoConstraints="NO" id="X1Y-h4-jyH">
+                        <rect key="frame" x="318" y="41" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="3Kg-ap-uwD"/>
+                            <constraint firstAttribute="height" constant="16" id="cCI-3Y-7Fl"/>
+                        </constraints>
+                    </imageView>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="mac-w3-gAK" firstAttribute="top" secondItem="Tcl-rv-hhm" secondAttribute="bottom" constant="23" id="0iG-uQ-vvE"/>
+                    <constraint firstAttribute="bottom" secondItem="mac-w3-gAK" secondAttribute="bottom" id="FdS-f4-72Z"/>
+                    <constraint firstItem="wT8-LD-4jv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="PNs-Jg-Lng"/>
+                    <constraint firstAttribute="trailing" secondItem="mac-w3-gAK" secondAttribute="trailing" id="Piy-kM-o36"/>
+                    <constraint firstItem="wT8-LD-4jv" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="Qbp-sK-dss"/>
+                    <constraint firstItem="X1Y-h4-jyH" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="SND-kP-4Gk"/>
+                    <constraint firstItem="Tcl-rv-hhm" firstAttribute="trailing" secondItem="wT8-LD-4jv" secondAttribute="trailing" id="U2z-BE-Ubs"/>
+                    <constraint firstAttribute="trailing" secondItem="X1Y-h4-jyH" secondAttribute="trailing" constant="23" id="Yjx-UK-SPu"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="wT8-LD-4jv" secondAttribute="trailing" constant="24" id="fFZ-sa-bNX"/>
+                    <constraint firstItem="Tcl-rv-hhm" firstAttribute="leading" secondItem="wT8-LD-4jv" secondAttribute="leading" id="hDb-WT-RyH"/>
+                    <constraint firstItem="Tcl-rv-hhm" firstAttribute="top" secondItem="wT8-LD-4jv" secondAttribute="bottom" constant="8" id="n5k-HK-HEc"/>
+                    <constraint firstItem="mac-w3-gAK" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="nWc-NB-RmF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="headingLabel" destination="wT8-LD-4jv" id="x42-tY-kxJ"/>
+                <outlet property="separator" destination="mac-w3-gAK" id="Mc8-Xu-V0K"/>
+                <outlet property="subHeadingLabel" destination="Tcl-rv-hhm" id="Djq-WM-uZB"/>
+            </connections>
+            <point key="canvasLocation" x="167.19999999999999" y="171.81409295352324"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="arrowFront" width="16" height="16"/>
+    </resources>
+</document>
