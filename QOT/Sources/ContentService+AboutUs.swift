@@ -9,7 +9,7 @@
 import Foundation
 
 extension ContentService {
-    
+
     enum AboutUs: String, CaseIterable, Predicatable {
         case aboutTignumSubtitle = "about_tignum_subtitle"
         case contentAndCopyrightSubtitle = "about_tignum_content_and_copyright_subtitle"
@@ -21,7 +21,7 @@ extension ContentService {
         case privacy = "about_tignum_privay"
         case termsAndConditions = "about_tignum_terms_conditions"
         case copyright = "about_tignum_content_copyright"
-        
+
         var predicate: NSPredicate {
             return NSPredicate(tag: rawValue)
         }

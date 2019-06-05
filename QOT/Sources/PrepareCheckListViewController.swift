@@ -27,7 +27,7 @@ final class PrepareCheckListViewController: UIViewController {
         button.backgroundColor = .carbonDark
         let attributedTitle = NSAttributedString(string: R.string.localized.morningControllerDoneButton().capitalized,
                                                  letterSpacing: 0.2,
-                                                 font: .sfProTextSemibold(ofSize: 14),
+                                                 font: .sfProtextSemibold(ofSize: 14),
                                                  textColor: .accent,
                                                  alignment: .center)
         button.setAttributedTitle(attributedTitle, for: .normal)

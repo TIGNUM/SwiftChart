@@ -9,13 +9,13 @@
 import Foundation
 
 final class MyQotSupportFaqPresenter {
-    
+
     // MARK: - Properties
-    
+
     private weak var viewController: MyQotSupportFaqViewControllerInterface?
-    
+
     // MARK: - Init
-    
+
     init(viewController: MyQotSupportFaqViewControllerInterface) {
         self.viewController = viewController
     }

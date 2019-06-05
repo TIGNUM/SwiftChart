@@ -9,7 +9,7 @@
 import Foundation
 
 struct MyQotAboutUsModel {
-    
+
     enum MyQotAboutUsModelItem: Int {
         case benefits
         case about
@@ -20,7 +20,7 @@ struct MyQotAboutUsModel {
         static var aboutValues: [MyQotAboutUsModelItem] {
             return [.copyright, .about, .privacy, .terms, .benefits ]
         }
-      
+
         var primaryKey: Int {
             switch self {
             case .benefits: return 100101
@@ -30,7 +30,7 @@ struct MyQotAboutUsModel {
             case .copyright: return 100105
             }
         }
-        
+
         func trackingKeys(for services: Services) -> String {
             switch self {
             case .benefits:
@@ -45,7 +45,7 @@ struct MyQotAboutUsModel {
                 return ContentService.AboutUs.copyright.rawValue
             }
         }
-        
+
         func title(for services: Services) -> String {
             switch self {
             case .benefits:
@@ -60,7 +60,7 @@ struct MyQotAboutUsModel {
                 return services.contentService.localizedString(for: ContentService.AboutUs.copyright.predicate) ?? ""
             }
         }
-        
+
         func subtitle(for services: Services) -> String {
             switch self {
             case .benefits:
@@ -75,7 +75,7 @@ struct MyQotAboutUsModel {
                 return services.contentService.localizedString(for: ContentService.AboutUs.contentAndCopyrightSubtitle.predicate) ?? ""
             }
         }
-        
+
         var pageName: PageName {
             switch self {
             case .benefits: return .benefits
@@ -85,7 +85,7 @@ struct MyQotAboutUsModel {
             case .copyright: return .copyrights
             }
         }
-        
+
         func contentCollection(for service: ContentService) -> ContentCollection? {
             switch self {
             case .benefits: return service.contentCollection(id: primaryKey)

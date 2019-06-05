@@ -14,22 +14,22 @@ protocol ProfileSettingsFooterViewProtocol: class {
 }
 
 final class ProfileSettingsFooterView: UIView {
-    
+
     @IBOutlet private weak var cancelButton: UIButton!
     @IBOutlet private weak var saveButton: UIButton!
     weak var delegate: ProfileSettingsFooterViewProtocol?
     var isEnabled: Bool = false
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         saveButton.setTitleColor(.sand30, for: .normal)
         saveButton.setTitle("Save", for: .normal)
         saveButton.backgroundColor = .sand
-        saveButton.corner(radius: Layout.CornerRadius.cornerRadius12.rawValue)
-        cancelButton.corner(radius: Layout.CornerRadius.cornerRadius12.rawValue, borderColor: .accent30, borderWidth: 1)
+        saveButton.corner(radius: Layout.cornerRadius12)
+        cancelButton.corner(radius: Layout.cornerRadius12, borderColor: .accent30, borderWidth: 1)
         cancelButton.setTitle("Cancel", for: .normal)
     }
-    
+
     func setupView(isEnabled: Bool) {
         self.isEnabled = isEnabled
         saveButton.isEnabled = isEnabled
@@ -42,7 +42,7 @@ extension ProfileSettingsFooterView {
     @IBAction func saveAction(_ sender: UIButton) {
         delegate?.didSave()
     }
-    
+
     @IBAction func cancelAction(_ sender: UIButton) {
         delegate?.didCancel()
     }

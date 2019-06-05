@@ -9,7 +9,7 @@
 import Foundation
 
 final class MyQotAppSettingsConfigurator: AppStateAccess {
-    
+
     static func configure(viewController: MyQotAppSettingsViewController) {
         let router =  MyQotAppSettingsRouter(viewController: viewController, services: appState.services)
         let worker = MyQotAppSettingsWorker(services: appState.services)
@@ -18,5 +18,3 @@ final class MyQotAppSettingsConfigurator: AppStateAccess {
         viewController.interactor = interactor
     }
 }
-
-

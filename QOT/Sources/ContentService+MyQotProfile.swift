@@ -22,7 +22,7 @@ extension ContentService {
             case walkthroughOurFeatures = "my_profile_walkthrough_our_features"
             case aboutTignum = "my_profile_about_tignum"
             case learnMoreAboutUs = "my_profile_learn_more_about_us"
-            
+
             var predicate: NSPredicate {
                 return NSPredicate(tag: rawValue)
             }

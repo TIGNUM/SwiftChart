@@ -32,7 +32,7 @@ final class MyQotAccountSettingsViewController: UIViewController {
     @IBOutlet private weak var userWeightLabel: UILabel!
     @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
-    
+
     var interactor: MyQotAccountSettingsInteractor?
 
     // MARK: - Life Cycle
@@ -41,7 +41,7 @@ final class MyQotAccountSettingsViewController: UIViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
@@ -51,29 +51,28 @@ final class MyQotAccountSettingsViewController: UIViewController {
         super.viewWillAppear(animated)
         setDataOnView()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let editProfileVC  = segue.destination as? ProfileSettingsViewController {
             ProfileSettingsConfigurator.configure(viewController: editProfileVC)
         }
     }
-    
+
     // MARK: - Actions
 
     @IBAction func logout(_ sender: Any) {
         interactor?.showLogoutAlert()
     }
-    
+
     @IBAction func changePassword(_ sender: Any) {
         interactor?.showResetPasswordAlert()
     }
-    
+
     @IBAction func presentEditAccountSettings(_ sender: Any) {
         trackUserEvent(.EDIT, action: .TAP)
         interactor?.presentEditAccountSettings()
     }
 }
-
 
 // MARK: - MyQotViewControllerInterface
 
@@ -83,7 +82,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
         editButton.corner(radius: editButton.frame.width/2, borderColor: UIColor.accent30)
         setContentForView()
     }
-    
+
     func showLogoutAlert() {
         showAlert(type: .logout, handlerDestructive: { [weak self] in
             let key = self?.interactor?.logoutQOTKey
@@ -91,7 +90,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
             self?.interactor?.logout()
         })
     }
-    
+
     func showResetPasswordAlert() {
         showAlert(type: .changePassword, handlerDestructive: { [weak self] in
             let key = self?.interactor?.changePasswordKey
@@ -102,7 +101,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
 }
 
 private extension MyQotAccountSettingsViewController {
-    
+
     func setContentForView() {
         accountSettingsHeaderLabel.text = interactor?.accountSettingsText
         contactHeaderLabel.text = interactor?.contactText
@@ -117,7 +116,7 @@ private extension MyQotAccountSettingsViewController {
         logoutQotHeaderLabel.text = interactor?.logoutQotText
         logoutQotTitleLabel.text = interactor?.withoutDeletingAccountText
     }
-    
+
     func setDataOnView() {
         let user = interactor?.userProfile
         userEmailLabel.text = user?.email

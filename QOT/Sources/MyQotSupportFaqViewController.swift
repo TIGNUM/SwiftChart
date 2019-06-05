@@ -12,7 +12,7 @@ import qot_dal
 final class MyQotSupportFaqViewController: UIViewController {
 
     // MARK: - Properties
-    
+
     var interactor: MyQotSupportFaqInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerLabel: UILabel!
@@ -22,7 +22,7 @@ final class MyQotSupportFaqViewController: UIViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
@@ -41,18 +41,18 @@ extension MyQotSupportFaqViewController: MyQotSupportFaqViewControllerInterface 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension MyQotSupportFaqViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor?.itemCount ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleTableViewCell.Config(backgroundColor: .carbon, isArrowHidden: true)
         cell.title = interactor?.title(at: indexPath) ?? ""
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let contentID = interactor?.item(at: indexPath).remoteID.value else { return }

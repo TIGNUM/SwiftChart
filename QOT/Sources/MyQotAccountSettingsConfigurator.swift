@@ -9,7 +9,7 @@
 import Foundation
 
 final class MyQotAccountSettingsConfigurator: AppStateAccess {
-    
+
     static func configure(viewController: MyQotAccountSettingsViewController) {
         let router = MyQotAccountSettingsRouter(viewController: viewController)
         let worker = MyQotAccountSettingsWorker(services: appState.services, syncManager: appState.appCoordinator.syncManager, networkManager: appState.networkManager)

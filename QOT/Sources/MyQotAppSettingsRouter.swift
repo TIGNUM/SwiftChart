@@ -9,12 +9,12 @@
 import Foundation
 
 final class MyQotAppSettingsRouter {
-    
+
     // MARK: - Properties
-    
+
     private let viewController: MyQotAppSettingsViewController
     private let services: Services
-    
+
     // MARK: - Init
 
     init(viewController: MyQotAppSettingsViewController, services: Services) {
@@ -40,16 +40,15 @@ extension MyQotAppSettingsRouter: MyQotAppSettingsRouterInterface {
             let calendarPermission = CalendarPermission()
             calendarPermission.askPermission { [weak self] result in
                 if result == true {
-                    DispatchQueue.main.async  {
+                    DispatchQueue.main.async {
                         self?.viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsSyncedCalendarSegueIdentifier, sender: nil)
                     }
-                }else {
+                } else {
                     self?.viewController.showAlert(type: .settingsCalendars, handler: {
                         UIApplication.openAppSettings()
                     }, handlerDestructive: nil)
                 }
             }
-            break
         case .sensors:
             viewController.performSegue(withIdentifier: R.segue.myQotAppSettingsViewController.myQotAppSettingsActivityTrackerSegueIdentifier, sender: nil)
         case .siriShortcuts:

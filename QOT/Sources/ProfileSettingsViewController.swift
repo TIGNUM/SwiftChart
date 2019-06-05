@@ -22,7 +22,7 @@ protocol SettingsViewControllerDelegate: class {
 final class ProfileSettingsViewController: UIViewController {
 
     // MARK: - Properties
-    
+
     @IBOutlet private weak var pickerToolBar: UIToolbar!
     @IBOutlet private weak var pickerView: UIPickerView!
     @IBOutlet private weak var tableView: UITableView!
@@ -35,7 +35,7 @@ final class ProfileSettingsViewController: UIViewController {
             footerView?.setupView(isEnabled: true)
         }
     }
-    
+
     private var pickerItems: UserMeasurement?
     private var pickerViewHeight: NSLayoutConstraint?
     private var pickerToolBarHeight: NSLayoutConstraint?
@@ -43,7 +43,7 @@ final class ProfileSettingsViewController: UIViewController {
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
     private let keyboardListener = KeyboardListener()
     private var scrollViewContentHeightConstraint = NSLayoutConstraint()
-   
+
     var interactor: ProfileSettingsInteractorInterface?
     var networkManager: NetworkManager!
     var services: Services!
@@ -82,7 +82,7 @@ final class ProfileSettingsViewController: UIViewController {
         super.viewDidAppear(animated)
         trackPage()
     }
-    
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         keyboardListener.stopObserving()
@@ -157,7 +157,7 @@ private extension ProfileSettingsViewController {
             })
         }
     }
-    
+
     func registerCells() {
         tableView.register(UINib(resource: R.nib.settingsLabelTableViewCell),
                            forCellReuseIdentifier: R.reuseIdentifier.settingsTableViewCell_Label.identifier)
@@ -259,7 +259,7 @@ extension ProfileSettingsViewController {
 		}, cancel: { (_) in
 				return
 		}, origin: view)
-        
+
         genderPicker?.pickerBackgroundColor = .carbonDark
         genderPicker?.toolbarBackgroundColor = .carbonDark
         genderPicker?.toolbarButtonsColor = .sand
@@ -310,7 +310,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         headerView.title = interactor?.headerTitle(in: section) ?? ""
         return headerView
     }
-    
+
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 0.01
     }
@@ -392,11 +392,11 @@ extension ProfileSettingsViewController {
 }
 
 extension ProfileSettingsViewController: SettingsViewControllerDelegate {
-   
+
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
-        
+
     }
-    
+
     func didTextFieldEndEditing(at indexPath: IndexPath, text: String) {
         didTextFieldChanged(at: indexPath, text: text)
     }
@@ -410,7 +410,7 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
         default: return
         }
     }
-    
+
     func reloadData() {
         interactor?.generateSections()
         tableView.reloadData()
@@ -499,7 +499,7 @@ extension ProfileSettingsViewController: ProfileSettingsFooterViewProtocol {
         guard let navController = self.navigationController else { return }
         navController.popViewController(animated: true)
     }
-    
+
     func didCancel() {
         guard let navController = self.navigationController else { return }
         trackUserEvent(.CANCEL, action: .TAP)

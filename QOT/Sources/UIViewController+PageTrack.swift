@@ -18,7 +18,7 @@ extension UIViewController {
         pageTrack.pageKey = pageKey
         NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
-    
+
     func trackUserEvent(_ name: UserEventName,
                         value: Int? = nil,
                         valueType: String? = nil,

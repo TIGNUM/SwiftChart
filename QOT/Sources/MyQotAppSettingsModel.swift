@@ -9,36 +9,36 @@
 import Foundation
 
 struct MyQotAppSettingsModel {
-   
+
     enum SettingsType: Int, CaseIterable {
         case general
         case custom
     }
-    
+
     // MARK: - Properties
-    
+
     let services: Services
-    
+
     init(services: Services) {
         self.services = services
     }
-    
+
     var generalSettingsCount: Int {
         return Setting.generalSettings.count
     }
-    
+
     var customSettingsCount: Int {
         return Setting.customSettings.count
     }
-    
+
     var sectionCount: Int {
         return Section.values.count
     }
-    
+
     func headerTitleForItem(at section: Int) -> String {
         return headertitle(for: Section.values.item(at: section))
     }
-    
+
     func settingItem(at indexPath: IndexPath) -> Setting {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
@@ -48,7 +48,7 @@ struct MyQotAppSettingsModel {
             return Setting.customSettings.item(at: indexPath.row)
         }
     }
-    
+
     func subtitleForItem(at indexPath: IndexPath) -> String {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
@@ -58,7 +58,7 @@ struct MyQotAppSettingsModel {
             return subtitle(for: Setting.customSettings.item(at: indexPath.row))
         }
     }
-    
+
     func trackingKeyForItem(at indexPath: IndexPath) -> String {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
@@ -68,7 +68,7 @@ struct MyQotAppSettingsModel {
             return trackingKey(for: Setting.customSettings.item(at: indexPath.row))
         }
     }
-    
+
     func titleForItem(at indexPath: IndexPath) -> String {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
@@ -78,11 +78,11 @@ struct MyQotAppSettingsModel {
             return title(for: Setting.customSettings.item(at: indexPath.row))
         }
     }
-    
+
     func contentCollection(_ setting: Setting) -> ContentCollection? {
         return setting.contentCollection(for: services.contentService)
     }
-    
+
     private func trackingKey(for item: Setting) -> String {
         switch item {
         case .permissions:
@@ -97,7 +97,7 @@ struct MyQotAppSettingsModel {
             return ContentService.AppSettings.Profile.siriShortcuts.rawValue
         }
     }
-    
+
     private func title(for item: Setting) -> String {
         switch item {
         case .permissions:
@@ -112,7 +112,7 @@ struct MyQotAppSettingsModel {
             return services.contentService.localizedString(for: ContentService.AppSettings.Profile.siriShortcuts.predicate) ?? ""
         }
     }
-    
+
     private func subtitle(for item: Setting) -> String {
         switch item {
         case .permissions:
@@ -127,7 +127,7 @@ struct MyQotAppSettingsModel {
             return services.contentService.localizedString(for: ContentService.AppSettings.Profile.recodYourVoiceAndCreateShortcuts.predicate) ?? ""
         }
     }
-    
+
     private func headertitle(for item: Section) -> String {
         switch item {
         case .general:
@@ -139,29 +139,29 @@ struct MyQotAppSettingsModel {
 }
 
 extension MyQotAppSettingsModel {
-    
+
     enum Setting: Int {
         case permissions = 0
         case notifications
         case calendars
         case sensors
         case siriShortcuts
-        
+
         static var generalSettings: [Setting] {
             return [.notifications, .permissions]
         }
-        
+
         static var customSettings: [Setting] {
             return [.calendars, .sensors, .siriShortcuts]
         }
-        
+
         var primaryKey: Int {
             switch self {
             case .sensors: return 100935
             default: return 0
             }
         }
-        
+
         func contentCollection(for service: ContentService) -> ContentCollection? {
             switch self {
             case .sensors: return service.contentCollection(id: primaryKey)
@@ -169,11 +169,11 @@ extension MyQotAppSettingsModel {
             }
         }
     }
-    
+
     enum Section: Int {
         case general = 0
         case custom
-        
+
         static var values: [Section] {
             return [.general, .custom]
         }

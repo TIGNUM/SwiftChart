@@ -24,20 +24,24 @@ final class MyQotProfileRouter {
 // MARK: - MyQotRouterInterface
 
 extension MyQotProfileRouter: MyQotProfileRouterInterface {
-    
+
     func presentAccountSettings() {
         viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAccountSettingsSegueIdentifier, sender: nil)
     }
-    
+
     func presentAppSettings() {
         viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAppSettingsSegueIdentifier, sender: nil)
     }
-    
+
     func presentSupport() {
         viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotSupportSegueIdentifier, sender: nil)
     }
-    
+
     func presentAboutTignum() {
-        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAboutTignumSegueIdentifier, sender: nil)
+        guard let vieController = R.storyboard.myToBeVision.instantiateInitialViewController() else { return  }
+        MyVisionConfigurator.configure(viewController: vieController)
+        viewController.present(vieController, animated: true, completion: nil)
+
+//        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAboutTignumSegueIdentifier, sender: nil)
     }
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 extension ContentService {
-    
+
     struct AccountSettings {
         enum Profile: String, CaseIterable, Predicatable {
             case accountSettings = "account_settings_account_settings"

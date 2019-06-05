@@ -40,7 +40,7 @@ extension SigningLoginWorker {
             switch result {
             case .failure(let error):
                 completion?(error)
-            case .success(let _):
+            case .success:
                 ExtensionsDataManager.didUserLogIn(true)
                 self?.downSyncUser(completion: completion)
             }

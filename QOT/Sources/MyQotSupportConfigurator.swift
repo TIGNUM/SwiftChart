@@ -8,7 +8,7 @@
 
 import Foundation
 final class MyQotSupportConfigurator: AppStateAccess {
-    
+
     static func configure(viewController: MyQotSupportViewController) {
         let router = MyQotSupportRouter(viewController: viewController)
         let worker = MyQotSupportWorker(services: appState.services)

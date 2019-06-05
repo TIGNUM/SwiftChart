@@ -23,7 +23,7 @@ struct UserProfileModel: Equatable {
     var weight: Double
     var weightUnit: String
     var birthday: String
-    
+
     public static func == (lhs: UserProfileModel, rhs: UserProfileModel) -> Bool {
         return lhs.imageURL == rhs.imageURL &&
             lhs.givenName == rhs.givenName &&
@@ -43,19 +43,18 @@ struct UserProfileModel: Equatable {
 }
 
 extension UserProfileModel {
-    
+
     var userWeight: String {
         return String(weight) + weightUnit
     }
-    
+
     var userHeight: String {
         return String(height) + heightUnit
     }
-    
+
     var name: String {
         let firstName = givenName?.capitalized ?? ""
         let lastName = familyName?.capitalized ?? ""
         return  firstName + " " + lastName
     }
 }
-

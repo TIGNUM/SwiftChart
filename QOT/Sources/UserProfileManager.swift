@@ -9,17 +9,17 @@
 import Foundation
 
 final class UserProfileManager {
-    
+
     private let services: Services
     private let syncManger: SyncManager
     private let user: User?
-    
+
     init(_ services: Services, _ syncManger: SyncManager) {
         self.services = services
         self.syncManger = syncManger
         self.user = services.userService.user()
     }
-    
+
     func profile() -> UserProfileModel? {
         return UserProfileModel(imageURL: user?.userImage?.url,
                                     givenName: user?.givenName,
@@ -36,7 +36,7 @@ final class UserProfileManager {
                                     weightUnit: user?.weightUnit ?? "",
                                     birthday: user?.dateOfBirth ?? "")
     }
-    
+
     func upSyncUser() {
         syncManger.upSyncUser { error in
             if let error = error {
@@ -44,7 +44,7 @@ final class UserProfileManager {
             }
         }
     }
-    
+
     func updateProfileTelephone(_ new: UserProfileModel) {
         guard let user = user, let old = profile(), old != new else { return }
         let numberLength = new.telephone?.count ?? 0
@@ -54,7 +54,7 @@ final class UserProfileManager {
             upSyncUser()
         }
     }
-    
+
     func updateProfileBirthday(_ new: UserProfileModel) {
         guard let user = user, let old = profile(), old != new else { return }
         if old.birthday != new.birthday {
@@ -62,7 +62,7 @@ final class UserProfileManager {
             upSyncUser()
         }
     }
-    
+
     func updateProfileGivenName(_ new: UserProfileModel) {
         guard let user = user, let old = profile(), old != new else { return }
         if old.givenName?.caseInsensitiveCompare(new.givenName ?? "") != .orderedSame {
@@ -70,7 +70,7 @@ final class UserProfileManager {
             upSyncUser()
         }
     }
-    
+
     func updateProfileFamilyName(_ new: UserProfileModel) {
         guard let user = user, let old = profile(), old != new else { return }
         if old.familyName?.caseInsensitiveCompare(new.familyName ?? "") != .orderedSame {
@@ -78,7 +78,7 @@ final class UserProfileManager {
             upSyncUser()
         }
     }
-    
+
     func updateProfileGender(_ new: UserProfileModel) {
         guard let user = user, let old = profile(), old != new else { return }
         if old.gender?.caseInsensitiveCompare(new.gender ?? "") != .orderedSame {
@@ -86,7 +86,7 @@ final class UserProfileManager {
             upSyncUser()
         }
     }
-    
+
     func updateJobTitle(_ new: UserProfileModel) {
         guard let user = user, let old = profile(), let newPosition = new.position, old != new else { return }
         if old.position != newPosition {
@@ -94,7 +94,7 @@ final class UserProfileManager {
             upSyncUser()
         }
     }
-    
+
     func updateHeight(_ new: UserProfileModel) {
         guard let old = profile(), old != new else { return }
         if old.height != new.height || old.heightUnit != new.heightUnit {
@@ -102,16 +102,16 @@ final class UserProfileManager {
             upSyncUser()
         }
     }
-    
+
     func updateWeight(_ new: UserProfileModel) {
         guard let old = profile(), old != new else { return }
-        
+
         if old.weight != new.weight || old.weightUnit != new.weightUnit {
             updateWeight(weight: new.weight, unit: new.weightUnit)
             upSyncUser()
         }
     }
-    
+
     func updateSettingsProfileImage(_ new: URL?) {
         let old = profile()?.imageURL
         guard let user = user, old != new else { return }
@@ -124,7 +124,7 @@ final class UserProfileManager {
             upSyncUser()
         }
     }
-    
+
     func saveImage(_ image: UIImage) throws -> URL {
         return try image.save(withName: UUID().uuidString)
     }
@@ -133,10 +133,10 @@ final class UserProfileManager {
 // MARK: - Private
 
 private extension UserProfileManager {
-    
+
     func updateWeight(weight: Double, unit: String) {
         guard let user = user else { return }
-        
+
         let convertedWeight: Double
         if unit == "kg" {
             convertedWeight = weight
@@ -150,10 +150,10 @@ private extension UserProfileManager {
         services.userService.updateUserWeight(user: user, weight: convertedWeight)
         services.userService.updateUserWeightUnit(user: user, weightUnit: unit)
     }
-    
+
     func updateHeight(meters: Double, unit: String) {
         guard let user = user else { return }
-        
+
         let meters = Measurement(value: meters, unit: UnitLength.meters)
         let convertedHeight: Double
         if unit == "cm" {

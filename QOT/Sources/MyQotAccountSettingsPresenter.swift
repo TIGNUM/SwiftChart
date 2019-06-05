@@ -9,13 +9,13 @@
 import Foundation
 
 final class MyQotAccountSettingsPresenter {
-    
+
     // MARK: - Properties
-    
+
     private weak var viewController: MyQotAccountSettingsViewControllerInterface?
-    
+
     // MARK: - Init
-    
+
     init(viewController: MyQotAccountSettingsViewControllerInterface) {
         self.viewController = viewController
     }
@@ -27,7 +27,7 @@ extension MyQotAccountSettingsPresenter: MyQotAccountSettingsPresenterInterface 
     func setupView() {
         viewController?.setupView()
     }
-    
+
     func showResetPasswordAlert() {
         viewController?.showResetPasswordAlert()
     }

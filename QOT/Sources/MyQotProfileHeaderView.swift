@@ -12,12 +12,12 @@ final class MyQotProfileHeaderView: UITableViewHeaderFooterView, Dequeueable {
 
     @IBOutlet private weak var nameLabel: UILabel!
     @IBOutlet private weak var memberSinceLabel: UILabel!
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         contentView.backgroundColor = .carbonDark
     }
-    
+
     func configure(data: MyQotProfileModel.HeaderViewModel) {
         nameLabel.text = data.name
         memberSinceLabel.text = data.memberSince

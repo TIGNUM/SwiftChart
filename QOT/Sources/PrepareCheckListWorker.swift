@@ -50,9 +50,9 @@ extension PrepareCheckListWorker {
         switch itemFormat {
         case .textH1: return attributed(text: title, font: .sfProDisplayLight(ofSize: 24), textColor: .carbon)
         case .textH2,
-             .listItem: return attributed(text: title, font: .sfProTextLight(ofSize: 16), textColor: UIColor.carbon.withAlphaComponent(0.7))
-        case .list: return attributed(text: "\n\n"+title, font: .sfProTextMedium(ofSize: 14), textColor: UIColor.carbon.withAlphaComponent(0.4))
-        case .title: return attributed(text: title, font: .sfProTextLight(ofSize: 16), textColor: .carbon)
+             .listItem: return attributed(text: title, font: .sfProtextLight(ofSize: 16), textColor: UIColor.carbon.withAlphaComponent(0.7))
+        case .list: return attributed(text: "\n\n"+title, font: .sfProtextMedium(ofSize: 14), textColor: UIColor.carbon.withAlphaComponent(0.4))
+        case .title: return attributed(text: title, font: .sfProtextLight(ofSize: 16), textColor: .carbon)
         default: return nil
         }
     }

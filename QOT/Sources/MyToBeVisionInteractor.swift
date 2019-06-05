@@ -40,6 +40,7 @@ final class MyToBeVisionInteractor: MyToBeVisionInteractorInterface {
     func setLaunchOptions() {
         presenter.setLaunchOptions(options)
     }
+
     func isEmptyState() -> Bool {
         let myToBeVision = worker.myToBeVision()
         return myToBeVision?.headLine == nil && myToBeVision?.text == nil

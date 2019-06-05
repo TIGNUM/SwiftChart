@@ -9,37 +9,37 @@
 import Foundation
 
 final class MyQotAccountSettingsWorker {
-    
+
     // MARK: - Properties
-    
+
     private let services: Services
     private let userProfileManager: UserProfileManager?
     private let networkManager: NetworkManager
 
     // MARK: - Init
-    
+
     init(services: Services, syncManager: SyncManager, networkManager: NetworkManager) {
         self.services = services
         self.networkManager = networkManager
         self.userProfileManager = UserProfileManager(services, syncManager)
     }
-    
+
     func profile() -> UserProfileModel? {
         return userProfileManager?.profile()
     }
-    
+
     func logout() {
         ExtensionsDataManager.didUserLogIn(false)
         UIApplication.shared.shortcutItems?.removeAll()
         NotificationHandler.postNotification(withName: .logoutNotification)
     }
-    
+
     func resetPassword(completion: @escaping (NetworkError?) -> Void) {
         networkManager.performResetPasswordRequest(username: userEmail, completion: { error in
             completion(error)
         })
     }
-    
+
     func alertType(for error: NetworkError?) -> AlertType {
         guard let error = error else { return .resetPassword }
         switch error.type {
@@ -81,15 +81,15 @@ extension MyQotAccountSettingsWorker {
     var accountText: String {
         return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.account.predicate) ?? ""
     }
-    
+
     var changePasswordKey: String {
         return ContentService.AccountSettings.Profile.changePassword.rawValue
     }
-    
+
     var logoutQOTKey: String {
         return ContentService.AccountSettings.Profile.logoutQot.rawValue
     }
-    
+
     var changePasswordText: String {
         return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.changePassword.predicate) ?? ""
     }

@@ -30,7 +30,7 @@ final class ProfileSettingsInteractor {
         self.worker = worker
         self.presenter = presenter
     }
-    
+
     func viewDidLoad() {
         worker.profile({[weak self] user in
             guard let userData = user else { return }
@@ -46,7 +46,7 @@ extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
     var editAccountTitle: String {
         return worker.editAccountTitle
     }
-    
+
     var profile: QDMUser? {
         get {
             return worker.profile
@@ -55,27 +55,27 @@ extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
             worker.profile = newValue
         }
     }
-    
+
     func updateUser(_ profile: QDMUser) {
         worker.update(user: profile)
     }
-    
+
     func numberOfSections() -> Int {
         return worker.numberOfSections()
     }
-    
+
     func numberOfItemsInSection(in section: Int) -> Int {
         return worker.numberOfItemsInSection(in: section)
     }
-    
+
     func row(at indexPath: IndexPath) -> SettingsRow {
         return worker.row(at: indexPath)
     }
-    
+
     func generateSections() {
         worker.generateSections()
     }
-    
+
     func headerTitle(in section: Int) -> String {
         return worker.headerTitle(in: section)
     }

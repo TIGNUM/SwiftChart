@@ -10,12 +10,12 @@ import Foundation
 
 struct MyQotSensorsModel {
     let sensor: Sensor
-    
+
     enum Sensor {
         case oura
         case healthKit
         case requestTracker
-        
+
         var title: String {
             switch self {
             case .oura:
@@ -26,7 +26,7 @@ struct MyQotSensorsModel {
                 return R.string.localized.sidebarSensorsMenuRequestSensor().capitalized
             }
         }
-        
+
         var status: String {
             switch self {
             case .oura:
@@ -37,7 +37,7 @@ struct MyQotSensorsModel {
                 return ""
             }
         }
-        
+
         var labelStatus: String {
             switch self {
             case .oura:

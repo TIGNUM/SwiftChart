@@ -57,7 +57,7 @@ private extension CoachViewController {
 
 private extension CoachViewController {
 
-    @objc @IBAction func closeButton() {
+    @IBAction func closeButton() {
          dismiss(animated: true, completion: nil)
          UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }

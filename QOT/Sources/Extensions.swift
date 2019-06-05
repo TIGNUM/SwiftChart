@@ -40,12 +40,28 @@ extension UIFont {
         return (UIFont(name: FontName.apercuRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
 
-    class func sfProDisplayLight(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.sfProDisplayLight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    class func sfProtextRegular(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.sfProTextRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
+
+    class func sfProtextLight(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.sfProTextLight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
+
+    class func sfProtextSemibold(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.sfProTextSemiBold.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
+
+    class func sfProtextMedium(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.sfProTextMedium.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
 
     class func sfProDisplayRegular(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.sfProDisplayRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
+
+    class func sfProDisplayLight(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.sfProDisplayLight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
 
     class func sfProDisplayThin(ofSize: CGFloat) -> UIFont {
@@ -54,22 +70,6 @@ extension UIFont {
 
     class func sfProDisplayUltralight(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.sfProDisplayUltralight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
-    }
-
-    class func sfProTextLight(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.sfProTextLight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
-    }
-
-    class func sfProTextMedium(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.sfProTextMedium.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
-    }
-
-    class func sfProTextRegular(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.sfProTextRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
-    }
-
-    class func sfProTextSemibold(ofSize: CGFloat) -> UIFont {
-        return (UIFont(name: FontName.sfProTextSemibold.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
 }
 

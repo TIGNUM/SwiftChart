@@ -24,17 +24,17 @@ final class MyQotSupportViewController: UIViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarView?.backgroundColor = .carbon
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let myQotSupportFaq  = segue.destination as? MyQotSupportFaqViewController else {
             return
@@ -58,12 +58,12 @@ extension MyQotSupportViewController: MyQotSupportViewControllerInterface {
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource  {
-    
+extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource {
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor?.itemCount() ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleSubtitleTableViewCell.Config()
@@ -72,7 +72,7 @@ extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource
         cell.configure(title: title, subTitle: subtitle)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let key = interactor?.trackingKeys(at: indexPath)
@@ -84,7 +84,7 @@ extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource
 // MARK: - MFMailComposeViewControllerDelegate
 
 extension MyQotSupportViewController {
-    
+
     override func mailComposeController(_ controller: MFMailComposeViewController,
                                didFinishWith result: MFMailComposeResult,
                                error: Error?) {

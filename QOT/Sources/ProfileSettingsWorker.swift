@@ -9,7 +9,6 @@
 import UIKit
 import qot_dal
 
-
 // MARK: - Form
 
 final class ProfileSettingsWorker {
@@ -37,7 +36,7 @@ final class ProfileSettingsWorker {
 }
 
 extension ProfileSettingsWorker {
-    
+
     var profile: QDMUser? {
         get {
             return user
@@ -46,11 +45,11 @@ extension ProfileSettingsWorker {
             user = newValue
         }
     }
-    
+
     var editAccountTitle: String {
         return services.contentService.localizedString(for: ContentService.EditAccount.editAccount.predicate) ?? ""
     }
-    
+
     func numberOfSections() -> Int {
         return settingsSections.count
     }
@@ -58,15 +57,15 @@ extension ProfileSettingsWorker {
     func numberOfItemsInSection(in section: Int) -> Int {
         return items(in: section).count
     }
-    
+
     func row(at indexPath: IndexPath) -> SettingsRow {
         return items(in: indexPath.section)[indexPath.row]
     }
-    
+
     func headerTitle(in section: Int) -> String {
         return settingsSections[section].title
     }
-    
+
     func generateSections() {
         settingsSections = settingSections(user: user)
     }
@@ -74,7 +73,7 @@ extension ProfileSettingsWorker {
 
 // MARK: - ContentService
 private extension ProfileSettingsWorker {
-    
+
     var personalDataTitle: String {
         return services.contentService.localizedString(for: ContentService.EditAccount.personalData.predicate) ?? ""
     }
@@ -105,33 +104,33 @@ private extension ProfileSettingsWorker {
     var titleTitle: String {
         return services.contentService.localizedString(for: ContentService.EditAccount.title.predicate) ?? ""
     }
-    
+
     var emailTitle: String {
         return services.contentService.localizedString(for: ContentService.EditAccount.email.predicate) ?? ""
     }
-    
+
     var phoneTitle: String {
         return services.contentService.localizedString(for: ContentService.EditAccount.phone.predicate) ?? ""
     }
 }
 
 private extension ProfileSettingsWorker {
-    
+
     private func generalSettingsSection(for user: QDMUser?, services: Services) -> [SettingsSection] {
         return [
             Sections(title: personalDataTitle, rows: personalRows(for: user)),
             Sections(title: contactTitle, rows: companyRows(for: user))
         ]
     }
-    
+
     private func items(in section: Int) -> [SettingsRow] {
         return settingsSections[section].rows
     }
-    
+
     private func settingSections(user: QDMUser?) -> [SettingsSection] {
         return generalSettingsSection(for: user, services: services)
     }
-    
+
     private func companyRows(for user: QDMUser?) -> [SettingsRow] {
         return [
             .label(title: companyTitle, value: user?.company, settingsType: .company),
@@ -140,7 +139,7 @@ private extension ProfileSettingsWorker {
             .textField(title: phoneTitle, value: user?.telephone ?? "", secure: false, settingsType: .phone)
         ]
     }
-    
+
     private func personalRows(for user: QDMUser?) -> [SettingsRow] {
         guard let user = user else { return [] }
         var date = Date()
@@ -152,13 +151,13 @@ private extension ProfileSettingsWorker {
         var selectedWeightIndex = weightItems.valueIndex
         let selectedWeightUnitIndex = weightItems.unitIndex
         let selectedGenderIndex = Gender(rawValue: user.gender)?.selectedIndex ?? 0
-        
+
         if selectedWeightIndex == 0 && selectedWeightUnitIndex == 0 {
             selectedWeightIndex = 70
         } else if selectedWeightIndex == 0 && selectedWeightUnitIndex == 1 {
             selectedWeightIndex = 154
         }
-        
+
         return [
             .textField(title: nameTitle, value: user.givenName, secure: false, settingsType: .firstName),
             .textField(title: surnameTitle, value: user.familyName, secure: false, settingsType: .lastName),
@@ -176,7 +175,7 @@ private extension ProfileSettingsWorker {
             .multipleStringPicker(title: weightTitle,
                                   rows: user.weightPickerItems,
                                   initialSelection: [selectedWeightIndex, selectedWeightUnitIndex],
-                                  settingsType: .weight),
+                                  settingsType: .weight)
         ]
     }
 

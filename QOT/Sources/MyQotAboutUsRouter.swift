@@ -10,13 +10,13 @@ import Foundation
 import MessageUI
 
 final class MyQotAboutUsRouter {
-    
+
     // MARK: - Properties
-    
+
     private let viewController: MyQotAboutUsViewController
-    
+
     // MARK: - Init
-    
+
     init(viewController: MyQotAboutUsViewController) {
         self.viewController = viewController
     }

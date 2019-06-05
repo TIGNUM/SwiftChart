@@ -9,13 +9,13 @@
 import Foundation
 
 final class MyQotSyncedCalendarsPresenter {
-    
+
     // MARK: - Properties
-    
+
     private weak var viewController: MyQotSyncedCalendarsViewControllerInterface?
-    
+
     // MARK: - Init
-    
+
     init(viewController: MyQotSyncedCalendarsViewControllerInterface) {
         self.viewController = viewController
     }

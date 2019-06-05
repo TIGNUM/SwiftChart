@@ -13,7 +13,7 @@ final class MyQotProfileOptionsTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var headingLabel: UILabel!
     @IBOutlet private weak var subHeadingLabel: UILabel!
     @IBOutlet private weak var separator: UIView!
-    
+
     func configure(_ data: MyQotProfileModel.TableViewPresentationData) {
         headingLabel.text = data.heading.uppercased()
         subHeadingLabel.text = data.subHeading

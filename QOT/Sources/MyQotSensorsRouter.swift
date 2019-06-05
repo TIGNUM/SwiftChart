@@ -10,11 +10,11 @@ import Foundation
 
 final class MyQotSensorsRouter {
     // MARK: - Properties
-    
+
     private let viewController: MyQotSensorsViewController
-    
+
     // MARK: - Init
-    
+
     init(viewController: MyQotSensorsViewController) {
         self.viewController = viewController
     }

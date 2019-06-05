@@ -28,4 +28,3 @@ protocol MyQotSiriShortcutsInteractorInterface: Interactor {
 protocol MyQotSiriShortcutsRouterInterface {
     func handleTap(for shortcut: SiriShortcutsModel.Shortcut?)
 }
-

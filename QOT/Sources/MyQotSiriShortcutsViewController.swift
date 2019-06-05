@@ -20,13 +20,12 @@ final class MyQotSiriShortcutsViewController: UIViewController {
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         tableView.registerDequeueable(TitleTableViewCell.self)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
@@ -34,7 +33,7 @@ final class MyQotSiriShortcutsViewController: UIViewController {
 }
 
 extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInterface {
-    
+
     func setupView(with title: String) {
         view.backgroundColor = .carbon
         bottomNavigationView.delegate = self
@@ -45,18 +44,18 @@ extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInte
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension MyQotSiriShortcutsViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor?.itemsCount() ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleTableViewCell.Config(backgroundColor: .carbon)
         cell.title = interactor?.title(for: indexPath).uppercased() ?? ""
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         shortcutType = interactor?.shortcutType(for: indexPath).type ?? .toBeVision
@@ -70,7 +69,7 @@ extension MyQotSiriShortcutsViewController: UITableViewDelegate, UITableViewData
 // MARK: - INUIAddVoiceShortcutViewControllerDelegate
 
 extension MyQotSiriShortcutsViewController: INUIAddVoiceShortcutViewControllerDelegate {
-    
+
     @available(iOS 12.0, *)
     func addVoiceShortcutViewController(_ controller: INUIAddVoiceShortcutViewController,
                                         didFinishWith voiceShortcut: INVoiceShortcut?,
@@ -78,7 +77,7 @@ extension MyQotSiriShortcutsViewController: INUIAddVoiceShortcutViewControllerDe
         interactor?.sendSiriRecordingAppEvent(shortcutType: shortcutType)
         dismiss(animated: true, completion: nil)
     }
-    
+
     @available(iOS 12.0, *)
     func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
         dismiss(animated: true, completion: nil)

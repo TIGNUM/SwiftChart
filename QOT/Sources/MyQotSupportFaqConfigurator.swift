@@ -9,7 +9,7 @@
 import Foundation
 
 final class MyQotSupportFaqConfigurator: AppStateAccess {
-    
+
     static func configure(viewController: MyQotSupportFaqViewController) {
         let router = MyQotSupportFaqRouter(viewController: viewController)
         let worker =  MyQotSupportFaqWorker(services: appState.services)

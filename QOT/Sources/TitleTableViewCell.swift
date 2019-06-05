@@ -26,7 +26,7 @@ class TitleTableViewCell: UITableViewCell, Dequeueable {
         var bottomMargin: CGFloat
 
         init(backgroundColor: UIColor = UIColor.carbonDark,
-             titlefont: UIFont = UIFont.sfProTextLight(ofSize: FontSize.fontSize16),
+             titlefont: UIFont = UIFont.sfProtextLight(ofSize: FontSize.fontSize16),
              titleTextColor: UIColor = UIColor.sand,
              isArrowHidden: Bool = false,
              isSeparatorHidden: Bool = false,
@@ -41,13 +41,13 @@ class TitleTableViewCell: UITableViewCell, Dequeueable {
             self.bottomMargin = bottomMargin
         }
     }
-    
+
     var title: String = "" {
         willSet {
             titleLabel.text = newValue
         }
     }
-    
+
     var config: Config? {
         didSet {
             titleLabel.textColor = config?.titleTextColor

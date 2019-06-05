@@ -9,15 +9,15 @@
 import Foundation
 
 final class MyQotAccountSettingsInteractor {
-    
+
     // MARK: - Properties
-    
+
     private let worker: MyQotAccountSettingsWorker
     private let presenter: MyQotAccountSettingsPresenterInterface
     private let router: MyQotAccountSettingsRouterInterface
-    
+
     // MARK: - Init
-    
+
     init(worker: MyQotAccountSettingsWorker,
          presenter: MyQotAccountSettingsPresenterInterface,
          router: MyQotAccountSettingsRouterInterface) {
@@ -27,7 +27,7 @@ final class MyQotAccountSettingsInteractor {
     }
 
     // MARK: - Interactor
-    
+
     func viewDidLoad() {
         presenter.setupView()
     }
@@ -36,7 +36,7 @@ final class MyQotAccountSettingsInteractor {
 // MARK: - MyQotAccountSettingsInteractorInterface
 
 extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterface {
-    
+
     var userProfile: UserProfileModel? {
         return worker.profile()
     }
@@ -79,23 +79,23 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
     var changePasswordKey: String {
         return worker.changePasswordKey
     }
-    
+
     var logoutQOTKey: String {
         return worker.logoutQOTKey
     }
-    
+
     func logout() {
         worker.logout()
     }
-    
+
     func showLogoutAlert() {
         presenter.showLogoutAlert()
     }
-    
+
     func showResetPasswordAlert() {
         presenter.showResetPasswordAlert()
     }
-    
+
     func resetPassword() {
         router.showProgressHUD()
         worker.resetPassword (completion: {[weak self] error in
@@ -104,9 +104,8 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
             self?.router.showAlert(alertType)
         })
     }
-    
+
     func presentEditAccountSettings() {
         router.presentEditAccountSettings()
     }
 }
-

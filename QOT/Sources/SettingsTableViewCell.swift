@@ -77,7 +77,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
                 settingsType == .weight,
                 settingsType == .gender {
                 expandArrow.isHidden = false
-            }else {
+            } else {
                 expandArrow.isHidden = true
             }
             self.settingsType = settingsType
@@ -185,7 +185,7 @@ private extension SettingsTableViewCell {
 			textField.inputAccessoryView = doneToolbar
 		}
     }
-    
+
     private func separatorView(isEnabled: Bool) {
         bottomSeperatorView.backgroundColor = isEnabled ? .accent : .sand
     }
@@ -284,14 +284,14 @@ extension SettingsTableViewCell: UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         separatorView(isEnabled: true)
     }
-    
+
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         if let text = textField.text {
             settingsDelegate?.didTextFieldChanged(at: indexPath, text: text)
         }
         return endEditing(true)
     }
-    
+
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         if let text = textField.text,
             let textRange = Range(range, in: text) {
@@ -301,7 +301,7 @@ extension SettingsTableViewCell: UITextFieldDelegate {
         }
         return true
     }
-    
+
 	@objc func textFieldDidEndEditing(_ textField: UITextField) {
 		didFinishEnterText()
 	}

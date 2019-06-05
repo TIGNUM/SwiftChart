@@ -17,4 +17,3 @@ final class MyQotSiriShortcutsConfigurator: AppStateAccess {
         viewController.interactor = interactor
     }
 }
-

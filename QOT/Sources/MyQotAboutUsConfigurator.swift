@@ -9,7 +9,7 @@
 import Foundation
 
 final class MyQotAboutUsConfigurator: AppStateAccess {
-    
+
     static func configure(viewController: MyQotAboutUsViewController) {
         let router = MyQotAboutUsRouter(viewController: viewController)
         let worker = MyQotAboutUsWorker(services: appState.services)

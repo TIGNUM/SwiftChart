@@ -80,11 +80,11 @@ private let mediumDateFormatter: DateFormatter = {
 
 extension DateFormatter {
     // FIXME: MUST MUST MUST be unit tested.
-    
+
     static var iso8601: DateFormatter {
         return iso8601DateFormatter
     }
-    
+
     static var memberSince: DateFormatter {
         return memberSinceDateFormatter
     }

@@ -16,7 +16,7 @@ final class MyQotProfileInteractor {
         case support
         case aboutTignum
     }
-    
+
     // MARK: - Properties
 
     private let worker: MyQotProfileWorker
@@ -43,23 +43,23 @@ final class MyQotProfileInteractor {
 // MARK: - MyQotInteractorInterface
 
 extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
-  
+
     var memberSinceText: String {
         return worker.memberSinceText
     }
-    
+
     var myProfileText: String {
         return worker.myProfileText
     }
-    
+
     var userProfile: UserProfileModel? {
         return worker.profile()
     }
-    
+
     var menuItems: [MyQotProfileModel.TableViewPresentationData] {
         return worker.menuItems
     }
-    
+
     func presentController(for index: Int) {
         let type = controllerType.allCases[index]
         switch type {

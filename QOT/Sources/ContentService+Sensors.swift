@@ -9,7 +9,7 @@
 import Foundation
 
 extension ContentService {
-    
+
     enum Sensors: String, CaseIterable, Predicatable {
         case activityTrackers = "activity_trackers_activity_trackers"
         case sensors = "activity_trackers_sensors"

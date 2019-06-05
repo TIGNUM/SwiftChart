@@ -10,13 +10,13 @@ import Foundation
 import MessageUI
 
 final class MyQotSupportRouter {
-    
+
     // MARK: - Properties
-    
+
     private let viewController: MyQotSupportViewController
 
     // MARK: - Init
-    
+
     init(viewController: MyQotSupportViewController) {
         self.viewController = viewController
     }
@@ -36,7 +36,7 @@ extension MyQotSupportRouter: MyQotSupportRouterInterface {
 }
 
 private extension MyQotSupportRouter {
-  
+
     func showNovartisSupportIfNeeded(email: String, for item: MyQotSupportModel.MyQotSupportModelItem) {
         if Bundle.main.bundleIdentifier?.contains("novartis") == true {
             presentContentItem(id: item.primaryKey, pageName: item.pageName)
@@ -44,23 +44,23 @@ private extension MyQotSupportRouter {
             presentMailComposer(recipients: [email], subject: "ID: Support", id: item)
         }
     }
-    
+
     func presentContentItem(id: Int, pageName: PageName) {
         AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id,
                                                                       controller: viewController,
                                                                       pageName: pageName)
     }
-    
+
     func presentFAQ() {
         viewController.performSegue(withIdentifier: R.segue.myQotSupportViewController.myQotSupportFaqSegueIdentifier, sender: nil)
     }
-    
+
     func presentTutorial() {
         let configurator = TutorialConfigurator.make()
         let controller = TutorialViewController(configure: configurator, from: .settings)
         viewController.pushToStart(childViewController: controller)
     }
-    
+
     func presentMailComposer(recipients: [String], subject: String, id: MyQotSupportModel.MyQotSupportModelItem) {
         guard MFMailComposeViewController.canSendMail() == true else {
             viewController.showAlert(type: .message(R.string.localized.alertMessageEmailNotSetup()))

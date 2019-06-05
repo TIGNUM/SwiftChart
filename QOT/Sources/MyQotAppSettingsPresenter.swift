@@ -8,14 +8,13 @@
 
 import Foundation
 
-
 final class MyQotAppSettingsPresenter {
     // MARK: - Properties
-    
+
     private weak var viewController: MyQotAppSettingsViewControllerInterface?
-    
+
     // MARK: - Init
-    
+
     init(viewController: MyQotAppSettingsViewControllerInterface) {
         self.viewController = viewController
     }

@@ -16,7 +16,7 @@ extension ContentService {
             case knowSectionSubtitleStrategies = "know-feed-level-01-section-subtitle-strategies"
             case knowSectionTitleWhatsHot = "know-feed-level-01-section-title-whats-hot"
             case knowSectionSubtitleWhatsHot = "know-feed-level-01-section-subtitle-whats-hot"
-            
+
             var predicate: NSPredicate {
                 return NSPredicate(tag: rawValue)
             }

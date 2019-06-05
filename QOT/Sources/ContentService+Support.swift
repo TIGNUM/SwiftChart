@@ -9,7 +9,7 @@
 import Foundation
 
 extension ContentService {
-    
+
     enum Support: String, CaseIterable, Predicatable {
         case support = "support_support"
         case areYouMissingSomething = "support_are_you_missing_something"
@@ -20,8 +20,7 @@ extension ContentService {
         case tutorial = "support_tutorial"
         case contactSupport = "support_contact_support"
         case faq = "support_faq"
-        
-        
+
         var predicate: NSPredicate {
             return NSPredicate(tag: rawValue)
         }

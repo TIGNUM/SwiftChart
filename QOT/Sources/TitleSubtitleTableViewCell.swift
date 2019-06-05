@@ -21,8 +21,8 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
         var subTitleTextColor: UIColor
 
         init(backgroundColor: UIColor = UIColor.carbon,
-             subTitlefont: UIFont = UIFont.sfProTextMedium(ofSize: FontSize.fontSize12),
-             titlefont: UIFont = UIFont.sfProTextLight(ofSize: FontSize.fontSize16),
+             subTitlefont: UIFont = UIFont.sfProtextMedium(ofSize: FontSize.fontSize12),
+             titlefont: UIFont = UIFont.sfProtextLight(ofSize: FontSize.fontSize16),
              titleTextColor: UIColor = UIColor.sand,
              subTitleTextColor: UIColor = UIColor.sand30) {
             self.backgroundColor = backgroundColor
@@ -32,12 +32,12 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
             self.subTitleTextColor = subTitleTextColor
         }
     }
-    
+
     func configure(title: String, subTitle: String) {
         titleLabel.text = title
         subTitleLabel.text = subTitle
     }
-    
+
     var config: Config? {
         didSet {
             subTitleLabel.textColor = config?.subTitleTextColor

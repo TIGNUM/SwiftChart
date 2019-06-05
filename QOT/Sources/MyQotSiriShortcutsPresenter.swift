@@ -9,13 +9,13 @@
 import Foundation
 
 final class MyQotSiriShortcutsPresenter {
-    
+
     // MARK: - Properties
-    
+
     private weak var viewController: MyQotSiriShortcutsViewControllerInterface?
-    
+
     // MARK: - Init
-    
+
     init(viewController: MyQotSiriShortcutsViewControllerInterface) {
         self.viewController = viewController
     }

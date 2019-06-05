@@ -14,6 +14,14 @@ final class ArticleRelatedWhatsHotTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var whatsHotComponentView: WhatsHotComponentView!
 
+    // MARK: - Lifecycle
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        backgroundColor = .carbon
+        contentView.backgroundColor = .carbon
+    }
+
     // MARK: - Cell configuration
 
     func configure(title: String?,

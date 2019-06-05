@@ -10,9 +10,9 @@ import Foundation
 import IntentsUI
 
 final class MyQotSiriShortcutsRouter {
-    
+
     private let viewController: MyQotSiriShortcutsViewController
-    
+
     init(viewController: MyQotSiriShortcutsViewController) {
         self.viewController = viewController
     }
@@ -49,7 +49,7 @@ extension MyQotSiriShortcutsRouter: MyQotSiriShortcutsRouterInterface {
 // MARK: - Private
 
 private extension MyQotSiriShortcutsRouter {
-    
+
     func presentShortcutViewController(with intent: INIntent) {
         if #available(iOS 12.0, *) {
             if let shortcut = INShortcut(intent: intent) {

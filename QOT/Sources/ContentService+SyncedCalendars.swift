@@ -9,10 +9,10 @@
 import Foundation
 
 extension ContentService {
-    
+
     enum SyncedCalendars: String, CaseIterable, Predicatable {
         case syncedCalendars = "synced_calendars_synced_calendars"
-        
+
         var predicate: NSPredicate {
             return NSPredicate(tag: rawValue)
         }

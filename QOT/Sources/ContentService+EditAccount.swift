@@ -9,7 +9,7 @@
 import Foundation
 
 extension ContentService {
-    
+
     enum EditAccount: String, CaseIterable, Predicatable {
         case editAccount = "edit_account_edit_account"
         case personalData = "edit_account_personal_data"

@@ -28,17 +28,17 @@ final class MyQotAppSettingsViewController: UIViewController {
         tableView.registerDequeueable(TitleSubtitleTableViewCell.self)
         tableView.registerDequeueable(TitleTableHeaderView.self)
     }
-    
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.statusBarView?.backgroundColor = .carbon
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let siriShortcutsVC  = segue.destination as? MyQotSiriShortcutsViewController {
             MyQotSiriShortcutsConfigurator.configure(viewController: siriShortcutsVC)
@@ -64,11 +64,11 @@ extension MyQotAppSettingsViewController: MyQotAppSettingsViewControllerInterfac
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSource {
-    
+
     func numberOfSections(in tableView: UITableView) -> Int {
         return settingsModel.sectionCount
     }
-    
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         let type = MyQotAppSettingsModel.SettingsType.allCases[section]
         switch type {
@@ -78,11 +78,11 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
             return settingsModel.customSettingsCount
         }
     }
-    
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 68
     }
-    
+
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
         headerView.config = TitleTableHeaderView.Config()
@@ -90,7 +90,7 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
         headerView.title = title
         return headerView
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleSubtitleTableViewCell.Config()
@@ -99,7 +99,7 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
         cell.configure(title: title, subTitle: subtitle)
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let settingsTapped = settingsModel.settingItem(at: indexPath)

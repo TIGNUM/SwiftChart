@@ -20,7 +20,7 @@ final class ArticleItemViewModel {
     let articleHeader: ArticleCollectionHeader?
     let contentCollection: ContentCollection
     let topSmallTitle: String?
-    
+
     var isWhatsHot: Bool {
         return contentCollection.section.caseInsensitiveCompare(Database.Section.learnWhatsHot.value) == .orderedSame
     }
@@ -47,7 +47,7 @@ final class ArticleItemViewModel {
         self.relatedArticles = relatedArticles.sorted { (lhs: ContentCollection, rhs: ContentCollection) -> Bool in
             return lhs.sortOrder < rhs.sortOrder
         }
-        
+
         self.items = items.sorted { (lhs: ContentItem, rhs: ContentItem) -> Bool in
             return lhs.sortOrder > rhs.sortOrder
         }

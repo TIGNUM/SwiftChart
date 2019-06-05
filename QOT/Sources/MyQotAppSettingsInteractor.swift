@@ -9,15 +9,15 @@
 import Foundation
 
 final class MyQotAppSettingsInteractor {
-    
+
     // MARK: - Properties
 
     private let worker: MyQotAppSettingsWorker
     private let presenter: MyQotAppSettingsPresenterInterface
     private let router: MyQotAppSettingsRouterInterface
-    
+
     // MARK: - Init
-    
+
     init(worker: MyQotAppSettingsWorker,
          presenter: MyQotAppSettingsPresenterInterface,
          router: MyQotAppSettingsRouterInterface) {
@@ -25,11 +25,11 @@ final class MyQotAppSettingsInteractor {
         self.presenter = presenter
         self.router = router
     }
-    
+
     func viewDidLoad() {
         presenter.present(worker.settings())
     }
-    
+
     var appSettingsText: String {
         return worker.appSettingsText
     }

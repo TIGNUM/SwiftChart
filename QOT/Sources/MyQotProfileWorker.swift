@@ -15,30 +15,30 @@ final class MyQotProfileWorker {
     private let userProfileManager: UserProfileManager?
 
     // MARK: - Init
-    
+
     init(services: Services, syncManager: SyncManager) {
         self.services = services
         self.userProfileManager = UserProfileManager(services, syncManager)
     }
-    
+
     var myProfileText: String {
         return services.contentService.localizedString(for: ContentService.MyQot.Profile.myProfile.predicate) ?? ""
     }
-    
+
     var memberSinceText: String {
         return services.contentService.localizedString(for: ContentService.MyQot.Profile.memberSince.predicate) ?? ""
     }
-    
+
     lazy var menuItems: [MyQotProfileModel.TableViewPresentationData] = {
         var items = [MyQotProfileModel.TableViewPresentationData]()
         let accountSettings = MyQotProfileModel.TableViewPresentationData(headingKey: accountSettingsKey, heading: accountSettingsText, subHeading: manageYourProfileDetailsText)
         let appSettings = MyQotProfileModel.TableViewPresentationData(headingKey: appSettingsKey, heading: appSettingsText, subHeading: enableNotificationsText)
         let support = MyQotProfileModel.TableViewPresentationData(headingKey: supportKey, heading: supportText, subHeading: walkthroughOurFeaturesText)
-        let aboutTignum = MyQotProfileModel.TableViewPresentationData(headingKey: aboutTignumKey, heading:aboutTignumText, subHeading: learnMoreAboutUsText)
+        let aboutTignum = MyQotProfileModel.TableViewPresentationData(headingKey: aboutTignumKey, heading: aboutTignumText, subHeading: learnMoreAboutUsText)
         items = [accountSettings, appSettings, support, aboutTignum]
         return items
     }()
-    
+
     func profile() -> UserProfileModel? {
         return userProfileManager?.profile()
     }
@@ -46,7 +46,7 @@ final class MyQotProfileWorker {
 
 // MARK: - ContentService
 private extension MyQotProfileWorker {
-    
+
     var accountSettingsKey: String {
         return ContentService.MyQot.Profile.accountSettings.rawValue
     }
@@ -84,6 +84,3 @@ private extension MyQotProfileWorker {
         return services.contentService.localizedString(for: ContentService.MyQot.Profile.learnMoreAboutUs.predicate) ?? ""
     }
 }
-
-
-

@@ -401,7 +401,7 @@ final class SettingsViewModel {
             self?.generateSections()
         })
     }
-    
+
     func generateSections() {
         settingsSections = settingSections(user: user, settingsType: settingsType)
     }
@@ -458,7 +458,7 @@ private func notificationsSettingsSection(services: Services) -> [SettingsSectio
 private func generalSettingsSection(for user: QDMUser?, services: Services) -> [SettingsSection] {
     return [
         Sections(title: "Personal Data", rows: personalRows(for: user)),
-        Sections(title: "Contact", rows: companyRows(for: user)),
+        Sections(title: "Contact", rows: companyRows(for: user))
     ]
 }
 
@@ -513,7 +513,7 @@ private func personalRows(for user: QDMUser?) -> [SettingsRow] {
         .multipleStringPicker(title: SettingsType.weight.title.components(separatedBy: ".")[0],
                               rows: user.weightPickerItems,
                               initialSelection: [selectedWeightIndex, selectedWeightUnitIndex],
-                              settingsType: .weight),
+                              settingsType: .weight)
     ]
 }
 

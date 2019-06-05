@@ -9,7 +9,7 @@
 import Foundation
 
 extension ContentService {
-    
+
     struct AppSettings {
         enum Profile: String, CaseIterable, Predicatable {
             case appSettings = "app_settings_app_settings"
@@ -25,7 +25,7 @@ extension ContentService {
             case connectWearablesToQot = "app_settings_connect_wearables_to_qot"
             case siriShortcuts = "app_settings_siri_shortcuts"
             case recodYourVoiceAndCreateShortcuts = "app_settings_record_your_voice_and_create_shortcuts"
-            
+
             var predicate: NSPredicate {
                 return NSPredicate(tag: rawValue)
             }

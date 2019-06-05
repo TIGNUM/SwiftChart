@@ -9,15 +9,15 @@
 import Foundation
 
 final class MyQotAppSettingsWorker {
-    
+
     private let services: Services
 
     // MARK: - Init
-    
+
     init(services: Services) {
         self.services = services
     }
-    
+
     func settings() -> MyQotAppSettingsModel {
         return MyQotAppSettingsModel(services: services)
     }
