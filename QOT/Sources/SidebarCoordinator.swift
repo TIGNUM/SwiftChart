@@ -109,22 +109,6 @@ extension SidebarCoordinator: SidebarViewControllerDelegate {
     func didTapProfileCell(with contentCollection: ContentCollection?,
                            in viewController: SidebarViewController,
                            options: [LaunchOption: String?]? = nil) {
-        let configurator = ProfileSettingsConfigurator.make()
-        guard
-            let menuViewModel = SettingsMenuViewModel(services: services),
-            let settingsViewModel = SettingsViewModel(services: services, settingsType: .profile) else { return }
-        let profileViewController = ProfileSettingsViewController(configurator: configurator,
-                                                                  services: services,
-                                                                  permissionsManager: permissionsManager,
-                                                                  networkManager: networkManager,
-                                                                  settingsMenuViewModel: menuViewModel,
-                                                                  settingsViewModel: settingsViewModel,
-                                                                  launchOptions: options)
-        let navController = UINavigationController(rootViewController: profileViewController)
-        navController.navigationBar.applyDefaultStyle()
-        navController.modalTransitionStyle = .crossDissolve
-        navController.modalPresentationStyle = .custom
-        viewController.pushToStart(childViewController: profileViewController)
     }
 
     func didTapLibraryCell(in viewController: SidebarViewController) {

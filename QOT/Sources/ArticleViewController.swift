@@ -91,8 +91,8 @@ enum TextScale {
 
     var categoryHeadline: UIFont {
         switch self {
-        case .scale: return .sfProTextMedium(ofSize: 14)
-        case .scaleNot: return .sfProTextMedium(ofSize: 12)
+        case .scale: return .sfProtextMedium(ofSize: 14)
+        case .scaleNot: return .sfProtextMedium(ofSize: 12)
         }
     }
 
@@ -105,22 +105,22 @@ enum TextScale {
 
     var details: UIFont {
         switch self {
-        case .scale: return .sfProTextMedium(ofSize: 14)
-        case .scaleNot: return .sfProTextMedium(ofSize: 12)
+        case .scale: return .sfProtextMedium(ofSize: 14)
+        case .scaleNot: return .sfProtextMedium(ofSize: 12)
         }
     }
 
     var bullet: UIFont {
         switch self {
-        case .scale: return .sfProTextLight(ofSize: 24)
-        case .scaleNot: return .sfProTextLight(ofSize: 16)
+        case .scale: return .sfProtextLight(ofSize: 24)
+        case .scaleNot: return .sfProtextLight(ofSize: 16)
         }
     }
 
     var content: UIFont {
         switch self {
-        case .scale: return .sfProTextRegular(ofSize: 24)
-        case .scaleNot: return .sfProTextRegular(ofSize: 16)
+        case .scale: return .sfProtextRegular(ofSize: 24)
+        case .scaleNot: return .sfProtextRegular(ofSize: 16)
         }
     }
 }

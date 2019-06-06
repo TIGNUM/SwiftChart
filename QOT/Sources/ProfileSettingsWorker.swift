@@ -7,165 +7,176 @@
 //
 
 import UIKit
+import qot_dal
+
+// MARK: - Form
 
 final class ProfileSettingsWorker {
 
+    private var settingsSections = [SettingsSection]()
     private let services: Services
-    private let syncManger: SyncManager
-    private let user: User?
+    private var user: QDMUser?
 
-    init(services: Services, syncManger: SyncManager) {
+    init(services: Services) {
         self.services = services
-        self.syncManger = syncManger
-        self.user = services.userService.user()
     }
 
-    func profile() -> ProfileSettingsModel? {
-        return ProfileSettingsModel(imageURL: user?.userImage?.url,
-                                    givenName: user?.givenName,
-                                    familyName: user?.familyName,
-                                    position: user?.jobTitle,
-                                    memberSince: user?.totalUsageTime ?? 0,
-                                    company: user?.company,
-                                    email: user?.email,
-                                    telephone: user?.telephone,
-                                    gender: user?.gender,
-                                    height: user?.height.value ?? 150,
-                                    heightUnit: user?.heightUnit ?? "",
-                                    weight: user?.weight.value ?? 60,
-                                    weightUnit: user?.weightUnit ?? "",
-                                    birthday: user?.dateOfBirth ?? "")
+    func profile(_ completion: @escaping (_ userData: QDMUser?) -> Void) {
+        qot_dal.UserService.main.getUserData({ user in
+            self.user = user
+            self.generateSections()
+            completion(self.user)
+        })
     }
 
-    func upSyncUser() {
-        syncManger.upSyncUser { error in
-            if let error = error {
-                log(error.localizedDescription, level: .error)
-            }
-        }
-    }
-
-    func updateProfileTelephone(_ new: ProfileSettingsModel) {
-        guard let user = user, let old = profile(), old != new else { return }
-        let numberLength = new.telephone?.count ?? 0
-        if old.telephone != new.telephone &&
-            (numberLength == 0 || (numberLength > 0 && new.telephone?.isPhoneNumber == true)) {
-            services.userService.updateUserTelephone(user: user, telephone: new.telephone ?? "")
-            upSyncUser()
-        }
-    }
-
-    func updateProfileBirthday(_ new: ProfileSettingsModel) {
-        guard let user = user, let old = profile(), old != new else { return }
-        if old.birthday != new.birthday {
-            services.userService.updateUserDateOfBirth(user: user, dateOfBirth: new.birthday)
-            upSyncUser()
-        }
-    }
-
-    func updateProfileGivenName(_ new: ProfileSettingsModel) {
-        guard let user = user, let old = profile(), old != new else { return }
-        if old.givenName?.caseInsensitiveCompare(new.givenName ?? "") != .orderedSame {
-            services.userService.updateUserGivenName(user: user, name: new.givenName ?? "")
-            upSyncUser()
-        }
-    }
-
-    func updateProfileFamilyName(_ new: ProfileSettingsModel) {
-        guard let user = user, let old = profile(), old != new else { return }
-        if old.familyName?.caseInsensitiveCompare(new.familyName ?? "") != .orderedSame {
-            services.userService.updateUserFamilyName(user: user, name: new.familyName ?? "")
-            upSyncUser()
-        }
-    }
-
-    func updateProfileGender(_ new: ProfileSettingsModel) {
-        guard let user = user, let old = profile(), old != new else { return }
-        if old.gender?.caseInsensitiveCompare(new.gender ?? "") != .orderedSame {
-            services.userService.updateUserGender(user: user, gender: new.gender ?? "")
-            upSyncUser()
-        }
-    }
-
-    func updateJobTitle(_ new: ProfileSettingsModel) {
-        guard let user = user, let old = profile(), let newPosition = new.position, old != new else { return }
-        if old.position != newPosition {
-            services.userService.updateUserJobTitle(user: user, title: newPosition)
-            upSyncUser()
-        }
-    }
-
-	func updateHeight(_ new: ProfileSettingsModel) {
-		guard let old = profile(), old != new else { return }
-		if old.height != new.height || old.heightUnit != new.heightUnit {
-			updateHeight(meters: new.height, unit: new.heightUnit)
-            upSyncUser()
-		}
-    }
-
-    func updateWeight(_ new: ProfileSettingsModel) {
-        guard let old = profile(), old != new else { return }
-
-        if old.weight != new.weight || old.weightUnit != new.weightUnit {
-            updateWeight(weight: new.weight, unit: new.weightUnit)
-            upSyncUser()
-        }
-    }
-
-    func updateSettingsProfileImage(_ new: URL?) {
-        let old = profile()?.imageURL
-        guard let user = user, old != new else { return }
-        services.userService.updateUser(user: user) { (user) in
-            if let new = new, new.isLocalImageDirectory() {
-                user.userImage?.setLocalURL(new, format: .jpg, entity: .user, entitiyLocalID: user.localID)
-            } else {
-                user.userImage?.delete()
-            }
-            upSyncUser()
-        }
-    }
-
-    func saveImage(_ image: UIImage) throws -> URL {
-        return try image.save(withName: UUID().uuidString)
+    func update(user: QDMUser?) {
+        guard let userData = user else { return }
+        qot_dal.UserService.main.updateUserData(userData) { _ in }
     }
 }
 
-// MARK: - Private
+extension ProfileSettingsWorker {
+
+    var profile: QDMUser? {
+        get {
+            return user
+        }
+        set {
+            user = newValue
+        }
+    }
+
+    var editAccountTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.editAccount.predicate) ?? ""
+    }
+
+    func numberOfSections() -> Int {
+        return settingsSections.count
+    }
+
+    func numberOfItemsInSection(in section: Int) -> Int {
+        return items(in: section).count
+    }
+
+    func row(at indexPath: IndexPath) -> SettingsRow {
+        return items(in: indexPath.section)[indexPath.row]
+    }
+
+    func headerTitle(in section: Int) -> String {
+        return settingsSections[section].title
+    }
+
+    func generateSections() {
+        settingsSections = settingSections(user: user)
+    }
+}
+
+// MARK: - ContentService
+private extension ProfileSettingsWorker {
+
+    var personalDataTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.personalData.predicate) ?? ""
+    }
+    var contactTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.contact.predicate) ?? ""
+    }
+    var nameTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.name.predicate) ?? ""
+    }
+    var surnameTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.surname.predicate) ?? ""
+    }
+    var genderTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.gender.predicate) ?? ""
+    }
+    var dateOfBirthTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.dateOfBirth.predicate) ?? ""
+    }
+    var heightTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.height.predicate) ?? ""
+    }
+    var weightTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.weight.predicate) ?? ""
+    }
+    var companyTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.company.predicate) ?? ""
+    }
+    var titleTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.title.predicate) ?? ""
+    }
+
+    var emailTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.email.predicate) ?? ""
+    }
+
+    var phoneTitle: String {
+        return services.contentService.localizedString(for: ContentService.EditAccount.phone.predicate) ?? ""
+    }
+}
 
 private extension ProfileSettingsWorker {
 
-    func updateWeight(weight: Double, unit: String) {
-        guard let user = user else { return }
-
-        let convertedWeight: Double
-        if unit == "kg" {
-            convertedWeight = weight
-        } else if unit == "lbs" {
-            let kilograms = Measurement(value: weight, unit: UnitMass.kilograms)
-            let pounds = kilograms.converted(to: .pounds)
-            convertedWeight = pounds.value
-        } else {
-            fatalError("Invalid unit")
-        }
-        services.userService.updateUserWeight(user: user, weight: convertedWeight)
-        services.userService.updateUserWeightUnit(user: user, weightUnit: unit)
+    private func generalSettingsSection(for user: QDMUser?, services: Services) -> [SettingsSection] {
+        return [
+            Sections(title: personalDataTitle, rows: personalRows(for: user)),
+            Sections(title: contactTitle, rows: companyRows(for: user))
+        ]
     }
 
-    func updateHeight(meters: Double, unit: String) {
-        guard let user = user else { return }
-
-        let meters = Measurement(value: meters, unit: UnitLength.meters)
-        let convertedHeight: Double
-        if unit == "cm" {
-            let centimeters = meters.converted(to: .centimeters)
-            convertedHeight = centimeters.value
-        } else if unit == "ft" {
-            let feet = meters.converted(to: .feet)
-            convertedHeight = feet.value
-        } else {
-            fatalError("Invalid unit")
-        }
-        services.userService.updateUserHeight(user: user, height: convertedHeight)
-        services.userService.updateUserHeightUnit(user: user, heightUnit: unit)
+    private func items(in section: Int) -> [SettingsRow] {
+        return settingsSections[section].rows
     }
+
+    private func settingSections(user: QDMUser?) -> [SettingsSection] {
+        return generalSettingsSection(for: user, services: services)
+    }
+
+    private func companyRows(for user: QDMUser?) -> [SettingsRow] {
+        return [
+            .label(title: companyTitle, value: user?.company, settingsType: .company),
+            .textField(title: titleTitle, value: user?.jobTitle ?? "", secure: false, settingsType: .jobTitle),
+            .label(title: emailTitle, value: user?.email, settingsType: .email),
+            .textField(title: phoneTitle, value: user?.telephone ?? "", secure: false, settingsType: .phone)
+        ]
+    }
+
+    private func personalRows(for user: QDMUser?) -> [SettingsRow] {
+        guard let user = user else { return [] }
+        var date = Date()
+        date = DateFormatter.settingsUser.date(from: user.dateOfBirth) ?? Date()
+        let heightItems = user.heightPickerItems
+        let weightItems = user.weightPickerItems
+        let selectedHeightIndex = heightItems.valueIndex
+        let selectedHeightUnitIndex = heightItems.unitIndex
+        var selectedWeightIndex = weightItems.valueIndex
+        let selectedWeightUnitIndex = weightItems.unitIndex
+        let selectedGenderIndex = Gender(rawValue: user.gender)?.selectedIndex ?? 0
+
+        if selectedWeightIndex == 0 && selectedWeightUnitIndex == 0 {
+            selectedWeightIndex = 70
+        } else if selectedWeightIndex == 0 && selectedWeightUnitIndex == 1 {
+            selectedWeightIndex = 154
+        }
+
+        return [
+            .textField(title: nameTitle, value: user.givenName, secure: false, settingsType: .firstName),
+            .textField(title: surnameTitle, value: user.familyName, secure: false, settingsType: .lastName),
+            .stringPicker(title: genderTitle,
+                          pickerItems: Gender.allValues.compactMap { $0.dsiplayValue },
+                          selectedIndex: selectedGenderIndex,
+                          settingsType: .gender),
+            .datePicker(title: dateOfBirthTitle,
+                        selectedDate: date,
+                        settingsType: .dateOfBirth),
+            .multipleStringPicker(title: heightTitle,
+                                  rows: user.heightPickerItems,
+                                  initialSelection: [selectedHeightIndex, selectedHeightUnitIndex],
+                                  settingsType: .height),
+            .multipleStringPicker(title: weightTitle,
+                                  rows: user.weightPickerItems,
+                                  initialSelection: [selectedWeightIndex, selectedWeightUnitIndex],
+                                  settingsType: .weight)
+        ]
+    }
+
 }

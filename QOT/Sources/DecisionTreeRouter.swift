@@ -33,6 +33,12 @@ final class DecisionTreeRouter {
 // MARK: - DecisionTreeRouterInterface
 
 extension DecisionTreeRouter: DecisionTreeRouterInterface {
+    func openPrepareChecklist(with contentID: Int) {
+        print("openPrepareChecklist with contentID: ", contentID)
+        let configurator = PrepareCheckListConfigurator.make(contentID: contentID)
+        let controller = PrepareCheckListViewController(configure: configurator)
+        viewController.present(controller, animated: true, completion: nil)
+    }
 
     func openArticle(with contentID: Int) {
         AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID)
@@ -51,7 +57,7 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         let decisionTreeVC = DecisionTreeViewController(configure: configurator)
         viewController.present(decisionTreeVC, animated: true)
     }
-    
+
     func openMindsetShifterChecklist(trigger: String, reactions: [String], lowPerformanceItems: [String]) {
         let configurator = MindsetShifterChecklistConfigurator.make(trigger: trigger,
                                                                     reactions: reactions,
@@ -66,12 +72,9 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
 extension DecisionTreeRouter: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
-        // 1. saveImage
-        // 2. load next question
-        // 3. go next
+        viewController.interactor?.save(image)
     }
 
     func cancelSelection() {
-        // 1. load next question
     }
 }

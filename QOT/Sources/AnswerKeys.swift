@@ -15,4 +15,8 @@ enum AnswerKey {
     enum ToBeVision: String {
         case uploadImage = "tbv-answer-key-upload-image"
     }
+
+    enum Prepare: String {
+        case openCheckList = "open_preparation_check_list_on_the_go"
+    }
 }

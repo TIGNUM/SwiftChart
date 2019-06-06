@@ -8,10 +8,16 @@
 
 import UIKit
 
+protocol ConfirmationViewControllerDelegate: class {
+    func didTapLeave()
+    func didTapStay()
+}
+
 final class ConfirmationViewController: UIViewController {
 
     // MARK: - Properties
 
+    weak var delegate: ConfirmationViewControllerDelegate?
     var interactor: ConfirmationInteractorInterface?
     private var confirmationModel: ConfirmationModel?
     @IBOutlet private weak var titleLabel: UILabel!

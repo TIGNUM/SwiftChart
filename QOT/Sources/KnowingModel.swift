@@ -16,15 +16,15 @@ struct Knowing {
 
         var titlePredicate: NSPredicate {
             switch self {
-            case .strategies: return ContentService.Tags.Navigation.FirstLevel.knowSectionTitleStrategies.predicate
-            case .whatsHot: return ContentService.Tags.Navigation.FirstLevel.knowSectionTitleWhatsHot.predicate
+            case .strategies: return ContentService.Navigation.FirstLevel.knowSectionTitleStrategies.predicate
+            case .whatsHot: return ContentService.Navigation.FirstLevel.knowSectionTitleWhatsHot.predicate
             }
         }
 
         var subtitlePredicate: NSPredicate {
             switch self {
-            case .strategies: return ContentService.Tags.Navigation.FirstLevel.knowSectionSubtitleStrategies.predicate
-            case .whatsHot: return ContentService.Tags.Navigation.FirstLevel.knowSectionSubtitleWhatsHot.predicate
+            case .strategies: return ContentService.Navigation.FirstLevel.knowSectionSubtitleStrategies.predicate
+            case .whatsHot: return ContentService.Navigation.FirstLevel.knowSectionSubtitleWhatsHot.predicate
             }
         }
     }

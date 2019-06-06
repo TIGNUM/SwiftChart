@@ -40,7 +40,7 @@ extension ConfirmationInteractor: ConfirmationInteractorInterface {
     func didTap(_ buttonType: ConfirmationButtonType) {
         switch buttonType {
         case .yes:
-            return
+            router.leave()
         case .no:
             router.dismiss()
         }

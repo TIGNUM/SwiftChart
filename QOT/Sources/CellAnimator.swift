@@ -54,8 +54,8 @@ extension CellAnimator {
         return { cell, indexPath in
             cell.transform = CGAffineTransform(translationX: 0, y: rowHeight)
             UIView.animate(withDuration: duration,
-                           delay: delayFactor * Double(indexPath.row),
-                           usingSpringWithDamping: 0.4,
+                           delay: delayFactor * Double(indexPath.row + 1),
+                           usingSpringWithDamping: 0.3,
                            initialSpringVelocity: 0.1,
                            options: [.curveEaseInOut],
                            animations: {

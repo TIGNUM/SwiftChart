@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class ProfileSettingsPresenter {
 
@@ -20,16 +21,7 @@ final class ProfileSettingsPresenter {
 // MARK: - SettingsMenuPresenter Interface
 
 extension ProfileSettingsPresenter: ProfileSettingsPresenterInterface {
-
-    func loadSettingsMenu(_ profile: ProfileSettingsModel) {
+    func loadSettingsMenu(_ profile: QDMUser) {
         viewController?.setup(profile: profile)
-    }
-
-    func updateSettingsMenu(_ profile: ProfileSettingsModel) {
-        viewController?.update(profile: profile)
-    }
-
-    func presentImageError(_ error: Error) {
-        viewController?.displayImageError()
     }
 }

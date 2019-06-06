@@ -64,14 +64,20 @@ extension SettingsService {
     }
 
     func string(key: String) -> String? {
-        guard let value = settingValue(key: key) else { return nil }
-
-        switch value {
-        case .text(let text):
-            return text
-        default:
-            return nil
+        // Backend is changing now the SystemSetting Data Scheme... Need to be handled more later...
+        if  let systemSet = systemSetting(key: key), userSetting(systemSetting: systemSet)?.value == nil {
+                return systemSet.textValue.isEmpty ? nil : systemSet.textValue
         }
+
+        if let value = settingValue(key: key) {
+            switch value {
+            case .text(let text):
+                return text
+            default:
+                return nil
+            }
+        }
+        return nil
     }
 
     func allowAdminSettings() -> Bool {

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Light.otf">
+            <string>SFProDisplay-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="MyQotProfileHeaderView" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="375" height="196"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sAu-fx-VtT">
+                    <rect key="frame" x="24" y="24" width="327" height="29"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="24"/>
+                    <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Member since 12 December 2015" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnw-qu-48H">
+                    <rect key="frame" x="24" y="59" width="327" height="112.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                    <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.031372549019607843" green="0.031372549019607843" blue="0.027450980392156862" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="sAu-fx-VtT" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="0Jc-AF-aqQ"/>
+                <constraint firstItem="sAu-fx-VtT" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="24" id="1V1-dB-iZc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="sAu-fx-VtT" secondAttribute="trailing" constant="24" id="1fy-iI-WxR"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="mnw-qu-48H" secondAttribute="bottom" constant="24.5" id="F5p-UQ-pIZ"/>
+                <constraint firstItem="mnw-qu-48H" firstAttribute="leading" secondItem="sAu-fx-VtT" secondAttribute="leading" id="Zjm-NS-ahj"/>
+                <constraint firstItem="mnw-qu-48H" firstAttribute="top" secondItem="sAu-fx-VtT" secondAttribute="bottom" constant="6" id="bAS-0U-tTW"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="mnw-qu-48H" secondAttribute="trailing" constant="24" id="scv-Qj-Oek"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="memberSinceLabel" destination="mnw-qu-48H" id="aM3-Ag-X8W"/>
+                <outlet property="nameLabel" destination="sAu-fx-VtT" id="gK0-tf-tPK"/>
+            </connections>
+            <point key="canvasLocation" x="88.799999999999997" y="-53.073463268365821"/>
+        </view>
+    </objects>
+</document>

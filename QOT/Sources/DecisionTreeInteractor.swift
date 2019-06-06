@@ -37,11 +37,19 @@ final class DecisionTreeInteractor {
 
 extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
 
+    var type: DecisionTreeType {
+        return worker.type
+    }
+
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer]) {
         let node = worker.fetchNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
         if let question = node.question {
             presenter.presentNext(question, with: node.generatedAnswer)
         }
+    }
+
+    func openPrepareChecklist(with contentID: Int) {
+        router.openPrepareChecklist(with: contentID)
     }
 
     func displayContent(with id: Int) {
@@ -54,7 +62,7 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         }
     }
 
-    func uploadPhoto() {
+    func openImagePicker() {
         router.openImagePicker()
     }
 
@@ -74,11 +82,15 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     }
 
     func openMindsetShifterChecklist(from answers: [Answer]) {
-        if let trigger = answers.first(where: { $0.keys.filter { $0.contains("trigger") }.isEmpty == false })?.title {
+        if let trigger = answers.first(where: { $0.keys.filter { $0.contains("trigger-") }.isEmpty == false })?.title {
             let reactions = answers.filter { $0.keys.filter { $0.contains("reaction") }.isEmpty == false }.map { $0.title }
             let lowItems = answers.filter { $0.keys.filter { $0.contains("lowperformance") }.isEmpty == false }.map { $0.title }
             router.openMindsetShifterChecklist(trigger: trigger, reactions: reactions, lowPerformanceItems: lowItems)
         }
+    }
+
+    func save(_ image: UIImage) {
+        worker.save(image)
     }
 }
 

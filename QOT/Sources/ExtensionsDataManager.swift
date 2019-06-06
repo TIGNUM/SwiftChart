@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 enum ExtensionDataType {
     case toBeVision
@@ -52,11 +53,12 @@ final class ExtensionsDataManager {
 private extension ExtensionsDataManager {
 
     func updateToBeVision() {
-        let vision = services.userService.myToBeVision()
-        let sharedVision = ExtensionModel.ToBeVision(headline: vision?.headline,
-                                                     text: vision?.text,
-                                                     imageURL: vision?.imageURL)
-        ExtensionUserDefaults.set(sharedVision, for: .toBeVision)
+        qot_dal.UserService.main.getMyToBeVision {(vision, status, error) in
+            let sharedVision = ExtensionModel.ToBeVision(headline: vision?.headline,
+                                                         text: vision?.text,
+                                                         imageURL: vision?.profileImageResource?.url())
+            ExtensionUserDefaults.set(sharedVision, for: .toBeVision)
+        }
     }
 
     func updateUpcomingEvents() {

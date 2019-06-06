@@ -76,6 +76,14 @@ extension QuestionsService {
     }
 }
 
+// MARK: - Prepare
+
+extension QuestionsService {
+    func prepareIntro() -> Question? {
+        return question(for: QuestionKey.Prepare.intro.rawValue)
+    }
+}
+
 // MARK: - Private
 
 private extension QuestionsService {

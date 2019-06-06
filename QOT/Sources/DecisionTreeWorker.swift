@@ -15,7 +15,7 @@ final class DecisionTreeWorker {
     // MARK: - Properties
 
     private let services: Services
-    private let type: DecisionTreeType
+    let type: DecisionTreeType
 
     // MARK: - Init
 
@@ -36,14 +36,10 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
     /// Returns the first question in order to start the decision tree
     func fetchFirstQuestion() -> Question? {
         switch type {
-        case .toBeVisionGenerator:
-            return services.questionsService.tbvGeneratorIntroQuestion()
-        case .mindsetShifter:
-            return services.questionsService.mindsetShifterIntroQuestion()
-        case .mindsetShifterTBV:
-            return services.questionsService.mindsetShifterTBV()
-        case .prepare:
-            return nil
+        case .toBeVisionGenerator: return services.questionsService.tbvGeneratorIntroQuestion()
+        case .mindsetShifter: return services.questionsService.mindsetShifterIntroQuestion()
+        case .mindsetShifterTBV: return services.questionsService.mindsetShifterTBV()
+        case .prepare: return services.questionsService.prepareIntro()
         }
     }
 
@@ -53,12 +49,9 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         var extraAnswer: String?
         switch question?.key {
         case QuestionKey.ToBeVision.create.rawValue,
-             QuestionKey.MindsetShifterTBV.review.rawValue:
-            extraAnswer = createVision(from: selectedAnswers)
-        case QuestionKey.MindsetShifter.showTBV.rawValue:
-            extraAnswer = services.userService.myToBeVision()?.text
-        default: // TODO: generate different extra answers
-            extraAnswer = createVision(from: selectedAnswers)
+             QuestionKey.MindsetShifterTBV.review.rawValue: extraAnswer = createVision(from: selectedAnswers)
+        case QuestionKey.MindsetShifter.showTBV.rawValue: extraAnswer = services.userService.myToBeVision()?.text
+        default: extraAnswer = createVision(from: selectedAnswers)/* TODO: generate different extra answers */
         }
         return (question, extraAnswer)
     }
@@ -70,11 +63,20 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
             let url = URL(string: urlString) else { return nil }
         return url
     }
+
+    /// Saves `ImageResource`
+    func save(_ image: UIImage) {
+        switch type {
+        case .toBeVisionGenerator, .mindsetShifterTBV:
+            saveToBeVision(image)
+        default: return
+        }
+    }
 }
 
-// MARK: - Private
+// MARK: - Private TBV
 
-extension DecisionTreeWorker {
+private extension DecisionTreeWorker {
 
     var workQuestion: Question? {
         switch type {
@@ -129,5 +131,17 @@ extension DecisionTreeWorker {
             }
         }
         return visionList.joined(separator: " ")
+    }
+
+    func saveToBeVision(_ image: UIImage) {
+        do {
+            let imageURL = try image.save(withName: UUID().uuidString)
+            guard var vision = services.userService.myToBeVision()?.model else { return }
+            vision.imageURL = imageURL
+            vision.lastUpdated = Date()
+            services.userService.saveVisionAndSync(vision, syncManager: AppDelegate.appState.syncManager, completion: nil)
+        } catch {
+            print("Error while saving TBV image: \(error.localizedDescription)")
+        }
     }
 }

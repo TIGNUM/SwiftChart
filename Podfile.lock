@@ -2,13 +2,13 @@ PODS:
   - ActionSheetPicker-3.0 (2.3.0)
   - Alamofire (4.8.2)
   - AMScrollingNavbar (5.2.0)
-  - Anchorage (4.3)
+  - Anchorage (4.3.1)
   - Bond (7.5.0):
     - Differ (~> 1.3)
     - ReactiveKit (~> 3.10)
-  - BonMot (5.3)
+  - BonMot (5.4)
   - Buglife (2.10.1)
-  - Differ (1.4.1)
+  - Differ (1.4.3)
   - Freddy (3.0.3)
   - HockeySDK (5.1.4):
     - HockeySDK/DefaultLib (= 5.1.4)
@@ -25,7 +25,7 @@ PODS:
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
-  - ReactiveKit (3.12.0)
+  - ReactiveKit (3.12.2)
   - RSKImageCropper (2.2.1)
   - SwiftyBeaver (1.7.0)
   - UrbanAirship-iOS-SDK (11.0.0)
@@ -83,18 +83,18 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: 341c7b6ac40233efb069b71326ecca5f3fd83604
+    :commit: e1691459a8a6079ee667f5c43b8feb38e07d2862
     :git: "git@github.com:TIGNUM/qot_dal.git"
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AMScrollingNavbar: 9df3652d6757f1a24646d8e90cb458591d8b1a6a
-  Anchorage: 21a98675245188427f0bcea21404d42a824a766f
+  Anchorage: a187da0bc9b07440637d42c8744b8c82a4490295
   Bond: c5f2519382a501f45e4907c7846d53828d163aaf
-  BonMot: 0104d1b4eda54f4a4b7393d6559539ef25498fbd
+  BonMot: 505471ffd93959076c4dd8391aa8a7aba35562a2
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
-  Differ: ca4350872e32a1aeedf3d9e2d9e47127833bfa9c
+  Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
   Freddy: 7c62db262a0d0e3b3e2b8b40f2c0cc51e122fbc4
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JPSimulatorHacks: 28428b30259eb93ad558ac3f2c608acd2133a14b
@@ -104,11 +104,11 @@ SPEC CHECKSUMS:
   qot_dal: 967c0df783c6fcc0205102e8e4a689220113adfa
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
-  ReactiveKit: 7634cc10d9fb8791f9a87bf60c283fb420db3184
+  ReactiveKit: 33adc5550145e8200daa3eb210841f2a0be642c6
   RSKImageCropper: 98296ad26b41753f796b6898d015509598f13d97
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
   UrbanAirship-iOS-SDK: a8d14c20a1b5af58784923b827dfd4d4145c0622
 
 PODFILE CHECKSUM: 7baea489464a18c27ac2c4436eb730ded91c0f7e
 
-COCOAPODS: 1.6.2
+COCOAPODS: 1.6.1

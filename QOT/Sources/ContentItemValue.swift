@@ -98,6 +98,7 @@ enum ContentItemValue {
             } else {
                 self = .invalid
             }
+        default: self = .invalid
         }
     }
 
@@ -179,6 +180,8 @@ enum ContentItemFormat: String {
     case textParagraph = "text.paragraph"
     case textQuote = "text.quote"
     case listItem = "listitem"
+    case list
+    case title
     case video
     case audio
     case image

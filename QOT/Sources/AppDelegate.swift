@@ -91,8 +91,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             if appCoordinator.userLoggedIn == true {
                 appCoordinator.startSync()
             }
+            if let url = launchOptions?[.url] as? URL {
+                RestartHelper.setRestartURL(url)
+            }
             appCoordinator.start(completion: {
-                self.processURLWhenAppInactive(launchOptions: launchOptions)
+                //
             })
             UIApplication.shared.setStatusBarStyle(.lightContent)
             UINavigationBar.appearance().shadowImage = UIImage()
@@ -204,15 +207,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         if let shortcut = unhandledShortCuts.first {
             handleShortcut(shortcutItem: shortcut)
             unhandledShortCuts.removeAll()
-        }
-    }
-
-    func processURLWhenAppInactive(launchOptions: [UIApplicationLaunchOptionsKey: Any]?) {
-        if
-            let url = launchOptions?[.url] as? URL,
-            launchHandler.canLaunch(url: url) == true,
-            URLScheme.isLaunchableHost(host: url.host) {
-            launchHandler.process(url: url)
         }
     }
 }

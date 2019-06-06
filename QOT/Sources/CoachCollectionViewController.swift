@@ -33,7 +33,7 @@ final class CoachCollectionViewController: UIViewController {
     @IBOutlet private weak var coachButton: UIButton!
 
     lazy var pageTitle: String? = {
-        let predicate = ContentService.Tags.Navigation.FirstLevel.knowPageTitle.predicate
+        let predicate = ContentService.Navigation.FirstLevel.knowPageTitle.predicate
         return services?.contentService.contentItem(for: predicate)?.valueText
     }()
 
@@ -57,10 +57,10 @@ final class CoachCollectionViewController: UIViewController {
 
     lazy var myQotNavigationController: MyQotNavigationController? = {
         let navController = R.storyboard.main().instantiateViewController(withIdentifier: MyQotNavigationController.storyboardID) as? MyQotNavigationController
-        guard let myQotViewController = navController?.viewControllers.first  as? MyQotViewController else {
+        guard let myQotViewController = navController?.viewControllers.first  as? MyQotProfileViewController else {
             return nil
         }
-        MyQotConfigurator.configure(delegate: self, viewController: myQotViewController)
+        MyQotProfileConfigurator.configure(delegate: self, viewController: myQotViewController)
         return navController
     }()
 

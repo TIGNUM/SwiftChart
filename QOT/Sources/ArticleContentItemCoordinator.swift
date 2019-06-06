@@ -34,6 +34,7 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
           contentCollection: ContentCollection?,
           articleHeader: ArticleCollectionHeader? = nil,
           topTabBarTitle: String?,
+          topSmallTitle: String? = nil,
           backgroundImage: UIImage? = nil,
           shouldPush: Bool = true,
           isSearch: Bool = false,
@@ -54,7 +55,8 @@ final class ArticleContentItemCoordinator: ParentCoordinator {
                                          items: articleItems,
                                          contentCollection: contentCollection,
                                          articleHeader: articleHeader,
-                                         backgroundImage: backgroundImage)
+                                         backgroundImage: backgroundImage,
+                                         topSmallTitle: topSmallTitle)
         ArticleItemViewController.page = pageName
         fullViewController = ArticleItemViewController(viewModel: viewModel,
                                                        guideItem: guideItem,

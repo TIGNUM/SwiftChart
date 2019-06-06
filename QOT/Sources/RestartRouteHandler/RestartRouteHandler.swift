@@ -29,14 +29,18 @@ class RestartHelper {
         }
     }
 
+    static func setRestartURL(_ url: URL) {
+        UserDefault.restartRouteURLString.setStringValue(value: url.absoluteString)
+    }
+
     func checkRestartURLAndRoute() {
         guard let restartRouteURLString = UserDefault.restartRouteURLString.stringValue,
             let restartRouteURL = URL(string: restartRouteURLString) else {
                 RestartHelper.clearRestartRouteInfo()
                 return
         }
-        UIApplication.shared.open(restartRouteURL, options: [ : ], completionHandler: nil)
         RestartHelper.clearRestartRouteInfo()
+        UIApplication.shared.open(restartRouteURL, options: [ : ], completionHandler: nil)
     }
 
     static func clearRestartRouteInfo() {

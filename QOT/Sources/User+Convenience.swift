@@ -8,16 +8,17 @@
 
 import Foundation
 import Freddy
+import qot_dal
 
-extension User {
+extension QDMUser {
 
     var weightPickerItems: UserMeasurement {
-        if let weight = weight.value, let unit = weightUnit {
+        if let weight = weight, let unit = weightUnit {
             switch unit {
             case "kg":
-                return UserMeasurement.weight(kilograms: weight, unit: "kg")
+                return UserMeasurement.weight(kilograms: Double(weight), unit: "kg")
             case "lbs":
-                let lbs = Measurement(value: weight, unit: UnitMass.pounds)
+                let lbs = Measurement(value: Double(weight), unit: UnitMass.pounds)
                 let kilos = lbs.converted(to: .kilograms)
                 return UserMeasurement.weight(kilograms: kilos.value, unit: "lbs")
             default:
@@ -29,14 +30,14 @@ extension User {
     }
 
     var heightPickerItems: UserMeasurement {
-        if let height = height.value, let unit = heightUnit {
+        if let height = height, let unit = heightUnit {
             switch unit {
             case "cm":
-                let centimeters = Measurement(value: height, unit: UnitLength.centimeters)
+                let centimeters = Measurement(value: Double(height), unit: UnitLength.centimeters)
                 let meters = centimeters.converted(to: .meters)
                 return UserMeasurement.height(meters: meters.value, unit: "cm")
             case "ft":
-                let feet = Measurement(value: height, unit: UnitLength.feet)
+                let feet = Measurement(value: Double(height), unit: UnitLength.feet)
                 let meters = feet.converted(to: .meters)
                 return UserMeasurement.height(meters: meters.value, unit: "ft")
             default:

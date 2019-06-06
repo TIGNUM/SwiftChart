@@ -8,7 +8,6 @@
 
 import UIKit
 import Rswift
-import Anchorage
 
 protocol ArticleItemViewControllerDelegate: class {
     func didSelectRelatedArticle(selectedArticle: ContentCollection, form viewController: UIViewController)
@@ -23,26 +22,18 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
 
     // MARK: - Properties
 
+    @IBOutlet private weak var bottomNavigationBar: BottomNavigationBarView!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var button: UIButton!
+
     private let contentInsets: UIEdgeInsets
     private let fadeMaskLocation: UIView.FadeMaskLocation
     private let guideItem: Guide.Item?
+    private var isNewLayout: Bool = false
     private var avPlayerObserver: AVPlayerObserver?
     static var page: PageName = .whatsHotArticle
     var viewModel: ArticleItemViewModel
     weak var delegate: ArticleItemViewControllerDelegate?
-
-    private lazy var tableView: UITableView = {
-        return UITableView(style: .grouped,
-                           contentInsets: contentInsets,
-                           delegate: self,
-                           dataSource: self,
-                           dequeables:
-                            ContentItemTextTableViewCell.self,
-                            ImageSubtitleTableViewCell.self,
-                            ArticleRelatedCell.self,
-                            LearnPDFCell.self,
-                            ErrorCell.self)
-    }()
 
     private var paddingTop: CGFloat {
         switch pageName {
@@ -75,13 +66,26 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        bottomNavigationBar.delegate = self
+        bottomNavigationBar.navigationType = .modal
+        tableView.registerDequeueable(TitleTableViewCell.self)
+        tableView.registerDequeueable(ContentItemTextTableViewCell.self)
+        tableView.registerDequeueable(ArticleRelatedCell.self)
+        tableView.registerDequeueable(ImageSubtitleTableViewCell.self)
+        tableView.registerDequeueable(LearnPDFCell.self)
+        tableView.registerDequeueable(ErrorCell.self)
+        isNewLayout = true
         setupView()
+        // change background color in new layout
+        view.backgroundColor = isNewLayout ? .carbon : .navy
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         tableView.reloadData()
         viewModel.markContentAsRead()
+        // hide the navigation bar in new layout
+        self.navigationController?.setNavigationBarHidden(isNewLayout, animated: false)
     }
 
     override func viewDidLayoutSubviews() {
@@ -139,9 +143,6 @@ private extension ArticleItemViewController {
     }
 
     func setupView() {
-        tableView.backgroundColor = .navy
-        view.addSubview(tableView)
-        view.translatesAutoresizingMaskIntoConstraints = true
         if
             let guideItem = guideItem,
             let featureLink = guideItem.link,
@@ -149,11 +150,7 @@ private extension ArticleItemViewController {
             guideItem.identifier != "learn#119928",
             guideItem.featureLink?.absoluteString != "qot://morning-interview?groupID=",
             URLScheme.isSupportedURL(featureLink) == true {
-            let button = featureLinkButton(guideItem: guideItem)
-            view.addSubview(button)
-            button.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_002)
-            button.widthAnchor == view.widthAnchor - (view.bounds.width * Layout.multiplier_08)
-            button.heightAnchor == 19
+            featureLinkButton(guideItem: guideItem)
             button.layer.borderColor = UIColor.azure.cgColor
             button.setTitleColor(.azure, for: .normal)
             button.titleLabel?.font = .ApercuBold16
@@ -162,33 +159,22 @@ private extension ArticleItemViewController {
         automaticallyAdjustsScrollViewInsets = false
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
-            tableView.safeTopAnchor == view.safeTopAnchor
-            tableView.leftAnchor == view.leftAnchor
-            tableView.rightAnchor == view.rightAnchor
             tableView.contentInset.top = paddingTop
             tableView.contentInset.bottom = view.safeMargins.bottom
         } else {
-            tableView.topAnchor == view.topAnchor
-            tableView.bottomAnchor == view.bottomAnchor
-            tableView.rightAnchor == view.rightAnchor
-            tableView.leftAnchor == view.leftAnchor
             tableView.contentInset.top = paddingTop
         }
-        tableView.bottomAnchor == view.safeBottomAnchor - (view.bounds.height * Layout.multiplier_06)
         tableView.estimatedSectionHeaderHeight = 100
-        view.backgroundColor = .clear
-        view.layoutIfNeeded()
+        view.backgroundColor = .carbon
     }
 
-    func featureLinkButton(guideItem: Guide.Item) -> UIButton {
-        let button = UIButton()
+    func featureLinkButton(guideItem: Guide.Item) {
         button.addTarget(self, action: #selector(openFeatureLink), for: .touchUpInside)
         button.setTitleColor(.white40, for: .normal)
         button.setTitle(guideItem.featureButton?.uppercased() ?? "", for: .normal)
         button.titleLabel?.addCharactersSpacing(spacing: 1, text: guideItem.featureButton ?? "")
         button.titleLabel?.font = .DPText
         button.titleLabel?.textAlignment = .center
-        return button
     }
 
     @objc func openFeatureLink() {
@@ -205,6 +191,16 @@ private extension ArticleItemViewController {
         headerView.setupView(header: header, pageName: pageName, delegate: delegate)
         headerView.backgroundColor = .clear
         tableView.tableHeaderView = headerView
+    }
+
+    func topBarTextTableViewCell(tableView: UITableView,
+                                      indexPath: IndexPath,
+                                      title: String) -> TitleTableViewCell {
+        let itemTextCell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
+        let config = TitleTableViewCell.Config(backgroundColor: .carbon, titlefont: .sfProtextMedium(ofSize: 12), titleTextColor: .sand30, isArrowHidden: true, isSeparatorHidden: true, bottomMargin: 16, topMargin: 20)
+        itemTextCell.config = config
+        itemTextCell.title = title
+        return itemTextCell
     }
 
     func contentItemTextTableViewCell(tableView: UITableView,
@@ -300,6 +296,9 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         switch indexPath.section {
         case 0:
+            if indexPath.row == 0 && viewModel.topSmallTitle != nil {
+                return topBarTextTableViewCell(tableView: tableView, indexPath: indexPath, title: viewModel.topSmallTitle ?? "Faq")
+            }
             let item = viewModel.articleItem(at: indexPath)
             switch item.contentItemValue {
             case .audio(let title, _, let imageURL, _, _, _):
@@ -379,6 +378,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.section {
         case 0:
+            if indexPath.row == 0 && viewModel.topSmallTitle != nil { return }
             let item = viewModel.articleItem(at: indexPath)
 
             switch item.contentItemValue {
@@ -422,5 +422,11 @@ extension ArticleItemViewController: UIScrollViewDelegate {
         if scrollView.contentOffset.y < -(view.frame.height * 0.25) {
             dismiss(animated: true, completion: nil)
         }
+    }
+}
+
+extension ArticleItemViewController: BottomNavigationBarViewProtocol {
+    func willNavigateBack() {
+        dismiss(animated: true, completion: nil)
     }
 }

@@ -21,6 +21,7 @@ protocol ConfirmationInteractorInterface: Interactor {
 }
 
 protocol ConfirmationRouterInterface {
+    func leave()
     func dismiss()
 }
 

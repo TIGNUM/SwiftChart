@@ -7,11 +7,18 @@
 //
 
 import UIKit
+import qot_dal
+
+protocol DecisionTreeViewControllerDelegate: class {
+    func toBeVisionDidChange()
+    func didDismiss()
+}
 
 final class DecisionTreeViewController: UIViewController {
 
     // MARK: - Properties
 
+    weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
     private var extraAnswer: String? = ""
     private var pageController: UIPageViewController?
@@ -89,6 +96,11 @@ final class DecisionTreeViewController: UIViewController {
         showFirstQuestion()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pageController?.view.frame = pageControllerContainer.frame
@@ -120,8 +132,7 @@ private extension DecisionTreeViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_1_5) { [unowned self] in
             self.dotsLoadingView.stopAnimation()
             if let firstQuestion = self.decisionTree?.questions.first {
-                let firstQuestionnaireVC = self.questionnaireController(for: firstQuestion)
-                self.pageController?.setViewControllers([firstQuestionnaireVC],
+                self.pageController?.setViewControllers([self.questionnaireController(for: firstQuestion)],
                                                         direction: .forward,
                                                         animated: true,
                                                         completion: nil)
@@ -135,11 +146,14 @@ private extension DecisionTreeViewController {
 private extension DecisionTreeViewController {
 
     @IBAction func didTapPrevious(_ sender: UIButton) {
+        trackUserEvent(.PREVIOUS, action: .TAP)
         moveBackward()
         updateMultipleSelectionCounter()
     }
 
     @IBAction func didTapClose(_ sender: UIButton) {
+        trackUserEvent(.CLOSE, action: .TAP)
+        delegate?.didDismiss()
         dismiss(animated: true)
     }
 
@@ -151,10 +165,13 @@ private extension DecisionTreeViewController {
             switch currentQuestion?.key {
             case QuestionKey.MindsetShifter.openTBV.rawValue: interactor?.openShortTBVGenerator()
             case QuestionKey.MindsetShifter.check.rawValue: interactor?.openMindsetShifterChecklist(from: selectedAnswers)
+            case QuestionKey.ToBeVision.create.rawValue,
+                 QuestionKey.ToBeVision.review.rawValue: delegate?.toBeVisionDidChange()
             default: break
             }
             moveForward()
             updateMultipleSelectionCounter()
+            trackUserEvent(.NEXT, action: .TAP)
         }
     }
 }
@@ -172,6 +189,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
         self.extraAnswer = extraAnswer
         switch currentQuestion?.answerType {
         case AnswerType.singleSelection.rawValue,
+             AnswerType.uploadImage.rawValue,
              AnswerType.yesOrNo.rawValue:
             moveForward()
         default: return
@@ -197,10 +215,12 @@ private extension DecisionTreeViewController {
 
     func questionnaireController(for question: Question) -> DecisionTreeQuestionnaireViewController {
         let selectedAnswers = decisionTree?.selectedAnswers.filter { $0.questionID == question.remoteID.value } ?? []
+        let answersFilter = decisionTree?.selectedAnswers.first?.answer.keys.first(where: { $0.contains("_relationship_") })
         let controller = DecisionTreeQuestionnaireViewController(for: question,
                                                                  with: selectedAnswers,
                                                                  extraAnswer: extraAnswer,
-                                                                 maxPossibleSelections: question.maxPossibleSelections)
+                                                                 maxPossibleSelections: question.maxPossibleSelections,
+                                                                 answersFilter: answersFilter)
         controller.delegate = self
         return controller
     }
@@ -246,8 +266,7 @@ private extension DecisionTreeViewController {
 
     func moveForward() {
         if let nextQuestion = nextQuestion() {
-            let nextQuestionnaireVC = questionnaireController(for: nextQuestion)
-            self.pageController?.setViewControllers([nextQuestionnaireVC],
+            self.pageController?.setViewControllers([questionnaireController(for: nextQuestion)],
                                                     direction: .forward,
                                                     animated: true,
                                                     completion: nil)
@@ -257,8 +276,7 @@ private extension DecisionTreeViewController {
 
     func moveBackward() {
         if let previousQuestion = previousQuestion() {
-            let previousQuestionnaireVC = questionnaireController(for: previousQuestion)
-            self.pageController?.setViewControllers([previousQuestionnaireVC],
+            self.pageController?.setViewControllers([questionnaireController(for: previousQuestion)],
                                                     direction: .reverse,
                                                     animated: true,
                                                     completion: nil)
@@ -313,14 +331,21 @@ private extension DecisionTreeViewController {
         guard let questionID = currentQuestion?.remoteID.value else { return }
         let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
         decisionTree?.add(selectedAnswer)
+        if let remoteID = answer.remoteID.value {
+            trackUserEvent(.SELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
+        }
         if let contentID = answer.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID {
-            interactor?.displayContent(with: contentID)
+            if answer.keys.contains(AnswerKey.Prepare.openCheckList.rawValue) {
+                interactor?.openPrepareChecklist(with: contentID)
+            } else {
+                interactor?.displayContent(with: contentID)
+            }
         }
         if let contentItemID = answer.decisions.first(where: { $0.targetType == TargetType.contentItem.rawValue })?.targetID {
             interactor?.streamContentItem(with: contentItemID)
         }
         if answer.keys.contains(AnswerKey.ToBeVision.uploadImage.rawValue) {
-            interactor?.uploadPhoto()
+            interactor?.openImagePicker()
         }
         if let targetID = answer.decisions.first(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
             interactor?.loadNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
@@ -339,6 +364,9 @@ private extension DecisionTreeViewController {
                     self.loadNextQuestion(from: answer)
                 }
             }
+            if let remoteID = answer.remoteID.value {
+                trackUserEvent(.SELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
+            }
         }, removeCompletion: {
             if multiSelectionCounter == maxPossibleSelections {
                 DispatchQueue.main.async {
@@ -347,6 +375,9 @@ private extension DecisionTreeViewController {
             }
             if multiSelectionCounter > 0 {
                 multiSelectionCounter.minus(1)
+            }
+            if let remoteID = answer.remoteID.value {
+                trackUserEvent(.DESELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
             }
         })
         continueButton.pulsate()

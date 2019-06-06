@@ -35,4 +35,8 @@ enum QuestionKey {
         case home = "mindsetshifter-tbv-generator-home-work"
         case review = "mindsetshifter-tbv-generator-key-review"
     }
+
+    enum Prepare: String {
+        case intro = "prepare-key-intro"
+    }
 }

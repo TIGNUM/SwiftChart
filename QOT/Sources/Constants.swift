@@ -18,6 +18,12 @@ struct Toggle {
     static let seperator = "{toggle:seperator}"
 }
 
+struct FontSize {
+    static let fontSize16: CGFloat = 16
+    static let fontSize14: CGFloat = 14
+    static let fontSize12: CGFloat = 12
+}
+
 struct Animation {
     static let duration_00: TimeInterval = 00
     static let duration_01: TimeInterval = 0.1
@@ -36,14 +42,14 @@ enum FontName: String {
     case apercuMedium = "Apercu-Medium"
     case apercuRegular = "Apercu-Regular"
     case apercuLight = "Apercu-Light"
-    case sfProDisplayLight = "SF-Pro-Display-Light"
-    case sfProDisplayRegular = "SF-Pro-Display-Regular"
-    case sfProDisplayThin = "SF-Pro-Display-Thin"
-    case sfProDisplayUltralight = "SF-Pro-Display-Ultralight"
-    case sfProTextLight = "SF-Pro-Text-Light"
-    case sfProTextMedium = "SF-Pro-Text-Medium"
-    case sfProTextRegular = "SF-Pro-Text-Regular"
-    case sfProTextSemibold = "SF-Pro-Text-Semibold"
+    case sfProTextSemiBold = "SFProText-Semibold"
+    case sfProTextMedium = "SFProText-Medium"
+    case sfProTextRegular = "SFProText-Regular"
+    case sfProTextLight = "SFProText-Light"
+    case sfProDisplayLight = "SFProDisplay-Light"
+    case sfProDisplayRegular = "SFProDisplay-Regular"
+    case sfProDisplayThin = "SFProDisplay-Thin"
+    case sfProDisplayUltralight = "SFProDisplay-Ultralight"
 
     func font(of size: CGFloat) -> UIFont {
         return (UIFont(name: rawValue, size: size) ?? UIFont.systemFont(ofSize: size))
@@ -51,6 +57,8 @@ enum FontName: String {
 }
 
 struct Layout {
+    static let cornerRadius12: CGFloat = 12
+    static let cornerRadius20: CGFloat = 20
     static let articleImageHeight: CGFloat = 200
     static let statusBarHeight: CGFloat = 64
     static let padding_1: CGFloat = 1
@@ -111,6 +119,8 @@ struct Layout {
 
     enum CornerRadius: CGFloat {
         case eight = 8
+        case cornerRadius12 = 12
+        case cornerRadius20 = 20
         case chatLabelOptionNavigation = 5
         case chatLabelOptionUpdate = 10
     }

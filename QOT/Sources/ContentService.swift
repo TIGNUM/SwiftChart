@@ -194,6 +194,10 @@ final class ContentService {
         return mainRealm.objects(ContentItem.self).filter(predicate).first
     }
 
+    func localizedString(for predicate: NSPredicate) -> String? {
+        return contentItem(for: predicate)?.valueText
+    }
+
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
         return mainRealm.contentCategories(section: .library)
     }
@@ -432,6 +436,19 @@ extension ContentService {
 
     func siriExplanation() -> String? {
         return contentItem(for: ContentService.Tags.siriExplanation.predicate)?.valueText
+    }
+
+    func siriTrackingKey(for shortcut: ShortcutType) -> String? {
+        switch shortcut {
+        case .toBeVision:
+            return ContentService.Tags.siriToBeVisionTitle.rawValue
+        case .upcomingEventPrep:
+            return ContentService.Tags.siriUpcomingEventTitle.rawValue
+        case .whatsHot:
+            return ContentService.Tags.siriWhatsHotTitle.rawValue
+        case .morningInterview:
+            return ContentService.Tags.siriDailyPrepTitle.rawValue
+        }
     }
 
     func siriTitle(for shortcut: ShortcutType) -> String? {

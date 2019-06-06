@@ -19,7 +19,8 @@ struct SystemSettingIntermediary {
     var settingDescription: String
     var pageIDs: String
     var isDefault: Bool
-    var value: SettingValue
+    var value: SettingValue?
+    var textValue: String
 }
 
 extension SystemSettingIntermediary: DownSyncIntermediary {
@@ -30,14 +31,14 @@ extension SystemSettingIntermediary: DownSyncIntermediary {
         self.type = try json.getItemValue(at: .type, fallback: "")
         self.component = try json.getItemValue(at: .component, fallback: "")
         self.key = try json.getItemValue(at: .key, fallback: "")
+        self.textValue = try json.getItemValue(at: .textValue, fallback: "")
         self.displayName = try json.getItemValue(at: .displayName, fallback: "")
         self.settingDescription = try json.getItemValue(at: .description, fallback: "")
         self.isDefault = try json.getItemValue(at: .default, fallback: true)
 
-        guard let valueJSON = try json.getArray(at: format.valueKey.rawValue).first else {
-            throw JSON.Error.valueNotConvertible(value: json, to: SettingValue.self)
+        if let valueJSON = try json.getArray(at: format.valueKey.rawValue).first {
+            self.value = try SettingValue(json: valueJSON, format: format)
         }
-        self.value = try SettingValue(json: valueJSON, format: format)
 
         let pageIDs: [Int] = try json.getArray(at: .pageIds, fallback: [])
         self.pageIDs = pageIDs.map { String($0) }.joined(separator: ",")

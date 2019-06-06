@@ -19,16 +19,20 @@ protocol DecisionTreePresenterInterface {
 }
 
 protocol DecisionTreeInteractorInterface: Interactor {
+    var type: DecisionTreeType { get }
     func notifyCounterChanged(with value: Int, selectedAnswers: [Answer])
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer])
+    func openPrepareChecklist(with contentID: Int)
+    func displayContent(with id: Int)
     func openMindsetShifterChecklist(from answers: [Answer])
     func streamContentItem(with id: Int)
-    func displayContent(with id: Int)
     func openShortTBVGenerator()
-    func uploadPhoto()
+    func openImagePicker()
+    func save(_ image: UIImage)
 }
 
 protocol DecisionTreeRouterInterface {
+    func openPrepareChecklist(with contentID: Int)
     func openMindsetShifterChecklist(trigger: String, reactions: [String], lowPerformanceItems: [String])
     func openArticle(with contentID: Int)
     func openVideo(from url: URL)
@@ -48,7 +52,8 @@ protocol DecisionTreeModelInterface {
 
 protocol DecisionTreeWorkerInterface {
     var userHasToBeVision: Bool { get }
-    func fetchFirstQuestion() -> Question?
     func fetchNextQuestion(from targetID: Int, selectedAnswers: [Answer]) -> DecisionTreeNode
     func mediaURL(from contentItemID: Int) -> URL?
+    func fetchFirstQuestion() -> Question?
+    func save(_ image: UIImage)
 }
