@@ -9,11 +9,19 @@
 import Foundation
 
 final class PrepareCheckListConfigurator: AppStateAccess {
-
-    static func make(contentID: Int) -> (PrepareCheckListViewController) -> Void {
+    static func make(contentID: Int,
+                     checkListType: PrepareCheckListType,
+                     event: CalendarEvent?,
+                     eventType: String?,
+                     relatedStrategyID: Int?) -> (PrepareCheckListViewController) -> Void {
         return { (viewController) in
             let router = PrepareCheckListRouter(viewController: viewController)
-            let worker = PrepareCheckListWorker(services: appState.services, contentID: contentID)
+            let worker = PrepareCheckListWorker(services: appState.services,
+                                                contentID: contentID,
+                                                relatedStrategyID: relatedStrategyID,
+                                                checkListType: checkListType,
+                                                event: event,
+                                                eventType: eventType)
             let presenter = PrepareCheckListPresenter(viewController: viewController)
             let interactor = PrepareCheckListInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

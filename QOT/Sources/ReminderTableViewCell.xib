@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" rowHeight="95" id="KGk-i7-Jjw" customClass="ReminderTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="94.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nGn-aZ-ZOx">
+                        <rect key="frame" x="24" y="93.5" width="296" height="1"/>
+                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="Qdc-gh-r34"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vtw-ze-YVt">
+                        <rect key="frame" x="24" y="26" width="199" height="20"/>
+                        <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                        <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KJ3-Re-OTA">
+                        <rect key="frame" x="247" y="32" width="51" height="31"/>
+                        <color key="tintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                        <color key="onTintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                    </switch>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rgh-Gh-FUM">
+                        <rect key="frame" x="24" y="50" width="199" height="14.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                        <color key="textColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstItem="vtw-ze-YVt" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="5Z7-tC-Mbv"/>
+                    <constraint firstItem="Rgh-Gh-FUM" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="6ry-ga-8ZC"/>
+                    <constraint firstAttribute="trailing" secondItem="nGn-aZ-ZOx" secondAttribute="trailing" id="8gp-ej-NpB"/>
+                    <constraint firstItem="KJ3-Re-OTA" firstAttribute="leading" secondItem="Rgh-Gh-FUM" secondAttribute="trailing" constant="24" id="9m0-5m-war"/>
+                    <constraint firstAttribute="trailing" secondItem="KJ3-Re-OTA" secondAttribute="trailing" constant="24" id="LHn-N4-gPg"/>
+                    <constraint firstItem="KJ3-Re-OTA" firstAttribute="leading" secondItem="vtw-ze-YVt" secondAttribute="trailing" constant="24" id="XaE-R3-tT1"/>
+                    <constraint firstItem="nGn-aZ-ZOx" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="gQK-yq-CuE"/>
+                    <constraint firstItem="vtw-ze-YVt" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="26" id="lci-iA-pTr"/>
+                    <constraint firstAttribute="bottom" secondItem="nGn-aZ-ZOx" secondAttribute="bottom" id="mPV-nq-VGq"/>
+                    <constraint firstItem="KJ3-Re-OTA" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="oyN-sl-jwP"/>
+                    <constraint firstItem="Rgh-Gh-FUM" firstAttribute="top" secondItem="vtw-ze-YVt" secondAttribute="bottom" constant="4" id="uQ4-Mr-3Rs"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="reminderSwitch" destination="KJ3-Re-OTA" id="8Tn-yf-vk3"/>
+                <outlet property="subTitleLabel" destination="Rgh-Gh-FUM" id="9o2-Pp-BqM"/>
+                <outlet property="titleLabel" destination="vtw-ze-YVt" id="TlM-vw-l28"/>
+            </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="153.01339285714286"/>
+        </tableViewCell>
+    </objects>
+</document>

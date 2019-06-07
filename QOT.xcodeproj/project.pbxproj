@@ -268,7 +268,7 @@
 		369353A422983AB9008BBB72 /* PrepareCheckListInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareCheckListInterface.swift */; };
 		369353A522983AB9008BBB72 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539D22983AB9008BBB72 /* PrepareCheckListViewController.swift */; };
 		369353A622983AB9008BBB72 /* PrepareCheckListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539E22983AB9008BBB72 /* PrepareCheckListInteractor.swift */; };
-		369353A722983AB9008BBB72 /* PrepareCheckListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539F22983AB9008BBB72 /* PrepareCheckListModel.swift */; };
+		369353A722983AB9008BBB72 /* PrepareCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539F22983AB9008BBB72 /* PrepareCheckList.swift */; };
 		369353A822983AB9008BBB72 /* PrepareCheckListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A022983AB9008BBB72 /* PrepareCheckListConfigurator.swift */; };
 		369353AB22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A922984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift */; };
 		369353AC22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369353AA22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib */; };
@@ -285,6 +285,14 @@
 		3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3698428020C91EF3007A8C8F /* SigningDigitConfigurator.swift */; };
 		3698428A20C91F10007A8C8F /* SigningDigitViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3698428920C91F10007A8C8F /* SigningDigitViewController.xib */; };
 		369842B420CA7BB5007A8C8F /* UserRegistrationCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369842B320CA7BB5007A8C8F /* UserRegistrationCheck.swift */; };
+		369ADFE322A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */; };
+		369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */; };
+		369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */; };
+		369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */; };
+		369AE00022A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFFF22A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift */; };
+		369AE00222A6CA7500DE4FA0 /* PrepareCheckListResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369AE00122A6CA7500DE4FA0 /* PrepareCheckListResultView.xib */; };
+		369AE00422A7A6FC00DE4FA0 /* EditHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */; };
+		369AE00622A7AC6F00DE4FA0 /* EditHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */; };
 		36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */; };
 		36A5E75722786014006A522C /* MediaPlayerOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A5E75622786014006A522C /* MediaPlayerOverlay.xib */; };
 		36A7B9422166454A006C18F0 /* PrepareSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A7B9412166454A006C18F0 /* PrepareSectionHeaderView.swift */; };
@@ -300,6 +308,8 @@
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
 		36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */; };
 		36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */; };
+		36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */; };
+		36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */; };
 		36D348EC216BAA4E006C8D10 /* PrepareNotesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D348EB216BAA4E006C8D10 /* PrepareNotesHeaderView.swift */; };
 		36D348EE216BAA86006C8D10 /* PrepareNotesHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D348ED216BAA86006C8D10 /* PrepareNotesHeaderView.xib */; };
 		36D535DB20A711E700F1C2FC /* PartnerEditPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D535D320A711E700F1C2FC /* PartnerEditPresenter.swift */; };
@@ -310,6 +320,15 @@
 		36D535E020A711E800F1C2FC /* PartnerEditInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D535D820A711E700F1C2FC /* PartnerEditInteractor.swift */; };
 		36D535E220A711E800F1C2FC /* PartnerEditConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D535DA20A711E700F1C2FC /* PartnerEditConfigurator.swift */; };
 		36D58A562149727600D5E6D2 /* UIDevice+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */; };
+		36D72ECF229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72EC7229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift */; };
+		36D72ED0229C1BCC00DE1184 /* PrepareEventSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72EC8229C1BCC00DE1184 /* PrepareEventSelectionWorker.swift */; };
+		36D72ED1229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72EC9229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift */; };
+		36D72ED2229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */; };
+		36D72ED4229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */; };
+		36D72ED5229C1BCC00DE1184 /* PrepareEventSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECD229C1BCC00DE1184 /* PrepareEventSelectionModel.swift */; };
+		36D72ED6229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */; };
+		36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */; };
+		36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */; };
 		36DA661620EBBF9E007089E3 /* TextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DA661520EBBF9E007089E3 /* TextField.swift */; };
 		36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */; };
 		36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */; };
@@ -1502,7 +1521,7 @@
 		3693539C22983AB9008BBB72 /* PrepareCheckListInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListInterface.swift; sourceTree = "<group>"; };
 		3693539D22983AB9008BBB72 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
 		3693539E22983AB9008BBB72 /* PrepareCheckListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListInteractor.swift; sourceTree = "<group>"; };
-		3693539F22983AB9008BBB72 /* PrepareCheckListModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListModel.swift; sourceTree = "<group>"; };
+		3693539F22983AB9008BBB72 /* PrepareCheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckList.swift; sourceTree = "<group>"; };
 		369353A022983AB9008BBB72 /* PrepareCheckListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListConfigurator.swift; sourceTree = "<group>"; };
 		369353A922984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrePareCheckListContentItemTableViewCell.swift; sourceTree = "<group>"; };
 		369353AA22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrePareCheckListContentItemTableViewCell.xib; sourceTree = "<group>"; };
@@ -1519,6 +1538,14 @@
 		3698428020C91EF3007A8C8F /* SigningDigitConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SigningDigitConfigurator.swift; sourceTree = "<group>"; };
 		3698428920C91F10007A8C8F /* SigningDigitViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SigningDigitViewController.xib; sourceTree = "<group>"; };
 		369842B320CA7BB5007A8C8F /* UserRegistrationCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRegistrationCheck.swift; sourceTree = "<group>"; };
+		369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelatedStrategyTableViewCell.swift; sourceTree = "<group>"; };
+		369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelatedStrategyTableViewCell.xib; sourceTree = "<group>"; };
+		369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
+		369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderTableViewCell.xib; sourceTree = "<group>"; };
+		369ADFFF22A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListResultView.swift; sourceTree = "<group>"; };
+		369AE00122A6CA7500DE4FA0 /* PrepareCheckListResultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareCheckListResultView.xib; sourceTree = "<group>"; };
+		369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHeaderView.swift; sourceTree = "<group>"; };
+		369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditHeaderView.xib; sourceTree = "<group>"; };
 		36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerOverlay.swift; sourceTree = "<group>"; };
 		36A5E75622786014006A522C /* MediaPlayerOverlay.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaPlayerOverlay.xib; sourceTree = "<group>"; };
 		36A5E7582278612C006A522C /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
@@ -1535,6 +1562,8 @@
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
 		36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsTableViewCell.swift; sourceTree = "<group>"; };
+		36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventsTableViewCell.xib; sourceTree = "<group>"; };
 		36D348EB216BAA4E006C8D10 /* PrepareNotesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareNotesHeaderView.swift; sourceTree = "<group>"; };
 		36D348ED216BAA86006C8D10 /* PrepareNotesHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareNotesHeaderView.xib; sourceTree = "<group>"; };
 		36D535D320A711E700F1C2FC /* PartnerEditPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditPresenter.swift; sourceTree = "<group>"; };
@@ -1545,6 +1574,15 @@
 		36D535D820A711E700F1C2FC /* PartnerEditInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditInteractor.swift; sourceTree = "<group>"; };
 		36D535DA20A711E700F1C2FC /* PartnerEditConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerEditConfigurator.swift; sourceTree = "<group>"; };
 		36D58A552149727600D5E6D2 /* UIDevice+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIDevice+Convenience.swift"; sourceTree = "<group>"; };
+		36D72EC7229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionPresenter.swift; sourceTree = "<group>"; };
+		36D72EC8229C1BCC00DE1184 /* PrepareEventSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionWorker.swift; sourceTree = "<group>"; };
+		36D72EC9229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionRouter.swift; sourceTree = "<group>"; };
+		36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionInterface.swift; sourceTree = "<group>"; };
+		36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionInteractor.swift; sourceTree = "<group>"; };
+		36D72ECD229C1BCC00DE1184 /* PrepareEventSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionModel.swift; sourceTree = "<group>"; };
+		36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionConfigurator.swift; sourceTree = "<group>"; };
+		36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewCell.swift; sourceTree = "<group>"; };
+		36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareEventTableViewCell.xib; sourceTree = "<group>"; };
 		36DA661520EBBF9E007089E3 /* TextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextField.swift; sourceTree = "<group>"; };
 		36DADE751FA7850100EB00D4 /* SettingsAdminCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminCoordinator.swift; sourceTree = "<group>"; };
 		36DADE781FA786DD00EB00D4 /* SettingsAdminViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsAdminViewController.swift; sourceTree = "<group>"; };
@@ -2938,13 +2976,21 @@
 				369353A022983AB9008BBB72 /* PrepareCheckListConfigurator.swift */,
 				3693539E22983AB9008BBB72 /* PrepareCheckListInteractor.swift */,
 				3693539C22983AB9008BBB72 /* PrepareCheckListInterface.swift */,
-				3693539F22983AB9008BBB72 /* PrepareCheckListModel.swift */,
+				3693539F22983AB9008BBB72 /* PrepareCheckList.swift */,
 				3693539922983AB9008BBB72 /* PrepareCheckListPresenter.swift */,
 				3693539B22983AB9008BBB72 /* PrepareCheckListRouter.swift */,
 				3693539D22983AB9008BBB72 /* PrepareCheckListViewController.swift */,
 				3693539A22983AB9008BBB72 /* PrepareCheckListWorker.swift */,
 				369353A922984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift */,
 				369353AA22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib */,
+				369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */,
+				369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */,
+				369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */,
+				369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */,
+				369ADFFF22A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift */,
+				369AE00122A6CA7500DE4FA0 /* PrepareCheckListResultView.xib */,
+				369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */,
+				369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */,
 			);
 			name = PrepareCheckList;
 			sourceTree = "<group>";
@@ -2984,6 +3030,22 @@
 				36D348ED216BAA86006C8D10 /* PrepareNotesHeaderView.xib */,
 			);
 			name = Notes;
+			sourceTree = "<group>";
+		};
+		36D72EC6229C1B3600DE1184 /* PrepareEventSelection */ = {
+			isa = PBXGroup;
+			children = (
+				36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */,
+				36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */,
+				36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */,
+				36D72ECD229C1BCC00DE1184 /* PrepareEventSelectionModel.swift */,
+				36D72EC7229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift */,
+				36D72EC9229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift */,
+				36D72EC8229C1BCC00DE1184 /* PrepareEventSelectionWorker.swift */,
+				36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */,
+				36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */,
+			);
+			name = PrepareEventSelection;
 			sourceTree = "<group>";
 		};
 		36D9A72920F4A13000341095 /* OverView */ = {
@@ -4108,6 +4170,7 @@
 				ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */,
 				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
 				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
+				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -4125,6 +4188,8 @@
 				ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */,
 				ACB99E7722687D1F00A73709 /* MultipleSelectionCollectionViewCell.swift */,
 				ACB99E7822687D1F00A73709 /* MultipleSelectionCollectionViewCell.xib */,
+				36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */,
+				36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -4347,6 +4412,7 @@
 				E813F0A02130053700C0723E /* PDFReader */,
 				91F5BE3C2097573500E85A51 /* Permissions */,
 				3693539822983A78008BBB72 /* PrepareCheckList */,
+				36D72EC6229C1B3600DE1184 /* PrepareEventSelection */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
 				913C7174209C61B2001C4185 /* Settings */,
 				CB3333DD20480DA2009480DF /* Share */,
@@ -5741,6 +5807,7 @@
 				369353AC22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
 				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
+				36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */,
 				36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */,
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
 				368A12622277387900866DB0 /* SF-Pro-Text-Medium.otf in Resources */,
@@ -5762,6 +5829,7 @@
 				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
 				ACF0B9712260B905008CFAEC /* QuestionTableViewCell.xib in Resources */,
+				369AE00622A7AC6F00DE4FA0 /* EditHeaderView.xib in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
 				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
@@ -5851,6 +5919,7 @@
 				36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */,
 				5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
+				369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */,
 				DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */,
 				F99DF6062292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
@@ -5861,7 +5930,9 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
+				369AE00222A6CA7500DE4FA0 /* PrepareCheckListResultView.xib in Resources */,
 				CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */,
+				36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				9115F70E208DFFAE00EE5D1D /* SettingsMenuHeader.xib in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
@@ -5904,6 +5975,7 @@
 				36B515CC216395B600A7B405 /* SupportFAQTableViewCell.xib in Resources */,
 				ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */,
 				36A7B9442166455C006C18F0 /* PrepareSectionHeaderView.xib in Resources */,
+				369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
 				D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */,
 			);
@@ -6263,6 +6335,7 @@
 				7F6567381FE2893800A6CB7F /* ScreenHelpConfigurator.swift in Sources */,
 				CB78420D1FB30DA800C91546 /* EKParticipant+ObjC.m in Sources */,
 				CBB4DCE01ED8178A0071494A /* ConcurrentOperation.swift in Sources */,
+				36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */,
 				CB3333E320480DE8009480DF /* ShareModels.swift in Sources */,
 				3674FF2E20AADE7D008EEB6C /* PartnersOverviewModels.swift in Sources */,
 				CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */,
@@ -6275,10 +6348,12 @@
 				36376652223A9CD300C2C429 /* AbstractLevelThreeViewController.swift in Sources */,
 				CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */,
 				CBB017BB1F9741F200CC1048 /* SyncTask.swift in Sources */,
+				369AE00022A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift in Sources */,
 				36796A1F20D3C45200B55429 /* SigningCountryInterface.swift in Sources */,
 				5F62BEA6228AE74900852F7E /* MyQotSiriShortcutsPresenter.swift in Sources */,
 				CBBC00FC1FC5B10600C544D8 /* Filters.swift in Sources */,
 				CBC191151F62918B009E483B /* AppDelegate+Buglife.swift in Sources */,
+				36D72ED2229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift in Sources */,
 				ACF0B9782260BC80008CFAEC /* TextTableViewCell.swift in Sources */,
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
@@ -6294,7 +6369,7 @@
 				36796A3720D3C47400B55429 /* SigningProfileDetailInteractor.swift in Sources */,
 				917164792101E43B00F42D8F /* SensorCollectionViewCell.swift in Sources */,
 				36796A5720D3C4B800B55429 /* SigningInfoModel.swift in Sources */,
-				369353A722983AB9008BBB72 /* PrepareCheckListModel.swift in Sources */,
+				369353A722983AB9008BBB72 /* PrepareCheckList.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
 				5F2E87432292F6D60082323E /* ProfileSettingsFooterView.swift in Sources */,
@@ -6510,6 +6585,7 @@
 				369353A422983AB9008BBB72 /* PrepareCheckListInterface.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
+				369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */,
 				36376601223A4BD200C2C429 /* KnowingModel.swift in Sources */,
 				CBDB98F21E7AA510003EC73F /* CalendarImportResult.swift in Sources */,
 				CB3333E720480DF8009480DF /* ShareRouter.swift in Sources */,
@@ -6599,6 +6675,7 @@
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				36376663223AA61100C2C429 /* LevelThreeConfigurator.swift in Sources */,
 				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
+				369AE00422A7A6FC00DE4FA0 /* EditHeaderView.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
 				36376622223A4C0400C2C429 /* MyQotProfileConfigurator.swift in Sources */,
 				36328F201FCEB90B004E9034 /* GuideViewController.swift in Sources */,
@@ -6630,6 +6707,7 @@
 				9150413720FDF40A00D43D18 /* SensorViewController.swift in Sources */,
 				5FA6663E229C20600027EE74 /* MyVisionEditDetailsPresenter.swift in Sources */,
 				DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */,
+				36D72ECF229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				CBD4BE9E2018BE25008A0E9E /* GuideProtocols.swift in Sources */,
 				7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */,
@@ -6671,6 +6749,7 @@
 				369353A122983AB9008BBB72 /* PrepareCheckListPresenter.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
+				36D72ED4229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift in Sources */,
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
 				5FA6663A229C1DB30027EE74 /* MyVisionEditDetailsViewController.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChart.swift in Sources */,
@@ -6851,6 +6930,7 @@
 				91F5BE3E2097576800E85A51 /* PermissionsViewController.swift in Sources */,
 				CBB4DCE41ED827840071494A /* SyncContext.swift in Sources */,
 				CBB98B04201F850100B8EAD7 /* UNCalendarNotificationTrigger+Convenience.swift in Sources */,
+				36D72ED1229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift in Sources */,
 				36376624223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift in Sources */,
 				CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */,
 				36667694207CF62700D2F5AD /* VisionGeneratorInteractor.swift in Sources */,
@@ -6872,6 +6952,7 @@
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
 				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
+				36D72ED5229C1BCC00DE1184 /* PrepareEventSelectionModel.swift in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
@@ -6938,6 +7019,7 @@
 				CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */,
 				36376602223A4BD200C2C429 /* KnowingConfigurator.swift in Sources */,
 				CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */,
+				36D72ED6229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift in Sources */,
 				7F4B98AD1FA22850000B402C /* ChartAnimator.swift in Sources */,
 				36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */,
 				CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */,
@@ -7002,6 +7084,7 @@
 				F95B9238228EAE82000DEAEC /* ToolsViewController.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
 				36667692207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift in Sources */,
+				36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */,
 				F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */,
@@ -7009,6 +7092,7 @@
 				CBD4BEAA2018E7D4008A0E9E /* GuideConfigurator.swift in Sources */,
 				5FF1A10322858A7400D76D55 /* ContentService+AppSettings.swift in Sources */,
 				ACA4B18E2211D1EA00552A54 /* NSUserActivity+Keys.swift in Sources */,
+				36D72ED0229C1BCC00DE1184 /* PrepareEventSelectionWorker.swift in Sources */,
 				5F62BEAC228AE77000852F7E /* MyQotSiriShortcutsRouter.swift in Sources */,
 				5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */,
 				7F8DB4AB1FA2047D00DFE006 /* PartnersAnimation.swift in Sources */,
@@ -7053,6 +7137,7 @@
 				36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */,
 				36376676223BFF3800C2C429 /* StrategyListWorker.swift in Sources */,
 				360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */,
+				369ADFE322A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
 				5F7BE7A22289A93300BA5DCF /* ContentService+AboutUs.swift in Sources */,

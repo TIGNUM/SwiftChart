@@ -48,8 +48,16 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         }
     }
 
-    func openPrepareChecklist(with contentID: Int) {
-        router.openPrepareChecklist(with: contentID)
+    func openPrepareChecklist(with contentID: Int,
+                              selectedEvent: CalendarEvent?,
+                              eventType: String?,
+                              checkListType: PrepareCheckListType,
+                              relatedStrategyID: Int?) {
+        router.openPrepareChecklist(with: contentID,
+                                    checkListType: checkListType,
+                                    selectedEvent: selectedEvent,
+                                    eventType: eventType,
+                                    relatedStrategyID: relatedStrategyID)
     }
 
     func displayContent(with id: Int) {

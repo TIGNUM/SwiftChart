@@ -558,13 +558,6 @@ extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
     func didTapRow(_ viewController: SelectWeeklyChoicesViewController,
                    contentCollection: ContentCollection,
                    contentCategory: ContentCategory) {
-        guard let services = services else { return }
-        let coordinator = LearnContentItemCoordinator(root: viewController,
-                                                      eventTracker: eventTracker,
-                                                      services: services,
-                                                      content: contentCollection,
-                                                      category: contentCategory)
-        startChild(child: coordinator)
     }
 }
 

@@ -34,6 +34,14 @@ final class SelectWeeklyChoicesDataModel {
         return selected.count
     }
 
+    func numberOfItemsSelected(in section: Int) -> Int {
+        return node(forSection: section).children.filter { $0.selected == true }.count
+    }
+
+    func numberOfItems(in section: Int) -> Int {
+        return node(forSection: section).children.count
+    }
+
     var selected: [WeeklyChoice] {
         return dataSource.flatMap { (node: CollapsableNode) -> [WeeklyChoice] in
             return node.children.compactMap { (choice: WeeklyChoice) -> WeeklyChoice? in
@@ -148,6 +156,8 @@ private extension SelectWeeklyChoicesDataModel {
                         covered: nil,
                         startDate: Date(),
                         endDate: Date(),
+                        displayTime: contentCollection.durationString,
+                        isDefault: services.contentService.isDefaultPrepareContentRelation(contentCollectionID: contentCollection.remoteID.value ?? 0),
                         selected: selectedIDs.contains(contentCollection.remoteID.value ?? 0)
                     )
             }
@@ -171,6 +181,8 @@ private extension SelectWeeklyChoicesDataModel {
                         covered: nil,
                         startDate: startDate,
                         endDate: endDate,
+                        displayTime: contentCollection.durationString,
+                        isDefault: services.contentService.isDefaultPrepareContentRelation(contentCollectionID: contentCollection.remoteID.value ?? 0),
                         selected: false
                     )
             }

@@ -38,5 +38,7 @@ enum QuestionKey {
 
     enum Prepare: String {
         case intro = "prepare-key-intro"
+        case calendarEventSelection = "prepare-key-calendar-event-selection"
+        case eventTypeSelection = "prepare-event-type-selection"
     }
 }

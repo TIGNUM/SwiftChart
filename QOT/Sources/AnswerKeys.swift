@@ -18,5 +18,7 @@ enum AnswerKey {
 
     enum Prepare: String {
         case openCheckList = "open_preparation_check_list_on_the_go"
+        case openCalendarEventSelection = "prepare-key-calendar-event-selection"
+        case eventTypeSelectionDaily = "prepare_event_type_selection_daily"
     }
 }

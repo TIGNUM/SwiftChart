@@ -12,6 +12,8 @@ protocol DecisionTreeQuestionnaireDelegate: class {
     func didTapBinarySelection(_ answer: Answer)
     func didTapMultiSelection(_ answer: Answer)
     func textCellDidAppear(targetID: Int)
+    func didSelectCalendarEvent(_ event: CalendarEvent, selectedAnswer: Answer)
+    func presentAddEventController(eventStore: EKEventStore)
 }
 
 private enum CellType: Int, CaseIterable {
@@ -35,7 +37,8 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
                            dequeables: MultipleSelectionTableViewCell.self,
                            SingleSelectionTableViewCell.self,
                            QuestionTableViewCell.self,
-                           TextTableViewCell.self)
+                           TextTableViewCell.self,
+                           CalendarEventsTableViewCell.self)
     }()
 
     /// Use filtered answers in order to relate answers between different questions.
@@ -150,6 +153,12 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 cell.configure(with: extraAnswer ?? "")
                 delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetID ?? 0)
                 return cell
+            case AnswerType.openCalendarEvents.rawValue:
+                let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
+                let questionCellHeight = tableView.cellForRow(at: indexPath)?.frame.height ?? 64
+                let tableViewHeight = view.frame.height - (questionCellHeight + 64)
+                cell.configure(delegate: delegate, tableViewHeight: tableViewHeight, question: question)
+                return cell
             default:
                 preconditionFailure()
             }
@@ -162,6 +171,9 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
 private extension DecisionTreeQuestionnaireViewController {
 
     func recalculateContentInsets() {
+        if question.answerType == AnswerType.openCalendarEvents.rawValue {
+            return tableView.contentInset = .zero
+        }
         let cellsHeight = tableView.visibleCells.map { $0.frame.height }.reduce(0, +)
         let difference = tableView.frame.height - cellsHeight
         let padding = tableView.frame.height * 0.1

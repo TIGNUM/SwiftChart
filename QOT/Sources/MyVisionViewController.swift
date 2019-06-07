@@ -280,8 +280,8 @@ extension MyVisionViewController: DecisionTreeViewControllerDelegate {
     func toBeVisionDidChange() {
         myVisionDidChange = true
     }
-    
+
     func didDismiss() {
-        
+
     }
 }

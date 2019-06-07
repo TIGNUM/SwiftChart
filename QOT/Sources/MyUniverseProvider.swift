@@ -75,6 +75,8 @@ final class MyUniverseProvider {
                 covered: nil,
                 startDate: choice.startDate,
                 endDate: choice.endDate,
+                displayTime: "",
+                isDefault: false,
                 selected: true
             )
         }
