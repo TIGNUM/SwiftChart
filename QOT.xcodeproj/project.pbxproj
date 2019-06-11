@@ -390,7 +390,6 @@
 		5F360749228C42570074FEC4 /* MyQotSyncedCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360747228C42570074FEC4 /* MyQotSyncedCalendarCell.swift */; };
 		5F36074A228C42570074FEC4 /* MyQotSyncedCalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F360748228C42570074FEC4 /* MyQotSyncedCalendarCell.xib */; };
 		5F36074C228C520F0074FEC4 /* ContentService+SyncedCalendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36074B228C520F0074FEC4 /* ContentService+SyncedCalendars.swift */; };
-		5F47254C22A6B8B800C4AE28 /* MyVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F47254B22A6B8B700C4AE28 /* MyVisionNavigationBarView.swift */; };
 		5F544FD122967FE500616626 /* ContentService+EditAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F544FD022967FE500616626 /* ContentService+EditAccount.swift */; };
 		5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */; };
 		5F57F9E42282E65B003A9EDF /* ContentService+MyQotProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9E32282E65B003A9EDF /* ContentService+MyQotProfile.swift */; };
@@ -447,6 +446,7 @@
 		5F8A899F2296DF520011A05C /* MyVisionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8A899E2296DF520011A05C /* MyVisionRouter.swift */; };
 		5F8DA6DC228D6DE100E61397 /* BottomNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8DA6DB228D6DE100E61397 /* BottomNavigationBarView.swift */; };
 		5F8DA6DE228D6DED00E61397 /* BottomNavigationBarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F8DA6DD228D6DED00E61397 /* BottomNavigationBarView.xib */; };
+		5F8E24ED229D4E8600E3EF83 /* MyVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F8E24EC229D4E8600E3EF83 /* MyVisionNavigationBarView.swift */; };
 		5FA6663A229C1DB30027EE74 /* MyVisionEditDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA66639229C1DB30027EE74 /* MyVisionEditDetailsViewController.swift */; };
 		5FA6663C229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6663B229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift */; };
 		5FA6663E229C20600027EE74 /* MyVisionEditDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FA6663D229C20600027EE74 /* MyVisionEditDetailsPresenter.swift */; };
@@ -1704,6 +1704,7 @@
 		5F8A899E2296DF520011A05C /* MyVisionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionRouter.swift; sourceTree = "<group>"; };
 		5F8DA6DB228D6DE100E61397 /* BottomNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigationBarView.swift; sourceTree = "<group>"; };
 		5F8DA6DD228D6DED00E61397 /* BottomNavigationBarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BottomNavigationBarView.xib; sourceTree = "<group>"; };
+		5F8E24EC229D4E8600E3EF83 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
 		5FA66639229C1DB30027EE74 /* MyVisionEditDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionEditDetailsViewController.swift; sourceTree = "<group>"; };
 		5FA6663B229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionEditDetailsInterface.swift; sourceTree = "<group>"; };
 		5FA6663D229C20600027EE74 /* MyVisionEditDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionEditDetailsPresenter.swift; sourceTree = "<group>"; };
@@ -3306,6 +3307,14 @@
 			name = MyQotSensors;
 			sourceTree = "<group>";
 		};
+		5F78966722A93A4200D2DBAD /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				5F47254B22A6B8B700C4AE28 /* MyVisionNavigationBarView.swift */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		5F7BE7792289563000BA5DCF /* Others */ = {
 			isa = PBXGroup;
 			children = (
@@ -3399,7 +3408,7 @@
 		5F8A89882296CA530011A05C /* MyToBeVision */ = {
 			isa = PBXGroup;
 			children = (
-				5F47254B22A6B8B700C4AE28 /* MyVisionNavigationBarView.swift */,
+				5F8E24EC229D4E8600E3EF83 /* MyVisionNavigationBarView.swift */,
 				5F8A898A2296CA630011A05C /* Shared */,
 				5F8A89892296CA5D0011A05C /* Screens */,
 			);
@@ -4496,6 +4505,7 @@
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
 				CBB238031E6FFF1200AB5AEF /* QOTTests */,
+				5F78966722A93A4200D2DBAD /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -6440,6 +6450,7 @@
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				5F62BE96228AB63A00852F7E /* MyQotSupportFaqPresenter.swift in Sources */,
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
+				5F62BE96228AB63A00852F7E /* MyQotSupportFaqPresenter.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
 				5F62BE9A228AB66100852F7E /* MyQotSupportFaqWorker.swift in Sources */,
 				366AFD0C20BD9F9300109F29 /* SigningEmailPresenter.swift in Sources */,
@@ -6604,6 +6615,7 @@
 				36D535DE20A711E800F1C2FC /* PartnerEditInterface.swift in Sources */,
 				3637661F223A4C0400C2C429 /* MyQotProfileViewController.swift in Sources */,
 				F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */,
+				3637661F223A4C0400C2C429 /* MyQotProfileViewController.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				36E4B7AF219EBFED00049EE8 /* TutorialViewController.swift in Sources */,
 				5F57F9ED22831711003A9EDF /* MyQotAccountSettingsWorker.swift in Sources */,
@@ -6659,6 +6671,7 @@
 				3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */,
 				F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */,
 				5F36074C228C520F0074FEC4 /* ContentService+SyncedCalendars.swift in Sources */,
+				5F8E24ED229D4E8600E3EF83 /* MyVisionNavigationBarView.swift in Sources */,
 				CCE6CD881F15357600B66DA3 /* StatisticsPeriodIntermediary.swift in Sources */,
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
@@ -6687,6 +6700,7 @@
 				36E4B7AC219EBFED00049EE8 /* TutorialWorker.swift in Sources */,
 				3637661C223A4C0400C2C429 /* MyQotProfileWorker.swift in Sources */,
 				AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */,
+				3637661C223A4C0400C2C429 /* MyQotProfileWorker.swift in Sources */,
 				36376649223A7DE100C2C429 /* LevelTwoRouter.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
 				ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */,
@@ -6747,6 +6761,7 @@
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
 				3637661E223A4C0400C2C429 /* MyQotProfileInterface.swift in Sources */,
 				369353A122983AB9008BBB72 /* PrepareCheckListPresenter.swift in Sources */,
+				3637661E223A4C0400C2C429 /* MyQotProfileInterface.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				36D72ED4229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift in Sources */,
@@ -6995,7 +7010,6 @@
 				CC944DB61EE804CD00B8423C /* ChartTableViewCell.swift in Sources */,
 				368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */,
 				5F7BE788228958BE00BA5DCF /* MyQotSupportViewController.swift in Sources */,
-				5F47254C22A6B8B800C4AE28 /* MyVisionNavigationBarView.swift in Sources */,
 				36376677223BFF3800C2C429 /* StrategyListRouter.swift in Sources */,
 				F95B9242228EE273000DEAEC /* ToolsTableViewCell.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,

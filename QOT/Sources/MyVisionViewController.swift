@@ -152,7 +152,8 @@ private extension MyVisionViewController {
                                   letterSpacing: 0.2,
                                   font: .sfProDisplayLight(ofSize: 34) ,
                                   lineSpacing: 3,
-                                  textColor: .sand)
+                                  textColor: .sand,
+                                  lineBreakMode: .byTruncatingTail)
     }
 
     func formatted(vision: String) -> NSAttributedString? {
@@ -183,7 +184,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         backButton.corner(radius: backButton.frame.size.width/2, borderColor: .accent40)
         generateVisionButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         guard let permissionManager = interactor?.permissionManager else { return }
-        imagePickerController = ImagePickerController(cropShape: .rectangle,
+        imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
                                                       permissionsManager: permissionManager,
@@ -201,6 +202,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         headerLabel.attributedText = myVision?.headline?.isEmpty ?? true ? formatted(headline: interactor?.headlinePlaceholder ?? "") : formatted(headline: myVision?.headline ?? "")
         detailTextView.attributedText = myVision?.text?.isEmpty ?? true ? formatted(vision: interactor?.messagePlaceholder ?? "") : formatted(vision: myVision?.text ?? "")
         tempImageURL = myVision?.profileImageResource?.url()
+        userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
         userImageView.setImage(from: tempImageURL, placeholder: R.image.circlesWarning())
         imageOverLapView.isHidden = tempImageURL == nil
         removeGradients()
@@ -243,6 +245,7 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
     func deleteImage() {
         tempImage = nil
         tempImageURL = nil
+        saveToBeVisionImage()
         userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.circlesWarning())
         RestartHelper.clearRestartRouteInfo()
     }

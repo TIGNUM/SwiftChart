@@ -19,6 +19,7 @@ class ImageCropper: NSObject {
         case circle
         case hexagon
         case rectangle
+        case square
 
         var size: CGFloat {
             return 250.0
@@ -103,6 +104,10 @@ extension ImageCropper: RSKImageCropViewControllerDataSource {
                                                                y: controller.maskRect.origin.y,
                                                                width: controller.view.frame.width,
                                                                height: controller.view.frame.width * Layout.multiplier_053))
+        case .square: return UIBezierPath.init(rect: CGRect(x: 25,
+                                                               y: controller.maskRect.origin.y,
+                                                               width: controller.view.frame.width - Layout.padding_50,
+                                                               height: controller.view.frame.width - Layout.padding_50))
         }
     }
 }
