@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -19,28 +26,36 @@
                 <rect key="frame" x="0.0" y="0.0" width="375" height="63.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TY-UJ-oAS">
-                        <rect key="frame" x="20" y="21" width="42" height="21"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="Performance Mindset Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0TY-UJ-oAS">
+                        <rect key="frame" x="20" y="23.5" width="189" height="17"/>
+                        <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                        <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qg9-z9-pcX">
-                        <rect key="frame" x="309" y="22" width="20" height="20"/>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Qg9-z9-pcX">
+                        <rect key="frame" x="315" y="22" width="20" height="20"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="20" id="aAF-tt-ewZ"/>
                             <constraint firstAttribute="width" constant="20" id="btv-Ol-xzV"/>
                         </constraints>
+                        <state key="normal" image="ic_plus"/>
                         <connections>
                             <action selector="buttonPressed:" destination="X5U-3q-G3b" eventType="touchUpInside" id="gYq-Ow-8CM"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2/6" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9Lq-gQ-ya4">
+                        <rect key="frame" x="284" y="23.5" width="23" height="17"/>
+                        <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
+                        <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                 <constraints>
                     <constraint firstItem="0TY-UJ-oAS" firstAttribute="centerY" secondItem="nEa-86-1WF" secondAttribute="centerY" id="2md-vq-TvS"/>
-                    <constraint firstItem="Qg9-z9-pcX" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="0TY-UJ-oAS" secondAttribute="trailing" constant="15" id="RaR-Q4-sBg"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="Qg9-z9-pcX" secondAttribute="trailing" constant="30" id="V5S-4y-gnf"/>
+                    <constraint firstItem="Qg9-z9-pcX" firstAttribute="leading" secondItem="9Lq-gQ-ya4" secondAttribute="trailing" constant="8" id="96x-gt-4Hh"/>
+                    <constraint firstItem="9Lq-gQ-ya4" firstAttribute="centerY" secondItem="0TY-UJ-oAS" secondAttribute="centerY" id="DCA-fb-FRA"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="Qg9-z9-pcX" secondAttribute="trailing" constant="24" id="V5S-4y-gnf"/>
                     <constraint firstItem="0TY-UJ-oAS" firstAttribute="leading" secondItem="nEa-86-1WF" secondAttribute="leading" constant="20" id="kPV-36-vMs"/>
                     <constraint firstItem="Qg9-z9-pcX" firstAttribute="centerY" secondItem="nEa-86-1WF" secondAttribute="centerY" id="nhZ-je-InR"/>
                 </constraints>
@@ -50,8 +65,12 @@
             <connections>
                 <outlet property="button" destination="Qg9-z9-pcX" id="689-8X-Pga"/>
                 <outlet property="label" destination="0TY-UJ-oAS" id="Lqg-gX-goe"/>
+                <outlet property="selectionCountLabel" destination="9Lq-gQ-ya4" id="OSs-as-ayB"/>
             </connections>
             <point key="canvasLocation" x="-142.5" y="-98"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="ic_plus" width="16" height="16"/>
+    </resources>
 </document>

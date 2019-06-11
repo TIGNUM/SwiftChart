@@ -24,5 +24,36 @@ final class PrepareCheckListRouter {
 // MARK: - PrepareCheckListRouterInterface
 
 extension PrepareCheckListRouter: PrepareCheckListRouterInterface {
+    func presentRelatedArticle(readMoreID: Int) {
+        guard let controller = R.storyboard.main().instantiateViewController(withIdentifier: "QOT.ArticleViewController") as? ArticleViewController else { return }
+        ArticleConfigurator.configure(selectedID: readMoreID, viewController: controller)
+        AppDelegate.topViewController()?.present(controller, animated: true, completion: nil)
+    }
 
+    func didClickSaveAndContinue() {
+
+    }
+
+    func openEditStrategyView(services: Services, relatedStrategies: [ContentCollection], selectedIDs: [Int]) {
+        presentRelatedStrategies(services: services,
+                                 relatedStrategies: relatedStrategies,
+                                 selectedIDs: selectedIDs) { (choices, syncManager) in
+                                    print("choices", choices)
+        }
+    }
+}
+
+private extension PrepareCheckListRouter {
+    func presentRelatedStrategies(services: Services,
+                                  relatedStrategies: [ContentCollection],
+                                  selectedIDs: [Int],
+                                  completion: ((_ selectedStrategies: [WeeklyChoice], _ syncManager: SyncManager) -> Void)?) {
+        let viewModel = SelectWeeklyChoicesDataModel(services: services,
+                                                     relatedContent: relatedStrategies,
+                                                     selectedIDs: selectedIDs)
+        let viewControllerToPresent = SelectWeeklyChoicesViewController(delegate: viewController,
+                                                                        viewModel: viewModel,
+                                                                        backgroundImage: nil)
+        viewController.present(viewControllerToPresent, animated: true, completion: nil)
+    }
 }

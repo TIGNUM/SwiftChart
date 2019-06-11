@@ -140,7 +140,7 @@
                                 <rect key="frame" x="40" y="518" width="40" height="40"/>
                                 <state key="normal" image="ic_close_rounded"/>
                                 <connections>
-                                    <action selector="closeButton:" destination="6ce-2X-6uz" eventType="touchUpInside" id="aYv-9E-cMf"/>
+                                    <action selector="closeButton" destination="6ce-2X-6uz" eventType="touchUpInside" id="PHr-KW-PDP"/>
                                 </connections>
                             </button>
                         </subviews>

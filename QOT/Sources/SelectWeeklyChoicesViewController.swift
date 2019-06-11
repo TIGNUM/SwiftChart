@@ -10,11 +10,8 @@ import UIKit
 import MBProgressHUD
 
 protocol SelectWeeklyChoicesViewControllerDelegate: class {
-
     func dismiss(viewController: SelectWeeklyChoicesViewController)
-
     func dismiss(viewController: SelectWeeklyChoicesViewController, selectedContent: [WeeklyChoice])
-
     func didTapRow(_ viewController: SelectWeeklyChoicesViewController,
                    contentCollection: ContentCollection,
                    contentCategory: ContentCategory)
@@ -29,15 +26,11 @@ final class SelectWeeklyChoicesViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet weak var backgroundImageView: UIImageView!
-    @IBOutlet weak var backgroundBlurView: UIVisualEffectView!
-    @IBOutlet weak var navigationBar: UINavigationBar!
-    @IBOutlet weak var closeButton: UIBarButtonItem!
-    @IBOutlet weak var doneButton: UIBarButtonItem!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var tableHeaderView: UIView!
     @IBOutlet weak var tableHeaderViewLabel: UILabel!
-    private var backgroundImage: UIImage?
+    @IBOutlet private weak var cancelButton: UIButton!
+    @IBOutlet private weak var saveButton: UIButton!
     let viewModel: SelectWeeklyChoicesDataModel
     weak var delegate: SelectWeeklyChoicesViewControllerDelegate?
 
@@ -45,11 +38,9 @@ final class SelectWeeklyChoicesViewController: UIViewController {
 
     init(delegate: SelectWeeklyChoicesViewControllerDelegate,
          viewModel: SelectWeeklyChoicesDataModel,
-         backgroundImage: UIImage?) {
+         backgroundImage: UIImage? = nil) {
         self.delegate = delegate
         self.viewModel = viewModel
-        self.backgroundImage = backgroundImage
-
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -66,16 +57,15 @@ final class SelectWeeklyChoicesViewController: UIViewController {
 // MARK: - Actions
 
 private extension SelectWeeklyChoicesViewController {
-
-    @IBAction func closePressed(_ sender: UIBarButtonItem) {
-        delegate?.dismiss(viewController: self)
-    }
-
-    @IBAction func donePressed(_ sender: UIBarButtonItem) {
+    @IBAction func didPressSave() {
         switch viewModel.selectionType {
         case .weeklyChoices: handleWeeklyChoicesSelection()
         case .prepareStrategies: handlePrepareStrategySelection()
         }
+    }
+
+    @IBAction func didPressCancel() {
+        delegate?.dismiss(viewController: self)
     }
 
     func handleWeeklyChoicesSelection() {
@@ -96,18 +86,9 @@ private extension SelectWeeklyChoicesViewController {
 private extension SelectWeeklyChoicesViewController {
 
     func setupView() {
+        view.backgroundColor = .sand
         setupTableView()
-        setupNavigationBar()
-    }
-
-    func setupNavigationBar() {
-        backgroundImageView.image = backgroundImage
-        setSelected(viewModel.numOfItemsSelected)
-        navigationBar.titleTextAttributes = [.foregroundColor: UIColor.white, .font: UIFont.H6NavigationTitle]
-        let dummyImage = UIImage()
-        navigationBar.setBackgroundImage(dummyImage, for: .default)
-        navigationBar.shadowImage = dummyImage
-        navigationBar.isTranslucent = true
+        setupButtons()
     }
 
     func setupTableView() {
@@ -124,20 +105,19 @@ private extension SelectWeeklyChoicesViewController {
         if viewModel.selectionType == .prepareStrategies {
             header = "Add or remove strategies from your preparation list."
         }
-
-        tableHeaderViewLabel.attributedText = NSMutableAttributedString(
-            string: header,
-            letterSpacing: 2,
-            font: .H5SecondaryHeadline,
-            lineSpacing: 12.0,
-            textColor: UIColor.white,
-            alignment: .center)
+        tableHeaderViewLabel.text = header
     }
 
     func setSelected(_ selected: Int) {
         let maxSelectionCount = viewModel.maxSelectionCount
-        navigationBar.topItem?.title = navigationTitle(selected: selected)
-        doneButton.isEnabled = viewModel.selectionType == .prepareStrategies || selected == maxSelectionCount
+        saveButton.isEnabled = viewModel.selectionType == .prepareStrategies || selected == maxSelectionCount
+    }
+
+    func setupButtons() {
+        saveButton.corner(radius: 20)
+        cancelButton.corner(radius: 20)
+        cancelButton.layer.borderWidth = 1
+        cancelButton.layer.borderColor = UIColor.accent.withAlphaComponent(0.4).cgColor
     }
 
     func navigationTitle(selected: Int) -> String {
@@ -155,7 +135,7 @@ private extension SelectWeeklyChoicesViewController {
             title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertTitle(),
             message: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertMessage(),
             preferredStyle: .alert)
-        alert.addAction(
+        alert.addAction (
             UIAlertAction(
                 title: R.string.localized.meSectorMyWhySelectWeeklyChoicesMaxChoiceAlertButton(),
                 style: .default,
@@ -170,7 +150,10 @@ private extension SelectWeeklyChoicesViewController {
 extension SelectWeeklyChoicesViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 64//viewModel.rowHeight(forIndexPath: indexPath)
+        if viewModel.isParentNode(atIndexPath: indexPath) {
+            return 64//viewModel.rowHeight(forIndexPath: indexPath)
+        }
+        return 95
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -178,15 +161,13 @@ extension SelectWeeklyChoicesViewController: UITableViewDelegate {
             let node = viewModel.node(forSection: indexPath.section)
             viewModel.setIsOpen(!node.isOpen, forNodeAtSection: indexPath.section)
             tableView.reloadDataWithAnimation()
-        } else {
-            guard
-                let contentCollection = viewModel.contentCollection(forIndexPath: indexPath),
-                let contentCategory = viewModel.contentCategory(forIndexPath: indexPath) else {
-                    return
-            }
-
-            delegate?.didTapRow(self, contentCollection: contentCollection, contentCategory: contentCategory)
         }
+        guard
+            let contentCollection = viewModel.contentCollection(forIndexPath: indexPath),
+            let contentCategory = viewModel.contentCategory(forIndexPath: indexPath) else {
+                return
+        }
+        delegate?.didTapRow(self, contentCollection: contentCollection, contentCategory: contentCategory)
     }
 }
 
@@ -207,21 +188,22 @@ extension SelectWeeklyChoicesViewController: UITableViewDataSource {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableCell)
                 as? CollapsableCell else { return UITableViewCell() } // shouldnt happen...
             let node = viewModel.node(forSection: indexPath.section)
-            cell.setTitleText(node.title)
+            cell.setTitleText(node.title,
+                              selectionCount: viewModel.numberOfItemsSelected(in: indexPath.section),
+                              strategyCount: viewModel.numberOfItems(in: indexPath.section))
             cell.delegate = self
             cell.indexPath = indexPath
             cell.isOpen = node.isOpen
             return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableContentCell)
-                as? CollapsableContentCell else { return UITableViewCell() } // shouldnt happen...
-            let item = viewModel.item(forIndexPath: indexPath)
-            cell.setTitleText(item.title)
-            cell.delegate = self
-            cell.indexPath = indexPath
-            cell.isChecked = item.selected
-            return cell
         }
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableContentCell)
+            as? CollapsableContentCell else { return UITableViewCell() } // shouldnt happen...
+        let item = viewModel.item(forIndexPath: indexPath)
+        cell.setTitleText(item.title, duration: item.displayTime, isSuggestion: item.isDefault)
+        cell.delegate = self
+        cell.indexPath = indexPath
+        cell.isChecked = item.selected
+        return cell
     }
 }
 

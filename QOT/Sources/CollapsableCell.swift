@@ -12,11 +12,11 @@ protocol CollapsableCellDelegate: class {
     func collapsableCell(_ cell: CollapsableCell, didPressCollapseButtonForIndexPath indexPath: IndexPath)
 }
 
-class CollapsableCell: UITableViewCell {
+final class CollapsableCell: UITableViewCell {
     static let nibName = "CollapsableCell"
-
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
+    @IBOutlet weak var selectionCountLabel: UILabel!
 
     var isOpen: Bool? {
         didSet {
@@ -28,33 +28,26 @@ class CollapsableCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        separatorInset = UIEdgeInsets(top: 0.0, left: 20.0, bottom: 0.0, right: 20.0)
+        separatorInset = UIEdgeInsets(top: 0, left: 24, bottom: 0, right: 0)
     }
 
-    func setTitleText(_ text: String?) {
-        label.attributedText = NSMutableAttributedString(
-            string: text?.uppercased() ?? "",
-            letterSpacing: 2,
-            font: .H6NavigationTitle,
-            textColor: UIColor.white)
+    func setTitleText(_ text: String?, selectionCount: Int, strategyCount: Int) {
+        selectionCountLabel.text = String(format: "%d/%d", selectionCount, strategyCount)
+        label.text = text
     }
 
     // MARK: - private
 
     private func reload() {
-        guard let isOpen = isOpen else {
-            return
-        }
-        let image = (isOpen == true) ? R.image.prepareContentMinusIcon() : R.image.prepareContentPlusIcon()
+        guard let isOpen = isOpen else { return }
+        let image = (isOpen == true) ? R.image.ic_minus() : R.image.ic_plus()
         button.setImage(image, for: .normal)
     }
 
     // MARK: - action
 
     @IBAction private func buttonPressed(_ sender: UIButton) {
-        guard let delegate = delegate, let indexPath = indexPath else {
-            return
-        }
+        guard let delegate = delegate, let indexPath = indexPath else { return }
         delegate.collapsableCell(self, didPressCollapseButtonForIndexPath: indexPath)
     }
 }

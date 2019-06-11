@@ -17,6 +17,8 @@ struct WeeklyChoice {
     let covered: Date?
     let startDate: Date
     let endDate: Date
+    let displayTime: String
+    let isDefault: Bool
     var selected: Bool
 }
 

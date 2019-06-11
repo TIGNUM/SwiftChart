@@ -310,6 +310,11 @@ final class ContentService {
         return Array(AnyRealmCollection<ContentCollection>(results))
     }
 
+    func isDefaultPrepareContentRelation(contentCollectionID: Int) -> Bool {
+        let predicate = NSPredicate(format: "contentID == %d AND type == %@", contentCollectionID, "PREPARE_DEFAULT")
+        return mainRealm.objects(ContentRelation.self).filter(predicate).isEmpty == false
+    }
+
     func relatedContentList(for articleCollection: ContentCollection) -> [ContentCollection] {
         let relatedContents = Array(articleCollection.relatedContentList).filter { $0.type != "NEXT_UP" }
         let remoteIDs = relatedContents.compactMap { $0.contentID }

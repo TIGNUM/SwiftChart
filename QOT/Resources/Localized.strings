@@ -315,6 +315,7 @@
 "Alert.Button.Title.Cancel" = "Cancel";
 "Alert.Button.Title.Continue" = "Continue";
 "Alert.Button.Title.Save" = "Save";
+"Alert.Button.Title.Save.and.Continue" = "Save & Continue";
 "Alert.Button.Title.Settings" = "Settings";
 "Alert.Button.Title.Open.Settings" = "Open Settings";
 "Alert.Title.LocationServices" = "Location Services";

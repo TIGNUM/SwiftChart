@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import EventKit
+import EventKitUI
 import qot_dal
 
 protocol DecisionTreeViewControllerDelegate: class {
@@ -22,12 +24,30 @@ final class DecisionTreeViewController: UIViewController {
     var interactor: DecisionTreeInteractorInterface?
     private var extraAnswer: String? = ""
     private var pageController: UIPageViewController?
+    private var selectedEvent: CalendarEvent?
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
     @IBOutlet private weak var continueButton: DecisionTreeButton!
     @IBOutlet private weak var continueButtonWidth: NSLayoutConstraint!
     @IBOutlet private weak var bottomViewContainer: UIView!
+
+    private lazy var editEventHandler: EditEventHandler = {
+        let delegate = EditEventHandler()
+        delegate.handler = { [weak self] (controller, action) in
+            switch action {
+            case .saved:
+                if let ekEvent = controller.event {
+                    controller.dismiss(animated: true)
+                    self?.selectedEvent = CalendarEvent(event: ekEvent)
+                    self?.loadNextQuestion(from: self?.selectedAnswers.first)
+                }
+            case .canceled, .deleted:
+                controller.dismiss(animated: true)
+            }
+        }
+        return delegate
+    }()
 
     private var selectedAnswers: [Answer] {
         return decisionTree?.selectedAnswers.map { $0.answer } ?? []
@@ -189,9 +209,10 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
         self.extraAnswer = extraAnswer
         switch currentQuestion?.answerType {
         case AnswerType.singleSelection.rawValue,
-             AnswerType.uploadImage.rawValue,
-             AnswerType.yesOrNo.rawValue:
-            moveForward()
+             AnswerType.yesOrNo.rawValue,
+             AnswerType.openCalendarEvents.rawValue,
+             AnswerType.uploadImage.rawValue:
+                moveForward()
         default: return
         }
     }
@@ -225,10 +246,15 @@ private extension DecisionTreeViewController {
         return controller
     }
 
-    func loadNextQuestion(from answer: Answer) {
-        if let nextQuestionID = answer.decisions.last(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
+    func loadNextQuestion(from answer: Answer?) {
+        if let nextQuestionID = answer?.decisions.last(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
             if decisionTree?.questions.filter ({ $0.remoteID.value == nextQuestionID }).isEmpty ?? false {
                 interactor?.loadNextQuestion(from: nextQuestionID, selectedAnswers: selectedAnswers)
+            } else if let answer = answer {
+                let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: nextQuestionID, answer: answer)
+                decisionTree?.add(selectedAnswer)
+                interactor?.loadNextQuestion(from: nextQuestionID,
+                                             selectedAnswers: selectedAnswers)
             }
         }
     }
@@ -304,7 +330,6 @@ private extension DecisionTreeViewController {
 // MARK: - DecisionTreeQuestionnaireDelegate
 
 extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
-
     func didTapBinarySelection(_ answer: Answer) {
         handleSingleSelection(for: answer)
     }
@@ -321,6 +346,27 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         }
         interactor?.notifyCounterChanged(with: multiSelectionCounter, selectedAnswers: selectedAnswers)
     }
+
+    func didSelectCalendarEvent(_ event: CalendarEvent, selectedAnswer: Answer) {
+        selectedEvent = event
+        loadNextQuestion(from: selectedAnswer)
+    }
+
+    func presentAddEventController(eventStore: EKEventStore) {
+        let eventEditVC = EKEventEditViewController()
+        eventEditVC.eventStore = eventStore
+        eventEditVC.editViewDelegate = editEventHandler
+        present(eventEditVC, animated: true)
+    }
+}
+
+private class EditEventHandler: NSObject, EKEventEditViewDelegate {
+    var handler: ((EKEventEditViewController, EKEventEditViewAction) -> Void)?
+
+    func eventEditViewController(_ controller: EKEventEditViewController,
+                                 didCompleteWith action: EKEventEditViewAction) {
+        handler?(controller, action)
+    }
 }
 
 // MARK: - Handling selections
@@ -336,7 +382,17 @@ private extension DecisionTreeViewController {
         }
         if let contentID = answer.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID {
             if answer.keys.contains(AnswerKey.Prepare.openCheckList.rawValue) {
-                interactor?.openPrepareChecklist(with: contentID)
+                interactor?.openPrepareChecklist(with: contentID,
+                                                 selectedEvent: selectedEvent,
+                                                 eventType: answer.title,
+                                                 checkListType: .onTheGo,
+                                                 relatedStrategyID: nil)
+            } else if answer.keys.contains(AnswerKey.Prepare.eventTypeSelectionDaily.rawValue) {
+                interactor?.openPrepareChecklist(with: PrepareCheckListType.daily.contentID,
+                                                 selectedEvent: selectedEvent,
+                                                 eventType: answer.title,
+                                                 checkListType: .daily,
+                                                 relatedStrategyID: contentID)
             } else {
                 interactor?.displayContent(with: contentID)
             }

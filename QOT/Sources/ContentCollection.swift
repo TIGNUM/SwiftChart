@@ -78,6 +78,10 @@ final class ContentCollection: SyncableObject {
         return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" }.compactMap { $0.contentID }
     }
 
+    var relatedContentIDsPrepare: [Int] {
+        return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" || $0.type == "PREPARE_OPTIONAL" }.compactMap { $0.contentID }
+    }
+
     var durationString: String {
         let durationString: String
         if hasVideoOnly == true {

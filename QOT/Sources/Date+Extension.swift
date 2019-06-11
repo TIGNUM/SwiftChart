@@ -112,8 +112,15 @@ extension Date {
         return monthDescription
     }
 
-    func isInCurrentWeek(date: Date) -> Bool {
-        return Calendar.sharedUTC.isDate(self, equalTo: date, toGranularity: .weekOfYear)
+    var weekDayName: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "EEEE"
+        return dateFormatter.string(from: self)
+    }
+
+    var isInCurrentWeek: Bool {
+        let daysFromNow = Date().days(to: self)
+        return dayOfWeek - daysFromNow >= 0
     }
 
     func years(to date: Date) -> Int {
@@ -156,11 +163,32 @@ extension Date {
         return self.isSameDay(Date())
     }
 
+    var isTomorrow: Bool {
+        return Date().isNextDay(date: self)
+    }
+
     var isWeekend: Bool {
         return Calendar.current.isDateInWeekend(self)
     }
 
     var is24hoursOld: Bool {
         return Calendar.current.dateComponents([.hour], from: self, to: Date()).hour ?? 0 > 24
+    }
+
+    var time: String {
+        return DateFormatter.displayTime.string(from: self)
+    }
+
+    var eventDateString: String {
+        if self.isToday == true {
+            return String(format: "Today at %@", self.time)
+        }
+        if self.isTomorrow == true {
+            return String(format: "Tomorrow at %@", self.time)
+        }
+        if self.isInCurrentWeek == true {
+            return String(format: "%@ at %@", self.weekDayName, self.time)
+        }
+        return DateFormatter.mediumDate.string(from: self)
     }
 }

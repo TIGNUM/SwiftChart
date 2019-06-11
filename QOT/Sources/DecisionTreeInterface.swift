@@ -22,7 +22,11 @@ protocol DecisionTreeInteractorInterface: Interactor {
     var type: DecisionTreeType { get }
     func notifyCounterChanged(with value: Int, selectedAnswers: [Answer])
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer])
-    func openPrepareChecklist(with contentID: Int)
+    func openPrepareChecklist(with contentID: Int,
+                              selectedEvent: CalendarEvent?,
+                              eventType: String?,
+                              checkListType: PrepareCheckListType,
+                              relatedStrategyID: Int?)
     func displayContent(with id: Int)
     func openMindsetShifterChecklist(from answers: [Answer])
     func streamContentItem(with id: Int)
@@ -32,7 +36,11 @@ protocol DecisionTreeInteractorInterface: Interactor {
 }
 
 protocol DecisionTreeRouterInterface {
-    func openPrepareChecklist(with contentID: Int)
+    func openPrepareChecklist(with contentID: Int,
+                              checkListType: PrepareCheckListType,
+                              selectedEvent: CalendarEvent?,
+                              eventType: String?,
+                              relatedStrategyID: Int?)
     func openMindsetShifterChecklist(trigger: String, reactions: [String], lowPerformanceItems: [String])
     func openArticle(with contentID: Int)
     func openVideo(from url: URL)

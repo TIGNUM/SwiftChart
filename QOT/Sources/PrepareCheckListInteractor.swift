@@ -29,6 +29,7 @@ final class PrepareCheckListInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
+        presenter.registerTableViewCell(for: worker.type)
         presenter.setupView()
     }
 }
@@ -36,11 +37,19 @@ final class PrepareCheckListInteractor {
 // MARK: - PrepareCheckListInteractorInterface
 
 extension PrepareCheckListInteractor: PrepareCheckListInteractorInterface {
-    var rowCount: Int {
-        return worker.rowCount
+    var type: PrepareCheckListType {
+        return worker.type
     }
 
-    func item(at indexPath: IndexPath) -> PrepareCheckListModel {
+    var sectionCount: Int {
+        return worker.sectionCount
+    }
+
+    func rowCount(in section: Int) -> Int {
+        return worker.rowCount(in: section)
+    }
+
+    func item(at indexPath: IndexPath) -> PrepareCheckListItem? {
         return worker.item(at: indexPath)
     }
 
@@ -62,5 +71,19 @@ extension PrepareCheckListInteractor: PrepareCheckListInteractorInterface {
 
     func hasHeaderMark(at indexPath: IndexPath) -> Bool {
         return worker.hasHeaderMark(at: indexPath)
+    }
+
+    func presentRelatedArticle(readMoreID: Int) {
+        router.presentRelatedArticle(readMoreID: readMoreID)
+    }
+
+    func didClickSaveAndContinue() {
+        router.didClickSaveAndContinue()
+    }
+
+    func openEditStrategyView() {
+        router.openEditStrategyView(services: worker.getServices,
+                                    relatedStrategies: worker.getRelatedContent,
+                                    selectedIDs: worker.getSelectedIDs)
     }
 }

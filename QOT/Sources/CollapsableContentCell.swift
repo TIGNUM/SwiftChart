@@ -12,49 +12,45 @@ protocol CollapsableContentCellDelegate: class {
     func collapsableContentCell(_ cell: CollapsableContentCell, didPressCheckButtonForIndexPath indexPath: IndexPath)
 }
 
-class CollapsableContentCell: UITableViewCell {
+final class CollapsableContentCell: UITableViewCell {
     static let nibName = "CollapsableContentCell"
-
     @IBOutlet weak var button: UIButton!
     @IBOutlet weak var label: UILabel!
-
-    var isChecked: Bool? {
-        didSet {
-            reload()
-        }
-    }
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var suggestionLabel: UILabel!
+    @IBOutlet weak var readImageView: UIImageView!
     var indexPath: IndexPath?
     weak var delegate: CollapsableContentCellDelegate?
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        separatorInset = UIEdgeInsets(top: 0, left: 35, bottom: 0, right: 20)
+    var isChecked: Bool? {
+        didSet { reload() }
     }
 
-    func setTitleText(_ text: String?) {
-        label.attributedText = NSMutableAttributedString(
-            string: text ?? "",
-            letterSpacing: 2,
-            font: .H6NavigationTitle,
-            textColor: .white)
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        separatorInset = UIEdgeInsets(top: 0, left: 75, bottom: 0, right: 0)
+        readImageView.image = R.image.ic_seen_of()?.withRenderingMode(.alwaysTemplate)
+        readImageView.tintColor = UIColor.carbon.withAlphaComponent(0.7)
+    }
+
+    func setTitleText(_ text: String?, duration: String, isSuggestion: Bool) {
+        label.text = text
+        durationLabel.text = duration
+        suggestionLabel.isHidden = isSuggestion == false
     }
 
     // MARK: - private
 
     private func reload() {
-        guard let isChecked = isChecked else {
-            return
-        }
-        let image = (isChecked == true) ? R.image.check() : R.image.circle()
-        button.setBackgroundImage(image, for: .normal)
+        guard let isChecked = isChecked else { return }
+        let image = (isChecked == true) ? R.image.ic_radio_selected() : R.image.ic_radio_unselected()
+        button.setImage(image, for: .normal)
     }
 
     // MARK: - action
 
     @IBAction private func buttonPressed(_ sender: UIButton) {
-        guard let delegate = delegate, let indexPath = indexPath else {
-            return
-        }
+        guard let delegate = delegate, let indexPath = indexPath else { return }
         delegate.collapsableContentCell(self, didPressCheckButtonForIndexPath: indexPath)
     }
 }

@@ -24,6 +24,10 @@ final class PrepareCheckListPresenter {
 // MARK: - PrepareCheckListInterface
 
 extension PrepareCheckListPresenter: PrepareCheckListPresenterInterface {
+    func registerTableViewCell(for checkListType: PrepareCheckListType) {
+        viewController?.registerTableViewCell(for: checkListType)
+    }
+
     func setupView() {
         viewController?.setupView()
     }

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,8 +27,8 @@
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="7HB-rx-H7d"/>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LET'S CREATE HIGH IMPACT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNq-cx-DhE">
-                    <rect key="frame" x="30" y="41" width="304.5" height="29"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="LET'S CREATE HIGH IMPACT" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BNq-cx-DhE">
+                    <rect key="frame" x="30" y="41" width="431" height="29"/>
                     <fontDescription key="fontDescription" type="system" pointSize="24"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -43,6 +43,7 @@
             <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882357" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="BNq-cx-DhE" firstAttribute="leading" secondItem="hbl-yo-seI" secondAttribute="leading" constant="30" id="5AO-SF-RKq"/>
+                <constraint firstItem="hbl-yo-seI" firstAttribute="trailing" secondItem="BNq-cx-DhE" secondAttribute="trailing" constant="24" id="5nN-V9-ZW6"/>
                 <constraint firstItem="H1R-qM-bgm" firstAttribute="top" secondItem="hbl-yo-seI" secondAttribute="top" constant="20" id="9xC-c2-9ML" userLabel="View.top = Safe Area.top + 84.5"/>
                 <constraint firstItem="7vG-EG-Kfo" firstAttribute="top" secondItem="BNq-cx-DhE" secondAttribute="bottom" constant="4" id="Spg-ui-Rco" userLabel="Subtitle Label.top = Title Label.bottom + 6"/>
                 <constraint firstItem="H1R-qM-bgm" firstAttribute="leading" secondItem="ToZ-05-bmu" secondAttribute="leading" constant="30" id="XWG-v0-w7g"/>

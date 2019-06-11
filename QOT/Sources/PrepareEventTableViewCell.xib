@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="95" id="KGk-i7-Jjw" customClass="PrepareEventTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="95"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="94.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Event Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3ID-AT-wGw">
+                        <rect key="frame" x="24" y="24" width="272" height="19.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                        <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_event" translatesAutoresizingMaskIntoConstraints="NO" id="HJY-fH-L0K">
+                        <rect key="frame" x="24" y="51.5" width="16" height="16"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="16" id="MCc-7i-upq"/>
+                            <constraint firstAttribute="width" constant="16" id="kbc-ac-aVd"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label Event Date 23. Jan at 14:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="odf-WU-Z6K">
+                        <rect key="frame" x="48" y="52.5" width="248" height="14.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                        <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0QH-J0-KJ2">
+                        <rect key="frame" x="24" y="93.5" width="296" height="1"/>
+                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.10000000000000001" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="1" id="B12-ii-HRP"/>
+                        </constraints>
+                    </view>
+                </subviews>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                <constraints>
+                    <constraint firstAttribute="bottom" secondItem="0QH-J0-KJ2" secondAttribute="bottom" id="2Vk-99-0ch"/>
+                    <constraint firstItem="3ID-AT-wGw" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="LO4-HB-F5O"/>
+                    <constraint firstAttribute="trailing" secondItem="0QH-J0-KJ2" secondAttribute="trailing" id="Ndm-Sy-s4i"/>
+                    <constraint firstAttribute="trailing" secondItem="3ID-AT-wGw" secondAttribute="trailing" constant="24" id="PaQ-OS-Mne"/>
+                    <constraint firstItem="HJY-fH-L0K" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="Ssg-St-eW7"/>
+                    <constraint firstItem="3ID-AT-wGw" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="TkP-ea-Voh"/>
+                    <constraint firstItem="HJY-fH-L0K" firstAttribute="top" secondItem="3ID-AT-wGw" secondAttribute="bottom" constant="8" id="YcF-vF-gSj"/>
+                    <constraint firstAttribute="trailing" secondItem="odf-WU-Z6K" secondAttribute="trailing" constant="24" id="c3b-S9-LVi"/>
+                    <constraint firstItem="0QH-J0-KJ2" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="cJN-s0-Ct5"/>
+                    <constraint firstItem="odf-WU-Z6K" firstAttribute="centerY" secondItem="HJY-fH-L0K" secondAttribute="centerY" id="erz-qz-O3U"/>
+                    <constraint firstItem="odf-WU-Z6K" firstAttribute="leading" secondItem="HJY-fH-L0K" secondAttribute="trailing" constant="8" id="o2L-eS-kmV"/>
+                </constraints>
+            </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
+            <connections>
+                <outlet property="dateIcon" destination="HJY-fH-L0K" id="IvI-xt-E2K"/>
+                <outlet property="dateLabel" destination="odf-WU-Z6K" id="hjC-Qk-eCT"/>
+                <outlet property="titleLabel" destination="3ID-AT-wGw" id="YnL-6B-YNS"/>
+            </connections>
+            <point key="canvasLocation" x="47.826086956521742" y="35.825892857142854"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="ic_event" width="16" height="16"/>
+    </resources>
+</document>
