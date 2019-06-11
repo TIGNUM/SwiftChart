@@ -101,19 +101,23 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func saveToBeVision(image: UIImage?, toBeVision: QDMToBeVision) {
-        do {
-            var vision = toBeVision
-            if let visionImage = image {
+        var vision = toBeVision
+        if image == nil {
+            vision.profileImageResource = nil
+        } else {
+            do {
+                guard let visionImage = image else { return }
                 let imageUrl = try worker.saveImage(visionImage).absoluteString
                 vision.profileImageResource = QDMMediaResource()
                 vision.profileImageResource?.localURLString = imageUrl
                 vision.modifiedAt = Date()
+                worker.updateMyToBeVision(vision) {[weak self] in
+                    self?.updateToBeVision()
+                }
+
+            } catch {
+                qot_dal.log(error.localizedDescription)
             }
-            worker.updateMyToBeVision(vision) {[weak self] in
-                self?.updateToBeVision()
-            }
-        } catch {
-            qot_dal.log(error.localizedDescription)
         }
     }
 
@@ -140,7 +144,6 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func openToBeVisionGenerator() {
-        worker.permissionManager
         router.openToBeVisionGenerator(permissionManager: worker.permissionManager)
     }
 }
