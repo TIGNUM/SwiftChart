@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SolveResultsViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="doneButton" destination="Cm3-za-rh3" id="qZ9-fg-f7F"/>
+                <outlet property="tableView" destination="Yu3-x9-yng" id="sFB-XV-RxX"/>
+                <outlet property="view" destination="iN0-l3-epB" id="0DE-ud-jZ5"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Yu3-x9-yng">
+                    <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                    <color key="backgroundColor" red="0.90980392156862744" green="0.8901960784313725" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <color key="sectionIndexBackgroundColor" red="0.90980392156862744" green="0.8901960784313725" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="PO6-5P-u9S"/>
+                        <outlet property="delegate" destination="-1" id="CfW-RK-0lg"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cm3-za-rh3">
+                    <rect key="frame" x="322" y="799" width="71" height="40"/>
+                    <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="71" id="3Hn-1s-9ut"/>
+                        <constraint firstAttribute="height" constant="40" id="zMa-ld-Nr7"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                    <state key="normal" title="Done">
+                        <color key="titleColor" red="0.71372549019607845" green="0.60784313725490191" blue="0.52549019607843139" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapDone:" destination="-1" eventType="touchUpInside" id="gO2-V1-3Eh"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.90980392156862744" green="0.8901960784313725" blue="0.8784313725490196" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Cm3-za-rh3" secondAttribute="bottom" constant="23" id="6Eb-vz-CyV"/>
+                <constraint firstItem="Yu3-x9-yng" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="FCH-2D-Ljj"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Yu3-x9-yng" secondAttribute="trailing" id="O25-Ip-G5K"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Cm3-za-rh3" secondAttribute="trailing" constant="21" id="VXC-PD-GAW"/>
+                <constraint firstItem="Yu3-x9-yng" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="qaO-jn-0jf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="Yu3-x9-yng" secondAttribute="bottom" id="tku-F0-nda"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+        </view>
+    </objects>
+</document>

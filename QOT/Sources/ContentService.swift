@@ -81,10 +81,14 @@ final class ContentService {
         }
 
         enum ConfirmationView: String, Predicatable {
-            case leaveTitle = "confirmation_title_leave_without_saving"
-            case progressDescription = "confirmation_description_progress_will_be_lost"
-            case buttonYes = "confirmation_button_yes"
-            case buttonNo = "confirmation_button_no"
+            case mindsetShifterTitle = "confirmationview-title-mindsetshifter"
+            case mindsetShifterDescription = "confirmationview-subtitle-mindsetshifter"
+            case mindsetShifterButtonYes = "confirmationview-button-yes-mindsetshifter"
+            case mindsetShifterButtonNo = "confirmationview-button-no-mindsetshifter"
+            case solveTitle = "confirmationview-title-solve"
+            case solveDescription = "confirmationview-subtitle-solve"
+            case solveButtonYes = "confirmationview-button-yes-solve"
+            case solveButtonNo = "confirmationview-button-no-solve"
 
             var predicate: NSPredicate {
                 return NSPredicate(tag: rawValue)
@@ -621,24 +625,45 @@ extension ContentService {
     }
 }
 
-// MARK: - ConfirmationView
+// MARK: - ConfirmationView Mindset Shifter
 
 extension ContentService {
 
-    var confirmationTitle: String {
-        return contentItem(for: Tags.ConfirmationView.leaveTitle.predicate)?.valueText ?? ""
+    var mindsetShifterConfirmationTitle: String {
+        return contentItem(for: Tags.ConfirmationView.mindsetShifterTitle.predicate)?.valueText ?? ""
     }
 
-    var confirmationDescription: String {
-        return contentItem(for: Tags.ConfirmationView.progressDescription.predicate)?.valueText ?? ""
+    var mindsetShifterConfirmationDescription: String {
+        return contentItem(for: Tags.ConfirmationView.mindsetShifterDescription.predicate)?.valueText ?? ""
     }
 
-    var confirmationButtonYes: String {
-        return contentItem(for: Tags.ConfirmationView.buttonYes.predicate)?.valueText ?? ""
+    var mindsetShifterConfirmationYes: String {
+        return contentItem(for: Tags.ConfirmationView.mindsetShifterButtonYes.predicate)?.valueText ?? ""
     }
 
-    var confirmationButtonNo: String {
-        return contentItem(for: Tags.ConfirmationView.buttonNo.predicate)?.valueText ?? ""
+    var mindsetShifterConfirmationNo: String {
+        return contentItem(for: Tags.ConfirmationView.mindsetShifterButtonNo.predicate)?.valueText ?? ""
+    }
+}
+
+// MARK: - ConfirmationView Solve
+
+extension ContentService {
+
+    var solveConfirmationTitle: String {
+        return contentItem(for: Tags.ConfirmationView.solveTitle.predicate)?.valueText ?? ""
+    }
+
+    var solveConfirmationDescription: String {
+        return contentItem(for: Tags.ConfirmationView.solveDescription.predicate)?.valueText ?? ""
+    }
+
+    var solveConfirmationYes: String {
+        return contentItem(for: Tags.ConfirmationView.solveButtonYes.predicate)?.valueText ?? ""
+    }
+
+    var solveConfirmationNo: String {
+        return contentItem(for: Tags.ConfirmationView.solveButtonNo.predicate)?.valueText ?? ""
     }
 }
 

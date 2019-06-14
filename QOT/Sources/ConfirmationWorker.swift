@@ -13,11 +13,17 @@ final class ConfirmationWorker {
     // MARK: - Properties
 
     private let services: Services
+    private let type: ConfirmationType
+
+    private var contentService: ContentService {
+        return services.contentService
+    }
 
     // MARK: - Init
 
-    init(services: Services) {
+    init(services: Services, type: ConfirmationType) {
         self.services = services
+        self.type = type
     }
 }
 
@@ -25,11 +31,48 @@ final class ConfirmationWorker {
 
 extension ConfirmationWorker: ConfirmationWorkerInterface {
 
-    func model() -> ConfirmationModel {
-        let buttons = [ConfirmationModel.ConfirmationButton(type: .yes, title: services.contentService.confirmationButtonYes),
-                       ConfirmationModel.ConfirmationButton(type: .no, title: services.contentService.confirmationButtonNo)]
-        return ConfirmationModel(title: services.contentService.confirmationTitle,
-                                 description: services.contentService.confirmationDescription,
-                                 buttons: buttons)
+    var model: ConfirmationModel {
+        return ConfirmationModel(title: title, description: description, buttons: [buttonYes, buttonNo])
+    }
+}
+
+// MARK: - Values
+
+private extension ConfirmationWorker {
+
+    var buttonYes: ConfirmationModel.ConfirmationButton {
+        switch type {
+        case .mindsetShifter:
+            return ConfirmationModel.ConfirmationButton(type: .yes, title: contentService.mindsetShifterConfirmationTitle)
+        case .solve:
+            return ConfirmationModel.ConfirmationButton(type: .yes, title: contentService.solveConfirmationTitle)
+        }
+    }
+
+    var buttonNo: ConfirmationModel.ConfirmationButton {
+        switch type {
+        case .mindsetShifter:
+            return ConfirmationModel.ConfirmationButton(type: .no, title: contentService.mindsetShifterConfirmationDescription)
+        case .solve:
+            return ConfirmationModel.ConfirmationButton(type: .no, title: contentService.solveConfirmationDescription)
+        }
+    }
+
+    var title: String {
+        switch type {
+        case .mindsetShifter:
+            return contentService.mindsetShifterConfirmationTitle
+        case .solve:
+            return contentService.solveConfirmationTitle
+        }
+    }
+
+    var description: String {
+        switch type {
+        case .mindsetShifter:
+            return contentService.mindsetShifterConfirmationDescription
+        case .solve:
+            return contentService.solveConfirmationDescription
+        }
     }
 }

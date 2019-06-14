@@ -10,10 +10,10 @@ import Foundation
 
 final class ConfirmationConfigurator: AppStateAccess {
 
-    static func make() -> (ConfirmationViewController) -> Void {
+    static func make(for type: ConfirmationType) -> (ConfirmationViewController) -> Void {
         return { (viewController) in
             let router = ConfirmationRouter(viewController: viewController)
-            let worker = ConfirmationWorker(services: appState.services)
+            let worker = ConfirmationWorker(services: appState.services, type: type)
             let presenter = ConfirmationPresenter(viewController: viewController)
             let interactor = ConfirmationInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

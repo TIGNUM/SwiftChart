@@ -84,6 +84,14 @@ extension QuestionsService {
     }
 }
 
+// MARK: - Solve
+
+extension QuestionsService {
+    func solveIntro() -> Question? {
+        return question(for: QuestionKey.Solve.intro.rawValue)
+    }
+}
+
 // MARK: - Private
 
 private extension QuestionsService {

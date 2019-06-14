@@ -714,6 +714,8 @@
 		AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */; };
 		AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E5C2289942100F426F0 /* NegativeToPositiveTableViewCell.swift */; };
 		AC103E5F2289942100F426F0 /* NegativeToPositiveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */; };
+		AC108C5122A677C00035C3AF /* SolveFollowUpTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC108C4F22A677C00035C3AF /* SolveFollowUpTableViewCell.swift */; };
+		AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC108C5022A677C00035C3AF /* SolveFollowUpTableViewCell.xib */; };
 		AC18381F22418DC6004A538D /* SuggestionsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */; };
 		AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC183820224190A0004A538D /* SuggestionsHeaderView.swift */; };
 		AC199035221EDF4300D53F01 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
@@ -721,6 +723,22 @@
 		AC199037221EE05C00D53F01 /* UIColor+Palette.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC64725A1EE6F9DE00BFA3D9 /* UIColor+Palette.swift */; };
 		AC199038221EE07000D53F01 /* Math.swift in Sources */ = {isa = PBXBuildFile; fileRef = 852DADC51EEEE63500A10882 /* Math.swift */; };
 		AC1A40D0229E88920022156C /* UIViewController+PageTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40CF229E88920022156C /* UIViewController+PageTrack.swift */; };
+		AC1A40DA22A54EB70022156C /* SolveResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D222A54EB70022156C /* SolveResultsPresenter.swift */; };
+		AC1A40DB22A54EB70022156C /* SolveResultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D322A54EB70022156C /* SolveResultsWorker.swift */; };
+		AC1A40DC22A54EB70022156C /* SolveResultsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D422A54EB70022156C /* SolveResultsRouter.swift */; };
+		AC1A40DD22A54EB70022156C /* SolveResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D522A54EB70022156C /* SolveResultsInterface.swift */; };
+		AC1A40DE22A54EB70022156C /* SolveResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D622A54EB70022156C /* SolveResultsViewController.swift */; };
+		AC1A40DF22A54EB70022156C /* SolveResultsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D722A54EB70022156C /* SolveResultsInteractor.swift */; };
+		AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D822A54EB70022156C /* SolveResultsModel.swift */; };
+		AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40D922A54EB70022156C /* SolveResultsConfigurator.swift */; };
+		AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40E222A550350022156C /* SolveResultsViewController.xib */; };
+		AC1A40E822A55C870022156C /* SolveHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40E622A55C870022156C /* SolveHeaderTableViewCell.swift */; };
+		AC1A40E922A55C870022156C /* SolveHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40E722A55C870022156C /* SolveHeaderTableViewCell.xib */; };
+		AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40EA22A561330022156C /* SolveStrategyTableViewCell.swift */; };
+		AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40EB22A561330022156C /* SolveStrategyTableViewCell.xib */; };
+		AC1A40F122A56FB90022156C /* SolveTriggerTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40EF22A56FB90022156C /* SolveTriggerTableViewCell.xib */; };
+		AC1A40F422A573F80022156C /* SolveDayPlanTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40F222A573F80022156C /* SolveDayPlanTableViewCell.swift */; };
+		AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC1A40F322A573F80022156C /* SolveDayPlanTableViewCell.xib */; };
 		AC2BABB1223FAAB300769B1A /* SuggestionSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */; };
 		AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */; };
 		AC4DA0E422157DAD00BAF914 /* UpcomingEventHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */; };
@@ -788,6 +806,7 @@
 		ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD399F2229402C500DDE1BD /* QuestionKey.swift */; };
 		ACD399F5229402EC00DDE1BD /* AnswerKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD399F4229402EC00DDE1BD /* AnswerKeys.swift */; };
 		ACD399F72294030F00DDE1BD /* TargetType.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD399F62294030F00DDE1BD /* TargetType.swift */; };
+		ACE6A3CB22B11F96000470B1 /* SolveTriggerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC1A40EE22A56FB90022156C /* SolveTriggerTableViewCell.swift */; };
 		ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEF4554218077FA00A4D531 /* GuideProgressView.swift */; };
 		ACF0B944225FC41F008CFAEC /* DecisionTreePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B93C225FC41F008CFAEC /* DecisionTreePresenter.swift */; };
 		ACF0B945225FC41F008CFAEC /* DecisionTreeWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */; };
@@ -1971,9 +1990,28 @@
 		AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetVisionTableViewCell.xib; sourceTree = "<group>"; };
 		AC103E5C2289942100F426F0 /* NegativeToPositiveTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NegativeToPositiveTableViewCell.swift; sourceTree = "<group>"; };
 		AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NegativeToPositiveTableViewCell.xib; sourceTree = "<group>"; };
+		AC108C4F22A677C00035C3AF /* SolveFollowUpTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveFollowUpTableViewCell.swift; sourceTree = "<group>"; };
+		AC108C5022A677C00035C3AF /* SolveFollowUpTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveFollowUpTableViewCell.xib; sourceTree = "<group>"; };
 		AC18381E22418DC6004A538D /* SuggestionsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionsHeaderView.xib; sourceTree = "<group>"; };
 		AC183820224190A0004A538D /* SuggestionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionsHeaderView.swift; sourceTree = "<group>"; };
 		AC1A40CF229E88920022156C /* UIViewController+PageTrack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+PageTrack.swift"; sourceTree = "<group>"; };
+		AC1A40D222A54EB70022156C /* SolveResultsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveResultsPresenter.swift; sourceTree = "<group>"; };
+		AC1A40D322A54EB70022156C /* SolveResultsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveResultsWorker.swift; sourceTree = "<group>"; };
+		AC1A40D422A54EB70022156C /* SolveResultsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveResultsRouter.swift; sourceTree = "<group>"; };
+		AC1A40D522A54EB70022156C /* SolveResultsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveResultsInterface.swift; sourceTree = "<group>"; };
+		AC1A40D622A54EB70022156C /* SolveResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveResultsViewController.swift; sourceTree = "<group>"; };
+		AC1A40D722A54EB70022156C /* SolveResultsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveResultsInteractor.swift; sourceTree = "<group>"; };
+		AC1A40D822A54EB70022156C /* SolveResultsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveResultsModel.swift; sourceTree = "<group>"; };
+		AC1A40D922A54EB70022156C /* SolveResultsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveResultsConfigurator.swift; sourceTree = "<group>"; };
+		AC1A40E222A550350022156C /* SolveResultsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveResultsViewController.xib; sourceTree = "<group>"; };
+		AC1A40E622A55C870022156C /* SolveHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveHeaderTableViewCell.swift; sourceTree = "<group>"; };
+		AC1A40E722A55C870022156C /* SolveHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveHeaderTableViewCell.xib; sourceTree = "<group>"; };
+		AC1A40EA22A561330022156C /* SolveStrategyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveStrategyTableViewCell.swift; sourceTree = "<group>"; };
+		AC1A40EB22A561330022156C /* SolveStrategyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveStrategyTableViewCell.xib; sourceTree = "<group>"; };
+		AC1A40EE22A56FB90022156C /* SolveTriggerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveTriggerTableViewCell.swift; sourceTree = "<group>"; };
+		AC1A40EF22A56FB90022156C /* SolveTriggerTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveTriggerTableViewCell.xib; sourceTree = "<group>"; };
+		AC1A40F222A573F80022156C /* SolveDayPlanTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveDayPlanTableViewCell.swift; sourceTree = "<group>"; };
+		AC1A40F322A573F80022156C /* SolveDayPlanTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveDayPlanTableViewCell.xib; sourceTree = "<group>"; };
 		AC2BABAF223FAAB300769B1A /* SuggestionSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionSearchTableViewCell.swift; sourceTree = "<group>"; };
 		AC2BABB0223FAAB300769B1A /* SuggestionSearchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SuggestionSearchTableViewCell.xib; sourceTree = "<group>"; };
 		AC4DA0E322157DAD00BAF914 /* UpcomingEventHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpcomingEventHandler.swift; sourceTree = "<group>"; };
@@ -2941,6 +2979,7 @@
 		367BB012223955D200282AB6 /* 3.0 Main Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				AC1A40D122A54DC90022156C /* Solve Results */,
 				5F8A89882296CA530011A05C /* MyToBeVision */,
 				36376638223A6F0E00C2C429 /* components */,
 				CBB4DD361EE08A5C0071494A /* Search */,
@@ -4098,6 +4137,48 @@
 			name = Cells;
 			sourceTree = "<group>";
 		};
+		AC1A40D122A54DC90022156C /* Solve Results */ = {
+			isa = PBXGroup;
+			children = (
+				AC1A40E522A55C580022156C /* Cells */,
+				AC1A40E422A55C4A0022156C /* Core */,
+			);
+			name = "Solve Results";
+			sourceTree = "<group>";
+		};
+		AC1A40E422A55C4A0022156C /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				AC1A40D222A54EB70022156C /* SolveResultsPresenter.swift */,
+				AC1A40D322A54EB70022156C /* SolveResultsWorker.swift */,
+				AC1A40D422A54EB70022156C /* SolveResultsRouter.swift */,
+				AC1A40D522A54EB70022156C /* SolveResultsInterface.swift */,
+				AC1A40D622A54EB70022156C /* SolveResultsViewController.swift */,
+				AC1A40D722A54EB70022156C /* SolveResultsInteractor.swift */,
+				AC1A40D922A54EB70022156C /* SolveResultsConfigurator.swift */,
+				AC1A40E222A550350022156C /* SolveResultsViewController.xib */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		AC1A40E522A55C580022156C /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AC1A40E622A55C870022156C /* SolveHeaderTableViewCell.swift */,
+				AC1A40E722A55C870022156C /* SolveHeaderTableViewCell.xib */,
+				AC1A40EA22A561330022156C /* SolveStrategyTableViewCell.swift */,
+				AC1A40EB22A561330022156C /* SolveStrategyTableViewCell.xib */,
+				AC1A40EE22A56FB90022156C /* SolveTriggerTableViewCell.swift */,
+				AC1A40EF22A56FB90022156C /* SolveTriggerTableViewCell.xib */,
+				AC1A40F222A573F80022156C /* SolveDayPlanTableViewCell.swift */,
+				AC1A40F322A573F80022156C /* SolveDayPlanTableViewCell.xib */,
+				AC108C4F22A677C00035C3AF /* SolveFollowUpTableViewCell.swift */,
+				AC108C5022A677C00035C3AF /* SolveFollowUpTableViewCell.xib */,
+				AC1A40D822A54EB70022156C /* SolveResultsModel.swift */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
 		AC87A779220D94F800622C90 /* Intent */ = {
 			isa = PBXGroup;
 			children = (
@@ -4177,7 +4258,6 @@
 				ACB99E7522661F2400A73709 /* DecisionTreeQuestionnaireController.swift */,
 				ACF0B93E225FC41F008CFAEC /* DecisionTreeRouter.swift */,
 				ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */,
-				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
 				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
 				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
 			);
@@ -5828,6 +5908,7 @@
 				5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */,
 				9166ECEB20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
+				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
 				AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */,
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				367564B1206A56B7008D1F71 /* ReviewNotesViewController.storyboard in Resources */,
@@ -5845,6 +5926,7 @@
 				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
 				9171647B2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
 				3674FF3120AADEC5008EEB6C /* PartnersOverviewViewController.xib in Resources */,
+				AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */,
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */,
@@ -5891,6 +5973,7 @@
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
 				F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */,
+				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
 				366F1FD8226A1CE90034D8FD /* FoundationTableViewCell.xib in Resources */,
 				AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */,
 				CC90ECA31F30A68E00A83DB9 /* SettingsChangePasswordViewController.storyboard in Resources */,
@@ -5933,6 +6016,7 @@
 				DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */,
 				F99DF6062292DB4600341DAB /* ToolsCollectionsVideoTableViewCell.xib in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
+				AC1A40F122A56FB90022156C /* SolveTriggerTableViewCell.xib in Resources */,
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
 				5F36074A228C42570074FEC4 /* MyQotSyncedCalendarCell.xib in Resources */,
@@ -5965,6 +6049,7 @@
 				36E86D48226F45BC00371C67 /* StrategyListHeaderView.xib in Resources */,
 				36796A4520D3C49900B55429 /* SigningLoginViewController.xib in Resources */,
 				36796A0B20D3C41F00B55429 /* SigningCreatePasswordViewController.xib in Resources */,
+				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
 				CB3333F120480E50009480DF /* ShareViewController.xib in Resources */,
 				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
@@ -5982,6 +6067,7 @@
 				CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */,
 				CBC5A57C1FA08077007B9A5B /* 20_min_power_nap_with_voice_B.m4a in Resources */,
 				851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */,
+				AC1A40E922A55C870022156C /* SolveHeaderTableViewCell.xib in Resources */,
 				36B515CC216395B600A7B405 /* SupportFAQTableViewCell.xib in Resources */,
 				ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */,
 				36A7B9442166455C006C18F0 /* PrepareSectionHeaderView.xib in Resources */,
@@ -6307,10 +6393,12 @@
 				7FBFBC111FC7320B007B6D2D /* WeeklyChoicesViewData.swift in Sources */,
 				36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */,
 				36E3AD562073783400FB27F1 /* PreparationAnswer.swift in Sources */,
+				AC1A40DB22A54EB70022156C /* SolveResultsWorker.swift in Sources */,
 				3637660C223A4BEC00C2C429 /* DailyBriefWorker.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				5F6B38592284079800704676 /* UserProfileModel.swift in Sources */,
 				CCF0F4C11ECDC57000E8D9C1 /* ObjectStore.swift in Sources */,
+				AC1A40DC22A54EB70022156C /* SolveResultsRouter.swift in Sources */,
 				F99DF60F2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift in Sources */,
 				36796A4420D3C49900B55429 /* SigningLoginConfigurator.swift in Sources */,
 				366183E72162793700634560 /* SupportFAQPresenter.swift in Sources */,
@@ -6366,6 +6454,7 @@
 				36D72ED2229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift in Sources */,
 				ACF0B9782260BC80008CFAEC /* TextTableViewCell.swift in Sources */,
 				360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */,
+				AC1A40E022A54EB70022156C /* SolveResultsModel.swift in Sources */,
 				F95B923C228EAEAC000DEAEC /* ToolsModel.swift in Sources */,
 				36E4B7B2219EBFED00049EE8 /* TutorialConfigurator.swift in Sources */,
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
@@ -6443,6 +6532,7 @@
 				914A5E25207FB3AF00092121 /* SettingsBubblesPresenter.swift in Sources */,
 				CBB4DD121EDEAD050071494A /* RequestConstants.swift in Sources */,
 				7F904F661FBF1A550040EF11 /* TabBarController.swift in Sources */,
+				AC108C5122A677C00035C3AF /* SolveFollowUpTableViewCell.swift in Sources */,
 				CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */,
 				9115F706208DE01E00EE5D1D /* ProfileSettingsInteractor.swift in Sources */,
 				AC103E412285B27200F426F0 /* MindsetShifterChecklistWorker.swift in Sources */,
@@ -6507,6 +6597,7 @@
 				366F1FD7226A1CE90034D8FD /* FoundationTableViewCell.swift in Sources */,
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */,
+				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
 				3637664D223A7DE100C2C429 /* LevelTwoModel.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
 				AC103E472285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift in Sources */,
@@ -6716,6 +6807,7 @@
 				3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */,
 				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
 				3698428520C91EF3007A8C8F /* SigningDigitViewController.swift in Sources */,
+				AC1A40DF22A54EB70022156C /* SolveResultsInteractor.swift in Sources */,
 				CB694E09205C1C3600D29B3E /* DailyPrepResultIntermediary.swift in Sources */,
 				363765FD223A4BD200C2C429 /* KnowingRouter.swift in Sources */,
 				9150413720FDF40A00D43D18 /* SensorViewController.swift in Sources */,
@@ -6726,6 +6818,7 @@
 				CBD4BE9E2018BE25008A0E9E /* GuideProtocols.swift in Sources */,
 				7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
+				AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				854708E21F306628007AB971 /* ContentItemAnimation.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
@@ -6948,6 +7041,7 @@
 				36D72ED1229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift in Sources */,
 				36376624223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift in Sources */,
 				CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */,
+				AC1A40DE22A54EB70022156C /* SolveResultsViewController.swift in Sources */,
 				36667694207CF62700D2F5AD /* VisionGeneratorInteractor.swift in Sources */,
 				3681A52522647FE600E3F4B8 /* ArticleHeaderView.swift in Sources */,
 				7FB9AD0B1F39BD1400E0D621 /* UpSyncMediaResultParser.swift in Sources */,
@@ -6983,6 +7077,7 @@
 				5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */,
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
+				AC1A40F422A573F80022156C /* SolveDayPlanTableViewCell.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
 				369353A522983AB9008BBB72 /* PrepareCheckListViewController.swift in Sources */,
 				366AFD0E20BD9F9300109F29 /* SigningEmailRouter.swift in Sources */,
@@ -6997,12 +7092,14 @@
 				5F8A89932296DEC50011A05C /* MyVisionViewController.swift in Sources */,
 				F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */,
 				3662433E227C56E500FFED3A /* AudioButton.swift in Sources */,
+				AC1A40DA22A54EB70022156C /* SolveResultsPresenter.swift in Sources */,
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
 				ACF0B948225FC41F008CFAEC /* DecisionTreeViewController.swift in Sources */,
 				369353A822983AB9008BBB72 /* PrepareCheckListConfigurator.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */,
+				AC1A40DD22A54EB70022156C /* SolveResultsInterface.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */,
 				5F57F9E42282E65B003A9EDF /* ContentService+MyQotProfile.swift in Sources */,
 				CB53F0D820235A9C007C624B /* Atomic.swift in Sources */,
@@ -7019,6 +7116,7 @@
 				F95B923E228EAECB000DEAEC /* ToolsConfigurator.swift in Sources */,
 				9150413320FDF40A00D43D18 /* SensorPresenter.swift in Sources */,
 				366AFD1020BD9F9300109F29 /* SigningEmailViewController.swift in Sources */,
+				AC1A40E822A55C870022156C /* SolveHeaderTableViewCell.swift in Sources */,
 				5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */,
 				CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */,
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,
@@ -7217,6 +7315,7 @@
 				3666769A207CF66600D2F5AD /* VisionGeneratorProtocols.swift in Sources */,
 				F9C1D8CB220DEA0E00B40DD2 /* SiriShortcutsCell.swift in Sources */,
 				36796A5920D3C4B800B55429 /* SigningInfoInterface.swift in Sources */,
+				ACE6A3CB22B11F96000470B1 /* SolveTriggerTableViewCell.swift in Sources */,
 				3637667B223BFF3800C2C429 /* StrategyListModel.swift in Sources */,
 				5F7BE7A42289AC2800BA5DCF /* MyQotAboutUsConfigurator.swift in Sources */,
 				360256F020528DBD00862B0E /* SearchTableViewCell.swift in Sources */,

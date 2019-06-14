@@ -40,6 +40,7 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         case .mindsetShifter: return services.questionsService.mindsetShifterIntroQuestion()
         case .mindsetShifterTBV: return services.questionsService.mindsetShifterTBV()
         case .prepare: return services.questionsService.prepareIntro()
+        case .solve: return services.questionsService.solveIntro()
         }
     }
 

@@ -14,6 +14,9 @@ final class CoachRouter {
 
     private let viewController: CoachViewController
     weak var delegate: CoachCollectionViewControllerDelegate?
+    private var permissionsManager: PermissionsManager {
+        return AppCoordinator.appState.permissionsManager!
+    }
 
     // MARK: - Init
 
@@ -46,13 +49,14 @@ extension CoachRouter: CoachRouterInterface {
         case .sprint:
             print("sprint")
         case .event:
-            let permissionsManager = AppCoordinator.appState.permissionsManager!
             let configurator = DecisionTreeConfigurator.make(for: .prepare, permissionsManager: permissionsManager)
             let controller = DecisionTreeViewController(configure: configurator)
             viewController.present(controller, animated: true)
-            UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
+            UIApplication.shared.setStatusBar(colorMode: .darkNot)
         case .challenge:
-            print("challenge")
+            let configurator = DecisionTreeConfigurator.make(for: .solve, permissionsManager: permissionsManager)
+            let controller = DecisionTreeViewController(configure: configurator)
+            viewController.present(controller, animated: true)
         }
     }
 }

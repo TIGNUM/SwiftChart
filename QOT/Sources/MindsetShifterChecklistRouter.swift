@@ -26,7 +26,7 @@ final class MindsetShifterChecklistRouter {
 extension MindsetShifterChecklistRouter: MindsetShifterChecklistRouterInterface {
 
     func dismiss() {
-        let configurator = ConfirmationConfigurator.make()
+        let configurator = ConfirmationConfigurator.make(for: .mindsetShifter)
         let confirmationVC = ConfirmationViewController(configure: configurator)
         confirmationVC.delegate = self
         confirmationVC.modalPresentationStyle = .overCurrentContext

@@ -29,7 +29,7 @@ final class ConfirmationInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        presenter.show(worker.model())
+        presenter.show(worker.model)
     }
 }
 
