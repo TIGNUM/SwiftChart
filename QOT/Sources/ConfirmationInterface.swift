@@ -26,5 +26,5 @@ protocol ConfirmationRouterInterface {
 }
 
 protocol ConfirmationWorkerInterface {
-    func model() -> ConfirmationModel
+    var model: ConfirmationModel { get }
 }

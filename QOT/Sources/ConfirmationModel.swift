@@ -8,6 +8,11 @@
 
 import UIKit
 
+enum ConfirmationType {
+    case mindsetShifter
+    case solve
+}
+
 enum ConfirmationButtonType {
     case yes
     case no

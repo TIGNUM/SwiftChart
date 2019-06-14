@@ -86,17 +86,17 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
         let cellType = CellType.allCases[section]
         switch cellType {
         case .header:
-            return CoachTableHeaderView.instantiateFromNib(title: coachModel?.headerTitle ?? "", subtitle: coachModel?.headerSubtitle ?? "")
+            return CoachTableHeaderView.instantiateFromNib(title: coachModel?.headerTitle ?? "",
+                                                           subtitle: coachModel?.headerSubtitle ?? "")
         default: return nil
         }
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: CoachTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: (coachModel?.coachItems[indexPath.row].title) ?? "", subtitle: (coachModel?.coachItems[indexPath.row].subtitle) ?? "")
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.accent.withAlphaComponent(0.1)
-        cell.selectedBackgroundView = backgroundView
+        let item = coachModel?.coachItems[indexPath.row]
+        cell.configure(title: item?.title ?? "", subtitle: item?.subtitle ?? "")
+        cell.setSelectedColor(.accent, alphaComponent: 0.1)
         return cell
     }
 

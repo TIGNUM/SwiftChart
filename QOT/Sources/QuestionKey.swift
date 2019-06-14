@@ -41,4 +41,9 @@ enum QuestionKey {
         case calendarEventSelection = "prepare-key-calendar-event-selection"
         case eventTypeSelection = "prepare-event-type-selection"
     }
+
+    enum Solve: String {
+        case intro = "solve-key-intro"
+        case help = "solve-key-help"
+    }
 }

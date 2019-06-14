@@ -72,6 +72,21 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         let mindsetShifterChecklistVC = MindsetShifterChecklistViewController(configure: configurator)
         viewController.present(mindsetShifterChecklistVC, animated: true)
     }
+
+    func openSolveResults(from selectedAnswer: Answer) {
+        let configurator = SolveResultsConfigurator.make(from: selectedAnswer)
+        let solveResultsController = SolveResultsViewController(configure: configurator)
+        solveResultsController.delegate = viewController
+        viewController.present(solveResultsController, animated: true)
+    }
+
+    func openToBeVisionPage() {
+        let configurator = MyToBeVisionConfigurator.make(navigationItem: NavigationItem())
+        let visionViewController = MyToBeVisionViewController(configurator: configurator)
+        viewController.present(visionViewController, animated: true) {
+           self.viewController.dismiss(animated: true, completion: nil)
+        }
+    }
 }
 
 // MARK: - ImagePickerDelegate

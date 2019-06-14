@@ -253,8 +253,7 @@ private extension DecisionTreeViewController {
             } else if let answer = answer {
                 let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: nextQuestionID, answer: answer)
                 decisionTree?.add(selectedAnswer)
-                interactor?.loadNextQuestion(from: nextQuestionID,
-                                             selectedAnswers: selectedAnswers)
+                interactor?.loadNextQuestion(from: nextQuestionID, selectedAnswers: selectedAnswers)
             }
         }
     }
@@ -311,18 +310,17 @@ private extension DecisionTreeViewController {
     }
 
     func updateBottomButtonTitle() {
-        guard
-            let questionKey = currentQuestion?.key,
-            let answerType = currentQuestion?.answerType else { return }
-        switch answerType {
-        case AnswerType.multiSelection.rawValue:
-            continueButton.update(with: multiSelectionCounter,
-                                  defaultTitle: defaultButtonText,
-                                  confirmationTitle: confirmationButtonText,
-                                  questionKey: questionKey,
-                                  maxSelections: maxPossibleSelections)
-        default:
-            continueButton.setTitle(confirmationButtonText, for: .normal)
+        if let questionKey = currentQuestion?.key, let answerType = currentQuestion?.answerType {
+            switch answerType {
+            case AnswerType.multiSelection.rawValue:
+                continueButton.update(with: multiSelectionCounter,
+                                      defaultTitle: defaultButtonText,
+                                      confirmationTitle: confirmationButtonText,
+                                      questionKey: questionKey,
+                                      maxSelections: maxPossibleSelections)
+            default:
+                continueButton.setTitle(confirmationButtonText, for: .normal)
+            }
         }
     }
 }
@@ -379,6 +377,14 @@ private extension DecisionTreeViewController {
         decisionTree?.add(selectedAnswer)
         if let remoteID = answer.remoteID.value {
             trackUserEvent(.SELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
+        }
+        if answer.keys.contains(AnswerKey.Solve.openVisionPage.rawValue) {
+            interactor?.openToBeVisionPage()
+            return
+        }
+        if currentQuestion?.key == QuestionKey.Solve.help.rawValue || answer.keys.contains(AnswerKey.Solve.letsDoIt.rawValue) {
+            interactor?.openSolveResults(from: answer)
+            return
         }
         if let contentID = answer.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID {
             if answer.keys.contains(AnswerKey.Prepare.openCheckList.rawValue) {
@@ -437,5 +443,14 @@ private extension DecisionTreeViewController {
             }
         })
         continueButton.pulsate()
+    }
+}
+
+// MARK: - SolveResultsViewControllerDelegate
+
+extension DecisionTreeViewController: SolveResultsViewControllerDelegate {
+
+    func didFinishSolve() {
+        dismiss(animated: true)
     }
 }

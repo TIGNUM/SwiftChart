@@ -21,4 +21,9 @@ enum AnswerKey {
         case openCalendarEventSelection = "prepare-key-calendar-event-selection"
         case eventTypeSelectionDaily = "prepare_event_type_selection_daily"
     }
+
+    enum Solve: String {
+        case letsDoIt = "solve-lets-do-it"
+        case openVisionPage = "open-vision-page"
+    }
 }

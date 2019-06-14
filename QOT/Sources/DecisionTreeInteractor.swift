@@ -29,7 +29,10 @@ final class DecisionTreeInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        loadScene()
+        if let firstQuestion = worker.fetchFirstQuestion() {
+            let decisionTree = DecisionTreeModel(questions: [firstQuestion], selectedAnswers: [])
+            presenter.load(decisionTree)
+        }
     }
 }
 
@@ -97,19 +100,15 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         }
     }
 
+    func openSolveResults(from selectedAnswer: Answer) {
+        router.openSolveResults(from: selectedAnswer)
+    }
+
     func save(_ image: UIImage) {
         worker.save(image)
     }
-}
 
-// MARK: - Private
-
-private extension DecisionTreeInteractor {
-
-    func loadScene() {
-        if let firstQuestion = worker.fetchFirstQuestion() {
-            let decisionTree = DecisionTreeModel(questions: [firstQuestion], selectedAnswers: [])
-            presenter.load(decisionTree)
-        }
+    func openToBeVisionPage() {
+        router.openToBeVisionPage()
     }
 }

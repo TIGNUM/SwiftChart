@@ -32,6 +32,7 @@ extension ConfirmationRouter: ConfirmationRouterInterface {
     }
 
     func dismiss() {
+        viewController.delegate?.didTapStay()
         viewController.dismiss(animated: true, completion: nil)
     }
 }

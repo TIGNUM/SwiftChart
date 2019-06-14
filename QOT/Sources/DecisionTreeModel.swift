@@ -15,6 +15,7 @@ enum DecisionTreeType {
     case mindsetShifter
     case mindsetShifterTBV
     case prepare
+    case solve
 }
 
 // MARK: - Model

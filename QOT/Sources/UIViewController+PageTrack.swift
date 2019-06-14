@@ -50,6 +50,7 @@ private extension UIViewController {
         case is MyQotSiriShortcutsViewController: return "myprofile.appsettings.sirishortcuts"
         case is MyQotSupportFaqViewController: return "myprofile.support.faq"
         case is TutorialViewController: return "myprofile.support.tutorial"
+        case is SolveResultsViewController: return "solve.results"
         default: preconditionFailure()
         }
     }
@@ -60,11 +61,12 @@ private extension UIViewController {
 private extension UIViewController {
     var decisionTreePageKey: String {
         switch (self as? DecisionTreeViewController)?.interactor?.type {
-        case .toBeVisionGenerator?: return "0"
-        case .mindsetShifter?: return "1"
-        case .mindsetShifterTBV?: return "2"
-        case .prepare?: return "3"
-        default: preconditionFailure("DecisionTree page ID missing")
+        case .toBeVisionGenerator?: return "decisiontree.tobevisiongenerator"
+        case .mindsetShifter?: return "decisiontree.mindsetshifter"
+        case .mindsetShifterTBV?: return "decisiontree.mindsetshifter.tobevisiongenerator"
+        case .prepare?: return "decisiontree.mindsetshifter.prepare"
+        case .solve?: return "decisiontree.mindsetshifter.solve"
+        default: preconditionFailure()
         }
     }
 }

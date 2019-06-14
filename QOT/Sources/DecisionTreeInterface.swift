@@ -33,6 +33,8 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func openShortTBVGenerator()
     func openImagePicker()
     func save(_ image: UIImage)
+    func openSolveResults(from selectedAnswer: Answer)
+    func openToBeVisionPage()
 }
 
 protocol DecisionTreeRouterInterface {
@@ -46,6 +48,8 @@ protocol DecisionTreeRouterInterface {
     func openVideo(from url: URL)
     func openShortTBVGenerator()
     func openImagePicker()
+    func openSolveResults(from selectedAnswer: Answer)
+    func openToBeVisionPage()
 }
 
 protocol DecisionTreeModelInterface {
