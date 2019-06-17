@@ -32,7 +32,6 @@ extension PrepareCheckListRouter: PrepareCheckListRouterInterface {
                                                     questionID: questionID))
     }
 
-
     func presentEditBenefits(benefits: String?, questionID: Int) {
         presentDecisionTree(for: .prepareBenefits(benefits: benefits, questionID: questionID))
     }

@@ -38,7 +38,7 @@ private extension UIViewController {
     var pageKey: String {
         switch self {
         case is DecisionTreeViewController: return decisionTreePageKey
-        case is MindsetShifterChecklistViewController: return "0"
+        case is MindsetShifterChecklistViewController: return "decisiontree.mindsetshifter.results"
         case is MyQotProfileViewController: return "myprofile.home"
         case is MyQotAccountSettingsViewController: return "myprofile.accountsettings"
         case is ProfileSettingsViewController: return "myprofile.accountsettings.edit"
@@ -69,7 +69,7 @@ private extension UIViewController {
         case .mindsetShifter?: return "decisiontree.mindsetshifter"
         case .mindsetShifterTBV?: return "decisiontree.mindsetshifter.tobevisiongenerator"
         case .prepare?: return "decisiontree.mindsetshifter.prepare"
-        case .solve?: return "decisiontree.mindsetshifter.solve"
+        case .solve?: return "decisiontree.solve"
         case .prepareIntensions?: return "decisiontree.prepare.edit.intensions"
         case .prepareBenefits?: return "decisiontree.prepare.edit.benefits"
         default: preconditionFailure()

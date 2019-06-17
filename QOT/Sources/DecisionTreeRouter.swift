@@ -69,10 +69,14 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         viewController.present(decisionTreeVC, animated: true)
     }
 
-    func openMindsetShifterChecklist(trigger: String, reactions: [String], lowPerformanceItems: [String]) {
+    func openMindsetShifterChecklist(trigger: String,
+                                     reactions: [String],
+                                     lowPerformanceItems: [String],
+                                     highPerformanceItems: [String]) {
         let configurator = MindsetShifterChecklistConfigurator.make(trigger: trigger,
                                                                     reactions: reactions,
-                                                                    lowPerformanceItems: lowPerformanceItems)
+                                                                    lowPerformanceItems: lowPerformanceItems,
+                                                                    highPerformanceItems: highPerformanceItems)
         let mindsetShifterChecklistVC = MindsetShifterChecklistViewController(configure: configurator)
         viewController.present(mindsetShifterChecklistVC, animated: true)
     }

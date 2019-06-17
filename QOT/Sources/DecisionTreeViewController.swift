@@ -220,7 +220,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
              AnswerType.yesOrNo.rawValue,
              AnswerType.openCalendarEvents.rawValue,
              AnswerType.uploadImage.rawValue:
-                moveForward()
+            moveForward()
         default: return
         }
     }
@@ -336,19 +336,6 @@ private extension DecisionTreeViewController {
             continueButton.setTitle(defaultButtonText, for: .normal)
         default:
             continueButton.setTitle(confirmationButtonText, for: .normal)
-//=======
-//        if let questionKey = currentQuestion?.key, let answerType = currentQuestion?.answerType {
-//            switch answerType {
-//            case AnswerType.multiSelection.rawValue:
-//                continueButton.update(with: multiSelectionCounter,
-//                                      defaultTitle: defaultButtonText,
-//                                      confirmationTitle: confirmationButtonText,
-//                                      questionKey: questionKey,
-//                                      maxSelections: maxPossibleSelections)
-//            default:
-//                continueButton.setTitle(confirmationButtonText, for: .normal)
-//            }
-//>>>>>>> dev_3.0
         }
     }
 }
@@ -510,7 +497,6 @@ extension DecisionTreeViewController {
         }
     }
 }
-
 
 // MARK: - SolveResultsViewControllerDelegate
 

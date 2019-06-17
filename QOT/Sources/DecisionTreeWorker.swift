@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 typealias DecisionTreeNode = (question: Question?, generatedAnswer: String?)
 
@@ -127,9 +128,24 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
     func save(_ image: UIImage) {
         switch type {
         case .toBeVisionGenerator, .mindsetShifterTBV:
-            saveToBeVision(image)
+            saveToBeVision(image, completion: { (error) in
+                if let error = error {
+                    qot_dal.log(error.localizedDescription, level: .error)
+                }
+            })
         default: return
         }
+    }
+
+    func highPerformanceItems(from contentItemIDs: [Int]) -> [String] {
+        var items: [String] = []
+        contentItemIDs.forEach {
+            let contentItem = services.contentService.contentItem(id: $0)
+            if contentItem?.searchTags.contains("mindsetshifter-highperformance-item") ?? false == true {
+                items.append(contentItem?.valueText ?? "")
+            }
+        }
+        return items
     }
 }
 
@@ -192,13 +208,19 @@ private extension DecisionTreeWorker {
         return visionList.joined(separator: " ")
     }
 
-    func saveToBeVision(_ image: UIImage) {
+    func saveToBeVision(_ image: UIImage, completion: @escaping (Error?) -> Void) {
         do {
-            let imageURL = try image.save(withName: UUID().uuidString)
-            guard var vision = services.userService.myToBeVision()?.model else { return }
-            vision.imageURL = imageURL
-            vision.lastUpdated = Date()
-            services.userService.saveVisionAndSync(vision, syncManager: AppDelegate.appState.syncManager, completion: nil)
+            let imageURL = try image.save(withName: UUID().uuidString).absoluteString
+            qot_dal.UserService.main.getMyToBeVision { (vision, _, _) in
+                if var vision = vision {
+                    vision.profileImageResource = QDMMediaResource()
+                    vision.profileImageResource?.localURLString = imageURL
+                    vision.modifiedAt = Date()
+                    qot_dal.UserService.main.updateMyToBeVision(vision, { (error) in
+                        completion(error)
+                    })
+                }
+            }
         } catch {
             print("Error while saving TBV image: \(error.localizedDescription)")
         }

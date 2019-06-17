@@ -53,7 +53,10 @@ protocol DecisionTreeRouterInterface {
                               relatedStrategyID: Int?,
                               selectedAnswers: [DecisionTreeModel.SelectedAnswer],
                               benefits: String?)
-    func openMindsetShifterChecklist(trigger: String, reactions: [String], lowPerformanceItems: [String])
+    func openMindsetShifterChecklist(trigger: String,
+                                     reactions: [String],
+                                     lowPerformanceItems: [String],
+                                     highPerformanceItems: [String])
     func openArticle(with contentID: Int)
     func openVideo(from url: URL)
     func openShortTBVGenerator()
