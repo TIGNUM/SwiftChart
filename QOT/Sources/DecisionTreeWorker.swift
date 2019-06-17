@@ -15,6 +15,10 @@ final class DecisionTreeWorker {
     // MARK: - Properties
 
     private let services: Services
+    private var _prepareBenefits: String?
+    private var _selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
+    private var answerFilter: String?
+    private var _targetContentID: Int = 0
     let type: DecisionTreeType
 
     // MARK: - Init
@@ -28,9 +32,55 @@ final class DecisionTreeWorker {
 // MARK: - DecisionTreeWorkerInterface
 
 extension DecisionTreeWorker: DecisionTreeWorkerInterface {
+    func setTargetContentID(for answer: Answer) {
+        let contentTarget = answer.decisions.filter { $0.targetType == TargetType.content.rawValue }.first
+        if let targetContentID = contentTarget?.targetID {
+            self.targetContentID = targetContentID
+        }
+    }
+
+    func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String? {
+        if answerFilter != nil {
+            let result = answerFilter
+            answerFilter = nil
+            return result
+        }
+        let keyFilter = "_relationship_"
+        if currentQuestion?.key?.contains("prepare_peak_prep_") == true {
+            return decisionTree?.selectedAnswers.compactMap { $0.answer }.flatMap { $0.keys }.filter { $0.contains(keyFilter) }.first
+        }
+        return decisionTree?.selectedAnswers.first?.answer.keys.first(where: { $0.contains(keyFilter) })
+    }
+
+    var targetContentID: Int {
+        get {
+            return _targetContentID
+        }
+        set {
+            _targetContentID = newValue
+        }
+    }
+
+    var prepareBenefits: String? {
+        get {
+            return _prepareBenefits
+        }
+        set {
+            _prepareBenefits = newValue
+        }
+    }
 
     var userHasToBeVision: Bool {
-        return services.userService.myToBeVision()?.text != nil
+        return services.userService.myToBeVision()?.text != nil && services.userService.myToBeVision()?.text?.trimmed.isEmpty == false
+    }
+
+    var selectedAnswers: [DecisionTreeModel.SelectedAnswer] {
+        get {
+            return _selectedAnswers
+        }
+        set {
+            _selectedAnswers = newValue
+        }
     }
 
     /// Returns the first question in order to start the decision tree
@@ -40,6 +90,13 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         case .mindsetShifter: return services.questionsService.mindsetShifterIntroQuestion()
         case .mindsetShifterTBV: return services.questionsService.mindsetShifterTBV()
         case .prepare: return services.questionsService.prepareIntro()
+        case .prepareIntensions(let selectedAnswers, let answerFilter, let questionID):
+            self.answerFilter = answerFilter
+            self.selectedAnswers = selectedAnswers
+            return services.questionsService.question(id: questionID)
+        case .prepareBenefits(let benefits, let questionId):
+            prepareBenefits = benefits
+            return services.questionsService.question(id: questionId)
         case .solve: return services.questionsService.solveIntro()
         }
     }
@@ -51,7 +108,8 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         switch question?.key {
         case QuestionKey.ToBeVision.create.rawValue,
              QuestionKey.MindsetShifterTBV.review.rawValue: extraAnswer = createVision(from: selectedAnswers)
-        case QuestionKey.MindsetShifter.showTBV.rawValue: extraAnswer = services.userService.myToBeVision()?.text
+        case QuestionKey.MindsetShifter.showTBV.rawValue,
+             QuestionKey.Prepare.showTBV.rawValue: extraAnswer = services.userService.myToBeVision()?.text
         default: extraAnswer = createVision(from: selectedAnswers)/* TODO: generate different extra answers */
         }
         return (question, extraAnswer)

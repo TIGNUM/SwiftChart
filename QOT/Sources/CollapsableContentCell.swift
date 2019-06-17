@@ -14,11 +14,11 @@ protocol CollapsableContentCellDelegate: class {
 
 final class CollapsableContentCell: UITableViewCell {
     static let nibName = "CollapsableContentCell"
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var durationLabel: UILabel!
-    @IBOutlet weak var suggestionLabel: UILabel!
-    @IBOutlet weak var readImageView: UIImageView!
+    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var durationLabel: UILabel!
+    @IBOutlet private weak var suggestionLabel: UILabel!
+    @IBOutlet private weak var readImageView: UIImageView!
     var indexPath: IndexPath?
     weak var delegate: CollapsableContentCellDelegate?
 

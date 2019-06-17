@@ -25,6 +25,7 @@ final class DecisionTreeViewController: UIViewController {
     private var extraAnswer: String? = ""
     private var pageController: UIPageViewController?
     private var selectedEvent: CalendarEvent?
+    private var tempPageViewControllerHeight = CGFloat(0)
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
@@ -130,7 +131,6 @@ final class DecisionTreeViewController: UIViewController {
 // MARK: - Private
 
 private extension DecisionTreeViewController {
-
     func setupView() {
         continueButtonWidth.constant += view.bounds.width * 0.025
         continueButton.corner(radius: continueButton.bounds.height / 2)
@@ -164,23 +164,32 @@ private extension DecisionTreeViewController {
 // MARK: - Actions
 
 private extension DecisionTreeViewController {
-
     @IBAction func didTapPrevious(_ sender: UIButton) {
         trackUserEvent(.PREVIOUS, action: .TAP)
         moveBackward()
         updateMultipleSelectionCounter()
     }
 
-    @IBAction func didTapClose(_ sender: UIButton) {
+    @IBAction func didTapClose() {
         trackUserEvent(.CLOSE, action: .TAP)
         delegate?.didDismiss()
         dismiss(animated: true)
     }
 
-    @IBAction func didTapContinue(_ sender: UIButton) {
+    @IBAction func didTapContinue() {
+        if let type = interactor?.type {
+            switch type {
+            case .prepareIntensions,
+                 .prepareBenefits: dismiss(animated: true, completion: nil)
+            default: break
+            }
+        }
         if currentQuestion?.answerType == AnswerType.lastQuestion.rawValue ||
             currentQuestion?.key == QuestionKey.MindsetShifterTBV.review.rawValue {
             dismiss(animated: true, completion: nil)
+        } else if currentQuestion?.key == QuestionKey.Prepare.benefitsInput.rawValue {
+            guard let answer = currentQuestion?.answers.first else { return }
+            handleSingleSelection(for: answer)
         } else {
             switch currentQuestion?.key {
             case QuestionKey.MindsetShifter.openTBV.rawValue: interactor?.openShortTBVGenerator()
@@ -199,7 +208,6 @@ private extension DecisionTreeViewController {
 // MARK: - DecisionTreeViewControllerInterface
 
 extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
-
     func load(_ decisionTree: DecisionTreeModel) {
         self.decisionTree = decisionTree
     }
@@ -221,7 +229,6 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
 // MARK: - Get questions
 
 private extension DecisionTreeViewController {
-
     func previousQuestion() -> Question? {
         guard pageIndex > 0 else { return nil }
         return decisionTree?.questions[pageIndex.advanced(by: -1)]
@@ -236,13 +243,14 @@ private extension DecisionTreeViewController {
 
     func questionnaireController(for question: Question) -> DecisionTreeQuestionnaireViewController {
         let selectedAnswers = decisionTree?.selectedAnswers.filter { $0.questionID == question.remoteID.value } ?? []
-        let answersFilter = decisionTree?.selectedAnswers.first?.answer.keys.first(where: { $0.contains("_relationship_") })
+        let filter = interactor?.answersFilter(currentQuestion: currentQuestion, decisionTree: decisionTree)
         let controller = DecisionTreeQuestionnaireViewController(for: question,
                                                                  with: selectedAnswers,
                                                                  extraAnswer: extraAnswer,
                                                                  maxPossibleSelections: question.maxPossibleSelections,
-                                                                 answersFilter: answersFilter)
+                                                                 answersFilter: filter)
         controller.delegate = self
+        controller.interactor = interactor
         return controller
     }
 
@@ -262,7 +270,6 @@ private extension DecisionTreeViewController {
 // MARK: - Update UI
 
 private extension DecisionTreeViewController {
-
     func syncButtons() {
         previousButton.isHidden = pageIndex == 0
         updateBottomButtonTitle()
@@ -291,10 +298,14 @@ private extension DecisionTreeViewController {
 
     func moveForward() {
         if let nextQuestion = nextQuestion() {
-            self.pageController?.setViewControllers([questionnaireController(for: nextQuestion)],
-                                                    direction: .forward,
-                                                    animated: true,
-                                                    completion: nil)
+            pageController?.setViewControllers([questionnaireController(for: nextQuestion)],
+                                               direction: .forward,
+                                               animated: true,
+                                               completion: { _ in
+                                                if nextQuestion.answerType == AnswerType.userInput.rawValue {
+                                                    self.view.becomeFirstResponder()
+                                                }
+            })
         }
         pageIndex.plus(1)
     }
@@ -310,17 +321,34 @@ private extension DecisionTreeViewController {
     }
 
     func updateBottomButtonTitle() {
-        if let questionKey = currentQuestion?.key, let answerType = currentQuestion?.answerType {
-            switch answerType {
-            case AnswerType.multiSelection.rawValue:
-                continueButton.update(with: multiSelectionCounter,
-                                      defaultTitle: defaultButtonText,
-                                      confirmationTitle: confirmationButtonText,
-                                      questionKey: questionKey,
-                                      maxSelections: maxPossibleSelections)
-            default:
-                continueButton.setTitle(confirmationButtonText, for: .normal)
-            }
+        guard
+            let questionKey = currentQuestion?.key,
+            let answerType = currentQuestion?.answerType else { return }
+        switch answerType {
+        case AnswerType.multiSelection.rawValue:
+            continueButton.update(with: multiSelectionCounter,
+                                  defaultTitle: defaultButtonText,
+                                  confirmationTitle: confirmationButtonText,
+                                  questionKey: questionKey,
+                                  maxSelections: maxPossibleSelections)
+        case AnswerType.text.rawValue:
+            continueButton.isHidden = false
+            continueButton.setTitle(defaultButtonText, for: .normal)
+        default:
+            continueButton.setTitle(confirmationButtonText, for: .normal)
+//=======
+//        if let questionKey = currentQuestion?.key, let answerType = currentQuestion?.answerType {
+//            switch answerType {
+//            case AnswerType.multiSelection.rawValue:
+//                continueButton.update(with: multiSelectionCounter,
+//                                      defaultTitle: defaultButtonText,
+//                                      confirmationTitle: confirmationButtonText,
+//                                      questionKey: questionKey,
+//                                      maxSelections: maxPossibleSelections)
+//            default:
+//                continueButton.setTitle(confirmationButtonText, for: .normal)
+//            }
+//>>>>>>> dev_3.0
         }
     }
 }
@@ -328,6 +356,18 @@ private extension DecisionTreeViewController {
 // MARK: - DecisionTreeQuestionnaireDelegate
 
 extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
+    func didPressDimiss() {
+        didTapClose()
+    }
+
+    func didPressContinue() {
+        didTapContinue()
+    }
+
+    func didUpdatePrepareBenefits(_ benefits: String?) {
+        interactor?.prepareBenefits = benefits
+    }
+
     func didTapBinarySelection(_ answer: Answer) {
         handleSingleSelection(for: answer)
     }
@@ -370,7 +410,6 @@ private class EditEventHandler: NSObject, EKEventEditViewDelegate {
 // MARK: - Handling selections
 
 private extension DecisionTreeViewController {
-
     func handleSingleSelection(for answer: Answer) {
         guard let questionID = currentQuestion?.remoteID.value else { return }
         let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
@@ -386,22 +425,10 @@ private extension DecisionTreeViewController {
             interactor?.openSolveResults(from: answer)
             return
         }
-        if let contentID = answer.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID {
-            if answer.keys.contains(AnswerKey.Prepare.openCheckList.rawValue) {
-                interactor?.openPrepareChecklist(with: contentID,
-                                                 selectedEvent: selectedEvent,
-                                                 eventType: answer.title,
-                                                 checkListType: .onTheGo,
-                                                 relatedStrategyID: nil)
-            } else if answer.keys.contains(AnswerKey.Prepare.eventTypeSelectionDaily.rawValue) {
-                interactor?.openPrepareChecklist(with: PrepareCheckListType.daily.contentID,
-                                                 selectedEvent: selectedEvent,
-                                                 eventType: answer.title,
-                                                 checkListType: .daily,
-                                                 relatedStrategyID: contentID)
-            } else {
-                interactor?.displayContent(with: contentID)
-            }
+        if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionCritical.rawValue {
+            interactor?.setTargetContentID(for: answer)
+        } else if let contentID = answer.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID {
+            showContent(for: answer, contentID: contentID)
         }
         if let contentItemID = answer.decisions.first(where: { $0.targetType == TargetType.contentItem.rawValue })?.targetID {
             interactor?.streamContentItem(with: contentItemID)
@@ -410,7 +437,11 @@ private extension DecisionTreeViewController {
             interactor?.openImagePicker()
         }
         if let targetID = answer.decisions.first(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
-            interactor?.loadNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
+            if currentQuestion?.key == QuestionKey.Prepare.buildCritical.rawValue && interactor?.userHasToBeVision == false {
+                interactor?.openShortTBVGenerator()
+            } else {
+                interactor?.loadNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
+            }
         }
     }
 
@@ -445,6 +476,41 @@ private extension DecisionTreeViewController {
         continueButton.pulsate()
     }
 }
+
+// MARK: - Private
+
+extension DecisionTreeViewController {
+    func showContent(for answer: Answer, contentID: Int) {
+        if answer.keys.contains(AnswerKey.Prepare.openCheckList.rawValue) {
+            interactor?.openPrepareChecklist(with: contentID,
+                                             selectedEvent: selectedEvent,
+                                             eventType: answer.title,
+                                             checkListType: .onTheGo,
+                                             relatedStrategyID: nil,
+                                             selectedAnswers: [],
+                                             benefits: nil)
+        } else if answer.keys.contains(AnswerKey.Prepare.eventTypeSelectionDaily.rawValue) {
+            interactor?.openPrepareChecklist(with: PrepareCheckListType.daily.contentID,
+                                             selectedEvent: selectedEvent,
+                                             eventType: answer.title,
+                                             checkListType: .daily,
+                                             relatedStrategyID: contentID,
+                                             selectedAnswers: [],
+                                             benefits: nil)
+        } else if currentQuestion?.key == QuestionKey.Prepare.benefitsInput.rawValue {
+            interactor?.openPrepareChecklist(with: PrepareCheckListType.peakPerformance.contentID,
+                                             selectedEvent: selectedEvent,
+                                             eventType: answer.title,
+                                             checkListType: .peakPerformance,
+                                             relatedStrategyID: interactor?.relatedStrategyID,
+                                             selectedAnswers: decisionTree?.selectedAnswers ?? [],
+                                             benefits: interactor?.prepareBenefits)
+        } else {
+            interactor?.displayContent(with: contentID)
+        }
+    }
+}
+
 
 // MARK: - SolveResultsViewControllerDelegate
 

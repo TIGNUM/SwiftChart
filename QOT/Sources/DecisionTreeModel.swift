@@ -15,6 +15,8 @@ enum DecisionTreeType {
     case mindsetShifter
     case mindsetShifterTBV
     case prepare
+    case prepareIntensions(selectedAnswers: [DecisionTreeModel.SelectedAnswer], answerFilter: String?, questionID: Int)
+    case prepareBenefits(benefits: String?, questionID: Int)
     case solve
 }
 

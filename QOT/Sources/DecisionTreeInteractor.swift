@@ -39,9 +39,37 @@ final class DecisionTreeInteractor {
 // MARK: - DecisionTreeInteractorInterface
 
 extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
+    var userHasToBeVision: Bool {
+        return worker.userHasToBeVision
+    }
+
+    var relatedStrategyID: Int {
+        return worker.targetContentID
+    }
+
+    var selectedanswers: [DecisionTreeModel.SelectedAnswer] {
+        return worker.selectedAnswers
+    }
+
+    var prepareBenefits: String? {
+        set {
+            worker.prepareBenefits = newValue
+        }
+        get {
+            return worker.prepareBenefits
+        }
+    }
 
     var type: DecisionTreeType {
         return worker.type
+    }
+
+    func setTargetContentID(for answer: Answer) {
+        worker.setTargetContentID(for: answer)
+    }
+
+    func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String? {
+        return worker.answersFilter(currentQuestion: currentQuestion, decisionTree: decisionTree)
     }
 
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer]) {
@@ -55,12 +83,16 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
                               selectedEvent: CalendarEvent?,
                               eventType: String?,
                               checkListType: PrepareCheckListType,
-                              relatedStrategyID: Int?) {
+                              relatedStrategyID: Int?,
+                              selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                              benefits: String?) {
         router.openPrepareChecklist(with: contentID,
                                     checkListType: checkListType,
                                     selectedEvent: selectedEvent,
                                     eventType: eventType,
-                                    relatedStrategyID: relatedStrategyID)
+                                    relatedStrategyID: relatedStrategyID,
+                                    selectedAnswers: selectedAnswers,
+                                    benefits: benefits)
     }
 
     func displayContent(with id: Int) {

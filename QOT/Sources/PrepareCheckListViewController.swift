@@ -88,10 +88,12 @@ private extension PrepareCheckListViewController {
         let hasSeperator = interactor?.hasBottomSeperator(at: indexPath) ?? false
         let hasListMark = interactor?.hasListMark(at: indexPath) ?? false
         let hasHeaderMark = interactor?.hasHeaderMark(at: indexPath) ?? false
+        let isEditable = interactor?.isEditable(at: indexPath) ?? false
         cell.configure(attributedString: attributedString,
                        hasListMark: hasListMark,
                        hasSeperator: hasSeperator,
-                       hasHeaderMark: hasHeaderMark)
+                       hasHeaderMark: hasHeaderMark,
+                       isEditable: isEditable)
         return cell
     }
 
@@ -138,14 +140,14 @@ private extension PrepareCheckListViewController {
 extension PrepareCheckListViewController: PrepareCheckListViewControllerInterface {
     func registerTableViewCell(for checkListType: PrepareCheckListType) {
         switch checkListType {
-        case .daily:
+        case .daily,
+             .peakPerformance:
             tableView.registerDequeueable(PrePareCheckListContentItemTableViewCell.self)
             tableView.registerDequeueable(PrepareEventTableViewCell.self)
             tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
             tableView.registerDequeueable(ReminderTableViewCell.self)
         case .onTheGo:
             tableView.registerDequeueable(PrePareCheckListContentItemTableViewCell.self)
-        case .peakPerformance: return
         }
     }
 
@@ -159,7 +161,7 @@ extension PrepareCheckListViewController: PrepareCheckListViewControllerInterfac
             doneButton.bottomAnchor == view.bottomAnchor - 24
             doneButton.rightAnchor == view.rightAnchor - 24
         }
-        if interactor?.type == .daily {
+        if interactor?.type == .daily || interactor?.type == .peakPerformance {
             saveAndContinueButton.corner(radius: 20)
             view.addSubview(saveAndContinueButton)
             saveAndContinueButton.heightAnchor == 40
@@ -219,6 +221,22 @@ extension PrepareCheckListViewController: UITableViewDelegate, UITableViewDataSo
             return strategyCell(title: title, duration: readingTime, indexPath: indexPath)
         case .reminder(let title, let subTitle, let isOn):
             return reminderCell(title: title, subTitle: subTitle, isOn: isOn, indexPath: indexPath)
+        case .intentionContentItem(let itemFormat, let title, _, _, _):
+            return contentItemCell(itemFormat: itemFormat,
+                                   title: title,
+                                   indexPath: indexPath)
+        case .intentionItem(let selectedAnswer, _):
+            return contentItemCell(itemFormat: ContentItemFormat.listItem,
+                                   title: selectedAnswer.answer.title,
+                                   indexPath: indexPath)
+        case .benefitContentItem(let itemFormat, let title, _, _):
+            return contentItemCell(itemFormat: itemFormat,
+                                   title: title,
+                                   indexPath: indexPath)
+        case .benefitItem(let benefits):
+            return contentItemCell(itemFormat: ContentItemFormat.listItem,
+                                   title: benefits,
+                                   indexPath: indexPath)
         }
     }
 
@@ -227,7 +245,7 @@ extension PrepareCheckListViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 7 && interactor?.type == .daily {
+        if (section == 7 && interactor?.type == .daily) || (section == 15 && interactor?.type == .peakPerformance) {
             let view = EditHeaderView.instantiateFromNib()
             view.delegate = self
             return view
@@ -236,7 +254,7 @@ extension PrepareCheckListViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        if section == 7 && interactor?.type == .daily {
+         if (section == 7 && interactor?.type == .daily) || (section == 15 && interactor?.type == .peakPerformance) {
             return 44
         }
         return 0
@@ -248,6 +266,12 @@ extension PrepareCheckListViewController: UITableViewDelegate, UITableViewDataSo
         switch item {
         case .strategy(_, _, let readMoreID):
             interactor?.presentRelatedArticle(readMoreID: readMoreID)
+        case .intentionContentItem(_, _, let selectedAnswers, let answerFilter, let questionID):
+            interactor?.presentEditIntensions(selectedAnswers: selectedAnswers,
+                                              answerFilter: answerFilter,
+                                              questionID: questionID)
+        case .benefitContentItem(_, _, let benefits, let questionID):
+            interactor?.presentEditBenefits(benefits: benefits, questionID: questionID)
         default: return
         }
     }

@@ -37,12 +37,16 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
                               checkListType: PrepareCheckListType,
                               selectedEvent: CalendarEvent?,
                               eventType: String?,
-                              relatedStrategyID: Int?) {
+                              relatedStrategyID: Int?,
+                              selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                              benefits: String?) {
         let configurator = PrepareCheckListConfigurator.make(contentID: contentID,
                                                              checkListType: checkListType,
                                                              event: selectedEvent,
                                                              eventType: eventType,
-                                                             relatedStrategyID: relatedStrategyID)
+                                                             relatedStrategyID: relatedStrategyID,
+                                                             selectedAnswers: selectedAnswers,
+                                                             benefits: benefits)
         let controller = PrepareCheckListViewController(configure: configurator)
         viewController.present(controller, animated: true, completion: nil)
     }

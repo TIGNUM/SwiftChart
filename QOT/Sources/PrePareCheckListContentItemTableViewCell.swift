@@ -16,11 +16,17 @@ final class PrePareCheckListContentItemTableViewCell: UITableViewCell, Dequeueab
     @IBOutlet private weak var headerMark: UIView!
     @IBOutlet private weak var bottomSeperator: UIView!
     @IBOutlet private weak var listMark: UIView!
+    @IBOutlet private weak var editImageView: UIImageView!
 
-    func configure(attributedString: NSAttributedString?, hasListMark: Bool, hasSeperator: Bool, hasHeaderMark: Bool) {
+    func configure(attributedString: NSAttributedString?,
+                   hasListMark: Bool,
+                   hasSeperator: Bool,
+                   hasHeaderMark: Bool,
+                   isEditable: Bool) {
         titleLabel.attributedText = attributedString
         headerMark.isHidden = !hasHeaderMark
         listMark.isHidden = !hasListMark
         bottomSeperator.isHidden = !hasSeperator
+        editImageView.isHidden = !isEditable
     }
 }

@@ -308,6 +308,8 @@
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
 		36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */; };
 		36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */; };
+		36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */; };
+		36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */; };
 		36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */; };
 		36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */; };
 		36D348EC216BAA4E006C8D10 /* PrepareNotesHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D348EB216BAA4E006C8D10 /* PrepareNotesHeaderView.swift */; };
@@ -325,7 +327,7 @@
 		36D72ED1229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72EC9229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift */; };
 		36D72ED2229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */; };
 		36D72ED4229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */; };
-		36D72ED5229C1BCC00DE1184 /* PrepareEventSelectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECD229C1BCC00DE1184 /* PrepareEventSelectionModel.swift */; };
+		36D72ED5229C1BCC00DE1184 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		36D72ED6229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */; };
 		36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */; };
 		36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */; };
@@ -1581,6 +1583,8 @@
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
 		36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTableViewCell.swift; sourceTree = "<group>"; };
+		36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInputTableViewCell.xib; sourceTree = "<group>"; };
 		36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsTableViewCell.swift; sourceTree = "<group>"; };
 		36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalendarEventsTableViewCell.xib; sourceTree = "<group>"; };
 		36D348EB216BAA4E006C8D10 /* PrepareNotesHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareNotesHeaderView.swift; sourceTree = "<group>"; };
@@ -1598,7 +1602,6 @@
 		36D72EC9229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionRouter.swift; sourceTree = "<group>"; };
 		36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionInterface.swift; sourceTree = "<group>"; };
 		36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionInteractor.swift; sourceTree = "<group>"; };
-		36D72ECD229C1BCC00DE1184 /* PrepareEventSelectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionModel.swift; sourceTree = "<group>"; };
 		36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventSelectionConfigurator.swift; sourceTree = "<group>"; };
 		36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventTableViewCell.swift; sourceTree = "<group>"; };
 		36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareEventTableViewCell.xib; sourceTree = "<group>"; };
@@ -3078,7 +3081,6 @@
 				36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */,
 				36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */,
 				36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */,
-				36D72ECD229C1BCC00DE1184 /* PrepareEventSelectionModel.swift */,
 				36D72EC7229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift */,
 				36D72EC9229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift */,
 				36D72EC8229C1BCC00DE1184 /* PrepareEventSelectionWorker.swift */,
@@ -4279,6 +4281,8 @@
 				ACB99E7822687D1F00A73709 /* MultipleSelectionCollectionViewCell.xib */,
 				36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */,
 				36D2F2FB229E88FF004BA110 /* CalendarEventsTableViewCell.xib */,
+				36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */,
+				36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -4847,8 +4851,10 @@
 			isa = PBXGroup;
 			children = (
 				CC7682C71F28A85600F852A0 /* Array+Convenience.swift */,
+				368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */,
 				852988941F2F3E15003A36DF /* Bundle+Extensions.swift */,
 				CCCDF2AE1F8B9346009CE6A4 /* Calendar+Convenience.swift */,
+				AC516C6A228059CC009C4D30 /* CellAnimator.swift */,
 				CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */,
 				91CD12EF2037168900E27822 /* CGRect+Convenience.swift */,
 				CC16578B1F75194900D52660 /* CLLocation+Convenience.swift */,
@@ -4860,6 +4866,7 @@
 				CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
 				7FB0886D1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift */,
+				AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */,
 				CC4F22EF1EE023F4006C437E /* NSMutableAttributedString+Create.swift */,
 				7FDFF36A1F1916B400F7A7EC /* Realm+Utility.swift */,
 				851676C91F39AA9C007A1DD6 /* String+Extensions.swift */,
@@ -4875,15 +4882,21 @@
 				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
 				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
 				7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */,
+				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
 				8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */,
 				7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */,
 				7FE38DD21F2B2E230061E98F /* UINavigationController+Convenience.swift */,
 				CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */,
+				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
+				DB82EEC32152859C002322B7 /* UIView+Animation.swift */,
+				DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */,
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
 				CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */,
 				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
 				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
+				AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */,
 				91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */,
+				AC1A40CF229E88920022156C /* UIViewController+PageTrack.swift */,
 				CC7A91111F0F978E00F791B9 /* UIViewController+ScreenType.swift */,
 				CCDD549D1F46C0A7002F4933 /* UIViewController+StreamVideo.swift */,
 				CCCC42DE1ED5799D00E73905 /* UIViewController+Transition.swift */,
@@ -4893,15 +4906,6 @@
 				CBB98AFF201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift */,
 				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
-				DB82EEC32152859C002322B7 /* UIView+Animation.swift */,
-				DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */,
-				AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */,
-				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
-				AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */,
-				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
-				368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */,
-				AC516C6A228059CC009C4D30 /* CellAnimator.swift */,
-				AC1A40CF229E88920022156C /* UIViewController+PageTrack.swift */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -6074,6 +6078,7 @@
 				369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
 				D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */,
+				36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -7033,6 +7038,7 @@
 				DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */,
 				CB9AFD191F014C0800D067F2 /* PreparationCheckIntermediary.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,
+				36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */,
 				CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */,
 				5F360726228BECCC0074FEC4 /* MyQotSensorsWorker.swift in Sources */,
 				91F5BE3E2097576800E85A51 /* PermissionsViewController.swift in Sources */,
@@ -7061,7 +7067,7 @@
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
 				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
-				36D72ED5229C1BCC00DE1184 /* PrepareEventSelectionModel.swift in Sources */,
+				36D72ED5229C1BCC00DE1184 /* (null) in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
