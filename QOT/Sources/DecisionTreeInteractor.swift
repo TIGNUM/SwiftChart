@@ -118,9 +118,9 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
                                                    selectedAnswers.key: selectedAnswers.value])
     }
 
-    func openShortTBVGenerator() {
+    func openShortTBVGenerator(completion: (() -> Void)?) {
         if worker.userHasToBeVision == false {
-            router.openShortTBVGenerator()
+            router.openShortTBVGenerator(completion: completion)
         }
     }
 

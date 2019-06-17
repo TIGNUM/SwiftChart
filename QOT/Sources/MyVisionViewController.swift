@@ -223,11 +223,11 @@ extension MyVisionViewController: UIScrollViewDelegate {
                 self.imageOverLapView.backgroundColor = UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: alphaValue)
             }
         }
-        if (self.lastContentOffset > offsetY) {
+        if self.lastContentOffset > offsetY {
             if navigationBarViewTopMarginConstraint.constant < 0 && scrollView.contentOffset.y > 500 {
                 showNavigationBarView()
             }
-            if (offsetY < 0) {
+            if offsetY < 0 {
                 hideNavigationBarView()
             }
         } else {

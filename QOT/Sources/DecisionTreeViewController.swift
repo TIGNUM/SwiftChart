@@ -192,7 +192,7 @@ private extension DecisionTreeViewController {
             handleSingleSelection(for: answer)
         } else {
             switch currentQuestion?.key {
-            case QuestionKey.MindsetShifter.openTBV.rawValue: interactor?.openShortTBVGenerator()
+            case QuestionKey.MindsetShifter.openTBV.rawValue: interactor?.openShortTBVGenerator(completion: nil)
             case QuestionKey.MindsetShifter.check.rawValue: interactor?.openMindsetShifterChecklist(from: selectedAnswers)
             case QuestionKey.ToBeVision.create.rawValue,
                  QuestionKey.ToBeVision.review.rawValue: delegate?.toBeVisionDidChange()
@@ -284,6 +284,7 @@ private extension DecisionTreeViewController {
             let selectionIsCompleted = multiSelectionCounter == maxPossibleSelections
             continueButton.backgroundColor = selectionIsCompleted ? .carbonDark : .carbon05
             continueButton.isUserInteractionEnabled = selectionIsCompleted
+            continueButton.isHidden = false
         default: return
         }
     }
@@ -425,7 +426,10 @@ private extension DecisionTreeViewController {
         }
         if let targetID = answer.decisions.first(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
             if currentQuestion?.key == QuestionKey.Prepare.buildCritical.rawValue && interactor?.userHasToBeVision == false {
-                interactor?.openShortTBVGenerator()
+                interactor?.openShortTBVGenerator { [weak self] in
+                    self?.interactor?.loadNextQuestion(from: PrepareCheckListTag.perceived.questionID,
+                                                       selectedAnswers: self?.selectedAnswers ?? [])
+                }
             } else {
                 interactor?.loadNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
             }
