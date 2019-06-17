@@ -118,9 +118,9 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
                                                    selectedAnswers.key: selectedAnswers.value])
     }
 
-    func openShortTBVGenerator() {
+    func openShortTBVGenerator(completion: (() -> Void)?) {
         if worker.userHasToBeVision == false {
-            router.openShortTBVGenerator()
+            router.openShortTBVGenerator(completion: completion)
         }
     }
 
@@ -128,7 +128,18 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         if let trigger = answers.first(where: { $0.keys.filter { $0.contains("trigger-") }.isEmpty == false })?.title {
             let reactions = answers.filter { $0.keys.filter { $0.contains("reaction") }.isEmpty == false }.map { $0.title }
             let lowItems = answers.filter { $0.keys.filter { $0.contains("lowperformance") }.isEmpty == false }.map { $0.title }
-            router.openMindsetShifterChecklist(trigger: trigger, reactions: reactions, lowPerformanceItems: lowItems)
+            var contentItemIDs: [Int] = []
+            answers.forEach {
+                $0.decisions.forEach {
+                    if $0.targetType == TargetType.contentItem.rawValue, let id = $0.targetID {
+                        contentItemIDs.append(id)
+                    }
+                }
+            }
+            router.openMindsetShifterChecklist(trigger: trigger,
+                                               reactions: reactions,
+                                               lowPerformanceItems: lowItems,
+                                               highPerformanceItems: worker.highPerformanceItems(from: contentItemIDs))
         }
     }
 

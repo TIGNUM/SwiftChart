@@ -36,7 +36,7 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func displayContent(with id: Int)
     func openMindsetShifterChecklist(from answers: [Answer])
     func streamContentItem(with id: Int)
-    func openShortTBVGenerator()
+    func openShortTBVGenerator(completion: (() -> Void)?)
     func openImagePicker()
     func save(_ image: UIImage)
     func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String?
@@ -53,10 +53,13 @@ protocol DecisionTreeRouterInterface {
                               relatedStrategyID: Int?,
                               selectedAnswers: [DecisionTreeModel.SelectedAnswer],
                               benefits: String?)
-    func openMindsetShifterChecklist(trigger: String, reactions: [String], lowPerformanceItems: [String])
+    func openMindsetShifterChecklist(trigger: String,
+                                     reactions: [String],
+                                     lowPerformanceItems: [String],
+                                     highPerformanceItems: [String])
     func openArticle(with contentID: Int)
     func openVideo(from url: URL)
-    func openShortTBVGenerator()
+    func openShortTBVGenerator(completion: (() -> Void)?)
     func openImagePicker()
     func openSolveResults(from selectedAnswer: Answer)
     func openToBeVisionPage()

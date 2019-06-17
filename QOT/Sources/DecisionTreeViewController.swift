@@ -192,7 +192,7 @@ private extension DecisionTreeViewController {
             handleSingleSelection(for: answer)
         } else {
             switch currentQuestion?.key {
-            case QuestionKey.MindsetShifter.openTBV.rawValue: interactor?.openShortTBVGenerator()
+            case QuestionKey.MindsetShifter.openTBV.rawValue: interactor?.openShortTBVGenerator(completion: nil)
             case QuestionKey.MindsetShifter.check.rawValue: interactor?.openMindsetShifterChecklist(from: selectedAnswers)
             case QuestionKey.ToBeVision.create.rawValue,
                  QuestionKey.ToBeVision.review.rawValue: delegate?.toBeVisionDidChange()
@@ -220,7 +220,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
              AnswerType.yesOrNo.rawValue,
              AnswerType.openCalendarEvents.rawValue,
              AnswerType.uploadImage.rawValue:
-                moveForward()
+            moveForward()
         default: return
         }
     }
@@ -284,6 +284,7 @@ private extension DecisionTreeViewController {
             let selectionIsCompleted = multiSelectionCounter == maxPossibleSelections
             continueButton.backgroundColor = selectionIsCompleted ? .carbonDark : .carbon05
             continueButton.isUserInteractionEnabled = selectionIsCompleted
+            continueButton.isHidden = false
         default: return
         }
     }
@@ -336,19 +337,6 @@ private extension DecisionTreeViewController {
             continueButton.setTitle(defaultButtonText, for: .normal)
         default:
             continueButton.setTitle(confirmationButtonText, for: .normal)
-//=======
-//        if let questionKey = currentQuestion?.key, let answerType = currentQuestion?.answerType {
-//            switch answerType {
-//            case AnswerType.multiSelection.rawValue:
-//                continueButton.update(with: multiSelectionCounter,
-//                                      defaultTitle: defaultButtonText,
-//                                      confirmationTitle: confirmationButtonText,
-//                                      questionKey: questionKey,
-//                                      maxSelections: maxPossibleSelections)
-//            default:
-//                continueButton.setTitle(confirmationButtonText, for: .normal)
-//            }
-//>>>>>>> dev_3.0
         }
     }
 }
@@ -438,7 +426,10 @@ private extension DecisionTreeViewController {
         }
         if let targetID = answer.decisions.first(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
             if currentQuestion?.key == QuestionKey.Prepare.buildCritical.rawValue && interactor?.userHasToBeVision == false {
-                interactor?.openShortTBVGenerator()
+                interactor?.openShortTBVGenerator { [weak self] in
+                    self?.interactor?.loadNextQuestion(from: PrepareCheckListTag.perceived.questionID,
+                                                       selectedAnswers: self?.selectedAnswers ?? [])
+                }
             } else {
                 interactor?.loadNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
             }
@@ -510,7 +501,6 @@ extension DecisionTreeViewController {
         }
     }
 }
-
 
 // MARK: - SolveResultsViewControllerDelegate
 

@@ -16,17 +16,20 @@ final class MindsetShifterChecklistWorker {
     private let trigger: String
     private let reactions: [String]
     private let lowPerformanceItems: [String]
+    private let highPerformanceItems: [String]
 
     // MARK: - Init
 
     init(services: Services,
          trigger: String,
          reactions: [String],
-         lowPerformanceItems: [String]) {
+         lowPerformanceItems: [String],
+         highPerformanceItems: [String]) {
         self.services = services
         self.trigger = trigger
         self.reactions = reactions
         self.lowPerformanceItems = lowPerformanceItems
+        self.highPerformanceItems = highPerformanceItems
     }
 }
 
@@ -57,7 +60,7 @@ extension MindsetShifterChecklistWorker: MindsetShifterChecklistWorkerInterface 
                                                                            lowTitle: lowTitle,
                                                                            lowItems: lowPerformanceItems,
                                                                            highTitle: highTitle,
-                                                                           highItems: ["item1", "item2", "item3"])
+                                                                           highItems: highPerformanceItems)
     }
 
     var vision: MindsetShifterChecklistModel.Section {
