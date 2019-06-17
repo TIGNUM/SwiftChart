@@ -18,8 +18,9 @@ final class PrepareCheckListWorker {
     private let checkListType: PrepareCheckListType
     private let event: CalendarEvent?
     private let eventType: String?
+    private var benefits: String?
     private var items: [Int: [PrepareCheckListItem]] = [:]
-    private var tempID = [Int]()
+    private var selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
 
     private lazy var content: ContentCollection? = {
         return services.contentService.contentCollection(id: contentID)
@@ -71,26 +72,86 @@ final class PrepareCheckListWorker {
         let strategies = relatedStrategiesDefault
         let reminders = reminderItems()
         items[0] = headerItems
-        items[1] = [.contentItem(itemFormat: ContentItemFormat(rawValue: "list"), title: "EVENTS")]
+        items[1] = [.contentItem(itemFormat: ContentItemFormat.list, title: "EVENTS")]
         items[2] = eventItems
-        items[3] = [.contentItem(itemFormat: ContentItemFormat(rawValue: "list"), title: "INTENTIONS")]
+        items[3] = [.contentItem(itemFormat: ContentItemFormat.list, title: "INTENTIONS")]
         items[4] = intentionItems
-        items[5] = [.contentItem(itemFormat: ContentItemFormat(rawValue: "list"), title: "SUGGESTED STRATEGIES")]
+        items[5] = [.contentItem(itemFormat: ContentItemFormat.list, title: "SUGGESTED STRATEGIES")]
         items[6] = strategies
-        items[7] = [.contentItem(itemFormat: ContentItemFormat(rawValue: "list"), title: "REMINDERS")]
+        items[7] = [.contentItem(itemFormat: ContentItemFormat.list, title: "REMINDERS")]
         items[8] = reminders
         return items
     }()
 
-    private lazy var peakPerformanceItems: [Int: [PrepareCheckListItem]] = {
+    private lazy var criticalItems: [Int: [PrepareCheckListItem]] = {
+        let filter = answerFilter()
+        var items = [Int: [PrepareCheckListItem]]()
+        var contentItems = [PrepareCheckListItem]()
+        var headerItems = [PrepareCheckListItem]()
+        var intentionTitleItems = [PrepareCheckListItem]()
+        var intentionItemsPerceived = [PrepareCheckListItem]()
+        var intentionItemsKnow = [PrepareCheckListItem]()
+        var intentionItemsFeel = [PrepareCheckListItem]()
+        var benefitTitleItems = [PrepareCheckListItem]()
+        content?.items.filter { $0.format == "text.h1" || $0.format == "text.h2"}.forEach {
+            headerItems.append(.contentItem(itemFormat: ContentItemFormat(rawValue: $0.format), title: $0.valueText))
+        }
+        content?.items.filter { $0.format == "title" }.forEach {
+            if $0.searchTags.contains(PrepareCheckListTag.benefitsTitle.rawValue) {
+                benefitTitleItems.append(.benefitContentItem(itemFormat: ContentItemFormat(rawValue: $0.format),
+                                                             title: $0.valueText,
+                                                             benefits: benefits,
+                                                             questionID: PrepareCheckListTag.questionID(for: $0)))
+            } else {
+                intentionTitleItems.append(.intentionContentItem(itemFormat: ContentItemFormat(rawValue: $0.format),
+                                                                 title: $0.valueText,
+                                                                 selectedAnswers: selectedAnswers,
+                                                                 answerFilter: filter,
+                                                                 questionID: PrepareCheckListTag.questionID(for: $0)))
+            }
+        }
+        selectedAnswers(for: PrepareCheckListTag.perceived.questionID).forEach {
+            intentionItemsPerceived.append(.intentionItem(selectedAnswer: $0, answerFilter: filter ?? ""))
+        }
+        selectedAnswers(for: PrepareCheckListTag.know.questionID).forEach {
+            intentionItemsKnow.append(.intentionItem(selectedAnswer: $0, answerFilter: filter ?? ""))
+        }
+        selectedAnswers(for: PrepareCheckListTag.feel.questionID).forEach {
+            intentionItemsFeel.append(.intentionItem(selectedAnswer: $0, answerFilter: filter ?? ""))
+        }
+        let eventItems = [PrepareCheckListItem.eventItem(title: event?.title ?? "",
+                                                         date: event?.startDate ?? Date(),
+                                                         type: eventType ?? "")]
+        let strategies = relatedStrategiesDefault
+        let reminders = reminderItems()
+        items[0] = headerItems
+        items[1] = [.contentItem(itemFormat: ContentItemFormat.list, title: "EVENTS")]
+        items[2] = eventItems
+        items[3] = [.contentItem(itemFormat: ContentItemFormat.list, title: "INTENTIONS")]
+        items[4] = [intentionTitleItems[0]]
+        items[5] = intentionItemsPerceived
+        items[6] = [intentionTitleItems[1]]
+        items[7] = intentionItemsKnow
+        items[8] = [intentionTitleItems[2]]
+        items[9] = intentionItemsFeel
+        items[10] = [.contentItem(itemFormat: ContentItemFormat.list, title: "BENEFITS")]
+        items[11] = [benefitTitleItems[0]]
+        items[12] = [.benefitItem(benefits: benefits)]
+        items[13] = [.contentItem(itemFormat: ContentItemFormat.list, title: "SUGGESTED STRATEGIES")]
+        items[14] = strategies
+        items[15] = [.contentItem(itemFormat: ContentItemFormat.list, title: "REMINDERS")]
+        items[16] = reminders
+        return items
+    }()
+
+    func oldPPItems() {
         var items = [Int: [PrepareCheckListItem]]()
         var contentItems = [PrepareCheckListItem]()
         content?.items.forEach {
             contentItems.append(.contentItem(itemFormat: ContentItemFormat(rawValue: $0.format), title: $0.valueText))
         }
         items[0] = contentItems
-        return items
-    }()
+    }
 
     // MARK: - Init
 
@@ -99,13 +160,17 @@ final class PrepareCheckListWorker {
          relatedStrategyID: Int?,
          checkListType: PrepareCheckListType,
          event: CalendarEvent?,
-         eventType: String?) {
+         eventType: String?,
+         selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+         benefits: String?) {
         self.services = services
         self.contentID = contentID
         self.checkListType = checkListType
         self.event = event
         self.eventType = eventType
         self.relatedStrategyID = relatedStrategyID
+        self.selectedAnswers = selectedAnswers
+        self.benefits = benefits
         makeItems()
     }
 }
@@ -181,7 +246,7 @@ extension PrepareCheckListWorker {
     func hasBottomSeperator(at indexPath: IndexPath) -> Bool {
         guard let format = itemFormat(at: indexPath) else { return false }
         switch format {
-        case .title: return true
+        case .title: return checkListType == .peakPerformance ? false : true
         default: return false
         }
     }
@@ -190,6 +255,14 @@ extension PrepareCheckListWorker {
         guard let format = itemFormat(at: indexPath) else { return false }
         switch format {
         case .textH1: return true
+        default: return false
+        }
+    }
+
+    func hasEditImage(at indexPath: IndexPath) -> Bool {
+        guard let format = itemFormat(at: indexPath) else { return false }
+        switch format {
+        case .title: return checkListType == .peakPerformance
         default: return false
         }
     }
@@ -209,6 +282,10 @@ private extension PrepareCheckListWorker {
         guard let item = item(at: indexPath) else { return nil }
         switch item {
         case .contentItem(let itemFormat, _): return itemFormat
+        case .benefitItem,
+             .intentionItem: return .listItem
+        case .intentionContentItem(let itemFormat, _, _, _, _): return itemFormat
+        case .benefitContentItem(let itemFormat, _, _, _): return itemFormat
         default: return nil
         }
     }
@@ -224,7 +301,15 @@ private extension PrepareCheckListWorker {
         switch checkListType {
         case .daily: items = dailyItems
         case .onTheGo: items = onTheGoItems
-        case .peakPerformance: items = peakPerformanceItems
+        case .peakPerformance: items = criticalItems
         }
+    }
+
+    func selectedAnswers(for questionID: Int) -> [DecisionTreeModel.SelectedAnswer] {
+        return selectedAnswers.filter { $0.questionID == questionID }
+    }
+
+    func answerFilter() -> String? {
+        return selectedAnswers(for: PrepareCheckListTag.eventType.questionID).first?.answer.keys.filter { $0.contains("_relationship_") }.first
     }
 }

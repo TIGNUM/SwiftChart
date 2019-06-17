@@ -73,6 +73,10 @@ extension PrepareCheckListInteractor: PrepareCheckListInteractorInterface {
         return worker.hasHeaderMark(at: indexPath)
     }
 
+    func isEditable(at indexPath: IndexPath) -> Bool {
+        return worker.hasEditImage(at: indexPath)
+    }
+
     func presentRelatedArticle(readMoreID: Int) {
         router.presentRelatedArticle(readMoreID: readMoreID)
     }
@@ -85,5 +89,17 @@ extension PrepareCheckListInteractor: PrepareCheckListInteractorInterface {
         router.openEditStrategyView(services: worker.getServices,
                                     relatedStrategies: worker.getRelatedContent,
                                     selectedIDs: worker.getSelectedIDs)
+    }
+
+    func presentEditIntensions(selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                               answerFilter: String?,
+                               questionID: Int) {
+        router.presentEditIntensions(selectedAnswers: selectedAnswers,
+                                     answerFilter: answerFilter,
+                                     questionID: questionID)
+    }
+
+    func presentEditBenefits(benefits: String?, questionID: Int) {
+        router.presentEditBenefits(benefits: benefits, questionID: questionID)
     }
 }

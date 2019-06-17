@@ -13,7 +13,9 @@ final class PrepareCheckListConfigurator: AppStateAccess {
                      checkListType: PrepareCheckListType,
                      event: CalendarEvent?,
                      eventType: String?,
-                     relatedStrategyID: Int?) -> (PrepareCheckListViewController) -> Void {
+                     relatedStrategyID: Int?,
+                     selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                     benefits: String?) -> (PrepareCheckListViewController) -> Void {
         return { (viewController) in
             let router = PrepareCheckListRouter(viewController: viewController)
             let worker = PrepareCheckListWorker(services: appState.services,
@@ -21,7 +23,9 @@ final class PrepareCheckListConfigurator: AppStateAccess {
                                                 relatedStrategyID: relatedStrategyID,
                                                 checkListType: checkListType,
                                                 event: event,
-                                                eventType: eventType)
+                                                eventType: eventType,
+                                                selectedAnswers: selectedAnswers,
+                                                benefits: benefits)
             let presenter = PrepareCheckListPresenter(viewController: viewController)
             let interactor = PrepareCheckListInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

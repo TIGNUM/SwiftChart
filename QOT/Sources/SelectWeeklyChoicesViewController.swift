@@ -151,7 +151,7 @@ extension SelectWeeklyChoicesViewController: UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if viewModel.isParentNode(atIndexPath: indexPath) {
-            return 64//viewModel.rowHeight(forIndexPath: indexPath)
+            return 64
         }
         return 95
     }
@@ -186,7 +186,7 @@ extension SelectWeeklyChoicesViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if viewModel.isParentNode(atIndexPath: indexPath) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableCell)
-                as? CollapsableCell else { return UITableViewCell() } // shouldnt happen...
+                as? CollapsableCell else { preconditionFailure("CollapsableCell is nil") }
             let node = viewModel.node(forSection: indexPath.section)
             cell.setTitleText(node.title,
                               selectionCount: viewModel.numberOfItemsSelected(in: indexPath.section),
@@ -197,7 +197,7 @@ extension SelectWeeklyChoicesViewController: UITableViewDataSource {
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableContentCell)
-            as? CollapsableContentCell else { return UITableViewCell() } // shouldnt happen...
+            as? CollapsableContentCell else { preconditionFailure("CollapsableContentCell is nil") }
         let item = viewModel.item(forIndexPath: indexPath)
         cell.setTitleText(item.title, duration: item.displayTime, isSuggestion: item.isDefault)
         cell.delegate = self

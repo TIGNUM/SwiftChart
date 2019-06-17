@@ -14,9 +14,9 @@ protocol CollapsableCellDelegate: class {
 
 final class CollapsableCell: UITableViewCell {
     static let nibName = "CollapsableCell"
-    @IBOutlet weak var button: UIButton!
-    @IBOutlet weak var label: UILabel!
-    @IBOutlet weak var selectionCountLabel: UILabel!
+    @IBOutlet private weak var button: UIButton!
+    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var selectionCountLabel: UILabel!
 
     var isOpen: Bool? {
         didSet {

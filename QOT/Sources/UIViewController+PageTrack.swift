@@ -66,6 +66,8 @@ private extension UIViewController {
         case .mindsetShifterTBV?: return "decisiontree.mindsetshifter.tobevisiongenerator"
         case .prepare?: return "decisiontree.mindsetshifter.prepare"
         case .solve?: return "decisiontree.mindsetshifter.solve"
+        case .prepareIntensions?: return "decisiontree.prepare.edit.intensions"
+        case .prepareBenefits?: return "decisiontree.prepare.edit.benefits"
         default: preconditionFailure()
         }
     }

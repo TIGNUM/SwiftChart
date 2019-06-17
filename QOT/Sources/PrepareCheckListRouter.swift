@@ -24,6 +24,19 @@ final class PrepareCheckListRouter {
 // MARK: - PrepareCheckListRouterInterface
 
 extension PrepareCheckListRouter: PrepareCheckListRouterInterface {
+    func presentEditIntensions(selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                               answerFilter: String?,
+                               questionID: Int) {
+        presentDecisionTree(for: .prepareIntensions(selectedAnswers: selectedAnswers,
+                                                    answerFilter: answerFilter,
+                                                    questionID: questionID))
+    }
+
+
+    func presentEditBenefits(benefits: String?, questionID: Int) {
+        presentDecisionTree(for: .prepareBenefits(benefits: benefits, questionID: questionID))
+    }
+
     func presentRelatedArticle(readMoreID: Int) {
         guard let controller = R.storyboard.main().instantiateViewController(withIdentifier: "QOT.ArticleViewController") as? ArticleViewController else { return }
         ArticleConfigurator.configure(selectedID: readMoreID, viewController: controller)
@@ -55,5 +68,13 @@ private extension PrepareCheckListRouter {
                                                                         viewModel: viewModel,
                                                                         backgroundImage: nil)
         viewController.present(viewControllerToPresent, animated: true, completion: nil)
+    }
+
+    func presentDecisionTree(for type: DecisionTreeType) {
+        let permissionsManager = AppCoordinator.appState.permissionsManager!
+        let configurator = DecisionTreeConfigurator.make(for: type,
+                                                         permissionsManager: permissionsManager)
+        let controller = DecisionTreeViewController(configure: configurator)
+        viewController.present(controller, animated: true)
     }
 }

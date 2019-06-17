@@ -38,8 +38,13 @@ enum QuestionKey {
 
     enum Prepare: String {
         case intro = "prepare-key-intro"
-        case calendarEventSelection = "prepare-key-calendar-event-selection"
-        case eventTypeSelection = "prepare-event-type-selection"
+        case calendarEventSelectionDaily = "prepare-key-calendar-event-selection-daily"
+        case calendarEventSelectionCritical = "prepare-key-calendar-event-selection-critical"
+        case eventTypeSelectionDaily = "prepare-event-type-selection-daily"
+        case eventTypeSelectionCritical = "prepare-event-type-selection-critical"
+        case showTBV = "prepare_peak_prep_review_tbv"
+        case benefitsInput = "prepare_peak_prep_benefits_input"
+        case buildCritical = "prepare_peak_prep_build_plan"
     }
 
     enum Solve: String {

@@ -14,6 +14,9 @@ protocol DecisionTreeQuestionnaireDelegate: class {
     func textCellDidAppear(targetID: Int)
     func didSelectCalendarEvent(_ event: CalendarEvent, selectedAnswer: Answer)
     func presentAddEventController(eventStore: EKEventStore)
+    func didUpdatePrepareBenefits(_ benefits: String?)
+    func didPressDimiss()
+    func didPressContinue()
 }
 
 private enum CellType: Int, CaseIterable {
@@ -25,6 +28,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
 
     // MARK: - Properties
 
+    var interactor: DecisionTreeInteractorInterface?
     weak var delegate: DecisionTreeQuestionnaireDelegate?
     private var selectedAnswers: [DecisionTreeModel.SelectedAnswer]
     private let extraAnswer: String?
@@ -38,7 +42,8 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
                            SingleSelectionTableViewCell.self,
                            QuestionTableViewCell.self,
                            TextTableViewCell.self,
-                           CalendarEventsTableViewCell.self)
+                           CalendarEventsTableViewCell.self,
+                           UserInputTableViewCell.self)
     }()
 
     /// Use filtered answers in order to relate answers between different questions.
@@ -101,6 +106,17 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
         let animation = CellAnimator.moveUpWithBounce(rowHeight: cell.frame.height, duration: 1, delayFactor: 0.05)
         let animator = CellAnimator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
+        if let inputCell = cell as? UserInputTableViewCell {
+            inputCell.showKeyBoard()
+        }
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let type = CellType.allCases[indexPath.section]
+        if type == .answer && question.answerType == AnswerType.userInput.rawValue {
+            return 260
+        }
+        return UITableViewAutomaticDimension
     }
 }
 
@@ -145,7 +161,10 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 cell.delegate = self
                 return cell
             case AnswerType.userInput.rawValue:
-                return UITableViewCell()
+                let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
+                cell.configure(benefits: interactor?.prepareBenefits, delegate: delegate)
+                cell.showKeyBoard()
+                return cell
             case AnswerType.noAnswerRequired.rawValue,
                  AnswerType.text.rawValue,
                  AnswerType.lastQuestion.rawValue:
@@ -155,8 +174,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 return cell
             case AnswerType.openCalendarEvents.rawValue:
                 let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
-                let questionCellHeight = tableView.cellForRow(at: indexPath)?.frame.height ?? 64
-                let tableViewHeight = view.frame.height - (questionCellHeight + 64)
+                let tableViewHeight = view.frame.height - (cell.frame.height + 64)
                 cell.configure(delegate: delegate, tableViewHeight: tableViewHeight, question: question)
                 return cell
             default:
@@ -173,6 +191,9 @@ private extension DecisionTreeQuestionnaireViewController {
     func recalculateContentInsets() {
         if question.answerType == AnswerType.openCalendarEvents.rawValue {
             return tableView.contentInset = .zero
+        }
+        if question.answerType == AnswerType.userInput.rawValue {
+            return tableView.contentInset = UIEdgeInsets(top: view.frame.height * 0.1, left: 0, bottom: 0, right: 0)
         }
         let cellsHeight = tableView.visibleCells.map { $0.frame.height }.reduce(0, +)
         let difference = tableView.frame.height - cellsHeight

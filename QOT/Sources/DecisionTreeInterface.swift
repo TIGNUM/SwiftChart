@@ -20,21 +20,29 @@ protocol DecisionTreePresenterInterface {
 
 protocol DecisionTreeInteractorInterface: Interactor {
     var type: DecisionTreeType { get }
+    var prepareBenefits: String? { get set }
+    var relatedStrategyID: Int { get }
+    var selectedanswers: [DecisionTreeModel.SelectedAnswer] { get }
+    var userHasToBeVision: Bool { get }
     func notifyCounterChanged(with value: Int, selectedAnswers: [Answer])
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer])
     func openPrepareChecklist(with contentID: Int,
                               selectedEvent: CalendarEvent?,
                               eventType: String?,
                               checkListType: PrepareCheckListType,
-                              relatedStrategyID: Int?)
+                              relatedStrategyID: Int?,
+                              selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                              benefits: String?)
     func displayContent(with id: Int)
     func openMindsetShifterChecklist(from answers: [Answer])
     func streamContentItem(with id: Int)
     func openShortTBVGenerator()
     func openImagePicker()
     func save(_ image: UIImage)
+    func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String?
     func openSolveResults(from selectedAnswer: Answer)
     func openToBeVisionPage()
+    func setTargetContentID(for answer: Answer)
 }
 
 protocol DecisionTreeRouterInterface {
@@ -42,7 +50,9 @@ protocol DecisionTreeRouterInterface {
                               checkListType: PrepareCheckListType,
                               selectedEvent: CalendarEvent?,
                               eventType: String?,
-                              relatedStrategyID: Int?)
+                              relatedStrategyID: Int?,
+                              selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                              benefits: String?)
     func openMindsetShifterChecklist(trigger: String, reactions: [String], lowPerformanceItems: [String])
     func openArticle(with contentID: Int)
     func openVideo(from url: URL)

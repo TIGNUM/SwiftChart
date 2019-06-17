@@ -28,13 +28,22 @@ protocol PrepareCheckListInteractorInterface: Interactor {
     func hasListMark(at indexPath: IndexPath) -> Bool
     func hasBottomSeperator(at indexPath: IndexPath) -> Bool
     func hasHeaderMark(at indexPath: IndexPath) -> Bool
+    func isEditable(at indexPath: IndexPath) -> Bool
     func presentRelatedArticle(readMoreID: Int)
     func didClickSaveAndContinue()
     func openEditStrategyView()
+    func presentEditIntensions(selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                               answerFilter: String?,
+                               questionID: Int)
+    func presentEditBenefits(benefits: String?, questionID: Int)
 }
 
 protocol PrepareCheckListRouterInterface {
     func presentRelatedArticle(readMoreID: Int)
     func didClickSaveAndContinue()
     func openEditStrategyView(services: Services, relatedStrategies: [ContentCollection], selectedIDs: [Int])
+    func presentEditIntensions(selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                               answerFilter: String?,
+                               questionID: Int)
+     func presentEditBenefits(benefits: String?, questionID: Int)
 }
