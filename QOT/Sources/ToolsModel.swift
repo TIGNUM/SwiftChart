@@ -18,6 +18,21 @@ enum ToolSection: Int, CaseIterable {
     static var sectionValues: [ToolSection] {
         return [.mindset, .nutrition, .movement, .recovery, .habituation]
     }
+
+    func trackingKeys(for services: Services) -> String {
+        switch self {
+        case .mindset:
+            return ContentService.Tools.mindset.rawValue
+        case .nutrition:
+            return ContentService.Tools.nutrition.rawValue
+        case .movement:
+            return ContentService.Tools.movement.rawValue
+        case .recovery:
+            return ContentService.Tools.recovery.rawValue
+        case .habituation:
+            return ContentService.Tools.habituation.rawValue
+        }
+    }
 }
 
 struct ToolModel {

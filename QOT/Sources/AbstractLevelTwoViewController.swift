@@ -59,6 +59,7 @@ class AbstractLevelTwoViewController: UIViewController {
 
 extension AbstractLevelTwoViewController {
     @objc func didTabBackButton() {
+        trackUserEvent(.CLOSE, action: .TAP)
         dismiss(animated: true)
     }
 

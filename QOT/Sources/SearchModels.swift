@@ -26,6 +26,15 @@ struct Search {
             case .tools: return R.string.localized.searchFilterTools()
             }
         }
+        var userEvent: String {
+            switch self {
+            case .all: return "SEARCH_ALL"
+            case .read: return "SEARCH_READ"
+            case .listen: return "SEARCH_LISTEN"
+            case .watch: return "SEARCH_WATCH"
+            case .tools: return "SEARCH_TOOLS"
+            }
+        }
     }
 
     enum DisplayType: String {

@@ -8,6 +8,7 @@
 
 import UIKit
 import Anchorage
+import qot_dal
 
 final class ToolsCollectionsViewController: UIViewController {
 
@@ -66,6 +67,7 @@ private extension ToolsCollectionsViewController {
 private extension ToolsCollectionsViewController {
 
     @IBAction func closeButton(_ sender: UIButton) {
+        trackUserEvent(.CLOSE, action: .TAP)
         navigationController?.popViewController(animated: true)
     }
 }
@@ -153,8 +155,10 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         tableView.deselectRow(at: indexPath, animated: true)
         let tool = interactor?.tools[indexPath.item]
         if tool?.isCollection == true {
+            trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
             interactor?.presentToolsItems(selectedToolID: tool?.remoteID)
         } else {
+            trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: UserEventValueType.CONTENT_ITEM.rawValue, action: .TAP)
             if tool?.type == "video" {
                 guard
                     let videoTool = interactor?.videoTools[indexPath.row],

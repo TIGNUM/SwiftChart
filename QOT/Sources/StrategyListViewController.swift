@@ -8,6 +8,7 @@
 
 import UIKit
 import Anchorage
+import qot_dal
 
 protocol AudioPlayerViewDelegate: class {
     func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int)
@@ -127,10 +128,12 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             guard
                 let foundation = interactor?.foundationStrategies[indexPath.row],
                 let videoURL = foundation.mediaURL else { return }
+            trackUserEvent(.OPEN, value: foundation.remoteID, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
             stream(videoURL: videoURL, contentItem: nil, pageName: PageName.learnContentItemFull) // TODO Set correct pageName
         } else {
             let strategy = interactor?.strategies[indexPath.item]
             interactor?.presentArticle(selectedID: strategy?.remoteID)
+            trackUserEvent(.OPEN, value: strategy?.remoteID, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
             if AudioPlayer.current.isPlaying == true && AudioPlayer.current.remoteID != strategy?.remoteID {
                 AudioPlayer.current.resetPlayer()
                 didTabClose(for: .bar)

@@ -1191,6 +1191,8 @@
 		F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */; };
 		F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */; };
 		F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */; };
+		F9838F3422AFA61F003F9394 /* ContentService+Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3322AFA61F003F9394 /* ContentService+Coach.swift */; };
+		F9838F3822AFBD6A003F9394 /* ContentService + Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3722AFBD6A003F9394 /* ContentService + Tools.swift */; };
 		F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */; };
 		F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */; };
 		F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */; };
@@ -2454,6 +2456,8 @@
 		F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableViewCell.xib; sourceTree = "<group>"; };
 		F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableHeaderView.swift; sourceTree = "<group>"; };
 		F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableHeaderView.xib; sourceTree = "<group>"; };
+		F9838F3322AFA61F003F9394 /* ContentService+Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Coach.swift"; sourceTree = "<group>"; };
+		F9838F3722AFBD6A003F9394 /* ContentService + Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService + Tools.swift"; sourceTree = "<group>"; };
 		F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsViewController.swift; sourceTree = "<group>"; };
 		F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsPresenter.swift; sourceTree = "<group>"; };
 		F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsWorker.swift; sourceTree = "<group>"; };
@@ -2626,14 +2630,8 @@
 		36376625223A668F00C2C429 /* coach */ = {
 			isa = PBXGroup;
 			children = (
-				3637662D223A66AF00C2C429 /* CoachConfigurator.swift */,
-				3637662B223A66AF00C2C429 /* CoachInteractor.swift */,
-				36376629223A66AF00C2C429 /* CoachInterface.swift */,
-				3637662C223A66AF00C2C429 /* CoachModel.swift */,
-				36376626223A66AF00C2C429 /* CoachPresenter.swift */,
-				36376628223A66AF00C2C429 /* CoachRouter.swift */,
-				3637662A223A66AF00C2C429 /* CoachViewController.swift */,
-				36376627223A66AF00C2C429 /* CoachWorker.swift */,
+				F9838F3222AFA5FF003F9394 /* Core */,
+				F9838F3122AFA5EE003F9394 /* others */,
 			);
 			name = coach;
 			sourceTree = "<group>";
@@ -3368,6 +3366,7 @@
 		5F7BE77A2289564900BA5DCF /* Screens */ = {
 			isa = PBXGroup;
 			children = (
+				F9838F3922AFFE93003F9394 /* myQotMain */,
 				5F544FCF22967FBC00616626 /* MyQotEditAccount */,
 				5F360731228C1EBA0074FEC4 /* MyQotSyncedCalendars */,
 				5F62BEAF228B0AA700852F7E /* MyQotSensors */,
@@ -5573,6 +5572,38 @@
 		F95B922E228EADF4000DEAEC /* tools */ = {
 			isa = PBXGroup;
 			children = (
+				F9838F3622AFBD48003F9394 /* Others */,
+				F9838F3522AFBD39003F9394 /* Core */,
+			);
+			name = tools;
+			sourceTree = "<group>";
+		};
+		F9838F3122AFA5EE003F9394 /* others */ = {
+			isa = PBXGroup;
+			children = (
+				F9838F3322AFA61F003F9394 /* ContentService+Coach.swift */,
+			);
+			name = others;
+			sourceTree = "<group>";
+		};
+		F9838F3222AFA5FF003F9394 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				3637662D223A66AF00C2C429 /* CoachConfigurator.swift */,
+				3637662B223A66AF00C2C429 /* CoachInteractor.swift */,
+				36376629223A66AF00C2C429 /* CoachInterface.swift */,
+				3637662C223A66AF00C2C429 /* CoachModel.swift */,
+				36376626223A66AF00C2C429 /* CoachPresenter.swift */,
+				36376628223A66AF00C2C429 /* CoachRouter.swift */,
+				3637662A223A66AF00C2C429 /* CoachViewController.swift */,
+				36376627223A66AF00C2C429 /* CoachWorker.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		F9838F3522AFBD39003F9394 /* Core */ = {
+			isa = PBXGroup;
+			children = (
 				F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */,
 				F95B9231228EAE46000DEAEC /* ToolsWorker.swift */,
 				F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */,
@@ -5582,7 +5613,22 @@
 				F95B923B228EAEAC000DEAEC /* ToolsModel.swift */,
 				F95B923D228EAECB000DEAEC /* ToolsConfigurator.swift */,
 			);
-			name = tools;
+			name = Core;
+			sourceTree = "<group>";
+		};
+		F9838F3622AFBD48003F9394 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				F9838F3722AFBD6A003F9394 /* ContentService + Tools.swift */,
+			);
+			name = Others;
+			sourceTree = "<group>";
+		};
+		F9838F3922AFFE93003F9394 /* myQotMain */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = myQotMain;
 			sourceTree = "<group>";
 		};
 		F99DF5F02292D45400341DAB /* toolsCollections */ = {
@@ -6770,6 +6816,7 @@
 				5F8E24ED229D4E8600E3EF83 /* MyVisionNavigationBarView.swift in Sources */,
 				CCE6CD881F15357600B66DA3 /* StatisticsPeriodIntermediary.swift in Sources */,
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
+				F9838F3422AFA61F003F9394 /* ContentService+Coach.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
 				36718B4D224D20030042881E /* SubsriptionReminderRouter.swift in Sources */,
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
@@ -7210,6 +7257,7 @@
 				CBD4BEAA2018E7D4008A0E9E /* GuideConfigurator.swift in Sources */,
 				5FF1A10322858A7400D76D55 /* ContentService+AppSettings.swift in Sources */,
 				ACA4B18E2211D1EA00552A54 /* NSUserActivity+Keys.swift in Sources */,
+				F9838F3822AFBD6A003F9394 /* ContentService + Tools.swift in Sources */,
 				36D72ED0229C1BCC00DE1184 /* PrepareEventSelectionWorker.swift in Sources */,
 				5F62BEAC228AE77000852F7E /* MyQotSiriShortcutsRouter.swift in Sources */,
 				5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */,

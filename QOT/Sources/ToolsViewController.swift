@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ToolsViewController: UIViewController {
 
@@ -41,6 +42,11 @@ final class ToolsViewController: UIViewController {
          setCustomBackButton()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let controller = segue.destination as? ToolsCollectionsViewController {
             ToolsCollectionsConfigurator.make(viewController: controller, selectedToolID: sender as? Int)
@@ -62,6 +68,7 @@ private extension ToolsViewController {
 private extension ToolsViewController {
 
     @IBAction func closeButton(_ sender: Any) {
+        trackUserEvent(.CLOSE, action: .TAP)
         navigationController?.popToRootViewController(animated: true)
     }
 }
@@ -113,6 +120,8 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          tableView.deselectRow(at: indexPath, animated: true)
+        let toolKey = interactor?.tools()[indexPath.item].remoteID
+        trackUserEvent(.OPEN, value: toolKey, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
         interactor?.presentToolsCollections(selectedToolID: interactor?.tools()[indexPath.item].remoteID)
     }
 }

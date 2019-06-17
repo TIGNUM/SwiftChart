@@ -83,7 +83,7 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: 1c4c2326f297af221de8f07a717ccacbd08a56d1
+    :commit: f3ea72741d50afbc0702ce2ac29c2114870eb5d5
     :git: "git@github.com:TIGNUM/qot_dal.git"
 
 SPEC CHECKSUMS:
@@ -91,7 +91,7 @@ SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
   AMScrollingNavbar: 9df3652d6757f1a24646d8e90cb458591d8b1a6a
   Anchorage: a187da0bc9b07440637d42c8744b8c82a4490295
-  Bond: 17f2d81e08cea3d95713eed33611176376f9056d
+  Bond: c5f2519382a501f45e4907c7846d53828d163aaf
   BonMot: 505471ffd93959076c4dd8391aa8a7aba35562a2
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
@@ -111,4 +111,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 7baea489464a18c27ac2c4436eb730ded91c0f7e
 
-COCOAPODS: 1.7.0
+COCOAPODS: 1.7.1

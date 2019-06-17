@@ -8,6 +8,7 @@
 
 import UIKit
 import Anchorage
+import qot_dal
 
 protocol AudioToolPlayerDelegate: class {
     func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int)
@@ -76,6 +77,7 @@ private extension ToolsItemsViewController {
 private extension ToolsItemsViewController {
 
     @IBAction func closeButton(_ sender: Any) {
+        trackUserEvent(.CLOSE, action: .TAP)
         navigationController?.popViewController(animated: true)
     }
 }
@@ -167,6 +169,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let tool = interactor?.tools[indexPath.item]
+        trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: UserEventValueType.CONTENT_ITEM.rawValue, action: .TAP)
         switch tool?.type {
         case ToolType.video.rawValue:
             guard

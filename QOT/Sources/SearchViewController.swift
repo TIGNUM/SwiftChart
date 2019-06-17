@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class SearchViewController: UIViewController, SearchViewControllerInterface {
 
@@ -66,6 +67,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        trackPage()
         segmentedControl.alpha = 1
         if searchQuery.isEmpty == false {
             mySearchBar.becomeFirstResponder()
@@ -140,11 +142,13 @@ private extension SearchViewController {
 extension SearchViewController {
 
     @IBAction func close(_ sender: UIButton) {
+        trackUserEvent(.CLOSE, action: .TAP)
         interactor?.didTapClose()
     }
 
     @IBAction func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
         searchFilter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
+        trackUserEvent(.SELECT, valueType: searchFilter.userEvent,  action: .TAP)
         updateSearchResults()
         updateIndicator()
         tableView.scrollToTop(animated: true)
@@ -253,6 +257,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         switch tableView {
         case self.tableView:
+            let key = searchResults[indexPath.row].contentID
+            trackUserEvent(.SELECT, value: key, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
             handleSelection(for: indexPath)
         case self.suggestionsTableView:
             let suggestion = searchSuggestions?.suggestions[indexPath.row] ?? ""
