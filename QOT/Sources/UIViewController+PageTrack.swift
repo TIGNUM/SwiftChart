@@ -50,6 +50,10 @@ private extension UIViewController {
         case is MyQotSiriShortcutsViewController: return "myprofile.appsettings.sirishortcuts"
         case is MyQotSupportFaqViewController: return "myprofile.support.faq"
         case is TutorialViewController: return "myprofile.support.tutorial"
+        case is CoachViewController: return "coach.main"
+        case is SearchViewController: return "search.main"
+        case is ToolsViewController: return "coach.tools"
+        case is KnowingViewController: return "know.feed"
         case is SolveResultsViewController: return "solve.results"
         default: preconditionFailure()
         }

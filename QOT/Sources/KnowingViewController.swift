@@ -8,6 +8,7 @@
 
 import UIKit
 import Anchorage
+import qot_dal
 
 final class KnowingNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(KnowingNavigationController.classForCoder())
@@ -29,8 +30,13 @@ final class KnowingViewController: HomeViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -158,12 +164,16 @@ extension KnowingViewController {
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == Knowing.Section.strategies.rawValue && indexPath.item == 0 {
+            let foundation = interactor?.foundationStrategy()
+            trackUserEvent(.SELECT,value: foundation?.remoteID, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
             interactor?.presentStrategyList(selectedStrategyID: nil)
         } else if indexPath.section == Knowing.Section.strategies.rawValue {
             let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1]
+            trackUserEvent(.SELECT, value: strategy?.remoteID, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
             interactor?.presentStrategyList(selectedStrategyID: strategy?.remoteID)
         } else {
             let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item]
+            trackUserEvent(.OPEN, value: whatsHotArticle?.remoteID ?? 0, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
             interactor?.presentWhatsHotArticle(selectedID: whatsHotArticle?.remoteID ?? 0)
         }
     }

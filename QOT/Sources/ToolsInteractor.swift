@@ -45,4 +45,8 @@ extension ToolsInteractor: ToolsInteractorInterface {
     func presentToolsCollections(selectedToolID: Int?) {
         router.presentToolsCollections(selectedToolID: selectedToolID)
     }
+
+    func trackingKeys(at indexPath: IndexPath) -> String {
+        return worker.trackingKeys(at: indexPath)
+    }
 }

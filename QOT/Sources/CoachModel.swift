@@ -18,6 +18,21 @@ enum CoachSection: Int, CaseIterable {
     static var sectionValues: [CoachSection] {
         return [.search, .tools, .sprint, .event, .challenge]
     }
+
+    func trackingKeys(for services: Services) -> String {
+        switch self {
+        case .search:
+            return ContentService.Coach.search.rawValue
+        case .tools:
+            return ContentService.Coach.tools.rawValue
+        case .sprint:
+            return ContentService.Coach.sprint.rawValue
+        case .event:
+            return ContentService.Coach.event.rawValue
+        case .challenge:
+            return ContentService.Coach.challenge.rawValue
+        }
+    }
 }
 
 struct CoachModel {

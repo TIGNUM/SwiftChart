@@ -47,4 +47,12 @@ extension ToolsWorker: ToolsWorkerInterface {
                                                   title: services?.contentService.toolSectionTitles(for: $0),
                                                   subtitle: "Number of Tools") })
     }
+
+    func trackingKeys(at indexPath: IndexPath) -> String {
+        let item = ToolSection.sectionValues.item(at: indexPath.row)
+        guard let services = services else {
+        return ""
+        }
+        return item.trackingKeys(for: services)
+    }
 }

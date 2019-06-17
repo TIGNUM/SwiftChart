@@ -35,6 +35,11 @@ final class CoachViewController: UIViewController {
         super.viewWillAppear(animated)
         UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
 }
 
 // MARK: - Private
@@ -59,6 +64,7 @@ private extension CoachViewController {
 
     @IBAction func closeButton() {
          dismiss(animated: true, completion: nil)
+         trackUserEvent(.CLOSE, action: .TAP)
          UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }
 }
@@ -103,6 +109,7 @@ extension CoachViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let sectionTapped = coachModel?.sectionItem(at: indexPath)
+        trackUserEvent(.SELECT, valueType: String(indexPath.row), action: .TAP)
         interactor?.handleTap(coachSection: sectionTapped ?? .search)
     }
 }

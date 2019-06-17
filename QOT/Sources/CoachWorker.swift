@@ -31,4 +31,9 @@ final class CoachWorker {
                                    subtitle: services.contentService.coachSectionSubtitles(for: $0)) }
         return CoachModel(headerTitle: headerTitle, headerSubtitle: headerSubtitle, coachItems: coachItems)
     }
+
+    func trackingKeys(at indexPath: IndexPath) -> String {
+        let item = CoachSection.sectionValues.item(at: indexPath.row)
+        return item.trackingKeys(for: services)
+    }
 }
