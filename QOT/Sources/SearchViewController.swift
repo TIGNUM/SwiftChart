@@ -148,7 +148,7 @@ extension SearchViewController {
 
     @IBAction func segmentedControlDidChange(_ segmentedControl: UISegmentedControl) {
         searchFilter = Search.Filter(rawValue: segmentedControl.selectedSegmentIndex) ?? Search.Filter.all
-        trackUserEvent(.SELECT, valueType: searchFilter.userEvent,  action: .TAP)
+        trackUserEvent(.SELECT, valueType: searchFilter.userEvent, action: .TAP)
         updateSearchResults()
         updateIndicator()
         tableView.scrollToTop(animated: true)
