@@ -497,6 +497,25 @@ extension UIView {
         blackTopView.backgroundColor = .black
         addSubview(blackTopView)
     }
+
+    func showLoader() {
+        let view = Skeleton.showLoader()
+        self.addSubview(view)
+        view.addConstraints(to: self)
+        self.layoutIfNeeded()
+    }
+
+    func removeLoadingSkeleton() {
+        guard let view = self.viewWithTag(-999) else { return }
+        view.removeFromSuperview()
+    }
+
+    func showLoadingSkeleton(with types: [SkeletonType]) {
+        let view = Skeleton.show(types)
+        addSubview(view)
+        view.addConstraints(to: self)
+        self.layoutIfNeeded()
+    }
 }
 
 // MARK: - UIImage

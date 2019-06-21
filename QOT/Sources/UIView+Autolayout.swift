@@ -44,4 +44,12 @@ extension UIView {
                            multiplier: 1,
                            constant: 0).isActive = true
     }
+
+    func addConstraints(to superView: UIView) {
+        self.translatesAutoresizingMaskIntoConstraints = false
+        self.leftAnchor.constraint(equalTo: superView.leftAnchor).isActive = true
+        self.rightAnchor.constraint(equalTo: superView.rightAnchor).isActive = true
+        self.topAnchor.constraint(equalTo: superView.topAnchor).isActive = true
+        self.bottomAnchor.constraint(equalTo: superView.bottomAnchor).isActive = true
+    }
 }

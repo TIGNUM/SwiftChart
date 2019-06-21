@@ -42,4 +42,20 @@ extension UIViewController {
         subview.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
         subview.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
     }
+
+    func showLoader() {
+        let loader = Skeleton.showLoader()
+        view.addSubview(loader)
+        loader.addConstraints(to: view)
+        view.layoutIfNeeded()
+    }
+
+    func removeLoadingSkeleton() {
+        guard let view = self.view.viewWithTag(-999) else { return }
+        view.removeFromSuperview()
+    }
+
+    func showLoadingSkeleton(with types: [SkeletonType]) {
+        self.view.addSubview(Skeleton.show(types))
+    }
 }
