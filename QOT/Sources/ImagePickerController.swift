@@ -33,6 +33,8 @@ final class ImagePickerController {
     let imagePicker: ImagePicker
     var imageCropper: ImageCropper?
     let page: PageName
+    let adapter: ImagePickerControllerAdapter?
+
     weak var viewController: UIViewController?
     weak var delegate: ImagePickerControllerDelegate?
 
@@ -40,7 +42,9 @@ final class ImagePickerController {
          imageQuality: ImageQuality,
          imageSize: ImageSize,
          permissionsManager: PermissionsManager,
-         pageName: PageName) {
+         pageName: PageName,
+         adapter: ImagePickerControllerAdapter?) {
+        self.adapter = adapter
         self.imageQuality = imageQuality
         self.imageSize = imageSize
         self.permissionsManager = permissionsManager
@@ -55,7 +59,9 @@ final class ImagePickerController {
     init(imageQuality: ImageQuality,
          imageSize: ImageSize,
          permissionsManager: PermissionsManager,
-         pageName: PageName) {
+         pageName: PageName,
+         adapter: ImagePickerControllerAdapter?) {
+        self.adapter = adapter
         self.imageQuality = imageQuality
         self.imageSize = imageSize
         self.permissionsManager = permissionsManager
@@ -79,6 +85,7 @@ final class ImagePickerController {
 
         let cancelAction = UIAlertAction(title: R.string.localized.alertButtonTitleCancel(),
                                          style: .cancel) { [unowned self] (alertAction: UIAlertAction) in
+                                            self.adapter?.cancelSelectionEvent()
                                             self.delegate?.cancelSelection()
         }
 
@@ -87,6 +94,7 @@ final class ImagePickerController {
         if deletable == true {
             let deleteAction = UIAlertAction(title: R.string.localized.imagePickerOptionsButtonDelete(),
                                              style: .destructive) { [unowned self] (alertAction: UIAlertAction) in
+                                                self.adapter?.deleteImageEvent()
                                                 self.delegate?.deleteImage()
             }
             alertController.addAction(deleteAction)
@@ -104,12 +112,14 @@ final class ImagePickerController {
         switch option {
         case .photo:
             do {
+                adapter?.didPickFromGalleryEvent()
                 try imagePicker.pickFromPhotos(in: viewController)
             } catch let error as ImagePicker.ImagePickerError {
                 handleError(error, forOption: option)
             } catch {}
         case .camera:
             do {
+                adapter?.didClickCameraEvent()
                 try imagePicker.pickFromCamera(in: viewController)
             } catch let error as ImagePicker.ImagePickerError {
                 handleError(error, forOption: option)
@@ -153,6 +163,7 @@ final class ImagePickerController {
                     UIApplication.openAppSettings()
                 }, handlerDestructive: {
                     self.finish()
+                    self.adapter?.cancelSelectionEvent()
                     self.delegate?.cancelSelection()
                 })
             case .later:
@@ -174,14 +185,17 @@ extension ImagePickerController: ImageCropperDelegate {
     func imageCropper(_ imageCropper: ImageCropper, croppedImage image: UIImage) {
         imageCropper.dismiss {
             self.finish()
+            self.adapter?.cancelSelectionEvent()
             self.delegate?.cancelSelection()
         }
+        self.adapter?.didPickFromGalleryEvent()
         delegate?.imagePickerController(self, selectedImage: image)
     }
 
     func imageCropperDidPressCancel(_ imageCropper: ImageCropper) {
         imageCropper.dismiss {
             self.finish()
+            self.adapter?.cancelSelectionEvent()
             self.delegate?.cancelSelection()
         }
     }
@@ -202,6 +216,7 @@ extension ImagePickerController: ImagePickerDelegate {
             if let imageCropper = self.imageCropper {
                 imageCropper.crop(compressedImage, in: viewController)
             } else {
+                self.adapter?.didPickFromGalleryEvent()
                 self.delegate?.imagePickerController(self, selectedImage: image)
             }
         }
@@ -210,6 +225,7 @@ extension ImagePickerController: ImagePickerDelegate {
     func imagePickerDidPressCancel(_ imagePicker: ImagePicker) {
         imagePicker.dismiss {
             self.finish()
+            self.adapter?.cancelSelectionEvent()
             self.delegate?.cancelSelection()
         }
     }

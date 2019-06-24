@@ -19,10 +19,10 @@ extension UIViewController {
         NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 
-    func trackUserEvent(_ name: UserEventName,
+    func trackUserEvent(_ name: QDMUserEventTracking.Name,
                         value: Int? = nil,
-                        valueType: String? = nil,
-                        action: UserEventAction) {
+                        valueType: QDMUserEventTracking.ValueType? = nil,
+                        action: QDMUserEventTracking.Action) {
         var userEventTrack = QDMUserEventTracking()
         userEventTrack.name = name
         userEventTrack.value = value
@@ -50,6 +50,8 @@ private extension UIViewController {
         case is MyQotSiriShortcutsViewController: return "myprofile.appsettings.sirishortcuts"
         case is MyQotSupportFaqViewController: return "myprofile.support.faq"
         case is TutorialViewController: return "myprofile.support.tutorial"
+        case is MyVisionViewController: return "tobevision"
+        case is MyVisionEditDetailsViewController: return "tobevision.edit"
         case is CoachViewController: return "coach.main"
         case is SearchViewController: return "search.main"
         case is ToolsViewController: return "coach.tools"

@@ -223,6 +223,10 @@ extension PartnerEditViewController: PartnerEditViewControllerInterface {
 
 // MARK: - ImagePickerControllerDelegate
 
+extension PartnerEditViewController: ImagePickerControllerAdapterProtocol {
+
+}
+
 extension PartnerEditViewController: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {

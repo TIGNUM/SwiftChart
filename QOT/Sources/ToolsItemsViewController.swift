@@ -169,7 +169,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         let tool = interactor?.tools[indexPath.item]
-        trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: UserEventValueType.CONTENT_ITEM.rawValue, action: .TAP)
+        trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: QDMUserEventTracking.ValueType.CONTENT_ITEM, action: .TAP)
         switch tool?.type {
         case ToolType.video.rawValue:
             guard

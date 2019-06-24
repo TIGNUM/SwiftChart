@@ -55,6 +55,11 @@ final class MyVisionViewController: UIViewController {
         UIApplication.shared.statusBarView?.backgroundColor = .carbon
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         removeObserver()
@@ -74,22 +79,27 @@ private extension MyVisionViewController {
     }
 
     @IBAction func shareButtonAction(_ sender: UIButton) {
+        trackUserEvent(.SHARE, action: .TAP)
         interactor?.shareMyToBeVision()
     }
 
     @IBAction func editButtonAction(_ sender: UIButton) {
+        trackUserEvent(.EDIT, action: .TAP)
         interactor?.showEditVision()
     }
 
     @IBAction func backButtonAction(_ sender: UIButton) {
+        trackUserEvent(.CLOSE, action: .TAP)
         self.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func generateVisionAction(_ sender: UIButton) {
+        trackUserEvent(.OPEN, valueType: "CreateNewToBeVision", action: .TAP)
         interactor?.openToBeVisionGenerator()
     }
 
     @IBAction func cameraButtonAction(_ sender: UIButton) {
+        trackUserEvent(.OPEN, valueType: "CameraOptions", action: .TAP)
         imagePickerController.show(in: self, deletable: (tempImageURL != nil || tempImage != nil))
         RestartHelper.setRestartURLScheme(.toBeVision, options: [.edit: "image"])
     }
@@ -184,11 +194,13 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         backButton.corner(radius: backButton.frame.size.width/2, borderColor: .accent40)
         generateVisionButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         guard let permissionManager = interactor?.permissionManager else { return }
+        let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
                                                       permissionsManager: permissionManager,
-                                                      pageName: .imagePickerToBeVision)
+                                                      pageName: .imagePickerToBeVision,
+                                                      adapter: adapter)
         imagePickerController.delegate = self
     }
 
@@ -223,6 +235,7 @@ extension MyVisionViewController: UIScrollViewDelegate {
                 self.imageOverLapView.backgroundColor = UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: alphaValue)
             }
         }
+
         if self.lastContentOffset > offsetY {
             if navigationBarViewTopMarginConstraint.constant < 0 && scrollView.contentOffset.y > 500 {
                 showNavigationBarView()
@@ -240,6 +253,10 @@ extension MyVisionViewController: UIScrollViewDelegate {
 }
 
 // MARK: - ImagePickerDelegate
+
+extension MyVisionViewController: ImagePickerControllerAdapterProtocol {
+
+}
 
 extension MyVisionViewController: ImagePickerControllerDelegate {
     func deleteImage() {
@@ -263,10 +280,12 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
 
 extension MyVisionViewController: MyVisionNavigationBarViewProtocol {
     func didShare() {
+        trackUserEvent(.SHARE, action: .TAP)
         interactor?.shareMyToBeVision()
     }
 
     func didEdit() {
+        trackUserEvent(.EDIT, action: .TAP)
         interactor?.showEditVision()
     }
 }

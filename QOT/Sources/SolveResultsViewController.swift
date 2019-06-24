@@ -97,7 +97,7 @@ extension SolveResultsViewController: UITableViewDelegate {
         switch results?.items[indexPath.row] {
         case .strategy(let id, _, _, _)?:
             interactor?.didTapStrategy(with: id)
-            trackUserEvent(.SELECT, value: id, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
+            trackUserEvent(.SELECT, value: id, valueType: QDMUserEventTracking.ValueType.CONTENT, action: .TAP)
         default: return
         }
     }

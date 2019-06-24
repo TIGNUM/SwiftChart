@@ -57,7 +57,7 @@ extension MyQotSupportFaqViewController: UITableViewDelegate, UITableViewDataSou
         tableView.deselectRow(at: indexPath, animated: true)
         guard let contentID = interactor?.item(at: indexPath).remoteID.value else { return }
         let key = interactor?.trackingID(at: indexPath)
-        trackUserEvent(.OPEN, value: key, valueType: UserEventValueType.CONTENT_ITEM.rawValue, action: .TAP)
+        trackUserEvent(.OPEN, value: key, valueType: QDMUserEventTracking.ValueType.CONTENT_ITEM, action: .TAP)
         interactor?.presentContentItemSettings(contentID: contentID, pageName: .faq, pageTitle: interactor?.faqHeaderText ?? R.string.localized.sidebarTitleFAQ())
     }
 }

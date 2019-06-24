@@ -17,10 +17,12 @@ final class PartnerEditRouter {
     private let permissionManager: PermissionsManager
 
     private lazy var imagePicker: ImagePickerController = {
+        let adapter = ImagePickerControllerAdapter(viewController)
         let picker = ImagePickerController(imageQuality: .high,
                                      imageSize: .large,
                                      permissionsManager: permissionManager,
-                                     pageName: .imagePickerPartner)
+                                     pageName: .imagePickerPartner,
+                                     adapter: adapter)
         picker.delegate = viewController
         return picker
     }()
