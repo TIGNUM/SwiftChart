@@ -21,11 +21,13 @@ final class DecisionTreeRouter {
     init(viewController: DecisionTreeViewController, permissionsManager: PermissionsManager) {
         self.viewController = viewController
         self.permissionsManager = permissionsManager
+        let adapter = ImagePickerControllerAdapter(self)
         self.imagePickerController = ImagePickerController(cropShape: .rectangle,
                                                            imageQuality: .high,
                                                            imageSize: .large,
                                                            permissionsManager: permissionsManager,
-                                                           pageName: .imagePickerGenerator)
+                                                           pageName: .imagePickerGenerator,
+                                                           adapter: adapter)
         self.imagePickerController?.delegate = self
     }
 }
@@ -98,6 +100,10 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
 }
 
 // MARK: - ImagePickerDelegate
+
+extension DecisionTreeRouter: ImagePickerControllerAdapterProtocol {
+
+}
 
 extension DecisionTreeRouter: ImagePickerControllerDelegate {
 

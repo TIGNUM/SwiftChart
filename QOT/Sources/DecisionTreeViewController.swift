@@ -403,7 +403,7 @@ private extension DecisionTreeViewController {
         let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
         decisionTree?.add(selectedAnswer)
         if let remoteID = answer.remoteID.value {
-            trackUserEvent(.SELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
+            trackUserEvent(.SELECT, value: remoteID, valueType: QDMUserEventTracking.ValueType.ANSWER_DECISION, action: .TAP)
         }
         if answer.keys.contains(AnswerKey.Solve.openVisionPage.rawValue) {
             interactor?.openToBeVisionPage()
@@ -449,7 +449,7 @@ private extension DecisionTreeViewController {
                 }
             }
             if let remoteID = answer.remoteID.value {
-                trackUserEvent(.SELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
+                trackUserEvent(.SELECT, value: remoteID, valueType: QDMUserEventTracking.ValueType.ANSWER_DECISION, action: .TAP)
             }
         }, removeCompletion: {
             if multiSelectionCounter == maxPossibleSelections {
@@ -461,7 +461,7 @@ private extension DecisionTreeViewController {
                 multiSelectionCounter.minus(1)
             }
             if let remoteID = answer.remoteID.value {
-                trackUserEvent(.DESELECT, value: remoteID, valueType: UserEventValueType.ANSWER_DECISION.rawValue, action: .TAP)
+                trackUserEvent(.DESELECT, value: remoteID, valueType: QDMUserEventTracking.ValueType.ANSWER_DECISION, action: .TAP)
             }
         })
         continueButton.pulsate()

@@ -137,6 +137,9 @@ private extension VisionGeneratorInteractor {
 
 // MARK: - ImagePickerControllerDelegate
 
+extension VisionGeneratorInteractor: ImagePickerControllerAdapterProtocol {
+}
+
 extension VisionGeneratorInteractor: ImagePickerControllerDelegate {
 
     func cancelSelection() {

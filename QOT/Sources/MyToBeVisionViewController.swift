@@ -65,11 +65,13 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         super.init(nibName: nil, bundle: nil)
         configurator(self)
         self.eventTracker = eventTracker
+        let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .rectangle,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
                                                       permissionsManager: permissionsManager,
-                                                      pageName: .imagePickerToBeVision)
+                                                      pageName: .imagePickerToBeVision,
+                                                      adapter: adapter)
         imagePickerController.delegate = self
         visionChatItems = /*interactor?.visionChatItems ??*/ [:]
     }
@@ -447,7 +449,12 @@ extension MyToBeVisionViewController: UITextViewDelegate {
 
 // MARK: - ImagePickerDelegate
 
+extension MyToBeVisionViewController: ImagePickerControllerAdapterProtocol {
+
+}
+
 extension MyToBeVisionViewController: ImagePickerControllerDelegate {
+
     func deleteImage() {
         tempImage = nil
         tempImageURL = nil

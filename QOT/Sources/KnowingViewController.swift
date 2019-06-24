@@ -165,15 +165,15 @@ extension KnowingViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == Knowing.Section.strategies.rawValue && indexPath.item == 0 {
             let foundation = interactor?.foundationStrategy()
-            trackUserEvent(.SELECT, value: foundation?.remoteID, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
+            trackUserEvent(.SELECT, value: foundation?.remoteID, valueType: QDMUserEventTracking.ValueType.CONTENT, action: .TAP)
             interactor?.presentStrategyList(selectedStrategyID: nil)
         } else if indexPath.section == Knowing.Section.strategies.rawValue {
             let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1]
-            trackUserEvent(.SELECT, value: strategy?.remoteID, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
+            trackUserEvent(.SELECT, value: strategy?.remoteID, valueType: QDMUserEventTracking.ValueType.CONTENT, action: .TAP)
             interactor?.presentStrategyList(selectedStrategyID: strategy?.remoteID)
         } else {
             let whatsHotArticle = interactor?.whatsHotArticles()[indexPath.item]
-            trackUserEvent(.OPEN, value: whatsHotArticle?.remoteID ?? 0, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
+            trackUserEvent(.OPEN, value: whatsHotArticle?.remoteID ?? 0, valueType: QDMUserEventTracking.ValueType.CONTENT, action: .TAP)
             interactor?.presentWhatsHotArticle(selectedID: whatsHotArticle?.remoteID ?? 0)
         }
     }

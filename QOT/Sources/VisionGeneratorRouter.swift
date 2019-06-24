@@ -21,7 +21,8 @@ final class VisionGeneratorRouter {
                                                       imageQuality: .high,
                                                       imageSize: .large,
                                                       permissionsManager: permissionsManager,
-                                                      pageName: .imagePickerGenerator)
+                                                      pageName: .imagePickerGenerator,
+                                                      adapter: nil)
     }
 
     func setImagePickerDelegate(_ delegate: ImagePickerControllerDelegate) {

@@ -155,10 +155,10 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         tableView.deselectRow(at: indexPath, animated: true)
         let tool = interactor?.tools[indexPath.item]
         if tool?.isCollection == true {
-            trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: UserEventValueType.CONTENT.rawValue, action: .TAP)
+            trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: QDMUserEventTracking.ValueType.CONTENT, action: .TAP)
             interactor?.presentToolsItems(selectedToolID: tool?.remoteID)
         } else {
-            trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: UserEventValueType.CONTENT_ITEM.rawValue, action: .TAP)
+            trackUserEvent(.OPEN, value: tool?.remoteID ?? 0, valueType: QDMUserEventTracking.ValueType.CONTENT_ITEM, action: .TAP)
             if tool?.type == "video" {
                 guard
                     let videoTool = interactor?.videoTools[indexPath.row],
