@@ -258,7 +258,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         switch tableView {
         case self.tableView:
             let key = searchResults[indexPath.row].contentID
-            trackUserEvent(.SELECT, value: key, valueType: QDMUserEventTracking.ValueType.CONTENT, action: .TAP)
+            trackUserEvent(.SELECT, value: key, valueType: .CONTENT, action: .TAP)
             handleSelection(for: indexPath)
         case self.suggestionsTableView:
             let suggestion = searchSuggestions?.suggestions[indexPath.row] ?? ""
