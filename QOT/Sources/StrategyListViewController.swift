@@ -128,12 +128,13 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             guard
                 let foundation = interactor?.foundationStrategies[indexPath.row],
                 let videoURL = foundation.mediaURL else { return }
-            trackUserEvent(.OPEN, value: foundation.remoteID, valueType: QDMUserEventTracking.ValueType.CONTENT, action: .TAP)
+
+            trackUserEvent(.OPEN, value: foundation.remoteID, valueType: .CONTENT, action: .TAP)
             stream(videoURL: videoURL, contentItem: nil, pageName: PageName.learnContentItemFull) // TODO Set correct pageName
         } else {
             let strategy = interactor?.strategies[indexPath.item]
             interactor?.presentArticle(selectedID: strategy?.remoteID)
-            trackUserEvent(.OPEN, value: strategy?.remoteID, valueType: QDMUserEventTracking.ValueType.CONTENT, action: .TAP)
+            trackUserEvent(.OPEN, value: strategy?.remoteID, valueType: .CONTENT, action: .TAP)
             if AudioPlayer.current.isPlaying == true && AudioPlayer.current.remoteID != strategy?.remoteID {
                 AudioPlayer.current.resetPlayer()
                 didTabClose(for: .bar)

@@ -121,7 +121,7 @@ extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
          tableView.deselectRow(at: indexPath, animated: true)
         let toolKey = interactor?.tools()[indexPath.item].remoteID
-        trackUserEvent(.OPEN, value: toolKey, valueType: QDMUserEventTracking.ValueType.CONTENT, action: .TAP)
+        trackUserEvent(.OPEN, value: toolKey, valueType: .CONTENT, action: .TAP)
         interactor?.presentToolsCollections(selectedToolID: interactor?.tools()[indexPath.item].remoteID)
     }
 }
