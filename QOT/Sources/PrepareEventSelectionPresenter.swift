@@ -16,7 +16,7 @@ final class PrepareEventSelectionPresenter: PrepareEventSelectionPresenterInterf
 
     // MARK: - Init
 
-    init(tableViewCell: PrepareEventSelectionTableViewCellInterface) {
+    init(tableViewCell: PrepareEventSelectionTableViewCellInterface?) {
         self.tableViewCell = tableViewCell
     }
 }

@@ -182,8 +182,8 @@ final class ArticleWorker {
         return relatedArticlesWhatsHot[indexPath.item]
     }
 
-    func articleItem(at indexPath: IndexPath) -> Article.Item {
-        return isWhatsHot == true ? whatsHotItems[indexPath.item] : learnStrategyItems[indexPath.item]
+    func articleItem(at indexPath: IndexPath) -> Article.Item? {
+        return isWhatsHot ? whatsHotItems.at(index: indexPath.item) : learnStrategyItems.at(index: indexPath.item)
     }
 
     func markArticleAsRead() {

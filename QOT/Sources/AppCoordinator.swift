@@ -30,7 +30,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private var canProcessLocalNotifications = false
     private var isRestart = false
     private var onDismiss: (() -> Void)?
-    private var onDismissWithResults: ((_ results: [WeeklyChoice], _ syncManager: SyncManager) -> Void)?
     private var destination: AppCoordinator.Router.Destination?
     private var iPadAdviceCompletion: (() -> Void)?
     private let userIsLoggingIn = Atomic(false)
@@ -539,25 +538,6 @@ extension AppCoordinator: NetworkManagerDelegate {
         } else {
             restart()
         }
-    }
-}
-
-// MARK: - SelectWeeklyChoicesViewControllerDelegate
-
-extension AppCoordinator: SelectWeeklyChoicesViewControllerDelegate {
-
-    func dismiss(viewController: SelectWeeklyChoicesViewController, selectedContent: [WeeklyChoice]) {
-        dismiss(viewController: viewController)
-        onDismissWithResults?(selectedContent, syncManager)
-    }
-
-    func dismiss(viewController: SelectWeeklyChoicesViewController) {
-        dismiss(viewController, level: .priority)
-    }
-
-    func didTapRow(_ viewController: SelectWeeklyChoicesViewController,
-                   contentCollection: ContentCollection,
-                   contentCategory: ContentCategory) {
     }
 }
 
@@ -1096,52 +1076,6 @@ extension AppCoordinator {
         } catch {
             log(error.localizedDescription, level: Logger.Level.error)
         }
-    }
-
-    func presentWeeklyChoicesReminder() {
-        guard
-            let rootViewController = windowManager.rootViewController(atLevel: .normal),
-            let services = services else { return }
-        let coordinator = WeeklyChoicesCoordinator(root: rootViewController,
-                                                   services: services,
-                                                   transitioningDelegate: nil,
-                                                   topBarDelegate: self)
-        topTabBarController = coordinator.topTabBarController
-        windowManager.showPriority(coordinator.topTabBarController, animated: true, completion: nil)
-        currentPresentedNavigationController = coordinator.topTabBarController
-    }
-
-    func presentWeeklyChoices(forStartDate startDate: Date, endDate: Date, completion: (() -> Void)?) {
-        guard let services = services else { return }
-        onDismiss = completion
-        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
-        let viewModel = SelectWeeklyChoicesDataModel(services: services,
-                                                     maxSelectionCount: Layout.MeSection.maxWeeklyPage,
-                                                     startDate: startDate,
-                                                     endDate: endDate)
-        let image = windowManager.rootViewController(atLevel: .normal)?.view.screenshot()
-        let viewController = SelectWeeklyChoicesViewController(delegate: self,
-                                                               viewModel: viewModel,
-                                                               backgroundImage: image)
-        windowManager.showPriority(viewController, animated: true, completion: nil)
-        currentPresentedController = viewController
-    }
-
-    func presentRelatedStrategies(relatedStrategies: [ContentCollection],
-                                  selectedIDs: [Int],
-                                  prepareContentController: PrepareContentViewController,
-                                  completion: ((_ selectedStrategies: [WeeklyChoice], _ syncManager: SyncManager) -> Void)?) {
-        guard let services = services else { return }
-        onDismissWithResults = completion
-        let viewModel = SelectWeeklyChoicesDataModel(services: services,
-                                                     relatedContent: relatedStrategies,
-                                                     selectedIDs: selectedIDs)
-        let image = AppDelegate.topViewController()?.view.screenshot()
-        let viewController = SelectWeeklyChoicesViewController(delegate: self,
-                                                               viewModel: viewModel,
-                                                               backgroundImage: image)
-        windowManager.showPriority(viewController, animated: true, completion: nil)
-        currentPresentedController = viewController
     }
 
     func presentFeatureArticelContentItems(contentID: Int, guideItem: Guide.Item?, showHeader: Bool = true) {

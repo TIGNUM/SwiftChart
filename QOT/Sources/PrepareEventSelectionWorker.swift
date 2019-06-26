@@ -7,45 +7,35 @@
 //
 
 import UIKit
+import qot_dal
 
 final class PrepareEventSelectionWorker {
 
     // MARK: - Properties
 
-    private let services: Services
     private let question: Question
-
-    private lazy var calendarEvents: [CalendarEvent] = {
-        let start = Date()
-        let finish = start.addingTimeInterval(TimeInterval(days: 30))
-        let events = services.eventsService.calendarEvents(from: start, to: finish)
-        return events
-    }()
+    private let events: [QDMUserCalendarEvent]
 
     // MARK: - Init
 
-    init(services: Services, question: Question) {
-        self.services = services
+    init(question: Question, events: [QDMUserCalendarEvent]) {
         self.question = question
+        self.events = events
     }
 
     var selectedAnswer: Answer? {
         return question.answers.first
     }
 
-    var eventStore: EKEventStore {
-        return services.eventsService.eventStore
-    }
-
     var rowCount: Int {
-        return calendarEvents.count
+        return events.count
     }
 
-    func event(at indexPath: IndexPath) -> CalendarEvent? {
-        return calendarEvents[indexPath.row]
+    func event(at indexPath: IndexPath) -> QDMUserCalendarEvent {
+        return events[indexPath.row]
     }
 
-    func dateString(for event: CalendarEvent?) -> String? {
+    func dateString(for event: QDMUserCalendarEvent?) -> String? {
         guard let date = event?.startDate else { return nil }
         if date.isToday == true {
             return String(format: "Today at %@", date.time)

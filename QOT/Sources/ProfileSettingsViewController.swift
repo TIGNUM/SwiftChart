@@ -353,7 +353,8 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 			showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
 		case .multipleStringPicker(let title, let rows, let initialSelection, _):
 			showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
-        default: return
+        default:
+            return
 		}
 	}
 }

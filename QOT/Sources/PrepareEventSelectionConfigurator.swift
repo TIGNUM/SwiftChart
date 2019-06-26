@@ -7,15 +7,17 @@
 //
 
 import Foundation
+import qot_dal
 
-final class PrepareEventSelectionConfigurator: AppStateAccess {
-    static func make(tableViewCell: CalendarEventsTableViewCell,
+final class PrepareEventSelectionConfigurator {
+    static func make(_ tableViewCell: CalendarEventsTableViewCell?,
                      delegate: DecisionTreeQuestionnaireDelegate?,
-                     question: Question) {
-        let router = PrepareEventSelectionRouter(tableViewCell: tableViewCell, delegate: delegate)
-        let worker = PrepareEventSelectionWorker(services: appState.services, question: question)
+                     question: Question,
+                     events: [QDMUserCalendarEvent]) {
+        let router = PrepareEventSelectionRouter(tableViewCell, delegate: delegate)
+        let worker = PrepareEventSelectionWorker(question: question, events: events)
         let presenter = PrepareEventSelectionPresenter(tableViewCell: tableViewCell)
         let interactor = PrepareEventSelectionInteractor(worker: worker, presenter: presenter, router: router)
-        tableViewCell.interactor = interactor
+        tableViewCell?.interactor = interactor
     }
 }

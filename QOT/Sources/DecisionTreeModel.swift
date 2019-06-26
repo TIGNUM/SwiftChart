@@ -15,14 +15,15 @@ enum DecisionTreeType {
     case mindsetShifter
     case mindsetShifterTBV
     case prepare
-    case prepareIntensions(selectedAnswers: [DecisionTreeModel.SelectedAnswer], answerFilter: String?, questionID: Int)
-    case prepareBenefits(benefits: String?, questionID: Int)
+    case prepareIntensions([DecisionTreeModel.SelectedAnswer], String?, Prepare.Key, PrepareResultsDelegatge?)
+    case prepareBenefits(benefits: String?, questionID: Int, PrepareResultsDelegatge?)
     case solve
 }
 
 // MARK: - Model
 
 struct DecisionTreeModel {
+    typealias Filter = String
     var questions: [Question]
     var selectedAnswers: [SelectedAnswer]
 
@@ -30,6 +31,10 @@ struct DecisionTreeModel {
         let questionID: Int
         let answer: Answer
     }
+}
+
+extension DecisionTreeModel.Filter {
+    static let FILTER_RELATIONSHIP = "_relationship_"
 }
 
 // MARK: - ModelInterface

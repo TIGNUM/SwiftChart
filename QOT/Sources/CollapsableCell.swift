@@ -19,9 +19,7 @@ final class CollapsableCell: UITableViewCell {
     @IBOutlet private weak var selectionCountLabel: UILabel!
 
     var isOpen: Bool? {
-        didSet {
-            reload()
-        }
+        didSet { reload() }
     }
     var indexPath: IndexPath?
     weak var delegate: CollapsableCellDelegate?

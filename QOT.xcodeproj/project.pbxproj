@@ -77,10 +77,7 @@
 		36376611223A4BEC00C2C429 /* DailyBriefModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376609223A4BEC00C2C429 /* DailyBriefModel.swift */; };
 		36376612223A4BEC00C2C429 /* DailyBriefConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */; };
 		3637661B223A4C0400C2C429 /* MyQotProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376613223A4C0400C2C429 /* MyQotProfilePresenter.swift */; };
-		3637661C223A4C0400C2C429 /* MyQotProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */; };
 		3637661D223A4C0400C2C429 /* MyQotProfileRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376615223A4C0400C2C429 /* MyQotProfileRouter.swift */; };
-		3637661E223A4C0400C2C429 /* MyQotProfileInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376616223A4C0400C2C429 /* MyQotProfileInterface.swift */; };
-		3637661F223A4C0400C2C429 /* MyQotProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376617223A4C0400C2C429 /* MyQotProfileViewController.swift */; };
 		36376620223A4C0400C2C429 /* MyQotProfileInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376618223A4C0400C2C429 /* MyQotProfileInteractor.swift */; };
 		36376621223A4C0400C2C429 /* MyQotProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376619223A4C0400C2C429 /* MyQotProfileModel.swift */; };
 		36376622223A4C0400C2C429 /* MyQotProfileConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3637661A223A4C0400C2C429 /* MyQotProfileConfigurator.swift */; };
@@ -262,16 +259,16 @@
 		3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */; };
 		3691177220656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176C20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
-		369353A122983AB9008BBB72 /* PrepareCheckListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareCheckListPresenter.swift */; };
-		369353A222983AB9008BBB72 /* PrepareCheckListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539A22983AB9008BBB72 /* PrepareCheckListWorker.swift */; };
-		369353A322983AB9008BBB72 /* PrepareCheckListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539B22983AB9008BBB72 /* PrepareCheckListRouter.swift */; };
-		369353A422983AB9008BBB72 /* PrepareCheckListInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareCheckListInterface.swift */; };
-		369353A522983AB9008BBB72 /* PrepareCheckListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539D22983AB9008BBB72 /* PrepareCheckListViewController.swift */; };
-		369353A622983AB9008BBB72 /* PrepareCheckListInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539E22983AB9008BBB72 /* PrepareCheckListInteractor.swift */; };
-		369353A722983AB9008BBB72 /* PrepareCheckList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539F22983AB9008BBB72 /* PrepareCheckList.swift */; };
-		369353A822983AB9008BBB72 /* PrepareCheckListConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A022983AB9008BBB72 /* PrepareCheckListConfigurator.swift */; };
-		369353AB22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A922984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift */; };
-		369353AC22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369353AA22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib */; };
+		369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
+		369353A222983AB9008BBB72 /* PrepareResultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539A22983AB9008BBB72 /* PrepareResultsWorker.swift */; };
+		369353A322983AB9008BBB72 /* PrepareResultsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539B22983AB9008BBB72 /* PrepareResultsRouter.swift */; };
+		369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */; };
+		369353A522983AB9008BBB72 /* PrepareResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539D22983AB9008BBB72 /* PrepareResultsViewController.swift */; };
+		369353A622983AB9008BBB72 /* PrepareResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539E22983AB9008BBB72 /* PrepareResultInteractor.swift */; };
+		369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539F22983AB9008BBB72 /* PrepareResults.swift */; };
+		369353A822983AB9008BBB72 /* PrepareResultsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A022983AB9008BBB72 /* PrepareResultsConfigurator.swift */; };
+		369353AB22984267008BBB72 /* PrepareResultsContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369353A922984267008BBB72 /* PrepareResultsContentTableViewCell.swift */; };
+		369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */; };
 		36939B8C1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */; };
 		36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */; };
 		3693F62321625E8700E286A9 /* AppContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693F62221625E8700E286A9 /* AppContent.swift */; };
@@ -289,8 +286,8 @@
 		369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */; };
 		369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */; };
 		369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */; };
-		369AE00022A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFFF22A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift */; };
-		369AE00222A6CA7500DE4FA0 /* PrepareCheckListResultView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369AE00122A6CA7500DE4FA0 /* PrepareCheckListResultView.xib */; };
+		369AE00022A6CA5E00DE4FA0 /* PrepareResultsInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369ADFFF22A6CA5E00DE4FA0 /* PrepareResultsInfoView.swift */; };
+		369AE00222A6CA7500DE4FA0 /* PrepareResultsInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369AE00122A6CA7500DE4FA0 /* PrepareResultsInfoView.xib */; };
 		369AE00422A7A6FC00DE4FA0 /* EditHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */; };
 		369AE00622A7AC6F00DE4FA0 /* EditHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */; };
 		36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */; };
@@ -308,6 +305,15 @@
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
 		36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */; };
 		36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */; };
+		36CB720622B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720522B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift */; };
+		36CB720822B86CF900C99AFC /* QDMContentCollection+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */; };
+		36CB720B22B8775B00C99AFC /* QDMContentItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */; };
+		36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376616223A4C0400C2C429 /* MyQotProfileInterface.swift */; };
+		36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376617223A4C0400C2C429 /* MyQotProfileViewController.swift */; };
+		36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376614223A4C0400C2C429 /* MyQotProfileWorker.swift */; };
+		36CB721222B8ECF300C99AFC /* MyQotSupportFaqPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */; };
+		36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */; };
+		36CB721822B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB721722B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift */; };
 		36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */; };
 		36D0C18D22B01567004BB8B8 /* UserInputTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */; };
 		36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */; };
@@ -348,6 +354,14 @@
 		36E4B7B4219EC19C00049EE8 /* TutorialViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E4B7B3219EC19C00049EE8 /* TutorialViewController.xib */; };
 		36E4B7B7219EC6EE00049EE8 /* TutorialCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4B7B5219EC6EE00049EE8 /* TutorialCollectionViewCell.swift */; };
 		36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E4B7B6219EC6EE00049EE8 /* TutorialCollectionViewCell.xib */; };
+		36E4CF0922BC51BD009A2DF7 /* ChoicePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0122BC51BC009A2DF7 /* ChoicePresenter.swift */; };
+		36E4CF0A22BC51BD009A2DF7 /* ChoiceWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0222BC51BC009A2DF7 /* ChoiceWorker.swift */; };
+		36E4CF0B22BC51BD009A2DF7 /* ChoiceRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0322BC51BC009A2DF7 /* ChoiceRouter.swift */; };
+		36E4CF0C22BC51BD009A2DF7 /* ChoiceInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0422BC51BC009A2DF7 /* ChoiceInterface.swift */; };
+		36E4CF0D22BC51BD009A2DF7 /* ChoiceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0522BC51BC009A2DF7 /* ChoiceViewController.swift */; };
+		36E4CF0E22BC51BD009A2DF7 /* ChoiceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0622BC51BC009A2DF7 /* ChoiceInteractor.swift */; };
+		36E4CF0F22BC51BD009A2DF7 /* ChoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0722BC51BC009A2DF7 /* ChoiceModel.swift */; };
+		36E4CF1022BC51BD009A2DF7 /* ChoiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0822BC51BC009A2DF7 /* ChoiceConfigurator.swift */; };
 		36E6E3E8224911CF001BE9C7 /* ComponentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */; };
 		36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */; };
 		36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */; };
@@ -367,6 +381,7 @@
 		36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E86D55227091CB00371C67 /* StrategyContentTableViewCell.swift */; };
 		36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
+		36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */; };
 		36FA332B22C36FD200A92C92 /* QuestionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA332A22C36FD200A92C92 /* QuestionPresenter.swift */; };
 		36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */; };
 		36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */; };
@@ -408,7 +423,6 @@
 		5F62BE90228AB5E900852F7E /* MyQotSupportFaqInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE8F228AB5E900852F7E /* MyQotSupportFaqInteractor.swift */; };
 		5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE91228AB60000852F7E /* MyQotSupportFaqConfigurator.swift */; };
 		5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE93228AB61100852F7E /* MyQotSupportFaqInterface.swift */; };
-		5F62BE96228AB63A00852F7E /* MyQotSupportFaqPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE95228AB63A00852F7E /* MyQotSupportFaqPresenter.swift */; };
 		5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE97228AB64E00852F7E /* MyQotSupportFaqRouter.swift */; };
 		5F62BE9A228AB66100852F7E /* MyQotSupportFaqWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE99228AB66100852F7E /* MyQotSupportFaqWorker.swift */; };
 		5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BE9F228AE71700852F7E /* MyQotSiriShortcutsViewController.swift */; };
@@ -509,9 +523,7 @@
 		7F0888811F0A4B96005CE966 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888801F0A4B96005CE966 /* Partner.swift */; };
 		7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */; };
 		7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */; };
-		7F0F02F21F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F02F11F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift */; };
-		7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F02F31F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib */; };
-		7F0F02FB1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F02FA1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift */; };
+		7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F02F31F13CDAD00007D50 /* ChoiceViewController.xib */; };
 		7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */; };
 		7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */; };
 		7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03031F14CE2300007D50 /* CollapsableCell.xib */; };
@@ -578,7 +590,6 @@
 		7FBC3E891F38B9D1005BD772 /* UpSyncMediaOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */; };
 		7FBFBC0F1FC731FB007B6D2D /* WeeklyChoicesProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFBC0E1FC731FB007B6D2D /* WeeklyChoicesProvider.swift */; };
 		7FBFBC111FC7320B007B6D2D /* WeeklyChoicesViewData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFBC101FC7320B007B6D2D /* WeeklyChoicesViewData.swift */; };
-		7FBFBC131FC73F18007B6D2D /* WeeklyChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FBFBC121FC73F18007B6D2D /* WeeklyChoice.swift */; };
 		7FC81E871F9F377600564292 /* DateComponentsFormatter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */; };
 		7FC86A051F97A511003DC84D /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FC86A041F97A511003DC84D /* ImagePicker.swift */; };
 		7FCF0EF71FD9774C00138D77 /* MyUniverseContentView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7FCF0EF61FD9774C00138D77 /* MyUniverseContentView.xib */; };
@@ -1053,7 +1064,6 @@
 		CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC02E14A1F279E6700134574 /* SettingsCalendarListViewController.swift */; };
 		CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */; };
 		CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */; };
-		CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */; };
 		CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */; };
 		CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC13E23C1EB1D72400C3CE46 /* LibraryCollectionViewCell.swift */; };
 		CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC13E23D1EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib */; };
@@ -1571,16 +1581,16 @@
 		3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentNotesViewController.swift; sourceTree = "<group>"; };
 		3691176C20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareContentSubHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SettingsAdmin.storyboard; sourceTree = "<group>"; };
-		3693539922983AB9008BBB72 /* PrepareCheckListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListPresenter.swift; sourceTree = "<group>"; };
-		3693539A22983AB9008BBB72 /* PrepareCheckListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListWorker.swift; sourceTree = "<group>"; };
-		3693539B22983AB9008BBB72 /* PrepareCheckListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListRouter.swift; sourceTree = "<group>"; };
-		3693539C22983AB9008BBB72 /* PrepareCheckListInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListInterface.swift; sourceTree = "<group>"; };
-		3693539D22983AB9008BBB72 /* PrepareCheckListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListViewController.swift; sourceTree = "<group>"; };
-		3693539E22983AB9008BBB72 /* PrepareCheckListInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListInteractor.swift; sourceTree = "<group>"; };
-		3693539F22983AB9008BBB72 /* PrepareCheckList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckList.swift; sourceTree = "<group>"; };
-		369353A022983AB9008BBB72 /* PrepareCheckListConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListConfigurator.swift; sourceTree = "<group>"; };
-		369353A922984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrePareCheckListContentItemTableViewCell.swift; sourceTree = "<group>"; };
-		369353AA22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrePareCheckListContentItemTableViewCell.xib; sourceTree = "<group>"; };
+		3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsPresenter.swift; sourceTree = "<group>"; };
+		3693539A22983AB9008BBB72 /* PrepareResultsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsWorker.swift; sourceTree = "<group>"; };
+		3693539B22983AB9008BBB72 /* PrepareResultsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsRouter.swift; sourceTree = "<group>"; };
+		3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsInterface.swift; sourceTree = "<group>"; };
+		3693539D22983AB9008BBB72 /* PrepareResultsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsViewController.swift; sourceTree = "<group>"; };
+		3693539E22983AB9008BBB72 /* PrepareResultInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultInteractor.swift; sourceTree = "<group>"; };
+		3693539F22983AB9008BBB72 /* PrepareResults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResults.swift; sourceTree = "<group>"; };
+		369353A022983AB9008BBB72 /* PrepareResultsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsConfigurator.swift; sourceTree = "<group>"; };
+		369353A922984267008BBB72 /* PrepareResultsContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsContentTableViewCell.swift; sourceTree = "<group>"; };
+		369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsContentTableViewCell.xib; sourceTree = "<group>"; };
 		36939B8A1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideDailyPrepTableViewCell.swift; sourceTree = "<group>"; };
 		36939B8B1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideDailyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		3693F62221625E8700E286A9 /* AppContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppContent.swift; sourceTree = "<group>"; };
@@ -1598,8 +1608,8 @@
 		369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RelatedStrategyTableViewCell.xib; sourceTree = "<group>"; };
 		369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReminderTableViewCell.swift; sourceTree = "<group>"; };
 		369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ReminderTableViewCell.xib; sourceTree = "<group>"; };
-		369ADFFF22A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareCheckListResultView.swift; sourceTree = "<group>"; };
-		369AE00122A6CA7500DE4FA0 /* PrepareCheckListResultView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareCheckListResultView.xib; sourceTree = "<group>"; };
+		369ADFFF22A6CA5E00DE4FA0 /* PrepareResultsInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareResultsInfoView.swift; sourceTree = "<group>"; };
+		369AE00122A6CA7500DE4FA0 /* PrepareResultsInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsInfoView.xib; sourceTree = "<group>"; };
 		369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHeaderView.swift; sourceTree = "<group>"; };
 		369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditHeaderView.xib; sourceTree = "<group>"; };
 		36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerOverlay.swift; sourceTree = "<group>"; };
@@ -1618,6 +1628,11 @@
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
 		36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		36CB720522B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrepareCheckListWorker+ItemMaker.swift"; sourceTree = "<group>"; };
+		36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentCollection+Ext.swift"; sourceTree = "<group>"; };
+		36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentItem+Ext.swift"; sourceTree = "<group>"; };
+		36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Ext.swift"; sourceTree = "<group>"; };
+		36CB721722B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarEvent+Ext.swift"; sourceTree = "<group>"; };
 		36D0C18A22B01567004BB8B8 /* UserInputTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserInputTableViewCell.swift; sourceTree = "<group>"; };
 		36D0C18B22B01567004BB8B8 /* UserInputTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = UserInputTableViewCell.xib; sourceTree = "<group>"; };
 		36D2F2FA229E88FF004BA110 /* CalendarEventsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventsTableViewCell.swift; sourceTree = "<group>"; };
@@ -1657,6 +1672,14 @@
 		36E4B7B3219EC19C00049EE8 /* TutorialViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialViewController.xib; sourceTree = "<group>"; };
 		36E4B7B5219EC6EE00049EE8 /* TutorialCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCollectionViewCell.swift; sourceTree = "<group>"; };
 		36E4B7B6219EC6EE00049EE8 /* TutorialCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TutorialCollectionViewCell.xib; sourceTree = "<group>"; };
+		36E4CF0122BC51BC009A2DF7 /* ChoicePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoicePresenter.swift; sourceTree = "<group>"; };
+		36E4CF0222BC51BC009A2DF7 /* ChoiceWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceWorker.swift; sourceTree = "<group>"; };
+		36E4CF0322BC51BC009A2DF7 /* ChoiceRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceRouter.swift; sourceTree = "<group>"; };
+		36E4CF0422BC51BC009A2DF7 /* ChoiceInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceInterface.swift; sourceTree = "<group>"; };
+		36E4CF0522BC51BC009A2DF7 /* ChoiceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceViewController.swift; sourceTree = "<group>"; };
+		36E4CF0622BC51BC009A2DF7 /* ChoiceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceInteractor.swift; sourceTree = "<group>"; };
+		36E4CF0722BC51BC009A2DF7 /* ChoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceModel.swift; sourceTree = "<group>"; };
+		36E4CF0822BC51BC009A2DF7 /* ChoiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceConfigurator.swift; sourceTree = "<group>"; };
 		36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewCell.swift; sourceTree = "<group>"; };
 		36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComponentCollectionViewCell.xib; sourceTree = "<group>"; };
 		36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContentView.swift; sourceTree = "<group>"; };
@@ -1676,6 +1699,7 @@
 		36E86D55227091CB00371C67 /* StrategyContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyContentTableViewCell.swift; sourceTree = "<group>"; };
 		36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyContentTableViewCell.xib; sourceTree = "<group>"; };
 		36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKCalendar+Convenience.swift"; sourceTree = "<group>"; };
+		36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+Convenience.swift"; sourceTree = "<group>"; };
 		36FA332A22C36FD200A92C92 /* QuestionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPresenter.swift; sourceTree = "<group>"; };
 		36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemLearnIntermediary.swift; sourceTree = "<group>"; };
 		36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemNotificationIntermediary.swift; sourceTree = "<group>"; };
@@ -1821,9 +1845,7 @@
 		7F0888801F0A4B96005CE966 /* Partner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Partner.swift; sourceTree = "<group>"; };
 		7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnerIntermediary.swift; sourceTree = "<group>"; };
 		7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+FileIO.swift"; sourceTree = "<group>"; };
-		7F0F02F11F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectWeeklyChoicesViewController.swift; sourceTree = "<group>"; };
-		7F0F02F31F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SelectWeeklyChoicesViewController.xib; sourceTree = "<group>"; };
-		7F0F02FA1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectWeeklyChoicesDataModel.swift; sourceTree = "<group>"; };
+		7F0F02F31F13CDAD00007D50 /* ChoiceViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ChoiceViewController.xib; sourceTree = "<group>"; };
 		7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableCell.swift; sourceTree = "<group>"; };
 		7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollapsableContentCell.swift; sourceTree = "<group>"; };
 		7F0F03031F14CE2300007D50 /* CollapsableCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = CollapsableCell.xib; sourceTree = "<group>"; };
@@ -1890,7 +1912,6 @@
 		7FBC3E881F38B9D1005BD772 /* UpSyncMediaOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpSyncMediaOperation.swift; sourceTree = "<group>"; };
 		7FBFBC0E1FC731FB007B6D2D /* WeeklyChoicesProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesProvider.swift; sourceTree = "<group>"; };
 		7FBFBC101FC7320B007B6D2D /* WeeklyChoicesViewData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesViewData.swift; sourceTree = "<group>"; };
-		7FBFBC121FC73F18007B6D2D /* WeeklyChoice.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeeklyChoice.swift; sourceTree = "<group>"; };
 		7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateComponentsFormatter+Convenience.swift"; sourceTree = "<group>"; };
 		7FC86A041F97A511003DC84D /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		7FCF0EF61FD9774C00138D77 /* MyUniverseContentView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyUniverseContentView.xib; sourceTree = "<group>"; };
@@ -2350,7 +2371,6 @@
 		CC02E14A1F279E6700134574 /* SettingsCalendarListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsCalendarListViewController.swift; sourceTree = "<group>"; };
 		CC05CB741EDEC6D700D15ABC /* CGPoint+Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "CGPoint+Convenience.swift"; sourceTree = "<group>"; };
 		CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Create.swift"; sourceTree = "<group>"; };
-		CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeeklyChoicesCoordinator.swift; sourceTree = "<group>"; };
 		CC0FF8D91EA790750028D64F /* PartnersCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PartnersCoordinator.swift; sourceTree = "<group>"; };
 		CC13E23C1EB1D72400C3CE46 /* LibraryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LibraryCollectionViewCell.swift; sourceTree = "<group>"; };
 		CC13E23D1EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LibraryLatestPostCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -3078,29 +3098,14 @@
 			name = "3.0 Main Navigation";
 			sourceTree = "<group>";
 		};
-		3693539822983A78008BBB72 /* PrepareCheckList */ = {
+		3693539822983A78008BBB72 /* PrepareResults */ = {
 			isa = PBXGroup;
 			children = (
-				369353A022983AB9008BBB72 /* PrepareCheckListConfigurator.swift */,
-				3693539E22983AB9008BBB72 /* PrepareCheckListInteractor.swift */,
-				3693539C22983AB9008BBB72 /* PrepareCheckListInterface.swift */,
-				3693539F22983AB9008BBB72 /* PrepareCheckList.swift */,
-				3693539922983AB9008BBB72 /* PrepareCheckListPresenter.swift */,
-				3693539B22983AB9008BBB72 /* PrepareCheckListRouter.swift */,
-				3693539D22983AB9008BBB72 /* PrepareCheckListViewController.swift */,
-				3693539A22983AB9008BBB72 /* PrepareCheckListWorker.swift */,
-				369353A922984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift */,
-				369353AA22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib */,
-				369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */,
-				369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */,
-				369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */,
-				369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */,
-				369ADFFF22A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift */,
-				369AE00122A6CA7500DE4FA0 /* PrepareCheckListResultView.xib */,
-				369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */,
-				369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */,
+				36CB720422B855E400C99AFC /* Core */,
+				36CB720322B855D100C99AFC /* Cells */,
+				36CB720222B855B800C99AFC /* Views */,
 			);
-			name = PrepareCheckList;
+			name = PrepareResults;
 			sourceTree = "<group>";
 		};
 		3693F62121625E6700E286A9 /* AppContent */ = {
@@ -3138,6 +3143,57 @@
 				36D348ED216BAA86006C8D10 /* PrepareNotesHeaderView.xib */,
 			);
 			name = Notes;
+			sourceTree = "<group>";
+		};
+		36CB720222B855B800C99AFC /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				369ADFFF22A6CA5E00DE4FA0 /* PrepareResultsInfoView.swift */,
+				369AE00122A6CA7500DE4FA0 /* PrepareResultsInfoView.xib */,
+				369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */,
+				369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		36CB720322B855D100C99AFC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				369353A922984267008BBB72 /* PrepareResultsContentTableViewCell.swift */,
+				369353AA22984267008BBB72 /* PrepareResultsContentTableViewCell.xib */,
+				369ADFE122A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift */,
+				369ADFE222A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib */,
+				369ADFE522A6ABE700DE4FA0 /* ReminderTableViewCell.swift */,
+				369ADFE622A6ABE700DE4FA0 /* ReminderTableViewCell.xib */,
+			);
+			name = Cells;
+			sourceTree = "<group>";
+		};
+		36CB720422B855E400C99AFC /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				369353A022983AB9008BBB72 /* PrepareResultsConfigurator.swift */,
+				3693539E22983AB9008BBB72 /* PrepareResultInteractor.swift */,
+				3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */,
+				3693539F22983AB9008BBB72 /* PrepareResults.swift */,
+				3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */,
+				3693539B22983AB9008BBB72 /* PrepareResultsRouter.swift */,
+				3693539D22983AB9008BBB72 /* PrepareResultsViewController.swift */,
+				3693539A22983AB9008BBB72 /* PrepareResultsWorker.swift */,
+				36CB720522B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		36CB720922B8772300C99AFC /* qot_dal */ = {
+			isa = PBXGroup;
+			children = (
+				36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */,
+				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
+				36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */,
+				36CB721722B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift */,
+			);
+			name = qot_dal;
 			sourceTree = "<group>";
 		};
 		36D72EC6229C1B3600DE1184 /* PrepareEventSelection */ = {
@@ -3198,6 +3254,27 @@
 				36E4B7B3219EC19C00049EE8 /* TutorialViewController.xib */,
 			);
 			name = Tutorial;
+			sourceTree = "<group>";
+		};
+		36E4CF1122BC51C7009A2DF7 /* Choice */ = {
+			isa = PBXGroup;
+			children = (
+				36E4CF0822BC51BC009A2DF7 /* ChoiceConfigurator.swift */,
+				36E4CF0622BC51BC009A2DF7 /* ChoiceInteractor.swift */,
+				36E4CF0422BC51BC009A2DF7 /* ChoiceInterface.swift */,
+				36E4CF0722BC51BC009A2DF7 /* ChoiceModel.swift */,
+				36E4CF0122BC51BC009A2DF7 /* ChoicePresenter.swift */,
+				36E4CF0322BC51BC009A2DF7 /* ChoiceRouter.swift */,
+				36E4CF0522BC51BC009A2DF7 /* ChoiceViewController.swift */,
+				36E4CF0222BC51BC009A2DF7 /* ChoiceWorker.swift */,
+				7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */,
+				7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */,
+				7F0F03071F14FE9800007D50 /* CollapsableNode.swift */,
+				7F0F02F31F13CDAD00007D50 /* ChoiceViewController.xib */,
+				7F0F03031F14CE2300007D50 /* CollapsableCell.xib */,
+				7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */,
+			);
+			name = Choice;
 			sourceTree = "<group>";
 		};
 		36E6E3F2224938D8001BE9C7 /* transition */ = {
@@ -3874,22 +3951,6 @@
 			name = Partner;
 			sourceTree = "<group>";
 		};
-		7F0F02FC1F13D5D500007D50 /* Select Weekly Choices */ = {
-			isa = PBXGroup;
-			children = (
-				7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */,
-				7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */,
-				7F0F03071F14FE9800007D50 /* CollapsableNode.swift */,
-				7F0F02FA1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift */,
-				7F0F02F11F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift */,
-				7FBFBC121FC73F18007B6D2D /* WeeklyChoice.swift */,
-				7F0F03031F14CE2300007D50 /* CollapsableCell.xib */,
-				7F0F03051F14CE2F00007D50 /* CollapsableContentCell.xib */,
-				7F0F02F31F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib */,
-			);
-			name = "Select Weekly Choices";
-			sourceTree = "<group>";
-		};
 		7F1D3D231F8E28E70071D322 /* Log */ = {
 			isa = PBXGroup;
 			children = (
@@ -4316,16 +4377,16 @@
 		AC103E362285AF4700F426F0 /* Mindset Shifter Checklist */ = {
 			isa = PBXGroup;
 			children = (
-				AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */,
-				AC103E392285B27200F426F0 /* MindsetShifterChecklistWorker.swift */,
-				AC103E3A2285B27200F426F0 /* MindsetShifterChecklistRouter.swift */,
-				AC103E3B2285B27200F426F0 /* MindsetShifterChecklistInterface.swift */,
-				AC103E3C2285B27200F426F0 /* MindsetShifterChecklistViewController.swift */,
-				AC103E3D2285B27200F426F0 /* MindsetShifterChecklistInteractor.swift */,
-				AC103E3E2285B27200F426F0 /* MindsetShifterChecklistModel.swift */,
-				AC103E3F2285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift */,
-				AC103E482285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib */,
 				AC103E4B2285CD2C00F426F0 /* Cells */,
+				AC103E3F2285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift */,
+				AC103E3D2285B27200F426F0 /* MindsetShifterChecklistInteractor.swift */,
+				AC103E3B2285B27200F426F0 /* MindsetShifterChecklistInterface.swift */,
+				AC103E3E2285B27200F426F0 /* MindsetShifterChecklistModel.swift */,
+				AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */,
+				AC103E3A2285B27200F426F0 /* MindsetShifterChecklistRouter.swift */,
+				AC103E3C2285B27200F426F0 /* MindsetShifterChecklistViewController.swift */,
+				AC103E482285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib */,
+				AC103E392285B27200F426F0 /* MindsetShifterChecklistWorker.swift */,
 			);
 			name = "Mindset Shifter Checklist";
 			sourceTree = "<group>";
@@ -4706,13 +4767,14 @@
 			isa = PBXGroup;
 			children = (
 				9150411C20FDF2C700D43D18 /* Add Sensor */,
+				36E4CF1122BC51C7009A2DF7 /* Choice */,
 				CBE8808B1FE4368300670C10 /* Guide */,
 				DB680583218210E600C2FC69 /* MorningInterview */,
 				36FB012D20A63C8800472E6F /* PartnerEdit */,
 				3674FF1F20AADDED008EEB6C /* Partners Overview */,
 				E813F0A02130053700C0723E /* PDFReader */,
 				91F5BE3C2097573500E85A51 /* Permissions */,
-				3693539822983A78008BBB72 /* PrepareCheckList */,
+				3693539822983A78008BBB72 /* PrepareResults */,
 				36D72EC6229C1B3600DE1184 /* PrepareEventSelection */,
 				7F6567301FE13BE200A6CB7F /* ScreenHelp */,
 				913C7174209C61B2001C4185 /* Settings */,
@@ -4885,7 +4947,6 @@
 				CCE373091E8D32F800B79352 /* SidebarCoordinator.swift */,
 				CC143A501EC495CE001FB76E /* StatisticsCoordinator.swift */,
 				CCC0C4DA1E82BDEF002A8362 /* TabBarCoordinator.swift */,
-				CC0FF8D71EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift */,
 			);
 			name = Coordinators;
 			sourceTree = "<group>";
@@ -4932,7 +4993,6 @@
 				CBB4DD3E1EE08EB50071494A /* Prepare Chat */,
 				CBB4DD3A1EE08C250071494A /* Prepare Content */,
 				CBB4DD391EE08BC20071494A /* Prepare Events */,
-				7F0F02FC1F13D5D500007D50 /* Select Weekly Choices */,
 				36DADE771FA7869000EB00D4 /* SettingsAdmin */,
 				CC02E1471F2799E500134574 /* SettingsCalendarList */,
 				CC90EC991F3074A200A83DB9 /* SettingsChangePaasword */,
@@ -5058,6 +5118,7 @@
 		CBB4DD2F1EE0893F0071494A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				36CB720922B8772300C99AFC /* qot_dal */,
 				CC7682C71F28A85600F852A0 /* Array+Convenience.swift */,
 				368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */,
 				852988941F2F3E15003A36DF /* Bundle+Extensions.swift */,
@@ -5072,6 +5133,7 @@
 				7FC81E861F9F377600564292 /* DateComponentsFormatter+Convenience.swift */,
 				CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */,
 				CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */,
+				36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
 				7FB0886D1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift */,
 				AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */,
@@ -5379,6 +5441,7 @@
 				75496E9622BA700D00150C78 /* PopUpView */,
 				5F78962C22A9292800D2DBAD /* LoadingSkeleton */,
 				CB53F0D720235A9C007C624B /* Atomic.swift */,
+				9100195620F8A0E200049118 /* ExtensionsDataManager.swift */,
 				CB57589D205FD22E00EDC028 /* FadeContainerView.swift */,
 				CB8AA2C4205A850A0033F573 /* ISODate.swift */,
 				CB3029E72050335A00DD4440 /* KeyboardListener.swift */,
@@ -5395,12 +5458,11 @@
 				CBD791491E71797C0006C590 /* Typealiases.swift */,
 				7F42767C1F58665100AEE3D7 /* URLScheme.swift */,
 				7FE38DBC1F2210D60061E98F /* WaitBlockOperation.swift */,
-				9100195620F8A0E200049118 /* ExtensionsDataManager.swift */,
 				7F4276761F570DB600AEE3D7 /* WindowManager.swift */,
 				7F5A25AE1F3C4BB400A11466 /* Analytics */,
 				7F9217B31FD01BF400CAE9E0 /* Permissions */,
-				CB6637A7201A24E200A995D6 /* UserNotifications */,
 				DB5E5E5421763264006BA438 /* RestartRouteHandler */,
+				CB6637A7201A24E200A995D6 /* UserNotifications */,
 			);
 			name = Utils;
 			sourceTree = "<group>";
@@ -6171,7 +6233,7 @@
 				AC103E492285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
-				369353AC22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.xib in Resources */,
+				369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
 				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
 				36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */,
@@ -6280,7 +6342,7 @@
 				91086E502092044C0035DA1F /* SettingsCell.xib in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */,
-				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,
+				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				F9EB5E5F22BD20470085A03F /* DailyBriefStoryboard.storyboard in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
@@ -6306,7 +6368,7 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
-				369AE00222A6CA7500DE4FA0 /* PrepareCheckListResultView.xib in Resources */,
+				369AE00222A6CA7500DE4FA0 /* PrepareResultsInfoView.xib in Resources */,
 				CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */,
 				36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
@@ -6672,10 +6734,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				36CB721222B8ECF300C99AFC /* MyQotSupportFaqPresenter.swift in Sources */,
+				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
+				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
+				36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */,
 				5F78965522A929C100D2DBAD /* TwoLinesAndImage.swift in Sources */,
 				CB9B07531EF7FE410017F6C3 /* LearnCategoryListPage.swift in Sources */,
 				91086E48209202740035DA1F /* SettingsPresenter.swift in Sources */,
-				7F0F02FB1F13D3D900007D50 /* SelectWeeklyChoicesDataModel.swift in Sources */,
 				36376631223A66AF00C2C429 /* CoachInterface.swift in Sources */,
 				7FBFBC111FC7320B007B6D2D /* WeeklyChoicesViewData.swift in Sources */,
 				36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */,
@@ -6689,6 +6754,7 @@
 				F99DF60F2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift in Sources */,
 				36796A4420D3C49900B55429 /* SigningLoginConfigurator.swift in Sources */,
 				366183E72162793700634560 /* SupportFAQPresenter.swift in Sources */,
+				36CB721822B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift in Sources */,
 				CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */,
 				366AFD1120BD9F9300109F29 /* SigningEmailInteractor.swift in Sources */,
 				F9A8A01522967FA300DE3A9C /* ToolsItemsViewController.swift in Sources */,
@@ -6734,7 +6800,7 @@
 				36376652223A9CD300C2C429 /* AbstractLevelThreeViewController.swift in Sources */,
 				CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */,
 				CBB017BB1F9741F200CC1048 /* SyncTask.swift in Sources */,
-				369AE00022A6CA5E00DE4FA0 /* PrepareCheckListResultView.swift in Sources */,
+				369AE00022A6CA5E00DE4FA0 /* PrepareResultsInfoView.swift in Sources */,
 				36796A1F20D3C45200B55429 /* SigningCountryInterface.swift in Sources */,
 				5F62BEA6228AE74900852F7E /* MyQotSiriShortcutsPresenter.swift in Sources */,
 				CBBC00FC1FC5B10600C544D8 /* Filters.swift in Sources */,
@@ -6756,7 +6822,7 @@
 				36796A3720D3C47400B55429 /* SigningProfileDetailInteractor.swift in Sources */,
 				917164792101E43B00F42D8F /* SensorCollectionViewCell.swift in Sources */,
 				36796A5720D3C4B800B55429 /* SigningInfoModel.swift in Sources */,
-				369353A722983AB9008BBB72 /* PrepareCheckList.swift in Sources */,
+				369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
 				5F2E87432292F6D60082323E /* ProfileSettingsFooterView.swift in Sources */,
@@ -6788,6 +6854,7 @@
 				7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */,
 				ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */,
 				7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */,
+				36E4CF0E22BC51BD009A2DF7 /* ChoiceInteractor.swift in Sources */,
 				75496E9922BA702C00150C78 /* PopUpViewController.swift in Sources */,
 				D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */,
 				5F8A89992296DEF70011A05C /* MyVisionPresenter.swift in Sources */,
@@ -6853,6 +6920,7 @@
 				5F57F9F722831895003A9EDF /* MyQotAccountSettingsViewController.swift in Sources */,
 				CCAF03251E801B0E00015125 /* OldSettingsViewController.swift in Sources */,
 				5F360728228BECD70074FEC4 /* MyQotSensorsRouter.swift in Sources */,
+				36E4CF0B22BC51BD009A2DF7 /* ChoiceRouter.swift in Sources */,
 				914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */,
 				91086E5620920ABF0035DA1F /* SettingsModel.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
@@ -6890,6 +6958,7 @@
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
 				3637664D223A7DE100C2C429 /* LevelTwoModel.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
+				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
 				AC103E472285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift in Sources */,
 				366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */,
 				36376660223AA61100C2C429 /* LevelThreeViewController.swift in Sources */,
@@ -6907,8 +6976,10 @@
 				CBB4DD541EE151100071494A /* DownSyncImporter.swift in Sources */,
 				851676DD1F3C68F8007A1DD6 /* LearnReadMoreCell.swift in Sources */,
 				CB3333F020480E50009480DF /* ShareViewController.swift in Sources */,
+				36CB720822B86CF900C99AFC /* QDMContentCollection+Ext.swift in Sources */,
 				CB3BD4191F2877E50071F51E /* UpSyncable.swift in Sources */,
 				36D535DF20A711E800F1C2FC /* PartnerEditViewController.swift in Sources */,
+				36E4CF0D22BC51BD009A2DF7 /* ChoiceViewController.swift in Sources */,
 				36796A4720D3C49900B55429 /* SigningLoginPresenter.swift in Sources */,
 				365EC0B1224A314C0019AFF9 /* PresentComponentTransitionDriver.swift in Sources */,
 				7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */,
@@ -6918,7 +6989,7 @@
 				91086E52209204670035DA1F /* SettingsCell.swift in Sources */,
 				36667698207CF65000D2F5AD /* VisionGeneratorPresenter.swift in Sources */,
 				7F3A9CBB1FCDB8FF000F1744 /* UserFeedback.swift in Sources */,
-				369353AB22984267008BBB72 /* PrePareCheckListContentItemTableViewCell.swift in Sources */,
+				369353AB22984267008BBB72 /* PrepareResultsContentTableViewCell.swift in Sources */,
 				36796A5E20D3C4B800B55429 /* SigningInfoCollectionViewCell.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
 				5F78965122A929C100D2DBAD /* ThreeLinesAndButton.swift in Sources */,
@@ -6976,7 +7047,7 @@
 				36376600223A4BD200C2C429 /* KnowingInteractor.swift in Sources */,
 				3674FF2C20AADE7D008EEB6C /* PartnersOverviewViewController.swift in Sources */,
 				366183EE2162793800634560 /* SupportFAQConfigurator.swift in Sources */,
-				369353A422983AB9008BBB72 /* PrepareCheckListInterface.swift in Sources */,
+				369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */,
@@ -6987,6 +7058,7 @@
 				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
+				36CB720622B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift in Sources */,
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
 				5F78965822A929C100D2DBAD /* Loader.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
@@ -7052,7 +7124,7 @@
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				5F57F9E62282E741003A9EDF /* ContentService+Knowing.swift in Sources */,
 				7F2B77D11FC5C33700203D90 /* ToolsViewModel.swift in Sources */,
-				369353A622983AB9008BBB72 /* PrepareCheckListInteractor.swift in Sources */,
+				369353A622983AB9008BBB72 /* PrepareResultInteractor.swift in Sources */,
 				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,
 				3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */,
 				F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */,
@@ -7069,7 +7141,6 @@
 				CC27E0C01EB355BC003E5B7F /* SidebarTableViewCell.swift in Sources */,
 				CCA2DC671EF17BCE00D1DF6A /* LearnContentItemHeaderView.swift in Sources */,
 				CC37831C1F5EA91F007A16A3 /* ChartType.swift in Sources */,
-				7F0F02F21F13CCCB00007D50 /* SelectWeeklyChoicesViewController.swift in Sources */,
 				ACF0B944225FC41F008CFAEC /* DecisionTreePresenter.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				36376663223AA61100C2C429 /* LevelThreeConfigurator.swift in Sources */,
@@ -7149,6 +7220,7 @@
 				5F78966922A9478400D2DBAD /* SkeletonAnimationType.swift in Sources */,
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
+				369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */,
 				3637661E223A4C0400C2C429 /* MyQotProfileInterface.swift in Sources */,
 				369353A122983AB9008BBB72 /* PrepareCheckListPresenter.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
@@ -7188,7 +7260,6 @@
 				AC981A4721A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				36667696207CF64000D2F5AD /* VisionGeneratorModels.swift in Sources */,
-				7FBFBC131FC73F18007B6D2D /* WeeklyChoice.swift in Sources */,
 				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
 				DB12013C219AC99400BE0E81 /* QuestionaireCellIndicator.swift in Sources */,
@@ -7254,6 +7325,7 @@
 				362632471FD6A4210024C626 /* GuideTableViewCell.swift in Sources */,
 				365EC0B3224A33E60019AFF9 /* HomeViewController.swift in Sources */,
 				3674FF2920AADE7D008EEB6C /* PartnersOverviewWorker.swift in Sources */,
+				36E4CF0A22BC51BD009A2DF7 /* ChoiceWorker.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				CB9442251FD80B5700E2B122 /* AppState.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
@@ -7290,7 +7362,7 @@
 				915AFC70207B8E35008A223F /* UIViewcontroller+UIImpactFeedbackGenerator.swift in Sources */,
 				CC02E1461F27996800134574 /* SettingsCalendarListCoordinator.swift in Sources */,
 				36083829225F3ED000664B9B /* ArticleInterface.swift in Sources */,
-				369353A222983AB9008BBB72 /* PrepareCheckListWorker.swift in Sources */,
+				369353A222983AB9008BBB72 /* PrepareResultsWorker.swift in Sources */,
 				7F691C551F0D19AE00E2C180 /* MyToBeVision.swift in Sources */,
 				CBC1DC3B1F14D9FD00F6D056 /* UserSetting+Convenience.swift in Sources */,
 				CBAF6FD81F2B88E500E57426 /* UpSyncData.swift in Sources */,
@@ -7303,6 +7375,7 @@
 				CBCCF3941F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* ArticleCollectionViewController.swift in Sources */,
+				36E4CF1022BC51BD009A2DF7 /* ChoiceConfigurator.swift in Sources */,
 				CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */,
 				CBCCF3961F7E43EF000E4440 /* ChatViewHeaderFooter.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
@@ -7311,6 +7384,7 @@
 				36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */,
 				DB68059D218210E700C2FC69 /* MorningInterviewConfiguator.swift in Sources */,
 				5F7BE79822899F2B00BA5DCF /* MyQotAboutUsPresenter.swift in Sources */,
+				36E4CF0F22BC51BD009A2DF7 /* ChoiceModel.swift in Sources */,
 				F9A8A0192296800000DE3A9C /* ToolsItemsWorker.swift in Sources */,
 				DB680596218210E700C2FC69 /* MorningInterviewWorker.swift in Sources */,
 				5F8A89972296DEEC0011A05C /* MyVisionInteractor.swift in Sources */,
@@ -7379,7 +7453,7 @@
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
 				AC1A40F422A573F80022156C /* SolveDayPlanTableViewCell.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,
-				369353A522983AB9008BBB72 /* PrepareCheckListViewController.swift in Sources */,
+				369353A522983AB9008BBB72 /* PrepareResultsViewController.swift in Sources */,
 				366AFD0E20BD9F9300109F29 /* SigningEmailRouter.swift in Sources */,
 				DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */,
 				7F3A9CC91FCEFED1000F1744 /* MyUniverseViewController.swift in Sources */,
@@ -7396,7 +7470,7 @@
 				AC1A40DA22A54EB70022156C /* SolveResultsPresenter.swift in Sources */,
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
 				ACF0B948225FC41F008CFAEC /* DecisionTreeViewController.swift in Sources */,
-				369353A822983AB9008BBB72 /* PrepareCheckListConfigurator.swift in Sources */,
+				369353A822983AB9008BBB72 /* PrepareResultsConfigurator.swift in Sources */,
 				CB3437601EFD675900D89D4F /* QuestionIntermediary.swift in Sources */,
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */,
@@ -7483,6 +7557,7 @@
 				F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,
 				5F62BEAA228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift in Sources */,
+				36CB721422B8FA5B00C99AFC /* ContentService+Ext.swift in Sources */,
 				CBDB98F41E7B000A003EC73F /* NotificationHandler.swift in Sources */,
 				3637660E223A4BEC00C2C429 /* DailyBriefInterface.swift in Sources */,
 				CBC1DC351F14D34000F6D056 /* SettingValue.swift in Sources */,
@@ -7497,6 +7572,7 @@
 				7F08887F1F0A4101005CE966 /* PartnerService.swift in Sources */,
 				F95B9238228EAE82000DEAEC /* ToolsViewController.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
+				36E4CF0C22BC51BD009A2DF7 /* ChoiceInterface.swift in Sources */,
 				36667692207CF60C00D2F5AD /* VisionGeneratorConfigurator.swift in Sources */,
 				36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
@@ -7544,7 +7620,7 @@
 				366183EB2162793700634560 /* SupportFAQViewController.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* StatisticsService.swift in Sources */,
 				CB34376B1EFE799D00D89D4F /* ContentCategory+Convenience.swift in Sources */,
-				369353A322983AB9008BBB72 /* PrepareCheckListRouter.swift in Sources */,
+				369353A322983AB9008BBB72 /* PrepareResultsRouter.swift in Sources */,
 				7FE38DCF1F2A48480061E98F /* NavigationItem.swift in Sources */,
 				7F3A9CCE1FCEFF05000F1744 /* MyUniverseProvider.swift in Sources */,
 				36796A5820D3C4B800B55429 /* SigningInfoRouter.swift in Sources */,
@@ -7555,6 +7631,7 @@
 				36376676223BFF3800C2C429 /* StrategyListWorker.swift in Sources */,
 				360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */,
 				369ADFE322A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift in Sources */,
+				36E4CF0922BC51BD009A2DF7 /* ChoicePresenter.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
 				5F7BE7A22289A93300BA5DCF /* ContentService+AboutUs.swift in Sources */,
@@ -7633,6 +7710,7 @@
 				AC103E442285B27200F426F0 /* MindsetShifterChecklistViewController.swift in Sources */,
 				36796A2420D3C45200B55429 /* SigningCountryViewController.swift in Sources */,
 				F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */,
+				36CB720B22B8775B00C99AFC /* QDMContentItem+Ext.swift in Sources */,
 				7F3A9CC01FCDC894000F1744 /* ArticleCollectionProvider.swift in Sources */,
 				D5B761871EE6B19C00AE178B /* SpacingInLabel.swift in Sources */,
 				CB2880241E7051710067890A /* AppCoordinator.swift in Sources */,

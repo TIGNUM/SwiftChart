@@ -17,10 +17,13 @@ final class DecisionTreeWorker {
 
     private let services: Services
     private var _prepareBenefits: String?
+    private var prepareKey: Prepare.Key = .perceived
     private var _selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     private var answerFilter: String?
     private var _targetContentID: Int = 0
+    private var visionText: String? = nil
     let type: DecisionTreeType
+    weak var prepareDelegate: PrepareResultsDelegatge?
 
     // MARK: - Init
 
@@ -46,7 +49,7 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
             answerFilter = nil
             return result
         }
-        let keyFilter = "_relationship_"
+        let keyFilter: DecisionTreeModel.Filter = .FILTER_RELATIONSHIP
         if currentQuestion?.key?.contains("prepare_peak_prep_") == true {
             return decisionTree?.selectedAnswers.compactMap { $0.answer }.flatMap { $0.keys }.filter { $0.contains(keyFilter) }.first
         }
@@ -71,8 +74,11 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         }
     }
 
-    var userHasToBeVision: Bool {
-        return services.userService.myToBeVision()?.text != nil && services.userService.myToBeVision()?.text?.trimmed.isEmpty == false
+    func userHasToBeVision(completion: @escaping ((Bool)) -> Void) {
+        qot_dal.UserService.main.getMyToBeVision { [weak self] (vision, status, _) in
+            self?.visionText = vision?.text
+            completion(status)
+        }
     }
 
     var selectedAnswers: [DecisionTreeModel.SelectedAnswer] {
@@ -84,6 +90,14 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         }
     }
 
+    func didUpdatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer]) {
+        prepareDelegate?.didUpdateIntentions(answers, prepareKey)
+    }
+
+    func didUpdateBenefits(_ benefits: String) {
+        prepareDelegate?.didUpdateBenefits(benefits)
+    }
+
     /// Returns the first question in order to start the decision tree
     func fetchFirstQuestion() -> Question? {
         switch type {
@@ -91,12 +105,15 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         case .mindsetShifter: return services.questionsService.mindsetShifterIntroQuestion()
         case .mindsetShifterTBV: return services.questionsService.mindsetShifterTBV()
         case .prepare: return services.questionsService.prepareIntro()
-        case .prepareIntensions(let selectedAnswers, let answerFilter, let questionID):
+        case .prepareIntensions(let selectedAnswers, let answerFilter, let key, let delegate):
             self.answerFilter = answerFilter
             self.selectedAnswers = selectedAnswers
-            return services.questionsService.question(id: questionID)
-        case .prepareBenefits(let benefits, let questionId):
+            self.prepareKey = key
+            self.prepareDelegate = delegate
+            return services.questionsService.question(id: key.questionID)
+        case .prepareBenefits(let benefits, let questionId, let delegate):
             prepareBenefits = benefits
+            prepareDelegate = delegate
             return services.questionsService.question(id: questionId)
         case .solve: return services.questionsService.solveIntro()
         }

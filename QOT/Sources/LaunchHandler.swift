@@ -54,9 +54,6 @@ final class LaunchHandler {
         case .fitbit: fitbit(accessToken: scheme.queryParameter(url: url))
         case .preparation: preparation(localID: url.absoluteString.components(separatedBy: scheme.queryName).last)
         case .randomContent: randomContent(url: url, scheme: scheme, guideItem: guideItem)
-        case .weeklyChoices: weeklyChoiches()
-        case .meChoices: weeklyChoiches()
-        case .weeklyChoicesReminder: weeklyChoicesReminder()
         case .myPreps: navigate(to: scheme.destination)
         case .toBeVision: toBeVision(articleItemController: articleItemController, options: options)
         case .weeklyPeakPerformance: navigate(to: scheme.destination)
@@ -232,44 +229,6 @@ extension LaunchHandler {
         } else {
             appDelegate.appCoordinator.presentMorningInterview(groupID: groupIDIntValue, date: date)
         }
-    }
-}
-
-// MARK: - Weekly Choices
-
-extension LaunchHandler {
-
-    func weeklyChoicesReminder() {
-        appDelegate.appCoordinator.presentWeeklyChoicesReminder()
-    }
-
-    func weeklyChoiches(completion: (() -> Void)? = nil) {
-        let dates = startEndDate()
-        appDelegate.appCoordinator.presentWeeklyChoices(forStartDate: dates.startDate,
-                                                        endDate: dates.endDate,
-                                                        completion: completion)
-    }
-
-    func selectStrategies(relatedStrategies: [ContentCollection],
-                          selectedIDs: [Int],
-                          prepareContentController: PrepareContentViewController,
-                          completion: ((_ selectedStrategies: [WeeklyChoice], _ syncManager: SyncManager) -> Void)?) {
-        appDelegate.appCoordinator.presentRelatedStrategies(relatedStrategies: relatedStrategies,
-                                                            selectedIDs: selectedIDs,
-                                                            prepareContentController: prepareContentController,
-                                                            completion: completion)
-    }
-
-    private func startEndDate() -> (startDate: Date, endDate: Date) {
-        let calendar = Calendar.sharedUTC
-        var dateComponents = calendar.dateComponents([.year, .month, .weekOfYear, .weekday], from: Date())
-        dateComponents.weekOfYear! += 1
-        dateComponents.weekday! = 1
-        let startDate = calendar.date(from: dateComponents)!
-        dateComponents.weekOfYear! += 1
-        let endDate = calendar.date(from: dateComponents)!
-
-        return (startDate: startDate, endDate: endDate)
     }
 }
 

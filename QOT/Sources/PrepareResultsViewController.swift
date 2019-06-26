@@ -1,5 +1,5 @@
 //
-//  PrepareCheckListViewController.swift
+//  PrepareResultsViewController.swift
 //  QOT
 //
 //  Created by karmic on 24.05.19.
@@ -8,23 +8,26 @@
 
 import UIKit
 import Anchorage
+import qot_dal
 
-protocol PrepareCheckListDelegatge: class {
+protocol PrepareResultsDelegatge: class {
     func dismissResultView()
     func openEditStrategyView()
+    func didChangeReminderValue(for type: ReminderType, value isOn: Bool)
+    func reloadData()
+    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key)
+    func didUpdateBenefits(_ benefits: String)
 }
 
-final class PrepareCheckListViewController: UIViewController {
+final class PrepareResultsViewController: UIViewController {
 
     // MARK: - Properties
 
-    var interactor: PrepareCheckListInteractorInterface?
-    private var resultView: PrepareCheckListResultView?
+    var interactor: PrepareResultsInteractorInterface?
+    private var resultView: PrepareResultsInfoView?
 
     private lazy var tableView: UITableView = {
-        return UITableView(style: .grouped,
-                           delegate: self,
-                           dataSource: self)
+        return UITableView(style: .grouped, delegate: self, dataSource: self)
     }()
 
     private lazy var doneButton: UIButton = {
@@ -62,7 +65,7 @@ final class PrepareCheckListViewController: UIViewController {
 
     // MARK: - Init
 
-    init(configure: Configurator<PrepareCheckListViewController>) {
+    init(configure: Configurator<PrepareResultsViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
     }
@@ -79,21 +82,12 @@ final class PrepareCheckListViewController: UIViewController {
 
 // MARK: - Private
 
-private extension PrepareCheckListViewController {
-    func contentItemCell(itemFormat: ContentItemFormat?,
+private extension PrepareResultsViewController {
+    func contentItemCell(format: ContentFormat,
                          title: String?,
-                         indexPath: IndexPath) -> PrePareCheckListContentItemTableViewCell {
-        let cell: PrePareCheckListContentItemTableViewCell = tableView.dequeueCell(for: indexPath)
-        let attributedString = interactor?.attributedText(title: title, itemFormat: itemFormat)
-        let hasSeperator = interactor?.hasBottomSeperator(at: indexPath) ?? false
-        let hasListMark = interactor?.hasListMark(at: indexPath) ?? false
-        let hasHeaderMark = interactor?.hasHeaderMark(at: indexPath) ?? false
-        let isEditable = interactor?.isEditable(at: indexPath) ?? false
-        cell.configure(attributedString: attributedString,
-                       hasListMark: hasListMark,
-                       hasSeperator: hasSeperator,
-                       hasHeaderMark: hasHeaderMark,
-                       isEditable: isEditable)
+                         indexPath: IndexPath) -> PrepareResultsContentTableViewCell {
+        let cell: PrepareResultsContentTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(format, title: title, type: interactor?.getType ?? .LEVEL_DAILY)
         return cell
     }
 
@@ -101,6 +95,7 @@ private extension PrepareCheckListViewController {
         let cell: PrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
         let dateString = String(format: "%@ | %@", date.eventDateString, type ?? "")
         cell.configure(title: title ?? "", dateString: dateString)
+        cell.selectionStyle = .none
         return cell
     }
 
@@ -110,24 +105,36 @@ private extension PrepareCheckListViewController {
         return cell
     }
 
-    func reminderCell(title: String, subTitle: String, isOn: Bool, indexPath: IndexPath) -> ReminderTableViewCell {
+    func reminderCell(title: String,
+                      subTitle: String,
+                      isOn: Bool,
+                      indexPath: IndexPath,
+                      type: ReminderType) -> ReminderTableViewCell {
         let cell: ReminderTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(title: title, subTitle: subTitle, isOn: isOn)
+        cell.configure(title: title, subTitle: subTitle, isOn: isOn, type: type)
+        cell.delegate = self
         return cell
+    }
+
+    func shouldShowHeader(in section: Int) -> Bool {
+        return (section == Prepare.Daily.REMINDER_LIST && interactor?.getType == .LEVEL_DAILY) ||
+            (section == Prepare.Critical.REMINDER_LIST && interactor?.getType == .LEVEL_CRITICAL)
     }
 }
 
 // MARK: - Actions
 
-private extension PrepareCheckListViewController {
+private extension PrepareResultsViewController {
     @objc func dismissView() {
+        interactor?.deletePreparationIfNeeded()
         dismiss(animated: false) {
             NotificationCenter.default.post(name: .dismissCoachView, object: nil)
         }
     }
 
     @objc func saveAndContinue() {
-        let resultView = PrepareCheckListResultView.instantiateFromNib()
+        interactor?.didClickSaveAndContinue()
+        let resultView = PrepareResultsInfoView.instantiateFromNib()
         resultView.delegate = self
         view.addSubview(resultView)
         resultView.edgeAnchors == view.edgeAnchors
@@ -135,25 +142,30 @@ private extension PrepareCheckListViewController {
     }
 }
 
-// MARK: - PrepareCheckListViewControllerInterface
+// MARK: - PrepareResultsViewControllerInterface
 
-extension PrepareCheckListViewController: PrepareCheckListViewControllerInterface {
-    func registerTableViewCell(for checkListType: PrepareCheckListType) {
-        switch checkListType {
-        case .daily,
-             .peakPerformance:
-            tableView.registerDequeueable(PrePareCheckListContentItemTableViewCell.self)
+extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
+    func reloadView() {
+        tableView.reloadData()
+    }
+
+    func registerTableViewCell(_ type: QDMUserPreparation.Level) {
+        switch type {
+        case .LEVEL_DAILY,
+             .LEVEL_CRITICAL:
+            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
             tableView.registerDequeueable(PrepareEventTableViewCell.self)
             tableView.registerDequeueable(RelatedStrategyTableViewCell.self)
             tableView.registerDequeueable(ReminderTableViewCell.self)
-        case .onTheGo:
-            tableView.registerDequeueable(PrePareCheckListContentItemTableViewCell.self)
+        case .LEVEL_ON_THE_GO:
+            tableView.registerDequeueable(PrepareResultsContentTableViewCell.self)
+        default: return
         }
     }
 
     func setupView() {
         view.addSubview(tableView)
-        if interactor?.type == .onTheGo {
+        if interactor?.getType == .LEVEL_ON_THE_GO {
             doneButton.corner(radius: 20)
             view.addSubview(doneButton)
             doneButton.heightAnchor == 40
@@ -161,7 +173,7 @@ extension PrepareCheckListViewController: PrepareCheckListViewControllerInterfac
             doneButton.bottomAnchor == view.bottomAnchor - 24
             doneButton.rightAnchor == view.rightAnchor - 24
         }
-        if interactor?.type == .daily || interactor?.type == .peakPerformance {
+        if interactor?.getType == .LEVEL_DAILY || interactor?.getType == .LEVEL_CRITICAL {
             saveAndContinueButton.corner(radius: 20)
             view.addSubview(saveAndContinueButton)
             saveAndContinueButton.heightAnchor == 40
@@ -169,7 +181,7 @@ extension PrepareCheckListViewController: PrepareCheckListViewControllerInterfac
             saveAndContinueButton.bottomAnchor == view.bottomAnchor - 24
             saveAndContinueButton.rightAnchor == view.rightAnchor - 24
         }
-        if interactor?.type == .daily || interactor?.type == .peakPerformance {
+        if interactor?.getType == .LEVEL_DAILY || interactor?.getType == .LEVEL_CRITICAL {
             view.addSubview(closeeButton)
             closeeButton.heightAnchor == 40
             closeeButton.widthAnchor == 40
@@ -199,7 +211,7 @@ extension PrepareCheckListViewController: PrepareCheckListViewControllerInterfac
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
-extension PrepareCheckListViewController: UITableViewDelegate, UITableViewDataSource {
+extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return interactor?.sectionCount ?? 0
     }
@@ -211,41 +223,51 @@ extension PrepareCheckListViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let item = interactor?.item(at: indexPath) else { return UITableViewCell() }
         switch item {
-        case .contentItem(let itemFormat, let title):
-            return contentItemCell(itemFormat: itemFormat,
+        case .contentItem(let format, let title):
+            return contentItemCell(format: format,
                                    title: title,
                                    indexPath: indexPath)
         case .eventItem(let title, let date, let type):
             return eventCell(title: title, date: date, type: type, indexPath: indexPath)
         case .strategy(let title, let readingTime, _):
             return strategyCell(title: title, duration: readingTime, indexPath: indexPath)
-        case .reminder(let title, let subTitle, let isOn):
-            return reminderCell(title: title, subTitle: subTitle, isOn: isOn, indexPath: indexPath)
-        case .intentionContentItem(let itemFormat, let title, _, _, _):
-            return contentItemCell(itemFormat: itemFormat,
+        case .reminder(let title, let subTitle, let isOn, let type):
+            return reminderCell(title: title, subTitle: subTitle, isOn: isOn, indexPath: indexPath, type: type)
+        case .intentionContentItem(let format, let title, _):
+            return contentItemCell(format: format,
                                    title: title,
                                    indexPath: indexPath)
-        case .intentionItem(let selectedAnswer, _):
-            return contentItemCell(itemFormat: ContentItemFormat.listItem,
-                                   title: selectedAnswer.answer.title,
+        case .intentionItem(let title):
+            return contentItemCell(format: .listitem,
+                                   title: title,
                                    indexPath: indexPath)
-        case .benefitContentItem(let itemFormat, let title, _, _):
-            return contentItemCell(itemFormat: itemFormat,
+        case .benefitContentItem(let format, let title, _, _):
+            return contentItemCell(format: format,
                                    title: title,
                                    indexPath: indexPath)
         case .benefitItem(let benefits):
-            return contentItemCell(itemFormat: ContentItemFormat.listItem,
+            return contentItemCell(format: .listitem,
                                    title: benefits,
                                    indexPath: indexPath)
         }
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return interactor?.rowHeight(at: indexPath) ?? 0
+        guard let item = interactor?.item(at: indexPath) else { return 0 }
+        switch item {
+        case .contentItem(let format, _): return format.rowHeight
+        case .eventItem,
+             .strategy,
+             .reminder: return ContentFormat.unknown.rowHeight
+        case .intentionContentItem(let format, _, _): return format.rowHeight
+        case .intentionItem: return ContentFormat.listitem.rowHeight
+        case .benefitContentItem(let format, _, _, _): return format.rowHeight
+        case .benefitItem: return ContentFormat.listitem.rowHeight
+        }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if (section == 7 && interactor?.type == .daily) || (section == 15 && interactor?.type == .peakPerformance) {
+        if shouldShowHeader(in: section) {
             let view = EditHeaderView.instantiateFromNib()
             view.delegate = self
             return view
@@ -254,10 +276,7 @@ extension PrepareCheckListViewController: UITableViewDelegate, UITableViewDataSo
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-         if (section == 7 && interactor?.type == .daily) || (section == 15 && interactor?.type == .peakPerformance) {
-            return 44
-        }
-        return 0
+        return shouldShowHeader(in: section) ? 44 : 0
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -266,10 +285,8 @@ extension PrepareCheckListViewController: UITableViewDelegate, UITableViewDataSo
         switch item {
         case .strategy(_, _, let readMoreID):
             interactor?.presentRelatedArticle(readMoreID: readMoreID)
-        case .intentionContentItem(_, _, let selectedAnswers, let answerFilter, let questionID):
-            interactor?.presentEditIntensions(selectedAnswers: selectedAnswers,
-                                              answerFilter: answerFilter,
-                                              questionID: questionID)
+        case .intentionContentItem(_, _, let key):
+            interactor?.presentEditIntensions(key)
         case .benefitContentItem(_, _, let benefits, let questionID):
             interactor?.presentEditBenefits(benefits: benefits, questionID: questionID)
         default: return
@@ -277,9 +294,28 @@ extension PrepareCheckListViewController: UITableViewDelegate, UITableViewDataSo
     }
 }
 
-extension PrepareCheckListViewController: PrepareCheckListDelegatge {
+extension PrepareResultsViewController: PrepareResultsDelegatge {
+    func didUpdateIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
+        interactor?.updateIntentions(selectedAnswers, key)
+    }
+
+    func didUpdateBenefits(_ benefits: String) {
+        interactor?.updateBenefits(benefits)
+    }
+
+    func reloadData() {
+        tableView.reloadData()
+    }
+
+    func didChangeReminderValue(for type: ReminderType, value isOn: Bool) {
+        switch type {
+        case .iCal: interactor?.saveToICal = isOn
+        case .reminder: interactor?.setReminder = isOn
+        }
+    }
+
     func openEditStrategyView() {
-        interactor?.openEditStrategyView()
+        interactor?.presentEditStrategyView()
     }
 
     func dismissResultView() {
@@ -288,19 +324,21 @@ extension PrepareCheckListViewController: PrepareCheckListDelegatge {
     }
 }
 
-extension PrepareCheckListViewController: SelectWeeklyChoicesViewControllerDelegate {
+// MARK: - ChoiceViewControllerDelegate
 
-    func dismiss(viewController: SelectWeeklyChoicesViewController, selectedContent: [WeeklyChoice]) {
-        viewController.dismiss(animated: true, completion: nil)
+extension PrepareResultsViewController: ChoiceViewControllerDelegate {
+    func dismiss(_ viewController: UIViewController, selections: [Choice]) {
+        let selectedIds = selections.compactMap { $0.contentId }
+        viewController.dismiss(animated: true) { [weak self] in
+            self?.interactor?.updateStrategies(selectedIds: selectedIds)
+        }
     }
 
-    func dismiss(viewController: SelectWeeklyChoicesViewController) {
-        viewController.dismiss(animated: true, completion: nil)
+    func didTapRow(_ viewController: UIViewController, contentId: Int) {
+        interactor?.presentRelatedArticle(readMoreID: contentId)
     }
 
-    func didTapRow(_ viewController: SelectWeeklyChoicesViewController,
-                   contentCollection: ContentCollection,
-                   contentCategory: ContentCategory) {
-        interactor?.presentRelatedArticle(readMoreID: contentCollection.remoteID.value ?? 0)
+    func dismiss(_ viewController: UIViewController) {
+        viewController.dismiss(animated: true, completion: nil)
     }
 }

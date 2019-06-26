@@ -50,7 +50,6 @@ struct MyUniverseViewData {
 
     let profileImageURL: URL?
     let partners: [Partner]
-    let weeklyChoices: [WeeklyChoice]
     let myToBeVisionHeadline: String
     let myToBeVisionText: String
     let sectors: [Sector]
@@ -63,7 +62,6 @@ extension MyUniverseViewData: Equatable {
     static func == (lhs: MyUniverseViewData, rhs: MyUniverseViewData) -> Bool {
         return lhs.profileImageURL == rhs.profileImageURL
             && lhs.partners == rhs.partners
-            && lhs.weeklyChoices == rhs.weeklyChoices
             && lhs.myToBeVisionText == rhs.myToBeVisionText
             && lhs.myToBeVisionHeadline == rhs.myToBeVisionHeadline
             && lhs.sectors == rhs.sectors

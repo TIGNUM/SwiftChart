@@ -122,28 +122,6 @@ final class PreparationService {
         }
     }
 
-    func updatePreparationChecks(preparationID: String,
-                                 checkedIDs: [Int: Date?],
-                                 selectedStrategies: [WeeklyChoice]) throws {
-        let realm = try self.realmProvider.realm()
-        guard let preparation = realm.syncableObject(ofType: Preparation.self, localID: preparationID) else { return }
-        try deletePreparationChecks(preparation.checks, realm: realm)
-        var checks = [PreparationCheck]()
-        let contentIDs = selectedStrategies.compactMap { $0.contentCollectionID }
-        let relatedContents = mainRealm.syncableObjects(ofType: ContentCollection.self, remoteIDs: contentIDs)
-        let relatedContentItems = relatedContents.compactMap { $0.prepareItems }.compactMap { $0.first }
-        relatedContentItems.forEach { (item: ContentItem) in
-            var covered: Date?
-            if let coveredDate = checkedIDs[item.remoteID.value ?? 0] {
-                covered = coveredDate
-            }
-            checks.append(PreparationCheck(preparation: preparation, contentItem: item, covered: covered))
-        }
-        try realm.transactionSafeWrite {
-            preparation.checks.append(objectsIn: checks)
-        }
-    }
-
     func eraseData() {
         do {
             try mainRealm.transactionSafeWrite {

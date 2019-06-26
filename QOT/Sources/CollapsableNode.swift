@@ -7,23 +7,19 @@
 //
 
 struct CollapsableNode {
-
     let title: String?
-    var children: [WeeklyChoice]
+    var children: [Choice]
     var isOpen: Bool
 
     var numberOfRows: Int {
-        if isOpen == true {
-            return children.count
-        }
-        return 0
+        return isOpen == true ? children.count : 0
     }
 
-    func item(forRow row: Int) -> WeeklyChoice {
-        return children[row]
+    func item(forRow row: Int) -> Choice? {
+        return children.at(index: row)
     }
 
-    mutating func replace(_ item: WeeklyChoice, atRow row: Int) {
+    mutating func replace(_ item: Choice, atRow row: Int) {
         children[row] = item
     }
 }

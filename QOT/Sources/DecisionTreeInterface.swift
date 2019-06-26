@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol DecisionTreeViewControllerInterface: class {
     func load(_ decisionTree: DecisionTreeModel)
@@ -23,16 +24,9 @@ protocol DecisionTreeInteractorInterface: Interactor {
     var prepareBenefits: String? { get set }
     var relatedStrategyID: Int { get }
     var selectedanswers: [DecisionTreeModel.SelectedAnswer] { get }
-    var userHasToBeVision: Bool { get }
+    func userHasToBeVision(completion: @escaping ((Bool)) -> Void)
     func notifyCounterChanged(with value: Int, selectedAnswers: [Answer])
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer])
-    func openPrepareChecklist(with contentID: Int,
-                              selectedEvent: CalendarEvent?,
-                              eventType: String?,
-                              checkListType: PrepareCheckListType,
-                              relatedStrategyID: Int?,
-                              selectedAnswers: [DecisionTreeModel.SelectedAnswer],
-                              benefits: String?)
     func displayContent(with id: Int)
     func openMindsetShifterChecklist(from answers: [Answer])
     func streamContentItem(with id: Int)
@@ -43,16 +37,19 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func openSolveResults(from selectedAnswer: Answer)
     func openToBeVisionPage()
     func setTargetContentID(for answer: Answer)
+    func openPrepareResults(_ preparation: QDMUserPreparation,
+                            _ answers: [DecisionTreeModel.SelectedAnswer],
+                            _ relatedStrategyID: Int)
+    func openPrepareResults(_ contentId: Int)
+    func updatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer])
+    func updatePrepareBenefits(_ benefits: String)
 }
 
 protocol DecisionTreeRouterInterface {
-    func openPrepareChecklist(with contentID: Int,
-                              checkListType: PrepareCheckListType,
-                              selectedEvent: CalendarEvent?,
-                              eventType: String?,
-                              relatedStrategyID: Int?,
-                              selectedAnswers: [DecisionTreeModel.SelectedAnswer],
-                              benefits: String?)
+    func openPrepareResults(_ contentId: Int)
+    func openPrepareResults(_ preparation: QDMUserPreparation,
+                            _ answers: [DecisionTreeModel.SelectedAnswer],
+                            _ relatedStrategyID: Int)
     func openMindsetShifterChecklist(trigger: String,
                                      reactions: [String],
                                      lowPerformanceItems: [String],
@@ -76,7 +73,7 @@ protocol DecisionTreeModelInterface {
 }
 
 protocol DecisionTreeWorkerInterface {
-    var userHasToBeVision: Bool { get }
+    func userHasToBeVision(completion: @escaping ((Bool)) -> Void)
     func fetchNextQuestion(from targetID: Int, selectedAnswers: [Answer]) -> DecisionTreeNode
     func mediaURL(from contentItemID: Int) -> URL?
     func fetchFirstQuestion() -> Question?

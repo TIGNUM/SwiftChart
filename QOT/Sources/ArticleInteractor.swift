@@ -73,7 +73,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.relatedArticle(at: indexPath)
     }
 
-    func articleItem(at indexPath: IndexPath) -> Article.Item {
+    func articleItem(at indexPath: IndexPath) -> Article.Item? {
         return worker.articleItem(at: indexPath)
     }
 

@@ -10,7 +10,7 @@ import UIKit
 
 final class EditHeaderView: UIView {
 
-    weak var delegate: PrepareCheckListDelegatge?
+    weak var delegate: PrepareResultsDelegatge?
 
     static func instantiateFromNib() -> EditHeaderView {
         guard let resultView = R.nib.editHeaderView.instantiate(withOwner: self).first as? EditHeaderView else {

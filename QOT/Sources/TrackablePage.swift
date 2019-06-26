@@ -321,15 +321,6 @@ extension SearchViewController: TrackablePage {
     }
 }
 
-extension SelectWeeklyChoicesViewController: TrackablePage {
-    var pageName: PageName {
-        return .selectWeeklyChoices
-    }
-    var pageAssociatedObject: PageObject? {
-        return nil
-    }
-}
-
 extension SettingsViewController: TrackablePage {
     var pageName: PageName {
         return .settings

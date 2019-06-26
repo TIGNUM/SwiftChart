@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class PrepareEventSelectionInteractor {
 
@@ -38,15 +39,15 @@ extension PrepareEventSelectionInteractor: PrepareEventSelectionInteractorInterf
         return worker.rowCount
     }
 
-    func event(at indexPath: IndexPath) -> CalendarEvent? {
+    func event(at indexPath: IndexPath) -> QDMUserCalendarEvent? {
         return worker.event(at: indexPath)
     }
 
-    func dateString(for event: CalendarEvent?) -> String? {
+    func dateString(for event: QDMUserCalendarEvent?) -> String? {
         return worker.dateString(for: event)
     }
 
-    func didSelect(_ event: CalendarEvent) {
+    func didSelect(_ event: QDMUserCalendarEvent) {
         guard let answer = worker.selectedAnswer else { return }
         router.didSelectCalendarEvent(event, selectedAnswer: answer)
     }

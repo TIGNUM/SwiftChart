@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol PrepareEventSelectionTableViewCellInterface: class {}
 
@@ -14,11 +15,11 @@ protocol PrepareEventSelectionPresenterInterface {}
 
 protocol PrepareEventSelectionInteractorInterface: Interactor {
     var rowCount: Int { get }
-    func event(at indexPath: IndexPath) -> CalendarEvent?
-    func dateString(for event: CalendarEvent?) -> String?
-    func didSelect(_ event: CalendarEvent)
+    func event(at indexPath: IndexPath) -> QDMUserCalendarEvent?
+    func dateString(for event: QDMUserCalendarEvent?) -> String?
+    func didSelect(_ event: QDMUserCalendarEvent)
 }
 
 protocol PrepareEventSelectionRouterInterface {
-    func didSelectCalendarEvent(_ event: CalendarEvent, selectedAnswer: Answer)
+    func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: Answer)
 }

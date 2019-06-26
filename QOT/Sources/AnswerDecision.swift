@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import qot_dal
 
 final class AnswerDecision: Object {
 
@@ -37,6 +38,15 @@ final class AnswerDecision: Object {
         targetType = intermediary.targetType
         _targetID.value = intermediary.targetID
         _targetGroupID.value = intermediary.targetGroupID
+    }
+
+    convenience init(intermediary: QDMAnswerDecision) {
+        self.init()
+        id = intermediary.id ?? 0
+        questionGroupID = intermediary.questionGroupId ?? 0
+        targetType = intermediary.targetType
+        _targetID.value = intermediary.targetTypeId
+        _targetGroupID.value = intermediary.targetGroupId
     }
 
     func delete() {
