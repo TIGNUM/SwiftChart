@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+        <array key="SF-Pro-Display-Thin.otf">
+            <string>SFProDisplay-Thin</string>
+        </array>
+    </customFonts>
+    <scenes>
+        <!--Question View Controller-->
+        <scene sceneID="HSF-6M-wqI">
+            <objects>
+                <viewController storyboardIdentifier="questionViewControllerID" id="Sd0-wA-x0o" customClass="QuestionViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="dOc-91-p9R">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUESTIONS WITHOUT ANSWER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nfe-HK-610">
+                                <rect key="frame" x="20" y="457" width="374" height="24"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                                <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PrK-q5-X03">
+                                <rect key="frame" x="20" y="501" width="374" height="41"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="34"/>
+                                <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="OKA-fQ-p0p">
+                                <rect key="frame" x="20" y="436" width="15" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="15" id="Qsu-1R-93h"/>
+                                    <constraint firstAttribute="height" constant="1" id="g8l-Ik-6nE"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <constraints>
+                            <constraint firstItem="nfe-HK-610" firstAttribute="leading" secondItem="Dtn-8e-wfK" secondAttribute="leading" constant="20" id="1eI-qA-VZm"/>
+                            <constraint firstItem="Dtn-8e-wfK" firstAttribute="trailing" secondItem="nfe-HK-610" secondAttribute="trailing" constant="20" id="6ZH-22-k0j"/>
+                            <constraint firstItem="PrK-q5-X03" firstAttribute="leading" secondItem="Dtn-8e-wfK" secondAttribute="leading" constant="20" id="Enl-dX-UYr"/>
+                            <constraint firstItem="nfe-HK-610" firstAttribute="top" secondItem="OKA-fQ-p0p" secondAttribute="bottom" constant="20" id="L8q-4k-9S3"/>
+                            <constraint firstItem="PrK-q5-X03" firstAttribute="top" secondItem="nfe-HK-610" secondAttribute="bottom" constant="20" id="Tfj-2S-UAR"/>
+                            <constraint firstItem="OKA-fQ-p0p" firstAttribute="leading" secondItem="dOc-91-p9R" secondAttribute="leading" constant="20" id="cz1-jO-aEh"/>
+                            <constraint firstItem="Dtn-8e-wfK" firstAttribute="trailing" secondItem="PrK-q5-X03" secondAttribute="trailing" constant="20" id="mbP-uD-C4a"/>
+                            <constraint firstItem="Dtn-8e-wfK" firstAttribute="bottom" secondItem="PrK-q5-X03" secondAttribute="bottom" constant="320" id="vaX-1B-Ag1"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Dtn-8e-wfK"/>
+                    </view>
+                    <nil key="simulatedTopBarMetrics"/>
+                    <connections>
+                        <outlet property="questionLabel" destination="PrK-q5-X03" id="ugJ-WK-ZO3"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="m9E-ht-u0T" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-46.376811594202906" y="133.92857142857142"/>
+        </scene>
+    </scenes>
+</document>
