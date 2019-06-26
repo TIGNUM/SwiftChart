@@ -367,6 +367,7 @@
 		36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E86D55227091CB00371C67 /* StrategyContentTableViewCell.swift */; };
 		36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
+		36FA332B22C36FD200A92C92 /* QuestionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA332A22C36FD200A92C92 /* QuestionPresenter.swift */; };
 		36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */; };
 		36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */; };
 		36FEA86320A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */; };
@@ -496,10 +497,10 @@
 		5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */; };
 		5FF1A10322858A7400D76D55 /* ContentService+AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */; };
 		5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */; };
+		75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */; };
 		75496E9922BA702C00150C78 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496E9722BA702C00150C78 /* PopUpViewController.swift */; };
 		75496E9A22BA702C00150C78 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75496E9822BA702C00150C78 /* PopUpViewController.xib */; };
 		75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */; };
-		75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */; };
 		75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC684F22BCDA4300FF183D /* ImagePickerControllerAdapter.swift */; };
 		7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */; };
 		7F01A6241F98A9C1002C7B72 /* ImageCropper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */; };
@@ -1216,6 +1217,12 @@
 		F95B9244228EE2B2000DEAEC /* ToolsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */; };
 		F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */; };
 		F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */; };
+		F967269B22BCD97000B63FD7 /* QuestionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967269A22BCD97000B63FD7 /* QuestionConfigurator.swift */; };
+		F967269D22BCD98100B63FD7 /* QuestionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967269C22BCD98100B63FD7 /* QuestionInteractor.swift */; };
+		F967269F22BCD99400B63FD7 /* QuestionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F967269E22BCD99400B63FD7 /* QuestionInterface.swift */; };
+		F96726A522BCD9E300B63FD7 /* QuestionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96726A422BCD9E300B63FD7 /* QuestionRouter.swift */; };
+		F96726A722BCD9F700B63FD7 /* QuestionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96726A622BCD9F700B63FD7 /* QuestionViewController.swift */; };
+		F96726A922BCDA0F00B63FD7 /* QuestionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96726A822BCDA0F00B63FD7 /* QuestionWorker.swift */; };
 		F9838F3422AFA61F003F9394 /* ContentService+Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3322AFA61F003F9394 /* ContentService+Coach.swift */; };
 		F9838F3822AFBD6A003F9394 /* ContentService + Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3722AFBD6A003F9394 /* ContentService + Tools.swift */; };
 		F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */; };
@@ -1250,6 +1257,7 @@
 		F9C1D8C4220DDBB200B40DD2 /* SiriShortcutsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C1D8C2220DDBB200B40DD2 /* SiriShortcutsViewController.xib */; };
 		F9C1D8CB220DEA0E00B40DD2 /* SiriShortcutsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1D8C9220DEA0E00B40DD2 /* SiriShortcutsCell.swift */; };
 		F9C1D8CC220DEA0E00B40DD2 /* SiriShortcutsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C1D8CA220DEA0E00B40DD2 /* SiriShortcutsCell.xib */; };
+		F9EB5E5F22BD20470085A03F /* DailyBriefStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9EB5E5E22BD20470085A03F /* DailyBriefStoryboard.storyboard */; };
 		F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */; };
 		F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */; };
 		F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */; };
@@ -1668,6 +1676,7 @@
 		36E86D55227091CB00371C67 /* StrategyContentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyContentTableViewCell.swift; sourceTree = "<group>"; };
 		36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyContentTableViewCell.xib; sourceTree = "<group>"; };
 		36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKCalendar+Convenience.swift"; sourceTree = "<group>"; };
+		36FA332A22C36FD200A92C92 /* QuestionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPresenter.swift; sourceTree = "<group>"; };
 		36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemLearnIntermediary.swift; sourceTree = "<group>"; };
 		36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemNotificationIntermediary.swift; sourceTree = "<group>"; };
 		36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideWhatsHotTableViewCell.swift; sourceTree = "<group>"; };
@@ -1800,10 +1809,10 @@
 		5FF1A0FF22857BC500D76D55 /* MyQotAppSettingsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsModel.swift; sourceTree = "<group>"; };
 		5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AppSettings.swift"; sourceTree = "<group>"; };
 		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
+		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
 		75496E9722BA702C00150C78 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		75496E9822BA702C00150C78 /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionNullStateView.swift; sourceTree = "<group>"; };
-		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
 		75DC684F22BCDA4300FF183D /* ImagePickerControllerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerControllerAdapter.swift; sourceTree = "<group>"; };
 		7F01A6201F98A1E7002C7B72 /* ImagePickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerController.swift; sourceTree = "<group>"; };
 		7F01A6231F98A9C1002C7B72 /* ImageCropper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCropper.swift; sourceTree = "<group>"; };
@@ -2505,6 +2514,12 @@
 		F95B9243228EE2B2000DEAEC /* ToolsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableViewCell.xib; sourceTree = "<group>"; };
 		F95B9245228EE67B000DEAEC /* ToolsTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsTableHeaderView.swift; sourceTree = "<group>"; };
 		F95B9247228EE700000DEAEC /* ToolsTableHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsTableHeaderView.xib; sourceTree = "<group>"; };
+		F967269A22BCD97000B63FD7 /* QuestionConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionConfigurator.swift; sourceTree = "<group>"; };
+		F967269C22BCD98100B63FD7 /* QuestionInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInteractor.swift; sourceTree = "<group>"; };
+		F967269E22BCD99400B63FD7 /* QuestionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionInterface.swift; sourceTree = "<group>"; };
+		F96726A422BCD9E300B63FD7 /* QuestionRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionRouter.swift; sourceTree = "<group>"; };
+		F96726A622BCD9F700B63FD7 /* QuestionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionViewController.swift; sourceTree = "<group>"; };
+		F96726A822BCDA0F00B63FD7 /* QuestionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionWorker.swift; sourceTree = "<group>"; };
 		F9838F3322AFA61F003F9394 /* ContentService+Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Coach.swift"; sourceTree = "<group>"; };
 		F9838F3722AFBD6A003F9394 /* ContentService + Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService + Tools.swift"; sourceTree = "<group>"; };
 		F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsViewController.swift; sourceTree = "<group>"; };
@@ -2539,6 +2554,7 @@
 		F9C1D8C2220DDBB200B40DD2 /* SiriShortcutsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SiriShortcutsViewController.xib; sourceTree = "<group>"; };
 		F9C1D8C9220DEA0E00B40DD2 /* SiriShortcutsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsCell.swift; sourceTree = "<group>"; };
 		F9C1D8CA220DEA0E00B40DD2 /* SiriShortcutsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SiriShortcutsCell.xib; sourceTree = "<group>"; };
+		F9EB5E5E22BD20470085A03F /* DailyBriefStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DailyBriefStoryboard.storyboard; sourceTree = "<group>"; };
 		F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableViewCell.swift; sourceTree = "<group>"; };
 		F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTableViewCell.xib; sourceTree = "<group>"; };
 		F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableHeaderView.swift; sourceTree = "<group>"; };
@@ -2663,6 +2679,7 @@
 				36376605223A4BEC00C2C429 /* DailyBriefRouter.swift */,
 				36376607223A4BEC00C2C429 /* DailyBriefViewController.swift */,
 				36376604223A4BEC00C2C429 /* DailyBriefWorker.swift */,
+				F9EB5E5E22BD20470085A03F /* DailyBriefStoryboard.storyboard */,
 			);
 			name = "daily brief";
 			sourceTree = "<group>";
@@ -3039,6 +3056,7 @@
 				36376653223AA5EA00C2C429 /* levelThree */,
 				3637663E223A7DC400C2C429 /* levelTwo */,
 				F99DF60D2292E38F00341DAB /* TOOLS */,
+				F967269922BCD91A00B63FD7 /* question */,
 				36376625223A668F00C2C429 /* coach */,
 				363765F2223A4BB500C2C429 /* myQOT */,
 				363765F1223A4BA400C2C429 /* daily brief */,
@@ -5771,6 +5789,20 @@
 			name = tools;
 			sourceTree = "<group>";
 		};
+		F967269922BCD91A00B63FD7 /* question */ = {
+			isa = PBXGroup;
+			children = (
+				36FA332A22C36FD200A92C92 /* QuestionPresenter.swift */,
+				F967269A22BCD97000B63FD7 /* QuestionConfigurator.swift */,
+				F967269C22BCD98100B63FD7 /* QuestionInteractor.swift */,
+				F967269E22BCD99400B63FD7 /* QuestionInterface.swift */,
+				F96726A422BCD9E300B63FD7 /* QuestionRouter.swift */,
+				F96726A622BCD9F700B63FD7 /* QuestionViewController.swift */,
+				F96726A822BCDA0F00B63FD7 /* QuestionWorker.swift */,
+			);
+			name = question;
+			sourceTree = "<group>";
+		};
 		F9838F3122AFA5EE003F9394 /* others */ = {
 			isa = PBXGroup;
 			children = (
@@ -6250,6 +6282,7 @@
 				5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* SelectWeeklyChoicesViewController.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
+				F9EB5E5F22BD20470085A03F /* DailyBriefStoryboard.storyboard in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
@@ -6675,6 +6708,7 @@
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				CC143A4F1EC47810001FB76E /* ChartViewModel.swift in Sources */,
 				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
+				36FA332B22C36FD200A92C92 /* QuestionPresenter.swift in Sources */,
 				ACB449962260EB4F00B0E79F /* DecisionTreeButton.swift in Sources */,
 				365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */,
 				E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */,
@@ -6905,6 +6939,7 @@
 				CC34BD561ECF3863007CB365 /* UserCredentials.swift in Sources */,
 				7F3A9CCC1FCEFEFB000F1744 /* MyUniverseViewData.swift in Sources */,
 				CB810E6E1EF180DC0043E3E5 /* PageTrack.swift in Sources */,
+				F967269D22BCD98100B63FD7 /* QuestionInteractor.swift in Sources */,
 				CC8018201F0256980040B03F /* UIViewController+Alert.swift in Sources */,
 				CCC2D3161F0AB1E000951A2E /* UserDefault+Convenience.swift in Sources */,
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
@@ -6991,6 +7026,7 @@
 				7F9217B91FD01C2F00CAE9E0 /* RemoteNotificationPermission.swift in Sources */,
 				36E86D4F227059A100371C67 /* MarkAsReadTableViewCell.swift in Sources */,
 				CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */,
+				F96726A522BCD9E300B63FD7 /* QuestionRouter.swift in Sources */,
 				CBB98B00201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift in Sources */,
 				CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */,
 				CB3333E120480DDF009480DF /* ShareConfigurator.swift in Sources */,
@@ -7001,6 +7037,7 @@
 				CC7D21B21EFC1348007A062E /* WeeklyChoicesLayout.swift in Sources */,
 				CBB4DCDC1ED475F00071494A /* DownSyncChange.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
+				F96726A722BCD9F700B63FD7 /* QuestionViewController.swift in Sources */,
 				36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */,
 				CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */,
 				5F62BE92228AB60000852F7E /* MyQotSupportFaqConfigurator.swift in Sources */,
@@ -7012,7 +7049,6 @@
 				36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */,
 				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
 				CC7D21B01EFC1348007A062E /* WeeklyChoicesCell.swift in Sources */,
-				75496E9522BA695100150C78 /* MyVisionNullStateWorker.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
 				5F57F9E62282E741003A9EDF /* ContentService+Knowing.swift in Sources */,
 				7F2B77D11FC5C33700203D90 /* ToolsViewModel.swift in Sources */,
@@ -7074,12 +7110,12 @@
 				DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */,
 				36D72ECF229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
+				F967269F22BCD99400B63FD7 /* QuestionInterface.swift in Sources */,
 				CBD4BE9E2018BE25008A0E9E /* GuideProtocols.swift in Sources */,
 				7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
 				AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
-				75496E8D22BA5F4600150C78 /* MyVisionNullStateRouter.swift in Sources */,
 				854708E21F306628007AB971 /* ContentItemAnimation.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
 				CBC1DC1D1F0F988E00F6D056 /* SettingsService.swift in Sources */,
@@ -7106,7 +7142,6 @@
 				CB3333E920480E05009480DF /* ShareInteractor.swift in Sources */,
 				5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */,
 				DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */,
-				75496E8F22BA5F5400150C78 /* MyVisionNullStateInteractor.swift in Sources */,
 				5F360749228C42570074FEC4 /* MyQotSyncedCalendarCell.swift in Sources */,
 				3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */,
 				5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */,
@@ -7139,6 +7174,7 @@
 				CBB4DD091EDDC6550071494A /* StartSyncResult.swift in Sources */,
 				CBB017B91F96688900CC1048 /* DownSyncTask.swift in Sources */,
 				91086E42209202280035DA1F /* SettingsWorker.swift in Sources */,
+				F96726A922BCDA0F00B63FD7 /* QuestionWorker.swift in Sources */,
 				36796A5C20D3C4B800B55429 /* SigningInfoInteractor.swift in Sources */,
 				CBB4DD071EDDB5860071494A /* SerialRequest.swift in Sources */,
 				9150413820FDF40A00D43D18 /* SensorInteractor.swift in Sources */,
@@ -7157,7 +7193,6 @@
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
 				DB12013C219AC99400BE0E81 /* QuestionaireCellIndicator.swift in Sources */,
 				91F5BE422097578F00E85A51 /* PermissionsWorker.swift in Sources */,
-				75496E8B22BA5ED400150C78 /* MyVisionNullStateViewController.swift in Sources */,
 				AC103E56228969EF00F426F0 /* ReactionsTableViewCell.swift in Sources */,
 				AC103E3322847AB500F426F0 /* ConfirmationConfigurator.swift in Sources */,
 				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
@@ -7169,7 +7204,6 @@
 				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
 				5FF1A0E22285618E00D76D55 /* TitleSubtitleTableViewCell.swift in Sources */,
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
-				75496E9322BA603700150C78 /* MyVisionNullStatePresenter.swift in Sources */,
 				CB6637AD201A323200A995D6 /* UserNotificationsScheduler.swift in Sources */,
 				36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */,
 				F9A8A01F2296821400DE3A9C /* ToolsItemsInteractor.swift in Sources */,
@@ -7200,7 +7234,6 @@
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
 				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
-				75496E9122BA5F6000150C78 /* MyVisionNullStateInterface.swift in Sources */,
 				CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */,
 				CB1467651EF2779700A60E31 /* Page.swift in Sources */,
 				CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */,
@@ -7571,6 +7604,7 @@
 				5F8A899B2296DF000011A05C /* MyVisionWorker.swift in Sources */,
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
+				F967269B22BCD97000B63FD7 /* QuestionConfigurator.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				5F78965322A929C100D2DBAD /* FiveLinesWithTopBroad.swift in Sources */,
 				5F36073F228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift in Sources */,

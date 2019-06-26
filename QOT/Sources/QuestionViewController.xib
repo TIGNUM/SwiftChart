@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="QuestionViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="questionLabel" destination="Ls0-xa-KcR" id="RFf-l0-hdi"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController restorationIdentifier="QuestionViewController" nibName="QuestionViewController" id="NQr-vQ-pFs" customClass="QuestionViewController" customModule="QOT" customModuleProvider="target">
+            <view key="view" contentMode="scaleToFill" id="2uc-zR-cFI">
+                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ls0-xa-KcR">
+                        <rect key="frame" x="20" y="438" width="374" height="21"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <constraints>
+                    <constraint firstItem="Ls0-xa-KcR" firstAttribute="leading" secondItem="eBc-Ru-Zys" secondAttribute="leading" constant="20" id="1nP-l2-4rx"/>
+                    <constraint firstItem="eBc-Ru-Zys" firstAttribute="trailing" secondItem="Ls0-xa-KcR" secondAttribute="trailing" constant="20" id="7tl-dP-4Bs"/>
+                    <constraint firstItem="Ls0-xa-KcR" firstAttribute="top" secondItem="eBc-Ru-Zys" secondAttribute="top" constant="394" id="cZp-Cg-KGV"/>
+                    <constraint firstItem="eBc-Ru-Zys" firstAttribute="bottom" secondItem="Ls0-xa-KcR" secondAttribute="bottom" constant="403" id="upo-NO-t3V"/>
+                </constraints>
+                <viewLayoutGuide key="safeArea" id="eBc-Ru-Zys"/>
+            </view>
+            <point key="canvasLocation" x="1703" y="38"/>
+        </viewController>
+    </objects>
+</document>
