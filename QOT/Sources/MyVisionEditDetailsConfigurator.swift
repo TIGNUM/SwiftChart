@@ -9,7 +9,7 @@
 import Foundation
 
 final class MyVisionEditDetailsConfigurator: AppStateAccess {
-    static func configure(originViewController: MyVisionViewController, viewController: MyVisionEditDetailsViewController, title: String, vision: String) {
+    static func configure<T: UIViewController>(originViewController: T, viewController: MyVisionEditDetailsViewController, title: String, vision: String) where T: MyVisionEditDetailsViewControllerProtocol {
         let wdigetManager = ExtensionsDataManager(services: appState.services)
         let worker = MyVisionEditDetailsWorker(title: title, vision: vision, widgetManager: wdigetManager)
         let presenter = MyVisionEditDetailsPresenter(viewController: viewController)

@@ -26,9 +26,9 @@ final class MyVisionInteractor {
 
     func viewDidLoad() {
         presenter.setupView()
-        worker.setMyToBeVisionReminder(false)
+        presenter.showScreenLoader()
         worker.myToBeVision {[weak self] (myVision, status, error) in
-            self?.worker.setMyToBeVisionReminder(false)
+            self?.presenter.hideScreenLoader()
             self?.presenter.load(myVision)
             self?.worker.updateWidget()
         }
@@ -61,6 +61,18 @@ final class MyVisionInteractor {
 
 extension MyVisionInteractor: MyVisionInteractorInterface {
 
+    func showUpdateConfirmationScreen() {
+        router.showUpdateConfirmationScreen()
+    }
+
+    func showNullState(with title: String, message: String) {
+        presenter.showNullState(with: title, message: message)
+    }
+
+    func hideNullState() {
+        presenter.hideNullState()
+    }
+
     var permissionManager: PermissionsManager {
         return worker.permissionManager
     }
@@ -73,20 +85,8 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         return worker.messagePlaceholder
     }
 
-    var trackablePageObject: PageObject? {
-        return worker.trackablePageObject
-    }
-
     var myVision: QDMToBeVision? {
         return worker.myVision
-    }
-
-    func updateToBeVision() {
-        worker.myToBeVision {[weak self] (myVision, status, error) in
-            if status == true {
-                self?.presenter.load(myVision)
-            }
-        }
     }
 
     func lastUpdatedVision() -> String? {
@@ -101,19 +101,19 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func saveToBeVision(image: UIImage?, toBeVision: QDMToBeVision) {
+        var vision = toBeVision
         do {
-            var vision = toBeVision
             if let visionImage = image {
                 let imageUrl = try worker.saveImage(visionImage).absoluteString
                 vision.profileImageResource = QDMMediaResource()
                 vision.profileImageResource?.localURLString = imageUrl
-                vision.modifiedAt = Date()
-            }
-            worker.updateMyToBeVision(vision) {[weak self] in
-                self?.updateToBeVision()
             }
         } catch {
             qot_dal.log(error.localizedDescription)
+        }
+        vision.modifiedAt = Date()
+        worker.updateMyToBeVision(vision) {[weak self] in
+            self?.presenter.load(vision)
         }
     }
 
@@ -140,7 +140,6 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func openToBeVisionGenerator() {
-        worker.permissionManager
         router.openToBeVisionGenerator(permissionManager: worker.permissionManager)
     }
 }

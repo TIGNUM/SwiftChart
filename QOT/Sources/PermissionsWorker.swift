@@ -21,7 +21,7 @@ final class PermissionsWorker {
     func permissions(completion: @escaping ([Permission]) -> Void) {
         var permissions: [Permission] = []
         let dispatchGroup = DispatchGroup()
-        permissionsManager.allPermissions.forEach { [unowned self] (permission) in
+        permissionsManager.allPermissions.forEach { (permission) in
             dispatchGroup.enter()
             permissionsManager.askPermission(for: [permission.identifier], completion: { status in
                 defer { dispatchGroup.leave() }

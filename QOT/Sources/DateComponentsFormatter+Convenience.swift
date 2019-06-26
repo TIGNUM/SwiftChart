@@ -12,7 +12,7 @@ extension DateComponentsFormatter {
 
     class func timeIntervalToString(
         _ time: TimeInterval,
-        minimumTime: TimeInterval = 60.0,
+        minimumTime: TimeInterval = 0,
         isShort: Bool = false,
         calendar: Calendar = Calendar.sharedUTC,
         unitsStyle: UnitsStyle = .full,

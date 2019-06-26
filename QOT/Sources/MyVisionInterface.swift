@@ -10,23 +10,32 @@ import Foundation
 import qot_dal
 
 protocol MyVisionViewControllerInterface: class {
+    func showScreenLoader()
+    func hideScreenLoader()
+    func showNullState(with title: String, message: String)
+    func hideNullState()
     func setupView()
     func load(_ myVision: QDMToBeVision?)
 }
 
 protocol MyVisionPresenterInterface {
+    func showScreenLoader()
+    func hideScreenLoader()
+    func showNullState(with title: String, message: String)
+    func hideNullState()
     func setupView()
     func load(_ myVision: QDMToBeVision?)
 }
 
 protocol MyVisionInteractorInterface: Interactor {
+    func showUpdateConfirmationScreen()
+    func showNullState(with title: String, message: String)
+    func hideNullState()
     func saveToBeVision(image: UIImage?, toBeVision: QDMToBeVision)
     var myVision: QDMToBeVision? { get }
     var permissionManager: PermissionsManager { get }
-    var trackablePageObject: PageObject? { get }
     var headlinePlaceholder: String? { get }
     var messagePlaceholder: String? { get }
-    func updateToBeVision()
     func isShareBlocked() -> Bool
     func lastUpdatedVision() -> String?
     func shareMyToBeVision()
@@ -35,6 +44,7 @@ protocol MyVisionInteractorInterface: Interactor {
 }
 
 protocol MyVisionRouterInterface {
+    func showUpdateConfirmationScreen()
     func presentViewController(viewController: UIViewController, completion: (() -> Void)?)
     func showEditVision()
     func close()

@@ -10,7 +10,6 @@ import UIKit
 
 protocol MyVisionNavigationBarViewProtocol: class {
     func didShare()
-    func didEdit()
 }
 
 final class MyVisionNavigationBarView: UIView {
@@ -22,10 +21,6 @@ final class MyVisionNavigationBarView: UIView {
         super.awakeFromNib()
         backgroundColor = .carbon
         title.text = R.string.localized.myQOTToBeVisionTitle()
-    }
-
-    @IBAction func editButtonAction(_ sender: Any) {
-        delegate?.didEdit()
     }
 
     @IBAction func shareButtonAction(_ sender: Any) {
