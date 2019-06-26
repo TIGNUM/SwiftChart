@@ -23,7 +23,7 @@ final class MyUniverseProvider {
 
     init(services: Services) {
         self.services = services
-        myToBeVisions = services.userService.myToBeVisions()
+        myToBeVisions = services.userService.myToBeVisions()    
         partners = services.partnerService.partners
         userChoices = services.userService.userChoices()
         statistics = services.statisticsService.chartObjects()
@@ -65,21 +65,7 @@ final class MyUniverseProvider {
             return MyUniverseViewData.Partner(imageURL: url, initials: realmPartner.initials.uppercased())
         }
         let userChoices = self.userChoices.sorted { $0.startDate > $1.startDate }
-        let weeklyChoices = userChoices.prefix(Layout.MeSection.maxWeeklyPage).map { choice -> WeeklyChoice in
-            return WeeklyChoice(
-                localID: choice.localID,
-                contentCollectionID: choice.contentCollectionID ?? 0,
-                categoryID: choice.contentCategoryID ?? 0,
-                categoryName: "",
-                title: choice.contentCollection?.title,
-                covered: nil,
-                startDate: choice.startDate,
-                endDate: choice.endDate,
-                displayTime: "",
-                isDefault: false,
-                selected: true
-            )
-        }
+
         let sectors = [
             sector(for: .intensity, startAngle: 210, endAngle: 220),
             sector(for: .meetings, startAngle: 185, endAngle: 205),
@@ -89,7 +75,6 @@ final class MyUniverseProvider {
         return MyUniverseViewData(
             profileImageURL: myToBeVision?.imageURL,
             partners: dataPartners  ,
-            weeklyChoices: weeklyChoices,
             myToBeVisionHeadline: myToBeVision?.headline ?? R.string.localized.meSectorMyWhyVisionTitle(),
             myToBeVisionText: myToBeVisionText ?? R.string.localized.meSectorMyWhyVisionMessagePlaceholder(),
             sectors: sectors,

@@ -34,3 +34,18 @@ extension Array where Element: Equatable {
         return Int(arc4random_uniform(UInt32(count)))
     }
 }
+
+extension Array {
+    func at(index: Int) -> Element? {
+        if index < 0 || index > count - 1 {
+            return nil
+        }
+        return self[index]
+    }
+}
+
+extension Array {
+    func contains<T>(obj: T) -> Bool where T: Equatable {
+        return self.filter({$0 as? T == obj}).count > 0
+    }
+}

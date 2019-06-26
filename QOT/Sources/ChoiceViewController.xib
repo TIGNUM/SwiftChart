@@ -17,14 +17,14 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="SelectWeeklyChoicesViewController" customModule="QOT" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ChoiceViewController" customModule="QOT" customModuleProvider="target">
             <connections>
-                <outlet property="cancelButton" destination="agU-Te-Fod" id="ZhW-yM-ZjE"/>
-                <outlet property="saveButton" destination="uo6-90-EFR" id="evv-w7-6bA"/>
-                <outlet property="tableHeaderView" destination="aMo-Ij-mLf" id="SjY-pD-R6W"/>
-                <outlet property="tableHeaderViewLabel" destination="pT1-uF-bW0" id="toy-uS-6ec"/>
-                <outlet property="tableView" destination="uQu-Xl-CFh" id="d47-yf-iQc"/>
-                <outlet property="view" destination="Vec-L9-bQI" id="Xqn-C7-RHc"/>
+                <outlet property="cancelButton" destination="agU-Te-Fod" id="9Ki-es-NH7"/>
+                <outlet property="saveButton" destination="uo6-90-EFR" id="uhY-8Z-yyQ"/>
+                <outlet property="tableHeaderView" destination="aMo-Ij-mLf" id="POG-ZL-ffG"/>
+                <outlet property="tableHeaderViewLabel" destination="pT1-uF-bW0" id="Joc-fR-Pmj"/>
+                <outlet property="tableView" destination="uQu-Xl-CFh" id="gMh-JM-pBH"/>
+                <outlet property="view" destination="Vec-L9-bQI" id="29V-74-it0"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -36,8 +36,8 @@
                     <rect key="frame" x="0.0" y="40" width="375" height="539"/>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <connections>
-                        <outlet property="dataSource" destination="-1" id="mhd-uh-0lj"/>
-                        <outlet property="delegate" destination="-1" id="jez-qr-G0e"/>
+                        <outlet property="dataSource" destination="-1" id="MGU-b3-HVu"/>
+                        <outlet property="delegate" destination="-1" id="hhW-qs-diS"/>
                     </connections>
                 </tableView>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TcB-oW-cwg">
@@ -55,7 +55,7 @@
                                 <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
-                                <action selector="didPressSave" destination="-1" eventType="touchUpInside" id="cBc-a3-mNd"/>
+                                <action selector="didPressSave" destination="-1" eventType="touchUpInside" id="agq-GS-dTM"/>
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="agU-Te-Fod">
@@ -69,7 +69,7 @@
                                 <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="calibratedRGB"/>
                             </state>
                             <connections>
-                                <action selector="didPressCancel" destination="-1" eventType="touchUpInside" id="a0U-hx-IWw"/>
+                                <action selector="didPressCancel" destination="-1" eventType="touchUpInside" id="RLW-bf-Ko4"/>
                             </connections>
                         </button>
                     </subviews>
@@ -93,7 +93,7 @@
                 <constraint firstAttribute="trailing" secondItem="uQu-Xl-CFh" secondAttribute="trailing" id="mvA-db-MJX"/>
                 <constraint firstItem="uQu-Xl-CFh" firstAttribute="leading" secondItem="Vec-L9-bQI" secondAttribute="leading" id="oCv-Es-zmk"/>
             </constraints>
-            <point key="canvasLocation" x="92" y="49.025487256371818"/>
+            <point key="canvasLocation" x="-52" y="-129"/>
         </view>
         <view contentMode="scaleToFill" id="aMo-Ij-mLf">
             <rect key="frame" x="0.0" y="0.0" width="329" height="128"/>
@@ -126,7 +126,7 @@
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
-            <point key="canvasLocation" x="376.80000000000001" y="-395.80209895052479"/>
+            <point key="canvasLocation" x="567" y="-255"/>
         </view>
     </objects>
 </document>

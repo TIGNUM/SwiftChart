@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class CalendarEventsTableViewCell: UITableViewCell, Dequeueable, PrepareEventSelectionTableViewCellInterface {
 
@@ -22,8 +23,11 @@ final class CalendarEventsTableViewCell: UITableViewCell, Dequeueable, PrepareEv
     }
 
     func configure(delegate: DecisionTreeQuestionnaireDelegate?, tableViewHeight: CGFloat, question: Question) {
-        PrepareEventSelectionConfigurator.make(tableViewCell: self, delegate: delegate, question: question)
         self.tableViewHeight.constant = tableViewHeight
+        qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events) in
+            PrepareEventSelectionConfigurator.make(self, delegate: delegate, question: question, events: events ?? [])
+            self?.tableView.reloadDataWithAnimation()
+        }
     }
 }
 

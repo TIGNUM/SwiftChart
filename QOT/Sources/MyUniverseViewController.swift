@@ -173,18 +173,6 @@ private extension MyUniverseViewController {
 	func reload() {
 		navItem.showTabMenuView(titles: config.pages.map { $0.pageTitle })
 		isLoading = viewData.isLoading
-//        contentView.profileButton.kf.setBackgroundImage(
-//            with: viewData.profileImageURL,
-//            for: .normal,
-//            placeholder: config.profileImagePlaceholder) { [weak self] (result) in
-//                guard let `self` = self else { return }
-//                switch result {
-//                case .success(let value):
-//                    //
-//                case .failure(let error):
-//                    //
-//                }
-//        }
 		contentView.profileButton.kf.setBackgroundImage(
 			with: viewData.profileImageURL,
 			for: .normal,
@@ -210,13 +198,6 @@ private extension MyUniverseViewController {
                 index >= partnerButtons.startIndex,
                 index <= partnerButtons.endIndex else { break }
             contentView.partnerButtons[index].configure(for: partner, placeholder: config.partnerImagePlaceholder)
-        }
-
-        for (index, weeklyChoice) in viewData.weeklyChoices.enumerated() {
-            guard let weeklyChoiceButtons = contentView.weeklyChoiceButtons,
-                index >= weeklyChoiceButtons.startIndex,
-                index <= weeklyChoiceButtons.endIndex else { break }
-            contentView.weeklyChoiceButtons[index].configure(for: weeklyChoice)
         }
         contentView.setVisionText(viewData.myToBeVisionText)
         contentView.setVisionHeadline(viewData.myToBeVisionHeadline)
@@ -375,9 +356,5 @@ private extension UIButton {
             setBackgroundImage(R.image.partnerEmpty(), for: .normal)
             setTitle(partner.initials, for: .normal)
         }
-    }
-
-    func configure(for weeklyChoice: WeeklyChoice) {
-        setTitle(weeklyChoice.title?.uppercased(), for: .normal)
     }
 }

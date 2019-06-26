@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DecisionTreeInteractor {
 
@@ -39,8 +40,8 @@ final class DecisionTreeInteractor {
 // MARK: - DecisionTreeInteractorInterface
 
 extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
-    var userHasToBeVision: Bool {
-        return worker.userHasToBeVision
+    func userHasToBeVision(completion: @escaping ((Bool)) -> Void) {
+        worker.userHasToBeVision(completion: completion)
     }
 
     var relatedStrategyID: Int {
@@ -52,12 +53,8 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     }
 
     var prepareBenefits: String? {
-        set {
-            worker.prepareBenefits = newValue
-        }
-        get {
-            return worker.prepareBenefits
-        }
+        set { worker.prepareBenefits = newValue }
+        get { return worker.prepareBenefits }
     }
 
     var type: DecisionTreeType {
@@ -77,22 +74,6 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         if let question = node.question {
             presenter.presentNext(question, with: node.generatedAnswer)
         }
-    }
-
-    func openPrepareChecklist(with contentID: Int,
-                              selectedEvent: CalendarEvent?,
-                              eventType: String?,
-                              checkListType: PrepareCheckListType,
-                              relatedStrategyID: Int?,
-                              selectedAnswers: [DecisionTreeModel.SelectedAnswer],
-                              benefits: String?) {
-        router.openPrepareChecklist(with: contentID,
-                                    checkListType: checkListType,
-                                    selectedEvent: selectedEvent,
-                                    eventType: eventType,
-                                    relatedStrategyID: relatedStrategyID,
-                                    selectedAnswers: selectedAnswers,
-                                    benefits: benefits)
     }
 
     func displayContent(with id: Int) {
@@ -119,8 +100,10 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     }
 
     func openShortTBVGenerator(completion: (() -> Void)?) {
-        if worker.userHasToBeVision == false {
-            router.openShortTBVGenerator(completion: completion)
+        worker.userHasToBeVision { [weak self] (status) in
+            if status == false {
+                self?.router.openShortTBVGenerator(completion: completion)
+            }
         }
     }
 
@@ -154,4 +137,27 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     func openToBeVisionPage() {
         router.openToBeVisionPage()
     }
+}
+
+// MARK: - Prepare
+
+extension DecisionTreeInteractor {
+    func openPrepareResults(_ contentId: Int) {
+        router.openPrepareResults(contentId)
+    }
+
+    func openPrepareResults(_ preparation: QDMUserPreparation,
+                            _ answers: [DecisionTreeModel.SelectedAnswer],
+                            _ relatedStrategyID: Int) {
+        router.openPrepareResults(preparation, answers, relatedStrategyID)
+    }
+
+    func updatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer]) {
+        worker.didUpdatePrepareIntentions(answers)
+    }
+
+    func updatePrepareBenefits(_ benefits: String) {
+        worker.didUpdateBenefits(benefits)
+    }
+
 }

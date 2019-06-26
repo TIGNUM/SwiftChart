@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import qot_dal
 
 final class Answer: Object {
 
@@ -33,10 +34,26 @@ final class Answer: Object {
         intermediary.keys.forEach { keys.append($0) }
     }
 
+    convenience init(qdmAnswer: QDMAnswer) {
+        self.init()
+        self.remoteID.value = qdmAnswer.remoteID
+        self.sortOrder = qdmAnswer.sortOrder ?? 0
+        self.title = qdmAnswer.title ?? ""
+        self.subtitle = qdmAnswer.subtitle
+        self.decisions.append(objectsIn: qdmAnswer.decisions.map { AnswerDecision(intermediary: $0) })
+        qdmAnswer.keys.forEach { keys.append($0) }
+    }
+
     func delete() {
         decisions.forEach { $0.delete() }
         if let realm = realm {
             realm.delete(self)
         }
+    }
+}
+
+extension Answer {
+    func targetId(_ type: TargetType) -> Int? {
+        return decisions.first(where: { $0.targetType == type.rawValue })?.targetID
     }
 }

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DecisionTreeRouter {
 
@@ -35,24 +36,6 @@ final class DecisionTreeRouter {
 // MARK: - DecisionTreeRouterInterface
 
 extension DecisionTreeRouter: DecisionTreeRouterInterface {
-    func openPrepareChecklist(with contentID: Int,
-                              checkListType: PrepareCheckListType,
-                              selectedEvent: CalendarEvent?,
-                              eventType: String?,
-                              relatedStrategyID: Int?,
-                              selectedAnswers: [DecisionTreeModel.SelectedAnswer],
-                              benefits: String?) {
-        let configurator = PrepareCheckListConfigurator.make(contentID: contentID,
-                                                             checkListType: checkListType,
-                                                             event: selectedEvent,
-                                                             eventType: eventType,
-                                                             relatedStrategyID: relatedStrategyID,
-                                                             selectedAnswers: selectedAnswers,
-                                                             benefits: benefits)
-        let controller = PrepareCheckListViewController(configure: configurator)
-        viewController.present(controller, animated: true, completion: nil)
-    }
-
     func openArticle(with contentID: Int) {
         AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID)
     }
@@ -96,6 +79,25 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         viewController.present(visionViewController, animated: true) {
            self.viewController.dismiss(animated: true, completion: nil)
         }
+    }
+}
+
+// MARK: - Prepare
+
+extension DecisionTreeRouter {
+    func openPrepareResults(_ contentId: Int) {
+        presentPrepareResults(PrepareResultsConfigurator.configurate(contentId))
+    }
+
+    func openPrepareResults(_ preparation: QDMUserPreparation,
+                            _ answers: [DecisionTreeModel.SelectedAnswer],
+                            _ relatedStrategyID: Int) {
+        presentPrepareResults(PrepareResultsConfigurator.configurate(preparation, answers, relatedStrategyID, canDelete: true))
+    }
+
+    private func presentPrepareResults(_ configurator: Configurator<PrepareResultsViewController>) {
+        let controller = PrepareResultsViewController(configure: configurator)
+        viewController.present(controller, animated: true, completion: nil)
     }
 }
 

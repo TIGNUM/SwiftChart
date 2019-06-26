@@ -1,5 +1,5 @@
 //
-//  PrepareCheckListResultView.swift
+//  PrepareResultsInfoView.swift
 //  QOT
 //
 //  Created by karmic on 04.06.19.
@@ -8,14 +8,14 @@
 
 import UIKit
 
-final class PrepareCheckListResultView: UIView {
+final class PrepareResultsInfoView: UIView {
 
     @IBOutlet private weak var textLabel: UILabel!
     @IBOutlet private weak var doneButton: UIButton!
-    weak var delegate: PrepareCheckListDelegatge?
+    weak var delegate: PrepareResultsDelegatge?
 
-    static func instantiateFromNib() -> PrepareCheckListResultView {
-        guard let resultView = R.nib.prepareCheckListResultView.instantiate(withOwner: self).first as? PrepareCheckListResultView else {
+    static func instantiateFromNib() -> PrepareResultsInfoView {
+        guard let resultView = R.nib.prepareResultsInfoView.instantiate(withOwner: self).first as? PrepareResultsInfoView else {
             fatalError("Cannot load audio player view")
         }
         return resultView
@@ -31,7 +31,7 @@ final class PrepareCheckListResultView: UIView {
     }
 }
 
-private extension PrepareCheckListResultView {
+private extension PrepareResultsInfoView {
     @IBAction func didSelectDoneButton() {
         delegate?.dismissResultView()
     }

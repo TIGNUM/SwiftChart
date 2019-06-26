@@ -13,13 +13,11 @@ enum URLScheme: String {
     case fitbitAuthrefresh = "fitbit-authrefresh"
     case preparation = "preparation"
     case dailyPrep = "morning-interview"
-    case weeklyChoices = "weekly-choices"
     case randomContent = "random-content"
     case weeklyPeakPerformance = "weekly-peak-performance"
     case toBeVision = "to-be-vision"
     case myPreps = "prepare-my-preps"
     case comingEvent = "coming-event"
-    case weeklyChoicesReminder = "weekly-choices-reminder"
     case contentCategory = "content-category"
     case featureExplainer = "feature-explainer"
     case strategies = "strategies"
@@ -61,12 +59,9 @@ enum URLScheme: String {
              .contentItem,
              .featureExplainer: return "contentID"
         case .contentCategory: return "collectionID"
-        case .weeklyChoices,
-             .fitbitAuthrefresh,
-             .weeklyPeakPerformance,
+        case .fitbitAuthrefresh,
              .toBeVision,
              .myPreps,
-             .weeklyChoicesReminder,
              .strategies,
              .meUniverse,
              .meMyWhy,
@@ -116,8 +111,7 @@ enum URLScheme: String {
         case .meMyWhy: return AppCoordinator.Router.Destination(tabBar: .data, topTabBar: .data)
         case .guide: return AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide)
         case .prepare: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach)
-        case .myPreps,
-             .weeklyPeakPerformance: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)
+        case .myPreps: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .myPrep)
         case .prepareProblem: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .problem)
         case .prepareEvent: return AppCoordinator.Router.Destination(tabBar: .prepare, topTabBar: .coach, chatSection: .event)
         case .preferencesSyncCalendar: return AppCoordinator.Router.Destination(preferences: .calendarSync)
@@ -164,8 +158,7 @@ enum URLScheme: String {
             host == URLScheme.preparation.rawValue ||
             host == URLScheme.signingVerificationCode.rawValue ||
             host == URLScheme.toBeVision.rawValue ||
-            host == URLScheme.prepareEvent.rawValue ||
-            host == URLScheme.weeklyChoices.rawValue ||
+            host == URLScheme.prepareEvent.rawValue ||            
             host == URLScheme.featureExplainer.rawValue ||
             host == URLScheme.profile.rawValue ||
             host == URLScheme.comingEvent.rawValue ||

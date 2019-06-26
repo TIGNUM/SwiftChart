@@ -22,9 +22,10 @@ final class DecisionTreeViewController: UIViewController {
 
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
+    private var prepareEventType: String = ""
     private var extraAnswer: String? = ""
     private var pageController: UIPageViewController?
-    private var selectedEvent: CalendarEvent?
+    private var selectedEvent = QDMUserCalendarEvent()
     private var tempPageViewControllerHeight = CGFloat(0)
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
@@ -40,8 +41,9 @@ final class DecisionTreeViewController: UIViewController {
             case .saved:
                 if let ekEvent = controller.event {
                     controller.dismiss(animated: true)
-                    self?.selectedEvent = CalendarEvent(event: ekEvent)
-                    self?.loadNextQuestion(from: self?.selectedAnswers.first)
+                    self?.selectedEvent = QDMUserCalendarEvent(event: ekEvent)
+                    let eventQuestion = self?.decisionTree?.questions.filter { $0.answerType == AnswerType.openCalendarEvents.rawValue }.first
+                    self?.loadNextQuestion(from: eventQuestion?.answers.first)
                 }
             case .canceled, .deleted:
                 controller.dismiss(animated: true)
@@ -55,7 +57,7 @@ final class DecisionTreeViewController: UIViewController {
     }
 
     private var currentQuestion: Question? {
-        return decisionTree?.questions[pageIndex]
+        return decisionTree?.questions.at(index: pageIndex)
     }
 
     private var maxPossibleSelections: Int {
@@ -179,8 +181,17 @@ private extension DecisionTreeViewController {
     @IBAction func didTapContinue() {
         if let type = interactor?.type {
             switch type {
-            case .prepareIntensions,
-                 .prepareBenefits: dismiss(animated: true, completion: nil)
+            case .prepareIntensions:
+                interactor?.updatePrepareIntentions(decisionTree?.selectedAnswers ?? [])
+                dismiss(animated: true, completion: nil)
+            case .prepareBenefits:
+                interactor?.updatePrepareBenefits(interactor?.prepareBenefits ?? "")
+                dismiss(animated: true, completion: nil)
+            case .prepare:
+                if currentQuestion?.key == QuestionKey.Prepare.calendarEventSelectionCritical.rawValue ||
+                   currentQuestion?.key == QuestionKey.Prepare.calendarEventSelectionDaily.rawValue {
+                    presentAddEventController(eventStore: EKEventStore.shared)
+                }
             default: break
             }
         }
@@ -307,8 +318,8 @@ private extension DecisionTreeViewController {
                                                     self.view.becomeFirstResponder()
                                                 }
             })
+            pageIndex.plus(1)
         }
-        pageIndex.plus(1)
     }
 
     func moveBackward() {
@@ -373,7 +384,7 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         interactor?.notifyCounterChanged(with: multiSelectionCounter, selectedAnswers: selectedAnswers)
     }
 
-    func didSelectCalendarEvent(_ event: CalendarEvent, selectedAnswer: Answer) {
+    func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: Answer) {
         selectedEvent = event
         loadNextQuestion(from: selectedAnswer)
     }
@@ -402,6 +413,9 @@ private extension DecisionTreeViewController {
         guard let questionID = currentQuestion?.remoteID.value else { return }
         let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
         decisionTree?.add(selectedAnswer)
+        if answer.keys.contains(AnswerKey.Prepare.eventTypeSelectionCritical.rawValue) {
+            prepareEventType = answer.title
+        }
         if let remoteID = answer.remoteID.value {
             trackUserEvent(.SELECT, value: remoteID, valueType: .ANSWER_DECISION, action: .TAP)
         }
@@ -415,23 +429,29 @@ private extension DecisionTreeViewController {
         }
         if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionCritical.rawValue {
             interactor?.setTargetContentID(for: answer)
-        } else if let contentID = answer.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID {
-            showContent(for: answer, contentID: contentID)
+        } else if let contentId = answer.targetId(.content) {
+            showResultView(for: answer, contentID: contentId)
         }
-        if let contentItemID = answer.decisions.first(where: { $0.targetType == TargetType.contentItem.rawValue })?.targetID {
+        if let contentItemID = answer.targetId(.contentItem) {
             interactor?.streamContentItem(with: contentItemID)
         }
         if answer.keys.contains(AnswerKey.ToBeVision.uploadImage.rawValue) {
             interactor?.openImagePicker()
         }
-        if let targetID = answer.decisions.first(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
-            if currentQuestion?.key == QuestionKey.Prepare.buildCritical.rawValue && interactor?.userHasToBeVision == false {
-                interactor?.openShortTBVGenerator { [weak self] in
-                    self?.interactor?.loadNextQuestion(from: PrepareCheckListTag.perceived.questionID,
-                                                       selectedAnswers: self?.selectedAnswers ?? [])
-                }
+        if let targetQuestionId = answer.targetId(.question) {
+            if currentQuestion?.key == QuestionKey.Prepare.buildCritical.rawValue {
+                interactor?.userHasToBeVision(completion: { [weak self] (status) in
+                    if status == false {
+                        self?.interactor?.openShortTBVGenerator { [weak self] in
+                            self?.interactor?.loadNextQuestion(from: Prepare.Key.perceived.questionID,
+                                                               selectedAnswers: self?.selectedAnswers ?? [])
+                        }
+                    } else {
+                        self?.interactor?.loadNextQuestion(from: targetQuestionId, selectedAnswers: self?.selectedAnswers ?? [])
+                    }
+                })
             } else {
-                interactor?.loadNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
+                interactor?.loadNextQuestion(from: targetQuestionId, selectedAnswers: selectedAnswers)
             }
         }
     }
@@ -466,36 +486,57 @@ private extension DecisionTreeViewController {
         })
         continueButton.pulsate()
     }
+
+    func shouldShowAddNewEventView() -> Bool {
+        let answerKeys = decisionTree?.selectedAnswers.flatMap { $0.answer.keys }
+        return answerKeys?.contains(AnswerKey.Prepare.eventTypeSelectionDaily.rawValue) == true ||
+            answerKeys?.contains(AnswerKey.Prepare.eventTypeSelectionCritical.rawValue) == true
+    }
 }
 
 // MARK: - Private
 
-extension DecisionTreeViewController {
-    func showContent(for answer: Answer, contentID: Int) {
+private extension DecisionTreeViewController {
+    func showResultView(for answer: Answer, contentID: Int) {
         if answer.keys.contains(AnswerKey.Prepare.openCheckList.rawValue) {
-            interactor?.openPrepareChecklist(with: contentID,
-                                             selectedEvent: selectedEvent,
-                                             eventType: answer.title,
-                                             checkListType: .onTheGo,
-                                             relatedStrategyID: nil,
-                                             selectedAnswers: [],
-                                             benefits: nil)
-        } else if answer.keys.contains(AnswerKey.Prepare.eventTypeSelectionDaily.rawValue) {
-            interactor?.openPrepareChecklist(with: PrepareCheckListType.daily.contentID,
-                                             selectedEvent: selectedEvent,
-                                             eventType: answer.title,
-                                             checkListType: .daily,
-                                             relatedStrategyID: contentID,
-                                             selectedAnswers: [],
-                                             benefits: nil)
+            interactor?.openPrepareResults(contentID)
+        } else if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionDaily.rawValue {
+            let level = QDMUserPreparation.Level.LEVEL_DAILY
+            qot_dal.UserService.main.createUserPreparation(level: level,
+                                                           benefits: interactor?.prepareBenefits,
+                                                           answerFilter: nil,
+                                                           contentCollectionId: level.contentID,
+                                                           strategyIds: [],
+                                                           preceiveAnswerIds: [],
+                                                           knowAnswerIds: [],
+                                                           feelAnswerIds: [],
+                                                           eventType: answer.title,
+                                                           event: selectedEvent) { [weak self] (preparation, error) in
+                                                            if let preparation = preparation {
+                                                                self?.interactor?.openPrepareResults(preparation,
+                                                                                                     self?.decisionTree?.selectedAnswers ?? [],
+                                                                                                     answer.decisions.first?.targetID ?? 0)
+                                                            }
+            }
         } else if currentQuestion?.key == QuestionKey.Prepare.benefitsInput.rawValue {
-            interactor?.openPrepareChecklist(with: PrepareCheckListType.peakPerformance.contentID,
-                                             selectedEvent: selectedEvent,
-                                             eventType: answer.title,
-                                             checkListType: .peakPerformance,
-                                             relatedStrategyID: interactor?.relatedStrategyID,
-                                             selectedAnswers: decisionTree?.selectedAnswers ?? [],
-                                             benefits: interactor?.prepareBenefits)
+            let level = QDMUserPreparation.Level.LEVEL_CRITICAL
+            qot_dal.UserService.main.createUserPreparation(level: level,
+                                                           benefits: interactor?.prepareBenefits,
+                                                           answerFilter: interactor?.answersFilter(currentQuestion: nil,
+                                                                                                   decisionTree: nil),
+                                                           contentCollectionId: level.contentID,
+                                                           strategyIds: [interactor?.relatedStrategyID ?? 0] ,
+                                                           preceiveAnswerIds: [],
+                                                           knowAnswerIds: [],
+                                                           feelAnswerIds: [],
+                                                           eventType: prepareEventType,
+                                                           event: selectedEvent) { [weak self] (preparation, error) in
+                                                            if let preparation = preparation {
+                                                                self?.interactor?.openPrepareResults(preparation,
+                                                                                                     self?.decisionTree?.selectedAnswers ?? [],
+                                                                                                     self?.interactor?.relatedStrategyID ?? 0)
+                                                            }
+            }
         } else {
             interactor?.displayContent(with: contentID)
         }

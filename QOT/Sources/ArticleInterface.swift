@@ -31,7 +31,7 @@ protocol ArticleInteractorInterface: Interactor {
     var isShareable: Bool { get }
     func itemCount(in section: Int) -> Int
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot
-    func articleItem(at indexPath: IndexPath) -> Article.Item
+    func articleItem(at indexPath: IndexPath) -> Article.Item?
     func markArticleAsRead()
     func didTapLink(_ url: URL)
     func showRelatedArticle(remoteID: Int)

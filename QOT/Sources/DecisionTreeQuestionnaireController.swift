@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol DecisionTreeQuestionnaireDelegate: class {
     func didTapBinarySelection(_ answer: Answer)
     func didTapMultiSelection(_ answer: Answer)
     func textCellDidAppear(targetID: Int)
-    func didSelectCalendarEvent(_ event: CalendarEvent, selectedAnswer: Answer)
+    func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: Answer)
     func presentAddEventController(eventStore: EKEventStore)
     func didUpdatePrepareBenefits(_ benefits: String?)
     func didPressDimiss()

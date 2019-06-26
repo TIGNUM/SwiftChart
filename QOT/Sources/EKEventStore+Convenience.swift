@@ -8,6 +8,7 @@
 
 import Foundation
 import EventKit
+import qot_dal
 
 extension EKEventStore {
 
@@ -17,6 +18,14 @@ extension EKEventStore {
         let startDate = calendarEvent.startDate
         let endDate = calendarEvent.endDate
         let externalIdentifier = calendarEvent.calendarItemExternalIdentifier
+        return getEvent(startDate: startDate, endDate: endDate, identifier: externalIdentifier)
+    }
+
+    func event(with qdmCalendarEvent: QDMUserCalendarEvent) -> EKEvent? {
+        guard
+            let startDate = qdmCalendarEvent.startDate,
+            let endDate = qdmCalendarEvent.endDate else { return nil }
+        let externalIdentifier = qdmCalendarEvent.calendarItemExternalId?.components(separatedBy: "[//]").first
         return getEvent(startDate: startDate, endDate: endDate, identifier: externalIdentifier)
     }
 

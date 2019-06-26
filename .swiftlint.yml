@@ -17,6 +17,7 @@ disabled_rules:
   - weak_delegate
   - notification_center_detachment
   - redundant_optional_initialization
+  - implicit_getter
 
 included: # paths to include during linting. `--path` is ignored if present.
   - QOT
