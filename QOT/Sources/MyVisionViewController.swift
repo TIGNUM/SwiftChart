@@ -14,17 +14,21 @@ final class MyVisionViewController: UIViewController {
 
     static var storyboardID = NSStringFromClass(MyVisionViewController.classForCoder())
 
+    @IBOutlet private weak var loaderView: UIView!
+    @IBOutlet private weak var nullStateView: MyVisionNullStateView!
     @IBOutlet private weak var navigationBarView: MyVisionNavigationBarView!
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var imageOverLapView: UIView!
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var userImageView: UIImageView!
-    @IBOutlet private weak var writtenYesterDayButton: UIButton!
     @IBOutlet private weak var shareButton: UIButton!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var cameraButton: UIButton!
-    @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
+    @IBOutlet private weak var rateButton: UIButton!
+    @IBOutlet private weak var updateButton: UIButton!
+    @IBOutlet private weak var lastUpdatedLabel: UILabel!
+    @IBOutlet private weak var lastRatedLabel: UILabel!
     @IBOutlet private weak var topGradientView: UIView!
     @IBOutlet private weak var generateVisionButton: UIButton!
     @IBOutlet private weak var backButton: UIButton!
@@ -42,7 +46,6 @@ final class MyVisionViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        addObserver()
         interactor?.viewDidLoad()
     }
 
@@ -60,11 +63,6 @@ final class MyVisionViewController: UIViewController {
         trackPage()
     }
 
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        removeObserver()
-    }
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let editDetailsController  = segue.destination as? MyVisionEditDetailsViewController {
             MyVisionEditDetailsConfigurator.configure(originViewController: self, viewController: editDetailsController, title: interactor?.myVision?.headline ?? "", vision: interactor?.myVision?.text ?? "")
@@ -75,12 +73,18 @@ final class MyVisionViewController: UIViewController {
 // MARK: - IBActions
 
 private extension MyVisionViewController {
-    @IBAction func writtenYesterdayButtonAction(_ sender: UIButton) {
+
+    @IBAction func rateButtonAction(_ sender: UIButton) {
+
     }
 
     @IBAction func shareButtonAction(_ sender: UIButton) {
         trackUserEvent(.SHARE, action: .TAP)
         interactor?.shareMyToBeVision()
+    }
+
+    @IBAction func updateButtonAction(_ sender: UIButton) {
+        interactor?.showUpdateConfirmationScreen()
     }
 
     @IBAction func editButtonAction(_ sender: UIButton) {
@@ -149,14 +153,6 @@ private extension MyVisionViewController {
         }
     }
 
-    func addObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(didGetData(notification:)), name: NSNotification.Name.didFinishSynchronization, object: nil)
-    }
-
-    func removeObserver() {
-        NotificationCenter.default.removeObserver(self, name: NSNotification.Name.didFinishSynchronization, object: nil)
-    }
-
     func formatted(headline: String) -> NSAttributedString? {
         return NSAttributedString(string: headline.uppercased(),
                                   letterSpacing: 0.2,
@@ -173,13 +169,26 @@ private extension MyVisionViewController {
                                   lineSpacing: 10.0,
                                   textColor: .sand)
     }
-
-    @objc func didGetData(notification: NSNotification) {
-        interactor?.updateToBeVision()
-    }
 }
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
+
+    func showScreenLoader() {
+        loaderView.isHidden = false
+    }
+
+    func hideScreenLoader() {
+        loaderView.isHidden = true
+    }
+
+    func showNullState(with title: String, message: String) {
+        nullStateView.isHidden = false
+        nullStateView.setupView(with: title, message: message, delegate: self)
+    }
+
+    func hideNullState() {
+        nullStateView.isHidden = true
+    }
 
     func setupView() {
         navigationBarView.delegate = self
@@ -189,9 +198,10 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         scrollView.scrollsToTop = true
         imageContainerView.backgroundColor = .carbon
         view.backgroundColor = .carbon
-        editButton.corner(radius: editButton.frame.size.width/2, borderColor: .accent40)
         cameraButton.corner(radius: cameraButton.frame.size.width/2, borderColor: .accent40)
         backButton.corner(radius: backButton.frame.size.width/2, borderColor: .accent40)
+        rateButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        updateButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         generateVisionButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         guard let permissionManager = interactor?.permissionManager else { return }
         let adapter = ImagePickerControllerAdapter(self)
@@ -206,10 +216,10 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
     func load(_ myVision: QDMToBeVision?) {
         if myVision == nil {
-            interactor?.openToBeVisionGenerator()
+            interactor?.showNullState(with: interactor?.headlinePlaceholder ?? "", message: interactor?.messagePlaceholder ?? "")
             return
         }
-        writtenYesterDayButton.isHidden = myVision?.headline == nil && myVision?.text == nil
+        interactor?.hideNullState()
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
         headerLabel.attributedText = myVision?.headline?.isEmpty ?? true ? formatted(headline: interactor?.headlinePlaceholder ?? "") : formatted(headline: myVision?.headline ?? "")
         detailTextView.attributedText = myVision?.text?.isEmpty ?? true ? formatted(vision: interactor?.messagePlaceholder ?? "") : formatted(vision: myVision?.text ?? "")
@@ -219,7 +229,8 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         imageOverLapView.isHidden = tempImageURL == nil
         removeGradients()
         addGradients(for: myVision)
-        writtenYesterDayButton.setTitle(interactor?.lastUpdatedVision(), for: .normal)
+        lastRatedLabel.text = interactor?.lastUpdatedVision()
+        lastUpdatedLabel.text = interactor?.lastUpdatedVision()
     }
 }
 
@@ -273,6 +284,7 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         tempImage = image
+        userImageView.image = tempImage
         saveToBeVisionImage()
         RestartHelper.clearRestartRouteInfo()
     }
@@ -305,5 +317,25 @@ extension MyVisionViewController: DecisionTreeViewControllerDelegate {
 
     func didDismiss() {
 
+    }
+}
+
+extension MyVisionViewController: MyVisionNullStateViewProtocol {
+    func editMyVisionAction() {
+        interactor?.showEditVision()
+    }
+
+    func autogenerateMyVisionAction() {
+        interactor?.openToBeVisionGenerator()
+    }
+}
+
+extension MyVisionViewController: PopUpViewControllerProtocol {
+    func leftButtonAction() {
+        interactor?.openToBeVisionGenerator()
+    }
+
+    func rightButtonAction() {
+        interactor?.showEditVision()
     }
 }

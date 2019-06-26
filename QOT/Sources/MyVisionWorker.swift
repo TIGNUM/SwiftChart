@@ -30,18 +30,23 @@ final class MyVisionWorker {
         }
     }
 
+    private var headlineText: String?
+    private var messageText: String?
     private var toBeVision: QDMToBeVision?
-    private let services: Services
+    private let contentService: qot_dal.ContentService
+    private let userService: qot_dal.UserService
     let permissionManager: PermissionsManager
     private let widgetDataManager: ExtensionsDataManager
     var toBeVisionDidChange: ((QDMToBeVision?) -> Void)?
     static var toBeSharedVisionHTML: String?
 
-    init(services: Services, permissionManager: PermissionsManager) {
-        self.services = services
+    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService, permissionManager: PermissionsManager, widgetDataManager: ExtensionsDataManager) {
+        self.userService = userService
+        self.contentService = contentService
         self.permissionManager = permissionManager
-        self.widgetDataManager = ExtensionsDataManager(services: services)
-
+        self.widgetDataManager = widgetDataManager
+        getHeadlinePlaceholder()
+        getMessagePlaceHolder()
         // Make sure that image directory is created.
         do {
             try FileManager.default.createDirectory(at: URL.imageDirectory, withIntermediateDirectories: true)
@@ -54,27 +59,35 @@ final class MyVisionWorker {
         return toBeVision
     }
 
-    var trackablePageObject: PageObject? {
-        return services.userService.myToBeVision().map { PageObject(object: $0, identifier: .myToBeVision) }
+    var messagePlaceholder: String? {
+        return messageText
     }
 
     var headlinePlaceholder: String? {
-        return services.contentService.toBeVisionHeadlinePlaceholder()?.uppercased()
+        return headlineText?.uppercased()
     }
 
-    var messagePlaceholder: String? {
-        return services.contentService.toBeVisionMessagePlaceholder()
+    private func getHeadlinePlaceholder() {
+        contentService.getContentItemById(101080) {[weak self] (item) in
+            self?.headlineText = item?.valueText
+        }
+    }
+
+    private func getMessagePlaceHolder() {
+        contentService.getContentItemById(101079) {[weak self] (item) in
+            self?.messageText = item?.valueText
+        }
     }
 
     func myToBeVision(_ completion: @escaping (_ vision: QDMToBeVision?, _ initialized: Bool, Error?) -> Void) {
-        qot_dal.UserService.main.getMyToBeVision({ [weak self] (vision, initilized, error) in
+        userService.getMyToBeVision({ [weak self] (vision, initilized, error) in
             self?.toBeVision = vision
             completion(vision, initilized, error)
         })
     }
 
     func updateMyToBeVision(_ new: QDMToBeVision, completion: @escaping () -> Void) {
-        qot_dal.UserService.main.updateMyToBeVision(new) { error in
+        userService.updateMyToBeVision(new) { error in
             self.updateWidget()
             completion()
         }
@@ -87,18 +100,14 @@ final class MyVisionWorker {
     func lastUpdatedVision() -> String? {
         guard let date =  toBeVision?.date,
             let timeInterval = DateComponentsFormatter.timeIntervalToString(-date.timeIntervalSinceNow, isShort: true) else { return nil }
-        return R.string.localized.meSectorMyWhyVisionWriteDate(timeInterval)
+        return timeInterval
     }
 
     func visionToShare(_ completion: @escaping (QDMToBeVisionShare?) -> Void) {
-        qot_dal.UserService.main.getMyToBeVisionShareData { (visionShare, initialized, error) in
+        userService.getMyToBeVisionShareData { (visionShare, initialized, error) in
             MyVisionWorker.toBeSharedVisionHTML = visionShare?.body
             completion(visionShare)
         }
-    }
-
-    func setMyToBeVisionReminder(_ remind: Bool) {
-        services.userService.setMyToBeVisionReminder(remind)
     }
 
     func updateWidget() {

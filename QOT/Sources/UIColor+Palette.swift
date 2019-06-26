@@ -52,6 +52,10 @@ extension UIColor {
         return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 1)
     }
 
+    class var sand70: UIColor {
+        return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.7)
+    }
+
     class var carbonDark20: UIColor {
         return UIColor(red: 8/255, green: 8/255, blue: 7/255, alpha: 0.2)
     }

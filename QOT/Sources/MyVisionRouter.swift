@@ -31,6 +31,15 @@ extension MyVisionRouter: MyVisionRouterInterface {
         viewController.dismiss(animated: true, completion: nil)
     }
 
+    func showUpdateConfirmationScreen() {
+        let config = PopUpViewController.Config(title: "UPDATE TO BE VISION",
+                                                description: "Do you wanna create a new To Be Vision or edit your current one?",
+                                                rightButtonTitle: "Edit", leftButtonTitle: "Create new")
+        let popUpController = PopUpViewController(with: config, delegate: viewController)
+        popUpController.modalPresentationStyle = .overCurrentContext
+        viewController.present(popUpController, animated: true, completion: nil)
+    }
+
     func openToBeVisionGenerator(permissionManager: PermissionsManager) {
         let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator, permissionsManager: permissionManager)
         let decisonTreeViewController = DecisionTreeViewController(configure: configurator)
