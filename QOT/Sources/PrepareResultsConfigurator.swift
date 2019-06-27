@@ -12,11 +12,10 @@ import qot_dal
 final class PrepareResultsConfigurator {
     static func configurate(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer],
-                            _ relatedStrategyId: Int,
                             canDelete: Bool) -> (PrepareResultsViewController) -> Void {
         return { (viewController) in
             let router = PrepareResultsRouter(viewController: viewController)
-            let worker = PrepareResultsWorker(preparation, answers, relatedStrategyId, canDelete)
+            let worker = PrepareResultsWorker(preparation, answers, canDelete)
             let presenter = PrepareResultsPresenter(viewController: viewController)
             let interactor = PrepareResultInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

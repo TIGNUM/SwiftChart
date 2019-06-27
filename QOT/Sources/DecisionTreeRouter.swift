@@ -90,9 +90,8 @@ extension DecisionTreeRouter {
     }
 
     func openPrepareResults(_ preparation: QDMUserPreparation,
-                            _ answers: [DecisionTreeModel.SelectedAnswer],
-                            _ relatedStrategyID: Int) {
-        presentPrepareResults(PrepareResultsConfigurator.configurate(preparation, answers, relatedStrategyID, canDelete: true))
+                            _ answers: [DecisionTreeModel.SelectedAnswer]) {
+        presentPrepareResults(PrepareResultsConfigurator.configurate(preparation, answers, canDelete: true))
     }
 
     private func presentPrepareResults(_ configurator: Configurator<PrepareResultsViewController>) {
