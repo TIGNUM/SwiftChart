@@ -34,14 +34,14 @@ final class LearnCategoryListViewModel {
 
     private let categories: AnyRealmCollection<ContentCategory>
     private var token: NotificationTokenHandler?
-    let updates = PublishSubject<CollectionUpdate, Never>()
+    let updates = PassthroughSubject<CollectionUpdate, Never>()
 
     // MARK: - Init
 
     init(services: Services) {
         self.categories = services.contentService.learnContentCategories()
         token = categories.observe { [unowned self] (change) in
-            self.updates.next(change.update(section: 0))
+            self.updates.send(change.update(section: 0))
         }.handler
     }
 

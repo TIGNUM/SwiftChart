@@ -864,6 +864,16 @@
 		ACF0B9792260BC80008CFAEC /* TextTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACF0B9772260BC80008CFAEC /* TextTableViewCell.xib */; };
 		ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACF0B97A2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift */; };
 		ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */; };
+		B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */; };
+		B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */; };
+		B83B33E822C21D6E002AFED7 /* bottomNavigation.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B83B33DF22C21D6E002AFED7 /* bottomNavigation.storyboard */; };
+		B83B33E922C21D6E002AFED7 /* UIViewController+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E122C21D6E002AFED7 /* UIViewController+Swizzle.swift */; };
+		B83B33EA22C21D6E002AFED7 /* BaseRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E222C21D6E002AFED7 /* BaseRootViewController.swift */; };
+		B83B33EB22C21D6E002AFED7 /* BottomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E422C21D6E002AFED7 /* BottomNavigationBar.swift */; };
+		B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E522C21D6E002AFED7 /* BottomNavigationContainer.swift */; };
+		B8BB412822C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412722C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift */; };
+		B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412922C4BEDE002897E4 /* CoachButton.swift */; };
+		B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BB412C22C4C0FE002897E4 /* BottomNavigationItem.swift */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
 		CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB142B722010CC65002DF8FB /* GuideGenerator.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
@@ -2177,6 +2187,16 @@
 		ACF0B97B2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MultipleSelectionTableViewCell.xib; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
 		B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.unittest.xcconfig"; sourceTree = "<group>"; };
+		B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTNavigationController.swift; sourceTree = "<group>"; };
+		B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Notification+Navigation.swift"; sourceTree = "<group>"; };
+		B83B33DF22C21D6E002AFED7 /* bottomNavigation.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = bottomNavigation.storyboard; sourceTree = "<group>"; };
+		B83B33E122C21D6E002AFED7 /* UIViewController+Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Swizzle.swift"; sourceTree = "<group>"; };
+		B83B33E222C21D6E002AFED7 /* BaseRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRootViewController.swift; sourceTree = "<group>"; };
+		B83B33E422C21D6E002AFED7 /* BottomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomNavigationBar.swift; sourceTree = "<group>"; };
+		B83B33E522C21D6E002AFED7 /* BottomNavigationContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomNavigationContainer.swift; sourceTree = "<group>"; };
+		B8BB412722C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIAlertViewController+BottomNavigation.swift"; sourceTree = "<group>"; };
+		B8BB412922C4BEDE002897E4 /* CoachButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachButton.swift; sourceTree = "<group>"; };
+		B8BB412C22C4C0FE002897E4 /* BottomNavigationItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomNavigationItem.swift; sourceTree = "<group>"; };
 		BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.appstore.xcconfig"; sourceTree = "<group>"; };
 		BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
@@ -3100,6 +3120,7 @@
 		367BB012223955D200282AB6 /* 3.0 Main Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				B83B33DA22C21D6E002AFED7 /* BottomNavigation */,
 				AC1A40D122A54DC90022156C /* Solve Results */,
 				5F8A89882296CA530011A05C /* MyToBeVision */,
 				36376638223A6F0E00C2C429 /* components */,
@@ -4613,6 +4634,63 @@
 				BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */,
 			);
 			name = Pods;
+			sourceTree = "<group>";
+		};
+		B83B33DA22C21D6E002AFED7 /* BottomNavigation */ = {
+			isa = PBXGroup;
+			children = (
+				B8BB412B22C4C0E6002897E4 /* Model */,
+				B83B33DB22C21D6E002AFED7 /* NavigationController */,
+				B83B33DD22C21D6E002AFED7 /* Notification */,
+				B83B33E022C21D6E002AFED7 /* ViewControllers */,
+				B83B33E322C21D6E002AFED7 /* View */,
+				B83B33DF22C21D6E002AFED7 /* bottomNavigation.storyboard */,
+			);
+			path = BottomNavigation;
+			sourceTree = "<group>";
+		};
+		B83B33DB22C21D6E002AFED7 /* NavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */,
+			);
+			path = NavigationController;
+			sourceTree = "<group>";
+		};
+		B83B33DD22C21D6E002AFED7 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */,
+			);
+			path = Notification;
+			sourceTree = "<group>";
+		};
+		B83B33E022C21D6E002AFED7 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				B83B33E122C21D6E002AFED7 /* UIViewController+Swizzle.swift */,
+				B83B33E222C21D6E002AFED7 /* BaseRootViewController.swift */,
+				B8BB412722C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		B83B33E322C21D6E002AFED7 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				B83B33E422C21D6E002AFED7 /* BottomNavigationBar.swift */,
+				B83B33E522C21D6E002AFED7 /* BottomNavigationContainer.swift */,
+				B8BB412922C4BEDE002897E4 /* CoachButton.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		B8BB412B22C4C0E6002897E4 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				B8BB412C22C4C0FE002897E4 /* BottomNavigationItem.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CB026FC41F6967DB00FC5076 /* APNS Device Token */ = {
@@ -6405,6 +6483,7 @@
 				368F2AF52296D74D0008A36D /* ArticleNextUpTableViewCell.xib in Resources */,
 				3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */,
 				91086E502092044C0035DA1F /* SettingsCell.xib in Resources */,
+				B83B33E822C21D6E002AFED7 /* bottomNavigation.storyboard in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
@@ -6861,6 +6940,7 @@
 				91086E4A209202800035DA1F /* SettingsProtocols.swift in Sources */,
 				36796A4620D3C49900B55429 /* SigningLoginInteractor.swift in Sources */,
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
+				B83B33EB22C21D6E002AFED7 /* BottomNavigationBar.swift in Sources */,
 				36376652223A9CD300C2C429 /* AbstractLevelThreeViewController.swift in Sources */,
 				CC90EC9F1F3076EB00A83DB9 /* SettingsChangePasswordViewController.swift in Sources */,
 				CBB017BB1F9741F200CC1048 /* SyncTask.swift in Sources */,
@@ -7149,6 +7229,7 @@
 				36376661223AA61100C2C429 /* LevelThreeInteractor.swift in Sources */,
 				36083826225F3ED000664B9B /* ArticlePresenter.swift in Sources */,
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
+				B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */,
 				7FB32D151F44793F0027BF4E /* TrackablePage.swift in Sources */,
 				360E99522167A93D0084CEFB /* PrepareNotesViewController.swift in Sources */,
 				3608382B225F3ED000664B9B /* ArticleInteractor.swift in Sources */,
@@ -7232,6 +7313,7 @@
 				36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */,
 				CB3029E62050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift in Sources */,
 				DB680597218210E700C2FC69 /* MorningInterviewModels.swift in Sources */,
+				B83B33EA22C21D6E002AFED7 /* BaseRootViewController.swift in Sources */,
 				5FA66642229C207B0027EE74 /* MyVisionEditDetailsWorker.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				ACB99E7622661F2400A73709 /* DecisionTreeQuestionnaireController.swift in Sources */,
@@ -7247,6 +7329,7 @@
 				9150413720FDF40A00D43D18 /* SensorViewController.swift in Sources */,
 				5FA6663E229C20600027EE74 /* MyVisionEditDetailsPresenter.swift in Sources */,
 				DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */,
+				B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */,
 				36D72ECF229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				F967269F22BCD99400B63FD7 /* QuestionInterface.swift in Sources */,
@@ -7284,6 +7367,7 @@
 				DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */,
 				5F360749228C42570074FEC4 /* MyQotSyncedCalendarCell.swift in Sources */,
 				3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */,
+				B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */,
 				5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */,
 				36376675223BFF3800C2C429 /* StrategyListPresenter.swift in Sources */,
 				5F78966922A9478400D2DBAD /* SkeletonAnimationType.swift in Sources */,
@@ -7413,6 +7497,7 @@
 				5F36073B228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift in Sources */,
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
 				AC103E2E22847AB500F426F0 /* ConfirmationRouter.swift in Sources */,
+				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChart.swift in Sources */,
 				CCE373141E8D32F800B79352 /* SidebarViewModel.swift in Sources */,
 				5F6B385B228414F700704676 /* ContentService+AccountSettings.swift in Sources */,
@@ -7442,6 +7527,7 @@
 				CC0238FF1F4EE2B700DD992B /* IntensityChart.swift in Sources */,
 				36796A0620D3C41F00B55429 /* SigningCreatePasswordPresenter.swift in Sources */,
 				360256EC205183C700862B0E /* SearchModels.swift in Sources */,
+				B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */,
 				CBCCF3941F7D53CD000E4440 /* ChatViewLayoutAttibutes.swift in Sources */,
 				D51B5C491E8D0E7E0084A65B /* LearnContentCell.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* ArticleCollectionViewController.swift in Sources */,
@@ -7565,6 +7651,7 @@
 				9150413320FDF40A00D43D18 /* SensorPresenter.swift in Sources */,
 				366AFD1020BD9F9300109F29 /* SigningEmailViewController.swift in Sources */,
 				AC1A40E822A55C870022156C /* SolveHeaderTableViewCell.swift in Sources */,
+				B83B33E922C21D6E002AFED7 /* UIViewController+Swizzle.swift in Sources */,
 				5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */,
 				CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */,
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,
@@ -7593,6 +7680,7 @@
 				360256E42051837300862B0E /* SearchWorker.swift in Sources */,
 				5F7BE77E2289586E00BA5DCF /* MyQotSupportInterface.swift in Sources */,
 				91F5BE5220975E1300E85A51 /* PermissionsInteractor.swift in Sources */,
+				B8BB412822C2B365002897E4 /* UIAlertViewController+BottomNavigation.swift in Sources */,
 				85AAB53C1F447D1F00C2D53F /* LearnContentListBackgroundView.swift in Sources */,
 				CCE06FE01E8D44FC009C5AD2 /* LibraryCoordinator.swift in Sources */,
 				DB82EEC42152859C002322B7 /* UIView+Animation.swift in Sources */,

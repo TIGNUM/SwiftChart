@@ -17,7 +17,7 @@ protocol AudioPlayerViewDelegate: class {
     func openFullScreen()
 }
 
-final class StrategyListViewController: AbstractLevelTwoViewController {
+final class StrategyListViewController: UIViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 
@@ -75,7 +75,6 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
         view.backgroundColor = .carbon
         setupTableView()
-        setupNavigationButtons()
         setupAudioPlayerView()
     }
 }
@@ -148,7 +147,6 @@ extension StrategyListViewController: AudioPlayerViewDelegate {
     func didTabClose(for view: AudioPlayer.View) {
         switch view {
         case .bar:
-            showHideNavigationButtons()
             audioPlayerBar.isHidden = true
         case .fullScreen:
             audioPlayerBar.updateView()
@@ -158,7 +156,6 @@ extension StrategyListViewController: AudioPlayerViewDelegate {
 
     func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int) {
         if audioPlayerBar.isHidden == true {
-            showHideNavigationButtons()
             audioPlayerBar.isHidden = false
         }
         audioPlayerBar.configure(categoryTitle: categoryTitle,

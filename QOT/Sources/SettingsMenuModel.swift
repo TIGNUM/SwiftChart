@@ -24,7 +24,7 @@ final class SettingsMenuViewModel {
 
     private lazy var tiles: [Tile] = userTiles(user: self.user)
     private let user: User
-    let tileUpdates = PublishSubject<CollectionUpdate, Never>()
+    let tileUpdates = PassthroughSubject<CollectionUpdate, Never>()
     private let settingTitles = [R.string.localized.sidebarSettingsMenuGeneralButton(),
                                  R.string.localized.sidebarSettingsMenuNotificationsButton(),
                                  R.string.localized.sidebarSettingsMenuSecurityButton()]
@@ -331,7 +331,7 @@ final class SettingsViewModel {
     private let services: Services
     var user: QDMUser?
     private let settingsType: SettingsType.SectionType
-    let updates = PublishSubject<CollectionUpdate, Never>()
+    let updates = PassthroughSubject<CollectionUpdate, Never>()
 
     var sectionCount: Int {
         return settingsSections.count

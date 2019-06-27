@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 import AMScrollingNavbar
 
-final class MyVisionViewController: UIViewController {
+final class MyVisionViewController: UIViewController, ScreenZLevel3 {
 
     static var storyboardID = NSStringFromClass(MyVisionViewController.classForCoder())
 

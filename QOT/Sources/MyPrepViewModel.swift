@@ -38,10 +38,10 @@ final class MyPrepViewModel {
     private let syncStateObserver: SyncStateObserver
     private var items = [Item]() {
         didSet {
-            updates.next(.reload)
+            updates.send(.reload)
         }
     }
-    let updates = PublishSubject<CollectionUpdate, Never>()
+    let updates = PassthroughSubject<CollectionUpdate, Never>()
     let itemCountUpdate = ReplayOneSubject<Int, Never>()
 
     enum Section {
@@ -65,7 +65,7 @@ final class MyPrepViewModel {
                     self.refresh()
                     return
                 }
-                self.updates.next(.reload)
+                self.updates.send(.reload)
             default: break
             }
         }.handler
@@ -78,7 +78,7 @@ final class MyPrepViewModel {
             }
         }.handler
         syncStateObserver.onUpdate { [unowned self] _ in
-            self.updates.next(.reload)
+            self.updates.send(.reload)
         }
         refresh()
         widgetDataManager.update(.upcomingEvent)
@@ -192,6 +192,6 @@ private extension MyPrepViewModel {
             sections.append(.past)
         }
         self.items = self.futurePreparations + self.pastPreparations
-        itemCountUpdate.next(itemCount)
+        itemCountUpdate.send(itemCount)
     }
 }

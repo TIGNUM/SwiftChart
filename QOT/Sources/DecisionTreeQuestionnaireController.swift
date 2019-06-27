@@ -99,6 +99,14 @@ private extension DecisionTreeQuestionnaireViewController {
     }
 }
 
+// MARK: - Bottom Navigation Items
+
+extension DecisionTreeQuestionnaireViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItem()]
+    }
+}
+
 // MARK: - UITableViewDelegate
 
 extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
