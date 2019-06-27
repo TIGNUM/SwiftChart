@@ -100,8 +100,8 @@ final class WindowManager {
     }
 
     func showSubscriptionReminder(isExpired: Bool) {
-        let configurator = SubsriptionReminderConfigurator.make(isExpired: isExpired)
-        let controller = SubsriptionReminderViewController(configure: configurator)
+        let configurator = PaymentReminderConfigurator.make(isExpired: isExpired)
+        let controller = PaymentReminderViewController(configure: configurator)
         showPriority(controller, animated: true, completion: nil)
     }
 

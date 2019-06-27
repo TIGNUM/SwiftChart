@@ -47,13 +47,10 @@ extension CoachRouter: CoachRouterInterface {
                 viewController.pushToStart(childViewController: toolsViewController)
             }
         case .sprint:
-            let storyboardID = R.storyboard.dailyBriefStoryboard.thoughtViewControllerID.identifier
-            let thoughtViewController = R.storyboard
-                .dailyBriefStoryboard().instantiateViewController(withIdentifier: storyboardID) as? ThoughtsViewController
-            if let thoughtViewController = thoughtViewController {
-                ThoughtsConfigurator.make(viewController: thoughtViewController)
-                viewController.pushToStart(childViewController: thoughtViewController)
-            }
+            let configurator = PaymentReminderConfigurator.make(isExpired: true)
+            let controller = PaymentReminderViewController(configure: configurator)
+            viewController.present(controller, animated: true, completion: nil)
+
         case .event:
             let configurator = DecisionTreeConfigurator.make(for: .prepare, permissionsManager: permissionsManager)
             let controller = DecisionTreeViewController(configure: configurator)

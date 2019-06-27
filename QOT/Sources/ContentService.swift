@@ -35,6 +35,16 @@ final class ContentService {
         case coachPlanSprintSectionSubtitle = "coach_plan_sprint_section_subtitle"
         case coachPrepareEventSectionSubtitle = "coach_prepare_event_section_subtitle"
         case coachSolveChallengeSectionSubtitle = "coach_solve_challenge_section_subtitle"
+        case paymentHeaderTitle = "payment_header_title"
+        case paymentHeaderSubtitle = "payment_header_subtitle"
+        case paymentPrepareSectionTitle = "payment_prepared_section_title"
+        case paymentImpactSectionTitle = "payment_impact_section_title"
+        case paymentGrowSectionTitle = "payment_grow_section_title"
+        case paymentDataSectionTitle = "payment_data_section_title"
+        case paymentPrepareSectionSubtitle = "payment_prepared_section_subtitle"
+        case paymentImpactSectionSubtitle = "payment_impact_section_subtitle"
+        case paymentGrowSectionSubtitle = "payment_grow_section_subtitle"
+        case paymentDataSectionSubtitle = "payment_data_section_subtitle"
         case tbvGeneratorAlertNotSavedTitle = "tbv_generator_alert_not_saved_title"
         case tbvGeneratorAlertNotSavedMessage = "tbv_generator_alert_not_saved_message"
         case tbvGeneratorAlertNotSavedButtonTitleCancel = "tbv_generator_alert_not_saved_button_title_cancel"
@@ -484,6 +494,45 @@ extension ContentService {
         case .morningInterview:
             return contentItem(for: ContentService.Tags.siriDailyPrepSuggestionPhrase.predicate)?.valueText
         }
+    }
+}
+
+// MARK: - Payment
+
+extension ContentService {
+
+    func paymentSectionTitles(for paymentItem: PaymentSection) -> String? {
+        switch paymentItem {
+        case .prepared:
+            return contentItem(for: ContentService.Tags.paymentPrepareSectionTitle.predicate)?.valueText
+        case .impact:
+            return contentItem(for: ContentService.Tags.paymentImpactSectionTitle.predicate)?.valueText
+        case .grow:
+            return contentItem(for: ContentService.Tags.paymentGrowSectionTitle.predicate)?.valueText
+        case .data:
+            return contentItem(for: ContentService.Tags.paymentDataSectionTitle.predicate)?.valueText
+        }
+    }
+
+    func paymentSectionSubtitles(for paymentItem: PaymentSection) -> String? {
+        switch paymentItem {
+        case .prepared:
+            return contentItem(for: ContentService.Tags.paymentPrepareSectionSubtitle.predicate)?.valueText
+        case .impact:
+            return contentItem(for: ContentService.Tags.paymentImpactSectionSubtitle.predicate)?.valueText
+        case .grow:
+            return contentItem(for: ContentService.Tags.paymentGrowSectionSubtitle.predicate)?.valueText
+        case .data:
+            return contentItem(for: ContentService.Tags.paymentDataSectionSubtitle.predicate)?.valueText
+        }
+    }
+
+    func paymentHeaderTitle() -> String? {
+        return contentItem(for: ContentService.Tags.paymentHeaderTitle.predicate)?.valueText
+    }
+
+    func paymentHeaderSubtitle() -> String? {
+        return contentItem(for: ContentService.Tags.paymentHeaderSubtitle.predicate)?.valueText
     }
 }
 

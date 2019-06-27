@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="PaymentReminderViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="contactButton" destination="rpb-AB-kTZ" id="dfL-pJ-Fnz"/>
+                <outlet property="signInLabel" destination="J1e-iQ-A73" id="JS3-Cf-Mq2"/>
+                <outlet property="switchAccountsButton" destination="1GO-9s-hkb" id="5u9-Vy-HNd"/>
+                <outlet property="tableView" destination="Pf7-aH-G2b" id="54a-cT-ugD"/>
+                <outlet property="view" destination="2en-Of-QvX" id="Y5d-tO-tZC"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <viewController restorationIdentifier="PaymentReminderID" id="0Il-e0-R9h" customClass="PaymentReminderViewController" customModule="QOT" customModuleProvider="target">
+            <connections>
+                <outlet property="tableView" destination="Pf7-aH-G2b" id="kIv-9f-TQg"/>
+            </connections>
+            <point key="canvasLocation" x="338" y="37"/>
+        </viewController>
+        <view contentMode="scaleToFill" id="2en-Of-QvX">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="100" sectionHeaderHeight="120" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Pf7-aH-G2b">
+                    <rect key="frame" x="0.0" y="44" width="414" height="669"/>
+                    <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <connections>
+                        <outlet property="dataSource" destination="-1" id="SHh-hT-HuH"/>
+                        <outlet property="delegate" destination="-1" id="rYj-Xl-sZe"/>
+                    </connections>
+                </tableView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImD-vD-sFb">
+                    <rect key="frame" x="40" y="787" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="ICQ-eD-M5N"/>
+                        <constraint firstAttribute="height" constant="40" id="Sa6-LX-khy"/>
+                    </constraints>
+                    <state key="normal" image="ic_close_rounded"/>
+                    <connections>
+                        <action selector="didClose:" destination="-1" eventType="touchUpInside" id="vuC-AN-Niq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rpb-AB-kTZ">
+                    <rect key="frame" x="229" y="792" width="150" height="35"/>
+                    <color key="backgroundColor" red="0.1215686275" green="0.12941176469999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="2Ed-N9-05v"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="OgX-QA-PuH"/>
+                    </constraints>
+                    <state key="normal" title="Contact Support">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="didTapContact:" destination="-1" eventType="touchUpInside" id="8H4-r4-EDf"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Learn more about your QOT membership" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oKD-li-bYT">
+                    <rect key="frame" x="120" y="755" width="264" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1GO-9s-hkb">
+                    <rect key="frame" x="280" y="723" width="104" height="28"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <state key="normal" title="different account">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="switchAccounts:" destination="-1" eventType="touchUpInside" id="DUx-Ee-lL0"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign in with a" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J1e-iQ-A73">
+                    <rect key="frame" x="193" y="729" width="81" height="16"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="nwm-XO-STu" firstAttribute="bottom" secondItem="ImD-vD-sFb" secondAttribute="bottom" constant="35" id="0Pm-bo-7Ro"/>
+                <constraint firstItem="nwm-XO-STu" firstAttribute="trailing" secondItem="1GO-9s-hkb" secondAttribute="trailing" constant="30" id="1eM-5Q-egn"/>
+                <constraint firstItem="J1e-iQ-A73" firstAttribute="centerY" secondItem="1GO-9s-hkb" secondAttribute="centerY" id="5Wu-66-u9q"/>
+                <constraint firstItem="Pf7-aH-G2b" firstAttribute="top" secondItem="nwm-XO-STu" secondAttribute="top" id="61c-49-I1Q"/>
+                <constraint firstItem="oKD-li-bYT" firstAttribute="top" secondItem="J1e-iQ-A73" secondAttribute="bottom" constant="10" id="CoP-wf-h0u"/>
+                <constraint firstItem="nwm-XO-STu" firstAttribute="trailing" secondItem="oKD-li-bYT" secondAttribute="trailing" constant="30" id="KeA-UV-KVb"/>
+                <constraint firstItem="ImD-vD-sFb" firstAttribute="leading" secondItem="nwm-XO-STu" secondAttribute="leading" constant="40" id="LXQ-KD-hQw"/>
+                <constraint firstItem="1GO-9s-hkb" firstAttribute="leading" secondItem="J1e-iQ-A73" secondAttribute="trailing" constant="6" id="NRi-cq-quT"/>
+                <constraint firstItem="nwm-XO-STu" firstAttribute="trailing" secondItem="Pf7-aH-G2b" secondAttribute="trailing" id="TL3-6C-Vcj"/>
+                <constraint firstItem="rpb-AB-kTZ" firstAttribute="top" secondItem="oKD-li-bYT" secondAttribute="bottom" constant="20" id="b0c-Zy-DWe"/>
+                <constraint firstItem="nwm-XO-STu" firstAttribute="trailing" secondItem="rpb-AB-kTZ" secondAttribute="trailing" constant="35" id="hDo-al-eFb"/>
+                <constraint firstItem="1GO-9s-hkb" firstAttribute="top" secondItem="Pf7-aH-G2b" secondAttribute="bottom" constant="10" id="njh-K5-Cw9"/>
+                <constraint firstItem="nwm-XO-STu" firstAttribute="bottom" secondItem="rpb-AB-kTZ" secondAttribute="bottom" constant="35" id="sse-LU-LHO"/>
+                <constraint firstItem="Pf7-aH-G2b" firstAttribute="leading" secondItem="nwm-XO-STu" secondAttribute="leading" id="vvV-xV-HfI"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="nwm-XO-STu"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_close_rounded" width="40" height="40"/>
+    </resources>
+</document>
