@@ -11,9 +11,10 @@ import UIKit
 protocol PopUpViewControllerProtocol: class {
     func leftButtonAction()
     func rightButtonAction()
+    func cancelAction()
 }
 
-final class PopUpViewController: UIViewController {
+final class PopUpViewController: UIViewController, ScreenZLevel {
 
     struct Config {
         let title: String
@@ -54,12 +55,22 @@ final class PopUpViewController: UIViewController {
         addGestures()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+
     @objc func handleGesture(gesture: UISwipeGestureRecognizer) {
-        dismiss(self)
+        cancel()
     }
 
     @objc func handleTap(_ sender: UITapGestureRecognizer? = nil) {
-        dismiss(self)
+        cancel()
+    }
+
+    private func cancel() {
+        dismiss(animated: true, completion: {
+            self.delegate?.cancelAction()
+        })
     }
 
     private func addGestures() {
@@ -91,12 +102,25 @@ final class PopUpViewController: UIViewController {
     }
 
     @IBAction func leftButtonAction(_ sender: Any) {
-        dismiss(self)
-        delegate?.leftButtonAction()
+        dismiss(animated: false, completion: {
+            self.delegate?.leftButtonAction()
+        })
     }
 
     @IBAction func rightButtonAction(_ sender: Any) {
-        dismiss(self)
-        delegate?.rightButtonAction()
+        dismiss(animated: false, completion: {
+            self.delegate?.rightButtonAction()
+        })
+    }
+}
+
+// MARK: Bottom Navigation
+extension PopUpViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 }

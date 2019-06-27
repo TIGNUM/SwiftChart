@@ -59,12 +59,6 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
         return navController
     }()
 
-    lazy var coachViewController: CoachViewController? = {
-        let coachViewController = R.storyboard.main().instantiateViewController(withIdentifier: R.storyboard.main.coachViewControllerID.identifier) as? CoachViewController
-        CoachConfigurator.make(viewController: coachViewController)
-        return coachViewController
-    }()
-
     lazy var searchViewController: SearchViewController? = {
         let configurator = SearchConfigurator.make(delegate: self)
         let searchViewController = SearchViewController(configure: configurator, pageName: .sideBarSearch)
@@ -83,7 +77,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
             searchViewController.view.alpha = 0
         }
         view.addSubview(collectionView)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        view.backgroundColor = .carbonDark
     }
 
     override func viewWillAppear(_ animated: Bool) {

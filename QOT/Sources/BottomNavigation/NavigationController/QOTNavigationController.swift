@@ -87,13 +87,15 @@ extension UINavigationController {
         }
     }
 
-    func presentModal(_ vc: UIViewController, animated: Bool, completion: (() -> Void)? = nil) {
+    func presentModal(_ vc: UIViewController,
+                      from sender: UIViewController,
+                      animated: Bool, completion: (() -> Void)? = nil) {
         if presentedViewController == nil {
             topViewController?.presentSwizzled(viewControllerToPresent: vc, animated: animated, completion: completion)
         } else if let naviVC = presentedViewController as? UINavigationController {
-            naviVC.presentModal(vc, animated: animated, completion: completion)
+            naviVC.presentModal(vc, from: sender, animated: animated, completion: completion)
         } else {
-            fatalError("Cannot find UINavigationController")
+            sender.presentSwizzled(viewControllerToPresent: vc, animated: animated, completion: completion)
         }
     }
 }

@@ -34,6 +34,7 @@ extension VisionGeneratorPresenter: VisionGeneratorPresenterInterface {
 
     func updateVisionControllerModel() {
         visionController?.update()
+        visionController?.refreshBottomNavigationItems()
     }
 
     func dismiss() {

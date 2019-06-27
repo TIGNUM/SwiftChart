@@ -86,10 +86,14 @@ extension UIViewController {
             let naviController = UINavigationController(rootViewController: vc)
             naviController.isToolbarHidden = true
             naviController.isNavigationBarHidden = true
+            naviController.modalPresentationStyle = viewControllerToPresent.modalPresentationStyle
+            naviController.modalTransitionStyle = viewControllerToPresent.modalTransitionStyle
+            naviController.modalPresentationCapturesStatusBarAppearance = viewControllerToPresent.modalPresentationCapturesStatusBarAppearance
+
             vc = naviController
         }
 
-        baseRootViewController?.navigationController?.presentModal(vc, animated: animated, completion: completion)
+        baseRootViewController?.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
     }
 }
 
@@ -97,9 +101,15 @@ extension UIViewController {
 
     @objc open func refreshBottomNavigationItems() {
         if (self as? UINavigationController) == nil,
-            (self as? UIPageViewController) == nil,
+           (self as? UIPageViewController) == nil,
             let notificationBlock = navigationNotificationBlock() {
             notificationBlock()
+        } else if (self as? UIAlertController) != nil {
+            let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                      rightBarButtonItems: [],
+                                                      backgroundColor: .clear)
+            let notification = Notification(name: .updateBottomNavigation, object: navigationItem, userInfo: nil)
+            NotificationCenter.default.post(notification)
         }
     }
 

@@ -36,6 +36,7 @@ extension VisionGeneratorRouter: VisionGeneratorRouterInterface {
 
     func loadLastQuestion() {
         chatViewController.laodLastQuestion()
+        chatViewController.refreshBottomNavigationItems()
     }
 
     func showPictureActionSheet(_ visionType: VisionGeneratorChoice.QuestionType) {
