@@ -24,5 +24,4 @@ final class QuestionRouter {
 // MARK: - CoachRouterInterface
 
 extension QuestionRouter: QuestionRouterInterface {
- 
 }

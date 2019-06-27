@@ -290,6 +290,7 @@
 		369AE00222A6CA7500DE4FA0 /* PrepareResultsInfoView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369AE00122A6CA7500DE4FA0 /* PrepareResultsInfoView.xib */; };
 		369AE00422A7A6FC00DE4FA0 /* EditHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */; };
 		369AE00622A7AC6F00DE4FA0 /* EditHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */; };
+		36A2505722C4B97600B1CA1F /* QuestionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A2505622C4B97500B1CA1F /* QuestionPresenter.swift */; };
 		36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */; };
 		36A5E75722786014006A522C /* MediaPlayerOverlay.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36A5E75622786014006A522C /* MediaPlayerOverlay.xib */; };
 		36A7B9422166454A006C18F0 /* PrepareSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36A7B9412166454A006C18F0 /* PrepareSectionHeaderView.swift */; };
@@ -382,7 +383,6 @@
 		36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
 		36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */; };
-		36FA332B22C36FD200A92C92 /* QuestionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FA332A22C36FD200A92C92 /* QuestionPresenter.swift */; };
 		36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */; };
 		36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */; };
 		36FEA86320A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */; };
@@ -1235,6 +1235,14 @@
 		F96726A922BCDA0F00B63FD7 /* QuestionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96726A822BCDA0F00B63FD7 /* QuestionWorker.swift */; };
 		F9838F3422AFA61F003F9394 /* ContentService+Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3322AFA61F003F9394 /* ContentService+Coach.swift */; };
 		F9838F3822AFBD6A003F9394 /* ContentService + Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3722AFBD6A003F9394 /* ContentService + Tools.swift */; };
+		F98E2AC822C22057002550FF /* GoodToKnowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2AC722C22057002550FF /* GoodToKnowViewController.swift */; };
+		F98E2ACA22C2206B002550FF /* GoodToKnowConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2AC922C2206B002550FF /* GoodToKnowConfigurator.swift */; };
+		F98E2ACC22C22079002550FF /* GoodToKnowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2ACB22C22079002550FF /* GoodToKnowInteractor.swift */; };
+		F98E2ACE22C22087002550FF /* GoodToKnowInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2ACD22C22087002550FF /* GoodToKnowInterface.swift */; };
+		F98E2AD022C22095002550FF /* GoodToKnowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2ACF22C22095002550FF /* GoodToKnowModel.swift */; };
+		F98E2AD222C220A0002550FF /* GoodToKnowPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2AD122C220A0002550FF /* GoodToKnowPresenter.swift */; };
+		F98E2AD422C220CF002550FF /* GoodToKnowRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2AD322C220CF002550FF /* GoodToKnowRouter.swift */; };
+		F98E2AD622C220E0002550FF /* GoodToKnowWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2AD522C220E0002550FF /* GoodToKnowWorker.swift */; };
 		F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */; };
 		F99DF5F42292D6DC00341DAB /* ToolsCollectionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */; };
 		F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */; };
@@ -1268,6 +1276,14 @@
 		F9C1D8CB220DEA0E00B40DD2 /* SiriShortcutsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9C1D8C9220DEA0E00B40DD2 /* SiriShortcutsCell.swift */; };
 		F9C1D8CC220DEA0E00B40DD2 /* SiriShortcutsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9C1D8CA220DEA0E00B40DD2 /* SiriShortcutsCell.xib */; };
 		F9EB5E5F22BD20470085A03F /* DailyBriefStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9EB5E5E22BD20470085A03F /* DailyBriefStoryboard.storyboard */; };
+		F9EB5E6B22C104C40085A03F /* ThoughtsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB5E6A22C104C40085A03F /* ThoughtsConfigurator.swift */; };
+		F9EB5E6D22C104D60085A03F /* ThoughtsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB5E6C22C104D60085A03F /* ThoughtsInteractor.swift */; };
+		F9EB5E6F22C104E50085A03F /* ThoughtsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB5E6E22C104E50085A03F /* ThoughtsInterface.swift */; };
+		F9EB5E7122C104FC0085A03F /* ThoughtsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB5E7022C104FC0085A03F /* ThoughtsPresenter.swift */; };
+		F9EB5E7322C105110085A03F /* ThoughtsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB5E7222C105110085A03F /* ThoughtsRouter.swift */; };
+		F9EB5E7522C105250085A03F /* ThoughtsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB5E7422C105250085A03F /* ThoughtsViewController.swift */; };
+		F9EB5E7722C105550085A03F /* ThoughtsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB5E7622C105550085A03F /* ThoughtsWorker.swift */; };
+		F9EB5E7922C112490085A03F /* ThoughtsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9EB5E7822C112490085A03F /* ThoughtsModel.swift */; };
 		F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */; };
 		F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */; };
 		F9FA08F322806C6300A917A4 /* CoachTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */; };
@@ -1612,6 +1628,7 @@
 		369AE00122A6CA7500DE4FA0 /* PrepareResultsInfoView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareResultsInfoView.xib; sourceTree = "<group>"; };
 		369AE00322A7A6FC00DE4FA0 /* EditHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditHeaderView.swift; sourceTree = "<group>"; };
 		369AE00522A7AC6F00DE4FA0 /* EditHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditHeaderView.xib; sourceTree = "<group>"; };
+		36A2505622C4B97500B1CA1F /* QuestionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPresenter.swift; sourceTree = "<group>"; };
 		36A5E75422785FEF006A522C /* MediaPlayerOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerOverlay.swift; sourceTree = "<group>"; };
 		36A5E75622786014006A522C /* MediaPlayerOverlay.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MediaPlayerOverlay.xib; sourceTree = "<group>"; };
 		36A5E7582278612C006A522C /* SF-Pro-Text-Semibold.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-Pro-Text-Semibold.otf"; sourceTree = "<group>"; };
@@ -1700,7 +1717,6 @@
 		36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyContentTableViewCell.xib; sourceTree = "<group>"; };
 		36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKCalendar+Convenience.swift"; sourceTree = "<group>"; };
 		36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+Convenience.swift"; sourceTree = "<group>"; };
-		36FA332A22C36FD200A92C92 /* QuestionPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QuestionPresenter.swift; sourceTree = "<group>"; };
 		36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemLearnIntermediary.swift; sourceTree = "<group>"; };
 		36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemNotificationIntermediary.swift; sourceTree = "<group>"; };
 		36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideWhatsHotTableViewCell.swift; sourceTree = "<group>"; };
@@ -2542,6 +2558,14 @@
 		F96726A822BCDA0F00B63FD7 /* QuestionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionWorker.swift; sourceTree = "<group>"; };
 		F9838F3322AFA61F003F9394 /* ContentService+Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Coach.swift"; sourceTree = "<group>"; };
 		F9838F3722AFBD6A003F9394 /* ContentService + Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService + Tools.swift"; sourceTree = "<group>"; };
+		F98E2AC722C22057002550FF /* GoodToKnowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowViewController.swift; sourceTree = "<group>"; };
+		F98E2AC922C2206B002550FF /* GoodToKnowConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowConfigurator.swift; sourceTree = "<group>"; };
+		F98E2ACB22C22079002550FF /* GoodToKnowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowInteractor.swift; sourceTree = "<group>"; };
+		F98E2ACD22C22087002550FF /* GoodToKnowInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowInterface.swift; sourceTree = "<group>"; };
+		F98E2ACF22C22095002550FF /* GoodToKnowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowModel.swift; sourceTree = "<group>"; };
+		F98E2AD122C220A0002550FF /* GoodToKnowPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowPresenter.swift; sourceTree = "<group>"; };
+		F98E2AD322C220CF002550FF /* GoodToKnowRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowRouter.swift; sourceTree = "<group>"; };
+		F98E2AD522C220E0002550FF /* GoodToKnowWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowWorker.swift; sourceTree = "<group>"; };
 		F99DF5F12292D6CB00341DAB /* ToolsCollectionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsViewController.swift; sourceTree = "<group>"; };
 		F99DF5F32292D6DC00341DAB /* ToolsCollectionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsPresenter.swift; sourceTree = "<group>"; };
 		F99DF5F52292D71B00341DAB /* ToolsCollectionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsWorker.swift; sourceTree = "<group>"; };
@@ -2575,6 +2599,14 @@
 		F9C1D8C9220DEA0E00B40DD2 /* SiriShortcutsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SiriShortcutsCell.swift; sourceTree = "<group>"; };
 		F9C1D8CA220DEA0E00B40DD2 /* SiriShortcutsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SiriShortcutsCell.xib; sourceTree = "<group>"; };
 		F9EB5E5E22BD20470085A03F /* DailyBriefStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DailyBriefStoryboard.storyboard; sourceTree = "<group>"; };
+		F9EB5E6A22C104C40085A03F /* ThoughtsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsConfigurator.swift; sourceTree = "<group>"; };
+		F9EB5E6C22C104D60085A03F /* ThoughtsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsInteractor.swift; sourceTree = "<group>"; };
+		F9EB5E6E22C104E50085A03F /* ThoughtsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsInterface.swift; sourceTree = "<group>"; };
+		F9EB5E7022C104FC0085A03F /* ThoughtsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsPresenter.swift; sourceTree = "<group>"; };
+		F9EB5E7222C105110085A03F /* ThoughtsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsRouter.swift; sourceTree = "<group>"; };
+		F9EB5E7422C105250085A03F /* ThoughtsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsViewController.swift; sourceTree = "<group>"; };
+		F9EB5E7622C105550085A03F /* ThoughtsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsWorker.swift; sourceTree = "<group>"; };
+		F9EB5E7822C112490085A03F /* ThoughtsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThoughtsModel.swift; sourceTree = "<group>"; };
 		F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableViewCell.swift; sourceTree = "<group>"; };
 		F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CoachTableViewCell.xib; sourceTree = "<group>"; };
 		F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachTableHeaderView.swift; sourceTree = "<group>"; };
@@ -2691,6 +2723,8 @@
 		363765F1223A4BA400C2C429 /* daily brief */ = {
 			isa = PBXGroup;
 			children = (
+				F98E2AC622C22037002550FF /* Good To Know */,
+				F9EB5E6922C104A00085A03F /* Thoughts to Ponder */,
 				3637660A223A4BEC00C2C429 /* DailyBriefConfigurator.swift */,
 				36376608223A4BEC00C2C429 /* DailyBriefInteractor.swift */,
 				36376606223A4BEC00C2C429 /* DailyBriefInterface.swift */,
@@ -5854,10 +5888,10 @@
 		F967269922BCD91A00B63FD7 /* question */ = {
 			isa = PBXGroup;
 			children = (
-				36FA332A22C36FD200A92C92 /* QuestionPresenter.swift */,
 				F967269A22BCD97000B63FD7 /* QuestionConfigurator.swift */,
 				F967269C22BCD98100B63FD7 /* QuestionInteractor.swift */,
 				F967269E22BCD99400B63FD7 /* QuestionInterface.swift */,
+				36A2505622C4B97500B1CA1F /* QuestionPresenter.swift */,
 				F96726A422BCD9E300B63FD7 /* QuestionRouter.swift */,
 				F96726A622BCD9F700B63FD7 /* QuestionViewController.swift */,
 				F96726A822BCDA0F00B63FD7 /* QuestionWorker.swift */,
@@ -5916,6 +5950,21 @@
 			children = (
 			);
 			name = myQotMain;
+			sourceTree = "<group>";
+		};
+		F98E2AC622C22037002550FF /* Good To Know */ = {
+			isa = PBXGroup;
+			children = (
+				F98E2AC922C2206B002550FF /* GoodToKnowConfigurator.swift */,
+				F98E2ACB22C22079002550FF /* GoodToKnowInteractor.swift */,
+				F98E2ACD22C22087002550FF /* GoodToKnowInterface.swift */,
+				F98E2ACF22C22095002550FF /* GoodToKnowModel.swift */,
+				F98E2AD122C220A0002550FF /* GoodToKnowPresenter.swift */,
+				F98E2AD322C220CF002550FF /* GoodToKnowRouter.swift */,
+				F98E2AC722C22057002550FF /* GoodToKnowViewController.swift */,
+				F98E2AD522C220E0002550FF /* GoodToKnowWorker.swift */,
+			);
+			name = "Good To Know";
 			sourceTree = "<group>";
 		};
 		F99DF5F02292D45400341DAB /* toolsCollections */ = {
@@ -5989,6 +6038,21 @@
 				F9C1D8CA220DEA0E00B40DD2 /* SiriShortcutsCell.xib */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		F9EB5E6922C104A00085A03F /* Thoughts to Ponder */ = {
+			isa = PBXGroup;
+			children = (
+				F9EB5E6A22C104C40085A03F /* ThoughtsConfigurator.swift */,
+				F9EB5E6C22C104D60085A03F /* ThoughtsInteractor.swift */,
+				F9EB5E7822C112490085A03F /* ThoughtsModel.swift */,
+				F9EB5E6E22C104E50085A03F /* ThoughtsInterface.swift */,
+				F9EB5E7022C104FC0085A03F /* ThoughtsPresenter.swift */,
+				F9EB5E7222C105110085A03F /* ThoughtsRouter.swift */,
+				F9EB5E7422C105250085A03F /* ThoughtsViewController.swift */,
+				F9EB5E7622C105550085A03F /* ThoughtsWorker.swift */,
+			);
+			name = "Thoughts to Ponder";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -6774,7 +6838,6 @@
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
 				CC143A4F1EC47810001FB76E /* ChartViewModel.swift in Sources */,
 				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
-				36FA332B22C36FD200A92C92 /* QuestionPresenter.swift in Sources */,
 				ACB449962260EB4F00B0E79F /* DecisionTreeButton.swift in Sources */,
 				365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */,
 				E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */,
@@ -6827,6 +6890,7 @@
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
 				5F2E87432292F6D60082323E /* ProfileSettingsFooterView.swift in Sources */,
 				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
+				F98E2AD422C220CF002550FF /* GoodToKnowRouter.swift in Sources */,
 				5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */,
 				ACD399F5229402EC00DDE1BD /* AnswerKeys.swift in Sources */,
 				36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */,
@@ -6877,6 +6941,7 @@
 				7F6567401FE2897A00A6CB7F /* ScreenHelpRouter.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
 				85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */,
+				F9EB5E7722C105550085A03F /* ThoughtsWorker.swift in Sources */,
 				7F6738AF1FE2BB70004DDAE1 /* ScreenHelpDataWorker.swift in Sources */,
 				3637663A223A6F3B00C2C429 /* AbstractTableViewCell.swift in Sources */,
 				3604C9242272176F00A681B3 /* AudioPlayer.swift in Sources */,
@@ -6894,7 +6959,6 @@
 				AC103E412285B27200F426F0 /* MindsetShifterChecklistWorker.swift in Sources */,
 				36796A0820D3C41F00B55429 /* SigningCreatePasswordWorker.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
-				5F62BE96228AB63A00852F7E /* MyQotSupportFaqPresenter.swift in Sources */,
 				75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */,
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
@@ -6923,6 +6987,7 @@
 				36E4CF0B22BC51BD009A2DF7 /* ChoiceRouter.swift in Sources */,
 				914A5E1F207FB37100092121 /* SettingsBubblesConfigurator.swift in Sources */,
 				91086E5620920ABF0035DA1F /* SettingsModel.swift in Sources */,
+				F9EB5E7522C105250085A03F /* ThoughtsViewController.swift in Sources */,
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				36376679223BFF3800C2C429 /* StrategyListViewController.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
@@ -7070,7 +7135,6 @@
 				5F78966522A929F800D2DBAD /* SkeletonType.swift in Sources */,
 				CBB98B06201F869700B8EAD7 /* UNMutableNotificationContent+Convenience.swift in Sources */,
 				36D535DE20A711E800F1C2FC /* PartnerEditInterface.swift in Sources */,
-				3637661F223A4C0400C2C429 /* MyQotProfileViewController.swift in Sources */,
 				F9A8A021229682B000DE3A9C /* ToolsItemsModel.swift in Sources */,
 				CBC1DC391F14D9ED00F6D056 /* UserSetting.swift in Sources */,
 				36E4B7AF219EBFED00049EE8 /* TutorialViewController.swift in Sources */,
@@ -7093,6 +7157,7 @@
 				7F65673E1FE2896F00A6CB7F /* ScreenHelpPresenter.swift in Sources */,
 				D5485F221ED57AE200A08D1A /* SearchViewController.swift in Sources */,
 				366183EA2162793700634560 /* SupportFAQInterface.swift in Sources */,
+				F9EB5E7922C112490085A03F /* ThoughtsModel.swift in Sources */,
 				0BD6F6B91EA0E81E001EBC4D /* MyPrepTableViewCell.swift in Sources */,
 				7F5A25B21F3C515800A11466 /* Swizzle.swift in Sources */,
 				7F9217B91FD01C2F00CAE9E0 /* RemoteNotificationPermission.swift in Sources */,
@@ -7133,6 +7198,7 @@
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
 				F9838F3422AFA61F003F9394 /* ContentService+Coach.swift in Sources */,
 				CC05CB761EDEC6D700D15ABC /* CGPoint+Convenience.swift in Sources */,
+				F98E2ACA22C2206B002550FF /* GoodToKnowConfigurator.swift in Sources */,
 				36718B4D224D20030042881E /* SubsriptionReminderRouter.swift in Sources */,
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
@@ -7145,6 +7211,7 @@
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				36376663223AA61100C2C429 /* LevelThreeConfigurator.swift in Sources */,
 				5F78965A22A929C100D2DBAD /* TwoLinesAndButton.swift in Sources */,
+				F98E2AD622C220E0002550FF /* GoodToKnowWorker.swift in Sources */,
 				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
 				369AE00422A7A6FC00DE4FA0 /* EditHeaderView.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
@@ -7156,9 +7223,9 @@
 				36780AB6215528EA00507D1E /* TabMenuView.swift in Sources */,
 				5FA66648229C2B560027EE74 /* MyVisionEditDetailsKeyboardInputView.swift in Sources */,
 				36E4B7AC219EBFED00049EE8 /* TutorialWorker.swift in Sources */,
-				3637661C223A4C0400C2C429 /* MyQotProfileWorker.swift in Sources */,
 				AC103E5E2289942100F426F0 /* NegativeToPositiveTableViewCell.swift in Sources */,
 				36376649223A7DE100C2C429 /* LevelTwoRouter.swift in Sources */,
+				F98E2AD222C220A0002550FF /* GoodToKnowPresenter.swift in Sources */,
 				CC02E1491F279A0F00134574 /* SettingsCalendarListViewModel.swift in Sources */,
 				ACEF4555218077FA00A4D531 /* GuideProgressView.swift in Sources */,
 				36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */,
@@ -7189,6 +7256,7 @@
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				854708E21F306628007AB971 /* ContentItemAnimation.swift in Sources */,
 				5F7BE79E22899FA800BA5DCF /* MyQotAboutUsViewController.swift in Sources */,
+				F9EB5E6F22C104E50085A03F /* ThoughtsInterface.swift in Sources */,
 				CBC1DC1D1F0F988E00F6D056 /* SettingsService.swift in Sources */,
 				E813F0B22135285A00C0723E /* PDFReaderWorker.swift in Sources */,
 				36718B50224D20030042881E /* SubsriptionReminderInteractor.swift in Sources */,
@@ -7221,8 +7289,7 @@
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
 				369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */,
-				3637661E223A4C0400C2C429 /* MyQotProfileInterface.swift in Sources */,
-				369353A122983AB9008BBB72 /* PrepareCheckListPresenter.swift in Sources */,
+				369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				36D72ED4229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift in Sources */,
@@ -7286,6 +7353,7 @@
 				3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */,
 				3637665D223AA61100C2C429 /* LevelThreeWorker.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
+				F98E2AC822C22057002550FF /* GoodToKnowViewController.swift in Sources */,
 				5F57F9F5228317C2003A9EDF /* MyQotAccountSettingsRouter.swift in Sources */,
 				AC183821224190A0004A538D /* SuggestionsHeaderView.swift in Sources */,
 				5FF1A0F422857B2C00D76D55 /* MyQotAppSettingsViewController.swift in Sources */,
@@ -7304,9 +7372,9 @@
 				F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
-				CC0FF8D81EA78E6F0028D64F /* WeeklyChoicesCoordinator.swift in Sources */,
 				CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */,
 				CB1467651EF2779700A60E31 /* Page.swift in Sources */,
+				F98E2ACC22C22079002550FF /* GoodToKnowInteractor.swift in Sources */,
 				CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */,
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
 				AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */,
@@ -7337,6 +7405,7 @@
 				F9C1D8B8220DD93000B40DD2 /* SiriShortcutsPresenter.swift in Sources */,
 				36796A1A20D3C45200B55429 /* SigningCountryTableViewCell.swift in Sources */,
 				CBB98B082020A4AF00B8EAD7 /* Authenticator.swift in Sources */,
+				F9EB5E6D22C104D60085A03F /* ThoughtsInteractor.swift in Sources */,
 				CB9AFD171F014BF800D067F2 /* PreparationIntermediary.swift in Sources */,
 				F9C1D8C3220DDBB200B40DD2 /* SiriShortcutsViewController.swift in Sources */,
 				36376662223AA61100C2C429 /* LevelThreeModel.swift in Sources */,
@@ -7429,17 +7498,20 @@
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
 				ACF0B946225FC41F008CFAEC /* DecisionTreeRouter.swift in Sources */,
 				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
+				F98E2AD022C22095002550FF /* GoodToKnowModel.swift in Sources */,
 				36083828225F3ED000664B9B /* ArticleRouter.swift in Sources */,
 				36376647223A7DE100C2C429 /* LevelTwoPresenter.swift in Sources */,
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
 				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
+				F9EB5E7322C105110085A03F /* ThoughtsRouter.swift in Sources */,
 				36D72ED5229C1BCC00DE1184 /* (null) in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
 				5F62BE94228AB61100852F7E /* MyQotSupportFaqInterface.swift in Sources */,
+				F9EB5E7122C104FC0085A03F /* ThoughtsPresenter.swift in Sources */,
 				CBB303421ECEE3E70011303A /* DateFormatter+Convenience.swift in Sources */,
 				9115F708208DE03F00EE5D1D /* ProfileSettingsPresenter.swift in Sources */,
 				CCE6CD801F15299F00B66DA3 /* StatisticsPeriod.swift in Sources */,
@@ -7641,6 +7713,7 @@
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
 				7F0F45B81FE922D400293942 /* MeetingsAverageNumberChart.swift in Sources */,
 				9150413520FDF40A00D43D18 /* SensorRouter.swift in Sources */,
+				F98E2ACE22C22087002550FF /* GoodToKnowInterface.swift in Sources */,
 				3674FF2F20AADE7D008EEB6C /* PartnersOverviewConfigurator.swift in Sources */,
 				CCF19C591F6048600020D7B6 /* WebViewController.swift in Sources */,
 				91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */,
@@ -7660,6 +7733,7 @@
 				CBFD47CC200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift in Sources */,
 				7F708EA01FBAFAF8008A3856 /* FullScreenLoadable.swift in Sources */,
 				F99DF6002292D78900341DAB /* ToolsCollectionsConfigurator.swift in Sources */,
+				F9EB5E6B22C104C40085A03F /* ThoughtsConfigurator.swift in Sources */,
 				36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */,
 				CB73991F1FBDA0D900C5FF57 /* Token.swift in Sources */,
 				5FF1A0E6228561A000D76D55 /* TitleTableViewCell.swift in Sources */,
@@ -7726,6 +7800,7 @@
 				CB53F0DA20237507007C624B /* Keychain.swift in Sources */,
 				366AFD1320BD9F9300109F29 /* SigningEmailConfigurator.swift in Sources */,
 				CB9B07631EF91B860017F6C3 /* CalendarEvent.swift in Sources */,
+				36A2505722C4B97600B1CA1F /* QuestionPresenter.swift in Sources */,
 				5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */,
 				E813F0B02135284700C0723E /* PDFReaderRouter.swift in Sources */,
 				CCE6CD861F15313300B66DA3 /* StatisticsIntermediary.swift in Sources */,
