@@ -19,7 +19,6 @@ final class PrepareResultsWorker {
     private var items: ListItems = [:]
     private var answers: [DecisionTreeModel.SelectedAnswer] = []
     private var preparation: QDMUserPreparation?
-    private var relatedStrategyId: Int = 0
     private var canDelete: Bool = false
     private var level: QDMUserPreparation.Level
     weak var delegate: PrepareResultsDelegatge?
@@ -28,12 +27,10 @@ final class PrepareResultsWorker {
 
     init(_ preparation: QDMUserPreparation?,
          _ answers: [DecisionTreeModel.SelectedAnswer],
-         _ relatedStrategyId: Int,
          _ canDelete: Bool) {
         self.canDelete = canDelete
         self.answers = answers
         self.preparation = preparation
-        self.relatedStrategyId = relatedStrategyId
         self.level = preparation?.type ?? .LEVEL_DAILY
 
         switch level {
@@ -113,7 +110,7 @@ extension PrepareResultsWorker {
     }
 
     var suggestedStrategyId: Int {
-        return relatedStrategyId
+        return preparation?.relatedStrategyId ?? 0
     }
 
     var saveToICal: Bool {

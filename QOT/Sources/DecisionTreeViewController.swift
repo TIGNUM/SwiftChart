@@ -506,6 +506,7 @@ private extension DecisionTreeViewController {
                                                            benefits: interactor?.prepareBenefits,
                                                            answerFilter: nil,
                                                            contentCollectionId: level.contentID,
+                                                           relatedStrategyId: answer.decisions.first?.targetID ?? 0,
                                                            strategyIds: [],
                                                            preceiveAnswerIds: [],
                                                            knowAnswerIds: [],
@@ -514,8 +515,7 @@ private extension DecisionTreeViewController {
                                                            event: selectedEvent) { [weak self] (preparation, error) in
                                                             if let preparation = preparation {
                                                                 self?.interactor?.openPrepareResults(preparation,
-                                                                                                     self?.decisionTree?.selectedAnswers ?? [],
-                                                                                                     answer.decisions.first?.targetID ?? 0)
+                                                                                                     self?.decisionTree?.selectedAnswers ?? [])
                                                             }
             }
         } else if currentQuestion?.key == QuestionKey.Prepare.benefitsInput.rawValue {
@@ -525,6 +525,7 @@ private extension DecisionTreeViewController {
                                                            answerFilter: interactor?.answersFilter(currentQuestion: nil,
                                                                                                    decisionTree: nil),
                                                            contentCollectionId: level.contentID,
+                                                           relatedStrategyId: self.interactor?.relatedStrategyID ?? 0,
                                                            strategyIds: [interactor?.relatedStrategyID ?? 0] ,
                                                            preceiveAnswerIds: [],
                                                            knowAnswerIds: [],
@@ -533,8 +534,7 @@ private extension DecisionTreeViewController {
                                                            event: selectedEvent) { [weak self] (preparation, error) in
                                                             if let preparation = preparation {
                                                                 self?.interactor?.openPrepareResults(preparation,
-                                                                                                     self?.decisionTree?.selectedAnswers ?? [],
-                                                                                                     self?.interactor?.relatedStrategyID ?? 0)
+                                                                                                     self?.decisionTree?.selectedAnswers ?? [])
                                                             }
             }
         } else {

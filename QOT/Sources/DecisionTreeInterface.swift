@@ -38,8 +38,7 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func openToBeVisionPage()
     func setTargetContentID(for answer: Answer)
     func openPrepareResults(_ preparation: QDMUserPreparation,
-                            _ answers: [DecisionTreeModel.SelectedAnswer],
-                            _ relatedStrategyID: Int)
+                            _ answers: [DecisionTreeModel.SelectedAnswer])
     func openPrepareResults(_ contentId: Int)
     func updatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer])
     func updatePrepareBenefits(_ benefits: String)
@@ -48,8 +47,7 @@ protocol DecisionTreeInteractorInterface: Interactor {
 protocol DecisionTreeRouterInterface {
     func openPrepareResults(_ contentId: Int)
     func openPrepareResults(_ preparation: QDMUserPreparation,
-                            _ answers: [DecisionTreeModel.SelectedAnswer],
-                            _ relatedStrategyID: Int)
+                            _ answers: [DecisionTreeModel.SelectedAnswer])
     func openMindsetShifterChecklist(trigger: String,
                                      reactions: [String],
                                      lowPerformanceItems: [String],

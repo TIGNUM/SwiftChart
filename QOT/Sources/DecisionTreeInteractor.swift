@@ -147,9 +147,8 @@ extension DecisionTreeInteractor {
     }
 
     func openPrepareResults(_ preparation: QDMUserPreparation,
-                            _ answers: [DecisionTreeModel.SelectedAnswer],
-                            _ relatedStrategyID: Int) {
-        router.openPrepareResults(preparation, answers, relatedStrategyID)
+                            _ answers: [DecisionTreeModel.SelectedAnswer]) {
+        router.openPrepareResults(preparation, answers)
     }
 
     func updatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer]) {
