@@ -47,10 +47,13 @@ extension CoachRouter: CoachRouterInterface {
                 viewController.pushToStart(childViewController: toolsViewController)
             }
         case .sprint:
-            let configurator = PaymentReminderConfigurator.make(isExpired: true)
-            let controller = PaymentReminderViewController(configure: configurator)
-            viewController.present(controller, animated: true, completion: nil)
-
+            let storyboardID = R.storyboard.dailyBriefStoryboard.whatsHotLatestViewControllerID.identifier
+            let whatsHotLatestViewController = R.storyboard
+                .dailyBriefStoryboard().instantiateViewController(withIdentifier: storyboardID) as? WhatsHotLatestViewController
+            if let whatsHotLatestViewController = whatsHotLatestViewController {
+                WhatsHotLatestConfigurator.make(viewController: whatsHotLatestViewController)
+                viewController.pushToStart(childViewController: whatsHotLatestViewController)
+            }
         case .event:
             let configurator = DecisionTreeConfigurator.make(for: .prepare, permissionsManager: permissionsManager)
             let controller = DecisionTreeViewController(configure: configurator)
