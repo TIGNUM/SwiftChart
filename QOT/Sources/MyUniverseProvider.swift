@@ -23,7 +23,7 @@ final class MyUniverseProvider {
 
     init(services: Services) {
         self.services = services
-        myToBeVisions = services.userService.myToBeVisions()    
+        myToBeVisions = services.userService.myToBeVisions()
         partners = services.partnerService.partners
         userChoices = services.userService.userChoices()
         statistics = services.statisticsService.chartObjects()

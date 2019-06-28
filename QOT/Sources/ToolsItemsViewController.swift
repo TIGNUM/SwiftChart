@@ -10,13 +10,6 @@ import UIKit
 import Anchorage
 import qot_dal
 
-protocol AudioToolPlayerDelegate: class {
-    func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int)
-    func didTabClose(for view: AudioPlayer.View)
-    func didFinishAudio()
-    func openFullScreen()
-}
-
 private enum ToolType: String {
     case video
     case audio
@@ -29,8 +22,6 @@ final class ToolsItemsViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     var interactor: ToolsItemsInteractorInterface?
-    private var audioPlayerBar = AudioPlayerBar()
-    private var audioPlayerFullScreen = AudioPlayerFullScreen()
     private enum CellType: Int, CaseIterable {
         case header = 0
         case sections
@@ -50,6 +41,7 @@ final class ToolsItemsViewController: UIViewController {
         view.backgroundColor = .sand
         setCustomBackButton()
         interactor?.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -90,23 +82,6 @@ extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
     func setupView() {
         setupTableView()
         setCustomBackButton()
-        setupAudioPlayerView()
-    }
-}
-
-private extension ToolsItemsViewController {
-
-    func setupAudioPlayerView() {
-        audioPlayerBar = AudioPlayerBar.instantiateFromNib()
-        view.addSubview(audioPlayerBar)
-        audioPlayerBar.contentView.backgroundColor = .carbon
-        audioPlayerBar.trailingAnchor == view.trailingAnchor
-        audioPlayerBar.leadingAnchor == view.leadingAnchor
-        audioPlayerBar.bottomAnchor == view.bottomAnchor - 24
-        audioPlayerBar.heightAnchor == 40
-        audioPlayerBar.layoutIfNeeded()
-        audioPlayerBar.isHidden = true
-        audioPlayerBar.toolViewDelegate = self
     }
 }
 
@@ -144,7 +119,6 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case ToolType.audio.rawValue:
             let cell: ToolsCollectionsAudioTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.toolViewDelegate = self
             cell.setSelectedColor(.accent, alphaComponent: 0.1)
             cell.configure(categoryTitle: tool?.categoryTitle ?? "",
                            title: tool?.title ?? "",
@@ -179,10 +153,11 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             stream(videoURL: videoURL, contentItem: nil, pageName: PageName.learnContentItemFull) // TODO Set correct pageName
             UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
         case ToolType.audio.rawValue:
-            didTabPlayPause(categoryTitle: tool?.categoryTitle ?? "",
-                            title: tool?.title ?? "",
-                            audioURL: tool?.mediaURL,
-                            remoteID: tool?.remoteID ?? 0)
+            let media = MediaPlayerModel(title: tool?.title ?? "",
+                                         subtitle: tool?.categoryTitle ?? "",
+                                         url: tool?.mediaURL,
+                                         totalDuration: 0, progress: 0, currentTime: 0, mediaRemoteId: tool?.remoteID ?? 0)
+            NotificationCenter.default.post(name: .playPauseAudio, object: media)
         default:
             if let pdfURL = tool?.mediaURL {
                 didTapPDFLink(tool?.title ?? "", tool?.remoteID ?? 0, pdfURL)
@@ -209,50 +184,9 @@ extension ToolsItemsViewController {
     }
 }
 
-// MARK: - AudioPlayerViewDelegate
-
-extension ToolsItemsViewController: AudioToolPlayerDelegate {
-
-    func didTabClose(for view: AudioPlayer.View) {
-        switch view {
-        case .bar:
-            audioPlayerBar.isHidden = true
-        case .fullScreen:
-            audioPlayerBar.updateView()
-            audioPlayerFullScreen.animateHidden(true)
-        }
-    }
-
-    func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int) {
-        if audioPlayerBar.isHidden == true {
-            audioPlayerBar.isHidden = false
-        }
-        audioPlayerBar.configure(categoryTitle: categoryTitle,
-                                 title: title,
-                                 audioURL: audioURL,
-                                 remoteID: remoteID,
-                                 titleColor: .accent)
-    }
-
-    func didFinishAudio() {
+// MARK: - Audio Player Related
+extension ToolsItemsViewController {
+    @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
-    }
-
-    func openFullScreen() {
-        audioPlayerFullScreen = AudioPlayerFullScreen.instantiateFromNib()
-        audioPlayerFullScreen.toolViewDelegate = self
-        audioPlayerFullScreen.isHidden = true
-        view.addSubview(audioPlayerFullScreen)
-        audioPlayerFullScreen.topAnchor == view.topAnchor
-        audioPlayerFullScreen.bottomAnchor == view.bottomAnchor
-        audioPlayerFullScreen.trailingAnchor == view.trailingAnchor
-        audioPlayerFullScreen.leadingAnchor == view.leadingAnchor
-        audioPlayerFullScreen.layoutIfNeeded()
-        view.layoutIfNeeded()
-        audioPlayerFullScreen.layoutIfNeeded()
-        audioPlayerFullScreen.configure()
-        UIView.animate(withDuration: 0.6) {
-            self.audioPlayerFullScreen.isHidden = false
-        }
     }
 }

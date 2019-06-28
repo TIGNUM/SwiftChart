@@ -56,7 +56,7 @@ extension UIViewController {
 
     @objc func viewWillAppearSwizzled(animated: Bool) {
         let viewControllerName = NSStringFromClass(type(of: self))
-        print("viewWillAppear: \(viewControllerName)")
+        log("swizzled viewWillAppear: \(viewControllerName)", level: .debug)
 
         refreshBottomNavigationItems()
         self.viewWillAppearSwizzled(animated: animated)
@@ -80,7 +80,7 @@ extension UIViewController {
             return
         }
         let viewControllerName = NSStringFromClass(type(of: viewControllerToPresent))
-        print("present: \(viewControllerName)")
+        log("swizzled   present: \(viewControllerName)", level: .debug)
         var vc = viewControllerToPresent
         if (vc as? UINavigationController) == nil {
             let naviController = UINavigationController(rootViewController: vc)
@@ -102,6 +102,7 @@ extension UIViewController {
     @objc open func refreshBottomNavigationItems() {
         if (self as? UINavigationController) == nil,
            (self as? UIPageViewController) == nil,
+            (self as? ScreenZLevelOverlay) == nil,
             let notificationBlock = navigationNotificationBlock() {
             notificationBlock()
         } else if (self as? UIAlertController) != nil {
@@ -187,11 +188,5 @@ extension UIViewController {
     @objc open func didTapDismissButton() {
         dismiss(animated: true, completion: nil)
         trackUserEvent(.CLOSE, action: .TAP)
-    }
-}
-
-extension AVPlayerViewController {
-    @objc override open func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
     }
 }

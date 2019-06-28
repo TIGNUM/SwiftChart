@@ -39,6 +39,13 @@ class AudioPlayer {
     private var updater: CADisplayLink?
     weak var delegate: AudioPlayerDelegate?
 
+    var media: MediaPlayerModel {
+        return MediaPlayerModel(title: _title, subtitle: categoryTitle,
+                                url: _audioURL,
+                                totalDuration: _totalTime, progress: _progress, currentTime: _currentTime,
+                                mediaRemoteId: _remoteID)
+    }
+
     var audioURL: URL? {
         return _audioURL
     }
@@ -63,6 +70,10 @@ class AudioPlayer {
         return _isReset
     }
 
+    var duration: Double {
+        return _totalTime
+    }
+
     // MARK: - Private Init
 
     private init() {}
@@ -76,6 +87,7 @@ class AudioPlayer {
         _isReset = true
         _isPlaying = false
         player?.pause()
+        player?.seek(to: CMTimeMakeWithSeconds(0, 1))
         delegate?.updateControllButton(with: R.image.ic_play_sand())
         updater?.invalidate()
     }
@@ -86,6 +98,9 @@ class AudioPlayer {
         updater?.isPaused = true
         player?.pause()
         delegate?.updateControllButton(with: R.image.ic_play_sand())
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .didPauseAudio, object: self.media)
+        }
     }
 
     func play() {
@@ -95,6 +110,16 @@ class AudioPlayer {
             _isReset = false
             delegate?.updateControllButton(with: R.image.ic_pause_sand())
             updater?.isPaused = false
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .didStartAudio, object: self.media)
+            }
+        }
+    }
+
+    func cancel() {
+        resetPlayer()
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .didStopAudio, object: self.media)
         }
     }
 
@@ -109,31 +134,37 @@ class AudioPlayer {
             delegate?.updateControllButton(with: R.image.ic_play_sand())
             updater?.invalidate()
         } else {
-            updater = CADisplayLink(target: self, selector: #selector(trackAudio))
-            updater?.preferredFramesPerSecond = 1
-            updater?.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
             guard let audioURL = audioURL else { return }
             let playerItem = AVPlayerItem(url: audioURL)
             player = AVPlayer(playerItem: playerItem)
             delegate?.updateControllButton(with: R.image.ic_pause_sand())
-            player?.play()
-            _isPlaying = true
             _isReset = false
         }
+        updater = CADisplayLink(target: self, selector: #selector(trackAudio))
+        updater?.preferredFramesPerSecond = 1
+        updater?.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
 
     @objc func trackAudio() {
-        guard
-            let currentTime = player?.currentItem?.currentTime().seconds,
-            let duration = player?.currentItem?.duration.seconds else { return }
+        guard let currentTime = player?.currentItem?.currentTime().seconds,
+            let duration = player?.currentItem?.duration.seconds else {
+                return
+        }
         _currentTime = currentTime
         _totalTime = duration
         _progress = Float(currentTime/duration)
         delegate?.updateProgress(currentTime: _currentTime, totalTime: _totalTime, progress: _progress)
-        if _progress >= 1 {
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .didUpdateAudioPlayProgress, object: self.media)
+        }
+        if _progress >= 0.999 {
             updater?.invalidate()
             delegate?.updateControllButton(with: R.image.ic_play_sand())
             markAudioItemAsComplete(remoteID: _remoteID)
+
+            DispatchQueue.main.async {
+                NotificationCenter.default.post(name: .didEndAudio, object: self.media)
+            }
         }
     }
 

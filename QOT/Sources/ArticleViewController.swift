@@ -133,8 +133,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     var interactor: ArticleInteractorInterface?
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
-    private var audioPlayerBar = AudioPlayerBar()
-    private var audioPlayerFullScreen = AudioPlayerFullScreen()
     private var audioButton = AudioButton()
     private var currentFadeView = GradientView(colors: [], locations: [])
     @IBOutlet private weak var tableView: UITableView!
@@ -215,6 +213,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -253,17 +252,6 @@ private extension ArticleViewController {
         tableView.tableFooterView = UIView()
     }
 
-    func setupAudioPlayerView() {
-        audioPlayerBar = AudioPlayerBar.instantiateFromNib()
-        view.addSubview(audioPlayerBar)
-        audioPlayerBar.trailingAnchor == view.trailingAnchor
-        audioPlayerBar.leadingAnchor == view.leadingAnchor
-        audioPlayerBar.bottomAnchor == view.bottomAnchor - 24
-        audioPlayerBar.heightAnchor == 40
-        audioPlayerBar.isHidden = true
-        audioPlayerBar.viewDelegate = self
-    }
-
     func setupAudioItem() {
         guard let audioItem = interactor?.audioItem else { return }
         audioButton = AudioButton.instantiateFromNib()
@@ -271,19 +259,7 @@ private extension ArticleViewController {
                               title: interactor?.title ?? "",
                               audioURL: interactor?.audioURL,
                               remoteID: interactor?.remoteID ?? 0,
-                              duration: audioItem.type.duration,
-                              viewDelegate: self)
-    }
-
-    func updateCloseButton() {
-//        closeButton.layer.borderWidth = 1
-//        closeButton.layer.borderColor = UIColor.accent.cgColor
-//        closeButton.corner(radius: closeButton.bounds.width * 0.5)
-//        view.bringSubview(toFront: closeButton)
-    }
-
-    func showHideCloseButton() {
-//        closeButton.isHidden = !closeButton.isHidden
+                              duration: audioItem.type.duration)
     }
 
     func setColorMode() {
@@ -300,12 +276,7 @@ private extension ArticleViewController {
                                            primaryColor: colorMode.background,
                                            fadeColor: colorMode.fade)
         audioButton.setColorMode()
-//        view.bringSubview(toFront: closeButton)
         view.bringSubview(toFront: audioButton)
-        if audioPlayerBar.isHidden == false {
-            audioPlayerBar.setColorMode()
-            view.bringSubview(toFront: audioPlayerBar)
-        }
     }
 
     func updateMoreButton(customView: UIView?) {
@@ -388,10 +359,8 @@ extension ArticleViewController: ArticleViewControllerInterface {
 
     func setupView() {
         setupTableView()
-        setupAudioPlayerView()
         setupAudioItem()
         setColorMode()
-//        updateCloseButton()
     }
 }
 
@@ -675,55 +644,9 @@ extension ArticleViewController: ArticleDelegate {
     }
 }
 
-// MARK: - AudioPlayerViewDelegate
-
-extension ArticleViewController: AudioPlayerViewDelegate {
-    func didTabClose(for view: AudioPlayer.View) {
-        switch view {
-        case .bar:
-//            showHideCloseButton()
-            audioPlayerBar.isHidden = true
-            audioButton.isHidden = false
-        case .fullScreen:
-            audioPlayerBar.updateView()
-            audioPlayerFullScreen.animateHidden(true)
-            navigationController?.navigationBar.isHidden = false
-        }
-    }
-
-    func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int) {
-        if audioPlayerBar.isHidden == true {
-//            showHideCloseButton()
-            audioPlayerBar.isHidden = false
-            view.bringSubview(toFront: audioPlayerBar)
-        }
-        audioButton.isHidden = !audioPlayerBar.isHidden
-        audioPlayerBar.configure(categoryTitle: categoryTitle,
-                                 title: title,
-                                 audioURL: audioURL,
-                                 remoteID: remoteID)
-    }
-
-    func didFinishAudio() {
+// MARK: - Audio Player Related
+extension ArticleViewController {
+    @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
-    }
-
-    func openFullScreen() {
-        audioPlayerFullScreen = AudioPlayerFullScreen.instantiateFromNib()
-        audioPlayerFullScreen.viewDelegate = self
-        audioPlayerFullScreen.isHidden = true
-        view.addSubview(audioPlayerFullScreen)
-        audioPlayerFullScreen.topAnchor == view.topAnchor
-        audioPlayerFullScreen.bottomAnchor == view.bottomAnchor
-        audioPlayerFullScreen.trailingAnchor == view.trailingAnchor
-        audioPlayerFullScreen.leadingAnchor == view.leadingAnchor
-        audioPlayerFullScreen.layoutIfNeeded()
-        view.layoutIfNeeded()
-        audioPlayerFullScreen.layoutIfNeeded()
-        audioPlayerFullScreen.configure()
-        (navigationController as? ScrollingNavigationController)?.hideNavbar()
-        UIView.animate(withDuration: 0.6) {
-            self.audioPlayerFullScreen.isHidden = false
-        }
     }
 }

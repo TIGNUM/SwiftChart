@@ -158,7 +158,7 @@ enum URLScheme: String {
             host == URLScheme.preparation.rawValue ||
             host == URLScheme.signingVerificationCode.rawValue ||
             host == URLScheme.toBeVision.rawValue ||
-            host == URLScheme.prepareEvent.rawValue ||            
+            host == URLScheme.prepareEvent.rawValue ||
             host == URLScheme.featureExplainer.rawValue ||
             host == URLScheme.profile.rawValue ||
             host == URLScheme.comingEvent.rawValue ||

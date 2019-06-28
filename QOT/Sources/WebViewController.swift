@@ -25,11 +25,6 @@ final class WebViewController: SFSafariViewController {
         }
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBarStyle(.default)
-    }
-
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         UIApplication.shared.setStatusBarStyle(.lightContent)
@@ -37,6 +32,16 @@ final class WebViewController: SFSafariViewController {
 }
 
 extension WebViewController {
+    override public func viewWillAppear(_ animated: Bool) {
+        NotificationCenter.default.post(name: .stopAudio, object: nil)
+        super.viewWillAppear(animated)
+    }
+
+    override public func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        refreshBottomNavigationItems()
+    }
+
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return nil
     }

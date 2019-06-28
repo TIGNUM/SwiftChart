@@ -22,7 +22,7 @@ final class ToolsCollectionsAudioTableViewCell: UITableViewCell, Dequeueable {
     private var title: String?
     private var remoteID: Int = 0
     private var categoryTitle = ""
-    weak var toolViewDelegate: AudioToolPlayerDelegate?
+    private var duration: Double = 0
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,6 +44,7 @@ final class ToolsCollectionsAudioTableViewCell: UITableViewCell, Dequeueable {
         self.mediaURL = mediaURL
         self.title = title
         self.remoteID = remoteID
+        self.duration = duration
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 0.5,
                                                        font: .apercuLight(ofSize: 16),
@@ -71,10 +72,11 @@ final class ToolsCollectionsAudioTableViewCell: UITableViewCell, Dequeueable {
 extension ToolsCollectionsAudioTableViewCell {
 
     @IBAction func didTapAudioButton(_ sender: UIButton) {
-        toolViewDelegate?.didTabPlayPause(categoryTitle: categoryTitle,
-                                      title: title ?? "",
-                                      audioURL: mediaURL,
-                                      remoteID: remoteID)
+        let media = MediaPlayerModel(title: title ?? "",
+                                     subtitle: categoryTitle,
+                                     url: mediaURL,
+                                     totalDuration: duration, progress: 0, currentTime: 0, mediaRemoteId: remoteID)
+        NotificationCenter.default.post(name: .playPauseAudio, object: media)
     }
 
     func makePDFCell() {

@@ -15,11 +15,11 @@ final class AudioButton: UIView {
     @IBOutlet private weak var durationLabel: UILabel!
     @IBOutlet private weak var audioIcon: UIImageView!
     @IBOutlet private weak var button: UIButton!
-    private weak var viewDelegate: AudioPlayerViewDelegate?
     private var categoryTitle = ""
     private var title = ""
     private var audioURL: URL? = nil
     private var remoteID: Int = 0
+    private var duration: Int = 0
 
     static func instantiateFromNib() -> AudioButton {
         guard let audioButton = R.nib.audioButton.instantiate(withOwner: self).first as? AudioButton else {
@@ -37,13 +37,12 @@ final class AudioButton: UIView {
                    title: String,
                    audioURL: URL?,
                    remoteID: Int,
-                   duration: Int,
-                   viewDelegate: AudioPlayerViewDelegate?) {
+                   duration: Int) {
         self.categoryTitle = categoryTitle
         self.title = title
         self.audioURL = audioURL
         self.remoteID = remoteID
-        self.viewDelegate = viewDelegate
+        self.duration = duration
         let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
         setDutationLabel(text: mediaDescription)
         setColorMode()
@@ -70,9 +69,10 @@ private extension AudioButton {
 
 private extension AudioButton {
     @IBAction func didTabAudiButton() {
-        viewDelegate?.didTabPlayPause(categoryTitle: categoryTitle,
-                                      title: title,
-                                      audioURL: audioURL,
-                                      remoteID: remoteID)
+        let media = MediaPlayerModel(title: title,
+                                     subtitle: categoryTitle,
+                                     url: audioURL,
+                                     totalDuration: Double(duration), progress: 0, currentTime: 0, mediaRemoteId: remoteID)
+        NotificationCenter.default.post(name: .playPauseAudio, object: media)
     }
 }

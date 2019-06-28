@@ -165,7 +165,7 @@ extension KnowingViewController {
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.section == Knowing.Section.strategies.rawValue && indexPath.item == 0 {
             let foundation = interactor?.foundationStrategy()
-            trackUserEvent(.SELECT,value: foundation?.remoteID, valueType: .CONTENT, action: .TAP)
+            trackUserEvent(.SELECT, value: foundation?.remoteID, valueType: .CONTENT, action: .TAP)
             interactor?.presentStrategyList(selectedStrategyID: nil)
         } else if indexPath.section == Knowing.Section.strategies.rawValue {
             let strategy = interactor?.fiftyFiveStrategies()[indexPath.item - 1]

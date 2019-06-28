@@ -103,7 +103,7 @@ extension DecisionTreeRouter {
 // MARK: - ImagePickerDelegate
 
 extension DecisionTreeRouter: ImagePickerControllerAdapterProtocol {
-
+    //
 }
 
 extension DecisionTreeRouter: ImagePickerControllerDelegate {

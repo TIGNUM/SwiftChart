@@ -28,7 +28,6 @@ final class PaymentReminderViewController: UIViewController {
          interactor?.didTapSwitchAccounts()
     }
 
-
     // MARK: - Init
 
     init(configure: Configurator<PaymentReminderViewController>) {

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="dId-Vu-4Vl">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Audio Full Screen View Controller-->
+        <scene sceneID="a5d-4p-sau">
+            <objects>
+                <viewController id="dId-Vu-4Vl" customClass="AudioFullScreenViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Dd7-bx-ju4">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view userInteractionEnabled="NO" alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Xa-v4-1Tm" customClass="FullScreenBackgroundCircleView" customModule="QOT" customModuleProvider="target">
+                                <rect key="frame" x="60" y="306" width="294" height="294"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" secondItem="2Xa-v4-1Tm" secondAttribute="width" id="Cdf-Kw-eFg"/>
+                                </constraints>
+                            </view>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tej-Ln-v5W">
+                                <rect key="frame" x="278" y="722" width="112" height="40"/>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="vcx-ft-aWY"/>
+                                    <constraint firstAttribute="width" constant="112" id="zsV-lw-hwI"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                <state key="normal" title="Download" image="ic_save"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbD-ob-szJ">
+                                <rect key="frame" x="222" y="722" width="40" height="40"/>
+                                <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="O4L-Yl-7T2"/>
+                                    <constraint firstAttribute="width" constant="40" id="YV2-oK-s6D"/>
+                                </constraints>
+                                <state key="normal" image="ic_bookmark"/>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOp-Dk-Bbn">
+                                <rect key="frame" x="350" y="60" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="20e-6x-y5X"/>
+                                    <constraint firstAttribute="width" constant="40" id="OMp-w5-z7d"/>
+                                </constraints>
+                                <state key="normal" image="ic_minimize"/>
+                                <connections>
+                                    <action selector="didTabCloseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="bmT-OD-KBI"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rtb-mS-eZN">
+                                <rect key="frame" x="24" y="120" width="366" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LHn-1J-XJa">
+                                <rect key="frame" x="24" y="157" width="366" height="20.5"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ai7-FY-RGD">
+                                <rect key="frame" x="187" y="433" width="40" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="2aq-Cc-EIP"/>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Hg5-xt-VNo"/>
+                                    <constraint firstAttribute="width" constant="40" id="QL5-22-SQ3"/>
+                                    <constraint firstAttribute="height" constant="40" id="yGg-v5-1wv"/>
+                                </constraints>
+                                <state key="normal" image="ic_play_sand"/>
+                                <state key="selected" image="ic_pause_sand"/>
+                                <connections>
+                                    <action selector="didTabPlayPauseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="e0m-Vp-IGW"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="LHn-1J-XJa" firstAttribute="width" secondItem="Rtb-mS-eZN" secondAttribute="width" id="5nW-bt-H4i"/>
+                            <constraint firstItem="Rtb-mS-eZN" firstAttribute="top" secondItem="MOp-Dk-Bbn" secondAttribute="bottom" constant="20" id="BlK-vw-6x1"/>
+                            <constraint firstItem="Tej-Ln-v5W" firstAttribute="trailing" secondItem="CtA-66-Mx5" secondAttribute="trailing" constant="-24" id="EDw-h7-rBd"/>
+                            <constraint firstItem="2Xa-v4-1Tm" firstAttribute="centerY" secondItem="Ai7-FY-RGD" secondAttribute="centerY" id="EyV-Be-6IK"/>
+                            <constraint firstItem="Ai7-FY-RGD" firstAttribute="centerX" secondItem="CtA-66-Mx5" secondAttribute="centerX" id="TwG-aA-Lxd"/>
+                            <constraint firstItem="2Xa-v4-1Tm" firstAttribute="width" secondItem="Dd7-bx-ju4" secondAttribute="width" multiplier="266:375" id="Uhv-pf-9ZV"/>
+                            <constraint firstItem="Ai7-FY-RGD" firstAttribute="centerY" secondItem="CtA-66-Mx5" secondAttribute="centerY" id="UlG-e2-Dze"/>
+                            <constraint firstItem="Tej-Ln-v5W" firstAttribute="bottom" secondItem="CtA-66-Mx5" secondAttribute="bottom" constant="-100" id="WEX-nt-BtL"/>
+                            <constraint firstItem="Tej-Ln-v5W" firstAttribute="leading" secondItem="IbD-ob-szJ" secondAttribute="trailing" constant="16" id="caT-Yp-EJn"/>
+                            <constraint firstItem="IbD-ob-szJ" firstAttribute="centerY" secondItem="Tej-Ln-v5W" secondAttribute="centerY" id="eMw-oT-yuj"/>
+                            <constraint firstItem="Rtb-mS-eZN" firstAttribute="leading" secondItem="CtA-66-Mx5" secondAttribute="leading" constant="24" id="f15-kR-jKS"/>
+                            <constraint firstItem="MOp-Dk-Bbn" firstAttribute="top" secondItem="CtA-66-Mx5" secondAttribute="top" constant="16" id="gv2-E0-prN"/>
+                            <constraint firstItem="2Xa-v4-1Tm" firstAttribute="centerX" secondItem="Ai7-FY-RGD" secondAttribute="centerX" id="i2B-zz-QHQ"/>
+                            <constraint firstItem="CtA-66-Mx5" firstAttribute="trailing" secondItem="Rtb-mS-eZN" secondAttribute="trailing" constant="24" id="i4c-Hz-MDj"/>
+                            <constraint firstItem="LHn-1J-XJa" firstAttribute="centerX" secondItem="Rtb-mS-eZN" secondAttribute="centerX" id="s0O-8S-KoI"/>
+                            <constraint firstItem="LHn-1J-XJa" firstAttribute="top" secondItem="Rtb-mS-eZN" secondAttribute="bottom" constant="16" id="wOT-co-KAd"/>
+                            <constraint firstItem="MOp-Dk-Bbn" firstAttribute="trailing" secondItem="CtA-66-Mx5" secondAttribute="trailing" constant="-24" id="wgv-NK-uWN"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="CtA-66-Mx5"/>
+                    </view>
+                    <connections>
+                        <outlet property="bookmarkButton" destination="IbD-ob-szJ" id="grn-mV-Dcs"/>
+                        <outlet property="categorytitleLabel" destination="Rtb-mS-eZN" id="xT5-yS-9U8"/>
+                        <outlet property="closeButton" destination="MOp-Dk-Bbn" id="3uZ-qU-br3"/>
+                        <outlet property="downloadButton" destination="Tej-Ln-v5W" id="WMs-ww-7NP"/>
+                        <outlet property="playPauseButton" destination="Ai7-FY-RGD" id="dLT-gJ-HAf"/>
+                        <outlet property="titleLabel" destination="LHn-1J-XJa" id="LeL-qg-nYS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ARM-PJ-UEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-219" y="29"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_bookmark" width="14" height="16"/>
+        <image name="ic_minimize" width="23" height="12"/>
+        <image name="ic_pause_sand" width="16" height="16"/>
+        <image name="ic_play_sand" width="16" height="16"/>
+        <image name="ic_save" width="36" height="36"/>
+    </resources>
+</document>

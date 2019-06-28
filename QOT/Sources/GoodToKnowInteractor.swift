@@ -35,7 +35,7 @@ final class GoodToKnowInteractor {
 
 // MARK: - GoodToKnowInteractorInterface
 
-extension  GoodToKnowInteractor:  GoodToKnowInteractorInterface {
+extension GoodToKnowInteractor: GoodToKnowInteractorInterface {
 
     func listOfFacts(completion: @escaping (([String?]) -> Void)) {
         return worker.listOfFacts(completion: completion)

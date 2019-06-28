@@ -329,11 +329,11 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         return settingsCell
     }
 
-	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let interactor = self.interactor else { return }
-		tableView.deselectRow(at: indexPath, animated: true)
-		switch interactor.row(at: indexPath) {
-		case .label(_, _, let settingsType):
+        tableView.deselectRow(at: indexPath, animated: true)
+        switch interactor.row(at: indexPath) {
+        case .label(_, _, let settingsType):
             switch settingsType {
             case .logout:
                 showAlert(type: .logout, handlerDestructive: {
@@ -347,16 +347,16 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
                 })
             default: return
             }
-		case .datePicker(let title, let selectedDate, _):
-			showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
-		case .stringPicker(let title, let pickerItems, let selectedIndex, _):
-			showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
-		case .multipleStringPicker(let title, let rows, let initialSelection, _):
-			showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
+        case .datePicker(let title, let selectedDate, _):
+            showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
+        case .stringPicker(let title, let pickerItems, let selectedIndex, _):
+            showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
+        case .multipleStringPicker(let title, let rows, let initialSelection, _):
+            showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
         default:
-            return
-		}
-	}
+            break
+        }
+    }
 }
 
 // MARK: - Reset password

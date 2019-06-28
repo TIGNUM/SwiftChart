@@ -430,3 +430,10 @@ extension ArticleItemViewController: BottomNavigationBarViewProtocol {
         dismiss(animated: true, completion: nil)
     }
 }
+
+// MARK: - Bottom Navigation
+extension ArticleItemViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItem()]
+    }
+}

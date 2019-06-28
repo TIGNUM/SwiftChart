@@ -57,6 +57,7 @@ private extension UIViewController {
         case is ToolsViewController: return "coach.tools"
         case is KnowingViewController: return "know.feed"
         case is SolveResultsViewController: return "solve.results"
+        case is AudioFullScreenViewController: return "fullscreen.audioplayer"
         default: preconditionFailure()
         }
     }
@@ -72,7 +73,7 @@ private extension UIViewController {
         case .mindsetShifterTBV?: return "decisiontree.mindsetshifter.tobevisiongenerator"
         case .prepare?: return "decisiontree.mindsetshifter.prepare"
         case .solve?: return "decisiontree.solve"
-        case .prepareIntensions?: return "decisiontree.prepare.edit.intensions"
+        case .prepareIntensions?: return "decisiontree.prepare.edit.intentions"
         case .prepareBenefits?: return "decisiontree.prepare.edit.benefits"
         default: preconditionFailure()
         }

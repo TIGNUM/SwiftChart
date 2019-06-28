@@ -44,44 +44,56 @@
                         </subviews>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Gv7-dO-NxS" secondAttribute="trailing" id="BcR-gK-48l"/>
-                            <constraint firstItem="Gv7-dO-NxS" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="KgD-db-yzP"/>
+                            <constraint firstItem="Gv7-dO-NxS" firstAttribute="trailing" secondItem="8bC-Xf-vdC" secondAttribute="trailing" id="BcR-gK-48l"/>
+                            <constraint firstItem="Gv7-dO-NxS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="KgD-db-yzP"/>
                             <constraint firstItem="Gv7-dO-NxS" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="QUK-tJ-1hg"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <navigationItem key="navigationItem" id="Syq-VK-LDx"/>
                     <connections>
+                        <outlet property="audioPlayerContainer" destination="H3j-t6-QRW" id="L9j-dN-y1o"/>
                         <outlet property="bottomNavigationBar" destination="WaZ-yl-3vk" id="vly-rT-P3n"/>
                         <outlet property="bottomNavigationContainer" destination="u0O-GE-XGq" id="jde-R3-IsT"/>
-                        <outlet property="dummy" destination="Gv7-dO-NxS" id="SJl-vn-GB9"/>
+                        <outlet property="bottomNavigationPlaceholder" destination="Gv7-dO-NxS" id="SJl-vn-GB9"/>
                         <outlet property="naviBackground" destination="aoY-kS-tU6" id="54K-e1-Buz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
                 <view contentMode="scaleToFill" id="u0O-GE-XGq" customClass="BottomNavigationContainer" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="16"/>
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="footerCarbon" translatesAutoresizingMaskIntoConstraints="NO" id="aoY-kS-tU6">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="16"/>
+                        <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomNavigatorBG" translatesAutoresizingMaskIntoConstraints="NO" id="aoY-kS-tU6">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </imageView>
-                        <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WaZ-yl-3vk" customClass="BottomNavigationBar" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="24" y="-9" width="366" height="44"/>
+                        <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="366" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="WaZ-yl-3vk" customClass="BottomNavigationBar" customModule="QOT" customModuleProvider="target">
+                            <rect key="frame" x="24" y="30" width="366" height="40"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="40" id="3je-AM-LZd"/>
+                            </constraints>
                         </navigationBar>
+                        <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3j-t6-QRW">
+                            <rect key="frame" x="24" y="30" width="366" height="40"/>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <color key="tintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstItem="WaZ-yl-3vk" firstAttribute="centerY" secondItem="u0O-GE-XGq" secondAttribute="centerY" constant="5" id="DhX-h6-9Ke"/>
-                        <constraint firstItem="WaZ-yl-3vk" firstAttribute="leading" secondItem="u0O-GE-XGq" secondAttribute="leading" constant="24" id="IUr-a7-pfU"/>
+                        <constraint firstItem="WaZ-yl-3vk" firstAttribute="centerX" secondItem="u0O-GE-XGq" secondAttribute="centerX" id="2ZL-eR-j6H"/>
+                        <constraint firstItem="H3j-t6-QRW" firstAttribute="centerY" secondItem="WaZ-yl-3vk" secondAttribute="centerY" id="4cA-V4-aEi"/>
+                        <constraint firstItem="WaZ-yl-3vk" firstAttribute="centerY" secondItem="u0O-GE-XGq" secondAttribute="centerY" id="DhX-h6-9Ke"/>
+                        <constraint firstItem="H3j-t6-QRW" firstAttribute="centerX" secondItem="WaZ-yl-3vk" secondAttribute="centerX" id="QU1-X3-sfn"/>
+                        <constraint firstItem="H3j-t6-QRW" firstAttribute="height" secondItem="WaZ-yl-3vk" secondAttribute="height" id="QsJ-yf-zyG"/>
                         <constraint firstItem="aoY-kS-tU6" firstAttribute="bottom" secondItem="u0O-GE-XGq" secondAttribute="bottom" id="USq-wK-BFU"/>
                         <constraint firstItem="aoY-kS-tU6" firstAttribute="leading" secondItem="u0O-GE-XGq" secondAttribute="leading" id="ayK-Vi-j6x"/>
+                        <constraint firstItem="WaZ-yl-3vk" firstAttribute="width" secondItem="u0O-GE-XGq" secondAttribute="width" multiplier="366:414" id="bEh-Rh-XTA"/>
                         <constraint firstItem="aoY-kS-tU6" firstAttribute="top" secondItem="u0O-GE-XGq" secondAttribute="top" id="hBU-yd-pqJ"/>
-                        <constraint firstAttribute="trailing" secondItem="aoY-kS-tU6" secondAttribute="trailing" id="xda-Lm-Aft"/>
-                        <constraint firstAttribute="trailing" secondItem="WaZ-yl-3vk" secondAttribute="trailing" constant="24" id="zHk-5U-mxC"/>
+                        <constraint firstItem="H3j-t6-QRW" firstAttribute="width" secondItem="WaZ-yl-3vk" secondAttribute="width" id="j93-4V-vwF"/>
+                        <constraint firstItem="aoY-kS-tU6" firstAttribute="trailing" secondItem="u0O-GE-XGq" secondAttribute="trailing" id="xda-Lm-Aft"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="V9l-Ym-XgG"/>
                 </view>
@@ -90,6 +102,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="footerCarbon" width="375" height="100"/>
+        <image name="bottomNavigatorBG" width="375" height="100"/>
     </resources>
 </document>

@@ -13,7 +13,7 @@ final class PaymentTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
 
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitlelabel: UILabel!    
+    @IBOutlet private weak var subtitlelabel: UILabel!
     // MARK: - Lifecycle
 
     func configure(title: String, subtitle: String) {

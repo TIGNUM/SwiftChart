@@ -10,27 +10,19 @@ import UIKit
 import Anchorage
 import qot_dal
 
-protocol AudioPlayerViewDelegate: class {
-    func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int)
-    func didTabClose(for view: AudioPlayer.View)
-    func didFinishAudio()
-    func openFullScreen()
-}
-
 final class StrategyListViewController: UIViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 
     var interactor: StrategyListInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
-    private var audioPlayerBar = AudioPlayerBar()
-    private var audioPlayerFullScreen = AudioPlayerFullScreen()
 
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -55,18 +47,6 @@ private extension StrategyListViewController {
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
     }
-
-    func setupAudioPlayerView() {
-        audioPlayerBar = AudioPlayerBar.instantiateFromNib()
-        view.addSubview(audioPlayerBar)
-        audioPlayerBar.trailingAnchor == view.trailingAnchor
-        audioPlayerBar.leadingAnchor == view.leadingAnchor
-        audioPlayerBar.bottomAnchor == view.bottomAnchor - 24
-        audioPlayerBar.heightAnchor == 40
-        audioPlayerBar.layoutIfNeeded()
-        audioPlayerBar.isHidden = true
-        audioPlayerBar.viewDelegate = self
-    }
 }
 
 // MARK: - StrategyListViewControllerInterface
@@ -75,7 +55,6 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
         view.backgroundColor = .carbon
         setupTableView()
-        setupAudioPlayerView()
     }
 }
 
@@ -95,7 +74,6 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
         } else {
             let strategy = interactor?.strategies[indexPath.item]
             let cell: StrategyContentTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.viewDelegate = self
             cell.configure(categoryTitle: strategy?.categoryTitle ?? "",
                            title: strategy?.title ?? "",
                            timeToWatch: strategy?.durationString ?? "",
@@ -134,55 +112,15 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             interactor?.presentArticle(selectedID: strategy?.remoteID)
             trackUserEvent(.OPEN, value: strategy?.remoteID, valueType: .CONTENT, action: .TAP)
             if AudioPlayer.current.isPlaying == true && AudioPlayer.current.remoteID != strategy?.remoteID {
-                AudioPlayer.current.resetPlayer()
-                didTabClose(for: .bar)
+                NotificationCenter.default.post(name: .stopAudio, object: nil)
             }
         }
     }
 }
 
-// MARK: - AudioPlayerViewDelegate
-
-extension StrategyListViewController: AudioPlayerViewDelegate {
-    func didTabClose(for view: AudioPlayer.View) {
-        switch view {
-        case .bar:
-            audioPlayerBar.isHidden = true
-        case .fullScreen:
-            audioPlayerBar.updateView()
-            audioPlayerFullScreen.animateHidden(true)
-        }
-    }
-
-    func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int) {
-        if audioPlayerBar.isHidden == true {
-            audioPlayerBar.isHidden = false
-        }
-        audioPlayerBar.configure(categoryTitle: categoryTitle,
-                                 title: title,
-                                 audioURL: audioURL,
-                                 remoteID: remoteID)
-    }
-
-    func didFinishAudio() {
+// MARK: - Audio Player Related
+extension StrategyListViewController {
+    @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
-    }
-
-    func openFullScreen() {
-        audioPlayerFullScreen = AudioPlayerFullScreen.instantiateFromNib()
-        audioPlayerFullScreen.viewDelegate = self
-        audioPlayerFullScreen.isHidden = true
-        view.addSubview(audioPlayerFullScreen)
-        audioPlayerFullScreen.topAnchor == view.topAnchor
-        audioPlayerFullScreen.bottomAnchor == view.bottomAnchor
-        audioPlayerFullScreen.trailingAnchor == view.trailingAnchor
-        audioPlayerFullScreen.leadingAnchor == view.leadingAnchor
-        audioPlayerFullScreen.layoutIfNeeded()
-        view.layoutIfNeeded()
-        audioPlayerFullScreen.layoutIfNeeded()
-        audioPlayerFullScreen.configure()
-        UIView.animate(withDuration: 0.6) {
-            self.audioPlayerFullScreen.isHidden = false
-        }
     }
 }

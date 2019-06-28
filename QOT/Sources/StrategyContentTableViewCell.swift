@@ -21,8 +21,8 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     private var mediaURL: URL?
     private var title: String?
     private var remoteID: Int = 0
+    private var duration: Double = 0
     private var categoryTitle = ""
-    weak var viewDelegate: AudioPlayerViewDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -44,6 +44,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         self.mediaURL = mediaURL
         self.title = title
         self.remoteID = remoteID
+        self.duration = duration
         setAudioAsCompleteIfNeeded(remoteID: remoteID)
         titleLabel.attributedText = NSAttributedString(string: title,
                                                        letterSpacing: 0.5,
@@ -71,10 +72,11 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
 extension StrategyContentTableViewCell {
 
     @IBAction func didTabAudioButton() {
-        viewDelegate?.didTabPlayPause(categoryTitle: categoryTitle,
-                                      title: title ?? "",
-                                      audioURL: mediaURL,
-                                      remoteID: remoteID)
+        let media = MediaPlayerModel(title: title ?? "",
+                                     subtitle: categoryTitle,
+                                     url: mediaURL,
+                                     totalDuration: duration, progress: 0, currentTime: 0, mediaRemoteId: remoteID)
+        NotificationCenter.default.post(name: .playPauseAudio, object: media)
     }
 }
 
