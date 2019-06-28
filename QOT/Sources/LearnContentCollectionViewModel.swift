@@ -29,14 +29,14 @@ final class LearnContentCollectionViewModel {
 
     private let categories: AnyRealmCollection<ContentCategory>
     private var token: NotificationTokenHandler?
-    let updates = PublishSubject<CollectionUpdate, Never>()
+    let updates = PassthroughSubject<CollectionUpdate, Never>()
 
     // MARK: - Init
 
     init(services: Services, selectedIndex: Index) {
         self.categories = services.contentService.learnContentCategories()
         token = categories.observe { [unowned self] (_) in
-            self.updates.next(.reload)
+            self.updates.send(.reload)
         }.handler
     }
 

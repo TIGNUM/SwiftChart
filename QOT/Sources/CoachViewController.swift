@@ -12,7 +12,7 @@ final class CoachNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(CoachNavigationController.classForCoder())
 }
 
-final class CoachViewController: UIViewController {
+final class CoachViewController: UIViewController, ScreenZLevelCoach {
 
     // MARK: - Properties
 

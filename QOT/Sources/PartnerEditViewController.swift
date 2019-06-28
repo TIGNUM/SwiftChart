@@ -232,10 +232,12 @@ extension PartnerEditViewController: ImagePickerControllerDelegate {
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         tempImage = image
         updateImageContainerView(tempImage)
+        refreshBottomNavigationItems()
     }
 
     func cancelSelection() {
         // Do nothing.
+        refreshBottomNavigationItems()
     }
 }
 

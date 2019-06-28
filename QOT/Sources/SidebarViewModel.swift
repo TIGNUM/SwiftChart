@@ -111,7 +111,7 @@ final class SidebarViewModel {
 
     // MARK: - Properties
 
-    let updates = PublishSubject<CollectionUpdate, Never>()
+    let updates = PassthroughSubject<CollectionUpdate, Never>()
     let services: Services
 
     init(services: Services) {

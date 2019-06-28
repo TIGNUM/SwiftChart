@@ -54,3 +54,9 @@ extension PDFReaderViewController: PDFReaderViewControllerInterface {
         self.shareButton.isEnabled = enable
     }
 }
+
+extension PDFReaderViewController {
+    @objc override open func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+}

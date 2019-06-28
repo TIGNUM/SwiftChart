@@ -39,6 +39,7 @@ final class ToolsCollectionsViewController: UIViewController {
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         setCustomBackButton()
         UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
     }

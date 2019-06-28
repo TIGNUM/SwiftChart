@@ -460,16 +460,19 @@ extension MyToBeVisionViewController: ImagePickerControllerDelegate {
         tempImageURL = nil
         imageViewVision.kf.setImage(with: tempImageURL, placeholder: R.image.tbv_placeholder())
         RestartHelper.clearRestartRouteInfo()
+        refreshBottomNavigationItems()
     }
 
     func cancelSelection() {
         edit(true)
         RestartHelper.clearRestartRouteInfo()
+        refreshBottomNavigationItems()
     }
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         tempImage = image
         RestartHelper.clearRestartRouteInfo()
+        refreshBottomNavigationItems()
     }
 }
 

@@ -88,7 +88,7 @@ final class ChatViewModel<T: ChatChoice> {
     private var selectedVisionChoicesIDs = [String]()
     private var visionSelections = [VisionGeneratorChoice]()
     var visionGeneratorInteractor: VisionGeneratorInteractorInterface?
-    let updates = PublishSubject<Update, Never>()
+    let updates = PassthroughSubject<Update, Never>()
 
     var visionChoiceSelections: [VisionGeneratorChoice] {
         return visionSelections
@@ -191,7 +191,7 @@ final class ChatViewModel<T: ChatChoice> {
     func setItems(_ newItems: [ChatItem<T>]) {
         queue?.invalidate()
         items = newItems
-        updates.next(.reload(items: newItems))
+        updates.send(.reload(items: newItems))
         setupQueue()
     }
 
@@ -204,7 +204,7 @@ final class ChatViewModel<T: ChatChoice> {
     func updateItems(oldItems: [ChatItem<T>], newItems: [ChatItem<T>]) {
         items = items.filter { oldItems.contains(obj: $0) == false }
         items.append(contentsOf: newItems)
-        updates.next(.reload(items: items))
+        updates.send(.reload(items: items))
     }
 
     private func setupQueue() {
@@ -212,7 +212,7 @@ final class ChatViewModel<T: ChatChoice> {
             guard let `self` = self else { return }
             self.items.append(item)
             let index = self.items.count - 1
-            self.updates.next(.update(items: self.items, deletions: [], insertions: [index], modifications: []))
+            self.updates.send(.update(items: self.items, deletions: [], insertions: [index], modifications: []))
         })
     }
 }

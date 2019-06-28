@@ -62,7 +62,7 @@ final class LearnContentItemViewModel: NSObject {
     weak var audioConnectionDelegate: AudioConnectionDelegate?
     let contentCollection: ContentCollection
     var currentPosition = ReactiveKit.Property<TimeInterval>(0)
-    let updates = PublishSubject<CollectionUpdate, Never>()
+    let updates = PassthroughSubject<CollectionUpdate, Never>()
 
     lazy var trackDuration: ReactiveKit.Property<TimeInterval> = {
         let item = self.contentItems(at: TabType.audio).first
@@ -351,7 +351,7 @@ extension LearnContentItemViewModel {
             play(url: audioURL, cell: cell, playingIndexPath: indexPath)
         }
 
-        updates.next(.update(deletions: [], insertions: [], modifications: modifications))
+        updates.send(.update(deletions: [], insertions: [], modifications: modifications))
     }
 
     @objc func pausePlayback() {
@@ -361,7 +361,7 @@ extension LearnContentItemViewModel {
 
         player?.pause()
         isPlaying = false
-        updates.next(.update(deletions: [], insertions: [], modifications: [playingIndexPath]))
+        updates.send(.update(deletions: [], insertions: [], modifications: [playingIndexPath]))
         currentPlayingCell?.updateItem(buffering: false, playing: isPlaying)
     }
 
@@ -485,7 +485,7 @@ extension LearnContentItemViewModel {
 
         stopPlayback()
         currentPlayingCell?.updateTitleColor(enabled: false)
-        updates.next(.update(deletions: [], insertions: [playingIndexPath], modifications: []))
+        updates.send(.update(deletions: [], insertions: [playingIndexPath], modifications: []))
     }
 
     // MARK: - Lock screen controls

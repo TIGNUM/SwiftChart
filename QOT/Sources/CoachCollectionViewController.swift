@@ -10,14 +10,10 @@ import UIKit
 import Anchorage
 
 protocol CoachCollectionViewControllerDelegate: class {
-    func presentCoach(from viewController: UIViewController)
-    func navigateToMyQotViewController()
-    func navigateToKnowingViewController()
-    func navigateToDailyBriefViewController()
     func didTapCancel()
 }
 
-final class CoachCollectionViewController: UIViewController {
+final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom {
 
     enum Pages: Int, CaseIterable {
         case know = 0
@@ -30,7 +26,6 @@ final class CoachCollectionViewController: UIViewController {
     var services: Services?
     private var currentPage = Pages.dailyBrief
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet private weak var coachButton: UIButton!
 
     lazy var pageTitle: String? = {
         let predicate = ContentService.Navigation.FirstLevel.knowPageTitle.predicate
@@ -64,12 +59,6 @@ final class CoachCollectionViewController: UIViewController {
         return navController
     }()
 
-    lazy var coachViewController: CoachViewController? = {
-        let coachViewController = R.storyboard.main().instantiateViewController(withIdentifier: R.storyboard.main.coachViewControllerID.identifier) as? CoachViewController
-        CoachConfigurator.make(viewController: coachViewController)
-        return coachViewController
-    }()
-
     lazy var searchViewController: SearchViewController? = {
         let configurator = SearchConfigurator.make(delegate: self)
         let searchViewController = SearchViewController(configure: configurator, pageName: .sideBarSearch)
@@ -81,7 +70,6 @@ final class CoachCollectionViewController: UIViewController {
         let swipeDown = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(swipeDown)
-        setupFloatingButton()
         if let searchViewController = searchViewController {
             self.addChildViewController(searchViewController)
             searchViewController.view.translatesAutoresizingMaskIntoConstraints = false
@@ -89,10 +77,11 @@ final class CoachCollectionViewController: UIViewController {
             searchViewController.view.alpha = 0
         }
         view.addSubview(collectionView)
-        view.bringSubview(toFront: coachButton)
+        view.backgroundColor = .carbonDark
     }
 
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }
 }
@@ -108,27 +97,16 @@ extension CoachCollectionViewController {
         }
         view.sendSubview(toBack: collectionView)
         if translation.y > view.frame.height * 0.05 {
-            coachButton.alpha = 0
+            let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                      rightBarButtonItems: [],
+                                                      backgroundColor: view.backgroundColor ?? .clear)
+            NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
             if let searchViewController = searchViewController {
                 searchViewController.view.isHidden = false
                 searchViewController.view.alpha = 0.8
             }
         }
       sender.setTranslation(CGPoint.zero, in: collectionView)
-    }
-
-    func setupFloatingButton() {
-        coachButton.addTarget(self, action: #selector(didTabCoachButton), for: .touchUpInside)
-        coachButton.setImage(R.image.ic_coach(), for: .normal)
-    }
-
-    @objc func didTabCoachButton() {
-        guard let controller = coachViewController else { return }
-        let navController = UINavigationController(rootViewController: controller)
-        navController.navigationBar.applyClearStyle()
-        navController.modalTransitionStyle = .crossDissolve
-        navController.modalPresentationStyle = .custom
-        present(navController, animated: true, completion: nil)
     }
 
     private func setupConstraints(_ targetView: UIView, parentView: UIView) {
@@ -193,27 +171,14 @@ extension CoachCollectionViewController: UICollectionViewDataSource, UICollectio
 
 extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
 
-    func presentCoach(from viewController: UIViewController) {
-        guard let controller = coachViewController else { return }
-        viewController.present(controller, animated: true, completion: nil)
-    }
-    // TODO:
-    func navigateToKnowingViewController() {
-    }
-    // TODO:
-    func navigateToDailyBriefViewController() {
-    }
-    // TODO :
-    func navigateToMyQotViewController() {
-    }
-
     func didTapCancel() {
         if let searchViewController = searchViewController {
             view.sendSubview(toBack: searchViewController.view)
-            view.bringSubview(toFront: coachButton)
-            coachButton.alpha = 1
         }
-
+        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                  rightBarButtonItems: [coachNavigationItem()],
+                                                  backgroundColor: view.backgroundColor ?? .clear)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
     }
 }
 

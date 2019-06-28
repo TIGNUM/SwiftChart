@@ -99,6 +99,13 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     }
 }
 
+// MARK: - Bottom Navigation
+extension SearchViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+}
+
 // MARK: - Private
 
 private extension SearchViewController {

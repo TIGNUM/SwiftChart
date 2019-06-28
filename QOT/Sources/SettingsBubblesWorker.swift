@@ -14,7 +14,7 @@ final class SettingsBubblesWorker {
 
     private let services: Services
     private var type: SettingsBubblesType
-    let updates = PublishSubject<CollectionUpdate, Never>()
+    let updates = PassthroughSubject<CollectionUpdate, Never>()
 
     init(services: Services, type: SettingsBubblesType) {
         self.services = services

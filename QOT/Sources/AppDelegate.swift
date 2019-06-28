@@ -81,6 +81,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             #endif
             return true
         #else
+
+            swizzleUIViewController()
+            swizzleUINavigationControllerPushViewController()
             if isRunning {
                 return true
             }

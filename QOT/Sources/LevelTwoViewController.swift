@@ -56,7 +56,6 @@ extension LevelTwoViewController: LevelTwoViewControllerInterface {
     func setupView() {
         view.addSubview(tableView)
         tableView.edgeAnchors == view.edgeAnchors
-        setupNavigationButtons()
     }
 
     func presentLevelThree() {

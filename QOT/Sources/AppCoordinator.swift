@@ -250,9 +250,16 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             return
         }
         if self.isRestart == false {
-            guard let coachCollectionViewController = R.storyboard.main().instantiateViewController(withIdentifier: "CoachCollectionViewController") as? CoachCollectionViewController else { return }
+            guard let coachCollectionViewController = R.storyboard.main().instantiateViewController(withIdentifier: "CoachCollectionViewController") as? CoachCollectionViewController,
+            let rootViewController = R.storyboard.bottomNavigation().instantiateInitialViewController(),
+            let rootNavigationController = rootViewController as? UINavigationController else {
+                return
+            }
             coachCollectionViewController.services = services
-            self.windowManager.show(coachCollectionViewController, animated: true, completion: nil)
+            if let baseVC = rootNavigationController.viewControllers.first as? BaseRootViewController {
+                 baseVC.setContent(viewController: coachCollectionViewController)
+            }
+            self.windowManager.show(rootNavigationController, animated: true, completion: nil)
 //            self.startTabBarCoordinator()
         } else {
             self.isRestart = false

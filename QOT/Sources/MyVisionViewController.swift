@@ -10,7 +10,7 @@ import UIKit
 import qot_dal
 import AMScrollingNavbar
 
-final class MyVisionViewController: UIViewController {
+final class MyVisionViewController: UIViewController, ScreenZLevel3 {
 
     static var storyboardID = NSStringFromClass(MyVisionViewController.classForCoder())
 
@@ -276,10 +276,12 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
         saveToBeVisionImage()
         userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.circlesWarning())
         RestartHelper.clearRestartRouteInfo()
+        refreshBottomNavigationItems()
     }
 
     func cancelSelection() {
         RestartHelper.clearRestartRouteInfo()
+        refreshBottomNavigationItems()
     }
 
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
@@ -287,6 +289,7 @@ extension MyVisionViewController: ImagePickerControllerDelegate {
         userImageView.image = tempImage
         saveToBeVisionImage()
         RestartHelper.clearRestartRouteInfo()
+        refreshBottomNavigationItems()
     }
 }
 
@@ -337,5 +340,9 @@ extension MyVisionViewController: PopUpViewControllerProtocol {
 
     func rightButtonAction() {
         interactor?.showEditVision()
+    }
+
+    func cancelAction() {
+        refreshBottomNavigationItems()
     }
 }

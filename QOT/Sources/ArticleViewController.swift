@@ -127,7 +127,7 @@ enum TextScale {
 
 final class ArticleNavigationController: ScrollingNavigationController {}
 
-final class ArticleViewController: UIViewController {
+final class ArticleViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: ArticleInteractorInterface?
@@ -140,7 +140,7 @@ final class ArticleViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var topTitleNavigationItem: UINavigationItem!
     @IBOutlet private weak var moreBarButtonItem: UIBarButtonItem!
-    @IBOutlet private weak var closeButton: UIButton!
+//    @IBOutlet private weak var closeButton: UIButton!
 
     private lazy var customMoreButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -273,21 +273,17 @@ private extension ArticleViewController {
                               remoteID: interactor?.remoteID ?? 0,
                               duration: audioItem.type.duration,
                               viewDelegate: self)
-        view.addSubview(audioButton)
-        audioButton.trailingAnchor == view.trailingAnchor - 24
-        audioButton.bottomAnchor == view.bottomAnchor - 48
-        audioButton.heightAnchor == 40
     }
 
     func updateCloseButton() {
-        closeButton.layer.borderWidth = 1
-        closeButton.layer.borderColor = UIColor.accent.cgColor
-        closeButton.corner(radius: closeButton.bounds.width * 0.5)
-        view.bringSubview(toFront: closeButton)
+//        closeButton.layer.borderWidth = 1
+//        closeButton.layer.borderColor = UIColor.accent.cgColor
+//        closeButton.corner(radius: closeButton.bounds.width * 0.5)
+//        view.bringSubview(toFront: closeButton)
     }
 
     func showHideCloseButton() {
-        closeButton.isHidden = !closeButton.isHidden
+//        closeButton.isHidden = !closeButton.isHidden
     }
 
     func setColorMode() {
@@ -304,7 +300,7 @@ private extension ArticleViewController {
                                            primaryColor: colorMode.background,
                                            fadeColor: colorMode.fade)
         audioButton.setColorMode()
-        view.bringSubview(toFront: closeButton)
+//        view.bringSubview(toFront: closeButton)
         view.bringSubview(toFront: audioButton)
         if audioPlayerBar.isHidden == false {
             audioPlayerBar.setColorMode()
@@ -317,12 +313,24 @@ private extension ArticleViewController {
     }
 }
 
+// MARK: - BottomNavigation
+extension ArticleViewController {
+    @objc override public func didTapDismissButton() {
+        dismiss(animated: true, completion: nil)
+    }
+
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItem()]
+    }
+
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return [UIBarButtonItem(customView: audioButton)]
+    }
+}
+
 // MARK: - Actions
 
 private extension ArticleViewController {
-    @IBAction func didTabDismiss() {
-        dismiss(animated: true, completion: nil)
-    }
 
     @IBAction func didTabMoreButton() {
         if topTitleNavigationItem.leftBarButtonItems == nil ||
@@ -383,7 +391,7 @@ extension ArticleViewController: ArticleViewControllerInterface {
         setupAudioPlayerView()
         setupAudioItem()
         setColorMode()
-        updateCloseButton()
+//        updateCloseButton()
     }
 }
 
@@ -673,7 +681,7 @@ extension ArticleViewController: AudioPlayerViewDelegate {
     func didTabClose(for view: AudioPlayer.View) {
         switch view {
         case .bar:
-            showHideCloseButton()
+//            showHideCloseButton()
             audioPlayerBar.isHidden = true
             audioButton.isHidden = false
         case .fullScreen:
@@ -685,7 +693,7 @@ extension ArticleViewController: AudioPlayerViewDelegate {
 
     func didTabPlayPause(categoryTitle: String, title: String, audioURL: URL?, remoteID: Int) {
         if audioPlayerBar.isHidden == true {
-            showHideCloseButton()
+//            showHideCloseButton()
             audioPlayerBar.isHidden = false
             view.bringSubview(toFront: audioPlayerBar)
         }

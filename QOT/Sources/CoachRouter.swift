@@ -47,12 +47,12 @@ extension CoachRouter: CoachRouterInterface {
                 viewController.pushToStart(childViewController: toolsViewController)
             }
         case .sprint:
-            let storyboardID = R.storyboard.dailyBriefStoryboard.questionViewControllerID.identifier
-            let questionViewController = R.storyboard
-                .dailyBriefStoryboard().instantiateViewController(withIdentifier: storyboardID) as? QuestionViewController
-            if let questionViewController = questionViewController {
-                QuestionConfigurator.make(viewController: questionViewController)
-                viewController.pushToStart(childViewController: questionViewController)
+            let storyboardID = R.storyboard.dailyBriefStoryboard.whatsHotLatestViewControllerID.identifier
+            let whatsHotLatestViewController = R.storyboard
+                .dailyBriefStoryboard().instantiateViewController(withIdentifier: storyboardID) as? WhatsHotLatestViewController
+            if let whatsHotLatestViewController = whatsHotLatestViewController {
+                WhatsHotLatestConfigurator.make(viewController: whatsHotLatestViewController)
+                viewController.pushToStart(childViewController: whatsHotLatestViewController)
             }
         case .event:
             let configurator = DecisionTreeConfigurator.make(for: .prepare, permissionsManager: permissionsManager)

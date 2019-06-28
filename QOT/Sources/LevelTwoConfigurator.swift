@@ -17,7 +17,6 @@ final class LevelTwoConfigurator {
             let presenter = LevelTwoPresenter(viewController: viewController)
             let interactor = LevelTwoInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
-            viewController.delegate = delegate
         }
     }
 }
