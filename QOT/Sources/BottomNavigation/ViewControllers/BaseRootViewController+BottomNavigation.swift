@@ -9,6 +9,14 @@
 import UIKit
 
 extension BaseRootViewController {
+    func currentBottomNavigationItem() -> BottomNavigationItem? {
+        let lastItem = bottomNavigationBar.items?.last
+        let color = naviBackground.tintColor ?? .clear
+        let lastBottomItem = BottomNavigationItem(leftBarButtonItems: lastItem?.leftBarButtonItems ?? [],
+                                                  rightBarButtonItems: lastItem?.rightBarButtonItems ?? [],
+                                                  backgroundColor: color)
+        return lastBottomItem
+    }
     func setupBottomNavigationContainer() {
         if UIApplication.shared.windows.first?.subviews.contains(bottomNavigationContainer) == true {
             bringBottomNavigationBarToFront()

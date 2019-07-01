@@ -15,17 +15,4 @@ extension AVPlayerViewController {
         NotificationCenter.default.post(name: .stopAudio, object: nil)
         super.viewWillAppear(animated)
     }
-
-    override open func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        refreshBottomNavigationItems()
-    }
-
-    @objc override open func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
-
-    @objc override open func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
 }

@@ -507,3 +507,17 @@ extension ProfileSettingsViewController: ProfileSettingsFooterViewProtocol {
         navController.popViewController(animated: true)
     }
 }
+
+extension ProfileSettingsViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override public func bottomNavigationBackgroundColor() -> UIColor? {
+        return .clear
+    }
+}

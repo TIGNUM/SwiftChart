@@ -29,15 +29,26 @@ final class BaseRootViewController: UIViewController, ScreenZLevelBottom {
     override func viewDidLoad() {
         super.viewDidLoad()
         baseRootViewController = self
+        view.backgroundColor = .carbonDark
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(handleBottomNavigationBar(_:)),
                                                name: .updateBottomNavigation,
                                                object: nil)
     }
+
+    deinit {
+        bottomNavigationContainer.removeFromSuperview()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupBottomNavigationContainer()
         setupAudioPlayerBar()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        refreshBottomNavigationItems()
     }
 
     override func viewDidLayoutSubviews() {

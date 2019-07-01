@@ -33,6 +33,7 @@ final class WebViewController: SFSafariViewController {
 
 extension WebViewController {
     override public func viewWillAppear(_ animated: Bool) {
+        // Make sure that stop playing Audio
         NotificationCenter.default.post(name: .stopAudio, object: nil)
         super.viewWillAppear(animated)
     }
