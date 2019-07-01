@@ -9,17 +9,6 @@
 import UIKit
 import qot_dal
 
-extension QDMUserEventTracking.Name {
-    static let PLAY = "PLAY"
-    static let STOP = "STOP"
-    static let PAUSE = "PAUSE"
-    static let FULL_SCREEN = "FULL_SCREEN"
-}
-
-public extension QDMUserEventTracking.ValueType {
-    static let AUDIO = "AUDIO"
-}
-
 final class AudioPlayerBar: UIView {
 
     public enum Mode {
