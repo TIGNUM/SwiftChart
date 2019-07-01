@@ -69,18 +69,15 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func didClickSaveAndContinue() {
-        worker.updatePreparation { [weak self] (preparation, error) in
-            if let error = error {
-                log("Error while trying to save preparation: \(error.localizedDescription)", level: Logger.Level.debug)
-            } else {
-                self?.router.didClickSaveAndContinue()
-            }
+        worker.updatePreparation() { [weak self] (preparation) in
+            self?.router.didClickSaveAndContinue()
         }
     }
 
     func deletePreparationIfNeeded() {
-        worker.deletePreparationIfNeeded()
-        self.router.didClickSaveAndContinue()
+        worker.deletePreparationIfNeeded { [weak self] in
+            self?.router.didClickSaveAndContinue()
+        }
     }
 
     func presentEditStrategyView() {

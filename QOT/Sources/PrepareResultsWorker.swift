@@ -244,23 +244,19 @@ extension PrepareResultsWorker {
     }
 }
 
-// MARK: - Save
+// MARK: - Update, Delete
 
 extension PrepareResultsWorker {
-    func updatePreparation(_ completion: @escaping (QDMUserPreparation?, Error?) -> Void) {
+    func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
         guard let preparation = preparation else { return }
-        qot_dal.UserService.main.updateUserPreparation(preparation) { [weak self] (preparation, error) in
+        PreparationManager.main.update(preparation: preparation) { [weak self] (preparation) in
             self?.handleReminders()
-            completion(preparation, error)
+            completion(preparation)
         }
     }
 
-    func deletePreparationIfNeeded() {
+    func deletePreparationIfNeeded(_ completion: @escaping () -> Void) {
         guard let preparation = preparation, canDelete == true else { return }
-        qot_dal.UserService.main.deleteUserPreparation(preparation) { (error) in
-            if let error = error {
-                log("Error while trying to delete preparation:\(error.localizedDescription)", level: Logger.Level.debug)
-            }
-        }
+        PreparationManager.main.delete(preparation: preparation, completion: completion)
     }
 }

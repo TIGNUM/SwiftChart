@@ -502,40 +502,31 @@ private extension DecisionTreeViewController {
             interactor?.openPrepareResults(contentID)
         } else if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionDaily.rawValue {
             let level = QDMUserPreparation.Level.LEVEL_DAILY
-            qot_dal.UserService.main.createUserPreparation(level: level,
-                                                           benefits: interactor?.prepareBenefits,
-                                                           answerFilter: nil,
-                                                           contentCollectionId: level.contentID,
-                                                           relatedStrategyId: answer.decisions.first?.targetID ?? 0,
-                                                           strategyIds: [],
-                                                           preceiveAnswerIds: [],
-                                                           knowAnswerIds: [],
-                                                           feelAnswerIds: [],
-                                                           eventType: answer.title,
-                                                           event: selectedEvent) { [weak self] (preparation, error) in
-                                                            if let preparation = preparation {
-                                                                self?.interactor?.openPrepareResults(preparation,
-                                                                                                     self?.decisionTree?.selectedAnswers ?? [])
-                                                            }
+            PreparationManager.main.create(level: level,
+                                           contentCollectionId: level.contentID,
+                                           relatedStrategyId: answer.decisions.first?.targetID ?? 0,
+                                           eventType: answer.title,
+                                           event: selectedEvent) { [weak self] (preparation) in
+                                            if let preparation = preparation {
+                                                self?.interactor?.openPrepareResults(preparation,
+                                                                                     self?.decisionTree?.selectedAnswers ?? [])
+                                            }
             }
         } else if currentQuestion?.key == QuestionKey.Prepare.benefitsInput.rawValue {
             let level = QDMUserPreparation.Level.LEVEL_CRITICAL
-            qot_dal.UserService.main.createUserPreparation(level: level,
-                                                           benefits: interactor?.prepareBenefits,
-                                                           answerFilter: interactor?.answersFilter(currentQuestion: nil,
-                                                                                                   decisionTree: nil),
-                                                           contentCollectionId: level.contentID,
-                                                           relatedStrategyId: self.interactor?.relatedStrategyID ?? 0,
-                                                           strategyIds: [interactor?.relatedStrategyID ?? 0] ,
-                                                           preceiveAnswerIds: [],
-                                                           knowAnswerIds: [],
-                                                           feelAnswerIds: [],
-                                                           eventType: prepareEventType,
-                                                           event: selectedEvent) { [weak self] (preparation, error) in
-                                                            if let preparation = preparation {
-                                                                self?.interactor?.openPrepareResults(preparation,
-                                                                                                     self?.decisionTree?.selectedAnswers ?? [])
-                                                            }
+            PreparationManager.main.create(level: level,
+                                           benefits: interactor?.prepareBenefits,
+                                           answerFilter: interactor?.answersFilter(currentQuestion: nil,
+                                                                                   decisionTree: nil),
+                                           contentCollectionId: level.contentID,
+                                           relatedStrategyId: answer.decisions.first?.targetID ?? 0,
+                                           strategyIds: [interactor?.relatedStrategyID ?? 0],
+                                           eventType: prepareEventType,
+                                           event: selectedEvent) { [weak self] (preparation) in
+                                            if let preparation = preparation {
+                                                self?.interactor?.openPrepareResults(preparation,
+                                                                                     self?.decisionTree?.selectedAnswers ?? [])
+                                            }
             }
         } else {
             interactor?.displayContent(with: contentID)
