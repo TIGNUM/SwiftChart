@@ -11,8 +11,7 @@ import qot_dal
 
 extension QDMContentCollection {
     func getCategories(_ completion: @escaping (([QDMContentCategory]?) -> Void)) {
-        let relatedIds = relatedContentIDsPrepareAll ?? []
-        qot_dal.ContentService.main.getContentCategoriesByIds(relatedIds, completion)
+        qot_dal.ContentService.main.getContentCategoriesByIds(relatedContentIDsPrepareAll, completion)
     }
 }
 
@@ -25,8 +24,12 @@ extension QDMContentCollection {
         return relatedContentList.filter { $0.type == "PREPARE_DEFAULT" || $0.type == "PREPARE_OPTIONAL" }.compactMap { $0.contentID }
     }
 
-    func isRelatedDefault(_ contentId: Int) -> Bool {
-        return false// emoteID == contentId && type = "PREPARE_DEFAULT"
+    var relatedContentIdsRecoveryExclusive: [Int] {
+        return relatedContentList.filter { $0.type == "EXCLUSIVE_CONTENT" }.compactMap { $0.contentID }
+    }
+
+    var suggestedContentIdsRecovery: [Int] {
+        return relatedContentList.filter { $0.type != "EXCLUSIVE_CONTENT" }.compactMap { $0.contentID }
     }
 }
 

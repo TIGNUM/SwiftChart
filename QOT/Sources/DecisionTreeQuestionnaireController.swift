@@ -36,6 +36,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     private let question: Question
     private let maxPossibleSelections: Int
     private let answersFilter: String?
+    private let questionTitleUpdate: String?
     private lazy var tableView: UITableView = {
         return UITableView(delegate: self,
                            dataSource: self,
@@ -61,12 +62,14 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
          with selectedAnswers: [DecisionTreeModel.SelectedAnswer],
          extraAnswer: String?,
          maxPossibleSelections: Int,
-         answersFilter: String?) {
+         answersFilter: String?,
+         questionTitleUpdate: String?) {
         self.question = question
         self.selectedAnswers = selectedAnswers
         self.extraAnswer = extraAnswer
         self.maxPossibleSelections = maxPossibleSelections
         self.answersFilter = answersFilter
+        self.questionTitleUpdate = questionTitleUpdate
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -146,7 +149,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
         switch type {
         case .question:
             let cell: QuestionTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(with: question.title)
+            cell.configure(with: question.title, questionTitleUpdate: questionTitleUpdate)
             return cell
         case .answer:
             switch question.answerType {

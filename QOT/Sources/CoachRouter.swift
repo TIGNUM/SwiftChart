@@ -60,7 +60,7 @@ extension CoachRouter: CoachRouterInterface {
             viewController.present(controller, animated: true)
             UIApplication.shared.setStatusBar(colorMode: .darkNot)
         case .challenge:
-            let configurator = DecisionTreeConfigurator.make(for: .solve, permissionsManager: permissionsManager)
+            let configurator = DecisionTreeConfigurator.make(for: .recovery, permissionsManager: permissionsManager)
             let controller = DecisionTreeViewController(configure: configurator)
             viewController.present(controller, animated: true)
         }

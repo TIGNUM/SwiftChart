@@ -51,4 +51,10 @@ enum QuestionKey {
         case intro = "solve-key-intro"
         case help = "solve-key-help"
     }
+
+    enum Recovery: String {
+        case intro = "3drecovery-question-intro"
+        case syntom = "3drecovery-question-syntom"
+        case loading = "3drecovery-question-generate-recovery-loading"
+    }
 }

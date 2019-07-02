@@ -19,12 +19,23 @@ final class QuestionTableViewCell: UITableViewCell, Dequeueable {
 
 extension QuestionTableViewCell {
 
-    func configure(with question: String) {
-        let attributedString = NSMutableAttributedString(string: question)
+    func configure(with question: String, questionTitleUpdate: String?) {
+        let tempQuestion = updateQuestionIfNeeded(question, questionTitleUpdate)
+        let attributedString = NSMutableAttributedString(string: tempQuestion)
         let paragraphStyle = NSMutableParagraphStyle()
         let range = NSRange(location: 0, length: attributedString.length)
         paragraphStyle.lineSpacing = 4
         attributedString.addAttribute(.paragraphStyle, value: paragraphStyle, range: range)
         questionLabel.attributedText = attributedString
+    }
+}
+
+private extension QuestionTableViewCell {
+    func updateQuestionIfNeeded(_ question: String, _ questionTitleUpdate: String?) -> String {
+        guard let update = questionTitleUpdate else { return question }
+        if update == AnswerKey.Recovery.general.rawValue {
+            return update
+        }
+        return question.replacingOccurrences(of: "%@", with: update)
     }
 }

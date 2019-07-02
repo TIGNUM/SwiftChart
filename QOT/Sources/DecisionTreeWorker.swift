@@ -16,12 +16,16 @@ final class DecisionTreeWorker {
     // MARK: - Properties
 
     private let services: Services
+    private let userService = qot_dal.UserService.main
+    private let contentService = qot_dal.ContentService.main
+    private let questionService = qot_dal.QuestionService.main
     private var _prepareBenefits: String?
     private var prepareKey: Prepare.Key = .perceived
     private var _selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     private var answerFilter: String?
     private var _targetContentID: Int = 0
     private var visionText: String? = nil
+    private var recoveryModel: QDMRecovery3D?
     let type: DecisionTreeType
     weak var prepareDelegate: PrepareResultsDelegatge?
 
@@ -51,7 +55,10 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         }
         let keyFilter: DecisionTreeModel.Filter = .FILTER_RELATIONSHIP
         if currentQuestion?.key?.contains("prepare_peak_prep_") == true {
-            return decisionTree?.selectedAnswers.compactMap { $0.answer }.flatMap { $0.keys }.filter { $0.contains(keyFilter) }.first
+            return decisionTree?.selectedAnswers
+                .compactMap { $0.answer }
+                .flatMap { $0.keys }
+                .filter { $0.contains(keyFilter) }.first
         }
         return decisionTree?.selectedAnswers.first?.answer.keys.first(where: { $0.contains(keyFilter) })
     }
@@ -72,6 +79,10 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         set {
             _prepareBenefits = newValue
         }
+    }
+
+    var getRecoveryModel: QDMRecovery3D? {
+        return recoveryModel
     }
 
     func userHasToBeVision(completion: @escaping ((Bool)) -> Void) {
@@ -116,6 +127,9 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
             prepareDelegate = delegate
             return services.questionsService.question(id: questionId)
         case .solve: return services.questionsService.solveIntro()
+        case .recovery:
+            createRecoveryModel()
+            return services.questionsService.recoveryIntro()
         }
     }
 
@@ -127,7 +141,10 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         case QuestionKey.ToBeVision.create.rawValue,
              QuestionKey.MindsetShifterTBV.review.rawValue: extraAnswer = createVision(from: selectedAnswers)
         case QuestionKey.MindsetShifter.showTBV.rawValue,
-             QuestionKey.Prepare.showTBV.rawValue: extraAnswer = services.userService.myToBeVision()?.text
+             QuestionKey.Prepare.showTBV.rawValue:
+            userService.getMyToBeVision { (vision, _, _) in
+                extraAnswer = vision?.text
+            }
         default: extraAnswer = createVision(from: selectedAnswers)/* TODO: generate different extra answers */
         }
         return (question, extraAnswer)
@@ -154,15 +171,38 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         }
     }
 
-    func highPerformanceItems(from contentItemIDs: [Int]) -> [String] {
+    func highPerformanceItems(from contentItemIDs: [Int], completion: @escaping ([String]) -> Void) {
         var items: [String] = []
+        let dispatchGroup = DispatchGroup()
         contentItemIDs.forEach {
-            let contentItem = services.contentService.contentItem(id: $0)
-            if contentItem?.searchTags.contains("mindsetshifter-highperformance-item") ?? false == true {
-                items.append(contentItem?.valueText ?? "")
-            }
+            dispatchGroup.enter()
+            contentService.getContentItemById($0, { (item) in
+                if item?.searchTags.contains("mindsetshifter-highperformance-item") ?? false == true {
+                    items.append(item?.valueText ?? "")
+                    dispatchGroup.leave()
+                }
+            })
         }
-        return items
+        dispatchGroup.notify(queue: .main) {
+            completion(items)
+        }
+    }
+
+    func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int) {
+        qot_dal.ContentService.main.getContentCollectionById(targetContentId) { [weak self] (content) in
+            self?.recoveryModel?.fatigueAnswerId = fatigueAnswerId
+            self?.recoveryModel?.causeAnwserId = causeAnwserId
+            self?.recoveryModel?.exclusiveContentCollectionIds = content?.relatedContentIdsRecoveryExclusive ?? []
+            self?.recoveryModel?.suggestedSolutionsContentCollectionIds = content?.suggestedContentIdsRecovery ?? []
+            self?.updateRecoveryModel(recovery: self?.recoveryModel)
+        }
+    }
+
+    func deleteModelIfNeeded() {
+        switch type {
+        case .recovery: deleteRecoveryModel(recoveryModel)
+        default: break
+        }
     }
 }
 
@@ -228,18 +268,57 @@ private extension DecisionTreeWorker {
     func saveToBeVision(_ image: UIImage, completion: @escaping (Error?) -> Void) {
         do {
             let imageURL = try image.save(withName: UUID().uuidString).absoluteString
-            qot_dal.UserService.main.getMyToBeVision { (vision, _, _) in
+            userService.getMyToBeVision { [unowned self] (vision, _, _) in
                 if var vision = vision {
                     vision.profileImageResource = QDMMediaResource()
                     vision.profileImageResource?.localURLString = imageURL
                     vision.modifiedAt = Date()
-                    qot_dal.UserService.main.updateMyToBeVision(vision, { (error) in
+                    self.userService.updateMyToBeVision(vision, { (error) in
                         completion(error)
                     })
                 }
             }
         } catch {
             print("Error while saving TBV image: \(error.localizedDescription)")
+        }
+    }
+}
+
+// MARK: - Recovery3D
+
+private extension DecisionTreeWorker {
+    func createRecoveryModel() {
+        qot_dal.UserService.main.createRecovery3D(fatigueAnswerId: 0,
+                                                  causeAnwserId: 0,
+                                                  causeContentItemId: 0,
+                                                  exclusiveContentCollectionIds: [],
+                                                  suggestedSolutionsContentCollectionIds: []) { [weak self] (recoveryModel, error) in
+                                                    if let error = error {
+                                                        qot_dal.log("Error while trying to CREATE QDMRecovery3D with error: \(error.localizedDescription)",
+                                                            level: .debug)
+                                                    }
+                                                    self?.recoveryModel = recoveryModel
+        }
+    }
+
+    func updateRecoveryModel(recovery: QDMRecovery3D?) {
+        guard let recovery = recovery else { return }
+        qot_dal.UserService.main.updateRecovery3D(recovery) { [weak self] (recovery, error) in
+            if let error = error {
+                qot_dal.log("Error while trying to UPDATE QDMRecovery3D with error: \(error.localizedDescription)",
+                    level: .debug)
+            }
+            self?.recoveryModel = recovery
+        }
+    }
+
+    func deleteRecoveryModel(_ recoveryModel: QDMRecovery3D?) {
+        guard let recoveryModel = recoveryModel else { return }
+        qot_dal.UserService.main.deleteRecovery3D(recoveryModel) { (error) in
+            if let error = error {
+                qot_dal.log("Error while trying to DELETE QDMRecovery3D with error: \(error.localizedDescription)",
+                    level: .debug)
+            }
         }
     }
 }

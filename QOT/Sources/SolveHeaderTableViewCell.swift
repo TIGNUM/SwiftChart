@@ -26,17 +26,16 @@ final class SolveHeaderTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Configuration
 
 extension SolveHeaderTableViewCell {
-
-    func configure(title: String, solutionText: String) {
+    func configure(title: String, solutionText: String, hideShowMoreButton: Bool) {
         titleLabel.text = title.uppercased()
         solutionTextLabel.text = solutionText
+        showMoreButton.isHidden = hideShowMoreButton
     }
 }
 
 // MARK: - IBActions
 
 extension SolveHeaderTableViewCell {
-
     @IBAction func didTapShowMore(_ sender: UIButton) {
         solutionTextLabel.numberOfLines = isExpanded == true ? 4 : 0
         showMoreButton.setTitle(isExpanded == true ? "Show more" : "Show less", for: .normal)

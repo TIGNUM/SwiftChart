@@ -27,6 +27,9 @@ final class DotsLoadingView: UIView {
     // MARK: - Actions
 
     func startAnimation() {
+        if self.superview == nil {
+            return
+        }
         if alpha == 0 {
             alpha = 1
         }
@@ -37,6 +40,7 @@ final class DotsLoadingView: UIView {
         if alpha > 0 {
             UIView.animate(withDuration: Animation.duration_03) {
                 self.alpha = 0
+                self.removeFromSuperview()
             }
         }
     }
@@ -62,11 +66,11 @@ private extension DotsLoadingView {
         animation.duration = duration
         animation.repeatCount = HUGE
         animation.isRemovedOnCompletion = false
-        for i in 0 ..< 3 {
+        for index in 0 ..< 3 {
             let circle = dotLayer(size: CGSize(width: dotSize, height: dotSize), color: color)
-            let x = x + dotSize * CGFloat(i) + dotSpacing * CGFloat(i)
+            let x = x + dotSize * CGFloat(index) + dotSpacing * CGFloat(index)
             let frame = CGRect(x: x, y: y, width: dotSize, height: dotSize)
-            animation.beginTime = beginTime + beginTimes[i]
+            animation.beginTime = beginTime + beginTimes[index]
             circle.frame = frame
             circle.add(animation, forKey: "animation")
             layer.addSublayer(circle)

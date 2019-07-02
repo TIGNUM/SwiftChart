@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 // MARK: - TreeType
 
@@ -18,6 +19,7 @@ enum DecisionTreeType {
     case prepareIntensions([DecisionTreeModel.SelectedAnswer], String?, Prepare.Key, PrepareResultsDelegatge?)
     case prepareBenefits(benefits: String?, questionID: Int, PrepareResultsDelegatge?)
     case solve
+    case recovery
 }
 
 // MARK: - Model

@@ -527,3 +527,13 @@
 "Chart.Initial.State.Week" = "WEEK";
 "Chart.Initial.State.Month" = "MONTH";
 "Chart.Initial.State.Close" = "CLOSE";
+
+"Header.Title.Exclusive.Content" = "EXCLUSIVE CONTENT";
+"Header.Title.Strategies" = "STRATEGIES";
+"Header.Title.Suggested.Strategies" = "SUGGESTED SOLUTIONS";
+
+"Fatigue.Symptom.Cognitive" = "cognitive fatigue";
+"Fatigue.Symptom.Emotional" = "emotional fatigue";
+"Fatigue.Symptom.Physical" = "physical fatigue";
+"Fatigue.Symptom.General" = "It looks like your fatigue is coming from all angles. Jet lag and sleep are the most common causes of this type of fatigue. Which of these two is more applicable to you?";
+

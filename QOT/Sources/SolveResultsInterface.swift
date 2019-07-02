@@ -17,6 +17,7 @@ protocol SolveResultsPresenterInterface {
 }
 
 protocol SolveResultsInteractorInterface: Interactor {
+    var hideShowMoreButton: Bool { get }
     func save()
     func didTapStrategy(with id: Int)
     func didTapTrigger(_ type: SolveTriggerType)

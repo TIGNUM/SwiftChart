@@ -23,9 +23,10 @@ final class SolveStrategyTableViewCell: UITableViewCell, Dequeueable {
 
 extension SolveStrategyTableViewCell {
 
-    func configure(hasHeader: Bool, title: String, minsToRead: String) {
+    func configure(hasHeader: Bool, title: String, minsToRead: String, headerTitle: String) {
         strategyTitleLabel.text = title
         minsToReadLabel.text = minsToRead
+        headerLabel.text = headerTitle
         headerLabel.isHidden = hasHeader == false
         hasHeaderTopConstraint?.isActive = hasHeader == true
         doesNotHaveHeaderTopConstraint?.isActive = hasHeader == false

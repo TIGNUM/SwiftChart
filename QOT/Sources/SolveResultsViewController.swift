@@ -13,6 +13,7 @@ protocol SolveResultsViewControllerDelegate: class {
     func didFinishSolve()
 }
 
+// TODO: - Rename this scene since it's being used in Solve & 3DRecovery. Maybe somewhere else in the future..
 final class SolveResultsViewController: UIViewController {
 
     // MARK: - Properties
@@ -58,6 +59,8 @@ private extension SolveResultsViewController {
         tableView.registerDequeueable(SolveTriggerTableViewCell.self)
         tableView.registerDequeueable(SolveFollowUpTableViewCell.self)
         tableView.registerDequeueable(SolveDayPlanTableViewCell.self)
+        tableView.registerDequeueable(FatigueTableViewCell.self)
+        tableView.registerDequeueable(CauseTableViewCell.self)
     }
 
     func setupView() {
@@ -85,6 +88,7 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
 
     func load(_ results: SolveResults) {
         self.results = results
+        tableView.reloadData()
     }
 }
 
@@ -95,7 +99,8 @@ extension SolveResultsViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         switch results?.items[indexPath.row] {
-        case .strategy(let id, _, _, _)?:
+        case .strategy(let id, _, _, _, _)?,
+             .exclusiveContent(let id, _, _, _, _)?:
             interactor?.didTapStrategy(with: id)
             trackUserEvent(.SELECT, value: id, valueType: .CONTENT, action: .TAP)
         default: return
@@ -115,12 +120,14 @@ extension SolveResultsViewController: UITableViewDataSource {
         switch results?.items[indexPath.row] {
         case .header(let title, let solution)?:
             let cell: SolveHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title, solutionText: solution)
+            cell.configure(title: title,
+                           solutionText: solution,
+                           hideShowMoreButton: interactor?.hideShowMoreButton ?? false)
             cell.delegate = self
             return cell
-        case .strategy(_, let title, let minsToRead, let hasHeader)?:
+        case .strategy(_, let title, let minsToRead, let hasHeader, let headerTitle)?:
             let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(hasHeader: hasHeader, title: title, minsToRead: minsToRead)
+            cell.configure(hasHeader: hasHeader, title: title, minsToRead: minsToRead, headerTitle: headerTitle)
             return cell
         case .trigger(let type, let header, let description, let buttonText)?:
             let cell: SolveTriggerTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -135,6 +142,19 @@ extension SolveResultsViewController: UITableViewDataSource {
             let cell: SolveFollowUpTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, description: subtitle)
             cell.delegate = self
+            return cell
+        case .cause(let cause, let explanation)?:
+            let cell: CauseTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(cause: cause, explanation: explanation)
+            return cell
+        case .exclusiveContent(_, let hasHeader, let title, let minsToRead, let headerTitle)?:
+            let cell: SolveStrategyTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(hasHeader: hasHeader, title: title, minsToRead: minsToRead, headerTitle: headerTitle)
+            cell.backgroundColor = UIColor(red: 232.0 / 225.0, green: 227.0 / 225.0, blue: 224.0 / 225.0, alpha: 1)
+            return cell
+        case .fatigue(let symptom)?:
+            let cell: FatigueTableViewCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(symptom: symptom)
             return cell
         default: preconditionFailure()
         }

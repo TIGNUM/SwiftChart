@@ -36,6 +36,10 @@ extension QuestionsService {
     func prepareQuestions(questionGroupID: Int) -> AnyRealmCollection<Question> {
         return questions(for: questionGroupID)
     }
+
+    func recoveryQuestions() -> AnyRealmCollection<Question> {
+        return questions(for: 100051)
+    }
 }
 
 // MARK: - Morning Interview
@@ -89,6 +93,18 @@ extension QuestionsService {
 extension QuestionsService {
     func solveIntro() -> Question? {
         return question(for: QuestionKey.Solve.intro.rawValue)
+    }
+}
+
+// MARK: - 3D Recovery
+
+extension QuestionsService {
+    func recoveryIntro() -> Question? {
+        return question(for: QuestionKey.Recovery.intro.rawValue)
+    }
+
+    func answer(for id: Int) -> Answer? {
+        return Array(recoveryQuestions().flatMap { $0.answers }).filter { $0.remoteID.value == id }.first
     }
 }
 

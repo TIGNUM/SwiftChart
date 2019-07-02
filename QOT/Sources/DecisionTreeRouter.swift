@@ -66,8 +66,8 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         viewController.present(mindsetShifterChecklistVC, animated: true)
     }
 
-    func openSolveResults(from selectedAnswer: Answer) {
-        let configurator = SolveResultsConfigurator.make(from: selectedAnswer)
+    func openSolveResults(from selectedAnswer: Answer, type: ResultType) {
+        let configurator = SolveResultsConfigurator.make(from: selectedAnswer, type: type)
         let solveResultsController = SolveResultsViewController(configure: configurator)
         solveResultsController.delegate = viewController
         viewController.present(solveResultsController, animated: true)
@@ -97,6 +97,17 @@ extension DecisionTreeRouter {
     private func presentPrepareResults(_ configurator: Configurator<PrepareResultsViewController>) {
         let controller = PrepareResultsViewController(configure: configurator)
         viewController.present(controller, animated: true, completion: nil)
+    }
+}
+
+// MARK: - Recovery
+
+extension DecisionTreeRouter {
+    func openRecoveryResults(_ recovery: QDMRecovery3D?) {
+        let configurator = SolveResultsConfigurator.make(from: recovery)
+        let solveResultsController = SolveResultsViewController(configure: configurator)
+        solveResultsController.delegate = viewController
+        viewController.present(solveResultsController, animated: true)
     }
 }
 

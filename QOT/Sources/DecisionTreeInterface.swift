@@ -34,14 +34,17 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func openImagePicker()
     func save(_ image: UIImage)
     func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String?
-    func openSolveResults(from selectedAnswer: Answer)
+    func openSolveResults(from selectedAnswer: Answer, type: ResultType)
     func openToBeVisionPage()
     func setTargetContentID(for answer: Answer)
     func openPrepareResults(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer])
     func openPrepareResults(_ contentId: Int)
+    func openRecoveryResults()
     func updatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer])
     func updatePrepareBenefits(_ benefits: String)
+    func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int)
+    func deleteModelIfNeeded()
 }
 
 protocol DecisionTreeRouterInterface {
@@ -56,8 +59,9 @@ protocol DecisionTreeRouterInterface {
     func openVideo(from url: URL)
     func openShortTBVGenerator(completion: (() -> Void)?)
     func openImagePicker()
-    func openSolveResults(from selectedAnswer: Answer)
+    func openSolveResults(from selectedAnswer: Answer, type: ResultType)
     func openToBeVisionPage()
+    func openRecoveryResults(_ recovery: QDMRecovery3D?)
 }
 
 protocol DecisionTreeModelInterface {

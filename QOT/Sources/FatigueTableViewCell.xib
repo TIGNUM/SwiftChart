@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="141" id="Cml-Nj-YT5" customClass="FatigueTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="509" height="141"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cml-Nj-YT5" id="FFF-0d-tjd">
+                <rect key="frame" x="0.0" y="0.0" width="509" height="140.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="FATIGUE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZz-d3-lC4">
+                        <rect key="frame" x="25" y="65" width="459" height="20"/>
+                        <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Qo7-za-fj8" userLabel="Indicator">
+                        <rect key="frame" x="0.0" y="110.5" width="16" height="1"/>
+                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.40000000000000002" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="16" id="b0y-vE-LAf"/>
+                            <constraint firstAttribute="height" constant="1" id="vir-Fy-VzG"/>
+                        </constraints>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="YOUR ANSWERS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rJG-52-QNq">
+                        <rect key="frame" x="24" y="20" width="461" height="17"/>
+                        <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="14"/>
+                        <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.39734053938356162" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XM5-Vt-Ouh">
+                        <rect key="frame" x="25" y="101" width="459" height="19.5"/>
+                        <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                        <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstAttribute="trailing" secondItem="XM5-Vt-Ouh" secondAttribute="trailing" constant="25" id="93y-9d-jzm"/>
+                    <constraint firstItem="rJG-52-QNq" firstAttribute="leading" secondItem="FFF-0d-tjd" secondAttribute="leading" constant="24" id="K6S-5h-Ouz"/>
+                    <constraint firstItem="Qo7-za-fj8" firstAttribute="centerY" secondItem="XM5-Vt-Ouh" secondAttribute="centerY" id="MJZ-YD-qIf"/>
+                    <constraint firstItem="XM5-Vt-Ouh" firstAttribute="leading" secondItem="FFF-0d-tjd" secondAttribute="leading" constant="25" id="P4Y-VJ-1P1"/>
+                    <constraint firstAttribute="bottom" secondItem="XM5-Vt-Ouh" secondAttribute="bottom" constant="20" id="TQp-t4-vJy"/>
+                    <constraint firstItem="CZz-d3-lC4" firstAttribute="top" secondItem="rJG-52-QNq" secondAttribute="bottom" constant="28" id="Xoq-kn-k8U"/>
+                    <constraint firstItem="rJG-52-QNq" firstAttribute="top" secondItem="FFF-0d-tjd" secondAttribute="top" constant="20" id="e1U-Ps-5LY"/>
+                    <constraint firstItem="Qo7-za-fj8" firstAttribute="leading" secondItem="FFF-0d-tjd" secondAttribute="leading" id="gdl-Iu-hb0"/>
+                    <constraint firstItem="XM5-Vt-Ouh" firstAttribute="top" secondItem="CZz-d3-lC4" secondAttribute="bottom" constant="16" id="mFA-5q-Rfw"/>
+                    <constraint firstAttribute="trailing" secondItem="CZz-d3-lC4" secondAttribute="trailing" constant="25" id="me0-oB-Ddj"/>
+                    <constraint firstAttribute="trailing" secondItem="rJG-52-QNq" secondAttribute="trailing" constant="24" id="tPN-R9-R93"/>
+                    <constraint firstItem="CZz-d3-lC4" firstAttribute="leading" secondItem="FFF-0d-tjd" secondAttribute="leading" constant="25" id="w4c-py-e3X"/>
+                </constraints>
+            </tableViewCellContentView>
+            <viewLayoutGuide key="safeArea" id="a9d-WS-cW3"/>
+            <connections>
+                <outlet property="fatigueLabel" destination="XM5-Vt-Ouh" id="Rgt-Ay-FML"/>
+            </connections>
+            <point key="canvasLocation" x="290.57971014492756" y="168.41517857142856"/>
+        </tableViewCell>
+    </objects>
+</document>

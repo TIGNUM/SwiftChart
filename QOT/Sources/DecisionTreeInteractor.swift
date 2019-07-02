@@ -119,15 +119,17 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
                     }
                 }
             }
-            router.openMindsetShifterChecklist(trigger: trigger,
-                                               reactions: reactions,
-                                               lowPerformanceItems: lowItems,
-                                               highPerformanceItems: worker.highPerformanceItems(from: contentItemIDs))
+            worker.highPerformanceItems(from: contentItemIDs) { [unowned self] (items) in
+                self.router.openMindsetShifterChecklist(trigger: trigger,
+                                                        reactions: reactions,
+                                                        lowPerformanceItems: lowItems,
+                                                        highPerformanceItems: items)
+            }
         }
     }
 
-    func openSolveResults(from selectedAnswer: Answer) {
-        router.openSolveResults(from: selectedAnswer)
+    func openSolveResults(from selectedAnswer: Answer, type: ResultType) {
+        router.openSolveResults(from: selectedAnswer, type: type)
     }
 
     func save(_ image: UIImage) {
@@ -159,4 +161,20 @@ extension DecisionTreeInteractor {
         worker.didUpdateBenefits(benefits)
     }
 
+}
+
+// MARK: - Recovery
+
+extension DecisionTreeInteractor {
+    func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int) {
+        worker.updateRecoveryModel(fatigueAnswerId: fatigueAnswerId, causeAnwserId, targetContentId)
+    }
+
+    func deleteModelIfNeeded() {
+        worker.deleteModelIfNeeded()
+    }
+
+    func openRecoveryResults() {
+        router.openRecoveryResults(worker.getRecoveryModel)
+    }
 }

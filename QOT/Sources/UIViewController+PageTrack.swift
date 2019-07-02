@@ -75,6 +75,7 @@ private extension UIViewController {
         case .solve?: return "decisiontree.solve"
         case .prepareIntensions?: return "decisiontree.prepare.edit.intentions"
         case .prepareBenefits?: return "decisiontree.prepare.edit.benefits"
+        case .recovery?: return "decisiontree.3drecovery"
         default: preconditionFailure()
         }
     }

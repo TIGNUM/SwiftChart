@@ -27,12 +27,13 @@ final class DecisionTreeViewController: UIViewController {
     private var pageController: UIPageViewController?
     private var selectedEvent = QDMUserCalendarEvent()
     private var tempPageViewControllerHeight = CGFloat(0)
+    private var recoveryFatigueType: AnswerKey.Recovery? = nil
     @IBOutlet private weak var previousButton: UIButton!
+    @IBOutlet private weak var bottomViewContainer: UIView!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
     @IBOutlet private weak var continueButton: DecisionTreeButton!
     @IBOutlet private weak var continueButtonWidth: NSLayoutConstraint!
-    @IBOutlet private weak var bottomViewContainer: UIView!
 
     private lazy var editEventHandler: EditEventHandler = {
         let delegate = EditEventHandler()
@@ -173,6 +174,7 @@ private extension DecisionTreeViewController {
     }
 
     @IBAction func didTapClose() {
+        interactor?.deleteModelIfNeeded()
         trackUserEvent(.CLOSE, action: .TAP)
         delegate?.didDismiss()
         dismiss(animated: true)
@@ -181,15 +183,24 @@ private extension DecisionTreeViewController {
     @IBAction func didTapContinue() {
         if let type = interactor?.type {
             switch type {
+            case .recovery:
+                if currentQuestion?.key == QuestionKey.Recovery.intro.rawValue {
+                    recoveryFatigueType = AnswerKey.Recovery.identifyFatigueSympton(selectedAnswers)
+                }
+                if currentQuestion?.key == QuestionKey.Recovery.loading.rawValue {
+                    interactor?.openRecoveryResults()
+                    return
+                }
             case .prepareIntensions:
                 interactor?.updatePrepareIntentions(decisionTree?.selectedAnswers ?? [])
                 dismiss(animated: true, completion: nil)
             case .prepareBenefits:
                 interactor?.updatePrepareBenefits(interactor?.prepareBenefits ?? "")
+                trackUserEvent(.NEXT, action: .TAP)
                 dismiss(animated: true, completion: nil)
             case .prepare:
                 if currentQuestion?.key == QuestionKey.Prepare.calendarEventSelectionCritical.rawValue ||
-                   currentQuestion?.key == QuestionKey.Prepare.calendarEventSelectionDaily.rawValue {
+                    currentQuestion?.key == QuestionKey.Prepare.calendarEventSelectionDaily.rawValue {
                     presentAddEventController(eventStore: EKEventStore.shared)
                 }
             default: break
@@ -259,7 +270,8 @@ private extension DecisionTreeViewController {
                                                                  with: selectedAnswers,
                                                                  extraAnswer: extraAnswer,
                                                                  maxPossibleSelections: question.maxPossibleSelections,
-                                                                 answersFilter: filter)
+                                                                 answersFilter: filter,
+                                                                 questionTitleUpdate: recoveryFatigueType?.replacement)
         controller.delegate = self
         controller.interactor = interactor
         return controller
@@ -411,24 +423,27 @@ private class EditEventHandler: NSObject, EKEventEditViewDelegate {
 private extension DecisionTreeViewController {
     func handleSingleSelection(for answer: Answer) {
         guard let questionID = currentQuestion?.remoteID.value else { return }
-        let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
-        decisionTree?.add(selectedAnswer)
+        updateDecisionTree(answer, questionID)
+        trackUserEvent(answer, .SELECT, .ANSWER_DECISION)
+
         if answer.keys.contains(AnswerKey.Prepare.eventTypeSelectionCritical.rawValue) {
             prepareEventType = answer.title
         }
-        if let remoteID = answer.remoteID.value {
-            trackUserEvent(.SELECT, value: remoteID, valueType: .ANSWER_DECISION, action: .TAP)
-        }
+
         if answer.keys.contains(AnswerKey.Solve.openVisionPage.rawValue) {
             interactor?.openToBeVisionPage()
             return
         }
         if currentQuestion?.key == QuestionKey.Solve.help.rawValue || answer.keys.contains(AnswerKey.Solve.letsDoIt.rawValue) {
-            interactor?.openSolveResults(from: answer)
+            interactor?.openSolveResults(from: answer, type: .recovery)
             return
         }
         if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionCritical.rawValue {
             interactor?.setTargetContentID(for: answer)
+        } else if currentQuestion?.key == QuestionKey.Recovery.syntom.rawValue {
+            interactor?.updateRecoveryModel(fatigueAnswerId: currentQuestion?.answers.first?.remoteID.value ?? 0,
+                                            answer.remoteID.value ?? 0,
+                                            answer.targetId(.content) ?? 0)
         } else if let contentId = answer.targetId(.content) {
             showResultView(for: answer, contentID: contentId)
         }
@@ -460,6 +475,7 @@ private extension DecisionTreeViewController {
         guard let questionID = currentQuestion?.remoteID.value else { return }
         let selection = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
         decisionTree?.addOrRemove(selection, addCompletion: {
+            trackUserEvent(answer, .SELECT, .ANSWER_DECISION)
             if multiSelectionCounter < maxPossibleSelections {
                 multiSelectionCounter.plus(1)
             }
@@ -472,6 +488,7 @@ private extension DecisionTreeViewController {
                 trackUserEvent(.SELECT, value: remoteID, valueType: .ANSWER_DECISION, action: .TAP)
             }
         }, removeCompletion: {
+            trackUserEvent(answer, .DESELECT, .ANSWER_DECISION)
             if multiSelectionCounter == maxPossibleSelections {
                 DispatchQueue.main.async {
                     self.decisionTree?.removeLastQuestion()
@@ -479,9 +496,6 @@ private extension DecisionTreeViewController {
             }
             if multiSelectionCounter > 0 {
                 multiSelectionCounter.minus(1)
-            }
-            if let remoteID = answer.remoteID.value {
-                trackUserEvent(.DESELECT, value: remoteID, valueType: .ANSWER_DECISION, action: .TAP)
             }
         })
         continueButton.pulsate()
@@ -531,6 +545,31 @@ private extension DecisionTreeViewController {
         } else {
             interactor?.displayContent(with: contentID)
         }
+    }
+}
+
+// MARK: - Recovery
+
+private extension DecisionTreeViewController {
+    func handleSingleSelectionRecovery(for answer: Answer) {
+
+    }
+}
+
+// MARK: - Track Event
+
+private extension DecisionTreeViewController {
+    func trackUserEvent(_ answer: Answer, _ name: QDMUserEventTracking.Name, _ valueType: QDMUserEventTracking.ValueType) {
+        if let remoteID = answer.remoteID.value {
+            trackUserEvent(name, value: remoteID, valueType: valueType, action: .TAP)
+        }
+    }
+}
+
+private extension DecisionTreeViewController {
+    func updateDecisionTree(_ answer: Answer, _ questionID: Int) {
+        let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionID, answer: answer)
+        decisionTree?.add(selectedAnswer)
     }
 }
 

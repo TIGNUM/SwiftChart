@@ -36,6 +36,10 @@ final class SolveResultsInteractor {
 // MARK: - SolveResultsInteractorInterface
 
 extension SolveResultsInteractor: SolveResultsInteractorInterface {
+    var hideShowMoreButton: Bool {
+        return worker.hideShowMoreButton
+    }
+
     func save() {
         worker.save(completion: {
             router.dismiss()
