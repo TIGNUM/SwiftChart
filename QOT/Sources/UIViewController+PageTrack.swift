@@ -21,11 +21,13 @@ extension UIViewController {
 
     func trackUserEvent(_ name: QDMUserEventTracking.Name,
                         value: Int? = nil,
+                        stringValue: String? = nil,
                         valueType: QDMUserEventTracking.ValueType? = nil,
                         action: QDMUserEventTracking.Action) {
         var userEventTrack = QDMUserEventTracking()
         userEventTrack.name = name
         userEventTrack.value = value
+        userEventTrack.stringValue = stringValue
         userEventTrack.valueType = valueType
         userEventTrack.action = action
         NotificationCenter.default.post(name: .reportUserEvent, object: userEventTrack)
@@ -58,6 +60,7 @@ private extension UIViewController {
         case is KnowingViewController: return "know.feed"
         case is SolveResultsViewController: return "solve.results"
         case is AudioFullScreenViewController: return "fullscreen.audioplayer"
+        case is PrepareResultsViewController: return "prepare.results"
         default: preconditionFailure()
         }
     }

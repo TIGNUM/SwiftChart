@@ -21,7 +21,7 @@ final class WhatsHotLatestWorker {
     }
 
     func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
-        latestWhatsHotCollectionID(completion: { [weak self] (collectionID) in
+        latestWhatsHotCollectionID(completion: { (collectionID) in
             qot_dal.ContentService.main.getContentItemsByCollectionId(collectionID ?? 0, { (item) in
                 completion(item?.first)
             })
@@ -29,10 +29,8 @@ final class WhatsHotLatestWorker {
     }
 
     func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
-        latestWhatsHotCollectionID(completion: { [weak self] (collectionID) in
-            qot_dal.ContentService.main.getContentCollectionById(collectionID ?? 0, {(item) in
-                completion(item)
-                })
+        latestWhatsHotCollectionID(completion: { (collectionID) in
+            qot_dal.ContentService.main.getContentCollectionById(collectionID ?? 0, completion)
         })
     }
 }

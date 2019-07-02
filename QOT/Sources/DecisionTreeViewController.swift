@@ -43,7 +43,13 @@ final class DecisionTreeViewController: UIViewController {
                 if let ekEvent = controller.event {
                     controller.dismiss(animated: true)
                     self?.selectedEvent = QDMUserCalendarEvent(event: ekEvent)
-                    let eventQuestion = self?.decisionTree?.questions.filter { $0.answerType == AnswerType.openCalendarEvents.rawValue }.first
+                    self?.trackUserEvent(.EDIT,
+                                         stringValue: self?.selectedEvent.qotId,
+                                         valueType: .CALENDAR_EVENT,
+                                         action: .KEYBOARD)
+                    let eventQuestion = self?.decisionTree?.questions.filter {
+                        $0.answerType == AnswerType.openCalendarEvents.rawValue
+                    }.first
                     self?.loadNextQuestion(from: eventQuestion?.answers.first)
                 }
             case .canceled, .deleted:
@@ -214,10 +220,13 @@ private extension DecisionTreeViewController {
             handleSingleSelection(for: answer)
         } else {
             switch currentQuestion?.key {
-            case QuestionKey.MindsetShifter.openTBV.rawValue: interactor?.openShortTBVGenerator(completion: nil)
-            case QuestionKey.MindsetShifter.check.rawValue: interactor?.openMindsetShifterChecklist(from: selectedAnswers)
+            case QuestionKey.MindsetShifter.openTBV.rawValue:
+                interactor?.openShortTBVGenerator(completion: nil)
+            case QuestionKey.MindsetShifter.check.rawValue:
+                interactor?.openMindsetShifterChecklist(from: selectedAnswers)
             case QuestionKey.ToBeVision.create.rawValue,
-                 QuestionKey.ToBeVision.review.rawValue: delegate?.toBeVisionDidChange()
+                 QuestionKey.ToBeVision.review.rawValue:
+                delegate?.toBeVisionDidChange()
             default: break
             }
             moveForward()
@@ -278,7 +287,9 @@ private extension DecisionTreeViewController {
     }
 
     func loadNextQuestion(from answer: Answer?) {
-        if let nextQuestionID = answer?.decisions.last(where: { $0.targetType == TargetType.question.rawValue })?.targetID {
+        if let nextQuestionID = answer?.decisions.last(where: {
+            $0.targetType == TargetType.question.rawValue
+        })?.targetID {
             if decisionTree?.questions.filter ({ $0.remoteID.value == nextQuestionID }).isEmpty ?? false {
                 interactor?.loadNextQuestion(from: nextQuestionID, selectedAnswers: selectedAnswers)
             } else if let answer = answer {
@@ -376,6 +387,7 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 
     func didUpdatePrepareBenefits(_ benefits: String?) {
+        trackUserEvent(.ANSWER, stringValue: benefits, valueType: .USER_INPUT, action: .KEYBOARD)
         interactor?.prepareBenefits = benefits
     }
 
@@ -398,6 +410,7 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
 
     func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: Answer) {
         selectedEvent = event
+        trackUserEvent(.SELECT, stringValue: event.qotId, valueType: .CALENDAR_EVENT, action: .TAP)
         loadNextQuestion(from: selectedAnswer)
     }
 
@@ -462,7 +475,8 @@ private extension DecisionTreeViewController {
                                                                selectedAnswers: self?.selectedAnswers ?? [])
                         }
                     } else {
-                        self?.interactor?.loadNextQuestion(from: targetQuestionId, selectedAnswers: self?.selectedAnswers ?? [])
+                        self?.interactor?.loadNextQuestion(from: targetQuestionId,
+                                                           selectedAnswers: self?.selectedAnswers ?? [])
                     }
                 })
             } else {

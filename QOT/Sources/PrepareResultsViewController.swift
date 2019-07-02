@@ -78,6 +78,11 @@ final class PrepareResultsViewController: UIViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
 }
 
 // MARK: - Private
