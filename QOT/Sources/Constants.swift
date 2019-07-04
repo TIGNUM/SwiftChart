@@ -56,6 +56,14 @@ enum FontName: String {
     }
 }
 
+extension CGFloat {
+    static let bottomNavBarHeight: CGFloat = 100
+    static let buttonHeight: CGFloat = 40
+    static let doneButtonWidth: CGFloat = 72
+    static let saveAndContinueButtonWidth: CGFloat = 152
+    static let decisionTreeButtonWidth: CGFloat = 168
+}
+
 struct Layout {
     static let cornerRadius12: CGFloat = 12
     static let cornerRadius20: CGFloat = 20

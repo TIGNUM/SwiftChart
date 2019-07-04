@@ -40,8 +40,12 @@ final class DecisionTreeInteractor {
 // MARK: - DecisionTreeInteractorInterface
 
 extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
-    func userHasToBeVision(completion: @escaping ((Bool)) -> Void) {
-        worker.userHasToBeVision(completion: completion)
+    var userHasToBeVision: Bool {
+        return worker.userHasToBeVision
+    }
+
+    var toBeVisionText: String? {
+        return worker.getToBeVisionText
     }
 
     var relatedStrategyID: Int {
@@ -100,10 +104,8 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     }
 
     func openShortTBVGenerator(completion: (() -> Void)?) {
-        worker.userHasToBeVision { [weak self] (status) in
-            if status == false {
-                self?.router.openShortTBVGenerator(completion: completion)
-            }
+        if worker.userHasToBeVision == false {
+            router.openShortTBVGenerator(completion: completion)
         }
     }
 

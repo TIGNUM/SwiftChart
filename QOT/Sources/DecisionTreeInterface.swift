@@ -24,23 +24,24 @@ protocol DecisionTreeInteractorInterface: Interactor {
     var prepareBenefits: String? { get set }
     var relatedStrategyID: Int { get }
     var selectedanswers: [DecisionTreeModel.SelectedAnswer] { get }
-    func userHasToBeVision(completion: @escaping ((Bool)) -> Void)
+    var userHasToBeVision: Bool { get }
+    var toBeVisionText: String? { get }
     func notifyCounterChanged(with value: Int, selectedAnswers: [Answer])
     func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer])
     func displayContent(with id: Int)
-    func openMindsetShifterChecklist(from answers: [Answer])
     func streamContentItem(with id: Int)
-    func openShortTBVGenerator(completion: (() -> Void)?)
     func openImagePicker()
     func save(_ image: UIImage)
     func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String?
-    func openSolveResults(from selectedAnswer: Answer, type: ResultType)
-    func openToBeVisionPage()
     func setTargetContentID(for answer: Answer)
     func openPrepareResults(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer])
     func openPrepareResults(_ contentId: Int)
     func openRecoveryResults()
+    func openShortTBVGenerator(completion: (() -> Void)?)
+    func openSolveResults(from selectedAnswer: Answer, type: ResultType)
+    func openToBeVisionPage()
+    func openMindsetShifterChecklist(from answers: [Answer])
     func updatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer])
     func updatePrepareBenefits(_ benefits: String)
     func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int)
@@ -75,7 +76,6 @@ protocol DecisionTreeModelInterface {
 }
 
 protocol DecisionTreeWorkerInterface {
-    func userHasToBeVision(completion: @escaping ((Bool)) -> Void)
     func fetchNextQuestion(from targetID: Int, selectedAnswers: [Answer]) -> DecisionTreeNode
     func mediaURL(from contentItemID: Int) -> URL?
     func fetchFirstQuestion() -> Question?

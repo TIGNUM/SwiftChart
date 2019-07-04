@@ -37,6 +37,7 @@ struct DecisionTreeModel {
 
 extension DecisionTreeModel.Filter {
     static let FILTER_RELATIONSHIP = "_relationship_"
+    static let FILTER_REACTION = "-reaction-"
 }
 
 // MARK: - ModelInterface

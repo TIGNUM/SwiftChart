@@ -27,13 +27,12 @@ final class DecisionTreeViewController: UIViewController {
     private var pageController: UIPageViewController?
     private var selectedEvent = QDMUserCalendarEvent()
     private var tempPageViewControllerHeight = CGFloat(0)
+    private var tempButtonTitle = ""
     private var recoveryFatigueType: AnswerKey.Recovery? = nil
+    private var continueButton = DecisionTreeButton(type: .custom)
     @IBOutlet private weak var previousButton: UIButton!
-    @IBOutlet private weak var bottomViewContainer: UIView!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
-    @IBOutlet private weak var continueButton: DecisionTreeButton!
-    @IBOutlet private weak var continueButtonWidth: NSLayoutConstraint!
 
     private lazy var editEventHandler: EditEventHandler = {
         let delegate = EditEventHandler()
@@ -141,20 +140,31 @@ final class DecisionTreeViewController: UIViewController {
 
 private extension DecisionTreeViewController {
     func setupView() {
-        continueButtonWidth.constant += view.bounds.width * 0.025
-        continueButton.corner(radius: continueButton.bounds.height / 2)
-        continueButton.configure(with: defaultButtonText,
-                                 selectedBackgroundColor: .carbonDark,
-                                 defaultBackgroundColor: .carbon05,
-                                 borderColor: .clear,
-                                 titleColor: .accent,
-                                 maxPossibleSelections: currentQuestion?.maxPossibleSelections)
+        setupContinueButton()
         pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
         pageController?.view.backgroundColor = .sand
         if let pageController = pageController {
             addChildViewController(pageController)
             view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
         }
+    }
+
+    func setupContinueButton() {
+        continueButton.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .decisionTreeButtonWidth,
+                                                                                height: .buttonHeight))
+        continueButton.cornerDefault()
+        let attributedTitle = NSAttributedString(string: defaultButtonText,
+                                                 letterSpacing: 0.2,
+                                                 font: .sfProtextSemibold(ofSize: 14),
+                                                 textColor: .carbon30)
+        continueButton.configure(with: defaultButtonText,
+                                 attributedTitle: attributedTitle,
+                                 selectedBackgroundColor: .carbonDark,
+                                 defaultBackgroundColor: .carbon05,
+                                 borderColor: .clear,
+                                 titleColor: .accent)
+        continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
+        updateBottomNavigation(rightItems: [continueButton.toBarButtonItem()])
     }
 
     func showFirstQuestion() {
@@ -186,7 +196,7 @@ private extension DecisionTreeViewController {
         dismiss(animated: true)
     }
 
-    @IBAction func didTapContinue() {
+    @objc func didTapContinue() {
         if let type = interactor?.type {
             switch type {
             case .recovery:
@@ -194,15 +204,17 @@ private extension DecisionTreeViewController {
                     recoveryFatigueType = AnswerKey.Recovery.identifyFatigueSympton(selectedAnswers)
                 }
                 if currentQuestion?.key == QuestionKey.Recovery.loading.rawValue {
+                    trackUserEvent(.NEXT, action: .TAP)
                     interactor?.openRecoveryResults()
                     return
                 }
             case .prepareIntensions:
                 interactor?.updatePrepareIntentions(decisionTree?.selectedAnswers ?? [])
+                trackUserEvent(.CLOSE, action: .TAP)
                 dismiss(animated: true, completion: nil)
             case .prepareBenefits:
                 interactor?.updatePrepareBenefits(interactor?.prepareBenefits ?? "")
-                trackUserEvent(.NEXT, action: .TAP)
+                trackUserEvent(.CLOSE, action: .TAP)
                 dismiss(animated: true, completion: nil)
             case .prepare:
                 if currentQuestion?.key == QuestionKey.Prepare.calendarEventSelectionCritical.rawValue ||
@@ -314,11 +326,14 @@ private extension DecisionTreeViewController {
             continueButton.isHidden = questionIsAnswered == false
             continueButton.isUserInteractionEnabled = true
             continueButton.backgroundColor = .carbonDark
+            updateBottomNavigation(rightItems: [continueButton.toBarButtonItem()])
         case AnswerType.multiSelection.rawValue:
             let selectionIsCompleted = multiSelectionCounter == maxPossibleSelections
+            continueButton.setTitleColor(selectionIsCompleted ? .red : .red, for: .normal)
             continueButton.backgroundColor = selectionIsCompleted ? .carbonDark : .carbon05
             continueButton.isUserInteractionEnabled = selectionIsCompleted
             continueButton.isHidden = false
+            updateBottomNavigation(rightItems: [continueButton.toBarButtonItem()])
         default: return
         }
     }
@@ -356,22 +371,32 @@ private extension DecisionTreeViewController {
     }
 
     func updateBottomButtonTitle() {
-        guard
-            let questionKey = currentQuestion?.key,
-            let answerType = currentQuestion?.answerType else { return }
+        guard let answerType = currentQuestion?.answerType else { return }
         switch answerType {
         case AnswerType.multiSelection.rawValue:
             continueButton.update(with: multiSelectionCounter,
                                   defaultTitle: defaultButtonText,
                                   confirmationTitle: confirmationButtonText,
-                                  questionKey: questionKey,
                                   maxSelections: maxPossibleSelections)
-        case AnswerType.text.rawValue:
+            updateBottomNavigation(rightItems: [continueButton.toBarButtonItem()])
+        case AnswerType.text.rawValue,
+              AnswerType.openCalendarEvents.rawValue:
             continueButton.isHidden = false
             continueButton.setTitle(defaultButtonText, for: .normal)
+            updateBottomNavigation(rightItems: [continueButton.toBarButtonItem()])
         default:
+            tempButtonTitle = confirmationButtonText
+            refreshBottomNavigationItems()
             continueButton.setTitle(confirmationButtonText, for: .normal)
+            updateBottomNavigation(rightItems: [continueButton.toBarButtonItem()])
         }
+    }
+
+    func updateBottomNavigation(rightItems: [UIBarButtonItem]) {
+        let navigationItem = BottomNavigationItem(leftBarButtonItems: [dismissNavigationItem()],
+                                                  rightBarButtonItems: rightItems,
+                                                  backgroundColor: .clear)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
     }
 }
 
@@ -447,8 +472,9 @@ private extension DecisionTreeViewController {
             interactor?.openToBeVisionPage()
             return
         }
-        if currentQuestion?.key == QuestionKey.Solve.help.rawValue || answer.keys.contains(AnswerKey.Solve.letsDoIt.rawValue) {
-            interactor?.openSolveResults(from: answer, type: .recovery)
+        if currentQuestion?.key == QuestionKey.Solve.help.rawValue ||
+            answer.keys.contains(AnswerKey.Solve.letsDoIt.rawValue) {
+            interactor?.openSolveResults(from: answer, type: .solve)
             return
         }
         if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionCritical.rawValue {
@@ -468,17 +494,14 @@ private extension DecisionTreeViewController {
         }
         if let targetQuestionId = answer.targetId(.question) {
             if currentQuestion?.key == QuestionKey.Prepare.buildCritical.rawValue {
-                interactor?.userHasToBeVision(completion: { [weak self] (status) in
-                    if status == false {
-                        self?.interactor?.openShortTBVGenerator { [weak self] in
-                            self?.interactor?.loadNextQuestion(from: Prepare.Key.perceived.questionID,
-                                                               selectedAnswers: self?.selectedAnswers ?? [])
-                        }
-                    } else {
-                        self?.interactor?.loadNextQuestion(from: targetQuestionId,
+                if interactor?.userHasToBeVision == false {
+                    interactor?.openShortTBVGenerator { [weak self] in
+                        self?.interactor?.loadNextQuestion(from: Prepare.Key.perceived.questionID,
                                                            selectedAnswers: self?.selectedAnswers ?? [])
                     }
-                })
+                } else {
+                    interactor?.loadNextQuestion(from: targetQuestionId, selectedAnswers: self.selectedAnswers)
+                }
             } else {
                 interactor?.loadNextQuestion(from: targetQuestionId, selectedAnswers: selectedAnswers)
             }

@@ -28,7 +28,6 @@ private enum CellType: Int, CaseIterable {
 final class DecisionTreeQuestionnaireViewController: UIViewController {
 
     // MARK: - Properties
-
     var interactor: DecisionTreeInteractorInterface?
     weak var delegate: DecisionTreeQuestionnaireDelegate?
     private var selectedAnswers: [DecisionTreeModel.SelectedAnswer]
@@ -57,7 +56,6 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     }
 
     // MARK: - Init
-
     init(for question: Question,
          with selectedAnswers: [DecisionTreeModel.SelectedAnswer],
          extraAnswer: String?,
@@ -78,7 +76,6 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     }
 
     // MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
@@ -90,30 +87,26 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     }
 }
 
-// MARK: - Setup
-
+// MARK: - Private
 private extension DecisionTreeQuestionnaireViewController {
-
     func setupView() {
-        attachToEdge(tableView)
+        attachToEdge(tableView, bottomConstant: -.bottomNavBarHeight)
         tableView.backgroundColor = .sand
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
     }
-}
 
-// MARK: - Bottom Navigation Items
+    @objc func presentAddEventController() {
+        delegate?.presentAddEventController(eventStore: EKEventStore.shared)
+    }
 
-extension DecisionTreeQuestionnaireViewController {
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
+    @objc func didTapContinue() {
+        delegate?.didPressContinue()
     }
 }
 
 // MARK: - UITableViewDelegate
-
 extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         let animation = CellAnimator.moveUpWithBounce(rowHeight: cell.frame.height, duration: 1, delayFactor: 0.05)
         let animator = CellAnimator(animation: animation)
@@ -133,9 +126,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-
 extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return CellType.allCases.count
     }
@@ -197,9 +188,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
 }
 
 // MARK: - Private
-
 private extension DecisionTreeQuestionnaireViewController {
-
     func recalculateContentInsets() {
         if question.answerType == AnswerType.openCalendarEvents.rawValue {
             return tableView.contentInset = .zero
@@ -218,19 +207,40 @@ private extension DecisionTreeQuestionnaireViewController {
 }
 
 // MARK: - SingleSelectionCellDelegate
-
 extension DecisionTreeQuestionnaireViewController: SingleSelectionCellDelegate {
-
     func didSelect(_ answer: Answer) {
         delegate?.didTapBinarySelection(answer)
     }
 }
 
 // MARK: - MultiselectionCellDelegate
-
 extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate {
-
     func didTap(_ answer: Answer) {
         delegate?.didTapMultiSelection(answer)
+    }
+}
+
+// MARK: - Bottom Navigation Items
+extension DecisionTreeQuestionnaireViewController {
+    @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItem()]
+    }
+
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        switch question.key {
+        case QuestionKey.Prepare.calendarEventSelectionDaily.rawValue,
+             QuestionKey.Prepare.calendarEventSelectionCritical.rawValue?:
+            let title = question.defaultButtonText ?? R.string.localized.buttonTitleAddEvent()
+            return [roundedDarkButtonItem(title: title,
+                                          image: R.image.ic_event(),
+                                          buttonWidth: .decisionTreeButtonWidth,
+                                          action: #selector(presentAddEventController))]
+        case QuestionKey.Recovery.loading.rawValue?:
+            let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
+            return [roundedDarkButtonItem(title: title,
+                                          buttonWidth: .decisionTreeButtonWidth,
+                                          action: #selector(didTapContinue))]
+        default: return []
+        }
     }
 }

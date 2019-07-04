@@ -59,13 +59,13 @@ private extension ChoiceViewController {
         tableView.register(nib, forCellReuseIdentifier: CellReuseIdentifiers.CollapsableContentCell)
         tableView.layoutMargins = .zero
         tableView.separatorInset = .zero
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: 0.0, height: 20.0))
-        tableHeaderViewLabel.text = "Add or remove strategies from your preparation list."
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 20))
+        tableHeaderViewLabel.text = R.string.localized.choiceViewHeaderEditPrepare()
     }
 
     func setupButtons() {
-        saveButton.corner(radius: 20)
-        cancelButton.corner(radius: 20)
+        saveButton.cornerDefault()
+        cancelButton.cornerDefault()
         cancelButton.layer.borderWidth = 1
         cancelButton.layer.borderColor = UIColor.accent.withAlphaComponent(0.4).cgColor
     }

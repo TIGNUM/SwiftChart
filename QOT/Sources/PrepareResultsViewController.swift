@@ -24,43 +24,11 @@ final class PrepareResultsViewController: UIViewController {
     // MARK: - Properties
 
     var interactor: PrepareResultsInteractorInterface?
+    private var showDone: Bool = false
     private var resultView: PrepareResultsInfoView?
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped, delegate: self, dataSource: self)
-    }()
-
-    private lazy var doneButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = .carbonDark
-        let attributedTitle = NSAttributedString(string: R.string.localized.morningControllerDoneButton().capitalized,
-                                                 letterSpacing: 0.2,
-                                                 font: .sfProtextSemibold(ofSize: 14),
-                                                 textColor: .accent,
-                                                 alignment: .center)
-        button.setAttributedTitle(attributedTitle, for: .normal)
-        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var saveAndContinueButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.backgroundColor = .carbonDark
-        let attributedTitle = NSAttributedString(string: R.string.localized.alertButtonTitleSaveAndContinue(),
-                                                 letterSpacing: 0.2,
-                                                 font: .sfProtextSemibold(ofSize: 14),
-                                                 textColor: .accent,
-                                                 alignment: .center)
-        button.setAttributedTitle(attributedTitle, for: .normal)
-        button.addTarget(self, action: #selector(saveAndContinue), for: .touchUpInside)
-        return button
-    }()
-
-    private lazy var closeeButton: UIButton = {
-        let button = UIButton(type: .custom)
-        button.setImage(R.image.ic_close_rounded(), for: .normal)
-        button.addTarget(self, action: #selector(dismissView), for: .touchUpInside)
-        return button
     }()
 
     // MARK: - Init
@@ -137,6 +105,7 @@ private extension PrepareResultsViewController {
         }
     }
 
+    //TODO Add nice animation
     @objc func saveAndContinue() {
         interactor?.didClickSaveAndContinue()
         let resultView = PrepareResultsInfoView.instantiateFromNib()
@@ -144,6 +113,8 @@ private extension PrepareResultsViewController {
         view.addSubview(resultView)
         resultView.edgeAnchors == view.edgeAnchors
         self.resultView = resultView
+        showDone = true
+        refreshBottomNavigationItems()
     }
 }
 
@@ -170,29 +141,6 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
 
     func setupView() {
         view.addSubview(tableView)
-        if interactor?.getType == .LEVEL_ON_THE_GO {
-            doneButton.corner(radius: 20)
-            view.addSubview(doneButton)
-            doneButton.heightAnchor == 40
-            doneButton.widthAnchor == 72
-            doneButton.bottomAnchor == view.bottomAnchor - 24
-            doneButton.rightAnchor == view.rightAnchor - 24
-        }
-        if interactor?.getType == .LEVEL_DAILY || interactor?.getType == .LEVEL_CRITICAL {
-            saveAndContinueButton.corner(radius: 20)
-            view.addSubview(saveAndContinueButton)
-            saveAndContinueButton.heightAnchor == 40
-            saveAndContinueButton.widthAnchor == 152
-            saveAndContinueButton.bottomAnchor == view.bottomAnchor - 24
-            saveAndContinueButton.rightAnchor == view.rightAnchor - 24
-        }
-        if interactor?.getType == .LEVEL_DAILY || interactor?.getType == .LEVEL_CRITICAL {
-            view.addSubview(closeeButton)
-            closeeButton.heightAnchor == 40
-            closeeButton.widthAnchor == 40
-            closeeButton.bottomAnchor == view.bottomAnchor - 24
-            closeeButton.leftAnchor == view.leftAnchor + 24
-        }
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
             tableView.safeTopAnchor == view.safeTopAnchor
@@ -323,6 +271,7 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
         interactor?.presentEditStrategyView()
     }
 
+    //TODO Add nice animation
     func dismissResultView() {
         resultView?.removeFromSuperview()
         dismissView()
@@ -345,5 +294,26 @@ extension PrepareResultsViewController: ChoiceViewControllerDelegate {
 
     func dismiss(_ viewController: UIViewController) {
         viewController.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - Bottom Navigation
+extension PrepareResultsViewController {
+    @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        if interactor?.getType == .LEVEL_ON_THE_GO || showDone == true {
+            return nil
+        }
+        return [dismissNavigationItem()]
+    }
+
+    @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        if interactor?.getType == .LEVEL_ON_THE_GO || showDone == true {
+            return [roundedDarkButtonItem(title: R.string.localized.morningControllerDoneButton().capitalized,
+                                          buttonWidth: .doneButtonWidth,
+                                          action: #selector(dismissView))]
+        }
+        return [roundedDarkButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
+                                      buttonWidth: .saveAndContinueButtonWidth,
+                                      action: #selector(saveAndContinue))]
     }
 }

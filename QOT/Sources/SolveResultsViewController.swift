@@ -23,7 +23,6 @@ final class SolveResultsViewController: UIViewController {
     private var isFollowUpActive = false
     private var results: SolveResults?
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var doneButton: UIButton!
 
     // MARK: - Init
 
@@ -65,7 +64,6 @@ private extension SolveResultsViewController {
 
     func setupView() {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.height * 0.1, right: 0)
-        doneButton.corner(radius: doneButton.frame.height / 2)
     }
 }
 
@@ -73,7 +71,7 @@ private extension SolveResultsViewController {
 
 private extension SolveResultsViewController {
 
-    @IBAction func didTapDone(_ sender: UIButton) {
+    @objc func didTapDone() {
         if isFollowUpActive == true {
             interactor?.save()
         } else {
@@ -203,5 +201,13 @@ extension SolveResultsViewController: ConfirmationViewControllerDelegate {
 
     func didTapStay() {
         // Do nothing.
+    }
+}
+
+extension SolveResultsViewController {
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return [roundedDarkButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
+                                      buttonWidth: .decisionTreeButtonWidth,
+                                      action: #selector(didTapDone))]
     }
 }

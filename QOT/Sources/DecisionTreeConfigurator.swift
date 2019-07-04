@@ -17,6 +17,7 @@ final class DecisionTreeConfigurator: AppStateAccess {
             let presenter = DecisionTreePresenter(viewController: viewController)
             let interactor = DecisionTreeInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
+            worker.fetchToBeVision()
         }
     }
 }

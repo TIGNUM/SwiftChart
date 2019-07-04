@@ -6,7 +6,7 @@ PODS:
   - Bond (7.5.0):
     - Differ (~> 1.3)
     - ReactiveKit (~> 3.10)
-  - BonMot (5.4)
+  - BonMot (5.4.1)
   - Buglife (2.10.1)
   - Differ (1.4.3)
   - Freddy (3.0.3)
@@ -17,7 +17,7 @@ PODS:
     - JPSimulatorHacks/standard (= 1.4.2)
   - JPSimulatorHacks/standard (1.4.2)
   - KeychainAccess (3.2.0)
-  - Kingfisher (5.6.0)
+  - Kingfisher (5.7.0)
   - MBProgressHUD (1.1.0)
   - qot_dal (1.0):
     - KeychainAccess
@@ -83,7 +83,7 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: c3b6e2aa9994cc764f0c2e6b53be77c427981f9f
+    :commit: 03f4c88cea740e466ddff63c6dfd59b5a26fd6ef
     :git: "git@github.com:TIGNUM/qot_dal.git"
 
 SPEC CHECKSUMS:
@@ -92,14 +92,14 @@ SPEC CHECKSUMS:
   AMScrollingNavbar: 9df3652d6757f1a24646d8e90cb458591d8b1a6a
   Anchorage: a187da0bc9b07440637d42c8744b8c82a4490295
   Bond: 17f2d81e08cea3d95713eed33611176376f9056d
-  BonMot: 505471ffd93959076c4dd8391aa8a7aba35562a2
+  BonMot: aa82119ff2ffa184223d8a31c72aed84fbb009e0
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
   Freddy: 7c62db262a0d0e3b3e2b8b40f2c0cc51e122fbc4
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JPSimulatorHacks: 28428b30259eb93ad558ac3f2c608acd2133a14b
   KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
-  Kingfisher: 1a50df6880a60bae26f3e21a0df3d17b892f5e0b
+  Kingfisher: c7d211b54f1f30d8060aadab177d52b4349c825b
   MBProgressHUD: e7baa36a220447d8aeb12769bf0585582f3866d9
   qot_dal: 967c0df783c6fcc0205102e8e4a689220113adfa
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239

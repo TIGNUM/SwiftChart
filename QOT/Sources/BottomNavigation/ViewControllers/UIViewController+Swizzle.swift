@@ -139,35 +139,54 @@ extension UIViewController {
 
     @objc open func coachNavigationItem() -> UIBarButtonItem {
         let button = CoachButton()
-        let buttonHeight: CGFloat = 80
         button.addTarget(self, action: #selector(showCoachScreen), for: .touchUpInside)
         button.setImage(R.image.ic_coach(), for: .normal)
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonHeight, height: buttonHeight))
-        button.corner(radius: buttonHeight / 2)
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .buttonHeight * 2,
+                                                                        height: .buttonHeight * 2))
+        button.circle()
         button.imageView?.contentMode = .center
         return UIBarButtonItem(customView: button)
     }
 
     @objc open func backNavigationItem() -> UIBarButtonItem {
         let button = UIButton(type: .custom)
-        let buttonHeight: CGFloat = 40
         button.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
         button.setImage(R.image.arrowBack(), for: .normal)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.accent.cgColor
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonHeight, height: buttonHeight))
-        button.corner(radius: buttonHeight / 2)
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .buttonHeight,
+                                                                        height: .buttonHeight))
+        button.circle()
         button.tintColor = .red
         return UIBarButtonItem(customView: button)
     }
 
     @objc open func dismissNavigationItem() -> UIBarButtonItem {
         let button = UIButton(type: .custom)
-        let buttonHeight: CGFloat = 40
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonHeight, height: buttonHeight))
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .buttonHeight, height: .buttonHeight))
         button.addTarget(self, action: #selector(didTapDismissButton), for: .touchUpInside)
         button.setImage(R.image.ic_close_rounded(), for: .normal)
         button.tintColor = .red
+        return UIBarButtonItem(customView: button)
+    }
+
+    @objc open func roundedDarkButtonItem(title: String, image: UIImage? = nil, buttonWidth: CGFloat, action: Selector) -> UIBarButtonItem {
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth,
+                                                                        height: .buttonHeight))
+        button.backgroundColor = .carbonDark
+        let attributedTitle = NSAttributedString(string: title,
+                                                 letterSpacing: 0.2,
+                                                 font: .sfProtextSemibold(ofSize: 14),
+                                                 textColor: .accent,
+                                                 alignment: .center)
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        if let image = image {
+            button.setImage(image, for: .normal)
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
+        }
+        button.addTarget(self, action: action, for: .touchUpInside)
+        button.cornerDefault()
         return UIBarButtonItem(customView: button)
     }
 

@@ -40,27 +40,12 @@ final class DecisionTreeWorker {
 // MARK: - DecisionTreeWorkerInterface
 
 extension DecisionTreeWorker: DecisionTreeWorkerInterface {
-    func setTargetContentID(for answer: Answer) {
-        let contentTarget = answer.decisions.filter { $0.targetType == TargetType.content.rawValue }.first
-        if let targetContentID = contentTarget?.targetID {
-            self.targetContentID = targetContentID
-        }
+    var userHasToBeVision: Bool {
+        return visionText != nil && visionText?.trimmed.isEmpty == false
     }
 
-    func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String? {
-        if answerFilter != nil {
-            let result = answerFilter
-            answerFilter = nil
-            return result
-        }
-        let keyFilter: DecisionTreeModel.Filter = .FILTER_RELATIONSHIP
-        if currentQuestion?.key?.contains("prepare_peak_prep_") == true {
-            return decisionTree?.selectedAnswers
-                .compactMap { $0.answer }
-                .flatMap { $0.keys }
-                .filter { $0.contains(keyFilter) }.first
-        }
-        return decisionTree?.selectedAnswers.first?.answer.keys.first(where: { $0.contains(keyFilter) })
+    var getToBeVisionText: String? {
+        return visionText
     }
 
     var targetContentID: Int {
@@ -85,13 +70,6 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         return recoveryModel
     }
 
-    func userHasToBeVision(completion: @escaping ((Bool)) -> Void) {
-        qot_dal.UserService.main.getMyToBeVision { [weak self] (vision, status, _) in
-            self?.visionText = vision?.text
-            completion(status)
-        }
-    }
-
     var selectedAnswers: [DecisionTreeModel.SelectedAnswer] {
         get {
             return _selectedAnswers
@@ -101,12 +79,41 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         }
     }
 
+    func fetchToBeVision() {
+        qot_dal.UserService.main.getMyToBeVision { [weak self] (vision, status, _) in
+            self?.visionText = vision?.text
+        }
+    }
+
     func didUpdatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer]) {
         prepareDelegate?.didUpdateIntentions(answers, prepareKey)
     }
 
     func didUpdateBenefits(_ benefits: String) {
         prepareDelegate?.didUpdateBenefits(benefits)
+    }
+
+    func setTargetContentID(for answer: Answer) {
+        let contentTarget = answer.decisions.filter { $0.targetType == TargetType.content.rawValue }.first
+        if let targetContentID = contentTarget?.targetID {
+            self.targetContentID = targetContentID
+        }
+    }
+
+    func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String? {
+        if answerFilter != nil {
+            let result = answerFilter
+            answerFilter = nil
+            return result
+        }
+        let keyFilter: DecisionTreeModel.Filter = .FILTER_RELATIONSHIP
+        if currentQuestion?.key?.contains("prepare_peak_prep_") == true {
+            return decisionTree?.selectedAnswers
+                .compactMap { $0.answer }
+                .flatMap { $0.keys }
+                .filter { $0.contains(keyFilter) }.first
+        }
+        return decisionTree?.selectedAnswers.first?.answer.keys.first(where: { $0.contains(keyFilter) })
     }
 
     /// Returns the first question in order to start the decision tree
@@ -209,7 +216,6 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
 // MARK: - Private TBV
 
 private extension DecisionTreeWorker {
-
     var workQuestion: Question? {
         switch type {
         case .toBeVisionGenerator: return services.questionsService.question(for: QuestionKey.ToBeVision.work.rawValue)
