@@ -16,6 +16,12 @@ protocol Predicatable {
 final class ContentService {
 
     enum Tags: String, CaseIterable, Predicatable {
+        case myQotProfileSectionTitle = "myqot_profile_section_title"
+        case myQotLibrarySectionTitle = "myqot_library_section_title"
+        case myQotPrepsSectionTitle = "myqot_preps_section_title"
+        case myQotSprintsSectionTitle = "myqot_sprints_section_title"
+        case myQotDataSectionTitle = "myqot_data_section_title"
+        case myQotToBeVisionSectionTitle = "myqot_tobevision_section_title"
         case toolsHeaderTitle = "tools_header_title"
         case toolsHeaderSubtitle = "tools_header_subtitle"
         case toolsMindsetSectionTitle = "tools_mindset_section_title"
@@ -493,6 +499,28 @@ extension ContentService {
             return contentItem(for: ContentService.Tags.siriWhatsHotSuggestionPhrase.predicate)?.valueText
         case .morningInterview:
             return contentItem(for: ContentService.Tags.siriDailyPrepSuggestionPhrase.predicate)?.valueText
+        }
+    }
+}
+
+// MARK: - My Qot
+
+extension ContentService {
+
+    func myQotSectionTitles(for myQotItem: MyQotSection) -> String? {
+        switch myQotItem {
+        case .profile:
+             return contentItem(for: ContentService.Tags.myQotProfileSectionTitle.predicate)?.valueText
+        case .library:
+            return contentItem(for: ContentService.Tags.myQotLibrarySectionTitle.predicate)?.valueText
+        case .preps:
+            return contentItem(for: ContentService.Tags.myQotPrepsSectionTitle.predicate)?.valueText
+        case .sprints:
+            return contentItem(for: ContentService.Tags.myQotSprintsSectionTitle.predicate)?.valueText
+        case .data:
+            return contentItem(for: ContentService.Tags.myQotDataSectionTitle.predicate)?.valueText
+        case .toBeVision:
+            return contentItem(for: ContentService.Tags.myQotToBeVisionSectionTitle.predicate)?.valueText
         }
     }
 }

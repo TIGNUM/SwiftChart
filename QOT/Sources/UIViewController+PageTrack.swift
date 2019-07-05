@@ -59,6 +59,8 @@ private extension UIViewController {
         case is ToolsViewController: return "coach.tools"
         case is KnowingViewController: return "know.feed"
         case is SolveResultsViewController: return "solve.results"
+        case is MyQotMainViewController: return "myqot.main"
+        case is MyPrepsViewController: return "myqot.mypreps"
         case is AudioFullScreenViewController: return "fullscreen.audioplayer"
         case is PrepareResultsViewController: return "prepare.results"
         default: preconditionFailure()

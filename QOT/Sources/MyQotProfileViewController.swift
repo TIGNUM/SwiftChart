@@ -8,10 +8,6 @@
 
 import UIKit
 
-final class MyQotNavigationController: UINavigationController {
-    static var storyboardID = NSStringFromClass(MyQotNavigationController.classForCoder())
-}
-
 final class MyQotProfileViewController: AbstractLevelOneViewConroller {
 
     // MARK: - Properties

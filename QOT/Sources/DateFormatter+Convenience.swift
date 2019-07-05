@@ -44,6 +44,14 @@ private let dailyPrepDateFormatter: DateFormatter = {
     return formatter
 }()
 
+
+private let myPrepsFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "d-MM-hh-mm"
+    formatter.timeZone = TimeZone.current
+    return formatter
+}()
+
 private let whatsHotFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "dd. MMM" // 18. JUL    ..:: "dd. LLLL" 18. JULY ..::
@@ -95,6 +103,10 @@ extension DateFormatter {
 
     static var settingsUser: DateFormatter {
         return userDateFormatter
+    }
+
+    static var myPrepsTime: DateFormatter  {
+         return myPrepsFormatter
     }
 
     static var shortDate: DateFormatter {

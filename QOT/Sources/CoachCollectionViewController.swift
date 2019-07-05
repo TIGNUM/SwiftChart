@@ -52,10 +52,12 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
 
     lazy var myQotNavigationController: MyQotNavigationController? = {
         let navController = R.storyboard.main().instantiateViewController(withIdentifier: MyQotNavigationController.storyboardID) as? MyQotNavigationController
-        guard let myQotViewController = navController?.viewControllers.first  as? MyQotProfileViewController else {
+        guard let myQotViewController = navController?.viewControllers.first  as? MyQotMainViewController else {
             return nil
         }
-        MyQotProfileConfigurator.configure(delegate: self, viewController: myQotViewController)
+        if let services = services {
+            MyQotMainConfigurator.configure(delegate: self, services: services, viewController: myQotViewController)
+        }
         return navController
     }()
 
@@ -175,6 +177,7 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
         if let searchViewController = searchViewController {
             view.sendSubview(toBack: searchViewController.view)
         }
+
         let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
                                                   rightBarButtonItems: [coachNavigationItem()],
                                                   backgroundColor: view.backgroundColor ?? .clear)

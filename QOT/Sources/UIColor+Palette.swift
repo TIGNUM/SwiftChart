@@ -12,6 +12,10 @@ extension UIColor {
 
     // MARK: - 3.0
 
+    class var redOrange: UIColor {
+        return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 1)
+    }
+
     class var accent10: UIColor {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 0.1)
     }

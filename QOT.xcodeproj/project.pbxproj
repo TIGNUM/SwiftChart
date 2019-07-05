@@ -1233,6 +1233,11 @@
 		E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */; };
 		E8F43E5620BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */; };
 		F6E88A76FF398AFB812AA0B4 /* Pods_QOTWidget.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */; };
+		F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */; };
+		F909961A22B23F9500EAEAC6 /* MyPrepsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961922B23F9500EAEAC6 /* MyPrepsInteractor.swift */; };
+		F909961C22B23FA900EAEAC6 /* MyPrepsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961B22B23FA900EAEAC6 /* MyPrepsInterface.swift */; };
+		F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961D22B23FBA00EAEAC6 /* MyPrepsModel.swift */; };
+		F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961F22B23FCC00EAEAC6 /* MyPrepsPresenter.swift */; };
 		F921DED1221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F921DED2221D53BF00FEB01D /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = AC87A79D220D953F00622C90 /* Intents.intentdefinition */; };
 		F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */; };
@@ -1264,6 +1269,16 @@
 		F96A4BDF22C4F2270021C415 /* WhatsHotLatestWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F96A4BDE22C4F2270021C415 /* WhatsHotLatestWorker.swift */; };
 		F9838F3422AFA61F003F9394 /* ContentService+Coach.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3322AFA61F003F9394 /* ContentService+Coach.swift */; };
 		F9838F3822AFBD6A003F9394 /* ContentService + Tools.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3722AFBD6A003F9394 /* ContentService + Tools.swift */; };
+		F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */; };
+		F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */; };
+		F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */; };
+		F9838F4122AFFF50003F9394 /* MyQotMainModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4022AFFF50003F9394 /* MyQotMainModel.swift */; };
+		F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4222AFFF62003F9394 /* MyQotMainPresenter.swift */; };
+		F9838F4522AFFF72003F9394 /* MyQotMainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4422AFFF72003F9394 /* MyQotMainRouter.swift */; };
+		F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4622AFFF82003F9394 /* MyQotMainWorker.swift */; };
+		F9838F4922AFFF95003F9394 /* MyQotMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4822AFFF95003F9394 /* MyQotMainViewController.swift */; };
+		F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */; };
+		F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */; };
 		F98E2AC822C22057002550FF /* GoodToKnowViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2AC722C22057002550FF /* GoodToKnowViewController.swift */; };
 		F98E2ACA22C2206B002550FF /* GoodToKnowConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2AC922C2206B002550FF /* GoodToKnowConfigurator.swift */; };
 		F98E2ACC22C22079002550FF /* GoodToKnowInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F98E2ACB22C22079002550FF /* GoodToKnowInteractor.swift */; };
@@ -1286,6 +1301,13 @@
 		F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */; };
 		F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99DF6122295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib */; };
 		F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF614229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift */; };
+		F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */; };
+		F9A5C93122B2401000AB2E94 /* MyPrepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */; };
+		F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */; };
+		F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C93422B27D7E00AB2E94 /* MyPreps.storyboard */; };
+		F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93622B2843000AB2E94 /* MyPrepsTableViewCell.swift */; };
+		F9A5C93922B2844200AB2E94 /* MyPrepsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C93822B2844200AB2E94 /* MyPrepsTableViewCell.xib */; };
+		F9A5C93D22B29CFD00AB2E94 /* Coach.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C93C22B29CFD00AB2E94 /* Coach.storyboard */; };
 		F9A5C94222B7CD8100AB2E94 /* PaymentReminderConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94122B7CD8100AB2E94 /* PaymentReminderConfigurator.swift */; };
 		F9A5C94422B7D02C00AB2E94 /* PaymentReminderInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94322B7D02B00AB2E94 /* PaymentReminderInteractor.swift */; };
 		F9A5C94622B7D04700AB2E94 /* PaymentReminderInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C94522B7D04700AB2E94 /* PaymentReminderInterface.swift */; };
@@ -1299,6 +1321,9 @@
 		F9A5C95622B7DFEF00AB2E94 /* PaymentHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */; };
 		F9A5C95822B7E00900AB2E94 /* PaymentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */; };
 		F9A5C95A22B7E02400AB2E94 /* PaymentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F9A5C95922B7E02400AB2E94 /* PaymentTableViewCell.xib */; };
+		F9A66BA122CB7FB60094EA46 /* MindsetShiftersManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A66BA022CB7FB60094EA46 /* MindsetShiftersManager.swift */; };
+		F9A66BA322CB7FCD0094EA46 /* Recovery3DManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A66BA222CB7FCD0094EA46 /* Recovery3DManager.swift */; };
+		F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A66BA622CD0C690094EA46 /* RoundedButton.swift */; };
 		F9A8A01522967FA300DE3A9C /* ToolsItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A01422967FA300DE3A9C /* ToolsItemsViewController.swift */; };
 		F9A8A01722967FE600DE3A9C /* ToolsItemsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A01622967FE600DE3A9C /* ToolsItemsPresenter.swift */; };
 		F9A8A0192296800000DE3A9C /* ToolsItemsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A8A0182296800000DE3A9C /* ToolsItemsWorker.swift */; };
@@ -2600,6 +2625,11 @@
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
 		E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventIntermediary.swift; sourceTree = "<group>"; };
 		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
+		F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsConfigurator.swift; sourceTree = "<group>"; };
+		F909961922B23F9500EAEAC6 /* MyPrepsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsInteractor.swift; sourceTree = "<group>"; };
+		F909961B22B23FA900EAEAC6 /* MyPrepsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsInterface.swift; sourceTree = "<group>"; };
+		F909961D22B23FBA00EAEAC6 /* MyPrepsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsModel.swift; sourceTree = "<group>"; };
+		F909961F22B23FCC00EAEAC6 /* MyPrepsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsPresenter.swift; sourceTree = "<group>"; };
 		F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsPresenter.swift; sourceTree = "<group>"; };
 		F95B9231228EAE46000DEAEC /* ToolsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsWorker.swift; sourceTree = "<group>"; };
 		F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsRouter.swift; sourceTree = "<group>"; };
@@ -2629,6 +2659,16 @@
 		F96A4BDE22C4F2270021C415 /* WhatsHotLatestWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsHotLatestWorker.swift; sourceTree = "<group>"; };
 		F9838F3322AFA61F003F9394 /* ContentService+Coach.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Coach.swift"; sourceTree = "<group>"; };
 		F9838F3722AFBD6A003F9394 /* ContentService + Tools.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService + Tools.swift"; sourceTree = "<group>"; };
+		F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainConfigurator.swift; sourceTree = "<group>"; };
+		F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInteractor.swift; sourceTree = "<group>"; };
+		F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainInterface.swift; sourceTree = "<group>"; };
+		F9838F4022AFFF50003F9394 /* MyQotMainModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainModel.swift; sourceTree = "<group>"; };
+		F9838F4222AFFF62003F9394 /* MyQotMainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainPresenter.swift; sourceTree = "<group>"; };
+		F9838F4422AFFF72003F9394 /* MyQotMainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainRouter.swift; sourceTree = "<group>"; };
+		F9838F4622AFFF82003F9394 /* MyQotMainWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainWorker.swift; sourceTree = "<group>"; };
+		F9838F4822AFFF95003F9394 /* MyQotMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainViewController.swift; sourceTree = "<group>"; };
+		F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotMainCollectionViewCell.swift; sourceTree = "<group>"; };
+		F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotMainCollectionViewCell.xib; sourceTree = "<group>"; };
 		F98E2AC722C22057002550FF /* GoodToKnowViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowViewController.swift; sourceTree = "<group>"; };
 		F98E2AC922C2206B002550FF /* GoodToKnowConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowConfigurator.swift; sourceTree = "<group>"; };
 		F98E2ACB22C22079002550FF /* GoodToKnowInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoodToKnowInteractor.swift; sourceTree = "<group>"; };
@@ -2651,6 +2691,13 @@
 		F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsCollectionsAudioTableViewCell.xib; sourceTree = "<group>"; };
 		F99DF6122295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsCollectionsGroupTableViewCell.xib; sourceTree = "<group>"; };
 		F99DF614229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsGroupTableViewCell.swift; sourceTree = "<group>"; };
+		F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsRouter.swift; sourceTree = "<group>"; };
+		F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsViewController.swift; sourceTree = "<group>"; };
+		F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsWorker.swift; sourceTree = "<group>"; };
+		F9A5C93422B27D7E00AB2E94 /* MyPreps.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyPreps.storyboard; sourceTree = "<group>"; };
+		F9A5C93622B2843000AB2E94 /* MyPrepsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsTableViewCell.swift; sourceTree = "<group>"; };
+		F9A5C93822B2844200AB2E94 /* MyPrepsTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPrepsTableViewCell.xib; sourceTree = "<group>"; };
+		F9A5C93C22B29CFD00AB2E94 /* Coach.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Coach.storyboard; sourceTree = "<group>"; };
 		F9A5C94122B7CD8100AB2E94 /* PaymentReminderConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderConfigurator.swift; sourceTree = "<group>"; };
 		F9A5C94322B7D02B00AB2E94 /* PaymentReminderInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderInteractor.swift; sourceTree = "<group>"; };
 		F9A5C94522B7D04700AB2E94 /* PaymentReminderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentReminderInterface.swift; sourceTree = "<group>"; };
@@ -2664,6 +2711,9 @@
 		F9A5C95522B7DFEF00AB2E94 /* PaymentHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentHeaderView.xib; sourceTree = "<group>"; };
 		F9A5C95722B7E00900AB2E94 /* PaymentTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTableViewCell.swift; sourceTree = "<group>"; };
 		F9A5C95922B7E02400AB2E94 /* PaymentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PaymentTableViewCell.xib; sourceTree = "<group>"; };
+		F9A66BA022CB7FB60094EA46 /* MindsetShiftersManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShiftersManager.swift; sourceTree = "<group>"; };
+		F9A66BA222CB7FCD0094EA46 /* Recovery3DManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recovery3DManager.swift; sourceTree = "<group>"; };
+		F9A66BA622CD0C690094EA46 /* RoundedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedButton.swift; sourceTree = "<group>"; };
 		F9A8A01422967FA300DE3A9C /* ToolsItemsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsViewController.swift; sourceTree = "<group>"; };
 		F9A8A01622967FE600DE3A9C /* ToolsItemsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsPresenter.swift; sourceTree = "<group>"; };
 		F9A8A0182296800000DE3A9C /* ToolsItemsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsItemsWorker.swift; sourceTree = "<group>"; };
@@ -2766,6 +2816,8 @@
 			isa = PBXGroup;
 			children = (
 				36085C5822CA48E600C703BA /* PreparationManager.swift */,
+				F9A66BA022CB7FB60094EA46 /* MindsetShiftersManager.swift */,
+				F9A66BA222CB7FCD0094EA46 /* Recovery3DManager.swift */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -2894,6 +2946,8 @@
 				36A5E75622786014006A522C /* MediaPlayerOverlay.xib */,
 				3662433D227C56E500FFED3A /* AudioButton.swift */,
 				3662433F227C570200FFED3A /* AudioButton.xib */,
+				F9A5C93622B2843000AB2E94 /* MyPrepsTableViewCell.swift */,
+				F9A5C93822B2844200AB2E94 /* MyPrepsTableViewCell.xib */,
 				F9FA08EE22805CEE00A917A4 /* CoachTableViewCell.swift */,
 				F9FA08F022805D0900A917A4 /* CoachTableViewCell.xib */,
 				F9FA08F222806C6300A917A4 /* CoachTableHeaderView.swift */,
@@ -2913,6 +2967,8 @@
 				F99DF60E2292F41800341DAB /* ToolsCollectionsAudioTableViewCell.swift */,
 				F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */,
 				368F2AF42296D74D0008A36D /* ArticleNextUpTableViewCell.xib */,
+				F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */,
+				F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -3206,6 +3262,7 @@
 				3637663E223A7DC400C2C429 /* levelTwo */,
 				F99DF60D2292E38F00341DAB /* TOOLS */,
 				36376625223A668F00C2C429 /* coach */,
+				F909961322B23F1A00EAEAC6 /* myPreps */,
 				363765F2223A4BB500C2C429 /* myQOT */,
 				363765F1223A4BA400C2C429 /* daily brief */,
 				363765F0223A4B9B00C2C429 /* knowing */,
@@ -3214,6 +3271,7 @@
 				ACB0ED4B225FC28500BBF243 /* Decision Tree */,
 				367BB013223956A700282AB6 /* Main.storyboard */,
 				F95B923F228EC732000DEAEC /* Tools.storyboard */,
+				F9A5C93C22B29CFD00AB2E94 /* Coach.storyboard */,
 				367BB0152239570B00282AB6 /* CoachCollectionViewController.swift */,
 				36376623223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift */,
 				3637664F223A851500C2C429 /* AbstractLevelTwoViewController.swift */,
@@ -3317,6 +3375,7 @@
 		36CB720922B8772300C99AFC /* qot_dal */ = {
 			isa = PBXGroup;
 			children = (
+				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
 				36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */,
 				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
 				36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */,
@@ -6067,6 +6126,30 @@
 			path = PDFReader;
 			sourceTree = "<group>";
 		};
+		F909961322B23F1A00EAEAC6 /* myPreps */ = {
+			isa = PBXGroup;
+			children = (
+				F909961422B23F3B00EAEAC6 /* Core */,
+			);
+			name = myPreps;
+			sourceTree = "<group>";
+		};
+		F909961422B23F3B00EAEAC6 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */,
+				F909961922B23F9500EAEAC6 /* MyPrepsInteractor.swift */,
+				F909961B22B23FA900EAEAC6 /* MyPrepsInterface.swift */,
+				F909961D22B23FBA00EAEAC6 /* MyPrepsModel.swift */,
+				F909961F22B23FCC00EAEAC6 /* MyPrepsPresenter.swift */,
+				F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */,
+				F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */,
+				F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */,
+				F9A5C93422B27D7E00AB2E94 /* MyPreps.storyboard */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
 		F95B922E228EADF4000DEAEC /* tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -6154,6 +6237,14 @@
 		F9838F3922AFFE93003F9394 /* myQotMain */ = {
 			isa = PBXGroup;
 			children = (
+				F9838F3A22AFFF13003F9394 /* MyQotMainConfigurator.swift */,
+				F9838F3C22AFFF2E003F9394 /* MyQotMainInteractor.swift */,
+				F9838F3E22AFFF42003F9394 /* MyQotMainInterface.swift */,
+				F9838F4022AFFF50003F9394 /* MyQotMainModel.swift */,
+				F9838F4222AFFF62003F9394 /* MyQotMainPresenter.swift */,
+				F9838F4422AFFF72003F9394 /* MyQotMainRouter.swift */,
+				F9838F4622AFFF82003F9394 /* MyQotMainWorker.swift */,
+				F9838F4822AFFF95003F9394 /* MyQotMainViewController.swift */,
 			);
 			name = myQotMain;
 			sourceTree = "<group>";
@@ -6527,6 +6618,7 @@
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
 				368A12622277387900866DB0 /* SF-Pro-Text-Medium.otf in Resources */,
 				366AFD1820BDAD3000109F29 /* FormView.xib in Resources */,
+				F9838F5122B11A40003F9394 /* MyQotMainCollectionViewCell.xib in Resources */,
 				CCAE22D01F6BD7F80017C9EF /* ChartCell.xib in Resources */,
 				365EC0BF224A74850019AFF9 /* WhatsHotComponentView.xib in Resources */,
 				5FD8909D2280766900B1CE7F /* MyQot.storyboard in Resources */,
@@ -6543,6 +6635,7 @@
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
+				F9A5C93D22B29CFD00AB2E94 /* Coach.storyboard in Resources */,
 				ACF0B9712260B905008CFAEC /* QuestionTableViewCell.xib in Resources */,
 				369AE00622A7AC6F00DE4FA0 /* EditHeaderView.xib in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
@@ -6661,6 +6754,7 @@
 				369AE00222A6CA7500DE4FA0 /* PrepareResultsInfoView.xib in Resources */,
 				CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */,
 				36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */,
+				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				5F78964D22A929C100D2DBAD /* ThreeLinesAndImage.xib in Resources */,
 				9115F70E208DFFAE00EE5D1D /* SettingsMenuHeader.xib in Resources */,
@@ -6680,6 +6774,7 @@
 				CBC933101F0AA47800C00007 /* PrepareEventsViewController.xib in Resources */,
 				3691176D20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.xib in Resources */,
 				36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */,
+				F9A5C93922B2844200AB2E94 /* MyPrepsTableViewCell.xib in Resources */,
 				75496E9A22BA702C00150C78 /* PopUpViewController.xib in Resources */,
 				36796A3420D3C47400B55429 /* SigningProfileDetailViewController.xib in Resources */,
 				5F78965722A929C100D2DBAD /* Loader.xib in Resources */,
@@ -7031,6 +7126,7 @@
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
 				36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */,
+				F9A66BA722CD0C690094EA46 /* RoundedButton.swift in Sources */,
 				5F78965522A929C100D2DBAD /* TwoLinesAndImage.swift in Sources */,
 				CB9B07531EF7FE410017F6C3 /* LearnCategoryListPage.swift in Sources */,
 				91086E48209202740035DA1F /* SettingsPresenter.swift in Sources */,
@@ -7085,10 +7181,12 @@
 				CB3437691EFE75C400D89D4F /* ContentItem+Convenience.swift in Sources */,
 				F9A5C94A22B7D08500AB2E94 /* PaymentReminderPresenter.swift in Sources */,
 				91B339E2207F5F7400F54A62 /* SettingsBubblesViewController.swift in Sources */,
+				F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */,
 				363178E71FDEECDE00833958 /* RealmGuideItemNotification.swift in Sources */,
 				914A5E23207FB3A200092121 /* SettingsBubblesModels.swift in Sources */,
 				91086E4A209202800035DA1F /* SettingsProtocols.swift in Sources */,
 				36796A4620D3C49900B55429 /* SigningLoginInteractor.swift in Sources */,
+				F9838F4922AFFF95003F9394 /* MyQotMainViewController.swift in Sources */,
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
 				B83B33EB22C21D6E002AFED7 /* BottomNavigationBar.swift in Sources */,
 				36376652223A9CD300C2C429 /* AbstractLevelThreeViewController.swift in Sources */,
@@ -7137,12 +7235,14 @@
 				CCCC211D1E8981AD00133839 /* ChatViewModel.swift in Sources */,
 				36D535DD20A711E800F1C2FC /* PartnerEditRouter.swift in Sources */,
 				36796A5F20D3C4B800B55429 /* SigningInfoViewController.swift in Sources */,
+				F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */,
 				ACF0B9702260B905008CFAEC /* QuestionTableViewCell.swift in Sources */,
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,
 				36A7B9422166454A006C18F0 /* PrepareSectionHeaderView.swift in Sources */,
 				ACB99E8C226F3A4600A73709 /* DotsLoadingView.swift in Sources */,
 				36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */,
+				F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */,
 				5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */,
 				5F57F9F3228317AA003A9EDF /* MyQotAccountSettingsInterface.swift in Sources */,
 				36376648223A7DE100C2C429 /* LevelTwoWorker.swift in Sources */,
@@ -7173,6 +7273,7 @@
 				7F6567401FE2897A00A6CB7F /* ScreenHelpRouter.swift in Sources */,
 				F9A5C95822B7E00900AB2E94 /* PaymentTableViewCell.swift in Sources */,
 				CCCE09CE1EA67F87008730F1 /* MyToBeVisionViewController.swift in Sources */,
+				F909961C22B23FA900EAEAC6 /* MyPrepsInterface.swift in Sources */,
 				85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */,
 				F9EB5E7722C105550085A03F /* ThoughtsWorker.swift in Sources */,
 				7F6738AF1FE2BB70004DDAE1 /* ScreenHelpDataWorker.swift in Sources */,
@@ -7209,6 +7310,7 @@
 				CBE880931FE9153200670C10 /* GuideItemID.swift in Sources */,
 				CCC1B6A91E8B9B7300D1461F /* LearnCategoryListViewController.swift in Sources */,
 				85777E7B1F0F857C00E12477 /* UIViewController+Convenience.swift in Sources */,
+				F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */,
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				ACF0B94A225FC41F008CFAEC /* DecisionTreeModel.swift in Sources */,
 				AC103E5A2289725C00F426F0 /* MindsetVisionTableViewCell.swift in Sources */,
@@ -7252,6 +7354,7 @@
 				3637666B223BC4D300C2C429 /* Model.swift in Sources */,
 				366183E82162793700634560 /* SupportFAQWorker.swift in Sources */,
 				366F1FD7226A1CE90034D8FD /* FoundationTableViewCell.swift in Sources */,
+				F9A66BA122CB7FB60094EA46 /* MindsetShiftersManager.swift in Sources */,
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */,
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
@@ -7320,12 +7423,14 @@
 				DB68059B218210E700C2FC69 /* MorningInterviewPresenter.swift in Sources */,
 				7FCF5FA41FC2E9FA00CD1E5E /* TabBarItem.swift in Sources */,
 				5F360743228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift in Sources */,
+				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
 				91F5BE44209757C300E85A51 /* PermissionsConfigurator.swift in Sources */,
 				AC103E462285B27200F426F0 /* MindsetShifterChecklistModel.swift in Sources */,
 				7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */,
 				5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */,
 				F96A4BDB22C4F2020021C415 /* WhatsHotLatestRouter.swift in Sources */,
 				365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */,
+				F9838F3F22AFFF42003F9394 /* MyQotMainInterface.swift in Sources */,
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
 				CBD4BEA42018CDA7008A0E9E /* GuideInteractor.swift in Sources */,
 				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
@@ -7358,6 +7463,7 @@
 				CB3333E720480DF8009480DF /* ShareRouter.swift in Sources */,
 				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
 				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
+				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
 				36CB720622B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift in Sources */,
@@ -7365,6 +7471,7 @@
 				5F78965822A929C100D2DBAD /* Loader.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
 				5FF1A0F822857B6100D76D55 /* MyQotAppSettingsWorker.swift in Sources */,
+				F9838F4522AFFF72003F9394 /* MyQotMainRouter.swift in Sources */,
 				365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */,
 				36796A2320D3C45200B55429 /* SigningCountryPresenter.swift in Sources */,
 				360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */,
@@ -7387,6 +7494,7 @@
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
 				B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */,
 				7FB32D151F44793F0027BF4E /* TrackablePage.swift in Sources */,
+				F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */,
 				360E99522167A93D0084CEFB /* PrepareNotesViewController.swift in Sources */,
 				3608382B225F3ED000664B9B /* ArticleInteractor.swift in Sources */,
 				7F9217BD1FD01C5D00CAE9E0 /* PhotosPermission.swift in Sources */,
@@ -7487,6 +7595,7 @@
 				DB6805A2218210E700C2FC69 /* QuestionnaireProtocols.swift in Sources */,
 				B8BB412A22C4BEDE002897E4 /* CoachButton.swift in Sources */,
 				36D72ECF229C1BCC00DE1184 /* PrepareEventSelectionPresenter.swift in Sources */,
+				F909961A22B23F9500EAEAC6 /* MyPrepsInteractor.swift in Sources */,
 				F9A8A01D229681E500DE3A9C /* ToolsItemsInterface.swift in Sources */,
 				F967269F22BCD99400B63FD7 /* QuestionInterface.swift in Sources */,
 				CBD4BE9E2018BE25008A0E9E /* GuideProtocols.swift in Sources */,
@@ -7521,6 +7630,7 @@
 				3698428220C91EF3007A8C8F /* SigningDigitWorker.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CB3333E920480E05009480DF /* ShareInteractor.swift in Sources */,
+				F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */,
 				5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */,
 				DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */,
 				5F360749228C42570074FEC4 /* MyQotSyncedCalendarCell.swift in Sources */,
@@ -7572,6 +7682,7 @@
 				AC981A4721A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift in Sources */,
 				CCDD549E1F46C0A7002F4933 /* UIViewController+StreamVideo.swift in Sources */,
 				36667696207CF64000D2F5AD /* VisionGeneratorModels.swift in Sources */,
+				F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */,
 				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
 				DB12013C219AC99400BE0E81 /* QuestionaireCellIndicator.swift in Sources */,
@@ -7676,6 +7787,7 @@
 				36796A4A20D3C49900B55429 /* SigningLoginWorker.swift in Sources */,
 				AC8F208B2190411400517A05 /* UITableViewCell+Extensions.swift in Sources */,
 				36376678223BFF3800C2C429 /* StrategyListInterface.swift in Sources */,
+				F9838F3B22AFFF13003F9394 /* MyQotMainConfigurator.swift in Sources */,
 				CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */,
 				7F01A6211F98A1E7002C7B72 /* ImagePickerController.swift in Sources */,
 				5F36072A228BECE40074FEC4 /* MyQotSensorsConfigurator.swift in Sources */,
@@ -7759,6 +7871,7 @@
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
+				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
 				F9EB5E7322C105110085A03F /* ThoughtsRouter.swift in Sources */,
 				36D72ED5229C1BCC00DE1184 /* (null) in Sources */,
@@ -7938,6 +8051,7 @@
 				DB680598218210E700C2FC69 /* MorningInterviewViewController.swift in Sources */,
 				36D535E020A711E800F1C2FC /* PartnerEditInteractor.swift in Sources */,
 				36DADE791FA786DD00EB00D4 /* SettingsAdminViewController.swift in Sources */,
+				F9A66BA322CB7FCD0094EA46 /* Recovery3DManager.swift in Sources */,
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,
 				9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */,
 				AC103E2F22847AB500F426F0 /* ConfirmationInterface.swift in Sources */,
@@ -7981,6 +8095,7 @@
 				91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */,
 				7F3A9CC21FCDC89D000F1744 /* ArticleCollectionViewData.swift in Sources */,
 				CBFED33A1F7938970006270D /* ChatItemQueue.swift in Sources */,
+				F9838F4122AFFF50003F9394 /* MyQotMainModel.swift in Sources */,
 				36376621223A4C0400C2C429 /* MyQotProfileModel.swift in Sources */,
 				5F62BEA2228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift in Sources */,
 				5F360730228C021F0074FEC4 /* ContentService+Sensors.swift in Sources */,
@@ -8037,6 +8152,7 @@
 				852DADC41EEED5D600A10882 /* MeetingsAverageChart.swift in Sources */,
 				3666769A207CF66600D2F5AD /* VisionGeneratorProtocols.swift in Sources */,
 				F9C1D8CB220DEA0E00B40DD2 /* SiriShortcutsCell.swift in Sources */,
+				F9A5C93122B2401000AB2E94 /* MyPrepsViewController.swift in Sources */,
 				36796A5920D3C4B800B55429 /* SigningInfoInterface.swift in Sources */,
 				ACE6A3CB22B11F96000470B1 /* SolveTriggerTableViewCell.swift in Sources */,
 				3637667B223BFF3800C2C429 /* StrategyListModel.swift in Sources */,

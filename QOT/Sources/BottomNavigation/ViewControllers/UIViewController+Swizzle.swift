@@ -170,6 +170,7 @@ extension UIViewController {
         return UIBarButtonItem(customView: button)
     }
 
+
     @objc open func roundedDarkButtonItem(title: String, image: UIImage? = nil, buttonWidth: CGFloat, action: Selector) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth,
@@ -192,7 +193,7 @@ extension UIViewController {
 
     @objc open func showCoachScreen() {
         // create Coach ViewController and show on Level3
-        guard let coachViewController = R.storyboard.main().instantiateViewController(withIdentifier: R.storyboard.main.coachViewControllerID.identifier) as? CoachViewController else {
+        guard let coachViewController = R.storyboard.coach().instantiateViewController(withIdentifier: R.storyboard.coach.coachViewControllerID.identifier) as? CoachViewController else {
             return
         }
         CoachConfigurator.make(viewController: coachViewController)

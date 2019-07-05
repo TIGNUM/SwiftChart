@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UiH-Xc-HSg" customClass="MyPrepsFooterView" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="200"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOUR CREATED PREPS WILL APPEAR HERE " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h1z-Ae-sqF">
+                    <rect key="frame" x="30" y="60" width="200" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="vOc-iI-Sew"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="In the Coach area, &quot;Prepare for an event&quot;. Your saved ones will appear here." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKb-hx-98x">
+                    <rect key="frame" x="30" y="116" width="354" height="41"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_calendar" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="tiv-tj-axB">
+                    <rect key="frame" x="45" y="21" width="12" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="12" id="3dl-sF-6S0"/>
+                        <constraint firstAttribute="width" constant="12" id="GO1-Sd-T5Y"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" image="ic_warning_circles" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZtL-4h-S7g">
+                    <rect key="frame" x="10" y="-12" width="80" height="86"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="80" id="eoh-rB-ALK"/>
+                        <constraint firstAttribute="width" constant="80" id="ruT-4y-X00"/>
+                    </constraints>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="fKb-hx-98x" firstAttribute="leading" secondItem="UiH-Xc-HSg" secondAttribute="leading" constant="30" id="0ej-W7-iDQ"/>
+                <constraint firstItem="h1z-Ae-sqF" firstAttribute="top" secondItem="UiH-Xc-HSg" secondAttribute="top" constant="60" id="6a6-pS-HwP"/>
+                <constraint firstItem="fKb-hx-98x" firstAttribute="top" secondItem="h1z-Ae-sqF" secondAttribute="bottom" constant="15" id="LrR-Kr-3uQ"/>
+                <constraint firstAttribute="height" constant="200" id="Ps9-N6-K9O"/>
+                <constraint firstItem="h1z-Ae-sqF" firstAttribute="leading" secondItem="UiH-Xc-HSg" secondAttribute="leading" constant="30" id="TgS-ak-Dl7"/>
+                <constraint firstItem="ZtL-4h-S7g" firstAttribute="leading" secondItem="UiH-Xc-HSg" secondAttribute="leading" constant="10" id="iP4-30-jfV"/>
+                <constraint firstItem="tiv-tj-axB" firstAttribute="centerY" secondItem="ZtL-4h-S7g" secondAttribute="centerY" id="iRa-kx-DWi"/>
+                <constraint firstAttribute="trailing" secondItem="fKb-hx-98x" secondAttribute="trailing" constant="30" id="jzC-0c-mZ5"/>
+                <constraint firstItem="tiv-tj-axB" firstAttribute="leading" secondItem="UiH-Xc-HSg" secondAttribute="leading" constant="45" id="xsy-pY-5jb"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="rJ7-Fj-XMR"/>
+            <connections>
+                <outlet property="subtitleLabel" destination="fKb-hx-98x" id="TtU-mi-M16"/>
+                <outlet property="titleLabel" destination="h1z-Ae-sqF" id="0Xr-gf-43F"/>
+            </connections>
+            <point key="canvasLocation" x="142.02898550724638" y="193.86160714285714"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="ic_calendar" width="16" height="16"/>
+        <image name="ic_warning_circles" width="136" height="136"/>
+    </resources>
+</document>

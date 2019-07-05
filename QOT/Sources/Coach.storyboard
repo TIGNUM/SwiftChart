@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Coach View Controller-->
+        <scene sceneID="456-pt-Zn3">
+            <objects>
+                <viewController storyboardIdentifier="coachViewControllerID" id="UAb-Gp-RcK" customClass="CoachViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="1Ie-K6-OoO">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="100" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="tcp-Rg-04A">
+                                <rect key="frame" x="0.0" y="30" width="414" height="629"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="sectionIndexBackgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="UAb-Gp-RcK" id="REl-wg-9fd"/>
+                                    <outlet property="delegate" destination="UAb-Gp-RcK" id="Sga-Bt-Hyf"/>
+                                </connections>
+                            </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gqg-eR-JOS">
+                                <rect key="frame" x="40" y="689" width="40" height="40"/>
+                                <state key="normal" image="ic_close_rounded"/>
+                                <connections>
+                                    <action selector="closeButton" destination="UAb-Gp-RcK" eventType="touchUpInside" id="eBB-Ub-GmC"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="Gqg-eR-JOS" firstAttribute="leading" secondItem="9us-Lr-JIC" secondAttribute="leading" constant="40" id="CCc-42-hW1"/>
+                            <constraint firstItem="tcp-Rg-04A" firstAttribute="trailing" secondItem="9us-Lr-JIC" secondAttribute="trailing" id="I5o-O3-qHb"/>
+                            <constraint firstItem="tcp-Rg-04A" firstAttribute="top" secondItem="9us-Lr-JIC" secondAttribute="top" constant="30" id="R1X-BW-PCp"/>
+                            <constraint firstItem="tcp-Rg-04A" firstAttribute="leading" secondItem="9us-Lr-JIC" secondAttribute="leading" id="Y3G-NC-b7p"/>
+                            <constraint firstItem="9us-Lr-JIC" firstAttribute="bottom" secondItem="Gqg-eR-JOS" secondAttribute="bottom" constant="45" id="iUv-2Q-XJl"/>
+                            <constraint firstItem="9us-Lr-JIC" firstAttribute="bottom" secondItem="tcp-Rg-04A" secondAttribute="bottom" constant="115" id="jc5-YN-Y7B" userLabel="Safe Area.bottom = Table View.bottom + 90"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="9us-Lr-JIC"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="4as-St-RAz"/>
+                    <connections>
+                        <outlet property="tableView" destination="tcp-Rg-04A" id="8qf-t7-AkA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ULK-HC-WbI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4689" y="582"/>
+        </scene>
+        <!--Coach Navigation Controller-->
+        <scene sceneID="uhu-0v-4D3">
+            <objects>
+                <navigationController storyboardIdentifier="coachNavigationControllerID" automaticallyAdjustsScrollViewInsets="NO" id="h0K-g0-wLj" customClass="CoachNavigationController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="bK1-hD-DBe">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="UAb-Gp-RcK" kind="relationship" relationship="rootViewController" id="5kZ-jU-WAO"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NHV-dV-FoN" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4688.8000000000002" y="-130.88455772113943"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_close_rounded" width="40" height="40"/>
+    </resources>
+</document>
