@@ -103,7 +103,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
         case .profile:
             cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: R.string.localized.myQotProfileSubtitle())
         case .library:
-            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "temporary stuff")
+            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
         case .preps:
             nextPrepDate(completion: { (dateString) in
                 self.dateOfPrep = dateString
@@ -112,7 +112,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
         case .sprints:
             cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: R.string.localized.myQotSprintsSubtitle())
         case .data:
-            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "temporary stuff")
+            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
         case .toBeVision:
             cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitleVision ?? R.string.localized.myQotVisionNoVision() )
             cell.subtitleLabel.textColor = .redOrange
@@ -163,9 +163,5 @@ extension MyQotMainViewController {
             return Double(monthSince)
         }
         return 0
-//        if ((date?.timeIntervalSinceNow ?? 0)/2592000 > 1) {
-//            return ((date?.timeIntervalSinceNow ?? 0)/2592000).rounded()
-//        }
-//       return 0
     }
 }
