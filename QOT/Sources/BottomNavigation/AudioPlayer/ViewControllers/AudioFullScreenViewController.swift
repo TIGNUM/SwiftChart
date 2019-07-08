@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class AudioFullScreenViewController: UIViewController {
 
@@ -19,6 +20,9 @@ final class AudioFullScreenViewController: UIViewController {
     @IBOutlet private weak var playPauseButton: UIButton!
 
     var media: MediaPlayerModel?
+    var contentItem: QDMContentItem?
+    var bookmark: QDMUserStorage?
+    var download: QDMUserStorage?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,9 +32,10 @@ final class AudioFullScreenViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(didPauseAudio(_:)), name: .didPauseAudio, object: nil)
         notificationCenter.addObserver(self, selector: #selector(didStopAudio(_:)), name: .didStopAudio, object: nil)
         notificationCenter.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
+        notificationCenter.addObserver(self, selector: #selector(didUpdateDownloadStatus(_:)),
+                                       name: .didUpdateDownloadStatus, object: nil)
 
         view.backgroundColor = .carbonDark
-
         setupButtons()
         updateLabel()
     }
@@ -44,12 +49,6 @@ final class AudioFullScreenViewController: UIViewController {
         downloadButton.backgroundColor = .clear
         downloadButton.layer.borderWidth = 1
         downloadButton.layer.borderColor = UIColor.accent30.cgColor
-        downloadButton.setAttributedTitle(NSAttributedString(string: "Download",
-                                                             letterSpacing: 0.4,
-                                                             font: .apercuBold(ofSize: 12),
-                                                             textColor: .accent,
-                                                             alignment: .left),
-                                          for: .normal)
         bookmarkButton.backgroundColor = .accent30
         downloadButton.corner(radius: 20)
         bookmarkButton.corner(radius: 20)
@@ -78,22 +77,105 @@ final class AudioFullScreenViewController: UIViewController {
             updatePlayButton(isPlaying)
             updateLabel()
         }
+        qot_dal.ContentService.main.getContentItemById(media.mediaRemoteId) { [weak self] (item) in
+            self?.contentItem = item
+            self?.bookmark = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
+                storage.userStorageType == .BOOKMARK
+            }).first
+            self?.bookmarkButton.isSelected = self?.bookmark != nil
+            self?.download = self?.contentItem?.userStorages?.filter({ (storage) -> Bool in
+                storage.userStorageType == .DOWNLOAD
+            }).first
+            self?.updateDownloadButtonState(self?.download?.downloadStaus ?? .NONE)
+        }
     }
 
+    func updateDownloadButtonState(_ state: UserStorageDownloadStatus) {
+        var title = R.string.localized.audioFullScreenButtonDownload()
+        switch state {
+        case .NONE: title = R.string.localized.audioFullScreenButtonDownload()
+        case .WAITING: title = R.string.localized.audioFullScreenButtonWaiting()
+        case .DOWNLOADING: title = R.string.localized.audioFullScreenButtonDownloading()
+        case .DONE: title = R.string.localized.audioFullScreenButtonDownloaded()
+        }
+        downloadButton.setTitle(title, for: .normal)
+    }
+
+    func convertDownloadStatus(_ status: QOTDownloadStatus) -> UserStorageDownloadStatus {
+        switch status {
+        case .NONE: return .NONE
+        case .WAITING: return .WAITING
+        case .DOWNLOADING: return .DOWNLOADING
+        case .DOWNLOADED: return .DONE
+        }
+    }
 }
 
 // MARK: - Actions
 extension AudioFullScreenViewController {
-    @IBAction func didTabCloseButton() {
+    @IBAction func didTapCloseButton() {
         trackUserEvent(.CLOSE, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
         NotificationCenter.default.post(name: .hideAudioFullScreen, object: media)
         self.dismiss(animated: true)
     }
 
-    @IBAction func didTabPlayPauseButton() {
+    @IBAction func didTapPlayPauseButton() {
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
         trackUserEvent(playPauseButton.isSelected ? .PAUSE : .PLAY,
                        value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
+    }
+
+    @IBAction func didTapBookmarkButton() {
+        trackUserEvent(.BOOKMARK, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
+        if let currentBookmark = bookmark {
+            qot_dal.UserStorageService.main.deleteUserStorage(currentBookmark) { [weak self] (error) in
+                if let error = error {
+                    qot_dal.log("failed to remove bookmark: \(error)", level: .info)
+                }
+                self?.bookmark = nil
+                self?.bookmarkButton.isSelected = self?.bookmark != nil
+            }
+        } else if let item = contentItem {
+            qot_dal.UserStorageService.main.addBookmarkContentItem(item) { [weak self] (storage, error) in
+                if let error = error {
+                    qot_dal.log("failed to add bookmark: \(error)", level: .info)
+                }
+                self?.bookmark = storage
+                self?.bookmarkButton.isSelected = self?.bookmark != nil
+            }
+        }
+    }
+
+    @IBAction func didTapDownloadButton() {
+        trackUserEvent(.DOWNLOAD, value: media?.mediaRemoteId, valueType: .AUDIO, action: .TAP)
+        guard let item = contentItem else {
+            return
+        }
+
+        if let download = self.download {
+            let downloadStaus = qot_dal.UserStorageService.main.downloadStatus(for: download).status
+            switch downloadStaus {
+            case .NONE,
+                 .WAITING: qot_dal.UserStorageService.main.resumeDownload(download) { [weak self] (status) in
+                self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
+                }
+            case .DOWNLOADING: qot_dal.UserStorageService.main.pauseDownload(download) { [weak self] (status) in
+                self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
+                }
+            default: self.updateDownloadButtonState(self.convertDownloadStatus(downloadStaus))
+            }
+        } else {
+            qot_dal.UserStorageService.main.addToDownload(contentItem: item) { [weak self] (storage, error) in
+                self?.download = storage
+                self?.updateDownloadButtonState(storage?.downloadStaus ?? .NONE)
+                guard let download = storage else {
+                    return
+                }
+                qot_dal.UserStorageService.main.resumeDownload(download) { [weak self] (status) in
+                    self?.updateDownloadButtonState(self?.convertDownloadStatus(status) ?? .NONE)
+                }
+            }
+        }
     }
 }
 
@@ -115,6 +197,15 @@ extension AudioFullScreenViewController {
 
     @objc func didEndAudio(_ notification: Notification) {
         updatePlayButton(false)
+    }
+
+    @objc func didUpdateDownloadStatus(_ notification: Notification) {
+        guard let map = notification.object as? [String: QDMDownloadStatus] else {
+            return
+        }
+        if let donwloadKey = self.download?.qotId, let statusData = map[donwloadKey] {
+            updateDownloadButtonState(convertDownloadStatus(statusData.status))
+        }
     }
 }
 

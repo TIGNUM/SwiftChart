@@ -28,7 +28,7 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
 
     }
 
-    func didTabCell(at: IndexPath) {
+    func didTapCell(at: IndexPath) {
         viewController.presentLevelTwo()
     }
 }

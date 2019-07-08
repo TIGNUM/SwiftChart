@@ -27,4 +27,8 @@ extension KnowingPresenter: KnowingPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func reload() {
+        viewController?.reload()
+    }
 }

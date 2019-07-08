@@ -10,13 +10,15 @@ import Foundation
 
 protocol KnowingViewControllerInterface: class {
     func setupView()
+    func reload()
 }
 
 protocol KnowingPresenterInterface {
     func setupView()
+    func reload()
 }
 
-protocol KnowingInteractorInterface: Interactor {
+protocol KnowingInteractorInterface: class, Interactor {
     func whatsHotArticles() -> [Knowing.WhatsHotItem]
     func fiftyFiveStrategies() -> [Knowing.StrategyItem]
     func strategies() -> [Knowing.StrategyItem]
@@ -24,6 +26,8 @@ protocol KnowingInteractorInterface: Interactor {
     func presentWhatsHotArticle(selectedID: Int)
     func presentStrategyList(selectedStrategyID: Int?)
     func header(for section: Knowing.Section) -> (title: String?, subtitle: String?)
+    func reload()
+    func loadData()
 }
 
 protocol KnowingRouterInterface {

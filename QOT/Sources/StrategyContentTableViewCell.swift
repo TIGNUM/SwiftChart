@@ -39,13 +39,13 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
                    timeToWatch: String,
                    mediaURL: URL?,
                    duration: Double,
-                   remoteID: Int) {
+                   mediaItemId: Int) {
         self.categoryTitle = categoryTitle
         self.mediaURL = mediaURL
         self.title = title
-        self.remoteID = remoteID
+        self.remoteID = mediaItemId
         self.duration = duration
-        setAudioAsCompleteIfNeeded(remoteID: remoteID)
+        setAudioAsCompleteIfNeeded(remoteID: mediaItemId)
         titleLabel.attributedText = NSAttributedString(string: title,
                                                        letterSpacing: 0.5,
                                                        font: .apercuLight(ofSize: 16),
@@ -71,7 +71,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
 
 extension StrategyContentTableViewCell {
 
-    @IBAction func didTabAudioButton() {
+    @IBAction func didTapAudioButton() {
         let media = MediaPlayerModel(title: title ?? "",
                                      subtitle: categoryTitle,
                                      url: mediaURL,

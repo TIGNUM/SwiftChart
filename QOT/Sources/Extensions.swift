@@ -506,7 +506,7 @@ extension UIView {
     }
 
     func removeLoadingSkeleton() {
-        guard let view = self.viewWithTag(-999) else { return }
+        guard let view = self.viewWithTag(Skeleton.tag) else { return }
         view.removeFromSuperview()
     }
 

@@ -68,7 +68,7 @@ private extension PrepareSectionHeaderView {
                                   alignment: .center)
     }
 
-    @IBAction func didTabEditPreparationButton() {
+    @IBAction func didTapEditPreparationButton() {
         delegate?.didTapAddRemove(headerID: headerID)
     }
 }

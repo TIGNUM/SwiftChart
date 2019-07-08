@@ -459,7 +459,7 @@ private extension ChartCell {
     }
 
     @IBAction func infoButtonPressed(sender: UIButton) {
-        controllerDelegate?.didTabInfoView(pageName: statistics?.chartType.pageName)
+        controllerDelegate?.didTapInfoView(pageName: statistics?.chartType.pageName)
         infoView.alpha = 0
         UIView.animate(withDuration: 0.5) {
             self.infoView.alpha = 1
@@ -471,7 +471,7 @@ private extension ChartCell {
     }
 
     @IBAction func closeInfoView() {
-        controllerDelegate?.didTabInfoView(pageName: .tabBarItemData)
+        controllerDelegate?.didTapInfoView(pageName: .tabBarItemData)
         UIView.animate(withDuration: 0.5) {
             self.infoView.alpha = 0
         }

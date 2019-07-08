@@ -27,4 +27,8 @@ extension StrategyListPresenter: StrategyListPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func reload() {
+        viewController?.reload()
+    }
 }

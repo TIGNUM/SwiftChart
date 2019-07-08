@@ -81,6 +81,6 @@ extension LevelTwoViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        interactor?.didTabCell(at: indexPath)
+        interactor?.didTapCell(at: indexPath)
     }
 }

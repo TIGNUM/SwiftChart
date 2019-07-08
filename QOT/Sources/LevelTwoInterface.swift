@@ -18,9 +18,9 @@ protocol LevelTwoPresenterInterface {
 }
 
 protocol LevelTwoInteractorInterface: Interactor {
-    func didTabCell(at: IndexPath)
+    func didTapCell(at: IndexPath)
 }
 
 protocol LevelTwoRouterInterface {
-    func didTabCell(at: IndexPath)
+    func didTapCell(at: IndexPath)
 }

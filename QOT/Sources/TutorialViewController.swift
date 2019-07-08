@@ -95,7 +95,7 @@ private extension TutorialViewController {
 
 private extension TutorialViewController {
 
-    @IBAction func didTabEndButton() {
+    @IBAction func didTapEndButton() {
         interactor?.dismiss()
     }
 }

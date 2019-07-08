@@ -50,7 +50,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
     }
 
     var audioItem: Article.Item? {
-        return worker.audioItem
+        return worker.audioArticleItem
     }
 
     var categoryTitle: String {
@@ -69,7 +69,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.audioURL
     }
 
-    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot {
+    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
         return worker.relatedArticle(at: indexPath)
     }
 
@@ -90,13 +90,23 @@ extension ArticleInteractor: ArticleInteractorInterface {
     }
 
     func showRelatedArticle(remoteID: Int) {
-        let services = worker.services
-        worker = ArticleWorker(services: services, selectedID: remoteID)
+        worker = ArticleWorker(selectedID: remoteID)
+        worker.interactor = self
         presenter.setupArticleHeader(header: worker.articleHeader)
         presenter.reloadData()
     }
 
     var whatsHotShareable: WhatsHotShareable {
         return worker.whatsHotShareable
+    }
+
+    func dataUpdated() {
+        presenter.setupArticleHeader(header: worker.articleHeader)
+        presenter.reloadData()
+        presenter.updateBookmark(worker.bookmark != nil)
+    }
+
+    func toggleBookmark() {
+        presenter.updateBookmark(worker.toggleBookmark())
     }
 }

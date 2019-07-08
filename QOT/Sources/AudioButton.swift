@@ -18,7 +18,7 @@ final class AudioButton: UIView {
     private var categoryTitle = ""
     private var title = ""
     private var audioURL: URL? = nil
-    private var remoteID: Int = 0
+    private var audioRemoteID: Int = 0
     private var duration: Int = 0
 
     static func instantiateFromNib() -> AudioButton {
@@ -41,7 +41,7 @@ final class AudioButton: UIView {
         self.categoryTitle = categoryTitle
         self.title = title
         self.audioURL = audioURL
-        self.remoteID = remoteID
+        self.audioRemoteID = remoteID
         self.duration = duration
         let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
         setDutationLabel(text: mediaDescription)
@@ -68,11 +68,11 @@ private extension AudioButton {
 // MARK: - Actions
 
 private extension AudioButton {
-    @IBAction func didTabAudiButton() {
+    @IBAction func didTapAudiButton() {
         let media = MediaPlayerModel(title: title,
                                      subtitle: categoryTitle,
                                      url: audioURL,
-                                     totalDuration: Double(duration), progress: 0, currentTime: 0, mediaRemoteId: remoteID)
+                                     totalDuration: Double(duration), progress: 0, currentTime: 0, mediaRemoteId: audioRemoteID)
         NotificationCenter.default.post(name: .playPauseAudio, object: media)
     }
 }

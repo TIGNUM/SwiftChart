@@ -17,6 +17,7 @@ final class StrategyListConfigurator: AppStateAccess {
                                         selectedStrategyID: selectedStrategyID)
         let presenter = StrategyListPresenter(viewController: viewController)
         let interactor = StrategyListInteractor(worker: worker, presenter: presenter, router: router)
+        worker.interactor = interactor
         viewController.interactor = interactor
     }
 }

@@ -11,7 +11,7 @@ import Foundation
 extension ContentItem {
 
     var contentItemValue: ContentItemValue {
-        return ContentItemValue(item: self)
+        return .invalid
     }
 
     var contentItemTextStyle: ContentItemTextStyle {

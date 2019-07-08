@@ -63,4 +63,12 @@ extension KnowingInteractor: KnowingInteractorInterface {
     func header(for section: Knowing.Section) -> (title: String?, subtitle: String?) {
         return worker.header(for: section)
     }
+
+    func reload() {
+        presenter.reload()
+    }
+
+    func loadData() {
+        worker.loadData()
+    }
 }

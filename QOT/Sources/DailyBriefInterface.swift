@@ -18,7 +18,7 @@ protocol DailyBriefPresenterInterface {
 }
 
 protocol DailyBriefInteractorInterface: Interactor {
-    func didTabCell(at: IndexPath)
+    func didTapCell(at: IndexPath)
     func whatsHotArticles() -> [Knowing.WhatsHotItem]
     func strategies() -> [Knowing.StrategyItem]
     func presentWhatsHotArticle(at indexPath: IndexPath)
@@ -26,6 +26,6 @@ protocol DailyBriefInteractorInterface: Interactor {
 }
 
 protocol DailyBriefRouterInterface {
-    func didTabCell(at: IndexPath)
+    func didTapCell(at: IndexPath)
     func presentStrategyList(selectedStrategyID: Int)
 }

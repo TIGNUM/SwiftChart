@@ -59,4 +59,8 @@ extension StrategyListInteractor: StrategyListInteractorInterface {
     func presentArticle(selectedID: Int?) {
         router.presentArticle(selectedID: selectedID)
     }
+
+    func reloadData() {
+        presenter.reload()
+    }
 }

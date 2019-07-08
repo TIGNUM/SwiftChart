@@ -9,6 +9,7 @@
 import UIKit
 
 final class Skeleton: UIView {
+    static let tag: Int = -999
 
     static func showLoader() -> UIView {
         let view = LoadingSkeleton()
@@ -33,6 +34,7 @@ final class Skeleton: UIView {
         stackViewMain.addArrangedSubview(stackViewSubOne)
         let dummyView = UIView()
         stackViewMain.addArrangedSubview(dummyView)
+        stackViewMain.tag = Skeleton.tag
         return stackViewMain
     }
 }

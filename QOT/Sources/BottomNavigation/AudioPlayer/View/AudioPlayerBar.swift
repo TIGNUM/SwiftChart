@@ -182,7 +182,7 @@ extension AudioPlayerBar {
 // MARK: - Actions
 
 private extension AudioPlayerBar {
-    @IBAction func didTabPlayPauseButton() {
+    @IBAction func didTapPlayPauseButton() {
         guard let media = currentMedia  else {
             return
         }
@@ -190,12 +190,12 @@ private extension AudioPlayerBar {
         trackUserEvent(isPlaying ? .PAUSE : .PLAY)
     }
 
-    @IBAction func didTabCloseButton() {
+    @IBAction func didTapCloseButton() {
         NotificationCenter.default.post(name: .stopAudio, object: nil)
         trackUserEvent(.STOP)
     }
 
-    @IBAction func didTabFullScreenButton() {
+    @IBAction func didTapFullScreenButton() {
         NotificationCenter.default.post(name: .showAudioFullScreen, object: currentMedia)
         trackUserEvent(.FULL_SCREEN)
     }

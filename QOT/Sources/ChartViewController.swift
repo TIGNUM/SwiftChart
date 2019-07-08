@@ -13,7 +13,7 @@ import ReactiveKit
 protocol ChartViewControllerDelegate: class {
     func didSelectAddSensor()
     func didSelectOpenSettings()
-    func didTabInfoView(pageName: PageName?)
+    func didTapInfoView(pageName: PageName?)
 }
 
 final class ChartViewController: UIViewController, FullScreenLoadable, PageViewControllerNotSwipeable {
@@ -179,7 +179,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
 // MARK: - StatisticsViewControllerDelegate
 
 extension ChartViewController: ChartViewControllerDelegate {
-    func didTabInfoView(pageName: PageName?) {
+    func didTapInfoView(pageName: PageName?) {
         if pageName == .tabBarItemData {
             infoPageName = nil
         } else {

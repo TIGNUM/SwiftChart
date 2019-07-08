@@ -12,7 +12,7 @@ final class MyPrepsNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(MyPrepsNavigationController.classForCoder())
 }
 
-final class MyPrepsViewController: UIViewController {
+final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 
     enum SegmentView: Int {
         case myPreps = 0

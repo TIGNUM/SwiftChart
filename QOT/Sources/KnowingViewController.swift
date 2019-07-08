@@ -27,11 +27,14 @@ final class KnowingViewController: HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        self.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .threeLinesAndImage])
+        self.view.backgroundColor = ColorMode.dark.background
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
+        interactor?.loadData()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -72,6 +75,11 @@ extension KnowingViewController: KnowingViewControllerInterface {
         collectionView.register(UINib(resource: R.nib.componentHeaderView),
                                 forSupplementaryViewOfKind: UICollectionElementKindSectionHeader,
                                 withReuseIdentifier: headerViewID)
+    }
+
+    func reload() {
+        self.removeLoadingSkeleton()
+        collectionView.reloadData()
     }
 }
 

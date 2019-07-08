@@ -114,7 +114,7 @@ private extension NavigationItem {
         let searchButton = UIBarButtonItem(image: R.image.ic_search(),
                                            style: .plain,
                                            target: self,
-                                           action: #selector(didTabSearch(_:)))
+                                           action: #selector(didTapSearch(_:)))
         searchButton.tintColor = style.defaultColor
         searchButton.imageInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: -16)
         addRightButtons(rightButtons: [searchButton], style: style)
@@ -155,7 +155,7 @@ extension NavigationItem {
         delegate?.navigationItem(self, rightButtonPressed: sender)
     }
 
-    @objc private func didTabSearch(_ sender: UIBarButtonItem) {
+    @objc private func didTapSearch(_ sender: UIBarButtonItem) {
         delegate?.navigationItem(self, searchButtonPressed: sender)
     }
 }

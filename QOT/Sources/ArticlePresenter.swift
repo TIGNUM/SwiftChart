@@ -35,4 +35,8 @@ extension ArticlePresenter: ArticlePresenterInterface {
     func reloadData() {
         viewController?.reloadData()
     }
+
+    func updateBookmark(_ hasBookmark: Bool) {
+        viewController?.hasBookmark(hasBookmark)
+    }
 }

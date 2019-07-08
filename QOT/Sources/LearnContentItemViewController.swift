@@ -146,7 +146,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
 
         if viewModel.containsAudioItem(tabType: tabType) == true && indexPath.section == 0 {
             switch viewModel.firstAudioItem() {
-            case .audio(_, _, _, _, _, let waveformData):
+            case .audio(_, _, _, _, _, _, let waveformData):
                 let cell: LearnStrategyAudioPlayerView = tableView.dequeueCell(for: indexPath)
                 cell.delegate = self
                 viewModel.audioPlayerViewDelegate = cell
@@ -173,12 +173,12 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                                                     indexPath: indexPath,
                                                     topText: attributedTopText,
                                                     bottomText: nil)
-            case .audio(let title, _, _, _, let duration, _):
+            case .audio(_, let title, _, _, _, let duration, _):
                 return contentItemAudioCell(tableView: tableView,
                                             indexPath: indexPath,
                                             title: title,
                                             duration: duration)
-            case .video(let title, _, let placeholderURL, _, let duration):
+            case .video(_, let title, _, let placeholderURL, _, let duration):
                 let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
                 return mediaStreamCell(tableView: tableView,
                                        indexPath: indexPath,
@@ -223,7 +223,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         switch viewModel.contentItemValue(at: indexPath, tabType: tabType) {
         case .audio:
             prepareAndPlay(at: indexPath)
-        case .video(_, _, _, let videoURL, _):
+        case .video(_, _, _, _, let videoURL, _):
             let contentItem = viewModel.learnContentItem(at: indexPath, tabType: tabType)
             let playerViewController = stream(videoURL: videoURL, contentItem: contentItem, pageName: pageName)
             if let playerItem = playerViewController.player?.currentItem {
@@ -254,7 +254,7 @@ private extension LearnContentItemViewController {
     func prepareAndPlay(at indexPath: IndexPath) {
         let item = viewModel.learnContentItem(at: indexPath, tabType: tabType)
         switch item.contentItemValue {
-        case .audio(_, _, _, let remoteURL, let duration, let waveformData):
+        case .audio(_, _, _, _, let remoteURL, let duration, let waveformData):
             let url = item.bundledAudioURL ?? remoteURL
             let cell = itemTableView.cellForRow(at: indexPath) as? LearnStrategyPlaylistAudioCell
             viewModel.playItem(at: indexPath, audioURL: url, duration: duration, cell: cell)

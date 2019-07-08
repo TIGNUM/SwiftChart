@@ -51,11 +51,11 @@ private extension MediaPlayerOverlay {
 // MARK: - Actions
 
 private extension MediaPlayerOverlay {
-    @IBAction func didTabDownloadButton() {
+    @IBAction func didTapDownloadButton() {
         delegate?.showAlert()
     }
 
-    @IBAction func didTabBookmarkButton() {
+    @IBAction func didTapBookmarkButton() {
         delegate?.showAlert()
     }
 }

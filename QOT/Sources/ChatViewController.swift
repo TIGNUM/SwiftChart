@@ -84,7 +84,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         return UIBarButtonItem(image: R.image.ic_back(),
                                style: .plain,
                                target: self,
-                               action: #selector(didTabBackButton))
+                               action: #selector(didTapBackButton))
     }()
 
     private lazy var collectionView: UICollectionView = {
@@ -180,7 +180,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         self.visionChoice = nil
     }
 
-    @objc func didTabBackButton() {
+    @objc override func didTapBackButton() {
         guard pageName == PageName.visionGenerator else { return }
         if let alertModel = viewModel.visionGeneratorInteractor?.alertModel,
             viewModel.visionGeneratorInteractor?.shouldShowAlertVisionNotSaved == true {

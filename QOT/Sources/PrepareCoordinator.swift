@@ -121,7 +121,7 @@ extension PrepareCoordinator {
                                              title: title,
                                              subTitle: description,
                                              readMoreID: relatedContentID))
-                case .video(_, _, let placeholderURL, let videoURL, _):
+                case .video(_, _, _, let placeholderURL, let videoURL, _):
                     video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
                 case .text(let text, let style):
                     if style == .paragraph {
@@ -294,7 +294,7 @@ private extension PrepareCoordinator {
                                          title: item.contentCollection?.title ?? "",
                                          subTitle: title,
                                          readMoreID: item.contentCollection?.remoteID.value))
-            case .video(_, _, let placeholderURL, let videoURL, _):
+            case .video(_, _, _, let placeholderURL, let videoURL, _):
                 video = PrepareContentViewModel.Video(url: videoURL, placeholderURL: placeholderURL)
             case .text(let text, let style):
                 if style == .paragraph {

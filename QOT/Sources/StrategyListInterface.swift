@@ -10,19 +10,22 @@ import Foundation
 
 protocol StrategyListViewControllerInterface: class {
     func setupView()
+    func reload()
 }
 
 protocol StrategyListPresenterInterface {
     func setupView()
+    func reload()
 }
 
-protocol StrategyListInteractorInterface: Interactor {
+protocol StrategyListInteractorInterface: class, Interactor {
     var isFoundation: Bool { get }
     var foundationStrategies: [Strategy.Item] { get }
     var strategies: [Strategy.Item] { get }
     var rowCount: Int { get }
     var headerTitle: String { get }
     func presentArticle(selectedID: Int?)
+    func reloadData()
 }
 
 protocol StrategyListRouterInterface {

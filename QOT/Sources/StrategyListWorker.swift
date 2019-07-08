@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class StrategyListWorker {
 
@@ -14,6 +15,7 @@ final class StrategyListWorker {
 
     let services: Services
     private let selectedStrategyID: Int?
+    weak var interactor: StrategyListInteractorInterface?
 
     lazy var headerTitle: String = {
         if isFoundation == true {
@@ -33,13 +35,11 @@ final class StrategyListWorker {
         return strategies.count
     }
 
-    private lazy var selectedStrategy: ContentCategory? = {
-        return services.contentService.contentCategory(id: selectedStrategyID ?? 0)
-    }()
+    private var selectedStrategy: QDMContentCategory?
 
-    private lazy var contentList: [ContentCollection] = {
+    private lazy var contentList: [QDMContentCollection] = {
         guard let contentList = selectedStrategy?.contentCollections else { return [] }
-        return Array(contentList).filter { $0.section == Database.Section.learnStrategy.value }
+        return Array(contentList).filter { $0.section == .LearnStrategies }
     }()
 
     // MARK: - Init
@@ -47,41 +47,44 @@ final class StrategyListWorker {
     init(services: Services, selectedStrategyID: Int?) {
         self.services = services
         self.selectedStrategyID = selectedStrategyID
+
+        qot_dal.ContentService.main.getContentCategory(.PerformanceFoundation) { [weak self] (foundation) in
+            var items = [Strategy.Item]()
+            for contentCollection in foundation?.contentCollections.filter({ (collection) -> Bool in
+                collection.section == .LearnStrategies
+            }) ?? [] {
+                let foundationItem = contentCollection.contentItems.filter { $0.format == .video }.first
+                let imageURL = URL(string: foundationItem?.valueImageURL ?? "")
+                items.append(Strategy.Item(remoteID: contentCollection.remoteID ?? 0,
+                                           categoryTitle: contentCollection.contentCategoryTitle ?? "",
+                                           title: contentCollection.title,
+                                           imageURL: imageURL,
+                                           mediaItem: foundationItem))
+            }
+            self?.foundationStrategies = items
+        }
+
+        qot_dal.ContentService.main.getContentCategoryById(selectedStrategyID ?? 0) { [weak self] (qdmCategory) in
+            self?.selectedStrategy = qdmCategory
+            let learnContentList = qdmCategory?.contentCollections.filter({ (content) -> Bool in
+                content.section == .LearnStrategies
+            })
+            var items = [Strategy.Item]()
+            learnContentList?.forEach { (contentCollection) in
+                let title = contentCollection.title.replacingOccurrences(of: "Performance ", with: "")
+                let firstAudioItem = contentCollection.contentItems.filter { $0.format == .audio }.first
+                items.append(Strategy.Item(remoteID: contentCollection.remoteID ?? 0,
+                                           categoryTitle: contentCollection.contentCategoryTitle ?? "",
+                                           title: title,
+                                           imageURL: nil,
+                                           mediaItem: firstAudioItem))
+            }
+            self?.strategies = items
+            self?.interactor?.reloadData()
+        }
     }
 
-    lazy var foundationStrategies: [Strategy.Item] = {
-        var items = [Strategy.Item]()
-        services.contentService.learnStrategiesFoundation().forEach { (contentCollection) in
-            let title = contentCollection.title.replacingOccurrences(of: "Performance ", with: "")
-            let foundationItem = contentCollection.articleItems.filter { $0.format == "video" }.first
-            let imageURL = URL(string: foundationItem?.valueImageURL ?? "")
-            let mediaURL = URL(string: foundationItem?.valueMediaURL ?? "")
-            items.append(Strategy.Item(remoteID: contentCollection.remoteID.value ?? 0,
-                                       categoryTitle: contentCollection.contentCategories.first?.title ?? "",
-                                       title: title,
-                                       durationString: foundationItem?.durationString ?? "",
-                                       imageURL: imageURL,
-                                       mediaURL: mediaURL,
-                                       duration: 0))
-        }
-        return items
-    }()
+    var foundationStrategies = [Strategy.Item]()
 
-    lazy var strategies: [Strategy.Item] = {
-        guard let selectedID = selectedStrategyID else { return [] }
-        let learnContentList = services.contentService.contentCollections(categoryID: selectedID).filter { $0.section == Database.Section.learnStrategy.value }
-        var items = [Strategy.Item]()
-        learnContentList.forEach { (contentCollection) in
-            let title = contentCollection.title.replacingOccurrences(of: "Performance ", with: "")
-            let firstAudioItem = contentCollection.articleItems.filter { $0.format == "audio" }.first
-            items.append(Strategy.Item(remoteID: contentCollection.remoteID.value ?? 0,
-                                       categoryTitle: contentCollection.contentCategories.first?.title ?? "",
-                                       title: title,
-                                       durationString: contentCollection.durationString,
-                                       imageURL: nil,
-                                       mediaURL: URL(string: (firstAudioItem?.valueMediaURL ?? "")),
-                                       duration: firstAudioItem?.valueDuration.value ?? 0))
-        }
-        return items
-    }()
+    var strategies = [Strategy.Item]()
 }

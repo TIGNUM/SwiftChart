@@ -7,11 +7,11 @@
 //
 
 import UIKit
-
+import qot_dal
 final class KnowingWorker {
 
     // MARK: - Properties
-
+    weak var interactor: KnowingInteractorInterface?
     private let services: Services?
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
@@ -23,56 +23,63 @@ final class KnowingWorker {
         self.services = services
     }
 
-    lazy var strategies: [Knowing.StrategyItem] = {
-        guard let strategies = services?.contentService.learnContentCategories() else { return [] }
-        var strategyItems: [Knowing.StrategyItem] = []
-        for strategy in strategies {
-            let viewedCount = strategy.viewedCount(section: .learnStrategy)
-            let itemCount = strategy.itemCount(section: .learnStrategy)
-            strategyItems.append(Knowing.StrategyItem(title: strategy.title,
-                                                      remoteID: strategy.remoteID.value ?? 0,
-                                                      viewedCount: viewedCount,
-                                                      itemCount: itemCount,
-                                                      sortOrder: strategy.sortOrder))
+    func loadData() {
+        qot_dal.ContentService.main.getContentCategories(StrategyContentCategories) { (categories) in
+            var strategyItems: [Knowing.StrategyItem] = []
+            for strategy in categories ?? [] {
+                let viewedCount = strategy.readCount
+                let itemCount = strategy.contentCollections.filter({ (content) -> Bool in
+                    content.section == .LearnStrategies
+                }).count
+
+                strategyItems.append(Knowing.StrategyItem(title: strategy.title,
+                                                          remoteID: strategy.remoteID ?? 0,
+                                                          viewedCount: viewedCount,
+                                                          itemCount: itemCount,
+                                                          sortOrder: strategy.sortOrder))
+            }
+            self.strategies = strategyItems.sorted(by: { (lhs, rhs) -> Bool in
+                lhs.sortOrder < rhs.sortOrder
+            })
         }
-        return strategyItems.sorted(by: { (lhs, rhs) -> Bool in
-            lhs.sortOrder < rhs.sortOrder
-        })
-    }()
 
-    lazy var foundationStrategy: Knowing.StrategyItem? = {
+        qot_dal.ContentService.main.getContentCategory(.WhatsHot) { (category) in
+            guard let category = category else {
+                self.interactor?.reload()
+                return
+            }
+            var whatsHotItems: [Knowing.WhatsHotItem] = []
+            for article in category.contentCollections.filter({ $0.section == .WhatsHot }) {
+                if let collectionId = article.remoteID {
+                    whatsHotItems.append(Knowing.WhatsHotItem(title: article.title,
+                                                              body: article.contentItems.first?.valueText ?? "",
+                                                              image: URL(string: article.thumbnailURLString ?? ""),
+                                                              remoteID: collectionId,
+                                                              author: article.author ?? "",
+                                                              publishDate: article.publishedDate ?? article.modifiedAt,
+                                                              timeToRead: article.durationString,
+                                                              isNew: self.isNew(article)))
+                }
+            }
+            self.whatsHotItems = whatsHotItems.sorted(by: { (first, second) -> Bool in
+                first.publishDate ?? Date() > second.publishDate ?? Date()
+            })
+            self.interactor?.reload()
+        }
+    }
+
+    var strategies = [Knowing.StrategyItem]()
+
+    var foundationStrategy: Knowing.StrategyItem? {
         return strategies.filter { $0.title.contains("Foundation") }.first
-    }()
+    }
 
-    lazy var fityFiveStrategies: [Knowing.StrategyItem] = {
+    var fityFiveStrategies: [Knowing.StrategyItem] {
         guard let foundation = foundationStrategy else { return [] }
         return strategies.filter { $0 != foundation }
-    }()
-
-    lazy var whatsHotItems: [Knowing.WhatsHotItem] = {
-        guard let whatsHotArticles = services?.contentService.whatsHotArticles() else { return [] }
-        var whatsHotItems: [Knowing.WhatsHotItem] = []
-        for article in whatsHotArticles {
-            if
-                let collectionId = article.remoteID.value,
-                let body = services?.contentService.contentItems(contentCollectionID: collectionId).first?.valueText {
-                whatsHotItems.append(Knowing.WhatsHotItem(title: article.title,
-                                                          body: body,
-                                                          image: article.thumbnailURL,
-                                                          remoteID: collectionId,
-                                                          author: article.author ?? "",
-                                                          publishDate: article.publishDate,
-                                                          timeToRead: article.durationString,
-                                                          isNew: isNew(article)))
-            }
-        }
-        return whatsHotItems
-    }()
-
-    func contentList(selectedStrategyID: Int) -> [ContentCollection] {
-        guard let contentList = services?.contentService.contentCategory(id: selectedStrategyID)?.contentCollections else { return [] }
-        return Array(contentList)
     }
+
+    var whatsHotItems = [Knowing.WhatsHotItem]()
 
     func header(for section: Knowing.Section) -> (title: String?, subtitle: String?) {
         let title = services?.contentService.contentItem(for: section.titlePredicate)?.valueText
@@ -84,10 +91,10 @@ final class KnowingWorker {
 // MARK: - Private
 
 private extension KnowingWorker {
-    func isNew(_ article: ContentCollection) -> Bool {
-        var isNewArticle = article.contentRead == nil
+    func isNew(_ article: QDMContentCollection) -> Bool {
+        var isNewArticle = article.viewedAt == nil
         if let firstInstallTimeStamp = self.firstInstallTimeStamp {
-            isNewArticle = article.contentRead == nil && article.modifiedAt > firstInstallTimeStamp
+            isNewArticle = article.viewedAt == nil && article.modifiedAt ?? article.createdAt ?? Date() > firstInstallTimeStamp
         }
         return isNewArticle
     }

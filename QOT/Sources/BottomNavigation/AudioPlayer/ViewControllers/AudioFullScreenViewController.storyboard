@@ -26,24 +26,31 @@
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tej-Ln-v5W">
-                                <rect key="frame" x="278" y="722" width="112" height="40"/>
+                                <rect key="frame" x="274" y="722" width="116" height="40"/>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="vcx-ft-aWY"/>
-                                    <constraint firstAttribute="width" constant="112" id="zsV-lw-hwI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="12"/>
+                                <inset key="contentEdgeInsets" minX="12" minY="0.0" maxX="12" maxY="0.0"/>
                                 <inset key="imageEdgeInsets" minX="-4" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="Download" image="ic_save"/>
+                                <connections>
+                                    <action selector="didTapDownloadButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="sHf-1I-WjR"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IbD-ob-szJ">
-                                <rect key="frame" x="222" y="722" width="40" height="40"/>
+                                <rect key="frame" x="218" y="722" width="40" height="40"/>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="40" id="O4L-Yl-7T2"/>
                                     <constraint firstAttribute="width" constant="40" id="YV2-oK-s6D"/>
                                 </constraints>
                                 <state key="normal" image="ic_bookmark"/>
+                                <state key="selected" image="ic_bookmark_fill"/>
+                                <connections>
+                                    <action selector="didTapBookmarkButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="Hff-9I-4YT"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOp-Dk-Bbn">
                                 <rect key="frame" x="350" y="60" width="40" height="40"/>
@@ -53,7 +60,7 @@
                                 </constraints>
                                 <state key="normal" image="ic_minimize"/>
                                 <connections>
-                                    <action selector="didTabCloseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="bmT-OD-KBI"/>
+                                    <action selector="didTapCloseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="bmT-OD-KBI"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Rtb-mS-eZN">
@@ -79,7 +86,7 @@
                                 <state key="normal" image="ic_play_sand"/>
                                 <state key="selected" image="ic_pause_sand"/>
                                 <connections>
-                                    <action selector="didTabPlayPauseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="e0m-Vp-IGW"/>
+                                    <action selector="didTapPlayPauseButton" destination="dId-Vu-4Vl" eventType="touchUpInside" id="e0m-Vp-IGW"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -93,7 +100,7 @@
                             <constraint firstItem="2Xa-v4-1Tm" firstAttribute="width" secondItem="Dd7-bx-ju4" secondAttribute="width" multiplier="266:375" id="Uhv-pf-9ZV"/>
                             <constraint firstItem="Ai7-FY-RGD" firstAttribute="centerY" secondItem="CtA-66-Mx5" secondAttribute="centerY" id="UlG-e2-Dze"/>
                             <constraint firstItem="Tej-Ln-v5W" firstAttribute="bottom" secondItem="CtA-66-Mx5" secondAttribute="bottom" constant="-100" id="WEX-nt-BtL"/>
-                            <constraint firstItem="Tej-Ln-v5W" firstAttribute="leading" secondItem="IbD-ob-szJ" secondAttribute="trailing" constant="16" id="caT-Yp-EJn"/>
+                            <constraint firstItem="IbD-ob-szJ" firstAttribute="trailing" secondItem="Tej-Ln-v5W" secondAttribute="leading" constant="-16" id="caT-Yp-EJn"/>
                             <constraint firstItem="IbD-ob-szJ" firstAttribute="centerY" secondItem="Tej-Ln-v5W" secondAttribute="centerY" id="eMw-oT-yuj"/>
                             <constraint firstItem="Rtb-mS-eZN" firstAttribute="leading" secondItem="CtA-66-Mx5" secondAttribute="leading" constant="24" id="f15-kR-jKS"/>
                             <constraint firstItem="MOp-Dk-Bbn" firstAttribute="top" secondItem="CtA-66-Mx5" secondAttribute="top" constant="16" id="gv2-E0-prN"/>
@@ -116,11 +123,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ARM-PJ-UEQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-219" y="29"/>
+            <point key="canvasLocation" x="-220.28985507246378" y="28.794642857142854"/>
         </scene>
     </scenes>
     <resources>
         <image name="ic_bookmark" width="14" height="16"/>
+        <image name="ic_bookmark_fill" width="16" height="16"/>
         <image name="ic_minimize" width="23" height="12"/>
         <image name="ic_pause_sand" width="16" height="16"/>
         <image name="ic_play_sand" width="16" height="16"/>

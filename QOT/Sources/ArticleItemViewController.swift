@@ -301,7 +301,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
             }
             let item = viewModel.articleItem(at: indexPath)
             switch item.contentItemValue {
-            case .audio(let title, _, let imageURL, _, _, _):
+            case .audio(_, let title, _, let imageURL, _, _, _):
                 return mediaStreamCell(
                     tableView: tableView,
                     indexPath: indexPath,
@@ -336,7 +336,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                                                     indexPath: indexPath,
                                                     topText: attributedTopText,
                                                     bottomText: nil)
-            case .video(let title, _, let placeholderURL, _, _):
+            case .video(_, let title, _, let placeholderURL, _, _):
                 return mediaStreamCell(
                     tableView: tableView,
                     indexPath: indexPath,
@@ -382,10 +382,10 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
             let item = viewModel.articleItem(at: indexPath)
 
             switch item.contentItemValue {
-            case .audio(_, _, _, let remoteURL, _, _):
+            case .audio(_, _, _, _, let remoteURL, _, _):
                 let url = item.bundledAudioURL ?? remoteURL
                 delegate?.didTapMedia(withURL: url, in: self)
-            case .video(_, _, _, let videoURL, _):
+            case .video(_, _, _, _, let videoURL, _):
                 let playerViewController = stream(videoURL: videoURL,
                                                   contentItem: viewModel.articleItem(at: indexPath),
                                                   pageName: pageName)

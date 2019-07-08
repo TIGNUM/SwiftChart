@@ -52,7 +52,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         return worker.whatsHotItems
     }
 
-    func didTabCell(at: IndexPath) {
-        router.didTabCell(at: at)
+    func didTapCell(at: IndexPath) {
+        router.didTapCell(at: at)
     }
 }

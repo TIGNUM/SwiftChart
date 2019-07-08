@@ -55,6 +55,12 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
         view.backgroundColor = .carbon
         setupTableView()
+        self.showLoadingSkeleton(with: [.twoLinesAndImage, .twoLinesAndImage])
+    }
+
+    func reload() {
+        tableView.reloadData()
+        self.removeLoadingSkeleton()
     }
 }
 
@@ -79,7 +85,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
                            timeToWatch: strategy?.durationString ?? "",
                            mediaURL: strategy?.mediaURL,
                            duration: strategy?.duration ?? 0,
-                           remoteID: strategy?.remoteID ?? 0)
+                           mediaItemId: strategy?.mediaItem?.remoteID ?? 0)
             return cell
         }
     }
@@ -111,7 +117,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             let strategy = interactor?.strategies[indexPath.item]
             interactor?.presentArticle(selectedID: strategy?.remoteID)
             trackUserEvent(.OPEN, value: strategy?.remoteID, valueType: .CONTENT, action: .TAP)
-            if AudioPlayer.current.isPlaying == true && AudioPlayer.current.remoteID != strategy?.remoteID {
+            if AudioPlayer.current.isPlaying == true && AudioPlayer.current.remoteID != strategy?.mediaItem?.remoteID {
                 NotificationCenter.default.post(name: .stopAudio, object: nil)
             }
         }

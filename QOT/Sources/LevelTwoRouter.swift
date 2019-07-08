@@ -24,7 +24,7 @@ final class LevelTwoRouter {
 // MARK: - LevelTwoRouterInterface
 
 extension LevelTwoRouter: LevelTwoRouterInterface {
-    func didTabCell(at: IndexPath) {
+    func didTapCell(at: IndexPath) {
         viewController.presentLevelThree()
     }
 }

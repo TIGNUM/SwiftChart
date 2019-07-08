@@ -11,7 +11,7 @@ import Anchorage
 import AMScrollingNavbar
 
 protocol ArticleDelegate: class {
-    func didTabMarkAsRead()
+    func didTapMarkAsRead()
 }
 
 var colorMode = ColorMode.dark
@@ -145,7 +145,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         button.setImage(R.image.ic_more_unselected(), for: .normal)
         button.backgroundColor = UIColor.accent.withAlphaComponent(0.3)
         button.corner(radius: button.frame.width * 0.5)
-        button.addTarget(self, action: #selector(didTabMoreButton), for: .touchUpInside)
+        button.addTarget(self, action: #selector(didTapMoreButton), for: .touchUpInside)
         return button
     }()
 
@@ -153,7 +153,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         let item = UIBarButtonItem(image: R.image.ic_bookmark(),
                                    style: .plain,
                                    target: self,
-                                   action: #selector(didTabBookmarkItem))
+                                   action: #selector(didTapBookmarkItem))
         item.width = view.frame.width * multiplier
         item.tintColor = colorMode.tint
         return item
@@ -163,7 +163,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         let item = UIBarButtonItem(image: R.image.ic_night_mode_unselected(),
                                    style: .plain,
                                    target: self,
-                                   action: #selector(didTabDarkModeItem))
+                                   action: #selector(didTapDarkModeItem))
         item.width = view.frame.width * multiplier
         item.tintColor = colorMode.tint
         return item
@@ -173,7 +173,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         let item = UIBarButtonItem(image: R.image.ic_text_scale(),
                                    style: .plain,
                                    target: self,
-                                   action: #selector(didTabTextScaleItem))
+                                   action: #selector(didTapTextScaleItem))
         item.width = view.frame.width * multiplier
         item.tintColor = colorMode.tint
         return item
@@ -183,7 +183,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         let item = UIBarButtonItem(image: R.image.ic_share_sand(),
                                    style: .plain,
                                    target: self,
-                                   action: #selector(didTabShareItem))
+                                   action: #selector(didTapShareItem))
         item.width = view.frame.width * multiplier
         item.tintColor = colorMode.tint
         return item
@@ -250,6 +250,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
     }
 
     func setupAudioItem() {
@@ -258,7 +259,7 @@ private extension ArticleViewController {
         audioButton.configure(categoryTitle: interactor?.categoryTitle ?? "",
                               title: interactor?.title ?? "",
                               audioURL: interactor?.audioURL,
-                              remoteID: interactor?.remoteID ?? 0,
+                              remoteID: audioItem.remoteID,
                               duration: audioItem.type.duration)
     }
 
@@ -295,7 +296,11 @@ extension ArticleViewController {
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [UIBarButtonItem(customView: audioButton)]
+        if self.interactor?.audioItem != nil {
+            setupAudioItem()
+            return [UIBarButtonItem(customView: audioButton)]
+        }
+        return nil
     }
 }
 
@@ -303,7 +308,7 @@ extension ArticleViewController {
 
 private extension ArticleViewController {
 
-    @IBAction func didTabMoreButton() {
+    @IBAction func didTapMoreButton() {
         if topTitleNavigationItem.leftBarButtonItems == nil ||
             topTitleNavigationItem.leftBarButtonItems?.isEmpty == true {
             updateMoreButton(customView: customMoreButton)
@@ -320,24 +325,28 @@ private extension ArticleViewController {
         }
     }
 
-    @objc func didTabBookmarkItem() {
-        showAlert(type: .comingSoon)
+    @objc func didTapBookmarkItem() {
+        trackUserEvent(.BOOKMARK, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
+        interactor?.toggleBookmark()
     }
 
-    @objc func didTabDarkModeItem() {
+    @objc func didTapDarkModeItem() {
+        trackUserEvent(.COLOR_MODE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         colorMode = colorMode == .dark ? .darkNot : .dark
         setColorMode()
         tableView.reloadData()
-        didTabMoreButton()
+        didTapMoreButton()
     }
 
-    @objc func didTabTextScaleItem() {
+    @objc func didTapTextScaleItem() {
+        trackUserEvent(.FONT_SIZE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         textScale = textScale == .scaleNot ? .scale : .scaleNot
         tableView.reloadData()
-        didTabMoreButton()
+        didTapMoreButton()
     }
 
-    @objc func didTabShareItem() {
+    @objc func didTapShareItem() {
+        trackUserEvent(.SHARE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         guard let whatsHotShareable = interactor?.whatsHotShareable else { return }
         let activityVC = UIActivityViewController(activityItems: [whatsHotShareable], applicationActivities: nil)
         present(activityVC, animated: true, completion: nil)
@@ -348,9 +357,12 @@ private extension ArticleViewController {
 
 extension ArticleViewController: ArticleViewControllerInterface {
     func reloadData() {
+        self.view.removeLoadingSkeleton()
         (navigationController as? ScrollingNavigationController)?.showNavbar(animated: true, duration: 0.3)
         tableView.reloadData()
-        tableView.scrollToTop(animated: true)
+        tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 1), animated: true)
+        setupAudioItem()
+        refreshBottomNavigationItems()
     }
 
     func setupArticleHeader(header: Article.Header) {
@@ -359,8 +371,12 @@ extension ArticleViewController: ArticleViewControllerInterface {
 
     func setupView() {
         setupTableView()
-        setupAudioItem()
         setColorMode()
+        self.view.showLoadingSkeleton(with: [.fiveLinesWithTopBroad])
+    }
+
+    func hasBookmark(_ hasBookmark: Bool) {
+        bookMarkBarButtonItem.image = hasBookmark ? R.image.ic_bookmark_fill() : R.image.ic_bookmark()
     }
 }
 
@@ -448,6 +464,7 @@ extension ArticleViewController {
     }
 
     func didTapPDFLink(_ title: String?, _ itemID: Int, _ url: URL) {
+        trackUserEvent(.OPEN, value: itemID, valueType: .CONTENT_ITEM, action: .TAP)
         let storyboard = UIStoryboard(name: "PDFReaderViewController", bundle: nil)
         guard let navigationController = storyboard.instantiateInitialViewController() as? UINavigationController else {
             return
@@ -503,7 +520,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: ArticleImageHeaderTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(imageURLString: imageURLString)
             return cell
-        case .audio(let title, _, let imageURL, _, _, _):
+        case .audio(_, let title, _, let imageURL, _, _, _):
             return mediaStreamCell(
                 tableView: tableView,
                 indexPath: indexPath,
@@ -542,7 +559,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                                            indexPath: indexPath,
                                            topText: attributedTopText,
                                            bottomText: nil)
-        case .video(let title, _, let placeholderURL, _, let duration):
+        case .video(_, let title, _, let placeholderURL, _, let duration):
             let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, timeToWatch: mediaDescription, imageURL: placeholderURL)
@@ -603,10 +620,10 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         tableView.deselectRow(at: indexPath, animated: true)
         guard let item = interactor?.articleItem(at: indexPath) else { return }
         switch item.type {
-        case .audio(_, _, _, let remoteURL, _, _):
+        case .audio(_, _, _, _, let remoteURL, _, _):
             let url = item.bundledAudioURL ?? remoteURL
             delegate?.didTapMedia(withURL: url, in: self)
-        case .video(_, _, _, let videoURL, _):
+        case .video(_, _, _, _, let videoURL, _):
             let playerViewController = stream(videoURL: videoURL, contentItem: nil, pageName: PageName.search)
             if let playerItem = playerViewController.player?.currentItem {
                 let avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
@@ -618,11 +635,14 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             }
         case .pdf(let title, _, let pdfURL, let itemID):
             didTapPDFLink(title, itemID, pdfURL)
+            trackUserEvent(.OPEN, value: itemID, valueType: .CONTENT_ITEM, action: .TAP)
         case .articleRelatedWhatsHot(let relatedArticle):
             interactor?.showRelatedArticle(remoteID: relatedArticle.remoteID)
+            trackUserEvent(.OPEN, value: relatedArticle.remoteID, valueType: .CONTENT, action: .TAP)
         case .articleRelatedStrategy(_, _, let remoteID),
              .articleNextUp(_, _, let remoteID):
             interactor?.showRelatedArticle(remoteID: remoteID)
+            trackUserEvent(.OPEN, value: remoteID, valueType: .CONTENT, action: .TAP)
         default: return
         }
     }
@@ -633,13 +653,13 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
 extension ArticleViewController: ClickableLabelDelegate {
     func openLink(withURL url: URL) {
         interactor?.didTapLink(url)
+        trackUserEvent(.OPEN, value: nil, stringValue: url.absoluteString, valueType: .LINK, action: .TAP)
     }
 }
 
 // MARK: - ArticleDelegate
-
 extension ArticleViewController: ArticleDelegate {
-    func didTabMarkAsRead() {
+    func didTapMarkAsRead() {
         interactor?.markArticleAsRead()
     }
 }

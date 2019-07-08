@@ -88,11 +88,11 @@ private extension IPadAdviceView {
 
 private extension IPadAdviceView {
 
-    @IBAction func didTabDismissButton() {
+    @IBAction func didTapDismissButton() {
         delegate?.dismiss()
     }
 
-    @IBAction func didTabDoNotShowAgainButton() {
+    @IBAction func didTapDoNotShowAgainButton() {
         UserDefault.iPadAdviceDoNotShowAgain.setBoolValue(value: true)
         delegate?.dismiss()
     }

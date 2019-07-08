@@ -14,7 +14,7 @@ final class MyQotNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(MyQotNavigationController.classForCoder())
 }
 
-final class MyQotMainViewController: UIViewController {
+final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
 
     // MARK: - Properties
 

@@ -7,187 +7,258 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ArticleWorker {
 
     // MARK: - Properties
 
-    let services: Services
+    weak var interactor: ArticleInteractorInterface?
     private var selectedID: Int
 
-    private lazy var content: ContentCollection? = {
-        return services.contentService.contentCollection(id: selectedID)
-    }()
+    private var content: QDMContentCollection?
 
-    private lazy var relatedContent: [ContentCollection] = {
-        guard let content = content else { return [] }
-        return services.contentService.relatedContentList(for: content)
-    }()
+    private var relatedContent = [QDMContentCollection]()
 
-    private lazy var isWhatsHot: Bool = {
-        return content?.section == Database.Section.learnWhatsHot.value
-    }()
+    private var isWhatsHot: Bool = false
 
-    private lazy var articleAudioItem: ContentItem? = {
-        return (content?.articleItems.filter { $0.tabs == "AUDIO" })?.first
-    }()
+    private var articleAudioItem: QDMContentItem?
 
-    lazy var articleHeader: Article.Header = {
-        return Article.Header(categoryTitle: content?.contentCategories.first?.title ?? "",
-                              title: content?.title ?? "",
-                              author: content?.author,
-                              publishDate: content?.publishDate,
-                              timeToRead: content?.minutesToRead,
-                              imageURL: content?.thumbnailURLString)
-    }()
+    var articleHeader: Article.Header = Article.Header()
 
-    lazy var relatedArticlesWhatsHot: [Article.RelatedArticleWhatsHot] = {
-        var articles = [Article.RelatedArticleWhatsHot]()
-        relatedContent.forEach { content in
-            if content.isWhatsHot == true {
-                articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID.value ?? 0,
-                                                               title: content.title,
-                                                               publishDate: content.publishDate,
-                                                               author: content.author,
-                                                               timeToRead: content.durationString,
-                                                               imageURL: content.imageURL,
-                                                               isNew: false))
-            }
-        }
-        return articles
-    }()
+    var relatedArticlesWhatsHot = [Article.RelatedArticleWhatsHot]()
 
-    lazy var relatedArticlesStrategy: [Article.RelatedArticleStrategy] = {
-        var articles = [Article.RelatedArticleStrategy]()
-        relatedContent.forEach { content in
-            articles.append(Article.RelatedArticleStrategy(title: content.title,
-                                                           durationString: content.durationString,
-                                                           remoteID: content.remoteID.value ?? 0))
-        }
-        return articles
-    }()
+    var relatedArticlesStrategy = [Article.RelatedArticleStrategy]()
 
-    lazy var audioItem: Article.Item? = {
-        guard
-            let audioItem = articleAudioItem,
-            let audioURL = URL(string: audioItem.valueMediaURL ?? "") else { return nil }
-        return Article.Item(type: ContentItemValue.audio(title: audioItem.valueText ?? "",
-                                                         description: audioItem.description,
-                                                         placeholderURL: URL(string: audioItem.valueImageURL ?? ""),
-                                                         audioURL: audioURL,
-                                                         duration: Double(audioItem.secondsRequired),
-                                                         waveformData: []))
-    }()
+    var audioArticleItem: Article.Item?
 
-    lazy var categoryTitle: String = {
-        return content?.contentCategories.first?.title ?? ""
-    }()
+    var bookmark: QDMUserStorage?
 
-    lazy var title: String = {
+    var categoryTitle: String {
+        return content?.contentCategoryTitle ?? ""
+    }
+
+    var title: String {
         return content?.title ?? ""
-    }()
+    }
 
-    lazy var remoteID: Int = {
-        return content?.remoteID.value ?? 0
-    }()
+    var remoteID: Int {
+        return content?.remoteID ?? 0
+    }
 
-    lazy var audioURL: URL? = {
+    var audioURL: URL? {
+        if let download = articleAudioItem?.userStorages?.filter({ (storage) -> Bool in
+            storage.userStorageType == .DOWNLOAD
+        }).first, let downloadURL = URL(string: download.mediaPath() ?? "") {
+            return downloadURL
+        }
         return URL(string: articleAudioItem?.valueMediaURL ?? "")
-    }()
+    }
 
-    lazy var isShareable: Bool = {
+    var isShareable: Bool {
         return content?.shareableLink != nil
-    }()
+    }
 
-    lazy var whatsHotShareable: WhatsHotShareable = {
+    var whatsHotShareable: WhatsHotShareable {
         return WhatsHotShareable(message: content?.title ?? "",
-                                 imageURL: content?.thumbnailURL,
+                                 imageURL: URL(string: content?.thumbnailURLString ?? ""),
                                  shareableLink: content?.shareableLink)
-    }()
+    }
+
+    var nextUp: Article.Item?
 
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
-    private lazy var whatsHotItems: [Article.Item] = {
+    private var whatsHotItems = [Article.Item]()
+
+    private var learnStrategyItems = [Article.Item]()
+
+    // MARK: - Init
+
+    init(selectedID: Int) {
+        self.selectedID = selectedID
+
+        qot_dal.ContentService.main.getContentCollectionById(selectedID, { [weak self] (content) in
+            self?.content = content
+            self?.setup()
+        })
+    }
+
+    private func setup() {
+        guard let content = self.content else {
+            return
+        }
+        isWhatsHot = content.section == .WhatsHot
+        bookmark = content.userStorages?.filter({ (storage) -> Bool in
+            storage.userStorageType == .BOOKMARK
+        }).first
+        articleAudioItem = content.contentItems.filter({ (item) -> Bool in
+            item.format == .audio && item.tabs.contains(obj: "AUDIO")
+        }).first
+        articleHeader = Article.Header(categoryTitle: content.contentCategoryTitle ?? "",
+                                       title: content.title,
+                                       author: content.author,
+                                       publishDate: content.publishedDate,
+                                       timeToRead: content.minutesToRead,
+                                       imageURL: content.thumbnailURLString)
+        relatedContent = [QDMContentCollection]()
+        nextUp = nil
+        let setupSynchronousSteps: () -> Void = { [weak self] in
+            self?.setupRelatedArticlesWhatsHot()
+            self?.setupWhatsHotItems()
+            self?.setupRelatedArticlesStrtegy()
+            self?.setupLearnStragyItems()
+            self?.setupAudioArticleItem()
+            self?.interactor?.dataUpdated()
+        }
+
+        qot_dal.ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { [weak self] (relatedContens) in
+            self?.relatedContent = relatedContens ?? []
+
+            if let nextUpContentRelation = self?.content?.relatedContentList.filter({ (relation) -> Bool in
+                relation.type == "NEXT_UP"
+            }).first, let nextUpId = nextUpContentRelation.contentID {
+                if let nextCollection = self?.relatedContent.filter({ (contentCollection) -> Bool in
+                    contentCollection.remoteID == nextUpId
+                }).first {
+                    self?.nextUp = Article.Item(type: ContentItemValue.articleNextUp(title: nextCollection.title,
+                                                                                     description: nextCollection.durationString,
+                                                                                     itemID: nextCollection.remoteID ?? 0))
+                }
+            }
+
+            setupSynchronousSteps()
+        }
+    }
+
+    private func setupLearnStragyItems() {
+        var items = [Article.Item]()
+        items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
+        content?.contentItems.filter { $0.tabs.first == "BULLETS" }.forEach { (bulletItem) in
+            items.append(Article.Item(type: ContentItemValue(item: bulletItem), content: bulletItem.valueText))
+        }
+        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format != .pdf && $0.format != .video }.forEach { item in
+            items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+        }
+        items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: ""))
+        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .pdf && $0.format != .video }.forEach { item in
+            if let pdfURL = URL(string: item.valueMediaURL ?? "") {
+                let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
+                var timeToReadText = ""
+                if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
+                    timeToReadText = "PDF | \(timeString)  \(R.string.localized.learnContentItemToRead())"
+                }
+                items.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
+                                                                     description: timeToReadText,
+                                                                     pdfURL: pdfURL,
+                                                                     itemID: item.remoteID ?? 0)))
+            }
+        }
+        content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
+            if let videoURL = URL(string: item.valueMediaURL ?? "") {
+                items.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? 0,
+                                                                       title: item.valueText,
+                                                                       description: item.valueDescription,
+                                                                       placeholderURL: URL(string: item.valueImageURL ?? ""),
+                                                                       videoURL: videoURL,
+                                                                       duration: item.valueDuration ?? 0)))
+            }
+        }
+        if let nextUp = self.nextUp {
+            items.append(nextUp)
+        }
+//        relatedArticlesStrategy.forEach { relatedArticle in
+//            items.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: relatedArticle.title,
+//                                                                                    description: relatedArticle.durationString,
+//                                                                                    itemID: relatedArticle.remoteID)))
+//        }
+        learnStrategyItems = items
+
+    }
+
+    private func setupWhatsHotItems() {
         var items = [Article.Item]()
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         items.append(Article.Item(type: ContentItemValue.headerImage(imageURLString: articleHeader.imageURL)))
-        content?.articleItems.forEach { item in
-            items.append(Article.Item(remoteID: item.remoteID.value ?? 0,
-                                      type: item.contentItemValue,
-                                      content: item.valueText ?? "",
-                                      format: item.format,
-                                      bundledAudioURL: item.bundledAudioURL,
+        content?.contentItems.forEach { item in
+            items.append(Article.Item(remoteID: item.remoteID ?? 0,
+                                      type: ContentItemValue(item: item),
+                                      content: item.valueText,
+                                      format: item.format.rawValue,
+                                      bundledAudioURL: nil,
                                       thumbnailURL: item.valueImageURL))
         }
         relatedArticlesWhatsHot.forEach { relatedArticle in
             items.append(Article.Item(type: ContentItemValue.articleRelatedWhatsHot(relatedArticle: relatedArticle)))
         }
-        return items
-    }()
+        whatsHotItems = items
+    }
 
-    private lazy var learnStrategyItems: [Article.Item] = {
-        var items = [Article.Item]()
-        items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
-        content?.articleItems.filter { $0.tabs == "BULLETS" }.forEach { (bulletItem) in
-            items.append(Article.Item(type: bulletItem.contentItemValue, content: bulletItem.valueText ?? ""))
+    private func setupAudioArticleItem() {
+        guard
+            let audioItem = articleAudioItem,
+            let audioURL = URL(string: audioItem.valueMediaURL ?? "") else {
+                articleAudioItem = nil
+                return
         }
-        content?.articleItems.filter { $0.tabs == "FULL" && $0.format != "pdf" && $0.format != "video" }.forEach { item in
-            items.append(Article.Item(type: item.contentItemValue, content: item.valueText ?? ""))
-        }
-        items.append(Article.Item(type: ContentItemValue.button(selected: content?.contentRead != nil), content: ""))
-        content?.articleItems.filter { $0.tabs == "FULL" && $0.format == "pdf" && $0.format != "video" }.forEach { item in
-            if let pdfURL = URL(string: item.valueMediaURL ?? "") {
-                let date = Date().addingTimeInterval(TimeInterval(item.secondsRequired))
-                var timeToReadText = ""
-                if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
-                    timeToReadText = "PDF | \(timeString)  \(R.string.localized.learnContentItemToRead())"
-                }
-                items.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText ?? "",
-                                                                     description: timeToReadText,
-                                                                     pdfURL: pdfURL,
-                                                                     itemID: item.remoteID.value ?? 0)))
+        audioArticleItem = Article.Item(remoteID: audioItem.remoteID ?? 0,
+                                        type: ContentItemValue.audio(remoteId: audioItem.remoteID ?? 0,
+                                                                     title: audioItem.valueText,
+                                                                     description: audioItem.valueDescription,
+                                                                     placeholderURL: URL(string: audioItem.valueImageURL ?? ""),
+                                                                     audioURL: audioURL,
+                                                                     duration: audioItem.valueDuration ?? 0,
+                                                                     waveformData: []))
+    }
+
+    private func setupRelatedArticlesWhatsHot() {
+        var articles = [Article.RelatedArticleWhatsHot]()
+        relatedContent.forEach { content in
+            if content.isWhatsHot == true {
+                let imageURL = URL(string: content.thumbnailURLString ?? "")
+                articles.append(Article.RelatedArticleWhatsHot(remoteID: content.remoteID ?? 0,
+                                                               title: content.title,
+                                                               publishDate: content.publishedDate,
+                                                               author: content.author,
+                                                               timeToRead: content.durationString,
+                                                               imageURL: imageURL,
+                                                               isNew: false))
             }
         }
-        content?.articleItems.filter { $0.tabs == "FULL" && $0.format == "video" }.forEach { item in
-            if let videoURL = URL(string: item.valueMediaURL ?? "") {
-                items.append(Article.Item(type: ContentItemValue.video(title: item.valueText ?? "",
-                                                                       description: item.description,
-                                                                       placeholderURL: URL(string: item.valueImageURL ?? ""),
-                                                                       videoURL: videoURL,
-                                                                       duration: Double(item.secondsRequired))))
-            }
-        }
-        if let nextUp = nextUp() {
-            items.append(nextUp)
-        }
-        relatedArticlesStrategy.forEach { relatedArticle in
-            items.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: relatedArticle.title,
-                                                                                    description: relatedArticle.durationString,
-                                                                                    itemID: relatedArticle.remoteID)))
-        }
-        return items
-    }()
+        relatedArticlesWhatsHot = articles
+    }
 
-    // MARK: - Init
-
-    init(services: Services, selectedID: Int) {
-        self.services = services
-        self.selectedID = selectedID
+    private func setupRelatedArticlesStrtegy() {
+        var articles = [Article.RelatedArticleStrategy]()
+        relatedContent.forEach { content in
+            articles.append(Article.RelatedArticleStrategy(title: content.title,
+                                                           durationString: content.durationString,
+                                                           remoteID: content.remoteID ?? 0))
+        }
+        relatedArticlesStrategy = articles
     }
 
     var sectionCount: Int {
         return relatedArticlesWhatsHot.count > 0 ? 2 : 1
     }
 
-    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot {
-        return relatedArticlesWhatsHot[indexPath.item]
+    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
+        if relatedArticlesWhatsHot.count > indexPath.item {
+            return relatedArticlesWhatsHot[indexPath.item]
+        }
+        return nil
     }
 
     func articleItem(at indexPath: IndexPath) -> Article.Item? {
-        return isWhatsHot ? whatsHotItems.at(index: indexPath.item) : learnStrategyItems.at(index: indexPath.item)
+        if isWhatsHot, whatsHotItems.count > indexPath.item {
+            return whatsHotItems.at(index: indexPath.item)
+        } else if learnStrategyItems.count > indexPath.item {
+            return learnStrategyItems.at(index: indexPath.item)
+        }
+        return nil
     }
 
     func markArticleAsRead() {
-        services.contentService.setContentViewed(remoteID: selectedID)
+//        services.contentService.setContentViewed(remoteID: selectedID)
     }
 
     func itemCount(in section: Int) -> Int {
@@ -198,10 +269,24 @@ final class ArticleWorker {
         self.selectedID = selectedID
     }
 
-    func nextUp() -> Article.Item? {
-        guard let nextUpContent = services.contentService.nextUp(for: content) else { return nil }
-        return Article.Item(type: ContentItemValue.articleNextUp(title: nextUpContent.title,
-                                                                 description: nextUpContent.durationString,
-                                                                 itemID: nextUpContent.remoteID.value ?? 0))
+    func toggleBookmark() -> Bool {
+        var hasBookmark = (self.bookmark != nil)
+        if hasBookmark {
+            // remove
+            qot_dal.UserStorageService.main.deleteUserStorage(self.bookmark!) { (error) in
+                self.bookmark = nil
+            }
+            hasBookmark = false
+        } else if let content = self.content {
+            // add
+            qot_dal.UserStorageService.main.addBookmarkContentCollection(content) { (bookmark, error) in
+                self.bookmark = bookmark
+            }
+            hasBookmark = true
+        } else {
+            bookmark = nil
+            hasBookmark = false
+        }
+        return hasBookmark
     }
 }

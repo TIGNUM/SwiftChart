@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import Freddy
+import qot_dal
 
 // FIXME: Unit test
 enum ContentItemValue {
@@ -19,8 +19,8 @@ enum ContentItemValue {
     case headerImage(imageURLString: String?)
     case text(text: String, style: ContentItemTextStyle)
     case listItem(text: String)
-    case video(title: String, description: String?, placeholderURL: URL?, videoURL: URL, duration: TimeInterval)
-    case audio(title: String, description: String?, placeholderURL: URL?, audioURL: URL, duration: TimeInterval, waveformData: [Float])
+    case video(remoteId: Int, title: String, description: String?, placeholderURL: URL?, videoURL: URL, duration: TimeInterval)
+    case audio(remoteId: Int, title: String, description: String?, placeholderURL: URL?, audioURL: URL, duration: TimeInterval, waveformData: [Float])
     case image(title: String, description: String?, url: URL)
     case prepareStep(title: String, description: String, relatedContentID: Int?)
     case pdf(title: String, description: String?, pdfURL: URL, itemID: Int)
@@ -29,29 +29,29 @@ enum ContentItemValue {
     case guideButton
     case invalid
 
-    init(item: ContentItem) {
-        guard let format = ContentItemFormat(rawValue: item.format) else {
-            self = .invalid
-            return
-        }
+    init(item: QDMContentItem) {
 
-        let text = item.valueText?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let description = item.valueDescription?.trimmingCharacters(in: .whitespacesAndNewlines)
-        let mediaURL = item.bundledAudioURL ?? item.valueMediaURL.flatMap { URL(string: $0) }
+        let text = item.valueText.isEmpty ? nil : item.valueText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let description = item.valueDescription.isEmpty ? nil : item.valueDescription.trimmingCharacters(in: .whitespacesAndNewlines)
+        let localMediaPath = item.userStorages?.filter({ (storage) -> Bool in
+            storage.userStorageType == .DOWNLOAD
+        }).first?.mediaPath() ?? ""
+
+        let mediaURL = URL(string: localMediaPath) ?? item.valueMediaURL.flatMap { URL(string: $0) }
         let imageURL = item.valueImageURL.flatMap { URL(string: $0) }
-        let duration = item.valueDuration.value.map { TimeInterval($0) }
-        let itemID = item.forcedRemoteID
+        let duration = item.valueDuration ?? 0
+        let itemID = item.remoteID ?? 0
 
-        switch format {
-        case .textH1,
-             .textH2,
-             .textH3,
-             .textH4,
-             .textH5,
-             .textH6,
-             .textParagraph,
+        switch item.format {
+        case .header1,
+             .header2,
+             .header3,
+             .header4,
+             .header5,
+             .header6,
+             .paragraph,
              .textQuote:
-            if let text = text, let style = ContentItemTextStyle.createStyle(for: format) {
+            if let text = text, let style = ContentItemTextStyle.createStyle(for: item.format.rawValue) {
                 self = .text(text: text, style: style)
             } else {
                 self = .invalid
@@ -62,21 +62,21 @@ enum ContentItemValue {
             self = .guide
         case .guideFeatureButton:
             self = .guideButton
-        case .listItem:
+        case .listitem:
             if let text = text {
                 self = .listItem(text: text)
             } else {
                 self = .invalid
             }
         case .video:
-            if let title = text, let video = mediaURL, let duration = duration {
-                self = .video(title: title, description: description, placeholderURL: imageURL, videoURL: video, duration: duration)
+            if let title = text, let video = mediaURL {
+                self = .video(remoteId: item.remoteID ?? 0 ,title: title, description: description, placeholderURL: imageURL, videoURL: video, duration: duration)
             } else {
                 self = .invalid
             }
         case .audio:
-            if let title = text, let audio = mediaURL, let duration = duration, let waveform = item.waveformData {
-                self = .audio(title: title, description: description, placeholderURL: audio, audioURL: audio, duration: duration, waveformData: waveform)
+            if let title = text, let audio = mediaURL {
+                self = .audio(remoteId: item.remoteID ?? 0, title: title, description: description, placeholderURL: audio, audioURL: audio, duration: duration, waveformData: [])
             } else {
                 self = .invalid
             }
@@ -86,7 +86,7 @@ enum ContentItemValue {
             } else {
                 self = .invalid
             }
-        case .preparationStep:
+        case .prepare:
             if let title = text, let description = description {
                 self = .prepareStep(title: title, description: description, relatedContentID: item.relatedContent.first?.contentID)
             } else {
@@ -117,27 +117,8 @@ enum ContentItemValue {
 
     var duration: Int {
         switch self {
-        case .audio(_, _, _, _, let duration, _): return duration.toInt
+        case .audio(_, _, _, _, _, let duration, _): return duration.toInt
         default: return 0
-        }
-    }
-}
-
-private extension ContentItem {
-
-    var waveformData: [Float]? {
-        return valueWavformData.flatMap { (jsonString) -> [Float]? in
-            do {
-                if let json = try? JSON(jsonString: jsonString) {
-                    let jsons = try json.getArray()
-                    let doubles = try jsons.map { try Double(json: $0) }
-                    return doubles.map { Float($0) }
-                } else {
-                    return nil
-                }
-            } catch {
-                return nil
-            }
         }
     }
 }
@@ -160,6 +141,10 @@ enum ContentItemTextStyle: String {
 
     static func createStyle(for format: ContentItemFormat) -> ContentItemTextStyle? {
         return ContentItemTextStyle(rawValue: format.rawValue)
+    }
+
+    static func createStyle(for rawValue: String) -> ContentItemTextStyle? {
+        return ContentItemTextStyle(rawValue: rawValue)
     }
 
     var headline: Bool {

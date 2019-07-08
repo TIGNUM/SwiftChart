@@ -16,6 +16,7 @@ final class KnowingConfigurator {
         let worker = KnowingWorker(services: services)
         let presenter = KnowingPresenter(viewController: viewController)
         let interactor = KnowingInteractor(worker: worker, presenter: presenter, router: router)
+        worker.interactor = interactor
         viewController.interactor = interactor
         viewController.delegate = delegate
     }

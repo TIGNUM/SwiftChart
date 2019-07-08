@@ -12,15 +12,17 @@ protocol ArticleViewControllerInterface: class {
     func setupView()
     func setupArticleHeader(header: Article.Header)
     func reloadData()
+    func hasBookmark(_ hasBookmark: Bool)
 }
 
 protocol ArticlePresenterInterface {
     func setupView()
     func setupArticleHeader(header: Article.Header)
     func reloadData()
+    func updateBookmark(_ hasBookmark: Bool)
 }
 
-protocol ArticleInteractorInterface: Interactor {
+protocol ArticleInteractorInterface: class, Interactor {
     var sectionCount: Int { get }
     var relatedArticles: [Article.RelatedArticleWhatsHot] { get }
     var audioItem: Article.Item? { get }
@@ -30,12 +32,14 @@ protocol ArticleInteractorInterface: Interactor {
     var audioURL: URL? { get }
     var isShareable: Bool { get }
     func itemCount(in section: Int) -> Int
-    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot
+    func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot?
     func articleItem(at indexPath: IndexPath) -> Article.Item?
     func markArticleAsRead()
     func didTapLink(_ url: URL)
     func showRelatedArticle(remoteID: Int)
     var whatsHotShareable: WhatsHotShareable { get }
+    func dataUpdated()
+    func toggleBookmark()
 }
 
 protocol ArticleRouterInterface {

@@ -556,3 +556,7 @@
 "Button.Title.Add.Event" = "Add new event";
 "Button.Title.Save.Continue" = "Save & Continue";
 
+"Audio.FullScreen.Button.Download" = "Download";
+"Audio.FullScreen.Button.Waiting" = "Waiting";
+"Audio.FullScreen.Button.Downloading" = "Downloading";
+"Audio.FullScreen.Button.Downloaded" = "Downloaded";

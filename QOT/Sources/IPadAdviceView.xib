@@ -1,11 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina3_5" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,7 +12,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3n-WP-zr2">
-                    <rect key="frame" x="8" y="8" width="304" height="173"/>
+                    <rect key="frame" x="8" y="8" width="304" height="173.5"/>
                     <color key="backgroundColor" red="0.0" green="0.99212837710000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8mK-EA-6RL">
@@ -43,21 +39,21 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="didTabDismissButton" destination="IcT-62-GdO" eventType="touchUpInside" id="09h-zY-Etp"/>
+                        <action selector="didTapDismissButton" destination="IcT-62-GdO" eventType="touchUpInside" id="09h-zY-Etp"/>
                     </connections>
                 </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CVN-fK-sgr">
-                    <rect key="frame" x="8" y="139" width="304" height="1"/>
+                    <rect key="frame" x="8" y="139.5" width="304" height="1"/>
                     <color key="backgroundColor" cocoaTouchSystemColor="tableCellGroupedBackgroundColor"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="RAv-i6-lce"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lO2-ph-ZbJ">
-                    <rect key="frame" x="16" y="147" width="288" height="30"/>
+                    <rect key="frame" x="16" y="147.5" width="288" height="30"/>
                     <state key="normal" title="Button"/>
                     <connections>
-                        <action selector="didTabDoNotShowAgainButton" destination="IcT-62-GdO" eventType="touchUpInside" id="493-wI-14T"/>
+                        <action selector="didTapDoNotShowAgainButton" destination="IcT-62-GdO" eventType="touchUpInside" id="493-wI-14T"/>
                     </connections>
                 </button>
             </subviews>

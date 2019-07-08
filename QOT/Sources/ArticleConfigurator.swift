@@ -12,9 +12,10 @@ final class ArticleConfigurator: AppStateAccess {
 
     static func configure(selectedID: Int, viewController: ArticleViewController) {
         let router = ArticleRouter(viewController: viewController)
-        let worker = ArticleWorker(services: appState.services, selectedID: selectedID)
+        let worker = ArticleWorker(selectedID: selectedID)
         let presenter = ArticlePresenter(viewController: viewController)
         let interactor = ArticleInteractor(worker: worker, presenter: presenter, router: router)
+        worker.interactor = interactor
         viewController.interactor = interactor
     }
 }

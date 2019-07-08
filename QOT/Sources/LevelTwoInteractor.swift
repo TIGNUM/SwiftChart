@@ -36,7 +36,7 @@ final class LevelTwoInteractor {
 // MARK: - LevelTwoInteractorInterface
 
 extension LevelTwoInteractor: LevelTwoInteractorInterface {
-    func didTabCell(at: IndexPath) {
-        router.didTabCell(at: at)
+    func didTapCell(at: IndexPath) {
+        router.didTapCell(at: at)
     }
 }
