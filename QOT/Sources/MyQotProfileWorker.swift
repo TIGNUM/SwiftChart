@@ -35,7 +35,9 @@ final class MyQotProfileWorker {
         let appSettings = MyQotProfileModel.TableViewPresentationData(headingKey: appSettingsKey, heading: appSettingsText, subHeading: enableNotificationsText)
         let support = MyQotProfileModel.TableViewPresentationData(headingKey: supportKey, heading: supportText, subHeading: walkthroughOurFeaturesText)
         let aboutTignum = MyQotProfileModel.TableViewPresentationData(headingKey: aboutTignumKey, heading: aboutTignumText, subHeading: learnMoreAboutUsText)
-        items = [accountSettings, appSettings, support, aboutTignum]
+        let library = MyQotProfileModel.TableViewPresentationData(headingKey: myLibrary, heading: myLibraryText, subHeading: "")
+
+        items = [library, accountSettings, appSettings, support, aboutTignum]
         return items
     }()
 
@@ -58,6 +60,9 @@ private extension MyQotProfileWorker {
     }
     var aboutTignumKey: String {
         return ContentService.MyQot.Profile.aboutTignum.rawValue
+    }
+    var myLibrary: String {
+        return ContentService.MyQot.Profile.myLibrary.rawValue
     }
     var accountSettingsText: String {
         return services.contentService.localizedString(for: ContentService.MyQot.Profile.accountSettings.predicate) ?? ""
@@ -82,5 +87,8 @@ private extension MyQotProfileWorker {
     }
     var learnMoreAboutUsText: String {
         return services.contentService.localizedString(for: ContentService.MyQot.Profile.learnMoreAboutUs.predicate) ?? ""
+    }
+    var myLibraryText: String {
+        return services.contentService.localizedString(for: ContentService.MyQot.Profile.myLibrary.predicate) ?? "_My Library"
     }
 }

@@ -11,6 +11,7 @@ import Foundation
 enum SuiteName: String, CaseIterable {
     case widget = "group.widget.com.tignum.qot.novartis"
     case siri = "group.siri.com.tignum"
+    case share = "group.share.tignum.qot.novartis"
 }
 
 enum ExtensionUserDefaults: String, CaseIterable {
@@ -21,6 +22,7 @@ enum ExtensionUserDefaults: String, CaseIterable {
     case upcomingEvents = "qot.userdefault.key.upcomingEvents"
     case dailyPrep = "qot.userdefault.key.dailyPrep"
     case siriAppEvents = "qot.userdefault.key.siriAppEvents"
+    case saveLink = "qot.userdefault.key.saveExternalLink"
 
     // MARK: - DELETE
 
@@ -39,6 +41,12 @@ enum ExtensionUserDefaults: String, CaseIterable {
             let userDefaults = UserDefaults(suiteName: suiteName.rawValue)
             userDefaults?.set(try? PropertyListEncoder().encode(object), forKey: key.rawValue)
         }
+    }
+
+    static func set<T: Encodable>(_ object: T, for key: ExtensionUserDefaults, in suite: SuiteName) {
+        let userDefaults = UserDefaults(suiteName: suite.rawValue)
+        userDefaults?.set(try? PropertyListEncoder().encode(object), forKey: key.rawValue)
+        userDefaults?.synchronize()
     }
 
     static func setIsUserSignedIn(value: Bool) {
@@ -62,5 +70,12 @@ enum ExtensionUserDefaults: String, CaseIterable {
             let userDefaults = UserDefaults(suiteName: suiteName.rawValue),
             let data = userDefaults.value(forKey: key.rawValue) as? Data else { return nil }
         return try? PropertyListDecoder().decode(T.self, from: data)
+    }
+
+    // MARK: - REMVOE
+    static func removeObject(for suiteName: SuiteName, key: ExtensionUserDefaults) {
+        guard let userDefaults = UserDefaults(suiteName: suiteName.rawValue) else { return }
+        userDefaults.removeObject(forKey: key.rawValue)
+        userDefaults.synchronize()
     }
 }

@@ -1,13 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina4_7" orientation="portrait">
-        <adaptation id="fullscreen"/>
-    </device>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <dependencies>
-        <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +17,7 @@
         </array>
     </customFonts>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ShareViewController" customModule="QOT" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LinkShareViewController" customModule="QOT" customModuleProvider="target">
             <connections>
                 <outlet property="activityIndicator" destination="isb-94-hiD" id="Ru1-va-7Tm"/>
                 <outlet property="containerView" destination="OwW-7o-BTV" id="XQZ-RB-S67"/>
@@ -55,13 +49,13 @@
                             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         </imageView>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="yQr-2M-W45" userLabel="topView">
-                            <rect key="frame" x="0.0" y="0.0" width="375" height="267.5"/>
+                            <rect key="frame" x="0.0" y="0.0" width="375" height="267"/>
                             <subviews>
                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="placeholder_partner" translatesAutoresizingMaskIntoConstraints="NO" id="wSi-OY-Do8">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="267.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="267"/>
                                 </imageView>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lji-ky-tt8">
-                                    <rect key="frame" x="187.5" y="134" width="0.0" height="0.0"/>
+                                    <rect key="frame" x="187.5" y="133.5" width="0.0" height="0.0"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="36"/>
                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <nil key="highlightedColor"/>
@@ -146,10 +140,10 @@
                                     </constraints>
                                 </view>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Gan-UU-Q07" userLabel="middleViewBottom">
-                                    <rect key="frame" x="0.0" y="133.5" width="375" height="133"/>
+                                    <rect key="frame" x="0.0" y="133.5" width="375" height="133.5"/>
                                     <subviews>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3Le-0z-lbg">
-                                            <rect key="frame" x="24" y="8" width="327" height="58"/>
+                                            <rect key="frame" x="24" y="8" width="327" height="58.5"/>
                                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
                                             <inset key="titleEdgeInsets" minX="14" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="SHARE MY TO BE VISION" image="ic_radio_unselected">
@@ -161,7 +155,7 @@
                                             </connections>
                                         </button>
                                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hc7-uH-oDV">
-                                            <rect key="frame" x="24" y="67" width="327" height="58"/>
+                                            <rect key="frame" x="24" y="67.5" width="327" height="58"/>
                                             <fontDescription key="fontDescription" name="Simple-Regular" family="Simple-Regular" pointSize="20"/>
                                             <inset key="titleEdgeInsets" minX="14" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             <state key="normal" title="SHARE MY WEEKLY CHOICES" image="ic_radio_unselected">
@@ -173,7 +167,7 @@
                                             </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zCJ-KT-C16">
-                                            <rect key="frame" x="24" y="66" width="327" height="1"/>
+                                            <rect key="frame" x="24" y="66.5" width="327" height="1"/>
                                             <color key="backgroundColor" white="1" alpha="0.29999999999999999" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="1" id="vAG-LF-fzn"/>
@@ -223,7 +217,7 @@
                             <rect key="frame" x="0.0" y="534" width="375" height="133"/>
                             <subviews>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IB3-TR-UAU">
-                                    <rect key="frame" x="24" y="47" width="327" height="40"/>
+                                    <rect key="frame" x="24" y="46.5" width="327" height="40"/>
                                     <color key="backgroundColor" red="0.0" green="0.58431372550000005" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="40" id="SdQ-Jb-4La"/>

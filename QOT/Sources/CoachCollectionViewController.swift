@@ -125,11 +125,10 @@ extension CoachCollectionViewController {
     }
 
     func display(contentController content: UIViewController, cell: UICollectionViewCell) {
-            self.addChildViewController(content)
-            cell.contentView.addSubview(content.view)
-            content.view.translatesAutoresizingMaskIntoConstraints = false
-            content.didMove(toParentViewController: self)
-            content.view.layoutIfNeeded()
+        self.addChildViewController(content)
+        cell.contentView.addSubview(content.view)
+        content.didMove(toParentViewController: self)
+        content.view.edges(to: cell.contentView)
     }
 }
 

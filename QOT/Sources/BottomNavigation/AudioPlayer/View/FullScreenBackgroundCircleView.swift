@@ -14,12 +14,16 @@ struct CircleInfo {
 }
 
 class FullScreenBackgroundCircleView: UIView {
-    let circles: [CircleInfo] = [
+    var circles: [CircleInfo] = [
         CircleInfo(color: .sand70, radiusRate: 0.2),
         CircleInfo(color: .sand60, radiusRate: 0.4),
         CircleInfo(color: .sand40, radiusRate: 0.7),
         CircleInfo(color: .sand20, radiusRate: 0.99)
-        ]
+        ] {
+        didSet {
+            setNeedsDisplay()
+        }
+    }
 
     override func draw(_ rect: CGRect) {
         // Drawing code

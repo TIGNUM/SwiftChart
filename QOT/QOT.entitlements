@@ -10,6 +10,7 @@
 	<array>
 		<string>group.widget.com.tignum.qot.novartis</string>
 		<string>group.siri.com.tignum</string>
+		<string>group.share.tignum.qot.novartis</string>
 	</array>
 </dict>
 </plist>

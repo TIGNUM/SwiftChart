@@ -44,4 +44,8 @@ extension MyQotProfileRouter: MyQotProfileRouterInterface {
 
 //        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAboutTignumSegueIdentifier, sender: nil)
     }
+
+    func presentMyLibrary() {
+        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotMyLibrarySegueIdentifier, sender: nil)
+    }
 }

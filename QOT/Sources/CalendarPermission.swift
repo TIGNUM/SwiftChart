@@ -16,6 +16,9 @@ struct CalendarPermission: PermissionInterface {
 
     func askPermission(completion: @escaping (Bool) -> Void) {
         EKEventStore.shared.requestAccess(to: .event) { (granted: Bool, _: Error?) in
+            if granted {
+                EKEventStore.shared = EKEventStore()
+            }
             completion(granted)
         }
     }

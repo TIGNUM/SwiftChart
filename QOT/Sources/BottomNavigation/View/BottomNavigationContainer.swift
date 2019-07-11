@@ -10,6 +10,14 @@ import UIKit
 
 class BottomNavigationContainer: UIView {
 
+    static private var _height: CGFloat?
+    static public var height: CGFloat {
+        if _height == nil {
+            _height = 100
+        }
+        return _height!
+    }
+
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
         let view = super.hitTest(point, with: event)
         return view == self ? nil : view

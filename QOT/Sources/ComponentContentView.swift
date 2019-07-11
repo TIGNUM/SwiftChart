@@ -33,6 +33,7 @@ extension NibLoadable {
 extension UIView {
     /// Constrain 4 edges of `self` to specified `view`.
     func edges(to view: UIView, top: CGFloat=0, left: CGFloat=0, bottom: CGFloat=0, right: CGFloat=0) {
+        translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
             self.leftAnchor.constraint(equalTo: view.leftAnchor, constant: left),
             self.rightAnchor.constraint(equalTo: view.rightAnchor, constant: right),

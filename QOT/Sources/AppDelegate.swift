@@ -84,6 +84,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
             swizzleUIViewController()
             swizzleUINavigationControllerPushViewController()
+            ExternalLinkImporter.main.importLink()
             if isRunning {
                 return true
             }
@@ -126,6 +127,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return
         #else
             reachabilityOfSinging()
+            importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
             appCoordinator.sendAppEvent(.foreground)
         #endif //#if UNIT_TEST || BUILD_DATABASE

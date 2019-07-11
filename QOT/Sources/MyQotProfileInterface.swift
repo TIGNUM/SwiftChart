@@ -25,6 +25,7 @@ protocol MyQotProfileInteractorInterface: Interactor {
 }
 
 protocol MyQotProfileRouterInterface {
+    func presentMyLibrary()
     func presentAccountSettings()
     func presentAppSettings()
     func presentSupport()

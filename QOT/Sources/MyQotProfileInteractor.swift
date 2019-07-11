@@ -11,6 +11,7 @@ import UIKit
 final class MyQotProfileInteractor {
 
     private enum controllerType: Int, CaseIterable {
+        case myLibrary
         case accountSettings
         case appSettings
         case support
@@ -63,6 +64,8 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
     func presentController(for index: Int) {
         let type = controllerType.allCases[index]
         switch type {
+        case .myLibrary:
+            router.presentMyLibrary()
         case .accountSettings:
             router.presentAccountSettings()
         case .appSettings:

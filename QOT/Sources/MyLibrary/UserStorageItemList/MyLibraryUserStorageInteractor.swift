@@ -1,0 +1,523 @@
+//
+//  MyLibraryBookmarksInteractor.swift
+//  QOT
+//
+//  Created by Sanggeon Park on 12.06.19.
+//  Copyright (c) 2019 Tignum. All rights reserved.
+//
+
+import UIKit
+import qot_dal
+
+final class MyLibraryUserStorageInteractor {
+
+    // MARK: - Properties
+
+    private let worker: MyLibraryUserStorageWorker
+    private let presenter: MyLibraryUserStoragePresenterInterface
+    private let router: MyLibraryUserStorageRouterInterface
+
+    private (set) var isEditing: Bool = false
+    private (set) var infoViewModel: MyLibraryUserStorageInfoViewModel? = nil
+    private (set) var bottomButtons: [ButtonParameters]? = nil
+
+    var items = [MyLibraryCellViewModel]()
+    var identifiersForCheck = NSMutableSet()
+
+    // Cannot be lazy as "Remove" state depends on selected items count
+    private var editingButtons: [ButtonParameters] {
+        return [ButtonParameters(title: worker.removeTitle,
+                                 target: self,
+                                 action: #selector(removeItemsTapped),
+                                 isEnabled: !(identifiersForCheck.count == 0)),
+                ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
+    }
+    private lazy var removeButtons: [ButtonParameters] = {
+        return [ButtonParameters(title: worker.continueTitle, target: self, action: #selector(continueRemovingTapped)),
+                ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped))]
+    }()
+    private lazy var cellularDownloadButtons: [ButtonParameters] = {
+        return [ButtonParameters(title: worker.continueTitle, target: self, action: #selector(continueCellularDownload)),
+                ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelCellularDownload))]
+    }()
+
+    // MARK: - Init
+
+    init(worker: MyLibraryUserStorageWorker,
+         presenter: MyLibraryUserStoragePresenterInterface,
+         router: MyLibraryUserStorageRouterInterface) {
+        self.worker = worker
+        self.presenter = presenter
+        self.router = router
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(load(_:)),
+                                               name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didUpdateDownloadStatus(_:)),
+                                               name: .didUpdateDownloadStatus, object: nil)
+    }
+
+    // MARK: Interactor
+
+    func viewDidLoad() {
+        load()
+    }
+
+    @objc func load(_ notification: Notification? = nil) {
+        worker.loadData { [weak self] (initiated, items) in
+            guard let strongSelf = self else { return }
+            strongSelf.items.removeAll()
+            if !initiated || items.count == 0 {
+                strongSelf.showEmptyAlert()
+            } else {
+                strongSelf.items.append(contentsOf: items.compactMap { strongSelf.viewModel(from: $0) })
+                strongSelf.presenter.presentData()
+            }
+        }
+    }
+}
+
+// MARK: - Protocol MyLibraryUserStorageInteractorInterface
+
+extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterface {
+
+    var title: String {
+        return isEditing ? worker.editingTitle : worker.title
+    }
+
+    var addTitle: String {
+        return worker.addTitle
+    }
+
+    var showAddButton: Bool {
+        return worker.showAddButton
+    }
+
+    var showEditButton: Bool {
+        return !(isEditing || items.isEmpty || infoViewModel != nil) || worker.showAddButton
+    }
+
+    var canEdit: Bool {
+        return !(isEditing || items.isEmpty)
+    }
+
+    func didTapEdit(isEditing: Bool) {
+        self.isEditing = isEditing
+        bottomButtons = editingButtons
+        presenter.present()
+    }
+
+    func didTapPlayItem(at row: Int) {
+        guard row < items.count, items[row].cellType == .AUDIO else {
+            return
+        }
+        let item = items[row]
+
+        let media = MediaPlayerModel(title: item.title,
+                                     subtitle: "",
+                                     url: item.mediaURL,
+                                     totalDuration: 0,
+                                     progress: 0,
+                                     currentTime: 0,
+                                     mediaRemoteId: item.remoteId)
+        NotificationCenter.default.post(name: .playPauseAudio, object: media)
+    }
+
+    func didTapAddNote() {
+        router.presentCreateNote()
+    }
+
+    func handleSelectedItem(at index: Int) -> Bool {
+        guard items.count > index else {
+            return false
+        }
+
+        let item = items[index]
+        if isEditing {
+            return checkItemForDeletion(item)
+        } else {
+            openItemDetails(item)
+        }
+
+        return true
+    }
+}
+
+// MARK: - Info view's button actions
+
+extension MyLibraryUserStorageInteractor {
+    @objc private func cancelEditingTapped() {
+        isEditing = false
+        bottomButtons = nil
+        identifiersForCheck.removeAllObjects()
+        presenter.present()
+    }
+
+    @objc private func removeItemsTapped() {
+        infoViewModel = MyLibraryUserStorageInfoViewModel(isFullscreen: true,
+                                                          icon: R.image.my_library_warning() ?? UIImage(),
+                                                          title: worker.removeItemsAlertTitle,
+                                                          message: worker.removeItemsAlertMessage,
+                                                          userParameter: nil)
+        bottomButtons = removeButtons
+        presenter.present()
+    }
+
+    @objc private func cancelRemovingTapped() {
+        bottomButtons = editingButtons
+        infoViewModel = nil
+        presenter.present()
+    }
+
+    @objc private func continueRemovingTapped() {
+        guard let idsForRemoval = identifiersForCheck.allObjects as? [String] else {
+            return
+        }
+        worker.deleteFor(identifiers: idsForRemoval) { [weak self] (update, error) in
+            guard let strongSelf = self else { return }
+            if error == nil {
+                strongSelf.successfullyDeleted(identifier: update)
+            }
+        }
+        infoViewModel = nil
+        cancelEditingTapped()
+        presenter.present()
+    }
+
+    @objc private func cancelCellularDownload() {
+        infoViewModel = nil
+        bottomButtons = nil
+        presenter.present()
+    }
+
+    @objc private func continueCellularDownload() {
+        let item = infoViewModel?.userParameter as? MyLibraryCellViewModel
+        infoViewModel = nil
+        bottomButtons = nil
+        presenter.present()
+        if let item = item {
+            resumeDownload(for: item)
+        }
+    }
+}
+
+// MARK: - Private methods
+
+extension MyLibraryUserStorageInteractor {
+
+    private func showEmptyAlert() {
+        infoViewModel = MyLibraryUserStorageInfoViewModel(
+            isFullscreen: false,
+            icon: self.worker.contentIcon,
+            title: self.worker.emtptyContentAlertTitle,
+            message: self.worker.emtptyContentAlertMessage,
+            userParameter: nil)
+        presenter.present()
+    }
+
+    private func checkItemForDeletion(_ item: MyLibraryCellViewModel) -> Bool {
+        let previouslySelected = identifiersForCheck.contains(item.identifier)
+        if !previouslySelected {
+            identifiersForCheck.add(item.identifier)
+        } else {
+            identifiersForCheck.remove(item.identifier)
+        }
+        bottomButtons = editingButtons
+        presenter.present()
+        return !previouslySelected
+    }
+
+    private func successfullyDeleted(identifier: String) {
+        guard let index = items.firstIndex(where: { $0.identifier == identifier }) else {
+            return
+        }
+        items.remove(at: index)
+        presenter.deleteRow(at: index)
+        if items.isEmpty {
+            showEmptyAlert()
+        }
+    }
+
+    private func openItemDetails(_ item: MyLibraryCellViewModel) {
+        if handleContentType(for: item) {
+            return
+        }
+        if handleMedia(for: item) {
+            return
+        }
+    }
+
+    private func handleContentType(for item: MyLibraryCellViewModel) -> Bool {
+        switch item.type {
+        case .EXTERNAL_LINK:
+            guard let url = item.mediaURL else {
+                qot_dal.log("Missing URL for bookmarked EXTERNAL_LINK", level: .error)
+                return false
+            }
+            router.presentExternalUrl(url)
+            return true
+        case .NOTE:
+            print("Handle opening note")
+            return false
+        case .DOWNLOAD:
+            return handleDownload(item: item)
+        case .BOOKMARK, .UNKOWN:
+            return false
+        }
+    }
+
+    private func handleMedia(for item: MyLibraryCellViewModel) -> Bool {
+        switch item.cellType {
+        case .ARTICLE:
+            router.presentArticle(id: item.remoteId)
+        case .VIDEO:
+            guard let url = item.mediaURL else {
+                assertionFailure("Cannot play video; missing URL")
+                return false
+            }
+            router.presentVideo(url: url)
+        case .AUDIO:
+            guard let index = items.index(of: item) else {
+                return false
+            }
+            didTapPlayItem(at: index)
+        case .DOWNLOAD, .NOTE:
+            qot_dal.log("Not a valid media type", level: .warning)
+            return false
+        }
+
+        return true
+    }
+
+    private func handleDownload(item: MyLibraryCellViewModel) -> Bool {
+        switch item.downloadStatus {
+        case .downloading:
+            pauseDownload(for: item)
+        case .waiting, .none:
+            tryResumingDownload(for: item)
+        case .downloaded:
+            return false
+        }
+        return true
+    }
+}
+
+// MARK: - Download management
+
+extension MyLibraryUserStorageInteractor {
+    private func pauseDownload(for item: MyLibraryCellViewModel) {
+        worker.pauseDownload(for: item.identifier) { [weak self] (_) in
+            self?.load()
+        }
+    }
+
+    private func tryResumingDownload(for item: MyLibraryCellViewModel) {
+        if worker.isConnectedToWiFi {
+            resumeDownload(for: item)
+            return
+        }
+
+        infoViewModel = MyLibraryUserStorageInfoViewModel(isFullscreen: false,
+                                                          icon: R.image.my_library_warning() ?? UIImage(),
+                                                          title: worker.cellullarDownloadTitle,
+                                                          message: worker.cellullarDownloadMessage,
+                                                          userParameter: item)
+        bottomButtons = cellularDownloadButtons
+        presenter.present()
+    }
+
+    private func resumeDownload(for item: MyLibraryCellViewModel) {
+        worker.resumeDownload(for: item.identifier) { [weak self] (_) in
+            self?.load()
+        }
+    }
+
+    @objc private func didUpdateDownloadStatus(_ notification: Notification) {
+        guard let map = notification.object as? [String: QDMDownloadStatus] else {
+            return
+        }
+        // Find map IDs which have a status DOWNLOADED and are also present in the items being displayed
+        let downloadedItemIsInItems = map.keys.filter { items.compactMap { $0.identifier }.contains(obj: $0) }.reduce(false) {
+            guard let item = map[$1] else { return $0 }
+            return ($0 || item.status == .DOWNLOADED)
+        }
+        if downloadedItemIsInItems {
+            print("Refreshing") //TODO: raise a bug as previously finished downloads are present in the map
+            load()
+        }
+    }
+}
+
+// MARK: - Cell presentation
+
+extension MyLibraryUserStorageInteractor {
+    private func viewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel? {
+        switch item.userStorageType {
+        case .DOWNLOAD:
+            return downloadViewModel(from: item)
+        case .BOOKMARK:
+            return bookmarkViewModel(from: item)
+        case .NOTE:
+            return noteViewModel(from: item)
+        case .EXTERNAL_LINK:
+            return linkViewModel(from: item)
+        case .UNKOWN:
+            return nil
+        }
+    }
+
+    private func downloadViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
+        let cellStatus: MyLibraryCellViewModel.DownloadStatus
+        let description: String
+        var fullDuration = ""
+        let cellType: MyLibraryCellViewModel.CellType
+
+        let downloadStatus = worker.downloadStatus(for: item)
+        switch downloadStatus.status {
+        case .NONE:
+            cellType = .DOWNLOAD
+            cellStatus = .waiting
+            description = worker.tapToDownload
+        case .WAITING:
+            cellType = .DOWNLOAD
+            cellStatus = .waiting
+            description = worker.waitingForDownload
+        case .DOWNLOADING:
+            cellType = .DOWNLOAD
+            cellStatus = .downloading
+            description = worker.downloading
+        case .DOWNLOADED:
+            cellType = self.cellType(for: item)
+            cellStatus = .downloaded
+            let duration = mediaDuration(for: item)
+            description = duration.simple
+            fullDuration = duration.full
+        }
+        return MyLibraryCellViewModel(cellType: cellType,
+                                      title: item.title ?? "",
+                                      description: description,
+                                      duration: fullDuration,
+                                      icon: mediaIcon(for: item),
+                                      previewURL: URL(string: item.previewImageUrl ?? ""),
+                                      type: item.userStorageType,
+                                      mediaType: item.mediaType ?? .UNKOWN,
+                                      downloadStatus: cellStatus,
+                                      identifier: item.qotId ?? "",
+                                      remoteId: Int(item.contentId ?? "0") ?? 0,
+                                      mediaURL: URL(string: item.mediaPath() ?? ""))
+    }
+
+    private func noteViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
+        var descriptionExtension: String = ""
+        if let date = item.createdAt {
+            descriptionExtension = " | \(DateFormatter.ddMMM.string(from: date))"
+        }
+        let description = worker.personalNote + descriptionExtension
+        return MyLibraryCellViewModel(cellType: .NOTE,
+                                      title: item.title ?? "",
+                                      description: description,
+                                      duration: "",
+                                      icon: R.image.my_library_note_light(),
+                                      previewURL: nil,
+                                      type: item.userStorageType,
+                                      mediaType: item.mediaType ?? .UNKOWN,
+                                      downloadStatus: .none,
+                                      identifier: item.qotId ?? "",
+                                      remoteId: Int(item.contentId ?? "0") ?? 0,
+                                      mediaURL: URL(string: item.mediaPath() ?? ""))
+    }
+
+    private func linkViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
+        var description: String = ""
+        if let urllString = item.url, let url = URL(string: urllString), let host = url.host {
+            description = host.replacingOccurrences(of: "www.", with: "")
+        }
+        return MyLibraryCellViewModel(cellType: .ARTICLE,
+                                      title: item.title ?? "",
+                                      description: description,
+                                      duration: "",
+                                      icon: R.image.my_library_link(),
+                                      previewURL: URL(string: item.previewImageUrl ?? ""),
+                                      type: item.userStorageType,
+                                      mediaType: item.mediaType ?? .UNKOWN,
+                                      downloadStatus: .none,
+                                      identifier: item.qotId ?? "",
+                                      remoteId: Int(item.contentId ?? "0") ?? 0,
+                                      mediaURL: URL(string: item.mediaPath() ?? ""))
+    }
+
+    private func bookmarkViewModel(from item: QDMUserStorage) -> MyLibraryCellViewModel {
+        let durations = mediaDuration(for: item)
+        return MyLibraryCellViewModel(cellType: cellType(for: item),
+                                      title: item.title ?? "",
+                                      description: durations.simple,
+                                      duration: durations.full,
+                                      icon: mediaIcon(for: item),
+                                      previewURL: URL(string: item.previewImageUrl ?? ""),
+                                      type: item.userStorageType,
+                                      mediaType: item.mediaType ?? .UNKOWN,
+                                      downloadStatus: .none,
+                                      identifier: item.qotId ?? "",
+                                      remoteId: Int(item.contentId ?? "0") ?? 0,
+                                      mediaURL: URL(string: item.mediaPath() ?? ""))
+    }
+
+    // MARK: Presentation helper methods
+    private func mediaIcon(for item: QDMUserStorage) -> UIImage? {
+        switch item.mediaType ?? .UNKOWN {
+        case .VIDEO:
+            return R.image.my_library_camera()
+        case .AUDIO:
+            return R.image.my_library_listen()
+        case .PDF, .UNKOWN:
+            return R.image.my_library_read()
+        }
+    }
+
+    private func mediaDuration(for item: QDMUserStorage) -> (full: String, simple: String) {
+        var durationMinute = (item.durationInSeconds ?? 0)/60
+        let durationSeconds = (item.durationInSeconds ?? 0)%60
+        let fullDuration = String(format: "%d:%02d", durationMinute, durationSeconds)
+
+        var postfix = worker.read
+        switch item.mediaType ?? .UNKOWN {
+        case .VIDEO:
+            postfix = worker.watch
+        case .AUDIO:
+            postfix = worker.listen
+        default:
+            break
+        }
+        var simpleDuration = ""
+        if durationSeconds > 30 {
+            durationMinute += 1
+        }
+        if  durationMinute > 0 {
+            simpleDuration = "\(durationMinute) min \(postfix)"
+        } else if durationSeconds > 0 {
+            simpleDuration = fullDuration
+        }
+        if item.title == "Performance mindset" {
+            print("something")
+        }
+        return (fullDuration, simpleDuration)
+    }
+
+    private func cellType(for item: QDMUserStorage) -> MyLibraryCellViewModel.CellType {
+        let cellType: MyLibraryCellViewModel.CellType
+        switch item.contentType {
+        case .CONTENT_ITEM:
+            switch item.mediaType ?? .UNKOWN {
+            case .VIDEO:
+                cellType = .VIDEO
+            case .AUDIO:
+                cellType = .AUDIO
+            default:
+                cellType = .ARTICLE
+            }
+        default:
+            cellType = .ARTICLE
+        }
+        return cellType
+    }
+}

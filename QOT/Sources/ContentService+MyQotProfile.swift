@@ -21,6 +21,7 @@ extension ContentService {
             case support = "my_profile_support"
             case walkthroughOurFeatures = "my_profile_walkthrough_our_features"
             case aboutTignum = "my_profile_about_tignum"
+            case myLibrary = "my_profile_my_library"
             case learnMoreAboutUs = "my_profile_learn_more_about_us"
 
             var predicate: NSPredicate {

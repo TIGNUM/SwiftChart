@@ -31,4 +31,10 @@ struct ExtensionModel {
         let feedback: String?
         let displayDate: Date
     }
+
+    struct SaveLink: Codable {
+        let title: String
+        let url: String
+        let savedAt: Date
+    }
 }
