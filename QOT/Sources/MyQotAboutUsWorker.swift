@@ -7,13 +7,14 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotAboutUsWorker {
 
-    private let services: Services
+    private let contentService: qot_dal.ContentService
 
-    init(services: Services) {
-        self.services = services
+    init(contentService: qot_dal.ContentService) {
+        self.contentService = contentService
     }
 
     func itemCount() -> Int {
@@ -29,28 +30,38 @@ final class MyQotAboutUsWorker {
         guard let item = MyQotAboutUsModel.MyQotAboutUsModelItem(rawValue: indexPath.row) else {
             return ""
         }
-        return item.trackingKeys(for: services)
+        return item.trackingKeys()
     }
 
-    func title(at indexPath: IndexPath) -> String {
+    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
         guard let item = MyQotAboutUsModel.MyQotAboutUsModelItem(rawValue: indexPath.row) else {
-            return ""
+            completion("")
+            return
         }
-        return item.title(for: services)
+        item.title(for: contentService) { (text) in
+            completion(text)
+        }
     }
 
-    func subtitle(at indexPath: IndexPath) -> String {
+    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
         guard let item = MyQotAboutUsModel.MyQotAboutUsModelItem(rawValue: indexPath.row) else {
-            return ""
+            completion("")
+            return
         }
-        return item.subtitle(for: services)
+        item.subtitle(for: contentService) { (text) in
+            completion(text)
+        }
     }
 
-    func contentCollection(_ item: MyQotAboutUsModel.MyQotAboutUsModelItem) -> ContentCollection? {
-        return item.contentCollection(for: services.contentService)
+    func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
+        item.contentCollection(for: contentService) { (collection) in
+            completion(collection)
+        }
     }
 
-    var aboutUsText: String {
-        return services.contentService.localizedString(for: ContentService.AboutUs.aboutTignum.predicate) ?? ""
+    func aboutUsText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AboutUs.aboutTignum.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
 }

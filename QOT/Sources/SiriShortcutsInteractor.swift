@@ -26,9 +26,7 @@ final class SiriShortcutsInteractor {
 
     // MARK: - Lifecycle
 
-    func viewDidLoad() {
-        presenter.present(for: worker.siriShortcuts())
-    }
+    func viewDidLoad() {}
 }
 
 // MARK: - SettingsInteractor interface

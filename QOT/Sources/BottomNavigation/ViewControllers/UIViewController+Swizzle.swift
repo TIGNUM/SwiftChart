@@ -170,7 +170,6 @@ extension UIViewController {
         return UIBarButtonItem(customView: button)
     }
 
-
     @objc open func roundedDarkButtonItem(title: String, image: UIImage? = nil, buttonWidth: CGFloat, action: Selector) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth,

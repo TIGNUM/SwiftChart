@@ -13,13 +13,11 @@ final class MyQotAppSettingsRouter {
     // MARK: - Properties
 
     private let viewController: MyQotAppSettingsViewController
-    private let services: Services
 
     // MARK: - Init
 
-    init(viewController: MyQotAppSettingsViewController, services: Services) {
+    init(viewController: MyQotAppSettingsViewController) {
         self.viewController = viewController
-        self.services = services
     }
 }
 

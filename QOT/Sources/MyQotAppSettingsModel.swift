@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 struct MyQotAppSettingsModel {
 
@@ -17,10 +18,10 @@ struct MyQotAppSettingsModel {
 
     // MARK: - Properties
 
-    let services: Services
+    let contentService: qot_dal.ContentService
 
-    init(services: Services) {
-        self.services = services
+    init(contentService: qot_dal.ContentService) {
+        self.contentService = contentService
     }
 
     var generalSettingsCount: Int {
@@ -35,8 +36,28 @@ struct MyQotAppSettingsModel {
         return Section.values.count
     }
 
-    func headerTitleForItem(at section: Int) -> String {
-        return headertitle(for: Section.values.item(at: section))
+    func headerTitleForItem(at section: Int, completion: @escaping(String) -> Void) {
+        headertitle(for: Section.values.item(at: section)) { (text) in
+            completion(text)
+        }
+    }
+
+    func heightForHeader(in section: Int) -> CGFloat {
+        let type = SettingsType.allCases[section]
+        switch type {
+        case .general, .custom:
+            return CGFloat(68)
+        }
+    }
+
+    func heightForFooter(in section: Int) -> CGFloat {
+        let type = SettingsType.allCases[section]
+        switch type {
+        case .general:
+            return CGFloat(0.1)
+        case .custom:
+            return CGFloat(80)
+        }
     }
 
     func settingItem(at indexPath: IndexPath) -> Setting {
@@ -49,13 +70,17 @@ struct MyQotAppSettingsModel {
         }
     }
 
-    func subtitleForItem(at indexPath: IndexPath) -> String {
+    func subtitleForItem(at indexPath: IndexPath, completion: @escaping(String) -> Void) {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
         case .general:
-            return subtitle(for: Setting.generalSettings.item(at: indexPath.row))
+            subtitle(for: Setting.generalSettings.item(at: indexPath.row)) { (text) in
+                completion(text)
+            }
         case .custom:
-            return subtitle(for: Setting.customSettings.item(at: indexPath.row))
+            subtitle(for: Setting.customSettings.item(at: indexPath.row)) { (text) in
+                completion(text)
+            }
         }
     }
 
@@ -69,18 +94,24 @@ struct MyQotAppSettingsModel {
         }
     }
 
-    func titleForItem(at indexPath: IndexPath) -> String {
+    func titleForItem(at indexPath: IndexPath, completion: @escaping(String) -> Void) {
         let type = SettingsType.allCases[indexPath.section]
         switch type {
         case .general:
-            return title(for: Setting.generalSettings.item(at: indexPath.row))
+            title(for: Setting.generalSettings.item(at: indexPath.row)) { (text) in
+                completion(text)
+            }
         case .custom:
-            return title(for: Setting.customSettings.item(at: indexPath.row))
+            title(for: Setting.customSettings.item(at: indexPath.row)) { (text) in
+                completion(text)
+            }
         }
     }
 
-    func contentCollection(_ setting: Setting) -> ContentCollection? {
-        return setting.contentCollection(for: services.contentService)
+    func contentCollection(_ setting: Setting, completion: @escaping(QDMContentCollection?) -> Void) {
+        setting.contentCollection(for: contentService) { (contentCollection) in
+            completion(contentCollection)
+        }
     }
 
     private func trackingKey(for item: Setting) -> String {
@@ -98,42 +129,66 @@ struct MyQotAppSettingsModel {
         }
     }
 
-    private func title(for item: Setting) -> String {
+    private func title(for item: Setting, completion: @escaping(String) -> Void) {
         switch item {
         case .permissions:
-            return services.contentService.localizedString(for: ContentService.AppSettings.Profile.permissions.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.permissions.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         case .notifications:
-             return services.contentService.localizedString(for: ContentService.AppSettings.Profile.notifications.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.notifications.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         case .calendars:
-          return services.contentService.localizedString(for: ContentService.AppSettings.Profile.syncedCalendars.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.syncedCalendars.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         case .sensors:
-            return services.contentService.localizedString(for: ContentService.AppSettings.Profile.activityTrackers.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.activityTrackers.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         case .siriShortcuts:
-            return services.contentService.localizedString(for: ContentService.AppSettings.Profile.siriShortcuts.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.siriShortcuts.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         }
     }
 
-    private func subtitle(for item: Setting) -> String {
+    private func subtitle(for item: Setting, completion: @escaping(String) -> Void) {
         switch item {
         case .permissions:
-            return services.contentService.localizedString(for: ContentService.AppSettings.Profile.appSettingsAllowQotToAccessYourDevice.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.appSettingsAllowQotToAccessYourDevice.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         case .notifications:
-            return services.contentService.localizedString(for: ContentService.AppSettings.Profile.allowAlertsForSomeQOTFeatures.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.allowAlertsForSomeQOTFeatures.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         case .calendars:
-            return services.contentService.localizedString(for: ContentService.AppSettings.Profile.syncYourPersonalCalendarWithQot.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.syncYourPersonalCalendarWithQot.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         case .sensors:
-             return services.contentService.localizedString(for: ContentService.AppSettings.Profile.connectWearablesToQot.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.connectWearablesToQot.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         case .siriShortcuts:
-            return services.contentService.localizedString(for: ContentService.AppSettings.Profile.recodYourVoiceAndCreateShortcuts.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.recodYourVoiceAndCreateShortcuts.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         }
     }
 
-    private func headertitle(for item: Section) -> String {
+    private func headertitle(for item: Section, completion: @escaping(String) -> Void) {
         switch item {
         case .general:
-            return services.contentService.localizedString(for: ContentService.AppSettings.Profile.generalSettings.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.generalSettings.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         case .custom:
-            return services.contentService.localizedString(for: ContentService.AppSettings.Profile.customSettings.predicate) ?? ""
+            contentService.getContentItemByPredicate(ContentService.AppSettings.Profile.customSettings.predicate) {(contentItem) in
+                completion(contentItem?.valueText ?? "")
+            }
         }
     }
 }
@@ -162,10 +217,14 @@ extension MyQotAppSettingsModel {
             }
         }
 
-        func contentCollection(for service: ContentService) -> ContentCollection? {
+        func contentCollection(for service: qot_dal.ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {
-            case .sensors: return service.contentCollection(id: primaryKey)
-            default: return nil
+            case .sensors:
+                service.getContentCollectionById(primaryKey) { (collection) in
+                    completion(collection)
+                }
+            default:
+                completion(nil)
             }
         }
     }

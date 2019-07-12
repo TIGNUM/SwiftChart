@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotSupportFaqInteractor {
 
@@ -29,21 +30,25 @@ final class MyQotSupportFaqInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        presenter.setupView(with: worker.faqHeaderText)
+        worker.fetchItems {[weak self] in
+            self?.presenter.setupView()
+        }
     }
 }
 
 extension MyQotSupportFaqInteractor: MyQotSupportFaqInteractorInterface {
 
-    var faqHeaderText: String {
-        return worker.faqHeaderText
+    func faqHeaderText(_ completion: @escaping(String) -> Void) {
+        worker.faqHeaderText { (text) in
+            completion(text)
+        }
     }
 
     var itemCount: Int {
         return worker.itemCount
     }
 
-    func item(at indexPath: IndexPath) -> ContentCollection {
+    func item(at indexPath: IndexPath) -> QDMContentCollection {
         return worker.item(at: indexPath)
     }
 

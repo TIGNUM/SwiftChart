@@ -34,10 +34,14 @@ final class MyQotSiriShortcutsViewController: UIViewController {
 
 extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInterface {
 
-    func setupView(with title: String) {
+    func setupView() {
+        tableView.delegate = self
+        tableView.dataSource = self
         view.backgroundColor = .carbon
         bottomNavigationView.delegate = self
-        headerLabel.text = title
+        interactor?.siriShortcutsHeaderText({[weak self] (text) in
+            self?.headerLabel.text = text
+        })
     }
 }
 

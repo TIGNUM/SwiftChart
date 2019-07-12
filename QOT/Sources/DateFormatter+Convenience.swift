@@ -44,7 +44,6 @@ private let dailyPrepDateFormatter: DateFormatter = {
     return formatter
 }()
 
-
 private let myPrepsFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "d-MM-hh-mm"
@@ -105,7 +104,7 @@ extension DateFormatter {
         return userDateFormatter
     }
 
-    static var myPrepsTime: DateFormatter  {
+    static var myPrepsTime: DateFormatter {
          return myPrepsFormatter
     }
 

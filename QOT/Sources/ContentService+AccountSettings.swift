@@ -26,7 +26,7 @@ extension ContentService {
             case withoutDeletingAccountText = "account_settings_without_deleting_your_account"
 
             var predicate: NSPredicate {
-                return NSPredicate(tag: rawValue)
+                return NSPredicate(dalSearchTag: rawValue)
             }
         }
     }

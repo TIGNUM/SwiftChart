@@ -7,24 +7,28 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotAppSettingsWorker {
 
-    private let services: Services
+    private let contentService: qot_dal.ContentService
 
     // MARK: - Init
 
-    init(services: Services) {
-        self.services = services
+    init(contentService: qot_dal.ContentService) {
+        self.contentService = contentService
     }
 
     func settings() -> MyQotAppSettingsModel {
-        return MyQotAppSettingsModel(services: services)
+        return MyQotAppSettingsModel(contentService: contentService)
     }
 }
 
 extension MyQotAppSettingsWorker {
-    var appSettingsText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.appSettings.predicate) ?? ""
+
+    func appSettingsText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.appSettings.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
 }

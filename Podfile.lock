@@ -28,7 +28,7 @@ PODS:
   - ReactiveKit (3.13.0)
   - RSKImageCropper (2.2.2)
   - SwiftyBeaver (1.7.0)
-  - UrbanAirship-iOS-SDK (11.0.0)
+  - UrbanAirship-iOS-SDK (11.1.0)
 
 DEPENDENCIES:
   - ActionSheetPicker-3.0
@@ -83,7 +83,7 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: abe1254b3199e28f7ee21b38772a1872013a1745
+    :commit: 0b04bf4fb09a19d09fa77ef39156dac47f52c1bb
     :git: "git@github.com:TIGNUM/qot_dal.git"
 
 SPEC CHECKSUMS:
@@ -107,7 +107,7 @@ SPEC CHECKSUMS:
   ReactiveKit: 4a938b0671b0b068232926a443da19d535a03023
   RSKImageCropper: 05e3b82a18da83ea3c2b7bffa7f2199a621d6802
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
-  UrbanAirship-iOS-SDK: a8d14c20a1b5af58784923b827dfd4d4145c0622
+  UrbanAirship-iOS-SDK: 49a4a46fd7bf0a38864d13e95789f5f84938c5b1
 
 PODFILE CHECKSUM: 7baea489464a18c27ac2c4436eb730ded91c0f7e
 

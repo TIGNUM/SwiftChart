@@ -103,28 +103,54 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
 private extension MyQotAccountSettingsViewController {
 
     func setContentForView() {
-        accountSettingsHeaderLabel.text = interactor?.accountSettingsText
-        contactHeaderLabel.text = interactor?.contactText
-        emailHeaderLabel.text = interactor?.emailText
-        phoneHeaderLabel.text = interactor?.phoneText
-        personalDataHeaderLabel.text = interactor?.personalDataText
-        heightHeaderLabel.text = interactor?.heightText
-        weightHeaderLabel.text = interactor?.weightText
-        accountHeaderLabel.text = interactor?.accountText
-        changePasswordHeaderLabel.text = interactor?.changePasswordText
-        changePasswordTitleLabel.text = interactor?.protectYourAccountText
-        logoutQotHeaderLabel.text = interactor?.logoutQotText
-        logoutQotTitleLabel.text = interactor?.withoutDeletingAccountText
+
+        interactor?.accountSettingsText({[weak self] (text) in
+            self?.accountSettingsHeaderLabel.text = text
+        })
+        interactor?.contactText({[weak self] (text) in
+            self?.contactHeaderLabel.text = text
+        })
+        interactor?.emailText({[weak self] (text) in
+            self?.emailHeaderLabel.text = text
+        })
+        interactor?.phoneText({[weak self] (text) in
+            self?.phoneHeaderLabel.text = text
+        })
+        interactor?.personalDataText({[weak self] (text) in
+            self?.personalDataHeaderLabel.text = text
+        })
+        interactor?.heightText({[weak self] (text) in
+            self?.heightHeaderLabel.text = text
+        })
+        interactor?.weightText({[weak self] (text) in
+            self?.weightHeaderLabel.text = text
+        })
+        interactor?.accountText({[weak self] (text) in
+            self?.accountHeaderLabel.text = text
+        })
+        interactor?.changePasswordText({[weak self] (text) in
+            self?.changePasswordHeaderLabel.text = text
+        })
+        interactor?.protectYourAccountText({[weak self] (text) in
+            self?.changePasswordTitleLabel.text = text
+        })
+        interactor?.logoutQotText({[weak self] (text) in
+            self?.logoutQotHeaderLabel.text = text
+        })
+        interactor?.withoutDeletingAccountText({[weak self] (text) in
+            self?.logoutQotTitleLabel.text = text
+        })
     }
 
     func setDataOnView() {
-        let user = interactor?.userProfile
-        userEmailLabel.text = user?.email
-        userPhoneNumberLabel.text = user?.telephone
-        userHeightLabel.text = user?.userHeight
-        userWeightLabel.text = user?.userWeight
-        userNameLabel.text = user?.name
-        userTitleLabel.text = user?.position
+        interactor?.userProfile({[weak self] (profile) in
+            self?.userEmailLabel.text = profile?.email
+            self?.userPhoneNumberLabel.text = profile?.telephone
+            self?.userHeightLabel.text = profile?.userHeight
+            self?.userWeightLabel.text = profile?.userWeight
+            self?.userNameLabel.text = profile?.name
+            self?.userTitleLabel.text = profile?.position
+        })
     }
 }
 

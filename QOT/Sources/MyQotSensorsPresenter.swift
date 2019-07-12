@@ -25,8 +25,8 @@ extension MyQotSensorsPresenter: MyQotSensorsPresenterInterface {
         viewController?.setupView()
     }
 
-    func set(headerTitle: String, sensorTitle: String, requestTrackerTitle: String) {
-        viewController?.set(headerTitle: headerTitle, sensorTitle: sensorTitle, requestTrackerTitle: requestTrackerTitle)
+    func set(headerTitle: String, sensorTitle: String) {
+        viewController?.set(headerTitle: headerTitle, sensorTitle: sensorTitle)
     }
 
     func setHealthKit(title: String, status: String, labelStatus: String) {

@@ -16,13 +16,12 @@ final class MyQotProfileViewController: AbstractLevelTwoViewController {
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
+    @IBOutlet private weak var loaderView: UIView!
 
     private var profile: UserProfileModel?
     var interactor: MyQotProfileInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
-    var menuItems: [MyQotProfileModel.TableViewPresentationData] {
-        return interactor?.menuItems ?? []
-    }
+    var menuItems: [MyQotProfileModel.TableViewPresentationData] = []
 
     // MARK: - Life Cycle
 
@@ -60,6 +59,8 @@ private extension MyQotProfileViewController {
     func setupTableView() {
         tableView.registerDequeueable(MyQotProfileOptionsTableViewCell.self)
         tableView.registerDequeueable(MyQotProfileHeaderView.self)
+        tableView.delegate = self
+        tableView.dataSource = self
     }
 }
 
@@ -67,13 +68,19 @@ private extension MyQotProfileViewController {
 
 extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
 
-    func setup(profile: UserProfileModel) {
-        self.profile = profile
+    func showLoaderView() {
+//        loaderView.isHidden = false
     }
 
-    func setupView() {
+    func hideLoaderView() {
+//        loaderView.isHidden = true
+    }
+
+    func setupView(profile: UserProfileModel, menuItems: [MyQotProfileModel.TableViewPresentationData]) {
+        self.profile = profile
+        self.menuItems = menuItems
         bottomNavigationView.delegate = self
-        headerLabel.text = interactor?.myProfileText
+        headerLabel.text = interactor?.myProfileText()
         setupTableView()
     }
 }
@@ -104,7 +111,7 @@ extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: MyQotProfileHeaderView = tableView.dequeueHeaderFooter()
-        headerView.configure(data: MyQotProfileModel.HeaderViewModel(user: interactor?.userProfile, memberSinceTitle: interactor?.memberSinceText))
+        headerView.configure(data: MyQotProfileModel.HeaderViewModel(user: profile, memberSinceTitle: interactor?.memberSinceText()))
         return headerView
     }
 }

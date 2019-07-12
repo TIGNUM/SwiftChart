@@ -14,7 +14,7 @@ extension ContentService {
         case syncedCalendars = "synced_calendars_synced_calendars"
 
         var predicate: NSPredicate {
-            return NSPredicate(tag: rawValue)
+            return NSPredicate(dalSearchTag: rawValue)
         }
     }
 }

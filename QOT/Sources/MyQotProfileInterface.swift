@@ -9,19 +9,22 @@
 import Foundation
 
 protocol MyQotProfileViewControllerInterface: class {
-    func setupView()
+    func showLoaderView()
+    func hideLoaderView()
+    func setupView(profile: UserProfileModel, menuItems: [MyQotProfileModel.TableViewPresentationData])
 }
 
 protocol MyQotProfilePresenterInterface {
-    func setupView()
+    func showLoaderView()
+    func hideLoaderView()
+    func setupView(profile: UserProfileModel, menuItems: [MyQotProfileModel.TableViewPresentationData])
 }
 
 protocol MyQotProfileInteractorInterface: Interactor {
+    func memberSinceText() -> String
+    func myProfileText() -> String
     func presentController(for index: Int)
-    var myProfileText: String { get }
-    var memberSinceText: String { get }
-    var userProfile: UserProfileModel? { get }
-    var menuItems: [MyQotProfileModel.TableViewPresentationData] { get }
+    func getData(_ completion: @escaping (UserProfileModel?) -> Void)
 }
 
 protocol MyQotProfileRouterInterface {

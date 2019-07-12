@@ -7,13 +7,16 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotSupportWorker {
 
-    private let services: Services
+    private let contentService: qot_dal.ContentService
+    private let userService: qot_dal.UserService
 
-    init(services: Services) {
-        self.services = services
+    init(contentService: qot_dal.ContentService, userService: qot_dal.UserService) {
+        self.contentService = contentService
+        self.userService = userService
     }
 
     func itemCount() -> Int {
@@ -29,35 +32,48 @@ final class MyQotSupportWorker {
         guard let item = MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row) else {
             return ""
         }
-        return item.trackingKeys(for: services)
+        return item.trackingKeys()
     }
 
-    func title(at indexPath: IndexPath) -> String {
+    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
         guard let item = MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row) else {
-            return ""
+            completion("")
+            return
         }
-        return item.title(for: services)
+        item.title(for: contentService) { (text) in
+            completion(text)
+        }
     }
 
-    func subtitle(at indexPath: IndexPath) -> String {
+    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
         guard let item = MyQotSupportModel.MyQotSupportModelItem(rawValue: indexPath.row) else {
-            return ""
+            completion("")
+            return
         }
-        return item.subtitle(for: services)
-    }
-
-    func contentCollection(_ item: MyQotSupportModel.MyQotSupportModelItem) -> ContentCollection? {
-        return item.contentCollection(for: services.contentService)
-    }
-
-    var supportText: String {
-        return services.contentService.localizedString(for: ContentService.Support.support.predicate) ?? ""
-    }
-
-    var email: String {
-        if let supportEmail = services.userService.user()?.firstLevelSupportEmail, supportEmail.isEmpty == false {
-            return supportEmail
+        item.subtitle(for: contentService) { (text) in
+            completion(text)
         }
-        return Defaults.firstLevelSupportEmail
+    }
+
+    func contentCollection(_ item: MyQotSupportModel.MyQotSupportModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
+        item.contentCollection(for: contentService) { (collection) in
+            completion(collection)
+        }
+    }
+
+    func supportText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.Support.support.predicate) {(text) in
+            completion(text?.valueText ?? "")
+        }
+    }
+
+    func email(_ completion: @escaping(String) -> Void) {
+        userService.getUserData { (user) in
+            guard let email = user?.firstLevelSupportEmail, !email.isEmpty else {
+                completion(Defaults.firstLevelSupportEmail)
+                return
+            }
+            completion(email)
+        }
     }
 }

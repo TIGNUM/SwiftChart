@@ -48,8 +48,16 @@ extension MyQotSiriShortcutsInteractor: MyQotSiriShortcutsInteractorInterface {
         router.handleTap(for: shortcut)
     }
 
+    func siriShortcutsHeaderText(_ completion: @escaping(String) -> Void) {
+        worker.siriShortcutsHeaderText { (text) in
+            completion(text)
+        }
+    }
+
     func viewDidLoad() {
-        presenter.setupView(with: worker.siriShortcutsHeaderText)
+        worker.getData {[weak self] in
+            self?.presenter.setupView()
+        }
     }
 
     func sendSiriRecordingAppEvent(shortcutType: ShortcutType) {

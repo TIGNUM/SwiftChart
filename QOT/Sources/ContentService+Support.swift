@@ -22,7 +22,7 @@ extension ContentService {
         case faq = "support_faq"
 
         var predicate: NSPredicate {
-            return NSPredicate(tag: rawValue)
+            return NSPredicate(dalSearchTag: rawValue)
         }
     }
 }

@@ -30,11 +30,15 @@ final class MyQotSupportFaqViewController: UIViewController {
 }
 
 extension MyQotSupportFaqViewController: MyQotSupportFaqViewControllerInterface {
-    func setupView(with title: String) {
+    func setupView() {
         view.backgroundColor = .carbon
         bottomNavigationView.delegate = self
-        headerLabel.text = title
         tableView.registerDequeueable(TitleTableViewCell.self)
+        tableView.delegate = self
+        tableView.dataSource = self
+        interactor?.faqHeaderText({[weak self] (text) in
+            self?.headerLabel.text = text
+        })
     }
 }
 
@@ -55,10 +59,12 @@ extension MyQotSupportFaqViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        guard let contentID = interactor?.item(at: indexPath).remoteID.value else { return }
+        guard let contentID = interactor?.item(at: indexPath).remoteID else { return }
         let key = interactor?.trackingID(at: indexPath)
         trackUserEvent(.OPEN, value: key, valueType: .CONTENT_ITEM, action: .TAP)
-        interactor?.presentContentItemSettings(contentID: contentID, pageName: .faq, pageTitle: interactor?.faqHeaderText ?? R.string.localized.sidebarTitleFAQ())
+        interactor?.faqHeaderText({[weak self] (text) in
+            self?.interactor?.presentContentItemSettings(contentID: contentID, pageName: .faq, pageTitle: text)
+        })
     }
 }
 

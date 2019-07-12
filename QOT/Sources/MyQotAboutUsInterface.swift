@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol MyQotAboutUsViewControllerInterface: class {
     func setupView(with title: String)
@@ -20,9 +21,9 @@ protocol MyQotAboutUsInteractorInterface: Interactor {
     func trackingKeys(at indexPath: IndexPath) -> String
     func itemCount() -> Int
     func item(at indexPath: IndexPath) -> MyQotAboutUsModel.MyQotAboutUsModelItem?
-    func title(at indexPath: IndexPath) -> String
-    func subtitle(at indexPath: IndexPath) -> String
-    func contentCollection(_ item: MyQotAboutUsModel.MyQotAboutUsModelItem) -> ContentCollection?
+    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void)
+    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void)
+    func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem, _ completion: @escaping(QDMContentCollection?) -> Void)
     func handleSelection(for indexPath: IndexPath)
 }
 

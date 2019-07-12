@@ -97,7 +97,7 @@ extension MyPrepsWorker {
         })
     }
     //TODO: Remove createMindModel and createRecModel
-    
+
     func createMindModel() {
         let homeAnswerIds = [100036, 100037, 100038]
         let workAnswerIds = [100036, 100037, 100038]

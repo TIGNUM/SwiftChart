@@ -46,7 +46,6 @@ final class ProfileSettingsViewController: UIViewController {
 
     var interactor: ProfileSettingsInteractorInterface?
     var networkManager: NetworkManager!
-    var services: Services!
     var launchOptions: [LaunchOption: String?]?
 
     private var footerView: ProfileSettingsFooterView? = {
@@ -110,7 +109,9 @@ extension ProfileSettingsViewController: ProfileSettingsViewControllerInterface 
 private extension ProfileSettingsViewController {
 
     func setupView() {
-        headerTitle.text = interactor?.editAccountTitle
+        interactor?.editAccountTitle({[weak self] (text) in
+            self?.headerTitle.text = text
+        })
         footerView?.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100)
         footerView?.autoresizingMask = .flexibleWidth
         footerView?.setupView(isEnabled: false)
@@ -366,8 +367,8 @@ extension ProfileSettingsViewController {
     func didTapResetPassword(completion: @escaping (NetworkError?) -> Void) {
         guard let window = AppDelegate.current.window else { return }
         let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
-        let user = services.userService.user()?.email ?? ""
-        networkManager.performResetPasswordRequest(username: user, completion: { error in
+        let userEmail = interactor?.profile?.email ?? ""
+        networkManager.performResetPasswordRequest(username: userEmail, completion: { error in
             progressHUD.hide(animated: true)
             completion(error)
         })

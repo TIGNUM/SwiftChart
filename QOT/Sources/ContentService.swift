@@ -57,15 +57,6 @@ final class ContentService {
         case tbvGeneratorAlertNotSavedButtonTitleDefault = "tbv_generator_alert_not_saved_button_title_default"
         case tbvGeneratorAlertNotSavedButtonTitleDestructive = "tbv_generator_alert_not_saved_button_title_destructive"
         case tbvSharing = "tbv_sharing"
-        case siriExplanation = "siri_explanation_header"
-        case siriToBeVisionTitle = "siri_title_tobevision"
-        case siriUpcomingEventTitle = "siri_title_upcomingevent"
-        case siriDailyPrepTitle = "siri_title_dailyprep"
-        case siriWhatsHotTitle = "siri_title_whatshot"
-        case siriToBeVisionSuggestionPhrase = "siri_suggestionphrase_tobevision"
-        case siriUpcomingEventSuggestionPhrase = "siri_suggestionphrase_upcomingevent"
-        case siriDailyPrepSuggestionPhrase = "siri_suggestionphrase_dailyprep"
-        case siriWhatsHotSuggestionPhrase = "siri_suggestionphrase_whatshot"
         case searchSuggestionSelfImage = "search_suggestion_self_image"
         case searchSuggestionDailyPrep = "search_suggestion_daily_prep"
         case searchSuggestionNoExcuse = "search_suggestion_no_excuse"
@@ -452,54 +443,6 @@ extension ContentService {
                                          buttonTitleCancel: buttonTitleCancel,
                                          buttonTitleDefault: buttonTitleDefault,
                                          buttonTitleDestructive: buttonTitleDestructive)
-    }
-}
-
-// MARK: - Siri
-
-extension ContentService {
-
-    func siriExplanation() -> String? {
-        return contentItem(for: ContentService.Tags.siriExplanation.predicate)?.valueText
-    }
-
-    func siriTrackingKey(for shortcut: ShortcutType) -> String? {
-        switch shortcut {
-        case .toBeVision:
-            return ContentService.Tags.siriToBeVisionTitle.rawValue
-        case .upcomingEventPrep:
-            return ContentService.Tags.siriUpcomingEventTitle.rawValue
-        case .whatsHot:
-            return ContentService.Tags.siriWhatsHotTitle.rawValue
-        case .morningInterview:
-            return ContentService.Tags.siriDailyPrepTitle.rawValue
-        }
-    }
-
-    func siriTitle(for shortcut: ShortcutType) -> String? {
-        switch shortcut {
-        case .toBeVision:
-            return contentItem(for: ContentService.Tags.siriToBeVisionTitle.predicate)?.valueText
-        case .upcomingEventPrep:
-            return contentItem(for: ContentService.Tags.siriUpcomingEventTitle.predicate)?.valueText
-        case .whatsHot:
-            return contentItem(for: ContentService.Tags.siriWhatsHotTitle.predicate)?.valueText
-        case .morningInterview:
-            return contentItem(for: ContentService.Tags.siriDailyPrepTitle.predicate)?.valueText
-        }
-    }
-
-    func siriSuggestionPhrase(for shortcut: ShortcutType) -> String? {
-        switch shortcut {
-        case .toBeVision:
-            return contentItem(for: ContentService.Tags.siriToBeVisionSuggestionPhrase.predicate)?.valueText
-        case .upcomingEventPrep:
-            return contentItem(for: ContentService.Tags.siriUpcomingEventSuggestionPhrase.predicate)?.valueText
-        case .whatsHot:
-            return contentItem(for: ContentService.Tags.siriWhatsHotSuggestionPhrase.predicate)?.valueText
-        case .morningInterview:
-            return contentItem(for: ContentService.Tags.siriDailyPrepSuggestionPhrase.predicate)?.valueText
-        }
     }
 }
 

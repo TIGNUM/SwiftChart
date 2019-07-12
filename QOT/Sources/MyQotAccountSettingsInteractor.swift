@@ -37,45 +37,84 @@ final class MyQotAccountSettingsInteractor {
 
 extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterface {
 
-    var userProfile: UserProfileModel? {
-        return worker.profile()
+    func userProfile(_ completion: @escaping (UserProfileModel?) -> Void) {
+        worker.getUserProfile { (userProfile) in
+            completion(userProfile)
+        }
     }
-    var accountSettingsText: String {
-        return worker.accountSettingsText
+
+    func accountSettingsText(_ completion: @escaping(String) -> Void) {
+        worker.accountSettingsText { (text) in
+            completion(text)
+        }
     }
-    var contactText: String {
-        return worker.contactText
+
+    func contactText(_ completion: @escaping(String) -> Void) {
+        worker.contactText { (text) in
+            completion(text)
+        }
     }
-    var emailText: String {
-        return worker.emailText
+
+    func emailText(_ completion: @escaping(String) -> Void) {
+        worker.emailText { (text) in
+            completion(text)
+        }
     }
-    var phoneText: String {
-        return worker.phoneText
+
+    func phoneText(_ completion: @escaping(String) -> Void) {
+        worker.phoneText { (text) in
+            completion(text)
+        }
     }
-    var personalDataText: String {
-        return worker.personalDataText
+
+    func personalDataText(_ completion: @escaping(String) -> Void) {
+        worker.personalDataText { (text) in
+            completion(text)
+        }
     }
-    var heightText: String {
-        return worker.heightText
+
+    func heightText(_ completion: @escaping(String) -> Void) {
+        worker.heightText { (text) in
+            completion(text)
+        }
     }
-    var weightText: String {
-        return worker.weightText
+
+    func weightText(_ completion: @escaping(String) -> Void) {
+        worker.weightText { (text) in
+            completion(text)
+        }
     }
-    var accountText: String {
-        return worker.accountText
+
+    func accountText(_ completion: @escaping(String) -> Void) {
+        worker.accountText { (text) in
+            completion(text)
+        }
     }
-    var changePasswordText: String {
-        return worker.changePasswordText
+
+    func changePasswordText(_ completion: @escaping(String) -> Void) {
+        worker.changePasswordText { (text) in
+            completion(text)
+        }
     }
-    var protectYourAccountText: String {
-        return worker.protectYourAccountText
+
+    func protectYourAccountText(_ completion: @escaping(String) -> Void) {
+        worker.protectYourAccountText { (text) in
+            completion(text)
+        }
     }
-    var logoutQotText: String {
-        return worker.logoutQotText
+
+    func logoutQotText(_ completion: @escaping(String) -> Void) {
+        worker.logoutQotText { (text) in
+            completion(text)
+        }
     }
-    var withoutDeletingAccountText: String {
-        return worker.withoutDeletingAccountText
+
+    func withoutDeletingAccountText(_ completion: @escaping(String) -> Void) {
+        worker.withoutDeletingAccountText { (text) in
+            completion(text)
+        }
     }
+
     var changePasswordKey: String {
         return worker.changePasswordKey
     }

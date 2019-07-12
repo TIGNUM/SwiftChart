@@ -69,7 +69,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
     }
 
     func didClickSaveAndContinue() {
-        worker.updatePreparation() { [weak self] (preparation) in
+        worker.updatePreparation { [weak self] (preparation) in
             self?.router.didClickSaveAndContinue()
         }
     }

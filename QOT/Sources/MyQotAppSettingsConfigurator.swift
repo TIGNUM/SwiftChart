@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotAppSettingsConfigurator: AppStateAccess {
 
     static func configure(viewController: MyQotAppSettingsViewController) {
-        let router =  MyQotAppSettingsRouter(viewController: viewController, services: appState.services)
-        let worker = MyQotAppSettingsWorker(services: appState.services)
+        let router =  MyQotAppSettingsRouter(viewController: viewController)
+        let worker = MyQotAppSettingsWorker(contentService: qot_dal.ContentService.main)
         let presenter = MyQotAppSettingsPresenter(viewController: viewController)
         let interactor = MyQotAppSettingsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

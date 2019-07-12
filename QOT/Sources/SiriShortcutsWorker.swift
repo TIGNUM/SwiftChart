@@ -22,16 +22,6 @@ final class SiriShortcutsWorker {
 
     // MARK: - Functions
 
-    func siriShortcuts() -> SiriShortcutsModel {
-        let explanation = services.contentService.siriExplanation()
-        let shortcuts = ShortcutType.allCases.map {
-            return SiriShortcutsModel.Shortcut(type: $0,
-                                               title: services.contentService.siriTitle(for: $0),
-                                               trackingKey: services.contentService.siriTrackingKey(for: $0),
-                                               suggestion: services.contentService.siriSuggestionPhrase(for: $0)) }
-        return SiriShortcutsModel(explanation: explanation, shortcuts: shortcuts)
-    }
-
     func sendSiriRecordingAppEvent(shortcutType: ShortcutType) {
         switch shortcutType {
         case .toBeVision:

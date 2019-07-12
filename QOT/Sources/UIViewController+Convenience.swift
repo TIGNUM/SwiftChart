@@ -93,4 +93,16 @@ extension UIViewController {
             return UIEdgeInsets(top: top, left: 0, bottom: bottom, right: 0)
         }
     }
+
+    func removeLoadingSkeleton() {
+        guard let view = view.viewWithTag(Skeleton.tag) else { return }
+        view.removeFromSuperview()
+    }
+
+    func showLoadingSkeleton(with types: [SkeletonType]) {
+        let skeleton = Skeleton.show(types)
+        view.addSubview(skeleton)
+        skeleton.addConstraints(to: view)
+        view.layoutIfNeeded()
+    }
 }

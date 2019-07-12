@@ -7,25 +7,23 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotAccountSettingsWorker {
 
     // MARK: - Properties
 
-    private let services: Services
-    private let userProfileManager: UserProfileManager?
+    private var userEmail: String?
+    private let userService: qot_dal.UserService
+    private let contentService: qot_dal.ContentService
     private let networkManager: NetworkManager
 
     // MARK: - Init
 
-    init(services: Services, syncManager: SyncManager, networkManager: NetworkManager) {
-        self.services = services
+    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService, networkManager: NetworkManager) {
+        self.userService = userService
+        self.contentService = contentService
         self.networkManager = networkManager
-        self.userProfileManager = UserProfileManager(services, syncManager)
-    }
-
-    func profile() -> UserProfileModel? {
-        return userProfileManager?.profile()
     }
 
     func logout() {
@@ -35,7 +33,11 @@ final class MyQotAccountSettingsWorker {
     }
 
     func resetPassword(completion: @escaping (NetworkError?) -> Void) {
-        networkManager.performResetPasswordRequest(username: userEmail, completion: { error in
+        guard let email = userEmail else {
+            completion(nil)
+            return
+        }
+        networkManager.performResetPasswordRequest(username: email, completion: { error in
             completion(error)
         })
     }
@@ -51,35 +53,90 @@ final class MyQotAccountSettingsWorker {
             return .unknown
         }
     }
+
+    func getUserProfile(_ completion: @escaping (UserProfileModel?) -> Void) {
+        userService.getUserData {[weak self] (user) in
+            let profile = self?.formProfile(for: user)
+            self?.userEmail = profile?.email
+            completion(profile)
+        }
+    }
 }
 
 // MARK: - ContentService
 
 extension MyQotAccountSettingsWorker {
 
-    var accountSettingsText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.accountSettings.predicate) ?? ""
+    func accountSettingsText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.accountSettings.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
-    var contactText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.contact.predicate) ?? ""
+
+    func contactText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.contact.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
-    var emailText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.email.predicate) ?? ""
+
+    func emailText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.email.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
-    var phoneText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.phone.predicate) ?? ""
+
+    func phoneText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.phone.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
-    var personalDataText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.personalData.predicate) ?? ""
+
+    func personalDataText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.personalData.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
-    var heightText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.height.predicate) ?? ""
+
+    func heightText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.height.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
-    var weightText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.weight.predicate) ?? ""
+
+    func weightText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.weight.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
-    var accountText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.account.predicate) ?? ""
+
+    func accountText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.account.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
+    }
+
+    func changePasswordText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.changePassword.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
+    }
+
+    func protectYourAccountText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.protectYourAccount.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
+    }
+
+    func logoutQotText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.logoutQot.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
+    }
+
+    func withoutDeletingAccountText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.withoutDeletingAccountText.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
 
     var changePasswordKey: String {
@@ -89,25 +146,32 @@ extension MyQotAccountSettingsWorker {
     var logoutQOTKey: String {
         return ContentService.AccountSettings.Profile.logoutQot.rawValue
     }
-
-    var changePasswordText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.changePassword.predicate) ?? ""
-    }
-    var protectYourAccountText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.protectYourAccount.predicate) ?? ""
-    }
-    var logoutQotText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.logoutQot.predicate) ?? ""
-    }
-    var withoutDeletingAccountText: String {
-        return services.contentService.localizedString(for: ContentService.AccountSettings.Profile.withoutDeletingAccountText.predicate) ?? ""
-    }
 }
 
 // MARK: - Private extension
 
 private extension MyQotAccountSettingsWorker {
-    var userEmail: String {
-        return self.profile()?.email ?? ""
+    func getUserEmail(_ completion: @escaping (String) -> Void) {
+        userService.getUserData {[weak self] (user) in
+            let profile = self?.formProfile(for: user)
+            completion(profile?.email ?? "")
+        }
+    }
+
+    func formProfile(for user: QDMUser?) -> UserProfileModel? {
+        return UserProfileModel(imageURL: user?.profileImage?.url(),
+                                givenName: user?.givenName,
+                                familyName: user?.familyName,
+                                position: user?.jobTitle,
+                                memberSince: user?.memberSince ?? Date(),
+                                company: user?.company,
+                                email: user?.email,
+                                telephone: user?.telephone,
+                                gender: user?.gender,
+                                height: user?.height ?? 150,
+                                heightUnit: user?.heightUnit ?? "",
+                                weight: user?.weight ?? 60,
+                                weightUnit: user?.weightUnit ?? "",
+                                birthday: user?.dateOfBirth ?? "")
     }
 }

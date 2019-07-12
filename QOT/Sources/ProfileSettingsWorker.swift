@@ -14,18 +14,53 @@ import qot_dal
 final class ProfileSettingsWorker {
 
     private var settingsSections = [SettingsSection]()
-    private let services: Services
+    private let contentService: qot_dal.ContentService
     private var user: QDMUser?
+    private let dispatchGroup = DispatchGroup()
 
-    init(services: Services) {
-        self.services = services
+    private var personalTxt = ""
+    private var contactTxt = ""
+    private var nameTxt = ""
+    private var surnameTxt = ""
+    private var genderTxt = ""
+    private var dateOfBirthTxt = ""
+    private var heightTxt = ""
+    private var weightTxt = ""
+    private var companyTxt = ""
+    private var titleTxt = ""
+    private var emailTxt = ""
+    private var phoneTxt = ""
+
+    init(contentService: qot_dal.ContentService) {
+        self.contentService = contentService
     }
 
-    func profile(_ completion: @escaping (_ userData: QDMUser?) -> Void) {
-        qot_dal.UserService.main.getUserData({ user in
-            self.user = user
-            self.generateSections()
+    func getData(_ completion: @escaping (_ userData: QDMUser?) -> Void) {
+        personalDataTitle()
+        contactTitle()
+        nameTitle()
+        surnameTitle()
+        genderTitle()
+        dateOfBirthTitle()
+        heightTitle()
+        weightTitle()
+        companyTitle()
+        titleTitle()
+        emailTitle()
+        phoneTitle()
+        getProfile()
+
+        dispatchGroup.notify(queue: .main) {
             completion(self.user)
+        }
+    }
+
+    private func getProfile() {
+        dispatchGroup.enter()
+        qot_dal.UserService.main.getUserData({[weak self] user in
+            self?.user = user
+            self?.generateSections()
+            self?.dispatchGroup.leave()
         })
     }
 
@@ -46,8 +81,10 @@ extension ProfileSettingsWorker {
         }
     }
 
-    var editAccountTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.editAccount.predicate) ?? ""
+    func editAccountTitle(_ completion: @escaping (_ userData: String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.EditAccount.editAccount.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
 
     func numberOfSections() -> Int {
@@ -74,52 +111,109 @@ extension ProfileSettingsWorker {
 // MARK: - ContentService
 private extension ProfileSettingsWorker {
 
-    var personalDataTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.personalData.predicate) ?? ""
-    }
-    var contactTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.contact.predicate) ?? ""
-    }
-    var nameTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.name.predicate) ?? ""
-    }
-    var surnameTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.surname.predicate) ?? ""
-    }
-    var genderTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.gender.predicate) ?? ""
-    }
-    var dateOfBirthTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.dateOfBirth.predicate) ?? ""
-    }
-    var heightTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.height.predicate) ?? ""
-    }
-    var weightTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.weight.predicate) ?? ""
-    }
-    var companyTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.company.predicate) ?? ""
-    }
-    var titleTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.title.predicate) ?? ""
+    func personalDataTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.personalData.predicate) {[weak self] (contentItem) in
+            self?.personalTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
 
-    var emailTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.email.predicate) ?? ""
+    func contactTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.contact.predicate) {[weak self] (contentItem) in
+            self?.contactTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
 
-    var phoneTitle: String {
-        return services.contentService.localizedString(for: ContentService.EditAccount.phone.predicate) ?? ""
+    func nameTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.name.predicate) {[weak self] (contentItem) in
+            self?.nameTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func surnameTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.surname.predicate) {[weak self] (contentItem) in
+            self?.surnameTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func genderTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.gender.predicate) {[weak self] (contentItem) in
+            self?.genderTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func dateOfBirthTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.dateOfBirth.predicate) {[weak self] (contentItem) in
+            self?.dateOfBirthTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func heightTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.height.predicate) {[weak self] (contentItem) in
+            self?.heightTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func weightTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.weight.predicate) {[weak self] (contentItem) in
+            self?.weightTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func companyTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.company.predicate) {[weak self] (contentItem) in
+            self?.companyTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func titleTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.title.predicate) {[weak self] (contentItem) in
+            self?.titleTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func emailTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.email.predicate) {[weak self] (contentItem) in
+            self?.emailTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func phoneTitle() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.EditAccount.phone.predicate) {[weak self] (contentItem) in
+            self?.phoneTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
 }
 
 private extension ProfileSettingsWorker {
 
-    private func generalSettingsSection(for user: QDMUser?, services: Services) -> [SettingsSection] {
+    private func generalSettingsSection(for user: QDMUser?) -> [SettingsSection] {
         return [
-            Sections(title: personalDataTitle, rows: personalRows(for: user)),
-            Sections(title: contactTitle, rows: companyRows(for: user))
+            Sections(title: personalTxt, rows: personalRows(for: user)),
+            Sections(title: contactTxt, rows: companyRows(for: user))
         ]
     }
 
@@ -128,15 +222,15 @@ private extension ProfileSettingsWorker {
     }
 
     private func settingSections(user: QDMUser?) -> [SettingsSection] {
-        return generalSettingsSection(for: user, services: services)
+        return generalSettingsSection(for: user)
     }
 
     private func companyRows(for user: QDMUser?) -> [SettingsRow] {
         return [
-            .label(title: companyTitle, value: user?.company, settingsType: .company),
-            .textField(title: titleTitle, value: user?.jobTitle ?? "", secure: false, settingsType: .jobTitle),
-            .label(title: emailTitle, value: user?.email, settingsType: .email),
-            .textField(title: phoneTitle, value: user?.telephone ?? "", secure: false, settingsType: .phone)
+            .label(title: companyTxt, value: user?.company, settingsType: .company),
+            .textField(title: titleTxt, value: user?.jobTitle ?? "", secure: false, settingsType: .jobTitle),
+            .label(title: emailTxt, value: user?.email, settingsType: .email),
+            .textField(title: phoneTxt, value: user?.telephone ?? "", secure: false, settingsType: .phone)
         ]
     }
 
@@ -159,20 +253,20 @@ private extension ProfileSettingsWorker {
         }
 
         return [
-            .textField(title: nameTitle, value: user.givenName, secure: false, settingsType: .firstName),
-            .textField(title: surnameTitle, value: user.familyName, secure: false, settingsType: .lastName),
-            .stringPicker(title: genderTitle,
+            .textField(title: nameTxt, value: user.givenName, secure: false, settingsType: .firstName),
+            .textField(title: surnameTxt, value: user.familyName, secure: false, settingsType: .lastName),
+            .stringPicker(title: genderTxt,
                           pickerItems: Gender.allValues.compactMap { $0.dsiplayValue },
                           selectedIndex: selectedGenderIndex,
                           settingsType: .gender),
-            .datePicker(title: dateOfBirthTitle,
+            .datePicker(title: dateOfBirthTxt,
                         selectedDate: date,
                         settingsType: .dateOfBirth),
-            .multipleStringPicker(title: heightTitle,
+            .multipleStringPicker(title: heightTxt,
                                   rows: user.heightPickerItems,
                                   initialSelection: [selectedHeightIndex, selectedHeightUnitIndex],
                                   settingsType: .height),
-            .multipleStringPicker(title: weightTitle,
+            .multipleStringPicker(title: weightTxt,
                                   rows: user.weightPickerItems,
                                   initialSelection: [selectedWeightIndex, selectedWeightUnitIndex],
                                   settingsType: .weight)

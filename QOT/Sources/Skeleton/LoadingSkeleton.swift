@@ -10,10 +10,6 @@ import UIKit
 
 final class LoadingSkeleton: UIView {
 
-    override var intrinsicContentSize: CGSize {
-        return CGSize(width: 400, height: 200)
-    }
-
     func showLoaderSkeleton() {
         loader()
     }
@@ -35,7 +31,7 @@ final class LoadingSkeleton: UIView {
         case .fiveLinesWithTopBroad:
             fiveLinesWithTopBroad()
         default:
-            twoLinesAndButton()
+            loader()
         }
     }
 }
@@ -46,7 +42,6 @@ private extension LoadingSkeleton {
         let view = Loader.instantiateFromNib()
         self.addSubview(view)
         view.addConstraints(to: self)
-        self.layoutIfNeeded()
     }
 
     func twoLinesAndButton() {

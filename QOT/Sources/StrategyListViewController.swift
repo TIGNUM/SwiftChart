@@ -60,7 +60,7 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
 
     func reload() {
         tableView.reloadData()
-        self.removeLoadingSkeleton()
+//        self.removeLoadingSkeleton()
     }
 }
 

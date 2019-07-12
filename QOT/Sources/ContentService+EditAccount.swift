@@ -26,7 +26,7 @@ extension ContentService {
         case phone = "edit_account_phone"
 
         var predicate: NSPredicate {
-            return NSPredicate(tag: rawValue)
+            return NSPredicate(dalSearchTag: rawValue)
         }
     }
 }

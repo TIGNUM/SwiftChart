@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotSupportInteractor {
 
@@ -44,24 +45,34 @@ extension MyQotSupportInteractor: MyQotSupportInteractorInterface {
         return worker.trackingKeys(at: indexPath)
     }
 
-    func title(at indexPath: IndexPath) -> String {
-        return worker.title(at: indexPath)
+    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
+        worker.title(at: indexPath) { (text) in
+            completion(text)
+        }
     }
 
-    func subtitle(at indexPath: IndexPath) -> String {
-        return worker.subtitle(at: indexPath)
+    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
+        worker.subtitle(at: indexPath) { (text) in
+            completion(text)
+        }
     }
 
-    func contentCollection(_ item: MyQotSupportModel.MyQotSupportModelItem) -> ContentCollection? {
-        return worker.contentCollection(item)
+    func contentCollection(_ item: MyQotSupportModel.MyQotSupportModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
+        worker.contentCollection(item) { (collection) in
+            completion(collection)
+        }
     }
 
     func handleSelection(for indexPath: IndexPath) {
         guard let item = worker.item(at: indexPath) else { return }
-        router.handleSelection(for: item, email: worker.email)
+        worker.email {[weak self] (email) in
+            self?.router.handleSelection(for: item, email: email)
+        }
     }
 
-    var supportText: String {
-        return worker.supportText
+    func supportText(_ completion: @escaping(String) -> Void) {
+        worker.supportText { (text) in
+            completion(text)
+        }
     }
 }

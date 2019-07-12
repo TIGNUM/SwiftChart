@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 struct MyQotSupportModel {
 
@@ -29,7 +30,7 @@ struct MyQotSupportModel {
             }
         }
 
-        func trackingKeys(for services: Services) -> String {
+        func trackingKeys() -> String {
             switch self {
             case .contactSupport:
                 return ContentService.Support.contactSupport.rawValue
@@ -42,29 +43,45 @@ struct MyQotSupportModel {
             }
         }
 
-        func title(for services: Services) -> String {
+        func title(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
             switch self {
             case .contactSupport:
-                return services.contentService.localizedString(for: ContentService.Support.contactSupport.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.Support.contactSupport.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .featureRequest:
-                return services.contentService.localizedString(for: ContentService.Support.featureRequest.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.Support.featureRequest.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .tutorial:
-                return services.contentService.localizedString(for: ContentService.Support.tutorial.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.Support.tutorial.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .faq:
-                return services.contentService.localizedString(for: ContentService.Support.faq.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.Support.faq.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             }
         }
 
-        func subtitle(for services: Services) -> String {
+        func subtitle(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
             switch self {
             case .contactSupport:
-                return services.contentService.localizedString(for: ContentService.Support.areYouMissingSomething.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.Support.areYouMissingSomething.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .featureRequest:
-                return services.contentService.localizedString(for: ContentService.Support.learnHowToUseQot.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.Support.learnHowToUseQot.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .tutorial:
-                return services.contentService.localizedString(for: ContentService.Support.contactUsForAnyQuestion.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.Support.contactUsForAnyQuestion.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .faq:
-                return services.contentService.localizedString(for: ContentService.Support.checkTheMostAskedQuestion.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.Support.checkTheMostAskedQuestion.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             }
         }
 
@@ -77,12 +94,18 @@ struct MyQotSupportModel {
             }
         }
 
-        func contentCollection(for service: ContentService) -> ContentCollection? {
+        func contentCollection(for contentService: qot_dal.ContentService, completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {
-            case .contactSupport: return service.contentCollection(id: primaryKey)
-            case .featureRequest,
-                 .tutorial: return nil
-            case .faq: return service.contentCollection(id: primaryKey)
+            case .contactSupport:
+                contentService.getContentCollectionById(primaryKey) { (collection) in
+                    completion(collection)
+                }
+            case .featureRequest, .tutorial:
+                 completion(nil)
+            case .faq:
+                contentService.getContentCollectionById(primaryKey) { (collection) in
+                    completion(collection)
+                }
             }
         }
     }

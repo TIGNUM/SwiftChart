@@ -14,6 +14,7 @@ final class Skeleton: UIView {
     static func showLoader() -> UIView {
         let view = LoadingSkeleton()
         view.showLoaderSkeleton()
+        view.tag = Skeleton.tag
         return view
     }
 

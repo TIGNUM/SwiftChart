@@ -38,11 +38,11 @@ extension MyQotProfileRouter: MyQotProfileRouterInterface {
     }
 
     func presentAboutTignum() {
-        guard let vieController = R.storyboard.myToBeVision.instantiateInitialViewController() else { return  }
-        MyVisionConfigurator.configure(viewController: vieController)
-        viewController.present(vieController, animated: true, completion: nil)
+//        guard let vieController = R.storyboard.myToBeVision.instantiateInitialViewController() else { return  }
+//        MyVisionConfigurator.configure(viewController: vieController)
+//        viewController.present(vieController, animated: true, completion: nil)
 
-//        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAboutTignumSegueIdentifier, sender: nil)
+        viewController.performSegue(withIdentifier: R.segue.myQotProfileViewController.myQotAboutTignumSegueIdentifier, sender: nil)
     }
 
     func presentMyLibrary() {

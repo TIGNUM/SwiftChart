@@ -25,7 +25,7 @@ final class MyQotSupportFaqPresenter {
 
 extension MyQotSupportFaqPresenter: MyQotSupportFaqPresenterInterface {
 
-    func setupView(with title: String) {
-        viewController?.setupView(with: title)
+    func setupView() {
+        viewController?.setupView()
     }
 }

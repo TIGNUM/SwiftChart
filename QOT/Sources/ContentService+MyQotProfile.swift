@@ -25,7 +25,7 @@ extension ContentService {
             case learnMoreAboutUs = "my_profile_learn_more_about_us"
 
             var predicate: NSPredicate {
-                return NSPredicate(tag: rawValue)
+                return NSPredicate(dalSearchTag: rawValue)
             }
         }
     }

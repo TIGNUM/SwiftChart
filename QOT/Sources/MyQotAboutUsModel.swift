@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 struct MyQotAboutUsModel {
 
@@ -31,7 +32,7 @@ struct MyQotAboutUsModel {
             }
         }
 
-        func trackingKeys(for services: Services) -> String {
+        func trackingKeys() -> String {
             switch self {
             case .benefits:
                 return ContentService.AboutUs.qotBenefits.rawValue
@@ -46,33 +47,53 @@ struct MyQotAboutUsModel {
             }
         }
 
-        func title(for services: Services) -> String {
+        func title(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
             switch self {
             case .benefits:
-                return services.contentService.localizedString(for: ContentService.AboutUs.qotBenefits.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.qotBenefits.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .about:
-                return services.contentService.localizedString(for: ContentService.AboutUs.aboutTignum.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.aboutTignum.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .privacy:
-                return services.contentService.localizedString(for: ContentService.AboutUs.privacy.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.privacy.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .terms:
-                return services.contentService.localizedString(for: ContentService.AboutUs.termsAndConditions.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.termsAndConditions.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .copyright:
-                return services.contentService.localizedString(for: ContentService.AboutUs.copyright.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.copyright.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             }
         }
 
-        func subtitle(for services: Services) -> String {
+        func subtitle(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
             switch self {
             case .benefits:
-                return services.contentService.localizedString(for: ContentService.AboutUs.qotBenefitsSubtitle.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.qotBenefitsSubtitle.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .about:
-                return services.contentService.localizedString(for: ContentService.AboutUs.aboutTignumSubtitle.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.aboutTignumSubtitle.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .privacy:
-                return services.contentService.localizedString(for: ContentService.AboutUs.privacySubtitle.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.privacySubtitle.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .terms:
-                return services.contentService.localizedString(for: ContentService.AboutUs.termsAndCOnditionSubtitle.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.termsAndCOnditionSubtitle.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             case .copyright:
-                return services.contentService.localizedString(for: ContentService.AboutUs.contentAndCopyrightSubtitle.predicate) ?? ""
+                contentService.getContentItemByPredicate(ContentService.AboutUs.contentAndCopyrightSubtitle.predicate) {(contentItem) in
+                    completion(contentItem?.valueText ?? "")
+                }
             }
         }
 
@@ -86,13 +107,28 @@ struct MyQotAboutUsModel {
             }
         }
 
-        func contentCollection(for service: ContentService) -> ContentCollection? {
+        func contentCollection(for contentService: qot_dal.ContentService, _ completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {
-            case .benefits: return service.contentCollection(id: primaryKey)
-            case .about: return service.contentCollection(id: primaryKey)
-            case .privacy: return service.contentCollection(id: primaryKey)
-            case .terms: return service.contentCollection(id: primaryKey)
-            case .copyright: return service.contentCollection(id: primaryKey)
+            case .benefits:
+                contentService.getContentCollectionById(primaryKey) { (collection) in
+                    completion(collection)
+                }
+            case .about:
+                contentService.getContentCollectionById(primaryKey) { (collection) in
+                    completion(collection)
+                }
+            case .privacy:
+                contentService.getContentCollectionById(primaryKey) { (collection) in
+                    completion(collection)
+                }
+            case .terms:
+                contentService.getContentCollectionById(primaryKey) { (collection) in
+                    completion(collection)
+                }
+            case .copyright:
+                contentService.getContentCollectionById(primaryKey) { (collection) in
+                    completion(collection)
+                }
             }
         }
     }

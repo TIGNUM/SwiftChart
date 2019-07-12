@@ -27,6 +27,7 @@ final class MyQotAppSettingsViewController: UIViewController {
         interactor?.viewDidLoad()
         tableView.registerDequeueable(TitleSubtitleTableViewCell.self)
         tableView.registerDequeueable(TitleTableHeaderView.self)
+        tableView.registerDequeueable(AppSettingsFooterView.self)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -57,7 +58,9 @@ extension MyQotAppSettingsViewController: MyQotAppSettingsViewControllerInterfac
         view.backgroundColor = .carbon
         bottomNavigationView.delegate = self
         settingsModel = settings
-        appSettingsHeaderLabel.text = interactor?.appSettingsText
+        interactor?.appSettingsText({[weak self] (text) in
+            self?.appSettingsHeaderLabel.text = text
+        })
     }
 }
 
@@ -79,24 +82,42 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
         }
     }
 
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return settingsModel.heightForFooter(in: section)
+    }
+
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 68
+        return settingsModel.heightForHeader(in: section)
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == 1 {
+            let footerView: AppSettingsFooterView = tableView.dequeueHeaderFooter()
+            footerView.versionLabel.text = Bundle.main.versionAndBuildNumber
+            return footerView
+        } else {
+            return nil
+        }
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
         headerView.config = TitleTableHeaderView.Config()
-        let title = settingsModel.headerTitleForItem(at: section)
-        headerView.title = title
+        let title = settingsModel.headerTitleForItem(at: section, completion: {(text) in
+            headerView.title = text
+        })
         return headerView
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleSubtitleTableViewCell.Config()
-        let title = settingsModel.titleForItem(at: indexPath)
-        let subtitle = settingsModel.subtitleForItem(at: indexPath)
-        cell.configure(title: title, subTitle: subtitle)
+        settingsModel.titleForItem(at: indexPath) { (text) in
+            cell.title = text
+        }
+        settingsModel.subtitleForItem(at: indexPath) { (text) in
+            cell.subTitle = text
+        }
         return cell
     }
 

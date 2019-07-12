@@ -40,13 +40,17 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
         presenter.setHealthKit(title: worker.healthKitSensor.sensor.title,
                                status: worker.healthKitSensor.sensor.status,
                                labelStatus: worker.healthKitSensor.sensor.labelStatus)
-        presenter.setSensor(title: worker.headline() ?? "", description: worker.content() ?? "")
-        presenter.set(headerTitle: worker.headerTitle, sensorTitle: worker.sensorTitle, requestTrackerTitle: worker.requestTrackerTitle)
-    }
 
-    func didTapSensor(sensor: MyQotSensorsModel) {
-        router.didTapSensor(sensor: sensor, settingValue: nil, completion: {[weak self] feedback in
-            self?.worker.recordFeedback(message: feedback)
-        })
+        worker.headline {[weak self] (headline) in
+            self?.worker.content({[weak self]  (content) in
+                self?.presenter.setSensor(title: headline ?? "", description: content ?? "")
+            })
+        }
+
+        worker.headerTitle {[weak self]  (workerText) in
+            self?.worker.sensorTitle({[weak self]  (sensorText) in
+                self?.presenter.set(headerTitle: workerText, sensorTitle: sensorText)
+            })
+        }
     }
 }

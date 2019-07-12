@@ -33,5 +33,9 @@ struct SiriShortcutsModel {
         let title: String?
         let trackingKey: String?
         let suggestion: String?
+
+        static func defaultModel(type: ShortcutType) -> SiriShortcutsModel.Shortcut {
+            return self.init(type: type, title: nil, trackingKey: nil, suggestion: nil)
+        }
     }
 }

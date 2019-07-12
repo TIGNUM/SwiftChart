@@ -27,7 +27,7 @@ extension ContentService {
             case recodYourVoiceAndCreateShortcuts = "app_settings_record_your_voice_and_create_shortcuts"
 
             var predicate: NSPredicate {
-                return NSPredicate(tag: rawValue)
+                return NSPredicate(dalSearchTag: rawValue)
             }
         }
     }

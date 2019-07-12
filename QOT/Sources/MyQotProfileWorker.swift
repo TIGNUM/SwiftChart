@@ -7,42 +7,62 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyQotProfileWorker {
 
     // MARK: - Properties
-    private let services: Services
-    private let userProfileManager: UserProfileManager?
+    private let userService: qot_dal.UserService
+    private let contentService: qot_dal.ContentService
+    private let dispatchGroup = DispatchGroup()
+
+    private var accountSettingsTxt = ""
+    private var manageYourProfileDetailsTxt = ""
+    private var appSettingsTxt = ""
+    private var enableNotificationsTxt = ""
+    private var supportTxt = ""
+    private var walkthroughOurFeaturesTxt = ""
+    private var aboutTignumTxt = ""
+    private var learnMoreAboutUsTxt = ""
+    private var myLibraryTxt = ""
+    var myProfileTxt = ""
+    var memberSinceTxt = ""
+    private var userProfile: UserProfileModel?
 
     // MARK: - Init
 
-    init(services: Services, syncManager: SyncManager) {
-        self.services = services
-        self.userProfileManager = UserProfileManager(services, syncManager)
-    }
-
-    var myProfileText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.myProfile.predicate) ?? ""
-    }
-
-    var memberSinceText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.memberSince.predicate) ?? ""
+    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService) {
+        self.userService = userService
+        self.contentService = contentService
     }
 
     lazy var menuItems: [MyQotProfileModel.TableViewPresentationData] = {
         var items = [MyQotProfileModel.TableViewPresentationData]()
-        let accountSettings = MyQotProfileModel.TableViewPresentationData(headingKey: accountSettingsKey, heading: accountSettingsText, subHeading: manageYourProfileDetailsText)
-        let appSettings = MyQotProfileModel.TableViewPresentationData(headingKey: appSettingsKey, heading: appSettingsText, subHeading: enableNotificationsText)
-        let support = MyQotProfileModel.TableViewPresentationData(headingKey: supportKey, heading: supportText, subHeading: walkthroughOurFeaturesText)
-        let aboutTignum = MyQotProfileModel.TableViewPresentationData(headingKey: aboutTignumKey, heading: aboutTignumText, subHeading: learnMoreAboutUsText)
-        let library = MyQotProfileModel.TableViewPresentationData(headingKey: myLibrary, heading: myLibraryText, subHeading: "")
-
+        let accountSettings = MyQotProfileModel.TableViewPresentationData(headingKey: accountSettingsKey, heading: accountSettingsTxt, subHeading: manageYourProfileDetailsTxt)
+        let appSettings = MyQotProfileModel.TableViewPresentationData(headingKey: appSettingsKey, heading: appSettingsTxt, subHeading: enableNotificationsTxt)
+        let support = MyQotProfileModel.TableViewPresentationData(headingKey: supportKey, heading: supportTxt, subHeading: walkthroughOurFeaturesTxt)
+        let aboutTignum = MyQotProfileModel.TableViewPresentationData(headingKey: aboutTignumKey, heading: aboutTignumTxt, subHeading: learnMoreAboutUsTxt)
+        let library = MyQotProfileModel.TableViewPresentationData(headingKey: myLibrary, heading: myLibraryTxt, subHeading: "")
         items = [library, accountSettings, appSettings, support, aboutTignum]
         return items
     }()
 
-    func profile() -> UserProfileModel? {
-        return userProfileManager?.profile()
+    func getData(_ completion: @escaping (UserProfileModel?) -> Void) {
+        getUserProfile()
+        myLibraryText()
+        myProfileText()
+        memberSinceText()
+        accountSettingsText()
+        manageYourProfileDetailsText()
+        appSettingsText()
+        enableNotificationsText()
+        supportText()
+        walkthroughOurFeaturesText()
+        aboutTignumText()
+        learnMoreAboutUsText()
+        dispatchGroup.notify(queue: .main) {
+            completion(self.userProfile)
+        }
     }
 }
 
@@ -61,34 +81,122 @@ private extension MyQotProfileWorker {
     var aboutTignumKey: String {
         return ContentService.MyQot.Profile.aboutTignum.rawValue
     }
+
+    func myProfileText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.myProfile.predicate) {[weak self] (contentItem) in
+            self?.myProfileTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
     var myLibrary: String {
         return ContentService.MyQot.Profile.myLibrary.rawValue
     }
-    var accountSettingsText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.accountSettings.predicate) ?? ""
+
+    func memberSinceText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.memberSince.predicate) {[weak self] (contentItem) in
+            self?.memberSinceTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
-    var manageYourProfileDetailsText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.manageYourProfileDetails.predicate) ?? ""
+
+    func accountSettingsText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.accountSettings.predicate) {[weak self] (contentItem) in
+            self?.accountSettingsTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
-    var appSettingsText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.appSettings.predicate) ?? ""
+
+    func manageYourProfileDetailsText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.manageYourProfileDetails.predicate) {[weak self] (contentItem) in
+            self?.manageYourProfileDetailsTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
-    var enableNotificationsText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.enableNotifications.predicate) ?? ""
+
+    func appSettingsText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.appSettings.predicate) {[weak self] (contentItem) in
+            self?.appSettingsTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
-    var supportText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.support.predicate) ?? ""
+
+    func enableNotificationsText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.enableNotifications.predicate) {[weak self] (contentItem) in
+            self?.enableNotificationsTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
-    var walkthroughOurFeaturesText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.walkthroughOurFeatures.predicate) ?? ""
+
+    func supportText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.support.predicate) {[weak self] (contentItem) in
+            self?.supportTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
-    var aboutTignumText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.aboutTignum.predicate) ?? ""
+
+    func walkthroughOurFeaturesText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.walkthroughOurFeatures.predicate) {[weak self] (contentItem) in
+            self?.walkthroughOurFeaturesTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
-    var learnMoreAboutUsText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.learnMoreAboutUs.predicate) ?? ""
+
+    func aboutTignumText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.aboutTignum.predicate) {[weak self] (contentItem) in
+            self?.aboutTignumTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
     }
-    var myLibraryText: String {
-        return services.contentService.localizedString(for: ContentService.MyQot.Profile.myLibrary.predicate) ?? "_My Library"
+
+    func learnMoreAboutUsText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.learnMoreAboutUs.predicate) {[weak self] (contentItem) in
+            self?.learnMoreAboutUsTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func myLibraryText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.myLibrary.predicate) {[weak self] (contentItem) in
+            self?.myLibraryTxt = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func getUserProfile() {
+        dispatchGroup.enter()
+        userService.getUserData {[weak self] (user) in
+            let profile = self?.formProfile(for: user)
+            self?.userProfile = profile
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func formProfile(for user: QDMUser?) -> UserProfileModel? {
+        return UserProfileModel(imageURL: user?.profileImage?.url(),
+                                givenName: user?.givenName,
+                                familyName: user?.familyName,
+                                position: user?.jobTitle,
+                                memberSince: user?.memberSince ?? Date(),
+                                company: user?.company,
+                                email: user?.email,
+                                telephone: user?.telephone,
+                                gender: user?.gender,
+                                height: user?.height ?? 150,
+                                heightUnit: user?.heightUnit ?? "",
+                                weight: user?.weight ?? 60,
+                                weightUnit: user?.weightUnit ?? "",
+                                birthday: user?.dateOfBirth ?? "")
     }
 }

@@ -48,9 +48,8 @@ extension MindsetShiftersManager {
         }
     }
 
-
     func get(for qotId: String, _ completion: @escaping (_ preparation: QDMMindsetShifter?) -> Void) {
-        userService?.getMindsetShifters{ (mindsetShifters, initialized, error) in
+        userService?.getMindsetShifters { (mindsetShifters, initialized, error) in
             if let error = error {
                 log("Error while trying to get mindsetShifters: \(error.localizedDescription)", level: QDLogger.Level.debug)
             }

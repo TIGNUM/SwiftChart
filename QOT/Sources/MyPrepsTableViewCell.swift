@@ -19,7 +19,6 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Lifecycle
 
-
     func configure(title: String, subtitle: String) {
         titleLabel.text = title.uppercased()
         subtitleLabel.text = subtitle

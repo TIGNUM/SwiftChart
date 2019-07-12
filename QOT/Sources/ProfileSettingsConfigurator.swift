@@ -12,10 +12,9 @@ import qot_dal
 final class ProfileSettingsConfigurator: AppStateAccess {
 
     static func configure(viewController: ProfileSettingsViewController) {
-        let worker = ProfileSettingsWorker(services: appState.services)
+        let worker = ProfileSettingsWorker(contentService: qot_dal.ContentService.main)
         let presenter = ProfileSettingsPresenter(viewController: viewController)
         let interactor = ProfileSettingsInteractor(worker: worker, presenter: presenter)
-        viewController.services = appState.services
         viewController.networkManager = appState.networkManager
         viewController.launchOptions = nil
         viewController.interactor = interactor

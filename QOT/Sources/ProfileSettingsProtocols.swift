@@ -18,7 +18,7 @@ protocol ProfileSettingsPresenterInterface {
 }
 
 protocol ProfileSettingsInteractorInterface: Interactor {
-    var editAccountTitle: String { get }
+    func editAccountTitle(_ completion: @escaping (_ userData: String) -> Void)
     func numberOfSections() -> Int
     func generateSections()
     func numberOfItemsInSection(in section: Int) -> Int

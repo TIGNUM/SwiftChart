@@ -23,7 +23,7 @@ extension ContentService {
         case copyright = "about_tignum_content_copyright"
 
         var predicate: NSPredicate {
-            return NSPredicate(tag: rawValue)
+            return NSPredicate(dalSearchTag: rawValue)
         }
     }
 }

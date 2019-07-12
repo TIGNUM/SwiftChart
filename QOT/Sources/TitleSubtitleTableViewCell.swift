@@ -13,6 +13,17 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
 
+    var title: String = "" {
+        willSet {
+            titleLabel.text = newValue
+        }
+    }
+    var subTitle: String = ""{
+        willSet {
+            subTitleLabel.text = newValue
+        }
+    }
+
     struct Config {
         var backgroundColor: UIColor
         var subTitlefont: UIFont
@@ -31,11 +42,6 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
             self.titleTextColor = titleTextColor
             self.subTitleTextColor = subTitleTextColor
         }
-    }
-
-    func configure(title: String, subTitle: String) {
-        titleLabel.text = title
-        subTitleLabel.text = subTitle
     }
 
     var config: Config? {

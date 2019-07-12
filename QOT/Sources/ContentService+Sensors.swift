@@ -15,7 +15,7 @@ extension ContentService {
         case sensors = "activity_trackers_sensors"
         case requestActivityTracker = "activity_trackers_request_tracker"
         var predicate: NSPredicate {
-            return NSPredicate(tag: rawValue)
+            return NSPredicate(dalSearchTag: rawValue)
         }
     }
 }

@@ -44,12 +44,6 @@ extension MyQotSensorsViewController {
     @IBAction func healthKitStatusButtonAction(_ sender: UIButton) {
         trackUserEvent(.SELECT, valueType: sender.titleLabel?.text, action: .TAP)
     }
-
-    @IBAction func requestActivityTrackerAction(_ sender: UIButton) {
-        guard let interactor = self.interactor else { return }
-        trackUserEvent(.SELECT, valueType: requestActivityTrackerLabel?.text, action: .TAP)
-        interactor.didTapSensor(sensor: interactor.requestTracker)
-    }
 }
 
 extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
@@ -61,10 +55,9 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
         ouraRingStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: UIColor.accent30)
     }
 
-    func set(headerTitle: String, sensorTitle: String, requestTrackerTitle: String) {
+    func set(headerTitle: String, sensorTitle: String) {
         headerLabel.text = headerTitle
         sensorHeaderLabel.text = sensorTitle
-        requestActivityTrackerLabel.text = requestTrackerTitle
     }
 
     func setHealthKit(title: String, status: String, labelStatus: String) {

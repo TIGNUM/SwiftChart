@@ -22,6 +22,7 @@ final class MyQotAboutUsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setUpTableView()
         interactor?.viewDidLoad()
     }
 
@@ -45,7 +46,6 @@ extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
         view.backgroundColor = .carbon
         bottomNavigationView.delegate = self
         headerLabel.text = title
-        setUpTableView()
     }
 }
 
@@ -60,9 +60,12 @@ extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleSubtitleTableViewCell.Config()
-        let title =  interactor?.title(at: indexPath) ?? ""
-        let subtitle = interactor?.subtitle(at: indexPath) ?? ""
-        cell.configure(title: title, subTitle: subtitle)
+        interactor?.title(at: indexPath, { (text) in
+            cell.title = text
+        })
+        interactor?.subtitle(at: indexPath, { (text) in
+            cell.subTitle = text
+        })
         return cell
     }
 

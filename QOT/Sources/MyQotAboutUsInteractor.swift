@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotAboutUsInteractor {
 
@@ -27,13 +28,18 @@ final class MyQotAboutUsInteractor {
     }
 
     func viewDidLoad() {
-        presenter.setupView(with: worker.aboutUsText)
+        aboutUsText {[weak self] (text) in
+            self?.presenter.setupView(with: text)
+        }
     }
 }
 
 extension MyQotAboutUsInteractor: MyQotAboutUsInteractorInterface {
-    var aboutUsText: String {
-        return worker.aboutUsText
+
+    func aboutUsText(_ completion: @escaping(String) -> Void) {
+        worker.aboutUsText { (text) in
+            completion(text)
+        }
     }
 
     func itemCount() -> Int {
@@ -48,16 +54,22 @@ extension MyQotAboutUsInteractor: MyQotAboutUsInteractorInterface {
         return worker.trackingKeys(at: indexPath)
     }
 
-    func title(at indexPath: IndexPath) -> String {
-        return worker.title(at: indexPath)
+    func title(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
+        worker.title(at: indexPath) { (text) in
+            completion(text)
+        }
     }
 
-    func subtitle(at indexPath: IndexPath) -> String {
-        return worker.subtitle(at: indexPath)
+    func subtitle(at indexPath: IndexPath, _ completion: @escaping(String) -> Void) {
+        worker.subtitle(at: indexPath) { (text) in
+            completion(text)
+        }
     }
 
-    func contentCollection(_ item: MyQotAboutUsModel.MyQotAboutUsModelItem) -> ContentCollection? {
-        return worker.contentCollection(item)
+    func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
+        worker.contentCollection(item: item) { (collection) in
+            completion(collection)
+        }
     }
 
     func handleSelection(for indexPath: IndexPath) {

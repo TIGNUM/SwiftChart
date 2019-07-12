@@ -70,7 +70,7 @@ enum ContentItemValue {
             }
         case .video:
             if let title = text, let video = mediaURL {
-                self = .video(remoteId: item.remoteID ?? 0 ,title: title, description: description, placeholderURL: imageURL, videoURL: video, duration: duration)
+                self = .video(remoteId: item.remoteID ?? 0, title: title, description: description, placeholderURL: imageURL, videoURL: video, duration: duration)
             } else {
                 self = .invalid
             }

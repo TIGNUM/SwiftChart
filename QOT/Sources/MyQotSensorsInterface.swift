@@ -10,7 +10,7 @@ import Foundation
 
 protocol MyQotSensorsViewControllerInterface: class {
     func setupView()
-    func set(headerTitle: String, sensorTitle: String, requestTrackerTitle: String)
+    func set(headerTitle: String, sensorTitle: String)
     func setHealthKit(title: String, status: String, labelStatus: String)
     func setOuraRing(title: String, status: String, labelStatus: String)
     func setSensor(title: String, description: String)
@@ -18,15 +18,13 @@ protocol MyQotSensorsViewControllerInterface: class {
 
 protocol MyQotSensorsPresenterInterface {
     func setupView()
-    func set(headerTitle: String, sensorTitle: String, requestTrackerTitle: String)
+    func set(headerTitle: String, sensorTitle: String)
     func setHealthKit(title: String, status: String, labelStatus: String)
     func setOuraRing(title: String, status: String, labelStatus: String)
     func setSensor(title: String, description: String)
 }
 
 protocol MyQotSensorsInteractorInterface: Interactor {
-    var requestTracker: MyQotSensorsModel { get }
-    func didTapSensor(sensor: MyQotSensorsModel)
 }
 
 protocol MyQotSensorsRouterInterface {

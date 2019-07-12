@@ -7,20 +7,18 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotSensorsWorker {
 
     // MARK: - Properties
 
-    private let services: Services
-    private var sensorCollection: ContentCollection? {
-        return services.contentService.contentCollection(id: 100935)
-    }
+    private let contentService: qot_dal.ContentService
 
     // MARK: - Init
 
-    init(services: Services) {
-        self.services = services
+    init(contentService: qot_dal.ContentService) {
+        self.contentService = contentService
     }
 
     // MARK: - Actions
@@ -37,33 +35,29 @@ final class MyQotSensorsWorker {
         return MyQotSensorsModel(sensor: .requestTracker)
     }
 
-    func headline() -> String? {
-        guard let collection = sensorCollection else { return nil }
-        return Array(collection.articleItems).filter { $0.format == ContentItemTextStyle.h2.rawValue }.first?.valueText
-    }
-
-    func content() -> String? {
-        guard let collection = sensorCollection else { return nil }
-        return Array(collection.articleItems).filter { $0.format == ContentItemTextStyle.paragraph.rawValue }.first?.valueText
-    }
-
-    func recordFeedback(message: String) {
-        do {
-            try self.services.feedbackService.recordFeedback(message: message)
-        } catch {
-            log(error.localizedDescription, level: .error)
+    func headline(_ completion: @escaping(String?) -> Void) {
+        contentService.getContentCollectionById(100935) { (collection) in
+            let item = collection?.contentItems.filter({ $0.format == .header2 }).first?.valueText
+            completion(item)
         }
     }
 
-    var headerTitle: String {
-        return services.contentService.localizedString(for: ContentService.Sensors.activityTrackers.predicate) ?? ""
+    func content(_ completion: @escaping(String?) -> Void) {
+        contentService.getContentCollectionById(100935) { (collection) in
+            let item = collection?.contentItems.filter({ $0.format == .paragraph }).first?.valueText
+            completion(item)
+        }
     }
 
-    var sensorTitle: String {
-        return services.contentService.localizedString(for: ContentService.Sensors.sensors.predicate) ?? ""
+    func headerTitle(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.Sensors.activityTrackers.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
 
-    var requestTrackerTitle: String {
-        return services.contentService.localizedString(for: ContentService.Sensors.requestActivityTracker.predicate) ?? ""
+    func sensorTitle(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.Sensors.sensors.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
 }

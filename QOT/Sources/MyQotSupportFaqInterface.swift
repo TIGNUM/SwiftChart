@@ -7,19 +7,20 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol MyQotSupportFaqViewControllerInterface: class {
-    func setupView(with title: String)
+    func setupView()
 }
 
 protocol MyQotSupportFaqPresenterInterface {
-    func setupView(with title: String)
+    func setupView()
 }
 
 protocol MyQotSupportFaqInteractorInterface: Interactor {
-    var faqHeaderText: String { get }
+    func faqHeaderText(_ completion: @escaping(String) -> Void)
     var itemCount: Int { get }
-    func item(at indexPath: IndexPath) -> ContentCollection
+    func item(at indexPath: IndexPath) -> QDMContentCollection
     func trackingID(at indexPath: IndexPath) -> Int
     func title(at indexPath: IndexPath) -> String
     func presentContentItemSettings(contentID: Int, pageName: PageName, pageTitle: String)

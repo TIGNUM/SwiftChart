@@ -22,7 +22,7 @@ final class MyQotSiriShortcutsPresenter {
 }
 
 extension MyQotSiriShortcutsPresenter: MyQotSiriShortcutsPresenterInterface {
-    func setupView(with title: String) {
-        viewController?.setupView(with: title)
+    func setupView() {
+        viewController?.setupView()
     }
 }

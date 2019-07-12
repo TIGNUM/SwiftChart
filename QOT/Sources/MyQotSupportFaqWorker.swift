@@ -7,18 +7,18 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyQotSupportFaqWorker {
     // MARK: - Properties
 
-    private let services: Services
-    private var items = [ContentCollection]()
+    private let contentService: qot_dal.ContentService
+    private var items = [QDMContentCollection]()
 
     // MARK: - Init
 
-    init(services: Services) {
-        self.services = services
-        fetchItems()
+    init(contentService: qot_dal.ContentService) {
+        self.contentService = contentService
     }
 }
 
@@ -26,37 +26,37 @@ final class MyQotSupportFaqWorker {
 
 extension MyQotSupportFaqWorker {
 
+    func fetchItems(_ completion: @escaping() -> Void) {
+        contentService.getContentCollectionBySection(.FAQ) {[weak self] (collection) in
+            self?.items = collection?.filter({ $0.section.rawValue == "FAQ" && $0.title != "FAQ" }) ?? []
+            completion()
+        }
+    }
+
     var itemCount: Int {
         return items.count
     }
 
-    func item(at indexPath: IndexPath) -> ContentCollection {
+    func item(at indexPath: IndexPath) -> QDMContentCollection {
         return items[indexPath.item]
     }
 
     func trackingID(at indexPath: IndexPath) -> Int {
-        let cotent = item(at: indexPath)
-        let contentItem = cotent.articleItems.filter { $0.format == ContentItemTextStyle.h3.rawValue }.first
-        return contentItem?.remoteID.value ?? 0
+        let content = item(at: indexPath)
+        let contentItem = content.contentItems.filter { $0.format == .header3 }.first
+        return contentItem?.remoteID ?? 0
     }
 
     func title(at indexPath: IndexPath) -> String {
-        let cotent = item(at: indexPath)
-        let contentItem = cotent.articleItems.filter { $0.format == ContentItemTextStyle.h3.rawValue }.first
+        let content = item(at: indexPath)
+        let contentItem = content.contentItems.filter { $0.format == .header3 }.first
         let text = contentItem?.valueText ?? ""
         return text.uppercased()
     }
 
-    var faqHeaderText: String {
-        return services.contentService.localizedString(for: ContentService.Support.faq.predicate) ?? ""
-    }
-}
-
-// MARK: - Private
-
-private extension MyQotSupportFaqWorker {
-
-    func fetchItems() {
-        items = Array(services.contentService.faq())
+    func faqHeaderText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.Support.faq.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
     }
 }

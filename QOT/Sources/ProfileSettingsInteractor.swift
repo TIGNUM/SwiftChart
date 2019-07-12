@@ -32,7 +32,7 @@ final class ProfileSettingsInteractor {
     }
 
     func viewDidLoad() {
-        worker.profile({[weak self] user in
+        worker.getData({[weak self] user in
             guard let userData = user else { return }
             self?.presenter.loadSettingsMenu(userData)
         })
@@ -43,8 +43,10 @@ final class ProfileSettingsInteractor {
 
 extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
 
-    var editAccountTitle: String {
-        return worker.editAccountTitle
+    func editAccountTitle(_ completion: @escaping (_ userData: String) -> Void) {
+        worker.editAccountTitle { (text) in
+            completion(text)
+        }
     }
 
     var profile: QDMUser? {

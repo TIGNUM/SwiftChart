@@ -47,7 +47,9 @@ extension MyQotSupportViewController: MyQotSupportViewControllerInterface {
     func setupView() {
         view.backgroundColor = .carbon
         bottomNavigationView.delegate = self
-        headerLabel.text = interactor?.supportText
+        interactor?.supportText({[weak self] (text) in
+            self?.headerLabel.text = text
+        })
         setUpTableView()
     }
 
@@ -67,9 +69,12 @@ extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleSubtitleTableViewCell.Config()
-        let title =  interactor?.title(at: indexPath) ?? ""
-        let subtitle = interactor?.subtitle(at: indexPath) ?? ""
-        cell.configure(title: title, subTitle: subtitle)
+        interactor?.title(at: indexPath, { (text) in
+            cell.title = text
+        })
+        interactor?.subtitle(at: indexPath, { (text) in
+            cell.subTitle = text
+        })
         return cell
     }
 

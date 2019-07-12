@@ -50,10 +50,6 @@
                                 <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <color key="separatorColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="CRw-Qf-58k" id="ggW-Z7-7YL"/>
-                                    <outlet property="delegate" destination="CRw-Qf-58k" id="f3Y-Ug-c9c"/>
-                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8F6-JV-u3a">
                                 <rect key="frame" x="0.0" y="20" width="375" height="98"/>
@@ -237,10 +233,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="9Bv-Xc-r1E">
                                 <rect key="frame" x="0.0" y="118" width="375" height="449"/>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="XM2-FH-qGD" id="kpc-2d-yyQ"/>
-                                    <outlet property="delegate" destination="XM2-FH-qGD" id="aUZ-In-AJh"/>
-                                </connections>
                             </tableView>
                             <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kxx-ZA-ueu">
                                 <rect key="frame" x="0.0" y="20" width="375" height="98"/>
@@ -842,10 +834,6 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="1" sectionFooterHeight="1" translatesAutoresizingMaskIntoConstraints="NO" id="bay-2P-5bs">
                                 <rect key="frame" x="0.0" y="118" width="375" height="449"/>
                                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="9qJ-t5-Bb5" id="XuK-YZ-59b"/>
-                                    <outlet property="delegate" destination="9qJ-t5-Bb5" id="LKB-YE-JAs"/>
-                                </connections>
                             </tableView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5FQ-xH-r4d" customClass="BottomNavigationBarView" customModule="QOT" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="567" width="375" height="100"/>

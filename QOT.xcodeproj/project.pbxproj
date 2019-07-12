@@ -514,6 +514,9 @@
 		5FF1A10322858A7400D76D55 /* ContentService+AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */; };
 		5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */; };
 		75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */; };
+		75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */; };
+		75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */; };
+		75423F2222D39628008EE726 /* ContentService+SiriShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F2122D39628008EE726 /* ContentService+SiriShortcuts.swift */; };
 		75496E9922BA702C00150C78 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496E9722BA702C00150C78 /* PopUpViewController.swift */; };
 		75496E9A22BA702C00150C78 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75496E9822BA702C00150C78 /* PopUpViewController.xib */; };
 		75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */; };
@@ -1967,6 +1970,9 @@
 		5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AppSettings.swift"; sourceTree = "<group>"; };
 		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
 		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
+		75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFooterView.swift; sourceTree = "<group>"; };
+		75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSettingsFooterView.xib; sourceTree = "<group>"; };
+		75423F2122D39628008EE726 /* ContentService+SiriShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+SiriShortcuts.swift"; sourceTree = "<group>"; };
 		75496E9722BA702C00150C78 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		75496E9822BA702C00150C78 /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionNullStateView.swift; sourceTree = "<group>"; };
@@ -3748,6 +3754,7 @@
 		5F62BE9D228AE6EF00852F7E /* MyQotSiriShortcuts */ = {
 			isa = PBXGroup;
 			children = (
+				75423F2022D39609008EE726 /* Other */,
 				5F62BE9E228AE70300852F7E /* Core */,
 			);
 			name = MyQotSiriShortcuts;
@@ -4169,8 +4176,18 @@
 			isa = PBXGroup;
 			children = (
 				5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */,
+				75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */,
+				75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */,
 			);
 			name = Others;
+			sourceTree = "<group>";
+		};
+		75423F2022D39609008EE726 /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				75423F2122D39628008EE726 /* ContentService+SiriShortcuts.swift */,
+			);
+			name = Other;
 			sourceTree = "<group>";
 		};
 		75496E8522BA5E8600150C78 /* MyToBeVisionNullState */ = {
@@ -6969,6 +6986,7 @@
 				B83B33E822C21D6E002AFED7 /* bottomNavigation.storyboard in Resources */,
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */,
+				75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
 				F9A5C95222B7D10B00AB2E94 /* PaymentReminderViewController.xib in Resources */,
 				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
@@ -7624,6 +7642,7 @@
 				CBCCF3921F7D3195000E4440 /* ChatViewAnimator.swift in Sources */,
 				F99DF5FA2292D74100341DAB /* ToolsCollectionsInterface.swift in Sources */,
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
+				75423F2222D39628008EE726 /* ContentService+SiriShortcuts.swift in Sources */,
 				3637664D223A7DE100C2C429 /* LevelTwoModel.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
@@ -8409,6 +8428,7 @@
 				36796A3220D3C47400B55429 /* SigningProfileDetailRouter.swift in Sources */,
 				363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */,
 				3693F62321625E8700E286A9 /* AppContent.swift in Sources */,
+				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,
 				914A5E21207FB38500092121 /* SettingsBubblesInteractor.swift in Sources */,
 				AC103E2C22847AB500F426F0 /* ConfirmationPresenter.swift in Sources */,
