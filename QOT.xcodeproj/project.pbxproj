@@ -9059,6 +9059,204 @@
 			};
 			name = AppStore;
 		};
+		B8A2D59622DA97170017DD17 /* Hockey */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_SWIFT_FLAGS = "";
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Hockey;
+		};
+		B8A2D59722DA97170017DD17 /* Hockey */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_ENTITLEMENTS = QOT/QOT.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: TIGNUM GmbH";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				ENABLE_BITCODE = NO;
+				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
+				INFOPLIST_FILE = QOT/Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "QOT/Sources/QOT-Bridging-Header.h";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Hockey;
+		};
+		B8A2D59822DA97170017DD17 /* Hockey */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = QOTTests/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.QOTTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/QOT.app/QOT";
+			};
+			name = Hockey;
+		};
+		B8A2D59922DA97170017DD17 /* Hockey */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5085A062A04C07A736CE9E5F /* Pods-QOTWidget.release.xcconfig */;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = QOTWidget/QOTWidget.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: TIGNUM GmbH";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = QOTWidget/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.QOTWidget;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Hockey;
+		};
+		B8A2D59A22DA97170017DD17 /* Hockey */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = Intent/Intent.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: TIGNUM GmbH";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = Intent/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.Intent;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Hockey;
+		};
+		B8A2D59B22DA97170017DD17 /* Hockey */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = IntentUI/IntentUI.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: TIGNUM GmbH";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = IntentUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.IntentUI;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.2;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Hockey;
+		};
+		B8A2D59C22DA97170017DD17 /* Hockey */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Distribution: TIGNUM GmbH";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 4FQQH349R5;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.tignum.qot.novartis.ShareExtension;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Hockey;
+		};
 		B8BCE58F22AAB5EF0012AAAC /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -9602,6 +9800,7 @@
 				918D5E2D20EE050900AEAD37 /* UnitTest */,
 				918D5E2E20EE050900AEAD37 /* Database */,
 				918D5E2F20EE050900AEAD37 /* Release */,
+				B8A2D59922DA97170017DD17 /* Hockey */,
 				918D5E3020EE050900AEAD37 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -9614,6 +9813,7 @@
 				AC87A797220D94FB00622C90 /* UnitTest */,
 				AC87A798220D94FB00622C90 /* Database */,
 				AC87A799220D94FB00622C90 /* Release */,
+				B8A2D59B22DA97170017DD17 /* Hockey */,
 				AC87A79A220D94FB00622C90 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -9626,6 +9826,7 @@
 				AC87A792220D94FB00622C90 /* UnitTest */,
 				AC87A793220D94FB00622C90 /* Database */,
 				AC87A794220D94FB00622C90 /* Release */,
+				B8A2D59A22DA97170017DD17 /* Hockey */,
 				AC87A795220D94FB00622C90 /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -9638,6 +9839,7 @@
 				B8BCE59022AAB5EF0012AAAC /* UnitTest */,
 				B8BCE59122AAB5EF0012AAAC /* Database */,
 				B8BCE59222AAB5EF0012AAAC /* Release */,
+				B8A2D59C22DA97170017DD17 /* Hockey */,
 				B8BCE59322AAB5EF0012AAAC /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -9650,6 +9852,7 @@
 				E8F43D3420B6F98800C9FF4F /* UnitTest */,
 				7FE151CC1F3DDC6200DA8F37 /* Database */,
 				CBB238081E6FFF1300AB5AEF /* Release */,
+				B8A2D59622DA97170017DD17 /* Hockey */,
 				CBA0EBA11FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -9662,6 +9865,7 @@
 				E8F43D3520B6F98800C9FF4F /* UnitTest */,
 				7FE151CD1F3DDC6200DA8F37 /* Database */,
 				CBB2380B1E6FFF1300AB5AEF /* Release */,
+				B8A2D59722DA97170017DD17 /* Hockey */,
 				CBA0EBA21FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
@@ -9674,6 +9878,7 @@
 				E8F43D3620B6F98800C9FF4F /* UnitTest */,
 				7FE151CE1F3DDC6200DA8F37 /* Database */,
 				CBB2380E1E6FFF1300AB5AEF /* Release */,
+				B8A2D59822DA97170017DD17 /* Hockey */,
 				CBA0EBA31FCDB6C6009B33AB /* AppStore */,
 			);
 			defaultConfigurationIsVisible = 0;
