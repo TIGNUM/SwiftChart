@@ -336,7 +336,7 @@
 		36D72ED1229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72EC9229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift */; };
 		36D72ED2229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */; };
 		36D72ED4229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */; };
-		36D72ED5229C1BCC00DE1184 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		36D72ED5229C1BCC00DE1184 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		36D72ED6229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */; };
 		36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */; };
 		36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */; };
@@ -1462,6 +1462,7 @@
 		0BD6F6B71EA0E81E001EBC4D /* MyPrepTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepTableViewCell.xib; sourceTree = "<group>"; };
 		0BEE8AB61EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PrepareEventsUpcomingTripTableViewCell.swift; sourceTree = "<group>"; };
 		0BEE8AB71EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PrepareEventsUpcomingTripTableViewCell.xib; sourceTree = "<group>"; };
+		0D054DCF50594A3796146934 /* Pods-QOTWidget.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.hockey.xcconfig"; sourceTree = "<group>"; };
 		1A232D8A077E90EF7B93B4A0 /* Pods-QOTWidget.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.database.xcconfig"; sourceTree = "<group>"; };
 		2398373A3D43A3DB2FED7D72 /* Pods-QOT.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.unittest.xcconfig"; sourceTree = "<group>"; };
 		2BFF26100D7FF8708F5EF189 /* Pods-QOT.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.database.xcconfig"; sourceTree = "<group>"; };
@@ -2718,6 +2719,8 @@
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
 		E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventIntermediary.swift; sourceTree = "<group>"; };
 		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
+		EA9E48D78F8F07AC1BEBAB13 /* Pods-QOTTests.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.hockey.xcconfig"; sourceTree = "<group>"; };
+		EFAB196FD09CA55C0AA10ED0 /* Pods-QOT.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.hockey.xcconfig"; sourceTree = "<group>"; };
 		F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsConfigurator.swift; sourceTree = "<group>"; };
 		F909961922B23F9500EAEAC6 /* MyPrepsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsInteractor.swift; sourceTree = "<group>"; };
 		F909961B22B23FA900EAEAC6 /* MyPrepsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsInterface.swift; sourceTree = "<group>"; };
@@ -4883,6 +4886,9 @@
 				1A232D8A077E90EF7B93B4A0 /* Pods-QOTWidget.database.xcconfig */,
 				5085A062A04C07A736CE9E5F /* Pods-QOTWidget.release.xcconfig */,
 				BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */,
+				EFAB196FD09CA55C0AA10ED0 /* Pods-QOT.hockey.xcconfig */,
+				EA9E48D78F8F07AC1BEBAB13 /* Pods-QOTTests.hockey.xcconfig */,
+				0D054DCF50594A3796146934 /* Pods-QOTWidget.hockey.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -7253,7 +7259,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				$SRCROOT/QOT/Generated/R.generated.swift,
+				"$SRCROOT/QOT/Generated/R.generated.swift",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -8177,7 +8183,7 @@
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
 				F9EB5E7322C105110085A03F /* ThoughtsRouter.swift in Sources */,
-				36D72ED5229C1BCC00DE1184 /* (null) in Sources */,
+				36D72ED5229C1BCC00DE1184 /* BuildFile in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
@@ -9115,7 +9121,7 @@
 		};
 		B8A2D59722DA97170017DD17 /* Hockey */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F1C8D6D4864F462A3F805BB /* Pods-QOT.release.xcconfig */;
+			baseConfigurationReference = EFAB196FD09CA55C0AA10ED0 /* Pods-QOT.hockey.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-alpha-3.0";
@@ -9142,7 +9148,7 @@
 		};
 		B8A2D59822DA97170017DD17 /* Hockey */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */;
+			baseConfigurationReference = EA9E48D78F8F07AC1BEBAB13 /* Pods-QOTTests.hockey.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
