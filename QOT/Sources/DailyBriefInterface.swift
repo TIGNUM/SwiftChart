@@ -7,25 +7,28 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol DailyBriefViewControllerInterface: class {
-    func setupView()
-    func presentLevelTwo()
 }
 
 protocol DailyBriefPresenterInterface {
-    func setupView()
 }
 
 protocol DailyBriefInteractorInterface: Interactor {
-    func didTapCell(at: IndexPath)
-    func whatsHotArticles() -> [Knowing.WhatsHotItem]
-    func strategies() -> [Knowing.StrategyItem]
-    func presentWhatsHotArticle(at indexPath: IndexPath)
-    func presentStrategyList(selectedStrategyID: Int)
+    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void))
+    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void))
+    func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void))
+    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void)
+    func createFactsModel(completion: @escaping ((GoodToKnowCellViewModel)?) -> Void)
+    func randomQuestionModel(completion: @escaping ((QuestionCellViewModel)?) -> Void)
+    func lastMessage(completion: @escaping ((FromTignumCellViewModel)?) -> Void)
+    func createThoughtsModel(completion: @escaping ((ThoughtsCellViewModel)?) -> Void)
+    func getDepartureModel(completion: @escaping ((DepartureInfoCellViewModel)?) -> Void)
+    func presentWhatsHotArticle(selectedID: Int)
+    func getFeastModel(completion: @escaping ((FeastCellViewModel)?) -> Void)
 }
 
 protocol DailyBriefRouterInterface {
-    func didTapCell(at: IndexPath)
-    func presentStrategyList(selectedStrategyID: Int)
+    func presentWhatsHotArticle(selectedID: Int)
 }

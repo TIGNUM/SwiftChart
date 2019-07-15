@@ -24,7 +24,5 @@ final class DailyBriefPresenter {
 // MARK: - DailyBriefInterface
 
 extension DailyBriefPresenter: DailyBriefPresenterInterface {
-    func setupView() {
-        viewController?.setupView()
-    }
+  
 }

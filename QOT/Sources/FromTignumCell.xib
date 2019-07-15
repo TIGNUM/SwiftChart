@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="urS-sy-CjV" customClass="FromTignumCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="603"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FROM TIGNUM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09f-xt-X6f">
+                    <rect key="frame" x="20" y="135" width="374" height="24"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.80000000000000004" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AAj-YT-2Ob">
+                    <rect key="frame" x="20" y="179" width="374" height="100"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="100" id="RJT-vH-pgm"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="19"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W61-IF-sKB">
+                    <rect key="frame" x="20" y="114" width="15" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="2KE-xt-yEU"/>
+                        <constraint firstAttribute="height" constant="1" id="UGt-Yt-kb5"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tPp-g6-1KN">
+                    <rect key="frame" x="304" y="289" width="90" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="90" id="7gX-fg-w4h"/>
+                        <constraint firstAttribute="height" constant="40" id="9Cj-Ej-Xd1"/>
+                    </constraints>
+                    <state key="normal" title="Discover">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="discoverButton:" destination="urS-sy-CjV" eventType="touchUpInside" id="nuQ-Pu-I8A"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="avF-uO-4v4" firstAttribute="trailing" secondItem="09f-xt-X6f" secondAttribute="trailing" constant="20" id="4oQ-SY-e9t"/>
+                <constraint firstItem="W61-IF-sKB" firstAttribute="leading" secondItem="urS-sy-CjV" secondAttribute="leading" constant="20" id="DCx-Wz-XHR"/>
+                <constraint firstItem="avF-uO-4v4" firstAttribute="trailing" secondItem="AAj-YT-2Ob" secondAttribute="trailing" constant="20" id="Nf6-fv-nme"/>
+                <constraint firstItem="09f-xt-X6f" firstAttribute="top" secondItem="W61-IF-sKB" secondAttribute="bottom" constant="20" id="Omy-DG-RbN"/>
+                <constraint firstItem="09f-xt-X6f" firstAttribute="leading" secondItem="avF-uO-4v4" secondAttribute="leading" constant="20" id="S2k-S9-KDv"/>
+                <constraint firstItem="AAj-YT-2Ob" firstAttribute="leading" secondItem="avF-uO-4v4" secondAttribute="leading" constant="20" id="Tlh-d1-L1e"/>
+                <constraint firstItem="avF-uO-4v4" firstAttribute="trailing" secondItem="tPp-g6-1KN" secondAttribute="trailing" constant="20" id="cv4-mB-igF"/>
+                <constraint firstItem="AAj-YT-2Ob" firstAttribute="top" secondItem="09f-xt-X6f" secondAttribute="bottom" constant="20" id="lbL-Tb-uQH"/>
+                <constraint firstItem="tPp-g6-1KN" firstAttribute="top" secondItem="AAj-YT-2Ob" secondAttribute="bottom" constant="10" id="tAG-kw-c7P"/>
+                <constraint firstItem="W61-IF-sKB" firstAttribute="top" secondItem="avF-uO-4v4" secondAttribute="top" constant="70" id="x1S-3a-ZYG"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="avF-uO-4v4"/>
+            <connections>
+                <outlet property="button" destination="tPp-g6-1KN" id="gUn-Zg-Isa"/>
+                <outlet property="fromTignumText" destination="AAj-YT-2Ob" id="1aj-V0-pVZ"/>
+                <outlet property="heightOfText" destination="RJT-vH-pgm" id="ZK8-Hk-lAk"/>
+            </connections>
+            <point key="canvasLocation" x="263.768115942029" y="-217.96875"/>
+        </view>
+    </objects>
+</document>

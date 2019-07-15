@@ -37,6 +37,13 @@ private let memberSinceDateFormatter: DateFormatter = {
     return formatter
 }()
 
+private let whatsHotBucketFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "d. MMM"
+    formatter.timeZone = TimeZone.current
+    return formatter
+}()
+
 private let dailyPrepDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "yyyy-MM-dd"
@@ -126,6 +133,10 @@ extension DateFormatter {
 
     static var whatsHot: DateFormatter {
         return whatsHotFormatter
+    }
+
+    static var whatsHotBucket: DateFormatter {
+        return whatsHotBucketFormatter
     }
 }
 

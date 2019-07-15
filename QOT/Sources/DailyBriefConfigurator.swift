@@ -14,7 +14,7 @@ final class DailyBriefConfigurator {
                      services: Services?,
                      viewController: DailyBriefViewController) {
         let router = DailyBriefRouter(viewController: viewController)
-        let worker = DailyBriefWorker(services: services)
+        let worker = DailyBriefWorker()
         let presenter = DailyBriefPresenter(viewController: viewController)
         let interactor = DailyBriefInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

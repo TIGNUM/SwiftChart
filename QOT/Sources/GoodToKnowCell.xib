@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+        <array key="SF-Pro-Display-Thin.otf">
+            <string>SFProDisplay-Thin</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Jio-Dk-Pbb" customClass="GoodToKnowCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOOD TO KNOW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhk-xi-QDD">
+                    <rect key="frame" x="20" y="165" width="374" height="24"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRN-tE-jmj">
+                    <rect key="frame" x="20" y="309" width="374" height="41"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="34"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOJ-hc-tEU">
+                    <rect key="frame" x="20" y="144" width="15" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="JSw-lD-PCh"/>
+                        <constraint firstAttribute="width" constant="15" id="f8x-qy-stk"/>
+                    </constraints>
+                </view>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Bo-K3-SlV">
+                    <rect key="frame" x="20" y="204" width="374" height="90"/>
+                </imageView>
+            </subviews>
+            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="tRN-tE-jmj" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="1ID-7x-NKs"/>
+                <constraint firstItem="1Bo-K3-SlV" firstAttribute="top" secondItem="Hhk-xi-QDD" secondAttribute="bottom" constant="15" id="7IT-L2-kf5"/>
+                <constraint firstItem="MOJ-hc-tEU" firstAttribute="top" secondItem="hgy-la-JSN" secondAttribute="top" constant="100" id="7ak-e2-BQq"/>
+                <constraint firstItem="tRN-tE-jmj" firstAttribute="top" secondItem="Hhk-xi-QDD" secondAttribute="bottom" constant="120" id="LUw-th-lYU"/>
+                <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="Hhk-xi-QDD" secondAttribute="trailing" constant="20" id="PLI-hr-kgF"/>
+                <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="1Bo-K3-SlV" secondAttribute="trailing" constant="20" id="PjG-I9-zmc"/>
+                <constraint firstItem="MOJ-hc-tEU" firstAttribute="leading" secondItem="Jio-Dk-Pbb" secondAttribute="leading" constant="20" id="RUB-dT-bEY"/>
+                <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="tRN-tE-jmj" secondAttribute="trailing" constant="20" id="Y9s-cs-U60"/>
+                <constraint firstItem="tRN-tE-jmj" firstAttribute="top" secondItem="1Bo-K3-SlV" secondAttribute="bottom" constant="15" id="jgn-nj-mqA"/>
+                <constraint firstItem="Hhk-xi-QDD" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="mc2-wh-3w2"/>
+                <constraint firstItem="Hhk-xi-QDD" firstAttribute="top" secondItem="MOJ-hc-tEU" secondAttribute="bottom" constant="20" id="sms-6l-d2t"/>
+                <constraint firstItem="1Bo-K3-SlV" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="tAy-SS-y4V"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="hgy-la-JSN"/>
+            <connections>
+                <outlet property="goodToKnowFact" destination="tRN-tE-jmj" id="gIy-P8-86W"/>
+                <outlet property="goodToKnowImage" destination="1Bo-K3-SlV" id="qWY-Qf-56c"/>
+            </connections>
+        </view>
+    </objects>
+</document>

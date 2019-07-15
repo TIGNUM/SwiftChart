@@ -24,11 +24,12 @@ final class DailyBriefRouter {
 // MARK: - DailyBriefRouterInterface
 
 extension DailyBriefRouter: DailyBriefRouterInterface {
-    func presentStrategyList(selectedStrategyID: Int) {
+    
 
-    }
-
-    func didTapCell(at: IndexPath) {
-        viewController.presentLevelTwo()
+    func presentWhatsHotArticle(selectedID: Int) {
+        if let controller = R.storyboard.main().instantiateViewController(withIdentifier: R.storyboard.main.qotArticleViewController.identifier) as? ArticleViewController {
+            ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
+            viewController.present(controller, animated: true, completion: nil)
+        }
     }
 }

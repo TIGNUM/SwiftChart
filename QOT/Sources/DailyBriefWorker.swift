@@ -7,72 +7,105 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DailyBriefWorker {
-
-    // MARK: - Properties
-
-    private let services: Services?
-
-    // MARK: - Init
-
-    init(services: Services?) {
-        self.services = services
-    }
 
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
     }()
 
-    lazy var strategies: [Knowing.StrategyItem] = {
-        guard let strategies = services?.contentService.learnContentCategories() else { return [] }
-        var strategyItems: [Knowing.StrategyItem] = []
-        for strategy in strategies {
-            let viewedCount = strategy.viewedCount(section: .learnStrategy)
-            let itemCount = strategy.itemCount(section: .learnStrategy)
-            strategyItems.append(Knowing.StrategyItem(title: strategy.title,
-                                                      remoteID: strategy.remoteID.value ?? 0,
-                                                      viewedCount: viewedCount,
-                                                      itemCount: itemCount,
-                                                      sortOrder: strategy.sortOrder))
-        }
-        return strategyItems.sorted(by: { (lhs, rhs) -> Bool in
-            lhs.sortOrder < rhs.sortOrder
+    func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
+        qot_dal.ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
+            completion(items?.last?.remoteID)
         })
-    }()
-
-    lazy var whatsHotItems: [Knowing.WhatsHotItem] = {
-        guard let whatsHotArticles = services?.contentService.whatsHotArticles() else { return [] }
-        var whatsHotItems: [Knowing.WhatsHotItem] = []
-        for article in whatsHotArticles {
-            if
-                let collectionId = article.remoteID.value,
-                let body = services?.contentService.contentItems(contentCollectionID: collectionId).first?.valueText {
-                whatsHotItems.append(Knowing.WhatsHotItem(title: article.title,
-                                                          body: body,
-                                                          image: article.thumbnailURL,
-                                                          remoteID: collectionId,
-                                                          author: article.author ?? "",
-                                                          publishDate: article.publishDate,
-                                                          timeToRead: article.durationString,
-                                                          isNew: isNew(article)))
-            }
-        }
-        return whatsHotItems
-    }()
-
-    func contentList(selectedStrategyID: Int) -> [ContentCollection] {
-        guard let contentList = services?.contentService.contentCategory(id: selectedStrategyID)?.contentCollections else { return [] }
-        return Array(contentList)
     }
-}
 
-private extension DailyBriefWorker {
-    func isNew(_ article: ContentCollection) -> Bool {
-        var isNewArticle = article.contentRead == nil
+    func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
+        latestWhatsHotCollectionID(completion: { (collectionID) in
+            qot_dal.ContentService.main.getContentItemsByCollectionId(collectionID ?? 0, { (item) in
+                completion(item?.first)
+            })
+        })
+    }
+
+    func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
+        latestWhatsHotCollectionID(completion: { (collectionID) in
+            qot_dal.ContentService.main.getContentCollectionById(collectionID ?? 0, completion)
+        })
+    }
+
+    func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void) {
+        latestWhatsHotContent(completion: { [weak self] (item) in
+            self?.getContentCollection(completion: { (collection) in
+                if let collection = collection {
+                    completion(WhatsHotLatestCellViewModel(title: collection.title, image: URL(string: collection.thumbnailURLString ?? ""), author: collection.author, publisheDate: item?.createdAt, timeToRead: collection.secondsRequired, isNew: self?.isNew(collection) ?? false, remoteID: collection.remoteID, domainModel: nil))
+                }
+            })
+        })
+    }
+
+    func isNew(_ collection: QDMContentCollection) -> Bool {
+        var isNewArticle = collection.viewedAt == nil
         if let firstInstallTimeStamp = self.firstInstallTimeStamp {
-            isNewArticle = article.contentRead == nil && article.modifiedAt > firstInstallTimeStamp
+            isNewArticle = collection.viewedAt == nil && collection.modifiedAt ?? collection.createdAt ?? Date() > firstInstallTimeStamp
         }
         return isNewArticle
+    }
+
+    func randomQuestionModel(completion: @escaping ((QuestionCellViewModel)?) -> Void) {
+        qot_dal.ContentService.main.getContentCategory(.RandomQuestion, { (category) in
+            completion(QuestionCellViewModel(text: category?.contentCollections.first?.contentItems.randomElement()?.valueText, domainModel: nil))
+        })
+    }
+
+    func createThoughtsModel(completion: @escaping ((ThoughtsCellViewModel)?) -> Void) {
+        var model: [ThoughtsCellViewModel] = []
+        qot_dal.ContentService.main.getContentCategory(.ThoughtsToPonder, { ( category) in
+            category?.contentCollections.forEach { (collection) in
+                model.append(ThoughtsCellViewModel(thought: collection.contentItems.first?.valueText, author: collection.author, domainModel: nil))
+            }
+            completion(model.randomElement())
+        })
+    }
+
+    func createFactsModel(completion: @escaping ((GoodToKnowCellViewModel)?) -> Void) {
+        var model: [GoodToKnowCellViewModel] = []
+        qot_dal.ContentService.main.getContentCategory(.GoodToKnow, { ( category) in
+            category?.contentCollections.forEach { (collection) in
+                model.append(GoodToKnowCellViewModel(fact: collection.contentItems.first?.valueText, image: URL(string: (collection.thumbnailURLString ?? "")), domainModel: nil))
+            }
+            completion(model.randomElement())
+        })
+    }
+
+    func lastMessage(completion: @escaping ((FromTignumCellViewModel)?) -> Void) {
+        var model: [FromTignumCellViewModel]? = []
+        qot_dal.ContentService.main.getContentCategory(.FromTignum, { (category) in
+            category?.contentCollections.forEach { (collection) in
+                model?.append(FromTignumCellViewModel(text: collection.contentItems.first?.valueText, domainModel: nil))
+            }
+            completion(model?.last)
+        })
+    }
+
+    func getFeastModel(completion: @escaping ((FeastCellViewModel)?) -> Void) {
+        var model: [FeastCellViewModel]? = []
+        qot_dal.ContentService.main.getContentCategory(.FeastForEyes, { (category) in
+            category?.contentCollections.first?.contentItems.forEach { (item) in
+                model?.append(FeastCellViewModel(image: item.valueMediaURL ?? "", remoteID: item.remoteID, domainModel: nil))
+            }
+            completion(model?.randomElement())
+        })
+    }
+
+    func getDepartureModel(completion: @escaping ((DepartureInfoCellViewModel)?) -> Void) {
+        var model: [DepartureInfoCellViewModel]? = []
+        qot_dal.ContentService.main.getContentCollectionBySection(.Departure, { (collections) in
+            collections?.forEach { (collection) in
+                model?.append(DepartureInfoCellViewModel(text: collection.contentItems.first?.valueText, image: collection.thumbnailURLString ?? "", link: collection.shareableLink, domainModel: nil))
+            }
+            completion(model?.randomElement())
+        })
     }
 }
