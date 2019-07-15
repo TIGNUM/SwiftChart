@@ -160,9 +160,9 @@ extension PrepareResultsWorker {
 private extension PrepareResultsWorker {
     func setAnswerIdsIfNeeded(_ answers: [DecisionTreeModel.SelectedAnswer]) {
         if !answers.isEmpty {
-            preceiveAnswerIds = filteredAnswers(.perceived, answers).compactMap { $0.answer.remoteID.value }
-            knowAnswerIds = filteredAnswers(.know, answers).compactMap { $0.answer.remoteID.value }
-            feelAnswerIds = filteredAnswers(.feel, answers).compactMap { $0.answer.remoteID.value }
+            preceiveAnswerIds = filteredAnswers(.perceived, answers).compactMap { $0.answer.remoteID }
+            knowAnswerIds = filteredAnswers(.know, answers).compactMap { $0.answer.remoteID }
+            feelAnswerIds = filteredAnswers(.feel, answers).compactMap { $0.answer.remoteID }
         }
     }
 
@@ -205,11 +205,11 @@ extension PrepareResultsWorker {
     func updateIntentions(_ answers: [DecisionTreeModel.SelectedAnswer], _ key: Prepare.Key) {
         switch key {
         case .perceived:
-            preceiveAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID.value }
+            preceiveAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
         case .know:
-            knowAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID.value }
+            knowAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
         case .feel:
-            feelAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID.value }
+            feelAnswerIds = filteredAnswers(key, answers).compactMap { $0.answer.remoteID }
         default:
             break
         }

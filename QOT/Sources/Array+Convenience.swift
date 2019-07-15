@@ -29,10 +29,6 @@ extension Array where Element: Equatable {
         }
         return uniqueValues
     }
-
-    var randomIndex: Int {
-        return Int(arc4random_uniform(UInt32(count)))
-    }
 }
 
 extension Array {
@@ -42,9 +38,11 @@ extension Array {
         }
         return self[index]
     }
-}
 
-extension Array {
+    var randomIndex: Int {
+        return Int.random(in: 0..<count)
+    }
+
     func contains<T>(obj: T) -> Bool where T: Equatable {
         return self.filter({$0 as? T == obj}).count > 0
     }

@@ -40,8 +40,8 @@ extension MyVisionRouter: MyVisionRouterInterface {
         viewController.present(popUpController, animated: true, completion: nil)
     }
 
-    func openToBeVisionGenerator(permissionManager: PermissionsManager) {
-        let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator, permissionsManager: permissionManager)
+    func openToBeVisionGenerator() {
+        let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator)
         let decisonTreeViewController = DecisionTreeViewController(configure: configurator)
         decisonTreeViewController.delegate = viewController
         viewController.present(decisonTreeViewController, animated: true, completion: nil)

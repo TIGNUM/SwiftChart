@@ -154,7 +154,6 @@ extension VisionGeneratorWorker {
 }
 
 // MARK: - Private Generate Chat Items
-
 private extension VisionGeneratorWorker {
 
     func displayCreatedVision(for questionType: VisionGeneratorChoice.QuestionType) {

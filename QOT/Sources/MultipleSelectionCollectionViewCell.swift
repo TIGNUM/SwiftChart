@@ -7,40 +7,42 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol MultipleSelectionCollectionViewCellDelegate: class {
-    func didTapButton(for answer: Answer)
+    func didSelectAnswer(_ answer: QDMAnswer)
+    func didDeSelectAnswer(_ answer: QDMAnswer)
 }
 
 final class MultipleSelectionCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     // MARK: - Properties
-
     @IBOutlet private weak var answerButton: DecisionTreeButton!
     weak var delegate: MultipleSelectionCollectionViewCellDelegate?
-    private var maxPossibleSelections: Int = 0
-    private var answer: Answer?
+    private var maxSelections = 0
+    private var selectionCounter = 0
+    private var isAnswered = false
+    private var answer: QDMAnswer?
 
     // MARK: - Lifecycle
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        answerButton.corner(radius: bounds.height * 0.25)
+        answerButton.cornerDefault()
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(syncButton(_:)),
-                                               name: .multiSelectionCounter,
+                                               name: .didUpdateSelectionCounter,
                                                object: nil)
     }
 }
 
 // MARK: - Configure
-
 extension MultipleSelectionCollectionViewCell {
-
-    func configure(for answer: Answer, isSelected: Bool, maxPossibleSelections: Int) {
+    func configure(for answer: QDMAnswer, isSelected: Bool, maxSelections: Int) {
         self.answer = answer
-        self.maxPossibleSelections = maxPossibleSelections
-        answerButton.configure(with: answer.title,
+        self.maxSelections = maxSelections
+        self.isAnswered = isSelected
+        self.selectionCounter = 0
+        answerButton.configure(with: answer.subtitle ?? "",
                                selectedBackgroundColor: isSelected ? .sand : .accent30,
                                defaultBackgroundColor: isSelected ? .accent30 : .sand,
                                borderColor: .accent30,
@@ -49,28 +51,26 @@ extension MultipleSelectionCollectionViewCell {
 }
 
 // MARK: - Actions
-
 extension MultipleSelectionCollectionViewCell {
-
     @IBAction func didTapButton(_ sender: DecisionTreeButton) {
         guard let answer = answer else { return }
-        delegate?.didTapButton(for: answer)
-        answerButton.update()
+        if isAnswered == true {
+            delegate?.didDeSelectAnswer(answer)
+            answerButton.update()
+            isAnswered = false
+        } else if selectionCounter < maxSelections {
+            answerButton.update()
+            isAnswered = true
+            delegate?.didSelectAnswer(answer)
+        }
     }
 }
 
 // MARK: - Private
-
 private extension MultipleSelectionCollectionViewCell {
-
     @objc func syncButton(_ notification: Notification) {
-        if
-            let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int,
-            let selectedAnswers = notification.userInfo?[UserInfo.selectedAnswers.rawValue] as? [Answer] {
-            let isAlreadyAnswered = selectedAnswers.filter { $0.remoteID.value == answer?.remoteID.value }.isEmpty
-            if counter == maxPossibleSelections {
-                answerButton.isUserInteractionEnabled = isAlreadyAnswered == false
-            }
+        if let counter = notification.userInfo?[UserInfo.multiSelectionCounter.rawValue] as? Int {
+            selectionCounter = counter > maxSelections ? 0 : counter
         }
     }
 }

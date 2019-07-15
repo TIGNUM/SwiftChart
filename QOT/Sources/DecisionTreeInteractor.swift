@@ -12,13 +12,11 @@ import qot_dal
 final class DecisionTreeInteractor {
 
     // MARK: - Properties
-
     private let worker: DecisionTreeWorker
     private let presenter: DecisionTreePresenterInterface
     private let router: DecisionTreeRouterInterface
 
     // MARK: - Init
-
     init(worker: DecisionTreeWorker,
          presenter: DecisionTreePresenterInterface,
          router: DecisionTreeRouterInterface) {
@@ -28,26 +26,24 @@ final class DecisionTreeInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
-        if let firstQuestion = worker.fetchFirstQuestion() {
-            let decisionTree = DecisionTreeModel(questions: [firstQuestion], selectedAnswers: [])
-            presenter.load(decisionTree)
+        presenter.setupView()
+        fetchFirstQuestionAndDisplay()
+    }
+}
+
+private extension DecisionTreeInteractor {
+    func fetchFirstQuestionAndDisplay() {
+        worker.fetchQuestions { [weak self] in
+            if let question = self?.worker.firstQuestion {
+                self?.showQuestion(question, animated: true)
+            }
         }
     }
 }
 
 // MARK: - DecisionTreeInteractorInterface
-
 extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
-    var userHasToBeVision: Bool {
-        return worker.userHasToBeVision
-    }
-
-    var toBeVisionText: String? {
-        return worker.getToBeVisionText
-    }
-
     var relatedStrategyID: Int {
         return worker.targetContentID
     }
@@ -65,19 +61,16 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         return worker.type
     }
 
-    func setTargetContentID(for answer: Answer) {
+    var answersFilter: String? {
+        return worker.answersFilter()
+    }
+
+    var extraAnswer: String? {
+        return worker.extraAnswer
+    }
+
+    func setTargetContentID(for answer: QDMAnswer) {
         worker.setTargetContentID(for: answer)
-    }
-
-    func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String? {
-        return worker.answersFilter(currentQuestion: currentQuestion, decisionTree: decisionTree)
-    }
-
-    func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer]) {
-        let node = worker.fetchNextQuestion(from: targetID, selectedAnswers: selectedAnswers)
-        if let question = node.question {
-            presenter.presentNext(question, with: node.generatedAnswer)
-        }
     }
 
     func displayContent(with id: Int) {
@@ -85,22 +78,15 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     }
 
     func streamContentItem(with id: Int) {
-        if let url = worker.mediaURL(from: id) {
-            router.openVideo(from: url)
+        worker.mediaURL(from: id) { [weak self] (url) in
+            if let url = url {
+                self?.router.openVideo(from: url)
+            }
         }
     }
 
     func openImagePicker() {
         router.openImagePicker()
-    }
-
-    func notifyCounterChanged(with value: Int, selectedAnswers: [Answer]) {
-        let selectionCounter = UserInfo.multiSelectionCounter.pair(for: value)
-        let selectedAnswers = UserInfo.selectedAnswers.pair(for: selectedAnswers)
-        NotificationCenter.default.post(name: .multiSelectionCounter,
-                                        object: nil,
-                                        userInfo: [selectionCounter.key: selectionCounter.value,
-                                                   selectedAnswers.key: selectedAnswers.value])
     }
 
     func openShortTBVGenerator(completion: (() -> Void)?) {
@@ -109,14 +95,14 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         }
     }
 
-    func openMindsetShifterChecklist(from answers: [Answer]) {
+    func openMindsetShifterChecklist(from answers: [QDMAnswer]) {
         if let trigger = answers.first(where: { $0.keys.filter { $0.contains("trigger-") }.isEmpty == false })?.title {
-            let reactions = answers.filter { $0.keys.filter { $0.contains("reaction") }.isEmpty == false }.map { $0.title }
-            let lowItems = answers.filter { $0.keys.filter { $0.contains("lowperformance") }.isEmpty == false }.map { $0.title }
+            let reactions = answers.filter { $0.keys.filter { $0.contains("reaction") }.isEmpty == false }.map { $0.title ?? "" }
+            let lowItems = answers.filter { $0.keys.filter { $0.contains("lowperformance") }.isEmpty == false }.map { $0.title ?? "" }
             var contentItemIDs: [Int] = []
             answers.forEach {
                 $0.decisions.forEach {
-                    if $0.targetType == TargetType.contentItem.rawValue, let id = $0.targetID {
+                    if $0.targetType == TargetType.contentItem.rawValue, let id = $0.targetTypeId {
                         contentItemIDs.append(id)
                     }
                 }
@@ -130,7 +116,7 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         }
     }
 
-    func openSolveResults(from selectedAnswer: Answer, type: ResultType) {
+    func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType) {
         router.openSolveResults(from: selectedAnswer, type: type)
     }
 
@@ -141,10 +127,117 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     func openToBeVisionPage() {
         router.openToBeVisionPage()
     }
+
+    func loadNextQuestion(from answer: QDMAnswer?) {
+        worker.getNextQuestion(answer: answer) { [weak self] (node) in
+            self?.showQuestion(node.question, node.generatedAnswer, animated: false)
+        }
+    }
+
+    func loadNextQuestion(targetId: Int) {
+        worker.getNextQuestion(targetId: targetId) { [weak self] (node) in
+            self?.showQuestion(node.question, node.generatedAnswer, animated: false)
+        }
+    }
+
+    private func showQuestion(_ question: QDMQuestion?, _ generatedAnswer: String? = nil, animated: Bool) {
+        if let question = question {
+            presenter.showQuestion(question,
+                                   extraAnswer: generatedAnswer,
+                                   filter: worker.answersFilter(),
+                                   selectedAnswers: worker.selectedAnswers,
+                                   direction: .forward,
+                                   animated: animated)
+        }
+    }
+
+    func showQuestion(_ question: QDMQuestion,
+                      extraAnswer: String?,
+                      filter: String?,
+                      selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                      direction: UIPageViewController.NavigationDirection,
+                      animated: Bool) {
+        presenter.showQuestion(question,
+                               extraAnswer: extraAnswer,
+                               filter: filter,
+                               selectedAnswers: selectedAnswers,
+                               direction: direction,
+                               animated: animated)
+    }
+
+    func handleSelection(for answer: QDMAnswer) {
+        worker.handleSelection(for: answer)
+    }
+
+    func handleSingleSelection(for answer: QDMAnswer) {
+        worker.handleSingleSelection(for: answer)
+    }
+
+    func didSelectAnswer(_ answer: QDMAnswer) {
+        worker.didSelectAnswer(answer)
+    }
+
+    func didDeSelectAnswer(_ answer: QDMAnswer) {
+        worker.didDeSelectAnswer(answer)
+    }
+
+    func setUserCalendarEvent(event: QDMUserCalendarEvent) {
+        worker.setUserCalendarEvent(event: event)
+    }
+
+    func previousQuestion() -> QDMQuestion? {
+        return worker.previousQuestion()
+    }
+
+    func didTapContinue() {
+        worker.didTapContinue()
+    }
+
+    func trackUserEvent(_ answer: QDMAnswer?, _ name: QDMUserEventTracking.Name, _ valueType: QDMUserEventTracking.ValueType?) {
+        presenter.trackUserEvent(answer, name, valueType)
+    }
+    func dismiss() {
+        presenter.dismiss()
+    }
+
+    func presentAddEventController(_ eventStore: EKEventStore) {
+        presenter.presentAddEventController(eventStore)
+    }
+
+    func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor) {
+        presenter.syncButtons(previousButtonIsHidden: previousButtonIsHidden,
+                              continueButtonIsHidden: continueButtonIsHidden,
+                              backgroundColor: backgroundColor)
+    }
+
+    func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?) {
+        presenter.updateBottomButtonTitle(counter: counter,
+                                          maxSelections: maxSelections,
+                                          defaultTitle: defaultTitle,
+                                          confirmTitle: confirmTitle)
+    }
+
+    func bottomNavigationRightBarItems(action: Selector) -> [UIBarButtonItem]? {
+        return worker.bottomNavigationRightBarItems(action: action)
+    }
+
+    func updateMultiSelectionCounter() {
+        worker.updateMultiSelectionCounter()
+    }
+
+    func loadEventQuestion() {
+        let eventQuestion = worker.decisionTree?.questions.filter {
+            $0.answerType == AnswerType.openCalendarEvents.rawValue
+            }.first
+        self.loadNextQuestion(from: eventQuestion?.answers.first)
+    }
+
+    func toBeVisionDidChange() {
+        router.openToBeVisionPage()
+    }
 }
 
 // MARK: - Prepare
-
 extension DecisionTreeInteractor {
     func openPrepareResults(_ contentId: Int) {
         router.openPrepareResults(contentId)
@@ -166,7 +259,6 @@ extension DecisionTreeInteractor {
 }
 
 // MARK: - Recovery
-
 extension DecisionTreeInteractor {
     func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int) {
         worker.updateRecoveryModel(fatigueAnswerId: fatigueAnswerId, causeAnwserId, targetContentId)

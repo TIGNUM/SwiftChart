@@ -10,13 +10,39 @@ import Foundation
 import qot_dal
 
 protocol DecisionTreeViewControllerInterface: class {
-    func load(_ decisionTree: DecisionTreeModel)
-    func loadNext(_ question: Question, with extraAnswer: String?)
+    func setupView()
+    func showQuestion(_ question: QDMQuestion,
+                      extraAnswer: String?,
+                      filter: String?,
+                      selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                      direction: UIPageViewController.NavigationDirection,
+                      animated: Bool)
+    func trackUserEvent(_ answer: QDMAnswer?,
+                        _ name: QDMUserEventTracking.Name,
+                        _ valueType: QDMUserEventTracking.ValueType?)
+    func dismiss()
+    func presentAddEventController(_ eventStore: EKEventStore)
+    func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor)
+    func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
+    func toBeVisionDidChange()
 }
 
 protocol DecisionTreePresenterInterface {
-    func load(_ decisionTree: DecisionTreeModel)
-    func presentNext(_ question: Question, with extraAnswer: String?)
+    func setupView()
+    func showQuestion(_ question: QDMQuestion,
+                      extraAnswer: String?,
+                      filter: String?,
+                      selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                      direction: UIPageViewController.NavigationDirection,
+                      animated: Bool)
+    func trackUserEvent(_ answer: QDMAnswer?,
+                        _ name: QDMUserEventTracking.Name,
+                        _ valueType: QDMUserEventTracking.ValueType?)
+    func dismiss()
+    func presentAddEventController(_ eventStore: EKEventStore)
+    func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor)
+    func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
+    func toBeVisionDidChange()
 }
 
 protocol DecisionTreeInteractorInterface: Interactor {
@@ -24,28 +50,51 @@ protocol DecisionTreeInteractorInterface: Interactor {
     var prepareBenefits: String? { get set }
     var relatedStrategyID: Int { get }
     var selectedanswers: [DecisionTreeModel.SelectedAnswer] { get }
-    var userHasToBeVision: Bool { get }
-    var toBeVisionText: String? { get }
-    func notifyCounterChanged(with value: Int, selectedAnswers: [Answer])
-    func loadNextQuestion(from targetID: Int, selectedAnswers: [Answer])
+    var answersFilter: String? { get }
+    var extraAnswer: String? { get }
     func displayContent(with id: Int)
     func streamContentItem(with id: Int)
     func openImagePicker()
     func save(_ image: UIImage)
-    func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String?
-    func setTargetContentID(for answer: Answer)
+    func setTargetContentID(for answer: QDMAnswer)
     func openPrepareResults(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer])
     func openPrepareResults(_ contentId: Int)
     func openRecoveryResults()
     func openShortTBVGenerator(completion: (() -> Void)?)
-    func openSolveResults(from selectedAnswer: Answer, type: ResultType)
+    func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType)
     func openToBeVisionPage()
-    func openMindsetShifterChecklist(from answers: [Answer])
+    func openMindsetShifterChecklist(from answers: [QDMAnswer])
     func updatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer])
     func updatePrepareBenefits(_ benefits: String)
     func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int)
     func deleteModelIfNeeded()
+    func loadNextQuestion(from answer: QDMAnswer?)
+    func loadNextQuestion(targetId: Int)
+    func loadEventQuestion()
+    func handleSelection(for answer: QDMAnswer)
+    func handleSingleSelection(for answer: QDMAnswer)
+    func didSelectAnswer(_ answer: QDMAnswer)
+    func didDeSelectAnswer(_ answer: QDMAnswer)
+    func showQuestion(_ question: QDMQuestion,
+                      extraAnswer: String?,
+                      filter: String?,
+                      selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+                      direction: UIPageViewController.NavigationDirection,
+                      animated: Bool)
+    func previousQuestion() -> QDMQuestion?
+    func didTapContinue()
+    func trackUserEvent(_ answer: QDMAnswer?,
+                        _ name: QDMUserEventTracking.Name,
+                        _ valueType: QDMUserEventTracking.ValueType?)
+    func setUserCalendarEvent(event: QDMUserCalendarEvent)
+    func presentAddEventController(_ eventStore: EKEventStore)
+    func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor)
+    func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
+    func bottomNavigationRightBarItems(action: Selector) -> [UIBarButtonItem]?
+    func updateMultiSelectionCounter()
+    func toBeVisionDidChange()
+    func dismiss()
 }
 
 protocol DecisionTreeRouterInterface {
@@ -60,7 +109,7 @@ protocol DecisionTreeRouterInterface {
     func openVideo(from url: URL)
     func openShortTBVGenerator(completion: (() -> Void)?)
     func openImagePicker()
-    func openSolveResults(from selectedAnswer: Answer, type: ResultType)
+    func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType)
     func openToBeVisionPage()
     func openRecoveryResults(_ recovery: QDMRecovery3D?)
 }
@@ -68,16 +117,8 @@ protocol DecisionTreeRouterInterface {
 protocol DecisionTreeModelInterface {
     mutating func reset()
     mutating func removeLastQuestion()
-    mutating func add(_ question: Question)
-    mutating func remove(_ question: Question)
-    mutating func addOrRemove(_ selection: DecisionTreeModel.SelectedAnswer,
-                              addCompletion: () -> Void,
-                              removeCompletion: () -> Void)
-}
-
-protocol DecisionTreeWorkerInterface {
-    func fetchNextQuestion(from targetID: Int, selectedAnswers: [Answer]) -> DecisionTreeNode
-    func mediaURL(from contentItemID: Int) -> URL?
-    func fetchFirstQuestion() -> Question?
-    func save(_ image: UIImage)
+    mutating func add(_ question: QDMQuestion)
+    mutating func remove(_ question: QDMQuestion)
+    mutating func add(_ selection: DecisionTreeModel.SelectedAnswer)
+    mutating func remove(_ selection: DecisionTreeModel.SelectedAnswer)
 }

@@ -28,7 +28,7 @@ final class PrepareEventSelectionRouter {
 // MARK: - PrepareEventSelectionRouterInterface
 
 extension PrepareEventSelectionRouter: PrepareEventSelectionRouterInterface {
-    func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: Answer) {
+    func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: QDMAnswer) {
         delegate?.didSelectCalendarEvent(event, selectedAnswer: selectedAnswer)
     }
 }

@@ -44,6 +44,8 @@
 		360E99522167A93D0084CEFB /* PrepareNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E99512167A93D0084CEFB /* PrepareNotesViewController.swift */; };
 		360E99552167BAFE0084CEFB /* PrepareNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E99532167BAFE0084CEFB /* PrepareNotesTableViewCell.swift */; };
 		360E99562167BAFE0084CEFB /* PrepareNotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360E99542167BAFE0084CEFB /* PrepareNotesTableViewCell.xib */; };
+		3616EF9222D7408900E43961 /* DecisionTreeWorker+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */; };
+		3616EF9422D747C200E43961 /* DecisionTreeWorker+TBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */; };
 		362614AA20CFB4E500AB3659 /* UserCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362614A920CFB4E500AB3659 /* UserCountry.swift */; };
 		362614AC20CFC1C300AB3659 /* UserCountryList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362614AB20CFC1C300AB3659 /* UserCountryList.swift */; };
 		362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 362632441FD6A2710024C626 /* GuideTableViewCell.xib */; };
@@ -365,6 +367,7 @@
 		36E4CF0E22BC51BD009A2DF7 /* ChoiceInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0622BC51BC009A2DF7 /* ChoiceInteractor.swift */; };
 		36E4CF0F22BC51BD009A2DF7 /* ChoiceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0722BC51BC009A2DF7 /* ChoiceModel.swift */; };
 		36E4CF1022BC51BD009A2DF7 /* ChoiceConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E4CF0822BC51BC009A2DF7 /* ChoiceConfigurator.swift */; };
+		36E5DD9A22D4E13700910E0D /* QuestionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E5DD9922D4E13700910E0D /* QuestionManager.swift */; };
 		36E6E3E8224911CF001BE9C7 /* ComponentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */; };
 		36E6E3E9224911CF001BE9C7 /* ComponentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */; };
 		36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */; };
@@ -1498,6 +1501,8 @@
 		360E99512167A93D0084CEFB /* PrepareNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareNotesViewController.swift; sourceTree = "<group>"; };
 		360E99532167BAFE0084CEFB /* PrepareNotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareNotesTableViewCell.swift; sourceTree = "<group>"; };
 		360E99542167BAFE0084CEFB /* PrepareNotesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareNotesTableViewCell.xib; sourceTree = "<group>"; };
+		3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Selection.swift"; sourceTree = "<group>"; };
+		3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+TBV.swift"; sourceTree = "<group>"; };
 		362614A920CFB4E500AB3659 /* UserCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCountry.swift; sourceTree = "<group>"; };
 		362614AB20CFC1C300AB3659 /* UserCountryList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCountryList.swift; sourceTree = "<group>"; };
 		362632441FD6A2710024C626 /* GuideTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuideTableViewCell.xib; sourceTree = "<group>"; };
@@ -1818,6 +1823,7 @@
 		36E4CF0622BC51BC009A2DF7 /* ChoiceInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceInteractor.swift; sourceTree = "<group>"; };
 		36E4CF0722BC51BC009A2DF7 /* ChoiceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceModel.swift; sourceTree = "<group>"; };
 		36E4CF0822BC51BC009A2DF7 /* ChoiceConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChoiceConfigurator.swift; sourceTree = "<group>"; };
+		36E5DD9922D4E13700910E0D /* QuestionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionManager.swift; sourceTree = "<group>"; };
 		36E6E3E6224911CF001BE9C7 /* ComponentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewCell.swift; sourceTree = "<group>"; };
 		36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ComponentCollectionViewCell.xib; sourceTree = "<group>"; };
 		36E6E3EA22491224001BE9C7 /* ComponentContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentContentView.swift; sourceTree = "<group>"; };
@@ -2921,6 +2927,7 @@
 				36085C5822CA48E600C703BA /* PreparationManager.swift */,
 				F9A66BA022CB7FB60094EA46 /* MindsetShiftersManager.swift */,
 				F9A66BA222CB7FCD0094EA46 /* Recovery3DManager.swift */,
+				36E5DD9922D4E13700910E0D /* QuestionManager.swift */,
 			);
 			name = Abstract;
 			sourceTree = "<group>";
@@ -4841,6 +4848,8 @@
 				ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */,
 				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
 				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
+				3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */,
+				3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -7786,6 +7795,7 @@
 				5F7BE78C22895ED200BA5DCF /* MyQotSupportModel.swift in Sources */,
 				36376661223AA61100C2C429 /* LevelThreeInteractor.swift in Sources */,
 				36083826225F3ED000664B9B /* ArticlePresenter.swift in Sources */,
+				3616EF9222D7408900E43961 /* DecisionTreeWorker+Selection.swift in Sources */,
 				E813F0AA2135281E00C0723E /* PDFReaderInteractor.swift in Sources */,
 				B8BB412D22C4C0FE002897E4 /* BottomNavigationItem.swift in Sources */,
 				7FB32D151F44793F0027BF4E /* TrackablePage.swift in Sources */,
@@ -8172,6 +8182,7 @@
 				360CC3CA2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift in Sources */,
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
+				3616EF9422D747C200E43961 /* DecisionTreeWorker+TBV.swift in Sources */,
 				ACF0B946225FC41F008CFAEC /* DecisionTreeRouter.swift in Sources */,
 				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
 				F98E2AD022C22095002550FF /* GoodToKnowModel.swift in Sources */,
@@ -8366,6 +8377,7 @@
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,
 				9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */,
 				AC103E2F22847AB500F426F0 /* ConfirmationInterface.swift in Sources */,
+				36E5DD9A22D4E13700910E0D /* QuestionManager.swift in Sources */,
 				CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */,
 				75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */,
 				CC7C7A051F064F3F00DAAC14 /* User+Convenience.swift in Sources */,

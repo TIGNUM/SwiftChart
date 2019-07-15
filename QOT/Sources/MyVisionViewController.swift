@@ -203,12 +203,11 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         rateButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         updateButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         generateVisionButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        guard let permissionManager = interactor?.permissionManager else { return }
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
                                                       imageSize: .medium,
-                                                      permissionsManager: permissionManager,
+                                                      permissionsManager: AppCoordinator.appState.permissionsManager!,
                                                       pageName: .imagePickerToBeVision,
                                                       adapter: adapter)
         imagePickerController.delegate = self

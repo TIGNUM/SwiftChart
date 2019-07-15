@@ -20,18 +20,56 @@ enum DecisionTreeType {
     case prepareBenefits(benefits: String?, questionID: Int, PrepareResultsDelegatge?)
     case solve
     case recovery
+
+    var introKey: String {
+        switch self {
+        case .toBeVisionGenerator:
+            return QuestionKey.ToBeVision.intro.rawValue
+        case .mindsetShifter:
+            return QuestionKey.MindsetShifter.intro.rawValue
+        case .mindsetShifterTBV:
+            return QuestionKey.MindsetShifterTBV.intro.rawValue
+        case .prepare, .prepareIntensions, .prepareBenefits:
+            return QuestionKey.Prepare.intro.rawValue
+        case .solve:
+            return QuestionKey.Solve.intro.rawValue
+        case .recovery:
+            return QuestionKey.Recovery.intro.rawValue
+        }
+    }
+
+    var questionGroup: qot_dal.QuestionGroup {
+        switch self {
+        case .toBeVisionGenerator:
+            return .ToBeVision_3_0
+        case .mindsetShifter:
+            return .MindsetShifter
+        case .mindsetShifterTBV:
+            return .MindsetShifterToBeVision
+        case .prepare, .prepareIntensions, .prepareBenefits:
+            return .Prepare_3_0
+        case .solve:
+            return .Solve
+        case .recovery:
+            return .RecoveryPlan
+        }
+    }
 }
 
 // MARK: - Model
 
 struct DecisionTreeModel {
     typealias Filter = String
-    var questions: [Question]
-    var selectedAnswers: [SelectedAnswer]
+    var questions: [QDMQuestion] = []
+    var selectedAnswers: [SelectedAnswer] = []
 
     struct SelectedAnswer {
         let questionID: Int
-        let answer: Answer
+        let answer: QDMAnswer
+    }
+
+    init(question: QDMQuestion) {
+        questions.append(question)
     }
 }
 
@@ -44,33 +82,27 @@ extension DecisionTreeModel.Filter {
 
 extension DecisionTreeModel: DecisionTreeModelInterface {
 
-    mutating func add(_ question: Question) {
-        if questions.filter ({ $0.remoteID.value == question.remoteID.value }).isEmpty {
+    mutating func add(_ question: QDMQuestion) {
+        if questions.filter ({ $0.remoteID == question.remoteID }).isEmpty {
             questions.append(question)
         }
     }
 
+    mutating func remove(_ question: QDMQuestion) {
+        if let index = questions.firstIndex(where: { $0.remoteID == question.remoteID }) {
+            questions.remove(at: index)
+        }
+    }
+
     mutating func add(_ selection: DecisionTreeModel.SelectedAnswer) {
-        if selectedAnswers.filter ({ $0.answer.remoteID.value == selection.answer.remoteID.value }).isEmpty {
+        if selectedAnswers.filter ({ $0.answer.remoteID == selection.answer.remoteID }).isEmpty {
             selectedAnswers.append(selection)
         }
     }
 
-    mutating func addOrRemove(_ selection: DecisionTreeModel.SelectedAnswer,
-                              addCompletion: () -> Void,
-                              removeCompletion: () -> Void) {
-        if let index = selectedAnswers.firstIndex(where: { $0.answer.remoteID.value == selection.answer.remoteID.value }) {
+    mutating func remove(_ selection: DecisionTreeModel.SelectedAnswer) {
+        if let index = selectedAnswers.firstIndex(where: { $0.answer.remoteID == selection.answer.remoteID }) {
             selectedAnswers.remove(at: index)
-            removeCompletion()
-            return
-        }
-        selectedAnswers.append(selection)
-        addCompletion()
-    }
-
-    mutating func remove(_ question: Question) {
-        if let index = questions.firstIndex(where: { $0.localID == question.localID }) {
-            questions.remove(at: index)
         }
     }
 

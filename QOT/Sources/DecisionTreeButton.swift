@@ -47,7 +47,7 @@ extension DecisionTreeButton {
     }
 
     func update() {
-        backgroundColor = backgroundColor == defaultBackgroundColor ? selectedBackgroundColor : defaultBackgroundColor
+        backgroundColor = (backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
     }
 
     func update(with value: Int, defaultTitle: String, confirmationTitle: String, maxSelections: Int) {
@@ -82,5 +82,6 @@ private extension DecisionTreeButton {
 
     func setupView() {
         layer.borderWidth = 1.4
+        titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
     }
 }

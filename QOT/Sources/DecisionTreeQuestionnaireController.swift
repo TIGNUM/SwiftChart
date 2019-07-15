@@ -10,11 +10,12 @@ import Foundation
 import qot_dal
 
 protocol DecisionTreeQuestionnaireDelegate: class {
-    func didTapBinarySelection(_ answer: Answer)
-    func didTapMultiSelection(_ answer: Answer)
+    func didTapBinarySelection(_ answer: QDMAnswer)
+    func didSelectAnswer(_ answer: QDMAnswer)
+    func didDeSelectAnswer(_ answer: QDMAnswer)
     func textCellDidAppear(targetID: Int)
-    func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: Answer)
-    func presentAddEventController(eventStore: EKEventStore)
+    func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: QDMAnswer)
+    func presentAddEventController(_ eventStore: EKEventStore)
     func didUpdatePrepareBenefits(_ benefits: String?)
     func didPressDimiss()
     func didPressContinue()
@@ -32,7 +33,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     weak var delegate: DecisionTreeQuestionnaireDelegate?
     private var selectedAnswers: [DecisionTreeModel.SelectedAnswer]
     private let extraAnswer: String?
-    private let question: Question
+    private let question: QDMQuestion
     private let maxPossibleSelections: Int
     private let answersFilter: String?
     private let questionTitleUpdate: String?
@@ -50,13 +51,13 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     /// Use filtered answers in order to relate answers between different questions.
     /// E.g.: Based on Question A answer, filter Question B answers to display.
     /// If `answersFilter` is nil, we'll display all possible answers.
-    private var filteredAnswers: [Answer] {
+    private var filteredAnswers: [QDMAnswer] {
         guard let filter = answersFilter else { return Array(question.answers) }
         return Array(question.answers).filter { $0.keys.contains(filter) }
     }
 
     // MARK: - Init
-    init(for question: Question,
+    init(for question: QDMQuestion,
          with selectedAnswers: [DecisionTreeModel.SelectedAnswer],
          extraAnswer: String?,
          maxPossibleSelections: Int,
@@ -97,7 +98,7 @@ private extension DecisionTreeQuestionnaireViewController {
     }
 
     @objc func presentAddEventController() {
-        delegate?.presentAddEventController(eventStore: EKEventStore.shared)
+        delegate?.presentAddEventController(EKEventStore.shared)
     }
 
     @objc func didTapContinue() {
@@ -108,7 +109,7 @@ private extension DecisionTreeQuestionnaireViewController {
 // MARK: - UITableViewDelegate
 extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let animation = CellAnimator.moveUpWithBounce(rowHeight: cell.frame.height, duration: 1, delayFactor: 0.05)
+        let animation = CellAnimator.moveUpWithFade(rowHeight: cell.frame.height, duration: 0.01, delayFactor: 0.05)
         let animator = CellAnimator(animation: animation)
         animator.animate(cell: cell, at: indexPath, in: tableView)
         if let inputCell = cell as? UserInputTableViewCell {
@@ -147,7 +148,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.onlyExistingAnswer.rawValue:
                 let cell = UITableViewCell()
                 cell.backgroundColor = .sand
-                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetID ?? 0)
+                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0)
                 return cell
             case AnswerType.yesOrNo.rawValue, AnswerType.uploadImage.rawValue:
                 let cell: SingleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -173,7 +174,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                  AnswerType.lastQuestion.rawValue:
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(with: extraAnswer ?? "")
-                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetID ?? 0)
+                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0)
                 return cell
             case AnswerType.openCalendarEvents.rawValue:
                 let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -208,15 +209,19 @@ private extension DecisionTreeQuestionnaireViewController {
 
 // MARK: - SingleSelectionCellDelegate
 extension DecisionTreeQuestionnaireViewController: SingleSelectionCellDelegate {
-    func didSelect(_ answer: Answer) {
+    func didSelect(_ answer: QDMAnswer) {
         delegate?.didTapBinarySelection(answer)
     }
 }
 
 // MARK: - MultiselectionCellDelegate
 extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate {
-    func didTap(_ answer: Answer) {
-        delegate?.didTapMultiSelection(answer)
+    func didSelectAnswer(_ answer: QDMAnswer) {
+        delegate?.didSelectAnswer(answer)
+    }
+
+    func didDeSelectAnswer(_ answer: QDMAnswer) {
+        delegate?.didDeSelectAnswer(answer)
     }
 }
 
@@ -236,6 +241,11 @@ extension DecisionTreeQuestionnaireViewController {
                                           buttonWidth: .decisionTreeButtonWidth,
                                           action: #selector(presentAddEventController))]
         case QuestionKey.Recovery.loading.rawValue?:
+            let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
+            return [roundedDarkButtonItem(title: title,
+                                          buttonWidth: .decisionTreeButtonWidth,
+                                          action: #selector(didTapContinue))]
+        case QuestionKey.MindsetShifterTBV.review.rawValue?:
             let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
             return [roundedDarkButtonItem(title: title,
                                           buttonWidth: .decisionTreeButtonWidth,

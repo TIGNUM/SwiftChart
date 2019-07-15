@@ -101,7 +101,7 @@ extension PrepareResultsWorker {
             let dqmAnswers = questions?.first?.answers.filter { ids.contains(obj: $0.remoteID ?? 0) }
             dqmAnswers?.forEach {
                 selectedAnswers.append(DecisionTreeModel.SelectedAnswer(questionID: key.questionID,
-                                                                        answer: Answer(qdmAnswer: $0)))
+                                                                        answer: $0))
             }
             completion(selectedAnswers)
         }

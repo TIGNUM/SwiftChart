@@ -14,14 +14,13 @@ final class DecisionTreeRouter {
     // MARK: - Properties
 
     private let viewController: DecisionTreeViewController
-    private let permissionsManager: PermissionsManager
     private var imagePickerController: ImagePickerController?
+    private var permissionsManager: PermissionsManager = AppCoordinator.appState.permissionsManager!
 
     // MARK: - Init
 
-    init(viewController: DecisionTreeViewController, permissionsManager: PermissionsManager) {
+    init(viewController: DecisionTreeViewController) {
         self.viewController = viewController
-        self.permissionsManager = permissionsManager
         let adapter = ImagePickerControllerAdapter(self)
         self.imagePickerController = ImagePickerController(cropShape: .rectangle,
                                                            imageQuality: .high,
@@ -49,7 +48,7 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
     }
 
     func openShortTBVGenerator(completion: (() -> Void)?) {
-        let configurator = DecisionTreeConfigurator.make(for: .mindsetShifterTBV, permissionsManager: permissionsManager)
+        let configurator = DecisionTreeConfigurator.make(for: .mindsetShifterTBV)
         let decisionTreeVC = DecisionTreeViewController(configure: configurator)
         viewController.present(decisionTreeVC, animated: true, completion: completion)
     }
@@ -66,7 +65,7 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         viewController.present(mindsetShifterChecklistVC, animated: true)
     }
 
-    func openSolveResults(from selectedAnswer: Answer, type: ResultType) {
+    func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType) {
         let configurator = SolveResultsConfigurator.make(from: selectedAnswer, type: type)
         let solveResultsController = SolveResultsViewController(configure: configurator)
         solveResultsController.delegate = viewController

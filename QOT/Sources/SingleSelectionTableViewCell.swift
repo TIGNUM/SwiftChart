@@ -7,16 +7,17 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol SingleSelectionCellDelegate: class {
-    func didSelect(_ answer: Answer)
+    func didSelect(_ answer: QDMAnswer)
 }
 
 final class SingleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
 
-    private var question: Question?
+    private var question: QDMQuestion?
     private var selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     weak var delegate: SingleSelectionCellDelegate?
     @IBOutlet private weak var rightOptionButton: DecisionTreeButton!
@@ -37,19 +38,19 @@ final class SingleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
 extension SingleSelectionTableViewCell {
 
-    func configure(for question: Question, selectedAnswers: [DecisionTreeModel.SelectedAnswer]) {
+    func configure(for question: QDMQuestion, selectedAnswers: [DecisionTreeModel.SelectedAnswer]) {
         self.question = question
         self.selectedAnswers = selectedAnswers
         let rightOption = question.answers[0]
         let leftOption = question.answers[1]
-        let rightIsSelected = selectedAnswers.filter { $0.answer.remoteID.value == rightOption.remoteID.value }.count > 0
-        let leftIsSelected = selectedAnswers.filter { $0.answer.remoteID.value == leftOption.remoteID.value }.count > 0
-        rightOptionButton.configure(with: rightOption.title,
+        let rightIsSelected = selectedAnswers.filter { $0.answer.remoteID == rightOption.remoteID }.count > 0
+        let leftIsSelected = selectedAnswers.filter { $0.answer.remoteID == leftOption.remoteID }.count > 0
+        rightOptionButton.configure(with: rightOption.subtitle ?? "",
                                     selectedBackgroundColor: rightIsSelected ? .sand : .accent30,
                                     defaultBackgroundColor: rightIsSelected ? .accent30 : .sand,
                                     borderColor: .accent30,
                                     titleColor: .accent)
-        leftOptionButton.configure(with: leftOption.title,
+        leftOptionButton.configure(with: leftOption.subtitle ?? "",
                                    selectedBackgroundColor: leftIsSelected ? .sand : .accent30,
                                    defaultBackgroundColor: leftIsSelected ? .accent30 : .sand,
                                    borderColor: .accent30,

@@ -19,7 +19,7 @@ final class SolveResultsWorker {
     private let recoveryResultContentId: Int = 101291
     private let exclusiveContentCategoryID: Int = 100087
     private var recovery: QDMRecovery3D? = nil
-    private var selectedAnswer: Answer? = nil
+    private var selectedAnswer: QDMAnswer? = nil
     private let type: ResultType
 
     private var contentIDs: [Int] {
@@ -28,7 +28,7 @@ final class SolveResultsWorker {
             guard let answer = selectedAnswer else { return [] }
             return Array(answer.decisions)
                 .filter { $0.targetType == TargetType.content.rawValue }
-                .compactMap { $0.targetID }
+                .compactMap { $0.targetTypeId }
         case .recovery: return [recoveryResultContentId]
         }
     }
@@ -62,8 +62,11 @@ final class SolveResultsWorker {
     }
 
     private var strategiesCollections: [ContentCollection] {
-        return Array(services.contentService.contentCollections(ids: contentIDs))
-            .filter { $0.section == Database.Section.learnStrategy.rawValue }
+        guard let contentId = solveContentCollection?.remoteID.value else { return [] }
+        let relatedStrategies = Array(services.contentService.contentCollection(id: contentId)?.relatedContentList
+            .filter { $0.type == "RELATED_STRATEGY" } ?? [])
+        let relatedIds = relatedStrategies.compactMap { $0.contentID }
+        return Array(services.contentService.contentCollections(ids: relatedIds))
     }
 
     private var exclusiveCollections: [ContentCollection] {
@@ -82,7 +85,7 @@ final class SolveResultsWorker {
 
     // MARK: - Init
 
-    init(services: Services, selectedAnswer: Answer?, type: ResultType) {
+    init(services: Services, selectedAnswer: QDMAnswer?, type: ResultType) {
         self.services = services
         self.selectedAnswer = selectedAnswer
         self.type = type
@@ -155,11 +158,12 @@ private extension SolveResultsWorker {
     }
 
     var trigger: SolveResults.Item? {
-        let header = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-trigger-header" })?.valueText ?? ""
-        let description = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-trigger-description" })?.valueText ?? ""
-        let buttonText = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-trigger-button" })?.valueText ?? ""
-        guard let triggerType = solveContentCollection?.searchTags.triggerType() else { return nil }
-        return .trigger(type: triggerType, header: header, description: description, buttonText: buttonText)
+        guard
+            let header = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-trigger-header" })?.valueText,
+            let description = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-trigger-description" })?.valueText,
+            let buttonText = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-trigger-button" })?.valueText,
+            let triggerType = solveContentCollection?.searchTags.triggerType() else { return nil }
+                return .trigger(type: triggerType, header: header, description: description, buttonText: buttonText)
     }
 
     var fiveDayPlan: [SolveResults.Item] {

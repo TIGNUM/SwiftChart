@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -37,13 +37,6 @@
                         <outlet property="delegate" destination="-1" id="han-G1-1C9"/>
                     </connections>
                 </tableView>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="50I-WP-zmI">
-                    <rect key="frame" x="24" y="603" width="40" height="40"/>
-                    <state key="normal" image="ic_close_rounded"/>
-                    <connections>
-                        <action selector="didTapClose:" destination="-1" eventType="touchUpInside" id="NAF-Pc-Dz6"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rfo-1W-7ew">
                     <rect key="frame" x="216" y="603" width="135" height="40"/>
                     <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -62,11 +55,9 @@
             </subviews>
             <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
-                <constraint firstItem="50I-WP-zmI" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="17w-2m-2xX"/>
                 <constraint firstItem="oho-Ej-Lk8" firstAttribute="trailing" secondItem="vUN-kp-3ea" secondAttribute="trailing" id="87I-Xr-5qn"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="rfo-1W-7ew" secondAttribute="trailing" constant="24" id="8uu-0r-5Ac"/>
                 <constraint firstItem="oho-Ej-Lk8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="8yR-uP-aKd"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="50I-WP-zmI" secondAttribute="bottom" constant="24" id="BYU-cw-X7N"/>
                 <constraint firstItem="oho-Ej-Lk8" firstAttribute="height" secondItem="vUN-kp-3ea" secondAttribute="height" id="MD3-LN-VfU"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="rfo-1W-7ew" secondAttribute="bottom" constant="24" id="Xv1-Je-0do"/>
                 <constraint firstItem="oho-Ej-Lk8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="wHs-cJ-k11"/>
@@ -74,7 +65,4 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
         </view>
     </objects>
-    <resources>
-        <image name="ic_close_rounded" width="40" height="40"/>
-    </resources>
 </document>

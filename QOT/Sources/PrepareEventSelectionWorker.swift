@@ -13,17 +13,17 @@ final class PrepareEventSelectionWorker {
 
     // MARK: - Properties
 
-    private let question: Question
+    private let question: QDMQuestion
     private let events: [QDMUserCalendarEvent]
 
     // MARK: - Init
 
-    init(question: Question, events: [QDMUserCalendarEvent]) {
+    init(question: QDMQuestion, events: [QDMUserCalendarEvent]) {
         self.question = question
         self.events = events
     }
 
-    var selectedAnswer: Answer? {
+    var selectedAnswer: QDMAnswer? {
         return question.answers.first
     }
 

@@ -55,14 +55,14 @@ extension CoachRouter: CoachRouterInterface {
                 viewController.pushToStart(childViewController: whatsHotLatestViewController)
             }
         case .event:
-            let configurator = DecisionTreeConfigurator.make(for: .prepare, permissionsManager: permissionsManager)
+            let configurator = DecisionTreeConfigurator.make(for: .prepare)
             let controller = DecisionTreeViewController(configure: configurator)
             viewController.present(controller, animated: true)
             UIApplication.shared.setStatusBar(colorMode: .darkNot)
         case .challenge:
-            let configurator = DecisionTreeConfigurator.make(for: .mindsetShifter, permissionsManager: permissionsManager)
+            let configurator = DecisionTreeConfigurator.make(for: .mindsetShifter)
             let controller = DecisionTreeViewController(configure: configurator)
             viewController.present(controller, animated: true)
+            }
         }
-    }
 }

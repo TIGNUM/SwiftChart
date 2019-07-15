@@ -9,13 +9,11 @@
 import UIKit
 import qot_dal
 
-typealias DecisionTreeNode = (question: Question?, generatedAnswer: String?)
+typealias DecisionTreeNode = (question: QDMQuestion?, generatedAnswer: String?)
 
 final class DecisionTreeWorker {
 
     // MARK: - Properties
-
-    private let services: Services
     private let userService = qot_dal.UserService.main
     private let contentService = qot_dal.ContentService.main
     private let questionService = qot_dal.QuestionService.main
@@ -23,47 +21,86 @@ final class DecisionTreeWorker {
     private var prepareKey: Prepare.Key = .perceived
     private var _selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     private var answerFilter: String?
+    private var answerFilterMindset: String?
     private var _targetContentID: Int = 0
-    private var visionText: String? = nil
+    private var _extraAnswer: String? = nil
     private var recoveryModel: QDMRecovery3D?
-    let type: DecisionTreeType
+    internal var visionText: String? = nil
+    internal let type: DecisionTreeType
+    internal var selectedEvent = QDMUserCalendarEvent()
+    internal var prepareEventType: String = ""
+    internal var questions: [QDMQuestion] = []
+    internal var recoveryFatigueType: AnswerKey.Recovery? = nil
     weak var prepareDelegate: PrepareResultsDelegatge?
+    weak var delegate: DecisionTreeViewControllerDelegate?
+    var interactor: DecisionTreeInteractorInterface?
+
+    internal var currentQuestion: QDMQuestion? {
+        return decisionTree?.questions.at(index: pageIndex)
+    }
+
+    internal var pageIndex: Int = 0 {
+        didSet { syncButtons() }
+    }
+
+    var decisionTree: DecisionTreeModel? {
+        didSet { syncButtons() }
+    }
+
+    internal var multiSelectionCounter: Int = 0 {
+        didSet { syncButtons() }
+    }
+
+    internal var maxPossibleSelections: Int {
+        return currentQuestion?.maxPossibleSelections ?? 0
+    }
+
+    internal var decisionTreeAnswers: [QDMAnswer] {
+        return decisionTree?.selectedAnswers.map { $0.answer } ?? []
+    }
+
+    private var defaultButtonText: String {
+        return currentQuestion?.defaultButtonText ?? ""
+    }
+
+    private var confirmationButtonText: String {
+        return currentQuestion?.confirmationButtonText ?? ""
+    }
+
+    private var questionIsAnswered: Bool {
+        guard decisionTree?.selectedAnswers.count ?? 0 > pageIndex else { return false }
+        return decisionTree?.selectedAnswers
+            .filter { $0.questionID == currentQuestion?.remoteID }
+            .isEmpty == false
+    }
 
     // MARK: - Init
-
-    init(services: Services, type: DecisionTreeType) {
-        self.services = services
+    init(type: DecisionTreeType) {
         self.type = type
     }
 }
 
-// MARK: - DecisionTreeWorkerInterface
+// MARK: - Public Vars
+extension DecisionTreeWorker {
+    var extraAnswer: String? {
+        return _extraAnswer
+    }
+    var firstQuestion: QDMQuestion? {
+        return decisionTree?.questions.filter { $0.key == type.introKey }.first
+    }
 
-extension DecisionTreeWorker: DecisionTreeWorkerInterface {
     var userHasToBeVision: Bool {
         return visionText != nil && visionText?.trimmed.isEmpty == false
     }
 
-    var getToBeVisionText: String? {
-        return visionText
-    }
-
     var targetContentID: Int {
-        get {
-            return _targetContentID
-        }
-        set {
-            _targetContentID = newValue
-        }
+        get { return _targetContentID }
+        set { _targetContentID = newValue }
     }
 
     var prepareBenefits: String? {
-        get {
-            return _prepareBenefits
-        }
-        set {
-            _prepareBenefits = newValue
-        }
+        get { return _prepareBenefits }
+        set { _prepareBenefits = newValue }
     }
 
     var getRecoveryModel: QDMRecovery3D? {
@@ -71,18 +108,17 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
     }
 
     var selectedAnswers: [DecisionTreeModel.SelectedAnswer] {
-        get {
-            return _selectedAnswers
-        }
-        set {
-            _selectedAnswers = newValue
-        }
+        get { return _selectedAnswers }
+        set { _selectedAnswers = newValue }
     }
+}
 
-    func fetchToBeVision() {
-        qot_dal.UserService.main.getMyToBeVision { [weak self] (vision, status, _) in
-            self?.visionText = vision?.text
-        }
+// MARK: - Public Functions
+extension DecisionTreeWorker {
+    func previousQuestion() -> QDMQuestion? {
+        guard pageIndex > 0 else { return nil }
+        pageIndex.minus(1)
+        return decisionTree?.questions[pageIndex.advanced(by: -1)]
     }
 
     func didUpdatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer]) {
@@ -93,14 +129,22 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         prepareDelegate?.didUpdateBenefits(benefits)
     }
 
-    func setTargetContentID(for answer: Answer) {
+    func setTargetContentID(for answer: QDMAnswer) {
         let contentTarget = answer.decisions.filter { $0.targetType == TargetType.content.rawValue }.first
-        if let targetContentID = contentTarget?.targetID {
+        if let targetContentID = contentTarget?.targetTypeId {
             self.targetContentID = targetContentID
         }
     }
 
-    func answersFilter(currentQuestion: Question?, decisionTree: DecisionTreeModel?) -> String? {
+    func answersFilter() -> String? {
+        if let filter = answerFilterMindset {
+            switch type {
+            case .mindsetShifter:
+                return filter
+            default:
+                break
+            }
+        }
         if answerFilter != nil {
             let result = answerFilter
             answerFilter = nil
@@ -111,58 +155,68 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
             return decisionTree?.selectedAnswers
                 .compactMap { $0.answer }
                 .flatMap { $0.keys }
-                .filter { $0.contains(keyFilter) }.first
+                .filter { $0.contains(keyFilter) }
+                .first
+        }
+        if currentQuestion?.key == QuestionKey.MindsetShifter.moreInfo.rawValue {
+            let selectedAnswerTitle = decisionTree?.selectedAnswers.last?.answer.title?
+                .replacingOccurrences(of: " ", with: "_") ?? ""
+            let relationshipKeys = decisionTree?.selectedAnswers
+                .compactMap { $0.answer }
+                .flatMap { $0.keys }
+                .filter { $0.contains(keyFilter) }
+            answerFilterMindset = relationshipKeys?.filter { $0.contains(selectedAnswerTitle) }.first
+            return answerFilterMindset
         }
         return decisionTree?.selectedAnswers.first?.answer.keys.first(where: { $0.contains(keyFilter) })
     }
 
-    /// Returns the first question in order to start the decision tree
-    func fetchFirstQuestion() -> Question? {
-        switch type {
-        case .toBeVisionGenerator: return services.questionsService.tbvGeneratorIntroQuestion()
-        case .mindsetShifter: return services.questionsService.mindsetShifterIntroQuestion()
-        case .mindsetShifterTBV: return services.questionsService.mindsetShifterTBV()
-        case .prepare: return services.questionsService.prepareIntro()
-        case .prepareIntensions(let selectedAnswers, let answerFilter, let key, let delegate):
-            self.answerFilter = answerFilter
-            self.selectedAnswers = selectedAnswers
-            self.prepareKey = key
-            self.prepareDelegate = delegate
-            return services.questionsService.question(id: key.questionID)
-        case .prepareBenefits(let benefits, let questionId, let delegate):
-            prepareBenefits = benefits
-            prepareDelegate = delegate
-            return services.questionsService.question(id: questionId)
-        case .solve: return services.questionsService.solveIntro()
-        case .recovery:
-            createRecoveryModel()
-            return services.questionsService.recoveryIntro()
+    func fetchQuestions(completion: @escaping () -> Void) {
+        qot_dal.QuestionService
+            .main
+            .questionsWithQuestionGroup(type.questionGroup, ascending: true) { [weak self] (questions) in
+                let firstQuestion = questions?.filter { $0.key == self?.type.introKey ?? "" }.first
+                self?.questions = questions ?? []
+                if let question = firstQuestion {
+                    self?.decisionTree = DecisionTreeModel(question: question)
+                }
+                completion()
         }
     }
 
     /// Returns the first question based on `AnswerDecision.targetID` and an answer which is generated in our side.
-    func fetchNextQuestion(from targetID: Int, selectedAnswers: [Answer]) -> DecisionTreeNode {
-        let question = services.questionsService.question(id: targetID)
-        var extraAnswer: String?
+    func getNextQuestion(answer: QDMAnswer?, completion: @escaping (DecisionTreeNode) -> Void) {
+        let targetId = answer?.decisions.last(where: { $0.targetType == TargetType.question.rawValue})?.targetTypeId
+        updateDecisionTree(from: answer, questionId: targetId ?? 0)
+        getNextQuestion(targetId: targetId ?? 0, completion: completion)
+    }
+
+    func getNextQuestion(targetId: Int, completion: @escaping (DecisionTreeNode) -> Void) {
+        let question = questions.filter { $0.remoteID == targetId }.first
+        updateDecisionTree(from: nil, questionId: targetId)
         switch question?.key {
-        case QuestionKey.ToBeVision.create.rawValue,
-             QuestionKey.MindsetShifterTBV.review.rawValue: extraAnswer = createVision(from: selectedAnswers)
-        case QuestionKey.MindsetShifter.showTBV.rawValue,
-             QuestionKey.Prepare.showTBV.rawValue:
-            userService.getMyToBeVision { (vision, _, _) in
-                extraAnswer = vision?.text
+        case QuestionKey.ToBeVision.create.rawValue, QuestionKey.MindsetShifterTBV.review.rawValue:
+            createVision(from: decisionTreeAnswers) { (vision) in
+                completion((question, vision))
             }
-        default: extraAnswer = createVision(from: selectedAnswers)/* TODO: generate different extra answers */
+        case QuestionKey.MindsetShifter.showTBV.rawValue, QuestionKey.Prepare.showTBV.rawValue:
+            userService.getMyToBeVision { (vision, _, _) in
+                completion((question, vision?.text))
+            }
+        default:
+            completion((question, nil))
         }
-        return (question, extraAnswer)
     }
 
     /// Returns the media url for a specific content item
-    func mediaURL(from contentItemID: Int) -> URL? {
-        guard
-            let urlString = services.contentService.contentItem(id: contentItemID)?.valueMediaURL,
-            let url = URL(string: urlString) else { return nil }
-        return url
+    func mediaURL(from contentItemID: Int, completion: @escaping (URL?) -> Void) {
+        qot_dal.ContentService.main.getContentItemById(contentItemID) { (item) in
+            guard let urlString = item?.valueMediaURL else {
+                completion(nil)
+                return
+            }
+            completion(URL(string: urlString))
+        }
     }
 
     /// Saves `ImageResource`
@@ -211,87 +265,47 @@ extension DecisionTreeWorker: DecisionTreeWorkerInterface {
         default: break
         }
     }
-}
 
-// MARK: - Private TBV
+    func setUserCalendarEvent(event: QDMUserCalendarEvent) {
+        self.selectedEvent = event
+    }
 
-private extension DecisionTreeWorker {
-    var workQuestion: Question? {
-        switch type {
-        case .toBeVisionGenerator: return services.questionsService.question(for: QuestionKey.ToBeVision.work.rawValue)
-        case .mindsetShifterTBV: return services.questionsService.question(for: QuestionKey.MindsetShifterTBV.work.rawValue)
-        default: return nil
+    func bottomNavigationRightBarItems(action: Selector) -> [UIBarButtonItem]? {
+        switch currentQuestion?.key {
+        case QuestionKey.MindsetShifter.lowSelfTalk.rawValue,
+             QuestionKey.MindsetShifter.openTBV.rawValue,
+             QuestionKey.MindsetShifter.check.rawValue:
+            let title = defaultButtonText.isEmpty ? confirmationButtonText : defaultButtonText
+            return [roundedDarkButtonItem(title: title,
+                                          buttonWidth: .decisionTreeButtonWidth,
+                                          action: action)]
+        default: return []
         }
     }
 
-    var homeQuestion: Question? {
-        switch type {
-        case .toBeVisionGenerator: return services.questionsService.question(for: QuestionKey.ToBeVision.home.rawValue)
-        case .mindsetShifterTBV: return services.questionsService.question(for: QuestionKey.MindsetShifterTBV.home.rawValue)
-        default: return nil
+    func updateMultiSelectionCounter() {
+        if currentQuestion?.answerType == AnswerType.multiSelection.rawValue {
+            multiSelectionCounter = decisionTree?.selectedAnswers
+                .filter { $0.questionID == currentQuestion?.remoteID }
+                .count ?? 0
         }
     }
 
-    /// Generates the vision based on the list of selected `Answer`
-    func createVision(from answers: [Answer]) -> String {
-        var workSelections: [Answer] = []
-        var homeSelections: [Answer] = []
-        for answer in answers {
-            workQuestion?.answers.forEach {
-                if $0.remoteID.value == answer.remoteID.value {
-                    workSelections.append(answer)
-                }
+    func updateDecisionTree(from answer: QDMAnswer?, questionId: Int) {
+        let question = questions.filter { $0.remoteID == questionId }.first
+        if let question = question {
+            if decisionTree?.questions.filter ({ $0.remoteID == question.remoteID }).isEmpty == true {
+                decisionTree?.add(question)
+                pageIndex.plus(1)
             }
-            homeQuestion?.answers.forEach {
-                if $0.remoteID.value == answer.remoteID.value {
-                    homeSelections.append(answer)
-                }
-            }
-        }
-        let vision = [string(from: workSelections), string(from: homeSelections)].joined(separator: "\n\n")
-        services.userService.updateVision(vision)
-        return vision
-    }
-
-    func string(from answers: [Answer]) -> String {
-        var visionList: [String] = []
-        let targetIDs = answers.compactMap { $0.decisions.first(where: { $0.targetType == TargetType.content.rawValue })?.targetID }
-        for targetID in targetIDs {
-            let contentItems = services.contentService.contentItems(contentCollectionID: targetID)
-            let userGender = (services.userService.user()?.gender ?? "NEUTRAL").uppercased()
-            let genderQueryNeutral = "GENDER_NEUTRAL"
-            let genderQuery = String(format: "GENDER_%@", userGender)
-            let filteredItems = Array(contentItems.filter { $0.searchTags.contains(genderQuery)
-                || $0.searchTags.contains(genderQueryNeutral) })
-            guard filteredItems.isEmpty == false else { continue }
-            if let randomItemText = filteredItems[filteredItems.randomIndex].valueText {
-                visionList.append(randomItemText)
-            }
-        }
-        return visionList.joined(separator: " ")
-    }
-
-    func saveToBeVision(_ image: UIImage, completion: @escaping (Error?) -> Void) {
-        do {
-            let imageURL = try image.save(withName: UUID().uuidString).absoluteString
-            userService.getMyToBeVision { [unowned self] (vision, _, _) in
-                if var vision = vision {
-                    vision.profileImageResource = QDMMediaResource()
-                    vision.profileImageResource?.localURLString = imageURL
-                    vision.modifiedAt = Date()
-                    self.userService.updateMyToBeVision(vision, { (error) in
-                        completion(error)
-                    })
-                }
-            }
-        } catch {
-            print("Error while saving TBV image: \(error.localizedDescription)")
+        } else if let answer = answer {
+            let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionId, answer: answer)
+            decisionTree?.add(selectedAnswer)
         }
     }
 }
 
 // MARK: - Recovery3D
-
 private extension DecisionTreeWorker {
     func createRecoveryModel() {
         qot_dal.UserService.main.createRecovery3D(fatigueAnswerId: 0,
@@ -326,5 +340,56 @@ private extension DecisionTreeWorker {
                     level: .debug)
             }
         }
+    }
+}
+
+internal extension DecisionTreeWorker {
+    func syncButtons() {
+        let previousButtonIsHidden = pageIndex == 0
+        var continueButtonIsHidden = true
+        var backgroundColor: UIColor = .carbonDark
+        switch currentQuestion?.answerType {
+        case AnswerType.singleSelection.rawValue,
+             AnswerType.yesOrNo.rawValue,
+             AnswerType.uploadImage.rawValue:
+            continueButtonIsHidden = questionIsAnswered == false
+            backgroundColor = .carbonDark
+        case AnswerType.multiSelection.rawValue:
+            let selectionIsCompleted = multiSelectionCounter == maxPossibleSelections
+            backgroundColor = selectionIsCompleted ? .carbonDark : .carbon05
+            continueButtonIsHidden = false
+        default: return
+        }
+        interactor?.syncButtons(previousButtonIsHidden: previousButtonIsHidden,
+                                continueButtonIsHidden: continueButtonIsHidden,
+                                backgroundColor: backgroundColor)
+        updateBottomButtonTitle()
+    }
+
+    func updateBottomButtonTitle() {
+        interactor?.updateBottomButtonTitle(counter: multiSelectionCounter,
+                                            maxSelections: maxPossibleSelections,
+                                            defaultTitle: defaultButtonText,
+                                            confirmTitle: confirmationButtonText)
+    }
+
+    func roundedDarkButtonItem(title: String, image: UIImage? = nil, buttonWidth: CGFloat, action: Selector) -> UIBarButtonItem {
+        let button = UIButton(type: .custom)
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth,
+                                                                        height: .buttonHeight))
+        button.backgroundColor = .carbonDark
+        let attributedTitle = NSAttributedString(string: title,
+                                                 letterSpacing: 0.2,
+                                                 font: .sfProtextSemibold(ofSize: 14),
+                                                 textColor: .accent,
+                                                 alignment: .center)
+        button.setAttributedTitle(attributedTitle, for: .normal)
+        if let image = image {
+            button.setImage(image, for: .normal)
+            button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
+        }
+        button.addTarget(self, action: action, for: .touchUpInside)
+        button.cornerDefault()
+        return UIBarButtonItem(customView: button)
     }
 }

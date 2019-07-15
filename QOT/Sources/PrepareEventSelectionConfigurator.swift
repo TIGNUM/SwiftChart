@@ -12,7 +12,7 @@ import qot_dal
 final class PrepareEventSelectionConfigurator {
     static func make(_ tableViewCell: CalendarEventsTableViewCell?,
                      delegate: DecisionTreeQuestionnaireDelegate?,
-                     question: Question,
+                     question: QDMQuestion,
                      events: [QDMUserCalendarEvent]) {
         let router = PrepareEventSelectionRouter(tableViewCell, delegate: delegate)
         let worker = PrepareEventSelectionWorker(question: question, events: events)

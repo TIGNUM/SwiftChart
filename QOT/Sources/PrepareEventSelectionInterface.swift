@@ -21,5 +21,5 @@ protocol PrepareEventSelectionInteractorInterface: Interactor {
 }
 
 protocol PrepareEventSelectionRouterInterface {
-    func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: Answer)
+    func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: QDMAnswer)
 }

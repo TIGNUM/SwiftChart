@@ -57,9 +57,7 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
 
 private extension PrepareResultsRouter {
     func presentDecisionTree(for type: DecisionTreeType) {
-        let permissionsManager = AppCoordinator.appState.permissionsManager!
-        let configurator = DecisionTreeConfigurator.make(for: type,
-                                                         permissionsManager: permissionsManager)
+        let configurator = DecisionTreeConfigurator.make(for: type)
         let controller = DecisionTreeViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }

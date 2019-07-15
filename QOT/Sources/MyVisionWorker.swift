@@ -35,15 +35,13 @@ final class MyVisionWorker {
     private var toBeVision: QDMToBeVision?
     private let contentService: qot_dal.ContentService
     private let userService: qot_dal.UserService
-    let permissionManager: PermissionsManager
     private let widgetDataManager: ExtensionsDataManager
     var toBeVisionDidChange: ((QDMToBeVision?) -> Void)?
     static var toBeSharedVisionHTML: String?
 
-    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService, permissionManager: PermissionsManager, widgetDataManager: ExtensionsDataManager) {
+    init(userService: qot_dal.UserService, contentService: qot_dal.ContentService, widgetDataManager: ExtensionsDataManager) {
         self.userService = userService
         self.contentService = contentService
-        self.permissionManager = permissionManager
         self.widgetDataManager = widgetDataManager
         getHeadlinePlaceholder()
         getMessagePlaceHolder()

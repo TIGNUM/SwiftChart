@@ -79,12 +79,6 @@ private extension MindsetShifterChecklistViewController {
 // MARK: - Actions
 
 private extension MindsetShifterChecklistViewController {
-
-    @IBAction func didTapClose(_ sender: UIButton) {
-        trackUserEvent(.CLOSE, action: .TAP)
-        interactor?.didTapClose()
-    }
-
     @IBAction func didTapSave(_ sender: UIButton) {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.didTapSave()

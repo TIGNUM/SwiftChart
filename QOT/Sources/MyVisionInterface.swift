@@ -33,7 +33,6 @@ protocol MyVisionInteractorInterface: Interactor {
     func hideNullState()
     func saveToBeVision(image: UIImage?, toBeVision: QDMToBeVision)
     var myVision: QDMToBeVision? { get }
-    var permissionManager: PermissionsManager { get }
     var headlinePlaceholder: String? { get }
     var messagePlaceholder: String? { get }
     func isShareBlocked() -> Bool
@@ -48,5 +47,5 @@ protocol MyVisionRouterInterface {
     func presentViewController(viewController: UIViewController, completion: (() -> Void)?)
     func showEditVision()
     func close()
-    func openToBeVisionGenerator(permissionManager: PermissionsManager)
+    func openToBeVisionGenerator()
 }

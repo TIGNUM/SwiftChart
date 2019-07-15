@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 // MARK: - AnswerKey
 
@@ -26,6 +27,7 @@ enum AnswerKey {
     enum Solve: String {
         case letsDoIt = "solve-lets-do-it"
         case openVisionPage = "open-vision-page"
+        case openResult = "open_result_view"
     }
 
     enum Recovery: String {
@@ -52,7 +54,7 @@ enum AnswerKey {
             }
         }
 
-        static func identifyFatigueSympton(_ selectedAnswers: [Answer]) -> AnswerKey.Recovery {
+        static func identifyFatigueSympton(_ selectedAnswers: [QDMAnswer]) -> AnswerKey.Recovery {
             var fatigueType = Recovery.general
             let keys = selectedAnswers.flatMap { $0.keys }
             if (keys.filter { $0.contains(AnswerKey.Recovery.cognitive.rawValue) }).count > 1 {

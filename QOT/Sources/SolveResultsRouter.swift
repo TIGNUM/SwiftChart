@@ -13,9 +13,6 @@ final class SolveResultsRouter {
     // MARK: - Properties
 
     private let viewController: SolveResultsViewController
-    private var permissionsManager: PermissionsManager {
-        return AppCoordinator.appState.permissionsManager!
-    }
 
     // MARK: - Init
 
@@ -43,13 +40,13 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
     }
 
     func openVisionGenerator() {
-        let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator, permissionsManager: permissionsManager)
+        let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator)
         let decisionTreeController = DecisionTreeViewController(configure: configurator)
         viewController.present(decisionTreeController, animated: true)
     }
 
     func openMindsetShifter() {
-        let configurator = DecisionTreeConfigurator.make(for: .mindsetShifter, permissionsManager: permissionsManager)
+        let configurator = DecisionTreeConfigurator.make(for: .mindsetShifter)
         let decisionTreeController = DecisionTreeViewController(configure: configurator)
         viewController.present(decisionTreeController, animated: true)
     }

@@ -45,7 +45,7 @@ extension NegativeToPositiveTableViewCell {
         highTitleLabel.text = highTitle
         highFirstItemLabel.text = highItems[0]
         highSecondItemLabel.text = highItems[1]
-        highThirdItemLabel.text = highItems[2]
+        highThirdItemLabel.text = highItems[0]
     }
 }
 

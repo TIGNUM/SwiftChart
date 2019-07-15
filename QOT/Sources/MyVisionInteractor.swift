@@ -73,10 +73,6 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         presenter.hideNullState()
     }
 
-    var permissionManager: PermissionsManager {
-        return worker.permissionManager
-    }
-
     var headlinePlaceholder: String? {
         return worker.headlinePlaceholder
     }
@@ -140,7 +136,7 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     }
 
     func openToBeVisionGenerator() {
-        router.openToBeVisionGenerator(permissionManager: worker.permissionManager)
+        router.openToBeVisionGenerator()
     }
 }
 

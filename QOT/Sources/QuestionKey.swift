@@ -27,12 +27,16 @@ enum QuestionKey {
         case openTBV = "mindsetshifter-open-tbv"
         case showTBV = "mindsetshifter-show-tbv"
         case check = "mindsetshifter-check-plan"
+        case moreInfo = "mindsetshifter-key-moreinfo"
+        case gutReactions = "mindsetshifter-key-gut-reactions"
+        case lowSelfTalk = "mindset-low-impact-self-talk"
+        case lowPerformanceTalk = "mindsetshifter-key-low-performance-talk"
     }
 
     enum MindsetShifterTBV: String {
         case intro = "mindsetshifter-tbv-generator-key-intro"
         case work = "mindsetshifter-tbv-generator-key-work"
-        case home = "mindsetshifter-tbv-generator-home-work"
+        case home = "mindsetshifter-tbv-generator-key-home"
         case review = "mindsetshifter-tbv-generator-key-review"
     }
 
@@ -50,6 +54,7 @@ enum QuestionKey {
     enum Solve: String {
         case intro = "solve-key-intro"
         case help = "solve-key-help"
+        case sleepDeprivation = "solve-key-sleep-deprivation"
     }
 
     enum Recovery: String {
