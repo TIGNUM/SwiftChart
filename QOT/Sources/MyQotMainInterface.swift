@@ -22,13 +22,17 @@ protocol MyQotMainInteractorInterface: Interactor {
     func presentMyPreps()
     func presentMyProfile()
     func presentMyToBeVision()
+    func presentMyLibrary()
     func nextPrep(completion: @escaping (String?) -> Void)
     func nextPrepType(completion: @escaping (String?) -> Void)
     func toBeVisionDate(completion: @escaping (Date?) -> Void)
+    func getSubtitles(completion: @escaping ([String?]) -> Void)
+    func getUserName(completion: @escaping (String?) -> Void) 
 }
 
 protocol MyQotMainRouterInterface {
     func presentMyPreps()
     func presentMyProfile()
     func presentMyToBeVision()
+    func presentMyLibrary()
 }

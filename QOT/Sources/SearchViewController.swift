@@ -188,6 +188,7 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchBar.resignFirstResponder()
         if let previousVC = navigationController?.viewControllers.dropLast().last {
             if previousVC is CoachViewController {
                 navigationController?.popToViewController(previousVC, animated: true)

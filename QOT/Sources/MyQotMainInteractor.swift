@@ -50,6 +50,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         router.presentMyToBeVision()
     }
 
+    func presentMyLibrary() {
+        router.presentMyLibrary()
+    }
+
     func nextPrep(completion: @escaping (String?) -> Void) {
         worker.nextPrep { (preparation) in
             completion(preparation)
@@ -66,5 +70,13 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         worker.toBeVisionDate { (toBeVisionDate) in
             completion(toBeVisionDate)
         }
+    }
+
+   func getSubtitles(completion: @escaping ([String?]) -> Void) {
+    worker.getSubtitles(completion: completion)
+    }
+
+    func getUserName(completion: @escaping (String?) -> Void) {
+        worker.getUserName(completion: completion)
     }
 }

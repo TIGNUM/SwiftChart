@@ -58,4 +58,15 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
             viewController.pushToStart(childViewController: myVisionViewController)
         }
     }
+
+    func presentMyLibrary() {
+        let storyboardId = R.storyboard.myLibrary.myLibraryCategoryListViewController.identifier
+        let myLibraryController = R.storyboard.myLibrary()
+            .instantiateViewController(withIdentifier: storyboardId) as? MyLibraryCategoryListViewController
+        if let myLibraryController = myLibraryController {
+            let configurator = MyLibraryCategoryListConfigurator.make()
+            configurator(myLibraryController)
+            viewController.pushToStart(childViewController: myLibraryController)
+        }
+    }
 }

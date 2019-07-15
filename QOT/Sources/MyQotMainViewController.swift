@@ -101,21 +101,30 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 
         switch qotSection {
         case .profile:
-            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: R.string.localized.myQotProfileSubtitle())
+            interactor?.getUserName(completion: {(name) in
+                self.interactor?.getSubtitles(completion: {(subtitles) in
+                    cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "Hello " + (name ?? "") + ",\n" + (subtitles[indexPath.row] ?? "").lowercased())
+                })
+            })
+            cell.subtitleLabel.textColor = UIColor.sand
         case .library:
             cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
         case .preps:
             nextPrepDate(completion: { (dateString) in
-                self.dateOfPrep = dateString
+                cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: (dateString ?? "") + " " + (self.eventType ?? ""))
             })
-            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: (dateOfPrep ?? "") + " " + (eventType ?? ""))
+
         case .sprints:
-            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: R.string.localized.myQotSprintsSubtitle())
+            interactor?.getSubtitles(completion: {(subtitles) in
+                 cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitles[indexPath.row] ?? "")
+            })
         case .data:
             cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
         case .toBeVision:
-            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitleVision ?? R.string.localized.myQotVisionNoVision() )
-            cell.subtitleLabel.textColor = .redOrange
+            interactor?.getSubtitles(completion: {(subtitles) in
+                cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: self.subtitleVision ?? subtitles[indexPath.row] ?? "")
+                cell.subtitleLabel.textColor = .redOrange
+            })
         }
         return cell
     }
@@ -136,6 +145,8 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if indexPath.row == 0 {
             interactor?.presentMyProfile()
+        } else if indexPath.row == 1 {
+            interactor?.presentMyLibrary()
         } else if indexPath.row == 5 {
             interactor?.presentMyToBeVision()
         } else {

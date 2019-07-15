@@ -49,9 +49,26 @@ final class MyQotMainWorker {
         }
     }
 
+    func getUserName(completion: @escaping (String?) -> Void) {
+          qot_dal.UserService.main.getUserData { (user) in
+            completion(user?.givenName)
+        }
+    }
+
     func toBeVisionDate(completion: @escaping (Date?) -> Void) {
         userService.getMyToBeVision { [weak self] (toBeVision, initialized, error) in
             completion(toBeVision?.modifiedAt ?? toBeVision?.createdAt)
         }
+    }
+
+    func getSubtitles(completion: @escaping ([String?]) -> Void) {
+        var subtitles : [String?] = []
+        qot_dal.ContentService.main.getContentCategory(.myQOT, {(category) in
+            category?.contentCollections[1].contentItems.forEach {(items) in
+                subtitles.append(items.valueText)
+            }
+        completion(subtitles)
+        })
+
     }
 }
