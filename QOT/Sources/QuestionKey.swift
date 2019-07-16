@@ -62,4 +62,12 @@ enum QuestionKey {
         case syntom = "3drecovery-question-syntom"
         case loading = "3drecovery-question-generate-recovery-loading"
     }
+
+    enum Sprint: String {
+        case intro = "sprint-key-intro"
+        case introContinue = "sprint-key-intro-continue"
+        case selection = "sprint-key-sprint-selection"
+        case schedule = "sprint-key-schedule"
+        case last = "sprint-key-last-question"
+    }
 }

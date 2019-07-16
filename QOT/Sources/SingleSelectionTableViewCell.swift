@@ -16,7 +16,6 @@ protocol SingleSelectionCellDelegate: class {
 final class SingleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
     private var question: QDMQuestion?
     private var selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     weak var delegate: SingleSelectionCellDelegate?
@@ -26,18 +25,15 @@ final class SingleSelectionTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var leftWidthConstraint: NSLayoutConstraint!
 
     // MARK: - Lifecycle
-
     override func awakeFromNib() {
         super.awakeFromNib()
-        rightOptionButton.corner(radius: bounds.height * 0.25)
-        leftOptionButton.corner(radius: bounds.height * 0.25)
+        rightOptionButton.cornerDefault()
+        leftOptionButton.cornerDefault()
     }
 }
 
 // MARK: - Configuration
-
 extension SingleSelectionTableViewCell {
-
     func configure(for question: QDMQuestion, selectedAnswers: [DecisionTreeModel.SelectedAnswer]) {
         self.question = question
         self.selectedAnswers = selectedAnswers
@@ -57,15 +53,23 @@ extension SingleSelectionTableViewCell {
                                    titleColor: .accent)
         rightOptionButton.isUserInteractionEnabled = (rightIsSelected || leftIsSelected) == false
         leftOptionButton.isUserInteractionEnabled = (rightIsSelected || leftIsSelected) == false
-        rightWidthContraint.constant += bounds.width * 0.05
-        leftWidthConstraint.constant += bounds.width * 0.05
+        setButtonWidth(rightButtonTtile: rightOption.subtitle, leftButtonTtile: leftOption.subtitle)
+    }
+}
+
+// MARK: - Private
+private extension SingleSelectionTableViewCell {
+    func setButtonWidth(rightButtonTtile: String?, leftButtonTtile: String?) {
+        let buttonFont = UIFont.sfProtextSemibold(ofSize: 14)
+        let leftWidth = (leftButtonTtile?.size(with: buttonFont).width ?? 0) + (bounds.width * 0.1)
+        let rightWidth = (rightButtonTtile?.size(with: buttonFont).width ?? 0) + (bounds.width * 0.1)
+        rightWidthContraint.constant = rightWidth
+        leftWidthConstraint.constant = leftWidth
     }
 }
 
 // MARK: - Actions
-
 extension SingleSelectionTableViewCell {
-
     @IBAction func didTapRightOption(_ sender: UIButton) {
         if let question = question {
             delegate?.didSelect(question.answers[0])

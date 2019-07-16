@@ -387,6 +387,7 @@
 		36E86D58227091CB00371C67 /* StrategyContentTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */; };
 		36F143DD20582F3400C3F1DD /* EKCalendar+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */; };
 		36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */; };
+		36F5E30A22DCC58B000A213A /* Database in Resources */ = {isa = PBXBuildFile; fileRef = 36F5E30922DCC58B000A213A /* Database */; };
 		36FC8D471FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */; };
 		36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */; };
 		36FEA86320A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */; };
@@ -587,7 +588,6 @@
 		7F9217BD1FD01C5D00CAE9E0 /* PhotosPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9217BC1FD01C5D00CAE9E0 /* PhotosPermission.swift */; };
 		7F9217BF1FD01C8000CAE9E0 /* CameraPermission.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9217BE1FD01C8000CAE9E0 /* CameraPermission.swift */; };
 		7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F9217C21FD0828600CAE9E0 /* PermissionInterface.swift */; };
-		7F99ABB11F3DF38E009CA587 /* Database in Resources */ = {isa = PBXBuildFile; fileRef = 7F99ABB01F3DF38E009CA587 /* Database */; };
 		7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB0886D1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift */; };
 		7FB32D111F42E8620027BF4E /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FB32D101F42E8620027BF4E /* Security.framework */; };
 		7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7FB32D121F42E8EE0027BF4E /* DatabaseKeyService.swift */; };
@@ -1842,6 +1842,7 @@
 		36E86D56227091CB00371C67 /* StrategyContentTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyContentTableViewCell.xib; sourceTree = "<group>"; };
 		36F143DC20582F3400C3F1DD /* EKCalendar+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKCalendar+Convenience.swift"; sourceTree = "<group>"; };
 		36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEvent+Convenience.swift"; sourceTree = "<group>"; };
+		36F5E30922DCC58B000A213A /* Database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Database; sourceTree = "<group>"; };
 		36FC8D461FDEF16F00B5E062 /* GuideItemLearnIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemLearnIntermediary.swift; sourceTree = "<group>"; };
 		36FC8D481FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideItemNotificationIntermediary.swift; sourceTree = "<group>"; };
 		36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GuideWhatsHotTableViewCell.swift; sourceTree = "<group>"; };
@@ -2046,7 +2047,6 @@
 		7F9217BC1FD01C5D00CAE9E0 /* PhotosPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosPermission.swift; sourceTree = "<group>"; };
 		7F9217BE1FD01C8000CAE9E0 /* CameraPermission.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraPermission.swift; sourceTree = "<group>"; };
 		7F9217C21FD0828600CAE9E0 /* PermissionInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionInterface.swift; sourceTree = "<group>"; };
-		7F99ABB01F3DF38E009CA587 /* Database */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Database; sourceTree = "<group>"; };
 		7FB0886D1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MBProgressHUD+Convenience.swift"; sourceTree = "<group>"; };
 		7FB32D101F42E8620027BF4E /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		7FB32D121F42E8EE0027BF4E /* DatabaseKeyService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseKeyService.swift; sourceTree = "<group>"; };
@@ -6126,8 +6126,8 @@
 		CBD791571E72F10E0006C590 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				36F5E30922DCC58B000A213A /* Database */,
 				DBAC1E692294616900B9F829 /* Resource */,
-				7F99ABB01F3DF38E009CA587 /* Database */,
 				CC6251DA1EE00DD800C6F546 /* Localized.strings */,
 				CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */,
 				367EA0F021776920003025CE /* Assets.xcassets */,
@@ -7063,6 +7063,7 @@
 				F9D6381422D62BAD0092C482 /* DepartureInfoCell.xib in Resources */,
 				F9D2BC2422D496AF00DBF2CC /* FromTignumCell.xib in Resources */,
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
+				36F5E30A22DCC58B000A213A /* Database in Resources */,
 				362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
 				369AE00222A6CA7500DE4FA0 /* PrepareResultsInfoView.xib in Resources */,
@@ -7106,7 +7107,6 @@
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
 				AC103E532289621900F426F0 /* TriggerTableViewCell.xib in Resources */,
 				3681A5232260C99700E3F4B8 /* ArticleHeaderView.xib in Resources */,
-				7F99ABB11F3DF38E009CA587 /* Database in Resources */,
 				360CC3CB2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.xib in Resources */,
 				CC311A231EAF431E0020C869 /* SettingsControlTableViewCell.xib in Resources */,
 				7FCF0EF71FD9774C00138D77 /* MyUniverseContentView.xib in Resources */,

@@ -268,7 +268,12 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 
     func textCellDidAppear(targetID: Int) {
-        interactor?.loadNextQuestion(targetId: targetID)
+        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) {
+            NotificationCenter.default.post(name: .typingAnimationStart, object: nil)
+            DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) {
+                self.interactor?.loadNextQuestion(targetId: targetID, animated: true)
+            }
+        }
     }
 
     func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: QDMAnswer) {

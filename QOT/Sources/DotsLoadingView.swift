@@ -16,7 +16,6 @@ final class DotsLoadingView: UIView {
     private var size: CGSize? = nil
 
     // MARK: - Configuration
-
     func configure(dotsColor: UIColor, size: CGSize? = nil) {
         self.dotsColor = dotsColor
         if let size = size {
@@ -25,7 +24,6 @@ final class DotsLoadingView: UIView {
     }
 
     // MARK: - Actions
-
     func startAnimation() {
         if self.superview == nil {
             return
@@ -36,20 +34,24 @@ final class DotsLoadingView: UIView {
         setupAnimation(size: size ?? frame.size, color: dotsColor)
     }
 
+    func startAnimation(withDuration duration: TimeInterval) {
+        startAnimation()
+        DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
+            self?.stopAnimation()
+        }
+    }
+
     func stopAnimation() {
         if alpha > 0 {
             UIView.animate(withDuration: Animation.duration_03) {
                 self.alpha = 0
-                self.removeFromSuperview()
             }
         }
     }
 }
 
 // MARK: - Animation
-
 private extension DotsLoadingView {
-
     func setupAnimation(size: CGSize, color: UIColor) {
         let dotSpacing: CGFloat = 2
         let dotSize: CGFloat = (size.width - 2 * dotSpacing) / 3
@@ -79,9 +81,7 @@ private extension DotsLoadingView {
 }
 
 // MARK: - Layer
-
 private extension DotsLoadingView {
-
     func dotLayer(size: CGSize, color: UIColor) -> CAShapeLayer {
         let layer: CAShapeLayer = CAShapeLayer()
         let path: UIBezierPath = UIBezierPath(arcCenter: CGPoint(x: size.width / 2, y: size.height / 2),

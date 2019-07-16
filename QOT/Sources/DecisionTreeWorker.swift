@@ -118,7 +118,10 @@ extension DecisionTreeWorker {
     func previousQuestion() -> QDMQuestion? {
         guard pageIndex > 0 else { return nil }
         pageIndex.minus(1)
-        return decisionTree?.questions[pageIndex.advanced(by: -1)]
+        if pageIndex.advanced(by: -1) >= 0 {
+            return decisionTree?.questions[pageIndex.advanced(by: -1)]
+        }
+        return nil
     }
 
     func didUpdatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer]) {

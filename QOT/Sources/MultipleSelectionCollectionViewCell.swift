@@ -58,7 +58,7 @@ extension MultipleSelectionCollectionViewCell {
             delegate?.didDeSelectAnswer(answer)
             answerButton.update()
             isAnswered = false
-        } else if selectionCounter < maxSelections {
+        } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
             answerButton.update()
             isAnswered = true
             delegate?.didSelectAnswer(answer)

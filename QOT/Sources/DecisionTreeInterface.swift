@@ -70,7 +70,7 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int)
     func deleteModelIfNeeded()
     func loadNextQuestion(from answer: QDMAnswer?)
-    func loadNextQuestion(targetId: Int)
+    func loadNextQuestion(targetId: Int, animated: Bool)
     func loadEventQuestion()
     func handleSelection(for answer: QDMAnswer)
     func handleSingleSelection(for answer: QDMAnswer)

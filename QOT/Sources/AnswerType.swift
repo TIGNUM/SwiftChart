@@ -11,6 +11,7 @@ import Foundation
 // MARK: - AnswerType
 
 enum AnswerType: String {
+    case accept = "ACCEPT"
     case yesOrNo = "YES_OR_NO"
     case singleSelection = "DECISION_TREE_SINGLE_SELECTION"
     case multiSelection = "DECISION_TREE_MULTI_SELECTION"

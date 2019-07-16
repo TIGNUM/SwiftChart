@@ -26,9 +26,7 @@ final class CoachRouter {
 }
 
 // MARK: - CoachRouterInterface
-
 extension CoachRouter: CoachRouterInterface {
-
     func handleTap(coachSection: CoachSection) {
         switch coachSection {
         case .search:
@@ -47,16 +45,20 @@ extension CoachRouter: CoachRouterInterface {
                 viewController.pushToStart(childViewController: toolsViewController)
             }
         case .sprint:
-         print("Sprint")
+            presentDecisionTree(.sprint)
         case .event:
-            let configurator = DecisionTreeConfigurator.make(for: .prepare)
-            let controller = DecisionTreeViewController(configure: configurator)
-            viewController.present(controller, animated: true)
-            UIApplication.shared.setStatusBar(colorMode: .darkNot)
+            presentDecisionTree(.prepare)
         case .challenge:
-            let configurator = DecisionTreeConfigurator.make(for: .mindsetShifter)
-            let controller = DecisionTreeViewController(configure: configurator)
-            viewController.present(controller, animated: true)
-            }
+            presentDecisionTree(.solve)
         }
+    }
+}
+
+// MARK: - Private
+private extension CoachRouter {
+    func presentDecisionTree(_ type: DecisionTreeType) {
+        let configurator = DecisionTreeConfigurator.make(for: type)
+        let controller = DecisionTreeViewController(configure: configurator)
+        viewController.present(controller, animated: true)
+    }
 }

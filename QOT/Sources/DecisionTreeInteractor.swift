@@ -134,9 +134,9 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         }
     }
 
-    func loadNextQuestion(targetId: Int) {
+    func loadNextQuestion(targetId: Int, animated: Bool) {
         worker.getNextQuestion(targetId: targetId) { [weak self] (node) in
-            self?.showQuestion(node.question, node.generatedAnswer, animated: false)
+            self?.showQuestion(node.question, node.generatedAnswer, animated: animated)
         }
     }
 

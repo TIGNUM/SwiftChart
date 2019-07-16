@@ -37,16 +37,15 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     private let maxPossibleSelections: Int
     private let answersFilter: String?
     private let questionTitleUpdate: String?
-    private lazy var tableView: UITableView = {
-        return UITableView(delegate: self,
-                           dataSource: self,
-                           dequeables: MultipleSelectionTableViewCell.self,
-                           SingleSelectionTableViewCell.self,
-                           QuestionTableViewCell.self,
-                           TextTableViewCell.self,
-                           CalendarEventsTableViewCell.self,
-                           UserInputTableViewCell.self)
-    }()
+    private lazy var typingAnimation = DotsLoadingView(frame: CGRect(x: 24, y: 20, width: 20, height: 20))
+    private lazy var tableView = UITableView(delegate: self,
+                                             dataSource: self,
+                                             dequeables: MultipleSelectionTableViewCell.self,
+                                             SingleSelectionTableViewCell.self,
+                                             QuestionTableViewCell.self,
+                                             TextTableViewCell.self,
+                                             CalendarEventsTableViewCell.self,
+                                             UserInputTableViewCell.self)
 
     /// Use filtered answers in order to relate answers between different questions.
     /// E.g.: Based on Question A answer, filter Question B answers to display.
@@ -80,6 +79,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
+        addObservers()
     }
 
     override func viewDidLayoutSubviews() {
@@ -90,11 +90,22 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
 
 // MARK: - Private
 private extension DecisionTreeQuestionnaireViewController {
+    func addObservers() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(typingAnimationStart),
+                                               name: .typingAnimationStart,
+                                               object: nil)
+    }
+
     func setupView() {
         attachToEdge(tableView, bottomConstant: -.bottomNavBarHeight)
         tableView.backgroundColor = .sand
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
+    }
+
+    @objc func typingAnimationStart() {
+        typingAnimation.startAnimation(withDuration: Animation.duration_3)
     }
 
     @objc func presentAddEventController() {
@@ -145,6 +156,10 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             return cell
         case .answer:
             switch question.answerType {
+            case AnswerType.accept.rawValue:
+                let cell = UITableViewCell()
+                cell.backgroundColor = .sand
+                return cell
             case AnswerType.onlyExistingAnswer.rawValue:
                 let cell = UITableViewCell()
                 cell.backgroundColor = .sand
@@ -185,6 +200,20 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 preconditionFailure()
             }
         }
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return section == CellType.question.rawValue && question.hasTypingAnimation ? .buttonHeight : 0
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        if section == CellType.question.rawValue && question.hasTypingAnimation {
+            let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: .buttonHeight))
+            footer.addSubview(typingAnimation)
+            typingAnimation.configure(dotsColor: .carbonDark)
+            return footer
+        }
+        return nil
     }
 }
 
@@ -228,7 +257,12 @@ extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate
 // MARK: - Bottom Navigation Items
 extension DecisionTreeQuestionnaireViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem()]
+        switch question.key {
+        case QuestionKey.Sprint.last.rawValue?:
+            return nil
+        default:
+            return [dismissNavigationItem()]
+        }
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
@@ -240,17 +274,16 @@ extension DecisionTreeQuestionnaireViewController {
                                           image: R.image.ic_event(),
                                           buttonWidth: .decisionTreeButtonWidth,
                                           action: #selector(presentAddEventController))]
-        case QuestionKey.Recovery.loading.rawValue?:
+        case QuestionKey.Recovery.loading.rawValue?,
+             QuestionKey.Sprint.introContinue.rawValue?,
+             QuestionKey.MindsetShifterTBV.review.rawValue?,
+             QuestionKey.Sprint.last.rawValue?:
             let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
             return [roundedDarkButtonItem(title: title,
                                           buttonWidth: .decisionTreeButtonWidth,
                                           action: #selector(didTapContinue))]
-        case QuestionKey.MindsetShifterTBV.review.rawValue?:
-            let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
-            return [roundedDarkButtonItem(title: title,
-                                          buttonWidth: .decisionTreeButtonWidth,
-                                          action: #selector(didTapContinue))]
-        default: return []
+        default:
+            return []
         }
     }
 }

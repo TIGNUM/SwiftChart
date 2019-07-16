@@ -140,6 +140,14 @@ extension DecisionTreeWorker {
                 currentQuestion?.key == QuestionKey.Prepare.calendarEventSelectionDaily.rawValue {
                 interactor?.presentAddEventController(EKEventStore.shared)
             }
+        case .sprint:
+            if currentQuestion?.key == QuestionKey.Sprint.introContinue.rawValue {
+                let answer = currentQuestion?.answers.first
+                getNextQuestion(answer: answer) { [weak self] (node) in
+                    self?.interactor?.trackUserEvent(answer, .NEXT, .TAP)
+                    self?.showQuestion(node)
+                }
+            }
         default: break
         }
 
