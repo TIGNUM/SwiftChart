@@ -92,7 +92,7 @@ class RoundedButton: UIButton {
         super.didMoveToSuperview()
         
         let expectedSize = self.sizeThatFits(CGSize(width: 1000, height: 1000))
-        self.frame = CGRect(center: self.frame.origin, size: expectedSize)
+        self.frame = CGRect(origin: self.frame.origin, size: expectedSize)
     }
     
     override func layoutSubviews() {

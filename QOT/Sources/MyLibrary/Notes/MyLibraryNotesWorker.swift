@@ -78,7 +78,7 @@ final class MyLibraryNotesWorker {
         return "Yes, Remove"
     }()
 
-    lazy var isExistingMessage: Bool = {
+    lazy var isExistingNote: Bool = {
         return noteId != nil
     }()
 

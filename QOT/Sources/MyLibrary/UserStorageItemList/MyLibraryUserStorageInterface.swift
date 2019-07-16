@@ -30,6 +30,7 @@ protocol MyLibraryUserStorageInteractorInterface: Interactor {
     var isEditing: Bool { get }
     var infoViewModel: MyLibraryUserStorageInfoViewModel? { get }
     var bottomButtons: [ButtonParameters]? { get }
+    var contentType: MyLibraryUserStorageContentType { get }
 
     var items: [MyLibraryCellViewModel] { get }
     func didTapEdit(isEditing: Bool)

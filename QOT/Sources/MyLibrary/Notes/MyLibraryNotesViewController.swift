@@ -40,6 +40,11 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
         super.init(coder: aDecoder)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()

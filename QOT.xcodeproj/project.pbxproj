@@ -647,6 +647,7 @@
 		8D251BB122D3562200EE2236 /* GradientArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D251BB022D3562200EE2236 /* GradientArcView.swift */; };
 		8D251BB322D3990B00EE2236 /* ButtonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D251BB222D3990B00EE2236 /* ButtonParameters.swift */; };
 		8D6048E322D8D2970005BB29 /* Notification+MyLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6048E222D8D2970005BB29 /* Notification+MyLibrary.swift */; };
+		8D6048E522D8E2530005BB29 /* MyLibraryUserStorageContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6048E422D8E2530005BB29 /* MyLibraryUserStorageContentType.swift */; };
 		8D60A20C22CF7CBF0034F33F /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60A20B22CF7CBF0034F33F /* NoteTableViewCell.swift */; };
 		8D60A20E22CF9D0C0034F33F /* DownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60A20D22CF9D0C0034F33F /* DownloadTableViewCell.swift */; };
 		8D635A7C22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D635A7B22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift */; };
@@ -2108,6 +2109,7 @@
 		8D251BB022D3562200EE2236 /* GradientArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientArcView.swift; sourceTree = "<group>"; };
 		8D251BB222D3990B00EE2236 /* ButtonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonParameters.swift; sourceTree = "<group>"; };
 		8D6048E222D8D2970005BB29 /* Notification+MyLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+MyLibrary.swift"; sourceTree = "<group>"; };
+		8D6048E422D8E2530005BB29 /* MyLibraryUserStorageContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageContentType.swift; sourceTree = "<group>"; };
 		8D60A20B22CF7CBF0034F33F /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		8D60A20D22CF9D0C0034F33F /* DownloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTableViewCell.swift; sourceTree = "<group>"; };
 		8D635A7B22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageInfoViewModel.swift; sourceTree = "<group>"; };
@@ -5005,6 +5007,7 @@
 				B856B47622B0E29D0017A249 /* MyLibraryCellViewModel.swift */,
 				8D635A7B22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift */,
 				8D251BB222D3990B00EE2236 /* ButtonParameters.swift */,
+				8D6048E422D8E2530005BB29 /* MyLibraryUserStorageContentType.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -8197,6 +8200,7 @@
 				36376624223A5BE500C2C429 /* AbstractLevelOneViewConroller.swift in Sources */,
 				CB9B076B1EFAA7990017F6C3 /* Realm+Convenience.swift in Sources */,
 				AC1A40DE22A54EB70022156C /* SolveResultsViewController.swift in Sources */,
+				8D6048E522D8E2530005BB29 /* MyLibraryUserStorageContentType.swift in Sources */,
 				36667694207CF62700D2F5AD /* VisionGeneratorInteractor.swift in Sources */,
 				3681A52522647FE600E3F4B8 /* ArticleHeaderView.swift in Sources */,
 				7FB9AD0B1F39BD1400E0D621 /* UpSyncMediaResultParser.swift in Sources */,

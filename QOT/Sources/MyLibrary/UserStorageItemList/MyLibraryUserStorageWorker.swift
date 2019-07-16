@@ -197,6 +197,16 @@ final class MyLibraryUserStorageWorker {
     lazy var listen: String = {
         return "to listen"
     }()
+    
+    lazy var contentType: MyLibraryUserStorageContentType = {
+        switch type {
+        case .UNKOWN: return .all
+        case .BOOKMARK: return .bookmarks
+        case .DOWNLOAD: return .downloads
+        case .EXTERNAL_LINK: return .links
+        case .NOTE: return .notes
+        }
+    }()
 }
 
 // MARK: Data loading
