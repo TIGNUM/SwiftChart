@@ -16,6 +16,7 @@ final class MyLibraryUserStorageInteractor {
     private let worker: MyLibraryUserStorageWorker
     private let presenter: MyLibraryUserStoragePresenterInterface
     private let router: MyLibraryUserStorageRouterInterface
+    private let notificationCenter: NotificationCenter
 
     private (set) var isEditing: Bool = false
     private (set) var infoViewModel: MyLibraryUserStorageInfoViewModel? = nil
@@ -45,16 +46,23 @@ final class MyLibraryUserStorageInteractor {
 
     init(worker: MyLibraryUserStorageWorker,
          presenter: MyLibraryUserStoragePresenterInterface,
-         router: MyLibraryUserStorageRouterInterface) {
+         router: MyLibraryUserStorageRouterInterface,
+         notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(load(_:)),
-                                               name: .UIApplicationDidBecomeActive, object: nil)
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didUpdateDownloadStatus(_:)),
-                                               name: .didUpdateDownloadStatus, object: nil)
+        self.notificationCenter = notificationCenter
+
+        self.notificationCenter.addObserver(self,
+                                            selector: #selector(load(_:)),
+                                            name: .UIApplicationDidBecomeActive, object: nil)
+        self.notificationCenter.addObserver(self,
+                                            selector: #selector(didUpdateDownloadStatus(_:)),
+                                            name: .didUpdateDownloadStatus, object: nil)
+        self.notificationCenter.addObserver(self,
+                                            selector: #selector(load(_:)),
+                                            name: .didUpdateMyLibraryData,
+                                            object: nil)
     }
 
     // MARK: Interactor
@@ -124,7 +132,7 @@ extension MyLibraryUserStorageInteractor: MyLibraryUserStorageInteractorInterfac
     }
 
     func didTapAddNote() {
-        router.presentCreateNote()
+        router.presentCreateNote(noteId: nil)
     }
 
     func handleSelectedItem(at index: Int) -> Bool {
@@ -257,8 +265,8 @@ extension MyLibraryUserStorageInteractor {
             router.presentExternalUrl(url)
             return true
         case .NOTE:
-            print("Handle opening note")
-            return false
+            router.presentCreateNote(noteId: item.identifier)
+            return true
         case .DOWNLOAD:
             return handleDownload(item: item)
         case .BOOKMARK, .UNKOWN:
@@ -285,7 +293,6 @@ extension MyLibraryUserStorageInteractor {
             qot_dal.log("Not a valid media type", level: .warning)
             return false
         }
-
         return true
     }
 
@@ -414,7 +421,7 @@ extension MyLibraryUserStorageInteractor {
         }
         let description = worker.personalNote + descriptionExtension
         return MyLibraryCellViewModel(cellType: .NOTE,
-                                      title: item.title ?? "",
+                                      title: item.note ?? "",
                                       description: description,
                                       duration: "",
                                       icon: R.image.my_library_note_light(),

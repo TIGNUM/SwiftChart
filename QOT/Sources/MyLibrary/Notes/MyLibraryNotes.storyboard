@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Library Notes View Controller-->
+        <scene sceneID="HLZ-ss-tlg">
+            <objects>
+                <viewController storyboardIdentifier="MyLibraryNotesViewController" title="MyLibraryNotesViewController" id="QVt-aK-Dt1" userLabel="My Library Notes View Controller" customClass="MyLibraryNotesViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="nBB-HN-GQo">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Tdo-EW-Qxq">
+                                <rect key="frame" x="24" y="80" width="367" height="762"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <color key="tintColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="0.84705882349999995" colorSpace="calibratedRGB"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <connections>
+                                    <outlet property="delegate" destination="QVt-aK-Dt1" id="s1o-VQ-LTo"/>
+                                </connections>
+                            </textView>
+                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TEf-h6-0VI" userLabel="Info View" customClass="InfoHelperView" customModule="QOT" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="NJw-bL-u3i" firstAttribute="bottom" secondItem="Tdo-EW-Qxq" secondAttribute="bottom" constant="20" id="7Gu-Ew-ezT"/>
+                            <constraint firstItem="Tdo-EW-Qxq" firstAttribute="leading" secondItem="NJw-bL-u3i" secondAttribute="leading" constant="24" id="GXF-gH-1Y3"/>
+                            <constraint firstItem="TEf-h6-0VI" firstAttribute="top" secondItem="NJw-bL-u3i" secondAttribute="top" id="Imz-il-mfJ"/>
+                            <constraint firstItem="Tdo-EW-Qxq" firstAttribute="top" secondItem="NJw-bL-u3i" secondAttribute="top" constant="36" id="b18-SI-HIA"/>
+                            <constraint firstItem="TEf-h6-0VI" firstAttribute="leading" secondItem="NJw-bL-u3i" secondAttribute="leading" id="bm5-yQ-aYv"/>
+                            <constraint firstItem="NJw-bL-u3i" firstAttribute="bottom" secondItem="TEf-h6-0VI" secondAttribute="bottom" id="dgd-Mh-s36"/>
+                            <constraint firstItem="NJw-bL-u3i" firstAttribute="trailing" secondItem="TEf-h6-0VI" secondAttribute="trailing" id="tMd-41-jjy"/>
+                            <constraint firstItem="NJw-bL-u3i" firstAttribute="trailing" secondItem="Tdo-EW-Qxq" secondAttribute="trailing" constant="23" id="zxA-KQ-P39"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="NJw-bL-u3i"/>
+                    </view>
+                    <connections>
+                        <outlet property="infoView" destination="TEf-h6-0VI" id="LgL-J7-BjP"/>
+                        <outlet property="textView" destination="Tdo-EW-Qxq" id="kqT-Uh-OxG"/>
+                        <outlet property="textViewBottomConstraint" destination="7Gu-Ew-ezT" id="hi7-Jj-10h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="leB-Ye-hj9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="72" y="116"/>
+        </scene>
+    </scenes>
+</document>

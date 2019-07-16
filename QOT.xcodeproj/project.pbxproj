@@ -646,9 +646,18 @@
 		85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */; };
 		8D251BB122D3562200EE2236 /* GradientArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D251BB022D3562200EE2236 /* GradientArcView.swift */; };
 		8D251BB322D3990B00EE2236 /* ButtonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D251BB222D3990B00EE2236 /* ButtonParameters.swift */; };
+		8D6048E322D8D2970005BB29 /* Notification+MyLibrary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6048E222D8D2970005BB29 /* Notification+MyLibrary.swift */; };
 		8D60A20C22CF7CBF0034F33F /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60A20B22CF7CBF0034F33F /* NoteTableViewCell.swift */; };
 		8D60A20E22CF9D0C0034F33F /* DownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60A20D22CF9D0C0034F33F /* DownloadTableViewCell.swift */; };
 		8D635A7C22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D635A7B22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift */; };
+		8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058022D7466E00EC2AEF /* MyLibraryNotesPresenter.swift */; };
+		8D6E058922D7466E00EC2AEF /* MyLibraryNotesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058122D7466E00EC2AEF /* MyLibraryNotesWorker.swift */; };
+		8D6E058A22D7466E00EC2AEF /* MyLibraryNotesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058222D7466E00EC2AEF /* MyLibraryNotesRouter.swift */; };
+		8D6E058B22D7466E00EC2AEF /* MyLibraryNotesInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058322D7466E00EC2AEF /* MyLibraryNotesInterface.swift */; };
+		8D6E058C22D7466E00EC2AEF /* MyLibraryNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058422D7466E00EC2AEF /* MyLibraryNotesViewController.swift */; };
+		8D6E058D22D7466E00EC2AEF /* MyLibraryNotesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058522D7466E00EC2AEF /* MyLibraryNotesInteractor.swift */; };
+		8D6E058F22D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058722D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift */; };
+		8D6E059122D7487400EC2AEF /* MyLibraryNotes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D6E059022D7487400EC2AEF /* MyLibraryNotes.storyboard */; };
 		8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE10EDC22CB8335001E0F71 /* InfoHelperView.swift */; };
 		8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE10EDE22CB838E001E0F71 /* InfoHelperView.xib */; };
 		9100194F20F63E4C00049118 /* ExtensionUserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 912AB11620F38BD700E34328 /* ExtensionUserDefaults.swift */; };
@@ -2098,9 +2107,18 @@
 		85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnListAnimation.swift; sourceTree = "<group>"; };
 		8D251BB022D3562200EE2236 /* GradientArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientArcView.swift; sourceTree = "<group>"; };
 		8D251BB222D3990B00EE2236 /* ButtonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonParameters.swift; sourceTree = "<group>"; };
+		8D6048E222D8D2970005BB29 /* Notification+MyLibrary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+MyLibrary.swift"; sourceTree = "<group>"; };
 		8D60A20B22CF7CBF0034F33F /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		8D60A20D22CF9D0C0034F33F /* DownloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTableViewCell.swift; sourceTree = "<group>"; };
 		8D635A7B22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageInfoViewModel.swift; sourceTree = "<group>"; };
+		8D6E058022D7466E00EC2AEF /* MyLibraryNotesPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesPresenter.swift; sourceTree = "<group>"; };
+		8D6E058122D7466E00EC2AEF /* MyLibraryNotesWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesWorker.swift; sourceTree = "<group>"; };
+		8D6E058222D7466E00EC2AEF /* MyLibraryNotesRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesRouter.swift; sourceTree = "<group>"; };
+		8D6E058322D7466E00EC2AEF /* MyLibraryNotesInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesInterface.swift; sourceTree = "<group>"; };
+		8D6E058422D7466E00EC2AEF /* MyLibraryNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesViewController.swift; sourceTree = "<group>"; };
+		8D6E058522D7466E00EC2AEF /* MyLibraryNotesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesInteractor.swift; sourceTree = "<group>"; };
+		8D6E058722D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesConfigurator.swift; sourceTree = "<group>"; };
+		8D6E059022D7487400EC2AEF /* MyLibraryNotes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyLibraryNotes.storyboard; sourceTree = "<group>"; };
 		8DE10EDC22CB8335001E0F71 /* InfoHelperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHelperView.swift; sourceTree = "<group>"; };
 		8DE10EDE22CB838E001E0F71 /* InfoHelperView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoHelperView.xib; sourceTree = "<group>"; };
 		9100195620F8A0E200049118 /* ExtensionsDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionsDataManager.swift; sourceTree = "<group>"; };
@@ -4429,6 +4447,21 @@
 			name = MediaResource;
 			sourceTree = "<group>";
 		};
+		8D6E057F22D7464000EC2AEF /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				8D6E058722D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift */,
+				8D6E058522D7466E00EC2AEF /* MyLibraryNotesInteractor.swift */,
+				8D6E058322D7466E00EC2AEF /* MyLibraryNotesInterface.swift */,
+				8D6E058022D7466E00EC2AEF /* MyLibraryNotesPresenter.swift */,
+				8D6E058222D7466E00EC2AEF /* MyLibraryNotesRouter.swift */,
+				8D6E058422D7466E00EC2AEF /* MyLibraryNotesViewController.swift */,
+				8D6E058122D7466E00EC2AEF /* MyLibraryNotesWorker.swift */,
+				8D6E059022D7487400EC2AEF /* MyLibraryNotes.storyboard */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
 		9100194C20F63DF100049118 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -4940,9 +4973,11 @@
 		B8497E4922A94A6E0092A98D /* MyLibrary */ = {
 			isa = PBXGroup;
 			children = (
+				8D6048E222D8D2970005BB29 /* Notification+MyLibrary.swift */,
 				B8F7277622D4CFA1006FDD7A /* ExternalLinkImporter */,
 				B856B46F22B051F00017A249 /* UserStorageItemList */,
 				B86E745122A951D700B0AE75 /* CategoryList */,
+				8D6E057F22D7464000EC2AEF /* Notes */,
 			);
 			path = MyLibrary;
 			sourceTree = "<group>";
@@ -6881,6 +6916,7 @@
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
 				369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
+				8D6E059122D7487400EC2AEF /* MyLibraryNotes.storyboard in Resources */,
 				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
 				36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */,
 				36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */,
@@ -7643,6 +7679,7 @@
 				CBA054491E890560009E28D6 /* Dequeueable.swift in Sources */,
 				36D58A562149727600D5E6D2 /* UIDevice+Convenience.swift in Sources */,
 				3637661B223A4C0400C2C429 /* MyQotProfilePresenter.swift in Sources */,
+				8D6E058F22D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift in Sources */,
 				3637667C223BFF3800C2C429 /* StrategyListConfigurator.swift in Sources */,
 				CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */,
 				5F78966122A929E300D2DBAD /* LoadingSkeleton.swift in Sources */,
@@ -7663,6 +7700,7 @@
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
 				AC103E472285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift in Sources */,
 				366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */,
+				8D6E058A22D7466E00EC2AEF /* MyLibraryNotesRouter.swift in Sources */,
 				36376660223AA61100C2C429 /* LevelThreeViewController.swift in Sources */,
 				D5EC34AB1EB0D2FC00F86B09 /* LearnStrategyAudioPlayerView.swift in Sources */,
 				914A5E29207FB54A00092121 /* BubblesView.swift in Sources */,
@@ -7785,6 +7823,7 @@
 				36E4B7AF219EBFED00049EE8 /* TutorialViewController.swift in Sources */,
 				B86E744A22A9519900B0AE75 /* MyLibraryCategoryListWorker.swift in Sources */,
 				5F57F9ED22831711003A9EDF /* MyQotAccountSettingsWorker.swift in Sources */,
+				8D6E058B22D7466E00EC2AEF /* MyLibraryNotesInterface.swift in Sources */,
 				CC143A511EC495CE001FB76E /* StatisticsCoordinator.swift in Sources */,
 				91086E3B20909E7A0035DA1F /* ProfileSettingsModel.swift in Sources */,
 				CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */,
@@ -7889,6 +7928,7 @@
 				CB6D49541ECC87BF005BC637 /* Requests.swift in Sources */,
 				3698428520C91EF3007A8C8F /* SigningDigitViewController.swift in Sources */,
 				AC1A40DF22A54EB70022156C /* SolveResultsInteractor.swift in Sources */,
+				8D6048E322D8D2970005BB29 /* Notification+MyLibrary.swift in Sources */,
 				CB694E09205C1C3600D29B3E /* DailyPrepResultIntermediary.swift in Sources */,
 				363765FD223A4BD200C2C429 /* KnowingRouter.swift in Sources */,
 				9150413720FDF40A00D43D18 /* SensorViewController.swift in Sources */,
@@ -8103,6 +8143,7 @@
 				CBAF6FD81F2B88E500E57426 /* UpSyncData.swift in Sources */,
 				DB6805A3218210E700C2FC69 /* MorningQuestion.swift in Sources */,
 				362614AC20CFC1C300AB3659 /* UserCountryList.swift in Sources */,
+				8D6E058922D7466E00EC2AEF /* MyLibraryNotesWorker.swift in Sources */,
 				36E86D4B2270511100371C67 /* ArticleBulletPointTableViewCell.swift in Sources */,
 				CC0238FF1F4EE2B700DD992B /* IntensityChart.swift in Sources */,
 				36796A0620D3C41F00B55429 /* SigningCreatePasswordPresenter.swift in Sources */,
@@ -8141,6 +8182,7 @@
 				CC944DB81EE8096100B8423C /* ChartCell.swift in Sources */,
 				CB93B3732006980F001F19DC /* RealmStatisticsThreshold.swift in Sources */,
 				8548BBE41F0E382900AC7C06 /* GenericParser.swift in Sources */,
+				8D6E058D22D7466E00EC2AEF /* MyLibraryNotesInteractor.swift in Sources */,
 				DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */,
 				CB9AFD191F014C0800D067F2 /* PreparationCheckIntermediary.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,
@@ -8176,6 +8218,7 @@
 				36796A1B20D3C45200B55429 /* SigningCountryConfigurator.swift in Sources */,
 				36B8F2531FE2FEA600AD6A17 /* GuideGreetingView.swift in Sources */,
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
+				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
 				36D72ED5229C1BCC00DE1184 /* (null) in Sources */,
@@ -8194,6 +8237,7 @@
 				5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */,
 				CC41A5491EFD59FC00B9AE8E /* ArticleItemHeaderView.swift in Sources */,
 				B856B48522B0E9AA0017A249 /* ArticleBookmarkTableViewCell.swift in Sources */,
+				8D6E058C22D7466E00EC2AEF /* MyLibraryNotesViewController.swift in Sources */,
 				3637660B223A4BEC00C2C429 /* DailyBriefPresenter.swift in Sources */,
 				AC1A40F422A573F80022156C /* SolveDayPlanTableViewCell.swift in Sources */,
 				CCE6CD751F1390AD00B66DA3 /* UIApplication+Convenience.swift in Sources */,

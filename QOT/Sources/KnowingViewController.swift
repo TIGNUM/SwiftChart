@@ -78,7 +78,7 @@ extension KnowingViewController: KnowingViewControllerInterface {
     }
 
     func reload() {
-//        self.removeLoadingSkeleton()
+        self.removeLoadingSkeleton()
         collectionView.reloadData()
     }
 }

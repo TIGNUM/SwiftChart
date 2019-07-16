@@ -42,7 +42,12 @@ extension MyLibraryUserStorageRouter: MyLibraryUserStorageRouterInterface {
         UIApplication.shared.open(url)
     }
 
-    func presentCreateNote() {
-        // TODO: Show note creation screen
+    func presentCreateNote(noteId: String?) {
+        guard let noteController = R.storyboard.myLibraryNotes.myLibraryNotesViewController() else {
+            return
+        }
+        let configurator = MyLibraryNotesConfigurator.make()
+        configurator(noteController, noteId)
+        viewController.present(noteController, animated: true, completion: nil)
     }
 }

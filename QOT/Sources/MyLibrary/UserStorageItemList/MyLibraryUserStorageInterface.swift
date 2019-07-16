@@ -42,5 +42,5 @@ protocol MyLibraryUserStorageRouterInterface {
     func presentArticle(id: Int)
     func presentVideo(url: URL)
     func presentExternalUrl(_ url: URL)
-    func presentCreateNote()
+    func presentCreateNote(noteId: String?)
 }
