@@ -24,7 +24,6 @@ final class DailyBriefRouter {
 // MARK: - DailyBriefRouterInterface
 
 extension DailyBriefRouter: DailyBriefRouterInterface {
-    
 
     func presentWhatsHotArticle(selectedID: Int) {
         if let controller = R.storyboard.main().instantiateViewController(withIdentifier: R.storyboard.main.qotArticleViewController.identifier) as? ArticleViewController {

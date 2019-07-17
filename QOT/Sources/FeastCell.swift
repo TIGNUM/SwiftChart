@@ -16,4 +16,3 @@ final class FeastCell: UITableViewCell, Dequeueable {
         feastImage.kf.setImage(with: URL(string: image ?? ""), placeholder: R.image.preloading())
     }
 }
-

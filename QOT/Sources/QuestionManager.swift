@@ -24,4 +24,3 @@ extension QuestionManager {
         questionService?.questionsWithQuestionGroup(type.questionGroup, ascending: true, completion)
     }
 }
-

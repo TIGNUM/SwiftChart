@@ -27,7 +27,7 @@ protocol MyQotMainInteractorInterface: Interactor {
     func nextPrepType(completion: @escaping (String?) -> Void)
     func toBeVisionDate(completion: @escaping (Date?) -> Void)
     func getSubtitles(completion: @escaping ([String?]) -> Void)
-    func getUserName(completion: @escaping (String?) -> Void) 
+    func getUserName(completion: @escaping (String?) -> Void)
 }
 
 protocol MyQotMainRouterInterface {

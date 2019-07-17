@@ -53,7 +53,7 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
         textView.tintColor = .sand
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
-        
+
         showDefaultBottomButtons()
     }
 
@@ -100,7 +100,7 @@ private extension MyLibraryNotesViewController {
         let save = RoundedButton(title: interactor?.saveTitle ?? "Save", target: self, action: #selector(didTapSaveButton))
         saveButton = save
         let saveBarButton = UIBarButtonItem(customView: save)
-        
+
         toolbar.items = [dismissButton, space, saveBarButton]
 
         return toolbar
@@ -111,7 +111,7 @@ private extension MyLibraryNotesViewController {
             infoView.isHidden = true
             return
         }
-        
+
         infoView.isHidden = false
         infoView.set(icon: model.icon, title: model.title, attributedText: model.message)
     }

@@ -197,7 +197,7 @@ final class MyLibraryUserStorageWorker {
     lazy var listen: String = {
         return "to listen"
     }()
-    
+
     lazy var contentType: MyLibraryUserStorageContentType = {
         switch type {
         case .UNKOWN: return .all

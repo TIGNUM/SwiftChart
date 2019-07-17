@@ -81,7 +81,7 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
     var showDeleteButton: Bool {
         return worker.isExistingNote
     }
-    
+
     var isCreatingNewNote: Bool {
         return !worker.isExistingNote
     }
@@ -115,7 +115,7 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
 
     func didTapDelete() {
         infoViewModel = MyLibraryUserStorageInfoViewModel(isFullscreen: true,
-                                                          icon:R.image.my_library_warning() ?? UIImage(),
+                                                          icon: R.image.my_library_warning() ?? UIImage(),
                                                           title: worker.removeAlertTitle,
                                                           message: worker.removeAlertMessage,
                                                           userParameter: nil)

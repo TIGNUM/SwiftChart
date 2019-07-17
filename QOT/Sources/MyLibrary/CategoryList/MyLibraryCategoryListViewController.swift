@@ -27,7 +27,7 @@ final class MyLibraryCategoryListViewController: AbstractLevelTwoViewController 
         let configurator = MyLibraryCategoryListConfigurator.make()
         configurator(self)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()

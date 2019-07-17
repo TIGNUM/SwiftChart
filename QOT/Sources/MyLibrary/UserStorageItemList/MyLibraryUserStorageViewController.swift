@@ -35,7 +35,7 @@ final class MyLibraryUserStorageViewController: UIViewController, ScreenZLevel3 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()

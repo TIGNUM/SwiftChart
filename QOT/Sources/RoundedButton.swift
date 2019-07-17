@@ -90,11 +90,11 @@ class RoundedButton: UIButton {
 
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-        
+
         let expectedSize = self.sizeThatFits(CGSize(width: 1000, height: 1000))
         self.frame = CGRect(origin: self.frame.origin, size: expectedSize)
     }
-    
+
     override func layoutSubviews() {
         super.layoutSubviews()
         layer.cornerRadius = fmin(self.frame.size.width, self.frame.size.height)/2.0

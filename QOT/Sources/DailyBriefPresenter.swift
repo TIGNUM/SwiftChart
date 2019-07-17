@@ -24,5 +24,5 @@ final class DailyBriefPresenter {
 // MARK: - DailyBriefInterface
 
 extension DailyBriefPresenter: DailyBriefPresenterInterface {
-  
+
 }

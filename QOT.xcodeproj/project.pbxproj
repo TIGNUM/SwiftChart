@@ -517,6 +517,13 @@
 		5FF1A10322858A7400D76D55 /* ContentService+AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */; };
 		5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */; };
 		75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */; };
+		75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */; };
+		75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */; };
+		75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */; };
+		75423F1522CF4919008EE726 /* FromMyCoachHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F1422CF4919008EE726 /* FromMyCoachHeaderView.swift */; };
+		75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F1622CF492B008EE726 /* FromMyCoachHeaderView.xib */; };
+		75423F1922CF4AA3008EE726 /* FromMyCoachMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F1822CF4AA2008EE726 /* FromMyCoachMessageView.swift */; };
+		75423F1B22CF4ABB008EE726 /* FromMyCoachMessageView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F1A22CF4ABB008EE726 /* FromMyCoachMessageView.xib */; };
 		75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */; };
 		75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */; };
 		75423F2222D39628008EE726 /* ContentService+SiriShortcuts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F2122D39628008EE726 /* ContentService+SiriShortcuts.swift */; };
@@ -1977,6 +1984,13 @@
 		5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AppSettings.swift"; sourceTree = "<group>"; };
 		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
 		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
+		75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCell.swift; sourceTree = "<group>"; };
+		75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachCell.xib; sourceTree = "<group>"; };
+		75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCellViewModel.swift; sourceTree = "<group>"; };
+		75423F1422CF4919008EE726 /* FromMyCoachHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachHeaderView.swift; sourceTree = "<group>"; };
+		75423F1622CF492B008EE726 /* FromMyCoachHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachHeaderView.xib; sourceTree = "<group>"; };
+		75423F1822CF4AA2008EE726 /* FromMyCoachMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachMessageView.swift; sourceTree = "<group>"; };
+		75423F1A22CF4ABB008EE726 /* FromMyCoachMessageView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachMessageView.xib; sourceTree = "<group>"; };
 		75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFooterView.swift; sourceTree = "<group>"; };
 		75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSettingsFooterView.xib; sourceTree = "<group>"; };
 		75423F2122D39628008EE726 /* ContentService+SiriShortcuts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+SiriShortcuts.swift"; sourceTree = "<group>"; };
@@ -2977,6 +2991,7 @@
 		363765F1223A4BA400C2C429 /* daily brief */ = {
 			isa = PBXGroup;
 			children = (
+				75423F0D22CF4876008EE726 /* FromMyCoach */,
 				F902CF4622D87BF300FFC836 /* Feast For Eyes */,
 				F9D6380E22D62B690092C482 /* Departure Info */,
 				F9D2BC1E22D4966B00DBF2CC /* From Tignum */,
@@ -4193,6 +4208,20 @@
 				75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */,
 			);
 			name = Others;
+			sourceTree = "<group>";
+		};
+		75423F0D22CF4876008EE726 /* FromMyCoach */ = {
+			isa = PBXGroup;
+			children = (
+				75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */,
+				75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */,
+				75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */,
+				75423F1422CF4919008EE726 /* FromMyCoachHeaderView.swift */,
+				75423F1622CF492B008EE726 /* FromMyCoachHeaderView.xib */,
+				75423F1822CF4AA2008EE726 /* FromMyCoachMessageView.swift */,
+				75423F1A22CF4ABB008EE726 /* FromMyCoachMessageView.xib */,
+			);
+			name = FromMyCoach;
 			sourceTree = "<group>";
 		};
 		75423F2022D39609008EE726 /* Other */ = {
@@ -6933,6 +6962,7 @@
 				9166ECEB20A07A9F006DF113 /* GuideToBeVisionTableViewCell.xib in Resources */,
 				360256EE205197AB00862B0E /* SearchViewController.xib in Resources */,
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
+				75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */,
 				AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */,
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				B86E742822A94D0700B0AE75 /* MyLibrary.storyboard in Resources */,
@@ -7013,6 +7043,7 @@
 				AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */,
 				CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */,
 				ACF0B9792260BC80008CFAEC /* TextTableViewCell.xib in Resources */,
+				75423F1B22CF4ABB008EE726 /* FromMyCoachMessageView.xib in Resources */,
 				5F8A89912296DC270011A05C /* MyToBeVision.storyboard in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
 				CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */,
@@ -7105,6 +7136,7 @@
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
 				36E86D50227059A100371C67 /* MarkAsReadTableViewCell.xib in Resources */,
 				9150413C20FDF4FF00D43D18 /* SensorViewController.xib in Resources */,
+				75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */,
 				0BD6F6BA1EA0E81E001EBC4D /* MyPrepTableViewCell.xib in Resources */,
 				CBB543821FBC816600AFD67B /* bundled_media.plist in Resources */,
 				CB8C34521EAF61E50003AB65 /* SettingsMenuViewController.xib in Resources */,
@@ -7744,6 +7776,7 @@
 				AC103E3022847AB500F426F0 /* ConfirmationViewController.swift in Sources */,
 				CB6637B1201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift in Sources */,
 				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
+				75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */,
 				36718B4F224D20030042881E /* SubsriptionReminderViewController.swift in Sources */,
 				36796A0720D3C41F00B55429 /* SigningCreatePasswordConfigurator.swift in Sources */,
 				CCF0F4BF1ECDC57000E8D9C1 /* DownSyncable.swift in Sources */,
@@ -7854,6 +7887,7 @@
 				7F5A25B21F3C515800A11466 /* Swizzle.swift in Sources */,
 				7F9217B91FD01C2F00CAE9E0 /* RemoteNotificationPermission.swift in Sources */,
 				36E86D4F227059A100371C67 /* MarkAsReadTableViewCell.swift in Sources */,
+				75423F1522CF4919008EE726 /* FromMyCoachHeaderView.swift in Sources */,
 				CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */,
 				CBB98B00201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift in Sources */,
 				CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */,
@@ -7963,6 +7997,7 @@
 				CC8D6D051EC316BF007AE687 /* LearnContentItemViewModel.swift in Sources */,
 				F9C1D8C0220DDB7C00B40DD2 /* SiriShortcutsConfigurator.swift in Sources */,
 				CC7A91121F0F978E00F791B9 /* UIViewController+ScreenType.swift in Sources */,
+				75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */,
 				CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */,
 				ACF0B9742260BAD2008CFAEC /* SingleSelectionTableViewCell.swift in Sources */,
 				7F4251BD1F20F05D00EA451D /* OnboardingCoordinator.swift in Sources */,
@@ -8478,6 +8513,7 @@
 				36796A3220D3C47400B55429 /* SigningProfileDetailRouter.swift in Sources */,
 				363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */,
 				3693F62321625E8700E286A9 /* AppContent.swift in Sources */,
+				75423F1922CF4AA3008EE726 /* FromMyCoachMessageView.swift in Sources */,
 				75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */,
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,
 				914A5E21207FB38500092121 /* SettingsBubblesInteractor.swift in Sources */,

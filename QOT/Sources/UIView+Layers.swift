@@ -216,6 +216,13 @@ extension UIView {
 
 extension UIView {
 
+    func maskCorners(corners: UIRectCorner, radius: CGFloat) {
+        let path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: CGSize(width: radius, height: radius))
+        let mask = CAShapeLayer()
+        mask.path = path.cgPath
+        layer.mask = mask
+    }
+
     func maskPathByRoundingCorners() {
         let maskPath = UIBezierPath(roundedRect: self.bounds,
                                     byRoundingCorners: [.bottomLeft, .bottomRight, .topLeft, .topRight],

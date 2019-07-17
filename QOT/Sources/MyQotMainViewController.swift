@@ -116,7 +116,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 
         case .sprints:
             interactor?.getSubtitles(completion: {(subtitles) in
-                 cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitles[indexPath.row] ?? "")
+//                 cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitles[indexPath.row] ?? "")
             })
         case .data:
             cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")

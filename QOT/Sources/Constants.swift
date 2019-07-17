@@ -66,6 +66,7 @@ extension CGFloat {
 }
 
 struct Layout {
+    static let cornerRadius08: CGFloat = 8
     static let cornerRadius12: CGFloat = 12
     static let cornerRadius20: CGFloat = 20
     static let articleImageHeight: CGFloat = 200
