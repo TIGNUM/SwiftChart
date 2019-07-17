@@ -36,14 +36,14 @@ final class MyQotMainWorker {
     }
 
     func nextPrep(completion: @escaping (String?) -> Void) {
-        userService.getUserPreparations { [weak self] (preparations, initialized, error) in
+        userService.getUserPreparations {(preparations, initialized, error) in
             let dateString = preparations?.last?.eventDate != nil ? DateFormatter.myPrepsTime.string(from: preparations!.last!.eventDate!) : ""
             completion(dateString)
         }
     }
 
     func nextPrepType(completion: @escaping (String?) -> Void) {
-         userService.getUserPreparations { [weak self] (preparations, initialized, error) in
+         userService.getUserPreparations {(preparations, initialized, error) in
             let eventType = preparations?.last?.eventType ?? ""
             completion(eventType)
         }
@@ -56,19 +56,18 @@ final class MyQotMainWorker {
     }
 
     func toBeVisionDate(completion: @escaping (Date?) -> Void) {
-        userService.getMyToBeVision { [weak self] (toBeVision, initialized, error) in
+        userService.getMyToBeVision {(toBeVision, initialized, error) in
             completion(toBeVision?.modifiedAt ?? toBeVision?.createdAt)
         }
     }
 
     func getSubtitles(completion: @escaping ([String?]) -> Void) {
-        var subtitles : [String?] = []
+        var subtitles: [String?] = []
         qot_dal.ContentService.main.getContentCategory(.myQOT, {(category) in
             category?.contentCollections[1].contentItems.forEach {(items) in
                 subtitles.append(items.valueText)
             }
-        completion(subtitles)
+            completion(subtitles)
         })
-
     }
 }

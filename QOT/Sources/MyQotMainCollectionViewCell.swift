@@ -20,6 +20,12 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
         subtitleLabel.text = subtitle
     }
 
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        titleLabel.text = nil
+        subtitleLabel.text = nil
+    }
+
     // MARK: - Life Cycle
 
     override func awakeFromNib() {
