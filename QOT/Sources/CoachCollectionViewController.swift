@@ -26,6 +26,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
     var services: Services?
     private var currentPage = Pages.dailyBrief
     @IBOutlet private weak var collectionView: UICollectionView!
+    @IBOutlet weak var collectionViewTopConstraint: NSLayoutConstraint!
 
     lazy var pageTitle: String? = {
         let predicate = ContentService.Navigation.FirstLevel.knowPageTitle.predicate
@@ -94,21 +95,39 @@ extension CoachCollectionViewController {
 
     @objc func handlePan(_ sender: UIPanGestureRecognizer) {
         let translation = sender.translation(in: self.view)
-        if let view = sender.view {
-            collectionView.center = CGPoint(x: view.center.x, y: view.center.y + translation.y)
-        }
+        let maxDistance = view.frame.height * 0.075
+        let distance = translation.y >= 0 ? translation.y : 0
+
+        collectionViewTopConstraint.constant = distance
+        searchViewController?.view.isUserInteractionEnabled = false
+        searchViewController?.view.alpha = distance/maxDistance * 0.8
         view.sendSubview(toBack: collectionView)
-        if translation.y > view.frame.height * 0.05 {
+
+        if distance >= maxDistance {
             let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
                                                       rightBarButtonItems: [],
                                                       backgroundColor: view.backgroundColor ?? .clear)
             NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
             if let searchViewController = searchViewController {
-                searchViewController.view.isHidden = false
+                searchViewController.view.isUserInteractionEnabled = true
                 searchViewController.view.alpha = 0.8
             }
         }
-      sender.setTranslation(CGPoint.zero, in: collectionView)
+
+        switch sender.state {
+        case .ended:
+            if distance >= maxDistance {
+                collectionViewTopConstraint.constant = 0
+            } else {
+                didTapCancel()
+            }
+        case .cancelled,
+             .failed:
+            didTapCancel()
+        default: break
+        }
+
+        self.view.setNeedsUpdateConstraints()
     }
 
     private func setupConstraints(_ targetView: UIView, parentView: UIView) {
@@ -175,8 +194,10 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
     func didTapCancel() {
         if let searchViewController = searchViewController {
             view.sendSubview(toBack: searchViewController.view)
+            searchViewController.view.isUserInteractionEnabled = false
+            searchViewController.view.alpha = 0
         }
-
+        collectionViewTopConstraint.constant = 0
         let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
                                                   rightBarButtonItems: [coachNavigationItem()],
                                                   backgroundColor: view.backgroundColor ?? .clear)

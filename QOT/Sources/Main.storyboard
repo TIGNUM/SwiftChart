@@ -105,6 +105,7 @@
                     </view>
                     <connections>
                         <outlet property="collectionView" destination="2QY-Es-Pku" id="e6q-I6-hBt"/>
+                        <outlet property="collectionViewTopConstraint" destination="zvP-jc-Lgq" id="8xP-wa-S0z"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kRQ-Er-ExZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

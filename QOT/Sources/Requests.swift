@@ -251,6 +251,7 @@ struct UserEmailCheckRequest: URLRequestBuildable {
     let endpoint = Endpoint.userEmailCheck
     let httpMethod = HTTPMethod.post
     let paramaters: [RequestParameter: Any]
+    let requiresAuthentication = false
 
     init(email: String) {
         self.paramaters = [.email: email,
