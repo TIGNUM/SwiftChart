@@ -31,6 +31,9 @@ final class DecisionTreeWorker {
     internal var prepareEventType: String = ""
     internal var questions: [QDMQuestion] = []
     internal var recoveryFatigueType: AnswerKey.Recovery? = nil
+    internal var activeSprint: QDMSprint?
+    internal var newSprintContentId: Int?
+    internal var lastSprintQuestionId: Int?
     weak var prepareDelegate: PrepareResultsDelegatge?
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?

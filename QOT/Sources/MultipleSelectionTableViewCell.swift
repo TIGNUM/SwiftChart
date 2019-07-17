@@ -89,8 +89,8 @@ extension MultipleSelectionTableViewCell: ChatViewLayoutDelegate {
 
     func chatViewLayout(_ layout: ChatViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         let buttonFont = UIFont.sfProtextSemibold(ofSize: 14)
-        let answerText = answers[indexPath.row].subtitle
-        let width = (answerText?.size(with: buttonFont).width ?? 0) + (collectionView.bounds.width * 0.1)
+        let answerText = answers[indexPath.row].subtitle ?? ""
+        let width = answerText.size(with: buttonFont).width + collectionView.bounds.width * 0.05
         return CGSize(width: width, height: 40)
     }
 

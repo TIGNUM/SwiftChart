@@ -24,7 +24,7 @@
                 <rect key="frame" x="0.0" y="0.0" width="552" height="84"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRc-Sd-raG" customClass="DecisionTreeButton" customModule="QOT" customModuleProvider="target">
+                    <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" verticalHuggingPriority="252" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VRc-Sd-raG" customClass="DecisionTreeButton" customModule="QOT" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="552" height="84"/>
                         <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
                         <state key="normal" title="DecisionTreeButton"/>

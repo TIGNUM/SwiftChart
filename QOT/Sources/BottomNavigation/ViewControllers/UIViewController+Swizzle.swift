@@ -170,11 +170,19 @@ extension UIViewController {
         return UIBarButtonItem(customView: button)
     }
 
-    @objc open func roundedDarkButtonItem(title: String, image: UIImage? = nil, buttonWidth: CGFloat, action: Selector) -> UIBarButtonItem {
+    @objc open func roundedDarkButtonItem(title: String,
+                                          image: UIImage? = nil,
+                                          buttonWidth: CGFloat,
+                                          backgroundColor: UIColor? = nil,
+                                          borderColor: UIColor? = nil,
+                                          action: Selector) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth,
                                                                         height: .buttonHeight))
-        button.backgroundColor = .carbonDark
+        button.backgroundColor =   .carbonDark
+        if let backgroundColor = backgroundColor {
+            button.backgroundColor = backgroundColor
+        }
         let attributedTitle = NSAttributedString(string: title,
                                                  letterSpacing: 0.2,
                                                  font: .sfProtextSemibold(ofSize: 14),
@@ -187,6 +195,10 @@ extension UIViewController {
         }
         button.addTarget(self, action: action, for: .touchUpInside)
         button.cornerDefault()
+        if let borderColor = borderColor {
+            button.layer.borderColor = borderColor.cgColor
+            button.layer.borderWidth = 1
+        }
         return UIBarButtonItem(customView: button)
     }
 

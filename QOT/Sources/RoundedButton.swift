@@ -11,7 +11,6 @@ class RoundedButton: UIButton {
 
     private let borderColorActive = UIColor.accent40
     private let borderColorInactive = UIColor.sand08
-
     private let activeColor = UIColor.accent
     private let inactiveColor = UIColor.sand08
 
@@ -90,7 +89,6 @@ class RoundedButton: UIButton {
 
     override func didMoveToSuperview() {
         super.didMoveToSuperview()
-
         let expectedSize = self.sizeThatFits(CGSize(width: 1000, height: 1000))
         self.frame = CGRect(origin: self.frame.origin, size: expectedSize)
     }

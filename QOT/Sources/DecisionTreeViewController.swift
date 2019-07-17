@@ -26,6 +26,8 @@ final class DecisionTreeViewController: UIViewController {
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
+    @IBOutlet private weak var infoView: InfoHelperView!
+    @IBOutlet private weak var infoEffectContainerView: UIVisualEffectView!
 
     private lazy var editEventHandler: EditEventHandler = {
         let delegate = EditEventHandler()
@@ -130,6 +132,12 @@ private extension DecisionTreeViewController {
 
     @objc func didTapContinue() {
         interactor?.didTapContinue()
+    }
+
+    @objc func didTapStartSprint() {
+        infoView.isHidden = true
+        infoEffectContainerView.isHidden = true
+        interactor?.didTapStartSprint()
     }
 }
 
@@ -242,7 +250,7 @@ private extension DecisionTreeViewController {
 
 // MARK: - DecisionTreeQuestionnaireDelegate
 extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
-    func didPressDimiss() {
+    @objc func didPressDimiss() {
         dismiss()
     }
 
@@ -287,6 +295,27 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         eventEditVC.eventStore = eventStore
         eventEditVC.editViewDelegate = editEventHandler
         present(eventEditVC, animated: true)
+    }
+
+    func presentInfoView(icon: UIImage?, title: String?, text: String?) {
+        infoView.setBottomContentInset(BottomNavigationContainer.height)
+        infoView.setTransparent(icon: icon, title: title, text: text)
+        infoView.edges(to: view)
+        infoView.isHidden = false
+        infoEffectContainerView.isHidden = false
+        let cancelButtonItem = roundedDarkButtonItem(title: R.string.localized.buttonTitleCancel(),
+                                                     buttonWidth: .cancelButtonWidth,
+                                                     backgroundColor: .clear,
+                                                     borderColor: .accent40,
+                                                     action: #selector(didPressDimiss))
+        let continueButtonItem = roundedDarkButtonItem(title: R.string.localized.alertButtonTitleContinue(),
+                                                     buttonWidth: .continueButtonWidth,
+                                                     borderColor: .accent40,
+                                                     action: #selector(didTapStartSprint))
+        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                  rightBarButtonItems: [continueButtonItem, cancelButtonItem],
+                                                  backgroundColor: .clear)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
     }
 }
 

@@ -43,7 +43,9 @@ extension DecisionTreePresenter: DecisionTreePresenterInterface {
                                      animated: animated)
     }
 
-    func trackUserEvent(_ answer: QDMAnswer?, _ name: QDMUserEventTracking.Name, _ valueType: QDMUserEventTracking.ValueType?) {
+    func trackUserEvent(_ answer: QDMAnswer?,
+                        _ name: QDMUserEventTracking.Name,
+                        _ valueType: QDMUserEventTracking.ValueType?) {
         viewController?.trackUserEvent(answer, name, valueType)
     }
     func dismiss() {
@@ -52,6 +54,10 @@ extension DecisionTreePresenter: DecisionTreePresenterInterface {
 
     func presentAddEventController(_ eventStore: EKEventStore) {
         viewController?.presentAddEventController(eventStore)
+    }
+
+    func presentInfoView(icon: UIImage?, title: String?, text: String?) {
+        viewController?.presentInfoView(icon: icon, title: title, text: text)
     }
 
     func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor) {

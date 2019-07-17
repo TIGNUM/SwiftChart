@@ -44,6 +44,7 @@
 		360E99522167A93D0084CEFB /* PrepareNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E99512167A93D0084CEFB /* PrepareNotesViewController.swift */; };
 		360E99552167BAFE0084CEFB /* PrepareNotesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360E99532167BAFE0084CEFB /* PrepareNotesTableViewCell.swift */; };
 		360E99562167BAFE0084CEFB /* PrepareNotesTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360E99542167BAFE0084CEFB /* PrepareNotesTableViewCell.xib */; };
+		3611BBC822DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */; };
 		3616EF9222D7408900E43961 /* DecisionTreeWorker+Selection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */; };
 		3616EF9422D747C200E43961 /* DecisionTreeWorker+TBV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */; };
 		362614AA20CFB4E500AB3659 /* UserCountry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 362614A920CFB4E500AB3659 /* UserCountry.swift */; };
@@ -1508,6 +1509,7 @@
 		360E99512167A93D0084CEFB /* PrepareNotesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareNotesViewController.swift; sourceTree = "<group>"; };
 		360E99532167BAFE0084CEFB /* PrepareNotesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareNotesTableViewCell.swift; sourceTree = "<group>"; };
 		360E99542167BAFE0084CEFB /* PrepareNotesTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrepareNotesTableViewCell.xib; sourceTree = "<group>"; };
+		3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Sprint.swift"; sourceTree = "<group>"; };
 		3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Selection.swift"; sourceTree = "<group>"; };
 		3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+TBV.swift"; sourceTree = "<group>"; };
 		362614A920CFB4E500AB3659 /* UserCountry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserCountry.swift; sourceTree = "<group>"; };
@@ -2748,11 +2750,11 @@
 		E871E8552136F17F005E787C /* PDFReaderInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderInterface.swift; sourceTree = "<group>"; };
 		E8F43E5320B717CA00C9FF4F /* CalendarEventIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEventIntermediary.swift; sourceTree = "<group>"; };
 		E8F43E5520BC5A9600C9FF4F /* CalendarSyncSettingEventTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarSyncSettingEventTests.swift; sourceTree = "<group>"; };
+		EA9E48D78F8F07AC1BEBAB13 /* Pods-QOTTests.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.hockey.xcconfig"; sourceTree = "<group>"; };
+		EFAB196FD09CA55C0AA10ED0 /* Pods-QOT.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.hockey.xcconfig"; sourceTree = "<group>"; };
 		F902CF4722D87C2700FFC836 /* FeastCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeastCell.swift; sourceTree = "<group>"; };
 		F902CF4922D87C3600FFC836 /* FeastCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeastCellViewModel.swift; sourceTree = "<group>"; };
 		F902CF4B22D87C4700FFC836 /* FeastCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FeastCell.xib; sourceTree = "<group>"; };
-		EA9E48D78F8F07AC1BEBAB13 /* Pods-QOTTests.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.hockey.xcconfig"; sourceTree = "<group>"; };
-		EFAB196FD09CA55C0AA10ED0 /* Pods-QOT.hockey.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOT.hockey.xcconfig"; path = "Pods/Target Support Files/Pods-QOT/Pods-QOT.hockey.xcconfig"; sourceTree = "<group>"; };
 		F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsConfigurator.swift; sourceTree = "<group>"; };
 		F909961922B23F9500EAEAC6 /* MyPrepsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsInteractor.swift; sourceTree = "<group>"; };
 		F909961B22B23FA900EAEAC6 /* MyPrepsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsInterface.swift; sourceTree = "<group>"; };
@@ -4897,6 +4899,7 @@
 				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
 				3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */,
 				3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */,
+				3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -7602,6 +7605,7 @@
 				8D60A20C22CF7CBF0034F33F /* NoteTableViewCell.swift in Sources */,
 				36796A5F20D3C4B800B55429 /* SigningInfoViewController.swift in Sources */,
 				F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */,
+				3611BBC822DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift in Sources */,
 				ACF0B9702260B905008CFAEC /* QuestionTableViewCell.swift in Sources */,
 				CBC9330F1F0AA47800C00007 /* PrepareEventsViewController.swift in Sources */,
 				CC4F22F01EE023F4006C437E /* NSMutableAttributedString+Create.swift in Sources */,

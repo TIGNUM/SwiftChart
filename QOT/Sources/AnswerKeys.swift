@@ -69,4 +69,9 @@ enum AnswerKey {
             return fatigueType
         }
     }
+
+    enum Sprint: String {
+        case startTomorrow = "sprint-answer-key-start-tomorrow"
+        case addToQueue = "sprint-answer-key-add-to-queue"
+    }
 }

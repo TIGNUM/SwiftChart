@@ -22,6 +22,7 @@ protocol DecisionTreeViewControllerInterface: class {
                         _ valueType: QDMUserEventTracking.ValueType?)
     func dismiss()
     func presentAddEventController(_ eventStore: EKEventStore)
+    func presentInfoView(icon: UIImage?, title: String?, text: String?)
     func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor)
     func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
     func toBeVisionDidChange()
@@ -40,6 +41,7 @@ protocol DecisionTreePresenterInterface {
                         _ valueType: QDMUserEventTracking.ValueType?)
     func dismiss()
     func presentAddEventController(_ eventStore: EKEventStore)
+    func presentInfoView(icon: UIImage?, title: String?, text: String?)
     func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor)
     func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
     func toBeVisionDidChange()
@@ -84,11 +86,13 @@ protocol DecisionTreeInteractorInterface: Interactor {
                       animated: Bool)
     func previousQuestion() -> QDMQuestion?
     func didTapContinue()
+    func didTapStartSprint()
     func trackUserEvent(_ answer: QDMAnswer?,
                         _ name: QDMUserEventTracking.Name,
                         _ valueType: QDMUserEventTracking.ValueType?)
     func setUserCalendarEvent(event: QDMUserCalendarEvent)
     func presentAddEventController(_ eventStore: EKEventStore)
+    func presentInfoView(icon: UIImage?, title: String?, text: String?)
     func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor)
     func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
     func bottomNavigationRightBarItems(action: Selector) -> [UIBarButtonItem]?

@@ -13,12 +13,10 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
     // MARK: - Properties
 
     var interactor: MyLibraryNotesInteractorInterface?
-
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var textViewBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var infoView: InfoHelperView!
     private var saveButton: RoundedButton?
-
     private var bottomNavigationItems = UINavigationItem()
 
     lazy var deleteButton: UIBarButtonItem = {
@@ -49,11 +47,9 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         infoView.setBottomContentInset(BottomNavigationContainer.height)
-
         textView.tintColor = .sand
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
-
         showDefaultBottomButtons()
     }
 
@@ -100,9 +96,7 @@ private extension MyLibraryNotesViewController {
         let save = RoundedButton(title: interactor?.saveTitle ?? "Save", target: self, action: #selector(didTapSaveButton))
         saveButton = save
         let saveBarButton = UIBarButtonItem(customView: save)
-
         toolbar.items = [dismissButton, space, saveBarButton]
-
         return toolbar
     }
 
@@ -111,7 +105,6 @@ private extension MyLibraryNotesViewController {
             infoView.isHidden = true
             return
         }
-
         infoView.isHidden = false
         infoView.set(icon: model.icon, title: model.title, attributedText: model.message)
     }

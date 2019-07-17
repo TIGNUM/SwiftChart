@@ -42,7 +42,22 @@ extension DecisionTreeWorker {
         default:
             break
         }
-        if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionCritical.rawValue {
+        if let targetQuestionId = answer.targetId(.question) {
+            if currentQuestion?.key == QuestionKey.Prepare.buildCritical.rawValue
+                || currentQuestion?.key == QuestionKey.MindsetShifter.showTBV.rawValue {
+                if userHasToBeVision == false {
+                    interactor?.openShortTBVGenerator { [weak self] in
+                        self?.showNextQuestion(targetId: Prepare.Key.perceived.questionID)
+                    }
+                } else {
+                    showNextQuestion(targetId: targetQuestionId)
+                }
+            } else if currentQuestion?.key == QuestionKey.Sprint.schedule.rawValue {
+                handleSprintScheduling(answer)
+            } else {
+                showNextQuestion(targetId: targetQuestionId)
+            }
+        } else if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionCritical.rawValue {
             interactor?.setTargetContentID(for: answer)
         } else if currentQuestion?.key == QuestionKey.Recovery.syntom.rawValue {
             updateRecoveryModel(fatigueAnswerId: currentQuestion?.answers.first?.remoteID ?? 0,
@@ -56,20 +71,6 @@ extension DecisionTreeWorker {
         }
         if answer.keys.contains(AnswerKey.ToBeVision.uploadImage.rawValue) {
             interactor?.openImagePicker()
-        }
-        if let targetQuestionId = answer.targetId(.question) {
-            if currentQuestion?.key == QuestionKey.Prepare.buildCritical.rawValue
-                || currentQuestion?.key == QuestionKey.MindsetShifter.showTBV.rawValue {
-                if userHasToBeVision == false {
-                    interactor?.openShortTBVGenerator { [weak self] in
-                        self?.showNextQuestion(targetId: Prepare.Key.perceived.questionID)
-                    }
-                } else {
-                    showNextQuestion(targetId: targetQuestionId)
-                }
-            } else {
-                showNextQuestion(targetId: targetQuestionId)
-            }
         }
     }
 

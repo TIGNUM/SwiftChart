@@ -63,6 +63,8 @@ extension CGFloat {
     static let doneButtonWidth: CGFloat = 72
     static let saveAndContinueButtonWidth: CGFloat = 152
     static let decisionTreeButtonWidth: CGFloat = 168
+    static let cancelButtonWidth: CGFloat = 85
+    static let continueButtonWidth: CGFloat = 100
 }
 
 struct Layout {

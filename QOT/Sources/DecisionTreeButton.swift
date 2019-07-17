@@ -11,13 +11,11 @@ import UIKit
 final class DecisionTreeButton: UIButton {
 
     // MARK: - Properties
-
     private var selectedBackgroundColor: UIColor? = .clear
     private var defaultBackgroundColor: UIColor? = .red
     private var maxPossibleSelections: Int = 0
 
     // MARK: - Lifecycle
-
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
@@ -25,7 +23,6 @@ final class DecisionTreeButton: UIButton {
 }
 
 // MARK: - Configure
-
 extension DecisionTreeButton {
 
     func configure(with title: String,
@@ -58,6 +55,7 @@ extension DecisionTreeButton {
         setAttributedTitle(NSAttributedString(string: title,
                                               letterSpacing: 0.2,
                                               font: .sfProtextSemibold(ofSize: 14),
+                                              lineSpacing: 8,
                                               textColor: titleColor),
                            for: .normal)
         if value == 4 {
@@ -77,11 +75,10 @@ extension DecisionTreeButton {
 }
 
 // MARK: - Setup
-
 private extension DecisionTreeButton {
-
     func setupView() {
         layer.borderWidth = 1.4
-        titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 16)
+        titleLabel?.numberOfLines = 0
+        titleEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
     }
 }

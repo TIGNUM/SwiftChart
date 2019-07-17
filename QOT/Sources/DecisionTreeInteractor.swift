@@ -193,6 +193,10 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         worker.didTapContinue()
     }
 
+    func didTapStartSprint() {
+        worker.stopActiveSprintAndStartNewSprint()
+    }
+
     func trackUserEvent(_ answer: QDMAnswer?, _ name: QDMUserEventTracking.Name, _ valueType: QDMUserEventTracking.ValueType?) {
         presenter.trackUserEvent(answer, name, valueType)
     }
@@ -202,6 +206,10 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
 
     func presentAddEventController(_ eventStore: EKEventStore) {
         presenter.presentAddEventController(eventStore)
+    }
+
+    func presentInfoView(icon: UIImage?, title: String?, text: String?) {
+        presenter.presentInfoView(icon: icon, title: title, text: text)
     }
 
     func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor) {
