@@ -536,6 +536,9 @@
 		75496E9922BA702C00150C78 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496E9722BA702C00150C78 /* PopUpViewController.swift */; };
 		75496E9A22BA702C00150C78 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75496E9822BA702C00150C78 /* PopUpViewController.xib */; };
 		75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */; };
+		75B9DCB722CB605C00692A60 /* LeaderWisdomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9DCB522CB605C00692A60 /* LeaderWisdomTableViewCell.swift */; };
+		75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */; };
+		75B9DCBA22CB666B00692A60 /* LeaderWisdomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */; };
 		754EBEE622C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEE422C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift */; };
 		754EBEE722C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEE522C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib */; };
 		754EBEE922C6470A0010A663 /* MYTBVDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEE822C6470A0010A663 /* MYTBVDataViewModel.swift */; };
@@ -2046,6 +2049,9 @@
 		75496E9722BA702C00150C78 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		75496E9822BA702C00150C78 /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionNullStateView.swift; sourceTree = "<group>"; };
+		75B9DCB522CB605C00692A60 /* LeaderWisdomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderWisdomTableViewCell.swift; sourceTree = "<group>"; };
+		75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderWisdomTableViewCell.xib; sourceTree = "<group>"; };
+		75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderWisdomCellViewModel.swift; sourceTree = "<group>"; };
 		754EBEE422C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphSubHeadingTableViewCell.swift; sourceTree = "<group>"; };
 		754EBEE522C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphSubHeadingTableViewCell.xib; sourceTree = "<group>"; };
 		754EBEE822C6470A0010A663 /* MYTBVDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYTBVDataViewModel.swift; sourceTree = "<group>"; };
@@ -3077,6 +3083,7 @@
 		363765F1223A4BA400C2C429 /* daily brief */ = {
 			isa = PBXGroup;
 			children = (
+				75B9DCB422CB5FEC00692A60 /* LeaderWisdom */,
 				75423F0D22CF4876008EE726 /* FromMyCoach */,
 				F902CF4622D87BF300FFC836 /* Feast For Eyes */,
 				F9D6380E22D62B690092C482 /* Departure Info */,
@@ -4359,6 +4366,16 @@
 				75496E9822BA702C00150C78 /* PopUpViewController.xib */,
 			);
 			name = PopUpView;
+			sourceTree = "<group>";
+		};
+		75B9DCB422CB5FEC00692A60 /* LeaderWisdom */ = {
+			isa = PBXGroup;
+			children = (
+				75B9DCB522CB605C00692A60 /* LeaderWisdomTableViewCell.swift */,
+				75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */,
+				75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */,
+			);
+			name = LeaderWisdom;
 			sourceTree = "<group>";
 		};
 		7582615022D5FB4C000094DE /* Other */ = {
@@ -7355,6 +7372,7 @@
 				3691176D20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.xib in Resources */,
 				75EFB63322C51C6F00E8C64F /* TBVDataGraphTableViewCell.xib in Resources */,
 				36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */,
+				75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */,
 				F9A5C93922B2844200AB2E94 /* MyPrepsTableViewCell.xib in Resources */,
 				75496E9A22BA702C00150C78 /* PopUpViewController.xib in Resources */,
 				36796A3420D3C47400B55429 /* SigningProfileDetailViewController.xib in Resources */,
@@ -8369,6 +8387,7 @@
 				CBD4BEA62018D30B008A0E9E /* GuideObserver.swift in Sources */,
 				CB3333ED20480E3E009480DF /* ShareWorker.swift in Sources */,
 				F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */,
+				75B9DCBA22CB666B00692A60 /* LeaderWisdomCellViewModel.swift in Sources */,
 				CCE372FD1E8D2AD100B79352 /* MyPrepViewController.swift in Sources */,
 				CB3437531EFAC8F500D89D4F /* UpSyncResultParser.swift in Sources */,
 				B856B47C22B0E29D0017A249 /* MyLibraryUserStorageViewController.swift in Sources */,
@@ -8628,6 +8647,7 @@
 				ACCCBC9421E38B19008D744D /* UIImageView+Extensions.swift in Sources */,
 				36AEA4DD2271AC6E00EC9C55 /* AudioPlayerBar.swift in Sources */,
 				85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */,
+				75B9DCB722CB605C00692A60 /* LeaderWisdomTableViewCell.swift in Sources */,
 				36796A0A20D3C41F00B55429 /* SigningCreatePasswordInterface.swift in Sources */,
 				36E4B7AB219EBFED00049EE8 /* TutorialPresenter.swift in Sources */,
 				5F7BE786228958AE00BA5DCF /* MyQotSupportConfigurator.swift in Sources */,
