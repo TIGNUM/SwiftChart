@@ -68,9 +68,7 @@ final class PopUpViewController: UIViewController, ScreenZLevel {
     }
 
     private func cancel() {
-        dismiss(animated: true, completion: {
-            self.delegate?.cancelAction()
-        })
+        self.delegate?.cancelAction()
     }
 
     private func addGestures() {
@@ -102,15 +100,11 @@ final class PopUpViewController: UIViewController, ScreenZLevel {
     }
 
     @IBAction func leftButtonAction(_ sender: Any) {
-        dismiss(animated: false, completion: {
-            self.delegate?.leftButtonAction()
-        })
+        delegate?.leftButtonAction()
     }
 
     @IBAction func rightButtonAction(_ sender: Any) {
-        dismiss(animated: false, completion: {
-            self.delegate?.rightButtonAction()
-        })
+        delegate?.rightButtonAction()
     }
 }
 

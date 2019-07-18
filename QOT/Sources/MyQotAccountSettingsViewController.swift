@@ -31,7 +31,6 @@ final class MyQotAccountSettingsViewController: UIViewController {
     @IBOutlet private weak var userHeightLabel: UILabel!
     @IBOutlet private weak var userWeightLabel: UILabel!
     @IBOutlet private weak var editButton: UIButton!
-    @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
 
     var interactor: MyQotAccountSettingsInteractor?
 
@@ -78,7 +77,6 @@ final class MyQotAccountSettingsViewController: UIViewController {
 
 extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewControllerInterface {
     func setupView() {
-        bottomNavigationView.delegate = self
         editButton.corner(radius: editButton.frame.width/2, borderColor: UIColor.accent30)
         setContentForView()
     }
@@ -151,12 +149,5 @@ private extension MyQotAccountSettingsViewController {
             self?.userNameLabel.text = profile?.name
             self?.userTitleLabel.text = profile?.position
         })
-    }
-}
-
-extension MyQotAccountSettingsViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
     }
 }

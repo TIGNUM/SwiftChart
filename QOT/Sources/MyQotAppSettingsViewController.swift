@@ -14,7 +14,6 @@ final class MyQotAppSettingsViewController: UIViewController {
 
     @IBOutlet private weak var appSettingsHeaderLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
 
     private var settingsModel: MyQotAppSettingsModel!
     private var selectedSettings: MyQotAppSettingsModel.Setting?
@@ -56,7 +55,6 @@ final class MyQotAppSettingsViewController: UIViewController {
 extension MyQotAppSettingsViewController: MyQotAppSettingsViewControllerInterface {
     func setup(_ settings: MyQotAppSettingsModel) {
         view.backgroundColor = .carbon
-        bottomNavigationView.delegate = self
         settingsModel = settings
         interactor?.appSettingsText({[weak self] (text) in
             self?.appSettingsHeaderLabel.text = text
@@ -128,12 +126,5 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
         trackUserEvent(.OPEN, valueType: key, action: .TAP)
         selectedSettings = settingsTapped
         interactor?.handleTap(setting: settingsTapped)
-    }
-}
-
-extension MyQotAppSettingsViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
     }
 }

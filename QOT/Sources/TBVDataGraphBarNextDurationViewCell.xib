@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="gTV-IL-0wX" customClass="TBVDataGraphBarNextDurationViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="495" height="222"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="495" height="222"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="swd-rw-6fu">
+                        <rect key="frame" x="0.0" y="0.0" width="495" height="222"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="253" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1v6-lh-TeD">
+                                <rect key="frame" x="30" y="0.0" width="2" height="55.5"/>
+                                <string key="text">I I
+I
+I
+I I I
+I
+I
+I I I
+I
+I
+I I I
+I
+I
+I</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="5"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QWd-4Q-55B">
+                                <rect key="frame" x="30" y="140" width="2" height="55"/>
+                                <string key="text">I I
+I
+I
+I I I
+I
+I
+I I I
+I
+I
+I I I
+I
+I
+I</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="5"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="249" horizontalCompressionResistancePriority="752" verticalCompressionResistancePriority="752" text="in 4 weeks" textAlignment="natural" lineBreakMode="wordWrap" numberOfLines="20" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jNo-P4-jfg">
+                                <rect key="frame" x="0.0" y="90.5" width="61.5" height="14.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QWd-4Q-55B" firstAttribute="centerX" secondItem="jNo-P4-jfg" secondAttribute="centerX" id="255-D3-MbL"/>
+                            <constraint firstItem="QWd-4Q-55B" firstAttribute="top" secondItem="jNo-P4-jfg" secondAttribute="bottom" constant="35" id="GHe-fc-Nzt"/>
+                            <constraint firstItem="jNo-P4-jfg" firstAttribute="top" secondItem="1v6-lh-TeD" secondAttribute="bottom" constant="35" id="Ia3-VF-GHk"/>
+                            <constraint firstItem="1v6-lh-TeD" firstAttribute="centerX" secondItem="jNo-P4-jfg" secondAttribute="centerX" id="IqC-Ro-SkQ"/>
+                            <constraint firstItem="1v6-lh-TeD" firstAttribute="top" secondItem="swd-rw-6fu" secondAttribute="top" id="QSa-3e-HKu"/>
+                            <constraint firstItem="jNo-P4-jfg" firstAttribute="leading" secondItem="swd-rw-6fu" secondAttribute="leading" id="m6e-6q-1WK"/>
+                            <constraint firstAttribute="bottom" secondItem="QWd-4Q-55B" secondAttribute="bottom" constant="27" id="nzq-kn-A5Y"/>
+                            <constraint firstItem="QWd-4Q-55B" firstAttribute="height" secondItem="1v6-lh-TeD" secondAttribute="height" id="uem-8q-oID"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="swd-rw-6fu" secondAttribute="bottom" id="AHh-u2-LAf"/>
+                <constraint firstItem="swd-rw-6fu" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="EpI-vN-HkZ"/>
+                <constraint firstAttribute="trailing" secondItem="swd-rw-6fu" secondAttribute="trailing" id="QNv-HP-XXs"/>
+                <constraint firstItem="swd-rw-6fu" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="RVD-bS-ypg"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
+            <size key="customSize" width="495" height="222"/>
+            <connections>
+                <outlet property="durationlabel" destination="jNo-P4-jfg" id="Pcr-me-0b8"/>
+            </connections>
+            <point key="canvasLocation" x="460.14492753623193" y="210.9375"/>
+        </collectionViewCell>
+    </objects>
+</document>

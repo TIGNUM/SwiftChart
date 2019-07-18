@@ -518,6 +518,20 @@ extension UIView {
     }
 }
 
+// MARK: - UILabel
+
+extension UILabel {
+    func maxLines(for font: UIFont) -> Int {
+        guard let text = self.text, text.count > 0 else {
+            return 0
+        }
+        let maxSize = CGSize(width: frame.size.width, height: CGFloat(MAXFLOAT))
+        let textHeight = text.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, attributes: [.font: font], context: nil).height
+        let lineHeight = font.lineHeight
+        return Int(ceil(textHeight / lineHeight))
+    }
+}
+
 // MARK: - UIImage
 
 extension UIImage {

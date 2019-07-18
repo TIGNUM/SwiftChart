@@ -65,6 +65,13 @@ private let whatsHotFormatter: DateFormatter = {
     return formatter
 }()
 
+private let tbvTrackerFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "mm.yy" // 05.19
+    formatter.timeZone = TimeZone.current
+    return formatter
+}()
+
 private let displayTimeFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.locale = Locale.current
@@ -133,6 +140,10 @@ extension DateFormatter {
 
     static var whatsHot: DateFormatter {
         return whatsHotFormatter
+    }
+
+    static var tbvTracker: DateFormatter {
+        return tbvTrackerFormatter
     }
 
     static var whatsHotBucket: DateFormatter {

@@ -101,8 +101,7 @@ final class MorningInterviewViewController: UIViewController {
     }
 
     func questionnaireViewController(with question: MorningQuestion?) -> UIViewController? {
-        guard let questionnaire = question else { return nil }
-        return QuestionnaireViewController.viewController(with: questionnaire, delegate: self)
+        return nil
     }
 
     @IBAction func close() {
@@ -188,34 +187,11 @@ extension MorningInterviewViewController {
 
 // MARK: QuestionnaireAnswer
 extension MorningInterviewViewController: QuestionnaireAnswer {
-    func isPresented(for questionIdentifier: Int?, from viewController: UIViewController) {
-        pageIndicator.currentPage = indexOf(viewController)
-        checkAnswers()
-    }
+    func isPresented(for questionIdentifier: Int?, from viewController: UIViewController) {}
 
-    func isSelecting(answer: Any?, for questionIdentifier: Int?, from viewController: UIViewController) {
-        touchAssistantImage.isHidden = true
-        nextPageTimer?.invalidate()
-        nextPageTimer = nil
-    }
+    func isSelecting(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {}
 
-    func didSelect(answer: Any?, for questionIdentifier: Int?, from viewController: UIViewController) {
-        guard let questionIndex = questionIdentifier else { return }
-        guard let answerString = answer as? String else { return }
-        questions[questionIndex].answerIndex = questions[questionIndex].answers.lastIndex(of: answerString)
-        morningInterviews[questionIndex].selectedAnswerIndex = questions[questionIndex].selectedAnswerIndex()
-        if questions[questionIndex].answerIndex != nil,
-            let nextViewController = next(from: viewController) {
-            nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_04, repeats: false) { timer in
-                self.pageController?.setViewControllers([nextViewController],
-                                                        direction: .forward,
-                                                        animated: true,
-                                                        completion: nil)
-            }
-        } else if questionIndex == questions.count - 1 {
-            checkAnswers()
-        }
-    }
+    func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {}
 }
 
 // MARK: UIPageViewControllerDelegate, UIPageViewControllerDataSource

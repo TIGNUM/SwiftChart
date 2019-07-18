@@ -15,7 +15,7 @@ protocol MyVisionEditDetailsKeyboardInputViewProtocol: class {
 
 final class MyVisionEditDetailsKeyboardInputView: UIView {
 
-    @IBOutlet private weak var saveButton: UIButton!
+    @IBOutlet weak var saveButton: UIButton!
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var fadeView: UIView!
 

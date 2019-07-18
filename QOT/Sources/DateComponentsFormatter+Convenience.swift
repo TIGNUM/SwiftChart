@@ -33,4 +33,11 @@ extension DateComponentsFormatter {
         }
         return timeString
     }
+
+    class func numberOfDays(_ date: Date) -> Int {
+        let georgianCalendar = Calendar.init(identifier: .gregorian)
+        let components = georgianCalendar.dateComponents([.day], from: date, to: Date())
+        guard let days = components.day else { return 0 }
+        return days
+    }
 }

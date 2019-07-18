@@ -21,7 +21,6 @@ final class MyQotSensorsViewController: UIViewController {
     @IBOutlet private weak var sensorDescriptionHeaderabel: UILabel!
     @IBOutlet private weak var requestActivityTrackerLabel: UILabel!
     @IBOutlet private weak var sensorHeaderLabel: UILabel!
-    @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
 
     var interactor: MyQotSensorsInteractorInterface?
 
@@ -50,7 +49,6 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
 
     func setupView() {
         view.backgroundColor = .carbon
-        bottomNavigationView.delegate = self
         healthKitStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: UIColor.accent30)
         ouraRingStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: UIColor.accent30)
     }
@@ -75,12 +73,5 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
     func setSensor(title: String, description: String) {
         sensorDescriptionHeaderabel.text = title
         sensorDescriptionLabel.setAttrText(text: description, font: .sfProtextRegular(ofSize: FontSize.fontSize14))
-    }
-}
-
-extension MyQotSensorsViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
     }
 }

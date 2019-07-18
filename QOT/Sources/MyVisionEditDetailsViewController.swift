@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 protocol MyVisionEditDetailsViewControllerProtocol: class {
     func didSave(_ saved: Bool)
@@ -21,6 +22,9 @@ final class MyVisionEditDetailsViewController: UIViewController {
     @IBOutlet private weak var descriptionTextView: UITextView!
     @IBOutlet private weak var keyboardInputView: MyVisionEditDetailsKeyboardInputView!
 
+    var didChangeVision: Bool = false
+    var didChangeTitle: Bool = false
+
     var interactor: MyVisionEditDetailsInteractorInterface?
     weak var delegate: MyVisionEditDetailsViewControllerProtocol?
 
@@ -32,6 +36,11 @@ final class MyVisionEditDetailsViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         removeObservers()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
     }
 
     private func dismissController() {
@@ -71,6 +80,9 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsControllerInterf
     func setupView(title: String, vision: String) {
         view.backgroundColor = .carbon
         titleTextView.returnKeyType = .next
+        didChangeTitle = !title.isEmpty
+        didChangeVision = !vision.isEmpty
+        enableSaveButton()
         titleTextField.attributedText = title.isEmpty ? interactor?.formatPlaceholder(title: "TITLE") : interactor?.formatPlaceholder(title: "")
         titleTextView.attributedText = interactor?.format(title: title)
         visionTextField.attributedText = vision.isEmpty ? interactor?.formatPlaceholder(vision: "Write your to be vision...") : interactor?.formatPlaceholder(vision: "")
@@ -102,39 +114,58 @@ extension MyVisionEditDetailsViewController: UITextViewDelegate {
             guard let stringRange = Range(range, in: currentText) else { return false }
             let changedText = currentText.replacingCharacters(in: stringRange, with: text)
             if textView == titleTextView {
+                didChangeTitle = !changedText.isEmpty
+                enableSaveButton()
                 titleTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(title: "TITLE") : interactor?.formatPlaceholder(title: "")
             } else {
+                didChangeVision = !changedText.isEmpty
+                enableSaveButton()
                 visionTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(vision: "Write your to be vision...") : interactor?.formatPlaceholder(vision: "")
             }
         }
         return true
+    }
+
+    private func enableSaveButton() {
+        keyboardInputView.saveButton.isEnabled = didChangeVision && didChangeTitle
     }
 }
 
 extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputViewProtocol {
 
     func didCancel() {
-        var hasSaved = false
-        if interactor?.firstTimeUser ?? false {
-            didSave()
-            hasSaved = true
-        }
-        delegate?.didSave(hasSaved)
+        trackUserEvent(.CANCEL, valueType: "EditMyToBeVision", action: .TAP)
         dismissController()
     }
 
     func didSave() {
-        guard var toBeVision = interactor?.myVision else { return }
-        if toBeVision.text != descriptionTextView.text {
-            toBeVision.text = descriptionTextView.text
+        trackUserEvent(.CONFIRM, valueType: "EditMyToBeVision", action: .TAP)
+        guard let toBeVision = interactor?.myVision else {
+            qot_dal.UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, error) in
+                guard let newVision = vision, let finalVision = self?.getVision(for: newVision) else { return }
+                self?.interactor?.updateMyToBeVision(finalVision, {[weak self] (error) in
+                    self?.delegate?.didSave(true)
+                    self?.dismissController()
+                })
+            }
+            return
         }
-        if toBeVision.headline != titleTextView.text {
-            toBeVision.headline = titleTextView.text
-        }
-        toBeVision.modifiedAt = Date()
-        interactor?.updateMyToBeVision(toBeVision, {[weak self] (error) in
+        let myVision = getVision(for: toBeVision)
+        interactor?.updateMyToBeVision(myVision, {[weak self] (error) in
             self?.delegate?.didSave(true)
             self?.dismissController()
         })
+    }
+
+    private func getVision(for toBeVision: QDMToBeVision) -> QDMToBeVision {
+        var myVision = toBeVision
+        if myVision.text != descriptionTextView.text {
+            myVision.text = descriptionTextView.text
+        }
+        if myVision.headline != titleTextView.text {
+            myVision.headline = titleTextView.text
+        }
+        myVision.modifiedAt = Date()
+        return myVision
     }
 }

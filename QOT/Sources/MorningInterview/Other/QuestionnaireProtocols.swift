@@ -22,6 +22,13 @@ protocol Questionnaire {
 
 protocol QuestionnaireAnswer: class {
     func isPresented(for questionIdentifier: Int?, from viewController: UIViewController)
-    func isSelecting(answer: Any?, for questionIdentifier: Int?, from viewController: UIViewController)
-    func didSelect(answer: Any?, for questionIdentifier: Int?, from viewController: UIViewController)
+    func isSelecting(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController)
+    func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController)
+}
+
+protocol NewQuestionnaire {
+    func questionIdentifier() -> Int
+    func question() -> String
+    func items() -> Int
+    func selectedAnswerIndex() -> Int
 }

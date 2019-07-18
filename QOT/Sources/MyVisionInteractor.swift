@@ -27,9 +27,10 @@ final class MyVisionInteractor {
     func viewDidLoad() {
         presenter.setupView()
         presenter.showScreenLoader()
-        worker.myToBeVision {[weak self] (myVision, status, error) in
+        worker.getData {[weak self] in
             self?.presenter.hideScreenLoader()
-            self?.presenter.load(myVision)
+            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
+            self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)
             self?.worker.updateWidget()
         }
     }
@@ -60,6 +61,10 @@ final class MyVisionInteractor {
 }
 
 extension MyVisionInteractor: MyVisionInteractorInterface {
+
+    func closeUpdateConfirmationScreen(completion: (() -> Void)?) {
+        router.closeUpdateConfirmationScreen(completion: completion)
+    }
 
     func showUpdateConfirmationScreen() {
         router.showUpdateConfirmationScreen()
@@ -109,8 +114,13 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         }
         vision.modifiedAt = Date()
         worker.updateMyToBeVision(vision) {[weak self] in
-            self?.presenter.load(vision)
+            let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
+            self?.presenter.load(vision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)
         }
+    }
+
+    func shouldShowWarningIcon() -> Bool {
+        return worker.shouldShowWarningIcon()
     }
 
     func shareMyToBeVision() {
@@ -131,8 +141,21 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         }
     }
 
+    func showTBVData() {
+        let shouldShowNullState = worker.myVisionReport?.days.count == 0
+        router.showTBVData(shouldShowNullState: shouldShowNullState, visionId: worker.myVision?.remoteID)
+    }
+
+    func showTracker() {
+        router.showTracker()
+    }
+
+    func showRateScreen(with id: Int) {
+        router.showRateScreen(with: id)
+    }
+
     func showEditVision() {
-        router.showEditVision()
+        router.showEditVision(title: myVision?.headline ?? "", vision: myVision?.text ?? "")
     }
 
     func openToBeVisionGenerator() {

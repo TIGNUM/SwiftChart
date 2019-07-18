@@ -10,7 +10,6 @@ import UIKit
 
 protocol MyVisionNullStateViewProtocol: class {
     func editMyVisionAction()
-    func autogenerateMyVisionAction()
 }
 
 final class MyVisionNullStateView: UIView {
@@ -18,8 +17,6 @@ final class MyVisionNullStateView: UIView {
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
-    @IBOutlet private weak var backButton: UIButton!
-    @IBOutlet private weak var autogenerateButton: UIButton!
     @IBOutlet private weak var writeButton: UIButton!
 
     weak var delegate: MyVisionNullStateViewProtocol?
@@ -28,13 +25,10 @@ final class MyVisionNullStateView: UIView {
         self.delegate = delegate
         backgroundColor = .carbon
         toBeVisionLabel.text = R.string.localized.myQOTToBeVisionTitle()
-        backButton.corner(radius: backButton.frame.size.width/2, borderColor: .accent40)
-        autogenerateButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         writeButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         headerLabel.attributedText = formatted(headline: header)
         detailLabel.attributedText = formatted(vision: message)
     }
-
 }
 
 private extension MyVisionNullStateView {
@@ -57,9 +51,5 @@ private extension MyVisionNullStateView {
 
     @IBAction func editMyVisionAction(_ sender: Any) {
         delegate?.editMyVisionAction()
-    }
-
-    @IBAction func autogenerateMyVisionAction(_ sender: Any) {
-        delegate?.autogenerateMyVisionAction()
     }
 }

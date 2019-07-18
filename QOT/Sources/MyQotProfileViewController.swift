@@ -15,7 +15,6 @@ final class MyQotProfileViewController: AbstractLevelTwoViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var headerView: UIView!
-    @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
     @IBOutlet private weak var loaderView: UIView!
 
     private var profile: UserProfileModel?
@@ -69,17 +68,16 @@ private extension MyQotProfileViewController {
 extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
 
     func showLoaderView() {
-//        loaderView.isHidden = false
+        loaderView.isHidden = false
     }
 
     func hideLoaderView() {
-//        loaderView.isHidden = true
+        loaderView.isHidden = true
     }
 
     func setupView(profile: UserProfileModel, menuItems: [MyQotProfileModel.TableViewPresentationData]) {
         self.profile = profile
         self.menuItems = menuItems
-        bottomNavigationView.delegate = self
         headerLabel.text = interactor?.myProfileText()
         setupTableView()
     }
@@ -95,6 +93,7 @@ extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(menuItems[indexPath.row])
+        cell.selectionStyle = .none
         return cell
     }
 
@@ -113,11 +112,5 @@ extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource
         let headerView: MyQotProfileHeaderView = tableView.dequeueHeaderFooter()
         headerView.configure(data: MyQotProfileModel.HeaderViewModel(user: profile, memberSinceTitle: interactor?.memberSinceText()))
         return headerView
-    }
-}
-
-extension MyQotProfileViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        trackUserEvent(.CLOSE, action: .TAP)
     }
 }

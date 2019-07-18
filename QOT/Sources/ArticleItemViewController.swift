@@ -22,7 +22,6 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
 
     // MARK: - Properties
 
-    @IBOutlet private weak var bottomNavigationBar: BottomNavigationBarView!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var button: UIButton!
 
@@ -66,8 +65,6 @@ final class ArticleItemViewController: UIViewController, PageViewControllerNotSw
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        bottomNavigationBar.delegate = self
-        bottomNavigationBar.navigationType = .modal
         tableView.registerDequeueable(TitleTableViewCell.self)
         tableView.registerDequeueable(ContentItemTextTableViewCell.self)
         tableView.registerDequeueable(ArticleRelatedCell.self)
@@ -422,12 +419,6 @@ extension ArticleItemViewController: UIScrollViewDelegate {
         if scrollView.contentOffset.y < -(view.frame.height * 0.25) {
             dismiss(animated: true, completion: nil)
         }
-    }
-}
-
-extension ArticleItemViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        dismiss(animated: true, completion: nil)
     }
 }
 

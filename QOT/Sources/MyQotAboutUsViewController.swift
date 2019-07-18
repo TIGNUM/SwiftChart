@@ -14,7 +14,6 @@ final class MyQotAboutUsViewController: UIViewController {
 
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
 
     var interactor: MyQotAboutUsInteractorInterface?
 
@@ -44,7 +43,6 @@ final class MyQotAboutUsViewController: UIViewController {
 extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
     func setupView(with title: String) {
         view.backgroundColor = .carbon
-        bottomNavigationView.delegate = self
         headerLabel.text = title
     }
 }
@@ -74,12 +72,5 @@ extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource
         let key = interactor?.trackingKeys(at: indexPath)
         trackUserEvent(.OPEN, valueType: key, action: .TAP)
         interactor?.handleSelection(for: indexPath)
-    }
-}
-
-extension MyQotAboutUsViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
     }
 }

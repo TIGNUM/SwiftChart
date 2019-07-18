@@ -15,7 +15,6 @@ final class MyQotSupportViewController: UIViewController {
 
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
     var interactor: MyQotSupportInteractorInterface?
 
     // MARK: - Life Cycle
@@ -46,7 +45,6 @@ final class MyQotSupportViewController: UIViewController {
 extension MyQotSupportViewController: MyQotSupportViewControllerInterface {
     func setupView() {
         view.backgroundColor = .carbon
-        bottomNavigationView.delegate = self
         interactor?.supportText({[weak self] (text) in
             self?.headerLabel.text = text
         })
@@ -98,12 +96,5 @@ extension MyQotSupportViewController {
             showAlert(type: .message(error.localizedDescription))
             log("Failed to open mail with error: \(error.localizedDescription))", level: .error)
         }
-    }
-}
-
-extension MyQotSupportViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
     }
 }

@@ -16,7 +16,6 @@ final class MyQotSyncedCalendarsViewController: UIViewController {
 
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
 
     var interactor: MyQotSyncedCalendarsInteractorInterface?
 
@@ -54,7 +53,6 @@ final class MyQotSyncedCalendarsViewController: UIViewController {
 extension MyQotSyncedCalendarsViewController: MyQotSyncedCalendarsViewControllerInterface {
     func setupView(with title: String) {
         view.backgroundColor = .carbon
-        bottomNavigationView.delegate = self
         headerLabel.text = title
         setupTableView()
     }
@@ -135,12 +133,5 @@ extension MyQotSyncedCalendarsViewController: MyQotSyncedCalendarsViewController
         interactor?.viewModel.updateCalendarSyncStatus(canSync: sender.isOn, calendarIdentifier: calendarIdentifier)
         trackUserEvent(sender.isOn ? .SELECT : .DESELECT, valueType: calendarIdentifier, action: .TAP)
         interactor?.viewModel.update()
-    }
-}
-
-extension MyQotSyncedCalendarsViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
     }
 }

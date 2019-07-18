@@ -16,7 +16,6 @@ final class MyQotSupportFaqViewController: UIViewController {
     var interactor: MyQotSupportFaqInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -32,7 +31,6 @@ final class MyQotSupportFaqViewController: UIViewController {
 extension MyQotSupportFaqViewController: MyQotSupportFaqViewControllerInterface {
     func setupView() {
         view.backgroundColor = .carbon
-        bottomNavigationView.delegate = self
         tableView.registerDequeueable(TitleTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
@@ -65,12 +63,5 @@ extension MyQotSupportFaqViewController: UITableViewDelegate, UITableViewDataSou
         interactor?.faqHeaderText({[weak self] (text) in
             self?.interactor?.presentContentItemSettings(contentID: contentID, pageName: .faq, pageTitle: text)
         })
-    }
-}
-
-extension MyQotSupportFaqViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
     }
 }

@@ -15,7 +15,7 @@ protocol MyVisionViewControllerInterface: class {
     func showNullState(with title: String, message: String)
     func hideNullState()
     func setupView()
-    func load(_ myVision: QDMToBeVision?)
+    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessage: Bool)
 }
 
 protocol MyVisionPresenterInterface {
@@ -24,10 +24,13 @@ protocol MyVisionPresenterInterface {
     func showNullState(with title: String, message: String)
     func hideNullState()
     func setupView()
-    func load(_ myVision: QDMToBeVision?)
+    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessage: Bool)
 }
 
 protocol MyVisionInteractorInterface: Interactor {
+    func shouldShowWarningIcon() -> Bool
+    func showTracker()
+    func closeUpdateConfirmationScreen(completion: (() -> Void)?)
     func showUpdateConfirmationScreen()
     func showNullState(with title: String, message: String)
     func hideNullState()
@@ -38,14 +41,19 @@ protocol MyVisionInteractorInterface: Interactor {
     func isShareBlocked() -> Bool
     func lastUpdatedVision() -> String?
     func shareMyToBeVision()
+    func showTBVData()
     func showEditVision()
     func openToBeVisionGenerator()
+    func showRateScreen(with id: Int)
 }
 
 protocol MyVisionRouterInterface {
+    func showTracker()
+    func showTBVData(shouldShowNullState: Bool, visionId: Int?)
+    func showEditVision(title: String, vision: String)
+    func closeUpdateConfirmationScreen(completion: (() -> Void)?)
+    func showRateScreen(with id: Int)
     func showUpdateConfirmationScreen()
     func presentViewController(viewController: UIViewController, completion: (() -> Void)?)
-    func showEditVision()
-    func close()
     func openToBeVisionGenerator()
 }

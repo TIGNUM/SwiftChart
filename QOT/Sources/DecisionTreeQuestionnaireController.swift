@@ -270,18 +270,20 @@ extension DecisionTreeQuestionnaireViewController {
         case QuestionKey.Prepare.calendarEventSelectionDaily.rawValue,
              QuestionKey.Prepare.calendarEventSelectionCritical.rawValue?:
             let title = question.defaultButtonText ?? R.string.localized.buttonTitleAddEvent()
-            return [roundedDarkButtonItem(title: title,
+            return [roundedBarButtonItem(title: title,
                                           image: R.image.ic_event(),
                                           buttonWidth: .decisionTreeButtonWidth,
-                                          action: #selector(presentAddEventController))]
+                                          action: #selector(presentAddEventController),
+                                          backgroundColor: .carbonDark)]
         case QuestionKey.Recovery.loading.rawValue?,
              QuestionKey.Sprint.introContinue.rawValue?,
              QuestionKey.MindsetShifterTBV.review.rawValue?,
              QuestionKey.Sprint.last.rawValue?:
             let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
-            return [roundedDarkButtonItem(title: title,
+            return [roundedBarButtonItem(title: title,
                                           buttonWidth: .decisionTreeButtonWidth,
-                                          action: #selector(didTapContinue))]
+                                          action: #selector(didTapContinue),
+                                          backgroundColor: .carbonDark)]
         default:
             return []
         }

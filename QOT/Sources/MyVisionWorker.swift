@@ -30,9 +30,14 @@ final class MyVisionWorker {
         }
     }
 
+    private let dispatchGroup = DispatchGroup()
     private var headlineText: String?
     private var messageText: String?
+    private var notRatedText: String? = ""
+    private var syncingText: String? = ""
     private var toBeVision: QDMToBeVision?
+    private var tracks: [QDMToBeVisionTrack]?
+    private var report: QDMToBeVisionRatingReport?
     private let contentService: qot_dal.ContentService
     private let userService: qot_dal.UserService
     private let widgetDataManager: ExtensionsDataManager
@@ -57,6 +62,10 @@ final class MyVisionWorker {
         return toBeVision
     }
 
+    var myVisionReport: QDMToBeVisionRatingReport? {
+        return report
+    }
+
     var messagePlaceholder: String? {
         return messageText
     }
@@ -77,11 +86,40 @@ final class MyVisionWorker {
         }
     }
 
-    func myToBeVision(_ completion: @escaping (_ vision: QDMToBeVision?, _ initialized: Bool, Error?) -> Void) {
+    func getData(_ completion: @escaping() -> Void) {
+        myToBeVision()
+        getRatingReport()
+        getSyncingText()
+        getNotRatedText()
+        dispatchGroup.notify(queue: .main) {[weak self] in
+            self?.getVisionTracks {
+                completion()
+            }
+        }
+    }
+
+    private func myToBeVision() {
+        dispatchGroup.enter()
         userService.getMyToBeVision({ [weak self] (vision, initilized, error) in
             self?.toBeVision = vision
-            completion(vision, initilized, error)
+            self?.dispatchGroup.leave()
         })
+    }
+
+    private func getRatingReport() {
+        dispatchGroup.enter()
+        userService.getToBeVisionTrackingReport(last: 1) {[weak self] (report) in
+            self?.report = report
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    private func getVisionTracks(_ completion: @escaping() -> Void) {
+        userService.getToBeVisionTracksForRating {[weak self] (tracks, isInitialized, error) in
+            guard let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.toBeVision?.remoteID }) else { return }
+            self?.tracks = finalTracks
+            completion()
+        }
     }
 
     func updateMyToBeVision(_ new: QDMToBeVision, completion: @escaping () -> Void) {
@@ -95,10 +133,19 @@ final class MyVisionWorker {
         return try image.save(withName: UUID().uuidString)
     }
 
+    func shouldShowWarningIcon() -> Bool {
+        guard let date =  toBeVision?.date else {
+            return true
+        }
+        let daysOld = DateComponentsFormatter.numberOfDays(date)
+        let fourWeeks = 28 // 4 weeks = 28 days
+        return daysOld > fourWeeks
+    }
+
     func lastUpdatedVision() -> String? {
-        guard let date =  toBeVision?.date,
-            let timeInterval = DateComponentsFormatter.timeIntervalToString(-date.timeIntervalSinceNow, isShort: true) else { return nil }
-        return timeInterval
+        guard let date =  toBeVision?.date else { return nil }
+        let days = DateComponentsFormatter.numberOfDays(date)
+        return dateString(for: days)
     }
 
     func visionToShare(_ completion: @escaping (QDMToBeVisionShare?) -> Void) {
@@ -110,5 +157,45 @@ final class MyVisionWorker {
 
     func updateWidget() {
         widgetDataManager.update(.toBeVision)
+    }
+
+    func getSyncingText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyVision.syncingtext.predicate) {[weak self] (contentItem) in
+            self?.syncingText = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func getNotRatedText() {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(ContentService.MyVision.notRatedText.predicate) {[weak self] (contentItem) in
+            self?.notRatedText = contentItem?.valueText ?? ""
+            self?.dispatchGroup.leave()
+        }
+    }
+
+    func updateRateButton() -> (String?, Bool, Bool) {
+        guard let tracks = self.tracks, tracks.count > 0 else {
+            return (syncingText, true, false)
+        }
+        guard let report = self.report, report.days.count > 0 else {
+            return (notRatedText, true, true)
+        }
+        guard let date = report.days.first else {
+            return (syncingText, true, false)
+        }
+        let days = DateComponentsFormatter.numberOfDays(date)
+        return (dateString(for: days), false, true)
+    }
+
+    private func dateString(for day: Int) -> String {
+        if day == 0 {
+            return "Today"
+        } else if day == 1 {
+            return "Yesterday"
+        } else {
+            return String(day) + " Days"
+        }
     }
 }

@@ -8,28 +8,36 @@
 
 import UIKit
 
-class QuestionaireCellIndicator: UIView {
-    @IBOutlet weak private var inactiveCircle: UIView!
-    @IBOutlet weak private var activeInnerCircle: UIView!
-    @IBOutlet weak private var activeIconImageView: UIImageView!
+final class QuestionaireCellIndicator: UIView {
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        var size = inactiveCircle.bounds.size
-        inactiveCircle.layer.cornerRadius = size.width/2
-        inactiveCircle.clipsToBounds = true
+    @IBOutlet weak private var separatorView: UIView!
+    @IBOutlet weak private var separatorWidth: NSLayoutConstraint!
+    @IBOutlet weak private var separatorViewHeight: NSLayoutConstraint!
 
-        size = activeInnerCircle.bounds.size
-        activeInnerCircle.layer.cornerRadius = size.width/2
-        activeInnerCircle.clipsToBounds = true
+    var isCurrentIndex: Bool = false {
+        willSet {
+            separatorViewHeight.constant = 2.0
+            separatorView.backgroundColor = .redOrange
+        }
     }
 
-    func setEnable(_ active: Bool, with color: UIColor) {
-        inactiveCircle.isHidden = active == true ? true : false
-        activeInnerCircle.isHidden = active != true ? true : false
-        activeIconImageView.isHidden = active != true ? true : false
-        inactiveCircle.backgroundColor = color
-        activeInnerCircle.backgroundColor = color
-        activeIconImageView.tintColor = color
+    var isAboveCurrentIndex: Bool = false {
+        willSet {
+            separatorViewHeight.constant = 1.0
+            separatorView.backgroundColor = UIColor.redOrange.withAlphaComponent(0.4)
+        }
+    }
+
+    var isBelowCurrentIndex: Bool = false {
+        willSet {
+            separatorViewHeight.constant = 1.0
+            separatorView.backgroundColor = .accent40
+        }
+    }
+
+    var indicatorWidth: CGFloat = 8.0 {
+        willSet {
+            separatorWidth.constant = newValue
+        }
     }
 }

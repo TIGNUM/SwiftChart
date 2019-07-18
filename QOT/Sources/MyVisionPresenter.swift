@@ -42,7 +42,7 @@ extension MyVisionPresenter: MyVisionPresenterInterface {
         viewController?.setupView()
     }
 
-    func load(_ myVision: QDMToBeVision?) {
-        viewController?.load(myVision)
+    func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessage: Bool) {
+        viewController?.load(myVision, rateText: rateText, isRateEnabled: isRateEnabled, shouldShowSingleMessage: shouldShowSingleMessage)
     }
 }

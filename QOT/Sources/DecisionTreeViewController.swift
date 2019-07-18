@@ -303,15 +303,16 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         infoView.edges(to: view)
         infoView.isHidden = false
         infoEffectContainerView.isHidden = false
-        let cancelButtonItem = roundedDarkButtonItem(title: R.string.localized.buttonTitleCancel(),
+        let cancelButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
                                                      buttonWidth: .cancelButtonWidth,
-                                                     backgroundColor: .clear,
-                                                     borderColor: .accent40,
-                                                     action: #selector(didPressDimiss))
-        let continueButtonItem = roundedDarkButtonItem(title: R.string.localized.alertButtonTitleContinue(),
+                                                     action: #selector(didPressDimiss),
+                                                     backgroundColor: .carbonDark,
+                                                     borderColor: .accent40)
+        let continueButtonItem = roundedBarButtonItem(title: R.string.localized.alertButtonTitleContinue(),
                                                      buttonWidth: .continueButtonWidth,
-                                                     borderColor: .accent40,
-                                                     action: #selector(didTapStartSprint))
+                                                     action: #selector(didTapStartSprint),
+                                                     backgroundColor: .carbonDark,
+                                                     borderColor: .accent40)
         let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
                                                   rightBarButtonItems: [continueButtonItem, cancelButtonItem],
                                                   backgroundColor: .clear)

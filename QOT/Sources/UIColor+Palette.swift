@@ -12,6 +12,10 @@ extension UIColor {
 
     // MARK: - 3.0
 
+    class var redOrange40: UIColor {
+        return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 0.4)
+    }
+
     class var redOrange: UIColor {
         return UIColor(red: 238/255, green: 94/255, blue: 85/255, alpha: 1)
     }
@@ -24,16 +28,20 @@ extension UIColor {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 0.1)
     }
 
+    class var accent70: UIColor {
+        return UIColor.accent.withAlphaComponent(0.7)
+    }
+
     class var accent40: UIColor {
-        return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 0.4)
+        return UIColor.accent.withAlphaComponent(0.4)
     }
 
     class var accent30: UIColor {
-        return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 0.3)
+        return UIColor.accent.withAlphaComponent(0.3)
     }
 
     class var accent75: UIColor {
-        return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 0.75)
+        return UIColor.accent.withAlphaComponent(0.75)
     }
 
     class var accent: UIColor {

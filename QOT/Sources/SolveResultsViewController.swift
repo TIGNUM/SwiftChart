@@ -206,8 +206,9 @@ extension SolveResultsViewController: ConfirmationViewControllerDelegate {
 
 extension SolveResultsViewController {
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return [roundedDarkButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
+        return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
                                       buttonWidth: .decisionTreeButtonWidth,
-                                      action: #selector(didTapDone))]
+                                      action: #selector(didTapDone),
+                                      backgroundColor: .carbonDark)]
     }
 }

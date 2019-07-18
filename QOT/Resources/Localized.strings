@@ -560,3 +560,10 @@
 "Audio.FullScreen.Button.Waiting" = "Waiting";
 "Audio.FullScreen.Button.Downloading" = "Downloading";
 "Audio.FullScreen.Button.Downloaded" = "Downloaded";
+
+"RateViewController.doneButton" = "Done";
+"RateViewController.skipButton" = "Skip";
+"RateViewController.rateMyTBVButton" = "Rate my TBV";
+
+"TBVTrackerViewController.doneButton" = "Done";
+"TBVDataGraphBarNextDurationViewCell.inFourWeeks" = "in 4 weeks";

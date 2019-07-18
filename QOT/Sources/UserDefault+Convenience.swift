@@ -9,6 +9,7 @@
 import Foundation
 
 enum UserDefault: String {
+    case skipTBVCounter = "com.tignum.qot.skipTBVCounter"
     case calendarDictionary = "qot.userdefault.key.calendar.dictionary"
     case newGuideItem = "qot.userdefault.key.new.guide.item"
     case lastInstaledAppVersion = "qot.userdefault.key.last.installed.app.version"

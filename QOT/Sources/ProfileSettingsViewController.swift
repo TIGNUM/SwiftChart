@@ -499,13 +499,13 @@ extension ProfileSettingsViewController: ProfileSettingsFooterViewProtocol {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.updateUser(profile)
         guard let navController = self.navigationController else { return }
-        navController.popViewController(animated: true)
+        navController.dismiss(animated: true, completion: nil)
     }
 
     func didCancel() {
         guard let navController = self.navigationController else { return }
         trackUserEvent(.CANCEL, action: .TAP)
-        navController.popViewController(animated: true)
+        navController.dismiss(animated: true, completion: nil)
     }
 }
 

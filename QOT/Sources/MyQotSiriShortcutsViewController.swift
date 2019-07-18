@@ -18,7 +18,6 @@ final class MyQotSiriShortcutsViewController: UIViewController {
     private var selectedShortCutPage: PageName?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerLabel: UILabel!
-    @IBOutlet private weak var bottomNavigationView: BottomNavigationBarView!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +37,6 @@ extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInte
         tableView.delegate = self
         tableView.dataSource = self
         view.backgroundColor = .carbon
-        bottomNavigationView.delegate = self
         interactor?.siriShortcutsHeaderText({[weak self] (text) in
             self?.headerLabel.text = text
         })
@@ -85,12 +83,5 @@ extension MyQotSiriShortcutsViewController: INUIAddVoiceShortcutViewControllerDe
     @available(iOS 12.0, *)
     func addVoiceShortcutViewControllerDidCancel(_ controller: INUIAddVoiceShortcutViewController) {
         dismiss(animated: true, completion: nil)
-    }
-}
-
-extension MyQotSiriShortcutsViewController: BottomNavigationBarViewProtocol {
-    func willNavigateBack() {
-        trackUserEvent(.CLOSE, action: .TAP)
-        navigationController?.popViewController(animated: true)
     }
 }
