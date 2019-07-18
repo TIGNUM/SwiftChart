@@ -36,6 +36,7 @@ target 'QOT' do
   pod 'AMScrollingNavbar'
   pod 'Bond', :git => 'git@github.com:SanggeonPark/Bond.git'
   pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
+  pod 'DifferenceKit'
 
   target 'QOTTests' do
     inherit! :search_paths

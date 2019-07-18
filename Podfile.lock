@@ -9,6 +9,12 @@ PODS:
   - BonMot (5.4.1)
   - Buglife (2.10.1)
   - Differ (1.4.3)
+  - DifferenceKit (1.1.3):
+    - DifferenceKit/Core (= 1.1.3)
+    - DifferenceKit/UIKitExtension (= 1.1.3)
+  - DifferenceKit/Core (1.1.3)
+  - DifferenceKit/UIKitExtension (1.1.3):
+    - DifferenceKit/Core
   - Freddy (3.0.3)
   - HockeySDK (5.1.4):
     - HockeySDK/DefaultLib (= 5.1.4)
@@ -38,6 +44,7 @@ DEPENDENCIES:
   - "Bond (from `git@github.com:SanggeonPark/Bond.git`)"
   - BonMot
   - Buglife
+  - DifferenceKit
   - Freddy
   - HockeySDK
   - JPSimulatorHacks
@@ -59,6 +66,7 @@ SPEC REPOS:
     - BonMot
     - Buglife
     - Differ
+    - DifferenceKit
     - Freddy
     - HockeySDK
     - JPSimulatorHacks
@@ -95,6 +103,7 @@ SPEC CHECKSUMS:
   BonMot: aa82119ff2ffa184223d8a31c72aed84fbb009e0
   Buglife: bc8e4931ebe37b2901c6dbcb0ca6dd76f62a98c3
   Differ: 6c7477d6187e8c36d02ec342a3c321061b85a0ea
+  DifferenceKit: 5018791b6c1fc839921a3c171a0a539ace6ea60c
   Freddy: 7c62db262a0d0e3b3e2b8b40f2c0cc51e122fbc4
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JPSimulatorHacks: 28428b30259eb93ad558ac3f2c608acd2133a14b
@@ -109,6 +118,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
   UrbanAirship-iOS-SDK: 49a4a46fd7bf0a38864d13e95789f5f84938c5b1
 
-PODFILE CHECKSUM: 7baea489464a18c27ac2c4436eb730ded91c0f7e
+PODFILE CHECKSUM: 23e1d76a6aa5437020b0df03646b8642e4be5351
 
 COCOAPODS: 1.7.4
