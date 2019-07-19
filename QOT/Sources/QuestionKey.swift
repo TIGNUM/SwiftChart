@@ -11,6 +11,19 @@ import Foundation
 // MARK: - Question Key
 
 enum QuestionKey {
+    static func maxCharacter(_ key: String?) -> Int {
+        switch key {
+        case SprintReflection.Notes01,
+             SprintReflection.Notes02,
+             SprintReflection.Notes03:
+            return 250
+        case Prepare.benefitsInput.rawValue:
+            return 100
+        default:
+            return 0
+        }
+    }
+
     enum ToBeVision: String {
         case intro = "tbv-generator-key-intro"
         case instructions = "tbv-generator-key-instructions"
@@ -69,5 +82,13 @@ enum QuestionKey {
         case selection = "sprint-key-sprint-selection"
         case schedule = "sprint-key-schedule"
         case last = "sprint-key-last-question"
+    }
+
+    struct SprintReflection {
+        static let Intro = "sprint-post-reflection-key-intro"
+        static let Notes01 = "sprint-post-reflection-key-notes-01"
+        static let Notes02 = "sprint-post-reflection-key-notes-02"
+        static let Notes03 = "sprint-post-reflection-key-notes-03"
+        static let Review = "sprint-post-reflection-key-review"
     }
 }

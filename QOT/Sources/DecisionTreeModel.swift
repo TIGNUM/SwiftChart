@@ -10,7 +10,6 @@ import Foundation
 import qot_dal
 
 // MARK: - TreeType
-
 enum DecisionTreeType {
     case toBeVisionGenerator
     case mindsetShifter
@@ -21,6 +20,7 @@ enum DecisionTreeType {
     case solve
     case recovery
     case sprint
+    case sprintReflection(sprint: QDMSprint)
 
     var introKey: String {
         switch self {
@@ -30,7 +30,9 @@ enum DecisionTreeType {
             return QuestionKey.MindsetShifter.intro.rawValue
         case .mindsetShifterTBV:
             return QuestionKey.MindsetShifterTBV.intro.rawValue
-        case .prepare, .prepareIntensions, .prepareBenefits:
+        case .prepare,
+             .prepareIntensions,
+             .prepareBenefits:
             return QuestionKey.Prepare.intro.rawValue
         case .solve:
             return QuestionKey.Solve.intro.rawValue
@@ -38,6 +40,8 @@ enum DecisionTreeType {
             return QuestionKey.Recovery.intro.rawValue
         case .sprint:
             return QuestionKey.Sprint.intro.rawValue
+        case .sprintReflection:
+            return QuestionKey.SprintReflection.Intro
         }
     }
 
@@ -49,7 +53,9 @@ enum DecisionTreeType {
             return .MindsetShifter
         case .mindsetShifterTBV:
             return .MindsetShifterToBeVision
-        case .prepare, .prepareIntensions, .prepareBenefits:
+        case .prepare,
+             .prepareIntensions,
+             .prepareBenefits:
             return .Prepare_3_0
         case .solve:
             return .Solve
@@ -57,6 +63,8 @@ enum DecisionTreeType {
             return .RecoveryPlan
         case .sprint:
             return .Sprint
+        case .sprintReflection:
+            return .SprintPostReflection
         }
     }
 }
@@ -103,10 +111,9 @@ extension QDMQuestion {
 }
 
 // MARK: - Model
-
 struct DecisionTreeModel {
     typealias Filter = String
-    var questions: [QDMQuestion] = []
+    var extendedQuestions: [ExtendedQuestion] = []
     var selectedAnswers: [SelectedAnswer] = []
 
     struct SelectedAnswer {
@@ -114,8 +121,13 @@ struct DecisionTreeModel {
         let answer: QDMAnswer
     }
 
+    struct ExtendedQuestion {
+        var userInput: String?
+        let question: QDMQuestion
+    }
+
     init(question: QDMQuestion) {
-        questions.append(question)
+        extendedQuestions.append(ExtendedQuestion(userInput: nil, question: question))
     }
 }
 
@@ -125,18 +137,25 @@ extension DecisionTreeModel.Filter {
 }
 
 // MARK: - ModelInterface
-
 extension DecisionTreeModel: DecisionTreeModelInterface {
-
     mutating func add(_ question: QDMQuestion) {
-        if questions.filter ({ $0.remoteID == question.remoteID }).isEmpty {
-            questions.append(question)
+        if extendedQuestions.filter ({ $0.question.remoteID == question.remoteID }).isEmpty {
+            extendedQuestions.append(ExtendedQuestion(userInput: nil, question: question))
         }
     }
 
-    mutating func remove(_ question: QDMQuestion) {
-        if let index = questions.firstIndex(where: { $0.remoteID == question.remoteID }) {
-            questions.remove(at: index)
+    mutating func update(_ question: QDMQuestion?, _ userInput: String?) {
+        if
+            let question = question,
+            let index = indexOf(question.remoteID) {
+                extendedQuestions.remove(at: index)
+                extendedQuestions.insert(ExtendedQuestion(userInput: userInput, question: question), at: index)
+        }
+    }
+
+    mutating func remove(_ extendedQuestion: ExtendedQuestion) {
+        if let index = indexOf(extendedQuestion.question.remoteID) {
+            extendedQuestions.remove(at: index)
         }
     }
 
@@ -153,13 +172,19 @@ extension DecisionTreeModel: DecisionTreeModelInterface {
     }
 
     mutating func removeLastQuestion() {
-        if questions.count > 1 {
-            questions.removeLast()
+        if !extendedQuestions.isEmpty {
+            extendedQuestions.removeLast()
         }
     }
 
     mutating func reset() {
-        questions.removeAll()
+        extendedQuestions.removeAll()
         selectedAnswers.removeAll()
+    }
+}
+
+private extension DecisionTreeModel {
+    func indexOf(_ questionId: Int?) -> Int? {
+        return extendedQuestions.firstIndex(where: { $0.question.remoteID == questionId })
     }
 }

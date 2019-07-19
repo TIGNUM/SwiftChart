@@ -133,7 +133,7 @@ extension DecisionTreeWorker {
             interactor?.trackUserEvent(nil, .CLOSE, .TAP)
             interactor?.dismiss()
         case .prepareBenefits:
-            interactor?.updatePrepareBenefits(interactor?.prepareBenefits ?? "")
+            interactor?.updatePrepareBenefits(interactor?.userInput ?? "")
             interactor?.trackUserEvent(nil, .CLOSE, .TAP)
             interactor?.dismiss()
         case .prepare:
@@ -143,15 +143,26 @@ extension DecisionTreeWorker {
             }
         case .sprint:
             if currentQuestion?.key == QuestionKey.Sprint.introContinue.rawValue {
-                let answer = currentQuestion?.answers.first
-                getNextQuestion(answer: answer) { [weak self] (node) in
-                    self?.interactor?.trackUserEvent(answer, .NEXT, .TAP)
-                    self?.showQuestion(node)
-                }
+                nextQuestion()
+                return
             }
-        default: break
+        case .sprintReflection:
+            switch currentQuestion?.key {
+            case QuestionKey.SprintReflection.Intro:
+                nextQuestion()
+                return
+            case QuestionKey.SprintReflection.Notes01,
+                 QuestionKey.SprintReflection.Notes02,
+                 QuestionKey.SprintReflection.Notes03:
+                    updateSprint(sprintToUpdate, userInput: userInput)
+                    nextQuestion()
+                    return
+            default:
+                break
+            }
+        default:
+            break
         }
-
         if currentQuestion?.answerType == AnswerType.lastQuestion.rawValue ||
             currentQuestion?.key == QuestionKey.MindsetShifterTBV.review.rawValue {
             interactor?.dismiss()
@@ -180,6 +191,14 @@ extension DecisionTreeWorker {
 }
 
 private extension DecisionTreeWorker {
+    func nextQuestion() {
+        let answer = currentQuestion?.answers.first
+        getNextQuestion(answer: answer) { [weak self] (node) in
+            self?.interactor?.trackUserEvent(answer, .NEXT, .TAP)
+            self?.showQuestion(node)
+        }
+    }
+
     func notifyCounterChanged(with value: Int) {
         let selectionCounter = UserInfo.multiSelectionCounter.pair(for: value)
         let selectedAnswers = UserInfo.selectedAnswers.pair(for: decisionTreeAnswers)
@@ -221,7 +240,7 @@ extension DecisionTreeWorker {
         } else if currentQuestion?.key == QuestionKey.Prepare.benefitsInput.rawValue {
             let level = QDMUserPreparation.Level.LEVEL_CRITICAL
             PreparationManager.main.create(level: level,
-                                           benefits: interactor?.prepareBenefits,
+                                           benefits: interactor?.userInput,
                                            answerFilter: answersFilter(),
                                            contentCollectionId: level.contentID,
                                            relatedStrategyId: answer.decisions.first?.targetTypeId ?? 0,

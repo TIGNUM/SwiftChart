@@ -74,4 +74,13 @@ enum AnswerKey {
         case startTomorrow = "sprint-answer-key-start-tomorrow"
         case addToQueue = "sprint-answer-key-add-to-queue"
     }
+
+    struct SprintReflection {
+        static let Intro = "sprint-post-reflection-key-intro"
+        static let Notes01 = "sprint-post-reflection-key-notes-01"
+        static let Notes02 = "sprint-post-reflection-key-notes-02"
+        static let Notes03 = "sprint-post-reflection-key-notes-03"
+        static let DoItLater = "sprint-post-reflection-key-do-it-later"
+        static let TrackTBV = "sprint-post-reflection-key-track-my-tbv"
+    }
 }

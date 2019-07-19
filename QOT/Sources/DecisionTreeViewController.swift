@@ -98,8 +98,7 @@ private extension DecisionTreeViewController {
     }
 
     func setupContinueButton() {
-        continueButton.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .decisionTreeButtonWidth,
-                                                                                height: .buttonHeight))
+        continueButton.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .DecisionTree, height: .Default))
         continueButton.cornerDefault()
         let attributedTitle = NSAttributedString(string: "",
                                                  letterSpacing: 0.2,
@@ -250,6 +249,16 @@ private extension DecisionTreeViewController {
 
 // MARK: - DecisionTreeQuestionnaireDelegate
 extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
+    func presentSprints() {
+        //TODO
+        dismiss()
+    }
+
+    func presentTrackTBV() {
+        //TODO
+        dismiss()
+    }
+
     @objc func didPressDimiss() {
         dismiss()
     }
@@ -258,9 +267,9 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         didTapContinue()
     }
 
-    func didUpdatePrepareBenefits(_ benefits: String?) {
-        trackUserEvent(.ANSWER, stringValue: benefits, valueType: .USER_INPUT, action: .KEYBOARD)
-        interactor?.prepareBenefits = benefits
+    func didUpdateUserInput(_ userInput: String?) {
+        trackUserEvent(.ANSWER, stringValue: userInput, valueType: .USER_INPUT, action: .KEYBOARD)
+        interactor?.userInput = userInput
     }
 
     func didTapBinarySelection(_ answer: QDMAnswer) {
@@ -304,12 +313,12 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         infoView.isHidden = false
         infoEffectContainerView.isHidden = false
         let cancelButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
-                                                     buttonWidth: .cancelButtonWidth,
+                                                     buttonWidth: .Cancel,
                                                      action: #selector(didPressDimiss),
                                                      backgroundColor: .carbonDark,
                                                      borderColor: .accent40)
         let continueButtonItem = roundedBarButtonItem(title: R.string.localized.alertButtonTitleContinue(),
-                                                     buttonWidth: .continueButtonWidth,
+                                                     buttonWidth: .Continue,
                                                      action: #selector(didTapStartSprint),
                                                      backgroundColor: .carbonDark,
                                                      borderColor: .accent40)

@@ -141,8 +141,7 @@ extension UIViewController {
         let button = CoachButton()
         button.addTarget(self, action: #selector(showCoachScreen), for: .touchUpInside)
         button.setImage(R.image.ic_coach(), for: .normal)
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .buttonHeight * 2,
-                                                                        height: .buttonHeight * 2))
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default * 2, height: .Default * 2))
         button.circle()
         button.imageView?.contentMode = .center
         return UIBarButtonItem(customView: button)
@@ -154,8 +153,7 @@ extension UIViewController {
         button.setImage(R.image.arrowBack(), for: .normal)
         button.layer.borderWidth = 1
         button.layer.borderColor = UIColor.accent.cgColor
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .buttonHeight,
-                                                                        height: .buttonHeight))
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
         button.circle()
         button.tintColor = .red
         return UIBarButtonItem(customView: button)
@@ -163,19 +161,22 @@ extension UIViewController {
 
     @objc open func dismissNavigationItem() -> UIBarButtonItem {
         let button = UIButton(type: .custom)
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .buttonHeight, height: .buttonHeight))
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
         button.addTarget(self, action: #selector(didTapDismissButton), for: .touchUpInside)
         button.setImage(R.image.ic_close_rounded(), for: .normal)
         button.tintColor = .red
         return UIBarButtonItem(customView: button)
     }
 
-    @objc open func roundedBarButtonItem(title: String, image: UIImage? = nil,
-                                         buttonWidth: CGFloat, action: Selector,
-                                         backgroundColor: UIColor, borderColor: UIColor = .clear) -> UIBarButtonItem {
+    @objc open func roundedBarButtonItem(title: String,
+                                         image: UIImage? = nil,
+                                         buttonWidth: CGFloat.Button.Width,
+                                         action: Selector,
+                                         backgroundColor: UIColor = .carbonDark,
+                                         borderColor: UIColor = .clear) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth,
-                                                                        height: .buttonHeight))
+                                                                        height: .Default))
         button.backgroundColor = backgroundColor
         let attributedTitle = NSAttributedString(string: title,
                                                  letterSpacing: 0.2,

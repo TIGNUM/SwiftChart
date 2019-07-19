@@ -309,12 +309,12 @@ extension PrepareResultsViewController {
     @objc override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         if interactor?.getType == .LEVEL_ON_THE_GO || showDone == true {
             return [roundedBarButtonItem(title: R.string.localized.morningControllerDoneButton().capitalized,
-                                          buttonWidth: .doneButtonWidth,
+                                          buttonWidth: .Done,
                                           action: #selector(dismissView),
                                           backgroundColor: .carbonDark)]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
-                                      buttonWidth: .saveAndContinueButtonWidth,
+                                      buttonWidth: .SaveAndContinue,
                                       action: #selector(saveAndContinue),
                                       backgroundColor: .carbonDark)]
     }

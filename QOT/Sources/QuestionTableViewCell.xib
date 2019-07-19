@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,7 +27,7 @@
                         </constraints>
                     </view>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbh-FF-z5j">
-                        <rect key="frame" x="24" y="26" width="439" height="239.5"/>
+                        <rect key="frame" x="24" y="26" width="439" height="215.5"/>
                         <attributedString key="attributedText">
                             <fragment content="Label">
                                 <attributes>
@@ -51,7 +51,7 @@
                 <color key="backgroundColor" red="0.91723662614822388" green="0.90605789422988892" blue="0.89410656690597534" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                 <constraints>
                     <constraint firstItem="pbh-FF-z5j" firstAttribute="top" secondItem="1dN-A5-6PZ" secondAttribute="bottom" constant="14" id="GUY-SK-yWn"/>
-                    <constraint firstItem="pbh-FF-z5j" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottom" id="Mi3-5b-Sip"/>
+                    <constraint firstItem="pbh-FF-z5j" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottom" constant="-24" id="Mi3-5b-Sip"/>
                     <constraint firstItem="1dN-A5-6PZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="Tm7-HV-YWB"/>
                     <constraint firstItem="pbh-FF-z5j" firstAttribute="left" secondItem="H2p-sc-9uM" secondAttribute="left" constant="24" id="bGx-sW-bcc"/>
                     <constraint firstItem="1dN-A5-6PZ" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="eRW-10-m55"/>

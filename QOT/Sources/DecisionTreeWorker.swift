@@ -17,7 +17,6 @@ final class DecisionTreeWorker {
     private let userService = qot_dal.UserService.main
     private let contentService = qot_dal.ContentService.main
     private let questionService = qot_dal.QuestionService.main
-    private var _prepareBenefits: String?
     private var prepareKey: Prepare.Key = .perceived
     private var _selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     private var answerFilter: String?
@@ -32,14 +31,19 @@ final class DecisionTreeWorker {
     internal var questions: [QDMQuestion] = []
     internal var recoveryFatigueType: AnswerKey.Recovery? = nil
     internal var activeSprint: QDMSprint?
+    internal var sprintToUpdate: QDMSprint?
     internal var newSprintContentId: Int?
     internal var lastSprintQuestionId: Int?
     weak var prepareDelegate: PrepareResultsDelegatge?
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
 
+    private var currentExtendedQuestion: DecisionTreeModel.ExtendedQuestion? {
+        return decisionTree?.extendedQuestions.at(index: pageIndex)
+    }
+
     internal var currentQuestion: QDMQuestion? {
-        return decisionTree?.questions.at(index: pageIndex)
+        return currentExtendedQuestion?.question
     }
 
     internal var pageIndex: Int = 0 {
@@ -48,6 +52,12 @@ final class DecisionTreeWorker {
 
     var decisionTree: DecisionTreeModel? {
         didSet { syncButtons() }
+    }
+
+    var eventQuestion: QDMQuestion? {
+        return decisionTree?.extendedQuestions.filter {
+            $0.question.answerType == AnswerType.openCalendarEvents.rawValue
+            }.first?.question
     }
 
     internal var multiSelectionCounter: Int = 0 {
@@ -80,6 +90,12 @@ final class DecisionTreeWorker {
     // MARK: - Init
     init(type: DecisionTreeType) {
         self.type = type
+        switch type {
+        case .sprintReflection(let sprint):
+            sprintToUpdate = sprint
+        default:
+            break
+        }
     }
 }
 
@@ -89,7 +105,7 @@ extension DecisionTreeWorker {
         return _extraAnswer
     }
     var firstQuestion: QDMQuestion? {
-        return decisionTree?.questions.filter { $0.key == type.introKey }.first
+        return decisionTree?.extendedQuestions.filter { $0.question.key == type.introKey }.first?.question
     }
 
     var userHasToBeVision: Bool {
@@ -101,9 +117,9 @@ extension DecisionTreeWorker {
         set { _targetContentID = newValue }
     }
 
-    var prepareBenefits: String? {
-        get { return _prepareBenefits }
-        set { _prepareBenefits = newValue }
+    var userInput: String? {
+        get { return currentExtendedQuestion?.userInput }
+        set { decisionTree?.update(currentQuestion, newValue) }
     }
 
     var getRecoveryModel: QDMRecovery3D? {
@@ -122,7 +138,7 @@ extension DecisionTreeWorker {
         guard pageIndex > 0 else { return nil }
         pageIndex.minus(1)
         if pageIndex.advanced(by: -1) >= 0 {
-            return decisionTree?.questions[pageIndex.advanced(by: -1)]
+            return decisionTree?.extendedQuestions[pageIndex.advanced(by: -1)].question
         }
         return nil
     }
@@ -201,11 +217,13 @@ extension DecisionTreeWorker {
         let question = questions.filter { $0.remoteID == targetId }.first
         updateDecisionTree(from: nil, questionId: targetId)
         switch question?.key {
-        case QuestionKey.ToBeVision.create.rawValue, QuestionKey.MindsetShifterTBV.review.rawValue:
+        case QuestionKey.ToBeVision.create.rawValue,
+             QuestionKey.MindsetShifterTBV.review.rawValue:
             createVision(from: decisionTreeAnswers) { (vision) in
                 completion((question, vision))
             }
-        case QuestionKey.MindsetShifter.showTBV.rawValue, QuestionKey.Prepare.showTBV.rawValue:
+        case QuestionKey.MindsetShifter.showTBV.rawValue,
+             QuestionKey.Prepare.showTBV.rawValue:
             userService.getMyToBeVision { (vision, _, _) in
                 completion((question, vision?.text))
             }
@@ -282,9 +300,7 @@ extension DecisionTreeWorker {
              QuestionKey.MindsetShifter.openTBV.rawValue,
              QuestionKey.MindsetShifter.check.rawValue:
             let title = defaultButtonText.isEmpty ? confirmationButtonText : defaultButtonText
-            return [roundedDarkButtonItem(title: title,
-                                          buttonWidth: .decisionTreeButtonWidth,
-                                          action: action)]
+            return [roundedDarkButtonItem(title: title, buttonWidth: .DecisionTree, action: action)]
         default: return []
         }
     }
@@ -300,7 +316,7 @@ extension DecisionTreeWorker {
     func updateDecisionTree(from answer: QDMAnswer?, questionId: Int) {
         let question = questions.filter { $0.remoteID == questionId }.first
         if let question = question {
-            if decisionTree?.questions.filter ({ $0.remoteID == question.remoteID }).isEmpty == true {
+            if decisionTree?.extendedQuestions.filter({ $0.question.remoteID == question.remoteID }).isEmpty == true {
                 decisionTree?.add(question)
                 pageIndex.plus(1)
             }
@@ -381,8 +397,7 @@ internal extension DecisionTreeWorker {
 
     func roundedDarkButtonItem(title: String, image: UIImage? = nil, buttonWidth: CGFloat, action: Selector) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth,
-                                                                        height: .buttonHeight))
+        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth, height: .Default))
         button.backgroundColor = .carbonDark
         let attributedTitle = NSAttributedString(string: title,
                                                  letterSpacing: 0.2,

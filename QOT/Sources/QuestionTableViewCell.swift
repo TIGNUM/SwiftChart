@@ -11,14 +11,11 @@ import UIKit
 final class QuestionTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
     @IBOutlet weak var questionLabel: UILabel!
 }
 
 // MARK: Configuration
-
 extension QuestionTableViewCell {
-
     func configure(with question: String, questionTitleUpdate: String?) {
         let tempQuestion = updateQuestionIfNeeded(question, questionTitleUpdate)
         let attributedString = NSMutableAttributedString(string: tempQuestion)

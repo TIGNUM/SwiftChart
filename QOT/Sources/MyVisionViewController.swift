@@ -51,14 +51,10 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        NotificationCenter.default.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) {[weak self] (notification) in
-            guard let syncResult = notification.object as? SyncResultContext else {
-                return
-            }
-            if syncResult.dataType == .MY_TO_BE_VISION_TRACKER, syncResult.syncRequestType == .DOWN_SYNC {
-                self?.interactor?.viewDidLoad()
-            }
-        }
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didFinishSynchronization(_:)),
+                                               name: .didFinishSynchronization,
+                                               object: nil)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -145,7 +141,6 @@ private extension MyVisionViewController {
 
 // MARK: - Observer
 private extension MyVisionViewController {
-
     func saveToBeVisionImage() {
         guard var toBeVision = interactor?.myVision else { return }
         toBeVision.modifiedAt = Date()
@@ -199,7 +194,6 @@ private extension MyVisionViewController {
 }
 
 extension MyVisionViewController: MyVisionViewControllerInterface {
-
     func showScreenLoader() {
         loaderView.isHidden = false
     }
@@ -272,9 +266,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 }
 
 // MARK: - UIScrollViewDelegate
-
 extension MyVisionViewController: UIScrollViewDelegate {
-
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let alphaValue = (offsetY/232.0)*1.2
@@ -301,7 +293,6 @@ extension MyVisionViewController: UIScrollViewDelegate {
 }
 
 // MARK: - ImagePickerDelegate
-
 extension MyVisionViewController: ImagePickerControllerAdapterProtocol {
 
 }
@@ -392,5 +383,15 @@ extension MyVisionViewController: MyToBeVisionRateViewControllerProtocol {
 extension MyVisionViewController: MyToBeVisionDataNullStateViewControllerProtocol {
     func didRateTBV() {
         showRateScreen()
+    }
+}
+
+// MARK: - TBV TRACKER DID FINISH DOWN SYNC
+extension MyVisionViewController {
+    @objc func didFinishSynchronization(_ notification: Notification) {
+        guard let syncResult = notification.object as? SyncResultContext else { return }
+        if syncResult.dataType == .MY_TO_BE_VISION_TRACKER, syncResult.syncRequestType == .DOWN_SYNC {
+            interactor?.viewDidLoad()
+        }
     }
 }

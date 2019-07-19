@@ -16,9 +16,11 @@ protocol DecisionTreeQuestionnaireDelegate: class {
     func textCellDidAppear(targetID: Int)
     func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: QDMAnswer)
     func presentAddEventController(_ eventStore: EKEventStore)
-    func didUpdatePrepareBenefits(_ benefits: String?)
+    func didUpdateUserInput(_ userInput: String?)
     func didPressDimiss()
     func didPressContinue()
+    func presentSprints()
+    func presentTrackTBV()
 }
 
 private enum CellType: Int, CaseIterable {
@@ -38,7 +40,8 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     private let answersFilter: String?
     private let questionTitleUpdate: String?
     private lazy var typingAnimation = DotsLoadingView(frame: CGRect(x: 24, y: 20, width: 20, height: 20))
-    private lazy var tableView = UITableView(delegate: self,
+    private lazy var tableView = UITableView(estimatedRowHeight: 100,
+                                             delegate: self,
                                              dataSource: self,
                                              dequeables: MultipleSelectionTableViewCell.self,
                                              SingleSelectionTableViewCell.self,
@@ -98,7 +101,7 @@ private extension DecisionTreeQuestionnaireViewController {
     }
 
     func setupView() {
-        attachToEdge(tableView, bottomConstant: -.bottomNavBarHeight)
+        attachToEdge(tableView, bottomConstant: -.BottomNavBar)
         tableView.backgroundColor = .sand
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
@@ -115,6 +118,14 @@ private extension DecisionTreeQuestionnaireViewController {
     @objc func didTapContinue() {
         delegate?.didPressContinue()
     }
+
+    @objc func didTapDoItLater() {
+        delegate?.presentSprints()
+    }
+
+    @objc func didTapTrackTBV() {
+        delegate?.presentTrackTBV()
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -129,11 +140,12 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let type = CellType.allCases[indexPath.section]
-        if type == .answer && question.answerType == AnswerType.userInput.rawValue {
+        switch CellType.allCases[indexPath.section] {
+        case .answer where (question.answerType == AnswerType.userInput.rawValue):
             return 260
+        default:
+            return UITableViewAutomaticDimension
         }
-        return UITableViewAutomaticDimension
     }
 }
 
@@ -181,7 +193,10 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 return cell
             case AnswerType.userInput.rawValue:
                 let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(benefits: interactor?.prepareBenefits, delegate: delegate)
+                let text = question.key == QuestionKey.Prepare.benefitsInput.rawValue ? interactor?.userInput : nil
+                cell.configure(inputText: text,
+                               maxCharacters: QuestionKey.maxCharacter(question.key),
+                               delegate: delegate)
                 cell.showKeyBoard()
                 return cell
             case AnswerType.noAnswerRequired.rawValue,
@@ -189,7 +204,9 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                  AnswerType.lastQuestion.rawValue:
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(with: extraAnswer ?? "")
-                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0)
+                if question.key != QuestionKey.SprintReflection.Intro {
+                    delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0)
+                }
                 return cell
             case AnswerType.openCalendarEvents.rawValue:
                 let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -203,12 +220,12 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return section == CellType.question.rawValue && question.hasTypingAnimation ? .buttonHeight : 0
+        return section == CellType.question.rawValue && question.hasTypingAnimation ? .Default : 0
     }
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         if section == CellType.question.rawValue && question.hasTypingAnimation {
-            let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: .buttonHeight))
+            let footer = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.width, height: .Default))
             footer.addSubview(typingAnimation)
             typingAnimation.configure(dotsColor: .carbonDark)
             return footer
@@ -224,7 +241,7 @@ private extension DecisionTreeQuestionnaireViewController {
             return tableView.contentInset = .zero
         }
         if question.answerType == AnswerType.userInput.rawValue {
-            return tableView.contentInset = UIEdgeInsets(top: view.frame.height * 0.1, left: 0, bottom: 0, right: 0)
+            return tableView.contentInset = .zero//UIEdgeInsets(top: view.frame.height * 0.1, left: 0, bottom: 0, right: 0)
         }
         let cellsHeight = tableView.visibleCells.map { $0.frame.height }.reduce(0, +)
         let difference = tableView.frame.height - cellsHeight
@@ -258,7 +275,8 @@ extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate
 extension DecisionTreeQuestionnaireViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         switch question.key {
-        case QuestionKey.Sprint.last.rawValue?:
+        case QuestionKey.Sprint.last.rawValue,
+             QuestionKey.SprintReflection.Review:
             return nil
         default:
             return [dismissNavigationItem()]
@@ -271,19 +289,36 @@ extension DecisionTreeQuestionnaireViewController {
              QuestionKey.Prepare.calendarEventSelectionCritical.rawValue?:
             let title = question.defaultButtonText ?? R.string.localized.buttonTitleAddEvent()
             return [roundedBarButtonItem(title: title,
-                                          image: R.image.ic_event(),
-                                          buttonWidth: .decisionTreeButtonWidth,
-                                          action: #selector(presentAddEventController),
-                                          backgroundColor: .carbonDark)]
+                                         image: R.image.ic_event(),
+                                         buttonWidth: .DecisionTree,
+                                         action: #selector(presentAddEventController),
+                                         backgroundColor: .carbonDark)]
         case QuestionKey.Recovery.loading.rawValue?,
              QuestionKey.Sprint.introContinue.rawValue?,
              QuestionKey.MindsetShifterTBV.review.rawValue?,
-             QuestionKey.Sprint.last.rawValue?:
+             QuestionKey.Sprint.last.rawValue?,
+             QuestionKey.SprintReflection.Intro:
             let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
             return [roundedBarButtonItem(title: title,
-                                          buttonWidth: .decisionTreeButtonWidth,
-                                          action: #selector(didTapContinue),
-                                          backgroundColor: .carbonDark)]
+                                         buttonWidth: .DecisionTree,
+                                         action: #selector(didTapContinue),
+                                         backgroundColor: .carbonDark)]
+        case QuestionKey.SprintReflection.Review:
+            let titleLeft = question.answers.filter {
+                $0.keys.contains(obj: AnswerKey.SprintReflection.DoItLater)
+                }.first?.subtitle ?? ""
+            let titleRight = question.answers.filter {
+                $0.keys.contains(obj: AnswerKey.SprintReflection.TrackTBV)
+                }.first?.subtitle ?? ""
+            let leftButtomItem = roundedBarButtonItem(title: titleLeft,
+                                                      buttonWidth: .DoItLater,
+                                                      action: #selector(didTapDoItLater),
+                                                      backgroundColor: .clear)
+            let rightButtomItem = roundedBarButtonItem(title: titleRight,
+                                                       buttonWidth: .TrackTBV,
+                                                       action: #selector(didTapTrackTBV),
+                                                       backgroundColor: .carbonDark)
+            return [rightButtomItem, leftButtomItem]
         default:
             return []
         }

@@ -52,9 +52,9 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         return worker.selectedAnswers
     }
 
-    var prepareBenefits: String? {
-        set { worker.prepareBenefits = newValue }
-        get { return worker.prepareBenefits }
+    var userInput: String? {
+        set { worker.userInput = newValue }
+        get { return worker.userInput }
     }
 
     var type: DecisionTreeType {
@@ -234,9 +234,7 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     }
 
     func loadEventQuestion() {
-        let eventQuestion = worker.decisionTree?.questions.filter {
-            $0.answerType == AnswerType.openCalendarEvents.rawValue
-            }.first
+        let eventQuestion = worker.eventQuestion
         self.loadNextQuestion(from: eventQuestion?.answers.first)
     }
 

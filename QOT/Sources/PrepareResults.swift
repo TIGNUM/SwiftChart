@@ -9,17 +9,6 @@
 import UIKit
 import qot_dal
 
-//struct PrepareResults {
-//    let level: QDMUserPreparation.Level
-//    let contentId: Int
-//    let event: QDMUserCalendarEvent?
-//    let eventType: String?
-//    let relatedStrategyId: Int?
-//    let selectedAnswers: [DecisionTreeModel.SelectedAnswer]?
-//    let answerFilter: String?
-//    let benefits: String?
-//}
-
 enum ReminderType {
     case iCal
     case reminder

@@ -48,6 +48,27 @@ extension DecisionTreeWorker {
             self?.newSprintContentId = nil
         }
     }
+
+    func updateSprint(_ sprint: QDMSprint?, userInput: String?) {
+        if var tempSprint  = sprint {
+            switch currentQuestion?.key {
+            case QuestionKey.SprintReflection.Notes01:
+                tempSprint.notesLearnings = userInput
+            case QuestionKey.SprintReflection.Notes02:
+                tempSprint.notesReflection = userInput
+            case QuestionKey.SprintReflection.Notes03:
+                tempSprint.notesBenefits = userInput
+            default:
+                return
+            }
+            qot_dal.UserService.main.updateSprint(tempSprint) { [weak self] (sprint, error) in
+                self?.sprintToUpdate = sprint
+                if let error = error {
+                    qot_dal.log("Error while trying to update spint: \(error.localizedDescription)", level: .error)
+                }
+            }
+        }
+    }
 }
 
 // MARK: - Private Sprint Managing

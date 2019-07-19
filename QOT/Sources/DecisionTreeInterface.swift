@@ -49,7 +49,7 @@ protocol DecisionTreePresenterInterface {
 
 protocol DecisionTreeInteractorInterface: Interactor {
     var type: DecisionTreeType { get }
-    var prepareBenefits: String? { get set }
+    var userInput: String? { get set }
     var relatedStrategyID: Int { get }
     var selectedanswers: [DecisionTreeModel.SelectedAnswer] { get }
     var answersFilter: String? { get }
@@ -122,7 +122,8 @@ protocol DecisionTreeModelInterface {
     mutating func reset()
     mutating func removeLastQuestion()
     mutating func add(_ question: QDMQuestion)
-    mutating func remove(_ question: QDMQuestion)
+    mutating func update(_ question: QDMQuestion?, _ userInput: String?)
+    mutating func remove(_ extendedQuestion: DecisionTreeModel.ExtendedQuestion)
     mutating func add(_ selection: DecisionTreeModel.SelectedAnswer)
     mutating func remove(_ selection: DecisionTreeModel.SelectedAnswer)
 }

@@ -28,28 +28,9 @@ final class MyToBeVisionDataNullStateViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
         addObserver()
         getVisionTracks()
-        emptyStateHeaderTitle {[weak self] (title) in
-            self?.headingLabel.attributedText = self?.formatted(title: title.uppercased())
-        }
-
-        emptyStateHeaderDesc {[weak self] (title) in
-            self?.HeadingDescriptionLabel.attributedText = self?.formatted(title: title)
-        }
-
-        emptyStateTitleTitle {[weak self] (title) in
-            self?.titleLabel.attributedText = self?.formatted(title: title.uppercased())
-        }
-
-        emptyStateTitleDesc {[weak self] (title) in
-            self?.titleDescriptionLabel.attributedText = self?.formatted(title: title)
-        }
-    }
-
-    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return generateBottomNavigationBarRighButtonItems()
+        setupEmptySate()
     }
 
     @objc func doneAction() {
@@ -61,8 +42,7 @@ final class MyToBeVisionDataNullStateViewController: UIViewController {
 }
 
 private extension MyToBeVisionDataNullStateViewController {
-
-    private func getVisionTracks() {
+    func getVisionTracks() {
         userService.getToBeVisionTracksForRating {[weak self] (tracks, isInitialized, error) in
             guard let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.visionId }) else { return }
             self?.tbvRateButton?.isEnabled = finalTracks.count > 0
@@ -70,22 +50,28 @@ private extension MyToBeVisionDataNullStateViewController {
     }
 
     func addObserver() {
-        NotificationCenter.default.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) {[weak self] (notification) in
-            guard let syncResult = notification.object as? SyncResultContext else {
-                return
-            }
-            if syncResult.dataType == .MY_TO_BE_VISION_TRACKER, syncResult.syncRequestType == .DOWN_SYNC {
-                self?.tbvRateButton?.isEnabled = true
-            }
-        }
-    }
-
-    func generateBottomNavigationBarRighButtonItems() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.rateViewControllerRateMyTBVButton(), buttonWidth: 121, action: #selector(doneAction), backgroundColor: .carbon, borderColor: .accent)]
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didFinishSynchronization(_:)),
+                                               name: .didFinishSynchronization,
+                                               object: nil)
     }
 }
 
 private extension MyToBeVisionDataNullStateViewController {
+    func setupEmptySate() {
+        emptyStateHeaderTitle {[weak self] (title) in
+            self?.headingLabel.attributedText = self?.formatted(title: title.uppercased())
+        }
+        emptyStateHeaderDesc {[weak self] (title) in
+            self?.HeadingDescriptionLabel.attributedText = self?.formatted(title: title)
+        }
+        emptyStateTitleTitle {[weak self] (title) in
+            self?.titleLabel.attributedText = self?.formatted(title: title.uppercased())
+        }
+        emptyStateTitleDesc {[weak self] (title) in
+            self?.titleDescriptionLabel.attributedText = self?.formatted(title: title)
+        }
+    }
 
     func formatted(title: String) -> NSAttributedString? {
         return NSAttributedString(string: title,
@@ -118,5 +104,26 @@ private extension MyToBeVisionDataNullStateViewController {
         contentService.getContentItemByPredicate(ContentService.TBVData.emptyStateTitleDesc.predicate) {(contentItem) in
             completion(contentItem?.valueText ?? "")
         }
+    }
+}
+
+// MARK: - TBV TRACKER DID FINISH SYNC
+extension MyToBeVisionDataNullStateViewController {
+    @objc func didFinishSynchronization(_ notification: Notification) {
+        guard let syncResult = notification.object as? SyncResultContext else { return }
+        if syncResult.dataType == .MY_TO_BE_VISION_TRACKER, syncResult.syncRequestType == .DOWN_SYNC {
+            tbvRateButton?.isEnabled = true
+        }
+    }
+}
+
+// MARK: - Bottom Navigation Items
+extension MyToBeVisionDataNullStateViewController {
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return [roundedBarButtonItem(title: R.string.localized.rateViewControllerRateMyTBVButton(),
+                                     buttonWidth: .RateTBV,
+                                     action: #selector(doneAction),
+                                     backgroundColor: .carbon,
+                                     borderColor: .accent)]
     }
 }

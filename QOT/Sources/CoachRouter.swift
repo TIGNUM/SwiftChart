@@ -7,11 +7,11 @@
 //
 
 import UIKit
+import qot_dal
 
 final class CoachRouter {
 
     // MARK: - Properties
-
     private let viewController: CoachViewController
     weak var delegate: CoachCollectionViewControllerDelegate?
     private var permissionsManager: PermissionsManager {
@@ -19,7 +19,6 @@ final class CoachRouter {
     }
 
     // MARK: - Init
-
     init(viewController: CoachViewController) {
         self.viewController = viewController
     }

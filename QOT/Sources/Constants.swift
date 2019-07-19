@@ -58,13 +58,28 @@ enum FontName: String {
 }
 
 extension CGFloat {
-    static let bottomNavBarHeight: CGFloat = 100
-    static let buttonHeight: CGFloat = 40
-    static let doneButtonWidth: CGFloat = 72
-    static let saveAndContinueButtonWidth: CGFloat = 152
-    static let decisionTreeButtonWidth: CGFloat = 168
-    static let cancelButtonWidth: CGFloat = 85
-    static let continueButtonWidth: CGFloat = 100
+    public typealias Button = CGFloat
+}
+
+extension CGFloat.Button {
+    public typealias Width = CGFloat
+    public typealias Height = CGFloat
+}
+
+extension CGFloat.Button.Height {
+    static let Default: CGFloat = 40
+    static let BottomNavBar: CGFloat = 100
+}
+
+extension CGFloat.Button.Width {
+    static let DoItLater: CGFloat = 104
+    static let TrackTBV: CGFloat = 135
+    static let RateTBV: CGFloat = 144
+    static let Done: CGFloat = 72
+    static let SaveAndContinue: CGFloat = 152
+    static let DecisionTree: CGFloat = 168
+    static let Cancel: CGFloat = 85
+    static let Continue: CGFloat = 100
 }
 
 struct Layout {
