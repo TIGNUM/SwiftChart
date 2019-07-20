@@ -21,6 +21,7 @@ protocol MyQotMainPresenterInterface {
 protocol MyQotMainInteractorInterface: Interactor {
     func presentMyPreps()
     func presentMyProfile()
+    func presentMySprints()
     func presentMyToBeVision()
     func presentMyLibrary()
     func nextPrep(completion: @escaping (String?) -> Void)
@@ -33,6 +34,7 @@ protocol MyQotMainInteractorInterface: Interactor {
 protocol MyQotMainRouterInterface {
     func presentMyPreps()
     func presentMyProfile()
+    func presentMySprints()
     func presentMyToBeVision()
     func presentMyLibrary()
 }

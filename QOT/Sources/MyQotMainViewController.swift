@@ -143,13 +143,17 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
     }
 
      func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        if indexPath.row == 0 {
+        let qotSection = MyQotSection.allCases[indexPath.row]
+        switch qotSection {
+        case .profile:
             interactor?.presentMyProfile()
-        } else if indexPath.row == 1 {
+        case .library:
             interactor?.presentMyLibrary()
-        } else if indexPath.row == 5 {
+        case .sprints:
+            interactor?.presentMySprints()
+        case .toBeVision:
             interactor?.presentMyToBeVision()
-        } else {
+        default:
             interactor?.presentMyPreps()
         }
     }

@@ -23,7 +23,7 @@ final class MyLibraryUserStorageInteractor {
     private (set) var bottomButtons: [ButtonParameters]? = nil
 
     var items = [MyLibraryCellViewModel]()
-    var identifiersForCheck = NSMutableSet()
+    private var identifiersForCheck = Set<String>()
 
     // Cannot be lazy as "Remove" state depends on selected items count
     private var editingButtons: [ButtonParameters] {
@@ -71,7 +71,7 @@ final class MyLibraryUserStorageInteractor {
         load()
     }
 
-    @objc func load(_ notification: Notification? = nil) {
+    @objc private func load(_ notification: Notification? = nil) {
         worker.loadData { [weak self] (initiated, items) in
             guard let strongSelf = self else { return }
             strongSelf.items.removeAll()
@@ -161,7 +161,7 @@ extension MyLibraryUserStorageInteractor {
     @objc private func cancelEditingTapped() {
         isEditing = false
         bottomButtons = nil
-        identifiersForCheck.removeAllObjects()
+        identifiersForCheck.removeAll()
         presenter.present()
     }
 
@@ -182,10 +182,7 @@ extension MyLibraryUserStorageInteractor {
     }
 
     @objc private func continueRemovingTapped() {
-        guard let idsForRemoval = identifiersForCheck.allObjects as? [String] else {
-            return
-        }
-        worker.deleteFor(identifiers: idsForRemoval) { [weak self] (update, error) in
+        worker.deleteFor(identifiers: Array(identifiersForCheck)) { [weak self] (update, error) in
             guard let strongSelf = self else { return }
             if error == nil {
                 strongSelf.successfullyDeleted(identifier: update)
@@ -230,7 +227,7 @@ extension MyLibraryUserStorageInteractor {
     private func checkItemForDeletion(_ item: MyLibraryCellViewModel) -> Bool {
         let previouslySelected = identifiersForCheck.contains(item.identifier)
         if !previouslySelected {
-            identifiersForCheck.add(item.identifier)
+            identifiersForCheck.insert(item.identifier)
         } else {
             identifiersForCheck.remove(item.identifier)
         }
@@ -348,12 +345,14 @@ extension MyLibraryUserStorageInteractor {
             return
         }
         // Find map IDs which have a status DOWNLOADED and are also present in the items being displayed
-        let downloadedItemIsInItems = map.keys.filter { items.compactMap { $0.identifier }.contains(obj: $0) }.reduce(false) {
+        // swiftlint:disable reduce_boolean
+        let itemIdentifiers = items.compactMap { $0.identifier }
+        let downloadedItemIsInItems = map.keys.filter { itemIdentifiers.contains(obj: $0) }.reduce(false) {
             guard let item = map[$1] else { return $0 }
             return ($0 || item.status == .DOWNLOADED)
         }
+        // swiftlint:enable reduce_boolean
         if downloadedItemIsInItems {
-            print("Refreshing") //TODO: raise a bug as previously finished downloads are present in the map
             load()
         }
     }

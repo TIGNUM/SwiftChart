@@ -46,6 +46,10 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
         router.presentMyProfile()
     }
 
+    func presentMySprints() {
+        router.presentMySprints()
+    }
+
     func presentMyToBeVision() {
         router.presentMyToBeVision()
     }

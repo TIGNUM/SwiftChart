@@ -49,6 +49,15 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
         }
     }
 
+    func presentMySprints() {
+        guard let mySprintsController = R.storyboard.mySprints.mySprintsListViewController() else {
+            return
+        }
+        let configurator = MySprintsListConfigurator.make()
+        configurator(mySprintsController)
+        viewController.pushToStart(childViewController: mySprintsController)
+    }
+
     func presentMyToBeVision() {
         let storyboardID = R.storyboard.myToBeVision.myVisionViewController.identifier
         let myVisionViewController = R.storyboard
