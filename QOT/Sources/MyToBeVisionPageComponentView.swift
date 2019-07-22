@@ -14,6 +14,8 @@ final class MyToBeVisionPageComponentView: UIView {
     private let defaultPageComponentWidth: CGFloat = 2
     private let expandedPageComponentWidth: CGFloat = 16
 
+    var pageColor: UIColor?
+
     var pageCount: Int = 0 {
         didSet {
             formView()
@@ -37,7 +39,7 @@ final class MyToBeVisionPageComponentView: UIView {
         if pageCount == 0 { return }
         for _ in 1...pageCount {
             let view = UIView()
-            view.backgroundColor = .sand
+            view.backgroundColor = pageColor
             view.translatesAutoresizingMaskIntoConstraints = false
             view.addConstraint(NSLayoutConstraint(item: view, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 1))
             view.addConstraint(NSLayoutConstraint(item: view, attribute: .width, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: defaultPageComponentWidth))

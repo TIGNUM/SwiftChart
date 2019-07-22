@@ -7,32 +7,78 @@
 //
 
 import Foundation
+import qot_dal
 
-struct MyToBeVisionRateViewModel {
-
-    struct Question: NewQuestionnaire {
-        let remoteID: Int
-        let title: String
+struct RatingQuestionViewModel {
+    struct Answer {
+        let remoteID: Int?
+        let title: String?
         let subtitle: String?
-        let description: String?
-        let rating: Int
-        let range: Int
-        var answerIndex: Int
+    }
 
-        func questionIdentifier() -> Int {
+    class Question: RatingQuestionnaire {
+        let remoteID: Int?
+        let title: String
+        let htmlTitle: String?
+        let subtitle: String?
+        let dailyPrepTitle: String?
+        let key: String?
+        let answers: [Answer]?
+        let range: Int?
+        let toBeVisionTrackId: Int?
+        let SHPIQuestionId: Int?
+        let groups: [QDMQuestionGroup]?
+        let buttonText: String?
+        var selectedAnswerIndex: Int?
+
+        init?(remoteID: Int?, title: String, htmlTitle: String?,
+              subtitle: String?, dailyPrepTitle: String?,
+              key: String?, answers: [Answer]?,
+              range: Int?, toBeVisionTrackId: Int? = nil,
+              SHPIQuestionId: Int? = nil, groups: [QDMQuestionGroup]? = nil ,
+              buttonText: String? = nil, selectedAnswerIndex: Int?) {
+            self.remoteID = remoteID
+            self.title = title
+            self.htmlTitle = htmlTitle
+            self.subtitle = subtitle
+            self.dailyPrepTitle = dailyPrepTitle
+            self.key = key
+            self.answers = answers
+            self.range = range
+            self.toBeVisionTrackId = toBeVisionTrackId
+            self.SHPIQuestionId = SHPIQuestionId
+            self.groups = groups
+            self.buttonText = buttonText
+            self.selectedAnswerIndex = selectedAnswerIndex
+        }
+
+        func items() -> Int? {
+            return range ?? answers?.count
+        }
+
+        func getAnswers() -> [Answer]? {
+            return answers
+        }
+
+        func questionKey() -> String? {
+            return key
+        }
+
+        func selectedQuestionAnswerIndex() -> Int? {
+            return selectedAnswerIndex
+        }
+
+        func questionIdentifier() -> Int? {
             return remoteID
         }
 
-        func question() -> String {
-            return title
+        func question() -> NSAttributedString? {
+            return htmlTitle?.convertHtml() ?? NSAttributedString(string: title)
         }
 
-        func items() -> Int {
-            return range
-        }
-
-        func selectedAnswerIndex() -> Int {
-            return answerIndex
+        func selectedAnswer() -> Answer? {
+            guard let index = selectedAnswerIndex else { return nil }
+            return answers?[index]
         }
     }
 }

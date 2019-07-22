@@ -9,7 +9,7 @@
 import Foundation
 
 protocol MyToBeVisionRateViewControllerInterface: class {
-    func setupView(questions: [MyToBeVisionRateViewModel.Question])
+    func setupView(questions: [RatingQuestionViewModel.Question])
     func showCountDownView(_ view: UIView?)
     func hideTimerView(completion: @escaping (() -> Void))
     func showScreenLoader()
@@ -17,7 +17,7 @@ protocol MyToBeVisionRateViewControllerInterface: class {
 }
 
 protocol MyToBeVisionRatePresenterInterface {
-    func setupView(questions: [MyToBeVisionRateViewModel.Question])
+    func setupView(questions: [RatingQuestionViewModel.Question])
     func showCountDownView(_ view: UIView?)
     func hideTimerView(completion: @escaping (() -> Void))
     func showScreenLoader()

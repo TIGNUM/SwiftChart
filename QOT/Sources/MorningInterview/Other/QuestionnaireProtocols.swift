@@ -26,9 +26,12 @@ protocol QuestionnaireAnswer: class {
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController)
 }
 
-protocol NewQuestionnaire {
-    func questionIdentifier() -> Int
-    func question() -> String
-    func items() -> Int
-    func selectedAnswerIndex() -> Int
+protocol RatingQuestionnaire {
+    func getAnswers() -> [RatingQuestionViewModel.Answer]?
+    func questionKey() -> String?
+    func items() -> Int?
+    func selectedQuestionAnswerIndex() -> Int?
+    func questionIdentifier() -> Int?
+    func question() -> NSAttributedString?
+    func selectedAnswer() -> RatingQuestionViewModel.Answer?
 }

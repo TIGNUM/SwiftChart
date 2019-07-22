@@ -64,6 +64,7 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
             myVisionDidChange = false
         }
         UIApplication.shared.statusBarView?.backgroundColor = .carbon
+        QuestionnaireViewController.hasArrowsAnimated = false
     }
 
     override func viewDidAppear(_ animated: Bool) {

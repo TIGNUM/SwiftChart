@@ -13,6 +13,55 @@ enum QuestionnairePresentationType {
     case fill
 }
 
+enum DailyCheckInQuestionKey: String {
+    case quality = "sleep.quality"
+    case amount = "sleep.quantity.time"
+    case recovered = "recovery.today"
+    case load = "load.today"
+    case demad = "load.upcoming.week"
+}
+
+enum ControllerType {
+    case vision
+    case dailyCheckin
+
+    struct Config {
+        let currentIndexColor: UIColor
+        let aboveCurrentIndexColor: UIColor
+        let belowCurrentIndexColor: UIColor
+
+        static func myVision() -> Config {
+            return Config(currentIndexColor: .redOrange,
+                          aboveCurrentIndexColor: .redOrange40,
+                          belowCurrentIndexColor: .accent40)
+        }
+
+        static func dailyCheckin() -> Config {
+            return Config(currentIndexColor: .accent,
+                          aboveCurrentIndexColor: .accent70,
+                          belowCurrentIndexColor: .accent70)
+        }
+    }
+
+    var config: Config {
+        switch self {
+        case .vision:
+            return Config.myVision()
+        case .dailyCheckin:
+            return Config.dailyCheckin()
+        }
+    }
+
+    var color: UIColor {
+        switch self {
+        case .vision:
+            return .sand
+        case .dailyCheckin:
+            return .carbon
+        }
+    }
+}
+
 final class QuestionnaireViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var questionLabel: UILabel!
@@ -20,40 +69,59 @@ final class QuestionnaireViewController: UIViewController {
     @IBOutlet private weak var ovalTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var progressHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var progressView: UIView!
+    @IBOutlet private weak var progressUpArrowImage: UIImageView!
+    @IBOutlet private weak var progressDownArrowImage: UIImageView!
+    @IBOutlet private weak var downArrowTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var upArrowBottomConstraint: NSLayoutConstraint!
     @IBOutlet private weak var fillView: UIView!
+    @IBOutlet private weak var topImageView: UIImageView!
+    @IBOutlet private weak var bottomImageView: UIImageView!
+    @IBOutlet private weak var topIndex: UILabel!
+    @IBOutlet private weak var bottomIndex: UILabel!
+    @IBOutlet private weak var lineView: UIView!
+    @IBOutlet private weak var hintLabel: UILabel!
     @IBOutlet private weak var indexLabel: UILabel!
 
+    static var hasArrowsAnimated: Bool = false
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?
-    private var question: String? = nil
+    private var question: NSAttributedString? = nil
     private var items = 10
+    private var answers: [RatingQuestionViewModel.Answer]?
+    private var cellHeight: CGFloat = Layout.padding_24
     private let barWidth = 8
     private let defaultMultiplierForIndex = 1
     private let multiplierForFirstIndex = 4
     private let multiplierForSecondIndex = 2
-
-    private var cellHeight: CGFloat = Layout.padding_24
     private var previousYPosition: CGFloat = 0.0
     private var touchDownYPosition: CGFloat = 0.0
     private var currentIndex: Int = 5
     private var temporaryIndex: Int = -1
+    private var questionkey: DailyCheckInQuestionKey?
     private var presentationType: QuestionnairePresentationType = .selection
+    private var controllerType: ControllerType = .vision
     private var showAnimated: Bool = false
     weak var answerDelegate: QuestionnaireAnswer?
 
     static func viewController<T>(with questionnaire: T,
                                   delegate: QuestionnaireAnswer? = nil,
-                                  presentationType: QuestionnairePresentationType = .fill) -> QuestionnaireViewController?
-        where T: NewQuestionnaire {
+                                  presentationType: QuestionnairePresentationType = .fill,
+                                  controllerType: ControllerType = .vision) -> QuestionnaireViewController?
+        where T: RatingQuestionnaire {
             guard let viewController = R.storyboard.questionnaireViewController.instantiateInitialViewController() else {
                 return nil
             }
+
+            let questionItems = questionnaire.items() ?? 0
             // setup questions
             viewController.questionIdentifier = questionnaire.questionIdentifier()
             viewController.question = questionnaire.question()
-            viewController.items = questionnaire.items()
-            viewController.currentIndex = questionnaire.selectedAnswerIndex()
+            viewController.items = questionItems
+            viewController.answers = questionnaire.getAnswers()
+            viewController.currentIndex = questionnaire.selectedQuestionAnswerIndex() ?? questionItems / 2
+            viewController.questionkey = DailyCheckInQuestionKey(rawValue: questionnaire.questionKey() ?? "")
             viewController.presentationType = presentationType
+            viewController.controllerType = controllerType
             viewController.answerDelegate = delegate
             return viewController
     }
@@ -61,6 +129,8 @@ final class QuestionnaireViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         animationHide()
+        setupImages()
+        setupView()
         progressView.backgroundColor = UIColor.clear
     }
 
@@ -104,12 +174,92 @@ final class QuestionnaireViewController: UIViewController {
 // MARK: Animation
 extension QuestionnaireViewController {
 
+    func animateArrows() {
+        if QuestionnaireViewController.hasArrowsAnimated { return }
+        self.upArrowBottomConstraint.constant = 10
+        UIView.animate(withDuration: 0.8,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0.5,
+                       animations: {
+                        self.progressView.layoutIfNeeded()
+        }, completion: {[weak self] (value: Bool) in
+            self?.upArrowBottomConstraint.constant = 5
+            UIView.animate(withDuration: 0.8,
+                           delay: 0,
+                           animations: {
+                            self?.progressView.layoutIfNeeded()
+            }, completion: nil)
+        })
+
+        self.downArrowTopConstraint.constant = 10
+        UIView.animate(withDuration: 0.8,
+                       delay: 0,
+                       usingSpringWithDamping: 1,
+                       initialSpringVelocity: 0.5,
+                       animations: {
+                        self.progressView.layoutIfNeeded()
+        }, completion: {[weak self] (value: Bool) in
+            self?.downArrowTopConstraint.constant = 5
+            UIView.animate(withDuration: 0.8,
+                           delay: 0,
+                           animations: {
+                            self?.progressView.layoutIfNeeded()
+            }, completion: nil)
+        })
+    }
+
     func animationHide() {
         questionLabel.isHidden = true
         tableView.isHidden = true
         tableView.reloadData()
         progressView.alpha = 0.0
         showAnimated = false
+    }
+
+    private func topAndBottomImage(isHidden: Bool) {
+        topImageView.isHidden = isHidden
+        bottomImageView.isHidden = isHidden
+        topIndex.isHidden = !isHidden
+        bottomIndex.isHidden = !isHidden
+    }
+
+    private func setupView() {
+        let color = controllerType.color
+        lineView.backgroundColor = color
+        indexLabel.textColor = color
+        bottomIndex.textColor = color
+        topIndex.textColor = color
+        questionLabel.textColor = color
+    }
+
+    private func setupImages() {
+        switch questionkey {
+        case .amount?:
+            topImageView.image = R.image.sleepBig()
+            bottomImageView.image = R.image.sleepSmall()
+            topAndBottomImage(isHidden: false)
+        case .demad?:
+            topImageView.image = R.image.upcomingEventBig()
+            bottomImageView.image = R.image.upcomingEventBig()
+            topAndBottomImage(isHidden: false)
+        case .load?:
+            topImageView.image = R.image.taskBig()
+            bottomImageView.image = R.image.taskSmall()
+            topAndBottomImage(isHidden: false)
+        case .quality?:
+            topImageView.image = R.image.waveBig()
+            bottomImageView.image = R.image.waveSmall()
+            topAndBottomImage(isHidden: false)
+        case .recovered?:
+            topImageView.image = R.image.recoverBig()
+            bottomImageView.image = R.image.recoverSmall()
+            topAndBottomImage(isHidden: false)
+        default:
+            topIndex.text = String(10)
+            bottomIndex.text = String(1)
+            topAndBottomImage(isHidden: true)
+        }
     }
 
     public func animationShow() {
@@ -121,7 +271,7 @@ extension QuestionnaireViewController {
         questionLabel.isHidden = false
         questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
         questionLabel.alpha = 0
-        questionLabel.text = question
+        questionLabel.attributedText = question
         progressView.alpha = 0.0
         progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
         fillView.setNeedsUpdateConstraints()
@@ -172,6 +322,9 @@ extension QuestionnaireViewController {
             self.dragTo(yPosition: position, isTouch: isTouch)
             self.fillView.setNeedsUpdateConstraints()
             self.fillView.layoutIfNeeded()
+        }, completion: { finished in
+            self.animateArrows()
+            QuestionnaireViewController.hasArrowsAnimated = true
         })
     }
 
@@ -194,8 +347,27 @@ extension QuestionnaireViewController {
                 }
             }
         }
-        indexLabel.text = String(items - index)
+
+        if let finalAnswers = answers {
+            let answerIndex = items - index - 1
+            if answerIndex < finalAnswers.count {
+                indexLabel.text = finalAnswers[answerIndex].subtitle
+                hintLabel.text = finalAnswers[answerIndex].title
+            }
+        } else {
+            indexLabel.text = String(items - index)
+        }
+
         if isTouch == true {
+            switch index {
+            case 0:
+                progressUpArrowImage.isHidden = true
+            case items - 1:
+                progressDownArrowImage.isHidden = true
+            default:
+                progressUpArrowImage.isHidden = false
+                progressDownArrowImage.isHidden = false
+            }
             answerDelegate?.isSelecting(answer: index, for: questionIdentifier, from: self)
         }
     }
@@ -224,13 +396,20 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: QuestionnaireTableViewCell = tableView.dequeueCell(for: indexPath)
-
         var multiplier = defaultMultiplierForIndex
         // handle multipliers
-        if indexPath.row == 0 {
-            multiplier = multiplierForFirstIndex
-        } else if indexPath.row <= 2 {
-            multiplier = multiplierForSecondIndex
+        if questionkey == .amount {
+            if indexPath.row == 0 {
+                multiplier = multiplierForFirstIndex
+            } else if indexPath.row <= 4 {
+                multiplier = multiplierForSecondIndex
+            }
+        } else {
+            if indexPath.row == 0 {
+                multiplier = multiplierForFirstIndex
+            } else if indexPath.row <= 2 {
+                multiplier = multiplierForSecondIndex
+            }
         }
 
         // handle colors
@@ -242,7 +421,18 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
             cell.cellIndicatorView.isCurrentIndex = true
         }
 
-        cell.cellIndicatorView.indicatorWidth = CGFloat(barWidth * (items - indexPath.row + multiplier))
+        if questionkey == .amount {
+            if indexPath.row % 2 != 0 {
+                cell.cellIndicatorView.indicatorWidth = CGFloat(6)
+            } else {
+                let width = CGFloat(barWidth * (items - indexPath.row + multiplier))
+                cell.cellIndicatorView.indicatorWidth = width/2
+            }
+        } else {
+            cell.cellIndicatorView.indicatorWidth = CGFloat(barWidth * (items - indexPath.row + multiplier))
+        }
+
+        cell.cellIndicatorView.config = controllerType.config
         return cell
     }
 

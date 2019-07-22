@@ -19,7 +19,7 @@ final class MyToBeVisionRateWorker {
     private let userService: qot_dal.UserService
     private let visionId: Int
     private let viewController: MyToBeVisionRateViewController
-    var questions: [MyToBeVisionRateViewModel.Question]?
+    var questions: [RatingQuestionViewModel.Question]?
     var dataTracks: [QDMToBeVisionTrack]?
 
     init(userService: qot_dal.UserService,
@@ -30,28 +30,23 @@ final class MyToBeVisionRateWorker {
         self.viewController = viewController
     }
 
-    func getQuestions(_ completion: @escaping (_ tracks: [MyToBeVisionRateViewModel.Question]?, _ initialized: Bool, _ error: Error?) -> Void) {
+    func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]?, _ initialized: Bool, _ error: Error?) -> Void) {
         userService.getToBeVisionTracksForRating {[weak self] (tracks, isInitialized, error) in
             let finalTracks = tracks?.filter({ $0.toBeVisionId == self?.visionId })
             self?.dataTracks = finalTracks
-            let questions = finalTracks?.compactMap { (track) -> MyToBeVisionRateViewModel.Question? in
+            let questions = finalTracks?.compactMap { (track) -> RatingQuestionViewModel.Question? in
                 guard let remoteID = track.remoteID else { return nil }
                 let question = track.sentence
-                let rating = track.ratings.sorted(by: { (ratingOne, ratingTwo) -> Bool in
-                    guard let dateOne = ratingOne.isoDate, let dateTwo = ratingTwo.isoDate else {
-                        return false
-                    }
-                    return dateOne.compare(dateTwo) == .orderedAscending
-                }).first
                 let range = 10
-                let selectedAnswerIndex = (range - 1) / 2
-                return MyToBeVisionRateViewModel.Question(remoteID: remoteID,
-                                                          title: question ?? "",
-                                                          subtitle: nil,
-                                                          description: nil,
-                                                          rating: rating?.rating ?? 0,
-                                                          range: range,
-                                                          answerIndex: selectedAnswerIndex)
+                return RatingQuestionViewModel.Question(remoteID: remoteID,
+                                                     title: question ?? "",
+                                                     htmlTitle: nil,
+                                                     subtitle: nil,
+                                                     dailyPrepTitle: nil,
+                                                     key: nil,
+                                                     answers: nil,
+                                                     range: range,
+                                                     selectedAnswerIndex: nil)
             }
             self?.questions = questions
             completion(questions, isInitialized, error)

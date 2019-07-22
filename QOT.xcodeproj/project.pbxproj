@@ -338,7 +338,7 @@
 		36D72ED1229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72EC9229C1BCC00DE1184 /* PrepareEventSelectionRouter.swift */; };
 		36D72ED2229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */; };
 		36D72ED4229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */; };
-		36D72ED5229C1BCC00DE1184 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		36D72ED5229C1BCC00DE1184 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		36D72ED6229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */; };
 		36D72ED9229C35CB00DE1184 /* PrepareEventTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36D72ED7229C35CB00DE1184 /* PrepareEventTableViewCell.swift */; };
 		36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36D72ED8229C35CB00DE1184 /* PrepareEventTableViewCell.xib */; };
@@ -524,10 +524,13 @@
 		75423EEE22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */; };
 		75423EF822CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */; };
 		75423EF922CE242B008EE726 /* MyToBeVisionTrackerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */; };
+		75423EFA22CE242B008EE726 /* MyToBeVisionTrackerRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */; };
 		75423EFB22CE242B008EE726 /* MyToBeVisionTrackerInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */; };
 		75423EFC22CE242B008EE726 /* MyToBeVisionTrackerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */; };
 		75423EFD22CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */; };
 		75423EFF22CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */; };
+		75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */; };
+		75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */; };
 		75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */; };
 		75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */; };
 		75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */; };
@@ -553,6 +556,21 @@
 		7582615422D5FB82000094DE /* ContentService+TBVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615322D5FB82000094DE /* ContentService+TBVData.swift */; };
 		7582615922D7431D000094DE /* ContentService+MyVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615822D7431D000094DE /* ContentService+MyVision.swift */; };
 		7582615B22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615A22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift */; };
+		7582616522D8DBBE000094DE /* DailyCheckinStartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615D22D8DBBE000094DE /* DailyCheckinStartPresenter.swift */; };
+		7582616622D8DBBE000094DE /* DailyCheckinStartWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615E22D8DBBE000094DE /* DailyCheckinStartWorker.swift */; };
+		7582616722D8DBBE000094DE /* DailyCheckinStartRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615F22D8DBBE000094DE /* DailyCheckinStartRouter.swift */; };
+		7582616822D8DBBE000094DE /* DailyCheckinStartInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582616022D8DBBE000094DE /* DailyCheckinStartInterface.swift */; };
+		7582616922D8DBBE000094DE /* DailyCheckinStartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582616122D8DBBE000094DE /* DailyCheckinStartViewController.swift */; };
+		7582616A22D8DBBE000094DE /* DailyCheckinStartInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582616222D8DBBE000094DE /* DailyCheckinStartInteractor.swift */; };
+		7582616C22D8DBBE000094DE /* DailyCheckinStartConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582616422D8DBBE000094DE /* DailyCheckinStartConfigurator.swift */; };
+		7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7582617022DC6A57000094DE /* DailyCheckin.storyboard */; };
+		7582617C22DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */; };
+		7582617D22DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */; };
+		7582617E22DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617622DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift */; };
+		7582617F22DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */; };
+		7582618022DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */; };
+		7582618122DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */; };
+		7582618322DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617B22DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift */; };
 		759AB30522C353090091BFB8 /* MyToBeVisionPageComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759AB30422C353090091BFB8 /* MyToBeVisionPageComponentView.swift */; };
 		759AB41B22C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759AB41922C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift */; };
 		759AB41C22C4D2410091BFB8 /* TBVDataGraphBarViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759AB41A22C4D2410091BFB8 /* TBVDataGraphBarViewCell.xib */; };
@@ -2055,10 +2073,13 @@
 		75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateViewModel.swift; sourceTree = "<group>"; };
 		75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerPresenter.swift; sourceTree = "<group>"; };
 		75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerWorker.swift; sourceTree = "<group>"; };
+		75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerRouter.swift; sourceTree = "<group>"; };
 		75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerInterface.swift; sourceTree = "<group>"; };
 		75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerViewController.swift; sourceTree = "<group>"; };
 		75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerInteractor.swift; sourceTree = "<group>"; };
 		75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerConfigurator.swift; sourceTree = "<group>"; };
+		75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFooterView.swift; sourceTree = "<group>"; };
+		75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSettingsFooterView.xib; sourceTree = "<group>"; };
 		75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCell.swift; sourceTree = "<group>"; };
 		75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachCell.xib; sourceTree = "<group>"; };
 		75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCellViewModel.swift; sourceTree = "<group>"; };
@@ -2084,6 +2105,21 @@
 		7582615322D5FB82000094DE /* ContentService+TBVData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+TBVData.swift"; sourceTree = "<group>"; };
 		7582615822D7431D000094DE /* ContentService+MyVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+MyVision.swift"; sourceTree = "<group>"; };
 		7582615A22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionDataNullStateViewController.swift; sourceTree = "<group>"; };
+		7582615D22D8DBBE000094DE /* DailyCheckinStartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartPresenter.swift; sourceTree = "<group>"; };
+		7582615E22D8DBBE000094DE /* DailyCheckinStartWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartWorker.swift; sourceTree = "<group>"; };
+		7582615F22D8DBBE000094DE /* DailyCheckinStartRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartRouter.swift; sourceTree = "<group>"; };
+		7582616022D8DBBE000094DE /* DailyCheckinStartInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartInterface.swift; sourceTree = "<group>"; };
+		7582616122D8DBBE000094DE /* DailyCheckinStartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartViewController.swift; sourceTree = "<group>"; };
+		7582616222D8DBBE000094DE /* DailyCheckinStartInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartInteractor.swift; sourceTree = "<group>"; };
+		7582616422D8DBBE000094DE /* DailyCheckinStartConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinStartConfigurator.swift; sourceTree = "<group>"; };
+		7582617022DC6A57000094DE /* DailyCheckin.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DailyCheckin.storyboard; sourceTree = "<group>"; };
+		7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsPresenter.swift; sourceTree = "<group>"; };
+		7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsWorker.swift; sourceTree = "<group>"; };
+		7582617622DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsRouter.swift; sourceTree = "<group>"; };
+		7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsInterface.swift; sourceTree = "<group>"; };
+		7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsViewController.swift; sourceTree = "<group>"; };
+		7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsInteractor.swift; sourceTree = "<group>"; };
+		7582617B22DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsConfigurator.swift; sourceTree = "<group>"; };
 		759AB30422C353090091BFB8 /* MyToBeVisionPageComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionPageComponentView.swift; sourceTree = "<group>"; };
 		759AB41922C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphBarViewCell.swift; sourceTree = "<group>"; };
 		759AB41A22C4D2410091BFB8 /* TBVDataGraphBarViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphBarViewCell.xib; sourceTree = "<group>"; };
@@ -3510,6 +3546,7 @@
 		367BB012223955D200282AB6 /* 3.0 Main Navigation */ = {
 			isa = PBXGroup;
 			children = (
+				7582615C22D8DB8B000094DE /* DailyCheckin */,
 				B83B33DA22C21D6E002AFED7 /* BottomNavigation */,
 				AC1A40D122A54DC90022156C /* Solve Results */,
 				5F8A89882296CA530011A05C /* MyToBeVision */,
@@ -4361,6 +4398,7 @@
 				7582615022D5FB4C000094DE /* Other */,
 				75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */,
 				75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */,
+				75423EF222CE242B008EE726 /* MyToBeVisionTrackerRouter.swift */,
 				75423EF322CE242B008EE726 /* MyToBeVisionTrackerInterface.swift */,
 				75423EF422CE242B008EE726 /* MyToBeVisionTrackerViewController.swift */,
 				75423EF522CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift */,
@@ -4440,6 +4478,68 @@
 				7582615822D7431D000094DE /* ContentService+MyVision.swift */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		7582615C22D8DB8B000094DE /* DailyCheckin */ = {
+			isa = PBXGroup;
+			children = (
+				7582616F22DC6A46000094DE /* Other */,
+				7582616E22DC6A3D000094DE /* Screens */,
+			);
+			name = DailyCheckin;
+			sourceTree = "<group>";
+		};
+		7582616D22D8DBC3000094DE /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				7582615D22D8DBBE000094DE /* DailyCheckinStartPresenter.swift */,
+				7582615E22D8DBBE000094DE /* DailyCheckinStartWorker.swift */,
+				7582615F22D8DBBE000094DE /* DailyCheckinStartRouter.swift */,
+				7582616022D8DBBE000094DE /* DailyCheckinStartInterface.swift */,
+				7582616122D8DBBE000094DE /* DailyCheckinStartViewController.swift */,
+				7582616222D8DBBE000094DE /* DailyCheckinStartInteractor.swift */,
+				7582616422D8DBBE000094DE /* DailyCheckinStartConfigurator.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		7582616E22DC6A3D000094DE /* Screens */ = {
+			isa = PBXGroup;
+			children = (
+				7582617322DCA000000094DE /* DailyCheckinQuestions */,
+				7582617222DC6A5F000094DE /* DailyCheckinStart */,
+			);
+			name = Screens;
+			sourceTree = "<group>";
+		};
+		7582616F22DC6A46000094DE /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				7582617022DC6A57000094DE /* DailyCheckin.storyboard */,
+			);
+			name = Other;
+			sourceTree = "<group>";
+		};
+		7582617222DC6A5F000094DE /* DailyCheckinStart */ = {
+			isa = PBXGroup;
+			children = (
+				7582616D22D8DBC3000094DE /* Core */,
+			);
+			name = DailyCheckinStart;
+			sourceTree = "<group>";
+		};
+		7582617322DCA000000094DE /* DailyCheckinQuestions */ = {
+			isa = PBXGroup;
+			children = (
+				7582617422DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift */,
+				7582617522DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift */,
+				7582617622DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift */,
+				7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */,
+				7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */,
+				7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */,
+				7582617B22DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift */,
+			);
+			name = DailyCheckinQuestions;
 			sourceTree = "<group>";
 		};
 		759AB30222C352CB0091BFB8 /* Other */ = {
@@ -7325,6 +7425,7 @@
 				F98D8ED222D374DB0072FC73 /* QuestionCell.xib in Resources */,
 				AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */,
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
+				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
 				D57ACCAF1F150D1D00906573 /* LaunchScreen.storyboard in Resources */,
 				91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */,
 				368A12632277387900866DB0 /* SF-Pro-Text-Regular.otf in Resources */,
@@ -7690,7 +7791,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -7881,6 +7982,7 @@
 				36376634223A66AF00C2C429 /* CoachModel.swift in Sources */,
 				ACB449962260EB4F00B0E79F /* DecisionTreeButton.swift in Sources */,
 				365EC0C1224A8CB10019AFF9 /* WhatsHotDetailViewController.swift in Sources */,
+				7582616622D8DBBE000094DE /* DailyCheckinStartWorker.swift in Sources */,
 				E8F43E5420B717CA00C9FF4F /* CalendarEventIntermediary.swift in Sources */,
 				36E6E3EF22492AFF001BE9C7 /* GlobalConstants.swift in Sources */,
 				F9C1D8B2220DD8EC00B40DD2 /* SiriShortcutsRouter.swift in Sources */,
@@ -7924,6 +8026,7 @@
 				D5EC34B21EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.swift in Sources */,
 				5F544FD122967FE500616626 /* ContentService+EditAccount.swift in Sources */,
 				D51B5C4C1E8D133B0084A65B /* LearnContentItemCoordinator.swift in Sources */,
+				7582617D22DDA8EC000094DE /* DailyCheckinQuestionsWorker.swift in Sources */,
 				F9C1D8BE220DDA2D00B40DD2 /* SiriShortcutsInteractor.swift in Sources */,
 				36376610223A4BEC00C2C429 /* DailyBriefInteractor.swift in Sources */,
 				362614AA20CFB4E500AB3659 /* UserCountry.swift in Sources */,
@@ -8090,6 +8193,7 @@
 				AC1A40EC22A561330022156C /* SolveStrategyTableViewCell.swift in Sources */,
 				75423F2222D39628008EE726 /* ContentService+SiriShortcuts.swift in Sources */,
 				3637664D223A7DE100C2C429 /* LevelTwoModel.swift in Sources */,
+				7582616922D8DBBE000094DE /* DailyCheckinStartViewController.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
 				AC103E472285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift in Sources */,
@@ -8210,6 +8314,7 @@
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
 				5F78965822A929C100D2DBAD /* Loader.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
+				7582616722D8DBBE000094DE /* DailyCheckinStartRouter.swift in Sources */,
 				F902CF4A22D87C3600FFC836 /* FeastCellViewModel.swift in Sources */,
 				5FF1A0F822857B6100D76D55 /* MyQotAppSettingsWorker.swift in Sources */,
 				F9838F4522AFFF72003F9394 /* MyQotMainRouter.swift in Sources */,
@@ -8270,7 +8375,6 @@
 				CBB4DCDC1ED475F00071494A /* DownSyncChange.swift in Sources */,
 				8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */,
 				7F0F03081F14FE9800007D50 /* CollapsableNode.swift in Sources */,
-				F96726A722BCD9F700B63FD7 /* QuestionViewController.swift in Sources */,
 				75423EFF22CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift in Sources */,
 				36718B4E224D20030042881E /* SubsriptionReminderInterface.swift in Sources */,
 				CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */,
@@ -8376,6 +8480,7 @@
 				8D5668B622DCAD4800AA172F /* MySprintsListPresenter.swift in Sources */,
 				CC8D6D051EC316BF007AE687 /* LearnContentItemViewModel.swift in Sources */,
 				F9C1D8C0220DDB7C00B40DD2 /* SiriShortcutsConfigurator.swift in Sources */,
+				7582617C22DDA8EC000094DE /* DailyCheckinQuestionsPresenter.swift in Sources */,
 				CC7A91121F0F978E00F791B9 /* UIViewController+ScreenType.swift in Sources */,
 				75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */,
 				CCC1B6A81E8B9B7300D1461F /* LearnCategoryLayout.swift in Sources */,
@@ -8390,6 +8495,7 @@
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CB3333E920480E05009480DF /* ShareInteractor.swift in Sources */,
 				F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */,
+				7582618022DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift in Sources */,
 				5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */,
 				DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */,
 				5F360749228C42570074FEC4 /* MyQotSyncedCalendarCell.swift in Sources */,
@@ -8502,6 +8608,7 @@
 				CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */,
 				CB1467651EF2779700A60E31 /* Page.swift in Sources */,
 				CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */,
+				7582616A22D8DBBE000094DE /* DailyCheckinStartInteractor.swift in Sources */,
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
 				AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */,
 				7F47E8401F8E4FE000ED4446 /* UIDevice+Utility.swift in Sources */,
@@ -8516,6 +8623,7 @@
 				AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */,
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
 				CB35504320597D44000ECAFA /* DailyPrepAnswerObject.swift in Sources */,
+				7582617F22DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift in Sources */,
 				CB9AFD111F014AED00D067F2 /* Preparation.swift in Sources */,
 				CBC1DC171F0F690A00F6D056 /* SystemSettingIntermediary.swift in Sources */,
 				362632471FD6A4210024C626 /* GuideTableViewCell.swift in Sources */,
@@ -8590,6 +8698,7 @@
 				CBCCF3961F7E43EF000E4440 /* ChatViewHeaderFooter.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
 				36E4B7B7219EC6EE00049EE8 /* TutorialCollectionViewCell.swift in Sources */,
+				75423EFA22CE242B008EE726 /* MyToBeVisionTrackerRouter.swift in Sources */,
 				36796A0D20D3C41F00B55429 /* SigningCreatePasswordInteractor.swift in Sources */,
 				36376633223A66AF00C2C429 /* CoachInteractor.swift in Sources */,
 				DB68059D218210E700C2FC69 /* MorningInterviewConfiguator.swift in Sources */,
@@ -8618,6 +8727,7 @@
 				8D6E058D22D7466E00EC2AEF /* MyLibraryNotesInteractor.swift in Sources */,
 				DB5E5E56217632C1006BA438 /* RestartRouteHandler.swift in Sources */,
 				CB9AFD191F014C0800D067F2 /* PreparationCheckIntermediary.swift in Sources */,
+				7582616C22D8DBBE000094DE /* DailyCheckinStartConfigurator.swift in Sources */,
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,
 				36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */,
 				CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */,
@@ -8655,7 +8765,7 @@
 				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
-				36D72ED5229C1BCC00DE1184 /* BuildFile in Sources */,
+				36D72ED5229C1BCC00DE1184 /* (null) in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
@@ -8708,6 +8818,7 @@
 				368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */,
 				5F7BE788228958BE00BA5DCF /* MyQotSupportViewController.swift in Sources */,
 				36376677223BFF3800C2C429 /* StrategyListRouter.swift in Sources */,
+				7582616822D8DBBE000094DE /* DailyCheckinStartInterface.swift in Sources */,
 				F95B9242228EE273000DEAEC /* ToolsTableViewCell.swift in Sources */,
 				75DC686A22C11D1200FF183D /* MyToBeVisionRateInterface.swift in Sources */,
 				CB9B075C1EF911AD0017F6C3 /* IntObject.swift in Sources */,
@@ -8780,6 +8891,7 @@
 				CB3333E520480DEF009480DF /* ShareProtocols.swift in Sources */,
 				F9B102A422D336D000F99E85 /* WhatsHotLatestCell.swift in Sources */,
 				7FE674B91F8F8F3600FC7407 /* ArticleCollectionHeader.swift in Sources */,
+				7582617E22DDA8EC000094DE /* DailyCheckinQuestionsRouter.swift in Sources */,
 				5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */,
 				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
 				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
@@ -8874,7 +8986,9 @@
 				369ADFE322A681CE00DE4FA0 /* RelatedStrategyTableViewCell.swift in Sources */,
 				36E4CF0922BC51BD009A2DF7 /* ChoicePresenter.swift in Sources */,
 				CCC0C4BE1E82730E002A8362 /* Extensions.swift in Sources */,
+				7582616522D8DBBE000094DE /* DailyCheckinStartPresenter.swift in Sources */,
 				75423EFD22CE242B008EE726 /* MyToBeVisionTrackerInteractor.swift in Sources */,
+				7582618322DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift in Sources */,
 				CCC1B6AE1E8B9B7F00D1461F /* LearnContentListViewController.swift in Sources */,
 				5F7BE7A22289A93300BA5DCF /* ContentService+AboutUs.swift in Sources */,
 				36085C5922CA48E600C703BA /* PreparationManager.swift in Sources */,
@@ -8973,6 +9087,7 @@
 				AC7F3DB42177407D0058B343 /* GuidePreparationTableViewCell.swift in Sources */,
 				36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */,
 				CBB4DCFF1EDD6CE50071494A /* NetworkManager.swift in Sources */,
+				7582618122DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift in Sources */,
 				36D535E220A711E800F1C2FC /* PartnerEditConfigurator.swift in Sources */,
 				ACF0B945225FC41F008CFAEC /* DecisionTreeWorker.swift in Sources */,
 				CBC5ACCA1F18EF96007E1E9C /* QOTUsageTimer.swift in Sources */,

@@ -12,6 +12,7 @@ import qot_dal
 final class MyToBeVisionTrackerConfigurator: AppStateAccess {
 
     static func configure(viewController: MyToBeVisionTrackerViewController, controllerType: MyToBeVisionTrackerWorker.ControllerType) {
+        let router = MyToBeVisionTrackerRouter(viewController: viewController)
         let worker = MyToBeVisionTrackerWorker(userService: qot_dal.UserService.main, contentService: qot_dal.ContentService.main, controllerType: controllerType)
         let presenter = MyToBeVisionTrackerPresenter(viewController: viewController)
         let interactor = MyToBeVisionTrackerInteractor(worker: worker, presenter: presenter)

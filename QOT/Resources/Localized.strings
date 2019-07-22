@@ -567,3 +567,5 @@
 
 "TBVTrackerViewController.doneButton" = "Done";
 "TBVDataGraphBarNextDurationViewCell.inFourWeeks" = "in 4 weeks";
+
+"QuestionnaireViewController.doneButton" = "Done";

@@ -14,24 +14,26 @@ final class QuestionaireCellIndicator: UIView {
     @IBOutlet weak private var separatorWidth: NSLayoutConstraint!
     @IBOutlet weak private var separatorViewHeight: NSLayoutConstraint!
 
+    var config = ControllerType.Config.myVision()
+
     var isCurrentIndex: Bool = false {
         willSet {
             separatorViewHeight.constant = 2.0
-            separatorView.backgroundColor = .redOrange
+            separatorView.backgroundColor = config.currentIndexColor
         }
     }
 
     var isAboveCurrentIndex: Bool = false {
         willSet {
             separatorViewHeight.constant = 1.0
-            separatorView.backgroundColor = UIColor.redOrange.withAlphaComponent(0.4)
+            separatorView.backgroundColor = config.aboveCurrentIndexColor
         }
     }
 
     var isBelowCurrentIndex: Bool = false {
         willSet {
             separatorViewHeight.constant = 1.0
-            separatorView.backgroundColor = .accent40
+            separatorView.backgroundColor = config.belowCurrentIndexColor
         }
     }
 

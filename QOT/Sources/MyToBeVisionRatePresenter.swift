@@ -19,7 +19,7 @@ final class MyToBeVisionRatePresenter {
 
 extension MyToBeVisionRatePresenter: MyToBeVisionRatePresenterInterface {
 
-    func setupView(questions: [MyToBeVisionRateViewModel.Question]) {
+    func setupView(questions: [RatingQuestionViewModel.Question]) {
         viewController?.setupView(questions: questions)
     }
 

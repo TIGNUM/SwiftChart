@@ -22,7 +22,7 @@ final class MyToBeVisionRateInteractor {
         self.router = router
     }
 
-    private func getQuestions(_ completion: @escaping (_ tracks: [MyToBeVisionRateViewModel.Question]) -> Void) {
+    private func getQuestions(_ completion: @escaping (_ tracks: [RatingQuestionViewModel.Question]) -> Void) {
         guard let questions = worker.questions else {
             showScreenLoader()
             worker.getQuestions {[weak self] (tracks, isInitialized, error) in

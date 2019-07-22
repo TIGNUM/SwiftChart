@@ -22,12 +22,11 @@ final class MyToBeVisionRateViewController: UIViewController {
 
     private var showCountDownPage = false
     private var isLastPage: Bool = false
-
     private var currentPageIndex: Int = 0
     private var nextPageTimer: Timer?
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
-    private var tracks: [MyToBeVisionRateViewModel.Question] = []
+    private var tracks: [RatingQuestionViewModel.Question] = []
 
     var delegate: MyToBeVisionRateViewControllerProtocol?
     var interactor: MyToBeVisionRateInteracorInterface?
@@ -42,7 +41,7 @@ final class MyToBeVisionRateViewController: UIViewController {
         pageController?.view.frame = pageContainerView.frame
     }
 
-    func questionnaireViewController(with question: MyToBeVisionRateViewModel.Question?) -> UIViewController? {
+    func questionnaireViewController(with question: RatingQuestionViewModel.Question?) -> UIViewController? {
         guard let questionnaire = question else { return nil }
         return QuestionnaireViewController.viewController(with: questionnaire, delegate: self)
     }
@@ -112,7 +111,9 @@ final class MyToBeVisionRateViewController: UIViewController {
         if currentIndex == NSNotFound {
             return nil
         }
-
+        if tracks[currentIndex].selectedAnswerIndex == nil {
+            return nil
+        }
         let nextIndex = currentIndex + 1
         if nextIndex >= tracks.count {
             return nil
@@ -181,11 +182,12 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
         loaderView.isHidden = true
     }
 
-    func setupView(questions: [MyToBeVisionRateViewModel.Question]) {
+    func setupView(questions: [RatingQuestionViewModel.Question]) {
         self.tracks = questions
         pageIndicator.translatesAutoresizingMaskIntoConstraints = false
         pageIndicatorView?.addSubview(pageIndicator)
         pageIndicator.addConstraints(to: pageIndicatorView)
+        pageIndicator.pageColor = .sand
         pageIndicator.pageCount = questions.count
         view.backgroundColor = .carbon
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
@@ -229,6 +231,7 @@ extension MyToBeVisionRateViewController: UIPageViewControllerDelegate, UIPageVi
 }
 
 extension MyToBeVisionRateViewController: QuestionnaireAnswer {
+
     func isPresented(for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
         pageIndicator.currentPageIndex = index
@@ -244,12 +247,14 @@ extension MyToBeVisionRateViewController: QuestionnaireAnswer {
 
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController) {
         let index = indexOf(viewController)
-        tracks[index].answerIndex = answer
+        tracks[index].selectedAnswerIndex = answer
         interactor?.addRating(for: questionIdentifier ?? 0, value: itemsOf(viewController) - answer)
         trackUserEvent(.SELECT, value: answer, valueType: "RateQuestion", action: .SWIPE)
-        guard let nextViewController = next(from: viewController) else { return }
+        guard let nextViewController = next(from: viewController) else {
+            return
+        }
         nextPageTimer = Timer.scheduledTimer(withTimeInterval: Animation.duration_04, repeats: false) { timer in
-        self.pageController?.setViewControllers([nextViewController],
+            self.pageController?.setViewControllers([nextViewController],
                                                     direction: .forward,
                                                     animated: true,
                                                     completion: nil)
