@@ -28,6 +28,11 @@ final class DailyCheckinStartViewController: UIViewController {
         interactor?.viewDidLoad()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+    
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return isLoading == true ? nil : generateBottomNavigationBarRighButtonItems()
     }
@@ -46,6 +51,7 @@ private extension DailyCheckinStartViewController {
     }
 
     @objc func letsStartAction() {
+        trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.showQuestions()
     }
 }

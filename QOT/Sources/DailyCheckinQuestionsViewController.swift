@@ -33,6 +33,11 @@ final class DailyCheckinQuestionsViewController: UIViewController {
         UIApplication.shared.statusBarView?.backgroundColor = .sand
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         pageController?.view.frame = pageContainerView.frame
@@ -77,6 +82,8 @@ private extension DailyCheckinQuestionsViewController {
         }
 
         let previousIndex = currentIndex - 1
+        trackUserEvent(.OPEN, value: previousIndex, valueType: "DailyCheckin.PresentedQuestion", action: .SWIPE)
+
         if previousIndex < 0 {
             return nil
         }
@@ -95,6 +102,7 @@ private extension DailyCheckinQuestionsViewController {
         }
 
         let nextIndex = currentIndex + 1
+        trackUserEvent(.OPEN, value: nextIndex, valueType: "DailyCheckin.PresentedQuestion", action: .SWIPE)
         if nextIndex >= interactor.questions.count {
             return nil
         }
@@ -105,6 +113,7 @@ private extension DailyCheckinQuestionsViewController {
         let currentViewController = pageController?.viewControllers?.first
         let index = indexOf(currentViewController)
         guard index > 0 && index != NSNotFound else { return }
+        trackUserEvent(.OPEN, value: index, valueType: "DailyCheckin.PresentedQuestion", action: .TAP)
         nextPageTimer?.invalidate()
         nextPageTimer = nil
         let question = interactor?.questions[index - 1]
@@ -144,6 +153,7 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
     }
 
     @objc private func doneAction() {
+        trackUserEvent(.CONFIRM, valueType: "DailyCheckin.SaveAnswers", action: .TAP)
         interactor?.saveAnswers()
     }
 }
@@ -179,7 +189,8 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         if index == NSNotFound { return }
         pageIndicator.currentPageIndex = index
         backButton.isHidden = index < 1
-        isLastPage = index == (interactor?.questions.count ?? 0 - 1)
+        let questionsCount = interactor?.questions.count ?? 0
+        isLastPage = index == (questionsCount - 1)
         refreshBottomNavigationItems()
     }
 
@@ -192,7 +203,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         let index = indexOf(viewController)
         if index == NSNotFound { return }
         interactor?.questions[index].selectedAnswerIndex = answer
-        trackUserEvent(.SELECT, value: answer, valueType: "RateQuestion", action: .SWIPE)
+        trackUserEvent(.SELECT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .SWIPE)
         guard let nextViewController = next(from: viewController) else {
             return
         }

@@ -69,6 +69,8 @@ private extension UIViewController {
         case is AudioFullScreenViewController: return "fullscreen.audioplayer"
         case is PrepareResultsViewController: return "prepare.results"
         case is MyLibraryCategoryListViewController: return "mylibrary"
+        case is DailyCheckinStartViewController: return "dailyCheckin.start"
+        case is DailyCheckinQuestionsViewController: return "dailyCheckin.questions"
         default: preconditionFailure()
         }
     }

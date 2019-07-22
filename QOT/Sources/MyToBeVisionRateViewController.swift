@@ -26,6 +26,7 @@ final class MyToBeVisionRateViewController: UIViewController {
     private var nextPageTimer: Timer?
     private let pageIndicator = MyToBeVisionPageComponentView()
     private var pageController: UIPageViewController?
+
     private var tracks: [RatingQuestionViewModel.Question] = []
 
     var delegate: MyToBeVisionRateViewControllerProtocol?
@@ -69,6 +70,7 @@ final class MyToBeVisionRateViewController: UIViewController {
         }
 
         let previousIndex = currentIndex - 1
+        trackUserEvent(.OPEN, value: previousIndex, valueType: "MyToBeVision.PresentedQuestion", action: .SWIPE)
         if previousIndex < 0 {
             return nil
         }
@@ -100,6 +102,7 @@ final class MyToBeVisionRateViewController: UIViewController {
     }
 
     @objc private func doneAction() {
+        trackUserEvent(.CONFIRM, valueType: "MyToBeVision.SaveAnswers", action: .TAP)
         interactor?.saveQuestions()
         dismiss(animated: true) {[weak self] in
             self?.delegate?.doneAction()
@@ -115,6 +118,7 @@ final class MyToBeVisionRateViewController: UIViewController {
             return nil
         }
         let nextIndex = currentIndex + 1
+        trackUserEvent(.OPEN, value: nextIndex, valueType: "MyToBeVision.PresentedQuestion", action: .SWIPE)
         if nextIndex >= tracks.count {
             return nil
         }
@@ -125,6 +129,7 @@ final class MyToBeVisionRateViewController: UIViewController {
         guard let currentViewController = pageController?.viewControllers?.first else { return }
         let index = indexOf(currentViewController)
         guard index > 0 else { return }
+        trackUserEvent(.OPEN, value: index, valueType: "MyToBeVision.PresentedQuestion", action: .TAP)
         nextPageTimer?.invalidate()
         nextPageTimer = nil
         let question = tracks[index - 1]
@@ -249,7 +254,7 @@ extension MyToBeVisionRateViewController: QuestionnaireAnswer {
         let index = indexOf(viewController)
         tracks[index].selectedAnswerIndex = answer
         interactor?.addRating(for: questionIdentifier ?? 0, value: itemsOf(viewController) - answer)
-        trackUserEvent(.SELECT, value: answer, valueType: "RateQuestion", action: .SWIPE)
+        trackUserEvent(.SELECT, value: answer, valueType: "MyToBeVision.RateQuestion", action: .SWIPE)
         guard let nextViewController = next(from: viewController) else {
             return
         }

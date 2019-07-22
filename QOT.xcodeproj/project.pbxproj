@@ -516,11 +516,6 @@
 		5FF1A10322858A7400D76D55 /* ContentService+AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */; };
 		5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */; };
 		75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */; };
-		75423F0722CF303B008EE726 /* BeSpokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0522CF303B008EE726 /* BeSpokeCell.swift */; };
-		75423F0822CF303B008EE726 /* BeSpokeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0622CF303B008EE726 /* BeSpokeCell.xib */; };
-		75423F0A22CF304F008EE726 /* BeSpokeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0922CF304F008EE726 /* BeSpokeCellViewModel.swift */; };
-		75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */; };
-		75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */; };
 		75423EEE22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */; };
 		75423EF822CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */; };
 		75423EF922CE242B008EE726 /* MyToBeVisionTrackerWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */; };
@@ -531,6 +526,9 @@
 		75423EFF22CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */; };
 		75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */; };
 		75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */; };
+		75423F0722CF303B008EE726 /* BeSpokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0522CF303B008EE726 /* BeSpokeCell.swift */; };
+		75423F0822CF303B008EE726 /* BeSpokeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0622CF303B008EE726 /* BeSpokeCell.xib */; };
+		75423F0A22CF304F008EE726 /* BeSpokeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0922CF304F008EE726 /* BeSpokeCellViewModel.swift */; };
 		75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */; };
 		75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */; };
 		75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */; };
@@ -542,9 +540,6 @@
 		75496E9922BA702C00150C78 /* PopUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496E9722BA702C00150C78 /* PopUpViewController.swift */; };
 		75496E9A22BA702C00150C78 /* PopUpViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75496E9822BA702C00150C78 /* PopUpViewController.xib */; };
 		75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */; };
-		75B9DCB722CB605C00692A60 /* LeaderWisdomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9DCB522CB605C00692A60 /* LeaderWisdomTableViewCell.swift */; };
-		75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */; };
-		75B9DCBA22CB666B00692A60 /* LeaderWisdomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */; };
 		754EBEE622C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEE422C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift */; };
 		754EBEE722C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEE522C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib */; };
 		754EBEE922C6470A0010A663 /* MYTBVDataViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEE822C6470A0010A663 /* MYTBVDataViewModel.swift */; };
@@ -580,6 +575,9 @@
 		759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 759AB42222C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib */; };
 		759AB42622C4DCCB0091BFB8 /* TBVDataGraphCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759AB42522C4DCCB0091BFB8 /* TBVDataGraphCollectionView.swift */; };
 		759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759AB42722C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift */; };
+		75B9DCB722CB605C00692A60 /* LeaderWisdomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9DCB522CB605C00692A60 /* LeaderWisdomTableViewCell.swift */; };
+		75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */; };
+		75B9DCBA22CB666B00692A60 /* LeaderWisdomCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */; };
 		75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC684F22BCDA4300FF183D /* ImagePickerControllerAdapter.swift */; };
 		75DC685522BD17B900FF183D /* MyToBeVisionCountDownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685422BD17B900FF183D /* MyToBeVisionCountDownViewController.swift */; };
 		75DC685722BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75DC685622BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift */; };
@@ -2065,11 +2063,6 @@
 		5FF1A10222858A7400D76D55 /* ContentService+AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AppSettings.swift"; sourceTree = "<group>"; };
 		5FF1A10422859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAppSettingsConfigurator.swift; sourceTree = "<group>"; };
 		75231A1222BCC879009D8E93 /* MyVisionNavigationBarView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyVisionNavigationBarView.swift; sourceTree = "<group>"; };
-		75423F0522CF303B008EE726 /* BeSpokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeSpokeCell.swift; sourceTree = "<group>"; };
-		75423F0622CF303B008EE726 /* BeSpokeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeSpokeCell.xib; sourceTree = "<group>"; };
-		75423F0922CF304F008EE726 /* BeSpokeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeSpokeCellViewModel.swift; sourceTree = "<group>"; };
-		75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFooterView.swift; sourceTree = "<group>"; };
-		75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSettingsFooterView.xib; sourceTree = "<group>"; };
 		75423EED22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionRateViewModel.swift; sourceTree = "<group>"; };
 		75423EF022CE242B008EE726 /* MyToBeVisionTrackerPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerPresenter.swift; sourceTree = "<group>"; };
 		75423EF122CE242B008EE726 /* MyToBeVisionTrackerWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerWorker.swift; sourceTree = "<group>"; };
@@ -2080,6 +2073,9 @@
 		75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerConfigurator.swift; sourceTree = "<group>"; };
 		75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFooterView.swift; sourceTree = "<group>"; };
 		75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSettingsFooterView.xib; sourceTree = "<group>"; };
+		75423F0522CF303B008EE726 /* BeSpokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeSpokeCell.swift; sourceTree = "<group>"; };
+		75423F0622CF303B008EE726 /* BeSpokeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeSpokeCell.xib; sourceTree = "<group>"; };
+		75423F0922CF304F008EE726 /* BeSpokeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeSpokeCellViewModel.swift; sourceTree = "<group>"; };
 		75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCell.swift; sourceTree = "<group>"; };
 		75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachCell.xib; sourceTree = "<group>"; };
 		75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCellViewModel.swift; sourceTree = "<group>"; };
@@ -2091,9 +2087,6 @@
 		75496E9722BA702C00150C78 /* PopUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpViewController.swift; sourceTree = "<group>"; };
 		75496E9822BA702C00150C78 /* PopUpViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpViewController.xib; sourceTree = "<group>"; };
 		75496EA022BB9E9100150C78 /* MyVisionNullStateView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyVisionNullStateView.swift; sourceTree = "<group>"; };
-		75B9DCB522CB605C00692A60 /* LeaderWisdomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderWisdomTableViewCell.swift; sourceTree = "<group>"; };
-		75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderWisdomTableViewCell.xib; sourceTree = "<group>"; };
-		75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderWisdomCellViewModel.swift; sourceTree = "<group>"; };
 		754EBEE422C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphSubHeadingTableViewCell.swift; sourceTree = "<group>"; };
 		754EBEE522C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphSubHeadingTableViewCell.xib; sourceTree = "<group>"; };
 		754EBEE822C6470A0010A663 /* MYTBVDataViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYTBVDataViewModel.swift; sourceTree = "<group>"; };
@@ -2129,6 +2122,9 @@
 		759AB42222C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphBarNextDurationViewCell.xib; sourceTree = "<group>"; };
 		759AB42522C4DCCB0091BFB8 /* TBVDataGraphCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphCollectionView.swift; sourceTree = "<group>"; };
 		759AB42722C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVGraphCollectionViewModels.swift; sourceTree = "<group>"; };
+		75B9DCB522CB605C00692A60 /* LeaderWisdomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderWisdomTableViewCell.swift; sourceTree = "<group>"; };
+		75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LeaderWisdomTableViewCell.xib; sourceTree = "<group>"; };
+		75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LeaderWisdomCellViewModel.swift; sourceTree = "<group>"; };
 		75DC684F22BCDA4300FF183D /* ImagePickerControllerAdapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePickerControllerAdapter.swift; sourceTree = "<group>"; };
 		75DC685422BD17B900FF183D /* MyToBeVisionCountDownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownViewController.swift; sourceTree = "<group>"; };
 		75DC685622BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionCountDownInteractor.swift; sourceTree = "<group>"; };
@@ -4382,16 +4378,6 @@
 			name = Others;
 			sourceTree = "<group>";
 		};
-		75423F0422CF2FF9008EE726 /* BeSpoke */ = {
-			isa = PBXGroup;
-			children = (
-				75423F0522CF303B008EE726 /* BeSpokeCell.swift */,
-				75423F0622CF303B008EE726 /* BeSpokeCell.xib */,
-				75423F0922CF304F008EE726 /* BeSpokeCellViewModel.swift */,
-			);
-			name = BeSpoke;
-			sourceTree = "<group>";
-		};
 		75423EEF22CE2412008EE726 /* MyToBeVisionTracker */ = {
 			isa = PBXGroup;
 			children = (
@@ -4405,6 +4391,16 @@
 				75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */,
 			);
 			name = MyToBeVisionTracker;
+			sourceTree = "<group>";
+		};
+		75423F0422CF2FF9008EE726 /* BeSpoke */ = {
+			isa = PBXGroup;
+			children = (
+				75423F0522CF303B008EE726 /* BeSpokeCell.swift */,
+				75423F0622CF303B008EE726 /* BeSpokeCell.xib */,
+				75423F0922CF304F008EE726 /* BeSpokeCellViewModel.swift */,
+			);
+			name = BeSpoke;
 			sourceTree = "<group>";
 		};
 		75423F0D22CF4876008EE726 /* FromMyCoach */ = {
@@ -4452,16 +4448,6 @@
 				75496E9822BA702C00150C78 /* PopUpViewController.xib */,
 			);
 			name = PopUpView;
-			sourceTree = "<group>";
-		};
-		75B9DCB422CB5FEC00692A60 /* LeaderWisdom */ = {
-			isa = PBXGroup;
-			children = (
-				75B9DCB522CB605C00692A60 /* LeaderWisdomTableViewCell.swift */,
-				75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */,
-				75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */,
-			);
-			name = LeaderWisdom;
 			sourceTree = "<group>";
 		};
 		7582615022D5FB4C000094DE /* Other */ = {
@@ -4577,6 +4563,16 @@
 				7582615322D5FB82000094DE /* ContentService+TBVData.swift */,
 			);
 			name = Others;
+			sourceTree = "<group>";
+		};
+		75B9DCB422CB5FEC00692A60 /* LeaderWisdom */ = {
+			isa = PBXGroup;
+			children = (
+				75B9DCB522CB605C00692A60 /* LeaderWisdomTableViewCell.swift */,
+				75B9DCB622CB605C00692A60 /* LeaderWisdomTableViewCell.xib */,
+				75B9DCB922CB666B00692A60 /* LeaderWisdomCellViewModel.swift */,
+			);
+			name = LeaderWisdom;
 			sourceTree = "<group>";
 		};
 		75DC685322BD171900FF183D /* MyToBeVisionCountDown */ = {
