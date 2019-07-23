@@ -12,13 +12,11 @@ import qot_dal
 final class DecisionTreeRouter {
 
     // MARK: - Properties
-
     private let viewController: DecisionTreeViewController
     private var imagePickerController: ImagePickerController?
     private var permissionsManager: PermissionsManager = AppCoordinator.appState.permissionsManager!
 
     // MARK: - Init
-
     init(viewController: DecisionTreeViewController) {
         self.viewController = viewController
         let adapter = ImagePickerControllerAdapter(self)
@@ -33,7 +31,6 @@ final class DecisionTreeRouter {
 }
 
 // MARK: - DecisionTreeRouterInterface
-
 extension DecisionTreeRouter: DecisionTreeRouterInterface {
     func openArticle(with contentID: Int) {
         AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID)
@@ -82,7 +79,6 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
 }
 
 // MARK: - Prepare
-
 extension DecisionTreeRouter {
     func openPrepareResults(_ contentId: Int) {
         presentPrepareResults(PrepareResultsConfigurator.configurate(contentId))
@@ -100,7 +96,6 @@ extension DecisionTreeRouter {
 }
 
 // MARK: - Recovery
-
 extension DecisionTreeRouter {
     func openRecoveryResults(_ recovery: QDMRecovery3D?) {
         let configurator = SolveResultsConfigurator.make(from: recovery)
@@ -111,7 +106,6 @@ extension DecisionTreeRouter {
 }
 
 // MARK: - ImagePickerDelegate
-
 extension DecisionTreeRouter: ImagePickerControllerAdapterProtocol {
     //
 }

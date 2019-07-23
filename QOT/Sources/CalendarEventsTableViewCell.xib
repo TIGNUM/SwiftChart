@@ -19,12 +19,16 @@
                 <rect key="frame" x="0.0" y="0.0" width="513" height="119.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MIb-Dx-whR">
+                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="MIb-Dx-whR">
                         <rect key="frame" x="0.0" y="24" width="513" height="95.5"/>
                         <color key="backgroundColor" red="0.91723662610000001" green="0.90605789420000005" blue="0.89410656690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="95" id="Plv-PM-eC1"/>
                         </constraints>
+                        <connections>
+                            <outlet property="dataSource" destination="KGk-i7-Jjw" id="2vh-44-AJf"/>
+                            <outlet property="delegate" destination="KGk-i7-Jjw" id="oc7-tT-ZZs"/>
+                        </connections>
                     </tableView>
                 </subviews>
                 <color key="backgroundColor" red="0.91723662610000001" green="0.90605789420000005" blue="0.89410656690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>

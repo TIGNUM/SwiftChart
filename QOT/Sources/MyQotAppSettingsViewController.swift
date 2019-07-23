@@ -101,7 +101,7 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
         headerView.config = TitleTableHeaderView.Config()
-        let title = settingsModel.headerTitleForItem(at: section, completion: {(text) in
+        settingsModel.headerTitleForItem(at: section, completion: {(text) in
             headerView.title = text
         })
         return headerView

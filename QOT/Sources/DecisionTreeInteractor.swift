@@ -44,10 +44,6 @@ private extension DecisionTreeInteractor {
 
 // MARK: - DecisionTreeInteractorInterface
 extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
-    var relatedStrategyID: Int {
-        return worker.targetContentID
-    }
-
     var selectedanswers: [DecisionTreeModel.SelectedAnswer] {
         return worker.selectedAnswers
     }
@@ -67,10 +63,6 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
 
     var extraAnswer: String? {
         return worker.extraAnswer
-    }
-
-    func setTargetContentID(for answer: QDMAnswer) {
-        worker.setTargetContentID(for: answer)
     }
 
     func displayContent(with id: Int) {
@@ -254,14 +246,9 @@ extension DecisionTreeInteractor {
         router.openPrepareResults(preparation, answers)
     }
 
-    func updatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer]) {
-        worker.didUpdatePrepareIntentions(answers)
+    func preparations() -> [QDMUserPreparation] {
+        return worker.preparations
     }
-
-    func updatePrepareBenefits(_ benefits: String) {
-        worker.didUpdateBenefits(benefits)
-    }
-
 }
 
 // MARK: - Recovery

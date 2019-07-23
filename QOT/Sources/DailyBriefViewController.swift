@@ -27,7 +27,7 @@ final class DailyBriefViewController: UIViewController, UITableViewDelegate, UIT
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.tableFooterView = UIView()
         tableView.registerDequeueable(WhatsHotLatestCell.self)
         tableView.registerDequeueable(QuestionCell.self)
         tableView.registerDequeueable(ThoughtsCell.self)

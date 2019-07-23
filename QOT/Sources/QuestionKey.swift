@@ -17,7 +17,7 @@ enum QuestionKey {
              SprintReflection.Notes02,
              SprintReflection.Notes03:
             return 250
-        case Prepare.benefitsInput.rawValue:
+        case Prepare.BenefitsInput:
             return 100
         default:
             return 0
@@ -53,15 +53,16 @@ enum QuestionKey {
         case review = "mindsetshifter-tbv-generator-key-review"
     }
 
-    enum Prepare: String {
-        case intro = "prepare-key-intro"
-        case calendarEventSelectionDaily = "prepare-key-calendar-event-selection-daily"
-        case calendarEventSelectionCritical = "prepare-key-calendar-event-selection-critical"
-        case eventTypeSelectionDaily = "prepare-event-type-selection-daily"
-        case eventTypeSelectionCritical = "prepare-event-type-selection-critical"
-        case showTBV = "prepare_peak_prep_review_tbv"
-        case benefitsInput = "prepare_peak_prep_benefits_input"
-        case buildCritical = "prepare_peak_prep_build_plan"
+    struct Prepare {
+        static let Intro = "prepare-key-intro"
+        static let CalendarEventSelectionDaily = "prepare-key-calendar-event-selection-daily"
+        static let CalendarEventSelectionCritical = "prepare-key-calendar-event-selection-critical"
+        static let EventTypeSelectionDaily = "prepare-event-type-selection-daily"
+        static let EventTypeSelectionCritical = "prepare-event-type-selection-critical"
+        static let ShowTBV = "prepare_peak_prep_review_tbv"
+        static let BenefitsInput = "prepare_peak_prep_benefits_input"
+        static let BuildCritical = "prepare_peak_prep_build_plan"
+        static let SelectExisting = "prepare_previous_preps_selection"
     }
 
     enum Solve: String {

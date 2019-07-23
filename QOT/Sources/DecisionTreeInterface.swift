@@ -50,15 +50,14 @@ protocol DecisionTreePresenterInterface {
 protocol DecisionTreeInteractorInterface: Interactor {
     var type: DecisionTreeType { get }
     var userInput: String? { get set }
-    var relatedStrategyID: Int { get }
     var selectedanswers: [DecisionTreeModel.SelectedAnswer] { get }
     var answersFilter: String? { get }
     var extraAnswer: String? { get }
+    func preparations() -> [QDMUserPreparation]
     func displayContent(with id: Int)
     func streamContentItem(with id: Int)
     func openImagePicker()
     func save(_ image: UIImage)
-    func setTargetContentID(for answer: QDMAnswer)
     func openPrepareResults(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer])
     func openPrepareResults(_ contentId: Int)
@@ -67,8 +66,6 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType)
     func openToBeVisionPage()
     func openMindsetShifterChecklist(from answers: [QDMAnswer])
-    func updatePrepareIntentions(_ answers: [DecisionTreeModel.SelectedAnswer])
-    func updatePrepareBenefits(_ benefits: String)
     func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int)
     func deleteModelIfNeeded()
     func loadNextQuestion(from answer: QDMAnswer?)

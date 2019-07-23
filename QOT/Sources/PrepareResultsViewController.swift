@@ -22,7 +22,6 @@ protocol PrepareResultsDelegatge: class {
 final class PrepareResultsViewController: UIViewController {
 
     // MARK: - Properties
-
     var interactor: PrepareResultsInteractorInterface?
     private var showDone: Bool = false
     private var resultView: PrepareResultsInfoView?
@@ -32,7 +31,6 @@ final class PrepareResultsViewController: UIViewController {
     }()
 
     // MARK: - Init
-
     init(configure: Configurator<PrepareResultsViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
@@ -54,7 +52,6 @@ final class PrepareResultsViewController: UIViewController {
 }
 
 // MARK: - Private
-
 private extension PrepareResultsViewController {
     func contentItemCell(format: ContentFormat,
                          title: String?,
@@ -96,7 +93,6 @@ private extension PrepareResultsViewController {
 }
 
 // MARK: - Actions
-
 private extension PrepareResultsViewController {
     @objc func dismissView() {
         interactor?.deletePreparationIfNeeded()
@@ -119,7 +115,6 @@ private extension PrepareResultsViewController {
 }
 
 // MARK: - PrepareResultsViewControllerInterface
-
 extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
     func reloadView() {
         tableView.reloadData()
@@ -163,7 +158,6 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-
 extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return interactor?.sectionCount ?? 0
@@ -211,11 +205,16 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
         case .contentItem(let format, _): return format.rowHeight
         case .eventItem,
              .strategy,
-             .reminder: return ContentFormat.unknown.rowHeight
-        case .intentionContentItem(let format, _, _): return format.rowHeight
-        case .intentionItem: return ContentFormat.listitem.rowHeight
-        case .benefitContentItem(let format, _, _, _): return format.rowHeight
-        case .benefitItem: return ContentFormat.listitem.rowHeight
+             .reminder:
+            return ContentFormat.unknown.rowHeight
+        case .intentionContentItem(let format, _, _):
+            return format.rowHeight
+        case .intentionItem:
+            return ContentFormat.listitem.rowHeight
+        case .benefitContentItem(let format, _, _, _):
+            return format.rowHeight
+        case .benefitItem:
+            return ContentFormat.listitem.rowHeight
         }
     }
 
@@ -242,7 +241,8 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
             interactor?.presentEditIntensions(key)
         case .benefitContentItem(_, _, let benefits, let questionID):
             interactor?.presentEditBenefits(benefits: benefits, questionID: questionID)
-        default: return
+        default:
+            return
         }
     }
 }
@@ -279,7 +279,6 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
 }
 
 // MARK: - ChoiceViewControllerDelegate
-
 extension PrepareResultsViewController: ChoiceViewControllerDelegate {
     func dismiss(_ viewController: UIViewController, selections: [Choice]) {
         let selectedIds = selections.compactMap { $0.contentId }

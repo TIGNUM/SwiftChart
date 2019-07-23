@@ -17,11 +17,13 @@ enum AnswerKey {
         case uploadImage = "tbv-answer-key-upload-image"
     }
 
-    enum Prepare: String {
-        case openCheckList = "open_preparation_check_list_on_the_go"
-        case openCalendarEventSelectionDaily = "prepare-key-calendar-event-selection-daily"
-        case eventTypeSelectionDaily = "open_preparation_event_selection_daily"
-        case eventTypeSelectionCritical = "open_preparation_event_selection_critical"
+    struct Prepare {
+        static let OpenCheckList = "open_preparation_check_list_on_the_go"
+        static let OpenCalendarEventSelectionDaily = "prepare-key-calendar-event-selection-daily"
+        static let EventTypeSelectionDaily = "open_preparation_event_selection_daily"
+        static let EventTypeSelectionCritical = "open_preparation_event_selection_critical"
+        static let PeakPlanNew = "prepare_peak_prep_plan_new"
+        static let PeakPlanTemplate = "prepare_peak_prep_plan_template"
     }
 
     enum Solve: String {

@@ -24,7 +24,6 @@ final class DecisionTreeButton: UIButton {
 
 // MARK: - Configure
 extension DecisionTreeButton {
-
     func configure(with title: String,
                    attributedTitle: NSAttributedString? = nil,
                    selectedBackgroundColor: UIColor,

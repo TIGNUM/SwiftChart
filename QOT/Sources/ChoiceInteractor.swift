@@ -11,13 +11,11 @@ import UIKit
 final class ChoiceInteractor {
 
     // MARK: - Properties
-
     private let worker: ChoiceWorker
     private let presenter: ChoicePresenterInterface
     private let router: ChoiceRouterInterface
 
     // MARK: - Init
-
     init(worker: ChoiceWorker,
         presenter: ChoicePresenterInterface,
         router: ChoiceRouterInterface) {
@@ -27,14 +25,12 @@ final class ChoiceInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.setupView()
     }
 }
 
 // MARK: - ChoiceInteractorInterface
-
 extension ChoiceInteractor: ChoiceInteractorInterface {
     func generateItems() {
         worker.generateItems { [weak self] in

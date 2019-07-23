@@ -17,7 +17,6 @@ final class ChoiceWorker {
     }
 
     // MARK: - Properties
-
     private var dataSource = [CollapsableNode]()
     private var _maxSelectionCount: Int = 0
     let selectedIds: [Int]
@@ -25,7 +24,6 @@ final class ChoiceWorker {
     let choiceType: ChoiceType
 
     // MARK: - Init
-
     init(selectedIds: [Int], relatedId: Int) {
         self.selectedIds = selectedIds
         self.relatedId = relatedId
@@ -63,16 +61,8 @@ extension ChoiceWorker {
     }
 }
 
-// MARK: - Getter &&& Setter
-
-extension ChoiceWorker {
-
-}
-
 // MARK: - Helpers
-
 extension ChoiceWorker {
-
     func generateItems(_ completion: @escaping (() -> Void)) {
         generateDataSource(selectedIds, relatedId) { [weak self] (nodes) in
             self?.dataSource = nodes
@@ -85,7 +75,7 @@ extension ChoiceWorker {
     }
 
     func rowHeight(at indexPath: IndexPath) -> CGFloat {
-        return (indexPath.row == 0) ? 64.0 : 40.0
+        return (indexPath.row == 0) ? .ParentNode : .Default
     }
 
     func isParentNode(atIndexPath indexPath: IndexPath) -> Bool {
@@ -117,7 +107,6 @@ extension ChoiceWorker {
 }
 
 // MARK: - Private
-
 private extension ChoiceWorker {
     func generateDataSource(_ selectedIds: [Int],
                             _ relatedId: Int,

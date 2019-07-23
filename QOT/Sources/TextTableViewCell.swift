@@ -11,14 +11,11 @@ import UIKit
 final class TextTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
     @IBOutlet private weak var visionTextLabel: UILabel!
 }
 
 // MARK: - Configuration
-
 extension TextTableViewCell {
-
     func configure(with text: String) {
         visionTextLabel.text = text
         visionTextLabel.addCharacterSpacing(0.5)

@@ -21,7 +21,6 @@ final class DecisionTreeWorker {
     private var _selectedAnswers: [DecisionTreeModel.SelectedAnswer] = []
     private var answerFilter: String?
     private var answerFilterMindset: String?
-    private var _targetContentID: Int = 0
     private var _extraAnswer: String? = nil
     private var recoveryModel: QDMRecovery3D?
     internal var visionText: String? = nil
@@ -29,11 +28,13 @@ final class DecisionTreeWorker {
     internal var selectedEvent = QDMUserCalendarEvent()
     internal var prepareEventType: String = ""
     internal var questions: [QDMQuestion] = []
+    internal var preparations: [QDMUserPreparation] = []
     internal var recoveryFatigueType: AnswerKey.Recovery? = nil
     internal var activeSprint: QDMSprint?
     internal var sprintToUpdate: QDMSprint?
     internal var newSprintContentId: Int?
     internal var lastSprintQuestionId: Int?
+    internal var targetContentID: Int = 0
     weak var prepareDelegate: PrepareResultsDelegatge?
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
@@ -93,6 +94,10 @@ final class DecisionTreeWorker {
         switch type {
         case .sprintReflection(let sprint):
             sprintToUpdate = sprint
+        case .prepare:
+            getPreparations { [weak self] (preparations) in
+                self?.preparations = preparations ?? []
+            }
         default:
             break
         }
@@ -105,16 +110,17 @@ extension DecisionTreeWorker {
         return _extraAnswer
     }
     var firstQuestion: QDMQuestion? {
-        return decisionTree?.extendedQuestions.filter { $0.question.key == type.introKey }.first?.question
+        switch type {
+        case .prepareIntensions,
+             .prepareBenefits:
+            return questions.first
+        default:
+            return decisionTree?.extendedQuestions.filter { $0.question.key == type.introKey }.first?.question
+        }
     }
 
     var userHasToBeVision: Bool {
         return visionText != nil && visionText?.trimmed.isEmpty == false
-    }
-
-    var targetContentID: Int {
-        get { return _targetContentID }
-        set { _targetContentID = newValue }
     }
 
     var userInput: String? {
@@ -194,15 +200,42 @@ extension DecisionTreeWorker {
     }
 
     func fetchQuestions(completion: @escaping () -> Void) {
-        qot_dal.QuestionService
-            .main
-            .questionsWithQuestionGroup(type.questionGroup, ascending: true) { [weak self] (questions) in
-                let firstQuestion = questions?.filter { $0.key == self?.type.introKey ?? "" }.first
-                self?.questions = questions ?? []
-                if let question = firstQuestion {
-                    self?.decisionTree = DecisionTreeModel(question: question)
+        switch type {
+        case .prepareIntensions(let selectedAnswers, let answerFilter, let key, let delegate):
+            self.selectedAnswers = selectedAnswers
+            self.multiSelectionCounter = selectedAnswers.count
+            self.answerFilter = answerFilter
+            self.prepareDelegate = delegate
+            self.prepareKey = key
+            qot_dal.QuestionService.main.question(with: key.rawValue, in: type.questionGroup) { [weak self] (question) in
+                guard let question = question else { return }
+                self?.questions = [question]
+                self?.decisionTree = DecisionTreeModel(question: question)
+                selectedAnswers.forEach { (selectedAnswer) in
+                    self?.decisionTree?.add(selectedAnswer)
                 }
                 completion()
+            }
+        case .prepareBenefits(let benefits, let questionID, let delegate):
+            self.userInput = benefits
+            self.prepareDelegate = delegate
+            qot_dal.QuestionService.main.question(with: questionID, in: type.questionGroup) { [weak self] (question) in
+                guard let question = question else { return }
+                self?.questions = [question]
+                self?.decisionTree = DecisionTreeModel(question: question)
+                completion()
+            }
+        default:
+            qot_dal.QuestionService
+                .main
+                .questionsWithQuestionGroup(type.questionGroup, ascending: true) { [weak self] (questions) in
+                    let firstQuestion = questions?.filter { $0.key == self?.type.introKey ?? "" }.first
+                    self?.questions = questions ?? []
+                    if let question = firstQuestion {
+                        self?.decisionTree = DecisionTreeModel(question: question)
+                    }
+                    completion()
+            }
         }
     }
 
@@ -223,7 +256,7 @@ extension DecisionTreeWorker {
                 completion((question, vision))
             }
         case QuestionKey.MindsetShifter.showTBV.rawValue,
-             QuestionKey.Prepare.showTBV.rawValue:
+             QuestionKey.Prepare.ShowTBV:
             userService.getMyToBeVision { (vision, _, _) in
                 completion((question, vision?.text))
             }
@@ -320,7 +353,8 @@ extension DecisionTreeWorker {
                 decisionTree?.add(question)
                 pageIndex.plus(1)
             }
-        } else if let answer = answer {
+        }
+        if let answer = answer {
             let selectedAnswer = DecisionTreeModel.SelectedAnswer(questionID: questionId, answer: answer)
             decisionTree?.add(selectedAnswer)
         }

@@ -15,6 +15,7 @@ protocol DecisionTreeQuestionnaireDelegate: class {
     func didDeSelectAnswer(_ answer: QDMAnswer)
     func textCellDidAppear(targetID: Int)
     func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: QDMAnswer)
+    func didSelectPreparation(_ prepartion: QDMUserPreparation)
     func presentAddEventController(_ eventStore: EKEventStore)
     func didUpdateUserInput(_ userInput: String?)
     func didPressDimiss()
@@ -39,6 +40,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     private let maxPossibleSelections: Int
     private let answersFilter: String?
     private let questionTitleUpdate: String?
+    private let preparations: [QDMUserPreparation]?
     private lazy var typingAnimation = DotsLoadingView(frame: CGRect(x: 24, y: 20, width: 20, height: 20))
     private lazy var tableView = UITableView(estimatedRowHeight: 100,
                                              delegate: self,
@@ -54,6 +56,12 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     /// E.g.: Based on Question A answer, filter Question B answers to display.
     /// If `answersFilter` is nil, we'll display all possible answers.
     private var filteredAnswers: [QDMAnswer] {
+        if question.key == QuestionKey.Prepare.BuildCritical {
+            if preparations?.isEmpty == true {
+                return Array(question.answers).filter { $0.keys.contains(AnswerKey.Prepare.PeakPlanNew) }
+            }
+            return question.answers
+        }
         guard let filter = answersFilter else { return Array(question.answers) }
         return Array(question.answers).filter { $0.keys.contains(filter) }
     }
@@ -64,13 +72,15 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
          extraAnswer: String?,
          maxPossibleSelections: Int,
          answersFilter: String?,
-         questionTitleUpdate: String?) {
+         questionTitleUpdate: String?,
+         preparations: [QDMUserPreparation]? = nil) {
         self.question = question
         self.selectedAnswers = selectedAnswers
         self.extraAnswer = extraAnswer
         self.maxPossibleSelections = maxPossibleSelections
         self.answersFilter = answersFilter
         self.questionTitleUpdate = questionTitleUpdate
+        self.preparations = preparations
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -177,23 +187,32 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 cell.backgroundColor = .sand
                 delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0)
                 return cell
-            case AnswerType.yesOrNo.rawValue, AnswerType.uploadImage.rawValue:
+            case AnswerType.yesOrNo.rawValue,
+                 AnswerType.uploadImage.rawValue:
                 let cell: SingleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(for: question, selectedAnswers: selectedAnswers)
                 cell.delegate = self
                 return cell
             case AnswerType.singleSelection.rawValue,
                  AnswerType.multiSelection.rawValue:
-                let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(for: filteredAnswers,
-                               question: question,
-                               selectedAnswers: selectedAnswers,
-                               maxPossibleSelections: maxPossibleSelections)
-                cell.delegate = self
-                return cell
+                switch question.key {
+                case QuestionKey.Prepare.SelectExisting:
+                    let cell: CalendarEventsTableViewCell = tableView.dequeueCell(for: indexPath)
+                    let tableViewHeight = view.frame.height - (cell.frame.height + 64)
+                    cell.configure(delegate: delegate, tableViewHeight: tableViewHeight, question: question)
+                    return cell
+                default:
+                    let cell: MultipleSelectionTableViewCell = tableView.dequeueCell(for: indexPath)
+                    cell.configure(for: filteredAnswers,
+                                   question: question,
+                                   selectedAnswers: selectedAnswers,
+                                   maxPossibleSelections: maxPossibleSelections)
+                    cell.delegate = self
+                    return cell
+                }
             case AnswerType.userInput.rawValue:
                 let cell: UserInputTableViewCell = tableView.dequeueCell(for: indexPath)
-                let text = question.key == QuestionKey.Prepare.benefitsInput.rawValue ? interactor?.userInput : nil
+                let text = question.key == QuestionKey.Prepare.BenefitsInput ? interactor?.userInput : nil
                 cell.configure(inputText: text,
                                maxCharacters: QuestionKey.maxCharacter(question.key),
                                delegate: delegate)
@@ -204,7 +223,11 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                  AnswerType.lastQuestion.rawValue:
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
                 cell.configure(with: extraAnswer ?? "")
-                if question.key != QuestionKey.SprintReflection.Intro {
+                switch question.key {
+                case QuestionKey.SprintReflection.Intro,
+                     QuestionKey.Prepare.ShowTBV:
+                    break
+                default:
                     delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0)
                 }
                 return cell
@@ -237,7 +260,8 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
 // MARK: - Private
 private extension DecisionTreeQuestionnaireViewController {
     func recalculateContentInsets() {
-        if question.answerType == AnswerType.openCalendarEvents.rawValue {
+        if question.answerType == AnswerType.openCalendarEvents.rawValue
+            || question.key == QuestionKey.Prepare.SelectExisting {
             return tableView.contentInset = .zero
         }
         if question.answerType == AnswerType.userInput.rawValue {
@@ -285,8 +309,8 @@ extension DecisionTreeQuestionnaireViewController {
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         switch question.key {
-        case QuestionKey.Prepare.calendarEventSelectionDaily.rawValue,
-             QuestionKey.Prepare.calendarEventSelectionCritical.rawValue?:
+        case QuestionKey.Prepare.CalendarEventSelectionDaily,
+             QuestionKey.Prepare.CalendarEventSelectionCritical:
             let title = question.defaultButtonText ?? R.string.localized.buttonTitleAddEvent()
             return [roundedBarButtonItem(title: title,
                                          image: R.image.ic_event(),
@@ -297,7 +321,8 @@ extension DecisionTreeQuestionnaireViewController {
              QuestionKey.Sprint.introContinue.rawValue?,
              QuestionKey.MindsetShifterTBV.review.rawValue?,
              QuestionKey.Sprint.last.rawValue?,
-             QuestionKey.SprintReflection.Intro:
+             QuestionKey.SprintReflection.Intro,
+             QuestionKey.Prepare.ShowTBV:
             let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
             return [roundedBarButtonItem(title: title,
                                          buttonWidth: .DecisionTree,

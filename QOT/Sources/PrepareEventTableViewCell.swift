@@ -19,7 +19,7 @@ final class PrepareEventTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         dateIcon.image = R.image.ic_event()?.withRenderingMode(.alwaysTemplate)
-        dateIcon.tintColor = UIColor.carbon.withAlphaComponent(0.4)
+        dateIcon.tintColor = .carbon40
     }
 
     func configure(title: String?, dateString: String?) {

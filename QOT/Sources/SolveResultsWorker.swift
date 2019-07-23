@@ -12,7 +12,6 @@ import qot_dal
 final class SolveResultsWorker {
 
     // MARK: - Properties
-
     private let services: Services
     private let solveCategoryID: Int = 100082
     private let recoveryCategoryID: Int = 100086

@@ -32,7 +32,7 @@ final class DailyCheckinStartViewController: UIViewController {
         super.viewDidAppear(animated)
         trackPage()
     }
-    
+
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return isLoading == true ? nil : generateBottomNavigationBarRighButtonItems()
     }

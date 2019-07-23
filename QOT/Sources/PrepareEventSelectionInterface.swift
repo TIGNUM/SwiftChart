@@ -15,11 +15,12 @@ protocol PrepareEventSelectionPresenterInterface {}
 
 protocol PrepareEventSelectionInteractorInterface: Interactor {
     var rowCount: Int { get }
-    func event(at indexPath: IndexPath) -> QDMUserCalendarEvent?
-    func dateString(for event: QDMUserCalendarEvent?) -> String?
-    func didSelect(_ event: QDMUserCalendarEvent)
+    func event(at indexPath: IndexPath) -> PrepareEvent?
+    func dateString(for date: Date?) -> String?
+    func didSelect(_ event: PrepareEvent)
 }
 
 protocol PrepareEventSelectionRouterInterface {
     func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: QDMAnswer)
+    func didSelectPreparation(_ event: QDMUserPreparation)
 }

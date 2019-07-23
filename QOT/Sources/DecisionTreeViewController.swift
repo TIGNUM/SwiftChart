@@ -126,7 +126,7 @@ private extension DecisionTreeViewController {
     @IBAction func didTapPrevious(_ sender: UIButton) {
         trackUserEvent(.PREVIOUS, action: .TAP)
         moveBackward()
-        interactor?.updateMultiSelectionCounter()
+//        interactor?.updateMultiSelectionCounter()
     }
 
     @objc func didTapContinue() {
@@ -219,7 +219,8 @@ private extension DecisionTreeViewController {
                                                                      extraAnswer: extraAnswer,
                                                                      maxPossibleSelections: question.maxPossibleSelections ?? 0,
                                                                      answersFilter: filter,
-                                                                     questionTitleUpdate: "recoveryFatigueType?.replacement")
+                                                                     questionTitleUpdate: "recoveryFatigueType?.replacement",
+                                                                     preparations: interactor?.preparations())
             controller.delegate = self
             controller.interactor = interactor
             return controller
@@ -297,6 +298,10 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         interactor?.setUserCalendarEvent(event: event)
         trackUserEvent(.SELECT, stringValue: event.qotId, valueType: .CALENDAR_EVENT, action: .TAP)
         interactor?.loadNextQuestion(from: selectedAnswer)
+    }
+
+    func didSelectPreparation(_ prepartion: QDMUserPreparation) {
+        interactor?.openPrepareResults(prepartion, [])
     }
 
     func presentAddEventController(_ eventStore: EKEventStore) {

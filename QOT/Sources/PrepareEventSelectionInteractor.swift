@@ -39,16 +39,23 @@ extension PrepareEventSelectionInteractor: PrepareEventSelectionInteractorInterf
         return worker.rowCount
     }
 
-    func event(at indexPath: IndexPath) -> QDMUserCalendarEvent? {
+    func event(at indexPath: IndexPath) -> PrepareEvent? {
         return worker.event(at: indexPath)
     }
 
-    func dateString(for event: QDMUserCalendarEvent?) -> String? {
-        return worker.dateString(for: event)
+    func dateString(for date: Date?) -> String? {
+        return worker.dateString(for: date)
     }
 
-    func didSelect(_ event: QDMUserCalendarEvent) {
-        guard let answer = worker.selectedAnswer else { return }
-        router.didSelectCalendarEvent(event, selectedAnswer: answer)
+    func didSelect(_ event: PrepareEvent) {
+        if
+            let answer = worker.selectedAnswer,
+            let userCalendarEvent = event.userCalendarEvent {
+                router.didSelectCalendarEvent(userCalendarEvent, selectedAnswer: answer)
+        }
+
+        if let userPreparation = event.userPreparation {
+            router.didSelectPreparation(userPreparation)
+        }
     }
 }

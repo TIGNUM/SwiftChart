@@ -48,7 +48,7 @@ extension MultipleSelectionTableViewCell {
         self.maxPossibleSelections = maxPossibleSelections
         collectionView.reloadData()
         collectionViewHeight.constant = layout.collectionViewContentSize.height
-        collectionView.isUserInteractionEnabled = (selectedAnswers.isEmpty || selectedAnswers.count < maxPossibleSelections)
+        collectionView.isUserInteractionEnabled = (selectedAnswers.isEmpty || selectedAnswers.count <= maxPossibleSelections)
         layoutIfNeeded()
     }
 }
@@ -64,7 +64,10 @@ extension MultipleSelectionTableViewCell: UICollectionViewDataSource {
         let cell: MultipleSelectionCollectionViewCell = collectionView.dequeueCell(for: indexPath)
         let answer: QDMAnswer = answers[indexPath.row]
         let isSelected = selectedAnswers.filter { $0.answer.remoteID == answer.remoteID }.isEmpty == false
-        cell.configure(for: answer, isSelected: isSelected, maxSelections: maxPossibleSelections)
+        cell.configure(for: answer,
+                       isSelected: isSelected,
+                       maxSelections: maxPossibleSelections,
+                       selectionCounter: selectedAnswers.count)
         cell.delegate = self
         return cell
     }

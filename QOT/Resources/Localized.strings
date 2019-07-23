@@ -528,10 +528,6 @@
 "Chart.Initial.State.Month" = "MONTH";
 "Chart.Initial.State.Close" = "CLOSE";
 
-"Button.Title.Remove" = "Remove";
-"Button.Title.Cancel" = "Cancel";
-"Button.Title.YesContinue" = "Yes, continue";
-
 "MyQot.Profile.Subtitle" = "Edit your personal info and settings";
 "MyQot.Sprints.Subtitle" = "Building your daily recovery plan";
 "MyQot.title" = "MY QOT";
@@ -555,6 +551,10 @@
 "Button.Title.Pick" = "Pick %d to continue";
 "Button.Title.Add.Event" = "Add new event";
 "Button.Title.Save.Continue" = "Save & Continue";
+"Button.Title.Save.Changes" = "Save changes";
+"Button.Title.Remove" = "Remove";
+"Button.Title.Cancel" = "Cancel";
+"Button.Title.YesContinue" = "Yes, continue";
 
 "Audio.FullScreen.Button.Download" = "Download";
 "Audio.FullScreen.Button.Waiting" = "Waiting";

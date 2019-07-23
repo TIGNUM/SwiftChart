@@ -1,5 +1,5 @@
 //
-//  PrepareCheckListWorker+ItemMaker.swift
+//  PrepareResultsWorker+ItemMaker.swift
 //  QOT
 //
 //  Created by karmic on 18.06.19.
@@ -26,10 +26,10 @@ extension PrepareResultsWorker {
         getContentItems(prepare.contentCollectionId ?? 0) { [weak self] contentItems in
             self?.getStrategyItems(prepare.strategyIds, self?.suggestedStrategyId) { strategyItems in
                 var items = [Int: [PrepareResultsType]]()
-                items[Prepare.Daily.HEADER] = self?.getGeaderItems(contentItems ?? [])
+                items[Prepare.Daily.HEADER] = self?.getHeaderItems(contentItems ?? [])
                 items[Prepare.Daily.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
                 items[Prepare.Daily.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
-                                                                       title: prepare.eventTitle ?? "",
+                                                                       title: prepare.name ?? "",
                                                                        type: prepare.eventType ?? "")
                 items[Prepare.Daily.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
                 items[Prepare.Daily.INTENTION_TITLES] = self?.getIntentionTitleItems(contentItems ?? [])
@@ -51,10 +51,10 @@ extension PrepareResultsWorker {
                 self?.getSelectedIntentionItems(prepare.preceiveAnswerIds, .perceived, completion: { (perceivedItems) in
                     self?.getSelectedIntentionItems(prepare.knowAnswerIds, .know, completion: { (knowItems) in
                         self?.getSelectedIntentionItems(prepare.feelAnswerIds, .feel, completion: { (feelItems) in
-                            items[Prepare.Critical.HEADER] = self?.getGeaderItems(contentItems ?? [])
+                            items[Prepare.Critical.HEADER] = self?.getHeaderItems(contentItems ?? [])
                             items[Prepare.Critical.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
                             items[Prepare.Critical.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
-                                                                                      title: prepare.eventTitle ?? "",
+                                                                                      title: prepare.name ?? "",
                                                                                       type: prepare.eventType ?? "")
                             items[Prepare.Critical.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
                             items[Prepare.Critical.PERCEIVED_TITLE] = self?.getIntentionTitle(contentItems ?? [], .perceived)
@@ -107,7 +107,7 @@ extension PrepareResultsWorker {
         }
     }
 
-    func getGeaderItems(_ contentItems: [QDMContentItem]) -> [PrepareResultsType] {
+    func getHeaderItems(_ contentItems: [QDMContentItem]) -> [PrepareResultsType] {
         var items = [PrepareResultsType]()
         contentItems.filter { $0.format.isHeader }.forEach {
             items.append(.contentItem(format: $0.format, title: $0.valueText))

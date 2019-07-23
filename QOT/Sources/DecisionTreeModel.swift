@@ -30,10 +30,12 @@ enum DecisionTreeType {
             return QuestionKey.MindsetShifter.intro.rawValue
         case .mindsetShifterTBV:
             return QuestionKey.MindsetShifterTBV.intro.rawValue
-        case .prepare,
-             .prepareIntensions,
-             .prepareBenefits:
-            return QuestionKey.Prepare.intro.rawValue
+        case .prepare:
+            return QuestionKey.Prepare.Intro
+        case .prepareIntensions(_, _, let key, _):
+            return key.tag
+        case .prepareBenefits(let benefits, let questionId, let delegate):
+            return ""
         case .solve:
             return QuestionKey.Solve.intro.rawValue
         case .recovery:

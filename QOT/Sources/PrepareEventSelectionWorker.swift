@@ -12,15 +12,13 @@ import qot_dal
 final class PrepareEventSelectionWorker {
 
     // MARK: - Properties
-
     private let question: QDMQuestion
-    private let events: [QDMUserCalendarEvent]
+    private var model = [PrepareEvent]()
 
     // MARK: - Init
-
-    init(question: QDMQuestion, events: [QDMUserCalendarEvent]) {
+    init(question: QDMQuestion, events: [QDMUserCalendarEvent], preparations: [QDMUserPreparation]) {
         self.question = question
-        self.events = events
+        createModel(events: events, preparations: preparations)
     }
 
     var selectedAnswer: QDMAnswer? {
@@ -28,15 +26,15 @@ final class PrepareEventSelectionWorker {
     }
 
     var rowCount: Int {
-        return events.count
+        return model.count
     }
 
-    func event(at indexPath: IndexPath) -> QDMUserCalendarEvent {
-        return events[indexPath.row]
+    func event(at indexPath: IndexPath) -> PrepareEvent {
+        return model[indexPath.row]
     }
 
-    func dateString(for event: QDMUserCalendarEvent?) -> String? {
-        guard let date = event?.startDate else { return nil }
+    func dateString(for date: Date?) -> String? {
+        guard let date = date else { return nil }
         if date.isToday == true {
             return String(format: "Today at %@", date.time)
         }
@@ -47,5 +45,33 @@ final class PrepareEventSelectionWorker {
             return String(format: "%@ at %@", date.weekDayName, date.time)
         }
         return DateFormatter.mediumDate.string(from: date)
+    }
+
+    func prepareDateString(_ date: Date?) -> String? {
+        guard let date = date else { return nil }
+        return String(format: "Created %@", DateFormatter.mediumDate.string(from: date))
+    }
+}
+
+private extension PrepareEventSelectionWorker {
+    func createModel(events: [QDMUserCalendarEvent], preparations: [QDMUserPreparation]) {
+        if events.isEmpty == false {
+            events.forEach { (event) in
+                model.append(PrepareEvent(title: event.title,
+                                          dateString: dateString(for: event.startDate),
+                                          date: event.startDate,
+                                          userCalendarEvent: event,
+                                          userPreparation: nil))
+            }
+        }
+        if preparations.isEmpty == false {
+            preparations.forEach { (preparation) in
+                model.append(PrepareEvent(title: preparation.name,
+                                          dateString: prepareDateString(preparation.createdAt),
+                                          date: preparation.createdAt,
+                                          userCalendarEvent: nil,
+                                          userPreparation: preparation))
+            }
+        }
     }
 }

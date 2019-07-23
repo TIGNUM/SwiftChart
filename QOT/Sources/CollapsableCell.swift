@@ -9,20 +9,19 @@
 import UIKit
 
 protocol CollapsableCellDelegate: class {
-    func collapsableCell(_ cell: CollapsableCell, didPressCollapseButtonForIndexPath indexPath: IndexPath)
+    func collapsableCell(_ cell: CollapsableCell, didTapCollapseAt indexPath: IndexPath)
 }
 
-final class CollapsableCell: UITableViewCell {
-    static let nibName = "CollapsableCell"
+final class CollapsableCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var button: UIButton!
     @IBOutlet private weak var label: UILabel!
     @IBOutlet private weak var selectionCountLabel: UILabel!
+    weak var delegate: CollapsableCellDelegate?
+    var indexPath: IndexPath?
 
     var isOpen: Bool? {
         didSet { reload() }
     }
-    var indexPath: IndexPath?
-    weak var delegate: CollapsableCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -35,7 +34,6 @@ final class CollapsableCell: UITableViewCell {
     }
 
     // MARK: - private
-
     private func reload() {
         guard let isOpen = isOpen else { return }
         let image = (isOpen == true) ? R.image.ic_minus() : R.image.ic_plus()
@@ -43,9 +41,8 @@ final class CollapsableCell: UITableViewCell {
     }
 
     // MARK: - action
-
     @IBAction private func buttonPressed(_ sender: UIButton) {
         guard let delegate = delegate, let indexPath = indexPath else { return }
-        delegate.collapsableCell(self, didPressCollapseButtonForIndexPath: indexPath)
+        delegate.collapsableCell(self, didTapCollapseAt: indexPath)
     }
 }

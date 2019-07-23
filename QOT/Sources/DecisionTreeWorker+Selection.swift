@@ -22,54 +22,42 @@ extension DecisionTreeWorker {
     func handleSingleSelection(for answer: QDMAnswer) {
         guard let questionID = currentQuestion?.remoteID else { return }
         updateDecisionTree(from: answer, questionId: questionID)
-        if answer.keys.contains(AnswerKey.Prepare.eventTypeSelectionCritical.rawValue) {
-            prepareEventType = answer.title ?? ""
-        }
         if answer.keys.contains(AnswerKey.Solve.openVisionPage.rawValue) {
             interactor?.openToBeVisionPage()
             return
         }
 
-        switch type {
-        case .solve:
-            if
-                currentQuestion?.key == QuestionKey.Solve.help.rawValue
-                    || answer.keys.contains(AnswerKey.Solve.letsDoIt.rawValue)
-                    || answer.keys.contains(AnswerKey.Solve.openResult.rawValue) {
-                interactor?.openSolveResults(from: answer, type: .solve)
-                return
+        switch currentQuestion?.key {
+        case QuestionKey.Prepare.BuildCritical,
+             QuestionKey.MindsetShifter.showTBV.rawValue:
+            if let targetQuestionId = answer.targetId(.question) {
+                showTBV(targetQuestionId: targetQuestionId)
             }
-        default:
-            break
-        }
-        if let targetQuestionId = answer.targetId(.question) {
-            if currentQuestion?.key == QuestionKey.Prepare.buildCritical.rawValue
-                || currentQuestion?.key == QuestionKey.MindsetShifter.showTBV.rawValue {
-                if userHasToBeVision == false {
-                    interactor?.openShortTBVGenerator { [weak self] in
-                        self?.showNextQuestion(targetId: Prepare.Key.perceived.questionID)
-                    }
-                } else {
-                    showNextQuestion(targetId: targetQuestionId)
-                }
-            } else if currentQuestion?.key == QuestionKey.Sprint.schedule.rawValue {
-                handleSprintScheduling(answer)
-            } else {
-                showNextQuestion(targetId: targetQuestionId)
-            }
-        } else if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionCritical.rawValue {
-            interactor?.setTargetContentID(for: answer)
-        } else if currentQuestion?.key == QuestionKey.Recovery.syntom.rawValue {
+        case QuestionKey.Prepare.EventTypeSelectionDaily:
+            prepareEventType = answer.subtitle ?? ""
+        case QuestionKey.Sprint.schedule.rawValue:
+            handleSprintScheduling(answer)
+        case QuestionKey.Prepare.EventTypeSelectionCritical:
+            setTargetContentID(for: answer)
+            prepareEventType = answer.subtitle ?? ""
+        case QuestionKey.Recovery.syntom.rawValue:
             updateRecoveryModel(fatigueAnswerId: currentQuestion?.answers.first?.remoteID ?? 0,
                                 answer.remoteID ?? 0,
                                 answer.targetId(.content) ?? 0)
+        case QuestionKey.Solve.help.rawValue
+            where answer.keys.contains(AnswerKey.Solve.letsDoIt.rawValue) || answer.keys.contains(AnswerKey.Solve.openResult.rawValue):
+            interactor?.openSolveResults(from: answer, type: .solve)
+        default:
+            break
+        }
+
+        if let targetQuestionId = answer.targetId(.question) {
+            showNextQuestion(targetId: targetQuestionId)
         } else if let contentId = answer.targetId(.content) {
             showResultView(for: answer, contentID: contentId)
-        }
-        if let contentItemID = answer.targetId(.contentItem) {
+        } else if let contentItemID = answer.targetId(.contentItem) {
             interactor?.streamContentItem(with: contentItemID)
-        }
-        if answer.keys.contains(AnswerKey.ToBeVision.uploadImage.rawValue) {
+        } else if answer.keys.contains(AnswerKey.ToBeVision.uploadImage.rawValue) {
             interactor?.openImagePicker()
         }
     }
@@ -129,17 +117,23 @@ extension DecisionTreeWorker {
                 return
             }
         case .prepareIntensions:
-            interactor?.updatePrepareIntentions(decisionTree?.selectedAnswers ?? [])
+            didUpdatePrepareIntentions(decisionTree?.selectedAnswers ?? [])
             interactor?.trackUserEvent(nil, .CLOSE, .TAP)
             interactor?.dismiss()
         case .prepareBenefits:
-            interactor?.updatePrepareBenefits(interactor?.userInput ?? "")
+            didUpdateBenefits(interactor?.userInput ?? "")
             interactor?.trackUserEvent(nil, .CLOSE, .TAP)
             interactor?.dismiss()
         case .prepare:
-            if currentQuestion?.key == QuestionKey.Prepare.calendarEventSelectionCritical.rawValue ||
-                currentQuestion?.key == QuestionKey.Prepare.calendarEventSelectionDaily.rawValue {
+            switch currentQuestion?.key {
+            case QuestionKey.Prepare.CalendarEventSelectionCritical,
+                 QuestionKey.Prepare.CalendarEventSelectionDaily:
                 interactor?.presentAddEventController(EKEventStore.shared)
+            case QuestionKey.Prepare.ShowTBV:
+                nextQuestion()
+                return
+            default:
+                break
             }
         case .sprint:
             if currentQuestion?.key == QuestionKey.Sprint.introContinue.rawValue {
@@ -166,9 +160,9 @@ extension DecisionTreeWorker {
         if currentQuestion?.answerType == AnswerType.lastQuestion.rawValue ||
             currentQuestion?.key == QuestionKey.MindsetShifterTBV.review.rawValue {
             interactor?.dismiss()
-        } else if currentQuestion?.key == QuestionKey.Prepare.benefitsInput.rawValue {
-            guard let answer = currentQuestion?.answers.first else { return }
-            handleSingleSelection(for: answer)
+        } else if currentQuestion?.key == QuestionKey.Prepare.BenefitsInput,
+            let answer = currentQuestion?.answers.first {
+                handleSingleSelection(for: answer)
         } else {
             switch currentQuestion?.key {
             case QuestionKey.MindsetShifter.openTBV.rawValue:
@@ -190,6 +184,7 @@ extension DecisionTreeWorker {
     }
 }
 
+// MARK: - Private
 private extension DecisionTreeWorker {
     func nextQuestion() {
         let answer = currentQuestion?.answers.first
@@ -216,44 +211,6 @@ private extension DecisionTreeWorker {
                                      selectedAnswers: selectedAnswers,
                                      direction: .forward,
                                      animated: false)
-        }
-    }
-}
-
-// MARK: - Handle Prepare ResultView
-extension DecisionTreeWorker {
-    func showResultView(for answer: QDMAnswer, contentID: Int) {
-        if answer.keys.contains(AnswerKey.Prepare.openCheckList.rawValue) {
-            interactor?.openPrepareResults(contentID)
-        } else if currentQuestion?.key == QuestionKey.Prepare.eventTypeSelectionDaily.rawValue {
-            let level = QDMUserPreparation.Level.LEVEL_DAILY
-            PreparationManager.main.create(level: level,
-                                           contentCollectionId: level.contentID,
-                                           relatedStrategyId: answer.decisions.first?.targetTypeId ?? 0,
-                                           eventType: answer.title ?? "",
-                                           event: selectedEvent) { [weak self] (preparation) in
-                                            if let preparation = preparation {
-                                                self?.interactor?.openPrepareResults(preparation,
-                                                                                     self?.decisionTree?.selectedAnswers ?? [])
-                                            }
-            }
-        } else if currentQuestion?.key == QuestionKey.Prepare.benefitsInput.rawValue {
-            let level = QDMUserPreparation.Level.LEVEL_CRITICAL
-            PreparationManager.main.create(level: level,
-                                           benefits: interactor?.userInput,
-                                           answerFilter: answersFilter(),
-                                           contentCollectionId: level.contentID,
-                                           relatedStrategyId: answer.decisions.first?.targetTypeId ?? 0,
-                                           strategyIds: [interactor?.relatedStrategyID ?? 0],
-                                           eventType: prepareEventType,
-                                           event: selectedEvent) { [weak self] (preparation) in
-                                            if let preparation = preparation {
-                                                self?.interactor?.openPrepareResults(preparation,
-                                                                                     self?.decisionTree?.selectedAnswers ?? [])
-                                            }
-            }
-        } else {
-            interactor?.displayContent(with: contentID)
         }
     }
 }

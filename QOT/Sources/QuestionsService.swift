@@ -58,46 +58,7 @@ extension QuestionsService {
     }
 }
 
-// MARK: - TBV Generator
-
-extension QuestionsService {
-
-    func tbvGeneratorIntroQuestion() -> Question? {
-        return question(for: QuestionKey.ToBeVision.intro.rawValue)
-    }
-}
-
-// MARK: - Mindset shifter
-
-extension QuestionsService {
-
-    func mindsetShifterIntroQuestion() -> Question? {
-        return question(for: QuestionKey.MindsetShifter.intro.rawValue)
-    }
-
-    func mindsetShifterTBV() -> Question? {
-        return question(for: QuestionKey.MindsetShifterTBV.intro.rawValue)
-    }
-}
-
-// MARK: - Prepare
-
-extension QuestionsService {
-    func prepareIntro() -> Question? {
-        return question(for: QuestionKey.Prepare.intro.rawValue)
-    }
-}
-
-// MARK: - Solve
-
-extension QuestionsService {
-    func solveIntro() -> Question? {
-        return question(for: QuestionKey.Solve.intro.rawValue)
-    }
-}
-
 // MARK: - 3D Recovery
-
 extension QuestionsService {
     func recoveryIntro() -> Question? {
         return question(for: QuestionKey.Recovery.intro.rawValue)
@@ -109,7 +70,6 @@ extension QuestionsService {
 }
 
 // MARK: - Private
-
 private extension QuestionsService {
 
     func questions(for questionGroupID: Int) -> AnyRealmCollection<Question> {

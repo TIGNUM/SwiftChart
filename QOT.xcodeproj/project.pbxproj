@@ -61,6 +61,7 @@
 		3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */; };
 		3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */; };
 		3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */; };
+		3633CF0A22E5ABC400D2817B /* PrepareEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633CF0922E5ABC400D2817B /* PrepareEventModel.swift */; };
 		3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */; };
 		363765FB223A4BD200C2C429 /* KnowingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F3223A4BD200C2C429 /* KnowingPresenter.swift */; };
 		363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F4223A4BD200C2C429 /* KnowingWorker.swift */; };
@@ -128,6 +129,7 @@
 		3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0321FE323EE001F4249 /* RealmGuideTime.swift */; };
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
+		364CC34522E20260005E9E53 /* DecisionTreeWorker+Prepare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */; };
 		36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */; };
 		3659B7DE2295333D0039FF30 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 3659B7DD2295333D0039FF30 /* default.realm */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
@@ -310,7 +312,7 @@
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
 		36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */; };
 		36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */; };
-		36CB720622B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720522B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift */; };
+		36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720522B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift */; };
 		36CB720822B86CF900C99AFC /* QDMContentCollection+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */; };
 		36CB720B22B8775B00C99AFC /* QDMContentItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */; };
 		36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376616223A4C0400C2C429 /* MyQotProfileInterface.swift */; };
@@ -1605,6 +1607,7 @@
 		3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyFoundationCollectionViewCell.xib; sourceTree = "<group>"; };
 		3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyFoundationCollectionViewCell.swift; sourceTree = "<group>"; };
+		3633CF0922E5ABC400D2817B /* PrepareEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventModel.swift; sourceTree = "<group>"; };
 		3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotArticleHeaderView.xib; sourceTree = "<group>"; };
 		363765F3223A4BD200C2C429 /* KnowingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingPresenter.swift; sourceTree = "<group>"; };
 		363765F4223A4BD200C2C429 /* KnowingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingWorker.swift; sourceTree = "<group>"; };
@@ -1675,6 +1678,7 @@
 		3649C0321FE323EE001F4249 /* RealmGuideTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideTime.swift; sourceTree = "<group>"; };
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
+		364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Prepare.swift"; sourceTree = "<group>"; };
 		36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSharingEmail.swift; sourceTree = "<group>"; };
 		3659B7DD2295333D0039FF30 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Pods/qot_dal/qot_dal/Resource/default.realm; sourceTree = SOURCE_ROOT; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
@@ -1858,7 +1862,7 @@
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
 		36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationTableViewCell.swift; sourceTree = "<group>"; };
-		36CB720522B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrepareCheckListWorker+ItemMaker.swift"; sourceTree = "<group>"; };
+		36CB720522B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrepareResultsWorker+ItemMaker.swift"; sourceTree = "<group>"; };
 		36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentCollection+Ext.swift"; sourceTree = "<group>"; };
 		36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentItem+Ext.swift"; sourceTree = "<group>"; };
 		36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Ext.swift"; sourceTree = "<group>"; };
@@ -3661,7 +3665,7 @@
 				3693539B22983AB9008BBB72 /* PrepareResultsRouter.swift */,
 				3693539D22983AB9008BBB72 /* PrepareResultsViewController.swift */,
 				3693539A22983AB9008BBB72 /* PrepareResultsWorker.swift */,
-				36CB720522B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift */,
+				36CB720522B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -3682,6 +3686,7 @@
 		36D72EC6229C1B3600DE1184 /* PrepareEventSelection */ = {
 			isa = PBXGroup;
 			children = (
+				3633CF0922E5ABC400D2817B /* PrepareEventModel.swift */,
 				36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */,
 				36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */,
 				36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */,
@@ -5328,6 +5333,7 @@
 				3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */,
 				3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */,
 				3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */,
+				364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -8306,7 +8312,7 @@
 				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
-				36CB720622B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift in Sources */,
+				36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */,
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
 				5F78965822A929C100D2DBAD /* Loader.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
@@ -8792,6 +8798,7 @@
 				3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
 				5F78964F22A929C100D2DBAD /* ThreeLines.swift in Sources */,
+				3633CF0A22E5ABC400D2817B /* PrepareEventModel.swift in Sources */,
 				8DECF9AB22DDF6A500451E65 /* MySprintsListSprintModel.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				5F8A89932296DEC50011A05C /* MyVisionViewController.swift in Sources */,
@@ -8870,6 +8877,7 @@
 				36E4B7AB219EBFED00049EE8 /* TutorialPresenter.swift in Sources */,
 				5F7BE786228958AE00BA5DCF /* MyQotSupportConfigurator.swift in Sources */,
 				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,
+				364CC34522E20260005E9E53 /* DecisionTreeWorker+Prepare.swift in Sources */,
 				851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */,
 				9150413620FDF40A00D43D18 /* SensorInterface.swift in Sources */,
 				36796A1D20D3C45200B55429 /* SigningCountryRouter.swift in Sources */,

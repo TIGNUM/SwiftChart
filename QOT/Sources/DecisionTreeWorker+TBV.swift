@@ -114,3 +114,15 @@ extension DecisionTreeWorker {
         }
     }
 }
+
+extension DecisionTreeWorker {
+    func showTBV(targetQuestionId: Int) {
+        if userHasToBeVision == false {
+            interactor?.openShortTBVGenerator { [weak self] in
+                self?.showNextQuestion(targetId: Prepare.Key.perceived.questionID)
+            }
+        } else {
+            showNextQuestion(targetId: targetQuestionId)
+        }
+    }
+}

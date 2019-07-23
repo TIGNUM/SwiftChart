@@ -17,22 +17,34 @@ final class CalendarEventsTableViewCell: UITableViewCell, Dequeueable, PrepareEv
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        tableView.tableFooterView = UIView()
         tableView.registerDequeueable(PrepareEventTableViewCell.self)
-        tableView.delegate = self
-        tableView.dataSource = self
     }
 
     func configure(delegate: DecisionTreeQuestionnaireDelegate?, tableViewHeight: CGFloat, question: QDMQuestion) {
         self.tableViewHeight.constant = tableViewHeight
-        qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events) in
-            PrepareEventSelectionConfigurator.make(self, delegate: delegate, question: question, events: events ?? [])
-            self?.tableView.reloadDataWithAnimation()
+        switch question.key {
+        case QuestionKey.Prepare.SelectExisting:
+            qot_dal.UserService.main.getUserPreparations { [weak self] (preparations, _, _) in
+                PrepareEventSelectionConfigurator.make(self, delegate: delegate,
+                                                       question: question,
+                                                       events: [],
+                                                       preparations: preparations ?? [])
+                self?.tableView.reloadDataWithAnimation()
+            }
+        default:
+            qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events) in
+                PrepareEventSelectionConfigurator.make(self, delegate: delegate,
+                                                       question: question,
+                                                       events: events ?? [],
+                                                       preparations: [])
+                self?.tableView.reloadDataWithAnimation()
+            }
         }
     }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-
 extension CalendarEventsTableViewCell: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor?.rowCount ?? 0
@@ -45,8 +57,7 @@ extension CalendarEventsTableViewCell: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: PrepareEventTableViewCell = tableView.dequeueCell(for: indexPath)
         let event = interactor?.event(at: indexPath)
-        let dateString = interactor?.dateString(for: event)
-        cell.configure(title: event?.title, dateString: dateString)
+        cell.configure(title: event?.title, dateString: event?.dateString)
         return cell
     }
 

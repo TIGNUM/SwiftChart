@@ -48,7 +48,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
         tableView.allowsMultipleSelectionDuringEditing = true
         editButton.corner(radius: editButton.bounds.size.width/2, borderColor: .accent)
         confirmDeleteView.isHidden = true
-        self.tableView.tableFooterView = UIView(frame: .zero)
+        self.tableView.tableFooterView = UIView()
         interactor?.viewDidLoad()
 
     }

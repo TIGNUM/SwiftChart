@@ -174,8 +174,8 @@ extension QDMUserPreparation.Level {
     var key: String? {
         switch self {
         case .LEVEL_ON_THE_GO: return nil
-        case .LEVEL_DAILY: return AnswerKey.Prepare.eventTypeSelectionDaily.rawValue
-        case .LEVEL_CRITICAL: return AnswerKey.Prepare.eventTypeSelectionCritical.rawValue
+        case .LEVEL_DAILY: return AnswerKey.Prepare.EventTypeSelectionDaily
+        case .LEVEL_CRITICAL: return AnswerKey.Prepare.EventTypeSelectionCritical
         default: return nil
         }
     }

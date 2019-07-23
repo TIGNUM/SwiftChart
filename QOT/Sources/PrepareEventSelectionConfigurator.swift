@@ -13,9 +13,10 @@ final class PrepareEventSelectionConfigurator {
     static func make(_ tableViewCell: CalendarEventsTableViewCell?,
                      delegate: DecisionTreeQuestionnaireDelegate?,
                      question: QDMQuestion,
-                     events: [QDMUserCalendarEvent]) {
+                     events: [QDMUserCalendarEvent],
+                     preparations: [QDMUserPreparation]) {
         let router = PrepareEventSelectionRouter(tableViewCell, delegate: delegate)
-        let worker = PrepareEventSelectionWorker(question: question, events: events)
+        let worker = PrepareEventSelectionWorker(question: question, events: events, preparations: preparations)
         let presenter = PrepareEventSelectionPresenter(tableViewCell: tableViewCell)
         let interactor = PrepareEventSelectionInteractor(worker: worker, presenter: presenter, router: router)
         tableViewCell?.interactor = interactor

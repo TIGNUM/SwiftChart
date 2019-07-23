@@ -13,7 +13,6 @@ import qot_dal
 final class PrepareResultsWorker {
 
     // MARK: - Properties
-
     typealias ListItems = [Int: [PrepareResultsType]]
     typealias ItemCompletion = ((ListItems) -> Void)
     private var items: ListItems = [:]
@@ -24,7 +23,6 @@ final class PrepareResultsWorker {
     weak var delegate: PrepareResultsDelegatge?
 
     // MARK: - Init
-
     init(_ preparation: QDMUserPreparation?,
          _ answers: [DecisionTreeModel.SelectedAnswer],
          _ canDelete: Bool) {
@@ -35,7 +33,8 @@ final class PrepareResultsWorker {
 
         switch level {
         case .LEVEL_CRITICAL:
-            generateDailyItemsAndUpdateView(preparation)
+            setAnswerIdsIfNeeded(answers)
+            generateCriticalItemsAndUpdateView(self.preparation)
         case .LEVEL_DAILY:
             generateDailyItemsAndUpdateView(preparation)
         default: break
@@ -50,7 +49,6 @@ final class PrepareResultsWorker {
         }
     }
 
-    // TODO: Check if answerFilter really needed, looks like it just getting passed around....
     lazy var answerFilter: String? = {
         if level == .LEVEL_CRITICAL && preparation?.answerFilter?.isEmpty == false {
             return preparation?.answerFilter
@@ -62,11 +60,10 @@ final class PrepareResultsWorker {
 }
 
 // MARK: - Getter & Setter
-
 extension PrepareResultsWorker {
-    var getCalendarEvent: QDMUserCalendarEvent? {
-        return nil
-    }
+//    var getCalendarEvent: QDMUserCalendarEvent? {
+//        return nil
+//    }
 
     var getEventType: String? {
         return preparation?.eventType
@@ -156,7 +153,6 @@ extension PrepareResultsWorker {
 }
 
 // MARK: - Generate
-
 private extension PrepareResultsWorker {
     func setAnswerIdsIfNeeded(_ answers: [DecisionTreeModel.SelectedAnswer]) {
         if !answers.isEmpty {
@@ -188,7 +184,6 @@ private extension PrepareResultsWorker {
 }
 
 // MARK: - Update
-
 extension PrepareResultsWorker {
     func updateStrategies(selectedIds: [Int]) {
         strategyIds = selectedIds
@@ -238,16 +233,16 @@ extension PrepareResultsWorker {
         do {
             try getEKEvent()?.removePreparationLink()
         } catch {
-            log("Error while trying to remove PreparationLink t: \(error.localizedDescription)",
+            log("Error while trying to remove PreparationLink error: \(error.localizedDescription)",
                 level: Logger.Level.debug)
         }
     }
 }
 
 // MARK: - Update, Delete
-
 extension PrepareResultsWorker {
     func updatePreparation(_ completion: @escaping (QDMUserPreparation?) -> Void) {
+        canDelete = false
         guard let preparation = preparation else { return }
         PreparationManager.main.update(preparation: preparation) { [weak self] (preparation) in
             self?.handleReminders()

@@ -59,26 +59,31 @@ enum FontName: String {
 
 extension CGFloat {
     public typealias Button = CGFloat
-}
-
-extension CGFloat.Button {
+    public typealias View = CGFloat
     public typealias Width = CGFloat
     public typealias Height = CGFloat
 }
 
-extension CGFloat.Button.Height {
+extension CGFloat.View.Height {
     static let Default: CGFloat = 40
+    static let ParentNode: CGFloat = 64
+    static let ChildNode: CGFloat = 95
+    static let Footer: CGFloat = 20
+}
+
+extension CGFloat.Button.Height {
     static let BottomNavBar: CGFloat = 100
 }
 
 extension CGFloat.Button.Width {
     static let DoItLater: CGFloat = 104
     static let TrackTBV: CGFloat = 135
+    static let SaveChanges: CGFloat = .TrackTBV
     static let RateTBV: CGFloat = 144
     static let Done: CGFloat = 72
     static let SaveAndContinue: CGFloat = 152
     static let DecisionTree: CGFloat = 168
-    static let Cancel: CGFloat = 85
+    static let Cancel: CGFloat = 88
     static let Continue: CGFloat = 100
 }
 

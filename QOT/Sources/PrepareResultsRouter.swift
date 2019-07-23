@@ -26,7 +26,9 @@ final class PrepareResultsRouter {
 
 extension PrepareResultsRouter: PrepareResultsRouterInterface {
     func presentEditBenefits(benefits: String?, questionID: Int) {
-
+        presentDecisionTree(for: .prepareBenefits(benefits: benefits,
+                                                  questionID: Prepare.Key.benefits.questionID,
+                                                  viewController))
     }
 
     func presentEditIntensions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer],
@@ -42,7 +44,7 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
     }
 
     func didClickSaveAndContinue() {
-
+       //viewController.dismissResultView()
     }
 
     func presentEditStrategyView(_ relatedStrategyId: Int, _ selectedIDs: [Int]) {

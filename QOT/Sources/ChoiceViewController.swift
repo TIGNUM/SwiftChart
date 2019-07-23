@@ -17,22 +17,13 @@ protocol ChoiceViewControllerDelegate: class {
 final class ChoiceViewController: UIViewController {
 
     // MARK: - Properties
-
-    private struct CellReuseIdentifiers {
-        static let CollapsableCell = "CollapsableCell"
-        static let CollapsableContentCell = "CollapsableContentCell"
-    }
-
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var tableHeaderView: UIView!
     @IBOutlet private weak var tableHeaderViewLabel: UILabel!
-    @IBOutlet private weak var cancelButton: UIButton!
-    @IBOutlet private weak var saveButton: UIButton!
     var interactor: ChoiceInteractorInterface?
     weak var delegate: ChoiceViewControllerDelegate?
 
     // MARK: - Init
-
     init(configure: Configurator<ChoiceViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
@@ -49,29 +40,20 @@ final class ChoiceViewController: UIViewController {
 }
 
 // MARK: - Private
-
 private extension ChoiceViewController {
     func setupTableView() {
-        tableView.tableHeaderView = tableHeaderView
-        var nib = UINib(nibName: CollapsableCell.nibName, bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: CellReuseIdentifiers.CollapsableCell)
-        nib = UINib(nibName: CollapsableContentCell.nibName, bundle: Bundle.main)
-        tableView.register(nib, forCellReuseIdentifier: CellReuseIdentifiers.CollapsableContentCell)
+        tableView.registerDequeueable(CollapsableCell.self)
+        tableView.registerDequeueable(CollapsableContentCell.self)
         tableView.layoutMargins = .zero
         tableView.separatorInset = .zero
-        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: 20))
+        tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: 0, height: .Footer))
+        tableView.tableHeaderView = tableHeaderView
         tableHeaderViewLabel.text = R.string.localized.choiceViewHeaderEditPrepare()
     }
 
-    func setupButtons() {
-        saveButton.cornerDefault()
-        cancelButton.cornerDefault()
-        cancelButton.layer.borderWidth = 1
-        cancelButton.layer.borderColor = UIColor.accent.withAlphaComponent(0.4).cgColor
-    }
-
     func navigationTitle(selected: Int) -> String {
-        return R.string.localized.prepareNavigationTitleAddRemoveStrategies("\(selected)", "\(interactor?.maxSelectionCount ?? 0)")
+        let max = interactor?.maxSelectionCount ?? 0
+        return R.string.localized.prepareNavigationTitleAddRemoveStrategies("\(selected)", "\(max)")
     }
 
     func showMaxSelectionCountAlert() {
@@ -90,22 +72,20 @@ private extension ChoiceViewController {
 }
 
 // MARK: - Actions
-
 private extension ChoiceViewController {
     @IBAction func didPressSave() {
         delegate?.dismiss(self, selections: interactor?.selected ?? [])
     }
 
     @IBAction func didPressCancel() {
-        self.dismiss(animated: true, completion: nil)
+        dismiss(animated: true, completion: nil)
     }
 }
 
 // MARK: - UITableViewDelegate
-
 extension ChoiceViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return interactor?.isParentNode(atIndexPath: indexPath) == true ? 64 : 95
+        return interactor?.isParentNode(atIndexPath: indexPath) == true ? .ParentNode : .ChildNode
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -120,7 +100,6 @@ extension ChoiceViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-
 extension ChoiceViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
         return interactor?.sectionCount ?? 0
@@ -132,8 +111,7 @@ extension ChoiceViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if interactor?.isParentNode(atIndexPath: indexPath) == true {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableCell)
-                as? CollapsableCell else { preconditionFailure("CollapsableCell is nil") }
+            let cell: CollapsableCell = tableView.dequeueCell(for: indexPath)
             let node = interactor?.node(in: indexPath.section)
             cell.setTitleText(node?.title,
                               selectionCount: interactor?.selectedCount(in: indexPath.section) ?? 0,
@@ -143,8 +121,7 @@ extension ChoiceViewController: UITableViewDataSource {
             cell.isOpen = node?.isOpen
             return cell
         }
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CellReuseIdentifiers.CollapsableContentCell)
-            as? CollapsableContentCell else { preconditionFailure("CollapsableContentCell is nil") }
+        let cell: CollapsableContentCell = tableView.dequeueCell(for: indexPath)
         guard let item = interactor?.item(at: indexPath) else { return cell }
         cell.setTitleText(item.title, duration: item.readingTime, isSuggestion: item.isDefault)
         cell.delegate = self
@@ -155,12 +132,10 @@ extension ChoiceViewController: UITableViewDataSource {
 }
 
 // MARK: - ChoiceViewControllerInterface
-
 extension ChoiceViewController: ChoiceViewControllerInterface {
     func setupView() {
         view.backgroundColor = .sand
         setupTableView()
-        setupButtons()
     }
 
     func reloadTableView() {
@@ -169,14 +144,8 @@ extension ChoiceViewController: ChoiceViewControllerInterface {
 }
 
 // MARK: - CollapsableContentCellDelegate
-
 extension ChoiceViewController: CollapsableContentCellDelegate {
-    func setSelected(_ selected: Int) {
-        let maxSelectionCount = interactor?.maxSelectionCount
-        saveButton.isEnabled = interactor?.choiceType == .CHOICE || selected == maxSelectionCount
-    }
-
-    func collapsableContentCell(_ cell: CollapsableContentCell, didPressCheckButtonForIndexPath indexPath: IndexPath) {
+    func collapsableContentCell(_ cell: CollapsableContentCell, didTapCheckAt indexPath: IndexPath) {
         guard var item = interactor?.item(at: indexPath) else { return }
         if item.selected == false && interactor?.choiceType == .CHOICE {
             guard interactor?.selectedCount ?? 0 < interactor?.maxSelectionCount ?? 0 else {
@@ -186,17 +155,33 @@ extension ChoiceViewController: CollapsableContentCellDelegate {
         }
         item.selected = !item.selected
         interactor?.replace(item, at: indexPath)
-        setSelected(interactor?.selectedCount ?? 0)
         tableView.reloadDataWithAnimation()
     }
 }
 
 // MARK: - CollapsableCellDelegate
-
 extension ChoiceViewController: CollapsableCellDelegate {
-    func collapsableCell(_ cell: CollapsableCell, didPressCollapseButtonForIndexPath indexPath: IndexPath) {
+    func collapsableCell(_ cell: CollapsableCell, didTapCollapseAt indexPath: IndexPath) {
         guard let isOpen = cell.isOpen else { return }
         interactor?.setIsOpen(!isOpen, in: indexPath.section)
         tableView.reloadDataWithAnimation()
+    }
+}
+
+// MARK: - Navigation Items
+extension ChoiceViewController {
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
+                                     buttonWidth: .SaveChanges,
+                                     action: #selector(didPressSave)),
+                roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
+                                     buttonWidth: .Cancel,
+                                     action: #selector(didPressCancel),
+                                     backgroundColor: .clear,
+                                     borderColor: .accent40)]
     }
 }
