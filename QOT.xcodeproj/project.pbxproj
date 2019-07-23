@@ -264,8 +264,10 @@
 		3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */; };
 		3691177220656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176C20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
+		369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		369353A222983AB9008BBB72 /* PrepareResultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539A22983AB9008BBB72 /* PrepareResultsWorker.swift */; };
 		369353A322983AB9008BBB72 /* PrepareResultsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539B22983AB9008BBB72 /* PrepareResultsRouter.swift */; };
+		369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */; };
 		369353A522983AB9008BBB72 /* PrepareResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539D22983AB9008BBB72 /* PrepareResultsViewController.swift */; };
 		369353A622983AB9008BBB72 /* PrepareResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539E22983AB9008BBB72 /* PrepareResultInteractor.swift */; };
 		369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539F22983AB9008BBB72 /* PrepareResults.swift */; };
@@ -601,6 +603,7 @@
 		7F0888811F0A4B96005CE966 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888801F0A4B96005CE966 /* Partner.swift */; };
 		7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */; };
 		7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */; };
+		7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F02F31F13CDAD00007D50 /* ChoiceViewController.xib */; };
 		7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */; };
 		7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */; };
 		7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03031F14CE2300007D50 /* CollapsableCell.xib */; };
@@ -832,9 +835,6 @@
 		91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F5BE4F2097585900E85A51 /* PermissionsCell.xib */; };
 		91F5BE5220975E1300E85A51 /* PermissionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5BE5120975E1300E85A51 /* PermissionsInteractor.swift */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
-		9CABBBB422E70BC2005A2616 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
-		9CABBBB522E70BC2005A2616 /* PrepareResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */; };
-		9CABBBB622E70BC2005A2616 /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F02F31F13CDAD00007D50 /* ChoiceViewController.xib */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		AC103E2C22847AB500F426F0 /* ConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */; };
 		AC103E2D22847AB500F426F0 /* ConfirmationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */; };
@@ -7227,7 +7227,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1020;
-				LastUpgradeCheck = 1030;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Tignum;
 				TargetAttributes = {
 					918D5E1E20EE050900AEAD37 = {
@@ -7507,10 +7507,12 @@
 				CB8C34541EAF7F190003AB65 /* MyToBeVisionViewController.xib in Resources */,
 				5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */,
 				75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */,
-				9CABBBB622E70BC2005A2616 /* ChoiceViewController.xib in Resources */,
+				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
 				759AB41C22C4D2410091BFB8 /* TBVDataGraphBarViewCell.xib in Resources */,
+				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
 				F9B102A822D3370A00F99E85 /* WhatsHotLatestCell.xib in Resources */,
 				F9A5C95222B7D10B00AB2E94 /* PaymentReminderViewController.xib in Resources */,
+				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				F9EB5E5F22BD20470085A03F /* DailyBriefStoryboard.storyboard in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
@@ -8289,7 +8291,8 @@
 				3674FF2C20AADE7D008EEB6C /* PartnersOverviewViewController.swift in Sources */,
 				366183EE2162793800634560 /* SupportFAQConfigurator.swift in Sources */,
 				759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */,
-				9CABBBB522E70BC2005A2616 /* PrepareResultsInterface.swift in Sources */,
+				369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */,
+				369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */,
@@ -8501,7 +8504,8 @@
 				CCEA22AA1E8AC55F003D0CF4 /* PrepareEventsViewModel.swift in Sources */,
 				75DC686622C11CF000FF183D /* MyToBeVisionRateViewController.swift in Sources */,
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
-				9CABBBB422E70BC2005A2616 /* PrepareResultsPresenter.swift in Sources */,
+				369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */,
+				369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				36D72ED4229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift in Sources */,
