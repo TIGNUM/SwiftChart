@@ -18,6 +18,7 @@ final class MyToBeVisionTrackerViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .carbon
         interactor?.viewDidLoad()
     }
 
@@ -42,7 +43,11 @@ final class MyToBeVisionTrackerViewController: UIViewController {
 
     private func generateBottomNavigationBarRighButtonItems() -> [UIBarButtonItem]? {
         if interactor?.controllerType == .tracker {
-            return [roundedBarButtonItem(title: R.string.localized.tbvTrackerViewControllerDoneButton(), buttonWidth: 71, action: #selector(doneAction), backgroundColor: .carbon, borderColor: .accent)]
+            return [roundedBarButtonItem(title: R.string.localized.tbvTrackerViewControllerDoneButton(),
+                                         buttonWidth: .Done,
+                                         action: #selector(doneAction),
+                                         backgroundColor: .carbon,
+                                         borderColor: .accent40)]
         } else {
             return nil
         }
@@ -52,7 +57,6 @@ final class MyToBeVisionTrackerViewController: UIViewController {
 extension MyToBeVisionTrackerViewController: MyToBeVisionTrackerViewControllerInterface {
 
     func setupView(with data: MYTBVDataViewModel) {
-        view.backgroundColor = .carbon
         viewModel = data
         tableView.registerDequeueable(TBVDataGraphTableViewCell.self)
         tableView.registerDequeueable(TBVDataGraphSubHeadingTableViewCell.self)
@@ -62,14 +66,6 @@ extension MyToBeVisionTrackerViewController: MyToBeVisionTrackerViewControllerIn
         tableView.delegate = self
         tableView.dataSource = self
         tableView.reloadData()
-    }
-
-    func showScreenLoader() {
-        loaderView.isHidden = false
-    }
-
-    func hideScreenLoader() {
-        loaderView.isHidden = true
     }
 }
 

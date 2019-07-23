@@ -569,3 +569,6 @@
 "TBVDataGraphBarNextDurationViewCell.inFourWeeks" = "in 4 weeks";
 
 "QuestionnaireViewController.doneButton" = "Done";
+
+"MyToBeVisionTitlePlaceholder" = "MY HEADLINE";
+"MyToBeVisionDescriptionPlaceholder" = "My TO BE VISION";

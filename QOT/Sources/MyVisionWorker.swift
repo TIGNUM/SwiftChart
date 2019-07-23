@@ -31,11 +31,12 @@ final class MyVisionWorker {
     }
 
     private let dispatchGroup = DispatchGroup()
-    private var headlineText: String?
-    private var messageText: String?
+    var nullStateSubtitle: String?
+    var nullStateTitle: String?
     private var notRatedText: String? = ""
     private var syncingText: String? = ""
     private var toBeVision: QDMToBeVision?
+    private var isMyVisionInitialized: Bool = false
     private var tracks: [QDMToBeVisionTrack]?
     private var report: QDMToBeVisionRatingReport?
     private let contentService: qot_dal.ContentService
@@ -48,8 +49,8 @@ final class MyVisionWorker {
         self.userService = userService
         self.contentService = contentService
         self.widgetDataManager = widgetDataManager
-        getHeadlinePlaceholder()
-        getMessagePlaceHolder()
+        getNullStateSubtitle()
+        getNullStateTitle()
         // Make sure that image directory is created.
         do {
             try FileManager.default.createDirectory(at: URL.imageDirectory, withIntermediateDirectories: true)
@@ -66,42 +67,35 @@ final class MyVisionWorker {
         return report
     }
 
-    var messagePlaceholder: String? {
-        return messageText
-    }
-
-    var headlinePlaceholder: String? {
-        return headlineText?.uppercased()
-    }
-
-    private func getHeadlinePlaceholder() {
-        contentService.getContentItemById(101080) {[weak self] (item) in
-            self?.headlineText = item?.valueText
+    private func getNullStateSubtitle() {
+        contentService.getContentItemByPredicate(ContentService.MyVision.nullStateSubtitle.predicate) {[weak self] (contentItem) in
+            self?.nullStateSubtitle = contentItem?.valueText ?? ""
         }
     }
 
-    private func getMessagePlaceHolder() {
-        contentService.getContentItemById(101079) {[weak self] (item) in
-            self?.messageText = item?.valueText
+    private func getNullStateTitle() {
+        contentService.getContentItemByPredicate(ContentService.MyVision.nullStateTitle.predicate) {[weak self] (contentItem) in
+            self?.nullStateTitle = contentItem?.valueText ?? ""
         }
     }
 
-    func getData(_ completion: @escaping() -> Void) {
+    func getData(_ completion: @escaping(_ initialized: Bool) -> Void) {
         myToBeVision()
         getRatingReport()
         getSyncingText()
         getNotRatedText()
         dispatchGroup.notify(queue: .main) {[weak self] in
             self?.getVisionTracks {
-                completion()
+                completion(self?.isMyVisionInitialized ?? false)
             }
         }
     }
 
     private func myToBeVision() {
         dispatchGroup.enter()
-        userService.getMyToBeVision({ [weak self] (vision, initilized, error) in
+        userService.getMyToBeVision({ [weak self] (vision, initialized, error) in
             self?.toBeVision = vision
+            self?.isMyVisionInitialized = initialized
             self?.dispatchGroup.leave()
         })
     }

@@ -11,16 +11,24 @@ import qot_dal
 
 final class MyVisionEditDetailsWorker {
 
+    var visionPlaceholderDescription: String?
+    var visionPlaceholderTitle: String?
+    let isFromNullState: Bool
+    let contentService: qot_dal.ContentService
     let originalTitle: String
     let originalVision: String
     private var myToBeVision: QDMToBeVision?
     private let widgetDataManager: ExtensionsDataManager
 
-    init(title: String, vision: String, widgetManager: ExtensionsDataManager) {
+    init(title: String, vision: String, widgetManager: ExtensionsDataManager, contentService: qot_dal.ContentService, isFromNullState: Bool = false) {
         originalTitle = title
+        self.contentService = contentService
         originalVision = vision
         widgetDataManager = widgetManager
+        self.isFromNullState = isFromNullState
         getMyToBeVision()
+        getVisionDescription()
+        getVisionTitle()
     }
 
     var firstTimeUser: Bool {
@@ -78,5 +86,17 @@ final class MyVisionEditDetailsWorker {
 
     func updateWidget() {
         widgetDataManager.update(.toBeVision)
+    }
+
+    private func getVisionDescription() {
+        contentService.getContentItemByPredicate(ContentService.MyVision.visionDescription.predicate) {[weak self] (contentItem) in
+            self?.visionPlaceholderDescription = contentItem?.valueText ?? R.string.localized.myToBeVisionTitlePlaceholder()
+        }
+    }
+
+    private func getVisionTitle() {
+        contentService.getContentItemByPredicate(ContentService.MyVision.visionTitle.predicate) {[weak self] (contentItem) in
+            self?.visionPlaceholderTitle = contentItem?.valueText ?? R.string.localized.myToBeVisionDescriptionPlaceholder()
+        }
     }
 }

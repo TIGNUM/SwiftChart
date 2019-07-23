@@ -36,13 +36,13 @@ protocol MyVisionInteractorInterface: Interactor {
     func hideNullState()
     func saveToBeVision(image: UIImage?, toBeVision: QDMToBeVision)
     var myVision: QDMToBeVision? { get }
-    var headlinePlaceholder: String? { get }
-    var messagePlaceholder: String? { get }
+    var nullStateSubtitle: String? { get }
+    var nullStateTitle: String? { get }
     func isShareBlocked() -> Bool
     func lastUpdatedVision() -> String?
     func shareMyToBeVision()
     func showTBVData()
-    func showEditVision()
+    func showEditVision(isFromNullState: Bool)
     func openToBeVisionGenerator()
     func showRateScreen(with id: Int)
 }
@@ -50,7 +50,7 @@ protocol MyVisionInteractorInterface: Interactor {
 protocol MyVisionRouterInterface {
     func showTracker()
     func showTBVData(shouldShowNullState: Bool, visionId: Int?)
-    func showEditVision(title: String, vision: String)
+    func showEditVision(title: String, vision: String, isFromNullState: Bool)
     func closeUpdateConfirmationScreen(completion: (() -> Void)?)
     func showRateScreen(with id: Int)
     func showUpdateConfirmationScreen()

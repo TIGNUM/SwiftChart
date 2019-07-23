@@ -20,8 +20,11 @@ class TBVDataGraphCollectionView: UICollectionView {
     enum GraphBarTypes: Int {
         case range = 0
         case first = 1
+        case firstCompanion = 2
         case second = 4
+        case secondCompanion = 5
         case third = 7
+        case thirdCompanion = 8
         case future = 10
     }
 
@@ -89,15 +92,15 @@ extension TBVDataGraphCollectionView: UICollectionViewDelegate, UICollectionView
             return
         }
         switch barType {
-        case .first:
+        case .first, .firstCompanion:
             let rating = delegate.ratings()[0]
             delegate.didSelect(date: rating.ratingTime)
-        case .second:
+        case .second, .secondCompanion:
             if delegate.ratings().count > 1 {
                 let rating = delegate.ratings()[1]
                 delegate.didSelect(date: rating.ratingTime)
             }
-        case .third:
+        case .third, .thirdCompanion:
             if delegate.ratings().count > 2 {
                 let rating = delegate.ratings()[2]
                 delegate.didSelect(date: rating.ratingTime)
@@ -148,6 +151,8 @@ extension TBVDataGraphCollectionView: UICollectionViewDelegate, UICollectionView
             } else {
                 return graphCell(for: collectionView, at: indexPath)
             }
+        default:
+            return graphCell(for: collectionView, at: indexPath)
         }
     }
 }

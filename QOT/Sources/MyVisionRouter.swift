@@ -26,12 +26,13 @@ extension MyVisionRouter: MyVisionRouterInterface {
         viewController.present(vieController, animated: true, completion: nil)
     }
 
-    func showEditVision(title: String, vision: String) {
+    func showEditVision(title: String, vision: String, isFromNullState: Bool) {
         guard let vieController = R.storyboard.myToBeVision.myVisionEditDetailsViewController() else { return }
         MyVisionEditDetailsConfigurator.configure(originViewController: viewController,
                                                   viewController: vieController,
                                                   title: title,
-                                                  vision: vision)
+                                                  vision: vision,
+                                                  isFromNullState: isFromNullState)
         viewController.present(vieController, animated: true, completion: nil)
     }
 
@@ -63,14 +64,6 @@ extension MyVisionRouter: MyVisionRouterInterface {
     }
 
     func showUpdateConfirmationScreen() {
-
-        // this is here to check daily checkin
-        guard let controller = R.storyboard.dailyCheckin.dailyCheckinStartViewController() else { return }
-        DailyCheckinStartConfigurator.configure(viewController: controller)
-        let navigation = UINavigationController(rootViewController: controller)
-        viewController.present(navigation, animated: true, completion: nil)
-        return
-
         let config = PopUpViewController.Config(title: "UPDATE TO BE VISION",
                                                 description: "Do you wanna create a new To Be Vision or edit your current one?",
                                                 rightButtonTitle: "Edit", leftButtonTitle: "Create new")

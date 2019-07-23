@@ -41,6 +41,11 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     var didShowNullStateView = false
 
+    private let containerViewSize: CGFloat = 232.0
+    private let containerViewRatio: CGFloat = 1.2
+    private let lowerBoundAlpha: CGFloat = 0.6
+    private let upperBoundAlpha: CGFloat = 1.1
+
     private var myVisionDidChange = false
     private var lastContentOffset: CGFloat = 0
     private var tempImage: UIImage?
@@ -70,15 +75,6 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
-    }
-
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let editDetailsController  = segue.destination as? MyVisionEditDetailsViewController {
-            MyVisionEditDetailsConfigurator.configure(originViewController: self,
-                                                      viewController: editDetailsController,
-                                                      title: interactor?.myVision?.headline ?? "",
-                                                      vision: interactor?.myVision?.text ?? "")
-        }
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
@@ -219,7 +215,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     func setupView() {
         navigationBarView.delegate = self
         toBeVisionLabel.text = R.string.localized.myQOTToBeVisionTitle()
-        imageOverLapView.backgroundColor = .carbon40
+        imageOverLapView.backgroundColor = .carbon60
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
         imageContainerView.backgroundColor = .carbon
@@ -240,14 +236,14 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
     func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessage: Bool) {
         if myVision == nil {
-            interactor?.showNullState(with: interactor?.headlinePlaceholder ?? "", message: interactor?.messagePlaceholder ?? "")
+            interactor?.showNullState(with: interactor?.nullStateTitle ?? "", message: interactor?.nullStateSubtitle ?? "")
             return
         }
         rateButton.isEnabled = myVision?.remoteID != nil
         interactor?.hideNullState()
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
-        headerLabel.attributedText = myVision?.headline?.isEmpty ?? true ? formatted(headline: interactor?.headlinePlaceholder ?? "") : formatted(headline: myVision?.headline ?? "")
-        detailTextView.attributedText = myVision?.text?.isEmpty ?? true ? formatted(vision: interactor?.messagePlaceholder ?? "") : formatted(vision: myVision?.text ?? "")
+        headerLabel.attributedText = formatted(headline: myVision?.headline ?? "")
+        detailTextView.attributedText = formatted(vision: myVision?.text ?? "")
         tempImageURL = myVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
         userImageView.setImage(from: tempImageURL, placeholder: R.image.circlesWarning())
@@ -270,15 +266,15 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 extension MyVisionViewController: UIScrollViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
-        let alphaValue = (offsetY/232.0)*1.2
-        if alphaValue > 0.4 && alphaValue < 1.1 {
+        let alphaValue = (offsetY/containerViewSize) * containerViewRatio
+        if alphaValue > lowerBoundAlpha && alphaValue < upperBoundAlpha {
             DispatchQueue.main.async {
-                self.imageOverLapView.backgroundColor = UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: alphaValue)
+                self.imageOverLapView.backgroundColor = UIColor.carbon.withAlphaComponent(alphaValue)
             }
         }
 
         if self.lastContentOffset > offsetY {
-            if navigationBarViewTopMarginConstraint.constant < 0 && scrollView.contentOffset.y > 500 {
+            if navigationBarViewTopMarginConstraint.constant < 0 && scrollView.contentOffset.y > 400 {
                 showNavigationBarView()
             }
             if offsetY < 0 {
@@ -348,7 +344,7 @@ extension MyVisionViewController: DecisionTreeViewControllerDelegate {
 extension MyVisionViewController: MyVisionNullStateViewProtocol {
     func editMyVisionAction() {
         trackUserEvent(.OPEN, valueType: "CreateNewToBeVisionFromNullState", action: .TAP)
-        interactor?.showEditVision()
+        interactor?.showEditVision(isFromNullState: true)
     }
 }
 
@@ -363,7 +359,7 @@ extension MyVisionViewController: PopUpViewControllerProtocol {
     func rightButtonAction() {
         trackUserEvent(.OPEN, valueType: "EditToBeVision", action: .TAP)
         interactor?.closeUpdateConfirmationScreen(completion: {[weak self] in
-            self?.interactor?.showEditVision()
+            self?.interactor?.showEditVision(isFromNullState: false)
         })
     }
 
@@ -391,7 +387,7 @@ extension MyVisionViewController: MyToBeVisionDataNullStateViewControllerProtoco
 extension MyVisionViewController {
     @objc func didFinishSynchronization(_ notification: Notification) {
         guard let syncResult = notification.object as? SyncResultContext else { return }
-        if syncResult.dataType == .MY_TO_BE_VISION_TRACKER, syncResult.syncRequestType == .DOWN_SYNC {
+        if syncResult.dataType == .MY_TO_BE_VISION, syncResult.syncRequestType == .DOWN_SYNC {
             interactor?.viewDidLoad()
         }
     }

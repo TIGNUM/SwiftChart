@@ -26,8 +26,11 @@ final class MyVisionInteractor {
 
     func viewDidLoad() {
         presenter.setupView()
-        presenter.showScreenLoader()
-        worker.getData {[weak self] in
+        worker.getData {[weak self] (initialized) in
+            if !initialized {
+                self?.presenter.showScreenLoader()
+                return
+            }
             self?.presenter.hideScreenLoader()
             let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
             self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)
@@ -78,12 +81,12 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         presenter.hideNullState()
     }
 
-    var headlinePlaceholder: String? {
-        return worker.headlinePlaceholder
+    var nullStateSubtitle: String? {
+        return worker.nullStateTitle
     }
 
-    var messagePlaceholder: String? {
-        return worker.messagePlaceholder
+    var nullStateTitle: String? {
+        return worker.nullStateTitle
     }
 
     var myVision: QDMToBeVision? {
@@ -97,22 +100,23 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
     func isShareBlocked() -> Bool {
         let vision = worker.myVision
         let visionIsNil = vision?.headline == nil && vision?.text == nil
-        let visionIsDefault = vision?.text == worker.messagePlaceholder
-        return visionIsNil || visionIsDefault
+        return visionIsNil
     }
 
     func saveToBeVision(image: UIImage?, toBeVision: QDMToBeVision) {
         var vision = toBeVision
-        do {
-            if let visionImage = image {
+        if let visionImage = image {
+            do {
                 let imageUrl = try worker.saveImage(visionImage).absoluteString
                 vision.profileImageResource = QDMMediaResource()
                 vision.profileImageResource?.localURLString = imageUrl
+            } catch {
+                qot_dal.log(error.localizedDescription)
             }
-        } catch {
-            qot_dal.log(error.localizedDescription)
+        } else {
+            vision.modifiedAt = Date()
+            vision.profileImageResource = nil
         }
-        vision.modifiedAt = Date()
         worker.updateMyToBeVision(vision) {[weak self] in
             let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
             self?.presenter.load(vision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)
@@ -154,8 +158,8 @@ extension MyVisionInteractor: MyVisionInteractorInterface {
         router.showRateScreen(with: id)
     }
 
-    func showEditVision() {
-        router.showEditVision(title: myVision?.headline ?? "", vision: myVision?.text ?? "")
+    func showEditVision(isFromNullState: Bool) {
+        router.showEditVision(title: myVision?.headline ?? "", vision: myVision?.text ?? "", isFromNullState: isFromNullState)
     }
 
     func openToBeVisionGenerator() {

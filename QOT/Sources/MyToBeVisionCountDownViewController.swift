@@ -22,6 +22,7 @@ final class MyToBeVisionCountDownViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .carbon
         interactor?.viewDidLoad()
     }
 
@@ -39,7 +40,6 @@ final class MyToBeVisionCountDownViewController: UIViewController {
 extension MyToBeVisionCountDownViewController: MyToBeVisionCountDownViewControllerInterface {
 
     func setupView(with timerValue: String) {
-        view.backgroundColor = .carbon
         topCounterLabel.text = timerValue
         setupSkipSwitch()
         startTimer()

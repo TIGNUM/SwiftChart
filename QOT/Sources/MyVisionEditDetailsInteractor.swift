@@ -26,8 +26,20 @@ extension MyVisionEditDetailsInteractor: MyVisionEditDetailsInteractorInterface 
         return worker.firstTimeUser
     }
 
+    var isFromNullState: Bool {
+        return worker.isFromNullState
+    }
+
     var myVision: QDMToBeVision? {
         return worker.myVision
+    }
+
+    var visionPlaceholderDescription: String? {
+        return worker.visionPlaceholderDescription
+    }
+
+    var visionPlaceholderTitle: String? {
+        return worker.visionPlaceholderTitle
     }
 
     var originalTitle: String {

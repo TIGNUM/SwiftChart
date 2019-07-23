@@ -127,7 +127,7 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lu5-m4-CaO">
-                                        <rect key="frame" x="24" y="10" width="40" height="40"/>
+                                        <rect key="frame" x="10" y="10" width="40" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="40" id="cJk-dE-hSV"/>
                                             <constraint firstAttribute="height" constant="40" id="nCE-db-4sO"/>
@@ -150,7 +150,7 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="hA3-AW-qga" secondAttribute="trailing" constant="24" id="0f5-bU-IrE"/>
                                     <constraint firstAttribute="bottom" secondItem="Lu5-m4-CaO" secondAttribute="bottom" id="8AU-AG-phN"/>
-                                    <constraint firstItem="Lu5-m4-CaO" firstAttribute="leading" secondItem="gvS-bY-OaM" secondAttribute="leading" constant="24" id="CuL-ct-gzF"/>
+                                    <constraint firstItem="Lu5-m4-CaO" firstAttribute="leading" secondItem="gvS-bY-OaM" secondAttribute="leading" constant="10" id="CuL-ct-gzF"/>
                                     <constraint firstItem="hA3-AW-qga" firstAttribute="centerY" secondItem="Lu5-m4-CaO" secondAttribute="centerY" id="HXc-Dw-ob0"/>
                                     <constraint firstAttribute="height" constant="50" id="qNX-Bj-O29"/>
                                 </constraints>
@@ -208,26 +208,17 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="634"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LsI-Cr-Jxa">
-                                <rect key="frame" x="0.0" y="44" width="375" height="768"/>
-                                <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="fLo-Au-g32" firstAttribute="trailing" secondItem="LsI-Cr-Jxa" secondAttribute="trailing" id="C1g-Sx-3YD"/>
                             <constraint firstItem="fLo-Au-g32" firstAttribute="trailing" secondItem="jbI-KM-Gb3" secondAttribute="trailing" id="C9O-fs-GRS"/>
-                            <constraint firstItem="LsI-Cr-Jxa" firstAttribute="leading" secondItem="fLo-Au-g32" secondAttribute="leading" id="RYP-cH-SBw"/>
                             <constraint firstItem="jbI-KM-Gb3" firstAttribute="top" secondItem="fLo-Au-g32" secondAttribute="top" id="aws-qS-Gl7"/>
-                            <constraint firstAttribute="bottom" secondItem="LsI-Cr-Jxa" secondAttribute="bottom" id="bik-7z-0RN"/>
                             <constraint firstItem="jbI-KM-Gb3" firstAttribute="leading" secondItem="fLo-Au-g32" secondAttribute="leading" id="eHj-Xy-skz"/>
                             <constraint firstItem="fLo-Au-g32" firstAttribute="bottom" secondItem="jbI-KM-Gb3" secondAttribute="bottom" constant="100" id="nnj-lz-MQb"/>
-                            <constraint firstItem="LsI-Cr-Jxa" firstAttribute="top" secondItem="fLo-Au-g32" secondAttribute="top" id="tQw-QF-UP2"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fLo-Au-g32"/>
                     </view>
                     <connections>
-                        <outlet property="loaderView" destination="LsI-Cr-Jxa" id="x13-v2-Kq1"/>
                         <outlet property="tableView" destination="jbI-KM-Gb3" id="L35-j9-6te"/>
                     </connections>
                 </viewController>

@@ -34,6 +34,7 @@ final class MyToBeVisionRateViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .carbon
         interactor?.viewDidLoad()
     }
 
@@ -89,11 +90,19 @@ final class MyToBeVisionRateViewController: UIViewController {
     }
 
     private func generateBottomNavigationBarForView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.rateViewControllerDoneButton(), buttonWidth: 71, action: #selector(doneAction), backgroundColor: .carbon)]
+        return [roundedBarButtonItem(title: R.string.localized.rateViewControllerDoneButton(),
+                                     buttonWidth: .Done,
+                                     action: #selector(doneAction),
+                                     backgroundColor: .carbon,
+                                     borderColor: .accent40)]
     }
 
     private func generateBottomNavigationBarForTimerView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.rateViewControllerSkipButton(), buttonWidth: 64, action: #selector(skipAction), backgroundColor: .carbon, borderColor: .accent)]
+        return [roundedBarButtonItem(title: R.string.localized.rateViewControllerSkipButton(),
+                                     buttonWidth: 64,
+                                     action: #selector(skipAction),
+                                     backgroundColor: .carbon,
+                                     borderColor: .accent40)]
     }
 
     @objc func skipAction() {
@@ -194,7 +203,6 @@ extension MyToBeVisionRateViewController: MyToBeVisionRateViewControllerInterfac
         pageIndicator.addConstraints(to: pageIndicatorView)
         pageIndicator.pageColor = .sand
         pageIndicator.pageCount = questions.count
-        view.backgroundColor = .carbon
         let pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         pageController.delegate = self
         pageController.dataSource = self

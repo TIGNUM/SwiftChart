@@ -22,6 +22,8 @@ final class MyVisionEditDetailsViewController: UIViewController {
     @IBOutlet private weak var descriptionTextView: UITextView!
     @IBOutlet private weak var keyboardInputView: MyVisionEditDetailsKeyboardInputView!
 
+    var originalVisionTitle = ""
+    var originalVisionSubtitle = ""
     var didChangeVision: Bool = false
     var didChangeTitle: Bool = false
 
@@ -78,15 +80,20 @@ final class MyVisionEditDetailsViewController: UIViewController {
 extension MyVisionEditDetailsViewController: MyVisionEditDetailsControllerInterface {
 
     func setupView(title: String, vision: String) {
+        guard let interactor = self.interactor else {
+            return
+        }
+        enableSaveButton(!interactor.isFromNullState)
+        originalVisionTitle = title
+        originalVisionSubtitle = vision
         view.backgroundColor = .carbon
         titleTextView.returnKeyType = .next
         didChangeTitle = !title.isEmpty
         didChangeVision = !vision.isEmpty
-        enableSaveButton()
-        titleTextField.attributedText = title.isEmpty ? interactor?.formatPlaceholder(title: "TITLE") : interactor?.formatPlaceholder(title: "")
-        titleTextView.attributedText = interactor?.format(title: title)
-        visionTextField.attributedText = vision.isEmpty ? interactor?.formatPlaceholder(vision: "Write your to be vision...") : interactor?.formatPlaceholder(vision: "")
-        descriptionTextView.attributedText = interactor?.format(vision: vision)
+        titleTextField.attributedText = title.isEmpty ? interactor.formatPlaceholder(title: "TITLE") : interactor.formatPlaceholder(title: "")
+        titleTextView.attributedText = interactor.format(title: title)
+        visionTextField.attributedText = vision.isEmpty ? interactor.formatPlaceholder(vision: "Write your to be vision...") : interactor.formatPlaceholder(vision: "")
+        descriptionTextView.attributedText = interactor.format(vision: vision)
         titleTextView.becomeFirstResponder()
         keyboardInputView.delegate = self
         addKeyboardObservers()
@@ -115,30 +122,38 @@ extension MyVisionEditDetailsViewController: UITextViewDelegate {
             let changedText = currentText.replacingCharacters(in: stringRange, with: text)
             if textView == titleTextView {
                 didChangeTitle = !changedText.isEmpty
-                enableSaveButton()
+                enableSaveButton(didChangeTitle && didChangeVision)
                 titleTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(title: "TITLE") : interactor?.formatPlaceholder(title: "")
             } else {
                 didChangeVision = !changedText.isEmpty
-                enableSaveButton()
+                enableSaveButton(didChangeTitle && didChangeVision)
                 visionTextField.attributedText = changedText.isEmpty ? interactor?.formatPlaceholder(vision: "Write your to be vision...") : interactor?.formatPlaceholder(vision: "")
             }
         }
         return true
     }
 
-    private func enableSaveButton() {
-        keyboardInputView.saveButton.isEnabled = didChangeVision && didChangeTitle
+    private func enableSaveButton(_ isEnabled: Bool) {
+        guard let interactor = self.interactor else { return }
+        var isButtonEnabled = isEnabled
+        if !interactor.isFromNullState && !isEnabled {
+            isButtonEnabled = true
+        }
+        keyboardInputView.saveButton.isEnabled = isButtonEnabled
+        keyboardInputView.saveButton.alpha = isButtonEnabled ? 1.0 : 0.5
     }
 }
 
 extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputViewProtocol {
 
     func didCancel() {
+        view.endEditing(true)
         trackUserEvent(.CANCEL, valueType: "EditMyToBeVision", action: .TAP)
         dismissController()
     }
 
     func didSave() {
+        view.endEditing(true)
         trackUserEvent(.CONFIRM, valueType: "EditMyToBeVision", action: .TAP)
         guard let toBeVision = interactor?.myVision else {
             qot_dal.UserService.main.generateToBeVisionWith([], []) { [weak self] (vision, error) in
@@ -159,12 +174,21 @@ extension MyVisionEditDetailsViewController: MyVisionEditDetailsKeyboardInputVie
 
     private func getVision(for toBeVision: QDMToBeVision) -> QDMToBeVision {
         var myVision = toBeVision
-        if myVision.text != descriptionTextView.text {
-            myVision.text = descriptionTextView.text
+        guard let interactor = self.interactor else {
+            return myVision
         }
-        if myVision.headline != titleTextView.text {
+        if titleTextView.text.trimmingCharacters(in: .whitespaces).isEmpty {
+            myVision.headline = interactor.visionPlaceholderTitle
+        } else {
             myVision.headline = titleTextView.text
         }
+
+        if descriptionTextView.text.trimmingCharacters(in: .whitespaces).isEmpty {
+            myVision.text = interactor.visionPlaceholderDescription
+        } else {
+            myVision.text = descriptionTextView.text
+        }
+
         myVision.modifiedAt = Date()
         return myVision
     }

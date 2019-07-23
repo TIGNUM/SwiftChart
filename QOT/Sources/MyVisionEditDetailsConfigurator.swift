@@ -7,11 +7,12 @@
 //
 
 import Foundation
+import qot_dal
 
 final class MyVisionEditDetailsConfigurator: AppStateAccess {
-    static func configure<T: UIViewController>(originViewController: T, viewController: MyVisionEditDetailsViewController, title: String, vision: String) where T: MyVisionEditDetailsViewControllerProtocol {
+    static func configure<T: UIViewController>(originViewController: T, viewController: MyVisionEditDetailsViewController, title: String, vision: String, isFromNullState: Bool) where T: MyVisionEditDetailsViewControllerProtocol {
         let wdigetManager = ExtensionsDataManager(services: appState.services)
-        let worker = MyVisionEditDetailsWorker(title: title, vision: vision, widgetManager: wdigetManager)
+        let worker = MyVisionEditDetailsWorker(title: title, vision: vision, widgetManager: wdigetManager, contentService: qot_dal.ContentService.main, isFromNullState: isFromNullState)
         let presenter = MyVisionEditDetailsPresenter(viewController: viewController)
         let interactor = MyVisionEditDetailsInteractor(presenter: presenter, worker: worker)
         viewController.interactor = interactor

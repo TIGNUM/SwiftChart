@@ -27,12 +27,4 @@ extension MyToBeVisionTrackerPresenter: MyToBeVisionTrackerPresenterInterface {
     func setupView(with data: MYTBVDataViewModel) {
         viewController?.setupView(with: data)
     }
-
-    func showScreenLoader() {
-        viewController?.showScreenLoader()
-    }
-
-    func hideScreenLoader() {
-        viewController?.hideScreenLoader()
-    }
 }

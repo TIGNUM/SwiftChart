@@ -105,7 +105,7 @@ extension ImageCropper: RSKImageCropViewControllerDataSource {
                                                                width: controller.view.frame.width,
                                                                height: controller.view.frame.width * Layout.multiplier_053))
         case .square: return UIBezierPath.init(rect: CGRect(x: 25,
-                                                               y: controller.maskRect.origin.y,
+                                                               y: controller.maskRect.origin.y - Layout.padding_50,
                                                                width: controller.view.frame.width - Layout.padding_50,
                                                                height: controller.view.frame.width - Layout.padding_50))
         }

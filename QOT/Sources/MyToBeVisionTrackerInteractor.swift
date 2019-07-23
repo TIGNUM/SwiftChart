@@ -37,20 +37,10 @@ extension MyToBeVisionTrackerInteractor: MyToBeVisionTrackerInteractorInterface 
     }
 
     func viewDidLoad() {
-        showScreenLoader()
         worker.getData {[weak self] (report) in
             guard let model = report else { return }
-            self?.hideScreenLoader()
             self?.presenter.setupView(with: model)
         }
-    }
-
-    func showScreenLoader() {
-        presenter.showScreenLoader()
-    }
-
-    func hideScreenLoader() {
-        presenter.hideScreenLoader()
     }
 
     func formattedHeaderView(title: String) -> NSAttributedString? {
