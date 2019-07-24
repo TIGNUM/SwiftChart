@@ -742,6 +742,8 @@
 		8D6E058D22D7466E00EC2AEF /* MyLibraryNotesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058522D7466E00EC2AEF /* MyLibraryNotesInteractor.swift */; };
 		8D6E058F22D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6E058722D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift */; };
 		8D6E059122D7487400EC2AEF /* MyLibraryNotes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D6E059022D7487400EC2AEF /* MyLibraryNotes.storyboard */; };
+		8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */; };
+		8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */; };
 		8DE10EDD22CB8335001E0F71 /* InfoHelperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DE10EDC22CB8335001E0F71 /* InfoHelperView.swift */; };
 		8DE10EDF22CB838E001E0F71 /* InfoHelperView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DE10EDE22CB838E001E0F71 /* InfoHelperView.xib */; };
 		8DECF9A822DDD37300451E65 /* MySprintsListTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DECF9A722DDD37300451E65 /* MySprintsListTableViewCell.swift */; };
@@ -2292,6 +2294,8 @@
 		8D6E058522D7466E00EC2AEF /* MyLibraryNotesInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesInteractor.swift; sourceTree = "<group>"; };
 		8D6E058722D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryNotesConfigurator.swift; sourceTree = "<group>"; };
 		8D6E059022D7487400EC2AEF /* MyLibraryNotes.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MyLibraryNotes.storyboard; sourceTree = "<group>"; };
+		8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAlertView.swift; sourceTree = "<group>"; };
+		8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoAlertView.xib; sourceTree = "<group>"; };
 		8DE10EDC22CB8335001E0F71 /* InfoHelperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoHelperView.swift; sourceTree = "<group>"; };
 		8DE10EDE22CB838E001E0F71 /* InfoHelperView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoHelperView.xib; sourceTree = "<group>"; };
 		8DECF9A722DDD37300451E65 /* MySprintsListTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListTableViewCell.swift; sourceTree = "<group>"; };
@@ -3261,6 +3265,8 @@
 				368F2AF42296D74D0008A36D /* ArticleNextUpTableViewCell.xib */,
 				8DE10EDC22CB8335001E0F71 /* InfoHelperView.swift */,
 				8DE10EDE22CB838E001E0F71 /* InfoHelperView.xib */,
+				8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */,
+				8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */,
 				F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */,
 				F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */,
 			);
@@ -7401,6 +7407,7 @@
 				759AB42022C4D5B50091BFB8 /* TBVGraphBarRangeCell.xib in Resources */,
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
 				75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */,
+				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
 				AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */,
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
@@ -8295,6 +8302,7 @@
 				759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */,
 				369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */,
 				369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */,
+				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
 				369ADFE722A6ABE700DE4FA0 /* ReminderTableViewCell.swift in Sources */,

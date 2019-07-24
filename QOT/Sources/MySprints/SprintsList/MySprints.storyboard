@@ -192,21 +192,13 @@
                                     <outlet property="delegate" destination="cqe-ib-GRW" id="Pjo-PB-OYc"/>
                                 </connections>
                             </tableView>
-                            <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="64y-0m-Ulp" userLabel="Info View" customClass="InfoHelperView" customModule="QOT" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="lKR-mS-uea" firstAttribute="trailing" secondItem="64y-0m-Ulp" secondAttribute="trailing" id="4xN-WV-xFL"/>
                             <constraint firstItem="lKR-mS-uea" firstAttribute="trailing" secondItem="iKy-XH-TT9" secondAttribute="trailing" id="6hu-5s-Lv0"/>
-                            <constraint firstItem="64y-0m-Ulp" firstAttribute="leading" secondItem="lKR-mS-uea" secondAttribute="leading" id="Agg-6h-ksR"/>
                             <constraint firstItem="iKy-XH-TT9" firstAttribute="leading" secondItem="lKR-mS-uea" secondAttribute="leading" id="BiJ-7u-4xq"/>
                             <constraint firstItem="8rs-PO-Eew" firstAttribute="top" secondItem="lKR-mS-uea" secondAttribute="top" id="DDu-RT-HiP"/>
-                            <constraint firstItem="lKR-mS-uea" firstAttribute="bottom" secondItem="64y-0m-Ulp" secondAttribute="bottom" id="IvC-hu-rvY"/>
                             <constraint firstItem="iKy-XH-TT9" firstAttribute="top" secondItem="8rs-PO-Eew" secondAttribute="bottom" id="OnV-mZ-Zet"/>
-                            <constraint firstItem="64y-0m-Ulp" firstAttribute="top" secondItem="lKR-mS-uea" secondAttribute="top" id="Oue-pQ-dwd"/>
                             <constraint firstItem="8rs-PO-Eew" firstAttribute="leading" secondItem="lKR-mS-uea" secondAttribute="leading" id="RUK-Fr-ARx"/>
                             <constraint firstItem="lKR-mS-uea" firstAttribute="bottom" secondItem="iKy-XH-TT9" secondAttribute="bottom" id="meO-nb-7Nz"/>
                             <constraint firstItem="8rs-PO-Eew" firstAttribute="trailing" secondItem="lKR-mS-uea" secondAttribute="trailing" id="sZM-Xf-GwS"/>
@@ -216,8 +208,6 @@
                     <connections>
                         <outlet property="editButton" destination="H95-r5-5sw" id="D5M-pl-yIC"/>
                         <outlet property="headerHeight" destination="Ros-ip-4dO" id="Kim-cu-Zn1"/>
-                        <outlet property="infoView" destination="64y-0m-Ulp" id="6sI-3p-ZiY"/>
-                        <outlet property="infoViewTopConstraint" destination="Oue-pQ-dwd" id="9qh-Qt-C4h"/>
                         <outlet property="tableView" destination="iKy-XH-TT9" id="6S1-bY-BAw"/>
                         <outlet property="titleLabel" destination="CQS-2r-FM8" id="lNm-iI-xrX"/>
                     </connections>

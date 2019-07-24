@@ -15,7 +15,7 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
     var interactor: MyLibraryNotesInteractorInterface?
     @IBOutlet private weak var textView: UITextView!
     @IBOutlet private weak var textViewBottomConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var infoView: InfoHelperView!
+    private var infoAlertView: InfoAlertView?
     private var saveButton: RoundedButton?
     private var bottomNavigationItems = UINavigationItem()
 
@@ -46,7 +46,6 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        infoView.setBottomContentInset(BottomNavigationContainer.height)
         textView.tintColor = .sand
         textView.inputAccessoryView = keyboardToolbar()
         updateTextViewText()
@@ -102,11 +101,15 @@ private extension MyLibraryNotesViewController {
 
     private func updateInfoViewWithViewModel(_ model: MyLibraryUserStorageInfoViewModel?) {
         guard let model = model else {
-            infoView.isHidden = true
+            infoAlertView?.dismiss()
+            infoAlertView = nil
             return
         }
-        infoView.isHidden = false
-        infoView.set(icon: model.icon, title: model.title, attributedText: model.message)
+
+        infoAlertView = InfoAlertView()
+        infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
+        infoAlertView?.present(on: self.view)
+        infoAlertView?.bottomInset = BottomNavigationContainer.height
     }
 
     private func updateTextViewText() {

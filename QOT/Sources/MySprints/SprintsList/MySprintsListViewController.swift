@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MySprintsListViewController: UIViewController {
+final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
 
     // MARK: - Properties
 
@@ -17,9 +17,8 @@ final class MySprintsListViewController: UIViewController {
     @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerHeight: NSLayoutConstraint!
-    @IBOutlet private weak var infoViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var infoView: InfoHelperView!
 
+    private var infoAlertView: InfoAlertView?
     private var bottomNavigationItems = UINavigationItem()
 
     // MARK: - Init
@@ -38,7 +37,6 @@ final class MySprintsListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
-        infoView.setBottomContentInset(BottomNavigationContainer.height)
         interactor?.viewDidLoad()
 
         editButton.tintColor = .accent
@@ -77,13 +75,16 @@ private extension MySprintsListViewController {
 
     private func updateInfoViewWithViewModel(_ model: MyLibraryUserStorageInfoViewModel?) {
         guard let model = model else {
-            infoView.isHidden = true
+            infoAlertView?.dismiss()
+            infoAlertView = nil
             return
         }
 
-        infoView.isHidden = false
-        infoViewTopConstraint.constant = model.isFullscreen ? 0 : headerHeight.constant
-        infoView.set(icon: model.icon, title: model.title, attributedText: model.message)
+        infoAlertView = InfoAlertView()
+        infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
+        infoAlertView?.present(on: self.view)
+        infoAlertView?.topInset = model.isFullscreen ? 0 : 200//headerHeight.constant
+        infoAlertView?.bottomInset = BottomNavigationContainer.height
     }
 
     private func setEditButton(enabled: Bool) {

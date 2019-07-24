@@ -20,10 +20,9 @@ final class MyLibraryUserStorageViewController: UIViewController, ScreenZLevel3 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var editButton: UIButton!
     @IBOutlet private weak var addButton: RoundedButton!
-    @IBOutlet private weak var infoViewTopConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var infoView: InfoHelperView!
 
     private var bottomNavigationItems = UINavigationItem()
+    private var infoAlertView: InfoAlertView?
 
     // MARK: - Init
 
@@ -44,7 +43,6 @@ final class MyLibraryUserStorageViewController: UIViewController, ScreenZLevel3 
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
-        infoView.setBottomContentInset(BottomNavigationContainer.height)
         interactor?.viewDidLoad()
 
         editButton.tintColor = .accent
@@ -86,13 +84,16 @@ private extension MyLibraryUserStorageViewController {
 
     private func updateInfoViewWithViewModel(_ model: MyLibraryUserStorageInfoViewModel?) {
         guard let model = model else {
-            infoView.isHidden = true
+            infoAlertView?.dismiss()
+            infoAlertView = nil
             return
         }
 
-        infoView.isHidden = false
-        infoViewTopConstraint.constant = model.isFullscreen ? 0 : headerHeight.constant
-        infoView.set(icon: model.icon, title: model.title, attributedText: model.message)
+        infoAlertView = InfoAlertView()
+        infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
+        infoAlertView?.present(on: self.view)
+        infoAlertView?.topInset = model.isFullscreen ? 0 : headerHeight.constant
+        infoAlertView?.bottomInset = BottomNavigationContainer.height
     }
 
     private func setEditButton(enabled: Bool) {

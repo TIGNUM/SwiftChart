@@ -26,7 +26,7 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="klh-1T-6mb" userLabel="Circles" customClass="FullScreenBackgroundCircleView" customModule="QOT" customModuleProvider="target">
-                    <rect key="frame" x="-23" y="403" width="136" height="136"/>
+                    <rect key="frame" x="-23" y="383" width="136" height="136"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="bQ8-r8-kzJ">
                             <rect key="frame" x="60" y="60" width="16" height="16"/>
@@ -45,13 +45,13 @@
                     </constraints>
                 </view>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSD-Is-245">
-                    <rect key="frame" x="24" y="524" width="366" height="20.5"/>
+                    <rect key="frame" x="24" y="504" width="366" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="imz-wh-W1w">
-                    <rect key="frame" x="24" y="559.5" width="366" height="20.5"/>
+                    <rect key="frame" x="24" y="539.5" width="366" height="20.5"/>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <nil key="textColor"/>
                     <nil key="highlightedColor"/>
@@ -67,7 +67,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="PSD-Is-245" firstAttribute="top" secondItem="klh-1T-6mb" secondAttribute="bottom" constant="-15" id="55E-Ga-mdS"/>
-                <constraint firstItem="xyN-KC-ECF" firstAttribute="top" secondItem="imz-wh-W1w" secondAttribute="bottom" constant="20" id="5Hp-W1-d6O"/>
+                <constraint firstItem="xyN-KC-ECF" firstAttribute="top" secondItem="imz-wh-W1w" secondAttribute="bottom" constant="40" id="5Hp-W1-d6O"/>
                 <constraint firstItem="imz-wh-W1w" firstAttribute="top" secondItem="PSD-Is-245" secondAttribute="bottom" constant="15" id="Akg-4j-o1U"/>
                 <constraint firstItem="imz-wh-W1w" firstAttribute="leading" secondItem="PSD-Is-245" secondAttribute="leading" id="FR5-NM-s14"/>
                 <constraint firstAttribute="trailing" secondItem="xyN-KC-ECF" secondAttribute="trailing" id="Ja6-bp-aEm"/>

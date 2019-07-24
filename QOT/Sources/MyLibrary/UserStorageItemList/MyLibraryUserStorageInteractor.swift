@@ -78,6 +78,7 @@ final class MyLibraryUserStorageInteractor {
             if !initiated || items.count == 0 {
                 strongSelf.showEmptyAlert()
             } else {
+                strongSelf.infoViewModel = nil
                 strongSelf.items.append(contentsOf: items.compactMap { strongSelf.viewModel(from: $0) })
                 strongSelf.presenter.presentData()
             }
