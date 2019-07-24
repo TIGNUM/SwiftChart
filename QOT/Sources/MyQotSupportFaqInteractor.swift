@@ -60,9 +60,7 @@ extension MyQotSupportFaqInteractor: MyQotSupportFaqInteractorInterface {
         return worker.title(at: indexPath)
     }
 
-    func presentContentItemSettings(contentID: Int, pageName: PageName, pageTitle: String) {
-        router.presentContentItemSettings(contentID: contentID,
-                                          pageName: pageName,
-                                          pageTitle: pageTitle)
+    func presentContentItemSettings(contentID: Int) {
+        router.presentContentItemSettings(contentID: contentID)
     }
 }

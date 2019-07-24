@@ -24,7 +24,6 @@ final class MyQotProfileWorker {
     private var walkthroughOurFeaturesTxt = ""
     private var aboutTignumTxt = ""
     private var learnMoreAboutUsTxt = ""
-    private var myLibraryTxt = ""
     var myProfileTxt = ""
     var memberSinceTxt = ""
     private var userProfile: UserProfileModel?
@@ -42,14 +41,12 @@ final class MyQotProfileWorker {
         let appSettings = MyQotProfileModel.TableViewPresentationData(headingKey: appSettingsKey, heading: appSettingsTxt, subHeading: enableNotificationsTxt)
         let support = MyQotProfileModel.TableViewPresentationData(headingKey: supportKey, heading: supportTxt, subHeading: walkthroughOurFeaturesTxt)
         let aboutTignum = MyQotProfileModel.TableViewPresentationData(headingKey: aboutTignumKey, heading: aboutTignumTxt, subHeading: learnMoreAboutUsTxt)
-        let library = MyQotProfileModel.TableViewPresentationData(headingKey: myLibrary, heading: myLibraryTxt, subHeading: "")
-        items = [library, accountSettings, appSettings, support, aboutTignum]
+        items = [accountSettings, appSettings, support, aboutTignum]
         return items
     }()
 
     func getData(_ completion: @escaping (UserProfileModel?) -> Void) {
         getUserProfile()
-        myLibraryText()
         myProfileText()
         memberSinceText()
         accountSettingsText()
@@ -88,10 +85,6 @@ private extension MyQotProfileWorker {
             self?.myProfileTxt = contentItem?.valueText ?? ""
             self?.dispatchGroup.leave()
         }
-    }
-
-    var myLibrary: String {
-        return ContentService.MyQot.Profile.myLibrary.rawValue
     }
 
     func memberSinceText() {
@@ -162,14 +155,6 @@ private extension MyQotProfileWorker {
         dispatchGroup.enter()
         contentService.getContentItemByPredicate(ContentService.MyQot.Profile.learnMoreAboutUs.predicate) {[weak self] (contentItem) in
             self?.learnMoreAboutUsTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
-    }
-
-    func myLibraryText() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.MyQot.Profile.myLibrary.predicate) {[weak self] (contentItem) in
-            self?.myLibraryTxt = contentItem?.valueText ?? ""
             self?.dispatchGroup.leave()
         }
     }

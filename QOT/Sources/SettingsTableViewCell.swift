@@ -14,12 +14,13 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var expandArrow: UIImageView!
     @IBOutlet private weak var bottomSeperatorView: UIView!
+    @IBOutlet private weak var bottomSeperatorViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var valueLabel: UILabel!
     @IBOutlet private weak var switchControl: UISwitch!
     @IBOutlet private weak var loadingIndicatorView: UIActivityIndicatorView!
     @IBOutlet private weak var button: UIButton!
-    @IBOutlet private weak var textField: UITextField!
+    @IBOutlet weak var textField: UITextField!
     private lazy var pickerItems = [String]()
     private lazy var selectedIndex = 0
     private lazy var indexPath = IndexPath(row: 0, section: 0)
@@ -27,6 +28,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
     private var calendarIdentifier: String?
     private var calendarSource: String?
     var controlUpdate = false
+    var keyboardInputView: MyQotProfileSettingsKeybaordInputView?
     weak var settingsDelegate: SettingsViewControllerDelegate?
     weak var calendarSyncDelegate: SettingsCalendarListViewControllerDelegate?
 
@@ -142,9 +144,8 @@ private extension SettingsTableViewCell {
     }
 
     func setupDateCell(title: String, selectedDate: Date, settingsType: SettingsType) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "MM/dd/yyyy"
-        setupTextFieldCell(title: title, value: dateFormatter.string(from: selectedDate), settingsType: settingsType)
+        let date = DateFormatter.settingsUser.string(from: selectedDate)
+        setupTextFieldCell(title: title, value: date, settingsType: settingsType)
     }
 
     func setupLabelCell(title: String, value: String?) {
@@ -163,7 +164,7 @@ private extension SettingsTableViewCell {
         }
     }
 
-	func setupTextFieldCell(title: String, value: String, settingsType: SettingsType) {
+    func setupTextFieldCell(title: String, value: String, settingsType: SettingsType) {
         textField.text = value
         textField.delegate = self
         textField.keyboardType = .default
@@ -172,22 +173,16 @@ private extension SettingsTableViewCell {
 		if settingsType == .phone {
             textField.autocapitalizationType = UITextAutocapitalizationType.none
 			textField.keyboardType = .phonePad
-			let doneToolbar = UIToolbar(frame: CGRect(x: 0, y: 0, width: bounds.width, height: 40))
-			let flexSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: nil, action: nil)
-			let done: UIBarButtonItem = UIBarButtonItem(title: "Done",
-														style: .done,
-														target: self,
-														action: #selector(didFinishEnterText))
-			doneToolbar.barStyle = .default
-            doneToolbar.barTintColor = .carbonDark
-			doneToolbar.setItems([flexSpace, done], animated: false)
-			doneToolbar.sizeToFit()
-			textField.inputAccessoryView = doneToolbar
 		}
+        textField.inputAccessoryView = keyboardInputView
     }
 
     private func separatorView(isEnabled: Bool) {
-        bottomSeperatorView.backgroundColor = isEnabled ? .accent : .sand
+        bottomSeperatorView.backgroundColor = isEnabled ? .accent : .accent40
+        bottomSeperatorViewHeightConstraint.constant = isEnabled ? 2.0 : 1.0
+        if expandArrow != nil {
+            expandArrow.image = isEnabled ? R.image.arrowUp() : R.image.arrowDown()
+        }
     }
 
 	@objc func didFinishEnterText() {

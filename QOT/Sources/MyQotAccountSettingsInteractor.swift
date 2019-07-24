@@ -61,8 +61,20 @@ extension MyQotAccountSettingsInteractor: MyQotAccountSettingsInteractorInterfac
         }
     }
 
-    func phoneText(_ completion: @escaping(String) -> Void) {
-        worker.phoneText { (text) in
+    func genderText(_ completion: @escaping(String) -> Void) {
+        worker.genderText { (text) in
+            completion(text)
+        }
+    }
+
+    func dateOfBirthText(_ completion: @escaping(String) -> Void) {
+        worker.dateOfBirthText { (text) in
+            completion(text)
+        }
+    }
+
+    func companyText(_ completion: @escaping(String) -> Void) {
+        worker.companyText { (text) in
             completion(text)
         }
     }

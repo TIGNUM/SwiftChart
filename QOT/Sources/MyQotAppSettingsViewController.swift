@@ -110,6 +110,7 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleSubtitleTableViewCell.Config()
+        cell.selectionStyle = .none
         settingsModel.titleForItem(at: indexPath) { (text) in
             cell.title = text
         }

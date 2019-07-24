@@ -225,7 +225,7 @@ extension OldSettingsViewController: UITableViewDataSource, UITableViewDelegate 
             fatalError("SettingsTableViewCell DOES NOT EXIST!!!")
         }
         settingsCell.settingsDelegate = self
-        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath, isSyncFinished: true)
+//        settingsCell.setup(settingsRow: settingsRow, indexPath: indexPath, isSyncFinished: true)
         return settingsCell
     }
 

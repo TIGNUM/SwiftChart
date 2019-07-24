@@ -23,9 +23,9 @@ protocol MyQotSupportFaqInteractorInterface: Interactor {
     func item(at indexPath: IndexPath) -> QDMContentCollection
     func trackingID(at indexPath: IndexPath) -> Int
     func title(at indexPath: IndexPath) -> String
-    func presentContentItemSettings(contentID: Int, pageName: PageName, pageTitle: String)
+    func presentContentItemSettings(contentID: Int)
 }
 
 protocol MyQotSupportFaqRouterInterface {
-    func presentContentItemSettings(contentID: Int, pageName: PageName, pageTitle: String)
+    func presentContentItemSettings(contentID: Int)
 }

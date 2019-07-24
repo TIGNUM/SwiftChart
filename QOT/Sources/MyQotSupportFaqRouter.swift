@@ -22,10 +22,12 @@ final class MyQotSupportFaqRouter {
 
 extension MyQotSupportFaqRouter: MyQotSupportFaqRouterInterface {
 
-    func presentContentItemSettings(contentID: Int, pageName: PageName, pageTitle: String) {
-        AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: contentID,
-                                                                      controller: viewController,
-                                                                      pageName: pageName,
-                                                                      topBarTitle: pageTitle)
+    func presentContentItemSettings(contentID: Int) {
+        guard let articleViewController = R.storyboard.main.qotArticleViewController() else {
+            assertionFailure("Failed to initialize `ArticleViewController`")
+            return
+        }
+        ArticleConfigurator.configure(selectedID: contentID, viewController: articleViewController)
+        viewController.present(articleViewController, animated: true, completion: nil)
     }
 }

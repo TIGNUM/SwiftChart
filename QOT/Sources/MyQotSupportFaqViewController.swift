@@ -19,6 +19,7 @@ final class MyQotSupportFaqViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .carbon
         interactor?.viewDidLoad()
     }
 
@@ -26,17 +27,22 @@ final class MyQotSupportFaqViewController: UIViewController {
         super.viewDidAppear(animated)
         trackPage()
     }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        UIApplication.shared.statusBarView?.backgroundColor = .carbon
+    }
 }
 
 extension MyQotSupportFaqViewController: MyQotSupportFaqViewControllerInterface {
     func setupView() {
-        view.backgroundColor = .carbon
         tableView.registerDequeueable(TitleTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
         interactor?.faqHeaderText({[weak self] (text) in
             self?.headerLabel.text = text
         })
+        tableView.reloadData()
     }
 }
 
@@ -52,6 +58,7 @@ extension MyQotSupportFaqViewController: UITableViewDelegate, UITableViewDataSou
         let cell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleTableViewCell.Config(backgroundColor: .carbon, isArrowHidden: true)
         cell.title = interactor?.title(at: indexPath) ?? ""
+        cell.selectionStyle = .none
         return cell
     }
 
@@ -60,8 +67,6 @@ extension MyQotSupportFaqViewController: UITableViewDelegate, UITableViewDataSou
         guard let contentID = interactor?.item(at: indexPath).remoteID else { return }
         let key = interactor?.trackingID(at: indexPath)
         trackUserEvent(.OPEN, value: key, valueType: .CONTENT_ITEM, action: .TAP)
-        interactor?.faqHeaderText({[weak self] (text) in
-            self?.interactor?.presentContentItemSettings(contentID: contentID, pageName: .faq, pageTitle: text)
-        })
+        interactor?.presentContentItemSettings(contentID: contentID)
     }
 }

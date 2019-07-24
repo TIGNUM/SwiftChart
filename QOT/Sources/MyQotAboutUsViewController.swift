@@ -21,6 +21,7 @@ final class MyQotAboutUsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .carbon
         setUpTableView()
         interactor?.viewDidLoad()
     }
@@ -42,7 +43,6 @@ final class MyQotAboutUsViewController: UIViewController {
 
 extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
     func setupView(with title: String) {
-        view.backgroundColor = .carbon
         headerLabel.text = title
     }
 }
@@ -58,6 +58,7 @@ extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleSubtitleTableViewCell.Config()
+        cell.selectionStyle = .none
         interactor?.title(at: indexPath, { (text) in
             cell.title = text
         })

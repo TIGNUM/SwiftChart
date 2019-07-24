@@ -24,12 +24,8 @@ final class ProfileSettingsWorker {
     private var surnameTxt = ""
     private var genderTxt = ""
     private var dateOfBirthTxt = ""
-    private var heightTxt = ""
-    private var weightTxt = ""
     private var companyTxt = ""
-    private var titleTxt = ""
     private var emailTxt = ""
-    private var phoneTxt = ""
 
     init(contentService: qot_dal.ContentService) {
         self.contentService = contentService
@@ -42,12 +38,8 @@ final class ProfileSettingsWorker {
         surnameTitle()
         genderTitle()
         dateOfBirthTitle()
-        heightTitle()
-        weightTitle()
         companyTitle()
-        titleTitle()
         emailTitle()
-        phoneTitle()
         getProfile()
 
         dispatchGroup.notify(queue: .main) {
@@ -159,22 +151,6 @@ private extension ProfileSettingsWorker {
         }
     }
 
-    func heightTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.height.predicate) {[weak self] (contentItem) in
-            self?.heightTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
-    }
-
-    func weightTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.weight.predicate) {[weak self] (contentItem) in
-            self?.weightTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
-    }
-
     func companyTitle() {
         dispatchGroup.enter()
         contentService.getContentItemByPredicate(ContentService.EditAccount.company.predicate) {[weak self] (contentItem) in
@@ -183,26 +159,10 @@ private extension ProfileSettingsWorker {
         }
     }
 
-    func titleTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.title.predicate) {[weak self] (contentItem) in
-            self?.titleTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
-    }
-
     func emailTitle() {
         dispatchGroup.enter()
         contentService.getContentItemByPredicate(ContentService.EditAccount.email.predicate) {[weak self] (contentItem) in
             self?.emailTxt = contentItem?.valueText ?? ""
-            self?.dispatchGroup.leave()
-        }
-    }
-
-    func phoneTitle() {
-        dispatchGroup.enter()
-        contentService.getContentItemByPredicate(ContentService.EditAccount.phone.predicate) {[weak self] (contentItem) in
-            self?.phoneTxt = contentItem?.valueText ?? ""
             self?.dispatchGroup.leave()
         }
     }
@@ -228,9 +188,7 @@ private extension ProfileSettingsWorker {
     private func companyRows(for user: QDMUser?) -> [SettingsRow] {
         return [
             .label(title: companyTxt, value: user?.company, settingsType: .company),
-            .textField(title: titleTxt, value: user?.jobTitle ?? "", secure: false, settingsType: .jobTitle),
-            .label(title: emailTxt, value: user?.email, settingsType: .email),
-            .textField(title: phoneTxt, value: user?.telephone ?? "", secure: false, settingsType: .phone)
+            .label(title: emailTxt, value: user?.email, settingsType: .email)
         ]
     }
 
@@ -238,20 +196,7 @@ private extension ProfileSettingsWorker {
         guard let user = user else { return [] }
         var date = Date()
         date = DateFormatter.settingsUser.date(from: user.dateOfBirth) ?? Date()
-        let heightItems = user.heightPickerItems
-        let weightItems = user.weightPickerItems
-        let selectedHeightIndex = heightItems.valueIndex
-        let selectedHeightUnitIndex = heightItems.unitIndex
-        var selectedWeightIndex = weightItems.valueIndex
-        let selectedWeightUnitIndex = weightItems.unitIndex
         let selectedGenderIndex = Gender(rawValue: user.gender)?.selectedIndex ?? 0
-
-        if selectedWeightIndex == 0 && selectedWeightUnitIndex == 0 {
-            selectedWeightIndex = 70
-        } else if selectedWeightIndex == 0 && selectedWeightUnitIndex == 1 {
-            selectedWeightIndex = 154
-        }
-
         return [
             .textField(title: nameTxt, value: user.givenName, secure: false, settingsType: .firstName),
             .textField(title: surnameTxt, value: user.familyName, secure: false, settingsType: .lastName),
@@ -261,16 +206,7 @@ private extension ProfileSettingsWorker {
                           settingsType: .gender),
             .datePicker(title: dateOfBirthTxt,
                         selectedDate: date,
-                        settingsType: .dateOfBirth),
-            .multipleStringPicker(title: heightTxt,
-                                  rows: user.heightPickerItems,
-                                  initialSelection: [selectedHeightIndex, selectedHeightUnitIndex],
-                                  settingsType: .height),
-            .multipleStringPicker(title: weightTxt,
-                                  rows: user.weightPickerItems,
-                                  initialSelection: [selectedWeightIndex, selectedWeightUnitIndex],
-                                  settingsType: .weight)
+                        settingsType: .dateOfBirth)
         ]
     }
-
 }

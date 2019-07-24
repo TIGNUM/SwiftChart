@@ -396,8 +396,6 @@
 		36FEA86320A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */; };
 		36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA86220A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib */; };
 		5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F10D0C1228EC60100CC3C7A /* ArticleItemViewController.xib */; };
-		5F2E87432292F6D60082323E /* ProfileSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2E87422292F6D60082323E /* ProfileSettingsFooterView.swift */; };
-		5F2E87452292F6E80082323E /* ProfileSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F2E87442292F6E80082323E /* ProfileSettingsFooterView.xib */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
 		5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */; };
@@ -549,6 +547,7 @@
 		754EBEED22C64CA20010A663 /* TBVDataGraphHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEEC22C64CA20010A663 /* TBVDataGraphHeaderView.xib */; };
 		754EBEF022C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEEE22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift */; };
 		754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEEF22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib */; };
+		75711E0122E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */; };
 		7582615222D5FB65000094DE /* ContentService+TBVTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615122D5FB65000094DE /* ContentService+TBVTracker.swift */; };
 		7582615422D5FB82000094DE /* ContentService+TBVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615322D5FB82000094DE /* ContentService+TBVData.swift */; };
 		7582615922D7431D000094DE /* ContentService+MyVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615822D7431D000094DE /* ContentService+MyVision.swift */; };
@@ -1944,8 +1943,6 @@
 		5085A062A04C07A736CE9E5F /* Pods-QOTWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.release.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		5F10D0C1228EC60100CC3C7A /* ArticleItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleItemViewController.xib; sourceTree = "<group>"; };
-		5F2E87422292F6D60082323E /* ProfileSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsFooterView.swift; sourceTree = "<group>"; };
-		5F2E87442292F6E80082323E /* ProfileSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsFooterView.xib; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
 		5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsPresenter.swift; sourceTree = "<group>"; };
 		5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsInteractor.swift; sourceTree = "<group>"; };
@@ -2098,6 +2095,7 @@
 		754EBEEC22C64CA20010A663 /* TBVDataGraphHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphHeaderView.xib; sourceTree = "<group>"; };
 		754EBEEE22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphAnswersTableViewCell.swift; sourceTree = "<group>"; };
 		754EBEEF22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphAnswersTableViewCell.xib; sourceTree = "<group>"; };
+		75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileSettingsKeybaordInputView.swift; sourceTree = "<group>"; };
 		7582615122D5FB65000094DE /* ContentService+TBVTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+TBVTracker.swift"; sourceTree = "<group>"; };
 		7582615322D5FB82000094DE /* ContentService+TBVData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+TBVData.swift"; sourceTree = "<group>"; };
 		7582615822D7431D000094DE /* ContentService+MyVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+MyVision.swift"; sourceTree = "<group>"; };
@@ -3860,6 +3858,7 @@
 			isa = PBXGroup;
 			children = (
 				5F544FD022967FE500616626 /* ContentService+EditAccount.swift */,
+				75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */,
 			);
 			name = MyQotEditAccount;
 			sourceTree = "<group>";
@@ -5013,8 +5012,6 @@
 				9115F70D208DFFAE00EE5D1D /* SettingsMenuHeader.xib */,
 				CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */,
 				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
-				5F2E87422292F6D60082323E /* ProfileSettingsFooterView.swift */,
-				5F2E87442292F6E80082323E /* ProfileSettingsFooterView.xib */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -7412,7 +7409,6 @@
 				36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */,
 				360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */,
 				3674FF3920AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.xib in Resources */,
-				5F2E87452292F6E80082323E /* ProfileSettingsFooterView.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
@@ -8040,7 +8036,6 @@
 				369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
-				5F2E87432292F6D60082323E /* ProfileSettingsFooterView.swift in Sources */,
 				36735C7B22C60C8A0041678D /* QDMAnswer+Ext.swift in Sources */,
 				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
 				5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */,
@@ -8067,6 +8062,7 @@
 				8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */,
 				36A7B9422166454A006C18F0 /* PrepareSectionHeaderView.swift in Sources */,
 				ACB99E8C226F3A4600A73709 /* DotsLoadingView.swift in Sources */,
+				75711E0122E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift in Sources */,
 				36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */,
 				F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */,
 				5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */,

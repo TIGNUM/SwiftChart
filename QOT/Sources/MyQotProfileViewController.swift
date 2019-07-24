@@ -24,13 +24,9 @@ final class MyQotProfileViewController: AbstractLevelTwoViewController {
 
     // MARK: - Life Cycle
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        interactor?.viewDidLoad()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        interactor?.viewDidLoad()
         UIApplication.shared.statusBarView?.backgroundColor = .carbonDark
     }
 
@@ -60,6 +56,9 @@ private extension MyQotProfileViewController {
         tableView.registerDequeueable(MyQotProfileHeaderView.self)
         tableView.delegate = self
         tableView.dataSource = self
+        tableView.tableHeaderView = UIView.headerView(with: .carbonDark)
+        tableView.backgroundColor = .carbon
+        tableView.reloadData()
     }
 }
 

@@ -321,6 +321,19 @@ extension UIView {
         case bottom
     }
 
+    func addHeader(with color: UIColor) {
+        self.addSubview(UIView.headerView(with: color))
+    }
+
+    static func headerView(with color: UIColor) -> UIView {
+        let screenSize = UIScreen.main.bounds.size
+        let content = UIView(frame: CGRect(x: 0, y: -screenSize.height, width: screenSize.width, height: screenSize.height))
+        content.backgroundColor = color
+        let header = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 0.1))
+        header.addSubview(content)
+        return header
+    }
+
     @discardableResult func addFadeView(at location: FadeViewLocation,
                                         height: CGFloat = 70.0,
                                         primaryColor: UIColor = .darkIndigo,

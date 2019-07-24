@@ -25,20 +25,22 @@ final class MyQotAboutUsRouter {
 extension MyQotAboutUsRouter: MyQotAboutUsRouterInterface {
     func handleSelection(for item: MyQotAboutUsModel.MyQotAboutUsModelItem) {
         switch item {
-        case .benefits: presentContentItem(id: item.primaryKey, pageName: item.pageName)
-        case .about: presentContentItem(id: item.primaryKey, pageName: item.pageName)
-        case .privacy: presentContentItem(id: item.primaryKey, pageName: item.pageName)
-        case .terms: presentContentItem(id: item.primaryKey, pageName: item.pageName)
-        case .copyright: presentContentItem(id: item.primaryKey, pageName: item.pageName)
+        case .benefits: presentContentItem(id: item.primaryKey)
+        case .about: presentContentItem(id: item.primaryKey)
+        case .privacy: presentContentItem(id: item.primaryKey)
+        case .terms: presentContentItem(id: item.primaryKey)
+        case .copyright: presentContentItem(id: item.primaryKey)
         }
     }
 }
 
 private extension MyQotAboutUsRouter {
-    func presentContentItem(id: Int, pageName: PageName) {
-        AppDelegate.current.appCoordinator.presentContentItemSettings(contentID: id,
-                                                                      controller: viewController,
-                                                                      pageName: pageName,
-                                                                      topBarTitle: "Faq")
+    func presentContentItem(id: Int) {
+        guard let articleViewController = R.storyboard.main.qotArticleViewController() else {
+            assertionFailure("Failed to initialize `ArticleViewController`")
+            return
+        }
+        ArticleConfigurator.configure(selectedID: id, viewController: articleViewController)
+        viewController.present(articleViewController, animated: true, completion: nil)
     }
 }

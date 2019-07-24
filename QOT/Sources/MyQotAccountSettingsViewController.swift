@@ -15,21 +15,22 @@ final class MyQotAccountSettingsViewController: UIViewController {
     @IBOutlet private weak var accountSettingsHeaderLabel: UILabel!
     @IBOutlet private weak var contactHeaderLabel: UILabel!
     @IBOutlet private weak var emailHeaderLabel: UILabel!
-    @IBOutlet private weak var phoneHeaderLabel: UILabel!
+    @IBOutlet private weak var companyHeaderLabel: UILabel!
     @IBOutlet private weak var personalDataHeaderLabel: UILabel!
-    @IBOutlet private weak var heightHeaderLabel: UILabel!
-    @IBOutlet private weak var weightHeaderLabel: UILabel!
+    @IBOutlet private weak var genderHeaderLabel: UILabel!
+    @IBOutlet private weak var dobHeaderLabel: UILabel!
     @IBOutlet private weak var accountHeaderLabel: UILabel!
     @IBOutlet private weak var changePasswordHeaderLabel: UILabel!
     @IBOutlet private weak var changePasswordTitleLabel: UILabel!
     @IBOutlet private weak var logoutQotHeaderLabel: UILabel!
     @IBOutlet private weak var logoutQotTitleLabel: UILabel!
     @IBOutlet private weak var userNameLabel: UILabel!
-    @IBOutlet private weak var userTitleLabel: UILabel!
-    @IBOutlet private weak var userPhoneNumberLabel: UILabel!
+    @IBOutlet private weak var userCompanyLabel: UILabel!
     @IBOutlet private weak var userEmailLabel: UILabel!
-    @IBOutlet private weak var userHeightLabel: UILabel!
-    @IBOutlet private weak var userWeightLabel: UILabel!
+    @IBOutlet private weak var userGenderLabel: UILabel!
+    @IBOutlet private weak var userDobLabel: UILabel!
+    @IBOutlet private weak var headerTitle: UILabel!
+    @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var editButton: UIButton!
 
     var interactor: MyQotAccountSettingsInteractor?
@@ -49,6 +50,12 @@ final class MyQotAccountSettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setDataOnView()
+        UIApplication.shared.statusBarView?.backgroundColor = .carbonDark
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(true)
+        UIApplication.shared.statusBarView?.backgroundColor = .carbon
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -77,6 +84,7 @@ final class MyQotAccountSettingsViewController: UIViewController {
 
 extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewControllerInterface {
     func setupView() {
+        headerView.addHeader(with: .carbonDark)
         editButton.corner(radius: editButton.frame.width/2, borderColor: UIColor.accent30)
         setContentForView()
     }
@@ -111,17 +119,17 @@ private extension MyQotAccountSettingsViewController {
         interactor?.emailText({[weak self] (text) in
             self?.emailHeaderLabel.text = text
         })
-        interactor?.phoneText({[weak self] (text) in
-            self?.phoneHeaderLabel.text = text
+        interactor?.genderText({[weak self] (text) in
+            self?.genderHeaderLabel.text = text
+        })
+        interactor?.dateOfBirthText({[weak self] (text) in
+            self?.dobHeaderLabel.text = text
+        })
+        interactor?.companyText({[weak self] (text) in
+            self?.companyHeaderLabel.text = text
         })
         interactor?.personalDataText({[weak self] (text) in
             self?.personalDataHeaderLabel.text = text
-        })
-        interactor?.heightText({[weak self] (text) in
-            self?.heightHeaderLabel.text = text
-        })
-        interactor?.weightText({[weak self] (text) in
-            self?.weightHeaderLabel.text = text
         })
         interactor?.accountText({[weak self] (text) in
             self?.accountHeaderLabel.text = text
@@ -143,11 +151,10 @@ private extension MyQotAccountSettingsViewController {
     func setDataOnView() {
         interactor?.userProfile({[weak self] (profile) in
             self?.userEmailLabel.text = profile?.email
-            self?.userPhoneNumberLabel.text = profile?.telephone
-            self?.userHeightLabel.text = profile?.userHeight
-            self?.userWeightLabel.text = profile?.userWeight
+            self?.userCompanyLabel.text = profile?.company
+            self?.userGenderLabel.text = profile?.gender
+            self?.userDobLabel.text = profile?.birthday
             self?.userNameLabel.text = profile?.name
-            self?.userTitleLabel.text = profile?.position
         })
     }
 }

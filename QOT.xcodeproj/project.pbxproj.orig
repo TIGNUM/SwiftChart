@@ -61,6 +61,7 @@
 		3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */; };
 		3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */; };
 		3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */; };
+		3633CF0A22E5ABC400D2817B /* PrepareEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633CF0922E5ABC400D2817B /* PrepareEventModel.swift */; };
 		3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */; };
 		363765FB223A4BD200C2C429 /* KnowingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F3223A4BD200C2C429 /* KnowingPresenter.swift */; };
 		363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F4223A4BD200C2C429 /* KnowingWorker.swift */; };
@@ -128,6 +129,7 @@
 		3649C0331FE323EE001F4249 /* RealmGuideTime.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0321FE323EE001F4249 /* RealmGuideTime.swift */; };
 		3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */; };
 		3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3649C03A1FE41B84001F4249 /* GuideWorker.swift */; };
+		364CC34522E20260005E9E53 /* DecisionTreeWorker+Prepare.swift in Sources */ = {isa = PBXBuildFile; fileRef = 364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */; };
 		36563C30205034CB0035F35D /* PartnerSharingEmail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */; };
 		3659B7DE2295333D0039FF30 /* default.realm in Resources */ = {isa = PBXBuildFile; fileRef = 3659B7DD2295333D0039FF30 /* default.realm */; };
 		365E98C31FD9A31000248361 /* CLTypingLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 365E98C21FD9A31000248361 /* CLTypingLabel.swift */; };
@@ -310,7 +312,7 @@
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
 		36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */; };
 		36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */; };
-		36CB720622B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720522B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift */; };
+		36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720522B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift */; };
 		36CB720822B86CF900C99AFC /* QDMContentCollection+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */; };
 		36CB720B22B8775B00C99AFC /* QDMContentItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */; };
 		36CB720F22B8EC0B00C99AFC /* MyQotProfileInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36376616223A4C0400C2C429 /* MyQotProfileInterface.swift */; };
@@ -394,8 +396,6 @@
 		36FEA86320A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36FEA86120A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.swift */; };
 		36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 36FEA86220A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib */; };
 		5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F10D0C1228EC60100CC3C7A /* ArticleItemViewController.xib */; };
-		5F2E87432292F6D60082323E /* ProfileSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F2E87422292F6D60082323E /* ProfileSettingsFooterView.swift */; };
-		5F2E87452292F6E80082323E /* ProfileSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F2E87442292F6E80082323E /* ProfileSettingsFooterView.xib */; };
 		5F360720228BEC7F0074FEC4 /* MyQotSensorsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */; };
 		5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */; };
 		5F360724228BECAD0074FEC4 /* MyQotSensorsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */; };
@@ -526,12 +526,9 @@
 		75423EFF22CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */; };
 		75423F0122CF28DE008EE726 /* AppSettingsFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */; };
 		75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */; };
-<<<<<<< HEAD
-=======
 		75423F0722CF303B008EE726 /* BeSpokeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0522CF303B008EE726 /* BeSpokeCell.swift */; };
 		75423F0822CF303B008EE726 /* BeSpokeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0622CF303B008EE726 /* BeSpokeCell.xib */; };
 		75423F0A22CF304F008EE726 /* BeSpokeCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0922CF304F008EE726 /* BeSpokeCellViewModel.swift */; };
->>>>>>> dev_3.0
 		75423F1022CF4893008EE726 /* FromMyCoachCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */; };
 		75423F1122CF4893008EE726 /* FromMyCoachCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */; };
 		75423F1322CF48A6008EE726 /* FromMyCoachCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */; };
@@ -550,6 +547,7 @@
 		754EBEED22C64CA20010A663 /* TBVDataGraphHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEEC22C64CA20010A663 /* TBVDataGraphHeaderView.xib */; };
 		754EBEF022C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 754EBEEE22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift */; };
 		754EBEF122C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 754EBEEF22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib */; };
+		75711E0122E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */; };
 		7582615222D5FB65000094DE /* ContentService+TBVTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615122D5FB65000094DE /* ContentService+TBVTracker.swift */; };
 		7582615422D5FB82000094DE /* ContentService+TBVData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615322D5FB82000094DE /* ContentService+TBVData.swift */; };
 		7582615922D7431D000094DE /* ContentService+MyVision.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582615822D7431D000094DE /* ContentService+MyVision.swift */; };
@@ -568,10 +566,6 @@
 		7582617F22DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */; };
 		7582618022DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */; };
 		7582618122DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */; };
-<<<<<<< HEAD
-		7582618222DDA8EC000094DE /* DailyCheckinQuestionsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617A22DDA8EC000094DE /* DailyCheckinQuestionsModel.swift */; };
-=======
->>>>>>> dev_3.0
 		7582618322DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7582617B22DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift */; };
 		759AB30522C353090091BFB8 /* MyToBeVisionPageComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759AB30422C353090091BFB8 /* MyToBeVisionPageComponentView.swift */; };
 		759AB41B22C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 759AB41922C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift */; };
@@ -1612,6 +1606,7 @@
 		3632D0CA2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyCategoryCollectionViewCell.xib; sourceTree = "<group>"; };
 		3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyFoundationCollectionViewCell.xib; sourceTree = "<group>"; };
 		3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyFoundationCollectionViewCell.swift; sourceTree = "<group>"; };
+		3633CF0922E5ABC400D2817B /* PrepareEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventModel.swift; sourceTree = "<group>"; };
 		3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotArticleHeaderView.xib; sourceTree = "<group>"; };
 		363765F3223A4BD200C2C429 /* KnowingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingPresenter.swift; sourceTree = "<group>"; };
 		363765F4223A4BD200C2C429 /* KnowingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingWorker.swift; sourceTree = "<group>"; };
@@ -1682,6 +1677,7 @@
 		3649C0321FE323EE001F4249 /* RealmGuideTime.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RealmGuideTime.swift; sourceTree = "<group>"; };
 		3649C0341FE32506001F4249 /* GuideTimeIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideTimeIntermediary.swift; sourceTree = "<group>"; };
 		3649C03A1FE41B84001F4249 /* GuideWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideWorker.swift; sourceTree = "<group>"; };
+		364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DecisionTreeWorker+Prepare.swift"; sourceTree = "<group>"; };
 		36563C2F205034CB0035F35D /* PartnerSharingEmail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartnerSharingEmail.swift; sourceTree = "<group>"; };
 		3659B7DD2295333D0039FF30 /* default.realm */ = {isa = PBXFileReference; lastKnownFileType = file; name = default.realm; path = Pods/qot_dal/qot_dal/Resource/default.realm; sourceTree = SOURCE_ROOT; };
 		365E98C21FD9A31000248361 /* CLTypingLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLTypingLabel.swift; sourceTree = "<group>"; };
@@ -1865,7 +1861,7 @@
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
 		36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationTableViewCell.swift; sourceTree = "<group>"; };
-		36CB720522B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrepareCheckListWorker+ItemMaker.swift"; sourceTree = "<group>"; };
+		36CB720522B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrepareResultsWorker+ItemMaker.swift"; sourceTree = "<group>"; };
 		36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentCollection+Ext.swift"; sourceTree = "<group>"; };
 		36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentItem+Ext.swift"; sourceTree = "<group>"; };
 		36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Ext.swift"; sourceTree = "<group>"; };
@@ -1947,8 +1943,6 @@
 		5085A062A04C07A736CE9E5F /* Pods-QOTWidget.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.release.xcconfig"; sourceTree = "<group>"; };
 		5C87601C1FE7F833DF0D7A6B /* Pods-QOTTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.release.xcconfig"; sourceTree = "<group>"; };
 		5F10D0C1228EC60100CC3C7A /* ArticleItemViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleItemViewController.xib; sourceTree = "<group>"; };
-		5F2E87422292F6D60082323E /* ProfileSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileSettingsFooterView.swift; sourceTree = "<group>"; };
-		5F2E87442292F6E80082323E /* ProfileSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsFooterView.xib; sourceTree = "<group>"; };
 		5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsViewController.swift; sourceTree = "<group>"; };
 		5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsPresenter.swift; sourceTree = "<group>"; };
 		5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsInteractor.swift; sourceTree = "<group>"; };
@@ -2080,12 +2074,9 @@
 		75423EF722CE242B008EE726 /* MyToBeVisionTrackerConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionTrackerConfigurator.swift; sourceTree = "<group>"; };
 		75423F0022CF28DE008EE726 /* AppSettingsFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettingsFooterView.swift; sourceTree = "<group>"; };
 		75423F0222CF28F2008EE726 /* AppSettingsFooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppSettingsFooterView.xib; sourceTree = "<group>"; };
-<<<<<<< HEAD
-=======
 		75423F0522CF303B008EE726 /* BeSpokeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeSpokeCell.swift; sourceTree = "<group>"; };
 		75423F0622CF303B008EE726 /* BeSpokeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BeSpokeCell.xib; sourceTree = "<group>"; };
 		75423F0922CF304F008EE726 /* BeSpokeCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeSpokeCellViewModel.swift; sourceTree = "<group>"; };
->>>>>>> dev_3.0
 		75423F0E22CF4893008EE726 /* FromMyCoachCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCell.swift; sourceTree = "<group>"; };
 		75423F0F22CF4893008EE726 /* FromMyCoachCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FromMyCoachCell.xib; sourceTree = "<group>"; };
 		75423F1222CF48A6008EE726 /* FromMyCoachCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FromMyCoachCellViewModel.swift; sourceTree = "<group>"; };
@@ -2104,6 +2095,7 @@
 		754EBEEC22C64CA20010A663 /* TBVDataGraphHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphHeaderView.xib; sourceTree = "<group>"; };
 		754EBEEE22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphAnswersTableViewCell.swift; sourceTree = "<group>"; };
 		754EBEEF22C658C10010A663 /* TBVDataGraphAnswersTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TBVDataGraphAnswersTableViewCell.xib; sourceTree = "<group>"; };
+		75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotProfileSettingsKeybaordInputView.swift; sourceTree = "<group>"; };
 		7582615122D5FB65000094DE /* ContentService+TBVTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+TBVTracker.swift"; sourceTree = "<group>"; };
 		7582615322D5FB82000094DE /* ContentService+TBVData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+TBVData.swift"; sourceTree = "<group>"; };
 		7582615822D7431D000094DE /* ContentService+MyVision.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+MyVision.swift"; sourceTree = "<group>"; };
@@ -2122,10 +2114,6 @@
 		7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsInterface.swift; sourceTree = "<group>"; };
 		7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsViewController.swift; sourceTree = "<group>"; };
 		7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsInteractor.swift; sourceTree = "<group>"; };
-<<<<<<< HEAD
-		7582617A22DDA8EC000094DE /* DailyCheckinQuestionsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsModel.swift; sourceTree = "<group>"; };
-=======
->>>>>>> dev_3.0
 		7582617B22DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckinQuestionsConfigurator.swift; sourceTree = "<group>"; };
 		759AB30422C353090091BFB8 /* MyToBeVisionPageComponentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyToBeVisionPageComponentView.swift; sourceTree = "<group>"; };
 		759AB41922C4D2410091BFB8 /* TBVDataGraphBarViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TBVDataGraphBarViewCell.swift; sourceTree = "<group>"; };
@@ -3675,7 +3663,7 @@
 				3693539B22983AB9008BBB72 /* PrepareResultsRouter.swift */,
 				3693539D22983AB9008BBB72 /* PrepareResultsViewController.swift */,
 				3693539A22983AB9008BBB72 /* PrepareResultsWorker.swift */,
-				36CB720522B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift */,
+				36CB720522B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -3696,6 +3684,7 @@
 		36D72EC6229C1B3600DE1184 /* PrepareEventSelection */ = {
 			isa = PBXGroup;
 			children = (
+				3633CF0922E5ABC400D2817B /* PrepareEventModel.swift */,
 				36D72ECE229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift */,
 				36D72ECC229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift */,
 				36D72ECA229C1BCC00DE1184 /* PrepareEventSelectionInterface.swift */,
@@ -3869,6 +3858,7 @@
 			isa = PBXGroup;
 			children = (
 				5F544FD022967FE500616626 /* ContentService+EditAccount.swift */,
+				75711E0022E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift */,
 			);
 			name = MyQotEditAccount;
 			sourceTree = "<group>";
@@ -4465,6 +4455,8 @@
 			sourceTree = "<group>";
 		};
 		7582615022D5FB4C000094DE /* Other */ = {
+<<<<<<< HEAD
+=======
 			isa = PBXGroup;
 			children = (
 				7582615122D5FB65000094DE /* ContentService+TBVTracker.swift */,
@@ -4473,6 +4465,7 @@
 			sourceTree = "<group>";
 		};
 		7582615722D74302000094DE /* Other */ = {
+>>>>>>> dev_3.0
 			isa = PBXGroup;
 			children = (
 				7582615822D7431D000094DE /* ContentService+MyVision.swift */,
@@ -4537,10 +4530,6 @@
 				7582617722DDA8EC000094DE /* DailyCheckinQuestionsInterface.swift */,
 				7582617822DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift */,
 				7582617922DDA8EC000094DE /* DailyCheckinQuestionsInteractor.swift */,
-<<<<<<< HEAD
-				7582617A22DDA8EC000094DE /* DailyCheckinQuestionsModel.swift */,
-=======
->>>>>>> dev_3.0
 				7582617B22DDA8EC000094DE /* DailyCheckinQuestionsConfigurator.swift */,
 			);
 			name = DailyCheckinQuestions;
@@ -5026,8 +5015,6 @@
 				9115F70D208DFFAE00EE5D1D /* SettingsMenuHeader.xib */,
 				CB8C34511EAF61E50003AB65 /* SettingsMenuViewController.xib */,
 				CC311A2C1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib */,
-				5F2E87422292F6D60082323E /* ProfileSettingsFooterView.swift */,
-				5F2E87442292F6E80082323E /* ProfileSettingsFooterView.xib */,
 			);
 			name = Other;
 			sourceTree = "<group>";
@@ -5346,6 +5333,7 @@
 				3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */,
 				3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */,
 				3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */,
+				364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -7424,7 +7412,6 @@
 				36AD002020EA8D8100F7227C /* PartnerEditViewController.xib in Resources */,
 				360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */,
 				3674FF3920AAE6B6008EEB6C /* PartnersOverviewCollectionViewCell.xib in Resources */,
-				5F2E87452292F6E80082323E /* ProfileSettingsFooterView.xib in Resources */,
 				CC38B1201F29EDA900C2BB87 /* AirshipConfig.plist in Resources */,
 				5FF1A0E7228561A000D76D55 /* TitleTableViewCell.xib in Resources */,
 				AC2BABB2223FAAB300769B1A /* SuggestionSearchTableViewCell.xib in Resources */,
@@ -8052,7 +8039,6 @@
 				369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */,
 				CCCC21221E8981CA00133839 /* PrepareContentViewController.swift in Sources */,
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
-				5F2E87432292F6D60082323E /* ProfileSettingsFooterView.swift in Sources */,
 				36735C7B22C60C8A0041678D /* QDMAnswer+Ext.swift in Sources */,
 				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
 				5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */,
@@ -8079,6 +8065,7 @@
 				8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */,
 				36A7B9422166454A006C18F0 /* PrepareSectionHeaderView.swift in Sources */,
 				ACB99E8C226F3A4600A73709 /* DotsLoadingView.swift in Sources */,
+				75711E0122E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift in Sources */,
 				36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */,
 				F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */,
 				5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */,
@@ -8324,7 +8311,7 @@
 				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
 				CBC1DC301F0FD0CB00F6D056 /* AnswerDecision+Convenience.swift in Sources */,
 				CC7D21A61EFBF52A007A062E /* ArticleItemViewModel.swift in Sources */,
-				36CB720622B8654E00C99AFC /* PrepareCheckListWorker+ItemMaker.swift in Sources */,
+				36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */,
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
 				5F78965822A929C100D2DBAD /* Loader.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
@@ -8350,7 +8337,6 @@
 				CC143A511EC495CE001FB76E /* StatisticsCoordinator.swift in Sources */,
 				91086E3B20909E7A0035DA1F /* ProfileSettingsModel.swift in Sources */,
 				CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */,
-				7582618222DDA8EC000094DE /* DailyCheckinQuestionsModel.swift in Sources */,
 				759AB42622C4DCCB0091BFB8 /* TBVDataGraphCollectionView.swift in Sources */,
 				5FD890A822807B6600B1CE7F /* MyQotProfileOptionsTableViewCell.swift in Sources */,
 				CB3437551EFD1C2600D89D4F /* PrepareChatDecisionManager.swift in Sources */,
@@ -8811,6 +8797,7 @@
 				3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
 				5F78964F22A929C100D2DBAD /* ThreeLines.swift in Sources */,
+				3633CF0A22E5ABC400D2817B /* PrepareEventModel.swift in Sources */,
 				8DECF9AB22DDF6A500451E65 /* MySprintsListSprintModel.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,
 				5F8A89932296DEC50011A05C /* MyVisionViewController.swift in Sources */,
@@ -8889,6 +8876,7 @@
 				36E4B7AB219EBFED00049EE8 /* TutorialPresenter.swift in Sources */,
 				5F7BE786228958AE00BA5DCF /* MyQotSupportConfigurator.swift in Sources */,
 				7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */,
+				364CC34522E20260005E9E53 /* DecisionTreeWorker+Prepare.swift in Sources */,
 				851676CA1F39AA9C007A1DD6 /* String+Extensions.swift in Sources */,
 				9150413620FDF40A00D43D18 /* SensorInterface.swift in Sources */,
 				36796A1D20D3C45200B55429 /* SigningCountryRouter.swift in Sources */,

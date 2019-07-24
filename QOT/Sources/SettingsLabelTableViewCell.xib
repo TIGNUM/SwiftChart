@@ -71,6 +71,7 @@
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
                 <outlet property="bottomSeperatorView" destination="pRO-tq-ciT" id="rYd-Qu-kv3"/>
+                <outlet property="bottomSeperatorViewHeightConstraint" destination="Ef4-Gd-5Aa" id="1hb-Qs-oD9"/>
                 <outlet property="expandArrow" destination="qD7-nO-ZbS" id="bDa-3c-0Ka"/>
                 <outlet property="textField" destination="s8a-Id-NJr" id="qcB-5d-XnV"/>
                 <outlet property="titleLabel" destination="sfQ-WU-bEb" id="dEu-O6-KZ8"/>

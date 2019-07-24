@@ -23,22 +23,21 @@ final class ProfileSettingsViewController: UIViewController {
 
     // MARK: - Properties
 
-    @IBOutlet private weak var pickerToolBar: UIToolbar!
-    @IBOutlet private weak var pickerView: UIPickerView!
+    @IBOutlet private weak var infoView: InfoHelperView!
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var pickerContentView: UIView!
     @IBOutlet private weak var headerTitle: UILabel!
+    @IBOutlet private weak var keyboardInputView: MyQotProfileSettingsKeybaordInputView!
 
     var shouldAllowSave: Bool = false {
-        didSet {
-            if footerView?.isEnabled == true { return }
-            footerView?.setupView(isEnabled: true)
+        willSet {
+            keyboardInputView.shouldAllowSave = newValue
         }
     }
 
+    private var selectedCell: SettingsTableViewCell?
+    private var genderPickerItems: [String] = []
     private var pickerItems: UserMeasurement?
     private var pickerViewHeight: NSLayoutConstraint?
-    private var pickerToolBarHeight: NSLayoutConstraint?
     private var pickerInitialSelection = [Index]()
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
     private let keyboardListener = KeyboardListener()
@@ -47,11 +46,6 @@ final class ProfileSettingsViewController: UIViewController {
     var interactor: ProfileSettingsInteractorInterface?
     var networkManager: NetworkManager!
     var launchOptions: [LaunchOption: String?]?
-
-    private var footerView: ProfileSettingsFooterView? = {
-    let footerView = UINib(resource: R.nib.profileSettingsFooterView).instantiate(withOwner: nil, options: nil).first as? ProfileSettingsFooterView
-        return footerView
-    }()
 
     // MARK: - Life Cycle
 
@@ -99,7 +93,6 @@ final class ProfileSettingsViewController: UIViewController {
 extension ProfileSettingsViewController: ProfileSettingsViewControllerInterface {
 
     func setup(profile: QDMUser) {
-        tableView.tableFooterView = footerView
         tableView.reloadData()
     }
 }
@@ -108,30 +101,50 @@ extension ProfileSettingsViewController: ProfileSettingsViewControllerInterface 
 
 private extension ProfileSettingsViewController {
 
+    @objc func didPressCancel() {
+        hideInfoView()
+    }
+
+    @objc func didPressLeave() {
+        trackUserEvent(.CANCEL, action: .TAP)
+        dismiss()
+    }
+
+    private func hideInfoView() {
+        infoView.isHidden = true
+        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                  rightBarButtonItems: [],
+                                                  backgroundColor: .clear)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+    }
+
+    private func showInfoView() {
+        infoView.setBottomContentInset(BottomNavigationContainer.height)
+        infoView.backgroundColor = .carbonDark
+        infoView.set(icon: R.image.ic_warning(), title: R.string.localized.profileConfirmationHeader().uppercased(), text: R.string.localized.profileConfirmationDescription())
+        infoView.isHidden = false
+        let cancelButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
+                                                    buttonWidth: .Cancel,
+                                                    action: #selector(didPressCancel),
+                                                    backgroundColor: .clear,
+                                                    borderColor: .accent40)
+        let continueButtonItem = roundedBarButtonItem(title: R.string.localized.profileConfirmationDoneButton(),
+                                                      buttonWidth: .Continue,
+                                                      action: #selector(didPressLeave),
+                                                      backgroundColor: .clear,
+                                                      borderColor: .accent40)
+        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                  rightBarButtonItems: [continueButtonItem, cancelButtonItem],
+                                                  backgroundColor: .clear)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+    }
+
     func setupView() {
         interactor?.editAccountTitle({[weak self] (text) in
             self?.headerTitle.text = text
         })
-        footerView?.frame = CGRect(x: 0, y: 0, width: tableView.frame.width, height: 100)
-        footerView?.autoresizingMask = .flexibleWidth
-        footerView?.setupView(isEnabled: false)
-        footerView?.delegate = self
         view.backgroundColor = .carbon
-        pickerToolBar.tintColor = .clear
-        pickerToolBar.barTintColor = .clear
-        pickerViewHeight = pickerContentView.heightAnchor == 0
-        pickerToolBarHeight = pickerToolBar.heightAnchor == 0
-        let cancelButton = UIBarButtonItem(title: R.string.localized.alertButtonTitleCancel(),
-                                           style: .plain,
-                                           target: self,
-                                           action: #selector(pickerViewCancelButtonTapped))
-        let doneButton = UIBarButtonItem(title: R.string.localized.morningControllerDoneButton(),
-                                         style: .plain,
-                                         target: self,
-                                         action: #selector(pickerViewDoneButtonTapped))
-        let flexibleSpace = UIBarButtonItem(barButtonSystemItem: .flexibleSpace, target: self, action: nil)
-        pickerToolBar.setItems([cancelButton, flexibleSpace, doneButton], animated: false)
-        pickerView.showsSelectionIndicator = true
+        keyboardInputView.delegate = self
         setCustomBackButton()
     }
 
@@ -176,96 +189,41 @@ private extension ProfileSettingsViewController {
 
 extension ProfileSettingsViewController {
 
-    @objc func pickerViewCancelButtonTapped(_ sender: UIBarButtonItem) {
-        hidePickerView()
-    }
-
-    @objc func pickerViewDoneButtonTapped(_ sender: UIBarButtonItem) {
-        updateUserHeightWeight()
-        hidePickerView()
-    }
-
-    func hidePickerView() {
-        pickerToolBar.barTintColor = .clear
-		pickerToolBar.tintColor = .clear
-        pickerView.backgroundColor = .clear
-        UIView.animate(withDuration: 0.6) {
-            self.pickerViewHeight?.constant = 0
-            self.pickerToolBarHeight?.constant = 0
-        }
-        tableView.isUserInteractionEnabled = true
-    }
-
-    func showPickerView() {
-        pickerView.reloadAllComponents()
-        pickerToolBar.barTintColor = .carbonDark
-        pickerToolBar.isTranslucent = true
-		pickerToolBar.tintColor = .sand
-        pickerView.backgroundColor = .carbonDark
-        UIView.animate(withDuration: 0.6, animations: {
-            self.pickerViewHeight?.constant = self.view.frame.height * (self.screenType == .small ? 0.5 : 0.3)
-            self.pickerToolBarHeight?.constant = Layout.height_44
-        }, completion: { finished in
-            self.pickerView.selectRow(self.pickerInitialSelection[0], inComponent: 0, animated: false)
-            self.pickerView.selectRow(self.pickerInitialSelection[1], inComponent: 1, animated: false)
-        })
-        tableView.isUserInteractionEnabled = false
-    }
-
-    func showMultiplePicker(title: String, rows: UserMeasurement, initialSelection: [Index], indexPath: IndexPath) {
-        pickerItems = rows
-        pickerInitialSelection = initialSelection
-        pickerIndexPath = indexPath
-        showPickerView()
+    @objc func dateChanged(_ sender: UIDatePicker) {
+        shouldAllowSave = true
+        let dateOfBirth = DateFormatter.settingsUser.string(from: sender.date)
+        interactor?.profile?.dateOfBirth = dateOfBirth
+        selectedCell?.textField.text = dateOfBirth
     }
 
     func showDatePicker(title: String, selectedDate: Date, indexPath: IndexPath) {
-        let datePicker = ActionSheetDatePicker(title: title, datePickerMode: .date,
-                                               selectedDate: selectedDate,
-                                               doneBlock: { [unowned self] (_, value, _) in
-                                                guard let date = value as? Date, var interactor = self.interactor else { return }
-                                                let dateOfBirth = DateFormatter.settingsUser.string(from: date)
-                                                switch interactor.row(at: indexPath) {
-                                                case .datePicker(_, _, let settingsType):
-                                                    if settingsType == .dateOfBirth {
-                                                        interactor.profile?.dateOfBirth = dateOfBirth
-                                                        self.reloadData()
-                                                        self.shouldAllowSave = true
-                                                    }
-                                                default: return
-                                                }
-            }, cancel: { (_) in
-                return
-        }, origin: view)
-        datePicker?.pickerBackgroundColor = .carbonDark
-        datePicker?.toolbarBackgroundColor = .carbonDark
-        datePicker?.toolbarButtonsColor = .sand
-        datePicker?.setTextColor(.sand)
-        datePicker?.minimumDate = Date().minimumDateOfBirth
-		datePicker?.maximumDate = Date().maximumDateOfBirth
-		datePicker?.show()
+        guard let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell else {
+            return
+        }
+        selectedCell = cell
+        let datePicker = UIDatePicker()
+        datePicker.backgroundColor = .carbonDark
+        datePicker.setValue(UIColor.sand, forKeyPath: "textColor")
+        datePicker.datePickerMode = .date
+        datePicker.setDate(selectedDate, animated: true)
+        datePicker.minimumDate = Date().minimumDateOfBirth
+        datePicker.maximumDate = Date().maximumDateOfBirth
+        datePicker.addTarget(self, action: #selector(dateChanged(_:)), for: .valueChanged)
+        cell.textField.inputView = datePicker
+        cell.textField.becomeFirstResponder()
     }
 
 	func showStringPicker(title: String, items: [String], selectedIndex: Index, indexPath: IndexPath) {
-		 let genderPicker = ActionSheetStringPicker(title: title, rows: items, initialSelection: selectedIndex, doneBlock: { [unowned self] (_, index, _) in
-            switch self.interactor?.row(at: indexPath) {
-            case .stringPicker(_, _, _, let settingsType)?:
-                if settingsType == .gender {
-                    self.interactor?.profile?.gender = items[index]
-                    self.reloadData()
-                    self.shouldAllowSave = true
-                }
-            default: return
-            }
-		}, cancel: { (_) in
-				return
-		}, origin: view)
-
-        genderPicker?.pickerBackgroundColor = .carbonDark
-        genderPicker?.toolbarBackgroundColor = .carbonDark
-        genderPicker?.toolbarButtonsColor = .sand
-        genderPicker?.setTextColor(.sand)
-        genderPicker?.show()
+        guard let cell = tableView.cellForRow(at: indexPath) as? SettingsTableViewCell else {
+            return
+        }
+        genderPickerItems = items
+        selectedCell = cell
+        let picker = UIPickerView()
+        picker.delegate = self
+        picker.backgroundColor = .carbonDark
+        cell.textField.inputView = picker
+        cell.textField.becomeFirstResponder()
 	}
 
     func updateUserHeightWeight() {
@@ -276,12 +234,10 @@ extension ProfileSettingsViewController {
                 interactor.profile?.height = userMeasurement.selectedValue
                 interactor.profile?.heightUnit = userMeasurement.selectedUnit
                 reloadData()
-                shouldAllowSave = true
             } else if settingsType == .weight {
                 interactor.profile?.weight = userMeasurement.selectedValue
                 interactor.profile?.weightUnit = userMeasurement.selectedUnit
                 reloadData()
-                shouldAllowSave = true
             }
         default:
             return
@@ -326,6 +282,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             fatalError("SettingsTableViewCell does not exist")
         }
         settingsCell.settingsDelegate = self
+        settingsCell.keyboardInputView = keyboardInputView
         settingsCell.setup(settingsRow: row, indexPath: indexPath, isSyncFinished: true)
         return settingsCell
     }
@@ -352,8 +309,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
         case .stringPicker(let title, let pickerItems, let selectedIndex, _):
             showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
-        case .multipleStringPicker(let title, let rows, let initialSelection, _):
-            showMultiplePicker(title: title, rows: rows, initialSelection: initialSelection, indexPath: indexPath)
+        case .multipleStringPicker(let title, let rows, let initialSelection, _): break
         default:
             break
         }
@@ -424,12 +380,10 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
             if text.isTrimmedTextEmpty == false {
                 interactor?.profile?.jobTitle = text
                 interactor?.generateSections()
-                shouldAllowSave = true
             }
         case 3:
              interactor?.profile?.telephone = text
              interactor?.generateSections()
-             shouldAllowSave = true
         default: return
         }
     }
@@ -437,13 +391,13 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
     func didChangeTextFieldInPersonalSection(at indexPath: IndexPath, text: String) {
         switch indexPath.row {
         case 0: // FirstName
-            if text.isTrimmedTextEmpty == false {
-                 interactor?.profile?.givenName = text
+            if interactor?.profile?.givenName != text {
+                interactor?.profile?.givenName = text
                 interactor?.generateSections()
                 shouldAllowSave = true
             }
         case 1: // LastName
-            if text.isTrimmedTextEmpty == false {
+            if interactor?.profile?.familyName != text {
                  interactor?.profile?.familyName = text
                 interactor?.generateSections()
                 shouldAllowSave = true
@@ -458,54 +412,24 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
 extension ProfileSettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
 
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        guard let pickerItems = pickerItems else { return 0 }
-        return pickerItems.columnCount
+        return 1
     }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        guard let pickerItems = pickerItems else { return 0 }
-        return pickerItems.rowCount(column: component)
+        return genderPickerItems.count
     }
 
-    func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
-        guard let pickerItems = pickerItems else { return NSAttributedString(string: "", attributes: nil)  }
-        let title =  pickerItems.title(row: row, column: component)
-        let myTitle = NSAttributedString(string: title ?? "", attributes: [.foregroundColor: UIColor.sand])
+   func pickerView(_ pickerView: UIPickerView, attributedTitleForRow row: Int, forComponent component: Int) -> NSAttributedString? {
+        let title =  genderPickerItems[row]
+        let myTitle = NSAttributedString(string: title, attributes: [.foregroundColor: UIColor.sand])
         return myTitle
     }
 
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        pickerInitialSelection = [pickerView.selectedRow(inComponent: 0), pickerView.selectedRow(inComponent: 1)]
-        guard let pickerItems = pickerItems else { return }
-
-        let optionIndex = pickerView.selectedRow(inComponent: 1)
-        let unit = pickerItems.options[optionIndex].unit
-
-        switch component {
-        case 0:
-            pickerItems.update(valueIndex: row)
-        case 1:
-            pickerItems.update(unit: unit)
-            pickerView.reloadAllComponents()
-            pickerView.selectRow(pickerItems.valueIndex, inComponent: 0, animated: false)
-        default: break
-        }
-    }
-}
-
-extension ProfileSettingsViewController: ProfileSettingsFooterViewProtocol {
-    func didSave() {
-        guard let profile = interactor?.profile else { return }
-        trackUserEvent(.CONFIRM, action: .TAP)
-        interactor?.updateUser(profile)
-        guard let navController = self.navigationController else { return }
-        navController.dismiss(animated: true, completion: nil)
-    }
-
-    func didCancel() {
-        guard let navController = self.navigationController else { return }
-        trackUserEvent(.CANCEL, action: .TAP)
-        navController.dismiss(animated: true, completion: nil)
+        let selectedValue = genderPickerItems[row]
+        selectedCell?.textField.text = selectedValue
+        interactor?.profile?.gender = selectedValue
+        shouldAllowSave = true
     }
 }
 
@@ -520,5 +444,28 @@ extension ProfileSettingsViewController {
 
     @objc override public func bottomNavigationBackgroundColor() -> UIColor? {
         return .clear
+    }
+}
+
+extension ProfileSettingsViewController: MyQotProfileSettingsKeybaordInputViewProtocol {
+    func didCancel() {
+        view.endEditing(true)
+        if shouldAllowSave {
+            showInfoView()
+        } else {
+            dismiss()
+        }
+    }
+
+    func didSave() {
+        guard let profile = interactor?.profile, shouldAllowSave else { return }
+        trackUserEvent(.CONFIRM, action: .TAP)
+        interactor?.updateUser(profile)
+        dismiss()
+    }
+
+    func dismiss() {
+        guard let navController = self.navigationController else { return }
+        navController.dismiss(animated: true, completion: nil)
     }
 }

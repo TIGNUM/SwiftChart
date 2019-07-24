@@ -21,6 +21,7 @@ final class MyQotSiriShortcutsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        view.backgroundColor = .carbon
         interactor?.viewDidLoad()
         tableView.registerDequeueable(TitleTableViewCell.self)
     }
@@ -36,10 +37,10 @@ extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInte
     func setupView() {
         tableView.delegate = self
         tableView.dataSource = self
-        view.backgroundColor = .carbon
         interactor?.siriShortcutsHeaderText({[weak self] (text) in
             self?.headerLabel.text = text
         })
+        tableView.reloadData()
     }
 }
 

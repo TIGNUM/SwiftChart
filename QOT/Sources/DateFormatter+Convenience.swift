@@ -19,7 +19,7 @@ private let iso8601DateFormatter: DateFormatter = {
 
 private let userDateFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd"
+    formatter.dateFormat = "dd.MMM.yyyy"
     return formatter
 }()
 

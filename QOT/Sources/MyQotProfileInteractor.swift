@@ -11,7 +11,6 @@ import UIKit
 final class MyQotProfileInteractor {
 
     private enum controllerType: Int, CaseIterable {
-        case myLibrary
         case accountSettings
         case appSettings
         case support
@@ -37,11 +36,13 @@ final class MyQotProfileInteractor {
     // MARK: - Interactor
 
     func viewDidLoad() {
-        showLoaderView()
         getData({ [weak self] (profile) in
+            guard let userProfile = profile, let menuItems = self?.worker.menuItems else {
+                self?.showLoaderView()
+                return
+            }
             self?.hideLoaderView()
-            guard let profile = profile, let menuItems = self?.worker.menuItems else { return }
-            self?.presenter.setupView(profile: profile, menuItems: menuItems)
+            self?.presenter.setupView(profile: userProfile, menuItems: menuItems)
         })
     }
 }
@@ -75,8 +76,6 @@ extension MyQotProfileInteractor: MyQotProfileInteractorInterface {
     func presentController(for index: Int) {
         let type = controllerType.allCases[index]
         switch type {
-        case .myLibrary:
-            router.presentMyLibrary()
         case .accountSettings:
             router.presentAccountSettings()
         case .appSettings:

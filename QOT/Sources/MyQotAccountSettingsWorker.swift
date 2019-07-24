@@ -85,8 +85,20 @@ extension MyQotAccountSettingsWorker {
         }
     }
 
-    func phoneText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.phone.predicate) {(contentItem) in
+    func genderText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.gender.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
+    }
+
+    func dateOfBirthText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.dateOfBirth.predicate) {(contentItem) in
+            completion(contentItem?.valueText ?? "")
+        }
+    }
+
+    func companyText(_ completion: @escaping(String) -> Void) {
+        contentService.getContentItemByPredicate(ContentService.AccountSettings.Profile.company.predicate) {(contentItem) in
             completion(contentItem?.valueText ?? "")
         }
     }
