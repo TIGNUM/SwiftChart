@@ -17,6 +17,10 @@ final class SettingsViewController: UIViewController {
     var selectedSettings: SettingsModel.Setting?
     var interactor: SettingsInteractorInterface?
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     // MARK: - Init
 
     init(configure: Configurator<SettingsViewController>, services: Services) {
@@ -34,7 +38,6 @@ final class SettingsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         selectedSettings = nil
-        UIApplication.shared.setStatusBarStyle(.lightContent)
         navigationItem.title = R.string.localized.settingsTitle().uppercased()
     }
 

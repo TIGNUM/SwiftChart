@@ -18,6 +18,8 @@ protocol DailyCheckinQuestionsPresenterInterface {
 
 protocol DailyCheckinQuestionsInteractorInterface: Interactor {
     var questions: [RatingQuestionViewModel.Question] { get }
+    var answeredQuestionCount: Int { get }
+    func dismiss()
     func saveAnswers()
 }
 

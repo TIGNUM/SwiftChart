@@ -31,10 +31,10 @@ extension PrepareResultsRouter: PrepareResultsRouterInterface {
                                                   viewController))
     }
 
-    func presentEditIntensions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer],
+    func presentEditIntentions(_ selectedAnswers: [DecisionTreeModel.SelectedAnswer],
                                _ key: Prepare.Key,
                                answerFilter: String?) {
-        presentDecisionTree(for: .prepareIntensions(selectedAnswers, answerFilter, key, viewController))
+        presentDecisionTree(for: .prepareIntentions(selectedAnswers, answerFilter, key, viewController))
     }
 
     func presentRelatedArticle(readMoreID: Int) {

@@ -14,7 +14,7 @@ final class DailyBriefNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(DailyBriefNavigationController.classForCoder())
 }
 
-final class DailyBriefViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+final class DailyBriefViewController: UIViewController, ScreenZLevel1 , UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
     var delegate: CoachCollectionViewControllerDelegate?

@@ -10,6 +10,9 @@ import SafariServices
 import Foundation
 
 final class WebViewController: SFSafariViewController {
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.darkNot.statusBarStyle
+    }
 
     init(_ url: URL) throws {
         guard url.canOpen else {
@@ -23,11 +26,6 @@ final class WebViewController: SFSafariViewController {
         } else {
             super.init(url: url, entersReaderIfAvailable: false)
         }
-    }
-
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        UIApplication.shared.setStatusBarStyle(.lightContent)
     }
 }
 

@@ -19,6 +19,9 @@ final class CoachViewController: UIViewController, ScreenZLevelCoach {
     var interactor: CoachInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
     private var coachModel: CoachModel?
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.darkNot.statusBarStyle
+    }
     private enum CellType: Int, CaseIterable {
         case header = 0
         case sections
@@ -33,7 +36,7 @@ final class CoachViewController: UIViewController, ScreenZLevelCoach {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
+        setStatusBar(colorMode: ColorMode.darkNot)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -65,7 +68,6 @@ private extension CoachViewController {
     @IBAction func closeButton() {
          dismiss(animated: true, completion: nil)
          trackUserEvent(.CLOSE, action: .TAP)
-         UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
     }
 }
 

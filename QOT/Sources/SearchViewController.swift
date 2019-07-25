@@ -30,6 +30,10 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     private var searchFilter = Search.Filter.all
     private var searchQuery = ""
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     init(configure: Configurator<SearchViewController>, pageName: PageName) {
         self.pageName = pageName
         super.init(nibName: nil, bundle: nil)
@@ -53,14 +57,12 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         tableView.registerDequeueable(SearchTableViewCell.self)
         suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
         setupSearchBar()
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
-
+        setStatusBar(colorMode: ColorMode.dark)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        UIApplication.shared.setStatusBarStyle(.lightContent)
         setupSearchBar()
         setupSegementedControl()
     }

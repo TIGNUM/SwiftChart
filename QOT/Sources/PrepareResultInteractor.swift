@@ -87,7 +87,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         }
     }
 
-    func presentEditIntensions(_ key: Prepare.Key) {
+    func presentEditIntentions(_ key: Prepare.Key) {
         var ids = [Int]()
         switch key {
         case .perceived: ids = worker.preceiveAnswerIds
@@ -96,7 +96,7 @@ extension PrepareResultInteractor: PrepareResultsInteractorInterface {
         default: break
         }
         worker.generateSelectedAnswers(ids, key) { [weak self] (answers) in
-            self?.router.presentEditIntensions(answers, key, answerFilter: self?.worker.answerFilter)
+            self?.router.presentEditIntentions(answers, key, answerFilter: self?.worker.answerFilter)
         }
     }
 

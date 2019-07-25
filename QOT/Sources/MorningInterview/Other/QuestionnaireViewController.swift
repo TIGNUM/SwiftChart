@@ -62,7 +62,7 @@ enum ControllerType {
     }
 }
 
-final class QuestionnaireViewController: UIViewController {
+final class QuestionnaireViewController: UIViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var progressTopConstraint: NSLayoutConstraint!
@@ -93,6 +93,8 @@ final class QuestionnaireViewController: UIViewController {
     private let defaultMultiplierForIndex = 1
     private let multiplierForFirstIndex = 4
     private let multiplierForSecondIndex = 2
+    private let multiplierForTimeFirstIndex = 2
+    private let multiplierForTimeSecondIndex = 5
     private var previousYPosition: CGFloat = 0.0
     private var touchDownYPosition: CGFloat = 0.0
     private var currentIndex: Int = 5
@@ -129,7 +131,6 @@ final class QuestionnaireViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         animationHide()
-        setupImages()
         setupView()
         progressView.backgroundColor = UIColor.clear
     }
@@ -241,7 +242,7 @@ extension QuestionnaireViewController {
             topAndBottomImage(isHidden: false)
         case .demad?:
             topImageView.image = R.image.upcomingEventBig()
-            bottomImageView.image = R.image.upcomingEventBig()
+            bottomImageView.image = R.image.upcomingEventSmall()
             topAndBottomImage(isHidden: false)
         case .load?:
             topImageView.image = R.image.taskBig()
@@ -284,6 +285,7 @@ extension QuestionnaireViewController {
                 self.questionLabel.alpha = 1
                 self.progressView.alpha = 1
         }, completion: { finished in
+            self.setupImages()
             self.tableView.isHidden = false
             self.tableView.reloadData()
         })
@@ -328,6 +330,18 @@ extension QuestionnaireViewController {
         })
     }
 
+    func formTimeAttibutedString(title: String, isLast: Bool) -> NSMutableAttributedString {
+        let attrString = NSMutableAttributedString(string: title,
+                                                    attributes: [.font: UIFont.sfProDisplayThin(ofSize: 34)])
+        if questionkey == .amount {
+            let maxHourUnit = R.string.localized.dailyCheckInSleepQuantityValueSuffixMax()
+            let hoursUnit = R.string.localized.dailyCheckInSleepQuantityValueSuffix()
+            attrString.append(NSMutableAttributedString(string: isLast ? maxHourUnit : hoursUnit,
+                                                        attributes: [.font: UIFont.sfProDisplayLight(ofSize: 14)]))
+        }
+        return attrString
+    }
+
     func dragTo(yPosition position: CGFloat, isTouch: Bool = true) {
         var newPosition = position
         if newPosition < (-cellHeight/2) {
@@ -351,7 +365,7 @@ extension QuestionnaireViewController {
         if let finalAnswers = answers {
             let answerIndex = items - index - 1
             if answerIndex < finalAnswers.count {
-                indexLabel.text = finalAnswers[answerIndex].subtitle
+                indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
                 hintLabel.text = finalAnswers[answerIndex].title
             }
         } else {
@@ -397,12 +411,15 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: QuestionnaireTableViewCell = tableView.dequeueCell(for: indexPath)
         var multiplier = defaultMultiplierForIndex
+        cell.cellIndicatorView.config = controllerType.config
         // handle multipliers
         if questionkey == .amount {
-            if indexPath.row == 0 {
-                multiplier = multiplierForFirstIndex
-            } else if indexPath.row <= 4 {
-                multiplier = multiplierForSecondIndex
+            if indexPath.row <= 0 {
+                multiplier = multiplierForTimeFirstIndex
+            } else if indexPath.row <= 6 {
+                multiplier = multiplierForTimeSecondIndex
+            } else {
+                multiplier = (items - (indexPath.row) + 1)/2
             }
         } else {
             if indexPath.row == 0 {
@@ -425,14 +442,13 @@ extension QuestionnaireViewController: UITableViewDelegate, UITableViewDataSourc
             if indexPath.row % 2 != 0 {
                 cell.cellIndicatorView.indicatorWidth = CGFloat(6)
             } else {
-                let width = CGFloat(barWidth * (items - indexPath.row + multiplier))
-                cell.cellIndicatorView.indicatorWidth = width/2
+                let multiplierValue = CGFloat(barWidth * multiplier)
+                let width = CGFloat((items - indexPath.row + 1) * barWidth) - multiplierValue
+                cell.cellIndicatorView.indicatorWidth = width
             }
         } else {
             cell.cellIndicatorView.indicatorWidth = CGFloat(barWidth * (items - indexPath.row + multiplier))
         }
-
-        cell.cellIndicatorView.config = controllerType.config
         return cell
     }
 

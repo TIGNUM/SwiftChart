@@ -111,7 +111,7 @@ extension DecisionTreeWorker {
     }
     var firstQuestion: QDMQuestion? {
         switch type {
-        case .prepareIntensions,
+        case .prepareIntentions,
              .prepareBenefits:
             return questions.first
         default:
@@ -201,7 +201,7 @@ extension DecisionTreeWorker {
 
     func fetchQuestions(completion: @escaping () -> Void) {
         switch type {
-        case .prepareIntensions(let selectedAnswers, let answerFilter, let key, let delegate):
+        case .prepareIntentions(let selectedAnswers, let answerFilter, let key, let delegate):
             self.selectedAnswers = selectedAnswers
             self.multiSelectionCounter = selectedAnswers.count
             self.answerFilter = answerFilter

@@ -28,6 +28,10 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
     private var timeSinceMonth: Int?
     private var subtitleVision: String?
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -57,7 +61,7 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(colorMode: ColorMode.dark)
     }
 
     override func viewDidAppear(_ animated: Bool) {

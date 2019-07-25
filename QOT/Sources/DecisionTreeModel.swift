@@ -15,7 +15,7 @@ enum DecisionTreeType {
     case mindsetShifter
     case mindsetShifterTBV
     case prepare
-    case prepareIntensions([DecisionTreeModel.SelectedAnswer], String?, Prepare.Key, PrepareResultsDelegatge?)
+    case prepareIntentions([DecisionTreeModel.SelectedAnswer], String?, Prepare.Key, PrepareResultsDelegatge?)
     case prepareBenefits(benefits: String?, questionID: Int, PrepareResultsDelegatge?)
     case solve
     case recovery
@@ -32,7 +32,7 @@ enum DecisionTreeType {
             return QuestionKey.MindsetShifterTBV.intro.rawValue
         case .prepare:
             return QuestionKey.Prepare.Intro
-        case .prepareIntensions(_, _, let key, _):
+        case .prepareIntentions(_, _, let key, _):
             return key.tag
         case .prepareBenefits(let benefits, let questionId, let delegate):
             return ""
@@ -56,7 +56,7 @@ enum DecisionTreeType {
         case .mindsetShifterTBV:
             return .MindsetShifterToBeVision
         case .prepare,
-             .prepareIntensions,
+             .prepareIntentions,
              .prepareBenefits:
             return .Prepare_3_0
         case .solve:

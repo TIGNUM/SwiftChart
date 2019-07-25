@@ -64,6 +64,15 @@ extension MyVisionRouter: MyVisionRouterInterface {
     }
 
     func showUpdateConfirmationScreen() {
+
+        guard let vieController = R.storyboard.dailyCheckin.dailyCheckinStartViewController() else { return }
+        DailyCheckinStartConfigurator.configure(viewController: vieController)
+        let navigationController = UINavigationController(rootViewController: vieController)
+        navigationController.isNavigationBarHidden = true
+        viewController.present(navigationController, animated: true, completion: nil)
+
+        return
+
         let config = PopUpViewController.Config(title: "UPDATE TO BE VISION",
                                                 description: "Do you wanna create a new To Be Vision or edit your current one?",
                                                 rightButtonTitle: "Edit", leftButtonTitle: "Create new")

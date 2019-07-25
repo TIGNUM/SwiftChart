@@ -35,6 +35,10 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
                                        GuidePreparationTableViewCell.self)
     }()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.darkNot.statusBarStyle
+    }
+
     // MARK: - Init
 
     init(configurator: Configurator<GuideViewController>) {
@@ -61,7 +65,6 @@ final class GuideViewController: UIViewController, PageViewControllerNotSwipeabl
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(true)
-        UIApplication.shared.setStatusBarStyle(.lightContent)
     }
 
     override func viewDidLayoutSubviews() {

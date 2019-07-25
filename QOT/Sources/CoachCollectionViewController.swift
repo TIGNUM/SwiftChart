@@ -68,6 +68,10 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
         return searchViewController
     }()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         let swipeDown = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
@@ -85,7 +89,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(colorMode: ColorMode.dark)
     }
 }
 

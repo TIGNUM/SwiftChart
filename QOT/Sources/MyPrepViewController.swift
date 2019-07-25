@@ -62,6 +62,10 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         return barButtonItem
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     // MARK: - Init
 
     init(viewModel: MyPrepViewModel, syncManager: SyncManager) {
@@ -80,11 +84,6 @@ final class MyPrepViewController: UIViewController, FullScreenLoadable, PageView
         super.viewDidLoad()
         setupView()
         observeViewModel()
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBarStyle(.lightContent)
     }
 
     override func viewDidAppear(_ animated: Bool) {

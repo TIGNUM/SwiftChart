@@ -860,11 +860,4 @@ extension UIApplication {
         }
         return nil
     }
-
-    func setStatusBar(colorMode: ColorMode) {
-        if let statusBar = UIApplication.shared.statusBarView, statusBar.responds(to: #selector(setter: UIView.backgroundColor)) {
-            statusBar.backgroundColor = colorMode.background
-            UIApplication.shared.setStatusBarStyle(colorMode.statusBarStyle)
-        }
-    }
 }

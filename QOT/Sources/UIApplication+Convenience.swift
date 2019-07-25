@@ -9,16 +9,6 @@
 import Foundation
 import UIKit
 
-public protocol ApplicationStatusBarStyle {
-    func setStatusBarStyle(_ statusBarStyle: UIStatusBarStyle)
-}
-
-extension UIApplication: ApplicationStatusBarStyle {
-    public func setStatusBarStyle(_ statusBarStyle: UIStatusBarStyle) {
-        self.statusBarStyle = statusBarStyle
-    }
-}
-
 extension UIApplication {
 
     class func openAppSettings() {

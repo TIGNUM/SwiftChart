@@ -91,7 +91,7 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: c29d7ed3b8329ff9be694d597fda861cbfe1292d
+    :commit: eb07bd3bbc7294ebd418bf74fb88af0f3f1062b9
     :git: "git@github.com:TIGNUM/qot_dal.git"
 
 SPEC CHECKSUMS:
@@ -120,4 +120,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 23e1d76a6aa5437020b0df03646b8642e4be5351
 
-COCOAPODS: 1.7.4
+COCOAPODS: 1.7.5

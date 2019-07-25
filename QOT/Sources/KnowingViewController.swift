@@ -21,6 +21,9 @@ final class KnowingViewController: HomeViewController {
     var interactor: KnowingInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
     private let headerViewID = "ComponentHeaderView"
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
 
     // MARK: - Life Cycle
 
@@ -33,7 +36,7 @@ final class KnowingViewController: HomeViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
+        setStatusBar(colorMode: ColorMode.dark)
         interactor?.loadData()
     }
 

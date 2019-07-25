@@ -110,6 +110,10 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
         return button
     }()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     // MARK: - Actions
 
     @objc func didPressBottomButton() {
@@ -174,7 +178,6 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBarStyle(.lightContent)
         guard let visionChoice = visionChoice else { return }
         loadNextQuestions(visionChoice)
         self.visionChoice = nil

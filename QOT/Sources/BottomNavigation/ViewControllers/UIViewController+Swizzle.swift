@@ -59,7 +59,21 @@ extension UIViewController {
         log("swizzled viewWillAppear: \(viewControllerName)", level: .info)
 
         refreshBottomNavigationItems()
+        setStatusBar(color: view.backgroundColor)
         self.viewWillAppearSwizzled(animated: animated)
+        self.setNeedsStatusBarAppearanceUpdate()
+    }
+
+    func setStatusBar(colorMode: ColorMode) {
+        setStatusBar(color: colorMode.background)
+    }
+
+    func setStatusBar(color: UIColor?) {
+        guard let statusBar = UIApplication.shared.statusBarView,
+            statusBar.responds(to: #selector(setter: UIView.backgroundColor)) else {
+                return
+        }
+        statusBar.backgroundColor = color
     }
 
     private func navigationNotificationBlock() -> (() -> Void)? {

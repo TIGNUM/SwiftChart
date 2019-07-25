@@ -21,6 +21,10 @@ final class ToolsCollectionsViewController: UIViewController {
         case sections
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.darkNot.statusBarStyle
+    }
+
     init(configure: Configurator<ToolsCollectionsViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
@@ -34,14 +38,13 @@ final class ToolsCollectionsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .sand
         setCustomBackButton()
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
+        setStatusBar(colorMode: ColorMode.darkNot)
         interactor?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setCustomBackButton()
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -164,7 +167,6 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                 guard
                     let videoTool = interactor?.videoTools[indexPath.row],
                     let videoURL = videoTool.mediaURL else { return }
-                UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
                 stream(videoURL: videoURL, contentItem: nil, pageName: PageName.learnContentItemFull) // TODO Set correct pageName
             } else if tool?.type == "pdf" {
                 if let pdfURL = tool?.mediaURL {

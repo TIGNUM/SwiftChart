@@ -40,9 +40,19 @@ extension DailyCheckinQuestionsInteractor: DailyCheckinQuestionsInteractorInterf
         return worker.questions
     }
 
+    var answeredQuestionCount: Int {
+        return worker.questions.compactMap({ (question) -> Int? in
+            question.selectedAnswerIndex
+        }).count
+    }
+
     func saveAnswers() {
         worker.saveAnswers {[weak self] in
             self?.router.dismiss()
         }
+    }
+
+    func dismiss() {
+        router.dismiss()
     }
 }

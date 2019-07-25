@@ -36,7 +36,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
-    static var currentStatusBarStyle: UIStatusBarStyle?
     lazy var logoutNotificationHandler = NotificationHandler(name: .logoutNotification)
     lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar()
     lazy var tabBarCoordinator: TabBarCoordinator? = {
@@ -314,14 +313,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 self.navigate(to: destination)
             }
         }
-        AppCoordinator.updateStatusBarStyleIfNeeded()
-    }
-
-    static func updateStatusBarStyleIfNeeded() {
-        if let statusBarStyle = AppCoordinator.currentStatusBarStyle {
-            UIApplication.shared.setStatusBarStyle(statusBarStyle)
-            AppCoordinator.currentStatusBarStyle = nil
-        }
     }
 
     func sendLocationUpdate(location: CLLocation) {
@@ -490,7 +481,6 @@ extension AppCoordinator: NavigationItemDelegate {
         topTabBarController?.dismiss(animated: true) {
             self.windowManager.resignWindow(atLevel: .priority)
         }
-        AppCoordinator.updateStatusBarStyleIfNeeded()
     }
 
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {
@@ -751,7 +741,6 @@ extension AppCoordinator {
                                                   content: ContentCollection,
                                                   category: ContentCategory,
                                                   guideItem: Guide.Item? = nil) {
-        AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
         let presentationManager = ContentItemAnimator(originFrame: UIScreen.main.bounds)
         // FIXME: we shouldn't really init a coordinator just to get some child content
         let coordinator = LearnContentItemCoordinator(root: UIViewController(),
@@ -1067,7 +1056,6 @@ extension AppCoordinator {
                 .objects(DailyPrepResultObject.self)
                 .filter("isoDate == %@", date.string)
                 .count == 0 {
-                AppCoordinator.currentStatusBarStyle = UIApplication.shared.statusBarStyle
                 let configurator = MorningInterviewConfigurator.make(questionGroupID: groupID, date: date)
                 guard
                     let navController = R.storyboard.morningInterviewViewController.instantiateInitialViewController(),

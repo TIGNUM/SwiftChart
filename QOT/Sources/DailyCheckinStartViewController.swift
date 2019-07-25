@@ -21,11 +21,20 @@ final class DailyCheckinStartViewController: UIViewController {
     private var buttonTitle: String = ""
     var interactor: DailyCheckinStartInteractorInterface?
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.darkNot.statusBarStyle
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         dotsLoadingView.configure(dotsColor: .carbonDark)
         dotsLoadingView.startAnimation()
         interactor?.viewDidLoad()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        setStatusBar(colorMode: ColorMode.darkNot)
     }
 
     override func viewDidAppear(_ animated: Bool) {

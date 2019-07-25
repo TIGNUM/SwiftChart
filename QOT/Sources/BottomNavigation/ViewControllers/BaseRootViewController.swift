@@ -26,6 +26,10 @@ final class BaseRootViewController: UIViewController, ScreenZLevelBottom {
 
     internal var audioPlayerBar = AudioPlayerBar.instantiateFromNib()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         baseRootViewController = self

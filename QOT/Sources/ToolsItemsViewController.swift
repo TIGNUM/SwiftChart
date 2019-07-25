@@ -22,6 +22,11 @@ final class ToolsItemsViewController: UIViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     var interactor: ToolsItemsInteractorInterface?
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.darkNot.statusBarStyle
+    }
+
     private enum CellType: Int, CaseIterable {
         case header = 0
         case sections
@@ -47,7 +52,7 @@ final class ToolsItemsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setCustomBackButton()
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
+        setStatusBar(colorMode: ColorMode.darkNot)
     }
 
     override func viewDidLayoutSubviews() {
@@ -151,7 +156,6 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
                 let videoTool = interactor?.tools[indexPath.row],
                 let videoURL = videoTool.mediaURL else { return }
             stream(videoURL: videoURL, contentItem: nil, pageName: PageName.learnContentItemFull) // TODO Set correct pageName
-            UIApplication.shared.setStatusBar(colorMode: ColorMode.dark)
         case ToolType.audio.rawValue:
             let media = MediaPlayerModel(title: tool?.title ?? "",
                                          subtitle: tool?.categoryTitle ?? "",

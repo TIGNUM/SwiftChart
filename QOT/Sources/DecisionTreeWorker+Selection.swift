@@ -116,7 +116,7 @@ extension DecisionTreeWorker {
                 interactor?.openRecoveryResults()
                 return
             }
-        case .prepareIntensions:
+        case .prepareIntentions:
             didUpdatePrepareIntentions(decisionTree?.selectedAnswers ?? [])
             interactor?.trackUserEvent(nil, .CLOSE, .TAP)
             interactor?.dismiss()

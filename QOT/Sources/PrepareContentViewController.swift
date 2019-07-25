@@ -52,6 +52,10 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
         return view
     }()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Date().isNight ? .lightContent : .default
+    }
+
     // MARK: - Life Cycle
 
     init(viewModel: PrepareContentViewModel,
@@ -77,7 +81,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         progressHUD?.hide(animated: true)
-        UIApplication.shared.setStatusBarStyle(Date().isNight ? .lightContent : .default)
         tableView.reloadData()
     }
 

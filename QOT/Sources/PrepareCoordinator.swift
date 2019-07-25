@@ -354,7 +354,6 @@ extension PrepareCoordinator: PrepareContentViewControllerDelegate {
 
     func didTapClose(in viewController: PrepareContentViewController) {
         viewController.dismiss(animated: true, completion: nil)
-        UIApplication.shared.setStatusBarStyle(.lightContent)
         chatDecisionManager.addQuestions()
     }
 

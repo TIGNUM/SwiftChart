@@ -16,6 +16,9 @@ final class ToolsViewController: UIViewController {
     var interactor: ToolsInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
     private var toolModel: ToolModel?
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.darkNot.statusBarStyle
+    }
     private enum CellType: Int, CaseIterable {
         case header = 0
         case sections
@@ -33,7 +36,7 @@ final class ToolsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .sand
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
+        setStatusBar(colorMode: ColorMode.darkNot)
         setCustomBackButton()
         interactor?.viewDidLoad()
     }

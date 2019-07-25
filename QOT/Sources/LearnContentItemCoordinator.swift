@@ -124,11 +124,6 @@ extension LearnContentItemCoordinator: NavigationItemDelegate {
 
     func navigationItem(_ navigationItem: NavigationItem, leftButtonPressed button: UIBarButtonItem) {
         topTabBarController.dismiss(animated: true, completion: nil)
-        if AppCoordinator.currentStatusBarStyle != nil {
-            AppCoordinator.updateStatusBarStyleIfNeeded()
-        } else {
-            UIApplication.shared.setStatusBarStyle(.lightContent)
-        }
     }
 
     func navigationItem(_ navigationItem: NavigationItem, middleButtonPressedAtIndex index: Int, ofTotal total: Int) {

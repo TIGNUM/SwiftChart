@@ -208,6 +208,10 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
                 textScaleBarButtonItem]
     }()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return colorMode.statusBarStyle
+    }
+
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
@@ -227,7 +231,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        UIApplication.shared.setStatusBar(colorMode: ColorMode.darkNot)
+        setStatusBar(colorMode: ColorMode.darkNot)
     }
 }
 
@@ -264,10 +268,9 @@ private extension ArticleViewController {
     }
 
     func setColorMode() {
-        UIApplication.shared.setStatusBarStyle(colorMode.statusBarStyle)
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.apercuMedium(ofSize: 20),
                                                             .foregroundColor: colorMode.text]
-        UIApplication.shared.setStatusBar(colorMode: colorMode)
+        setStatusBar(colorMode: colorMode)
         navigationController?.navigationBar.barTintColor = colorMode.background
         view.backgroundColor = colorMode.background
         tableView.backgroundColor = colorMode.background
@@ -278,6 +281,7 @@ private extension ArticleViewController {
                                            fadeColor: colorMode.fade)
         audioButton.setColorMode()
         view.bringSubview(toFront: audioButton)
+        refreshBottomNavigationItems()
     }
 
     func updateMoreButton(customView: UIView?) {

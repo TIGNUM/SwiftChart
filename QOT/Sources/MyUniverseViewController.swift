@@ -114,6 +114,10 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
         }
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     init(config: Config, viewData: MyUniverseViewData, pageTracker: PageTracker) {
         self.config = config
         self.viewData = viewData
@@ -133,7 +137,6 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBarStyle(.lightContent)
         reload()
     }
 

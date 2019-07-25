@@ -17,11 +17,11 @@ final class DailyCheckinQuestionsViewController: UIViewController {
     @IBOutlet private weak var pageIndicatorView: UIView!
     @IBOutlet private weak var backButton: UIButton!
 
+    var isDoneButtonEnabled: Bool = false
     var interactor: DailyCheckinQuestionsInteractorInterface?
     private var pageController: UIPageViewController?
     private var nextPageTimer: Timer?
     private let pageIndicator = MyToBeVisionPageComponentView()
-    private var isLastPage: Bool = false
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,8 +43,21 @@ final class DailyCheckinQuestionsViewController: UIViewController {
         pageController?.view.frame = pageContainerView.frame
     }
 
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItem()]
+    }
+
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return isLastPage == true ? generateBottomNavigationBarForView() : nil
+        guard isDoneButtonEnabled else {
+            return []
+        }
+        var backgroundColor = UIColor.carbonDark.withAlphaComponent(0.5)
+            backgroundColor = .carbonDark
+        return [roundedBarButtonItem(title: R.string.localized.questionnaireViewControllerDoneButton(),
+                                     buttonWidth: .Done,
+                                     action: #selector(doneAction),
+                                     backgroundColor: backgroundColor,
+                                     borderColor: .clear)]
     }
 }
 
@@ -144,15 +157,13 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
         }
     }
 
-    private func generateBottomNavigationBarForView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: R.string.localized.questionnaireViewControllerDoneButton(),
-                                     buttonWidth: .Done,
-                                     action: #selector(doneAction),
-                                     backgroundColor: .carbonDark,
-                                     borderColor: .clear)]
+    @objc override public func didTapDismissButton() {
+        trackUserEvent(.CLOSE, action: .TAP)
+        interactor?.dismiss()
     }
 
     @objc private func doneAction() {
+        guard isDoneButtonEnabled else { return }
         trackUserEvent(.CONFIRM, valueType: "DailyCheckin.SaveAnswers", action: .TAP)
         interactor?.saveAnswers()
     }
@@ -189,8 +200,7 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         if index == NSNotFound { return }
         pageIndicator.currentPageIndex = index
         backButton.isHidden = index < 1
-        let questionsCount = interactor?.questions.count ?? 0
-        isLastPage = index == (questionsCount - 1)
+        isDoneButtonEnabled = interactor?.questions.count ?? 0 == interactor?.answeredQuestionCount
         refreshBottomNavigationItems()
     }
 
@@ -204,6 +214,8 @@ extension DailyCheckinQuestionsViewController: QuestionnaireAnswer {
         if index == NSNotFound { return }
         interactor?.questions[index].selectedAnswerIndex = answer
         trackUserEvent(.SELECT, value: answer, valueType: "DailyCheckin.RateQuestion", action: .SWIPE)
+        isDoneButtonEnabled = interactor?.questions.count ?? 0 == interactor?.answeredQuestionCount
+        refreshBottomNavigationItems()
         guard let nextViewController = next(from: viewController) else {
             return
         }

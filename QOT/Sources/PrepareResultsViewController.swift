@@ -25,6 +25,9 @@ final class PrepareResultsViewController: UIViewController {
     var interactor: PrepareResultsInteractorInterface?
     private var showDone: Bool = false
     private var resultView: PrepareResultsInfoView?
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.darkNot.statusBarStyle
+    }
 
     private lazy var tableView: UITableView = {
         return UITableView(style: .grouped, delegate: self, dataSource: self)
@@ -238,7 +241,7 @@ extension PrepareResultsViewController: UITableViewDelegate, UITableViewDataSour
         case .strategy(_, _, let readMoreID):
             interactor?.presentRelatedArticle(readMoreID: readMoreID)
         case .intentionContentItem(_, _, let key):
-            interactor?.presentEditIntensions(key)
+            interactor?.presentEditIntentions(key)
         case .benefitContentItem(_, _, let benefits, let questionID):
             interactor?.presentEditBenefits(benefits: benefits, questionID: questionID)
         default:

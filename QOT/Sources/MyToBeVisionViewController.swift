@@ -59,6 +59,10 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         }
     }
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     // MARK: - Lifecycle
 
     init(configurator: Configurator<MyToBeVisionViewController>, eventTracker: EventTracker? = nil) {
@@ -112,7 +116,6 @@ final class MyToBeVisionViewController: UIViewController, FullScreenLoadable, Pa
         syncEditingViews(true)
         updateContainerHeight()
         syncShareButton()
-        UIApplication.shared.setStatusBarStyle(.lightContent)
     }
 
     override func viewWillDisappear(_ animated: Bool) {

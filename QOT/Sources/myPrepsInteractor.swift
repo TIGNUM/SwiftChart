@@ -101,6 +101,5 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         let configurator = PrepareResultsConfigurator.configurate(item, [], canDelete: true)
         let controller = PrepareResultsViewController(configure: configurator)
         viewController.present(controller, animated: true)
-        UIApplication.shared.setStatusBar(colorMode: .darkNot)
     }
 }

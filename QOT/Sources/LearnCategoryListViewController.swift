@@ -39,6 +39,10 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
         return collectionView
     }()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return ColorMode.dark.statusBarStyle
+    }
+
     // MARK: - Init
 
     init(viewModel: LearnCategoryListViewModel) {
@@ -71,7 +75,6 @@ final class LearnCategoryListViewController: UIViewController, PageViewControlle
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBarStyle(.lightContent)
         learnCategoryLayout.centerCollectionView()
         collectionView.reloadData()
     }

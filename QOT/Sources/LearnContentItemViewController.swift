@@ -61,6 +61,9 @@ final class LearnContentItemViewController: UIViewController {
                                        ErrorCell.self)
     }()
 
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return Date().isNight ? .lightContent : .default
+    }
     // MARK: Init
 
     init(viewModel: LearnContentItemViewModel, tabType: TabType) {
@@ -90,7 +93,6 @@ final class LearnContentItemViewController: UIViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        UIApplication.shared.setStatusBarStyle(Date().isNight ? .lightContent : .default)
         itemTableView.reloadData()
     }
 

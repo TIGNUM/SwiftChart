@@ -255,7 +255,7 @@
 "Prepare.Subtitle.Learn.More" = "LEARN MORE";
 "Prepare.header.before.and.after" = "BEFORE AND AFTER";
 "Prepare.header.preparation.list" = "PREPARATION LIST";
-"Prepare.header.your.intensions" = "YOUR INTENTIONS";
+"Prepare.header.your.intentions" = "YOUR INTENTIONS";
 "Prepare.header.reflect.on.success" = "REFLECT ON SUCCESS";
 "Prepare.edit.preparation.list" = "EDIT PREPARATION LIST";
 
@@ -576,3 +576,6 @@
 
 "MyToBeVisionTitlePlaceholder" = "MY HEADLINE";
 "MyToBeVisionDescriptionPlaceholder" = "My TO BE VISION";
+
+"DailyCheckIn.SleepQuantity.Value.Suffix" = " h";
+"DailyCheckIn.SleepQuantity.Value.Suffix.Max" = " h/more";
