@@ -16,4 +16,5 @@ extension Notification.Name {
      NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
      */
     static let updateBottomNavigation = Notification.Name("updateBottomNavigation")
+    static let didTabDismissBottomNavigation = Notification.Name("didTabDismissBottomNavigation")
 }

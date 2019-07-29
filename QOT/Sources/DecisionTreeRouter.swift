@@ -33,11 +33,16 @@ final class DecisionTreeRouter {
 // MARK: - DecisionTreeRouterInterface
 extension DecisionTreeRouter: DecisionTreeRouterInterface {
     func openArticle(with contentID: Int) {
-        AppDelegate.current.appCoordinator.presentLearnContentItems(contentID: contentID)
+        if let controller = R.storyboard.main()
+            .instantiateViewController(withIdentifier: R.storyboard.main.qotArticleViewController.identifier) as? ArticleViewController {
+            ArticleConfigurator.configure(selectedID: contentID, viewController: controller)
+            viewController.present(controller, animated: true, completion: nil)
+        }
     }
 
     func openVideo(from url: URL) {
         viewController.stream(videoURL: url, contentItem: nil, pageName: .about)
+        viewController.updateBottomNavigation(leftItems: [], rightItems: [])
     }
 
     func openImagePicker() {

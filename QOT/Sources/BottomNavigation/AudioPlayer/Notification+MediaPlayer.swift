@@ -28,3 +28,8 @@ extension Notification.Name {
     static let showAudioFullScreen = Notification.Name("showAudioFullScreen")
     static let hideAudioFullScreen = Notification.Name("dismissAudioFullScreen")
 }
+
+// MARK: - AVPlayerViewController
+extension Notification.Name {
+    static let willDismissPlayerController = Notification.Name("willDismissPlayerController")
+}

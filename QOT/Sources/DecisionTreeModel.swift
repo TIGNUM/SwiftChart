@@ -25,11 +25,11 @@ enum DecisionTreeType {
     var introKey: String {
         switch self {
         case .toBeVisionGenerator:
-            return QuestionKey.ToBeVision.intro.rawValue
+            return QuestionKey.ToBeVision.Intro
         case .mindsetShifter:
-            return QuestionKey.MindsetShifter.intro.rawValue
+            return QuestionKey.MindsetShifter.Intro
         case .mindsetShifterTBV:
-            return QuestionKey.MindsetShifterTBV.intro.rawValue
+            return QuestionKey.MindsetShifterTBV.Intro
         case .prepare:
             return QuestionKey.Prepare.Intro
         case .prepareIntentions(_, _, let key, _):
@@ -37,11 +37,11 @@ enum DecisionTreeType {
         case .prepareBenefits(let benefits, let questionId, let delegate):
             return ""
         case .solve:
-            return QuestionKey.Solve.intro.rawValue
+            return QuestionKey.Solve.Intro
         case .recovery:
             return QuestionKey.Recovery.intro.rawValue
         case .sprint:
-            return QuestionKey.Sprint.intro.rawValue
+            return QuestionKey.Sprint.Intro
         case .sprintReflection:
             return QuestionKey.SprintReflection.Intro
         }
@@ -103,7 +103,8 @@ extension QDMQuestion {
     var hasTypingAnimation: Bool {
         get {
             switch key {
-            case QuestionKey.Sprint.intro.rawValue?:
+            case QuestionKey.Sprint.Intro,
+                 QuestionKey.ToBeVision.Create:
                 return true
             default:
                 return false

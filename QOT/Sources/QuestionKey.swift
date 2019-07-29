@@ -24,33 +24,33 @@ enum QuestionKey {
         }
     }
 
-    enum ToBeVision: String {
-        case intro = "tbv-generator-key-intro"
-        case instructions = "tbv-generator-key-instructions"
-        case home = "tbv-generator-key-home"
-        case work = "tbv-generator-key-work"
-        case next = "tbv-generator-key-next"
-        case create = "tbv-generator-key-create"
-        case picture = "tbv-generator-key-picture"
-        case review = "tbv-generator-key-review"
+    struct ToBeVision {
+        static let Intro = "tbv-generator-key-intro"
+        static let Instructions = "tbv-generator-key-instructions"
+        static let Home = "tbv-generator-key-home"
+        static let Work = "tbv-generator-key-work"
+        static let Next = "tbv-generator-key-next"
+        static let Create = "tbv-generator-key-create"
+        static let Picture = "tbv-generator-key-picture"
+        static let Review = "tbv-generator-key-review"
     }
 
-    enum MindsetShifter: String {
-        case intro = "mindsetshifter-key-intro"
-        case openTBV = "mindsetshifter-open-tbv"
-        case showTBV = "mindsetshifter-show-tbv"
-        case check = "mindsetshifter-check-plan"
-        case moreInfo = "mindsetshifter-key-moreinfo"
-        case gutReactions = "mindsetshifter-key-gut-reactions"
-        case lowSelfTalk = "mindset-low-impact-self-talk"
-        case lowPerformanceTalk = "mindsetshifter-key-low-performance-talk"
+    struct MindsetShifter {
+        static let Intro = "mindsetshifter-key-intro"
+        static let OpenTBV = "mindsetshifter-open-tbv"
+        static let ShowTBV = "mindsetshifter-show-tbv"
+        static let Check = "mindsetshifter-check-plan"
+        static let MoreInfo = "mindsetshifter-key-moreinfo"
+        static let GutReactions = "mindsetshifter-key-gut-reactions"
+        static let LowSelfTalk = "mindset-low-impact-self-talk"
+        static let LowPerformanceTalk = "mindsetshifter-key-low-performance-talk"
     }
 
-    enum MindsetShifterTBV: String {
-        case intro = "mindsetshifter-tbv-generator-key-intro"
-        case work = "mindsetshifter-tbv-generator-key-work"
-        case home = "mindsetshifter-tbv-generator-key-home"
-        case review = "mindsetshifter-tbv-generator-key-review"
+    struct MindsetShifterTBV {
+        static let Intro = "mindsetshifter-tbv-generator-key-intro"
+        static let Work = "mindsetshifter-tbv-generator-key-work"
+        static let Home = "mindsetshifter-tbv-generator-key-home"
+        static let Review = "mindsetshifter-tbv-generator-key-review"
     }
 
     struct Prepare {
@@ -65,10 +65,15 @@ enum QuestionKey {
         static let SelectExisting = "prepare_previous_preps_selection"
     }
 
-    enum Solve: String {
-        case intro = "solve-key-intro"
-        case help = "solve-key-help"
-        case sleepDeprivation = "solve-key-sleep-deprivation"
+    struct Solve {
+        static let Intro = "solve-key-intro"
+        static let Help = "solve-key-help"
+        static let SleepDeprivation = "solve-key-sleep-deprivation"
+        static let Nutrition = "solve-key-nutrition"
+        static let MovementPlan = "solve-key-movement-plan"
+        static let Ready = "solve-key-ready"
+        static let Dive = "solve-key-dive"
+        static let DiveNutritionMindset = "solve-key-dive-nutrition-mindset"
     }
 
     enum Recovery: String {
@@ -77,12 +82,12 @@ enum QuestionKey {
         case loading = "3drecovery-question-generate-recovery-loading"
     }
 
-    enum Sprint: String {
-        case intro = "sprint-key-intro"
-        case introContinue = "sprint-key-intro-continue"
-        case selection = "sprint-key-sprint-selection"
-        case schedule = "sprint-key-schedule"
-        case last = "sprint-key-last-question"
+    struct Sprint {
+        static let Intro = "sprint-key-intro"
+        static let IntroContinue = "sprint-key-intro-continue"
+        static let Selection = "sprint-key-sprint-selection"
+        static let Schedule = "sprint-key-schedule"
+        static let Last = "sprint-key-last-question"
     }
 
     struct SprintReflection {

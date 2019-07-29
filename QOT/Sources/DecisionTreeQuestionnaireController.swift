@@ -299,7 +299,7 @@ extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate
 extension DecisionTreeQuestionnaireViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         switch question.key {
-        case QuestionKey.Sprint.last.rawValue,
+        case QuestionKey.Sprint.Last,
              QuestionKey.SprintReflection.Review:
             return nil
         default:
@@ -317,10 +317,10 @@ extension DecisionTreeQuestionnaireViewController {
                                          buttonWidth: .DecisionTree,
                                          action: #selector(presentAddEventController),
                                          backgroundColor: .carbonDark)]
-        case QuestionKey.Recovery.loading.rawValue?,
-             QuestionKey.Sprint.introContinue.rawValue?,
-             QuestionKey.MindsetShifterTBV.review.rawValue?,
-             QuestionKey.Sprint.last.rawValue?,
+        case QuestionKey.Recovery.loading.rawValue,
+             QuestionKey.Sprint.IntroContinue,
+             QuestionKey.MindsetShifterTBV.Review,
+             QuestionKey.Sprint.Last,
              QuestionKey.SprintReflection.Intro,
              QuestionKey.Prepare.ShowTBV:
             let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
@@ -338,7 +338,8 @@ extension DecisionTreeQuestionnaireViewController {
             let leftButtomItem = roundedBarButtonItem(title: titleLeft,
                                                       buttonWidth: .DoItLater,
                                                       action: #selector(didTapDoItLater),
-                                                      backgroundColor: .clear)
+                                                      backgroundColor: .clear,
+                                                      borderColor: .accent)
             let rightButtomItem = roundedBarButtonItem(title: titleRight,
                                                        buttonWidth: .TrackTBV,
                                                        action: #selector(didTapTrackTBV),

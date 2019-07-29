@@ -11,12 +11,28 @@ import Anchorage
 import AVFoundation
 import AVKit
 
+final class MediaPlayerViewController: AVPlayerViewController {
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                  rightBarButtonItems: [],
+                                                  backgroundColor: .clear)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+    }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        NotificationCenter.default.post(.init(name: .willDismissPlayerController))
+    }
+}
+
 extension UIViewController {
 
     @discardableResult
-    func stream(videoURL: URL, contentItem: ContentItem?, pageName: PageName) -> AVPlayerViewController {
+    func stream(videoURL: URL, contentItem: ContentItem?, pageName: PageName) -> MediaPlayerViewController {
+        UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
         let player = AVPlayer(url: videoURL)
-        let playerController = AVPlayerViewController(pageName: pageName, contentItem: contentItem)
+        let playerController = MediaPlayerViewController(pageName: pageName, contentItem: contentItem)
         playerController.player = player
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)

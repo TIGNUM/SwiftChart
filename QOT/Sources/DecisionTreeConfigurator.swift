@@ -17,7 +17,7 @@ final class DecisionTreeConfigurator {
             let interactor = DecisionTreeInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
             worker.interactor = interactor
-            worker.fetchToBeVision() // if needed……
+            worker.fetchToBeVision()
         }
     }
 }

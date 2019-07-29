@@ -27,38 +27,30 @@ extension DecisionTreeWorker {
             return
         }
 
-        switch currentQuestion?.key {
-        case QuestionKey.Prepare.BuildCritical,
-             QuestionKey.MindsetShifter.showTBV.rawValue:
-            if let targetQuestionId = answer.targetId(.question) {
-                showTBV(targetQuestionId: targetQuestionId)
-            }
-        case QuestionKey.Prepare.EventTypeSelectionDaily:
-            prepareEventType = answer.subtitle ?? ""
-        case QuestionKey.Sprint.schedule.rawValue:
-            handleSprintScheduling(answer)
-        case QuestionKey.Prepare.EventTypeSelectionCritical:
-            setTargetContentID(for: answer)
-            prepareEventType = answer.subtitle ?? ""
-        case QuestionKey.Recovery.syntom.rawValue:
-            updateRecoveryModel(fatigueAnswerId: currentQuestion?.answers.first?.remoteID ?? 0,
-                                answer.remoteID ?? 0,
-                                answer.targetId(.content) ?? 0)
-        case QuestionKey.Solve.help.rawValue
-            where answer.keys.contains(AnswerKey.Solve.letsDoIt.rawValue) || answer.keys.contains(AnswerKey.Solve.openResult.rawValue):
-            interactor?.openSolveResults(from: answer, type: .solve)
-        default:
-            break
-        }
+        switch type {
+        case .recovery,
+             .sprint:
+            handleSelectionSprint(answer)
 
-        if let targetQuestionId = answer.targetId(.question) {
-            showNextQuestion(targetId: targetQuestionId)
-        } else if let contentId = answer.targetId(.content) {
-            showResultView(for: answer, contentID: contentId)
-        } else if let contentItemID = answer.targetId(.contentItem) {
-            interactor?.streamContentItem(with: contentItemID)
-        } else if answer.keys.contains(AnswerKey.ToBeVision.uploadImage.rawValue) {
-            interactor?.openImagePicker()
+        case .mindsetShifter:
+            handleSelectionMindsetShifter(answer)
+
+        case .mindsetShifterTBV:
+            handleSelectionTBVGeneratorShort(answer)
+
+        case .prepare,
+             .prepareBenefits,
+             .prepareIntentions:
+            handleSelectionPrepare(answer)
+
+        case .solve:
+            handleSelectionSolve(answer)
+
+        case .toBeVisionGenerator:
+            handleSelectionTBVGenerator(answer)
+
+        case .sprintReflection:
+            return
         }
     }
 
@@ -90,6 +82,10 @@ extension DecisionTreeWorker {
             decisionTree?.add(selection)
             notifyCounterChanged(with: multiSelectionCounter)
         }
+    }
+
+    @objc func showNextQuestionAfterMediaPlayerWillDismiss() {
+        showNextQuestion(targetId: nextQuestionId, answer: nil)
     }
 
     func showNextQuestion(targetId: Int = 0, answer: QDMAnswer? = nil) {
@@ -136,7 +132,7 @@ extension DecisionTreeWorker {
                 break
             }
         case .sprint:
-            if currentQuestion?.key == QuestionKey.Sprint.introContinue.rawValue {
+            if currentQuestion?.key == QuestionKey.Sprint.IntroContinue {
                 nextQuestion()
                 return
             }
@@ -158,23 +154,24 @@ extension DecisionTreeWorker {
             break
         }
         if currentQuestion?.answerType == AnswerType.lastQuestion.rawValue ||
-            currentQuestion?.key == QuestionKey.MindsetShifterTBV.review.rawValue {
+            currentQuestion?.key == QuestionKey.MindsetShifterTBV.Review {
             interactor?.dismiss()
         } else if currentQuestion?.key == QuestionKey.Prepare.BenefitsInput,
             let answer = currentQuestion?.answers.first {
                 handleSingleSelection(for: answer)
         } else {
             switch currentQuestion?.key {
-            case QuestionKey.MindsetShifter.openTBV.rawValue:
+            case QuestionKey.MindsetShifter.OpenTBV:
                 interactor?.openShortTBVGenerator(completion: nil)
-            case QuestionKey.MindsetShifter.check.rawValue:
+            case QuestionKey.MindsetShifter.Check:
                 interactor?.openMindsetShifterChecklist(from: decisionTreeAnswers)
-            case QuestionKey.ToBeVision.create.rawValue,
-                 QuestionKey.ToBeVision.review.rawValue:
+            case QuestionKey.ToBeVision.Create,
+                 QuestionKey.ToBeVision.Review:
                 interactor?.toBeVisionDidChange()
                 interactor?.dismiss()
             default: break
             }
+
             getNextQuestion(answer: decisionTree?.selectedAnswers.last?.answer) { [weak self] (node) in
                 self?.showQuestion(node)
                 self?.updateMultiSelectionCounter()
@@ -211,6 +208,149 @@ private extension DecisionTreeWorker {
                                      selectedAnswers: selectedAnswers,
                                      direction: .forward,
                                      animated: false)
+        }
+    }
+}
+
+private extension DecisionTreeWorker {
+    func showNextQuestionIfExist(_ answer: QDMAnswer) {
+        if let targetQuestionId = answer.targetId(.question) {
+            showNextQuestion(targetId: targetQuestionId)
+        }
+    }
+}
+
+// MARK: - Sprint Selection
+private extension DecisionTreeWorker {
+    func handleSelectionSprint(_ answer: QDMAnswer) {
+        switch currentQuestion?.key {
+        case QuestionKey.Sprint.Intro,
+             QuestionKey.Sprint.IntroContinue,
+             QuestionKey.Sprint.Last,
+             QuestionKey.Sprint.Selection:
+            showNextQuestionIfExist(answer)
+        case QuestionKey.Sprint.Schedule:
+            handleSprintScheduling(answer)
+        default:
+            return
+        }
+    }
+}
+
+// MARK: - Prepare
+private extension DecisionTreeWorker {
+    func handleSelectionPrepare(_ answer: QDMAnswer) {
+        switch currentQuestion?.key {
+        case QuestionKey.Prepare.Intro:
+            if answer.keys.contains(AnswerKey.Prepare.OpenCheckList) {
+                if let contentId = answer.targetId(.content) {
+                    showResultView(for: answer, contentID: contentId)
+                }
+            } else {
+                showNextQuestionIfExist(answer)
+            }
+
+        case QuestionKey.Prepare.BuildCritical:
+            if let targetQuestionId = answer.targetId(.question) {
+                showTBV(targetQuestionId: targetQuestionId)
+            }
+
+        case QuestionKey.Prepare.EventTypeSelectionCritical:
+            setTargetContentID(for: answer)
+            prepareEventType = answer.subtitle ?? ""
+            if let targetQuestionId = answer.targetId(.question) {
+                showNextQuestion(targetId: targetQuestionId)
+                return
+            }
+
+        case QuestionKey.Prepare.EventTypeSelectionDaily:
+            prepareEventType = answer.subtitle ?? ""
+            if let contentId = answer.targetId(.content) {
+                showResultView(for: answer, contentID: contentId)
+            }
+
+        case QuestionKey.Prepare.BenefitsInput:
+            if let contentId = answer.targetId(.content) {
+                showResultView(for: answer, contentID: contentId)
+            }
+        case QuestionKey.Prepare.BuildCritical,
+             QuestionKey.Prepare.CalendarEventSelectionCritical,
+             QuestionKey.Prepare.CalendarEventSelectionDaily,
+             QuestionKey.Prepare.EventTypeSelectionCritical,
+             QuestionKey.Prepare.SelectExisting,
+             QuestionKey.Prepare.ShowTBV:
+            showNextQuestionIfExist(answer)
+
+        default:
+            return
+        }
+    }
+}
+
+// MARK: - TBV Generator Short
+private extension DecisionTreeWorker {
+    func handleSelectionTBVGeneratorShort(_ answer: QDMAnswer) {
+        switch currentQuestion?.key {
+        case QuestionKey.MindsetShifterTBV.Home,
+             QuestionKey.MindsetShifterTBV.Intro,
+             QuestionKey.MindsetShifterTBV.Work,
+             QuestionKey.MindsetShifterTBV.Review:
+            showNextQuestionIfExist(answer)
+
+        default:
+            return
+        }
+    }
+}
+
+// MARK: - Solve
+private extension DecisionTreeWorker {
+    func handleSelectionSolve(_ answer: QDMAnswer) {
+        if answer.keys.contains(AnswerKey.Solve.letsDoIt.rawValue)
+            || answer.keys.contains(AnswerKey.Solve.openResult.rawValue) {
+                interactor?.openSolveResults(from: answer, type: .solve)
+        } else {
+            showNextQuestionIfExist(answer)
+        }
+    }
+}
+
+// MARK: - MindsetShifter
+private extension DecisionTreeWorker {
+    func handleSelectionMindsetShifter(_ answer: QDMAnswer) {
+        switch currentQuestion?.key {
+        case QuestionKey.MindsetShifter.ShowTBV:
+            if let targetQuestionId = answer.targetId(.question) {
+                showTBV(targetQuestionId: targetQuestionId)
+            }
+
+        default:
+            showNextQuestionIfExist(answer)
+        }
+    }
+}
+
+// MARK: - TBV Generator
+private extension DecisionTreeWorker {
+    func handleSelectionTBVGenerator(_ answer: QDMAnswer) {
+        switch currentQuestion?.key {
+        case QuestionKey.ToBeVision.Intro:
+            showNextQuestionIfExist(answer)
+        case QuestionKey.ToBeVision.Instructions:
+            if let contentItemID = answer.targetId(.contentItem) {
+                interactor?.streamContentItem(with: contentItemID)
+                if let targetQuestionId = answer.targetId(.question) {
+                    nextQuestionId = targetQuestionId
+                }
+            } else if let contentId = answer.targetId(.content) {
+                showResultView(for: answer, contentID: contentId)
+                if let targetQuestionId = answer.targetId(.question) {
+                    showNextQuestion(targetId: targetQuestionId)
+                }
+            }
+
+        default:
+            showNextQuestionIfExist(answer)
         }
     }
 }

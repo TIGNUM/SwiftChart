@@ -25,19 +25,23 @@ extension PrepareResultsWorker {
     func dailyItems(_ prepare: QDMUserPreparation, completion: @escaping ItemCompletion) {
         getContentItems(prepare.contentCollectionId ?? 0) { [weak self] contentItems in
             self?.getStrategyItems(prepare.strategyIds, self?.suggestedStrategyId) { strategyItems in
-                var items = [Int: [PrepareResultsType]]()
-                items[Prepare.Daily.HEADER] = self?.getHeaderItems(contentItems ?? [])
-                items[Prepare.Daily.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
-                items[Prepare.Daily.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
-                                                                       title: prepare.name ?? "",
-                                                                       type: prepare.eventType ?? "")
-                items[Prepare.Daily.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
-                items[Prepare.Daily.INTENTION_TITLES] = self?.getIntentionTitleItems(contentItems ?? [])
-                items[Prepare.Daily.STRATEGY_LIST] = [.contentItem(format: .list, title: "SUGGESTED STRATEGIES")]
-                items[Prepare.Daily.STRATEGY_ITEMS] = strategyItems
-                items[Prepare.Daily.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                items[Prepare.Daily.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink, prepare.setReminder)
-                completion(items)
+                self?.getEkEvent(completion: { ekEvent in
+                    var items = [Int: [PrepareResultsType]]()
+                    items[Prepare.Daily.HEADER] = self?.getHeaderItems(contentItems ?? [])
+                    items[Prepare.Daily.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
+                    items[Prepare.Daily.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
+                                                                           title: prepare.name ?? "",
+                                                                           type: prepare.eventType ?? "")
+                    items[Prepare.Daily.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
+                    items[Prepare.Daily.INTENTION_TITLES] = self?.getIntentionTitleItems(contentItems ?? [])
+                    items[Prepare.Daily.STRATEGY_LIST] = [.contentItem(format: .list, title: "SUGGESTED STRATEGIES")]
+                    items[Prepare.Daily.STRATEGY_ITEMS] = strategyItems
+                    items[Prepare.Daily.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
+                    items[Prepare.Daily.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink,
+                                                                                 prepare.setReminder,
+                                                                                 ekEvent: ekEvent)
+                    completion(items)
+                })
             }
         }
     }
@@ -51,35 +55,38 @@ extension PrepareResultsWorker {
                 self?.getSelectedIntentionItems(prepare.preceiveAnswerIds, .perceived, completion: { (perceivedItems) in
                     self?.getSelectedIntentionItems(prepare.knowAnswerIds, .know, completion: { (knowItems) in
                         self?.getSelectedIntentionItems(prepare.feelAnswerIds, .feel, completion: { (feelItems) in
-                            items[Prepare.Critical.HEADER] = self?.getHeaderItems(contentItems ?? [])
-                            items[Prepare.Critical.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
-                            items[Prepare.Critical.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
-                                                                                      title: prepare.name ?? "",
-                                                                                      type: prepare.eventType ?? "")
-                            items[Prepare.Critical.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
-                            items[Prepare.Critical.PERCEIVED_TITLE] = self?.getIntentionTitle(contentItems ?? [], .perceived)
-                            items[Prepare.Critical.PERCEIVED_ITEMS] = perceivedItems
+                            self?.getEkEvent(completion: { ekEvent in
+                                items[Prepare.Critical.HEADER] = self?.getHeaderItems(contentItems ?? [])
+                                items[Prepare.Critical.EVENT_LIST] = [.contentItem(format: .list, title: "EVENTS")]
+                                items[Prepare.Critical.EVENT_ITEMS] = self?.getEventItems(prepare.eventDate ?? Date(),
+                                                                                          title: prepare.name ?? "",
+                                                                                          type: prepare.eventType ?? "")
+                                items[Prepare.Critical.INTENTION_LIST] = [.contentItem(format: .list, title: "INTENTIONS")]
+                                items[Prepare.Critical.PERCEIVED_TITLE] = self?.getIntentionTitle(contentItems ?? [], .perceived)
+                                items[Prepare.Critical.PERCEIVED_ITEMS] = perceivedItems
 
-                            items[Prepare.Critical.KNOW_TITLE] = self?.getIntentionTitle(contentItems ?? [], .know)
-                            items[Prepare.Critical.KNOW_ITEMS] = knowItems
+                                items[Prepare.Critical.KNOW_TITLE] = self?.getIntentionTitle(contentItems ?? [], .know)
+                                items[Prepare.Critical.KNOW_ITEMS] = knowItems
 
-                            items[Prepare.Critical.FEEL_TITLE] = self?.getIntentionTitle(contentItems ?? [], .feel)
-                            items[Prepare.Critical.FEEL_ITEMS] = feelItems
+                                items[Prepare.Critical.FEEL_TITLE] = self?.getIntentionTitle(contentItems ?? [], .feel)
+                                items[Prepare.Critical.FEEL_ITEMS] = feelItems
 
-                            items[Prepare.Critical.BENEFIT_LIST] = [.contentItem(format: .list, title: "BENEFITS")]
-                            items[Prepare.Critical.BENEFIT_TITLE] = self?.getBenefitTitle(contentItems ?? [],
-                                                                                          .benefits,
-                                                                                          prepare.benefits)
-                            items[Prepare.Critical.BENEFITS] = [.benefitItem(benefits: prepare.benefits ?? "")]
+                                items[Prepare.Critical.BENEFIT_LIST] = [.contentItem(format: .list, title: "BENEFITS")]
+                                items[Prepare.Critical.BENEFIT_TITLE] = self?.getBenefitTitle(contentItems ?? [],
+                                                                                              .benefits,
+                                                                                              prepare.benefits)
+                                items[Prepare.Critical.BENEFITS] = [.benefitItem(benefits: prepare.benefits ?? "")]
 
-                            items[Prepare.Critical.STRATEGY_LIST] = [.contentItem(format: .list,
-                                                                                  title: "SUGGESTED STRATEGIES")]
-                            items[Prepare.Critical.STRATEGY_ITEMS] = strategyItems
+                                items[Prepare.Critical.STRATEGY_LIST] = [.contentItem(format: .list,
+                                                                                      title: "SUGGESTED STRATEGIES")]
+                                items[Prepare.Critical.STRATEGY_ITEMS] = strategyItems
 
-                            items[Prepare.Critical.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
-                            items[Prepare.Critical.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink,
-                                                                                            prepare.setReminder)
-                            completion(items)
+                                items[Prepare.Critical.REMINDER_LIST] = [.contentItem(format: .list, title: "REMINDERS")]
+                                items[Prepare.Critical.REMINDER_ITEMS] = self?.getReminderItems(prepare.setICalDeepLink,
+                                                                                             prepare.setReminder,
+                                                                                             ekEvent: ekEvent)
+                                completion(items)
+                            })
                         })
                     })
                 })
@@ -145,15 +152,19 @@ extension PrepareResultsWorker {
     }
 
     //TODO: no hardcoded strings
-    func getReminderItems(_ saveToICal: Bool, _ setReminder: Bool) -> [PrepareResultsType] {
-        return [.reminder(title: "SET REMINDER",
-                          subbtitle: "To help you remember planned events",
-                          active: setReminder,
-                          type: .reminder),
-                .reminder(title: "SAVE TO ICAL",
-                          subbtitle: "Save in your calendar events",
-                          active: saveToICal,
-                          type: .iCal)]
+    func getReminderItems(_ saveToICal: Bool, _ setReminder: Bool, ekEvent: EKEvent?) -> [PrepareResultsType] {
+        let setReminderItem = PrepareResultsType.reminder(title: "SET REMINDER",
+                                                          subbtitle: "To help you remember planned events",
+                                                          active: setReminder,
+                                                          type: .reminder)
+        let saveToIcalItem = PrepareResultsType.reminder(title: "SAVE TO ICAL",
+                                                         subbtitle: "Save in your calendar events",
+                                                         active: saveToICal,
+                                                         type: .iCal)
+        if ekEvent != nil {
+            return [setReminderItem, saveToIcalItem]
+        }
+        return [setReminderItem]
     }
 }
 

@@ -61,10 +61,6 @@ final class PrepareResultsWorker {
 
 // MARK: - Getter & Setter
 extension PrepareResultsWorker {
-//    var getCalendarEvent: QDMUserCalendarEvent? {
-//        return nil
-//    }
-
     var getEventType: String? {
         return preparation?.eventType
     }
@@ -112,7 +108,10 @@ extension PrepareResultsWorker {
 
     var saveToICal: Bool {
         get { return preparation?.setICalDeepLink ?? false }
-        set { preparation?.setICalDeepLink = newValue }
+        set {
+            preparation?.setICalDeepLink = newValue
+            updateCalendarEventLink(isOn: newValue)
+        }
     }
 
     var setReminder: Bool {
@@ -150,10 +149,47 @@ extension PrepareResultsWorker {
     func item(at indexPath: IndexPath) -> PrepareResultsType? {
         return items[indexPath.section]?[indexPath.row]
     }
+
+    func getEkEvent(completion: @escaping (EKEvent?) -> Void) {
+        qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events) in
+            let selectedEvent = events?.filter { $0.qotId == self?.preparation?.eventQotId ?? "" }.first
+            if let event = selectedEvent {
+                completion(EKEventStore.shared.event(with: event))
+            } else {
+                completion(nil)
+            }
+        }
+    }
 }
 
 // MARK: - Generate
 private extension PrepareResultsWorker {
+    func updateCalendarEventLink(isOn: Bool) {
+        getEkEvent { [weak self] (ekEvent) in
+            if isOn == true, let permissionsManager = AppCoordinator.appState.permissionsManager {
+                permissionsManager.askPermission(for: [.calendar], completion: { [weak self] status in
+                    guard let status = status[.calendar] else { return }
+                    switch status {
+                    case .granted:
+                        ekEvent?.addPreparationLink(preparationID: self?.preparation?.qotId ?? "")
+                    case .later:
+                        permissionsManager.updateAskStatus(.canAsk, for: .calendar)
+                    default:
+                        break
+                    }
+                })
+                ekEvent?.addPreparationLink(preparationID: self?.preparation?.qotId ?? "")
+            } else {
+                do {
+                    try ekEvent?.removePreparationLink()
+                } catch {
+                    qot_dal.log("Error while trying to remove link from event: \(error.localizedDescription)",
+                        level: .error)
+                }
+            }
+        }
+    }
+
     func setAnswerIdsIfNeeded(_ answers: [DecisionTreeModel.SelectedAnswer]) {
         if !answers.isEmpty {
             preceiveAnswerIds = filteredAnswers(.perceived, answers).compactMap { $0.answer.remoteID }

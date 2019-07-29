@@ -138,6 +138,10 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
     }
 
     func setupView() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(dismissView),
+                                               name: .didTabDismissBottomNavigation,
+                                               object: nil)
         view.addSubview(tableView)
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never
@@ -265,8 +269,10 @@ extension PrepareResultsViewController: PrepareResultsDelegatge {
 
     func didChangeReminderValue(for type: ReminderType, value isOn: Bool) {
         switch type {
-        case .iCal: interactor?.saveToICal = isOn
-        case .reminder: interactor?.setReminder = isOn
+        case .iCal:
+            interactor?.saveToICal = isOn
+        case .reminder:
+            interactor?.setReminder = isOn
         }
     }
 

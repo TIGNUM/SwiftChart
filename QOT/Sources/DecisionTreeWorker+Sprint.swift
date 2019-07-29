@@ -31,7 +31,7 @@ extension DecisionTreeWorker {
                                                       title: "A Sprint is already in progress",
                                                       text: "Looks like you have a sprint in progress that ends the 14.Jun.2019. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start To be vision anchors?")
                 } else {
-
+                    self?.createSprintAndStart(targetContentId)
                 }
             }
         }

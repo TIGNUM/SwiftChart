@@ -140,7 +140,6 @@ final class PermissionsManager {
     }
 
     // MARK: - private
-
     private func fetchDescriptions(completion: @escaping ([Permission.Identifier: String]) -> Void) {
         var authorizationStatusDescriptions = [Permission.Identifier: String]()
         let group = DispatchGroup()

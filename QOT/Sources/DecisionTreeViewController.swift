@@ -23,6 +23,7 @@ final class DecisionTreeViewController: UIViewController {
     var interactor: DecisionTreeInteractorInterface?
     private var pageController: UIPageViewController?
     private var continueButton = DecisionTreeButton(type: .custom)
+    private var currentTargetId: Int = 0
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
@@ -112,7 +113,7 @@ private extension DecisionTreeViewController {
                                  borderColor: .clear,
                                  titleColor: .accent)
         continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
-        updateBottomNavigation(rightItems: [continueButton.toBarButtonItem()])
+        updateBottomNavigation(leftItems: [dismissNavigationItem()], rightItems: [continueButton.toBarButtonItem()])
     }
 
     func setupTypingAnimation() {
@@ -186,7 +187,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
         continueButton.isHidden = continueButtonIsHidden
         continueButton.isUserInteractionEnabled = !continueButtonIsHidden
         continueButton.backgroundColor = backgroundColor
-        updateBottomNavigation(rightItems: [continueButton.toBarButtonItem()])
+        updateBottomNavigation(leftItems: [dismissNavigationItem()], rightItems: [continueButton.toBarButtonItem()])
     }
 
     func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?) {
@@ -194,7 +195,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
                               defaultTitle: defaultTitle ?? "",
                               confirmationTitle: confirmTitle ?? "",
                               maxSelections: maxSelections)
-        updateBottomNavigation(rightItems: [continueButton.toBarButtonItem()])
+        updateBottomNavigation(leftItems: [dismissNavigationItem()], rightItems: [continueButton.toBarButtonItem()])
     }
 
     func toBeVisionDidChange() {
@@ -204,10 +205,16 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
     @objc func animateNavigationButton() {
         continueButton.pulsate()
     }
+
+    func updateBottomNavigation(leftItems: [UIBarButtonItem], rightItems: [UIBarButtonItem]) {
+        let navigationItem = BottomNavigationItem(leftBarButtonItems: leftItems,
+                                                  rightBarButtonItems: rightItems,
+                                                  backgroundColor: .clear)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+    }
 }
 
 // MARK: - Private
-
 private extension DecisionTreeViewController {
     func questionnaireController(for question: QDMQuestion,
                                  extraAnswer: String?,
@@ -238,13 +245,6 @@ private extension DecisionTreeViewController {
                          direction: .reverse,
                          animated: false)
         }
-    }
-
-    func updateBottomNavigation(rightItems: [UIBarButtonItem]) {
-        let navigationItem = BottomNavigationItem(leftBarButtonItems: [dismissNavigationItem()],
-                                                  rightBarButtonItems: rightItems,
-                                                  backgroundColor: .clear)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
     }
 }
 
@@ -286,6 +286,8 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 
     func textCellDidAppear(targetID: Int) {
+        guard currentTargetId != targetID else { return }
+        currentTargetId = targetID
         DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) {
             NotificationCenter.default.post(name: .typingAnimationStart, object: nil)
             DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) {

@@ -35,12 +35,13 @@ final class DecisionTreeWorker {
     internal var newSprintContentId: Int?
     internal var lastSprintQuestionId: Int?
     internal var targetContentID: Int = 0
+    internal var nextQuestionId: Int = 0
     weak var prepareDelegate: PrepareResultsDelegatge?
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
 
     private var currentExtendedQuestion: DecisionTreeModel.ExtendedQuestion? {
-        return decisionTree?.extendedQuestions.at(index: pageIndex)
+        return decisionTree?.extendedQuestions.last
     }
 
     internal var currentQuestion: QDMQuestion? {
@@ -101,6 +102,7 @@ final class DecisionTreeWorker {
         default:
             break
         }
+        addObserver()
     }
 }
 
@@ -142,9 +144,9 @@ extension DecisionTreeWorker {
 extension DecisionTreeWorker {
     func previousQuestion() -> QDMQuestion? {
         guard pageIndex > 0 else { return nil }
-        pageIndex.minus(1)
         if pageIndex.advanced(by: -1) >= 0 {
-            return decisionTree?.extendedQuestions[pageIndex.advanced(by: -1)].question
+            pageIndex.minus(1)
+            return decisionTree?.extendedQuestions[pageIndex].question
         }
         return nil
     }
@@ -186,7 +188,7 @@ extension DecisionTreeWorker {
                 .filter { $0.contains(keyFilter) }
                 .first
         }
-        if currentQuestion?.key == QuestionKey.MindsetShifter.moreInfo.rawValue {
+        if currentQuestion?.key == QuestionKey.MindsetShifter.MoreInfo {
             let selectedAnswerTitle = decisionTree?.selectedAnswers.last?.answer.title?
                 .replacingOccurrences(of: " ", with: "_") ?? ""
             let relationshipKeys = decisionTree?.selectedAnswers
@@ -250,16 +252,18 @@ extension DecisionTreeWorker {
         let question = questions.filter { $0.remoteID == targetId }.first
         updateDecisionTree(from: nil, questionId: targetId)
         switch question?.key {
-        case QuestionKey.ToBeVision.create.rawValue,
-             QuestionKey.MindsetShifterTBV.review.rawValue:
+        case QuestionKey.ToBeVision.Create,
+             QuestionKey.MindsetShifterTBV.Review:
             createVision(from: decisionTreeAnswers) { (vision) in
                 completion((question, vision))
             }
-        case QuestionKey.MindsetShifter.showTBV.rawValue,
+
+        case QuestionKey.MindsetShifter.ShowTBV,
              QuestionKey.Prepare.ShowTBV:
             userService.getMyToBeVision { (vision, _, _) in
                 completion((question, vision?.text))
             }
+
         default:
             completion((question, nil))
         }
@@ -329,12 +333,13 @@ extension DecisionTreeWorker {
 
     func bottomNavigationRightBarItems(action: Selector) -> [UIBarButtonItem]? {
         switch currentQuestion?.key {
-        case QuestionKey.MindsetShifter.lowSelfTalk.rawValue,
-             QuestionKey.MindsetShifter.openTBV.rawValue,
-             QuestionKey.MindsetShifter.check.rawValue:
+        case QuestionKey.MindsetShifter.LowSelfTalk,
+             QuestionKey.MindsetShifter.OpenTBV,
+             QuestionKey.MindsetShifter.Check:
             let title = defaultButtonText.isEmpty ? confirmationButtonText : defaultButtonText
             return [roundedDarkButtonItem(title: title, buttonWidth: .DecisionTree, action: action)]
-        default: return []
+        default:
+            return []
         }
     }
 
@@ -363,6 +368,13 @@ extension DecisionTreeWorker {
 
 // MARK: - Recovery3D
 private extension DecisionTreeWorker {
+    func addObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showNextQuestionAfterMediaPlayerWillDismiss),
+                                               name: .willDismissPlayerController,
+                                               object: nil)
+    }
+
     func createRecoveryModel() {
         qot_dal.UserService.main.createRecovery3D(fatigueAnswerId: 0,
                                                   causeAnwserId: 0,

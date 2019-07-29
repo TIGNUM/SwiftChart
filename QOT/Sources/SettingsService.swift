@@ -12,18 +12,15 @@ import RealmSwift
 final class SettingsService {
 
     // MARK: - Properties
-
     private let realm: Realm
 
     // MARK: - Init
-
     init(realm: Realm) {
         self.realm = realm
     }
 }
 
 // MARK: - Public
-
 extension SettingsService {
 
     var guideDays: Int? {
@@ -110,7 +107,6 @@ extension SettingsService {
 }
 
 // MARK: - Private
-
 private extension SettingsService {
 
     func userSetting(systemSetting: SystemSetting) -> UserSetting? {

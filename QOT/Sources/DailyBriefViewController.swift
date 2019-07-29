@@ -14,7 +14,7 @@ final class DailyBriefNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(DailyBriefNavigationController.classForCoder())
 }
 
-final class DailyBriefViewController: UIViewController, ScreenZLevel1 , UITableViewDelegate, UITableViewDataSource {
+final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
     var delegate: CoachCollectionViewControllerDelegate?
@@ -38,6 +38,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1 , UITableV
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.checkAction))
         self.view.addGestureRecognizer(gesture)
     }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 1
     }

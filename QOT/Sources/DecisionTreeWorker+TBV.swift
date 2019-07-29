@@ -19,9 +19,9 @@ extension DecisionTreeWorker {
     var workQuestion: QDMQuestion? {
         switch type {
         case .toBeVisionGenerator:
-            return questions.filter { $0.key == QuestionKey.ToBeVision.work.rawValue }.first
+            return questions.filter { $0.key == QuestionKey.ToBeVision.Work }.first
         case .mindsetShifterTBV:
-            return questions.filter { $0.key == QuestionKey.MindsetShifterTBV.work.rawValue }.first
+            return questions.filter { $0.key == QuestionKey.MindsetShifterTBV.Work }.first
         default: return nil
         }
     }
@@ -29,9 +29,9 @@ extension DecisionTreeWorker {
     var homeQuestion: QDMQuestion? {
         switch type {
         case .toBeVisionGenerator:
-            return questions.filter { $0.key == QuestionKey.ToBeVision.home.rawValue }.first
+            return questions.filter { $0.key == QuestionKey.ToBeVision.Home }.first
         case .mindsetShifterTBV:
-            return questions.filter { $0.key == QuestionKey.MindsetShifterTBV.home.rawValue }.first
+            return questions.filter { $0.key == QuestionKey.MindsetShifterTBV.Home }.first
         default: return nil
         }
     }
@@ -117,7 +117,7 @@ extension DecisionTreeWorker {
 
 extension DecisionTreeWorker {
     func showTBV(targetQuestionId: Int) {
-        if userHasToBeVision == false {
+        if userHasToBeVision == true {
             interactor?.openShortTBVGenerator { [weak self] in
                 self?.showNextQuestion(targetId: Prepare.Key.perceived.questionID)
             }
