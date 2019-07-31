@@ -24,6 +24,15 @@ struct FontSize {
     static let fontSize12: CGFloat = 12
 }
 
+struct CharacterSpacing {
+    static let kern02: CGFloat = 0.2
+    static let kern04: CGFloat = 0.4
+    static let kern05: CGFloat = 0.5
+    static let kern06: CGFloat = 0.6
+    static let kern1: CGFloat = 1.0
+    static let kern1_2: CGFloat = 1.2
+}
+
 struct Animation {
     static let duration_00: TimeInterval = 00
     static let duration_01: TimeInterval = 0.1

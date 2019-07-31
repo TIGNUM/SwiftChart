@@ -579,3 +579,27 @@
 
 "DailyCheckIn.SleepQuantity.Value.Suffix" = " h";
 "DailyCheckIn.SleepQuantity.Value.Suffix.Max" = " h/more";
+
+"MySprintDetails.Header.SprintTasks" = "SPRINT TASKS";
+"MySprintDetails.Header.MyPlan" = "MY PLAN";
+"MySprintDetails.Header.MyNotes" = "MY NOTES";
+"MySprintDetails.Header.Highlights" = "HIGHLIGHTS";
+"MySprintDetails.Header.Strategies" = "STRATEGIES TO CARRY FORWARD";
+"MySprintDetails.Header.Benefits" = "BENEFITS EXPERIENCED";
+"MySprintDetails.Info.Text.Upcoming" = "Come back on the first sprintday and you will have access to your tasks.";
+"MySprintDetails.Info.Text.Active" = "The sprint starts on %@. Come back on the first sprintday and you will have access to your tasks.";
+"MySprintDetails.Info.Text.Notes" = "You finished your sprint. Why don’t you tell us your main takeaways?";
+"MySprintDetails.Button.Takeaways" = "Capture your takeaways";
+"MySprintDetails.Button.Cancel" = "Cancel";
+"MySprintDetails.Button.Continue" = "Continue";
+"MySprintDetails.Button.StartSprint" = "Start sprint";
+"MySprintDetails.Button.PauseSprint" = "Pause Sprint";
+"MySprintDetails.Button.YesPause" = "Yes, Pause";
+"MySprintDetails.Button.ContinueSprint" = "Continue sprint";
+"MySprintDetails.Button.RestartSprint" = "Restart sprint";
+"MySprintDetails.Info.Title.PauseSprint" = "PAUSE YOUR SPRINT";
+"MySprintDetails.Info.Title.ReplanSprint" = "REPLAN YOUR SPRINT";
+"MySprintDetails.Info.Title.SprintInProgress" = "A SPRINT IS ALREADY IN PROGRESS";
+"MySprintDetails.Info.Message.PauseSprint" = "Are you sure you want to pause your current sprint? To reach the best results is recommended to finish a sprint in maximum %d days.";
+"MySprintDetails.Info.Message.ReplanSprint" = "It’s really important keep your focus in your sprint to reach your results and finish it in %d days. Do you want to continue where you stopped or restart it from the beginning?";
+"MySprintDetails.Info.Message.SprintInProgress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start To be vision anchors?";

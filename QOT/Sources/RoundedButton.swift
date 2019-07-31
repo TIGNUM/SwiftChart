@@ -45,7 +45,7 @@ class RoundedButton: UIButton {
     override func setAttributedTitle(_ title: NSAttributedString?, for state: UIControlState) {
         // Desired
         let attributes: [NSAttributedStringKey: Any] = [
-            NSAttributedStringKey.kern: 0.4,
+            NSAttributedStringKey.kern: CharacterSpacing.kern04,
             NSAttributedStringKey.foregroundColor: activeColor,
             NSAttributedStringKey.font: UIFont.sfProtextSemibold(ofSize: 14)]
         let desiredTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))
@@ -55,7 +55,7 @@ class RoundedButton: UIButton {
         // Highlighted
         if state != .highlighted {
             let attributes: [NSAttributedStringKey: Any] = [
-                NSAttributedStringKey.kern: 0.4,
+                NSAttributedStringKey.kern: CharacterSpacing.kern04,
                 NSAttributedStringKey.foregroundColor: activeColor.withAlphaComponent(0.6),
                 NSAttributedStringKey.font: UIFont.sfProtextSemibold(ofSize: 14)]
             let disabledTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))
@@ -66,7 +66,7 @@ class RoundedButton: UIButton {
         // Disabled
         if state != .disabled {
             let attributes: [NSAttributedStringKey: Any] = [
-                NSAttributedStringKey.kern: 0.4,
+                NSAttributedStringKey.kern: CharacterSpacing.kern04,
                 NSAttributedStringKey.foregroundColor: inactiveColor,
                 NSAttributedStringKey.font: UIFont.sfProtextSemibold(ofSize: 14)]
             let disabledTitle = NSMutableAttributedString(attributedString: title ?? NSAttributedString(string: ""))

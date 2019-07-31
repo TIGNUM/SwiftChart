@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MySprintsListRouter {
 
@@ -24,7 +25,12 @@ final class MySprintsListRouter {
 // MARK: - MySprintsListRouterInterface
 
 extension MySprintsListRouter: MySprintsListRouterInterface {
-    func presentSprint(with sprintId: String) {
-        print("Sprint ID: \(sprintId)")
+    func presentSprint(_ sprint: QDMSprint) {
+        guard let sprintDetailsController = R.storyboard.mySprintDetails.mySprintDetailsViewController() else {
+            return
+        }
+        let configurator = MySprintDetailsConfigurator.make()
+        configurator(sprintDetailsController, sprint)
+        viewController.present(sprintDetailsController, animated: true)
     }
 }

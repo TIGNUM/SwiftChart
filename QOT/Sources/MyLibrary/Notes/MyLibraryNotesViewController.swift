@@ -110,6 +110,7 @@ private extension MyLibraryNotesViewController {
         infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
         infoAlertView?.present(on: self.view)
         infoAlertView?.bottomInset = BottomNavigationContainer.height
+        infoAlertView?.setBackgroundColor(self.view.backgroundColor)
     }
 
     private func updateTextViewText() {
@@ -118,12 +119,12 @@ private extension MyLibraryNotesViewController {
             attributedText = NSAttributedString(string: text,
                                                 attributes: [.foregroundColor: UIColor.sand,
                                                              .font: UIFont.sfProtextLight(ofSize: 16),
-                                                             .kern: 0.5])
+                                                             .kern: CharacterSpacing.kern05])
         } else {
             attributedText = NSAttributedString(string: interactor?.placeholderText ?? "",
                                                 attributes: [.foregroundColor: UIColor.sand40,
                                                              .font: UIFont.sfProtextLight(ofSize: 16),
-                                                             .kern: 0.5])
+                                                             .kern: CharacterSpacing.kern05])
         }
         textView.attributedText = attributedText
     }

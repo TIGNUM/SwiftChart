@@ -19,9 +19,13 @@ import UIKit
  `onDismiss` closure should be used with presentation style `halfScreenBlur`, as the user can dismiss the alert
  internally by tapping on blur or swiping down so the owner is notified of this event through the closure.
 
- infoAlertView = InfoAlertView()
+ ```
+// If multiple alerts need to be presented one after another it's best to use the existing instance
+ if infoAlertView == nil {
+    infoAlertView = InfoAlertView()
+    infoAlertView?.present(on: self.view)
+ }
  infoAlertView?.set(icon: icon, title: title, text: text)
- infoAlertView?.present(on: self.view)
  infoAlertView?.topInset = 64
  infoAlertView?.bottomInset = BottomNavigationContainer.height
  infoAlertView?.setBackgroundColor(UIColor.carbon.withAlphaComponent(95))
@@ -30,6 +34,7 @@ import UIKit
     self.infoAlertView = nil
     self.dismissAlert()
  }
+ ```
  */
 class InfoAlertView: UIView {
     /// InfoAlertView presentation styles

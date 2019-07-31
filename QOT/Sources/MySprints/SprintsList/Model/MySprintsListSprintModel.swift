@@ -9,15 +9,9 @@
 import Foundation
 
 struct MySprintsListSprintModel {
-    enum StatusType {
-        case active
-        case upcoming
-        case paused
-        case completed
-    }
 
     let title: String
-    let status: StatusType
+    let status: MySprintStatus
     let progress: String
     let statusDescription: String
 

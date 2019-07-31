@@ -22,11 +22,13 @@ extension BaseMyLibraryTableViewCellInterface {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 6
         style.lineBreakMode = .byTruncatingTail
-        let attributedString = NSAttributedString(string: title ?? " ", attributes: [.paragraphStyle: style, .kern: 1])
+        let attributedString = NSAttributedString(string: title ?? " ",
+                                                  attributes: [.paragraphStyle: style, .kern: CharacterSpacing.kern1])
         self.contentTitle.attributedText = attributedString
     }
 
     func setInfoText(_ text: String?) {
-        self.infoText.attributedText = NSAttributedString(string: text ?? " ", attributes: [.kern: 0.5])
+        self.infoText.attributedText = NSAttributedString(string: text ?? " ",
+                                                          attributes: [.kern: CharacterSpacing.kern05])
     }
 }

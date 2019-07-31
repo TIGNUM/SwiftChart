@@ -16,6 +16,7 @@ final class MySprintsListInteractor {
     private let worker: MySprintsListWorker
     private let presenter: MySprintsListPresenterInterface
     private let router: MySprintsListRouterInterface
+    private let notificationCenter: NotificationCenter
 
     private (set) var viewModel = MySprintsListViewModel()
 
@@ -47,20 +48,22 @@ final class MySprintsListInteractor {
                 ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
     }()
 
-    private lazy var emptyDataAlert: MyLibraryUserStorageInfoViewModel = {
-        return MyLibraryUserStorageInfoViewModel(isFullscreen: false,
-                                                 icon: R.image.my_sprints_completed() ?? UIImage(),
-                                                 title: self.worker.emptyContentAlertTitle,
-                                                 message: self.worker.emptyContentAlertMessage,
-                                                 userParameter: nil)
+    private lazy var emptyDataAlert: MySprintsInfoAlertViewModel = {
+        return MySprintsInfoAlertViewModel(isFullscreen: false,
+                                           style: .regular,
+                                           icon: R.image.my_sprints_completed() ?? UIImage(),
+                                           title: self.worker.emptyContentAlertTitle,
+                                           message: self.worker.emptyContentAlertMessage,
+                                           transparent: false)
     }()
 
-    private lazy var removingDataAlert: MyLibraryUserStorageInfoViewModel = {
-        return MyLibraryUserStorageInfoViewModel(isFullscreen: true,
-                                                 icon: R.image.my_library_warning() ?? UIImage(),
-                                                 title: worker.removeItemsAlertTitle,
-                                                 message: worker.removeItemsAlertMessage,
-                                                 userParameter: nil)
+    private lazy var removingDataAlert: MySprintsInfoAlertViewModel = {
+        return MySprintsInfoAlertViewModel(isFullscreen: true,
+                                           style: .regular,
+                                           icon: R.image.my_library_warning() ?? UIImage(),
+                                           title: worker.removeItemsAlertTitle,
+                                           message: worker.removeItemsAlertMessage,
+                                           transparent: false)
     }()
 
     private lazy var monthsFormatter: DateFormatter = {
@@ -71,10 +74,14 @@ final class MySprintsListInteractor {
 
     init(worker: MySprintsListWorker,
          presenter: MySprintsListPresenterInterface,
-         router: MySprintsListRouterInterface) {
+         router: MySprintsListRouterInterface,
+         notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        self.notificationCenter = notificationCenter
+
+        notificationCenter.addObserver(self, selector: #selector(load), name: .didUpdateMySprintsData, object: nil)
     }
 
     // MARK: - Interactor
@@ -142,7 +149,7 @@ extension MySprintsListInteractor {
         return !(isEditing || viewModel.displayData.allSatisfy { $0.items.filter { $0.isRemovable }.isEmpty })
     }
 
-    private func load() {
+    @objc private func load() {
         items.removeAll()
         worker.loadData { [weak self] (initiated, sprints) in
             guard let strongSelf = self else { return }
@@ -164,13 +171,27 @@ extension MySprintsListInteractor {
 
         var pending = [MySprintsListSprintModel]()
         // Active, upcoming & paused
-        pending.append(contentsOf: items.filter { $0.status != .completed })
+        pending.append(contentsOf: items.filter {
+            switch $0.status {
+            case .completed:
+                return false
+            case .active, .upcoming, .paused:
+                return true
+            }
+        })
         if !pending.isEmpty {
             viewModel.displayData.append(MySprintsListDataViewModel(title: worker.sprintPlanHeader, isActive: true, items: pending))
         }
 
         // Completed
-        let completed = sort(sprints: items.filter { $0.status == .completed })
+        let completed = sort(sprints: items.filter {
+            switch $0.status {
+            case .completed(on: _):
+                return true
+            case .active, .upcoming, .paused(on: _):
+                return false
+            }
+        })
         if !completed.isEmpty {
             viewModel.displayData.append(MySprintsListDataViewModel(title: worker.completeHeader, isActive: false, items: completed))
         }
@@ -178,27 +199,29 @@ extension MySprintsListInteractor {
 
     private func sort(sprints: [MySprintsListSprintModel]) -> [MySprintsListSprintModel] {
         return sprints.sorted(by: {
-            // Active
-            if $0.status == .active {
+            switch ($0.status, $1.status) {
+                // Active
+            case (.active, _):
                 return true
-            } else if $1.status == .active {
+            case (_, .active):
                 return false
-            }
-            // Paused
-            if $0.status == .paused {
+                // Paused
+            case (.paused(on: let date1), .paused(on: let date2)):
+                return date1 < date2
+            case (.paused, _):
                 return true
-            } else if $1.status == .paused {
+            case (_, .paused):
                 return false
+                // Completed
+            case (.completed(on: let date1), .completed(on: let date2)):
+                return date1 > date2
+                // Upcoming
+            default:
+                if $0.orderingNumber != $1.orderingNumber {
+                    return $0.orderingNumber < $1.orderingNumber
+                }
+                return $0.createdDate < $1.createdDate
             }
-            // Completed
-            if $0.status == .completed, let c1 = $0.completedDate, let c2 = $1.completedDate {
-                return c1 > c2
-            }
-            // Previously saved order
-            if $0.orderingNumber != $1.orderingNumber {
-                return $0.orderingNumber < $1.orderingNumber
-            }
-            return $0.createdDate < $1.createdDate
         })
     }
 
@@ -220,7 +243,10 @@ extension MySprintsListInteractor {
     }
 
     private func openItemDetails(_ item: MySprintsListSprintModel) -> Bool {
-        router.presentSprint(with: item.identifier)
+        guard let sprint = worker.getSprint(with: item.identifier) else {
+            return false
+        }
+        router.presentSprint(sprint)
         return true
     }
 
@@ -263,15 +289,18 @@ extension MySprintsListInteractor {
             orderingNumber: sprint.sortOrder)
     }
 
-    private func status(from sprint: QDMSprint) -> (MySprintsListSprintModel.StatusType, String) {
-        if sprint.isInProgress {
-            return (.active, worker.statusActive)
-        } else if sprint.pausedAt != nil {
-            return (.paused, worker.statusPaused)
-        } else if let completed = sprint.completedAt {
-            return (.completed, worker.statusCompleted + " " + "\(monthsFormatter.string(from: completed))")
+    private func status(from sprint: QDMSprint) -> (MySprintStatus, String) {
+        let status = MySprintStatus.from(sprint)
+        let text: String
+        switch status {
+        case .active: text = worker.statusActive
+        case .paused: text = worker.statusPaused
+        case .completed:
+            let completionDate = sprint.completedAt ?? Date()
+            text = worker.statusCompleted + " " + "\(monthsFormatter.string(from: completionDate))"
+        case .upcoming: text = worker.statusUpcoming
         }
-        return (.upcoming, worker.statusUpcoming)
+        return (status, text)
     }
 
     func continueRemovingItems(_ sprints: [QDMSprint]) {

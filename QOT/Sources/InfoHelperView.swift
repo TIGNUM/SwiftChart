@@ -89,9 +89,9 @@ private extension InfoHelperView {
         let lineSpacing: CGFloat = 6
         switch type {
         case .title:
-            characterSpacing = 0.6
+            characterSpacing = CharacterSpacing.kern06
         case .description:
-            characterSpacing = 1.2
+            characterSpacing = CharacterSpacing.kern1_2
         default:
             characterSpacing = 0
         }

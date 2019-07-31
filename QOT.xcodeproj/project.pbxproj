@@ -718,9 +718,29 @@
 		85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */; };
 		85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */; };
 		8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03A7B422E0872C000CA576 /* MySprintsListViewModel.swift */; };
+		8D1C476722EF541A00E19E34 /* Notification+MySprints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */; };
 		8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */; };
 		8D251BB122D3562200EE2236 /* GradientArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D251BB022D3562200EE2236 /* GradientArcView.swift */; };
 		8D251BB322D3990B00EE2236 /* ButtonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D251BB222D3990B00EE2236 /* ButtonParameters.swift */; };
+		8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D25326A22E98D8400FE4205 /* MySprintDetailsHeaderView.xib */; };
+		8D25326D22E9AA2700FE4205 /* SprintButtonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25326C22E9AA2700FE4205 /* SprintButtonParameters.swift */; };
+		8D25326F22E9B8F700FE4205 /* MySprintDetailsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25326E22E9B8F700FE4205 /* MySprintDetailsItem.swift */; };
+		8D25327122E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25327022E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift */; };
+		8D25327322E9DD0200FE4205 /* HeaderDetailsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25327222E9DD0200FE4205 /* HeaderDetailsItemCell.swift */; };
+		8D25327522EA04FA00FE4205 /* ListItemDetailsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25327422EA04FA00FE4205 /* ListItemDetailsItemCell.swift */; };
+		8D25327722EA0FF300FE4205 /* CtaItemDetailsItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D25327622EA0FF300FE4205 /* CtaItemDetailsItemCell.swift */; };
+		8D322B9422E88CC7000141E1 /* MySprintsInfoAlertViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D322B9322E88CC7000141E1 /* MySprintsInfoAlertViewModel.swift */; };
+		8D322B9822E89C13000141E1 /* MySprintDetailsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D322B9722E89C13000141E1 /* MySprintDetailsHeaderView.swift */; };
+		8D32CFC322EB0AC900B2C4E8 /* MySprintStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D32CFC222EB0AC900B2C4E8 /* MySprintStatus.swift */; };
+		8D40768A22E5A5AA0027864D /* MySprintDetailsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768222E5A5A90027864D /* MySprintDetailsPresenter.swift */; };
+		8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768322E5A5AA0027864D /* MySprintDetailsWorker.swift */; };
+		8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768422E5A5AA0027864D /* MySprintDetailsRouter.swift */; };
+		8D40768D22E5A5AA0027864D /* MySprintDetailsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768522E5A5AA0027864D /* MySprintDetailsInterface.swift */; };
+		8D40768E22E5A5AA0027864D /* MySprintDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768622E5A5AA0027864D /* MySprintDetailsViewController.swift */; };
+		8D40768F22E5A5AA0027864D /* MySprintDetailsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768722E5A5AA0027864D /* MySprintDetailsInteractor.swift */; };
+		8D40769022E5A5AA0027864D /* MySprintDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768822E5A5AA0027864D /* MySprintDetailsViewModel.swift */; };
+		8D40769122E5A5AA0027864D /* MySprintDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768922E5A5AA0027864D /* MySprintDetailsConfigurator.swift */; };
+		8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D40769222E5AA260027864D /* MySprintDetails.storyboard */; };
 		8D5668B622DCAD4800AA172F /* MySprintsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668AE22DCAD4800AA172F /* MySprintsListPresenter.swift */; };
 		8D5668B722DCAD4800AA172F /* MySprintsListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668AF22DCAD4800AA172F /* MySprintsListWorker.swift */; };
 		8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668B022DCAD4800AA172F /* MySprintsListRouter.swift */; };
@@ -2270,9 +2290,29 @@
 		85DC6F881EF40B36004F4B4D /* TravelTripsChart.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TravelTripsChart.swift; sourceTree = "<group>"; };
 		85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnListAnimation.swift; sourceTree = "<group>"; };
 		8D03A7B422E0872C000CA576 /* MySprintsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListViewModel.swift; sourceTree = "<group>"; };
+		8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+MySprints.swift"; sourceTree = "<group>"; };
 		8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ReorderControl.swift"; sourceTree = "<group>"; };
 		8D251BB022D3562200EE2236 /* GradientArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientArcView.swift; sourceTree = "<group>"; };
 		8D251BB222D3990B00EE2236 /* ButtonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonParameters.swift; sourceTree = "<group>"; };
+		8D25326A22E98D8400FE4205 /* MySprintDetailsHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MySprintDetailsHeaderView.xib; sourceTree = "<group>"; };
+		8D25326C22E9AA2700FE4205 /* SprintButtonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintButtonParameters.swift; sourceTree = "<group>"; };
+		8D25326E22E9B8F700FE4205 /* MySprintDetailsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsItem.swift; sourceTree = "<group>"; };
+		8D25327022E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMySprintDetailsItemCellInterface.swift; sourceTree = "<group>"; };
+		8D25327222E9DD0200FE4205 /* HeaderDetailsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderDetailsItemCell.swift; sourceTree = "<group>"; };
+		8D25327422EA04FA00FE4205 /* ListItemDetailsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListItemDetailsItemCell.swift; sourceTree = "<group>"; };
+		8D25327622EA0FF300FE4205 /* CtaItemDetailsItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CtaItemDetailsItemCell.swift; sourceTree = "<group>"; };
+		8D322B9322E88CC7000141E1 /* MySprintsInfoAlertViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsInfoAlertViewModel.swift; sourceTree = "<group>"; };
+		8D322B9722E89C13000141E1 /* MySprintDetailsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsHeaderView.swift; sourceTree = "<group>"; };
+		8D32CFC222EB0AC900B2C4E8 /* MySprintStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MySprintStatus.swift; path = ../MySprintDetails/Model/MySprintStatus.swift; sourceTree = "<group>"; };
+		8D40768222E5A5A90027864D /* MySprintDetailsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsPresenter.swift; sourceTree = "<group>"; };
+		8D40768322E5A5AA0027864D /* MySprintDetailsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsWorker.swift; sourceTree = "<group>"; };
+		8D40768422E5A5AA0027864D /* MySprintDetailsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsRouter.swift; sourceTree = "<group>"; };
+		8D40768522E5A5AA0027864D /* MySprintDetailsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsInterface.swift; sourceTree = "<group>"; };
+		8D40768622E5A5AA0027864D /* MySprintDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsViewController.swift; sourceTree = "<group>"; };
+		8D40768722E5A5AA0027864D /* MySprintDetailsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsInteractor.swift; sourceTree = "<group>"; };
+		8D40768822E5A5AA0027864D /* MySprintDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsViewModel.swift; sourceTree = "<group>"; };
+		8D40768922E5A5AA0027864D /* MySprintDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsConfigurator.swift; sourceTree = "<group>"; };
+		8D40769222E5AA260027864D /* MySprintDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MySprintDetails.storyboard; sourceTree = "<group>"; };
 		8D5668AE22DCAD4800AA172F /* MySprintsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListPresenter.swift; sourceTree = "<group>"; };
 		8D5668AF22DCAD4800AA172F /* MySprintsListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListWorker.swift; sourceTree = "<group>"; };
 		8D5668B022DCAD4800AA172F /* MySprintsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListRouter.swift; sourceTree = "<group>"; };
@@ -4873,10 +4913,52 @@
 			name = MediaResource;
 			sourceTree = "<group>";
 		};
+		8D322B9522E895C7000141E1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				8D25326C22E9AA2700FE4205 /* SprintButtonParameters.swift */,
+				8D25326E22E9B8F700FE4205 /* MySprintDetailsItem.swift */,
+				8D40768822E5A5AA0027864D /* MySprintDetailsViewModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		8D322B9622E89B40000141E1 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				8D322B9722E89C13000141E1 /* MySprintDetailsHeaderView.swift */,
+				8D25326A22E98D8400FE4205 /* MySprintDetailsHeaderView.xib */,
+				8D25327022E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift */,
+				8D25327222E9DD0200FE4205 /* HeaderDetailsItemCell.swift */,
+				8D25327422EA04FA00FE4205 /* ListItemDetailsItemCell.swift */,
+				8D25327622EA0FF300FE4205 /* CtaItemDetailsItemCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		8D40768122E5A4000027864D /* MySprintDetails */ = {
+			isa = PBXGroup;
+			children = (
+				8D322B9522E895C7000141E1 /* Model */,
+				8D322B9622E89B40000141E1 /* View */,
+				8D40768922E5A5AA0027864D /* MySprintDetailsConfigurator.swift */,
+				8D40768722E5A5AA0027864D /* MySprintDetailsInteractor.swift */,
+				8D40768522E5A5AA0027864D /* MySprintDetailsInterface.swift */,
+				8D40768222E5A5A90027864D /* MySprintDetailsPresenter.swift */,
+				8D40768422E5A5AA0027864D /* MySprintDetailsRouter.swift */,
+				8D40768622E5A5AA0027864D /* MySprintDetailsViewController.swift */,
+				8D40768322E5A5AA0027864D /* MySprintDetailsWorker.swift */,
+				8D40769222E5AA260027864D /* MySprintDetails.storyboard */,
+			);
+			path = MySprintDetails;
+			sourceTree = "<group>";
+		};
 		8D5668AC22DCACE200AA172F /* MySprints */ = {
 			isa = PBXGroup;
 			children = (
+				8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */,
 				8D5668AD22DCAD0F00AA172F /* SprintsList */,
+				8D40768122E5A4000027864D /* MySprintDetails */,
 			);
 			path = MySprints;
 			sourceTree = "<group>";
@@ -4884,6 +4966,8 @@
 		8D5668AD22DCAD0F00AA172F /* SprintsList */ = {
 			isa = PBXGroup;
 			children = (
+				8D32CFC222EB0AC900B2C4E8 /* MySprintStatus.swift */,
+				8D322B9322E88CC7000141E1 /* MySprintsInfoAlertViewModel.swift */,
 				8DECF9A922DDF62300451E65 /* Model */,
 				8DECF9A622DDD32F00451E65 /* View */,
 				8D5668B522DCAD4800AA172F /* MySprintsListConfigurator.swift */,
@@ -7387,6 +7471,7 @@
 				5F78965222A929C100D2DBAD /* ThreeLinesAndButton.xib in Resources */,
 				AC103E492285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
+				8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
 				369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
@@ -7461,6 +7546,7 @@
 				368A12602277387900866DB0 /* SF-Pro-Display-Ultralight.otf in Resources */,
 				36718B40224CDC050042881E /* SubsriptionReminderViewController.xib in Resources */,
 				75DC686322BD1B9500FF183D /* MyToBeVisionRate.storyboard in Resources */,
+				8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */,
 				AC103E5B2289725C00F426F0 /* MindsetVisionTableViewCell.xib in Resources */,
 				91B339E0207F5F5E00F54A62 /* SettingsBubblesViewController.xib in Resources */,
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
@@ -7963,6 +8049,7 @@
 				36796A4420D3C49900B55429 /* SigningLoginConfigurator.swift in Sources */,
 				B856B47E22B0E29D0017A249 /* MyLibraryCellViewModel.swift in Sources */,
 				366183E72162793700634560 /* SupportFAQPresenter.swift in Sources */,
+				8D40769122E5A5AA0027864D /* MySprintDetailsConfigurator.swift in Sources */,
 				36CB721822B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift in Sources */,
 				CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */,
 				366AFD1120BD9F9300109F29 /* SigningEmailInteractor.swift in Sources */,
@@ -8091,6 +8178,7 @@
 				D51B5C4A1E8D0E7E0084A65B /* LearnContentLayout.swift in Sources */,
 				9150413920FDF40A00D43D18 /* SensorModel.swift in Sources */,
 				8514A4921EEAA2AE0086C70E /* UILabel+AttributedText.swift in Sources */,
+				8D25327322E9DD0200FE4205 /* HeaderDetailsItemCell.swift in Sources */,
 				CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */,
 				8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */,
 				CB27D59D1ECCB6DD00F2B76C /* NetworkError.swift in Sources */,
@@ -8138,6 +8226,7 @@
 				914A5E1B207FB33200092121 /* SettingsBubblesRouter.swift in Sources */,
 				DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */,
 				36796A0520D3C41F00B55429 /* SigningCreatePasswordViewController.swift in Sources */,
+				8D1C476722EF541A00E19E34 /* Notification+MySprints.swift in Sources */,
 				75DC685522BD17B900FF183D /* MyToBeVisionCountDownViewController.swift in Sources */,
 				36718B52224D20030042881E /* SubsriptionReminderConfigurator.swift in Sources */,
 				5FA6663C229C1F3E0027EE74 /* MyVisionEditDetailsInterface.swift in Sources */,
@@ -8169,6 +8258,7 @@
 				5F6B38572284074200704676 /* UserProfileManager.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
 				F99DF5FE2292D77000341DAB /* ToolsCollectionsModel.swift in Sources */,
+				8D25327722EA0FF300FE4205 /* CtaItemDetailsItemCell.swift in Sources */,
 				7F6567461FE297ED00A6CB7F /* ScreenHelpInterfaces.swift in Sources */,
 				3674FF2B20AADE7D008EEB6C /* PartnersOverviewInterface.swift in Sources */,
 				36DADE761FA7850100EB00D4 /* SettingsAdminCoordinator.swift in Sources */,
@@ -8278,7 +8368,9 @@
 				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
 				5F360735228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift in Sources */,
 				3637665F223AA61100C2C429 /* LevelThreeInterface.swift in Sources */,
+				8D32CFC322EB0AC900B2C4E8 /* MySprintStatus.swift in Sources */,
 				CB7F046E1F8E0999001F4DE6 /* SyncOperation.swift in Sources */,
+				8D322B9422E88CC7000141E1 /* MySprintsInfoAlertViewModel.swift in Sources */,
 				36D348EC216BAA4E006C8D10 /* PrepareNotesHeaderView.swift in Sources */,
 				5FA66644229C208F0027EE74 /* MyVisionEditDetailsConfigurator.swift in Sources */,
 				CC94F5621EB08EE400051CF8 /* AudioWaveformView.swift in Sources */,
@@ -8339,6 +8431,7 @@
 				B86E744A22A9519900B0AE75 /* MyLibraryCategoryListWorker.swift in Sources */,
 				5F57F9ED22831711003A9EDF /* MyQotAccountSettingsWorker.swift in Sources */,
 				8D6E058B22D7466E00EC2AEF /* MyLibraryNotesInterface.swift in Sources */,
+				8D25326D22E9AA2700FE4205 /* SprintButtonParameters.swift in Sources */,
 				CC143A511EC495CE001FB76E /* StatisticsCoordinator.swift in Sources */,
 				91086E3B20909E7A0035DA1F /* ProfileSettingsModel.swift in Sources */,
 				CBFECCC21F3C9CA00076ACE6 /* LearnCategoryListBackgroundView.swift in Sources */,
@@ -8604,6 +8697,7 @@
 				CBD4BEA02018BF32008A0E9E /* GuideRouter.swift in Sources */,
 				36796A2F20D3C47400B55429 /* SigningProfileDetailPresenter.swift in Sources */,
 				36796A4920D3C49900B55429 /* SigningLoginViewController.swift in Sources */,
+				8D40768F22E5A5AA0027864D /* MySprintDetailsInteractor.swift in Sources */,
 				CBD4BEA62018D30B008A0E9E /* GuideObserver.swift in Sources */,
 				CB3333ED20480E3E009480DF /* ShareWorker.swift in Sources */,
 				F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */,
@@ -8613,11 +8707,13 @@
 				B856B47C22B0E29D0017A249 /* MyLibraryUserStorageViewController.swift in Sources */,
 				CC8813EB1EF2EA33000FB85F /* LearnContentItemRecommendedCell.swift in Sources */,
 				CB1467651EF2779700A60E31 /* Page.swift in Sources */,
+				8D40769022E5A5AA0027864D /* MySprintDetailsViewModel.swift in Sources */,
 				CB6D49561ECCA58D005BC637 /* AuthenticationTokenParser.swift in Sources */,
 				7582616A22D8DBBE000094DE /* DailyCheckinStartInteractor.swift in Sources */,
 				36083827225F3ED000664B9B /* ArticleWorker.swift in Sources */,
 				AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */,
 				7F47E8401F8E4FE000ED4446 /* UIDevice+Utility.swift in Sources */,
+				8D322B9822E89C13000141E1 /* MySprintDetailsHeaderView.swift in Sources */,
 				9171647A2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.swift in Sources */,
 				CC33CA301EC60447008E6B33 /* DatabaseConstants.swift in Sources */,
 				CBC1DC2B1F0FB68B00F6D056 /* AnswerDecisionIntermediary.swift in Sources */,
@@ -8657,6 +8753,7 @@
 				5F36073B228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift in Sources */,
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
 				F9A5C95422B7DFD900AB2E94 /* PaymentHeaderView.swift in Sources */,
+				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
 				AC103E2E22847AB500F426F0 /* ConfirmationRouter.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
 				852DADDE1EF1737700A10882 /* TravelMaxTimeZoneChart.swift in Sources */,
@@ -8722,6 +8819,7 @@
 				363765FF223A4BD200C2C429 /* KnowingViewController.swift in Sources */,
 				91086E462092024F0035DA1F /* SettingsInteractor.swift in Sources */,
 				75DC686122BD185500FF183D /* MyToBeVisionCountDownConfigurator.swift in Sources */,
+				8D40768C22E5A5AA0027864D /* MySprintDetailsRouter.swift in Sources */,
 				912C9E39203C716400C1AA76 /* MyToBeVisionInteractor.swift in Sources */,
 				7F3277951FB4B22E00C7717C /* BlurLoadingView.swift in Sources */,
 				F9A5C94C22B7D09800AB2E94 /* PaymentReminderRouter.swift in Sources */,
@@ -8760,6 +8858,7 @@
 				360CC3CA2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift in Sources */,
 				E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */,
 				5FF1A0FC22857BA300D76D55 /* MyQotAppSettingsInteractor.swift in Sources */,
+				8D40768E22E5A5AA0027864D /* MySprintDetailsViewController.swift in Sources */,
 				3616EF9422D747C200E43961 /* DecisionTreeWorker+TBV.swift in Sources */,
 				ACF0B946225FC41F008CFAEC /* DecisionTreeRouter.swift in Sources */,
 				F99DF5F22292D6CB00341DAB /* ToolsCollectionsViewController.swift in Sources */,
@@ -8837,6 +8936,7 @@
 				366AFD1020BD9F9300109F29 /* SigningEmailViewController.swift in Sources */,
 				AC1A40E822A55C870022156C /* SolveHeaderTableViewCell.swift in Sources */,
 				B83B33E922C21D6E002AFED7 /* UIViewController+Swizzle.swift in Sources */,
+				8D40768D22E5A5AA0027864D /* MySprintDetailsInterface.swift in Sources */,
 				5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */,
 				CBAF6FD61F2B5AE500E57426 /* MyToBeVisionIntermediary.swift in Sources */,
 				9115F70A208DE05100EE5D1D /* ProfileSettingsProtocols.swift in Sources */,
@@ -8853,6 +8953,7 @@
 				CBC933121F0B9B3100C00007 /* ContentRelation.swift in Sources */,
 				36376602223A4BD200C2C429 /* KnowingConfigurator.swift in Sources */,
 				CCE6CD841F152D5800B66DA3 /* DoubleObject.swift in Sources */,
+				8D25326F22E9B8F700FE4205 /* MySprintDetailsItem.swift in Sources */,
 				36D72ED6229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift in Sources */,
 				7F4B98AD1FA22850000B402C /* ChartAnimator.swift in Sources */,
 				36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */,
@@ -8922,6 +9023,7 @@
 				36376635223A66AF00C2C429 /* CoachConfigurator.swift in Sources */,
 				F9C1D8BA220DD96B00B40DD2 /* SiriShortcutsProtocols.swift in Sources */,
 				3637662F223A66AF00C2C429 /* CoachWorker.swift in Sources */,
+				8D25327522EA04FA00FE4205 /* ListItemDetailsItemCell.swift in Sources */,
 				7F08887F1F0A4101005CE966 /* PartnerService.swift in Sources */,
 				F95B9238228EAE82000DEAEC /* ToolsViewController.swift in Sources */,
 				CB8A154A1E7A7FA20023B2F9 /* CalendarImportManger.swift in Sources */,
@@ -9013,6 +9115,7 @@
 				91C6510D20AEC8B50035C4EA /* UIImage+Convenience.swift in Sources */,
 				7F3A9CC21FCDC89D000F1744 /* ArticleCollectionViewData.swift in Sources */,
 				CBFED33A1F7938970006270D /* ChatItemQueue.swift in Sources */,
+				8D40768A22E5A5AA0027864D /* MySprintDetailsPresenter.swift in Sources */,
 				F9838F4122AFFF50003F9394 /* MyQotMainModel.swift in Sources */,
 				36376621223A4C0400C2C429 /* MyQotProfileModel.swift in Sources */,
 				5F62BEA2228AE73300852F7E /* MyQotSiriShortcutsInteractor.swift in Sources */,
@@ -9054,6 +9157,7 @@
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				5F78965322A929C100D2DBAD /* FiveLinesWithTopBroad.swift in Sources */,
+				8D25327122E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift in Sources */,
 				5F36073F228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift in Sources */,
 				F9D6381222D62B9A0092C482 /* DepartureInfoCellViewModel.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,

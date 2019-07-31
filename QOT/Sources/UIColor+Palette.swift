@@ -104,6 +104,10 @@ extension UIColor {
         return UIColor.carbon.withAlphaComponent(0.7)
     }
 
+    public class var carbon80: UIColor {
+        return UIColor.carbon.withAlphaComponent(0.8)
+    }
+
     public class var carbon: UIColor {
         return UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: 1)
     }

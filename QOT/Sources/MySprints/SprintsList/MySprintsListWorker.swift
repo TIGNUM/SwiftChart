@@ -13,7 +13,7 @@ final class MySprintsListWorker {
 
     // MARK: - Properties
     private let service = qot_dal.UserService.main
-    private var storages = [QDMSprint]()
+    private var sprints = [QDMSprint]()
 
     // MARK: - Init
 
@@ -89,7 +89,9 @@ final class MySprintsListWorker {
     }()
 
     func loadData(_ completion: @escaping (_ initiated: Bool, _ sprints: [QDMSprint]) -> Void) {
+        sprints.removeAll()
         service.getSprints { (sprints, initiated, error) in
+            self.sprints.append(contentsOf: sprints ?? [])
             completion(initiated, sprints ?? [])
         }
     }
@@ -100,5 +102,9 @@ final class MySprintsListWorker {
 
     func remove(sprints: [QDMSprint], _ completion: @escaping (Error?) -> Void) {
         service.deleteSprints(sprints, completion)
+    }
+
+    func getSprint(with id: String) -> QDMSprint? {
+        return sprints.first(where: { $0.qotId == id })
     }
 }

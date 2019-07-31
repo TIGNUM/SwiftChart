@@ -32,15 +32,25 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
         self.addSubview(editingOverlay)
     }
 
-    func set(title: String?, status: MySprintsListSprintModel.StatusType, description: String?, progress: String?) {
+    func set(title: String?, status: MySprintStatus, description: String?, progress: String?) {
         let style = NSMutableParagraphStyle()
         style.lineSpacing = 6
-        titleLabel.attributedText = NSAttributedString(string: title ?? "", attributes: [.kern: 0.5, .paragraphStyle: style])
+        titleLabel.attributedText = NSAttributedString(string: title ?? "",
+                                                       attributes: [.kern: CharacterSpacing.kern05,
+                                                                    .paragraphStyle: style])
         statusIcon.image = image(for: status)
-        statusLabel.attributedText = NSAttributedString(string: description ?? "", attributes: [.kern: 0.4])
-        progressLabel.attributedText = NSAttributedString(string: progress ?? "", attributes: [.kern: 0.2])
+        statusLabel.attributedText = NSAttributedString(string: description ?? "",
+                                                        attributes: [.kern: CharacterSpacing.kern04])
+        progressLabel.attributedText = NSAttributedString(string: progress ?? "",
+                                                          attributes: [.kern: CharacterSpacing.kern02])
 
-        self.backgroundColor = (status == .active ? .carbonNew : .clear)
+        let color: UIColor
+        if case MySprintStatus.active = status {
+            color = .carbonNew
+        } else {
+            color = .clear
+        }
+        self.backgroundColor = color
     }
 
     override func setEditing(_ editing: Bool, animated: Bool) {
@@ -64,7 +74,7 @@ class MySprintsListTableViewCell: UITableViewCell, Dequeueable {
 // MARK: - Private methods
 
 extension MySprintsListTableViewCell {
-    private func image(for status: MySprintsListSprintModel.StatusType) -> UIImage? {
+    private func image(for status: MySprintStatus) -> UIImage? {
         switch status {
         case .active:
             return R.image.my_sprints_active()

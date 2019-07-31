@@ -94,6 +94,7 @@ private extension MyLibraryUserStorageViewController {
         infoAlertView?.present(on: self.view)
         infoAlertView?.topInset = model.isFullscreen ? 0 : headerHeight.constant
         infoAlertView?.bottomInset = BottomNavigationContainer.height
+        infoAlertView?.setBackgroundColor(self.view.backgroundColor)
     }
 
     private func setEditButton(enabled: Bool) {

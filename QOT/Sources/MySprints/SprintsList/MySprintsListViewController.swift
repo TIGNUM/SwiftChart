@@ -37,6 +37,7 @@ final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
+        tableView.addHeader(with: .carbonNew)
         interactor?.viewDidLoad()
 
         editButton.tintColor = .accent
@@ -58,6 +59,10 @@ final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
 private extension MySprintsListViewController {
 
     private func showDefaultBottomButtons() {
+        // Do not reload if not displayed
+        if self.viewIfLoaded?.window == nil {
+            return
+        }
         bottomNavigationItems.leftBarButtonItems = [backNavigationItem()]
         bottomNavigationItems.rightBarButtonItems = nil
         refreshBottomNavigationItems()
@@ -73,7 +78,7 @@ private extension MySprintsListViewController {
         refreshBottomNavigationItems()
     }
 
-    private func updateInfoViewWithViewModel(_ model: MyLibraryUserStorageInfoViewModel?) {
+    private func updateInfoViewWithViewModel(_ model: MySprintsInfoAlertViewModel?) {
         guard let model = model else {
             infoAlertView?.dismiss()
             infoAlertView = nil
@@ -83,8 +88,9 @@ private extension MySprintsListViewController {
         infoAlertView = InfoAlertView()
         infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
         infoAlertView?.present(on: self.view)
-        infoAlertView?.topInset = model.isFullscreen ? 0 : 200//headerHeight.constant
+        infoAlertView?.topInset = model.isFullscreen ? 0 : headerHeight.constant
         infoAlertView?.bottomInset = BottomNavigationContainer.height
+        infoAlertView?.setBackgroundColor(self.view.backgroundColor)
     }
 
     private func setEditButton(enabled: Bool) {

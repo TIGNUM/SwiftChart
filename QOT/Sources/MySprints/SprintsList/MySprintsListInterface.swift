@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol MySprintsListViewControllerInterface: class {
     func update()
@@ -28,5 +29,5 @@ protocol MySprintsListInteractorInterface: Interactor {
 }
 
 protocol MySprintsListRouterInterface {
-    func presentSprint(with sprintId: String)
+    func presentSprint(_ sprint: QDMSprint)
 }
