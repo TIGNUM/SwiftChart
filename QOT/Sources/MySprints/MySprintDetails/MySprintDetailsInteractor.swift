@@ -16,6 +16,7 @@ final class MySprintDetailsInteractor {
     private let worker: MySprintDetailsWorker
     private let presenter: MySprintDetailsPresenterInterface
     private let router: MySprintDetailsRouterInterface
+    private let notificationCenter: NotificationCenter
 
     public private(set) var viewModel = MySprintDetailsViewModel()
 
@@ -83,10 +84,17 @@ final class MySprintDetailsInteractor {
 
     init(worker: MySprintDetailsWorker,
         presenter: MySprintDetailsPresenterInterface,
-        router: MySprintDetailsRouterInterface) {
+        router: MySprintDetailsRouterInterface,
+        notificationCenter: NotificationCenter = NotificationCenter.default) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+
+        self.notificationCenter = notificationCenter
+        self.notificationCenter.addObserver(self,
+                                            selector: #selector(didUpdateSprintDetails(_:)),
+                                            name: .didUpdateMySprintsData,
+                                            object: nil)
     }
 
     // MARK: - Interactor
@@ -304,7 +312,7 @@ extension MySprintDetailsInteractor {
     }
 
     private func updateSprintReflection(_ type: MySprintDetailsItem.Action) {
-        // TODO: https://tignum.atlassian.net/browse/QOT-1579
+        router.presentNoteEditing(for: worker.sprint, action: type)
     }
 
     private func showSprintInProgressAlert(with endDate: Date) {
@@ -359,5 +367,15 @@ extension MySprintDetailsInteractor {
                 action()
             }
         }
+    }
+
+    @objc private func didUpdateSprintDetails(_ notification: Notification) {
+        guard let sprint = notification.userInfo?[Notification.Name.MySprintDetailsKeys.sprint] as? QDMSprint,
+            sprint.qotId == worker.sprint.qotId else {
+            return
+        }
+        worker.setSprint(sprint)
+        viewModel = viewModel(from: worker.sprint)
+        presenter.present()
     }
 }

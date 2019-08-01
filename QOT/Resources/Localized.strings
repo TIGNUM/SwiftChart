@@ -603,3 +603,10 @@
 "MySprintDetails.Info.Message.PauseSprint" = "Are you sure you want to pause your current sprint? To reach the best results is recommended to finish a sprint in maximum %d days.";
 "MySprintDetails.Info.Message.ReplanSprint" = "It’s really important keep your focus in your sprint to reach your results and finish it in %d days. Do you want to continue where you stopped or restart it from the beginning?";
 "MySprintDetails.Info.Message.SprintInProgress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start To be vision anchors?";
+
+"MySprintDetailsNotes.Button.Save" = "Save";
+"MySprintDetailsNotes.Button.Cancel" = "Cancel";
+"MySprintDetailsNotes.Button.Leave" = "Yes, Leave";
+"MySprintDetailsNotes.Info.Title.Leave" = "LEAVE WITHOUT SAVING";
+"MySprintDetailsNotes.Info.Message.Leave" = "Are you sure you want to leave without saving? The changes will not be applied.";
+"MySprintDetailsNotes.Button.Save" = "Save";

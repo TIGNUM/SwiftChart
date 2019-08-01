@@ -719,6 +719,14 @@
 		85E1F1C71F1F94C7003FA349 /* LearnListAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */; };
 		8D03A7B522E0872C000CA576 /* MySprintsListViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D03A7B422E0872C000CA576 /* MySprintsListViewModel.swift */; };
 		8D1C476722EF541A00E19E34 /* Notification+MySprints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */; };
+		8D204C2122F06F1000DF6A76 /* MySprintNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D204C1922F06F1000DF6A76 /* MySprintNotesViewController.swift */; };
+		8D204C2222F06F1000DF6A76 /* MySprintNotesInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D204C1A22F06F1000DF6A76 /* MySprintNotesInteractor.swift */; };
+		8D204C2322F06F1000DF6A76 /* MySprintNotesRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D204C1B22F06F1000DF6A76 /* MySprintNotesRouter.swift */; };
+		8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D204C1C22F06F1000DF6A76 /* MySprintNotesWorker.swift */; };
+		8D204C2522F06F1000DF6A76 /* MySprintNotesConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D204C1D22F06F1000DF6A76 /* MySprintNotesConfigurator.swift */; };
+		8D204C2622F06F1000DF6A76 /* MySprintNotesPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D204C1E22F06F1000DF6A76 /* MySprintNotesPresenter.swift */; };
+		8D204C2722F06F1000DF6A76 /* MySprintNotes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D204C1F22F06F1000DF6A76 /* MySprintNotes.storyboard */; };
+		8D204C2822F06F1000DF6A76 /* MySprintNotesInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D204C2022F06F1000DF6A76 /* MySprintNotesInterface.swift */; };
 		8D2372CB22DF38CD00FEFA83 /* UIImage+ReorderControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */; };
 		8D251BB122D3562200EE2236 /* GradientArcView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D251BB022D3562200EE2236 /* GradientArcView.swift */; };
 		8D251BB322D3990B00EE2236 /* ButtonParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D251BB222D3990B00EE2236 /* ButtonParameters.swift */; };
@@ -2291,6 +2299,14 @@
 		85E1F1C61F1F94C7003FA349 /* LearnListAnimation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LearnListAnimation.swift; sourceTree = "<group>"; };
 		8D03A7B422E0872C000CA576 /* MySprintsListViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListViewModel.swift; sourceTree = "<group>"; };
 		8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Notification+MySprints.swift"; sourceTree = "<group>"; };
+		8D204C1922F06F1000DF6A76 /* MySprintNotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySprintNotesViewController.swift; sourceTree = "<group>"; };
+		8D204C1A22F06F1000DF6A76 /* MySprintNotesInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySprintNotesInteractor.swift; sourceTree = "<group>"; };
+		8D204C1B22F06F1000DF6A76 /* MySprintNotesRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySprintNotesRouter.swift; sourceTree = "<group>"; };
+		8D204C1C22F06F1000DF6A76 /* MySprintNotesWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySprintNotesWorker.swift; sourceTree = "<group>"; };
+		8D204C1D22F06F1000DF6A76 /* MySprintNotesConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySprintNotesConfigurator.swift; sourceTree = "<group>"; };
+		8D204C1E22F06F1000DF6A76 /* MySprintNotesPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySprintNotesPresenter.swift; sourceTree = "<group>"; };
+		8D204C1F22F06F1000DF6A76 /* MySprintNotes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MySprintNotes.storyboard; sourceTree = "<group>"; };
+		8D204C2022F06F1000DF6A76 /* MySprintNotesInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MySprintNotesInterface.swift; sourceTree = "<group>"; };
 		8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+ReorderControl.swift"; sourceTree = "<group>"; };
 		8D251BB022D3562200EE2236 /* GradientArcView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientArcView.swift; sourceTree = "<group>"; };
 		8D251BB222D3990B00EE2236 /* ButtonParameters.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonParameters.swift; sourceTree = "<group>"; };
@@ -4913,6 +4929,21 @@
 			name = MediaResource;
 			sourceTree = "<group>";
 		};
+		8D204C1822F06F1000DF6A76 /* Notes */ = {
+			isa = PBXGroup;
+			children = (
+				8D204C1D22F06F1000DF6A76 /* MySprintNotesConfigurator.swift */,
+				8D204C1A22F06F1000DF6A76 /* MySprintNotesInteractor.swift */,
+				8D204C2022F06F1000DF6A76 /* MySprintNotesInterface.swift */,
+				8D204C1E22F06F1000DF6A76 /* MySprintNotesPresenter.swift */,
+				8D204C1B22F06F1000DF6A76 /* MySprintNotesRouter.swift */,
+				8D204C1922F06F1000DF6A76 /* MySprintNotesViewController.swift */,
+				8D204C1C22F06F1000DF6A76 /* MySprintNotesWorker.swift */,
+				8D204C1F22F06F1000DF6A76 /* MySprintNotes.storyboard */,
+			);
+			path = Notes;
+			sourceTree = "<group>";
+		};
 		8D322B9522E895C7000141E1 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -4959,6 +4990,7 @@
 				8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */,
 				8D5668AD22DCAD0F00AA172F /* SprintsList */,
 				8D40768122E5A4000027864D /* MySprintDetails */,
+				8D204C1822F06F1000DF6A76 /* Notes */,
 			);
 			path = MySprints;
 			sourceTree = "<group>";
@@ -7620,6 +7652,7 @@
 				36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */,
 				5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
+				8D204C2722F06F1000DF6A76 /* MySprintNotes.storyboard in Resources */,
 				5F78965922A929C100D2DBAD /* TwoLinesAndButton.xib in Resources */,
 				369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */,
 				DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */,
@@ -8325,6 +8358,7 @@
 				36667698207CF65000D2F5AD /* VisionGeneratorPresenter.swift in Sources */,
 				7F3A9CBB1FCDB8FF000F1744 /* UserFeedback.swift in Sources */,
 				369353AB22984267008BBB72 /* PrepareResultsContentTableViewCell.swift in Sources */,
+				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
 				36796A5E20D3C4B800B55429 /* SigningInfoCollectionViewCell.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
 				5F78965122A929C100D2DBAD /* ThreeLinesAndButton.swift in Sources */,
@@ -8523,6 +8557,7 @@
 				36376668223ABB2D00C2C429 /* StrategyTableViewCell.swift in Sources */,
 				ACD399F1229402A300DDE1BD /* AnswerType.swift in Sources */,
 				CBD4BE9B201752F0008A0E9E /* GuideItemFactory.swift in Sources */,
+				8D204C2622F06F1000DF6A76 /* MySprintNotesPresenter.swift in Sources */,
 				36780AB6215528EA00507D1E /* TabMenuView.swift in Sources */,
 				5FA66648229C2B560027EE74 /* MyVisionEditDetailsKeyboardInputView.swift in Sources */,
 				36E4B7AC219EBFED00049EE8 /* TutorialWorker.swift in Sources */,
@@ -8547,6 +8582,7 @@
 				AC1A40DF22A54EB70022156C /* SolveResultsInteractor.swift in Sources */,
 				8D6048E322D8D2970005BB29 /* Notification+MyLibrary.swift in Sources */,
 				CB694E09205C1C3600D29B3E /* DailyPrepResultIntermediary.swift in Sources */,
+				8D204C2822F06F1000DF6A76 /* MySprintNotesInterface.swift in Sources */,
 				363765FD223A4BD200C2C429 /* KnowingRouter.swift in Sources */,
 				9150413720FDF40A00D43D18 /* SensorViewController.swift in Sources */,
 				5FA6663E229C20600027EE74 /* MyVisionEditDetailsPresenter.swift in Sources */,
@@ -8797,6 +8833,8 @@
 				DBFDCE0422B2354C00C94C86 /* VideoBookmarkTableViewCell.swift in Sources */,
 				CCE372F51E8CF10C00B79352 /* ArticleCollectionViewController.swift in Sources */,
 				36E4CF1022BC51BD009A2DF7 /* ChoiceConfigurator.swift in Sources */,
+				8D204C2322F06F1000DF6A76 /* MySprintNotesRouter.swift in Sources */,
+				8D204C2522F06F1000DF6A76 /* MySprintNotesConfigurator.swift in Sources */,
 				CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */,
 				CBCCF3961F7E43EF000E4440 /* ChatViewHeaderFooter.swift in Sources */,
 				CCE3730F1E8D32F800B79352 /* SidebarCoordinator.swift in Sources */,
@@ -8908,6 +8946,7 @@
 				F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */,
 				3662433E227C56E500FFED3A /* AudioButton.swift in Sources */,
 				AC1A40DA22A54EB70022156C /* SolveResultsPresenter.swift in Sources */,
+				8D204C2122F06F1000DF6A76 /* MySprintNotesViewController.swift in Sources */,
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,
 				ACF0B948225FC41F008CFAEC /* DecisionTreeViewController.swift in Sources */,
 				369353A822983AB9008BBB72 /* PrepareResultsConfigurator.swift in Sources */,
@@ -9187,6 +9226,7 @@
 				CBD4BEA82018DFD9008A0E9E /* GuidePresenter.swift in Sources */,
 				F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */,
 				AC103E442285B27200F426F0 /* MindsetShifterChecklistViewController.swift in Sources */,
+				8D204C2222F06F1000DF6A76 /* MySprintNotesInteractor.swift in Sources */,
 				36796A2420D3C45200B55429 /* SigningCountryViewController.swift in Sources */,
 				F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */,
 				36CB720B22B8775B00C99AFC /* QDMContentItem+Ext.swift in Sources */,

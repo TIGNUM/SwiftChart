@@ -26,4 +26,5 @@ protocol MySprintDetailsInteractorInterface: Interactor {
 
 protocol MySprintDetailsRouterInterface {
     func presentTakeawayCapture(for sprint: QDMSprint)
+    func presentNoteEditing(for sprint: QDMSprint, action: MySprintDetailsItem.Action)
 }

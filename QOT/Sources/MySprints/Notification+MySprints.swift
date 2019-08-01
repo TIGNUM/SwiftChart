@@ -9,6 +9,10 @@
 import Foundation
 
 extension Notification.Name {
+    struct MySprintDetailsKeys {
+        static let sprint = "sprint"
+    }
+
     // MySprints data was updated and the list needs to be reloaded
     static let didUpdateMySprintsData = Notification.Name("didUpdateMySprintsData")
 }

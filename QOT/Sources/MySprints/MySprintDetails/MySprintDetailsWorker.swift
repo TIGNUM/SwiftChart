@@ -155,6 +155,10 @@ extension MySprintDetailsWorker {
             self?.updateSprint(sprint, error: error, completion: completion)
         }
     }
+
+    func setSprint(_ sprint: QDMSprint) {
+        self.sprint = sprint
+    }
 }
 
 // MARK: - Private methods

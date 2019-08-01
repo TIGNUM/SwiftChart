@@ -66,6 +66,11 @@ extension DecisionTreeWorker {
                 if let error = error {
                     qot_dal.log("Error while trying to update spint: \(error.localizedDescription)", level: .error)
                 }
+                if let sprint = sprint {
+                    NotificationCenter.default.post(name: .didUpdateMySprintsData,
+                                                    object: nil,
+                                                    userInfo: [Notification.Name.MySprintDetailsKeys.sprint: sprint])
+                }
             }
         }
     }

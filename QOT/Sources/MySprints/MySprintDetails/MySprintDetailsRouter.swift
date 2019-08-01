@@ -30,4 +30,13 @@ extension MySprintDetailsRouter: MySprintDetailsRouterInterface {
         let controller = DecisionTreeViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }
+
+    func presentNoteEditing(for sprint: QDMSprint, action: MySprintDetailsItem.Action) {
+        guard let noteController = R.storyboard.mySprintNotes.mySprintNotesViewController() else {
+            return
+        }
+        let configurator = MySprintNotesConfigurator.make()
+        configurator(noteController, sprint, action)
+        viewController.present(noteController, animated: true, completion: nil)
+    }
 }
