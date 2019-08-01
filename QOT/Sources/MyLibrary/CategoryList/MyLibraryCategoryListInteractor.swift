@@ -29,6 +29,9 @@ final class MyLibraryCategoryListInteractor {
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(load(_:)),
                                                name: .UIApplicationDidBecomeActive, object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(load(_:)),
+                                               name: .didUpdateMyLibraryData, object: nil)
     }
 
     // MARK: - Interactor

@@ -257,7 +257,9 @@ extension MyLibraryUserStorageWorker {
     private func handleStorages(_ storages: [QDMUserStorage]?,
                         initiated: Bool,
                         completion: @escaping (_ initiated: Bool, _ items: [QDMUserStorage]) -> Void) {
-        self.storages = storages ?? []
+        let unsortedStorages: [QDMUserStorage] = storages ?? []
+        self.storages = unsortedStorages.sorted(by: {
+            ($0.createdAt?.timeIntervalSinceReferenceDate ?? 0) > ($1.createdAt?.timeIntervalSinceReferenceDate ?? 0) })
         completion(initiated, self.storages)
     }
 

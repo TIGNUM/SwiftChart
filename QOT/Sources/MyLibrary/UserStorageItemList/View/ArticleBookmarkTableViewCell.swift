@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ArticleBookmarkTableViewCell: UITableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
+class ArticleBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var preview: UIImageView!
     @IBOutlet weak var contentTitle: UILabel!

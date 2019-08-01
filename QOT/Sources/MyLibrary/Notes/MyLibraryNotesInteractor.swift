@@ -91,7 +91,7 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
             if error != nil {
                 qot_dal.log("Failed to save note. Error: \(String(describing: error))", level: .error)
             } else {
-                self?.notificationCenter.post(name: Notification.Name.didUpdateMyLibraryData, object: nil)
+                self?.notificationCenter.post(name: .didUpdateMyLibraryData, object: nil)
                 self?.router.dismiss()
             }
         }
@@ -149,7 +149,7 @@ extension MyLibraryNotesInteractor {
                 qot_dal.log("Failed to delete the note. Error: \(String(describing: error))")
                 return
             }
-            self?.notificationCenter.post(name: Notification.Name.didUpdateMyLibraryData, object: nil)
+            self?.notificationCenter.post(name: .didUpdateMyLibraryData, object: nil)
             self?.router.dismiss()
         }
     }

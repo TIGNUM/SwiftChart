@@ -30,7 +30,9 @@ extension MyLibraryUserStorageRouter: MyLibraryUserStorageRouterInterface {
             return
         }
         ArticleConfigurator.configure(selectedID: id, viewController: articleViewController)
-        viewController.present(articleViewController, animated: true, completion: nil)
+        let articleNavigationController = ArticleNavigationController(rootViewController: articleViewController)
+        articleNavigationController.navigationBar.isTranslucent = false
+        viewController.present(articleNavigationController, animated: true, completion: nil)
     }
 
     func presentVideo(url: URL) {

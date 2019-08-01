@@ -44,6 +44,7 @@ final class MyLibraryUserStorageViewController: UIViewController, ScreenZLevel3 
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         interactor?.viewDidLoad()
+        view.backgroundColor = .carbon
 
         editButton.tintColor = .accent
         editButton.setImage(R.image.edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -67,6 +68,10 @@ final class MyLibraryUserStorageViewController: UIViewController, ScreenZLevel3 
 private extension MyLibraryUserStorageViewController {
 
     private func showDefaultBottomButtons() {
+        // Do not reload if not displayed
+        if self.viewIfLoaded?.window == nil {
+            return
+        }
         bottomNavigationItems.leftBarButtonItems = [backNavigationItem()]
         bottomNavigationItems.rightBarButtonItems = nil
         refreshBottomNavigationItems()
@@ -89,9 +94,11 @@ private extension MyLibraryUserStorageViewController {
             return
         }
 
-        infoAlertView = InfoAlertView()
+        if infoAlertView == nil {
+            infoAlertView = InfoAlertView()
+            infoAlertView?.present(on: self.view)
+        }
         infoAlertView?.set(icon: model.icon, title: model.title, attributedText: model.message)
-        infoAlertView?.present(on: self.view)
         infoAlertView?.topInset = model.isFullscreen ? 0 : headerHeight.constant
         infoAlertView?.bottomInset = BottomNavigationContainer.height
         infoAlertView?.setBackgroundColor(self.view.backgroundColor)

@@ -749,6 +749,7 @@
 		8D40769022E5A5AA0027864D /* MySprintDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768822E5A5AA0027864D /* MySprintDetailsViewModel.swift */; };
 		8D40769122E5A5AA0027864D /* MySprintDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768922E5A5AA0027864D /* MySprintDetailsConfigurator.swift */; };
 		8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D40769222E5AA260027864D /* MySprintDetails.storyboard */; };
+		8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55119922F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift */; };
 		8D5668B622DCAD4800AA172F /* MySprintsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668AE22DCAD4800AA172F /* MySprintsListPresenter.swift */; };
 		8D5668B722DCAD4800AA172F /* MySprintsListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668AF22DCAD4800AA172F /* MySprintsListWorker.swift */; };
 		8D5668B822DCAD4800AA172F /* MySprintsListRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668B022DCAD4800AA172F /* MySprintsListRouter.swift */; };
@@ -2329,6 +2330,7 @@
 		8D40768822E5A5AA0027864D /* MySprintDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsViewModel.swift; sourceTree = "<group>"; };
 		8D40768922E5A5AA0027864D /* MySprintDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsConfigurator.swift; sourceTree = "<group>"; };
 		8D40769222E5AA260027864D /* MySprintDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MySprintDetails.storyboard; sourceTree = "<group>"; };
+		8D55119922F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMyLibraryTableViewCell.swift; sourceTree = "<group>"; };
 		8D5668AE22DCAD4800AA172F /* MySprintsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListPresenter.swift; sourceTree = "<group>"; };
 		8D5668AF22DCAD4800AA172F /* MySprintsListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListWorker.swift; sourceTree = "<group>"; };
 		8D5668B022DCAD4800AA172F /* MySprintsListRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListRouter.swift; sourceTree = "<group>"; };
@@ -5601,6 +5603,7 @@
 			isa = PBXGroup;
 			children = (
 				B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */,
+				8D55119922F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift */,
 				B856B48422B0E9AA0017A249 /* ArticleBookmarkTableViewCell.swift */,
 				DBFDCE0322B2354C00C94C86 /* VideoBookmarkTableViewCell.swift */,
 				DBFDCE0522B2357B00C94C86 /* AudioBookmarkTableViewCell.swift */,
@@ -8823,6 +8826,7 @@
 				DB6805A3218210E700C2FC69 /* MorningQuestion.swift in Sources */,
 				362614AC20CFC1C300AB3659 /* UserCountryList.swift in Sources */,
 				8D6E058922D7466E00EC2AEF /* MyLibraryNotesWorker.swift in Sources */,
+				8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */,
 				36E86D4B2270511100371C67 /* ArticleBulletPointTableViewCell.swift in Sources */,
 				CC0238FF1F4EE2B700DD992B /* IntensityChart.swift in Sources */,
 				36796A0620D3C41F00B55429 /* SigningCreatePasswordPresenter.swift in Sources */,

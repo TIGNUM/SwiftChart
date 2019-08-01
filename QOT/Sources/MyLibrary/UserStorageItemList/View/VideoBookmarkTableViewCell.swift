@@ -8,7 +8,7 @@
 
 import UIKit
 
-class VideoBookmarkTableViewCell: UITableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
+class VideoBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var preview: UIImageView!
     @IBOutlet weak var contentTitle: UILabel!

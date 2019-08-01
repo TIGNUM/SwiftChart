@@ -41,6 +41,9 @@ final class MyLibraryNotesViewController: UIViewController, ScreenZLevel3 {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
+        if interactor?.isCreatingNewNote ?? true {
+            beginEditing()
+        }
     }
 
     override func viewDidLoad() {

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AudioBookmarkTableViewCell: UITableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
+class AudioBookmarkTableViewCell: BaseMyLibraryTableViewCell, BaseMyLibraryTableViewCellInterface, Dequeueable {
     @IBOutlet weak var icon: UIImageView!
     @IBOutlet weak var preview: UIImageView!
     @IBOutlet weak var contentTitle: UILabel!
@@ -19,5 +19,10 @@ class AudioBookmarkTableViewCell: UITableViewCell, BaseMyLibraryTableViewCellInt
         if self.isEditing {
             super.setSelected(selected, animated: animated)
         }
+    }
+
+    override func setEditing(_ editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        playButton.isEnabled = !editing
     }
 }
