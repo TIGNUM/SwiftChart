@@ -11,10 +11,16 @@ import qot_dal
 
 protocol MySprintDetailsViewControllerInterface: class {
     func update()
+    func trackSprintPause()
+    func trackSprintContinue()
+    func trackSprintStart()
 }
 
 protocol MySprintDetailsPresenterInterface {
     func present()
+    func trackSprintPause()
+    func trackSprintContinue()
+    func trackSprintStart()
 }
 
 protocol MySprintDetailsInteractorInterface: Interactor {

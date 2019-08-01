@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MySprintDetailsViewController: UIViewController, ScreenZLevel3 {
 
@@ -27,6 +28,11 @@ final class MySprintDetailsViewController: UIViewController, ScreenZLevel3 {
 
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
     }
 
     override func viewDidLoad() {
@@ -118,6 +124,18 @@ extension MySprintDetailsViewController: MySprintDetailsViewControllerInterface 
         // Bottom buttons
         updateBottomButtons(with: viewModel)
         tableView.reloadData()
+    }
+
+    func trackSprintPause() {
+        trackUserEvent(QDMUserEventTracking.Name.PAUSE, action: QDMUserEventTracking.Action.TAP)
+    }
+
+    func trackSprintContinue() {
+        trackUserEvent(QDMUserEventTracking.Name.CONTINUE, action: QDMUserEventTracking.Action.TAP)
+    }
+
+    func trackSprintStart() {
+        trackUserEvent(QDMUserEventTracking.Name.START, action: QDMUserEventTracking.Action.TAP)
     }
 }
 

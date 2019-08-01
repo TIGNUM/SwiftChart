@@ -145,6 +145,7 @@ extension MySprintDetailsInteractor {
     @objc private func startSprint() {
         worker.startSprint { [weak self] (error) in
             guard let strongSelf = self else { return }
+            strongSelf.presenter.trackSprintStart()
             strongSelf.updateSprintViewModel(with: strongSelf.worker.sprint)
         }
     }
@@ -156,6 +157,7 @@ extension MySprintDetailsInteractor {
     @objc private func pauseSprint() {
         worker.pauseSprint { [weak self] (error) in
             guard let strongSelf = self else { return }
+            strongSelf.presenter.trackSprintPause()
             strongSelf.updateSprintViewModel(with: strongSelf.worker.sprint)
         }
     }
@@ -173,6 +175,7 @@ extension MySprintDetailsInteractor {
     @objc private func continuePausedSprint() {
         worker.continueSprint { [weak self] (error) in
             guard let strongSelf = self else { return }
+            strongSelf.presenter.trackSprintContinue()
             strongSelf.updateSprintViewModel(with: strongSelf.worker.sprint)
         }
     }

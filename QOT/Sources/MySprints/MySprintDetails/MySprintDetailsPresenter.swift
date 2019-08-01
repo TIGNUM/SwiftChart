@@ -27,4 +27,15 @@ extension MySprintDetailsPresenter: MySprintDetailsPresenterInterface {
     func present() {
         viewController?.update()
     }
+    func trackSprintPause() {
+        viewController?.trackSprintPause()
+    }
+
+    func trackSprintContinue() {
+        viewController?.trackSprintContinue()
+    }
+
+    func trackSprintStart() {
+        viewController?.trackSprintStart()
+    }
 }

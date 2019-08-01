@@ -71,6 +71,8 @@ private extension UIViewController {
         case is MyLibraryCategoryListViewController: return "mylibrary"
         case is DailyCheckinStartViewController: return "dailyCheckin.start"
         case is DailyCheckinQuestionsViewController: return "dailyCheckin.questions"
+        case is MySprintsListViewController: return "myqot.mysprints"
+        case is MySprintDetailsViewController: return "myqot.mysprints.sprint.detail"
         default: preconditionFailure()
         }
     }

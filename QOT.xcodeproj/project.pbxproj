@@ -749,6 +749,7 @@
 		8D40769022E5A5AA0027864D /* MySprintDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768822E5A5AA0027864D /* MySprintDetailsViewModel.swift */; };
 		8D40769122E5A5AA0027864D /* MySprintDetailsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D40768922E5A5AA0027864D /* MySprintDetailsConfigurator.swift */; };
 		8D40769322E5AA260027864D /* MySprintDetails.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D40769222E5AA260027864D /* MySprintDetails.storyboard */; };
+		8D55119822F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55119722F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift */; };
 		8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D55119922F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift */; };
 		8D5668B622DCAD4800AA172F /* MySprintsListPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668AE22DCAD4800AA172F /* MySprintsListPresenter.swift */; };
 		8D5668B722DCAD4800AA172F /* MySprintsListWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D5668AF22DCAD4800AA172F /* MySprintsListWorker.swift */; };
@@ -2330,6 +2331,7 @@
 		8D40768822E5A5AA0027864D /* MySprintDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsViewModel.swift; sourceTree = "<group>"; };
 		8D40768922E5A5AA0027864D /* MySprintDetailsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintDetailsConfigurator.swift; sourceTree = "<group>"; };
 		8D40769222E5AA260027864D /* MySprintDetails.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MySprintDetails.storyboard; sourceTree = "<group>"; };
+		8D55119722F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserEventTracking+MySprints.swift"; sourceTree = "<group>"; };
 		8D55119922F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMyLibraryTableViewCell.swift; sourceTree = "<group>"; };
 		8D5668AE22DCAD4800AA172F /* MySprintsListPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListPresenter.swift; sourceTree = "<group>"; };
 		8D5668AF22DCAD4800AA172F /* MySprintsListWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MySprintsListWorker.swift; sourceTree = "<group>"; };
@@ -4990,6 +4992,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1C476622EF541A00E19E34 /* Notification+MySprints.swift */,
+				8D55119722F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift */,
 				8D5668AD22DCAD0F00AA172F /* SprintsList */,
 				8D40768122E5A4000027864D /* MySprintDetails */,
 				8D204C1822F06F1000DF6A76 /* Notes */,
@@ -8449,6 +8452,7 @@
 				7F8DB4AC1FA2047D00DFE006 /* PartnersAnimator.swift in Sources */,
 				5F78965822A929C100D2DBAD /* Loader.swift in Sources */,
 				9115F6FF208DDFD700EE5D1D /* ProfileSettingsRouter.swift in Sources */,
+				8D55119822F2C75200D1A78D /* QDMUserEventTracking+MySprints.swift in Sources */,
 				7582616722D8DBBE000094DE /* DailyCheckinStartRouter.swift in Sources */,
 				F902CF4A22D87C3600FFC836 /* FeastCellViewModel.swift in Sources */,
 				5FF1A0F822857B6100D76D55 /* MyQotAppSettingsWorker.swift in Sources */,
