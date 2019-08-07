@@ -127,9 +127,16 @@ extension SolveResultsWorker: SolveResultsWorkerInterface {
         }
     }
 
-    func save(completion: () -> Void) {
-        // TODO: - Save results when API is ready.
-        completion()
+    func save(completion: @escaping () -> Void) {
+        guard let solutionContentId = selectedAnswer?.decisions.filter({ $0.targetType.lowercased() == "content" }).first?.targetTypeId else {
+            completion()
+            return
+        }
+        let relatedStrategies = type == .solve ? strategiesCollections : strategiyCollectionsRecovery
+        let relatedStragieIds = relatedStrategies.compactMap({ $0.remoteID.value })
+        qot_dal.UserService.main.createSolve(solutionCollectionId: solutionContentId, strategyIds: relatedStragieIds, followUp: true) { (solve, error) in
+            completion()
+        }
     }
 }
 

@@ -42,7 +42,7 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
 
     func save() {
         worker.save(completion: {
-            router.dismiss()
+            self.router.dismiss()
         })
     }
 

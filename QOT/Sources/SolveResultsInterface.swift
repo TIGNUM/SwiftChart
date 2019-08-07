@@ -34,5 +34,5 @@ protocol SolveResultsRouterInterface {
 
 protocol SolveResultsWorkerInterface {
     var results: SolveResults { get }
-    func save(completion: () -> Void)
+    func save(completion: @escaping () -> Void)
 }

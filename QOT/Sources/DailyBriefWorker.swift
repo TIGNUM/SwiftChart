@@ -54,7 +54,7 @@ final class DailyBriefWorker {
     }
 
     func randomQuestionModel(completion: @escaping ((QuestionCellViewModel)?) -> Void) {
-        qot_dal.ContentService.main.getContentCategory(.RandomQuestion, { (category) in
+        qot_dal.ContentService.main.getContentCategory(.QuestionWithoutAnswer, { (category) in
             completion(QuestionCellViewModel(text: category?.contentCollections.first?.contentItems.randomElement()?.valueText, domainModel: nil))
         })
     }
