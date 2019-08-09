@@ -174,7 +174,14 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
         switch type {
         case .question:
             let cell: QuestionTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(with: question.title, questionTitleUpdate: questionTitleUpdate)
+            var update = questionTitleUpdate
+            switch interactor?.type {
+            case .sprint?:
+                update = interactor?.selectedSprintTitle
+            default:
+                break
+            }
+            cell.configure(with: question.title, questionTitleUpdate: update)
             return cell
         case .answer:
             switch question.answerType {

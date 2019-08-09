@@ -62,6 +62,14 @@ final class DecisionTreeWorker {
             }.first?.question
     }
 
+    var selectedSprintTitle: String {
+        return selectedSprint?.subtitle ?? ""
+    }
+
+    var selectedSprint: QDMAnswer? {
+        return decisionTree?.selectedAnswers.filter { $0.questionID == 100369 }.last?.answer
+    }
+
     internal var multiSelectionCounter: Int = 0 {
         didSet { syncButtons() }
     }

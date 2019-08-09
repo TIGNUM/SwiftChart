@@ -29,9 +29,12 @@ extension QuestionTableViewCell {
 
 private extension QuestionTableViewCell {
     func updateQuestionIfNeeded(_ question: String, _ questionTitleUpdate: String?) -> String {
-        guard let update = questionTitleUpdate else { return question }
+        guard let update = questionTitleUpdate, update.isEmpty == false else { return question }
         if update == AnswerKey.Recovery.general.rawValue {
             return update
+        }
+        if question.contains("${sprintName}") {
+            return question.replacingOccurrences(of: "${sprintName}", with: update)
         }
         return question.replacingOccurrences(of: "%@", with: update)
     }

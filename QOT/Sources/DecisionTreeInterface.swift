@@ -53,6 +53,7 @@ protocol DecisionTreeInteractorInterface: Interactor {
     var selectedanswers: [DecisionTreeModel.SelectedAnswer] { get }
     var answersFilter: String? { get }
     var extraAnswer: String? { get }
+    var selectedSprintTitle: String { get }
     func preparations() -> [QDMUserPreparation]
     func displayContent(with id: Int)
     func streamContentItem(with id: Int)

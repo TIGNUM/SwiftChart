@@ -73,6 +73,7 @@ enum AnswerKey {
     }
 
     enum Sprint: String {
+        case selection = "sprint-answer-key-selection"
         case startTomorrow = "sprint-answer-key-start-tomorrow"
         case addToQueue = "sprint-answer-key-add-to-queue"
     }

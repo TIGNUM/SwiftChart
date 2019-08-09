@@ -65,6 +65,10 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         return worker.extraAnswer
     }
 
+    var selectedSprintTitle: String {
+        return worker.selectedSprintTitle
+    }
+
     func displayContent(with id: Int) {
         router.openArticle(with: id)
     }

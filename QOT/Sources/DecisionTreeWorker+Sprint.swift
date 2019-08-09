@@ -12,7 +12,7 @@ import qot_dal
 // MARK: - Sprint
 extension DecisionTreeWorker {
     func handleSprintScheduling(_ answer: QDMAnswer?) {
-        let targetContentId = answer?.targetId(.content) ?? 0
+        let targetContentId = selectedSprint?.targetId(.content) ?? 0
         let targetQuestionId = answer?.targetId(.question) ?? 0
         let answerKey: AnswerKey.Sprint = AnswerKey.Sprint(rawValue: answer?.keys.first ?? "") ?? .addToQueue
 
@@ -24,16 +24,20 @@ extension DecisionTreeWorker {
         case .startTomorrow:
             isSprintInProgress { [weak self] (sprint, endDate) in
                 if let sprint = sprint, let endDate = endDate {
+                    let dateString = DateFormatter.settingsUser.string(from: endDate)
                     self?.activeSprint = sprint
                     self?.newSprintContentId = targetContentId
                     self?.lastSprintQuestionId = targetQuestionId
                     self?.interactor?.presentInfoView(icon: R.image.warning(),
-                                                      title: "A Sprint is already in progress",
-                                                      text: "Looks like you have a sprint in progress that ends the 14.Jun.2019. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start To be vision anchors?")
+                                                      title: R.string.localized.mySprintDetailsInfoTitleInProgress(),
+                                                      text: R.string.localized.mySprintDetailsInfoBodyInProgress(dateString,
+                                                                                                                 self?.selectedSprintTitle ?? ""))
                 } else {
                     self?.createSprintAndStart(targetContentId)
                 }
             }
+        default:
+            return
         }
     }
 

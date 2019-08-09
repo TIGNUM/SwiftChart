@@ -155,6 +155,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
     }
 
     func setupView() {
+        view.backgroundColor = .sand
         setupTypingAnimation()
         setupContinueButton()
         setupPageViewController()
@@ -260,6 +261,14 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         dismiss()
     }
 
+    @objc func didPressDimissInfoView() {
+        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                  rightBarButtonItems: [],
+                                                  backgroundColor: .sand)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        infoEffectContainerView.isHidden = true
+    }
+
     @objc func didPressDimiss() {
         dismiss()
     }
@@ -321,7 +330,7 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         infoEffectContainerView.isHidden = false
         let cancelButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
                                                      buttonWidth: .Cancel,
-                                                     action: #selector(didPressDimiss),
+                                                     action: #selector(didPressDimissInfoView),
                                                      backgroundColor: .carbonDark,
                                                      borderColor: .accent40)
         let continueButtonItem = roundedBarButtonItem(title: R.string.localized.alertButtonTitleContinue(),

@@ -580,6 +580,8 @@
 "DailyCheckIn.SleepQuantity.Value.Suffix" = " h";
 "DailyCheckIn.SleepQuantity.Value.Suffix.Max" = " h/more";
 
+"MySprintDetails.Info.Title.In.Progress" = "A Sprint is already in progress";
+"MySprintDetails.Info.Body.In.Progress" = "Looks like you have a sprint in progress that ends the %@. It’s important to keep your focus to reach your current sprint goals. Would you like to stop it and start %@?";
 "MySprintDetails.Header.SprintTasks" = "SPRINT TASKS";
 "MySprintDetails.Header.MyPlan" = "MY PLAN";
 "MySprintDetails.Header.MyNotes" = "MY NOTES";
