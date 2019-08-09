@@ -34,7 +34,7 @@ final class Logger {
         logger.addDestination(console)
 
         remote.minLevel = .error
-        logger.addDestination(remote)
+        //logger.addDestination(remote)
 
         #if DEBUG
             file.minLevel = .debug

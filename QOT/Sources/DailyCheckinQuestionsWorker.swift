@@ -33,6 +33,9 @@ final class DailyCheckinQuestionsWorker {
             checkInAnswer.ToBeVisionTrackId = question.toBeVisionTrackId
             checkInAnswer.questionGroupId = question.groups?.first?.id
             checkInAnswer.answerId = question.selectedAnswer()?.remoteID
+            if question.key == "daily.checkin.peak.performances" {
+                checkInAnswer.PeakPerformanceCount = (question.selectedAnswerIndex ?? 0) + 1 // it's count
+            }
             answers.append(checkInAnswer)
         }
         questionService.saveDailyCheckInAnswers(answers) { (apiError) in

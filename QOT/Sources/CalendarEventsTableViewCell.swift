@@ -33,7 +33,7 @@ final class CalendarEventsTableViewCell: UITableViewCell, Dequeueable, PrepareEv
                 self?.tableView.reloadDataWithAnimation()
             }
         default:
-            qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events) in
+            qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events, initiated, error) in
                 PrepareEventSelectionConfigurator.make(self, delegate: delegate,
                                                        question: question,
                                                        events: events ?? [],

@@ -128,7 +128,7 @@ private extension CalendarSyncSettingsManager {
             }
             result = new
             syncManager.syncCalendarSyncSettings()
-            syncManager.syncCalendarEvents()
+//            syncManager.syncCalendarEvents()
         }
         return result
     }

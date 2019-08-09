@@ -105,6 +105,8 @@
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>QOT needs access to calendar to prepare events and to create calendar events.</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>QOT needs HealthKit access to measure your sleep quantity.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>QOT needs camera access for changing images.</string>
 	<key>NSContactsUsageDescription</key>
@@ -155,6 +157,7 @@
 	<array>
 		<string>audio</string>
 		<string>fetch</string>
+		<string>location</string>
 		<string>remote-notification</string>
 	</array>
 	<key>UILaunchStoryboardName</key>

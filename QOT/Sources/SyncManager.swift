@@ -211,10 +211,11 @@ final class SyncManager {
     }
 
     func syncCalendarEvents(completion: ((Error?) -> Void)? = nil) {
-        let context = SyncContext()
-        excute(operations: [syncOperation(CalendarEvent.self, context: context, shouldDownload: true)],
-               context: context,
-               completion: completion)
+        completion?(nil)
+//        let context = SyncContext()
+//        excute(operations: [syncOperation(CalendarEvent.self, context: context, shouldDownload: true)],
+//               context: context,
+//               completion: completion)
     }
 
     func syncCalendarSyncSettings(completion: ((Error?) -> Void)? = nil) {
@@ -348,9 +349,10 @@ private extension SyncManager {
 
     func calendarSyncOperations(context: SyncContext) -> [Operation] {
         let calendarSettingSyncOperation = syncOperation(RealmCalendarSyncSetting.self, context: context, shouldDownload: true)
-        let calendarEventSyncOperation = syncOperation(CalendarEvent.self, context: context, shouldDownload: true)
-        if calendarSettingSyncOperation != nil { calendarEventSyncOperation?.addDependency(calendarSettingSyncOperation!) }
-        return [calendarSettingSyncOperation, calendarEventSyncOperation].compactMap({ $0 })
+        return [calendarSettingSyncOperation].compactMap({ $0 })
+//        let calendarEventSyncOperation = syncOperation(CalendarEvent.self, context: context, shouldDownload: true)
+//        if calendarSettingSyncOperation != nil { calendarEventSyncOperation?.addDependency(calendarSettingSyncOperation!) }
+//        return [calendarSettingSyncOperation, calendarEventSyncOperation].compactMap({ $0 })
     }
 
     func conversionSyncOperations(context: SyncContext) -> [Operation] {
@@ -503,7 +505,7 @@ private extension SyncManager {
 
     @objc func startSyncCalendarRelatedDataNotification(_ notification: Notification) {
         syncCalendarSyncSettings { (error) in
-            self.syncCalendarEvents()
+//            self.syncCalendarEvents()
         }
     }
 

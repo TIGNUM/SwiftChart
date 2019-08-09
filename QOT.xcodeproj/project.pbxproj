@@ -1394,6 +1394,7 @@
 		DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */; };
 		DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */; };
 		DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */; };
+		DBFA002722FC68A800B28647 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFA002622FC68A700B28647 /* HealthKit.framework */; };
 		DBFDCE0422B2354C00C94C86 /* VideoBookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDCE0322B2354C00C94C86 /* VideoBookmarkTableViewCell.swift */; };
 		DBFDCE0622B2357B00C94C86 /* AudioBookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDCE0522B2357B00C94C86 /* AudioBookmarkTableViewCell.swift */; };
 		E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A12130055700C0723E /* PDFReaderViewController.swift */; };
@@ -2961,6 +2962,7 @@
 		DB985D58215BAB3B0000D2DD /* UIView+Autolayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Autolayout.swift"; sourceTree = "<group>"; };
 		DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
+		DBFA002622FC68A700B28647 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
 		DBFDCE0322B2354C00C94C86 /* VideoBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoBookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		DBFDCE0522B2357B00C94C86 /* AudioBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
@@ -3130,6 +3132,7 @@
 				DB34725421594560004F17D6 /* RealmSwift.framework in Frameworks */,
 				7FB32D111F42E8620027BF4E /* Security.framework in Frameworks */,
 				0CC2119BB6C36EF6F43B4ECD /* Pods_QOT.framework in Frameworks */,
+				DBFA002722FC68A800B28647 /* HealthKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -4715,6 +4718,7 @@
 		7BD58BE66F7DCDCEF349DBD8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DBFA002622FC68A700B28647 /* HealthKit.framework */,
 				DB34725121594560004F17D6 /* Realm.framework */,
 				DB34725321594560004F17D6 /* RealmSwift.framework */,
 				7FB32D101F42E8620027BF4E /* Security.framework */,
@@ -7411,6 +7415,9 @@
 								enabled = 1;
 							};
 							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.HealthKit = {
 								enabled = 1;
 							};
 							com.apple.InterAppAudio = {
