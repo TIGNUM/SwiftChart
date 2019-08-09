@@ -114,9 +114,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 }
 
 // MARK: - Private
-
 private extension MyPrepsViewController {
-
     func updateControls() {
         refreshBottomNavigationItems()
         confirmDeleteView.isHidden = true
@@ -163,16 +161,9 @@ private extension MyPrepsViewController {
         noRecoveriesView.isHidden = true
         noMIndsetShiftersView.isHidden = true
     }
-
-    func makeModels() {
-        interactor?.createPreparationModel()
-        interactor?.createRecovery3DModel()
-        interactor?.createMindsetShifterModel()
-    }
 }
 
 // MARK: - Actions
-
 private extension MyPrepsViewController {
     func setupSegementedControl() {
         segmentedControl.tintColor = .clear
@@ -187,9 +178,7 @@ private extension MyPrepsViewController {
 }
 
 // MARK: - MyPrepsViewControllerInterface
-
 extension MyPrepsViewController: MyPrepsViewControllerInterface {
-
     func updateView() {
         tableView.reloadData()
         showEmptyStateViewIfNeeded(segmentedControl)
@@ -198,7 +187,6 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
     func setupView() {
         view.backgroundColor = .carbonDark
         headerTitle.text = R.string.localized.myQotHeaderTitle()
-        makeModels()
         setupTableView()
         hideAllViews()
         if interactor?.numberOfRowsPreparations(in: 0) == Optional(0) {
@@ -211,7 +199,6 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
 }
 
 extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:

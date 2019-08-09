@@ -117,7 +117,7 @@ extension DecisionTreeWorker {
 
 extension DecisionTreeWorker {
     func showTBV(targetQuestionId: Int) {
-        if userHasToBeVision == true {
+        if userHasToBeVision == false {
             interactor?.openShortTBVGenerator { [weak self] in
                 self?.showNextQuestion(targetId: Prepare.Key.perceived.questionID)
             }

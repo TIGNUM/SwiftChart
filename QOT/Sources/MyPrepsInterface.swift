@@ -30,9 +30,6 @@ protocol MyPrepsInteractorInterface: Interactor {
     func itemPrep(at indexPath: IndexPath) -> MyPrepsModel.Items?
     func itemMind(at indexPath: IndexPath) -> MindsetShiftersModel.Items?
     func itemRec(at indexPath: IndexPath) -> RecoveriesModel.Items?
-    func createRecovery3DModel()
-    func createMindsetShifterModel()
-    func createPreparationModel()
     func presentPreparation(item: QDMUserPreparation, viewController: UIViewController)
 }
 

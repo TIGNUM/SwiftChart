@@ -82,7 +82,7 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     }
 
     func openShortTBVGenerator(completion: (() -> Void)?) {
-        if worker.userHasToBeVision == true {
+        if worker.userHasToBeVision == false {
             router.openShortTBVGenerator(completion: completion)
         }
     }

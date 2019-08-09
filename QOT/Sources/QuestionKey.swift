@@ -51,6 +51,7 @@ enum QuestionKey {
         static let Work = "mindsetshifter-tbv-generator-key-work"
         static let Home = "mindsetshifter-tbv-generator-key-home"
         static let Review = "mindsetshifter-tbv-generator-key-review"
+        static let Learn = "mindsetshifter-tbv-generator-key-learn"
     }
 
     struct Prepare {

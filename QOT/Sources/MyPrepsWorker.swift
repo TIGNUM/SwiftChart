@@ -12,14 +12,12 @@ import qot_dal
 final class MyPrepsWorker {
 
     // MARK: - Properties
-
     private let userService = qot_dal.UserService.main
     var model: MyPrepsModel?
     var recModel: RecoveriesModel?
     var mindModel: MindsetShiftersModel?
 
     // MARK: - Functions
-
     func preparations(completion: @escaping (MyPrepsModel?) -> Void) {
         userService.getUserPreparations { [weak self] (preparations, initialized, error) in
             var prepItems = [MyPrepsModel.Items]()
@@ -63,6 +61,12 @@ final class MyPrepsWorker {
             completion(self?.mindModel)
         }
     }
+
+    func createModels(completion: @escaping () -> Void) {
+        createRecModel()
+        createMindModel()
+        createPrepModel(completion)
+    }
 }
 
 extension MyPrepsWorker {
@@ -91,13 +95,14 @@ extension MyPrepsWorker {
         }
     }
 
-    func createPrepModel() {
-        preparations(completion: { (myPrepsModel) in
-         self.model = myPrepsModel
-        })
+    func createPrepModel(_ completion: @escaping () -> Void) {
+        preparations() { (myPrepsModel) in
+            self.model = myPrepsModel
+            completion()
+        }
     }
-    //TODO: Remove createMindModel and createRecModel
 
+    //TODO: Remove createMindModel and createRecModel
     func createMindModel() {
         let homeAnswerIds = [100036, 100037, 100038]
         let workAnswerIds = [100036, 100037, 100038]

@@ -12,13 +12,11 @@ import qot_dal
 final class MyPrepsInteractor {
 
     // MARK: - Properties
-
     private let worker: MyPrepsWorker
     private let presenter: MyPrepsPresenterInterface
     private let router: MyPrepsRouterInterface
 
     // MARK: - Init
-
     init(worker: MyPrepsWorker,
          presenter: MyPrepsPresenterInterface,
          router: MyPrepsRouterInterface) {
@@ -28,14 +26,14 @@ final class MyPrepsInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
-        presenter.setupView()
+        worker.createModels {
+            self.presenter.setupView()
+        }
     }
 }
 
 // MARK: - MyPrepsInteractorInterface
-
 extension MyPrepsInteractor: MyPrepsInteractorInterface {
     func numberOfRowsPreparations(in section: Int) -> Int {
         return (worker.model?.prepItems.count ?? 0)
@@ -85,20 +83,8 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
         }
     }
 
-    func createPreparationModel() {
-        worker.createPrepModel()
-    }
-
-    func createMindsetShifterModel() {
-        worker.createMindModel()
-    }
-
-    func createRecovery3DModel() {
-        worker.createRecModel()
-    }
-
     func presentPreparation(item: QDMUserPreparation, viewController: UIViewController) {
-        let configurator = PrepareResultsConfigurator.configurate(item, [], canDelete: true)
+        let configurator = PrepareResultsConfigurator.configurate(item, [], canDelete: false)
         let controller = PrepareResultsViewController(configure: configurator)
         viewController.present(controller, animated: true)
     }
