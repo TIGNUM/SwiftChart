@@ -201,7 +201,11 @@ private extension DecisionTreeWorker {
     }
 
     func showQuestion(_ node: DecisionTreeNode) {
-        if let question = node.question {
+        if node.question?.key == QuestionKey.Prepare.BuildCritical && preparations.isEmpty == true {
+            if let answer = currentQuestion?.answers.last {
+                showNextQuestionIfExist(answer)
+            }
+        } else if let question = node.question {
             interactor?.showQuestion(question,
                                      extraAnswer: node.generatedAnswer,
                                      filter: answersFilter(),
@@ -279,8 +283,7 @@ private extension DecisionTreeWorker {
              QuestionKey.Prepare.EventTypeSelectionCritical,
              QuestionKey.Prepare.SelectExisting,
              QuestionKey.Prepare.ShowTBV:
-            showNextQuestionIfExist(answer)
-
+                showNextQuestionIfExist(answer)
         default:
             return
         }
@@ -296,7 +299,18 @@ private extension DecisionTreeWorker {
              QuestionKey.MindsetShifterTBV.Work,
              QuestionKey.MindsetShifterTBV.Review:
             showNextQuestionIfExist(answer)
-
+        case QuestionKey.MindsetShifterTBV.Learn:
+            if let contentItemID = answer.targetId(.contentItem) {
+                interactor?.streamContentItem(with: contentItemID)
+                if let targetQuestionId = answer.targetId(.question) {
+                    nextQuestionId = targetQuestionId
+                }
+            } else if let contentId = answer.targetId(.content) {
+                showResultView(for: answer, contentID: contentId)
+                if let targetQuestionId = answer.targetId(.question) {
+                    showNextQuestion(targetId: targetQuestionId)
+                }
+            }
         default:
             return
         }

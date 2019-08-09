@@ -48,9 +48,22 @@ final class PrepareResultsViewController: UIViewController {
         interactor?.viewDidLoad()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(dismissView),
+                                               name: .didTabDismissBottomNavigation,
+                                               object: nil)
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        NotificationCenter.default.removeObserver(self, name: .didTabDismissBottomNavigation, object: nil)
     }
 }
 
@@ -138,10 +151,6 @@ extension PrepareResultsViewController: PrepareResultsViewControllerInterface {
     }
 
     func setupView() {
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(dismissView),
-                                               name: .didTabDismissBottomNavigation,
-                                               object: nil)
         view.addSubview(tableView)
         if #available(iOS 11.0, *) {
             tableView.contentInsetAdjustmentBehavior = .never

@@ -135,7 +135,7 @@ struct Prepare {
         case feel = "prepare_peak_prep_relationship_intentions_feel"
         case benefits = "prepare_peak_prep_benefits_input"
         case benefitsTitle = "prepare_check_list_critical_benefits_title"
-        case eventType = "Fprepare-event-type-selection-critical"
+        case eventType = "prepare-event-type-selection-critical"
 
         var questionID: Int {
             switch self {

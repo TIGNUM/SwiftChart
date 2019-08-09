@@ -22,9 +22,9 @@ extension PrepareResultsWorker {
 }
 
 extension PrepareResultsWorker {
-    func dailyItems(_ prepare: QDMUserPreparation, completion: @escaping ItemCompletion) {
+    func dailyItems(_ prepare: QDMUserPreparation, _ suggestedStrategyId: Int?, completion: @escaping ItemCompletion) {
         getContentItems(prepare.contentCollectionId ?? 0) { [weak self] contentItems in
-            self?.getStrategyItems(prepare.strategyIds, self?.suggestedStrategyId) { strategyItems in
+            self?.getStrategyItems(prepare.strategyIds, suggestedStrategyId) { strategyItems in
                 self?.getEkEvent(completion: { ekEvent in
                     var items = [Int: [PrepareResultsType]]()
                     items[Prepare.Daily.HEADER] = self?.getHeaderItems(contentItems ?? [])
@@ -48,10 +48,13 @@ extension PrepareResultsWorker {
 }
 
 extension PrepareResultsWorker {
-    func criticalItems(_ prepare: QDMUserPreparation, _ answerFilter: String?, _ completion: @escaping ItemCompletion) {
+    func criticalItems(_ prepare: QDMUserPreparation,
+                       _ answerFilter: String?,
+                       _ suggestedStrategyId: Int?,
+                       _ completion: @escaping ItemCompletion) {
         var items = [Int: [PrepareResultsType]]()
         getContentItems(prepare.contentCollectionId ?? 0) { [weak self] contentItems in
-            self?.getStrategyItems(prepare.strategyIds, self?.suggestedStrategyId) { strategyItems in
+            self?.getStrategyItems(prepare.strategyIds, suggestedStrategyId) { strategyItems in
                 self?.getSelectedIntentionItems(prepare.preceiveAnswerIds, .perceived, completion: { (perceivedItems) in
                     self?.getSelectedIntentionItems(prepare.knowAnswerIds, .know, completion: { (knowItems) in
                         self?.getSelectedIntentionItems(prepare.feelAnswerIds, .feel, completion: { (feelItems) in
@@ -176,7 +179,9 @@ extension PrepareResultsWorker {
     func getStrategyItems(_ strategyIds: [Int],
                           _ relatedStrategyID: Int?,
                           _ completion: @escaping (([PrepareResultsType]) -> Void)) {
-        if strategyIds.isEmpty == true {
+        if strategyIds.isEmpty == true && relatedStrategyID == nil {
+            makeStrategyItems(strategyIds, completion)
+        } else if strategyIds.isEmpty == true && relatedStrategyID != nil {
             strategyIDsDefault(relatedStrategyID) { [weak self] relatedIDs in
                 self?.makeStrategyItems(relatedIDs, completion)
             }

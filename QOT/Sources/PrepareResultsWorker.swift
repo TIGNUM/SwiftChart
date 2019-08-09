@@ -34,9 +34,9 @@ final class PrepareResultsWorker {
         switch level {
         case .LEVEL_CRITICAL:
             setAnswerIdsIfNeeded(answers)
-            generateCriticalItemsAndUpdateView(self.preparation)
+            generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
         case .LEVEL_DAILY:
-            generateDailyItemsAndUpdateView(preparation)
+            generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
         default: break
         }
     }
@@ -198,17 +198,17 @@ private extension PrepareResultsWorker {
         }
     }
 
-    func generateCriticalItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
+    func generateCriticalItemsAndUpdateView(_ prepare: QDMUserPreparation?, suggestedStrategyId: Int?) {
         guard let prepare = prepare else { return }
-        criticalItems(prepare, prepare.answerFilter ?? "") { [weak self] items in
+        criticalItems(prepare, prepare.answerFilter ?? "", suggestedStrategyId) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
         }
     }
 
-    func generateDailyItemsAndUpdateView(_ prepare: QDMUserPreparation?) {
+    func generateDailyItemsAndUpdateView(_ prepare: QDMUserPreparation?, suggestedStrategyId: Int?) {
         guard let prepare = prepare else { return }
-        dailyItems(prepare) { [weak self] items in
+        dailyItems(prepare, suggestedStrategyId) { [weak self] items in
             self?.items = items
             self?.delegate?.reloadData()
         }
@@ -225,9 +225,9 @@ extension PrepareResultsWorker {
         strategyIds = selectedIds
         switch level {
         case .LEVEL_DAILY:
-            generateDailyItemsAndUpdateView(preparation)
+            generateDailyItemsAndUpdateView(preparation, suggestedStrategyId: nil)
         case .LEVEL_CRITICAL:
-            generateCriticalItemsAndUpdateView(preparation)
+            generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: nil)
         default:
             break
         }
@@ -244,12 +244,12 @@ extension PrepareResultsWorker {
         default:
             break
         }
-        generateCriticalItemsAndUpdateView(preparation)
+        generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
     }
 
     func updateBenefits(_ benefits: String) {
         self.benefits = benefits
-       generateCriticalItemsAndUpdateView(preparation)
+        generateCriticalItemsAndUpdateView(preparation, suggestedStrategyId: suggestedStrategyId)
     }
 
     func handleReminders() {
