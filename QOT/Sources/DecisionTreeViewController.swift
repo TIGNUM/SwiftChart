@@ -262,6 +262,11 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
     }
 
     @objc func didPressDimissInfoView() {
+        trackUserEvent(.CLOSE,
+                       value: interactor?.selectedSprint?.remoteID,
+                       stringValue: interactor?.selectedSprintTitle,
+                       valueType: .CONTENT,
+                       action: .PRESS)
         let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
                                                   rightBarButtonItems: [],
                                                   backgroundColor: .sand)
@@ -328,6 +333,11 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         infoView.edges(to: view)
         infoView.isHidden = false
         infoEffectContainerView.isHidden = false
+        trackUserEvent(.OPEN,
+                       value: interactor?.selectedSprint?.remoteID,
+                       stringValue: interactor?.selectedSprintTitle,
+                       valueType: .CONTENT,
+                       action: .PRESS)
         let cancelButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
                                                      buttonWidth: .Cancel,
                                                      action: #selector(didPressDimissInfoView),

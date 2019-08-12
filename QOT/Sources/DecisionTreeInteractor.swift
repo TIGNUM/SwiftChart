@@ -69,6 +69,10 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         return worker.selectedSprintTitle
     }
 
+    var selectedSprint: QDMAnswer? {
+        return worker.selectedSprint
+    }
+
     func displayContent(with id: Int) {
         router.openArticle(with: id)
     }
