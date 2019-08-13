@@ -13,8 +13,10 @@ import qot_dal
 extension DecisionTreeWorker {
     func handleSelection(for answer: QDMAnswer) {
         switch currentQuestion?.answerType {
-        case AnswerType.multiSelection.rawValue: handleMultiSelection(for: answer)
-        case AnswerType.singleSelection.rawValue: handleSingleSelection(for: answer)
+        case AnswerType.multiSelection.rawValue:
+            handleMultiSelection(for: answer)
+        case AnswerType.singleSelection.rawValue:
+            handleSingleSelection(for: answer)
         default: break
         }
     }
@@ -28,8 +30,10 @@ extension DecisionTreeWorker {
         }
 
         switch type {
-        case .recovery,
-             .sprint:
+        case .recovery:
+            handleSelectionRecovery(answer)
+
+        case .sprint:
             handleSelectionSprint(answer)
 
         case .mindsetShifter:
@@ -56,8 +60,10 @@ extension DecisionTreeWorker {
 
     func didSelectAnswer(_ answer: QDMAnswer) {
         switch currentQuestion?.answerType {
-        case AnswerType.multiSelection.rawValue: handleMultiSelection(for: answer)
-        case AnswerType.singleSelection.rawValue: handleSingleSelection(for: answer)
+        case AnswerType.multiSelection.rawValue:
+            handleMultiSelection(for: answer)
+        case AnswerType.singleSelection.rawValue:
+            handleSingleSelection(for: answer)
         default: break
         }
     }
@@ -326,6 +332,16 @@ private extension DecisionTreeWorker {
         } else {
             showNextQuestionIfExist(answer)
         }
+    }
+}
+
+// MARK: - Recovery
+private extension DecisionTreeWorker {
+    func handleSelectionRecovery(_ answer: QDMAnswer) {
+        recoveryCauseAnswerId = answer.remoteID
+        recoveryCauseContentItemId = answer.targetId(.contentItem)
+        recoveryCauseContentId = answer.targetId(.content)
+        showNextQuestionIfExist(answer)
     }
 }
 

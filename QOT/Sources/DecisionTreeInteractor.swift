@@ -270,6 +270,8 @@ extension DecisionTreeInteractor {
     }
 
     func openRecoveryResults() {
-        router.openRecoveryResults(worker.getRecoveryModel)
+        worker.createRecoveryModel { [weak self] (recovery) in
+            self?.router.openRecoveryResults(recovery)
+        }
     }
 }

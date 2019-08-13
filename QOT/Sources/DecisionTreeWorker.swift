@@ -23,6 +23,9 @@ final class DecisionTreeWorker {
     private var answerFilterMindset: String?
     private var _extraAnswer: String? = nil
     private var recoveryModel: QDMRecovery3D?
+    internal var recoveryCauseAnswerId: Int?
+    internal var recoveryCauseContentItemId: Int?
+    internal var recoveryCauseContentId: Int?
     internal var visionText: String? = nil
     internal let type: DecisionTreeType
     internal var selectedEvent = QDMUserCalendarEvent()
@@ -372,6 +375,27 @@ extension DecisionTreeWorker {
             decisionTree?.add(selectedAnswer)
         }
     }
+
+    func createRecoveryModel(_ completion: @escaping (QDMRecovery3D?) -> Void) {
+        let fatigueAnswerId = AnswerKey.Recovery.identifyFatigueSympton(decisionTreeAnswers).fatigueAnswerId
+        qot_dal.ContentService.main.getContentCollectionById(recoveryCauseContentId ?? 0) { [weak self] (content) in
+            let exclusiveContentIds = content?.relatedContentIdsRecoveryExclusive ?? []
+            let suggestedContentIds = content?.suggestedContentIdsRecovery ?? []
+            qot_dal.UserService.main.createRecovery3D(
+                fatigueAnswerId: fatigueAnswerId,
+                causeAnwserId: self?.recoveryCauseAnswerId ?? 0,
+                causeContentItemId: self?.recoveryCauseContentItemId ?? 0,
+                exclusiveContentCollectionIds: exclusiveContentIds,
+                suggestedSolutionsContentCollectionIds: suggestedContentIds) { (recoveryModel, error) in
+                    if let error = error {
+                        qot_dal.log("Error while trying to CREATE QDMRecovery3D: \(error.localizedDescription)",
+                            level: .debug)
+                    }
+                    self?.recoveryModel = recoveryModel
+                    completion(recoveryModel)
+            }
+        }
+    }
 }
 
 // MARK: - Recovery3D
@@ -383,25 +407,11 @@ private extension DecisionTreeWorker {
                                                object: nil)
     }
 
-    func createRecoveryModel() {
-        qot_dal.UserService.main.createRecovery3D(fatigueAnswerId: 0,
-                                                  causeAnwserId: 0,
-                                                  causeContentItemId: 0,
-                                                  exclusiveContentCollectionIds: [],
-                                                  suggestedSolutionsContentCollectionIds: []) { [weak self] (recoveryModel, error) in
-                                                    if let error = error {
-                                                        qot_dal.log("Error while trying to CREATE QDMRecovery3D with error: \(error.localizedDescription)",
-                                                            level: .debug)
-                                                    }
-                                                    self?.recoveryModel = recoveryModel
-        }
-    }
-
     func updateRecoveryModel(recovery: QDMRecovery3D?) {
         guard let recovery = recovery else { return }
         qot_dal.UserService.main.updateRecovery3D(recovery) { [weak self] (recovery, error) in
             if let error = error {
-                qot_dal.log("Error while trying to UPDATE QDMRecovery3D with error: \(error.localizedDescription)",
+                qot_dal.log("Error while trying to UPDATE QDMRecovery3D: \(error.localizedDescription)",
                     level: .debug)
             }
             self?.recoveryModel = recovery
@@ -412,7 +422,7 @@ private extension DecisionTreeWorker {
         guard let recoveryModel = recoveryModel else { return }
         qot_dal.UserService.main.deleteRecovery3D(recoveryModel) { (error) in
             if let error = error {
-                qot_dal.log("Error while trying to DELETE QDMRecovery3D with error: \(error.localizedDescription)",
+                qot_dal.log("Error while trying to DELETE QDMRecovery3D: \(error.localizedDescription)",
                     level: .debug)
             }
         }

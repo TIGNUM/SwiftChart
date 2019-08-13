@@ -75,3 +75,13 @@ extension QDMContentCollection {
         get { return !contentItems.filter { $0.tabs.contains(ContentFormat.audio.rawValue) }.isEmpty }
     }
 }
+
+extension QDMContentCollection {
+    func triggerType() -> SolveTriggerType? {
+        var triggerType: SolveTriggerType?
+        searchTagsDetailed.forEach { (termData) in
+            triggerType = termData.triggerType()
+        }
+        return triggerType
+    }
+}

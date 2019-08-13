@@ -17,7 +17,6 @@ protocol SolveResultsViewControllerDelegate: class {
 final class SolveResultsViewController: UIViewController {
 
     // MARK: - Properties
-
     var interactor: SolveResultsInteractorInterface?
     weak var delegate: SolveResultsViewControllerDelegate?
     private var isFollowUpActive = false
@@ -25,7 +24,6 @@ final class SolveResultsViewController: UIViewController {
     @IBOutlet private weak var tableView: UITableView!
 
     // MARK: - Init
-
     init(configure: Configurator<SolveResultsViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
@@ -37,8 +35,6 @@ final class SolveResultsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupView()
-        registerCells()
         interactor?.viewDidLoad()
     }
 
@@ -49,9 +45,7 @@ final class SolveResultsViewController: UIViewController {
 }
 
 // MARK: - Private
-
 private extension SolveResultsViewController {
-
     func registerCells() {
         tableView.registerDequeueable(SolveHeaderTableViewCell.self)
         tableView.registerDequeueable(SolveStrategyTableViewCell.self)
@@ -61,28 +55,36 @@ private extension SolveResultsViewController {
         tableView.registerDequeueable(FatigueTableViewCell.self)
         tableView.registerDequeueable(CauseTableViewCell.self)
     }
-
-    func setupView() {
-        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.height * 0.1, right: 0)
-    }
 }
 
 // MARK: - Actions
-
 private extension SolveResultsViewController {
-
     @objc func didTapDone() {
-        if isFollowUpActive == true {
-            interactor?.save()
-        } else {
-            interactor?.openConfirmationView()
+        switch interactor?.resultType {
+        case .recovery?:
+            interactor?.dismiss()
+        case .solve?:
+            if isFollowUpActive == true {
+                interactor?.save()
+            } else {
+                openConfirmationView()
+            }
+        case .none:
+            return
         }
+    }
+
+    @objc func openConfirmationView() {
+        interactor?.openConfirmationView()
     }
 }
 
 // MARK: - SolveResultsViewControllerInterface
-
 extension SolveResultsViewController: SolveResultsViewControllerInterface {
+    func setupView() {
+        registerCells()
+        tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: view.bounds.height * 0.1, right: 0)
+    }
 
     func load(_ results: SolveResults) {
         self.results = results
@@ -91,9 +93,7 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
 }
 
 // MARK: - UITableViewDelegate
-
 extension SolveResultsViewController: UITableViewDelegate {
-
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: false)
         switch results?.items[indexPath.row] {
@@ -107,9 +107,7 @@ extension SolveResultsViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-
 extension SolveResultsViewController: UITableViewDataSource {
-
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return results?.items.count ?? 0
     }
@@ -160,9 +158,7 @@ extension SolveResultsViewController: UITableViewDataSource {
 }
 
 // MARK: - SolveTriggerTableViewCellDelegate
-
 extension SolveResultsViewController: SolveTriggerTableViewCellDelegate {
-
     func didTapStart(_ type: SolveTriggerType) {
         trackUserEvent(.SELECT, valueType: "START \(type.rawValue)", action: .TAP)
         interactor?.didTapTrigger(type)
@@ -170,9 +166,7 @@ extension SolveResultsViewController: SolveTriggerTableViewCellDelegate {
 }
 
 // MARK: - SolveHeaderTableViewCellDelegate
-
 extension SolveResultsViewController: SolveHeaderTableViewCellDelegate {
-
     func didTapShowMoreLess() {
         trackUserEvent(.SELECT, valueType: "SHOW MORE/LESS", action: .TAP)
         tableView.reloadData()
@@ -180,9 +174,7 @@ extension SolveResultsViewController: SolveHeaderTableViewCellDelegate {
 }
 
 // MARK: - SolveFollowUpTableViewCell
-
 extension SolveResultsViewController: SolveFollowUpTableViewCellDelegate {
-
     func didTapFollowUp(isOn: Bool) {
         trackUserEvent(isOn == true ? .ENABLE : .DISABLE, action: .TAP)
         isFollowUpActive = isOn
@@ -190,13 +182,9 @@ extension SolveResultsViewController: SolveFollowUpTableViewCellDelegate {
 }
 
 // MARK: - ConfirmationViewControllerDelegate
-
 extension SolveResultsViewController: ConfirmationViewControllerDelegate {
-
     func didTapLeave() {
-        dismiss(animated: true, completion: {
-            self.delegate?.didFinishSolve()
-        })
+        interactor?.deleteModelAndDismiss()
     }
 
     func didTapStay() {
@@ -205,6 +193,10 @@ extension SolveResultsViewController: ConfirmationViewControllerDelegate {
 }
 
 extension SolveResultsViewController {
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItem(action: #selector(openConfirmationView))]
+    }
+
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
                                       buttonWidth: .DecisionTree,

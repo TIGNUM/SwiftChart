@@ -170,6 +170,7 @@
 		366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1E20BEA2F200109F29 /* Apercu-Light.otf */; };
 		366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1C20BEA2F100109F29 /* Apercu-Medium.otf */; };
 		366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 366AFD1D20BEA2F200109F29 /* Apercu-Regular.otf */; };
+		366B6D2E23018980003FA63E /* QDMTermData+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */; };
 		366D04F522C65EE30081258E /* FatigueTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366D04F322C65EE30081258E /* FatigueTableViewCell.swift */; };
 		366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 366D04F422C65EE30081258E /* FatigueTableViewCell.xib */; };
 		366F1FD7226A1CE90034D8FD /* FoundationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */; };
@@ -875,7 +876,7 @@
 		AC103E2F22847AB500F426F0 /* ConfirmationInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */; };
 		AC103E3022847AB500F426F0 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */; };
 		AC103E3122847AB500F426F0 /* ConfirmationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */; };
-		AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2A22847AB500F426F0 /* ConfirmationModel.swift */; };
+		AC103E3222847AB500F426F0 /* Confirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2A22847AB500F426F0 /* Confirmation.swift */; };
 		AC103E3322847AB500F426F0 /* ConfirmationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */; };
 		AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */; };
 		AC103E402285B27200F426F0 /* MindsetShifterChecklistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */; };
@@ -1751,6 +1752,7 @@
 		366AFD1C20BEA2F100109F29 /* Apercu-Medium.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apercu-Medium.otf"; sourceTree = "<group>"; };
 		366AFD1D20BEA2F200109F29 /* Apercu-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apercu-Regular.otf"; sourceTree = "<group>"; };
 		366AFD1E20BEA2F200109F29 /* Apercu-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Apercu-Light.otf"; sourceTree = "<group>"; };
+		366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMTermData+Ext.swift"; sourceTree = "<group>"; };
 		366D04F322C65EE30081258E /* FatigueTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FatigueTableViewCell.swift; sourceTree = "<group>"; };
 		366D04F422C65EE30081258E /* FatigueTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FatigueTableViewCell.xib; sourceTree = "<group>"; };
 		366F1FD5226A1CE90034D8FD /* FoundationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FoundationTableViewCell.swift; sourceTree = "<group>"; };
@@ -2455,7 +2457,7 @@
 		AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationInterface.swift; sourceTree = "<group>"; };
 		AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
 		AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationInteractor.swift; sourceTree = "<group>"; };
-		AC103E2A22847AB500F426F0 /* ConfirmationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationModel.swift; sourceTree = "<group>"; };
+		AC103E2A22847AB500F426F0 /* Confirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confirmation.swift; sourceTree = "<group>"; };
 		AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationConfigurator.swift; sourceTree = "<group>"; };
 		AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmationViewController.xib; sourceTree = "<group>"; };
 		AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistPresenter.swift; sourceTree = "<group>"; };
@@ -3740,12 +3742,13 @@
 		36CB720922B8772300C99AFC /* qot_dal */ = {
 			isa = PBXGroup;
 			children = (
-				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
+				36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */,
+				36735C7A22C60C8A0041678D /* QDMAnswer+Ext.swift */,
 				36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */,
 				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
-				36CB721322B8FA5B00C99AFC /* ContentService+Ext.swift */,
+				366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */,
 				36CB721722B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift */,
-				36735C7A22C60C8A0041678D /* QDMAnswer+Ext.swift */,
+				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
 			);
 			name = qot_dal;
 			sourceTree = "<group>";
@@ -5284,14 +5287,14 @@
 		AC103E2322847A9A00F426F0 /* Confirmation */ = {
 			isa = PBXGroup;
 			children = (
-				AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */,
-				AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */,
-				AC103E2622847AB500F426F0 /* ConfirmationRouter.swift */,
-				AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */,
-				AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */,
-				AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */,
-				AC103E2A22847AB500F426F0 /* ConfirmationModel.swift */,
 				AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */,
+				AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */,
+				AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */,
+				AC103E2A22847AB500F426F0 /* Confirmation.swift */,
+				AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */,
+				AC103E2622847AB500F426F0 /* ConfirmationRouter.swift */,
+				AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */,
+				AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */,
 				AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */,
 			);
 			name = Confirmation;
@@ -5350,8 +5353,8 @@
 				AC1A40D222A54EB70022156C /* SolveResultsPresenter.swift */,
 				AC1A40D422A54EB70022156C /* SolveResultsRouter.swift */,
 				AC1A40D622A54EB70022156C /* SolveResultsViewController.swift */,
-				AC1A40E222A550350022156C /* SolveResultsViewController.xib */,
 				AC1A40D322A54EB70022156C /* SolveResultsWorker.swift */,
+				AC1A40E222A550350022156C /* SolveResultsViewController.xib */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -8922,7 +8925,7 @@
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
 				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
-				AC103E3222847AB500F426F0 /* ConfirmationModel.swift in Sources */,
+				AC103E3222847AB500F426F0 /* Confirmation.swift in Sources */,
 				36D72ED5229C1BCC00DE1184 /* (null) in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
@@ -8960,6 +8963,7 @@
 				5F8A89932296DEC50011A05C /* MyVisionViewController.swift in Sources */,
 				F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */,
 				3662433E227C56E500FFED3A /* AudioButton.swift in Sources */,
+				366B6D2E23018980003FA63E /* QDMTermData+Ext.swift in Sources */,
 				AC1A40DA22A54EB70022156C /* SolveResultsPresenter.swift in Sources */,
 				8D204C2122F06F1000DF6A76 /* MySprintNotesViewController.swift in Sources */,
 				368ECB4D223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift in Sources */,

@@ -84,7 +84,6 @@ private extension InfoHelperView {
     }
 
     private func addDisplayAttributes(to text: NSAttributedString, type: TextType = .regular) -> NSAttributedString {
-
         let characterSpacing: CGFloat
         let lineSpacing: CGFloat = 6
         switch type {

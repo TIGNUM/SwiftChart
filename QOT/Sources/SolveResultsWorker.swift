@@ -12,224 +12,245 @@ import qot_dal
 final class SolveResultsWorker {
 
     // MARK: - Properties
-    private let services: Services
-    private let solveCategoryID: Int = 100082
-    private let recoveryCategoryID: Int = 100086
-    private let recoveryResultContentId: Int = 101291
-    private let exclusiveContentCategoryID: Int = 100087
     private var recovery: QDMRecovery3D? = nil
     private var selectedAnswer: QDMAnswer? = nil
     private let type: ResultType
 
-    private var contentIDs: [Int] {
-        switch type {
-        case .solve:
-            guard let answer = selectedAnswer else { return [] }
-            return Array(answer.decisions)
-                .filter { $0.targetType == TargetType.content.rawValue }
-                .compactMap { $0.targetTypeId }
-        case .recovery: return [recoveryResultContentId]
-        }
-    }
-
-    private var fatigueSymptom: String? {
-        guard
-            let answerId = recovery?.causeAnwserId,
-            let contentItemId = services.questionsService.answer(for: answerId)?.targetId(.contentItem) else { return nil }
-        return services.contentService.contentItem(id: contentItemId)?.valueText
-    }
-
-    private var fatigueCause: String? {
-        return recovery?.causeAnwser?.subtitle
-    }
-
-    private var fatigueCauseExplanation: String? {
-        guard
-            let answerId = recovery?.causeAnwserId,
-            let contentId = services.questionsService.answer(for: answerId)?.targetId(.content) else { return nil }
-        return services.contentService.contentCollection(id: contentId)?.contentItems.first?.valueText
-    }
-
-    private var solveContentCollection: ContentCollection? {
-        return Array(services.contentService.contentCollections(ids: contentIDs))
-            .filter { $0.contentCategories.first?.remoteID.value == solveCategoryID }.first
-    }
-
-    private var recoveryContentCollection: ContentCollection? {
-        return Array(services.contentService.contentCollections(ids: contentIDs))
-            .filter { $0.contentCategories.first?.remoteID.value == recoveryCategoryID }.first
-    }
-
-    private var strategiesCollections: [ContentCollection] {
-        guard let contentId = solveContentCollection?.remoteID.value else { return [] }
-        let relatedStrategies = Array(services.contentService.contentCollection(id: contentId)?.relatedContentList
-            .filter { $0.type == "RELATED_STRATEGY" } ?? [])
-        let relatedIds = relatedStrategies.compactMap { $0.contentID }
-        return Array(services.contentService.contentCollections(ids: relatedIds))
-    }
-
-    private var exclusiveCollections: [ContentCollection] {
-        guard let recovery = recovery else { return [] }
-        return Array(services.contentService.contentCollections(ids: recovery.exclusiveContentCollectionIds))
-    }
-
-    private var strategiyCollectionsRecovery: [ContentCollection] {
-        guard
-            let answerId = recovery?.causeAnwserId,
-            let contentId = services.questionsService.answer(for: answerId)?.targetId(.content) else { return [] }
-        let relatedStrategies = Array(services.contentService.contentCollection(id: contentId)?.relatedContentList.filter { $0.type == "RELATED_STRATEGY" } ?? [])
-        let relatedIds = relatedStrategies.compactMap { $0.contentID }
-        return Array(services.contentService.contentCollections(ids: relatedIds))
-    }
-
     // MARK: - Init
-
-    init(services: Services, selectedAnswer: QDMAnswer?, type: ResultType) {
-        self.services = services
+    init(selectedAnswer: QDMAnswer?, type: ResultType) {
         self.selectedAnswer = selectedAnswer
         self.type = type
     }
 
-    init(services: Services, recovery: QDMRecovery3D?) {
-        self.services = services
+    init(recovery: QDMRecovery3D?) {
         self.recovery = recovery
         self.type = .recovery
     }
 }
 
-// MARK: - SolveResultsWorkerInterface
-
-extension SolveResultsWorker: SolveResultsWorkerInterface {
+// MARK: - Public
+extension SolveResultsWorker {
     var hideShowMoreButton: Bool {
-        switch type {
-        case .recovery: return true
-        case .solve: return false
-        }
+        return type == .recovery
     }
 
-    var results: SolveResults {
-        var items: [SolveResults.Item] = []
+    var confirmationKind: Confirmation.Kind {
+        return type.confirmationKind
+    }
+
+    var resultType: ResultType {
+        return type
+    }
+
+    func results(_ completion: @escaping (SolveResults) -> Void) {
         switch type {
         case .recovery:
-            items.append(recoveryHeader)
-            items.append(fatigue)
-            items.append(cause)
-            items.append(contentsOf: exclusiveContent)
-            items.append(contentsOf: strategies)
-            return SolveResults(type: .recovery, items: items)
+            createRecoveryItems(completion)
         case .solve:
-            items.append(solveHeader)
-            items.append(contentsOf: strategies)
-            if let trigger = trigger { items.append(trigger) }
-            items.append(contentsOf: fiveDayPlan)
-            items.append(followUp)
-            return SolveResults(type: .solve, items: items)
+            createSolveItems(completion)
         }
     }
 
-    func save(completion: @escaping () -> Void) {
-        guard let solutionContentId = selectedAnswer?.decisions.filter({ $0.targetType.lowercased() == "content" }).first?.targetTypeId else {
-            completion()
+    func save(_ completion: @escaping () -> Void) {
+        let contentId = recovery?.fatigueAnswer?.targetId(.content)
+        relatedStrategies(contentId) { [weak self] (relatedStrategies) in
+            let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
+            qot_dal.UserService.main.createSolve(selectedAnswerId: self?.selectedAnswer?.remoteID ?? 0,
+                                                 solutionCollectionId: self?.selectedAnswer?.targetId(.content) ?? 0,
+                                                 strategyIds: relatedStragyIds,
+                                                 followUp: true) { (solve, error) in
+                                                    completion()
+            }
+        }
+    }
+
+    func deleteModel() {
+        switch type {
+        case .recovery:
+            guard let recovery = recovery else { return }
+            qot_dal.UserService.main.deleteRecovery3D(recovery) { error in
+                if let error = error {
+                    qot_dal.log("Error while trying to delete recovery: \(error.localizedDescription)", level: .debug)
+                }
+            }
+        case .solve:
             return
         }
-        let relatedStrategies = type == .solve ? strategiesCollections : strategiyCollectionsRecovery
-        let relatedStragieIds = relatedStrategies.compactMap({ $0.remoteID.value })
-        qot_dal.UserService.main.createSolve(solutionCollectionId: solutionContentId, strategyIds: relatedStragieIds, followUp: true) { (solve, error) in
-            completion()
+    }
+}
+
+// MARK: - Private
+private extension SolveResultsWorker {
+    func contentCollection(_ contentId: Int? = nil, _ completion: @escaping (QDMContentCollection?) -> Void) {
+        let targetContentId = selectedAnswer?.targetId(.content) ?? 0
+        qot_dal.ContentService.main.getContentCollectionById(contentId ?? targetContentId, completion)
+    }
+
+    func relatedStrategies(_ contentId: Int? = nil, _ completion: @escaping ([QDMContentCollection]) -> Void) {
+        contentCollection(contentId) { (content) in
+            if let content = content {
+                qot_dal.ContentService.main.getRelatedContentCollectionsFromContentCollection(content) { (related) in
+                    completion(related ?? [])
+                }
+            }
         }
+    }
+
+    func relatedStrategyItems(_ contentId: Int? = nil, _ completion: @escaping ([SolveResults.Item]) -> Void) {
+        let header: String
+        switch type {
+        case .recovery:
+            header = R.string.localized.headerTitleSuggestedStrategies()
+        case .solve:
+            header = R.string.localized.headerTitleStrategies()
+        }
+        relatedStrategies(contentId) { (related) in
+            var relatedStrategyItems: [SolveResults.Item] = []
+            for (index, collection) in related.enumerated() {
+                relatedStrategyItems.append(.strategy(id: collection.remoteID ?? 0,
+                                                      title: collection.title,
+                                                      minsToRead: collection.durationString,
+                                                      hasHeader: index == 0,
+                                                      headerTitle: header))
+            }
+            completion(relatedStrategyItems)
+        }
+    }
+
+    func valueText(for tag: String, content: QDMContentCollection?) -> String? {
+        return content?.contentItems.filter {
+            $0.searchTagsDetailed.contains(where: { $0.name == tag }) }.first?.valueText
     }
 }
 
 // MARK: - Private Solve
-
 private extension SolveResultsWorker {
-
-    var solveHeader: SolveResults.Item {
-        let title = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-header-title" })?.valueText ?? ""
-        let solution = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-header-subtitle" })?.valueText ?? ""
-        return .header(title: title, solution: solution)
-    }
-
-    var strategies: [SolveResults.Item] {
-        var strategies: [SolveResults.Item] = []
-        let relatedStrategies = type == .solve ? strategiesCollections : strategiyCollectionsRecovery
-        for (index, collection) in relatedStrategies.enumerated() {
-            strategies.append(.strategy(id: collection.remoteID.value ?? 0,
-                                        title: collection.title,
-                                        minsToRead: R.string.localized.learnContentListViewMinutesLabel(String(describing: collection.minutesToRead)),
-                                        hasHeader: index == 0,
-                                        headerTitle: type == .solve ? R.string.localized.headerTitleStrategies() : R.string.localized.headerTitleSuggestedStrategies()))
+    func createSolveItems(_ completion: @escaping (SolveResults) -> Void) {
+        var items: [SolveResults.Item] = []
+        solveHeader { [weak self] (headerItem) in
+            self?.relatedStrategyItems { (strategyItems) in
+                self?.trigger { (triggerItem) in
+                    self?.fiveDayPlan { (fiveDayPlanItems) in
+                        self?.followUp { (followUpItem) in
+                            items.append(headerItem)
+                            items.append(contentsOf: strategyItems)
+                            if let trigger = triggerItem { items.append(trigger) }
+                            items.append(contentsOf: fiveDayPlanItems)
+                            items.append(followUpItem)
+                            completion(SolveResults(type: .solve, items: items))
+                        }
+                    }
+                }
+            }
         }
-        return strategies
     }
 
-    var trigger: SolveResults.Item? {
-        guard
-            let header = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-trigger-header" })?.valueText,
-            let description = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-trigger-description" })?.valueText,
-            let buttonText = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-trigger-button" })?.valueText,
-            let triggerType = solveContentCollection?.searchTags.triggerType() else { return nil }
-                return .trigger(type: triggerType, header: header, description: description, buttonText: buttonText)
-    }
-
-    var fiveDayPlan: [SolveResults.Item] {
-        guard let contentItems = solveContentCollection?.contentItems else { return [] }
-        var dayPlanItems: [SolveResults.Item] = []
-        for (index, item) in contentItems.filter({ $0.searchTags == "solve-dayplan-item" }).enumerated() {
-            dayPlanItems.append(.fiveDayPlay(hasHeader: index == 0, text: item.valueText ?? ""))
+    func solveHeader(_ completion: @escaping (SolveResults.Item) -> Void) {
+        contentCollection { [weak self] content in
+            let title = self?.valueText(for: "solve-header-title", content: content) ?? ""
+            let solution = self?.valueText(for: "solve-header-subtitle", content: content) ?? ""
+            completion(.header(title: title, solution: solution))
         }
-        return dayPlanItems
     }
 
-    var followUp: SolveResults.Item {
-        let title = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-follow-up-title" })?.valueText ?? ""
-        let subtitle = solveContentCollection?.contentItems.first(where: { $0.searchTags == "solve-follow-up-subtitle" })?.valueText ?? ""
-        return .followUp(title: title, subtitle: subtitle)
+    func trigger(_ completion: @escaping (SolveResults.Item?) -> Void) {
+        contentCollection { [weak self] content in
+            let header = self?.valueText(for: "solve-trigger-header", content: content) ?? ""
+            let description = self?.valueText(for: "solve-trigger-description", content: content) ?? ""
+            let buttonText = self?.valueText(for: "solve-trigger-button", content: content) ?? ""
+            let triggerType = content?.triggerType()
+            let trigger = SolveResults.Item.trigger(type: triggerType,
+                                                    header: header,
+                                                    description: description,
+                                                    buttonText: buttonText)
+            completion(trigger)
+        }
+    }
+
+    func fiveDayPlan(_ completion: @escaping ([SolveResults.Item]) -> Void) {
+        contentCollection { content in
+            var dayPlanItems: [SolveResults.Item] = []
+            let filteredContentItems = content?.contentItems
+                .filter { $0.searchTagsDetailed.contains(where: { $0.name == "solve-dayplan-item" }) } ?? []
+            for (index, item) in filteredContentItems.enumerated() {
+                dayPlanItems.append(.fiveDayPlay(hasHeader: index == 0, text: item.valueText))
+            }
+            completion(dayPlanItems)
+        }
+    }
+
+    func followUp(_ completion: @escaping (SolveResults.Item) -> Void) {
+        contentCollection {  [weak self] content in
+            let title = self?.valueText(for: "solve-follow-up-title", content: content) ?? ""
+            let subtitle = self?.valueText(for: "solve-follow-up-subtitle", content: content) ?? ""
+            completion(.followUp(title: title, subtitle: subtitle))
+        }
     }
 }
 
-// MARK: - Private 3DRecovery
-
+// MARK: - Private 3DRecover
 private extension SolveResultsWorker {
-
-    var recoveryHeader: SolveResults.Item {
-        let title = recoveryContentCollection?.contentItems.first(where: { $0.searchTags == "recovery-header-title" })?.valueText ?? ""
-        let solution = recoveryContentCollection?.contentItems.first(where: { $0.searchTags == "recovery-header-subtitle"})?.valueText ?? ""
-        return .header(title: title, solution: solution)
+    func createRecoveryItems(_ completion: @escaping (SolveResults) -> Void) {
+        var items: [SolveResults.Item] = []
+        recoveryHeader { [weak self] (headerItem) in
+            self?.fatigueSymptom { (fatigueItem) in
+                self?.cause { (causeItem) in
+                    self?.exclusiveContent { (exclusiveItems) in
+                        let contentId = self?.recovery?.causeAnwser?.targetId(.content)
+                        self?.relatedStrategyItems(contentId) { (strategyItems) in
+                            items.append(headerItem)
+                            items.append(fatigueItem)
+                            items.append(causeItem)
+                            items.append(contentsOf: exclusiveItems)
+                            items.append(contentsOf: strategyItems)
+                            completion(SolveResults(type: .recovery, items: items))
+                        }
+                    }
+                }
+            }
+        }
     }
 
-    var exclusiveContent: [SolveResults.Item] {
+    func recoveryHeader(_ completion: @escaping (SolveResults.Item) -> Void) {
+        contentCollection(type.contentId) { [weak self] content in
+            let title = self?.valueText(for: "recovery-header-title", content: content) ?? ""
+            let solution = self?.valueText(for: "recovery-header-subtitle", content: content) ?? ""
+            completion(.header(title: title, solution: solution))
+        }
+    }
+
+    func fatigueSymptom(_ completion: @escaping (SolveResults.Item) -> Void) {
+        let contentItemId = recovery?.causeAnwser?.targetId(.contentItem) ?? 0
+        qot_dal.ContentService.main.getContentItemById(contentItemId) { (contentItem) in
+            completion(.fatigue(sympton: contentItem?.valueText ?? ""))
+        }
+    }
+
+    func cause(_ completion: @escaping (SolveResults.Item) -> Void) {
+        let contentId = recovery?.causeAnwser?.targetId(.content) ?? 0
+        qot_dal.ContentService.main.getContentCollectionById(contentId) { [weak self] (content) in
+            let cause = self?.recovery?.causeAnwser?.subtitle ?? ""
+            let fatigueCauseExplanation = content?.contentItems.first?.valueText ?? ""
+            completion(.cause(cause: cause, explanation: fatigueCauseExplanation))
+        }
+    }
+
+    func exclusiveContent(_ completion: @escaping ([SolveResults.Item]) -> Void) {
+        let ids = recovery?.exclusiveContentCollectionIds ?? []
         var exclusiveContent: [SolveResults.Item] = []
-        for (index, collection) in exclusiveCollections.enumerated() {
-            exclusiveContent.append(.strategy(id: collection.remoteID.value ?? 0,
-                                        title: collection.title,
-                                        minsToRead: R.string.localized.learnContentListViewMinutesLabel(String(describing: collection.minutesToRead)),
-                                        hasHeader: index == 0,
-                                        headerTitle: R.string.localized.headerTitleExclusiveContent()))
-        }
-        return exclusiveContent
-    }
-
-    var fatigue: SolveResults.Item {
-        return .fatigue(sympton: fatigueSymptom ?? "")
-    }
-
-    var cause: SolveResults.Item {
-        return .cause(cause: fatigueCause ?? "", explanation: fatigueCauseExplanation ?? "")
-    }
-}
-
-fileprivate extension String {
-
-    func triggerType() -> SolveTriggerType {
-        // TODO: - Add all cases. In old Network Layer,
-        // search tags from content collections are all together in a comma-separated string
-        if contains("solve-trigger-mindsetshifter") {
-            return .midsetShifter
-        } else if contains("solve-trigger-tobevisiongenerator") {
-            return .tbvGenerator
-        } else {
-            return .midsetShifter
+        qot_dal.ContentService.main.getContentCollectionsByIds(ids) { (exclusiveCollections) in
+            if let exclusiveCollections = exclusiveCollections {
+                for (index, collection) in exclusiveCollections.enumerated() {
+                    exclusiveContent.append(.strategy(id: collection.remoteID ?? 0,
+                                                      title: collection.title,
+                                                      minsToRead: collection.durationString,
+                                                      hasHeader: index == 0,
+                                                      headerTitle: R.string.localized.headerTitleExclusiveContent()))
+                }
+                completion(exclusiveContent)
+            } else {
+                completion([])
+            }
         }
     }
 }

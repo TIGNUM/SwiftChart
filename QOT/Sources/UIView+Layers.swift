@@ -235,7 +235,7 @@ extension UIView {
 
 extension UIView {
 
-    func corner(radius: CGFloat, borderColor: UIColor, borderWidth: CGFloat = 1.0) {
+    func corner(radius: CGFloat, borderColor: UIColor, borderWidth: CGFloat = 1) {
         layer.cornerRadius = radius
         layer.masksToBounds = true
         layer.borderColor = borderColor.cgColor

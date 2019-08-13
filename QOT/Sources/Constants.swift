@@ -71,6 +71,7 @@ extension CGFloat {
     public typealias View = CGFloat
     public typealias Width = CGFloat
     public typealias Height = CGFloat
+    public typealias Corner = CGFloat
 }
 
 extension CGFloat.View.Height {
@@ -82,6 +83,10 @@ extension CGFloat.View.Height {
 
 extension CGFloat.Button.Height {
     static let BottomNavBar: CGFloat = 100
+}
+
+extension CGFloat.Corner {
+    static let ButtonDefault: CGFloat = 20
 }
 
 extension CGFloat.Button.Width {

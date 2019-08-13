@@ -222,12 +222,14 @@ private extension DecisionTreeViewController {
                                  filter: String?,
                                  selectedAnswers: [DecisionTreeModel.SelectedAnswer])
         -> DecisionTreeQuestionnaireViewController {
+            let answers = selectedAnswers.compactMap { $0.answer }
+            let answerKey = AnswerKey.Recovery.identifyFatigueSympton(answers)
             let controller = DecisionTreeQuestionnaireViewController(for: question,
                                                                      with: selectedAnswers,
                                                                      extraAnswer: extraAnswer,
                                                                      maxPossibleSelections: question.maxPossibleSelections ?? 0,
                                                                      answersFilter: filter,
-                                                                     questionTitleUpdate: "recoveryFatigueType?.replacement",
+                                                                     questionTitleUpdate: answerKey.replacement,
                                                                      preparations: interactor?.preparations())
             controller.delegate = self
             controller.interactor = interactor

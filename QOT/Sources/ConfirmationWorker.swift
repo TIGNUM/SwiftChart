@@ -11,66 +11,46 @@ import UIKit
 final class ConfirmationWorker {
 
     // MARK: - Properties
-
     private let services: Services
-    private let type: ConfirmationType
+    private let kind: Confirmation.Kind
 
     private var contentService: ContentService {
         return services.contentService
     }
 
     // MARK: - Init
-
-    init(services: Services, type: ConfirmationType) {
+    init(services: Services, type: Confirmation.Kind) {
         self.services = services
-        self.type = type
+        self.kind = type
     }
 }
 
 // MARK: - ConfirmationWorkerInterface
-
 extension ConfirmationWorker: ConfirmationWorkerInterface {
-
-    var model: ConfirmationModel {
-        return ConfirmationModel(title: title, description: description, buttons: [buttonYes, buttonNo])
+    var model: Confirmation {
+        return Confirmation(title: title, description: description)
     }
 }
 
 // MARK: - Values
-
 private extension ConfirmationWorker {
-
-    var buttonYes: ConfirmationModel.ConfirmationButton {
-        switch type {
-        case .mindsetShifter:
-            return ConfirmationModel.ConfirmationButton(type: .yes, title: contentService.mindsetShifterConfirmationTitle)
-        case .solve:
-            return ConfirmationModel.ConfirmationButton(type: .yes, title: contentService.solveConfirmationTitle)
-        }
-    }
-
-    var buttonNo: ConfirmationModel.ConfirmationButton {
-        switch type {
-        case .mindsetShifter:
-            return ConfirmationModel.ConfirmationButton(type: .no, title: contentService.mindsetShifterConfirmationDescription)
-        case .solve:
-            return ConfirmationModel.ConfirmationButton(type: .no, title: contentService.solveConfirmationDescription)
-        }
-    }
-
     var title: String {
-        switch type {
+        switch kind {
         case .mindsetShifter:
             return contentService.mindsetShifterConfirmationTitle
+        case .recovery:
+            return R.string.localized.profileConfirmationHeader()
         case .solve:
             return contentService.solveConfirmationTitle
         }
     }
 
     var description: String {
-        switch type {
+        switch kind {
         case .mindsetShifter:
             return contentService.mindsetShifterConfirmationDescription
+        case .recovery:
+            return R.string.localized.profileConfirmationDescription()
         case .solve:
             return contentService.solveConfirmationDescription
         }

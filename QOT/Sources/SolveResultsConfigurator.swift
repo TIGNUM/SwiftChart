@@ -9,11 +9,11 @@
 import Foundation
 import qot_dal
 
-final class SolveResultsConfigurator: AppStateAccess {
+final class SolveResultsConfigurator {
     static func make(from selectedAnswer: QDMAnswer, type: ResultType) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
             let router = SolveResultsRouter(viewController: viewController)
-            let worker = SolveResultsWorker(services: appState.services, selectedAnswer: selectedAnswer, type: type) // TODO: pass type from make()
+            let worker = SolveResultsWorker(selectedAnswer: selectedAnswer, type: type)
             let presenter = SolveResultsPresenter(viewController: viewController)
             let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
@@ -23,7 +23,7 @@ final class SolveResultsConfigurator: AppStateAccess {
     static func make(from recoveryModel: QDMRecovery3D?) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
             let router = SolveResultsRouter(viewController: viewController)
-            let worker = SolveResultsWorker(services: appState.services, recovery: recoveryModel)
+            let worker = SolveResultsWorker(recovery: recoveryModel)
             let presenter = SolveResultsPresenter(viewController: viewController)
             let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

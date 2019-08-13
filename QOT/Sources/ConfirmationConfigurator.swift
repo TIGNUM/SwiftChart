@@ -9,8 +9,7 @@
 import Foundation
 
 final class ConfirmationConfigurator: AppStateAccess {
-
-    static func make(for type: ConfirmationType) -> (ConfirmationViewController) -> Void {
+    static func make(for type: Confirmation.Kind) -> (ConfirmationViewController) -> Void {
         return { (viewController) in
             let router = ConfirmationRouter(viewController: viewController)
             let worker = ConfirmationWorker(services: appState.services, type: type)

@@ -16,18 +16,12 @@ protocol ConfirmationViewControllerDelegate: class {
 final class ConfirmationViewController: UIViewController {
 
     // MARK: - Properties
-
     weak var delegate: ConfirmationViewControllerDelegate?
     var interactor: ConfirmationInteractorInterface?
-    private var confirmationModel: ConfirmationModel?
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
-    @IBOutlet private weak var rightButton: UIButton!
-    @IBOutlet private weak var leftButton: UIButton!
-    @IBOutlet private weak var visualEffectView: UIVisualEffectView!
+    private var confirmation: Confirmation?
+    @IBOutlet private weak var infoAlertView: InfoAlertView!
 
     // MARK: - Init
-
     init(configure: Configurator<ConfirmationViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
@@ -40,53 +34,53 @@ final class ConfirmationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        setupViews()
-        fillViews()
     }
 }
 
 // MARK: - Actions
-
 private extension ConfirmationViewController {
-
-    @IBAction func didTapRight(_ sender: UIButton) {
-        guard let buttonType = confirmationModel?.buttons[0].type else { return }
-        interactor?.didTap(buttonType)
+    @objc func didTapRight() {
+        interactor?.didTapLeave()
     }
 
-    @IBAction func didTapLeft(_ sender: UIButton) {
-        guard let buttonType = confirmationModel?.buttons[1].type else { return }
-        interactor?.didTap(buttonType)
+    @objc func didTapLeft() {
+        interactor?.didTapDismiss()
     }
 }
 
 // MARK: - ConfirmationViewControllerInterface
-
 extension ConfirmationViewController: ConfirmationViewControllerInterface {
-
-    func load(_ confirmationModel: ConfirmationModel) {
-        self.confirmationModel = confirmationModel
+    func load(_ confirmationModel: Confirmation) {
+        self.confirmation = confirmationModel
+        setupView(confirmationModel)
     }
 }
 
 // MARK: - Private
+extension ConfirmationViewController {
+    func setupView(_ confirmation: Confirmation) {
+        infoAlertView.set(icon: R.image.warning(), title: confirmation.title, text: confirmation.description)
+        infoAlertView?.bottomInset = BottomNavigationContainer.height
+        infoAlertView?.setBackgroundColor(.clear)
+    }
+}
 
 extension ConfirmationViewController {
-
-    func setupViews() {
-        view.backgroundColor = .clear
-        leftButton.layer.borderWidth = 1
-        rightButton.layer.borderWidth = 1
-        leftButton.layer.borderColor = UIColor.accent30.cgColor
-        rightButton.layer.borderColor = UIColor.accent30.cgColor
-        leftButton.corner(radius: leftButton.bounds.height / 2)
-        rightButton.corner(radius: rightButton.bounds.height / 2)
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 
-    func fillViews() {
-        descriptionLabel.text = confirmationModel?.description
-        titleLabel.text = confirmationModel?.title.uppercased()
-        rightButton.setTitle(confirmationModel?.buttons[0].title, for: .normal)
-        leftButton.setTitle(confirmationModel?.buttons[1].title, for: .normal)
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        let cancelButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
+                                                    buttonWidth: .Cancel,
+                                                    action: #selector(didTapLeft),
+                                                    backgroundColor: .clear,
+                                                    borderColor: .accent40)
+        let continueButtonItem = roundedBarButtonItem(title: R.string.localized.profileConfirmationDoneButton(),
+                                                      buttonWidth: .Continue,
+                                                      action: #selector(didTapRight),
+                                                      backgroundColor: .clear,
+                                                      borderColor: .accent40)
+        return [continueButtonItem, cancelButtonItem]
     }
 }

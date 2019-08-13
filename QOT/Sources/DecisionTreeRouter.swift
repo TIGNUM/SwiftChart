@@ -118,7 +118,6 @@ extension DecisionTreeRouter: ImagePickerControllerAdapterProtocol {
 }
 
 extension DecisionTreeRouter: ImagePickerControllerDelegate {
-
     func imagePickerController(_ imagePickerController: ImagePickerController, selectedImage image: UIImage) {
         viewController.interactor?.save(image)
         viewController.refreshBottomNavigationItems()

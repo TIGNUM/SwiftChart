@@ -173,10 +173,14 @@ extension UIViewController {
         return UIBarButtonItem(customView: button)
     }
 
-    @objc open func dismissNavigationItem() -> UIBarButtonItem {
+    @objc open func dismissNavigationItem(action: Selector? = nil) -> UIBarButtonItem {
+        var buttonAction = #selector(didTapDismissButton)
+        if let action = action {
+            buttonAction = action
+        }
         let button = UIButton(type: .custom)
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
-        button.addTarget(self, action: #selector(didTapDismissButton), for: .touchUpInside)
+        button.addTarget(self, action: buttonAction, for: .touchUpInside)
         button.setImage(R.image.ic_close_rounded(), for: .normal)
         button.tintColor = .red
         return UIBarButtonItem(customView: button)

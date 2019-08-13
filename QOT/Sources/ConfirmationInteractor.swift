@@ -11,13 +11,11 @@ import UIKit
 final class ConfirmationInteractor {
 
     // MARK: - Properties
-
     private let worker: ConfirmationWorker
     private let presenter: ConfirmationPresenterInterface
     private let router: ConfirmationRouterInterface
 
     // MARK: - Init
-
     init(worker: ConfirmationWorker,
         presenter: ConfirmationPresenterInterface,
         router: ConfirmationRouterInterface) {
@@ -27,22 +25,18 @@ final class ConfirmationInteractor {
     }
 
     // MARK: - Interactor
-
     func viewDidLoad() {
         presenter.show(worker.model)
     }
 }
 
 // MARK: - ConfirmationInteractorInterface
-
 extension ConfirmationInteractor: ConfirmationInteractorInterface {
+    func didTapLeave() {
+        router.leave()
+    }
 
-    func didTap(_ buttonType: ConfirmationButtonType) {
-        switch buttonType {
-        case .yes:
-            router.leave()
-        case .no:
-            router.dismiss()
-        }
+    func didTapDismiss() {
+        router.dismiss()
     }
 }
