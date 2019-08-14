@@ -18,11 +18,25 @@ final class MediaPlayerViewController: AVPlayerViewController {
                                                   rightBarButtonItems: [],
                                                   backgroundColor: .clear)
         NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        AppDelegate.appState.orientationManager.videos()
+    }
+
+    override var preferredStatusBarStyle: UIStatusBarStyle {
+        return .lightContent
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         NotificationCenter.default.post(.init(name: .willDismissPlayerController))
+        AppDelegate.appState.orientationManager.regular()
+    }
+
+    override var shouldAutorotate: Bool {
+        return true
+    }
+
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
+        return .allButUpsideDown
     }
 }
 
@@ -30,7 +44,6 @@ extension UIViewController {
 
     @discardableResult
     func stream(videoURL: URL, contentItem: ContentItem?, pageName: PageName) -> MediaPlayerViewController {
-        UIApplication.shared.setStatusBarStyle(.lightContent, animated: true)
         let player = AVPlayer(url: videoURL)
         let playerController = MediaPlayerViewController(pageName: pageName, contentItem: contentItem)
         playerController.player = player

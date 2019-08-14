@@ -73,6 +73,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        AppDelegate.appState.orientationManager = OrientationManager()
+
         #if UNIT_TEST || BUILD_DATABASE
             Logger.shared.setup()
             #if BUILD_DATABASE
@@ -212,6 +214,11 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             handleShortcut(shortcutItem: shortcut)
             unhandledShortCuts.removeAll()
         }
+    }
+
+    //Interface Orientation
+    func application(_ application: UIApplication, supportedInterfaceOrientationsFor window: UIWindow?) -> UIInterfaceOrientationMask {
+        return AppDelegate.appState.orientationManager.supportedOrientations
     }
 }
 

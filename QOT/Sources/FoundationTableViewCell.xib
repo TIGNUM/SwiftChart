@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -53,6 +53,13 @@
                             <constraint firstAttribute="height" constant="1" id="nky-aX-dMO"/>
                         </constraints>
                     </view>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_play_sand_hollow" translatesAutoresizingMaskIntoConstraints="NO" id="XGs-NH-tWM">
+                        <rect key="frame" x="291" y="48.5" width="40" height="40"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="40" id="IpI-4O-bDA"/>
+                            <constraint firstAttribute="width" constant="40" id="tt7-Fl-uca"/>
+                        </constraints>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -68,9 +75,11 @@
                     <constraint firstItem="Fgz-4W-0Ag" firstAttribute="top" secondItem="Quo-XB-TpG" secondAttribute="top" id="Zr6-4A-jgC"/>
                     <constraint firstItem="tUh-XS-im7" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="fCi-OE-GG5"/>
                     <constraint firstItem="Vbk-c1-2fK" firstAttribute="leading" secondItem="qDp-yF-1ih" secondAttribute="trailing" constant="12" id="paA-nU-DCC"/>
+                    <constraint firstItem="XGs-NH-tWM" firstAttribute="centerX" secondItem="Fgz-4W-0Ag" secondAttribute="centerX" id="qDL-eV-DIR"/>
                     <constraint firstItem="Fgz-4W-0Ag" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="32" id="sOi-nG-eT1"/>
                     <constraint firstAttribute="bottom" secondItem="tUh-XS-im7" secondAttribute="bottom" id="vq3-GS-UOf"/>
                     <constraint firstItem="qDp-yF-1ih" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="yMM-Xe-ZjU"/>
+                    <constraint firstItem="XGs-NH-tWM" firstAttribute="centerY" secondItem="Fgz-4W-0Ag" secondAttribute="centerY" id="zL1-fH-4w8"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="calibratedRGB"/>
@@ -79,12 +88,14 @@
                 <outlet property="detailLabel" destination="Vbk-c1-2fK" id="F7J-ep-nLQ"/>
                 <outlet property="mediaIconImageView" destination="qDp-yF-1ih" id="U5L-gS-zHK"/>
                 <outlet property="previewImageView" destination="Fgz-4W-0Ag" id="Hfn-ve-7XK"/>
+                <outlet property="previewPlayImageView" destination="XGs-NH-tWM" id="U7f-hf-nzq"/>
                 <outlet property="titleLabel" destination="Quo-XB-TpG" id="l52-WS-4Q4"/>
             </connections>
-            <point key="canvasLocation" x="260" y="153.82308845577214"/>
+            <point key="canvasLocation" x="125.59999999999999" y="153.82308845577214"/>
         </tableViewCell>
     </objects>
     <resources>
         <image name="ic_camera_sand" width="17" height="10"/>
+        <image name="ic_play_sand_hollow" width="16" height="16"/>
     </resources>
 </document>

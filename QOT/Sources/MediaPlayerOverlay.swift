@@ -30,10 +30,31 @@ final class MediaPlayerOverlay: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
+        buttonsShowHide()
+        addOrientationObserver()
+    }
+
+    private func addOrientationObserver() {
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(didChangeOrientation),
+                                               name: NSNotification.Name.UIDeviceOrientationDidChange,
+                                               object: nil)
     }
 
     func configure() {
 
+    }
+
+    @objc func didChangeOrientation() {
+        UIView.animate(withDuration: 0.1) {
+            self.buttonsShowHide()
+        }
+    }
+
+    private func buttonsShowHide() {
+        let alpha: CGFloat = UIDevice.current.orientation.isLandscape ? 0.0 : 1.0
+        downloadButton.alpha = alpha
+        bookmarkButton.alpha = alpha
     }
 }
 
