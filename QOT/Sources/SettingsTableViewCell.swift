@@ -181,7 +181,7 @@ private extension SettingsTableViewCell {
         bottomSeperatorView.backgroundColor = isEnabled ? .accent : .accent40
         bottomSeperatorViewHeightConstraint.constant = isEnabled ? 2.0 : 1.0
         if expandArrow != nil {
-            expandArrow.image = isEnabled ? R.image.arrowUp() : R.image.arrowDown()
+//            expandArrow.image = isEnabled ? R.image.arrowUp() : R.image.arrowDown()
         }
     }
 

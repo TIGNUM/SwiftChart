@@ -10,6 +10,7 @@ import UIKit
 
 final class WhatsHotLatestCell: UITableViewCell, Dequeueable {
 
+    @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var whatsHotImage: UIImageView!
     @IBOutlet private weak var whatsHotTitle: UILabel!
     @IBOutlet private weak var authorLabel: UILabel!
@@ -19,13 +20,16 @@ final class WhatsHotLatestCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         newLabel.isHidden = true
+        backgroundColor = .carbon
     }
 
-    func configure(title: String?, image: URL?, author: String?, publisheDate: Date?, timeToRead: Int?, isNew: Bool, remoteID: Int?) {
-        whatsHotTitle.text = title?.uppercased()
-        whatsHotImage.kf.setImage(with: image, placeholder: R.image.preloading())
-        authorLabel.text = author
-        dateAndDurationLabel.text = DateFormatter.whatsHotBucket.string(from: publisheDate ?? Date(timeInterval: -3600, since: Date())) + " | "  + "\((timeToRead ?? 0) / 60)" + " min read"
-        if isNew == true { newLabel.isHidden = false }
+    func configure(with: WhatsHotLatestCellViewModel?) {
+        whatsHotTitle.text = with?.title.uppercased()
+        whatsHotImage.kf.setImage(with: with?.image, placeholder: R.image.preloading())
+        authorLabel.text = with?.author
+        //Code which Anais wrote
+        //dateAndDurationLabel.text = DateFormatter.whatsHotBucket.string(from: publisheDate ?? Date(timeInterval: -3600, since: Date())) + " | "  + "\((timeToRead ?? 0) / 60)" + " min read")
+        dateAndDurationLabel.text = DateFormatter.whatsHotBucket.string(from: with?.publisheDate ?? Date()) + " | "  + "\((with?.timeToRead ?? Int(0.0) ) / 60)" + " min read"
+        if with?.isNew == true { newLabel.isHidden = false }
     }
 }

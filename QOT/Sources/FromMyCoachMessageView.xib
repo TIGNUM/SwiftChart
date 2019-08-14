@@ -75,7 +75,7 @@
                                     <rect key="frame" x="0.0" y="98" width="366" height="92"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pAf-SZ-duI">
-                                            <rect key="frame" x="24" y="0.0" width="318" height="92"/>
+                                            <rect key="frame" x="24" y="0.0" width="318" height="19.5"/>
                                             <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                                             <color key="textColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
@@ -85,7 +85,6 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="pAf-SZ-duI" secondAttribute="trailing" constant="24" id="Mo1-3R-eOf"/>
                                         <constraint firstItem="pAf-SZ-duI" firstAttribute="top" secondItem="sOf-AK-R1Z" secondAttribute="top" id="UZk-1e-Nop"/>
-                                        <constraint firstAttribute="bottom" secondItem="pAf-SZ-duI" secondAttribute="bottom" id="odt-6g-n56"/>
                                         <constraint firstItem="pAf-SZ-duI" firstAttribute="leading" secondItem="sOf-AK-R1Z" secondAttribute="leading" constant="24" id="zdE-dX-vuc"/>
                                     </constraints>
                                 </view>
@@ -97,6 +96,11 @@
                                     </constraints>
                                 </view>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="Gas-m7-mZP" firstAttribute="top" secondItem="sOf-AK-R1Z" secondAttribute="bottom" constant="10" id="dXM-PS-P7e"/>
+                                <constraint firstAttribute="bottom" secondItem="Gas-m7-mZP" secondAttribute="bottom" id="gFB-0Q-6U2"/>
+                                <constraint firstItem="pzn-6C-vwT" firstAttribute="top" secondItem="yyc-S3-GWD" secondAttribute="bottom" constant="20" id="m8b-It-ZHI"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>

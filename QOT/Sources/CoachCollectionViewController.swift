@@ -47,7 +47,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
         guard let dailyBriefViewController = navController?.viewControllers.first  as? DailyBriefViewController else {
             return nil
         }
-        DailyBriefConfigurator.configure(delegate: self, services: services, viewController: dailyBriefViewController)
+        DailyBriefConfigurator.configure(delegate: self, viewController: dailyBriefViewController)
         return navController
     }()
 

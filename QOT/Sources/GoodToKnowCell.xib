@@ -21,23 +21,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="Jio-Dk-Pbb" customClass="GoodToKnowCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="367"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="GOOD TO KNOW" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Hhk-xi-QDD">
-                    <rect key="frame" x="20" y="165" width="374" height="24"/>
+                    <rect key="frame" x="20" y="95" width="374" height="24"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRN-tE-jmj">
-                    <rect key="frame" x="20" y="309" width="374" height="41"/>
+                    <rect key="frame" x="20" y="239" width="374" height="41"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="34"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOJ-hc-tEU">
-                    <rect key="frame" x="20" y="144" width="15" height="1"/>
+                    <rect key="frame" x="20" y="74" width="15" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="JSw-lD-PCh"/>
@@ -45,15 +45,16 @@
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Bo-K3-SlV">
-                    <rect key="frame" x="20" y="204" width="374" height="90"/>
+                    <rect key="frame" x="20" y="134" width="374" height="90"/>
                 </imageView>
             </subviews>
-            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="tRN-tE-jmj" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="1ID-7x-NKs"/>
                 <constraint firstItem="1Bo-K3-SlV" firstAttribute="top" secondItem="Hhk-xi-QDD" secondAttribute="bottom" constant="15" id="7IT-L2-kf5"/>
-                <constraint firstItem="MOJ-hc-tEU" firstAttribute="top" secondItem="hgy-la-JSN" secondAttribute="top" constant="100" id="7ak-e2-BQq"/>
+                <constraint firstItem="MOJ-hc-tEU" firstAttribute="top" secondItem="hgy-la-JSN" secondAttribute="top" constant="30" id="J6G-5d-LGu"/>
                 <constraint firstItem="tRN-tE-jmj" firstAttribute="top" secondItem="Hhk-xi-QDD" secondAttribute="bottom" constant="120" id="LUw-th-lYU"/>
+                <constraint firstItem="hgy-la-JSN" firstAttribute="bottom" secondItem="tRN-tE-jmj" secondAttribute="bottom" constant="53" id="MiX-zu-fYo"/>
                 <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="Hhk-xi-QDD" secondAttribute="trailing" constant="20" id="PLI-hr-kgF"/>
                 <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="1Bo-K3-SlV" secondAttribute="trailing" constant="20" id="PjG-I9-zmc"/>
                 <constraint firstItem="MOJ-hc-tEU" firstAttribute="leading" secondItem="Jio-Dk-Pbb" secondAttribute="leading" constant="20" id="RUB-dT-bEY"/>
@@ -63,11 +64,14 @@
                 <constraint firstItem="Hhk-xi-QDD" firstAttribute="top" secondItem="MOJ-hc-tEU" secondAttribute="bottom" constant="20" id="sms-6l-d2t"/>
                 <constraint firstItem="1Bo-K3-SlV" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="tAy-SS-y4V"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="hgy-la-JSN"/>
             <connections>
                 <outlet property="goodToKnowFact" destination="tRN-tE-jmj" id="gIy-P8-86W"/>
                 <outlet property="goodToKnowImage" destination="1Bo-K3-SlV" id="qWY-Qf-56c"/>
+                <outlet property="titleLabel" destination="Hhk-xi-QDD" id="S7t-he-Db2"/>
             </connections>
+            <point key="canvasLocation" x="47.826086956521742" y="-141.62946428571428"/>
         </view>
     </objects>
 </document>

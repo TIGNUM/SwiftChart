@@ -283,8 +283,7 @@ extension TabBarCoordinator: MyUniverseViewControllerDelegate {
     }
 
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapWeeklyChoiceAt index: Index) {
-        let transitioningDelegate = WeeklyChoicesAnimator()
-
+        _ = WeeklyChoicesAnimator()
     }
 
     func myUniverseViewController(_ viewController: MyUniverseViewController, didTapQOTPartnerAt index: Index) {

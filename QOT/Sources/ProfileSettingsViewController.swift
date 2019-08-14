@@ -309,7 +309,8 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
             showDatePicker(title: title, selectedDate: selectedDate, indexPath: indexPath)
         case .stringPicker(let title, let pickerItems, let selectedIndex, _):
             showStringPicker(title: title, items: pickerItems, selectedIndex: selectedIndex, indexPath: indexPath)
-        case .multipleStringPicker(let title, let rows, let initialSelection, _): break
+        case .multipleStringPicker:
+            break
         default:
             break
         }

@@ -7,68 +7,47 @@
 //
 
 import Foundation
+import qot_dal
 
-struct LeaderWisdomCellViewModel {
-    private(set) var attributedTitle: NSAttributedString?
-    private(set) var attributedSubTitle: NSAttributedString?
-    private(set) var attributedDescription: NSAttributedString?
-    let audio: Audio?
-    let video: Video?
-    private var title: String {
-        willSet {
-            attributedTitle = formatted(title: newValue)
-        }
-    }
-    private var subTitle: String {
-        willSet {
-            attributedSubTitle = formatted(subtitle: newValue)
-        }
-    }
-    private var description: String {
-        willSet {
-            attributedDescription = formatted(description: newValue)
-        }
-    }
+final class LeaderWisdomCellViewModel: BaseDailyBriefViewModel {
 
-    struct Audio {
-        let duration: String
-        let link: URL?
-    }
-    struct Video {
-        let title: String
-        let duration: String
-        let thumbnail: URL?
-    }
+    // MARK: - Properties
+    var title: String?
+    var subtitle: String?
+    var description: String?
+    var audioDuration: Double?
+    var audioLink: URL?
+    var videoTitle: String?
+    var videoDuration: Double?
+    var videoThumbnail: URL?
+    var format: ContentFormat
+    var remoteID: Int?
+    var durationString: String?
 
-    var finalDescription: String {
-        return "\t\t" + description
-    }
-}
-
-private extension LeaderWisdomCellViewModel {
-    func formatted(title: String) -> NSAttributedString? {
-        return NSAttributedString(string: title.uppercased(),
-                                  letterSpacing: 0.2,
-                                  font: .sfProtextLight(ofSize: 20),
-                                  lineSpacing: 5,
-                                  textColor: .sand)
-    }
-
-    func formatted(subtitle: String) -> NSAttributedString? {
-        return NSAttributedString(string: subtitle,
-                                  letterSpacing: 0.2,
-                                  font: .sfProtextRegular(ofSize: 16),
-                                  lineSpacing: 5,
-                                  textColor: .sand60,
-                                  lineBreakMode: .byTruncatingTail)
-    }
-
-    func formatted(description: String) -> NSAttributedString? {
-        return NSAttributedString(string: description,
-                                  letterSpacing: 0.2,
-                                  font: .sfProtextRegular(ofSize: 16),
-                                  lineSpacing: 5,
-                                  textColor: .sand,
-                                  lineBreakMode: .byTruncatingTail)
+    // MARK: - Init
+    init(title: String?,
+                  subtitle: String?,
+                  description: String?,
+                  audioDuration: Double?,
+                  audioLink: URL?,
+                  videoTitle: String?,
+                  videoDuration: Double?,
+                  videoThumbnail: URL?,
+                  format: ContentFormat,
+                  remoteID: Int?,
+                  durationString: String?,
+                  domainModel: QDMDailyBriefBucket?) {
+        self.title = title
+        self.subtitle = subtitle
+        self.description = description
+        self.audioDuration = audioDuration
+        self.audioLink = audioLink
+        self.videoTitle = videoTitle
+        self.videoDuration = videoDuration
+        self.videoThumbnail = videoThumbnail
+        self.format = format
+        self.remoteID = remoteID
+        self.durationString = durationString
+        super.init(domainModel)
     }
 }

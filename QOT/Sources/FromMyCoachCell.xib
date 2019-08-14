@@ -27,7 +27,8 @@
                     <constraint firstAttribute="trailing" secondItem="nUC-sk-ILO" secondAttribute="trailing" id="1mZ-FI-Zp1"/>
                     <constraint firstItem="nUC-sk-ILO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="MZJ-5G-J8i"/>
                     <constraint firstItem="nUC-sk-ILO" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="Pu9-bu-kPv"/>
-                    <constraint firstAttribute="bottom" secondItem="nUC-sk-ILO" secondAttribute="bottom" id="ztE-SC-DNN"/>
+                    <constraint firstAttribute="bottom" secondItem="nUC-sk-ILO" secondAttribute="bottom" id="S52-mh-30u"/>
+                    <constraint firstItem="nUC-sk-ILO" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="W25-SD-HSi"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

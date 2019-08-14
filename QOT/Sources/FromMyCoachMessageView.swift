@@ -40,7 +40,7 @@ final class FromMyCoachMessageView: UIView {
         }
     }
 
-    func configure(with data: FromMyCoachMessage) {
+    func configure(with data: FromMyCoachCellViewModel.FromMyCoachMessage) {
         topViewHeightConstraint.constant = isFirstView == true ? Spacing.defaultSpacing.rawValue : Spacing.fromSecondViewSpacing.rawValue
         topSeparatorView.isHidden = isFirstView == true
         dateLabel.text = data.date

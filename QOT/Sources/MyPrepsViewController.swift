@@ -50,11 +50,16 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
         confirmDeleteView.isHidden = true
         self.tableView.tableFooterView = UIView()
         interactor?.viewDidLoad()
+    }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        noPreparationsView.isHidden = true
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        setupView()
         tableView.reloadData()
         trackPage()
     }
@@ -189,9 +194,6 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
         headerTitle.text = R.string.localized.myQotHeaderTitle()
         setupTableView()
         hideAllViews()
-        if interactor?.numberOfRowsPreparations(in: 0) == Optional(0) {
-            noPreparationsView.isHidden = false
-        }
         tableView.reloadData()
         setupSegementedControl()
         showEmptyStateViewIfNeeded(segmentedControl)

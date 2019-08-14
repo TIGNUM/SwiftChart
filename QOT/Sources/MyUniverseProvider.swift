@@ -64,7 +64,7 @@ final class MyUniverseProvider {
             let url = realmPartner.profileImageResource?.url
             return MyUniverseViewData.Partner(imageURL: url, initials: realmPartner.initials.uppercased())
         }
-        let userChoices = self.userChoices.sorted { $0.startDate > $1.startDate }
+        _ = self.userChoices.sorted { $0.startDate > $1.startDate }
 
         let sectors = [
             sector(for: .intensity, startAngle: 210, endAngle: 220),

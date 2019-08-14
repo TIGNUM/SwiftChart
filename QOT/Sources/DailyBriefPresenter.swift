@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import DifferenceKit
 
 final class DailyBriefPresenter {
 
@@ -24,5 +25,11 @@ final class DailyBriefPresenter {
 // MARK: - DailyBriefInterface
 
 extension DailyBriefPresenter: DailyBriefPresenterInterface {
+    func setupView() {
+        viewController?.setupView()
+    }
 
+    func updateView(_ differenceList: StagedChangeset<[BaseDailyBriefViewModel]>) {
+        viewController?.updateView(differenceList)
+    }
 }

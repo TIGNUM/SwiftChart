@@ -10,13 +10,17 @@ import UIKit
 
 final class DepartureInfoCell: UITableViewCell, Dequeueable {
 
+    @IBOutlet private weak var subtitleLabel: UILabel!
+    @IBOutlet private weak var bucketTitle: UILabel!
     @IBOutlet private weak var departureText: UILabel!
     @IBOutlet private weak var departureImage: UIImageView!
-    @IBOutlet weak var websiteLabel: UILabel!
+    @IBOutlet private weak var websiteLabel: UILabel!
 
-    func configure(text: String?, image: String?, link: String?) {
-        departureImage.kf.setImage(with: URL(string: image ?? ""), placeholder: R.image.preloading())
-        departureText.text = text
-        websiteLabel.text = link
+    func configure(with viewModel: DepartureInfoCellViewModel?) {
+        self.subtitleLabel.text = viewModel?.subtitle
+        self.bucketTitle.text = viewModel?.title
+        departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
+        departureText.text = viewModel?.text
+        websiteLabel.text = viewModel?.link
     }
 }

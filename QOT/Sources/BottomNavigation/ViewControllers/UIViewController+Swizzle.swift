@@ -190,8 +190,8 @@ extension UIViewController {
                                          image: UIImage? = nil,
                                          buttonWidth: CGFloat.Button.Width,
                                          action: Selector,
-                                         backgroundColor: UIColor = .carbonDark,
-                                         borderColor: UIColor = .clear) -> UIBarButtonItem {
+                                         backgroundColor: UIColor = .carbon,
+                                         borderColor: UIColor = .accent) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth, height: .Default))
         button.backgroundColor = backgroundColor
@@ -233,6 +233,7 @@ extension UIViewController {
     @objc open func didTapDismissButton() {
         NotificationCenter.default.post(name: .didTabDismissBottomNavigation, object: nil)
         dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
         trackUserEvent(.CLOSE, action: .TAP)
     }
 }

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="259" id="PhU-cr-LFf" customClass="MeAtMyBestEmptyCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="642" height="259"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="PhU-cr-LFf" id="c5w-IF-gsy" customClass="MeAtMyBestEmptyCell" customModule="QOT" customModuleProvider="target">
+                <rect key="frame" x="0.0" y="0.0" width="642" height="258.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PIb-zW-ElS">
+                        <rect key="frame" x="0.0" y="0.0" width="642" height="258.5"/>
+                        <subviews>
+                            <view alpha="0.69999998807907104" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hTh-tQ-6cG">
+                                <rect key="frame" x="24" y="48.5" width="16" height="1"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="16" id="BXf-Tf-gro"/>
+                                    <constraint firstAttribute="height" constant="1" id="RWK-Fk-xla"/>
+                                </constraints>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ME AT MY BEST" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fbg-kJ-pWj">
+                                <rect key="frame" x="24" y="64" width="594" height="24"/>
+                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The TBV is a critical element for Rule your Impact and reach your goals." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fVp-Dx-FYn">
+                                <rect key="frame" x="24" y="112" width="594" height="19.5"/>
+                                <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xPR-6J-8Dw">
+                                <rect key="frame" x="318" y="155.5" width="300" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="XAc-T6-QL5"/>
+                                    <constraint firstAttribute="height" constant="40" id="tCa-B2-Gxz"/>
+                                </constraints>
+                                <state key="normal" title="Create Your To Be Vision">
+                                    <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="presentTBV:" destination="PhU-cr-LFf" eventType="touchUpInside" id="vHN-9e-dpB"/>
+                                </connections>
+                            </button>
+                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WtV-OJ-0Z6">
+                                <rect key="frame" x="0.0" y="24" width="642" height="1"/>
+                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="tintColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Hqj-4s-vwu"/>
+                                </constraints>
+                            </view>
+                            <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KNJ-HW-jUI">
+                                <rect key="frame" x="0.0" y="219.5" width="642" height="1"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="Spm-QS-EcR"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="WtV-OJ-0Z6" firstAttribute="top" secondItem="K9I-0P-UMn" secondAttribute="top" constant="24" id="3pD-hG-6pB"/>
+                            <constraint firstItem="K9I-0P-UMn" firstAttribute="trailing" secondItem="xPR-6J-8Dw" secondAttribute="trailing" constant="24" id="AcQ-tn-reA"/>
+                            <constraint firstItem="fbg-kJ-pWj" firstAttribute="leading" secondItem="K9I-0P-UMn" secondAttribute="leading" constant="24" id="CAt-4e-fpB"/>
+                            <constraint firstAttribute="trailing" secondItem="fVp-Dx-FYn" secondAttribute="trailing" constant="24" id="Et0-Qo-OBq"/>
+                            <constraint firstItem="xPR-6J-8Dw" firstAttribute="top" secondItem="fVp-Dx-FYn" secondAttribute="bottom" constant="24" id="M3W-RK-Mmf"/>
+                            <constraint firstItem="fbg-kJ-pWj" firstAttribute="top" secondItem="hTh-tQ-6cG" secondAttribute="bottom" constant="14.5" id="Mxt-tL-SJP"/>
+                            <constraint firstItem="fVp-Dx-FYn" firstAttribute="top" secondItem="fbg-kJ-pWj" secondAttribute="bottom" constant="24" id="Qje-rx-g2N"/>
+                            <constraint firstItem="WtV-OJ-0Z6" firstAttribute="leading" secondItem="K9I-0P-UMn" secondAttribute="leading" id="RQr-K6-wkf"/>
+                            <constraint firstItem="K9I-0P-UMn" firstAttribute="trailing" secondItem="fbg-kJ-pWj" secondAttribute="trailing" constant="24" id="RSF-ve-PNx"/>
+                            <constraint firstItem="KNJ-HW-jUI" firstAttribute="top" secondItem="xPR-6J-8Dw" secondAttribute="bottom" constant="24" id="VsV-JJ-XlS"/>
+                            <constraint firstItem="K9I-0P-UMn" firstAttribute="trailing" secondItem="KNJ-HW-jUI" secondAttribute="trailing" id="X42-QR-95K"/>
+                            <constraint firstItem="K9I-0P-UMn" firstAttribute="trailing" secondItem="WtV-OJ-0Z6" secondAttribute="trailing" id="dz5-re-bvV"/>
+                            <constraint firstItem="fVp-Dx-FYn" firstAttribute="leading" secondItem="K9I-0P-UMn" secondAttribute="leading" constant="24" id="khv-Eb-Twp"/>
+                            <constraint firstItem="hTh-tQ-6cG" firstAttribute="top" secondItem="K9I-0P-UMn" secondAttribute="top" constant="48.5" id="uIS-Ku-nQS"/>
+                            <constraint firstItem="KNJ-HW-jUI" firstAttribute="leading" secondItem="K9I-0P-UMn" secondAttribute="leading" id="vPU-8z-dhj"/>
+                            <constraint firstItem="hTh-tQ-6cG" firstAttribute="leading" secondItem="K9I-0P-UMn" secondAttribute="leading" constant="24" id="zPh-PO-e8K"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="K9I-0P-UMn"/>
+                    </view>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="PIb-zW-ElS" firstAttribute="top" secondItem="c5w-IF-gsy" secondAttribute="top" id="952-B1-aoL"/>
+                    <constraint firstAttribute="bottom" secondItem="PIb-zW-ElS" secondAttribute="bottom" id="gP8-se-UVs"/>
+                    <constraint firstAttribute="trailing" secondItem="PIb-zW-ElS" secondAttribute="trailing" id="iBY-KQ-FzJ"/>
+                    <constraint firstItem="PIb-zW-ElS" firstAttribute="leading" secondItem="c5w-IF-gsy" secondAttribute="leading" id="w0z-po-q58"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="buttonText" destination="xPR-6J-8Dw" id="MU9-rI-XRj"/>
+                <outlet property="intro" destination="fVp-Dx-FYn" id="iN2-dn-38H"/>
+                <outlet property="title" destination="fbg-kJ-pWj" id="ehO-b0-hA4"/>
+            </connections>
+            <point key="canvasLocation" x="928.98550724637687" y="-142.29910714285714"/>
+        </tableViewCell>
+    </objects>
+</document>

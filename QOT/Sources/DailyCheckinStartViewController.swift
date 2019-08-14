@@ -8,6 +8,11 @@
 
 import UIKit
 
+protocol DailyCheckinStartViewControllerDelegate: class {
+    func showQuestions()
+}
+
+
 final class DailyCheckinStartViewController: UIViewController {
 
     // MARK: - Properties
@@ -93,5 +98,12 @@ extension DailyCheckinStartViewController: DailyCheckinStartViewControllerInterf
             self?.dotsLoadingView.isHidden = true
             self?.refreshBottomNavigationItems()
         })
+    }
+}
+
+extension DailyCheckinStartViewController: DailyCheckinStartViewControllerDelegate {
+
+    func showQuestions() {
+        interactor?.showQuestions()
     }
 }

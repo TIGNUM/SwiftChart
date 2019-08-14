@@ -21,7 +21,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="kj8-nb-NRI" customClass="DepartureInfoCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="477"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEPARTURE INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldI-hy-OZt">
@@ -63,7 +63,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="y6D-ng-z8U" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="20" id="1qc-ea-buc"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="rzr-sH-xjU" secondAttribute="trailing" constant="20" id="2hF-Hl-nGW"/>
@@ -78,17 +78,21 @@
                 <constraint firstItem="gex-9p-hZg" firstAttribute="top" secondItem="E4y-S7-qPw" secondAttribute="top" constant="50" id="gST-s6-zoz"/>
                 <constraint firstItem="V1v-dK-bS8" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="20" id="hNf-ce-WI5"/>
                 <constraint firstItem="MQR-BB-Gyn" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="20" id="kKo-Pj-5nS"/>
+                <constraint firstItem="E4y-S7-qPw" firstAttribute="bottom" secondItem="MQR-BB-Gyn" secondAttribute="bottom" constant="26" id="pPK-gh-rBV"/>
                 <constraint firstItem="ldI-hy-OZt" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="20" id="qro-we-kBb"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="V1v-dK-bS8" secondAttribute="trailing" constant="20" id="yZb-Iy-LVn"/>
                 <constraint firstItem="y6D-ng-z8U" firstAttribute="top" secondItem="V1v-dK-bS8" secondAttribute="bottom" constant="9.5" id="yaW-uJ-ffU"/>
             </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="E4y-S7-qPw"/>
             <connections>
+                <outlet property="bucketTitle" destination="ldI-hy-OZt" id="jUC-PJ-VuW"/>
                 <outlet property="departureImage" destination="y6D-ng-z8U" id="YpZ-wZ-WRI"/>
                 <outlet property="departureText" destination="rzr-sH-xjU" id="4rq-fu-Frs"/>
+                <outlet property="subtitleLabel" destination="V1v-dK-bS8" id="pfk-Cj-qcn"/>
                 <outlet property="websiteLabel" destination="MQR-BB-Gyn" id="szY-xv-L2I"/>
             </connections>
-            <point key="canvasLocation" x="630.43478260869574" y="133.92857142857142"/>
+            <point key="canvasLocation" x="630.43478260869574" y="-6.3616071428571423"/>
         </view>
     </objects>
 </document>

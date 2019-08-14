@@ -10,9 +10,11 @@ import UIKit
 
 final class QuestionCell: UITableViewCell, Dequeueable {
 
+    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var questionLabel: UILabel!
 
-    func configure(title: String?) {
-        questionLabel.text = title
+    func configure(with viewModel: QuestionCellViewModel?) {
+        questionLabel.text = viewModel?.text
+        titleLabel.text = viewModel?.title
     }
 }

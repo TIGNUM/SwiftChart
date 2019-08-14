@@ -9,8 +9,18 @@
 import Foundation
 import qot_dal
 
-struct FeastCellViewModel: DailyBriefBucket {
+final class FeastCellViewModel: BaseDailyBriefViewModel {
+
+    // MARK: - Properties
+    var title: String?
     var image: String?
     var remoteID: Int?
-    var domainModel: QDMDailyBriefBucket?
+
+    // MARK: - Init
+    internal init(title: String?, image: String?, remoteID: Int?, domainModel: QDMDailyBriefBucket?) {
+        self.image = image
+        self.title = title
+        self.remoteID = remoteID
+        super.init(domainModel)
+    }
 }

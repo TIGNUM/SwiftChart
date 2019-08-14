@@ -10,6 +10,7 @@ import UIKit
 
 final class FromTignumCell: UITableViewCell, Dequeueable {
 
+    @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var heightOfText: NSLayoutConstraint!
     @IBOutlet private weak var fromTignumText: UILabel!
     private var isLabelAtMaxHeight = false
@@ -33,7 +34,8 @@ final class FromTignumCell: UITableViewCell, Dequeueable {
         }
     }
 
-    func configure(text: String?) {
-        fromTignumText.text = text
+    func configure(with viewModel: FromTignumCellViewModel?) {
+        fromTignumText.text = viewModel?.text
+        titleLabel.text = viewModel?.title
     }
 }

@@ -41,6 +41,9 @@
                         </view>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vqo-hs-ZzW">
                             <rect key="frame" x="24" y="88" width="342" height="47"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="47" id="Jng-5f-mnh"/>
+                            </constraints>
                             <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="20"/>
                             <color key="textColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -61,10 +64,10 @@
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="bGH-8w-oqQ" secondAttribute="bottom" id="4ZW-9x-xkp"/>
                 <constraint firstItem="bGH-8w-oqQ" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="B2S-sm-5We"/>
                 <constraint firstItem="bGH-8w-oqQ" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="do5-fD-AiV"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bGH-8w-oqQ" secondAttribute="trailing" constant="24" id="nqb-ey-IM5"/>
+                <constraint firstAttribute="bottom" secondItem="bGH-8w-oqQ" secondAttribute="bottom" id="yb7-1d-7Ie"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>

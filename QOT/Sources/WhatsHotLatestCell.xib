@@ -86,7 +86,7 @@
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
-            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="6Y3-PB-8Ao" firstAttribute="top" secondItem="KIo-zQ-xRX" secondAttribute="top" constant="100" id="0IJ-ro-rHx"/>
                 <constraint firstItem="5jM-NN-SAe" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="20" id="1mg-NQ-tIa"/>
@@ -97,6 +97,7 @@
                 <constraint firstItem="s9c-fG-btF" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="20" id="TT0-f6-hHJ"/>
                 <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="5jM-NN-SAe" secondAttribute="trailing" constant="20" id="Yjm-mo-3Hl"/>
                 <constraint firstItem="3gq-d2-29A" firstAttribute="top" secondItem="4GX-rG-vxI" secondAttribute="bottom" constant="18" id="Yso-XO-SQs"/>
+                <constraint firstItem="KIo-zQ-xRX" firstAttribute="bottom" secondItem="s9c-fG-btF" secondAttribute="bottom" constant="65.5" id="YvL-1h-fzF"/>
                 <constraint firstItem="6Y3-PB-8Ao" firstAttribute="leading" secondItem="7pE-gw-D1r" secondAttribute="leading" constant="20" id="ZDf-az-HhR"/>
                 <constraint firstItem="owJ-Y4-wnU" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="20" id="axf-Pf-tJL"/>
                 <constraint firstItem="5jM-NN-SAe" firstAttribute="top" secondItem="owJ-Y4-wnU" secondAttribute="bottom" constant="20" id="cPC-Yk-off"/>
@@ -112,6 +113,7 @@
             <viewLayoutGuide key="safeArea" id="KIo-zQ-xRX"/>
             <connections>
                 <outlet property="authorLabel" destination="s9c-fG-btF" id="f5c-DA-x24"/>
+                <outlet property="bucketTitle" destination="4GX-rG-vxI" id="cc3-Vj-ipb"/>
                 <outlet property="dateAndDurationLabel" destination="C7t-wy-J8N" id="Jgf-u6-smS"/>
                 <outlet property="newLabel" destination="s88-AK-sjm" id="WJK-VA-YM6"/>
                 <outlet property="whatsHotImage" destination="owJ-Y4-wnU" id="HsV-OY-NgJ"/>

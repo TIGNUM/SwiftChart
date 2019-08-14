@@ -11,9 +11,11 @@ import UIKit
 final class ThoughtsCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var thoughtLabel: UILabel!
     @IBOutlet private weak var authorLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
 
-    func configure(thought: String?, author: String?) {
-        thoughtLabel.text = thought
-        authorLabel.text = author
+    func configure(with viewModel: ThoughtsCellViewModel?) {
+        thoughtLabel.text = viewModel?.thought
+        authorLabel.text = viewModel?.author
+        titleLabel.text = viewModel?.title
     }
 }

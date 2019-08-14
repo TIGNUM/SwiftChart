@@ -37,7 +37,7 @@ final class MyQotMainWorker {
 
     func nextPrep(completion: @escaping (String?) -> Void) {
         userService.getUserPreparations {(preparations, initialized, error) in
-            let dateString = preparations?.last?.eventDate != nil ? DateFormatter.myPrepsTime.string(from: preparations!.last!.eventDate!) : ""
+            let dateString = preparations?.last?.eventDate?.eventDateString
             completion(dateString)
         }
     }

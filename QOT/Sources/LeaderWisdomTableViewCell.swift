@@ -8,11 +8,6 @@
 
 import UIKit
 
-protocol LeaderWisdomTableViewCellProtocol: class {
-    func shouldPlayVideo(with url: URL?)
-    func shouldPlayAudio()
-}
-
 final class LeaderWisdomTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -24,29 +19,57 @@ final class LeaderWisdomTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var audioButton: UIButton!
     @IBOutlet private weak var audioView: UIView!
     @IBOutlet private weak var videoView: UIView!
+    private var mediaURL: URL?
+    private var duration: Double?
+    private var remoteID: Int?
+    weak var delegate: DailyBriefViewControllerDelegate?
 
-    weak var delegate: LeaderWisdomTableViewCellProtocol?
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        contentView.frame = CGRect(x: 0, y: 0, width: contentView.frame.width, height: 500)
+    }
 
-    func configure(with viewModel: LeaderWisdomCellViewModel) {
-        videoView.isHidden = viewModel.video == nil
-        audioView.isHidden = viewModel.audio == nil
-        titleLabel.isHidden = viewModel.attributedTitle == nil
-        subtitleLabel.isHidden = viewModel.attributedSubTitle == nil
-        descriptionLabel.isHidden = viewModel.attributedDescription == nil
-        titleLabel.attributedText = viewModel.attributedTitle
-        subtitleLabel.attributedText = viewModel.attributedSubTitle
-        descriptionLabel.attributedText = viewModel.attributedDescription
-        videoTitle.text = viewModel.video?.title.uppercased()
-        videoDurationButton.setTitle(viewModel.video?.duration, for: .normal)
-        audioButton.setTitle(viewModel.audio?.duration, for: .normal)
-        videoThumbnailImageView.kf.setImage(with: viewModel.video?.thumbnail, placeholder: R.image.preloading())
+    func configure(with viewModel: LeaderWisdomCellViewModel?) {
+        videoView.isHidden = viewModel?.format != .video
+        audioView.isHidden = viewModel?.format != .audio
+        titleLabel.isHidden = viewModel?.title == nil
+        subtitleLabel.isHidden = viewModel?.subtitle == nil
+        descriptionLabel.isHidden = viewModel?.description == nil
+        videoTitle.isHidden = viewModel?.format != .video
+        videoTitle.text = viewModel?.videoTitle?.uppercased()
+        duration = viewModel?.audioDuration ?? viewModel?.videoDuration
+        remoteID = viewModel?.remoteID
+        mediaURL = viewModel?.videoThumbnail
+        videoDurationButton.setTitle(viewModel?.durationString, for: .normal)
+        let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
+        audioButton.setTitle(mediaDescription, for: .normal)
+        videoThumbnailImageView.kf.setImage(with: mediaURL, placeholder: R.image.preloading())
+        subtitleLabel.text = viewModel?.subtitle
+        titleLabel.text = viewModel?.title
+        descriptionLabel.text = viewModel?.description
     }
 
     @IBAction func audioAction(_ sender: Any) {
-        delegate?.shouldPlayAudio()
+        let media = MediaPlayerModel(title: videoTitle.text ?? "",
+                                     subtitle: "",
+                                     url: mediaURL,
+                                     totalDuration: duration ?? 0, progress: 0, currentTime: 0, mediaRemoteId: remoteID ?? 0)
+        NotificationCenter.default.post(name: .playPauseAudio, object: media)
     }
 
     @IBAction func videoAction(_ sender: Any) {
-        delegate?.shouldPlayVideo(with: nil)
+        delegate?.videoAction(sender, videoURL: mediaURL, contentItem: nil, pageName: .sideBarSearch)
+    }
+}
+
+// MARK: - Private
+
+private extension LeaderWisdomTableViewCell {
+
+    func setAudioAsCompleteIfNeeded(remoteID: Int) {
+        audioView.backgroundColor = .carbon
+        if let items = UserDefault.finishedAudioItems.object as? [Int], items.contains(obj: remoteID) == true {
+            audioView.backgroundColor = .accent40
+        }
     }
 }

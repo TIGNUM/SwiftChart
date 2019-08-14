@@ -13,13 +13,36 @@ protocol DailyBriefBucket {
     var domainModel: QDMDailyBriefBucket? { get set }
 }
 
-struct WhatsHotLatestCellViewModel: DailyBriefBucket {
-    var title: String?
-    var image: URL?
-    var author: String?
-    var publisheDate: Date?
-    var timeToRead: Int?
-    var isNew: Bool
-    var remoteID: Int?
-    var domainModel: QDMDailyBriefBucket?
+final class WhatsHotLatestCellViewModel: BaseDailyBriefViewModel {
+
+    // MARK: - Properties
+    var bucketTitle: String?
+    var title: String
+    let image: URL?
+    let author: String
+    let publisheDate: Date
+    let timeToRead: Int
+    let isNew: Bool
+    let remoteID: Int
+
+    // MARK: - Init
+    init(bucketTitle: String?,
+                  title: String,
+                  image: URL?,
+                  author: String,
+                  publisheDate: Date,
+                  timeToRead: Int,
+                  isNew: Bool,
+                  remoteID: Int,
+                  domainModel: QDMDailyBriefBucket?) {
+        self.bucketTitle = bucketTitle
+        self.title = title
+        self.image = image
+        self.author = author
+        self.publisheDate = publisheDate
+        self.timeToRead = timeToRead
+        self.isNew = isNew
+        self.remoteID = remoteID
+        super.init(domainModel)
+    }
 }

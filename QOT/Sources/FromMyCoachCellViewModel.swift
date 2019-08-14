@@ -7,18 +7,28 @@
 //
 
 import Foundation
+import qot_dal
 
-struct FromMyCoachCellViewModel {
-    let detail: FromMyCoachDetail
-    let messages: [FromMyCoachMessage]
-}
+final class FromMyCoachCellViewModel: BaseDailyBriefViewModel {
 
-struct FromMyCoachDetail {
-    let imageUrl: URL?
-    let title: String
-}
+    // MARK: - Properties
+    var detail: FromMyCoachDetail
+    var messages: [FromMyCoachMessage]
 
-struct FromMyCoachMessage {
-    let date: String
-    let text: String
+    struct FromMyCoachDetail {
+        let imageUrl: URL?
+        let title: String
+    }
+
+    struct FromMyCoachMessage {
+        let date: String
+        let text: String
+    }
+
+    // MARK: - Init
+    init(detail: FromMyCoachDetail, messages: [FromMyCoachMessage], domainModel: QDMDailyBriefBucket?) {
+        self.detail = detail
+        self.messages = messages
+        super.init(domainModel)
+    }
 }

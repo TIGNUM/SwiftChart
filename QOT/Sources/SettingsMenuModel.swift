@@ -372,8 +372,8 @@ final class SettingsViewModel {
     func updateNotificationSetting(key: String, value: Bool) {
         do {
             try services.settingsService.setSettingValue(SettingValue.bool(value), key: key)
-        } catch let error {
-//            log(error)
+        } catch {
+            qot_dal.log(error.localizedDescription, level: .error)
         }
     }
 

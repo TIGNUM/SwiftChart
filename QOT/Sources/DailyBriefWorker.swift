@@ -11,19 +11,156 @@ import qot_dal
 
 final class DailyBriefWorker {
 
+    // MARK: - Properties
+    var model: MyPrepsModel?
+    private let questionService: qot_dal.QuestionService
+    private let contentService: qot_dal.ContentService
+    private let userService: qot_dal.UserService
+    private let settingService: qot_dal.SettingService
+    private var buckets = [QDMDailyBriefBucket]()
+
+    // MARK: - Init
+    init(questionService: qot_dal.QuestionService,
+         userService: qot_dal.UserService,
+         contentService: qot_dal.ContentService,
+         settingService: qot_dal.SettingService) {
+        self.settingService = settingService
+        self.userService = userService
+        self.contentService = contentService
+        self.questionService = questionService
+    }
+
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
     }()
 
+    var rowCount: Int {
+        return buckets.count
+    }
+
+    func getDailyBriefBucketsForViewModel(completion: @escaping ([QDMDailyBriefBucket]) -> Void) {
+        qot_dal.DailyBriefService.main.getDailyBriefBuckets { (buckets, error) in
+            if let error = error {
+                qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+            }
+            if let bucketsList = buckets {
+                completion(bucketsList)
+            }
+        }
+    }
+}
+
+// MARK: - Daily Checkin 1
+extension DailyBriefWorker {
+
+    func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {
+        questionService.question(with: 100360, in: .DailyCheckIn1) { (question) in
+            guard let question = question else { return }
+            let answers = question.answers.compactMap({ (qdmAnswer) -> RatingQuestionViewModel.Answer? in
+                return RatingQuestionViewModel.Answer(remoteID: qdmAnswer.remoteID,
+                                                      title: qdmAnswer.title,
+                                                      subtitle: qdmAnswer.subtitle)
+            })
+            let model = RatingQuestionViewModel.Question(remoteID: question.remoteID,
+                                                         title: question.title,
+                                                         htmlTitle: question.htmlTitleString ?? "",
+                                                         subtitle: question.subtitle,
+                                                         dailyPrepTitle: "",
+                                                         key: question.key ?? "",
+                                                         answers: answers,
+                                                         range: nil,
+                                                         selectedAnswerIndex: nil)
+            completion(model)
+        }
+    }
+
+    func getToBeVisionImage(completion: @escaping (URL?) -> Void) {
+        userService.getMyToBeVision {(vision, initialized, error) in
+            if let error = error {
+                qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+            }
+            completion(vision?.profileImageResource?.url())
+        }
+    }
+
+    func getReferenceValues(completion: @escaping ([String]?) -> Void) {
+        var arrayOfValues: [String] = []
+        settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget,
+                                              .DailyCheckInSleepQualityTarget,
+                                              .DailyCheckInLoadTarget,
+                                              .DailyCheckInFutureLoadTarget]) { (settings, _, error) in
+                                                if let error = error {
+                                                    qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                                                }
+                                                settings?.forEach { (setting) in
+                                                    if let longValue: Int64 = setting.value() {
+                                                        arrayOfValues.append(String(longValue/60))
+                                                    } else {
+                                                        arrayOfValues.append(setting.textValue ?? "")
+                                                    }
+                                                }
+                                                completion(arrayOfValues)
+        }
+    }
+
+    func saveTargetValue(value: Int?) {
+        settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
+            if let setting = settings?.first {
+                var updatedSetting = setting
+                //                    turning sleep target from an answer index to a number of hours/day * 5 = 5 days sleep
+                updatedSetting.longValue = (60 + (Int64(value ?? 0) * 30)) * 5
+                self.settingService.updateSetting(updatedSetting, {(error) in
+                    if let error = error {
+                        qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                    }
+                })
+            }
+        })
+    }
+}
+
+// MARK: - Daily Checkin 2
+extension DailyBriefWorker {
+    var shpiAnswer: QDMDailyCheckInAnswer? {
+        var shpiAnswer: QDMDailyCheckInAnswer?
+        buckets.forEach { (bucket) in
+            bucket.dailyCheckInAnswers?.forEach({ (dailyAnswer) in
+                if dailyAnswer.SHPIQuestionId != nil && dailyAnswer.answerId != nil {
+                    shpiAnswer = dailyAnswer
+                }
+            })
+        }
+        return shpiAnswer
+    }
+
+    var peakPerformanceCount: Int? {
+        var numberOfPeakPerformances: Int?
+        buckets.forEach {(bucket) in
+            bucket.dailyCheckInAnswers?.forEach({ (dailyAnswer) in
+                if dailyAnswer.PeakPerformanceCount != nil && dailyAnswer.answerId != nil {
+                    numberOfPeakPerformances = dailyAnswer.answerId
+                }
+            })
+        }
+        return numberOfPeakPerformances
+    }
+
+    func bucket(at row: Int) -> QDMDailyBriefBucket? {
+        return buckets[row]
+    }
+}
+
+// MARK: - Whats Hot
+extension DailyBriefWorker {
     func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
-        qot_dal.ContentService.main.getContentCollectionBySection(.WhatsHot, { (items) in
+        contentService.getContentCollectionBySection(.WhatsHot, { (items) in
             completion(items?.last?.remoteID)
         })
     }
 
     func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void)) {
         latestWhatsHotCollectionID(completion: { (collectionID) in
-            qot_dal.ContentService.main.getContentItemsByCollectionId(collectionID ?? 0, { (item) in
+            self.contentService.getContentItemsByCollectionId(collectionID ?? 0, { (item) in
                 completion(item?.first)
             })
         })
@@ -31,7 +168,7 @@ final class DailyBriefWorker {
 
     func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
         latestWhatsHotCollectionID(completion: { (collectionID) in
-            qot_dal.ContentService.main.getContentCollectionById(collectionID ?? 0, completion)
+            self.contentService.getContentCollectionById(collectionID ?? 0, completion)
         })
     }
 
@@ -39,7 +176,14 @@ final class DailyBriefWorker {
         latestWhatsHotContent(completion: { [weak self] (item) in
             self?.getContentCollection(completion: { (collection) in
                 if let collection = collection {
-                    completion(WhatsHotLatestCellViewModel(title: collection.title, image: URL(string: collection.thumbnailURLString ?? ""), author: collection.author, publisheDate: item?.createdAt, timeToRead: collection.secondsRequired, isNew: self?.isNew(collection) ?? false, remoteID: collection.remoteID, domainModel: nil))
+                    completion(WhatsHotLatestCellViewModel(bucketTitle: "WHAT'S HOT",
+                                                           title: collection.title,
+                                                           image: URL(string: collection.thumbnailURLString ?? ""),
+                                                           author: collection.author ?? "",
+                                                           publisheDate: item?.createdAt ?? Date(),
+                                                           timeToRead: collection.secondsRequired,
+                                                           isNew: self?.isNew(collection) ?? false,
+                                                           remoteID: collection.remoteID ?? 0, domainModel: nil))
                 }
             })
         })
@@ -52,60 +196,23 @@ final class DailyBriefWorker {
         }
         return isNewArticle
     }
+}
 
-    func randomQuestionModel(completion: @escaping ((QuestionCellViewModel)?) -> Void) {
-        qot_dal.ContentService.main.getContentCategory(.QuestionWithoutAnswer, { (category) in
-            completion(QuestionCellViewModel(text: category?.contentCollections.first?.contentItems.randomElement()?.valueText, domainModel: nil))
-        })
+// MARK: - Get to level 5
+extension DailyBriefWorker {
+    func saveAnswerValue(_ value: Int) {
+        var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
+        level5Bucket?.answerIds = [value]
+        if let level5Bucket = level5Bucket {
+            qot_dal.DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
+                if let error = error {
+                    qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                }
+            })
+        }
     }
 
-    func createThoughtsModel(completion: @escaping ((ThoughtsCellViewModel)?) -> Void) {
-        var model: [ThoughtsCellViewModel] = []
-        qot_dal.ContentService.main.getContentCategory(.ThoughtsToPonder, { ( category) in
-            category?.contentCollections.forEach { (collection) in
-                model.append(ThoughtsCellViewModel(thought: collection.contentItems.first?.valueText, author: collection.author, domainModel: nil))
-            }
-            completion(model.randomElement())
-        })
-    }
-
-    func createFactsModel(completion: @escaping ((GoodToKnowCellViewModel)?) -> Void) {
-        var model: [GoodToKnowCellViewModel] = []
-        qot_dal.ContentService.main.getContentCategory(.GoodToKnow, { ( category) in
-            category?.contentCollections.forEach { (collection) in
-                model.append(GoodToKnowCellViewModel(fact: collection.contentItems.first?.valueText, image: URL(string: (collection.thumbnailURLString ?? "")), domainModel: nil))
-            }
-            completion(model.randomElement())
-        })
-    }
-
-    func lastMessage(completion: @escaping ((FromTignumCellViewModel)?) -> Void) {
-        var model: [FromTignumCellViewModel]? = []
-        qot_dal.ContentService.main.getContentCategory(.FromTignum, { (category) in
-            category?.contentCollections.forEach { (collection) in
-                model?.append(FromTignumCellViewModel(text: collection.contentItems.first?.valueText, domainModel: nil))
-            }
-            completion(model?.last)
-        })
-    }
-
-    func getFeastModel(completion: @escaping ((FeastCellViewModel)?) -> Void) {
-        var model: [FeastCellViewModel]? = []
-        qot_dal.ContentService.main.getContentCategory(.FeastForEyes, { (category) in
-            category?.contentCollections.first?.contentItems.forEach { (item) in
-                model?.append(FeastCellViewModel(image: item.valueMediaURL ?? "", remoteID: item.remoteID, domainModel: nil))
-            }
-            completion(model?.randomElement())
-        })
-    }
-
-    func getDepartureModel(completion: @escaping ((DepartureInfoCellViewModel)?) -> Void) {
-        var model: [DepartureInfoCellViewModel]? = []
-        qot_dal.ContentService.main.getContentCollectionBySection(.Departure, { (collections) in
-            collections?.forEach { (collection) in
-                model?.append(DepartureInfoCellViewModel(text: collection.contentItems.first?.valueText, image: collection.thumbnailURLString ?? "", link: collection.shareableLink, domainModel: nil))
-            }
-            completion(model?.randomElement())
-        })
+    var lastEstimatedLevel: Int? {
+        return buckets.filter {$0.bucketName == DailyBriefBucketName.GET_TO_LEVEL_5}.first?.latestGetToLevel5Value
     }
 }

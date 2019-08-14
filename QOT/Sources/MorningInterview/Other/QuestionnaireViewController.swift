@@ -24,6 +24,7 @@ enum DailyCheckInQuestionKey: String {
 enum ControllerType {
     case vision
     case dailyCheckin
+    case customize
 
     struct Config {
         let currentIndexColor: UIColor
@@ -31,6 +32,12 @@ enum ControllerType {
         let belowCurrentIndexColor: UIColor
 
         static func myVision() -> Config {
+            return Config(currentIndexColor: .redOrange,
+                          aboveCurrentIndexColor: .redOrange40,
+                          belowCurrentIndexColor: .accent40)
+        }
+
+        static func customize() -> Config {
             return Config(currentIndexColor: .redOrange,
                           aboveCurrentIndexColor: .redOrange40,
                           belowCurrentIndexColor: .accent40)
@@ -49,6 +56,8 @@ enum ControllerType {
             return Config.myVision()
         case .dailyCheckin:
             return Config.dailyCheckin()
+        case .customize:
+            return Config.customize()
         }
     }
 
@@ -58,12 +67,17 @@ enum ControllerType {
             return .sand
         case .dailyCheckin:
             return .carbon
+        case .customize:
+            return .sand
         }
     }
 }
 
-final class QuestionnaireViewController: UIViewController, ScreenZLevelOverlay {
+final class QuestionnaireViewController: UIViewController, ScreenZLevel1 {
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet weak var topConstraint: NSLayoutConstraint!
+    @IBOutlet weak var customizeTargetTitle: UILabel!
+    @IBOutlet weak var labelCustomizeView: UILabel!
     @IBOutlet private weak var questionLabel: UILabel!
     @IBOutlet private weak var progressTopConstraint: NSLayoutConstraint!
     @IBOutlet private weak var ovalTopConstraint: NSLayoutConstraint!
@@ -81,8 +95,8 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var lineView: UIView!
     @IBOutlet private weak var hintLabel: UILabel!
     @IBOutlet private weak var indexLabel: UILabel!
-
     static var hasArrowsAnimated: Bool = false
+    var chosenValue: String?
     private var finishedLoadingInitialTableCells = false
     private var questionIdentifier: Int?
     private var question: NSAttributedString? = nil
@@ -131,7 +145,10 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevelOverlay {
     override func viewDidLoad() {
         super.viewDidLoad()
         animationHide()
+        labelCustomizeView.isHidden = true
+        customizeTargetTitle.isHidden = true
         setupView()
+        adjustUI()
         progressView.backgroundColor = UIColor.clear
     }
 
@@ -174,6 +191,19 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevelOverlay {
 
 // MARK: Animation
 extension QuestionnaireViewController {
+
+    func adjustUI() {
+        switch controllerType {
+        case .customize:
+            topConstraint.constant = 50
+            labelCustomizeView.isHidden = false
+            customizeTargetTitle.isHidden = false
+            view.backgroundColor = .carbon
+        default:
+            return
+        }
+
+    }
 
     func animateArrows() {
         if QuestionnaireViewController.hasArrowsAnimated { return }
@@ -265,34 +295,66 @@ extension QuestionnaireViewController {
 
     public func animationShow() {
         // start animation
-        tableView.isHidden = true
-        showAnimated = true
-        tableView.reloadData()
+        switch controllerType {
+        case .customize:
+            tableView.isHidden = true
+            showAnimated = true
+            tableView.reloadData()
+            questionLabel.isHidden = false
+            labelCustomizeView.text = R.string.localized.dailyBriefCustomizeSleepIntro()
+            questionLabel.text = R.string.localized.dailyBriefCustomizeSleepQuestion()
+            questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
+            questionLabel.alpha = 0
+            questionLabel.textColor = UIColor.sand.withAlphaComponent(0.4)
+            progressView.alpha = 0.0
+            progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
+            fillView.setNeedsUpdateConstraints()
 
-        questionLabel.isHidden = false
-        questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
-        questionLabel.alpha = 0
-        questionLabel.attributedText = question
-        progressView.alpha = 0.0
-        progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
-        fillView.setNeedsUpdateConstraints()
+            UIView.animate(withDuration: Animation.duration_02,
+                           delay: Animation.duration_02,
+                           options: [.curveEaseInOut],
+                           animations: {
+                            self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+                            self.questionLabel.alpha = 1
+                            self.progressView.alpha = 1
+            }, completion: { finished in
+                self.setupImages()
+                self.tableView.isHidden = false
+                self.tableView.reloadData()
+            })
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Animation.duration_02) {
+                self.animateToIndex(index: self.currentIndex, isTouch: false)
+                self.answerDelegate?.isPresented(for: self.questionID(), from: self)
+            }
 
-        UIView.animate(withDuration: Animation.duration_02,
-                       delay: Animation.duration_02,
-                       options: [.curveEaseInOut],
-                       animations: {
-                self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
-                self.questionLabel.alpha = 1
-                self.progressView.alpha = 1
-        }, completion: { finished in
-            self.setupImages()
-            self.tableView.isHidden = false
-            self.tableView.reloadData()
-        })
+        default:
+            tableView.isHidden = true
+            showAnimated = true
+            tableView.reloadData()
+            questionLabel.isHidden = false
+            questionLabel.transform = CGAffineTransform(translationX: 0, y: -Layout.padding_100)
+            questionLabel.alpha = 0
+            questionLabel.attributedText = question
+            progressView.alpha = 0.0
+            progressTopConstraint.constant = cellHeight * CGFloat(items * 2 - 1)
+            fillView.setNeedsUpdateConstraints()
 
-        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Animation.duration_02) {
-            self.animateToIndex(index: self.currentIndex, isTouch: false)
-            self.answerDelegate?.isPresented(for: self.questionID(), from: self)
+            UIView.animate(withDuration: Animation.duration_02,
+                           delay: Animation.duration_02,
+                           options: [.curveEaseInOut],
+                           animations: {
+                            self.questionLabel.transform = CGAffineTransform(translationX: 0, y: 0)
+                            self.questionLabel.alpha = 1
+                            self.progressView.alpha = 1
+            }, completion: { finished in
+                self.setupImages()
+                self.tableView.isHidden = false
+                self.tableView.reloadData()
+            })
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + Animation.duration_02) {
+                self.animateToIndex(index: self.currentIndex, isTouch: false)
+                self.answerDelegate?.isPresented(for: self.questionID(), from: self)
+            }
         }
     }
 
@@ -365,8 +427,15 @@ extension QuestionnaireViewController {
         if let finalAnswers = answers {
             let answerIndex = items - index - 1
             if answerIndex < finalAnswers.count {
-                indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
-                hintLabel.text = finalAnswers[answerIndex].title
+                switch controllerType {
+                case .customize:
+                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
+                    hintLabel.text = finalAnswers[answerIndex].title
+                    hintLabel.textColor = UIColor.sand.withAlphaComponent(0.4)
+                default:
+                    indexLabel.attributedText = formTimeAttibutedString(title: finalAnswers[answerIndex].subtitle ?? "", isLast: answerIndex == finalAnswers.count - 1)
+                    hintLabel.text = finalAnswers[answerIndex].title
+                 }
             }
         } else {
             indexLabel.text = String(items - index)
@@ -538,6 +607,42 @@ extension QuestionnaireViewController {
             touchDownYPosition = yPosition
         default:
             break
+        }
+    }
+
+    @objc func didTapSave() {
+        guard let count = answers?.count else { return }
+        // WARNING: This is valid only for daily brief check in Set Sleep Target
+        self.answerDelegate?.saveTargetValue(value: (count  - 1 - currentIndex))
+        navigationController?.popViewController(animated: true)
+    }
+}
+
+extension QuestionnaireViewController {
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        switch controllerType {
+        case .customize:
+            return [dismissNavigationItem()]
+        default:
+            return nil
+        }
+    }
+
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        switch controllerType {
+        case .customize:
+            return [roundedBarButtonItem(title: "Save", buttonWidth: 65, action: #selector(didTapSave))]
+        default:
+            return nil
+        }
+    }
+
+    override func bottomNavigationBackgroundColor() -> UIColor? {
+        switch controllerType {
+        case .customize:
+            return .clear
+        default:
+            return nil
         }
     }
 }

@@ -9,7 +9,16 @@
 import Foundation
 import qot_dal
 
-struct FromTignumCellViewModel: DailyBriefBucket {
+final class FromTignumCellViewModel: BaseDailyBriefViewModel {
+
+    // MARK: - Properties
     var text: String?
-    var domainModel: QDMDailyBriefBucket?
+    var title: String?
+
+    // MARK: - Init
+    init(title: String?, text: String?, domainModel: QDMDailyBriefBucket?) {
+        self.text = text
+        self.title = title
+        super.init(domainModel)
+    }
 }

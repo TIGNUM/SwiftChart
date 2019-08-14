@@ -28,9 +28,10 @@ final class FromMyCoachHeaderView: UIView {
         containerView.maskCorners(corners: [.topRight, .topLeft], radius: Layout.cornerRadius08)
     }
 
-    func configure(with data: FromMyCoachDetail) {
-        title.text = data.title
+    func configure(with data: FromMyCoachCellViewModel.FromMyCoachDetail) {
+        self.title.text = data.title
         coachImageView.kf.setImage(with: data.imageUrl,
-                                   placeholder: R.image.preloading())
+                                   placeholder: R.image.dummy_Profile())
+        coachImageView.circle()
     }
 }

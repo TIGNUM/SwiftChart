@@ -9,8 +9,18 @@
 import Foundation
 import qot_dal
 
-struct GoodToKnowCellViewModel: DailyBriefBucket {
+final class GoodToKnowCellViewModel: BaseDailyBriefViewModel {
+
+    // MARK: - Properties
     var fact: String?
     var image: URL?
-    var domainModel: QDMDailyBriefBucket?
+    var title: String?
+
+    // MARK: - Init
+    init(title: String?, fact: String?, image: URL?, domainModel: QDMDailyBriefBucket?) {
+        self.fact = fact
+        self.image = image
+        self.title = title
+        super.init(domainModel)
+    }
 }

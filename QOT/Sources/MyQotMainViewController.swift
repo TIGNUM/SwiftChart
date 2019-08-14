@@ -39,11 +39,11 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
         interactor?.viewDidLoad()
         nextPrepDate(completion: { (dateString) in
             self.dateOfPrep = dateString
-            self.collectionView.reloadData()
+//            self.collectionView.reloadData()
         })
         nextPrepType(completion: { (eventType) in
             self.eventType = eventType
-            self.collectionView.reloadData()
+//            self.collectionView.reloadData()
         })
         toBeVisionDate(completion: { (date) in
             self.toBeVisionModified = date
@@ -55,7 +55,7 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
                     self.subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
                 } else { self.subtitleVision = R.string.localized.myQotVisionLessThan()}
             }
-            self.collectionView.reloadData()
+//            self.collectionView.reloadData()
         })
     }
 
@@ -102,12 +102,13 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
                                  cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let qotSection = MyQotSection.allCases[indexPath.row]
         let cell: MyQotMainCollectionViewCell = collectionView.dequeueCell(for: indexPath)
-
         switch qotSection {
         case .profile:
             interactor?.getUserName(completion: {(name) in
                 self.interactor?.getSubtitles(completion: {(subtitles) in
-                    cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "Hello " + (name ?? "") + ",\n" + (subtitles[indexPath.row] ?? "").lowercased())
+                    if subtitles.count > 0 {
+                    cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "Hello " + (name ?? "") + ",\n" + (subtitles[indexPath.row]?.lowercased() ?? ""))
+                    }
                 })
             })
             cell.subtitleLabel.textColor = UIColor.sand
@@ -120,14 +121,18 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 
         case .sprints:
             interactor?.getSubtitles(completion: {(subtitles) in
-//                 cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitles[indexPath.row] ?? "")
+                 if subtitles.count > 0 {
+                 cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: subtitles[indexPath.row] ?? "")
+                }
             })
         case .data:
             cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
         case .toBeVision:
             interactor?.getSubtitles(completion: {(subtitles) in
+                 if subtitles.count > 0 {
                 cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: self.subtitleVision ?? subtitles[indexPath.row] ?? "")
                 cell.subtitleLabel.textColor = .redOrange
+                }
             })
         }
         return cell

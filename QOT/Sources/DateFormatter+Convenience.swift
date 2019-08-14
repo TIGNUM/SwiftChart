@@ -65,6 +65,13 @@ private let whatsHotFormatter: DateFormatter = {
     return formatter
 }()
 
+private let coachMessageFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd.MM.yy - hh:mm"
+    formatter.timeZone = TimeZone.current
+    return formatter
+}()
+
 private let tbvTrackerFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "mm.yy" // 05.19
@@ -104,6 +111,10 @@ extension DateFormatter {
 
     static var iso8601: DateFormatter {
         return iso8601DateFormatter
+    }
+
+    static var messageDate: DateFormatter {
+        return coachMessageFormatter
     }
 
     static var memberSince: DateFormatter {

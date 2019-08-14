@@ -34,7 +34,7 @@ enum DecisionTreeType {
             return QuestionKey.Prepare.Intro
         case .prepareIntentions(_, _, let key, _):
             return key.tag
-        case .prepareBenefits(let benefits, let questionId, let delegate):
+        case .prepareBenefits:
             return ""
         case .solve:
             return QuestionKey.Solve.Intro

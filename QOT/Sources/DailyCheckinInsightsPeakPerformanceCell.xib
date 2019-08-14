@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="zgz-NQ-hjF" customClass="DailyCheckinInsightsPeakPerformanceCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILY CHECKIN INSIGHTS II" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iLE-Yv-qe8">
+                    <rect key="frame" x="20" y="165" width="374" height="24"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Peak events today" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcl-4i-3jU">
+                    <rect key="frame" x="20" y="209" width="374" height="19.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsA-7q-jmf">
+                    <rect key="frame" x="20" y="144" width="15" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="15" id="LlP-H5-0jj"/>
+                        <constraint firstAttribute="height" constant="1" id="NJd-C6-foR"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J2g-Ge-Z5X">
+                    <rect key="frame" x="234" y="253.5" width="150" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="150" id="MMG-gq-cNg"/>
+                        <constraint firstAttribute="height" constant="40" id="SQB-lL-Zkw"/>
+                    </constraints>
+                    <state key="normal" title="Your Preparations">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="CTAButton:" destination="zgz-NQ-hjF" eventType="touchUpInside" id="DIS-4m-HRZ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="iLE-Yv-qe8" firstAttribute="top" secondItem="lsA-7q-jmf" secondAttribute="bottom" constant="20" id="0bN-eA-bo6"/>
+                <constraint firstItem="hHY-0y-igv" firstAttribute="trailing" secondItem="J2g-Ge-Z5X" secondAttribute="trailing" constant="30" id="78E-gT-6bR"/>
+                <constraint firstItem="rcl-4i-3jU" firstAttribute="top" secondItem="iLE-Yv-qe8" secondAttribute="bottom" constant="20" id="LQV-sd-isJ"/>
+                <constraint firstItem="iLE-Yv-qe8" firstAttribute="leading" secondItem="hHY-0y-igv" secondAttribute="leading" constant="20" id="OUa-Rx-vK4"/>
+                <constraint firstItem="rcl-4i-3jU" firstAttribute="leading" secondItem="hHY-0y-igv" secondAttribute="leading" constant="20" id="Ws7-ZD-WPC"/>
+                <constraint firstItem="J2g-Ge-Z5X" firstAttribute="top" secondItem="rcl-4i-3jU" secondAttribute="bottom" constant="25" id="XVQ-D0-50C"/>
+                <constraint firstItem="hHY-0y-igv" firstAttribute="trailing" secondItem="rcl-4i-3jU" secondAttribute="trailing" constant="20" id="n27-lm-WCV"/>
+                <constraint firstItem="lsA-7q-jmf" firstAttribute="leading" secondItem="zgz-NQ-hjF" secondAttribute="leading" constant="20" id="nP0-Sn-cRE"/>
+                <constraint firstItem="hHY-0y-igv" firstAttribute="trailing" secondItem="iLE-Yv-qe8" secondAttribute="trailing" constant="20" id="uwO-cx-qzK"/>
+                <constraint firstItem="lsA-7q-jmf" firstAttribute="top" secondItem="hHY-0y-igv" secondAttribute="top" constant="100" id="zVm-tw-OtK"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="hHY-0y-igv"/>
+            <connections>
+                <outlet property="button" destination="J2g-Ge-Z5X" id="OBO-J9-KH6"/>
+                <outlet property="peakEventsLabel" destination="rcl-4i-3jU" id="Xp1-fB-jOn"/>
+            </connections>
+        </view>
+    </objects>
+</document>

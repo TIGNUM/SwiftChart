@@ -612,3 +612,6 @@
 "MySprintDetailsNotes.Info.Title.Leave" = "LEAVE WITHOUT SAVING";
 "MySprintDetailsNotes.Info.Message.Leave" = "Are you sure you want to leave without saving? The changes will not be applied.";
 "MySprintDetailsNotes.Button.Save" = "Save";
+
+"DailyBrief.Customize.Sleep.Intro" = "Customize your benchmark value for your sleep quantity here accroding to the time amount you want to reach.";
+"DailyBrief.Customize.Sleep.Question" = "Insert the ideal amount of sleep per day";

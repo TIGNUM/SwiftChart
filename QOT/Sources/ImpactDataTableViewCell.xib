@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Thin.otf">
+            <string>SFProDisplay-Thin</string>
+        </array>
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Medium.otf">
+            <string>SFProText-Medium</string>
+        </array>
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view multipleTouchEnabled="YES" contentMode="scaleToFill" id="iN0-l3-epB" customClass="ImpactDataTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="399" height="101"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <button opaque="NO" multipleTouchEnabled="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bed-8G-aFC">
+                    <rect key="frame" x="313" y="40.5" width="30" height="30"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="FBs-85-WXH"/>
+                        <constraint firstAttribute="height" constant="30" id="tYb-ev-uWn"/>
+                    </constraints>
+                    <connections>
+                        <action selector="customizeTarget:" destination="iN0-l3-epB" eventType="touchUpInside" id="FAg-Ld-43E"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="SLEEP QUALITY" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Qw-xk-aWL">
+                    <rect key="frame" x="24" y="28" width="152" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="kUf-v2-gQ4"/>
+                        <constraint firstAttribute="width" constant="152" id="udl-Ay-SDT"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Last 5 days average" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pim-As-Tdq">
+                    <rect key="frame" x="24" y="60" width="152" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="E0t-do-mMZ"/>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="152" id="xOw-mm-JcY"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="12"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="6.2" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZCy-Cd-wof">
+                    <rect key="frame" x="208" y="28" width="55" height="41"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="55" id="oSb-SE-Eym"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="34"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="X3T-TF-i9N">
+                    <rect key="frame" x="310.5" y="30" width="35.5" height="11.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="12"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="*" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qz5-q8-fRF">
+                    <rect key="frame" x="267" y="28" width="3.5" height="36"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="30"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Egk-Ip-ZvO">
+                    <rect key="frame" x="267" y="49" width="6" height="21"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="10" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vyZ-4i-zRp">
+                    <rect key="frame" x="277" y="56" width="13.5" height="14"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QPh-yA-dx4">
+                    <rect key="frame" x="318" y="45.5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="20" id="VcS-ez-oGC"/>
+                        <constraint firstAttribute="width" constant="20" id="mYM-h7-uzZ"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="Qz5-q8-fRF" firstAttribute="leading" secondItem="ZCy-Cd-wof" secondAttribute="trailing" constant="4" id="48P-ce-uHY"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="bed-8G-aFC" secondAttribute="trailing" constant="56" id="4C3-BO-Tq0"/>
+                <constraint firstAttribute="bottom" secondItem="vyZ-4i-zRp" secondAttribute="bottom" constant="31" id="5z2-uY-Lq5"/>
+                <constraint firstItem="bed-8G-aFC" firstAttribute="centerY" secondItem="QPh-yA-dx4" secondAttribute="centerY" id="FQ9-aI-F82"/>
+                <constraint firstItem="vyZ-4i-zRp" firstAttribute="leading" secondItem="Egk-Ip-ZvO" secondAttribute="trailing" constant="4" id="JH0-Jo-42D"/>
+                <constraint firstItem="bed-8G-aFC" firstAttribute="centerX" secondItem="QPh-yA-dx4" secondAttribute="centerX" id="Jvh-VP-tpy"/>
+                <constraint firstItem="pim-As-Tdq" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Nle-Rz-eSP"/>
+                <constraint firstAttribute="bottom" secondItem="Egk-Ip-ZvO" secondAttribute="bottom" constant="31" id="Owv-Kv-4bF"/>
+                <constraint firstItem="QPh-yA-dx4" firstAttribute="centerX" secondItem="X3T-TF-i9N" secondAttribute="centerX" id="POg-KY-eK2"/>
+                <constraint firstItem="ZCy-Cd-wof" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="PjR-gy-dg6"/>
+                <constraint firstItem="0Qw-xk-aWL" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="UzB-HR-i6j"/>
+                <constraint firstItem="QPh-yA-dx4" firstAttribute="top" secondItem="X3T-TF-i9N" secondAttribute="bottom" constant="4" id="a98-5m-VsU"/>
+                <constraint firstItem="pim-As-Tdq" firstAttribute="top" secondItem="0Qw-xk-aWL" secondAttribute="bottom" constant="8" id="cYn-3o-GdV"/>
+                <constraint firstItem="Qz5-q8-fRF" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="28" id="gpZ-LL-3S5"/>
+                <constraint firstItem="X3T-TF-i9N" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="hde-dP-UQw"/>
+                <constraint firstItem="X3T-TF-i9N" firstAttribute="leading" secondItem="Qz5-q8-fRF" secondAttribute="trailing" constant="40" id="kgb-Vf-4f6"/>
+                <constraint firstItem="Egk-Ip-ZvO" firstAttribute="leading" secondItem="ZCy-Cd-wof" secondAttribute="trailing" constant="4" id="nDM-bu-m23"/>
+                <constraint firstItem="ZCy-Cd-wof" firstAttribute="leading" secondItem="0Qw-xk-aWL" secondAttribute="trailing" constant="32" id="nL8-qD-vE4"/>
+                <constraint firstAttribute="bottom" secondItem="bed-8G-aFC" secondAttribute="bottom" constant="30.5" id="rwz-fc-IH0"/>
+                <constraint firstItem="0Qw-xk-aWL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="wgt-R3-VAT"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="averageValue" destination="ZCy-Cd-wof" id="Q8x-J3-O5z"/>
+                <outlet property="button" destination="bed-8G-aFC" id="sbf-a0-wKS"/>
+                <outlet property="subTitle" destination="pim-As-Tdq" id="EmU-Hq-sgI"/>
+                <outlet property="targetRefLabel" destination="X3T-TF-i9N" id="cEy-Xe-GRU"/>
+                <outlet property="targetRefValue" destination="QPh-yA-dx4" id="2MV-LH-fAj"/>
+                <outlet property="title" destination="0Qw-xk-aWL" id="23m-ca-CMy"/>
+            </connections>
+            <point key="canvasLocation" x="126.81159420289856" y="-112.83482142857142"/>
+        </view>
+    </objects>
+</document>

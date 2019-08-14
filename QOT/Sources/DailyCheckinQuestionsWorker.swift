@@ -25,11 +25,13 @@ final class DailyCheckinQuestionsWorker {
 
     func saveAnswers(_ completion: @escaping() -> Void) {
         var answers: [QDMDailyCheckInAnswer] = []
+
         for question in questions {
             var checkInAnswer = QDMDailyCheckInAnswer()
             checkInAnswer.questionId = question.remoteID
-            checkInAnswer.questionGroupId = question.remoteID
             checkInAnswer.SHPIQuestionId = question.SHPIQuestionId
+            checkInAnswer.ToBeVisionTrackId = question.toBeVisionTrackId
+            checkInAnswer.userAnswer = question.selectedAnswer()?.title
             checkInAnswer.ToBeVisionTrackId = question.toBeVisionTrackId
             checkInAnswer.questionGroupId = question.groups?.first?.id
             checkInAnswer.answerId = question.selectedAnswer()?.remoteID
@@ -38,8 +40,8 @@ final class DailyCheckinQuestionsWorker {
             }
             answers.append(checkInAnswer)
         }
-        questionService.saveDailyCheckInAnswers(answers) { (apiError) in
-            if apiError != nil {
+        questionService.saveDailyCheckInAnswers(answers) { (error) in
+            if let apiError = error {
                 qot_dal.log("Save answer error: \(apiError)", level: .error)
             }
             completion()

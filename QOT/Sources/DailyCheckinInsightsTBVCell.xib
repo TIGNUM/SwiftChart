@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="k0H-1I-Uwk" customClass="DailyCheckinInsightsTBVCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILY CHECKIN INSIGHTS II" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXs-bw-HDl">
+                    <rect key="frame" x="20" y="165" width="374" height="24"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You gave yourself a X on the rating of" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nj4-u2-Kz0">
+                    <rect key="frame" x="20" y="209" width="374" height="17"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snW-CA-C1f">
+                    <rect key="frame" x="20" y="144" width="15" height="1"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="if5-lR-GMd"/>
+                        <constraint firstAttribute="width" constant="15" id="yKN-zo-rPT"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkR-EF-LfG">
+                    <rect key="frame" x="254" y="313" width="130" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="35" id="AIl-tL-vfC"/>
+                        <constraint firstAttribute="width" constant="130" id="fU6-h7-CMi"/>
+                    </constraints>
+                    <state key="normal" title="My To Be Vision">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="toBeVisionButton:" destination="k0H-1I-Uwk" eventType="touchUpInside" id="KeZ-IP-OvA"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot; I am a great listener in high pressure meetings&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a5-dW-Fuu">
+                    <rect key="frame" x="20" y="241" width="374" height="19.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What could you do today to become that statement?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XV-ES-B1T">
+                    <rect key="frame" x="20" y="276" width="374" height="17"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="snW-CA-C1f" firstAttribute="top" secondItem="War-05-zvi" secondAttribute="top" constant="100" id="5Sg-jy-7ug"/>
+                <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="3XV-ES-B1T" secondAttribute="trailing" constant="20" id="KHR-98-YFv"/>
+                <constraint firstItem="5a5-dW-Fuu" firstAttribute="top" secondItem="Nj4-u2-Kz0" secondAttribute="bottom" constant="15" id="M4z-bs-aNA"/>
+                <constraint firstItem="5a5-dW-Fuu" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="NIO-xE-au6"/>
+                <constraint firstItem="TXs-bw-HDl" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="XGW-Rf-loC"/>
+                <constraint firstItem="TXs-bw-HDl" firstAttribute="top" secondItem="snW-CA-C1f" secondAttribute="bottom" constant="20" id="Z2t-xZ-2jR"/>
+                <constraint firstItem="snW-CA-C1f" firstAttribute="leading" secondItem="k0H-1I-Uwk" secondAttribute="leading" constant="20" id="aPJ-bB-Lcp"/>
+                <constraint firstItem="3XV-ES-B1T" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="dOG-bI-uJE"/>
+                <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="nkR-EF-LfG" secondAttribute="trailing" constant="30" id="dls-V0-vi4"/>
+                <constraint firstItem="Nj4-u2-Kz0" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="n0w-pC-FJX"/>
+                <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="TXs-bw-HDl" secondAttribute="trailing" constant="20" id="pWj-MU-7q6"/>
+                <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="5a5-dW-Fuu" secondAttribute="trailing" constant="20" id="pc0-YU-t0W"/>
+                <constraint firstItem="3XV-ES-B1T" firstAttribute="top" secondItem="5a5-dW-Fuu" secondAttribute="bottom" constant="15.5" id="pp2-Vj-Ujz"/>
+                <constraint firstItem="Nj4-u2-Kz0" firstAttribute="top" secondItem="TXs-bw-HDl" secondAttribute="bottom" constant="20" id="rs6-ry-fM8"/>
+                <constraint firstItem="nkR-EF-LfG" firstAttribute="top" secondItem="3XV-ES-B1T" secondAttribute="bottom" constant="20" id="sd1-cy-f88"/>
+                <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="Nj4-u2-Kz0" secondAttribute="trailing" constant="20" id="yNm-Ig-BLm"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="War-05-zvi"/>
+            <connections>
+                <outlet property="adviceText" destination="3XV-ES-B1T" id="zA9-az-wiV"/>
+                <outlet property="button" destination="nkR-EF-LfG" id="OII-dU-A9M"/>
+                <outlet property="introText" destination="Nj4-u2-Kz0" id="PsE-rj-Uh1"/>
+                <outlet property="tbvSentence" destination="5a5-dW-Fuu" id="XPy-sv-RtY"/>
+                <outlet property="tbvText" destination="Nj4-u2-Kz0" id="KQz-dg-XB9"/>
+            </connections>
+        </view>
+    </objects>
+</document>

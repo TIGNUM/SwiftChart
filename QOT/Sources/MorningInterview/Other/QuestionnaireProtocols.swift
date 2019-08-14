@@ -24,6 +24,13 @@ protocol QuestionnaireAnswer: class {
     func isPresented(for questionIdentifier: Int?, from viewController: UIViewController)
     func isSelecting(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController)
     func didSelect(answer: Int, for questionIdentifier: Int?, from viewController: UIViewController)
+    func saveTargetValue(value: Int?)
+}
+
+extension QuestionnaireAnswer {
+    func saveTargetValue(value: Int?) {
+        // Do nothing
+    }
 }
 
 protocol RatingQuestionnaire {

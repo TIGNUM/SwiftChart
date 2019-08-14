@@ -11,10 +11,11 @@ import UIKit
 final class GoodToKnowCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var goodToKnowImage: UIImageView!
     @IBOutlet private weak var goodToKnowFact: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
 
-    func configure(fact: String?, image: URL?) {
-         goodToKnowImage.kf.setImage(with: image, placeholder: R.image.preloading())
-         goodToKnowFact.text = fact
+    func configure(with viewModel: GoodToKnowCellViewModel?) {
+        goodToKnowImage.kf.setImage(with: viewModel?.image, placeholder: R.image.preloading())
+        goodToKnowFact.text = viewModel?.fact
+        titleLabel.text = viewModel?.title
     }
-
 }

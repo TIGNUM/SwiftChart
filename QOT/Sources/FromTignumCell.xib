@@ -18,7 +18,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="urS-sy-CjV" customClass="FromTignumCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="603"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="421"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FROM TIGNUM" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="09f-xt-X6f">
@@ -61,6 +61,7 @@
             <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="avF-uO-4v4" firstAttribute="trailing" secondItem="09f-xt-X6f" secondAttribute="trailing" constant="20" id="4oQ-SY-e9t"/>
+                <constraint firstItem="avF-uO-4v4" firstAttribute="bottom" secondItem="tPp-g6-1KN" secondAttribute="bottom" constant="58" id="7d3-d5-k45"/>
                 <constraint firstItem="W61-IF-sKB" firstAttribute="leading" secondItem="urS-sy-CjV" secondAttribute="leading" constant="20" id="DCx-Wz-XHR"/>
                 <constraint firstItem="avF-uO-4v4" firstAttribute="trailing" secondItem="AAj-YT-2Ob" secondAttribute="trailing" constant="20" id="Nf6-fv-nme"/>
                 <constraint firstItem="09f-xt-X6f" firstAttribute="top" secondItem="W61-IF-sKB" secondAttribute="bottom" constant="20" id="Omy-DG-RbN"/>
@@ -77,8 +78,9 @@
                 <outlet property="button" destination="tPp-g6-1KN" id="gUn-Zg-Isa"/>
                 <outlet property="fromTignumText" destination="AAj-YT-2Ob" id="1aj-V0-pVZ"/>
                 <outlet property="heightOfText" destination="RJT-vH-pgm" id="ZK8-Hk-lAk"/>
+                <outlet property="titleLabel" destination="09f-xt-X6f" id="JXt-uR-yuz"/>
             </connections>
-            <point key="canvasLocation" x="263.768115942029" y="-217.96875"/>
+            <point key="canvasLocation" x="263.768115942029" y="-278.90625"/>
         </view>
     </objects>
 </document>

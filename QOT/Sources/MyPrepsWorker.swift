@@ -22,9 +22,9 @@ final class MyPrepsWorker {
         userService.getUserPreparations { [weak self] (preparations, initialized, error) in
             var prepItems = [MyPrepsModel.Items]()
             preparations?.forEach {
-                let dateString = $0.eventDate != nil ? DateFormatter.myPrepsTime.string(from: $0.eventDate!) : ""
-                let prepItem = MyPrepsModel.Items(title: $0.eventTitle ?? "",
-                                                  date: dateString,
+                let dateString = $0.eventDate?.eventDateString
+                let prepItem = MyPrepsModel.Items(title: $0.name ?? "",
+                                                  date: dateString ?? "",
                                                   eventType: $0.eventType ?? "",
                                                   qdmPrep: $0)
                 prepItems.append(prepItem)
@@ -39,7 +39,7 @@ final class MyPrepsWorker {
             var prepItems = [RecoveriesModel.Items]()
             recoveries?.forEach {
                 let prepItem = RecoveriesModel.Items(title: $0.fatigueAnswer?.title ?? "",
-                                                  date: DateFormatter.myPrepsTime.string(from: $0.createdAt ?? Date(timeInterval: -3600, since: Date())),
+                                                  date: $0.createdAt?.eventDateString ?? "",
                                                   qdmRec: $0)
                 prepItems.append(prepItem)
             }
@@ -53,7 +53,7 @@ final class MyPrepsWorker {
             var prepItems = [MindsetShiftersModel.Items]()
             mindsetShifters?.forEach {
                 let prepItem = MindsetShiftersModel.Items(title: $0.triggerAnswer?.title ?? "",
-                                                  date: DateFormatter.myPrepsTime.string(from: $0.createdAt ?? Date(timeInterval: -3600, since: Date())),
+                                                  date: $0.createdAt?.eventDateString ?? "",
                                                   qdmMind: $0)
                 prepItems.append(prepItem)
             }
@@ -96,10 +96,10 @@ extension MyPrepsWorker {
     }
 
     func createPrepModel(_ completion: @escaping () -> Void) {
-        preparations() { (myPrepsModel) in
+        preparations(completion: { (myPrepsModel) in
             self.model = myPrepsModel
             completion()
-        }
+        })
     }
 
     //TODO: Remove createMindModel and createRecModel

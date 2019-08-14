@@ -63,23 +63,21 @@ extension MyVisionRouter: MyVisionRouterInterface {
         self.popUpController?.dismiss(animated: true, completion: completion)
     }
 
+    ///FIXME Actually we are not showing the confirmation view.
     func showUpdateConfirmationScreen() {
-
         guard let vieController = R.storyboard.dailyCheckin.dailyCheckinStartViewController() else { return }
         DailyCheckinStartConfigurator.configure(viewController: vieController)
         let navigationController = UINavigationController(rootViewController: vieController)
         navigationController.isNavigationBarHidden = true
         viewController.present(navigationController, animated: true, completion: nil)
 
-        return
-
-        let config = PopUpViewController.Config(title: "UPDATE TO BE VISION",
-                                                description: "Do you wanna create a new To Be Vision or edit your current one?",
-                                                rightButtonTitle: "Edit", leftButtonTitle: "Create new")
-        let popUpController = PopUpViewController(with: config, delegate: viewController)
-        popUpController.modalPresentationStyle = .overCurrentContext
-        self.popUpController = popUpController
-        viewController.present(popUpController, animated: true, completion: nil)
+//        let config = PopUpViewController.Config(title: "UPDATE TO BE VISION",
+//                                                description: "Do you wanna create a new To Be Vision or edit your current one?",
+//                                                rightButtonTitle: "Edit", leftButtonTitle: "Create new")
+//        let popUpController = PopUpViewController(with: config, delegate: viewController)
+//        popUpController.modalPresentationStyle = .overCurrentContext
+//        self.popUpController = popUpController
+//        viewController.present(popUpController, animated: true, completion: nil)
     }
 
     func openToBeVisionGenerator() {
