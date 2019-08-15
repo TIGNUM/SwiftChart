@@ -3330,15 +3330,15 @@
 		363765F0223A4B9B00C2C429 /* knowing */ = {
 			isa = PBXGroup;
 			children = (
-				363765F8223A4BD200C2C429 /* KnowingInteractor.swift */,
+				5F57F9E52282E741003A9EDF /* ContentService+Knowing.swift */,
 				363765FA223A4BD200C2C429 /* KnowingConfigurator.swift */,
+				363765F8223A4BD200C2C429 /* KnowingInteractor.swift */,
 				363765F6223A4BD200C2C429 /* KnowingInterface.swift */,
 				363765F9223A4BD200C2C429 /* KnowingModel.swift */,
 				363765F3223A4BD200C2C429 /* KnowingPresenter.swift */,
 				363765F5223A4BD200C2C429 /* KnowingRouter.swift */,
 				363765F7223A4BD200C2C429 /* KnowingViewController.swift */,
 				363765F4223A4BD200C2C429 /* KnowingWorker.swift */,
-				5F57F9E52282E741003A9EDF /* ContentService+Knowing.swift */,
 			);
 			name = knowing;
 			sourceTree = "<group>";

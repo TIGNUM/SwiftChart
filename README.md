@@ -32,11 +32,28 @@ For code, aim to keep lines to 120 characters but let Xcode soft wrap the text. 
 
 # Project Structure
 
-We are aiming to use a combination of the [coordinator pattern](http://khanlou.com/2015/10/coordinators-redux/) and MVVM with reactive view models. Coordinators should be lightweight and manage the setting up and flow between view controllers including applying transitions through `UIPresentationController`s etc. They act as glue resulting in decoupled view controllers. 
+The choosen architecture is [Clean Swift](https://clean-swift.com/clean-swift-ios-architecture/).
+We organize each use case under a new group nested within Scenes.
+A new created scene consits of the following files:
 
-In general:
+* Configurator
+* Interactor
+* Interface
+* Model
+* Presenter
+* Router
+* ViewController
+* Worker
 
-- A coordinator will be initialized with an existing view controller and once the `start` method is called transition to a new view controller that they manage. 
-- They will set up that view controller with a view model and any other required objects/values.
-- They will act as the delegate of that view controller responding to events that will change data or should instantiate new view controllers.
-- They may spawn child coordinators to manage view controllers that they transition too.
+To generate a new scene use the customized version of Clean Swift VIP templates `[Tignum QOT] VIP Templates`.
+Unzip `[Tignum QOT] VIP Templates.zip` from the project and move to `~/Library/Developer/Xcode/Templates/File Templates`.
+Xcode will list the template now under `New File…`.
+
+# qot_dal
+
+Data access layer for QOT `qot_dal` is a Private Pod.
+Add `import qot_dal` to access `QDMModels` and `Services` for `CRUD` operations.
+Xcode prints in the terminal on every build the location of the `realm data base`.
+
+With [Realm Studio](https://realm.io/products/realm-studio) we can see our data.
+`open -a "Realm Studio" file:///…/QOT.V3.realm` 
