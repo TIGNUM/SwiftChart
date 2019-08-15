@@ -17,6 +17,9 @@ struct Strategy {
         let title: String
         let imageURL: URL?
         let mediaItem: QDMContentItem?
+        let contentItems: [QDMContentItem]?
+        let valueDuration: Int
+
         var mediaURL: URL? {
             if let download = mediaItem?.userStorages?.filter({ (storage) -> Bool in
                 storage.userStorageType == .DOWNLOAD
@@ -25,12 +28,26 @@ struct Strategy {
             }
             return URL(string: mediaItem?.valueMediaURL ?? "")
         }
+
         var duration: Double {
-            return mediaItem?.valueDuration ?? 0
+            return Double(valueDuration)
         }
 
         var durationString: String {
-            return mediaItem?.durationString ?? ""
+            guard let mediaItem = mediaItem else { return "" }
+
+            if mediaItem.format == .audio,
+                let audioTextItems = contentItems?.filter({ $0.format == .paragraph || $0.format == .prepare }),
+                !audioTextItems.isEmpty {
+                return audioTextDurationString()
+            } else {
+                return mediaItem.durationString
+            }
+        }
+
+        private func audioTextDurationString() -> String {
+            let min = String(format: "%.0f", Double(valueDuration) / 60)
+            return R.string.localized.learnContentListViewMinutesLabel(min)
         }
     }
 }

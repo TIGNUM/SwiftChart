@@ -37,7 +37,7 @@ final class StrategyListInteractor {
 
 extension StrategyListInteractor: StrategyListInteractorInterface {
     var headerTitle: String {
-        return worker.headerTitle
+        return worker.headerTitle()
     }
 
     var isFoundation: Bool {

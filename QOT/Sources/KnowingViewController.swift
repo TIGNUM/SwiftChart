@@ -31,7 +31,7 @@ final class KnowingViewController: HomeViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         self.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .threeLinesAndImage])
-        self.view.backgroundColor = .carbonDark
+        self.view.backgroundColor = .carbon
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -67,9 +67,9 @@ private extension KnowingViewController {}
 
 extension KnowingViewController: KnowingViewControllerInterface {
     func setupView() {
-        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbonDark)
-        view.backgroundColor = .carbonDark
-        collectionView.backgroundColor = .carbonDark
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
+        view.backgroundColor = .carbon
+        collectionView.backgroundColor = .carbon
         collectionView.bounces = false
         collectionView.alwaysBounceVertical = false
         collectionView.registerDequeueable(WhatsHotCollectionViewCell.self)

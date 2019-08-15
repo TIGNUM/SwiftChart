@@ -17,12 +17,12 @@ final class StrategyListWorker {
     private let selectedStrategyID: Int?
     weak var interactor: StrategyListInteractorInterface?
 
-    lazy var headerTitle: String = {
+    func headerTitle() -> String {
         if isFoundation == true {
             return LearnContentTitle.foundation.rawValue
         }
         return selectedStrategy?.title ?? ""
-    }()
+    }
 
     lazy var isFoundation: Bool = {
         return selectedStrategyID == nil
@@ -59,7 +59,9 @@ final class StrategyListWorker {
                                            categoryTitle: contentCollection.contentCategoryTitle ?? "",
                                            title: contentCollection.title,
                                            imageURL: imageURL,
-                                           mediaItem: foundationItem))
+                                           mediaItem: foundationItem,
+                                           contentItems: contentCollection.contentItems,
+                                           valueDuration: contentCollection.secondsRequired))
             }
             self?.foundationStrategies = items
         }
@@ -77,7 +79,9 @@ final class StrategyListWorker {
                                            categoryTitle: contentCollection.contentCategoryTitle ?? "",
                                            title: title,
                                            imageURL: nil,
-                                           mediaItem: firstAudioItem))
+                                           mediaItem: firstAudioItem,
+                                           contentItems: contentCollection.contentItems,
+                                           valueDuration: contentCollection.secondsRequired))
             }
             self?.strategies = items
             self?.interactor?.reloadData()

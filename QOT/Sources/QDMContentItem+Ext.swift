@@ -12,7 +12,7 @@ import qot_dal
 extension QDMContentItem {
     var durationString: String {
         get {
-            let min = String(format: "%d", max((valueDuration ?? 60 / 60), 1))
+            let min = String(format: "%.0f", max((valueDuration ?? 60), 1) / 60)
             switch format {
             case .audio: return R.string.localized.learnContentListViewMinutesLabelListen(min)
             case .video: return R.string.localized.learnContentListViewMinutesLabelWatch(min)

@@ -17,9 +17,6 @@ final class StrategyListViewController: UIViewController, ScreenZLevel2 {
     var interactor: StrategyListInteractorInterface?
     @IBOutlet private weak var tableView: UITableView!
 
-    override var preferredStatusBarStyle: UIStatusBarStyle {
-        return ColorMode.dark.statusBarStyle
-    }
     // MARK: - Life Cycle
 
     override func viewDidLoad() {
