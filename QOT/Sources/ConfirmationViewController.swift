@@ -50,18 +50,14 @@ private extension ConfirmationViewController {
 
 // MARK: - ConfirmationViewControllerInterface
 extension ConfirmationViewController: ConfirmationViewControllerInterface {
-    func load(_ confirmationModel: Confirmation) {
-        self.confirmation = confirmationModel
-        setupView(confirmationModel)
-    }
-}
-
-// MARK: - Private
-extension ConfirmationViewController {
-    func setupView(_ confirmation: Confirmation) {
-        infoAlertView.set(icon: R.image.warning(), title: confirmation.title, text: confirmation.description)
+    func setupView() {
         infoAlertView?.bottomInset = BottomNavigationContainer.height
         infoAlertView?.setBackgroundColor(.clear)
+    }
+
+    func load(_ confirmationModel: Confirmation) {
+        self.confirmation = confirmationModel
+        infoAlertView.set(icon: R.image.warning(), title: confirmation?.title, text: confirmation?.description)
     }
 }
 
@@ -71,12 +67,14 @@ extension ConfirmationViewController {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        let cancelButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
+        let titleCancel = confirmation?.buttonTitleDismiss ?? R.string.localized.buttonTitleCancel()
+        let titleContinue = confirmation?.buttonTitleConfirm ?? R.string.localized.profileConfirmationDoneButton()
+        let cancelButtonItem = roundedBarButtonItem(title: titleCancel,
                                                     buttonWidth: .Cancel,
                                                     action: #selector(didTapLeft),
                                                     backgroundColor: .clear,
                                                     borderColor: .accent40)
-        let continueButtonItem = roundedBarButtonItem(title: R.string.localized.profileConfirmationDoneButton(),
+        let continueButtonItem = roundedBarButtonItem(title: titleContinue,
                                                       buttonWidth: .Continue,
                                                       action: #selector(didTapRight),
                                                       backgroundColor: .clear,

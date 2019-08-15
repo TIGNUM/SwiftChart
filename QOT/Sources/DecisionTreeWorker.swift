@@ -178,20 +178,12 @@ extension DecisionTreeWorker {
     }
 
     func answersFilter() -> String? {
-        if let filter = answerFilterMindset {
-            switch type {
-            case .mindsetShifter:
-                return filter
-            default:
-                break
-            }
-        }
         if answerFilter != nil {
             let result = answerFilter
             answerFilter = nil
             return result
         }
-        let keyFilter: DecisionTreeModel.Filter = .FILTER_RELATIONSHIP
+        let keyFilter: DecisionTreeModel.Filter = .Relationship
         if currentQuestion?.key?.contains("prepare_peak_prep_") == true {
             return decisionTree?.selectedAnswers
                 .compactMap { $0.answer }
@@ -199,15 +191,16 @@ extension DecisionTreeWorker {
                 .filter { $0.contains(keyFilter) }
                 .first
         }
-        if currentQuestion?.key == QuestionKey.MindsetShifter.MoreInfo {
-            let selectedAnswerTitle = decisionTree?.selectedAnswers.last?.answer.title?
-                .replacingOccurrences(of: " ", with: "_") ?? ""
-            let relationshipKeys = decisionTree?.selectedAnswers
-                .compactMap { $0.answer }
-                .flatMap { $0.keys }
-                .filter { $0.contains(keyFilter) }
-            answerFilterMindset = relationshipKeys?.filter { $0.contains(selectedAnswerTitle) }.first
+
+        switch currentQuestion?.key {
+        case QuestionKey.MindsetShifter.MoreInfo:
+            return mindsetShifterFilter(keyFilter)
+        case QuestionKey.MindsetShifter.GutReactions:
+            return mindsetShifterFilter(keyFilter)
+        case QuestionKey.MindsetShifter.LowPerformanceTalk:
             return answerFilterMindset
+        default:
+            break
         }
         return decisionTree?.selectedAnswers.first?.answer.keys.first(where: { $0.contains(keyFilter) })
     }
@@ -304,23 +297,6 @@ extension DecisionTreeWorker {
         }
     }
 
-    func highPerformanceItems(from contentItemIDs: [Int], completion: @escaping ([String]) -> Void) {
-        var items: [String] = []
-        let dispatchGroup = DispatchGroup()
-        contentItemIDs.forEach {
-            dispatchGroup.enter()
-            contentService.getContentItemById($0, { (item) in
-                if item?.searchTags.contains("mindsetshifter-highperformance-item") ?? false == true {
-                    items.append(item?.valueText ?? "")
-                    dispatchGroup.leave()
-                }
-            })
-        }
-        dispatchGroup.notify(queue: .main) {
-            completion(items)
-        }
-    }
-
     func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int) {
         qot_dal.ContentService.main.getContentCollectionById(targetContentId) { [weak self] (content) in
             self?.recoveryModel?.fatigueAnswerId = fatigueAnswerId
@@ -398,12 +374,30 @@ extension DecisionTreeWorker {
     }
 }
 
+// MARK: - Private
+private extension DecisionTreeWorker {
+    func mindsetShifterFilter(_ keyFilter: String) -> String? {
+        let selectedAnswerTitle = decisionTree?.selectedAnswers.last?.answer.subtitle?
+            .replacingOccurrences(of: " ", with: "_") ?? ""
+        let relationshipKeys = decisionTree?.selectedAnswers
+            .compactMap { $0.answer }
+            .flatMap { $0.keys }
+            .filter { $0.contains(keyFilter) }
+        answerFilterMindset = relationshipKeys?.filter { $0.contains(selectedAnswerTitle) }.first
+        return answerFilterMindset
+    }
+}
+
 // MARK: - Recovery3D
 private extension DecisionTreeWorker {
     func addObserver() {
         NotificationCenter.default.addObserver(self,
-                                               selector: #selector(showNextQuestionAfterMediaPlayerWillDismiss),
+                                               selector: #selector(showNextQuestionDismiss),
                                                name: .willDismissPlayerController,
+                                               object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(showNextQuestionDismiss),
+                                               name: .didDismissMindsetResultView,
                                                object: nil)
     }
 

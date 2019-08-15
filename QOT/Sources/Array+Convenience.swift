@@ -19,7 +19,6 @@ extension Array where Element: Equatable {
 }
 
 extension Array where Element: Equatable {
-
     var unique: [Element] {
         var uniqueValues: [Element] = []
         forEach { item in
@@ -36,6 +35,11 @@ extension Array {
         if index < 0 || index > count - 1 {
             return nil
         }
+        return self[index]
+    }
+
+    subscript(index: Int, default defaultValue: @autoclosure () -> Element) -> Element {
+        guard index >= 0, index < endIndex else { return defaultValue() }
         return self[index]
     }
 

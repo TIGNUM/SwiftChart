@@ -1,5 +1,5 @@
 //
-//  MindsetShifterChecklistViewController.swift
+//  ShifterResultViewController.swift
 //  QOT
 //
 //  Created by Javier Sanz Rozalén on 10.05.19.
@@ -8,18 +8,15 @@
 
 import UIKit
 
-final class MindsetShifterChecklistViewController: UIViewController {
+final class ShifterResultViewController: UIViewController {
 
     // MARK: - Properties
-
-    var interactor: MindsetShifterChecklistInteractorInterface?
-    private var model: MindsetShifterChecklistModel?
+    var interactor: ShifterResultInteractorInterface?
+    private var model: ShifterResult?
     @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var confirmationButton: UIButton!
 
     // MARK: - Init
-
-    init(configure: Configurator<MindsetShifterChecklistViewController>) {
+    init(configure: Configurator<ShifterResultViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
     }
@@ -29,12 +26,9 @@ final class MindsetShifterChecklistViewController: UIViewController {
     }
 
     // MARK: - Lifecycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        registerCells()
-        setupView()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -43,30 +37,20 @@ final class MindsetShifterChecklistViewController: UIViewController {
     }
 }
 
-// MARK: - MindsetShifterChecklistViewControllerInterface
-
-extension MindsetShifterChecklistViewController: MindsetShifterChecklistViewControllerInterface {
-
-    func load(_ model: MindsetShifterChecklistModel) {
+// MARK: - ShifterResultViewControllerInterface
+extension ShifterResultViewController: ShifterResultViewControllerInterface {
+    func load(_ model: ShifterResult) {
         self.model = model
+        tableView.reloadData()
+    }
+
+    func setupView() {
+        registerCells()
     }
 }
 
 // MARK: - Private
-
-private extension MindsetShifterChecklistViewController {
-
-    func setupView() {
-        tableView.backgroundColor = .sand
-        confirmationButton.corner(radius: confirmationButton.bounds.height / 2)
-        confirmationButton.layer.shadowOffset = CGSize(width: 0, height: 1)
-        confirmationButton.layer.shadowColor = UIColor.lightGray.cgColor
-        confirmationButton.layer.shadowOpacity = 1
-        confirmationButton.layer.shadowRadius = 5
-        confirmationButton.layer.masksToBounds = false
-        confirmationButton.setTitle(model?.buttonTitle, for: .normal)
-    }
-
+private extension ShifterResultViewController {
     func registerCells() {
         tableView?.registerDequeueable(MindsetShifterHeaderCell.self)
         tableView?.registerDequeueable(TriggerTableViewCell.self)
@@ -77,17 +61,33 @@ private extension MindsetShifterChecklistViewController {
 }
 
 // MARK: - Actions
-
-private extension MindsetShifterChecklistViewController {
-    @IBAction func didTapSave(_ sender: UIButton) {
+private extension ShifterResultViewController {
+    @objc func didTapSave() {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.didTapSave()
+        NotificationCenter.default.post(name: .didDismissMindsetResultView, object: nil)
+        dismiss(animated: true)
+    }
+
+    @objc func openConfirmationView() {
+        trackUserEvent(.CONFIRM, action: .TAP)
+        interactor?.openConfirmationView()
+    }
+}
+
+// MARK: - ConfirmationViewControllerDelegate
+extension ShifterResultViewController: ConfirmationViewControllerDelegate {
+    func didTapLeave() {
+        interactor?.didTapClose()
+    }
+
+    func didTapStay() {
+        // Do nothing.
     }
 }
 
 // MARK: - UITableViewDelegate
-
-extension MindsetShifterChecklistViewController: UITableViewDelegate {
+extension ShifterResultViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch model?.sections[indexPath.row] {
         default: return
@@ -96,9 +96,7 @@ extension MindsetShifterChecklistViewController: UITableViewDelegate {
 }
 
 // MARK: - UITableViewDataSource
-
-extension MindsetShifterChecklistViewController: UITableViewDataSource {
-
+extension ShifterResultViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return model?.sections.count ?? 0
     }
@@ -117,7 +115,7 @@ extension MindsetShifterChecklistViewController: UITableViewDataSource {
             let cell: ReactionsTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, reactions: items)
             return cell
-        case .fromNegativeToPositive(let title, let lowTitle, let lowItems, let highTitle, let highItems)?:
+        case .lowToHigh(let title, let lowTitle, let lowItems, let highTitle, let highItems)?:
             let cell: NegativeToPositiveTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: title, lowTitle: lowTitle, lowItems: lowItems, highTitle: highTitle, highItems: highItems)
             return cell
@@ -127,5 +125,19 @@ extension MindsetShifterChecklistViewController: UITableViewDataSource {
             return cell
         default: preconditionFailure()
         }
+    }
+}
+
+// MARK: - BottomNavigation Items
+extension ShifterResultViewController {
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItem(action: #selector(openConfirmationView))]
+    }
+
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return [roundedBarButtonItem(title: model?.buttonTitle ?? R.string.localized.buttonTitleSaveContinue(),
+                                     buttonWidth: .DecisionTree,
+                                     action: #selector(didTapSave),
+                                     backgroundColor: .carbonDark)]
     }
 }

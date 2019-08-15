@@ -34,7 +34,7 @@ final class MyToBeVisionTrackerWorker {
         self.controllerType = controllerType
     }
 
-    func getData(_ completion: @escaping(MYTBVDataViewModel?) -> Void) {
+    func getData(_ completion: @escaping (MYTBVDataViewModel?) -> Void) {
         getRatingReport()
         getSubTitle()
         getGraphHeading()

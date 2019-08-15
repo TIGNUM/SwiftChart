@@ -1,5 +1,5 @@
 //
-//  MindsetShifterChecklistRouter.swift
+//  ShifterResultRouter.swift
 //  QOT
 //
 //  Created by Javier Sanz Rozalén on 10.05.19.
@@ -8,19 +8,19 @@
 
 import UIKit
 
-final class MindsetShifterChecklistRouter {
+final class ShifterResultRouter {
 
     // MARK: - Properties
-    private let viewController: MindsetShifterChecklistViewController
+    private let viewController: ShifterResultViewController
 
     // MARK: - Init
-    init(viewController: MindsetShifterChecklistViewController) {
+    init(viewController: ShifterResultViewController) {
         self.viewController = viewController
     }
 }
 
-// MARK: - MindsetShifterChecklistRouterInterface
-extension MindsetShifterChecklistRouter: MindsetShifterChecklistRouterInterface {
+// MARK: - ShifterResultRouterInterface
+extension ShifterResultRouter: ShifterResultRouterInterface {
     func dismiss() {
         let configurator = ConfirmationConfigurator.make(for: .mindsetShifter)
         let confirmationVC = ConfirmationViewController(configure: configurator)
@@ -30,11 +30,18 @@ extension MindsetShifterChecklistRouter: MindsetShifterChecklistRouterInterface 
     }
 }
 
-extension MindsetShifterChecklistRouter: ConfirmationViewControllerDelegate {
+extension ShifterResultRouter: ConfirmationViewControllerDelegate {
     func didTapLeave() {
         viewController.dismiss(animated: true, completion: nil)
     }
 
     func didTapStay() {
+    }
+
+    func openConfirmationView(_ kind: Confirmation.Kind) {
+        let configurator = ConfirmationConfigurator.make(for: kind)
+        let controller = ConfirmationViewController(configure: configurator)
+        controller.delegate = viewController
+        viewController.present(controller, animated: true)
     }
 }

@@ -24,6 +24,7 @@ final class DecisionTreeViewController: UIViewController {
     private var pageController: UIPageViewController?
     private var continueButton = DecisionTreeButton(type: .custom)
     private var currentTargetId: Int = 0
+    private var isMindsetShifterLastQuestion = false
     @IBOutlet private weak var previousButton: UIButton!
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
@@ -127,7 +128,6 @@ private extension DecisionTreeViewController {
     @IBAction func didTapPrevious(_ sender: UIButton) {
         trackUserEvent(.PREVIOUS, action: .TAP)
         moveBackward()
-//        interactor?.updateMultiSelectionCounter()
     }
 
     @objc func didTapContinue() {
@@ -301,13 +301,19 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
         interactor?.didDeSelectAnswer(answer)
     }
 
-    func textCellDidAppear(targetID: Int) {
-        guard currentTargetId != targetID else { return }
-        currentTargetId = targetID
-        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) {
-            NotificationCenter.default.post(name: .typingAnimationStart, object: nil)
+    func textCellDidAppear(targetID: Int, questionKey: String?) {
+        if currentTargetId != targetID {
+            currentTargetId = targetID
             DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) {
-                self.interactor?.loadNextQuestion(targetId: targetID, animated: true)
+                NotificationCenter.default.post(name: .typingAnimationStart, object: nil)
+                DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_3) {
+                    self.interactor?.loadNextQuestion(targetId: targetID, animated: true)
+                }
+            }
+        } else {
+            if questionKey == QuestionKey.MindsetShifter.Last {
+                isMindsetShifterLastQuestion = true
+                updateBottomNavigation(leftItems: [], rightItems: [continueButton.toBarButtonItem()])
             }
         }
     }
@@ -375,7 +381,16 @@ extension DecisionTreeViewController: SolveResultsViewControllerDelegate {
 
 // MARK: - Bottom Navigation Items
 extension DecisionTreeViewController {
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return isMindsetShifterLastQuestion ? nil : [dismissNavigationItem()]
+    }
+
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        if isMindsetShifterLastQuestion {
+            return [roundedBarButtonItem(title: R.string.localized.buttonTitleDone(),
+                                         buttonWidth: .Done,
+                                         action: #selector(didTapContinue))]
+        }
         return interactor?.bottomNavigationRightBarItems(action: #selector(didTapContinue))
     }
 }

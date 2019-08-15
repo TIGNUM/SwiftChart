@@ -12,7 +12,6 @@ protocol DailyCheckinStartViewControllerDelegate: class {
     func showQuestions()
 }
 
-
 final class DailyCheckinStartViewController: UIViewController {
 
     // MARK: - Properties

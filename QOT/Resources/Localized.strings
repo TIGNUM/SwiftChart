@@ -555,6 +555,7 @@
 "Button.Title.Remove" = "Remove";
 "Button.Title.Cancel" = "Cancel";
 "Button.Title.YesContinue" = "Yes, continue";
+"Button.Title.Done" = "Done";
 
 "Audio.FullScreen.Button.Download" = "Download";
 "Audio.FullScreen.Button.Waiting" = "Waiting";

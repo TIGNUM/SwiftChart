@@ -60,6 +60,7 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func streamContentItem(with id: Int)
     func openImagePicker()
     func save(_ image: UIImage)
+
     func openPrepareResults(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer])
     func openPrepareResults(_ contentId: Int)
@@ -67,7 +68,9 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func openShortTBVGenerator(completion: (() -> Void)?)
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType)
     func openToBeVisionPage()
-    func openMindsetShifterChecklist(from answers: [QDMAnswer])
+    func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void)
+    func dismissAndGoToMyQot()
+
     func updateRecoveryModel(fatigueAnswerId: Int, _ causeAnwserId: Int, _ targetContentId: Int)
     func deleteModelIfNeeded()
     func loadNextQuestion(from answer: QDMAnswer?)
@@ -104,10 +107,7 @@ protocol DecisionTreeRouterInterface {
     func openPrepareResults(_ contentId: Int)
     func openPrepareResults(_ preparation: QDMUserPreparation,
                             _ answers: [DecisionTreeModel.SelectedAnswer])
-    func openMindsetShifterChecklist(trigger: String,
-                                     reactions: [String],
-                                     lowPerformanceItems: [String],
-                                     highPerformanceItems: [String])
+    func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void)
     func openArticle(with contentID: Int)
     func openVideo(from url: URL)
     func openShortTBVGenerator(completion: (() -> Void)?)
@@ -115,6 +115,7 @@ protocol DecisionTreeRouterInterface {
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType)
     func openToBeVisionPage()
     func openRecoveryResults(_ recovery: QDMRecovery3D?)
+    func dismissAndGoToMyQot()
 }
 
 protocol DecisionTreeModelInterface {

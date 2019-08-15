@@ -54,7 +54,7 @@ final class PrepareResultsWorker {
             return preparation?.answerFilter
         }
         return filteredAnswers(.eventType, getSelectedAnswers).first?.answer.keys.filter {
-            $0.contains(DecisionTreeModel.Filter.FILTER_RELATIONSHIP)
+            $0.contains(DecisionTreeModel.Filter.Relationship)
         }.first
     }()
 }

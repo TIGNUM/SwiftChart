@@ -95,25 +95,8 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         }
     }
 
-    func openMindsetShifterChecklist(from answers: [QDMAnswer]) {
-        if let trigger = answers.first(where: { $0.keys.filter { $0.contains("trigger-") }.isEmpty == false })?.title {
-            let reactions = answers.filter { $0.keys.filter { $0.contains("reaction") }.isEmpty == false }.map { $0.title ?? "" }
-            let lowItems = answers.filter { $0.keys.filter { $0.contains("lowperformance") }.isEmpty == false }.map { $0.title ?? "" }
-            var contentItemIDs: [Int] = []
-            answers.forEach {
-                $0.decisions.forEach {
-                    if $0.targetType == TargetType.contentItem.rawValue, let id = $0.targetTypeId {
-                        contentItemIDs.append(id)
-                    }
-                }
-            }
-            worker.highPerformanceItems(from: contentItemIDs) { [unowned self] (items) in
-                self.router.openMindsetShifterChecklist(trigger: trigger,
-                                                        reactions: reactions,
-                                                        lowPerformanceItems: lowItems,
-                                                        highPerformanceItems: items)
-            }
-        }
+    func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void) {
+        router.openMindsetShifterResult(resultItem: resultItem, completion: completion)
     }
 
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType) {
@@ -240,6 +223,10 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
 
     func toBeVisionDidChange() {
         router.openToBeVisionPage()
+    }
+
+    func dismissAndGoToMyQot() {
+       router.dismissAndGoToMyQot()
     }
 }
 

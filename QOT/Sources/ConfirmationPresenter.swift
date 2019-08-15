@@ -21,6 +21,10 @@ final class ConfirmationPresenter {
 
 // MARK: - ConfirmationInterface
 extension ConfirmationPresenter: ConfirmationPresenterInterface {
+    func setupView() {
+        viewController?.setupView()
+    }
+
     func show(_ confirmationModel: Confirmation) {
         viewController?.load(confirmationModel)
     }

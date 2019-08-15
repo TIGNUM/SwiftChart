@@ -87,37 +87,6 @@ final class ContentService {
             }
         }
 
-        enum ConfirmationView: String, Predicatable {
-            case mindsetShifterTitle = "confirmationview-title-mindsetshifter"
-            case mindsetShifterDescription = "confirmationview-subtitle-mindsetshifter"
-            case mindsetShifterButtonYes = "confirmationview-button-yes-mindsetshifter"
-            case mindsetShifterButtonNo = "confirmationview-button-no-mindsetshifter"
-            case solveTitle = "confirmationview-title-solve"
-            case solveDescription = "confirmationview-subtitle-solve"
-            case solveButtonYes = "confirmationview-button-yes-solve"
-            case solveButtonNo = "confirmationview-button-no-solve"
-
-            var predicate: NSPredicate {
-                return NSPredicate(tag: rawValue)
-            }
-        }
-
-        enum MindsetShifterCheclist: String, Predicatable {
-            case headerTitle = "mindset-shifter-checklist-header-title"
-            case headerSubtitle = "mindset-shifter-checklist-header-subtitle"
-            case triggerTitle = "mindset-shifter-checklist-trigger-title"
-            case reactionsTitle = "mindset-shifter-checklist-reactions-title"
-            case negativeToPositiveTitle = "mindset-shifter-checklist-negativeToPositive-title"
-            case negativeToPositiveLowTitle = "mindset-shifter-checklist-negativeToPositive-lowTitle"
-            case negativeToPositiveHighTitle = "mindset-shifter-checklist-negativeToPositive-highTitle"
-            case visionTitle = "mindset-shifter-checklist-vision-Title"
-            case buttonText = "mindset-shifter-checklist-save-button-text"
-
-            var predicate: NSPredicate {
-                return NSPredicate(tag: rawValue)
-            }
-        }
-
         var predicate: NSPredicate {
             switch self {
             case .learnStrategiesFoundation: return NSPredicate(searchTag: rawValue)
@@ -642,88 +611,5 @@ extension ContentService {
             suggestions.append(contentItem(for: tag.predicate)?.valueText ?? "")
         }
         return suggestions
-    }
-}
-
-// MARK: - ConfirmationView Mindset Shifter
-
-extension ContentService {
-
-    var mindsetShifterConfirmationTitle: String {
-        return contentItem(for: Tags.ConfirmationView.mindsetShifterTitle.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterConfirmationDescription: String {
-        return contentItem(for: Tags.ConfirmationView.mindsetShifterDescription.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterConfirmationYes: String {
-        return contentItem(for: Tags.ConfirmationView.mindsetShifterButtonYes.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterConfirmationNo: String {
-        return contentItem(for: Tags.ConfirmationView.mindsetShifterButtonNo.predicate)?.valueText ?? ""
-    }
-}
-
-// MARK: - ConfirmationView Solve
-
-extension ContentService {
-
-    var solveConfirmationTitle: String {
-        return contentItem(for: Tags.ConfirmationView.solveTitle.predicate)?.valueText ?? ""
-    }
-
-    var solveConfirmationDescription: String {
-        return contentItem(for: Tags.ConfirmationView.solveDescription.predicate)?.valueText ?? ""
-    }
-
-    var solveConfirmationYes: String {
-        return contentItem(for: Tags.ConfirmationView.solveButtonYes.predicate)?.valueText ?? ""
-    }
-
-    var solveConfirmationNo: String {
-        return contentItem(for: Tags.ConfirmationView.solveButtonNo.predicate)?.valueText ?? ""
-    }
-}
-
-// MARK: - Mindset Shifter Checklist
-
-extension ContentService {
-
-    var mindsetShifterHeaderTitle: String {
-        return contentItem(for: Tags.MindsetShifterCheclist.headerTitle.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterHeaderSubtitle: String {
-        return contentItem(for: Tags.MindsetShifterCheclist.headerSubtitle.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterTriggerTitle: String {
-        return contentItem(for: Tags.MindsetShifterCheclist.triggerTitle.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterReactionsTitle: String {
-        return contentItem(for: Tags.MindsetShifterCheclist.reactionsTitle.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterNegativeToPositiveTitle: String {
-        return contentItem(for: Tags.MindsetShifterCheclist.negativeToPositiveTitle.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterNegativeToPositiveLowTitle: String {
-        return contentItem(for: Tags.MindsetShifterCheclist.negativeToPositiveLowTitle.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterNegativeToPositiveHighTitle: String {
-        return contentItem(for: Tags.MindsetShifterCheclist.negativeToPositiveHighTitle.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterVisionTitle: String {
-        return contentItem(for: Tags.MindsetShifterCheclist.visionTitle.predicate)?.valueText ?? ""
-    }
-
-    var mindsetShifterSaveButtonText: String {
-        return contentItem(for: Tags.MindsetShifterCheclist.buttonText.predicate)?.valueText ?? ""
     }
 }

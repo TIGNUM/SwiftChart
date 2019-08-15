@@ -44,6 +44,7 @@ enum QuestionKey {
         static let GutReactions = "mindsetshifter-key-gut-reactions"
         static let LowSelfTalk = "mindset-low-impact-self-talk"
         static let LowPerformanceTalk = "mindsetshifter-key-low-performance-talk"
+        static let Last = "mindsetshifter-last-question"
     }
 
     struct MindsetShifterTBV {

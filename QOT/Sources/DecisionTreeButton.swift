@@ -66,6 +66,7 @@ extension DecisionTreeButton {
         } else {
             layer.shadowOpacity = 0
         }
+        setupView()
     }
 
     func toBarButtonItem() -> UIBarButtonItem {

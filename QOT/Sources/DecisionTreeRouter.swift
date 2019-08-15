@@ -55,16 +55,12 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         viewController.present(decisionTreeVC, animated: true, completion: completion)
     }
 
-    func openMindsetShifterChecklist(trigger: String,
-                                     reactions: [String],
-                                     lowPerformanceItems: [String],
-                                     highPerformanceItems: [String]) {
-        let configurator = MindsetShifterChecklistConfigurator.make(trigger: trigger,
-                                                                    reactions: reactions,
-                                                                    lowPerformanceItems: lowPerformanceItems,
-                                                                    highPerformanceItems: highPerformanceItems)
-        let mindsetShifterChecklistVC = MindsetShifterChecklistViewController(configure: configurator)
-        viewController.present(mindsetShifterChecklistVC, animated: true)
+    func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void) {
+        let configurator = ShifterResultConfigurator.make(resultItem: resultItem)
+        let controller = ShifterResultViewController(configure: configurator)
+        viewController.present(controller, animated: true) {
+            completion()
+        }
     }
 
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType) {
@@ -80,6 +76,12 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         viewController.present(visionViewController, animated: true) {
            self.viewController.dismiss(animated: true, completion: nil)
         }
+    }
+
+    func dismissAndGoToMyQot() {
+        viewController.dismiss(animated: true, completion: {
+            self.viewController.delegate?.didDismiss()
+        })
     }
 }
 

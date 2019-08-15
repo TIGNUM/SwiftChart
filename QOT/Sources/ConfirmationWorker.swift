@@ -7,52 +7,55 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ConfirmationWorker {
 
     // MARK: - Properties
-    private let services: Services
+    private var title = ""
+    private var description = ""
+    private var buttonTitleDismiss = ""
+    private var buttonTitleConfirm = ""
     private let kind: Confirmation.Kind
-
-    private var contentService: ContentService {
-        return services.contentService
-    }
+    private let dispatchGroup = DispatchGroup()
+    private lazy var contentService = qot_dal.ContentService.main
 
     // MARK: - Init
-    init(services: Services, type: Confirmation.Kind) {
-        self.services = services
+    init(type: Confirmation.Kind) {
         self.kind = type
     }
 }
 
-// MARK: - ConfirmationWorkerInterface
-extension ConfirmationWorker: ConfirmationWorkerInterface {
-    var model: Confirmation {
-        return Confirmation(title: title, description: description)
+// MARK: - Public
+extension ConfirmationWorker {
+    func getModel(_ completion: @escaping (Confirmation) -> Void) {
+        kind.tags.forEach { getItem($0) }
+        dispatchGroup.notify(queue: .main) { [unowned self] in
+            completion(Confirmation(title: self.title,
+                                    description: self.description,
+                                    buttonTitleDismiss: self.buttonTitleDismiss,
+                                    buttonTitleConfirm: self.buttonTitleConfirm))
+        }
     }
 }
 
-// MARK: - Values
+// MARK: - ContentService ContentItem
 private extension ConfirmationWorker {
-    var title: String {
-        switch kind {
-        case .mindsetShifter:
-            return contentService.mindsetShifterConfirmationTitle
-        case .recovery:
-            return R.string.localized.profileConfirmationHeader()
-        case .solve:
-            return contentService.solveConfirmationTitle
-        }
-    }
-
-    var description: String {
-        switch kind {
-        case .mindsetShifter:
-            return contentService.mindsetShifterConfirmationDescription
-        case .recovery:
-            return R.string.localized.profileConfirmationDescription()
-        case .solve:
-            return contentService.solveConfirmationDescription
+    func getItem(_ tag: Confirmation.Tag) {
+        dispatchGroup.enter()
+        contentService.getContentItemByPredicate(tag.predicate) { [unowned self] (contentItem) in
+            let text = contentItem?.valueText ?? ""
+            switch tag {
+            case .mindsetTitle, .recoveryTitle, .solveTitle:
+                self.title = text
+            case .mindsetDescription, .recoveryDescription, .solveDescription:
+                self.description = text
+            case .mindsetButtonNo, .recoveryButtonNo, .solveButtonNo:
+                self.buttonTitleDismiss = text
+            case .mindsetButtonYes, .recoveryButtonYes, .solveButtonYes:
+                self.buttonTitleConfirm = text
+            }
+            self.dispatchGroup.leave()
         }
     }
 }

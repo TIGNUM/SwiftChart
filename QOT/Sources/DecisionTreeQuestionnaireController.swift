@@ -13,7 +13,7 @@ protocol DecisionTreeQuestionnaireDelegate: class {
     func didTapBinarySelection(_ answer: QDMAnswer)
     func didSelectAnswer(_ answer: QDMAnswer)
     func didDeSelectAnswer(_ answer: QDMAnswer)
-    func textCellDidAppear(targetID: Int)
+    func textCellDidAppear(targetID: Int, questionKey: String?)
     func didSelectCalendarEvent(_ event: QDMUserCalendarEvent, selectedAnswer: QDMAnswer)
     func didSelectPreparation(_ prepartion: QDMUserPreparation)
     func presentAddEventController(_ eventStore: EKEventStore)
@@ -192,7 +192,8 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             case AnswerType.onlyExistingAnswer.rawValue:
                 let cell = UITableViewCell()
                 cell.backgroundColor = .sand
-                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0)
+                delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0,
+                                            questionKey: question.key)
                 return cell
             case AnswerType.yesOrNo.rawValue,
                  AnswerType.uploadImage.rawValue:
@@ -232,10 +233,14 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                 cell.configure(with: extraAnswer ?? "")
                 switch question.key {
                 case QuestionKey.SprintReflection.Intro,
-                     QuestionKey.Prepare.ShowTBV:
+                     QuestionKey.Prepare.ShowTBV,
+                     QuestionKey.MindsetShifter.OpenTBV,
+                     QuestionKey.MindsetShifter.ShowTBV,
+                     QuestionKey.MindsetShifter.Check:
                     break
                 default:
-                    delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0)
+                    delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0,
+                                                questionKey: question.key)
                 }
                 return cell
             case AnswerType.openCalendarEvents.rawValue:
@@ -307,7 +312,8 @@ extension DecisionTreeQuestionnaireViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         switch question.key {
         case QuestionKey.Sprint.Last,
-             QuestionKey.SprintReflection.Review:
+             QuestionKey.SprintReflection.Review,
+             QuestionKey.MindsetShifter.Last:
             return nil
         default:
             return [dismissNavigationItem()]
@@ -327,6 +333,8 @@ extension DecisionTreeQuestionnaireViewController {
         case QuestionKey.Recovery.loading.rawValue,
              QuestionKey.Sprint.IntroContinue,
              QuestionKey.MindsetShifterTBV.Review,
+             QuestionKey.MindsetShifter.ShowTBV,
+             QuestionKey.MindsetShifter.Check,
              QuestionKey.Sprint.Last,
              QuestionKey.SprintReflection.Intro,
              QuestionKey.Prepare.ShowTBV:
@@ -352,6 +360,12 @@ extension DecisionTreeQuestionnaireViewController {
                                                        action: #selector(didTapTrackTBV),
                                                        backgroundColor: .carbonDark)
             return [rightButtomItem, leftButtomItem]
+        case QuestionKey.MindsetShifter.OpenTBV:
+            let title = question.confirmationButtonText
+            return [roundedBarButtonItem(title: title ?? "",
+                                         buttonWidth: .DecisionTree,
+                                         action: #selector(didTapContinue),
+                                         backgroundColor: .carbonDark)]
         default:
             return []
         }

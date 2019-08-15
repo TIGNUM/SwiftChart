@@ -35,6 +35,9 @@
 		3608382D225F3ED000664B9B /* ArticleConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36083825225F3ED000664B9B /* ArticleConfigurator.swift */; };
 		36085C5922CA48E600C703BA /* PreparationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36085C5822CA48E600C703BA /* PreparationManager.swift */; };
 		360947A31FB5E684003AF3E9 /* PageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360947A21FB5E684003AF3E9 /* PageControl.swift */; };
+		3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */; };
+		3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
+		3609938223048B20008CB854 /* PrepareResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */; };
 		360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */; };
 		360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */; };
 		360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */; };
@@ -266,10 +269,8 @@
 		3691177120656CD8007D28D3 /* PrepareContentNotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176B20656CD8007D28D3 /* PrepareContentNotesViewController.swift */; };
 		3691177220656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3691176C20656CD8007D28D3 /* PrepareContentSubHeaderTableViewCell.swift */; };
 		36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 36927FC31FA7960400EC9B88 /* SettingsAdmin.storyboard */; };
-		369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		369353A222983AB9008BBB72 /* PrepareResultsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539A22983AB9008BBB72 /* PrepareResultsWorker.swift */; };
 		369353A322983AB9008BBB72 /* PrepareResultsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539B22983AB9008BBB72 /* PrepareResultsRouter.swift */; };
-		369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */; };
 		369353A522983AB9008BBB72 /* PrepareResultsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539D22983AB9008BBB72 /* PrepareResultsViewController.swift */; };
 		369353A622983AB9008BBB72 /* PrepareResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539E22983AB9008BBB72 /* PrepareResultInteractor.swift */; };
 		369353A722983AB9008BBB72 /* PrepareResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539F22983AB9008BBB72 /* PrepareResults.swift */; };
@@ -604,7 +605,6 @@
 		7F0888811F0A4B96005CE966 /* Partner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888801F0A4B96005CE966 /* Partner.swift */; };
 		7F0888861F0A7602005CE966 /* PartnerIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888851F0A7602005CE966 /* PartnerIntermediary.swift */; };
 		7F0888881F0AA7DB005CE966 /* UIImage+FileIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */; };
-		7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F02F31F13CDAD00007D50 /* ChoiceViewController.xib */; };
 		7F0F03001F14CE0C00007D50 /* CollapsableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F02FF1F14CE0C00007D50 /* CollapsableCell.swift */; };
 		7F0F03021F14CE1500007D50 /* CollapsableContentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7F0F03011F14CE1500007D50 /* CollapsableContentCell.swift */; };
 		7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7F0F03031F14CE2300007D50 /* CollapsableCell.xib */; };
@@ -878,12 +878,10 @@
 		9C24238822F3271E00B911E6 /* BaseDailyBriefViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238722F3271E00B911E6 /* BaseDailyBriefViewModel.swift */; };
 		9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238922F4631C00B911E6 /* DailyCheck2SHPIModel.swift */; };
 		9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */; };
-		9C24238E22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */; };
 		9C24239022F487DA00B911E6 /* MyPeakPerformanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */; };
 		9C2FDA8B22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8A22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib */; };
 		9C2FDA8E22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */; };
 		9C2FDA9422E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */; };
-		9C650B6C22FAC2E800DF2D6B /* MyPeakPerformanceRowModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B6B22FAC2E800DF2D6B /* MyPeakPerformanceRowModel.swift */; };
 		9C650B7022FB0BC200DF2D6B /* MyPeakPerformanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B6F22FB0BC100DF2D6B /* MyPeakPerformanceTableViewCell.swift */; };
 		9C650B7222FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C650B7122FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib */; };
 		9C650B7622FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C650B7522FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib */; };
@@ -919,15 +917,15 @@
 		AC103E3222847AB500F426F0 /* Confirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2A22847AB500F426F0 /* Confirmation.swift */; };
 		AC103E3322847AB500F426F0 /* ConfirmationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */; };
 		AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */; };
-		AC103E402285B27200F426F0 /* MindsetShifterChecklistPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */; };
-		AC103E412285B27200F426F0 /* MindsetShifterChecklistWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E392285B27200F426F0 /* MindsetShifterChecklistWorker.swift */; };
-		AC103E422285B27200F426F0 /* MindsetShifterChecklistRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3A2285B27200F426F0 /* MindsetShifterChecklistRouter.swift */; };
-		AC103E432285B27200F426F0 /* MindsetShifterChecklistInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3B2285B27200F426F0 /* MindsetShifterChecklistInterface.swift */; };
-		AC103E442285B27200F426F0 /* MindsetShifterChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3C2285B27200F426F0 /* MindsetShifterChecklistViewController.swift */; };
-		AC103E452285B27200F426F0 /* MindsetShifterChecklistInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3D2285B27200F426F0 /* MindsetShifterChecklistInteractor.swift */; };
-		AC103E462285B27200F426F0 /* MindsetShifterChecklistModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3E2285B27200F426F0 /* MindsetShifterChecklistModel.swift */; };
-		AC103E472285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3F2285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift */; };
-		AC103E492285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E482285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib */; };
+		AC103E402285B27200F426F0 /* ShifterResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E382285B27200F426F0 /* ShifterResultPresenter.swift */; };
+		AC103E412285B27200F426F0 /* ShifterResultWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E392285B27200F426F0 /* ShifterResultWorker.swift */; };
+		AC103E422285B27200F426F0 /* ShifterResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3A2285B27200F426F0 /* ShifterResultRouter.swift */; };
+		AC103E432285B27200F426F0 /* ShifterResultInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3B2285B27200F426F0 /* ShifterResultInterface.swift */; };
+		AC103E442285B27200F426F0 /* ShifterResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3C2285B27200F426F0 /* ShifterResultViewController.swift */; };
+		AC103E452285B27200F426F0 /* ShifterResultInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3D2285B27200F426F0 /* ShifterResultInteractor.swift */; };
+		AC103E462285B27200F426F0 /* ShifterResult.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3E2285B27200F426F0 /* ShifterResult.swift */; };
+		AC103E472285B27200F426F0 /* ShifterResultConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3F2285B27200F426F0 /* ShifterResultConfigurator.swift */; };
+		AC103E492285BAFD00F426F0 /* ShifterResultViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E482285BAFD00F426F0 /* ShifterResultViewController.xib */; };
 		AC103E4E2285CDC700F426F0 /* MindsetShifterHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E4C2285CDC700F426F0 /* MindsetShifterHeaderCell.swift */; };
 		AC103E4F2285CDC700F426F0 /* MindsetShifterHeaderCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E4D2285CDC700F426F0 /* MindsetShifterHeaderCell.xib */; };
 		AC103E522289621900F426F0 /* TriggerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E502289621900F426F0 /* TriggerTableViewCell.swift */; };
@@ -2562,15 +2560,15 @@
 		AC103E2A22847AB500F426F0 /* Confirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confirmation.swift; sourceTree = "<group>"; };
 		AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationConfigurator.swift; sourceTree = "<group>"; };
 		AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmationViewController.xib; sourceTree = "<group>"; };
-		AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistPresenter.swift; sourceTree = "<group>"; };
-		AC103E392285B27200F426F0 /* MindsetShifterChecklistWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistWorker.swift; sourceTree = "<group>"; };
-		AC103E3A2285B27200F426F0 /* MindsetShifterChecklistRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistRouter.swift; sourceTree = "<group>"; };
-		AC103E3B2285B27200F426F0 /* MindsetShifterChecklistInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistInterface.swift; sourceTree = "<group>"; };
-		AC103E3C2285B27200F426F0 /* MindsetShifterChecklistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistViewController.swift; sourceTree = "<group>"; };
-		AC103E3D2285B27200F426F0 /* MindsetShifterChecklistInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistInteractor.swift; sourceTree = "<group>"; };
-		AC103E3E2285B27200F426F0 /* MindsetShifterChecklistModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistModel.swift; sourceTree = "<group>"; };
-		AC103E3F2285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterChecklistConfigurator.swift; sourceTree = "<group>"; };
-		AC103E482285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetShifterChecklistViewController.xib; sourceTree = "<group>"; };
+		AC103E382285B27200F426F0 /* ShifterResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultPresenter.swift; sourceTree = "<group>"; };
+		AC103E392285B27200F426F0 /* ShifterResultWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultWorker.swift; sourceTree = "<group>"; };
+		AC103E3A2285B27200F426F0 /* ShifterResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultRouter.swift; sourceTree = "<group>"; };
+		AC103E3B2285B27200F426F0 /* ShifterResultInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultInterface.swift; sourceTree = "<group>"; };
+		AC103E3C2285B27200F426F0 /* ShifterResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultViewController.swift; sourceTree = "<group>"; };
+		AC103E3D2285B27200F426F0 /* ShifterResultInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultInteractor.swift; sourceTree = "<group>"; };
+		AC103E3E2285B27200F426F0 /* ShifterResult.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResult.swift; sourceTree = "<group>"; };
+		AC103E3F2285B27200F426F0 /* ShifterResultConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultConfigurator.swift; sourceTree = "<group>"; };
+		AC103E482285BAFD00F426F0 /* ShifterResultViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ShifterResultViewController.xib; sourceTree = "<group>"; };
 		AC103E4C2285CDC700F426F0 /* MindsetShifterHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MindsetShifterHeaderCell.swift; sourceTree = "<group>"; };
 		AC103E4D2285CDC700F426F0 /* MindsetShifterHeaderCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MindsetShifterHeaderCell.xib; sourceTree = "<group>"; };
 		AC103E502289621900F426F0 /* TriggerTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TriggerTableViewCell.swift; sourceTree = "<group>"; };
@@ -3771,7 +3769,7 @@
 				363765F0223A4B9B00C2C429 /* knowing */,
 				36376653223AA5EA00C2C429 /* levelThree */,
 				3637663E223A7DC400C2C429 /* levelTwo */,
-				AC103E362285AF4700F426F0 /* Mindset Shifter Checklist */,
+				AC103E362285AF4700F426F0 /* Mindset Shifter Result */,
 				B8497E4922A94A6E0092A98D /* MyLibrary */,
 				F909961322B23F1A00EAEAC6 /* myPreps */,
 				363765F2223A4BB500C2C429 /* myQOT */,
@@ -5515,36 +5513,36 @@
 			name = Confirmation;
 			sourceTree = "<group>";
 		};
-		AC103E362285AF4700F426F0 /* Mindset Shifter Checklist */ = {
+		AC103E362285AF4700F426F0 /* Mindset Shifter Result */ = {
 			isa = PBXGroup;
 			children = (
+				AC103E3F2285B27200F426F0 /* ShifterResultConfigurator.swift */,
+				AC103E3D2285B27200F426F0 /* ShifterResultInteractor.swift */,
+				AC103E3B2285B27200F426F0 /* ShifterResultInterface.swift */,
+				AC103E3E2285B27200F426F0 /* ShifterResult.swift */,
+				AC103E382285B27200F426F0 /* ShifterResultPresenter.swift */,
+				AC103E3A2285B27200F426F0 /* ShifterResultRouter.swift */,
+				AC103E3C2285B27200F426F0 /* ShifterResultViewController.swift */,
+				AC103E392285B27200F426F0 /* ShifterResultWorker.swift */,
+				AC103E482285BAFD00F426F0 /* ShifterResultViewController.xib */,
 				AC103E4B2285CD2C00F426F0 /* Cells */,
-				AC103E3F2285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift */,
-				AC103E3D2285B27200F426F0 /* MindsetShifterChecklistInteractor.swift */,
-				AC103E3B2285B27200F426F0 /* MindsetShifterChecklistInterface.swift */,
-				AC103E3E2285B27200F426F0 /* MindsetShifterChecklistModel.swift */,
-				AC103E382285B27200F426F0 /* MindsetShifterChecklistPresenter.swift */,
-				AC103E3A2285B27200F426F0 /* MindsetShifterChecklistRouter.swift */,
-				AC103E3C2285B27200F426F0 /* MindsetShifterChecklistViewController.swift */,
-				AC103E482285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib */,
-				AC103E392285B27200F426F0 /* MindsetShifterChecklistWorker.swift */,
 			);
-			name = "Mindset Shifter Checklist";
+			name = "Mindset Shifter Result";
 			sourceTree = "<group>";
 		};
 		AC103E4B2285CD2C00F426F0 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				AC103E4C2285CDC700F426F0 /* MindsetShifterHeaderCell.swift */,
-				AC103E502289621900F426F0 /* TriggerTableViewCell.swift */,
-				AC103E54228969EF00F426F0 /* ReactionsTableViewCell.swift */,
 				AC103E582289725C00F426F0 /* MindsetVisionTableViewCell.swift */,
 				AC103E5C2289942100F426F0 /* NegativeToPositiveTableViewCell.swift */,
+				AC103E54228969EF00F426F0 /* ReactionsTableViewCell.swift */,
+				AC103E502289621900F426F0 /* TriggerTableViewCell.swift */,
 				AC103E4D2285CDC700F426F0 /* MindsetShifterHeaderCell.xib */,
-				AC103E512289621900F426F0 /* TriggerTableViewCell.xib */,
-				AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */,
 				AC103E592289725C00F426F0 /* MindsetVisionTableViewCell.xib */,
 				AC103E5D2289942100F426F0 /* NegativeToPositiveTableViewCell.xib */,
+				AC103E55228969EF00F426F0 /* ReactionsTableViewCell.xib */,
+				AC103E512289621900F426F0 /* TriggerTableViewCell.xib */,
 			);
 			name = Cells;
 			sourceTree = "<group>";
@@ -5674,12 +5672,12 @@
 				ACB99E7522661F2400A73709 /* DecisionTreeQuestionnaireController.swift */,
 				ACF0B93E225FC41F008CFAEC /* DecisionTreeRouter.swift */,
 				ACF0B940225FC41F008CFAEC /* DecisionTreeViewController.swift */,
-				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
 				ACF0B93D225FC41F008CFAEC /* DecisionTreeWorker.swift */,
-				3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */,
-				3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */,
-				3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */,
 				364CC34422E20260005E9E53 /* DecisionTreeWorker+Prepare.swift */,
+				3616EF9122D7408900E43961 /* DecisionTreeWorker+Selection.swift */,
+				3611BBC722DE6C96002C60B7 /* DecisionTreeWorker+Sprint.swift */,
+				3616EF9322D747C200E43961 /* DecisionTreeWorker+TBV.swift */,
+				ACF0B94F225FC4D6008CFAEC /* DecisionTreeViewController.xib */,
 			);
 			name = Core;
 			sourceTree = "<group>";
@@ -7784,8 +7782,8 @@
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
 				9C9E33B722DCCA1700214ED6 /* ImpactDataTableViewCell.xib in Resources */,
 				5F78965222A929C100D2DBAD /* ThreeLinesAndButton.xib in Resources */,
+				AC103E492285BAFD00F426F0 /* ShifterResultViewController.xib in Resources */,
 				F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */,
-				AC103E492285BAFD00F426F0 /* MindsetShifterChecklistViewController.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
@@ -7928,12 +7926,9 @@
 				5F10D0C3228EC60100CC3C7A /* ArticleItemViewController.xib in Resources */,
 				F902CF5722DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib in Resources */,
 				75423F0322CF28F2008EE726 /* AppSettingsFooterView.xib in Resources */,
-				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
 				759AB41C22C4D2410091BFB8 /* TBVDataGraphBarViewCell.xib in Resources */,
-				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
 				F9B102A822D3370A00F99E85 /* WhatsHotLatestCell.xib in Resources */,
 				F9A5C95222B7D10B00AB2E94 /* PaymentReminderViewController.xib in Resources */,
-				7F0F02F41F13CDAD00007D50 /* ChoiceViewController.xib in Resources */,
 				D50D6C251EB8E504009FFDBE /* ImageSubtitleTableViewCell.xib in Resources */,
 				F95B9240228EC732000DEAEC /* Tools.storyboard in Resources */,
 				0B40DC161E9CA71400E1659B /* PrepareContentHeaderTableViewCell.xib in Resources */,
@@ -8359,6 +8354,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3609938223048B20008CB854 /* PrepareResultsInterface.swift in Sources */,
+				3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */,
+				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				36CB721222B8ECF300C99AFC /* MyQotSupportFaqPresenter.swift in Sources */,
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
@@ -8547,7 +8545,7 @@
 				AC108C5122A677C00035C3AF /* SolveFollowUpTableViewCell.swift in Sources */,
 				CBFECCA51F30BB4D0076ACE6 /* SyncableObject.swift in Sources */,
 				9115F706208DE01E00EE5D1D /* ProfileSettingsInteractor.swift in Sources */,
-				AC103E412285B27200F426F0 /* MindsetShifterChecklistWorker.swift in Sources */,
+				AC103E412285B27200F426F0 /* ShifterResultWorker.swift in Sources */,
 				36796A0820D3C41F00B55429 /* SigningCreatePasswordWorker.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */,
@@ -8630,7 +8628,7 @@
 				7582616922D8DBBE000094DE /* DailyCheckinStartViewController.swift in Sources */,
 				36E4B7B0219EBFED00049EE8 /* TutorialInteractor.swift in Sources */,
 				36F2333122B7D1A500CB8267 /* EKEvent+Convenience.swift in Sources */,
-				AC103E472285B27200F426F0 /* MindsetShifterChecklistConfigurator.swift in Sources */,
+				AC103E472285B27200F426F0 /* ShifterResultConfigurator.swift in Sources */,
 				366AFD1A20BDAE8900109F29 /* FormView.swift in Sources */,
 				8D6E058A22D7466E00EC2AEF /* MyLibraryNotesRouter.swift in Sources */,
 				36376660223AA61100C2C429 /* LevelThreeViewController.swift in Sources */,
@@ -8699,7 +8697,7 @@
 				5F360743228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift in Sources */,
 				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
 				91F5BE44209757C300E85A51 /* PermissionsConfigurator.swift in Sources */,
-				AC103E462285B27200F426F0 /* MindsetShifterChecklistModel.swift in Sources */,
+				AC103E462285B27200F426F0 /* ShifterResult.swift in Sources */,
 				7FB32D131F42E8EE0027BF4E /* DatabaseKeyService.swift in Sources */,
 				5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */,
 				365EC0BA224A6FE80019AFF9 /* WhatsHotCollectionViewCell.swift in Sources */,
@@ -8734,8 +8732,6 @@
 				3674FF2C20AADE7D008EEB6C /* PartnersOverviewViewController.swift in Sources */,
 				366183EE2162793800634560 /* SupportFAQConfigurator.swift in Sources */,
 				759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */,
-				369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */,
-				369353A422983AB9008BBB72 /* PrepareResultsInterface.swift in Sources */,
 				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
 				CC64725B1EE6F9DE00BFA3D9 /* UIColor+Palette.swift in Sources */,
@@ -8809,9 +8805,7 @@
 				75423F1522CF4919008EE726 /* FromMyCoachHeaderView.swift in Sources */,
 				F90BD425230164CA00008702 /* SolveTableViewCelll.swift in Sources */,
 				CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */,
-				9C24238E22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				F9F70C1822F9A31E00E85BF3 /* SprintChallengeViewModel.swift in Sources */,
-				9C24238E22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
 				CBB98B00201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift in Sources */,
 				CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */,
 				CB3333E120480DDF009480DF /* ShareConfigurator.swift in Sources */,
@@ -8964,8 +8958,6 @@
 				5F62BEA0228AE71700852F7E /* MyQotSiriShortcutsViewController.swift in Sources */,
 				9C650B7822FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift in Sources */,
 				9CF3BE5323018EED0027D111 /* MeAtMyBestEmptyViewModel.swift in Sources */,
-				369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */,
-				369353A122983AB9008BBB72 /* PrepareResultsPresenter.swift in Sources */,
 				360256E02051834F00862B0E /* SearchConfigurator.swift in Sources */,
 				7FDFF36B1F1916B400F7A7EC /* Realm+Utility.swift in Sources */,
 				36D72ED4229C1BCC00DE1184 /* PrepareEventSelectionInteractor.swift in Sources */,
@@ -9079,7 +9071,7 @@
 				36376632223A66AF00C2C429 /* CoachViewController.swift in Sources */,
 				B856B47822B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift in Sources */,
 				3666769C207CF68500D2F5AD /* VisionGeneratorRouter.swift in Sources */,
-				AC103E422285B27200F426F0 /* MindsetShifterChecklistRouter.swift in Sources */,
+				AC103E422285B27200F426F0 /* ShifterResultRouter.swift in Sources */,
 				75DC686C22C11D2A00FF183D /* MyToBeVisionRateInteractor.swift in Sources */,
 				AC8F208D2190A1EF00517A05 /* UIViewController+Extensions.swift in Sources */,
 				CC178A771F04FD600066A5D4 /* UserService.swift in Sources */,
@@ -9126,9 +9118,9 @@
 				F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */,
 				3637665E223AA61100C2C429 /* LevelThreeRouter.swift in Sources */,
 				DB2969F022C64B8C00B8A590 /* BaseRootViewController+BottomNavigation.swift in Sources */,
-				AC103E432285B27200F426F0 /* MindsetShifterChecklistInterface.swift in Sources */,
+				AC103E432285B27200F426F0 /* ShifterResultInterface.swift in Sources */,
 				F9C1D8B4220DD90300B40DD2 /* SiriShortcutsWorker.swift in Sources */,
-				AC103E452285B27200F426F0 /* MindsetShifterChecklistInteractor.swift in Sources */,
+				AC103E452285B27200F426F0 /* ShifterResultInteractor.swift in Sources */,
 				852DADE81EF26B1D00A10882 /* PeakPerformanceAverageChart.swift in Sources */,
 				36796A4A20D3C49900B55429 /* SigningLoginWorker.swift in Sources */,
 				75DC685D22BD183200FF183D /* MyToBeVisionCountDownInterface.swift in Sources */,
@@ -9290,7 +9282,6 @@
 				D52350961E9FC1120013DE7E /* ArticleCollectionLayout.swift in Sources */,
 				36E6E3F422493922001BE9C7 /* ComponentTransition.swift in Sources */,
 				AC1A40DD22A54EB70022156C /* SolveResultsInterface.swift in Sources */,
-				9C650B6C22FAC2E800DF2D6B /* MyPeakPerformanceRowModel.swift in Sources */,
 				CC13E2401EB1D72400C3CE46 /* LibraryCollectionViewCell.swift in Sources */,
 				5F57F9E42282E65B003A9EDF /* ContentService+MyQotProfile.swift in Sources */,
 				CB53F0D820235A9C007C624B /* Atomic.swift in Sources */,
@@ -9383,8 +9374,8 @@
 				5F360722228BEC960074FEC4 /* MyQotSensorsPresenter.swift in Sources */,
 				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
 				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
+				AC103E402285B27200F426F0 /* ShifterResultPresenter.swift in Sources */,
 				F92A76E322F2E8EC000BB378 /* Level5CellViewModel.swift in Sources */,
-				AC103E402285B27200F426F0 /* MindsetShifterChecklistPresenter.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
 				5FA66640229C206D0027EE74 /* MyVisionEditDetailsInteractor.swift in Sources */,
@@ -9572,7 +9563,7 @@
 				365EC0AF224A23070019AFF9 /* PresentComponentAnimator.swift in Sources */,
 				CBD4BEA82018DFD9008A0E9E /* GuidePresenter.swift in Sources */,
 				F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */,
-				AC103E442285B27200F426F0 /* MindsetShifterChecklistViewController.swift in Sources */,
+				AC103E442285B27200F426F0 /* ShifterResultViewController.swift in Sources */,
 				8D204C2222F06F1000DF6A76 /* MySprintNotesInteractor.swift in Sources */,
 				9CF3BE4522FC6A610027D111 /* MyPeakPerformanceSectionModel.swift in Sources */,
 				36796A2420D3C45200B55429 /* SigningCountryViewController.swift in Sources */,

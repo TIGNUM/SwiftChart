@@ -9,10 +9,12 @@
 import Foundation
 
 protocol ConfirmationViewControllerInterface: class {
+    func setupView()
     func load(_ confirmationModel: Confirmation)
 }
 
 protocol ConfirmationPresenterInterface {
+    func setupView()
     func show(_ confirmationModel: Confirmation)
 }
 
@@ -24,8 +26,4 @@ protocol ConfirmationInteractorInterface: Interactor {
 protocol ConfirmationRouterInterface {
     func leave()
     func dismiss()
-}
-
-protocol ConfirmationWorkerInterface {
-    var model: Confirmation { get }
 }

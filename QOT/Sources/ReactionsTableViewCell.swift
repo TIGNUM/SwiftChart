@@ -11,7 +11,6 @@ import UIKit
 final class ReactionsTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var firstReactionLabel: UILabel!
     @IBOutlet private weak var secondReactionLabel: UILabel!
@@ -19,13 +18,11 @@ final class ReactionsTableViewCell: UITableViewCell, Dequeueable {
 }
 
 // MARK: - Configuration
-
 extension ReactionsTableViewCell {
-
     func configure(title: String, reactions: [String]) {
         titleLabel.text = title
-        firstReactionLabel.text = reactions[0]
-        secondReactionLabel.text = reactions[1]
-        thirdReactionLabel.text = reactions[2]
+        firstReactionLabel.text = reactions[0, default: "Reaction_01 not set"]
+        secondReactionLabel.text = reactions[1, default: "Reaction_02 not set"]
+        thirdReactionLabel.text = reactions[2, default: "Reaction_03 not set"]
     }
 }

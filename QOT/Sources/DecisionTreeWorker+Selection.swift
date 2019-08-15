@@ -90,7 +90,7 @@ extension DecisionTreeWorker {
         }
     }
 
-    @objc func showNextQuestionAfterMediaPlayerWillDismiss() {
+    @objc func showNextQuestionDismiss() {
         showNextQuestion(targetId: nextQuestionId, answer: nil)
     }
 
@@ -156,6 +156,30 @@ extension DecisionTreeWorker {
             default:
                 break
             }
+        case .mindsetShifter:
+            switch currentQuestion?.key {
+            case QuestionKey.MindsetShifter.OpenTBV:
+                if let targetQuestionId = currentQuestion?.answers.first?.targetId(.question) {
+                    showTBV(targetQuestionId: targetQuestionId)
+                    return
+                }
+            case QuestionKey.MindsetShifter.ShowTBV:
+                if let targetQuestionId = currentQuestion?.answers.first?.targetId(.question) {
+                    showNextQuestion(targetId: targetQuestionId)
+                    return
+                }
+            case QuestionKey.MindsetShifter.Check:
+                getShifterResultItem(answers: decisionTreeAnswers) { [unowned self] (resultItem) in
+                    self.interactor?.openMindsetShifterResult(resultItem: resultItem) {
+                        self.nextQuestionId = self.currentQuestion?.answers.first?.targetId(.question) ?? 0
+                    }
+                }
+                return
+            case QuestionKey.MindsetShifter.Last:
+                interactor?.dismissAndGoToMyQot()
+            default:
+                break
+            }
         default:
             break
         }
@@ -167,10 +191,6 @@ extension DecisionTreeWorker {
                 handleSingleSelection(for: answer)
         } else {
             switch currentQuestion?.key {
-            case QuestionKey.MindsetShifter.OpenTBV:
-                interactor?.openShortTBVGenerator(completion: nil)
-            case QuestionKey.MindsetShifter.Check:
-                interactor?.openMindsetShifterChecklist(from: decisionTreeAnswers)
             case QuestionKey.ToBeVision.Create,
                  QuestionKey.ToBeVision.Review:
                 interactor?.toBeVisionDidChange()
@@ -226,6 +246,58 @@ private extension DecisionTreeWorker {
     func showNextQuestionIfExist(_ answer: QDMAnswer) {
         if let targetQuestionId = answer.targetId(.question) {
             showNextQuestion(targetId: targetQuestionId)
+        }
+    }
+}
+
+// MARK: - MindsetShifter
+private extension DecisionTreeWorker {
+    func getShifterResultItem(answers: [QDMAnswer],
+                              completion: @escaping (ShifterResult.Item) -> Void) {
+        let dispatchGroup = DispatchGroup()
+        let triggerAnswers = filteredAnswers([answers[0]], filter: .Trigger)
+        let reactionAnswers = filteredAnswers(answers, filter: .Reaction)
+        let lowAnswers = filteredAnswers(answers, filter: .LowPerfomance)
+        var highItems: [QDMContentItem] = []
+        let contentItemIds = answers.compactMap { $0.targetId(.contentItem) }
+
+        dispatchGroup.enter()
+        getHighItems(contentItemIds) { (items) in
+            highItems = items
+            dispatchGroup.leave()
+        }
+
+        dispatchGroup.notify(queue: .main) {
+            let resultItem = ShifterResult.Item(triggerAnswerId: triggerAnswers.map { $0.remoteID ?? 0 }.first ?? 0,
+                                                reactionsAnswerIds: reactionAnswers.map { $0.remoteID ?? 0 },
+                                                lowPerformanceAnswerIds: lowAnswers.map { $0.remoteID ?? 0 },
+                                                highPerformanceContentItemIds: contentItemIds,
+                                                trigger: triggerAnswers.map { $0.subtitle ?? "" }.first ?? "",
+                                                reactions: reactionAnswers.map { $0.subtitle ?? ""},
+                                                lowPerformanceItems: lowAnswers.map { $0.subtitle ?? ""},
+                                                highPerformanceItems: highItems.map { $0.valueText })
+            completion(resultItem)
+        }
+    }
+
+    func filteredAnswers(_ answers: [QDMAnswer], filter: DecisionTreeModel.Filter) -> [QDMAnswer] {
+        return answers.filter { $0.keys.filter { $0.contains(filter) }.isEmpty == false }
+    }
+
+    func getHighItems(_ contentItemIDs: [Int], completion: @escaping ([QDMContentItem]) -> Void) {
+        var items: [QDMContentItem] = []
+        let dispatchGroup = DispatchGroup()
+        contentItemIDs.forEach {
+            dispatchGroup.enter()
+            qot_dal.ContentService.main.getContentItemById($0) { (item) in
+                if let item = item, item.searchTags.contains("mindsetshifter-highperformance-item") {
+                    items.append(item)
+                }
+                dispatchGroup.leave()
+            }
+        }
+        dispatchGroup.notify(queue: .main) {
+            completion(items)
         }
     }
 }

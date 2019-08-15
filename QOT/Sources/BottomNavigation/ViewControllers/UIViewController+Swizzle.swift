@@ -190,21 +190,21 @@ extension UIViewController {
                                          image: UIImage? = nil,
                                          buttonWidth: CGFloat.Button.Width,
                                          action: Selector,
-                                         backgroundColor: UIColor = .carbon,
-                                         borderColor: UIColor = .accent) -> UIBarButtonItem {
-        let button = UIButton(type: .custom)
-        button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth, height: .Default))
+                                         backgroundColor: UIColor = .carbonDark,
+                                         borderColor: UIColor = .clear) -> UIBarButtonItem {
+        let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: .Default)))
         button.backgroundColor = backgroundColor
-        let attributedTitle = NSAttributedString(string: title,
-                                                 letterSpacing: 0.2,
-                                                 font: .sfProtextSemibold(ofSize: 14),
-                                                 textColor: .accent,
-                                                 alignment: .center)
-        button.setAttributedTitle(attributedTitle, for: .normal)
+        button.setAttributedTitle(NSAttributedString(string: title,
+                                                     letterSpacing: 0.2,
+                                                     font: .sfProtextSemibold(ofSize: 14),
+                                                     textColor: .accent,
+                                                     alignment: .center),
+                                  for: .normal)
         if let image = image {
             button.setImage(image, for: .normal)
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
         }
+        button.titleEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
         button.addTarget(self, action: action, for: .touchUpInside)
         button.corner(radius: Layout.cornerRadius20, borderColor: borderColor)
         return UIBarButtonItem(customView: button)

@@ -26,7 +26,10 @@ final class ConfirmationInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.show(worker.model)
+        presenter.setupView()
+        worker.getModel { [unowned self] (model) in
+            self.presenter.show(model)
+        }
     }
 }
 

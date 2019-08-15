@@ -104,7 +104,8 @@ extension QDMQuestion {
         get {
             switch key {
             case QuestionKey.Sprint.Intro,
-                 QuestionKey.ToBeVision.Create:
+                 QuestionKey.ToBeVision.Create,
+                 QuestionKey.MindsetShifter.LowSelfTalk:
                 return true
             default:
                 return false
@@ -135,8 +136,10 @@ struct DecisionTreeModel {
 }
 
 extension DecisionTreeModel.Filter {
-    static let FILTER_RELATIONSHIP = "_relationship_"
-    static let FILTER_REACTION = "-reaction-"
+    static let Relationship = "_relationship_"
+    static let Reaction = "-reaction-"
+    static let Trigger = "-trigger-"
+    static let LowPerfomance = "-lowperformance-"
 }
 
 // MARK: - ModelInterface

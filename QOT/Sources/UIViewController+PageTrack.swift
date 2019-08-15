@@ -42,7 +42,7 @@ private extension UIViewController {
         case is DecisionTreeViewController: return decisionTreePageKey
         case is MyLibraryUserStorageViewController: return userStoragePageKey
         case is MyLibraryNotesViewController: return myLibraryNoteKey
-        case is MindsetShifterChecklistViewController: return "decisiontree.mindsetshifter.results"
+        case is ShifterResultViewController: return "decisiontree.mindsetshifter.results"
         case is MyQotProfileViewController: return "myprofile.home"
         case is MyQotAccountSettingsViewController: return "myprofile.accountsettings"
         case is ProfileSettingsViewController: return "myprofile.accountsettings.edit"

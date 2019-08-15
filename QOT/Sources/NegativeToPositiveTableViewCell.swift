@@ -11,7 +11,6 @@ import UIKit
 final class NegativeToPositiveTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Properties
-
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var lowTitleLabel: UILabel!
     @IBOutlet private weak var lowFirstItemLabel: UILabel!
@@ -25,7 +24,6 @@ final class NegativeToPositiveTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var leadingConstraint: NSLayoutConstraint!
 
     // MARK: - Lifecycle
-
     override func awakeFromNib() {
         super.awakeFromNib()
         setupView()
@@ -33,26 +31,22 @@ final class NegativeToPositiveTableViewCell: UITableViewCell, Dequeueable {
 }
 
 // MARK: - Configuration
-
 extension NegativeToPositiveTableViewCell {
-
     func configure(title: String, lowTitle: String, lowItems: [String], highTitle: String, highItems: [String]) {
         titleLabel.text = title
         lowTitleLabel.text = lowTitle
-        lowFirstItemLabel.text = lowItems[0]
-        lowSecondItemLabel.text = lowItems[1]
-        lowThirdItemLabel.text = lowItems[2]
+        lowFirstItemLabel.text = lowItems[0, default: "lowItem_01 not set"]
+        lowSecondItemLabel.text = lowItems[1, default: "lowItem_02 not set"]
+        lowThirdItemLabel.text = lowItems[2, default: "lowItem_03 not set"]
         highTitleLabel.text = highTitle
-        highFirstItemLabel.text = highItems[0]
-        highSecondItemLabel.text = highItems[1]
-        highThirdItemLabel.text = highItems[0]
+        highFirstItemLabel.text = highItems[0, default: "highItem_01 not set"]
+        highSecondItemLabel.text = highItems[1, default: "highItem_02 not set"]
+        highThirdItemLabel.text = highItems[2, default: "highItem_03 not set"]
     }
 }
 
 // MARK: - Private
-
-extension NegativeToPositiveTableViewCell {
-
+private extension NegativeToPositiveTableViewCell {
     func setupView() {
         let gestureRecognizer = UIPanGestureRecognizer(target: self, action: #selector(syncHighPerformanceView(_:)))
         highPerformanceView.layer.shadowOpacity = 0.2
@@ -63,9 +57,7 @@ extension NegativeToPositiveTableViewCell {
 }
 
 // MARK: - GestureRecognizer
-
 private extension NegativeToPositiveTableViewCell {
-
     @objc func syncHighPerformanceView(_ gestureRecognizer: UIPanGestureRecognizer) {
         let point = gestureRecognizer.translation(in: self)
         if point.x > -(bounds.width * 0.4) && point.x < bounds.width * 0.4 {

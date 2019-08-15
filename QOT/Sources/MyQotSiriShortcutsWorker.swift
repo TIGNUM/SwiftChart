@@ -57,9 +57,9 @@ final class MyQotSiriShortcutsWorker {
 
         dispatchGroup.notify(queue: .main) {
             let shortcuts: [SiriShortcutsModel.Shortcut]  = [self.toBeVisionModel,
-                             self.upcomingEventModel,
-                             self.morningInterviewModel,
-                             self.whatsHotModel]
+                                                             self.upcomingEventModel,
+                                                             self.morningInterviewModel,
+                                                             self.whatsHotModel]
             let model = SiriShortcutsModel(explanation: nil, shortcuts: shortcuts)
             completion(model)
         }
