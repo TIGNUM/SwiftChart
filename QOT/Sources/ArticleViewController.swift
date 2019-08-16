@@ -44,8 +44,8 @@ enum ColorMode {
 
     var audioText: UIColor {
         switch self {
-        case .dark: return UIColor.carbon.withAlphaComponent(0.6)
-        case .darkNot: return UIColor.sand.withAlphaComponent(0.6)
+        case .darkNot: return UIColor.carbon.withAlphaComponent(0.6)
+        case .dark: return UIColor.sand.withAlphaComponent(0.6)
         }
     }
 

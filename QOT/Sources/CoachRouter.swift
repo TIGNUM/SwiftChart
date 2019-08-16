@@ -41,7 +41,7 @@ extension CoachRouter: CoachRouterInterface {
                 .tools().instantiateViewController(withIdentifier: storyboardID) as? ToolsViewController
             if let toolsViewController = toolsViewController {
                 ToolsConfigurator.make(viewController: toolsViewController)
-                viewController.pushToStart(childViewController: toolsViewController)
+                viewController.present(toolsViewController, animated: true, completion: nil)
             }
         case .sprint:
             presentDecisionTree(.sprint)

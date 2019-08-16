@@ -28,7 +28,7 @@ extension DecisionTreeWorker {
                     self?.activeSprint = sprint
                     self?.newSprintContentId = targetContentId
                     self?.lastSprintQuestionId = targetQuestionId
-                    self?.interactor?.presentInfoView(icon: R.image.warning(),
+                    self?.interactor?.presentInfoView(icon: R.image.ic_warning_circle(),
                                                       title: R.string.localized.mySprintDetailsInfoTitleInProgress(),
                                                       text: R.string.localized.mySprintDetailsInfoBodyInProgress(dateString,
                                                                                                                  self?.selectedSprintTitle ?? ""))

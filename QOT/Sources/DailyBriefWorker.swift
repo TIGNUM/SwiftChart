@@ -169,6 +169,7 @@ extension DailyBriefWorker {
     func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void)) {
         latestWhatsHotCollectionID(completion: { (collectionID) in
             self.contentService.getContentCollectionById(collectionID ?? 0, completion)
+
         })
     }
 
@@ -189,30 +190,33 @@ extension DailyBriefWorker {
         })
     }
 
-    func isNew(_ collection: QDMContentCollection) -> Bool {
-        var isNewArticle = collection.viewedAt == nil
-        if let firstInstallTimeStamp = self.firstInstallTimeStamp {
-            isNewArticle = collection.viewedAt == nil && collection.modifiedAt ?? collection.createdAt ?? Date() > firstInstallTimeStamp
-        }
-        return isNewArticle
-    }
-}
-
-// MARK: - Get to level 5
-extension DailyBriefWorker {
-    func saveAnswerValue(_ value: Int) {
-        var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
-        level5Bucket?.answerIds = [value]
-        if let level5Bucket = level5Bucket {
-            qot_dal.DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
-                if let error = error {
-                    qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
-                }
-            })
+        func isNew(_ collection: QDMContentCollection) -> Bool {
+            var isNewArticle = collection.viewedAt == nil
+            if let firstInstallTimeStamp = self.firstInstallTimeStamp {
+                isNewArticle = collection.viewedAt == nil && collection.modifiedAt ?? collection.createdAt ?? Date() > firstInstallTimeStamp
+            }
+            return isNewArticle
         }
     }
 
-    var lastEstimatedLevel: Int? {
-        return buckets.filter {$0.bucketName == DailyBriefBucketName.GET_TO_LEVEL_5}.first?.latestGetToLevel5Value
+    // MARK: - Get to level 5
+    extension DailyBriefWorker {
+        func saveAnswerValue(_ value: Int) {
+            var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
+            level5Bucket?.answerIds = [value]
+            if let level5Bucket = level5Bucket {
+                qot_dal.DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
+                    if let error = error {
+                        qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                    }
+                })
+            }
+        }
+
+        var lastEstimatedLevel: Int? {
+            var lastEstimatedLevel: Int?
+            let bucket5 = buckets.filter {$0.bucketName == DailyBriefBucketName.GET_TO_LEVEL_5}.first
+            lastEstimatedLevel = bucket5?.latestGetToLevel5Value
+            return lastEstimatedLevel
+        }
     }
-}

@@ -30,6 +30,10 @@ final class ToolsCollectionsViewController: UIViewController {
         configure(self)
     }
 
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
@@ -37,14 +41,18 @@ final class ToolsCollectionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .sand
-        setCustomBackButton()
+//        setCustomBackButton()
         setStatusBar(colorMode: ColorMode.darkNot)
         interactor?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        setCustomBackButton()
+//        setCustomBackButton()
+    }
+
+    @objc func pop() {
+        self.navigationController?.popViewController(animated: true)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -52,6 +60,13 @@ final class ToolsCollectionsViewController: UIViewController {
             ToolsItemsConfigurator.make(viewController: controller,
                                               selectedToolID: sender as? Int)
         }
+    }
+}
+
+// MARK: - Bottom Navigation
+extension ToolsCollectionsViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItem()]
     }
 }
 

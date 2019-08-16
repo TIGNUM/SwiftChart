@@ -54,6 +54,7 @@ final class AudioPlayerBar: UIView {
         sliderLeading.constant = -(thumbImageWidth/2)
         sliderTrailing.constant = -(thumbImageWidth/2)
         progressModeContentView.backgroundColor = colorMode.audioBackground
+        contentView.backgroundColor = colorMode.background
         progressModeContentView.corner(radius: 20)
     }
 
@@ -97,7 +98,7 @@ private extension AudioPlayerBar {
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 0.4,
                                                        font: .apercuMedium(ofSize: 12),
-                                                       textColor: UIColor.carbon.withAlphaComponent(0.6),
+                                                       textColor: colorMode.audioText.withAlphaComponent(0.8),
                                                        alignment: .left)
     }
 }

@@ -180,6 +180,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         }
         return SprintChallengeViewModel(bucketTitle: sprintBucket.bucketText?.contentItems.first?.valueText,
                                         sprintTitle: sprintBucket.sprint?.title,
+
                                         //                                         SprintInfo to change to text related to day of sprint
             sprintInfo: sprintBucket.sprint?.subtitle,
             sprintStepNumber: sprintBucket.sprint?.currentDay,
@@ -227,6 +228,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> BaseDailyBriefViewModel {
         let createMeAtMyBestTitle = meAtMyBest.bucketText?.title ?? "Testing Me AT MY BEST"
+
 
         if meAtMyBest.toBeVision != nil {
             let tbvEmptyIntro = meAtMyBest.contentItems?.filter {$0.searchTags.contains("intro_empty")}.first?.valueText ?? "This is sample intro empty"
@@ -560,6 +562,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             dailyCheckIn2ViewModel.dailyCheckIn2TBVModel = DailyCheckIn2TBVModel(title: title,
                                                                                  introText: intro,
                                                                                  tbvSentence: tbvSentence,
+
                                                                                  adviceText: reflection)
         } else if dailyCheckIn2.SHPIQuestionId != nil {
             //SHPI
@@ -576,7 +579,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             _ = performanceContentItem?.valueText
             let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: peakPerformanceIntroText)
             dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel = model
-
         }
         return dailyCheckIn2ViewModel
     }

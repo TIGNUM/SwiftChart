@@ -37,13 +37,11 @@ final class ToolsViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .sand
         setStatusBar(colorMode: ColorMode.darkNot)
-        setCustomBackButton()
         interactor?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-         setCustomBackButton()
     }
 
     override func viewDidAppear(_ animated: Bool) {

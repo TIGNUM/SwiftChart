@@ -47,7 +47,7 @@ final class MyLibraryUserStorageViewController: UIViewController, ScreenZLevel3 
         view.backgroundColor = .carbon
 
         editButton.tintColor = .accent
-        editButton.setImage(R.image.edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         addButton.isHidden = !(interactor?.showAddButton ?? false)
         addButton.setTitle(" " + (interactor?.addTitle ?? ""), for: .normal)
         addButton.setImage(R.image.my_library_note()?.withRenderingMode(.alwaysTemplate), for: .normal)

@@ -149,6 +149,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
 
 private extension DailyBriefViewController {
 
+
     //    TODO Check with Anais and remove this cell.
     //    func getLatestWhatsHotCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
     //                interactor?.createLatestWhatsHotModel( completion: { [weak self] (model) in
@@ -174,6 +175,7 @@ private extension DailyBriefViewController {
      * Description: Placeholder to display the Random Question Cell Information.
      * Parameters: [tableView], [IndexPath]
      */
+
     func getImpactReadinessCell(_ tableView: UITableView,
                                 _ indexPath: IndexPath,
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
@@ -231,6 +233,7 @@ private extension DailyBriefViewController {
      * Description: Placeholder to display the Frojm Tignum Message Cell Information.
      * Parameters: [tableView], [IndexPath]
      */
+
     func getFromTignumMessageCell(_ tableView: UITableView,
                                   _ indexPath: IndexPath,
                                   _ fromTignumMessageViewModel: FromTignumCellViewModel?) -> UITableViewCell {

@@ -11,12 +11,26 @@ import Foundation
 extension UIViewController {
 
     func setCustomBackButton() {
-        let backButton = UIBarButtonItem(image: R.image.arrowBack(),
+        let backButton = UIBarButtonItem(image: R.image.ic_close_rounded(),
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(backToPreviousViewController))
         backButton.tintColor = .accent
+
         navigationItem.leftBarButtonItem = backButton
+    }
+
+    func setCustomBackButtonTools() {
+        let backButtonTools = UIBarButtonItem(image: R.image.arrowBack(),
+                                         style: .plain,
+                                         target: self,
+                                         action: #selector(backToPreviousViewController))
+        backButtonTools.tintColor = .accent
+        backButtonTools.imageInsets = UIEdgeInsets(top: -30, left: 0, bottom: 30, right: 0)
+        navigationItem.leftBarButtonItem = backButtonTools
+        navigationItem.leftBarButtonItem?.setBackgroundVerticalPositionAdjustment(100.0, for: .default)
+        navigationItem.leftBarButtonItem?.setBackButtonBackgroundVerticalPositionAdjustment(-100, for: .default)
+        navigationItem.leftBarButtonItem?.imageInsets = UIEdgeInsets(top: -30, left: 50, bottom: 30, right: -50)
     }
 
     func setCustomBackButtonSearch() {

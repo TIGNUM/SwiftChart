@@ -19,36 +19,27 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="K8d-Oz-j85">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="dataSource" destination="Som-Y5-b1O" id="YZM-po-XOk"/>
                                     <outlet property="delegate" destination="Som-Y5-b1O" id="t81-BQ-Clv"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eKe-qo-m1S">
-                                <rect key="frame" x="40" y="587" width="40" height="40"/>
-                                <state key="normal" image="ic_close_rounded"/>
-                                <connections>
-                                    <action selector="closeButton:" destination="Som-Y5-b1O" eventType="touchUpInside" id="6a9-6Q-dQq"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="amN-j4-rmu" firstAttribute="bottom" secondItem="eKe-qo-m1S" secondAttribute="bottom" constant="40" id="3e0-Ef-npA"/>
                             <constraint firstItem="amN-j4-rmu" firstAttribute="bottom" secondItem="K8d-Oz-j85" secondAttribute="bottom" id="7ai-Qc-cno"/>
                             <constraint firstItem="K8d-Oz-j85" firstAttribute="leading" secondItem="amN-j4-rmu" secondAttribute="leading" id="DfA-zw-8NH"/>
-                            <constraint firstItem="eKe-qo-m1S" firstAttribute="leading" secondItem="amN-j4-rmu" secondAttribute="leading" constant="40" id="GNa-5c-8h9"/>
+                            <constraint firstItem="K8d-Oz-j85" firstAttribute="top" secondItem="amN-j4-rmu" secondAttribute="top" constant="60" id="HZ1-qr-a9p"/>
                             <constraint firstItem="amN-j4-rmu" firstAttribute="trailing" secondItem="K8d-Oz-j85" secondAttribute="trailing" id="JpP-2R-1Ci"/>
-                            <constraint firstItem="K8d-Oz-j85" firstAttribute="top" secondItem="amN-j4-rmu" secondAttribute="top" id="kav-Uj-YLn"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="amN-j4-rmu"/>
                     </view>
                     <navigationItem key="navigationItem" id="fVa-z6-HhY"/>
                     <connections>
                         <outlet property="tableView" destination="K8d-Oz-j85" id="DFp-Xm-Ult"/>
-                        <segue destination="t5Z-7w-Qad" kind="push" identifier="tools.collections.segue.identifier" id="q19-ud-90q"/>
+                        <segue destination="t5Z-7w-Qad" kind="show" identifier="tools.collections.segue.identifier" id="q19-ud-90q"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDH-o0-a0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -63,37 +54,37 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="xRI-V9-qF2">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="xRI-V9-qF2">
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <connections>
                                     <outlet property="dataSource" destination="t5Z-7w-Qad" id="Qm9-gd-3uE"/>
                                     <outlet property="delegate" destination="t5Z-7w-Qad" id="Fxe-wP-CaZ"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YT4-ae-dG8">
-                                <rect key="frame" x="40" y="587" width="40" height="40"/>
-                                <state key="normal" image="ic_close_rounded"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cti-Zd-6jD">
+                                <rect key="frame" x="24" y="44" width="16" height="22"/>
+                                <state key="normal" image="ic_arrow_left"/>
                                 <connections>
-                                    <action selector="closeButton:" destination="t5Z-7w-Qad" eventType="touchUpInside" id="PBu-J7-QSz"/>
+                                    <action selector="backButton:" destination="t5Z-7w-Qad" eventType="touchUpInside" id="oPB-vT-l8X"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
+                            <constraint firstItem="xRI-V9-qF2" firstAttribute="top" secondItem="YVN-Tw-bnZ" secondAttribute="top" constant="60" id="6iv-1m-qvi"/>
                             <constraint firstItem="YVN-Tw-bnZ" firstAttribute="trailing" secondItem="xRI-V9-qF2" secondAttribute="trailing" id="NyT-ya-LG1"/>
+                            <constraint firstItem="Cti-Zd-6jD" firstAttribute="top" secondItem="YVN-Tw-bnZ" secondAttribute="top" constant="24" id="RMc-Da-vHL"/>
+                            <constraint firstItem="Cti-Zd-6jD" firstAttribute="leading" secondItem="YVN-Tw-bnZ" secondAttribute="leading" constant="24" id="Uas-1a-StB"/>
                             <constraint firstItem="xRI-V9-qF2" firstAttribute="leading" secondItem="YVN-Tw-bnZ" secondAttribute="leading" id="diI-wV-4pZ"/>
-                            <constraint firstItem="YT4-ae-dG8" firstAttribute="leading" secondItem="YVN-Tw-bnZ" secondAttribute="leading" constant="40" id="hMv-II-NQ9"/>
-                            <constraint firstItem="YVN-Tw-bnZ" firstAttribute="bottom" secondItem="YT4-ae-dG8" secondAttribute="bottom" constant="40" id="nfN-Tx-YpA"/>
                             <constraint firstItem="xRI-V9-qF2" firstAttribute="bottom" secondItem="YVN-Tw-bnZ" secondAttribute="bottom" id="nq0-UT-ht1"/>
-                            <constraint firstItem="xRI-V9-qF2" firstAttribute="top" secondItem="YVN-Tw-bnZ" secondAttribute="top" id="xe3-IW-gro"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="YVN-Tw-bnZ"/>
                     </view>
                     <navigationItem key="navigationItem" id="BQB-8Y-mMd"/>
                     <connections>
                         <outlet property="tableView" destination="xRI-V9-qF2" id="Xnc-Vk-xCX"/>
-                        <segue destination="txY-qR-zaF" kind="push" identifier="collections.items.segue.identifier" id="d4K-o6-qzX"/>
+                        <segue destination="txY-qR-zaF" kind="show" identifier="collections.items.segue.identifier" id="d4K-o6-qzX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9bF-GN-9J4" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -109,30 +100,30 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-IU-eEH">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <connections>
                                     <outlet property="dataSource" destination="txY-qR-zaF" id="AjP-73-NKS"/>
                                     <outlet property="delegate" destination="txY-qR-zaF" id="4Na-89-HDX"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GPc-zf-rN8">
-                                <rect key="frame" x="40" y="587" width="40" height="40"/>
-                                <state key="normal" image="ic_close_rounded"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WZi-Yw-SDe">
+                                <rect key="frame" x="24" y="44" width="16" height="22"/>
+                                <state key="normal" image="ic_arrow_left"/>
                                 <connections>
-                                    <action selector="closeButton:" destination="t5Z-7w-Qad" eventType="touchUpInside" id="sSm-5f-rqs"/>
-                                    <action selector="closeButton:" destination="txY-qR-zaF" eventType="touchUpInside" id="whG-2r-DIf"/>
+                                    <action selector="backButton:" destination="t5Z-7w-Qad" eventType="touchUpInside" id="hP7-JP-cQp"/>
+                                    <action selector="backButton:" destination="txY-qR-zaF" eventType="touchUpInside" id="m3p-Sb-ypl"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="Asb-IU-eEH" firstAttribute="top" secondItem="LOp-pi-FKS" secondAttribute="top" id="5xC-ut-g1D"/>
-                            <constraint firstItem="LOp-pi-FKS" firstAttribute="bottom" secondItem="GPc-zf-rN8" secondAttribute="bottom" constant="40" id="aCO-by-m5Q"/>
+                            <constraint firstItem="Asb-IU-eEH" firstAttribute="top" secondItem="LOp-pi-FKS" secondAttribute="top" constant="60" id="7qO-D8-YLl"/>
+                            <constraint firstItem="WZi-Yw-SDe" firstAttribute="top" secondItem="LOp-pi-FKS" secondAttribute="top" constant="24" id="b04-tI-bpM"/>
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="bottom" secondItem="Asb-IU-eEH" secondAttribute="bottom" id="dri-GA-252"/>
-                            <constraint firstItem="GPc-zf-rN8" firstAttribute="leading" secondItem="LOp-pi-FKS" secondAttribute="leading" constant="40" id="fpr-Dy-Z0D"/>
                             <constraint firstItem="Asb-IU-eEH" firstAttribute="leading" secondItem="LOp-pi-FKS" secondAttribute="leading" id="hWr-ng-tNx"/>
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="trailing" secondItem="Asb-IU-eEH" secondAttribute="trailing" id="iA6-Mb-3Bz"/>
+                            <constraint firstItem="WZi-Yw-SDe" firstAttribute="leading" secondItem="LOp-pi-FKS" secondAttribute="leading" constant="24" id="oQ7-MW-u1A"/>
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="bottom" secondItem="Asb-IU-eEH" secondAttribute="bottom" id="wIm-eq-nab"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LOp-pi-FKS"/>
@@ -148,6 +139,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="ic_close_rounded" width="40" height="40"/>
+        <image name="ic_arrow_left" width="16" height="16"/>
     </resources>
 </document>

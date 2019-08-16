@@ -10,7 +10,6 @@ import Foundation
 import qot_dal
 
 final class AboutMeViewModel: BaseDailyBriefViewModel {
-
     // MARK: - Properties
     let title: String?
     let aboutMeContent: String?

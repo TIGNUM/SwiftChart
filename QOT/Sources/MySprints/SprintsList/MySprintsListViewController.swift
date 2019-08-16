@@ -46,7 +46,7 @@ final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
         interactor?.viewDidLoad()
 
         editButton.tintColor = .accent
-        editButton.setImage(R.image.edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
+        editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
         setEditButton(enabled: true)
     }
 

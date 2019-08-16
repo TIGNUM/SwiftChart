@@ -82,6 +82,7 @@ final class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueab
         return 4
     }
 
+
     //TODO Setup cell: ImpactDataTableViewCell as soon as we got the data.LeaderWisdomCellViewModel.swift
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ImpactDataTableViewCell = tableView.dequeueCell(for: indexPath)

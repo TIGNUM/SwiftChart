@@ -57,7 +57,7 @@ extension ConfirmationViewController: ConfirmationViewControllerInterface {
 
     func load(_ confirmationModel: Confirmation) {
         self.confirmation = confirmationModel
-        infoAlertView.set(icon: R.image.warning(), title: confirmation?.title, text: confirmation?.description)
+        infoAlertView.set(icon: R.image.ic_warning_circle(), title: confirmation?.title, text: confirmation?.description)
     }
 }
 

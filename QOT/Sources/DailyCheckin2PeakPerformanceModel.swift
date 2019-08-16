@@ -9,7 +9,6 @@
 import Foundation
 
 struct DailyCheckIn2PeakPerformanceModel {
-
     // MARK: - Properties
     let title: String?
     let intro: String?

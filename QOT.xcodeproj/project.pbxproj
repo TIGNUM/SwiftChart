@@ -879,6 +879,8 @@
 		9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238922F4631C00B911E6 /* DailyCheck2SHPIModel.swift */; };
 		9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */; };
 		9C24239022F487DA00B911E6 /* MyPeakPerformanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */; };
+		9C2FDA8622E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8522E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib */; };
+		9C2FDA8822E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8722E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift */; };
 		9C2FDA8B22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8A22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib */; };
 		9C2FDA8E22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */; };
 		9C2FDA9422E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */; };
@@ -2522,6 +2524,8 @@
 		9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2TBVModel.swift; sourceTree = "<group>"; };
 		9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2PeakPerformanceModel.swift; sourceTree = "<group>"; };
 		9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceViewModel.swift; sourceTree = "<group>"; };
+		9C2FDA8522E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckInInsights2TBV.xib; sourceTree = "<group>"; };
+		9C2FDA8722E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckInSights2TBVCell.swift; sourceTree = "<group>"; };
 		9C2FDA8A22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyBriefForwardEdge.xib; sourceTree = "<group>"; };
 		9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceSectionCell.xib; sourceTree = "<group>"; };
 		9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceRowCell.xib; sourceTree = "<group>"; };
@@ -3351,6 +3355,7 @@
 				F92A76DF22F2E8C0000BB378 /* Level5 */,
 				9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */,
 				9C2FDA8922E1F8D5007AE7F0 /* DailyBriefForwardEdge */,
+				9C2FDA8422E1F191007AE7F0 /* DailyCheckInInsights2TBV */,
 				F902CF4D22DE0F8F00FFC836 /* Daily Checkin II */,
 				75423F0422CF2FF9008EE726 /* BeSpoke */,
 				75B9DCB422CB5FEC00692A60 /* LeaderWisdom */,
@@ -5451,6 +5456,15 @@
 				F90BD424230164CA00008702 /* SolveTableViewCelll.swift */,
 			);
 			name = "Solve Reminder ";
+			sourceTree = "<group>";
+		};
+		9C2FDA8422E1F191007AE7F0 /* DailyCheckInInsights2TBV */ = {
+			isa = PBXGroup;
+			children = (
+				9C2FDA8522E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib */,
+				9C2FDA8722E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift */,
+			);
+			name = DailyCheckInInsights2TBV;
 			sourceTree = "<group>";
 		};
 		9C2FDA8922E1F8D5007AE7F0 /* DailyBriefForwardEdge */ = {
@@ -7674,7 +7688,7 @@
 					};
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = 4FQQH349R5;
+						DevelopmentTeam = M5AQ4P32MK;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -7857,6 +7871,7 @@
 				36939B8D1FD9641D00A9DECF /* GuideDailyPrepTableViewCell.xib in Resources */,
 				ACF0B950225FC4D6008CFAEC /* DecisionTreeViewController.xib in Resources */,
 				367EA0F121776921003025CE /* Assets.xcassets in Resources */,
+				9C2FDA8622E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				5FD890AF22807CC900B1CE7F /* MyQotProfileHeaderView.xib in Resources */,
 				ACF0B9752260BAD2008CFAEC /* SingleSelectionTableViewCell.xib in Resources */,
@@ -8731,6 +8746,7 @@
 				36376600223A4BD200C2C429 /* KnowingInteractor.swift in Sources */,
 				3674FF2C20AADE7D008EEB6C /* PartnersOverviewViewController.swift in Sources */,
 				366183EE2162793800634560 /* SupportFAQConfigurator.swift in Sources */,
+				9C2FDA8822E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift in Sources */,
 				759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */,
 				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
@@ -9740,7 +9756,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = M5AQ4P32MK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
@@ -10347,7 +10363,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = M5AQ4P32MK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
@@ -10505,7 +10521,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = M5AQ4P32MK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
@@ -10533,7 +10549,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = M5AQ4P32MK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = QOT/Resources/Info.plist;
@@ -10652,7 +10668,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = 4FQQH349R5;
+				DEVELOPMENT_TEAM = M5AQ4P32MK;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (

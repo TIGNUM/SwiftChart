@@ -27,6 +27,9 @@ final class ToolsItemsViewController: UIViewController {
         return ColorMode.darkNot.statusBarStyle
     }
 
+    @IBAction func backButton(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
     private enum CellType: Int, CaseIterable {
         case header = 0
         case sections
@@ -57,6 +60,13 @@ final class ToolsItemsViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+}
+
+// MARK: - Bottom Navigation
+extension ToolsItemsViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [dismissNavigationItem()]
     }
 }
 
