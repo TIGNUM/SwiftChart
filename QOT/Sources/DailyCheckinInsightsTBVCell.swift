@@ -12,10 +12,10 @@ final class DailyCheckinInsightsTBVCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var tbvText: UILabel!
     @IBOutlet private weak var button: UIButton!
+    var interactor: DailyBriefInteractorInterface?
     @IBOutlet private weak var introText: UILabel!
     @IBOutlet private weak var tbvSentence: UILabel!
     @IBOutlet private weak var adviceText: UILabel!
-    var interactor: DailyBriefInteractorInterface?
     var delegate: DailyBriefViewControllerDelegate?
 
     override func awakeFromNib() {

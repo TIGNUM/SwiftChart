@@ -20,10 +20,10 @@ final class MeAtMyBestEmptyCell: UITableViewCell, Dequeueable {
     }
     override func awakeFromNib() {
         super.awakeFromNib()
-        setUp()
     }
 
-    func setUp() {
+    override func layoutSubviews() {
+        super.layoutSubviews()
         buttonText?.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
@@ -31,5 +31,6 @@ final class MeAtMyBestEmptyCell: UITableViewCell, Dequeueable {
         title.text = with?.title
         intro.text = with?.intro
         buttonText.setTitle(with?.buttonText, for: .normal)
+        contentView.setNeedsLayout()
     }
 }

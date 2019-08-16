@@ -28,8 +28,6 @@ final class WhatsHotLatestCell: UITableViewCell, Dequeueable {
         whatsHotTitle.text = with?.title.uppercased()
         whatsHotImage.kf.setImage(with: with?.image, placeholder: R.image.preloading())
         authorLabel.text = with?.author
-        //Code which Anais wrote
-        //dateAndDurationLabel.text = DateFormatter.whatsHotBucket.string(from: publisheDate ?? Date(timeInterval: -3600, since: Date())) + " | "  + "\((timeToRead ?? 0) / 60)" + " min read")
         dateAndDurationLabel.text = DateFormatter.whatsHotBucket.string(from: with?.publisheDate ?? Date()) + " | "  + "\((with?.timeToRead ?? Int(0.0) ) / 60)" + " min read"
         if with?.isNew == true { newLabel.isHidden = false }
     }

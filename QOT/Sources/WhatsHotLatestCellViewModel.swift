@@ -10,11 +10,6 @@ import Foundation
 import qot_dal
 import DifferenceKit
 
-var domainModel: QDMDailyBriefBucket?
-protocol DailyBriefBucket {
-    var domainModel: QDMDailyBriefBucket? { get set }
-}
-
 final class WhatsHotLatestCellViewModel: BaseDailyBriefViewModel {
 
     // MARK: - Properties

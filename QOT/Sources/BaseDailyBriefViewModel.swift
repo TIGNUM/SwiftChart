@@ -9,7 +9,6 @@
 import Foundation
 import DifferenceKit
 import qot_dal
-
 class BaseDailyBriefViewModel: Differentiable {
 
     // MARK: - Properties
@@ -22,7 +21,7 @@ class BaseDailyBriefViewModel: Differentiable {
     }
 }
 
-// MARK: - Public
+    // MARK: - Public
 extension BaseDailyBriefViewModel {
     var differenceIdentifier: DifferenceIdentifier {
         return "-"

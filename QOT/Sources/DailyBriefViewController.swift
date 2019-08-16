@@ -12,14 +12,16 @@ import qot_dal
 import DifferenceKit
 
 protocol DailyBriefViewControllerDelegate: class {
+    func showDailyCheckIn()
+    func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
     func showCustomizeTarget()
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) // Save Get To Level 5 Answer Value
     func changedGetToLevel5Value(_ value: Int, from cell: UITableViewCell) // Update Selection of Get To Level 5 Answer Value
-    func saveTargetValue(value: Int?)
-    func getReferenceValues(completion: @escaping ([String]?) -> Void)
+    func saveTargetValue(value: Int?) //save sleep target
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: ContentItem?, pageName: PageName)
+    func openPreparation(_ qdmUserPreparation: QDMUserPreparation)
 }
 
 final class DailyBriefNavigationController: UINavigationController {
@@ -80,8 +82,6 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
             default:
                 return UITableViewCell()
             }
-        case .MY_PEAK_PERFORMANCE?:
-            return UITableViewCell()
         case .EXPLORE?:
             let exploreViewModel = viewModelBucket as? ExploreCellViewModel
             return getExploreCell(tableView, indexPath, exploreViewModel)
@@ -118,7 +118,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
             let goodToKnowCellViewModel = viewModelBucket as? GoodToKnowCellViewModel
             return getGoodToKnowCell(tableView, indexPath, goodToKnowCellViewModel!)
         case .FROM_MY_COACH?:
-            //            TODO remove the !
+            // TODO remove the !
             let coachMessageCellViewModel = viewModelBucket as? FromMyCoachCellViewModel
             return getCoachMessageCell(tableView, indexPath, coachMessageCellViewModel!)
         case .FROM_TIGNUM?:
@@ -149,27 +149,6 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
 
 private extension DailyBriefViewController {
 
-
-    //    TODO Check with Anais and remove this cell.
-    //    func getLatestWhatsHotCell(_ tableView: UITableView, _ indexPath: IndexPath) -> UITableViewCell {
-    //                interactor?.createLatestWhatsHotModel( completion: { [weak self] (model) in
-    //                    self?.latestWhatsHotModel = model
-    //                })
-    //        let cell: WhatsHotLatestCell = tableView.dequeueCell(for: indexPath)
-    //                let gesture = UITapGestureRecognizer(target: self, action: #selector(self.checkAction))
-    //                cell.addGestureRecognizer(gesture)
-    //                cell.configure(bucketTitle: "",
-    //                               title: latestWhatsHotModel?.title,
-    //                               image: latestWhatsHotModel?.image,
-    //                               author: latestWhatsHotModel?.author,
-    //                               publisheDate: latestWhatsHotModel?.publisheDate,
-    //                               timeToRead: latestWhatsHotModel?.timeToRead,
-    //                               isNew: latestWhatsHotModel?.isNew ?? false,
-    //                               remoteID: latestWhatsHotModel?.remoteID ?? 0)
-    //                cell.backgroundColor = .carbon
-    //                return cell
-    //    }
-
     /**
      * Method name: impactReadinessCell.
      * Description: Placeholder to display the Random Question Cell Information.
@@ -181,6 +160,10 @@ private extension DailyBriefViewController {
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
         let cell: ImpactReadinessCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: impactReadinessCellViewModel)
+        if impactReadinessCellViewModel?.readinessScore == 0 {
+            cell.readinessExploreButton.setTitle("Start your Daily check-in", for: .normal)
+        } else { cell.readinessExploreButton.setTitle("Explore your score", for: .normal)
+        }
         cell.backgroundColor = .carbon
         cell.tableView.reloadData()
         cell.delegate = self
@@ -473,10 +456,22 @@ private extension DailyBriefViewController {
                               _ indexPath: IndexPath,
                               _ peakPerformanceModel: MyPeakPerformanceCellViewModel?) -> UITableViewCell {
         let cell: MyPeakPerformanceTableCell = tableView.dequeueCell(for: indexPath)
-        cell.peakPerformanceList = peakPerformanceModel?.peakPerformanceSectionList ?? []
-        cell.configure(with: peakPerformanceModel)
-        cell.backgroundColor = .carbon
+        let peakPerformanceList = peakPerformanceModel?.peakPerformanceSectionList ?? []
+        let tableViewHeight = getPeakPerformanceTableViewHeight(peakPerformanceList, peakPerformanceModel)
+        cell.peakPerformanceList = peakPerformanceList
+        cell.configure(with: peakPerformanceModel,
+                       tableViewHeight: tableViewHeight)
+        cell.delegate = self
         return cell
+    }
+
+    func getPeakPerformanceTableViewHeight(_ modelItems: [MyPerformanceModelItem],
+                                           _ peakPerformanceModel: MyPeakPerformanceCellViewModel?) -> CGFloat {
+        let headerHeight: CGFloat = 78
+        let rowHeight: CGFloat = 99 * CGFloat(modelItems.filter { $0.type == .ROW }.count)
+        let sections = peakPerformanceModel?.peakPerformanceSectionList.filter { $0.type == .SECTION }
+        let sectionHeight: CGFloat = 200 * CGFloat(sections?.count ?? 0)
+        return headerHeight + rowHeight + sectionHeight
     }
 
     /**
@@ -562,6 +557,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
+    func showSolveResults(solve: QDMSolve) {
+        interactor?.showSolveResults(solve: solve)
+    }
+
     func presentMyToBeVision() {
         interactor?.presentMyToBeVision()
     }
@@ -584,10 +583,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         }
     }
 
-    func getReferenceValues(completion: @escaping ([String]?) -> Void) {
-        interactor?.getReferenceValues(completion: completion)
-    }
-
     func saveTargetValue(value: Int?) {
         interactor?.saveTargetValue(value: value)
     }
@@ -598,6 +593,16 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     // TODO Set correct pageName
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: ContentItem?, pageName: PageName) {
         stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem, pageName: pageName)
+    }
+
+    func openPreparation(_ qdmUserPreparation: QDMUserPreparation) {
+        let configurator = PrepareResultsConfigurator.configurate(qdmUserPreparation, [], canDelete: false)
+        let controller = PrepareResultsViewController(configure: configurator)
+        present(controller, animated: true)
+    }
+
+    func showDailyCheckIn() {
+        interactor?.showDailyCheckIn()
     }
 }
 

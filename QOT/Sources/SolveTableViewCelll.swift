@@ -16,7 +16,8 @@ final class SolveTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var button: UIButton!
-    var delegate: DailyBriefViewControllerDelegate?
+    weak var delegate: DailyBriefViewControllerDelegate?
+    private var solve: QDMSolve?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,8 +29,13 @@ final class SolveTableViewCell: UITableViewCell, Dequeueable {
     func configure(title: String?, date: String?, solve: QDMSolve?) {
         titleLabel.text = title?.uppercased()
         dateLabel.text = date
+        self.solve = solve
+
     }
 
     @IBAction func checkIt(_ sender: Any) {
+        if let solve = solve {
+        delegate?.showSolveResults(solve: solve)
+        }
     }
 }

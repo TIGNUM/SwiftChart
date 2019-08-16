@@ -19,7 +19,7 @@ final class SolveResultsViewController: UIViewController {
     // MARK: - Properties
     var interactor: SolveResultsInteractorInterface?
     weak var delegate: SolveResultsViewControllerDelegate?
-    private var isFollowUpActive = false
+    var isFollowUpActive = false
     private var results: SolveResults?
     @IBOutlet private weak var tableView: UITableView!
 
@@ -136,7 +136,7 @@ extension SolveResultsViewController: UITableViewDataSource {
             return cell
         case .followUp(let title, let subtitle)?:
             let cell: SolveFollowUpTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(title: title, description: subtitle)
+            cell.configure(title: title, description: subtitle, isFollowUp: isFollowUpActive)
             cell.delegate = self
             return cell
         case .cause(let cause, let explanation)?:
@@ -194,7 +194,11 @@ extension SolveResultsViewController: ConfirmationViewControllerDelegate {
 
 extension SolveResultsViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return [dismissNavigationItem(action: #selector(openConfirmationView))]
+        if interactor?.isPresentingExistingSolve() == true {
+            return [dismissNavigationItem(action: #selector(didTapDismissButton))]
+        } else {
+            return [dismissNavigationItem(action: #selector(openConfirmationView))]
+        }
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {

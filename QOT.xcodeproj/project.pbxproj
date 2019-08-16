@@ -5478,22 +5478,22 @@
 		9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */ = {
 			isa = PBXGroup;
 			children = (
-				9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */,
-				9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */,
-				9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */,
-				9C650B6B22FAC2E800DF2D6B /* MyPeakPerformanceRowModel.swift */,
-				9C650B6F22FB0BC100DF2D6B /* MyPeakPerformanceTableViewCell.swift */,
-				9C650B7122FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib */,
-				9C650B7522FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib */,
-				9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */,
-				9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */,
-				9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */,
-				9C650B7F22FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift */,
-				9CF3BE3C22FC5FF80027D111 /* MyPerformanceModelItem.swift */,
 				9CF3BE3E22FC62140027D111 /* MyPeakPerformanceModelItemType.swift */,
-				9CF3BE4022FC69D40027D111 /* MyPeakPerformanceRowModel.swift */,
+				9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */,
+				9C650B6B22FAC2E800DF2D6B /* MyPeakPerformanceRowModel.swift */,
+				9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */,
 				9CF3BE4422FC6A610027D111 /* MyPeakPerformanceSectionModel.swift */,
+				9C650B7F22FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift */,
+				9C650B6F22FB0BC100DF2D6B /* MyPeakPerformanceTableViewCell.swift */,
+				9C650B7722FB1F2500DF2D6B /* MyPeakPerformanceTitleCell.swift */,
 				9CF3BE4622FC7B460027D111 /* MypeakperformanceTitleModel.swift */,
+				9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */,
+				9CF3BE3C22FC5FF80027D111 /* MyPerformanceModelItem.swift */,
+				9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */,
+				9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */,
+				9C650B7522FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib */,
+				9C650B7122FB156300DF2D6B /* MyPeakPerformanceTitleCell.xib */,
+				9CF3BE4022FC69D40027D111 /* MyPeakPerformanceRowModel.swift */,
 			);
 			name = DailyBriefPeakPerformance;
 			sourceTree = "<group>";
@@ -7223,18 +7223,18 @@
 		F902CF4D22DE0F8F00FFC836 /* Daily Checkin II */ = {
 			isa = PBXGroup;
 			children = (
-				F902CF4E22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift */,
-				F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */,
-				F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */,
-				F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */,
-				F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */,
-				F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */,
-				F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */,
 				9C24238922F4631C00B911E6 /* DailyCheck2SHPIModel.swift */,
-				9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */,
-				9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */,
-				9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */,
 				9CF3BE4C22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift */,
+				9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */,
+				9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */,
+				9CF3BE4822FD70990027D111 /* DailyCheckin2ViewModel.swift */,
+				F902CF5422DE109F00FFC836 /* DailyCheckinInsightsCellViewModel.swift */,
+				F902CF5222DE101100FFC836 /* DailyCheckinInsightsPeakPerformanceCell.swift */,
+				F902CF4E22DE0FC700FFC836 /* DailyCheckinInsightsSHPICell.swift */,
+				F902CF5022DE0FE300FFC836 /* DailyCheckinInsightsTBVCell.swift */,
+				F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */,
+				F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */,
+				F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */,
 			);
 			name = "Daily Checkin II";
 			sourceTree = "<group>";

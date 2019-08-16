@@ -76,8 +76,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     viewModelNewList.append(self.createLeaderWisdom(createLeadersWisdom: bucket))
                 case .FEAST_OF_YOUR_EYES?:
                     viewModelNewList.append(self.createFeastForEyesModel(feastForEyesBucket: bucket))
-                case .WEATHER?:
-                    print("TODO")
                 case .FROM_MY_COACH?:
                     viewModelNewList.append(self.createFromMyCoachModel(fromCoachBucket: bucket))
                 case .MY_PEAK_PERFORMANCE?:
@@ -146,16 +144,16 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         router.presentMyToBeVision()
     }
 
-    func getReferenceValues(completion: @escaping ([String]?) -> Void) {
-        worker.getReferenceValues(completion: completion)
-    }
-
     func presentStrategyList(selectedStrategyID: Int) {
         router.presentStrategyList(selectedStrategyID: selectedStrategyID)
     }
 
     func presentToolsItems(selectedToolID: Int?) {
         router.presentToolsItems(selectedToolID: selectedToolID)
+    }
+
+    func showSolveResults(solve: QDMSolve) {
+        router.showSolveResults(solve: solve)
     }
 
     func createLatestWhatsHotModel(completion: @escaping ((WhatsHotLatestCellViewModel?)) -> Void) {
@@ -174,19 +172,32 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                             sprintTitle: "",
                                             sprintInfo: "",
                                             sprintStepNumber: 0,
-                                            relatedStrategiesModels: [SprintChallengeViewModel
-                                                .RelatedStrategiesModel(title: "", durationString: "", remoteID: 2)],
+                                            relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel(title: "",
+                                                                                                                      durationString: "", remoteID: 2)],
                                             domainModel: sprintBucket)
         }
-        return SprintChallengeViewModel(bucketTitle: sprintBucket.bucketText?.contentItems.first?.valueText,
-                                        sprintTitle: sprintBucket.sprint?.title,
+        var sprintInfo: String = ""
+        let searchTag: String = "SPRINT_BUCKET_DAY_" + String(sprintBucket.sprint?.currentDay ?? 0)
+        if sprintBucket.sprint?.title == "DAILY RECOVERY PLAN" {
+            sprintInfo =  getSprintInfo(sprintBucket, "SPRINT_RECOVERY_PLAN", searchTag)}
+        else if sprintBucket.sprint?.title == "LIVING YOUR TBV" {
+            sprintInfo =  getSprintInfo(sprintBucket, "SPRINT_LIVING_YOUR_TBV",searchTag)}
+        else if sprintBucket.sprint?.title == "BUILDING YOUR SLEEP RITUAL" {
+            sprintInfo =  getSprintInfo(sprintBucket, "SPRINT_BUILDING_YOUR_SLEEP_RITUAL",searchTag)}
 
-                                        //                                         SprintInfo to change to text related to day of sprint
-            sprintInfo: sprintBucket.sprint?.subtitle,
-            sprintStepNumber: sprintBucket.sprint?.currentDay,
-            relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel(title: "",
-                                                                                      durationString: "", remoteID: 2)],
-            domainModel: sprintBucket)
+        return SprintChallengeViewModel(bucketTitle: sprintBucket.bucketText?.contentItems.first?.valueText,
+                                        sprintTitle: sprintInfo,
+                                        sprintInfo: sprintBucket.sprint?.subtitle,
+                                        sprintStepNumber: sprintBucket.sprint?.currentDay,
+                                        relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel(title: "",
+                                                                                                                  durationString: "",
+                                                                                                                  remoteID: 2)],
+                                        domainModel: sprintBucket)
+    }
+
+    func getSprintInfo(_ bucket: QDMDailyBriefBucket, _ tag1: String, _ tag2 : String) -> String {
+        return bucket.contentCollections?.filter
+            {$0.searchTags.contains(tag1) && $0.searchTags.contains(tag2)}.first?.contentItems.first?.valueText ?? ""
     }
 
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> BaseDailyBriefViewModel {
@@ -228,17 +239,14 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func createMeAtMyBest(meAtMyBestBucket meAtMyBest: QDMDailyBriefBucket) -> BaseDailyBriefViewModel {
         let createMeAtMyBestTitle = meAtMyBest.bucketText?.title ?? "Testing Me AT MY BEST"
-
-
-        if meAtMyBest.toBeVision != nil {
-            let tbvEmptyIntro = meAtMyBest.contentItems?.filter {$0.searchTags.contains("intro_empty")}.first?.valueText ?? "This is sample intro empty"
-            let ctaTBVButtonText = meAtMyBest.contentItems?.filter {$0.searchTags.contains("cta_empty")}.first?.valueText ?? "Create your to be vision"
+        if meAtMyBest.toBeVision == nil {
+            let tbvEmptyIntro = meAtMyBest.contentItems?.filter {$0.searchTags.contains("intro_empty")}.first?.valueText ?? "intro_empty"
+            let ctaTBVButtonText = meAtMyBest.contentItems?.filter {$0.searchTags.contains("cta_empty")}.first?.valueText ?? "Create your To Be  Vision"
             return MeAtMyBestCellViewModel(title: createMeAtMyBestTitle, intro: tbvEmptyIntro, tbvStatement: "", intro2: "", buttonText: ctaTBVButtonText, domainModel: meAtMyBest)
-
         } else {
-            let tbvIntro = meAtMyBest.contentItems?.filter {$0.searchTags.contains("intro")}.first?.valueText ?? "This is sample intro"
+            let tbvIntro = meAtMyBest.contentItems?.filter {$0.searchTags.contains("intro")}.first?.valueText ?? "intro"
             let tbvSentence = meAtMyBest.toBeVisionTrack?.sentence ?? ""
-            let tbvIntro2 = meAtMyBest.contentItems?.filter {$0.searchTags.contains("intro2")}.first?.valueText ?? "This is sample intro 2 "
+            let tbvIntro2 = meAtMyBest.contentItems?.filter {$0.searchTags.contains("intro2")}.first?.valueText ?? "intro2 "
             let ctaTBVButtonText = meAtMyBest.contentItems?.filter {$0.searchTags.contains("cta_tbv")}.first?.valueText ?? "Rate"
             return MeAtMyBestCellViewModel(title: createMeAtMyBestTitle, intro: tbvIntro, tbvStatement: tbvSentence, intro2: tbvIntro2, buttonText: ctaTBVButtonText, domainModel: meAtMyBest)
         }
@@ -331,34 +339,48 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func createImpactReadinessCell(impactReadinessBucket impactReadiness: QDMDailyBriefBucket) -> BaseDailyBriefViewModel {
         var models: [ImpactReadinessCellViewModel.ImpactDataViewModel] = []
+        var arrayOfValues: [Int] = []
+        var readinessIntro: String? = ""
         guard let collections = impactReadiness.contentCollections else {
             return ImpactReadinessCellViewModel(title: "",
                                                 dailyCheckImageView: URL(string: ""),
                                                 howYouFeelToday: "",
                                                 asteriskText: "",
                                                 readinessScore: 66,
+                                                targetReferenceArray: [],
                                                 impactDataModels: [ImpactReadinessCellViewModel.ImpactDataViewModel(title: "",
                                                                                                                     subTitle: "",
-                                                                                                                    averageValue: 0,
+                                                                                                                    averageValues: [0],
                                                                                                                     targetRefValue: "")],
                                                 readinessIntro: "",
                                                 domainModel: impactReadiness)
         }
         collections.filter {$0.searchTags.contains("TITLE") }.forEach {(collection) in
             models.append(ImpactReadinessCellViewModel.ImpactDataViewModel(title: collection.title,
-                                                                           subTitle: collection.contentItems.first?.valueText,
-                                                                           averageValue: 0,
-                                                                           targetRefValue: ""))
+                                                                                subTitle: collection.contentItems.first?.valueText,
+                                                                                averageValues: [impactReadiness.dailyCheckInResult?.sleepQuantity ?? 0,
+                                                                                                impactReadiness.dailyCheckInResult?.sleepQuality ?? 0,
+                                                                                                impactReadiness.dailyCheckInResult?.load ?? 0,
+                                                                                                impactReadiness.dailyCheckInResult?.futureLoad ?? 0],
+                                                                                targetRefValue: ""))
         }
-        // if readiness score is nil, readinessIntro: impactReadiness.bucketText?.contentItems.filter{$0.format== .paragraph}.first?.valueText
-        return ImpactReadinessCellViewModel(title: impactReadiness.bucketText?.contentItems.first?.valueText,
-                                            dailyCheckImageView: URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? ""),
-                                            howYouFeelToday: collections.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText,
-                                            asteriskText: collections.filter {$0.searchTags.contains("additional")}.first?.contentItems.first?.valueText,
-                                            readinessScore: 87,
-                                            impactDataModels: models,
-                                            readinessIntro: "",
-                                            domainModel: impactReadiness)
+        arrayOfValues.append(Int(impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0))
+        arrayOfValues.append(Int(impactReadiness.dailyCheckInResult?.sleepQualityReference ?? 0))
+        arrayOfValues.append(Int(impactReadiness.dailyCheckInResult?.loadReference ?? 0))
+        arrayOfValues.append(Int(impactReadiness.dailyCheckInResult?.futureLoadReference ?? 0))
+        let responseIndex: Int = Int(impactReadiness.dailyCheckInResult?.impactReadiness?.rounded(.up) ?? 0)
+        if impactReadiness.dailyCheckInResult?.impactReadiness == nil {
+            readinessIntro = impactReadiness.bucketText?.contentItems.filter {$0.format == .paragraph}.first?.valueText
+        } else { readinessIntro = collections.filter {$0.searchTags.contains("impact_readiness_score")}.first?.contentItems.at(index: (responseIndex - 1))?.valueText }
+            return ImpactReadinessCellViewModel(title: impactReadiness.bucketText?.contentItems.first?.valueText,
+                                                dailyCheckImageView: URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? ""),
+                                                howYouFeelToday: collections.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText,
+                                                asteriskText: collections.filter {$0.searchTags.contains("additional")}.first?.contentItems.first?.valueText,
+                                                readinessScore: Int(round(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0)),
+                                                targetReferenceArray: arrayOfValues,
+                                                impactDataModels: models,
+                                                readinessIntro: readinessIntro,
+                                                domainModel: impactReadiness)
     }
 
     func saveAnswerValue(_ value: Int) {
@@ -454,7 +476,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         solveBucket.solves?.forEach {(solve) in
             solveModels.append(SolveReminderCellViewModel.SolveViewModel(title: solve.solveTitle,
                                                                          date: DateFormatter.whatsHot.string(from: solve.createdAt ?? Date()),
-                                                                         solve: nil))
+                                                                         solve: solve))
         }
 
         return SolveReminderCellViewModel(bucketTitle: solveBucket.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
@@ -517,33 +539,40 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func createMyPeakPerformanceModel(myPeakPerformanceBucket myPeakperformance: QDMDailyBriefBucket) -> MyPeakPerformanceCellViewModel {
         let peakPerformanceViewModel = MyPeakPerformanceCellViewModel(domainModel: myPeakperformance)
+        let bucketTitle :String = myPeakperformance.bucketText?.contentItems.first?.valueText ?? ""
         let calendar = Calendar.current
+        var contentSentence: String = ""
         myPeakperformance.bucketText?.contentItems.forEach({ (contentItem) in
             var localPreparationList = [QDMUserPreparation]()
-
-            if contentItem.searchTags.contains(obj: "IN THREE DAYS") {
+            if contentItem.searchTags.contains(obj: "IN_THREE_DAYS") {
+                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_3_DAYS_BEFORE")}.randomElement()?.contentItems.first?.valueText ?? ""
                 localPreparationList = myPeakperformance.preparations?.filter({
-                    calendar.isDateInYesterday($0.eventDate ?? Date())
+                    let inThreeDaysDate = $0.eventDate ?? Date()
+                    if 2..<3 ~= inThreeDaysDate.daysTo() {
+                        return true
+                    }
+                    return false
                 }) ?? [QDMUserPreparation]()
-            } else if contentItem.valueText == "TOMORROW" {
+            } else if contentItem.searchTags.contains(obj: "TOMORROW") {
+                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_BEFORE")}.randomElement()?.contentItems.first?.valueText ?? ""
                 localPreparationList = myPeakperformance.preparations?.filter({
                     calendar.isDateInTomorrow($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
-
-            } else if contentItem.valueText == "TODAY" {
+            } else if contentItem.searchTags.contains(obj:"TODAY") {
+                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_SAME_DAY")}.randomElement()?.contentItems.first?.valueText ?? ""
                 localPreparationList = myPeakperformance.preparations?.filter({
                     calendar.isDateInToday($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
-
-            } else if contentItem.valueText == "REFLECT" {
+            } else if contentItem.searchTags.contains(obj:"REFLECT") {
+                contentSentence = myPeakperformance.contentCollections?.filter {$0.searchTags.contains("MY_PEAK_PERFORMANCE_1_DAY_AFTER")}.randomElement()?.contentItems.first?.valueText ?? ""
                 localPreparationList = myPeakperformance.preparations?.filter({
                     calendar.isDateInYesterday($0.eventDate ?? Date()) }) ?? [QDMUserPreparation]()
             }
-
             if localPreparationList.count > 0 {
-                //                add the tile cell
-                peakPerformanceViewModel.peakPerformanceSectionList.append(MypeakperformanceTitleModel(title: "MY PEAK PERFORMANCE"))
-                peakPerformanceViewModel.peakPerformanceSectionList.append(MyPeakPerformanceSectionModel(sectionSubtitle: contentItem.valueDescription, sectionContent: "TODO Content from collection"))
+                // add the tile cell
+                peakPerformanceViewModel.peakPerformanceSectionList.append(MypeakperformanceTitleModel(title: bucketTitle))
+                peakPerformanceViewModel.peakPerformanceSectionList.append(MyPeakPerformanceSectionModel(sectionSubtitle: contentItem.valueDescription, sectionContent: contentSentence))
                 localPreparationList.forEach({ (localPreparationList) in
-                    peakPerformanceViewModel.peakPerformanceSectionList.append(MyPeakPerformanceRowModel(title: localPreparationList.name, subtitle: localPreparationList.eventType))
+                    let subtitle: String = localPreparationList.eventType ?? "" + DateFormatter.tbvTracker.string(from: localPreparationList.eventDate ?? Date())
+                    peakPerformanceViewModel.peakPerformanceSectionList.append(MyPeakPerformanceRowModel(qdmUserPreparation:  localPreparationList ,title: localPreparationList.name, subtitle: subtitle))
                 })
             }
         })
@@ -576,7 +605,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.first?.PeakPerformanceCount ?? 0
             let performanceTag = "\(performanceCount)_performances"
             let performanceContentItem = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first
-            _ = performanceContentItem?.valueText
             let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: peakPerformanceIntroText)
             dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel = model
         }
@@ -585,10 +613,14 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func createAboutMe(aboutMeBucket aboutMe: QDMDailyBriefBucket) -> AboutMeViewModel {
         //        Todo remove the testing about me and send the default.
-        let aboutMeBucketTitle = aboutMe.bucketText?.contentItems.first?.valueText ?? "Testing About Me"
+        let aboutMeBucketTitle = aboutMe.bucketText?.contentItems.first?.valueText ?? ""
         let aboutMeContent = aboutMe.stringValue ?? ""
         //        TODO About me additional text should be part of content collection for testing purpose we are sending * value for now
-        let aboutMeAdditionalContent = "todo additional text for the About me"
+        let aboutMeAdditionalContent = "*"
         return AboutMeViewModel(title: aboutMeBucketTitle, aboutMeContent: aboutMeContent, aboutMeMoreInfo: aboutMeAdditionalContent, domainModel: aboutMe)
+    }
+
+    func showDailyCheckIn(){
+        router.showDailyCheckIn()
     }
 }

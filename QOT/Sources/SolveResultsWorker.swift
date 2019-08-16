@@ -12,14 +12,16 @@ import qot_dal
 final class SolveResultsWorker {
 
     // MARK: - Properties
-    private var recovery: QDMRecovery3D? = nil
-    private var selectedAnswer: QDMAnswer? = nil
+    private var recovery: QDMRecovery3D?
+    private var selectedAnswer: QDMAnswer?
     private let type: ResultType
+    private var existingSolve: QDMSolve? = nil
 
     // MARK: - Init
-    init(selectedAnswer: QDMAnswer?, type: ResultType) {
+    init(selectedAnswer: QDMAnswer?, type: ResultType, solve: QDMSolve? = nil) {
         self.selectedAnswer = selectedAnswer
         self.type = type
+        self.existingSolve = solve
     }
 
     init(recovery: QDMRecovery3D?) {
@@ -52,18 +54,24 @@ extension SolveResultsWorker {
     }
 
     func save(_ completion: @escaping () -> Void) {
-        let contentId = recovery?.fatigueAnswer?.targetId(.content)
-        relatedStrategies(contentId) { [weak self] (relatedStrategies) in
-            let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
-            qot_dal.UserService.main.createSolve(selectedAnswerId: self?.selectedAnswer?.remoteID ?? 0,
-                                                 solutionCollectionId: self?.selectedAnswer?.targetId(.content) ?? 0,
-                                                 strategyIds: relatedStragyIds,
-                                                 followUp: true) { (solve, error) in
-                                                    completion()
+        if let solve = existingSolve {
+            qot_dal.UserService.main.updateSolve(solve) { (solve, error) in
+                completion()
+            }
+        } else {
+            let contentId = recovery?.fatigueAnswer?.targetId(.content)
+            relatedStrategies(contentId) { [weak self] (relatedStrategies) in
+                let relatedStragyIds = relatedStrategies.compactMap { $0.remoteID }
+                qot_dal.UserService.main.createSolve(selectedAnswerId: self?.selectedAnswer?.remoteID ?? 0,
+                                                     solutionCollectionId: self?.selectedAnswer?.targetId(.content) ?? 0,
+                                                     strategyIds: relatedStragyIds,
+                                                     followUp: true) { (solve, error) in
+                                                        completion()
+                }
             }
         }
     }
-
+    
     func deleteModel() {
         switch type {
         case .recovery:
@@ -76,6 +84,10 @@ extension SolveResultsWorker {
         case .solve:
             return
         }
+    }
+
+    func hasExistingSolve() -> Bool {
+        return existingSolve != nil
     }
 }
 

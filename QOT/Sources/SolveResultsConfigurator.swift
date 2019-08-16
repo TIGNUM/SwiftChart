@@ -10,10 +10,10 @@ import Foundation
 import qot_dal
 
 final class SolveResultsConfigurator {
-    static func make(from selectedAnswer: QDMAnswer, type: ResultType) -> (SolveResultsViewController) -> Void {
+    static func make(from selectedAnswer: QDMAnswer, type: ResultType, solve: QDMSolve?) -> (SolveResultsViewController) -> Void {
         return { (viewController) in
             let router = SolveResultsRouter(viewController: viewController)
-            let worker = SolveResultsWorker(selectedAnswer: selectedAnswer, type: type)
+            let worker = SolveResultsWorker(selectedAnswer: selectedAnswer, type: type, solve: nil)
             let presenter = SolveResultsPresenter(viewController: viewController)
             let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
@@ -27,6 +27,17 @@ final class SolveResultsConfigurator {
             let presenter = SolveResultsPresenter(viewController: viewController)
             let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor
+        }
+    }
+
+    static func make(from solve: QDMSolve) -> (SolveResultsViewController) -> Void {
+        return { (viewController) in
+            let router = SolveResultsRouter(viewController: viewController)
+            let worker = SolveResultsWorker(selectedAnswer: solve.selectedAnswer!, type: .solve, solve: solve)
+            let presenter = SolveResultsPresenter(viewController: viewController)
+            let interactor = SolveResultsInteractor(worker: worker, presenter: presenter, router: router)
+            viewController.interactor = interactor
+            viewController.isFollowUpActive = solve.followUp
         }
     }
 }

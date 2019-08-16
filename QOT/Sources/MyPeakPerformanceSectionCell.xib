@@ -16,24 +16,24 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="283" id="Y9B-EY-Ovw" customClass="MyPeakPerformanceSectionCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="372" height="283"/>
+        <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" id="Y9B-EY-Ovw" customClass="MyPeakPerformanceSectionCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="370" height="201"/>
             <autoresizingMask key="autoresizingMask"/>
-            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" ambiguous="YES" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y9B-EY-Ovw" id="6ww-Qh-7uG">
-                <rect key="frame" x="0.0" y="0.0" width="372" height="282.5"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Y9B-EY-Ovw" id="6ww-Qh-7uG">
+                <rect key="frame" x="0.0" y="0.0" width="370" height="200.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="IuR-aP-FDG">
-                        <rect key="frame" x="24" y="0.0" width="327" height="200"/>
+                        <rect key="frame" x="0.0" y="0.0" width="370" height="200.5"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="REFLECT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXz-tv-d2p">
-                                <rect key="frame" x="25" y="24" width="71" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="REFLECT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IXz-tv-d2p">
+                                <rect key="frame" x="24" y="15" width="322" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xKL-SJ-VzL">
-                                <rect key="frame" x="25" y="51" width="278" height="134"/>
+                                <rect key="frame" x="25" y="42" width="321" height="134.5"/>
                                 <string key="text">How did your Peak Performance 
 go yesterday? Take a minute to reflect on what did you do well and what would you do differently next time. Remember: reflection and an 
 after action review is a high performance tool. </string>
@@ -44,28 +44,30 @@ after action review is a high performance tool. </string>
                         </subviews>
                         <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="IXz-tv-d2p" firstAttribute="top" secondItem="IuR-aP-FDG" secondAttribute="top" constant="24" id="5yE-2R-lzs"/>
-                            <constraint firstItem="IXz-tv-d2p" firstAttribute="leading" secondItem="IuR-aP-FDG" secondAttribute="leading" constant="25" id="NYv-BP-kOD"/>
+                            <constraint firstItem="IXz-tv-d2p" firstAttribute="top" secondItem="IuR-aP-FDG" secondAttribute="top" constant="15" id="5yE-2R-lzs"/>
+                            <constraint firstAttribute="bottom" secondItem="xKL-SJ-VzL" secondAttribute="bottom" constant="24" id="DW6-PJ-5YM"/>
+                            <constraint firstAttribute="trailing" secondItem="IXz-tv-d2p" secondAttribute="trailing" constant="24" id="EGW-Qf-wTf"/>
+                            <constraint firstItem="IXz-tv-d2p" firstAttribute="leading" secondItem="IuR-aP-FDG" secondAttribute="leading" constant="24" id="NYv-BP-kOD"/>
                             <constraint firstAttribute="trailing" secondItem="xKL-SJ-VzL" secondAttribute="trailing" constant="24" id="YdZ-lk-N0c"/>
-                            <constraint firstAttribute="height" constant="200" id="dZ6-da-5Z8"/>
                             <constraint firstItem="xKL-SJ-VzL" firstAttribute="leading" secondItem="IuR-aP-FDG" secondAttribute="leading" constant="25" id="kLd-Vp-U2H"/>
-                            <constraint firstAttribute="width" constant="327" id="sOq-pw-4ya"/>
                             <constraint firstItem="xKL-SJ-VzL" firstAttribute="top" secondItem="IXz-tv-d2p" secondAttribute="bottom" constant="6" id="utu-Gk-APK"/>
                         </constraints>
                     </view>
                 </subviews>
                 <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
-                    <constraint firstItem="IuR-aP-FDG" firstAttribute="leading" secondItem="6ww-Qh-7uG" secondAttribute="leading" constant="24" id="Mxz-Aq-lU1"/>
+                    <constraint firstItem="IuR-aP-FDG" firstAttribute="leading" secondItem="6ww-Qh-7uG" secondAttribute="leading" id="Mxz-Aq-lU1"/>
+                    <constraint firstAttribute="bottom" secondItem="IuR-aP-FDG" secondAttribute="bottom" id="Uyy-jg-54t"/>
+                    <constraint firstItem="IuR-aP-FDG" firstAttribute="top" secondItem="6ww-Qh-7uG" secondAttribute="top" id="oAp-W3-amg"/>
                     <constraint firstItem="IuR-aP-FDG" firstAttribute="top" secondItem="6ww-Qh-7uG" secondAttribute="top" id="wBD-1t-IjW"/>
-                    <constraint firstAttribute="trailing" secondItem="IuR-aP-FDG" secondAttribute="trailing" constant="24" id="zxr-mR-Nzi"/>
+                    <constraint firstAttribute="trailing" secondItem="IuR-aP-FDG" secondAttribute="trailing" id="zxr-mR-Nzi"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>
                 <outlet property="myPeakPerformanceSectionTitle" destination="IXz-tv-d2p" id="oba-iz-sSj"/>
                 <outlet property="myPeakperformanceSectionContent" destination="xKL-SJ-VzL" id="chN-h4-JKz"/>
             </connections>
-            <point key="canvasLocation" x="-1637.68115942029" y="-135.60267857142856"/>
+            <point key="canvasLocation" x="-1639.1304347826087" y="-163.05803571428569"/>
         </tableViewCell>
     </objects>
 </document>

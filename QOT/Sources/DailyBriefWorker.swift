@@ -33,20 +33,20 @@ final class DailyBriefWorker {
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
     }()
-
     var rowCount: Int {
         return buckets.count
     }
 
+    // Get Daily Brief bucket
     func getDailyBriefBucketsForViewModel(completion: @escaping ([QDMDailyBriefBucket]) -> Void) {
-        qot_dal.DailyBriefService.main.getDailyBriefBuckets { (buckets, error) in
+        qot_dal.DailyBriefService.main.getDailyBriefBuckets({ (buckets, error) in
             if let error = error {
                 qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
             }
             if let bucketsList = buckets {
                 completion(bucketsList)
             }
-        }
+        })
     }
 }
 
@@ -80,26 +80,6 @@ extension DailyBriefWorker {
                 qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
             }
             completion(vision?.profileImageResource?.url())
-        }
-    }
-
-    func getReferenceValues(completion: @escaping ([String]?) -> Void) {
-        var arrayOfValues: [String] = []
-        settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget,
-                                              .DailyCheckInSleepQualityTarget,
-                                              .DailyCheckInLoadTarget,
-                                              .DailyCheckInFutureLoadTarget]) { (settings, _, error) in
-                                                if let error = error {
-                                                    qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
-                                                }
-                                                settings?.forEach { (setting) in
-                                                    if let longValue: Int64 = setting.value() {
-                                                        arrayOfValues.append(String(longValue/60))
-                                                    } else {
-                                                        arrayOfValues.append(setting.textValue ?? "")
-                                                    }
-                                                }
-                                                completion(arrayOfValues)
         }
     }
 

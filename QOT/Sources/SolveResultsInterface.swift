@@ -27,6 +27,7 @@ protocol SolveResultsInteractorInterface: Interactor {
     func openConfirmationView()
     func deleteModelAndDismiss()
     func dismiss()
+    func isPresentingExistingSolve() -> Bool
 }
 
 protocol SolveResultsRouterInterface {

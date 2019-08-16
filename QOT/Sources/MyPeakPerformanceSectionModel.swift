@@ -8,7 +8,7 @@
 
 import Foundation
 
-class MyPeakPerformanceSectionModel: MyPerformanceModelItem {
+final class MyPeakPerformanceSectionModel: MyPerformanceModelItem {
 
     // MARK: - Properties
     var type: MyPeakPerformanceModelItemType {

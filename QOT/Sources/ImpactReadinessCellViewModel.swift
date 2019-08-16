@@ -18,17 +18,19 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
     var title: String?
     var dailyCheckImageView: URL?
     var readinessScore: Int?
+    var targetReferenceArray: [Int]?
     var impactDataModels: [ImpactDataViewModel]?
 
     struct ImpactDataViewModel {
         var title: String?
         var subTitle: String?
-        var averageValue: Double?
+        var averageValues: [Double]?
         var targetRefValue: String?
     }
 
     // MARK: - Init
-    internal init(title: String?, dailyCheckImageView: URL?, howYouFeelToday: String?, asteriskText: String?, readinessScore: Int?, impactDataModels: [ImpactDataViewModel]?, readinessIntro: String?, domainModel: QDMDailyBriefBucket?) {
+    internal init(title: String?, dailyCheckImageView: URL?, howYouFeelToday: String?, asteriskText: String?, readinessScore: Int?, targetReferenceArray: [Int]?, impactDataModels: [ImpactDataViewModel]?, readinessIntro: String?, domainModel: QDMDailyBriefBucket?) {
+        self.targetReferenceArray = targetReferenceArray
         self.title = title
         self.dailyCheckImageView = dailyCheckImageView
         self.howYouFeelToday = howYouFeelToday

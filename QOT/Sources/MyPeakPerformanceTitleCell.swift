@@ -12,7 +12,7 @@ final class MyPeakPerformanceTitleCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var title: UILabel!
 
-    func configure() {
-        title.text = "MY PEAK PERFORMANCE"
+    func configure(with: MypeakperformanceTitleModel?) {
+        title.text = with?.title
     }
 }

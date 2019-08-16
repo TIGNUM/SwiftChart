@@ -14,9 +14,9 @@ final class MyPeakPerformanceSectionCell: UITableViewCell, Dequeueable {
 
     @IBOutlet weak var myPeakperformanceSectionContent: UILabel!
 
-    func configure() {
-        myPeakPerformanceSectionTitle?.text = "RANSksfs"
-        myPeakperformanceSectionContent?.text = "asdasdasd"
+    func configure(with: MyPeakPerformanceSectionModel?) {
+        myPeakPerformanceSectionTitle?.text = with?.sectionSubtitle
+        myPeakperformanceSectionContent?.text = with?.sectionContent
     }
 
 }

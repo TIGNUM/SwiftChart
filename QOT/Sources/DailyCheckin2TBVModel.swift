@@ -8,9 +8,19 @@
 
 import Foundation
 
-struct DailyCheckIn2TBVModel {
+final class DailyCheckIn2TBVModel {
+
+    // MARK: - Properties
     let title: String?
     let introText: String?
     let tbvSentence: String?
     let adviceText: String?
+
+    //MARK: - Init
+    init(title: String?, introText: String?, tbvSentence: String?, adviceText: String?) {
+        self.title = title
+        self.introText = introText
+        self.tbvSentence = tbvSentence
+        self.adviceText = adviceText
+    }
 }

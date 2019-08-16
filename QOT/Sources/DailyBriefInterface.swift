@@ -42,9 +42,10 @@ protocol DailyBriefInteractorInterface: Interactor {
     func getDailyBriefBucketsForViewModel()
     func saveAnswerValue(_ value: Int)
     func saveUpdateGetToLevel5Selection(_ value: Int)
-    func getReferenceValues(completion: @escaping ([String]?) -> Void)
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void)
     func saveTargetValue(value: Int?)
+    func showSolveResults(solve: QDMSolve)
+    func showDailyCheckIn()
 }
 
 protocol DailyBriefRouterInterface {
@@ -53,4 +54,6 @@ protocol DailyBriefRouterInterface {
     func showCustomizeTarget(_ data: RatingQuestionViewModel.Question?)
     func presentStrategyList(selectedStrategyID: Int)
     func presentToolsItems(selectedToolID: Int?)
+    func showSolveResults(solve: QDMSolve)
+    func showDailyCheckIn()
 }

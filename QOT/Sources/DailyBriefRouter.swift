@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class DailyBriefRouter {
 
@@ -35,6 +36,7 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func presentMyToBeVision() {
+
         let identifier = R.storyboard.myToBeVision.myVisionViewController.identifier
         let myVisionViewController = R.storyboard
             .myToBeVision().instantiateViewController(withIdentifier: identifier) as? MyVisionViewController
@@ -68,5 +70,19 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
                                                                         controllerType: .customize) {
             viewController.navigationController?.pushViewController(controller, animated: true)
         }
+    }
+
+    func showSolveResults(solve: QDMSolve) {
+        let configurator = SolveResultsConfigurator.make(from: solve)
+        let solveResultsController = SolveResultsViewController(configure: configurator)
+        viewController.present(solveResultsController, animated: true)
+    }
+
+    func showDailyCheckIn() {
+        guard let vieController = R.storyboard.dailyCheckin.dailyCheckinStartViewController() else { return }
+        DailyCheckinStartConfigurator.configure(viewController: vieController)
+        let navigationController = UINavigationController(rootViewController: vieController)
+        navigationController.isNavigationBarHidden = true
+        viewController.present(navigationController, animated: true, completion: nil)
     }
 }

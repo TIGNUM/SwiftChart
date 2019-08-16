@@ -14,7 +14,7 @@ final class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueab
     @IBOutlet private weak var dailyCheckImageView: UIImageView!
     @IBOutlet private weak var readinessScoreLabel: UILabel!
     @IBOutlet private weak var readinessDiagonalView: UIView!
-    @IBOutlet private weak var readinessExploreButton: UIButton!
+    @IBOutlet var readinessExploreButton: UIButton!
     @IBOutlet private weak var readinessDetailsView: UIView!
     @IBOutlet weak var tableView: UITableView!
     private var impactReadinessModel: ImpactReadinessCellViewModel?
@@ -24,15 +24,15 @@ final class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueab
     @IBOutlet private weak var asteriskText: UILabel!
     @IBOutlet private weak var readinessIntro: UILabel!
     @IBOutlet private weak var topGradientView: UIView!
+    private var referenceValues: [Int]?
     var score: Int = 0
-    var checkinDelegate: DailyCheckinStartViewControllerDelegate?
     var delegate: DailyBriefViewControllerDelegate?
     private var impactDataModels: [ImpactReadinessCellViewModel.ImpactDataViewModel]? = []
     @IBAction func readinessExploreButton(_ sender: Any) {
         if score != 0 {
         readinessDetailsView.isHidden = false
         } else {
-//             go to daily checkin page
+            delegate?.showDailyCheckIn()
         }
     }
 
@@ -60,10 +60,6 @@ final class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueab
         tableView?.delegate = self
         tableView?.dataSource = self
         readinessExploreButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
-        if score == 0 {
-            readinessExploreButton.setTitle("Start your Daily check-in", for: .normal)
-        } else {  readinessExploreButton.setTitle("Explore your score", for: .normal)
-        }
     }
 
     //    placeholder will be different and readiness score heck datatype
@@ -74,27 +70,21 @@ final class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueab
         self.asteriskText.text = viewModel?.asteriskText
         self.readinessIntro.text = viewModel?.readinessIntro
         self.impactDataModels = viewModel?.impactDataModels
+        self.referenceValues = viewModel?.targetReferenceArray
         titleLabel.text = viewModel?.title
         self.score = viewModel?.readinessScore ?? 0
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return impactDataModels?.count ?? 1
     }
 
-
-    //TODO Setup cell: ImpactDataTableViewCell as soon as we got the data.LeaderWisdomCellViewModel.swift
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: ImpactDataTableViewCell = tableView.dequeueCell(for: indexPath)
-//        delegate?.getReadinessTitles(completion: {(titles) in
-//            self.delegate?.getReadinessSubtitles(completion: {(subtitles) in
-////                self.delegate?.getReferenceValues(completion: {(references) in
-//                    if subtitles != nil  && titles != nil {
-//        cell.configure(title: impactDataModels?[indexPath.row].title ?? "",
-//                      subTitle: impactDataModels?[indexPath.row].subTitle ?? "",
-//                      averageValue: String(impactDataModels?[indexPath.row].averageValue ?? 0),
-//                      targetRefValue: impactDataModels?[indexPath.row].targetRefValue ?? "")
-
+        cell.configure(title: impactDataModels?[indexPath.row].title ?? "",
+                      subTitle: impactDataModels?[indexPath.row].subTitle ?? "",
+                      averageValue: String(impactDataModels?[indexPath.row].averageValues?[indexPath.row].rounded(.up) ?? 0),
+                      targetRefValue: referenceValues?[indexPath.row] ?? 0)
         cell.delegate = self.delegate
         cell.backgroundColor = .carbon
         if indexPath.row != 0 {

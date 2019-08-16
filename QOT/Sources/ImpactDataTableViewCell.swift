@@ -10,23 +10,23 @@ import Foundation
 import UIKit
 
 final class ImpactDataTableViewCell: UITableViewCell, Dequeueable {
-
     @IBOutlet private weak var title: UILabel!
     @IBOutlet private weak var subTitle: UILabel!
     @IBOutlet private weak var averageValue: UILabel!
+    weak var delegate: DailyBriefViewControllerDelegate?
     //TODO configure the data type for averageValue
     @IBOutlet private weak var customDiagonalView: UIView!
     @IBOutlet private weak var targetRefValue: UILabel!
     @IBOutlet private weak var targetRefLabel: UILabel!
     @IBOutlet private weak var customAsteriskView: UIView!
     @IBOutlet private weak var button: UIButton!
-    var delegate: DailyBriefViewControllerDelegate?
 
-    func configure(title: String, subTitle: String, averageValue: String, targetRefValue: String) {
+
+    func configure(title: String, subTitle: String, averageValue: String, targetRefValue: Int) {
         self.title.text = title.uppercased()
         self.subTitle.text = subTitle
         self.averageValue.text = averageValue
-        self.targetRefValue.text = targetRefValue
+        self.targetRefValue.text = String(targetRefValue)
         self.bringSubview(toFront: button)
     }
 

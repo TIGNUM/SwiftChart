@@ -76,4 +76,8 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
     func dismiss() {
         router.dismiss()
     }
+
+    func isPresentingExistingSolve() -> Bool {
+        return worker.hasExistingSolve()
+    }
 }

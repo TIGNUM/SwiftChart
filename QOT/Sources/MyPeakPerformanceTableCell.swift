@@ -11,22 +11,27 @@ import UIKit
 final class MyPeakPerformanceTableCell: UITableViewCell, UITableViewDelegate, Dequeueable, UITableViewDataSource {
 
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var tableViewHeightConstraint: NSLayoutConstraint!
     var peakPerformanceList = [MyPerformanceModelItem]()
+    var delegate: DailyBriefViewControllerDelegate?
+
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        tableView.delegate = self
-        tableView.dataSource = self
-        let sectionNib = UINib.init(nibName: "MyPeakPerformanceSectionCell", bundle: nil)
-        tableView.register(sectionNib, forCellReuseIdentifier: "MyPeakPerformanceSectionCell")
-        let rowNib = UINib.init(nibName: "MyPeakPerformanceRowCell", bundle: nil)
-        tableView.register(rowNib, forCellReuseIdentifier: "MyPeakPerformanceRowCell")
-        let titleNib = UINib.init(nibName: "MyPeakPerformanceTitleCell", bundle: nil)
-        tableView.register(titleNib, forCellReuseIdentifier: "MyPeakPerformanceTitleCell")
+        backgroundColor = .clear
+        contentView.backgroundColor = .clear
+        tableView.registerDequeueable(MyPeakPerformanceRowCell.self)
+        tableView.registerDequeueable(MyPeakPerformanceSectionCell.self)
+        tableView.registerDequeueable(MyPeakPerformanceTitleCell.self)
+        tableView.corner(radius: Layout.cornerRadius08)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return peakPerformanceList.count
+    }
+
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -34,32 +39,36 @@ final class MyPeakPerformanceTableCell: UITableViewCell, UITableViewDelegate, De
         print(item.type)
         switch item.type {
         case .SECTION:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "MyPeakPerformanceSectionCell",
-                                                        for: indexPath) as? MyPeakPerformanceSectionCell {
-                cell.configure()
-                return cell
-            }
+            let cell: MyPeakPerformanceSectionCell = tableView.dequeueCell(for: indexPath)
+            let model = item as? MyPeakPerformanceSectionModel
+            cell.configure(with: model)
+            return cell
         case .ROW:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "MyPeakPerformanceRowCell",
-                                                        for: indexPath) as? MyPeakPerformanceRowCell {
-                cell.configure()
-                return cell
-            }
+            let cell: MyPeakPerformanceRowCell = tableView.dequeueCell(for: indexPath)
+            let model = item as? MyPeakPerformanceRowModel
+            cell.configure(with: model)
+            return cell
         case .TITLE:
-            if let cell = tableView.dequeueReusableCell(withIdentifier: "MyPeakPerformanceTitleCell",
-                                                        for: indexPath) as? MyPeakPerformanceTitleCell {
-                cell.configure()
-                return cell
-            }
+            let cell: MyPeakPerformanceTitleCell = tableView.dequeueCell(for: indexPath)
+            let model = item as? MypeakperformanceTitleModel
+            cell.configure(with: model)
+            return cell
         }
-        return UITableViewCell()
     }
 
-    func configure(with: MyPeakPerformanceCellViewModel?) {
+    func configure(with: MyPeakPerformanceCellViewModel?, tableViewHeight: CGFloat) {
         if let list = with?.peakPerformanceSectionList, list.isEmpty == false {
             self.peakPerformanceList = list
+            tableViewHeightConstraint.constant = tableViewHeight
             tableView.reloadData()
         }
     }
 
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let item = peakPerformanceList[indexPath.row]
+        if item.type == .ROW {
+            let item = item as? MyPeakPerformanceRowModel
+            delegate?.openPreparation((item?.qdmUserPreparation!)!)
+        }
+    }
 }

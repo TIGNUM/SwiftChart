@@ -26,9 +26,10 @@ final class SolveFollowUpTableViewCell: UITableViewCell, Dequeueable {
 
 extension SolveFollowUpTableViewCell {
 
-    func configure(title: String, description: String) {
+    func configure(title: String, description: String, isFollowUp: Bool = false) {
         titleLabel.text = title
         descriptionLabel.text = description
+        followUpSwitch.isOn = isFollowUp
     }
 }
 
