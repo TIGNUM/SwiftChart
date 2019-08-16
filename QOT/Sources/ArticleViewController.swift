@@ -11,7 +11,7 @@ import Anchorage
 import AMScrollingNavbar
 
 protocol ArticleDelegate: class {
-    func didTapMarkAsRead()
+    func didTapMarkAsRead(_ read: Bool)
 }
 
 var colorMode = ColorMode.dark
@@ -135,6 +135,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     private var header: Article.Header?
     private var audioButton = AudioButton()
     private var currentFadeView = GradientView(colors: [], locations: [])
+    private var readButtonIndexPath: IndexPath?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var topTitleNavigationItem: UINavigationItem!
     @IBOutlet private weak var moreBarButtonItem: UIBarButtonItem!
@@ -602,6 +603,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             let cell: MarkAsReadTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(selected: selected)
             cell.delegate = self
+            readButtonIndexPath = indexPath
             return cell
         case .articleRelatedStrategy(let title, let description, _):
             let cell: ArticleRelatedTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -701,10 +703,26 @@ extension ArticleViewController: ClickableLabelDelegate {
     }
 }
 
+// MARK: - UIScrollViewDelegate
+
+extension ArticleViewController: UIScrollViewDelegate {
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        guard let interactor = interactor else {
+            return
+        }
+        if !interactor.isRead {
+            interactor.markArticleAsRead(true)
+            if let indexPath = readButtonIndexPath {
+                tableView.reloadRows(at: [indexPath], with: .none)
+            }
+        }
+    }
+}
+
 // MARK: - ArticleDelegate
 extension ArticleViewController: ArticleDelegate {
-    func didTapMarkAsRead() {
-        interactor?.markArticleAsRead()
+    func didTapMarkAsRead(_ read: Bool) {
+        interactor?.markArticleAsRead(read)
     }
 }
 

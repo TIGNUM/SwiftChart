@@ -12,6 +12,7 @@ import CoreLocation
 import RealmSwift
 import Buglife
 import Alamofire
+import Kingfisher
 
 protocol LocalNotificationHandlerDelegate: class {
     func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool
@@ -113,6 +114,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             incomingLocationEvent(launchOptions: launchOptions)
             setupUAirship()
             setupHockeyApp()
+            setupKingfisherCache()
             #if DEBUG
                 log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
                 log("\nopen -a \"Realm Studio\" \(DatabaseManager.databaseURL)\n")
@@ -280,6 +282,12 @@ private extension AppDelegate {
     var appFilePath: String {
         let url = URL.documentDirectory.deletingLastPathComponent()
         return url.absoluteString.removeFilePrefix
+    }
+
+    func setupKingfisherCache() {
+        let cache = ImageCache.default
+        cache.memoryStorage.config.expiration = .days(1)
+        cache.diskStorage.config.expiration = .days(30)
     }
 }
 

@@ -47,6 +47,6 @@ extension MarkAsReadTableViewCell {
 extension MarkAsReadTableViewCell {
     @IBAction func didTapMarkAsReadButton() {
         setMarkAsReadStatus(read: !isRead)
-        delegate?.didTapMarkAsRead()
+        delegate?.didTapMarkAsRead(isRead)
     }
 }

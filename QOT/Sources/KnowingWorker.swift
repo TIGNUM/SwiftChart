@@ -27,9 +27,12 @@ final class KnowingWorker {
         qot_dal.ContentService.main.getContentCategories(StrategyContentCategories) { (categories) in
             var strategyItems: [Knowing.StrategyItem] = []
             for strategy in categories ?? [] {
-                let viewedCount = strategy.readCount
-                let itemCount = strategy.contentCollections.filter({ (content) -> Bool in
+                let items = strategy.contentCollections.filter({ (content) -> Bool in
                     content.section == .LearnStrategies
+                })
+                let itemCount = items.count
+                let viewedCount = items.filter({ (content) -> Bool in
+                    content.viewedAt != nil
                 }).count
 
                 strategyItems.append(Knowing.StrategyItem(title: strategy.title,

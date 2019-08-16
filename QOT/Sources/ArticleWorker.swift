@@ -297,8 +297,22 @@ final class ArticleWorker {
         }
     }
 
-    func markArticleAsRead() {
-//        services.contentService.setContentViewed(remoteID: selectedID)
+    func markArticleAsRead(_ read: Bool) {
+        //Ready to implement write of "viewedAt: Date" property
+//        if read {
+//            qot_dal.ContentService.setContentRead(remoteID: selectedID)
+//        } else {
+//            qot_dal.contentService.setContentNotRead(remoteID: selectedID)
+//        }
+    }
+
+    var isRead: Bool {
+        //Ready to implement write of "viewedAt: Date" property
+//        if let content = qot_dal.contentService.contentCollection(id: selectedID) {
+//            return content.contentRead != nil
+//        }
+//        return false
+        return true
     }
 
     func itemCount(in section: Int) -> Int {

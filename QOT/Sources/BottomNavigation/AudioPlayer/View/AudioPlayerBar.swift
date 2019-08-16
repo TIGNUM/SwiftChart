@@ -150,8 +150,10 @@ extension AudioPlayerBar {
     }
 
     func updateProgress(progress: Float) {
-        progressView.progress = progress
-        progressModeProgressView.progress = progress
+        UIView.animate(withDuration: 0.25) {
+            self.progressView.progress = progress
+            self.progressModeProgressView.progress = progress
+        }
     }
 
     func updateTimeValues(currentTime: Double, totalTime: Double) {
