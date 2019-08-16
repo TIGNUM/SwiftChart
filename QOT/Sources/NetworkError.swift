@@ -25,6 +25,7 @@ struct NetworkError: Error {
         case cancelled
         case unauthenticated
         case notFound
+        case badRequest
     }
 
     let type: NetworkErrorType
@@ -100,6 +101,8 @@ extension Error {
                 networkError = NetworkError(type: .unauthenticated)
             case .notFound:
                 networkError = NetworkError(type: .notFound)
+            case .badRequest:
+                networkError = NetworkError(type: .badRequest)
             }
         }
 
@@ -137,6 +140,8 @@ extension NetworkError.NetworkErrorType: CustomDebugStringConvertible {
             return "Unknow Error"
         case .notFound:
             return "404 Not Found"
+        case .badRequest:
+            return "Bad request"
         }
     }
 }
