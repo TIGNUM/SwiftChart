@@ -24,6 +24,8 @@ protocol ArticlePresenterInterface {
 
 protocol ArticleInteractorInterface: class, Interactor {
     var sectionCount: Int { get }
+    var sectionHeaderHeight: CGFloat { get }
+    var sectionNeedsLine: Bool { get }
     var relatedArticles: [Article.RelatedArticleWhatsHot] { get }
     var audioItem: Article.Item? { get }
     var categoryTitle: String { get }
@@ -32,6 +34,7 @@ protocol ArticleInteractorInterface: class, Interactor {
     var audioURL: URL? { get }
     var isShareable: Bool { get }
     func itemCount(in section: Int) -> Int
+    func headerTitle(for section: Int) -> String?
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot?
     func articleItem(at indexPath: IndexPath) -> Article.Item?
     func markArticleAsRead()

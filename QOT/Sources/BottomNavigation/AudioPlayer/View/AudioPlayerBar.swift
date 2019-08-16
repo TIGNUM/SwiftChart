@@ -114,6 +114,7 @@ extension AudioPlayerBar {
             if currentMedia?.mediaRemoteId != nil {
                 audioPlayer.resetPlayer()
             }
+            progressModeSlider.isUserInteractionEnabled = false
             currentMedia = media
             audioPlayer.delegate = self
             progressView.progress = 0
@@ -213,6 +214,7 @@ extension AudioPlayerBar: AudioPlayerDelegate {
         guard progress.isNaN == false else { return }
         updateProgress(progress: progress)
         progressModeSlider.setValue(progress, animated: true)
+        progressModeSlider.isUserInteractionEnabled = true
         updateTimeValues(currentTime: currentTime, totalTime: totalTime)
     }
 

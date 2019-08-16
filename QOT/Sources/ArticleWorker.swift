@@ -70,6 +70,8 @@ final class ArticleWorker {
     private var whatsHotItems = [Article.Item]()
 
     private var learnStrategyItems = [Article.Item]()
+    private var learnStrategyRelatedItems = [Article.Item]()
+    private var learnStrategyNextItems = [Article.Item]()
 
     // MARK: - Init
 
@@ -131,6 +133,9 @@ final class ArticleWorker {
 
     private func setupLearnStragyItems() {
         var items = [Article.Item]()
+        var itemsNextUp = [Article.Item]()
+        var itemsRelated = [Article.Item]()
+
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         content?.contentItems.filter { $0.tabs.first == "BULLETS" }.forEach { (bulletItem) in
             items.append(Article.Item(type: ContentItemValue(item: bulletItem), content: bulletItem.valueText))
@@ -146,24 +151,24 @@ final class ArticleWorker {
                 if let timeString = DateComponentsFormatter.timeIntervalToString(date.timeIntervalSinceNow, isShort: true) {
                     timeToReadText = "PDF | \(timeString)  \(R.string.localized.learnContentItemToRead())"
                 }
-                items.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
-                                                                     description: timeToReadText,
-                                                                     pdfURL: pdfURL,
-                                                                     itemID: item.remoteID ?? 0)))
+                itemsRelated.append(Article.Item(type: ContentItemValue.pdf(title: item.valueText,
+                                                                            description: timeToReadText,
+                                                                            pdfURL: pdfURL,
+                                                                            itemID: item.remoteID ?? 0)))
             }
         }
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .video }.forEach { item in
             if let videoURL = URL(string: item.valueMediaURL ?? "") {
-                items.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? 0,
-                                                                       title: item.valueText,
-                                                                       description: item.valueDescription,
-                                                                       placeholderURL: URL(string: item.valueImageURL ?? ""),
-                                                                       videoURL: videoURL,
-                                                                       duration: item.valueDuration ?? 0)))
+                itemsRelated.append(Article.Item(type: ContentItemValue.video(remoteId: item.remoteID ?? 0,
+                                                                              title: item.valueText,
+                                                                              description: item.valueDescription,
+                                                                              placeholderURL: URL(string: item.valueImageURL ?? ""),
+                                                                              videoURL: videoURL,
+                                                                              duration: item.valueDuration ?? 0)))
             }
         }
         if let nextUp = self.nextUp {
-            items.append(nextUp)
+            itemsNextUp.append(nextUp)
         }
 //        relatedArticlesStrategy.forEach { relatedArticle in
 //            items.append(Article.Item(type: ContentItemValue.articleRelatedStrategy(title: relatedArticle.title,
@@ -171,7 +176,8 @@ final class ArticleWorker {
 //                                                                                    itemID: relatedArticle.remoteID)))
 //        }
         learnStrategyItems = items
-
+        learnStrategyNextItems = itemsNextUp
+        learnStrategyRelatedItems = itemsRelated
     }
 
     private func setupWhatsHotArticleItems() {
@@ -242,10 +248,30 @@ final class ArticleWorker {
     }
 
     var sectionCount: Int {
-        if content?.isWhatsHot ?? false {
+        switch content?.section {
+        case .WhatsHot?:
             return relatedArticlesWhatsHot.isEmpty ? 1 : 2
+        default:
+            return 3
         }
-        return 1
+    }
+
+    var sectionHeaderHeight: CGFloat {
+        switch content?.section {
+        case .WhatsHot?:
+            return 60
+        default:
+            return 40
+        }
+    }
+
+    var sectionNeedsLine: Bool {
+        switch content?.section {
+        case .WhatsHot?:
+            return true
+        default:
+            return false
+        }
     }
 
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
@@ -260,7 +286,14 @@ final class ArticleWorker {
         case .WhatsHot?:
             return indexPath.section == 0 ? whatsHotArticleItems.at(index: indexPath.item) : whatsHotItems.at(index: indexPath.item)
         default:
-            return learnStrategyItems.at(index: indexPath.item)
+            switch indexPath.section {
+            case 0:
+                return learnStrategyItems.at(index: indexPath.item)
+            case 1:
+                return learnStrategyRelatedItems.at(index: indexPath.item)
+            default:
+                return learnStrategyNextItems.at(index: indexPath.item)
+            }
         }
     }
 
@@ -273,7 +306,23 @@ final class ArticleWorker {
         case .WhatsHot?:
             return section == 0 ? whatsHotArticleItems.count : whatsHotItems.count
         default:
-            return learnStrategyItems.count
+            switch section {
+            case 0:
+                return learnStrategyItems.count
+            case 1:
+                return learnStrategyRelatedItems.count
+            default:
+                return learnStrategyNextItems.count
+            }
+        }
+    }
+
+    func headerTitle(for section: Int) -> String? {
+        switch content?.section {
+        case .WhatsHot?:
+            return section == 0 ? nil : R.string.localized.prepareContentReadMore().uppercased()
+        default:
+            return section != 1 ? nil : R.string.localized.learnArticleItemRelatedContent()
         }
     }
 

@@ -43,7 +43,7 @@ final class ArticleNextUpTableViewCell: ArticleRelatedTableViewCell {
         super.configure(title: title, durationString: durationString, icon: icon)
         headerLabel.attributedText = NSAttributedString(string: header,
                                                        letterSpacing: 0.5,
-                                                       font: .sfProtextMedium(ofSize: 16),
+                                                       font: .sfProtextMedium(ofSize: 14),
                                                        lineSpacing: 1,
                                                        textColor: colorMode.text.withAlphaComponent(0.4),
                                                        alignment: .left)

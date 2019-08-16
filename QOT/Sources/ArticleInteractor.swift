@@ -45,6 +45,14 @@ extension ArticleInteractor: ArticleInteractorInterface {
         return worker.sectionCount
     }
 
+    var sectionHeaderHeight: CGFloat {
+        return worker.sectionHeaderHeight
+    }
+
+    var sectionNeedsLine: Bool {
+        return worker.sectionNeedsLine
+    }
+
     var relatedArticles: [Article.RelatedArticleWhatsHot] {
         return worker.relatedArticlesWhatsHot
     }
@@ -83,6 +91,10 @@ extension ArticleInteractor: ArticleInteractorInterface {
 
     func itemCount(in section: Int) -> Int {
         return worker.itemCount(in: section)
+    }
+
+    func headerTitle(for section: Int) -> String? {
+        return worker.headerTitle(for: section)
     }
 
     func didTapLink(_ url: URL) {

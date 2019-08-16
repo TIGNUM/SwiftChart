@@ -270,6 +270,8 @@
 "Learn.Content.Item.Article" = "Article";
 "Learn.Content.Item.Articles" = "Articles";
 "Learn.Content.Item.ToRead" = "To read";
+"Learn.Article.Item.NextUp" = "NEXT UP";
+"Learn.Article.Item.RelatedContent" = "RELATED CONTENT";
 
 "Sidebar.SettingsMenu.Settings" = "SETTINGS";
 "Sidebar.SettingsMenu.GeneralButton" = "GENERAL";

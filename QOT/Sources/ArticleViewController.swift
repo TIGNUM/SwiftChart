@@ -255,7 +255,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
-        tableView.estimatedSectionHeaderHeight = 60
+        tableView.estimatedSectionHeaderHeight = interactor?.sectionHeaderHeight ?? 0
     }
 
     func setupAudioItem() {
@@ -288,6 +288,22 @@ private extension ArticleViewController {
     func updateMoreButton(customView: UIView?) {
         moreBarButtonItem.customView = customView
     }
+
+    func moreTopNavAdd() {
+        updateMoreButton(customView: customMoreButton)
+        topTitleNavigationItem.setLeftBarButtonItems(topBarButtonItems, animated: true)
+        topTitleNavigationItem.title = nil
+    }
+
+    func moreTopNavRemove() {
+        updateMoreButton(customView: nil)
+        topTitleNavigationItem.setLeftBarButtonItems([], animated: true)
+        if topTitleNavigationItem.title == nil {
+            if (tableView.visibleCells.filter { $0.tag == 111 }).isEmpty == true {
+                topTitleNavigationItem.title = header?.title
+            }
+        }
+    }
 }
 
 // MARK: - BottomNavigation
@@ -314,19 +330,10 @@ extension ArticleViewController {
 private extension ArticleViewController {
 
     @IBAction func didTapMoreButton() {
-        if topTitleNavigationItem.leftBarButtonItems == nil ||
-            topTitleNavigationItem.leftBarButtonItems?.isEmpty == true {
-            updateMoreButton(customView: customMoreButton)
-            topTitleNavigationItem.title = nil
-            topTitleNavigationItem.setLeftBarButtonItems(topBarButtonItems, animated: true)
+        if topTitleNavigationItem.leftBarButtonItems == nil || topTitleNavigationItem.leftBarButtonItems?.isEmpty == true {
+            moreTopNavAdd()
         } else {
-            updateMoreButton(customView: nil)
-            topTitleNavigationItem.setLeftBarButtonItems([], animated: true)
-            if topTitleNavigationItem.title == nil {
-                if (tableView.visibleCells.filter { $0.tag == 111 }).isEmpty == true {
-                    topTitleNavigationItem.title = header?.title
-                }
-            }
+            moreTopNavRemove()
         }
     }
 
@@ -340,14 +347,14 @@ private extension ArticleViewController {
         colorMode = colorMode == .dark ? .darkNot : .dark
         setColorMode()
         tableView.reloadData()
-        didTapMoreButton()
+        moreTopNavRemove()
     }
 
     @objc func didTapTextScaleItem() {
         trackUserEvent(.FONT_SIZE, value: interactor?.remoteID, valueType: .CONTENT, action: .TAP)
         textScale = textScale == .scaleNot ? .scale : .scaleNot
         tableView.reloadData()
-        didTapMoreButton()
+        moreTopNavRemove()
     }
 
     @objc func didTapShareItem() {
@@ -378,6 +385,8 @@ extension ArticleViewController: ArticleViewControllerInterface {
         setupTableView()
         setColorMode()
         self.view.showLoadingSkeleton(with: [.fiveLinesWithTopBroad])
+
+        (navigationController as? ScrollingNavigationController)?.scrollingNavbarDelegate = self
     }
 
     func hasBookmark(_ hasBookmark: Bool) {
@@ -602,7 +611,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             return cell
         case .articleNextUp(let title, let description, _):
             let cell: ArticleNextUpTableViewCell = tableView.dequeueCell(for: indexPath)
-            cell.configure(header: "NEXT UP",
+            cell.configure(header: R.string.localized.learnArticleItemNextUp(),
                            title: title,
                            durationString: description,
                            icon: R.image.ic_seen_of())
@@ -657,17 +666,19 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if section == 0 {
+        guard let headerTitle = interactor?.headerTitle(for: section) else {
             return nil
         }
 
         let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: tableView.estimatedSectionHeaderHeight))
         headerView.backgroundColor = .clear
-        let lineView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
-        lineView.backgroundColor = colorMode.text.withAlphaComponent(0.1)
-        headerView.addSubview(lineView)
+        if interactor?.sectionNeedsLine ?? false {
+            let lineView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
+            lineView.backgroundColor = colorMode.text.withAlphaComponent(0.1)
+            headerView.addSubview(lineView)
+        }
         let titleLabel = UILabel(frame: CGRect(x: 28, y: headerView.frame.size.height - 18.0, width: view.frame.width, height: 18))
-        titleLabel.attributedText = NSAttributedString(string: R.string.localized.prepareContentReadMore().uppercased(),
+        titleLabel.attributedText = NSAttributedString(string: headerTitle,
                                                        letterSpacing: 1.5,
                                                        font: .sfProtextMedium(ofSize: 14),
                                                        textColor: colorMode.text.withAlphaComponent(0.4),
@@ -677,7 +688,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return section == 0 ? 0 : tableView.estimatedSectionHeaderHeight
+        return (interactor?.headerTitle(for: section) ?? "").isEmpty ? 0 : tableView.estimatedSectionHeaderHeight
     }
 }
 
@@ -701,5 +712,13 @@ extension ArticleViewController: ArticleDelegate {
 extension ArticleViewController {
     @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
+    }
+}
+
+extension ArticleViewController: ScrollingNavigationControllerDelegate {
+    @objc func scrollingNavigationController(_ controller: ScrollingNavigationController, willChangeState state: NavigationBarState) {
+        if state != .expanded {
+            moreTopNavRemove()
+        }
     }
 }

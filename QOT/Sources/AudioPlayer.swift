@@ -141,7 +141,6 @@ class AudioPlayer {
             _isReset = false
         }
         updater = CADisplayLink(target: self, selector: #selector(trackAudio))
-        updater?.preferredFramesPerSecond = 1
         updater?.add(to: RunLoop.current, forMode: RunLoopMode.commonModes)
     }
 
