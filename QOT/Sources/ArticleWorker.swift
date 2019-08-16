@@ -20,8 +20,6 @@ final class ArticleWorker {
 
     private var relatedContent = [QDMContentCollection]()
 
-    private var isWhatsHot: Bool = false
-
     private var articleAudioItem: QDMContentItem?
 
     var articleHeader: Article.Header = Article.Header()
@@ -68,6 +66,7 @@ final class ArticleWorker {
     var nextUp: Article.Item?
 
     // TODO Create items for LEARN_STRATEGIES; Figure how NEXT UP should work, what about videos,
+    private var whatsHotArticleItems = [Article.Item]()
     private var whatsHotItems = [Article.Item]()
 
     private var learnStrategyItems = [Article.Item]()
@@ -87,14 +86,13 @@ final class ArticleWorker {
         guard let content = self.content else {
             return
         }
-        isWhatsHot = content.section == .WhatsHot
         bookmark = content.userStorages?.filter({ (storage) -> Bool in
             storage.userStorageType == .BOOKMARK
         }).first
         articleAudioItem = content.contentItems.filter({ (item) -> Bool in
             item.format == .audio && item.tabs.contains(obj: "AUDIO")
         }).first
-        articleHeader = Article.Header(categoryTitle: content.contentCategoryTitle ?? "",
+        articleHeader = Article.Header(categoryTitle: content.contentCategoryTitle?.uppercased() ?? "",
                                        title: content.title,
                                        author: content.author,
                                        publishDate: content.publishedDate,
@@ -104,6 +102,7 @@ final class ArticleWorker {
         nextUp = nil
         let setupSynchronousSteps: () -> Void = { [weak self] in
             self?.setupRelatedArticlesWhatsHot()
+            self?.setupWhatsHotArticleItems()
             self?.setupWhatsHotItems()
             self?.setupRelatedArticlesStrtegy()
             self?.setupLearnStragyItems()
@@ -175,7 +174,7 @@ final class ArticleWorker {
 
     }
 
-    private func setupWhatsHotItems() {
+    private func setupWhatsHotArticleItems() {
         var items = [Article.Item]()
         items.append(Article.Item(type: ContentItemValue.headerText(header: articleHeader)))
         items.append(Article.Item(type: ContentItemValue.headerImage(imageURLString: articleHeader.imageURL)))
@@ -187,6 +186,11 @@ final class ArticleWorker {
                                       bundledAudioURL: nil,
                                       thumbnailURL: item.valueImageURL))
         }
+        whatsHotArticleItems = items
+    }
+
+    private func setupWhatsHotItems() {
+        var items = [Article.Item]()
         relatedArticlesWhatsHot.forEach { relatedArticle in
             items.append(Article.Item(type: ContentItemValue.articleRelatedWhatsHot(relatedArticle: relatedArticle)))
         }
@@ -238,7 +242,10 @@ final class ArticleWorker {
     }
 
     var sectionCount: Int {
-        return relatedArticlesWhatsHot.count > 0 ? 2 : 1
+        if content?.isWhatsHot ?? false {
+            return relatedArticlesWhatsHot.isEmpty ? 1 : 2
+        }
+        return 1
     }
 
     func relatedArticle(at indexPath: IndexPath) -> Article.RelatedArticleWhatsHot? {
@@ -249,12 +256,12 @@ final class ArticleWorker {
     }
 
     func articleItem(at indexPath: IndexPath) -> Article.Item? {
-        if isWhatsHot, whatsHotItems.count > indexPath.item {
-            return whatsHotItems.at(index: indexPath.item)
-        } else if learnStrategyItems.count > indexPath.item {
+        switch content?.section {
+        case .WhatsHot?:
+            return indexPath.section == 0 ? whatsHotArticleItems.at(index: indexPath.item) : whatsHotItems.at(index: indexPath.item)
+        default:
             return learnStrategyItems.at(index: indexPath.item)
         }
-        return nil
     }
 
     func markArticleAsRead() {
@@ -262,7 +269,12 @@ final class ArticleWorker {
     }
 
     func itemCount(in section: Int) -> Int {
-        return isWhatsHot == true ? whatsHotItems.count : learnStrategyItems.count
+        switch content?.section {
+        case .WhatsHot?:
+            return section == 0 ? whatsHotArticleItems.count : whatsHotItems.count
+        default:
+            return learnStrategyItems.count
+        }
     }
 
     func updateSelectedContent(selectedID: Int) {

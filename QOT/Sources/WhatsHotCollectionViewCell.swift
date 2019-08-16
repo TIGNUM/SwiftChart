@@ -23,7 +23,7 @@ final class WhatsHotCollectionViewCell: ComponentCollectionViewCell {
                    imageURL: URL?,
                    isNew: Bool,
                    colorMode: ColorMode) {
-        whatsHotComponentView.configure(title: title,
+        whatsHotComponentView.configure(title: title?.uppercased(),
                                         publishDate: publishDate,
                                         author: author,
                                         timeToRead: timeToRead,

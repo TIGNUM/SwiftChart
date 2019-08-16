@@ -255,6 +255,7 @@ private extension ArticleViewController {
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 100, right: 0)
+        tableView.estimatedSectionHeaderHeight = 60
     }
 
     func setupAudioItem() {
@@ -485,6 +486,10 @@ extension ArticleViewController {
 // MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return interactor?.sectionCount ?? 1
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor?.itemCount(in: section) ?? 0
     }
@@ -649,6 +654,30 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             trackUserEvent(.OPEN, value: remoteID, valueType: .CONTENT, action: .TAP)
         default: return
         }
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 {
+            return nil
+        }
+
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: tableView.estimatedSectionHeaderHeight))
+        headerView.backgroundColor = .clear
+        let lineView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
+        lineView.backgroundColor = colorMode.text.withAlphaComponent(0.1)
+        headerView.addSubview(lineView)
+        let titleLabel = UILabel(frame: CGRect(x: 28, y: headerView.frame.size.height - 18.0, width: view.frame.width, height: 18))
+        titleLabel.attributedText = NSAttributedString(string: R.string.localized.prepareContentReadMore().uppercased(),
+                                                       letterSpacing: 1.5,
+                                                       font: .sfProtextMedium(ofSize: 14),
+                                                       textColor: colorMode.text.withAlphaComponent(0.4),
+                                                       alignment: .left)
+        headerView.addSubview(titleLabel)
+        return headerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return section == 0 ? 0 : tableView.estimatedSectionHeaderHeight
     }
 }
 
