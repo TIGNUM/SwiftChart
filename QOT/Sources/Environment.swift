@@ -12,7 +12,7 @@ import Foundation
 #if BUILD_DATABASE
 var environment = Environment.production
 #else
-var environment = Environment.production
+var environment = Environment.development
 #endif
 #else
 var environment = Environment.production

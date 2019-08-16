@@ -86,7 +86,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #else
 
             swizzleUIViewController()
-            swizzleUINavigationControllerPushViewController()
+            swizzleUINavigationController()
             ExternalLinkImporter.main.importLink()
             if isRunning {
                 return true

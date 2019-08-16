@@ -49,7 +49,7 @@ extension BaseRootViewController {
             return
         }
 
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.1) {
             self.naviBackground.tintColor = navigationItem.backgroundColor
         }
 
@@ -58,7 +58,7 @@ extension BaseRootViewController {
     }
 
     func bringBottomNavigationBarToFront(_ completion: (() -> Void)? = nil) {
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.1) {
             self.bottomNavigationContainer.layer.zPosition = 1
             self.bottomNavigationContainer.superview?.bringSubview(toFront: self.bottomNavigationContainer)
         }
@@ -83,13 +83,13 @@ extension BaseRootViewController {
 
     func hideBottomNavigation() {
         self.bottomNavigationContainer.isUserInteractionEnabled = false
-        UIView.animate(withDuration: 0.25) {
+        UIView.animate(withDuration: 0.1) {
             self.bottomNavigationContainer.alpha = 0
         }
     }
 
     func showButtomNavigation() {
-        UIView.animate(withDuration: 0.25, animations: {
+        UIView.animate(withDuration: 0.1, animations: {
             self.bottomNavigationContainer.alpha = 1
         }, completion: { (finished) in
             self.bottomNavigationContainer.isUserInteractionEnabled = true
@@ -149,5 +149,15 @@ extension BaseRootViewController {
 
     @objc func hideAudioFullScreen(_ notification: Notification) {
         audioPlayerBar.setBarMode(.playPause)
+    }
+
+    @objc override public func QOTVisibleViewController() -> UIViewController? {
+        if let naviVC = presentedViewController as? UINavigationController {
+            return naviVC.QOTVisibleViewController()
+        } else if let child = childViewControllers.last {
+            return child.QOTVisibleViewController()
+        }
+
+        return self
     }
 }

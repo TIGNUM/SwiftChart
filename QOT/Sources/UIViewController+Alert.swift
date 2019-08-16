@@ -319,7 +319,7 @@ extension UIViewController {
             case .unknown(let error, let statusCode):
                 showAlert(messaggeType: String(format: "error: %@\nStatusCode: %d",
                                                error.localizedDescription, statusCode ?? 0))
-            case .badRequest: showAlert(messaggeType: "Bad request")
+            case .badRequest: showAlert(messaggeType: "Bad Request")
             case .unknownError: showAlert(type: .unknown)
             }
         } else {

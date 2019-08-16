@@ -17,12 +17,31 @@ public enum NavigationZLevel: Int {
 
 var navigationControllerIsSwizzled = false
 
-func swizzleUINavigationControllerPushViewController() {
+func swizzleUINavigationController() {
     if navigationControllerIsSwizzled == true {
         return
     }
+    swizzlePushViewController()
+    swizzlePopViewController()
+}
+
+func swizzlePushViewController() {
     let originalSelector = #selector(UINavigationController.pushViewController(_:animated:))
     let swizzledSelector = #selector(UINavigationController.pushViewControllerSwizzled(viewController:animated:))
+
+    let originalMethod = class_getInstanceMethod(UINavigationController.self, originalSelector)
+    let swizzledMethod = class_getInstanceMethod(UINavigationController.self, swizzledSelector)
+
+    if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
+        // switch implementation..
+        method_exchangeImplementations(originalMethod, swizzledMethod)
+        navigationControllerIsSwizzled = !navigationControllerIsSwizzled
+    }
+}
+
+func swizzlePopViewController() {
+    let originalSelector = #selector(UINavigationController.popViewController(animated:))
+    let swizzledSelector = #selector(UINavigationController.popViewControllerSwizzeld(animated:))
 
     let originalMethod = class_getInstanceMethod(UINavigationController.self, originalSelector)
     let swizzledMethod = class_getInstanceMethod(UINavigationController.self, swizzledSelector)
@@ -38,8 +57,9 @@ weak var baseRootViewController: BaseRootViewController?
 
 extension UINavigationController {
     @objc func pushViewControllerSwizzled(viewController: UIViewController, animated: Bool) {
+        viewController.refreshBottomNavigationItems()
         let viewControllerName = NSStringFromClass(type(of: self))
-        print("pushViewController: \(viewControllerName)")
+        log("swizzled pushViewController: \(viewControllerName)", level: .info)
         guard let navigationController = baseRootViewController?.navigationController else {
             pushViewControllerSwizzled(viewController: viewController, animated: animated)
             return
@@ -72,6 +92,16 @@ extension UINavigationController {
         } else {
             pushViewControllerSwizzled(viewController: viewController, animated: animated)
         }
+    }
+
+    @objc func popViewControllerSwizzeld(animated: Bool) -> UIViewController? {
+        let last = popViewControllerSwizzeld(animated: true)
+        if last != nil {
+            let viewControllerName = NSStringFromClass(type(of: last!))
+            log("swizzled popViewController: \(viewControllerName)", level: .info)
+            viewControllers.last?.refreshBottomNavigationItems()
+        }
+        return last
     }
 
     func dismissAllPresentedViewControllers(_ root: UIViewController,

@@ -12,15 +12,26 @@ import AVKit
 protocol ScreenZLevel {}
 
 var viewWillAppearIsSwizzled = false
+var viewDidAppearIsSwizzled = false
 var presentViewControllerIsSwizzled = false
+var dismissViewControllerIsSwizzled = false
+var timer: Timer?
 
 func swizzleUIViewController() {
     if viewWillAppearIsSwizzled == false {
         swizzleUIViewControllerViewWillAppear()
     }
 
+    if viewDidAppearIsSwizzled == false {
+        swizzleUIViewControllerViewDidAppear()
+    }
+
     if presentViewControllerIsSwizzled == false {
         swizzleUIViewControllerPresentViewController()
+    }
+
+    if dismissViewControllerIsSwizzled == false {
+        swizzleUIViewControllerDismissViewController()
     }
 }
 
@@ -38,6 +49,20 @@ func swizzleUIViewControllerViewWillAppear() {
     }
 }
 
+func swizzleUIViewControllerViewDidAppear() {
+    let originalSelector = #selector(UIViewController.viewDidAppear(_:))
+    let swizzledSelector = #selector(UIViewController.viewDidAppearSwizzled(animated:))
+
+    let originalMethod = class_getInstanceMethod(UIViewController.self, originalSelector)
+    let swizzledMethod = class_getInstanceMethod(UIViewController.self, swizzledSelector)
+
+    if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
+        // switch implementation..
+        method_exchangeImplementations(originalMethod, swizzledMethod)
+        viewDidAppearIsSwizzled = !viewDidAppearIsSwizzled
+    }
+}
+
 func swizzleUIViewControllerPresentViewController() {
     let originalSelector = #selector(UIViewController.present(_:animated:completion:))
     let swizzledSelector = #selector(UIViewController.presentSwizzled(viewControllerToPresent:animated:completion:))
@@ -52,16 +77,44 @@ func swizzleUIViewControllerPresentViewController() {
     }
 }
 
+func swizzleUIViewControllerDismissViewController() {
+    let originalSelector = #selector(UIViewController.dismiss(animated:completion:))
+    let swizzledSelector = #selector(UIViewController.dismissSwizzled(animated:completion:))
+
+    let originalMethod = class_getInstanceMethod(UIViewController.self, originalSelector)
+    let swizzledMethod = class_getInstanceMethod(UIViewController.self, swizzledSelector)
+
+    if let originalMethod = originalMethod, let swizzledMethod = swizzledMethod {
+        // switch implementation..
+        method_exchangeImplementations(originalMethod, swizzledMethod)
+        dismissViewControllerIsSwizzled = !dismissViewControllerIsSwizzled
+    }
+}
+
 extension UIViewController {
 
     @objc func viewWillAppearSwizzled(animated: Bool) {
         let viewControllerName = NSStringFromClass(type(of: self))
-        log("swizzled viewWillAppear: \(viewControllerName)", level: .info)
+        log("swizzled viewWillAppear: \(viewControllerName), animated: \(animated)", level: .info)
 
-        refreshBottomNavigationItems()
-        setStatusBar(color: view.backgroundColor)
+        if animated {
+            refreshBottomNavigationItems()
+            setStatusBar(color: view.backgroundColor)
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
         self.viewWillAppearSwizzled(animated: animated)
-        self.setNeedsStatusBarAppearanceUpdate()
+    }
+
+    @objc func viewDidAppearSwizzled(animated: Bool) {
+        let viewControllerName = NSStringFromClass(type(of: self))
+        log("swizzled viewDidAppear: \(viewControllerName), animated: \(animated)", level: .info)
+
+        if animated {
+            refreshBottomNavigationItems()
+            setStatusBar(color: view.backgroundColor)
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+        self.viewDidAppearSwizzled(animated: animated)
     }
 
     func setStatusBar(colorMode: ColorMode) {
@@ -79,22 +132,25 @@ extension UIViewController {
     private func navigationNotificationBlock() -> (() -> Void)? {
         return { [weak self] in
             DispatchQueue.main.async {
-                let item = BottomNavigationItem(leftBarButtonItems: self?.bottomNavigationLeftBarItems() ?? [],
-                                                rightBarButtonItems: self?.bottomNavigationRightBarItems() ?? [],
-                                                backgroundColor: self?.bottomNavigationBackgroundColor() ?? .clear)
-                let notification = Notification(name: .updateBottomNavigation, object: item, userInfo: nil)
-                NotificationCenter.default.post(notification)
+                if self?.view.window != nil {
+                    let item = BottomNavigationItem(leftBarButtonItems: self?.bottomNavigationLeftBarItems() ?? [],
+                                                    rightBarButtonItems: self?.bottomNavigationRightBarItems() ?? [],
+                                                    backgroundColor: self?.bottomNavigationBackgroundColor() ?? .clear)
+                    let notification = Notification(name: .updateBottomNavigation, object: item, userInfo: nil)
+                    NotificationCenter.default.post(notification)
+                }
             }
         }
     }
 
     @objc func presentSwizzled(viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?) {
+        let viewControllerName = NSStringFromClass(type(of: viewControllerToPresent))
+        log("swizzled   present: \(viewControllerName)", level: .info)
+        viewControllerToPresent.refreshBottomNavigationItems()
         if viewControllerToPresent is UIActivityViewController || viewControllerToPresent is UIAlertController {
             presentSwizzled(viewControllerToPresent: viewControllerToPresent, animated: animated, completion: completion)
             return
         }
-        let viewControllerName = NSStringFromClass(type(of: viewControllerToPresent))
-        log("swizzled   present: \(viewControllerName)", level: .debug)
         var vc = viewControllerToPresent
         if (vc as? UINavigationController) == nil && (viewControllerToPresent is UIAlertController) == false {
             let naviController = UINavigationController(rootViewController: vc)
@@ -109,9 +165,36 @@ extension UIViewController {
 
         baseRootViewController?.navigationController?.presentModal(vc, from: self, animated: animated, completion: completion)
     }
+
+    @objc func dismissSwizzled(animated flag: Bool, completion: (() -> Void)? = nil) {
+        let viewControllerName = NSStringFromClass(type(of: self))
+        log("swizzled   dismiss: \(viewControllerName)", level: .info)
+        dismissSwizzled(animated: flag, completion: completion)
+        // get presenting.
+        self.presentingViewController?.QOTVisibleViewController()?.refreshBottomNavigationItems()
+    }
 }
 
 extension UIViewController {
+    @objc open func QOTVisibleViewController() -> UIViewController? {
+        if let navigationController = self as? UINavigationController {
+            return navigationController.topViewController?.QOTVisibleViewController()
+        }
+
+        if let tabBarController = self as? UITabBarController {
+            if let viewController = tabBarController.selectedViewController {
+                return viewController.QOTVisibleViewController()
+            }
+        }
+
+        if let pageViewController = self as? UIPageViewController {
+            if let viewController = pageViewController.viewControllers?.first {
+                return viewController.QOTVisibleViewController()
+            }
+        }
+
+        return self
+    }
 
     @objc open func refreshBottomNavigationItems() {
         if (self as? UINavigationController) == nil,

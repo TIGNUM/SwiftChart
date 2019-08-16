@@ -141,7 +141,7 @@ extension NetworkError.NetworkErrorType: CustomDebugStringConvertible {
         case .notFound:
             return "404 Not Found"
         case .badRequest:
-            return "Bad request"
+            return "Bad Request"
         }
     }
 }
