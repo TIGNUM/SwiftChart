@@ -15,11 +15,11 @@ final class FromMyCoachHeaderView: UIView {
     @IBOutlet private weak var containerView: UIView!
 
     static func instantiateFromNib() -> FromMyCoachHeaderView? {
-        guard let fromMyCoachHeaderView = R.nib.fromMyCoachHeaderView.instantiate(withOwner: self).first as? FromMyCoachHeaderView else {
-            log("Cannot load view: (self.Type)", level: .error)
-            return nil
+        guard let header = R.nib.fromMyCoachHeaderView
+            .instantiate(withOwner: self).first as? FromMyCoachHeaderView else {
+                preconditionFailure("Cannot load view \(#function)")
         }
-        return fromMyCoachHeaderView
+        return header
     }
 
     override func layoutSubviews() {
@@ -30,8 +30,7 @@ final class FromMyCoachHeaderView: UIView {
 
     func configure(with data: FromMyCoachCellViewModel.FromMyCoachDetail) {
         self.title.text = data.title
-        coachImageView.kf.setImage(with: data.imageUrl,
-                                   placeholder: R.image.dummy_Profile())
+        coachImageView.kf.setImage(with: data.imageUrl, placeholder: R.image.placeholder_user())
         coachImageView.circle()
     }
 }

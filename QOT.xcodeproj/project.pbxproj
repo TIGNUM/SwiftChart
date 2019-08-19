@@ -7649,6 +7649,7 @@
 					918D5E1E20EE050900AEAD37 = {
 						CreatedOnToolsVersion = 9.4;
 						DevelopmentTeam = 4FQQH349R5;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -7659,6 +7660,7 @@
 					AC87A777220D94F800622C90 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = 4FQQH349R5;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -7669,6 +7671,7 @@
 					AC87A780220D94F900622C90 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = 4FQQH349R5;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -7714,7 +7717,7 @@
 					};
 					CBB237FF1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 0940;
+						LastSwiftMigration = 1020;
 						ProvisioningStyle = Automatic;
 						TestTargetID = CBB237EB1E6FFF1200AB5AEF;
 					};
