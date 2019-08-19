@@ -371,3 +371,25 @@ extension DecisionTreeQuestionnaireViewController {
         }
     }
 }
+
+// MARK: - Init
+extension DecisionTreeQuestionnaireViewController {
+    func checkCalendarPermissions() {
+        let authStatus = EKEventStore.authorizationStatus(for: .event)
+        switch authStatus {
+        case .denied:
+            print("denied -> show permission calendarView -> go to settings")
+        case .notDetermined:
+            print("notDetermined -> show permission calendarView -> ask for permission")
+        default:
+            print("notDetermined -> hide permission calendarView -> show events")
+            return
+        }
+    }
+
+    func askCalendarPermission() {
+        CalendarPermission().askPermission { [weak self] (result) in
+            self?.checkCalendarPermissions()
+        }
+    }
+}

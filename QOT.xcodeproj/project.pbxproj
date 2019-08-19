@@ -38,6 +38,8 @@
 		3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */; };
 		3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		3609938223048B20008CB854 /* PrepareResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */; };
+		360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */; };
+		360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */; };
 		360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */; };
 		360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */; };
 		360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */; };
@@ -1676,6 +1678,8 @@
 		36083825225F3ED000664B9B /* ArticleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleConfigurator.swift; sourceTree = "<group>"; };
 		36085C5822CA48E600C703BA /* PreparationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationManager.swift; sourceTree = "<group>"; };
 		360947A21FB5E684003AF3E9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCalendarView.swift; sourceTree = "<group>"; };
+		360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionCalendarView.xib; sourceTree = "<group>"; };
 		360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTextHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTextHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleImageHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -3463,6 +3467,8 @@
 				8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */,
 				F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */,
 				F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */,
+				360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */,
+				360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -7988,6 +7994,7 @@
 				9C650B7622FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
 				36DC825320D552D000CDEC34 /* SigningCountryViewController.xib in Resources */,
+				360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */,
 				9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */,
 				91182ACD20A1A4E9006D5435 /* SettingsViewController.xib in Resources */,
 				360E99562167BAFE0084CEFB /* PrepareNotesTableViewCell.xib in Resources */,
@@ -8902,6 +8909,7 @@
 				9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				ACB99E7622661F2400A73709 /* DecisionTreeQuestionnaireController.swift in Sources */,
+				360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */,
 				75423EFB22CE242B008EE726 /* MyToBeVisionTrackerInterface.swift in Sources */,
