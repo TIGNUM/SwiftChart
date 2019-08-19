@@ -29,6 +29,6 @@ final class PermissionCalendarView: UIView {
 
     // MARK: Configuration
     func configure() {
-        ///TODO Create CMS content
+        ///TODO Create CMS content https://tignum.atlassian.net/browse/QOT-1702
     }
 }
