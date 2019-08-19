@@ -1201,7 +1201,7 @@
                                                     <constraint firstAttribute="width" constant="38" id="Zk9-2f-KGp"/>
                                                     <constraint firstAttribute="height" constant="38" id="yLb-m8-leq"/>
                                                 </constraints>
-                                                <state key="normal" image="edit"/>
+                                                <state key="normal" image="ic_edit"/>
                                                 <connections>
                                                     <action selector="presentEditAccountSettings:" destination="BOZ-52-EXB" eventType="touchUpInside" id="hSk-a7-60L"/>
                                                 </connections>
@@ -1416,7 +1416,6 @@
                         <constraint firstItem="nUG-oy-daC" firstAttribute="leading" secondItem="5mX-c2-5Y1" secondAttribute="trailing" constant="16" id="AmS-aa-0Tw"/>
                         <constraint firstAttribute="trailing" secondItem="nUG-oy-daC" secondAttribute="trailing" constant="24" id="F3a-WY-CO3"/>
                         <constraint firstItem="tF5-uP-UdH" firstAttribute="trailing" secondItem="IDo-An-Lf7" secondAttribute="trailing" id="LJR-tw-75G"/>
-                        <constraint firstAttribute="bottom" secondItem="nUG-oy-daC" secondAttribute="bottom" constant="25" id="SCN-8n-VWz"/>
                         <constraint firstItem="IDo-An-Lf7" firstAttribute="leading" secondItem="tF5-uP-UdH" secondAttribute="leading" id="Udl-eH-UNP"/>
                         <constraint firstItem="5mX-c2-5Y1" firstAttribute="top" secondItem="nUG-oy-daC" secondAttribute="top" id="Yam-5o-WaD"/>
                     </constraints>
@@ -1433,6 +1432,6 @@
     </scenes>
     <resources>
         <image name="arrowFront" width="16" height="16"/>
-        <image name="edit" width="16" height="16"/>
+        <image name="ic_edit" width="16" height="16"/>
     </resources>
 </document>
