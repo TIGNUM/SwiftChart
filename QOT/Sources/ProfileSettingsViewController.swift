@@ -102,20 +102,18 @@ extension ProfileSettingsViewController: ProfileSettingsViewControllerInterface 
 private extension ProfileSettingsViewController {
 
     @objc func didPressCancel() {
-        hideInfoView()
+        trackUserEvent(.CANCEL, action: .TAP)
+        hideInfoView(bottomNavigationRightBarItems() ?? [])
     }
 
     @objc func didPressLeave() {
-        trackUserEvent(.CANCEL, action: .TAP)
+        trackUserEvent(.YES_LEAVE, action: .TAP)
         dismiss()
     }
 
-    private func hideInfoView() {
+    private func hideInfoView(_ rightBarButtonItems: [UIBarButtonItem]) {
         infoView.isHidden = true
-        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
-                                                  rightBarButtonItems: [],
-                                                  backgroundColor: .clear)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        updateBottomNavigation([], rightBarButtonItems)
     }
 
     private func showInfoView() {
@@ -123,20 +121,9 @@ private extension ProfileSettingsViewController {
         infoView.backgroundColor = .carbonDark
         infoView.set(icon: R.image.ic_warning(), title: R.string.localized.profileConfirmationHeader().uppercased(), text: R.string.localized.profileConfirmationDescription())
         infoView.isHidden = false
-        let cancelButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleCancel(),
-                                                    buttonWidth: .Cancel,
-                                                    action: #selector(didPressCancel),
-                                                    backgroundColor: .clear,
-                                                    borderColor: .accent40)
-        let continueButtonItem = roundedBarButtonItem(title: R.string.localized.profileConfirmationDoneButton(),
-                                                      buttonWidth: .Continue,
-                                                      action: #selector(didPressLeave),
-                                                      backgroundColor: .clear,
-                                                      borderColor: .accent40)
-        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
-                                                  rightBarButtonItems: [continueButtonItem, cancelButtonItem],
-                                                  backgroundColor: .clear)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        let cancelItem = cancelButtonItem(#selector(didPressCancel))
+        let continueItem = continueButtonItem(#selector(didPressLeave))
+        updateBottomNavigation([], [continueItem, cancelItem])
     }
 
     func setupView() {
@@ -145,7 +132,6 @@ private extension ProfileSettingsViewController {
         })
         view.backgroundColor = .carbon
         keyboardInputView.delegate = self
-        setCustomBackButton()
     }
 
     func syncScrollViewLayout() {
@@ -266,10 +252,6 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         headerView.config = TitleTableHeaderView.Config(backgroundColor: .carbon)
         headerView.title = interactor?.headerTitle(in: section) ?? ""
         return headerView
-    }
-
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 0.01
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -434,22 +416,8 @@ extension ProfileSettingsViewController: UIPickerViewDelegate, UIPickerViewDataS
     }
 }
 
-extension ProfileSettingsViewController {
-    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
-
-    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return nil
-    }
-
-    @objc override public func bottomNavigationBackgroundColor() -> UIColor? {
-        return .clear
-    }
-}
-
 extension ProfileSettingsViewController: MyQotProfileSettingsKeybaordInputViewProtocol {
-    func didCancel() {
+    @objc func didCancel() {
         view.endEditing(true)
         if shouldAllowSave {
             showInfoView()
@@ -458,7 +426,7 @@ extension ProfileSettingsViewController: MyQotProfileSettingsKeybaordInputViewPr
         }
     }
 
-    func didSave() {
+    @objc func didSave() {
         guard let profile = interactor?.profile, shouldAllowSave else { return }
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.updateUser(profile)
@@ -468,5 +436,18 @@ extension ProfileSettingsViewController: MyQotProfileSettingsKeybaordInputViewPr
     func dismiss() {
         guard let navController = self.navigationController else { return }
         navController.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - BottomNavigation
+extension ProfileSettingsViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        let cancelItem = cancelButtonItem(#selector(didCancel))
+        let saveItem = saveButtonItem(#selector(didSave))
+        return [saveItem, cancelItem]
     }
 }

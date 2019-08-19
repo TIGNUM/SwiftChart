@@ -104,6 +104,7 @@
 
 "Button.Title.Skip" = "SKIP";
 "Button.Title.Start" = "START";
+"Button.Title.Allow" = "Allow";
 
 "Guide.Card.Type.WhatsHot" = "Whats Hot Article";
 "Guide.DailyPrep.NotFinished.WhyDPM" = "WHY DPM ?";

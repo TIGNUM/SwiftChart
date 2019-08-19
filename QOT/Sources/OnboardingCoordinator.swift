@@ -92,10 +92,7 @@ final class OnboardingCoordinator: ParentCoordinator {
     }
 
     private func handleChoice(_ choice: Choice) {
-        let identifiers: [PermissionsManager.Permission.Identifier] = [
-            .calendar, .notifications, .location
-        ]
-
+        let identifiers: [PermissionsManager.Permission.Identifier] = [.notifications, .location]
         switch choice.type {
         case .yes:
             permissionsManager.askPermission(for: identifiers, completion: { status in

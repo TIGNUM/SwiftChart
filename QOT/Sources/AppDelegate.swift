@@ -13,6 +13,7 @@ import RealmSwift
 import Buglife
 import Alamofire
 import Kingfisher
+import qot_dal
 
 protocol LocalNotificationHandlerDelegate: class {
     func localNotificationHandler(_ handler: AppDelegate, canProcessNotification: UNNotification) -> Bool
@@ -84,9 +85,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             #endif
             return true
         #else
-
             swizzleUIViewController()
             swizzleUINavigationController()
+            importCalendarEventsIfAuthorized()
             ExternalLinkImporter.main.importLink()
             if isRunning {
                 return true
@@ -116,8 +117,8 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             setupHockeyApp()
             setupKingfisherCache()
             #if DEBUG
-                log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
-                log("\nopen -a \"Realm Studio\" \(DatabaseManager.databaseURL)\n")
+                qot_dal.log("\nopen -a \"Realm Browser\" \(DatabaseManager.databaseURL)\n")
+                qot_dal.log("\nopen -a \"Realm Studio\" \(DatabaseManager.databaseURL)\n")
             #endif
             appCoordinator.sendAppEvent(.start)
             sendSiriEventsIfNeeded()
@@ -316,7 +317,7 @@ extension AppDelegate {
 extension AppDelegate: UNUserNotificationCenterDelegate {
 
     func processOutstandingNotifications() {
-        log("dailyPrep://processOutstandingNotifications:: \(unhandledNotifications)")
+        qot_dal.log("dailyPrep://processOutstandingNotifications:: \(unhandledNotifications)")
         if let notification = unhandledNotifications.first {
             handleNotification(notification: notification)
             unhandledNotifications.removeAll() // TODO: maybe we can handle all of them in the future?
@@ -324,7 +325,7 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     }
 
     func handleNotification(notification: UNNotification) {
-        log("dailyPrep://handleNotification, notification:: \(notification)")
+        qot_dal.log("dailyPrep://handleNotification, notification:: \(notification)")
         var link: URL?
         if let linkString = notification.request.content.userInfo["link"] as? String {
             link = URL(string: linkString)
@@ -354,14 +355,14 @@ extension AppDelegate: UNUserNotificationCenterDelegate {
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
-        log("dailyPrep://userNotificationCenter, willPresent notification:: \(notification)")
+        qot_dal.log("dailyPrep://userNotificationCenter, willPresent notification:: \(notification)")
         completionHandler([.alert, .sound])
     }
 
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
-        log("dailyPrep://userNotificationCenter, didReceive response:: \(response.notification)")
+        qot_dal.log("dailyPrep://userNotificationCenter, didReceive response:: \(response.notification)")
         if localNotificationHandlerDelegate?.localNotificationHandler(self,
                                                                       canProcessNotification: response.notification) == true {
             handleNotification(notification: response.notification)
@@ -424,6 +425,19 @@ extension AppDelegate {
                 }
             }
             ExtensionUserDefaults.siriAppEvents.clearWidgetObject()
+        }
+    }
+}
+
+// MARK: - Calendar event import
+extension AppDelegate {
+    func importCalendarEventsIfAuthorized() {
+        let authStatus = EKEventStore.authorizationStatus(for: .event)
+        switch authStatus {
+        case .authorized:
+            qot_dal.CalendarService.main.importCalendarEvents()
+        default:
+            return
         }
     }
 }

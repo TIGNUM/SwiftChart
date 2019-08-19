@@ -26,15 +26,17 @@ final class CalendarEventsTableViewCell: UITableViewCell, Dequeueable, PrepareEv
         switch question.key {
         case QuestionKey.Prepare.SelectExisting:
             qot_dal.UserService.main.getUserPreparations { [weak self] (preparations, _, _) in
-                PrepareEventSelectionConfigurator.make(self, delegate: delegate,
+                PrepareEventSelectionConfigurator.make(self,
+                                                       delegate: delegate,
                                                        question: question,
                                                        events: [],
                                                        preparations: preparations ?? [])
                 self?.tableView.reloadDataWithAnimation()
             }
         default:
-            qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events, initiated, error) in
-                PrepareEventSelectionConfigurator.make(self, delegate: delegate,
+            qot_dal.CalendarService.main.getCalendarEvents { [weak self] (events, _, error) in
+                PrepareEventSelectionConfigurator.make(self,
+                                                       delegate: delegate,
                                                        question: question,
                                                        events: events ?? [],
                                                        preparations: [])

@@ -41,7 +41,6 @@ final class PermissionsManager {
         var identifier: Identifier
     }
 
-    private let calendarPermission: CalendarPermission = CalendarPermission()
     private let remoteNotificationPermission = RemoteNotificationPermission()
     private let locationPermission = LocationPermission()
     private let photosPermission = PhotosPermission()
@@ -66,7 +65,6 @@ final class PermissionsManager {
 
     func reset() {
         data = [ // ensure every key is mapped to a permission
-            .calendar: Permission(interface: calendarPermission, askStatus: .canAsk, identifier: .calendar),
             .notifications: Permission(interface: remoteNotificationPermission, askStatus: .canAsk, identifier: .notifications),
             .location: Permission(interface: locationPermission, askStatus: .canAsk, identifier: .location),
             .photos: Permission(interface: photosPermission, askStatus: .canAsk, identifier: .photos),

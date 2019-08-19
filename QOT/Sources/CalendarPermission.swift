@@ -25,7 +25,6 @@ struct CalendarPermission: PermissionInterface {
 }
 
 // MARK: - EKAuthorizationStatus
-
 private extension EKAuthorizationStatus {
     var stringValue: String {
         switch self {

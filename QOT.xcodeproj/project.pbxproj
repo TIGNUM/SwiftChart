@@ -38,6 +38,9 @@
 		3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */; };
 		3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		3609938223048B20008CB854 /* PrepareResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */; };
+		360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */; };
+		360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */; };
+		360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */; };
 		360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */; };
 		360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */; };
 		360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */; };
@@ -65,6 +68,7 @@
 		3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */; };
 		3632D0D22253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */; };
 		3633CF0A22E5ABC400D2817B /* PrepareEventModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3633CF0922E5ABC400D2817B /* PrepareEventModel.swift */; };
+		36343F212306EF4500F1EC66 /* UIViewController+BottomNavigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36343F202306EF4500F1EC66 /* UIViewController+BottomNavigation.swift */; };
 		3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */; };
 		363765FB223A4BD200C2C429 /* KnowingPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F3223A4BD200C2C429 /* KnowingPresenter.swift */; };
 		363765FC223A4BD200C2C429 /* KnowingWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 363765F4223A4BD200C2C429 /* KnowingWorker.swift */; };
@@ -1685,6 +1689,9 @@
 		36083825225F3ED000664B9B /* ArticleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleConfigurator.swift; sourceTree = "<group>"; };
 		36085C5822CA48E600C703BA /* PreparationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationManager.swift; sourceTree = "<group>"; };
 		360947A21FB5E684003AF3E9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
+		360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserEventTracking+Ext.swift"; sourceTree = "<group>"; };
+		360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCalendarView.swift; sourceTree = "<group>"; };
+		360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionCalendarView.xib; sourceTree = "<group>"; };
 		360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTextHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTextHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleImageHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -1712,6 +1719,7 @@
 		3632D0CE2253949300A4F234 /* StrategyFoundationCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StrategyFoundationCollectionViewCell.xib; sourceTree = "<group>"; };
 		3632D0D12253AB2700A4F234 /* StrategyFoundationCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StrategyFoundationCollectionViewCell.swift; sourceTree = "<group>"; };
 		3633CF0922E5ABC400D2817B /* PrepareEventModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrepareEventModel.swift; sourceTree = "<group>"; };
+		36343F202306EF4500F1EC66 /* UIViewController+BottomNavigation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+BottomNavigation.swift"; sourceTree = "<group>"; };
 		3636A86022382AEF004B32BB /* WhatsHotArticleHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WhatsHotArticleHeaderView.xib; sourceTree = "<group>"; };
 		363765F3223A4BD200C2C429 /* KnowingPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingPresenter.swift; sourceTree = "<group>"; };
 		363765F4223A4BD200C2C429 /* KnowingWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KnowingWorker.swift; sourceTree = "<group>"; };
@@ -3481,6 +3489,8 @@
 				8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */,
 				F9838F4E22B1184C003F9394 /* MyQotMainCollectionViewCell.swift */,
 				F9838F5022B11A40003F9394 /* MyQotMainCollectionViewCell.xib */,
+				360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */,
+				360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -3903,6 +3913,7 @@
 				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
 				366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */,
 				36CB721722B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift */,
+				360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */,
 				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
 			);
 			name = qot_dal;
@@ -6516,7 +6527,6 @@
 		CBB4DD2F1EE0893F0071494A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				36CB720922B8772300C99AFC /* qot_dal */,
 				CC7682C71F28A85600F852A0 /* Array+Convenience.swift */,
 				368ECB4C223FFAEB00F283F4 /* AVPlayerViewController+Pagetrack.swift */,
 				852988941F2F3E15003A36DF /* Bundle+Extensions.swift */,
@@ -6550,6 +6560,7 @@
 				850312EC1F34732F00DB5A6B /* UIGestureRecognizer+ClickableLabel.swift */,
 				91C6510C20AEC8B50035C4EA /* UIImage+Convenience.swift */,
 				7F0888871F0AA7DB005CE966 /* UIImage+FileIO.swift */,
+				8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */,
 				ACCCBC9321E38B19008D744D /* UIImageView+Extensions.swift */,
 				8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */,
 				7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */,
@@ -6561,6 +6572,7 @@
 				852DADD51EF051C400A10882 /* UIView+Layers.swift */,
 				CB3029E52050184E00DD4440 /* UIViewAnimationOptions+Convenience.swift */,
 				CC80181F1F0256980040B03F /* UIViewController+Alert.swift */,
+				36343F202306EF4500F1EC66 /* UIViewController+BottomNavigation.swift */,
 				85777E7A1F0F857C00E12477 /* UIViewController+Convenience.swift */,
 				AC8F208C2190A1EF00517A05 /* UIViewController+Extensions.swift */,
 				91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */,
@@ -6574,7 +6586,7 @@
 				CBB98AFF201F720F00B8EAD7 /* UNNotificationRequest+Convenience.swift */,
 				CBC191121F603055009E483B /* URL+Convenience.swift */,
 				CCC2D3151F0AB1E000951A2E /* UserDefault+Convenience.swift */,
-				8D2372CA22DF38CD00FEFA83 /* UIImage+ReorderControl.swift */,
+				36CB720922B8772300C99AFC /* qot_dal */,
 			);
 			name = Extensions;
 			sourceTree = "<group>";
@@ -7708,7 +7720,7 @@
 					918D5E1E20EE050900AEAD37 = {
 						CreatedOnToolsVersion = 9.4;
 						DevelopmentTeam = 4FQQH349R5;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -7719,7 +7731,7 @@
 					AC87A777220D94F800622C90 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = 4FQQH349R5;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -7730,7 +7742,7 @@
 					AC87A780220D94F900622C90 = {
 						CreatedOnToolsVersion = 10.1;
 						DevelopmentTeam = 4FQQH349R5;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.ApplicationGroups.iOS = {
@@ -7776,7 +7788,7 @@
 					};
 					CBB237FF1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						LastSwiftMigration = 1020;
+						LastSwiftMigration = 1030;
 						ProvisioningStyle = Automatic;
 						TestTargetID = CBB237EB1E6FFF1200AB5AEF;
 					};
@@ -7784,10 +7796,9 @@
 			};
 			buildConfigurationList = CBB237E71E6FFF1200AB5AEF /* Build configuration list for PBXProject "QOT" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -8050,6 +8061,7 @@
 				9C650B7622FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
 				36DC825320D552D000CDEC34 /* SigningCountryViewController.xib in Resources */,
+				360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */,
 				9C24237C22F0941D00B911E6 /* SolveReminderCell.xib in Resources */,
 				91182ACD20A1A4E9006D5435 /* SettingsViewController.xib in Resources */,
 				360E99562167BAFE0084CEFB /* PrepareNotesTableViewCell.xib in Resources */,
@@ -8968,6 +8980,7 @@
 				BB7B3186230AA8BE004A5E52 /* OneLineHeading.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				ACB99E7622661F2400A73709 /* DecisionTreeQuestionnaireController.swift in Sources */,
+				360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
 				7F507BA11F3B0F8A0091742D /* EventTracker.swift in Sources */,
 				75423EFB22CE242B008EE726 /* MyToBeVisionTrackerInterface.swift in Sources */,
@@ -9375,6 +9388,7 @@
 				9C24237422F0868300B911E6 /* AboutMeCell.swift in Sources */,
 				5F8A899D2296DF0D0011A05C /* MyVisionInterface.swift in Sources */,
 				F9A5C94622B7D04700AB2E94 /* PaymentReminderInterface.swift in Sources */,
+				36343F212306EF4500F1EC66 /* UIViewController+BottomNavigation.swift in Sources */,
 				CC944DB61EE804CD00B8423C /* ChartTableViewCell.swift in Sources */,
 				368BE2EB20EF4A9600A6B809 /* UserSigning.swift in Sources */,
 				5F7BE788228958BE00BA5DCF /* MyQotSupportViewController.swift in Sources */,
@@ -9502,6 +9516,7 @@
 				5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */,
 				7F8DB4AB1FA2047D00DFE006 /* PartnersAnimation.swift in Sources */,
 				75231A1322BCC879009D8E93 /* MyVisionNavigationBarView.swift in Sources */,
+				360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */,
 				36E4B7AD219EBFED00049EE8 /* TutorialRouter.swift in Sources */,
 				B8BB413122C50B41002897E4 /* Notification+MediaPlayer.swift in Sources */,
 				366183F721635FAA00634560 /* SupportFAQTableViewCell.swift in Sources */,
