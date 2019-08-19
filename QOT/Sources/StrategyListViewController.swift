@@ -55,7 +55,7 @@ extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
         view.backgroundColor = .carbon
         setupTableView()
-        self.showLoadingSkeleton(with: [.twoLinesAndImage, .twoLinesAndImage])
+        self.showLoadingSkeleton(with: [.oneLineHeading, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage])
     }
 
     func reload() {

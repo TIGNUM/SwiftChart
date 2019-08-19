@@ -22,14 +22,14 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JP7-HW-xek">
                             <rect key="frame" x="0.0" y="0.0" width="383" height="136"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-v4-xrr">
+                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lsV-v4-xrr">
                                     <rect key="frame" x="24" y="48" width="153" height="18"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="3nN-XR-2vN"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWc-In-6zB">
+                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NWc-In-6zB">
                                     <rect key="frame" x="24" y="78" width="89" height="12"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
@@ -44,7 +44,7 @@
                                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="1" id="kyU-dw-qMo"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87l-gB-00L">
+                                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="87l-gB-00L">
                                     <rect key="frame" x="232.5" y="32" width="126.5" height="72"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>

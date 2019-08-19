@@ -8,23 +8,18 @@
 
 import UIKit
 
-final class Loader: UIView {
+final class Loader: BaseSkeletonView {
 
     @IBOutlet private weak var loader: UIActivityIndicatorView!
 
     static func instantiateFromNib() -> Loader {
-        guard let loader = R.nib.loader.instantiate(withOwner: self).first as? Loader else {
+        guard let objectView = R.nib.loader.instantiate(withOwner: self).first as? Loader else {
             fatalError("Cannot load view")
         }
-        return loader
+        return objectView
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        startLoading()
-    }
-
-    private func startLoading() {
+    override func startAnimating(_ delay: Double) {
         loader.startAnimating()
     }
 }

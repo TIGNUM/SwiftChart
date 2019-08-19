@@ -22,14 +22,14 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nkf-lX-h6L">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="136"/>
                             <subviews>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaO-cp-CBd">
+                                <view tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="BaO-cp-CBd">
                                     <rect key="frame" x="24" y="48" width="153" height="18"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.40000000000000002" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="height" constant="18" id="Nn7-id-jHS"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fn-dC-Q6Q">
+                                <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0fn-dC-Q6Q">
                                     <rect key="frame" x="24" y="78" width="86" height="12"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
@@ -44,7 +44,7 @@
                                         <constraint firstAttribute="height" constant="1" id="Psu-Q1-5N0"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ob2-WA-ttx">
+                                <view tag="3" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ob2-WA-ttx">
                                     <rect key="frame" x="310" y="48" width="80" height="40"/>
                                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                     <constraints>
