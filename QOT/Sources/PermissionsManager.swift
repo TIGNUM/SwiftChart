@@ -41,7 +41,6 @@ final class PermissionsManager {
         var identifier: Identifier
     }
 
-//    private let calendarPermission: CalendarPermission = CalendarPermission()
     private let remoteNotificationPermission = RemoteNotificationPermission()
     private let locationPermission = LocationPermission()
     private let photosPermission = PhotosPermission()
