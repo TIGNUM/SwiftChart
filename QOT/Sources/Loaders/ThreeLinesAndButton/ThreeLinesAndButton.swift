@@ -8,28 +8,12 @@
 
 import UIKit
 
-final class ThreeLinesAndButton: UIView {
-
-    @IBOutlet private weak var containerView: UIView!
+final class ThreeLinesAndButton: BaseSkeletonView {
 
     static func instantiateFromNib() -> ThreeLinesAndButton {
-        guard let threeLinesAndButton = R.nib.threeLinesAndButton.instantiate(withOwner: self).first as? ThreeLinesAndButton else {
+        guard let objectView = R.nib.threeLinesAndButton.instantiate(withOwner: self).first as? ThreeLinesAndButton else {
             fatalError("Cannot load view")
         }
-        return threeLinesAndButton
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        startAnimating()
-    }
-
-    func startAnimating() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       options: [.autoreverse, .repeat],
-                       animations: {
-                        self.containerView.alpha = 0.0 },
-                       completion: nil)
+        return objectView
     }
 }

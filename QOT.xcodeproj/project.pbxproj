@@ -447,8 +447,8 @@
 		5F78964C22A929C100D2DBAD /* FiveLines.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963322A929C100D2DBAD /* FiveLines.xib */; };
 		5F78964D22A929C100D2DBAD /* ThreeLinesAndImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963522A929C100D2DBAD /* ThreeLinesAndImage.xib */; };
 		5F78964E22A929C100D2DBAD /* ThreeLinesAndImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963622A929C100D2DBAD /* ThreeLinesAndImage.swift */; };
-		5F78964F22A929C100D2DBAD /* ThreeLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963822A929C100D2DBAD /* ThreeLines.swift */; };
-		5F78965022A929C100D2DBAD /* ThreeLines.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963922A929C100D2DBAD /* ThreeLines.xib */; };
+		5F78964F22A929C100D2DBAD /* ThreeLinesTwoColumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963822A929C100D2DBAD /* ThreeLinesTwoColumns.swift */; };
+		5F78965022A929C100D2DBAD /* ThreeLinesTwoColumns.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963922A929C100D2DBAD /* ThreeLinesTwoColumns.xib */; };
 		5F78965122A929C100D2DBAD /* ThreeLinesAndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963B22A929C100D2DBAD /* ThreeLinesAndButton.swift */; };
 		5F78965222A929C100D2DBAD /* ThreeLinesAndButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963C22A929C100D2DBAD /* ThreeLinesAndButton.xib */; };
 		5F78965322A929C100D2DBAD /* FiveLinesWithTopBroad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963E22A929C100D2DBAD /* FiveLinesWithTopBroad.swift */; };
@@ -1094,6 +1094,15 @@
 		B8BCE59E22AF98D90012AAAC /* AppDelegate+ShareExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */; };
 		B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */; };
 		BB4061622302F3A600E5AB19 /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4061612302F3A600E5AB19 /* OrientationManager.swift */; };
+		BB7B317A230A8C65004A5E52 /* TwoLinesAndTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3178230A8C65004A5E52 /* TwoLinesAndTag.swift */; };
+		BB7B317B230A8C65004A5E52 /* TwoLinesAndTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3179230A8C65004A5E52 /* TwoLinesAndTag.xib */; };
+		BB7B317F230A9520004A5E52 /* ThreeLinesLeftColumn.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B317D230A9520004A5E52 /* ThreeLinesLeftColumn.xib */; };
+		BB7B3180230A9520004A5E52 /* ThreeLinesLeftColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B317E230A9520004A5E52 /* ThreeLinesLeftColumn.swift */; };
+		BB7B3182230A9662004A5E52 /* BaseSkeletonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3181230A9662004A5E52 /* BaseSkeletonView.swift */; };
+		BB7B3186230AA8BE004A5E52 /* OneLineHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3184230AA8BD004A5E52 /* OneLineHeading.swift */; };
+		BB7B3187230AA8BE004A5E52 /* OneLineHeading.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3185230AA8BD004A5E52 /* OneLineHeading.xib */; };
+		BB7B318B230AB337004A5E52 /* OneLineBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3189230AB337004A5E52 /* OneLineBlock.xib */; };
+		BB7B318C230AB337004A5E52 /* OneLineBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B318A230AB337004A5E52 /* OneLineBlock.swift */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
 		CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB142B722010CC65002DF8FB /* GuideGenerator.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
@@ -2090,8 +2099,8 @@
 		5F78963322A929C100D2DBAD /* FiveLines.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiveLines.xib; sourceTree = "<group>"; };
 		5F78963522A929C100D2DBAD /* ThreeLinesAndImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesAndImage.xib; sourceTree = "<group>"; };
 		5F78963622A929C100D2DBAD /* ThreeLinesAndImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLinesAndImage.swift; sourceTree = "<group>"; };
-		5F78963822A929C100D2DBAD /* ThreeLines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLines.swift; sourceTree = "<group>"; };
-		5F78963922A929C100D2DBAD /* ThreeLines.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLines.xib; sourceTree = "<group>"; };
+		5F78963822A929C100D2DBAD /* ThreeLinesTwoColumns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLinesTwoColumns.swift; sourceTree = "<group>"; };
+		5F78963922A929C100D2DBAD /* ThreeLinesTwoColumns.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesTwoColumns.xib; sourceTree = "<group>"; };
 		5F78963B22A929C100D2DBAD /* ThreeLinesAndButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLinesAndButton.swift; sourceTree = "<group>"; };
 		5F78963C22A929C100D2DBAD /* ThreeLinesAndButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesAndButton.xib; sourceTree = "<group>"; };
 		5F78963E22A929C100D2DBAD /* FiveLinesWithTopBroad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveLinesWithTopBroad.swift; sourceTree = "<group>"; };
@@ -2715,6 +2724,15 @@
 		B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkImporter.swift; sourceTree = "<group>"; };
 		BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.appstore.xcconfig"; sourceTree = "<group>"; };
 		BB4061612302F3A600E5AB19 /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
+		BB7B3178230A8C65004A5E52 /* TwoLinesAndTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLinesAndTag.swift; sourceTree = "<group>"; };
+		BB7B3179230A8C65004A5E52 /* TwoLinesAndTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoLinesAndTag.xib; sourceTree = "<group>"; };
+		BB7B317D230A9520004A5E52 /* ThreeLinesLeftColumn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesLeftColumn.xib; sourceTree = "<group>"; };
+		BB7B317E230A9520004A5E52 /* ThreeLinesLeftColumn.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLinesLeftColumn.swift; sourceTree = "<group>"; };
+		BB7B3181230A9662004A5E52 /* BaseSkeletonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseSkeletonView.swift; sourceTree = "<group>"; };
+		BB7B3184230AA8BD004A5E52 /* OneLineHeading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneLineHeading.swift; sourceTree = "<group>"; };
+		BB7B3185230AA8BD004A5E52 /* OneLineHeading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneLineHeading.xib; sourceTree = "<group>"; };
+		BB7B3189230AB337004A5E52 /* OneLineBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneLineBlock.xib; sourceTree = "<group>"; };
+		BB7B318A230AB337004A5E52 /* OneLineBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneLineBlock.swift; sourceTree = "<group>"; };
 		BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrar.swift; sourceTree = "<group>"; };
@@ -4210,14 +4228,19 @@
 		5F78963022A929C100D2DBAD /* Loaders */ = {
 			isa = PBXGroup;
 			children = (
-				5F78963122A929C100D2DBAD /* FiveLines */,
-				5F78963422A929C100D2DBAD /* ThreeLinesAndImage */,
-				5F78963722A929C100D2DBAD /* ThreeLines */,
-				5F78963A22A929C100D2DBAD /* ThreeLinesAndButton */,
-				5F78963D22A929C100D2DBAD /* FiveLinesWithTopBroad */,
-				5F78964022A929C100D2DBAD /* TwoLinesAndImage */,
-				5F78964322A929C100D2DBAD /* Loader */,
+				BB7B3181230A9662004A5E52 /* BaseSkeletonView.swift */,
+				BB7B3183230AA88F004A5E52 /* OneLine */,
+				BB7B3188230AB2F5004A5E52 /* OneLineBlock */,
+				BB7B3177230A8C3A004A5E52 /* TwoLinesAndTag */,
 				5F78964622A929C100D2DBAD /* TwoLinesAndButton */,
+				5F78964022A929C100D2DBAD /* TwoLinesAndImage */,
+				5F78963422A929C100D2DBAD /* ThreeLinesAndImage */,
+				5F78963722A929C100D2DBAD /* ThreeLinesTwoColumns */,
+				BB7B317C230A94E1004A5E52 /* ThreeLinesLeftColumn */,
+				5F78963A22A929C100D2DBAD /* ThreeLinesAndButton */,
+				5F78963122A929C100D2DBAD /* FiveLines */,
+				5F78963D22A929C100D2DBAD /* FiveLinesWithTopBroad */,
+				5F78964322A929C100D2DBAD /* Loader */,
 			);
 			path = Loaders;
 			sourceTree = "<group>";
@@ -4234,19 +4257,19 @@
 		5F78963422A929C100D2DBAD /* ThreeLinesAndImage */ = {
 			isa = PBXGroup;
 			children = (
-				5F78963522A929C100D2DBAD /* ThreeLinesAndImage.xib */,
 				5F78963622A929C100D2DBAD /* ThreeLinesAndImage.swift */,
+				5F78963522A929C100D2DBAD /* ThreeLinesAndImage.xib */,
 			);
 			path = ThreeLinesAndImage;
 			sourceTree = "<group>";
 		};
-		5F78963722A929C100D2DBAD /* ThreeLines */ = {
+		5F78963722A929C100D2DBAD /* ThreeLinesTwoColumns */ = {
 			isa = PBXGroup;
 			children = (
-				5F78963822A929C100D2DBAD /* ThreeLines.swift */,
-				5F78963922A929C100D2DBAD /* ThreeLines.xib */,
+				5F78963822A929C100D2DBAD /* ThreeLinesTwoColumns.swift */,
+				5F78963922A929C100D2DBAD /* ThreeLinesTwoColumns.xib */,
 			);
-			path = ThreeLines;
+			path = ThreeLinesTwoColumns;
 			sourceTree = "<group>";
 		};
 		5F78963A22A929C100D2DBAD /* ThreeLinesAndButton */ = {
@@ -4279,8 +4302,8 @@
 		5F78964322A929C100D2DBAD /* Loader */ = {
 			isa = PBXGroup;
 			children = (
-				5F78964422A929C100D2DBAD /* Loader.xib */,
 				5F78964522A929C100D2DBAD /* Loader.swift */,
+				5F78964422A929C100D2DBAD /* Loader.xib */,
 			);
 			path = Loader;
 			sourceTree = "<group>";
@@ -4288,8 +4311,8 @@
 		5F78964622A929C100D2DBAD /* TwoLinesAndButton */ = {
 			isa = PBXGroup;
 			children = (
-				5F78964722A929C100D2DBAD /* TwoLinesAndButton.xib */,
 				5F78964822A929C100D2DBAD /* TwoLinesAndButton.swift */,
+				5F78964722A929C100D2DBAD /* TwoLinesAndButton.xib */,
 			);
 			path = TwoLinesAndButton;
 			sourceTree = "<group>";
@@ -5915,6 +5938,42 @@
 				B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */,
 			);
 			path = ExternalLinkImporter;
+			sourceTree = "<group>";
+		};
+		BB7B3177230A8C3A004A5E52 /* TwoLinesAndTag */ = {
+			isa = PBXGroup;
+			children = (
+				BB7B3178230A8C65004A5E52 /* TwoLinesAndTag.swift */,
+				BB7B3179230A8C65004A5E52 /* TwoLinesAndTag.xib */,
+			);
+			path = TwoLinesAndTag;
+			sourceTree = "<group>";
+		};
+		BB7B317C230A94E1004A5E52 /* ThreeLinesLeftColumn */ = {
+			isa = PBXGroup;
+			children = (
+				BB7B317E230A9520004A5E52 /* ThreeLinesLeftColumn.swift */,
+				BB7B317D230A9520004A5E52 /* ThreeLinesLeftColumn.xib */,
+			);
+			path = ThreeLinesLeftColumn;
+			sourceTree = "<group>";
+		};
+		BB7B3183230AA88F004A5E52 /* OneLine */ = {
+			isa = PBXGroup;
+			children = (
+				BB7B3184230AA8BD004A5E52 /* OneLineHeading.swift */,
+				BB7B3185230AA8BD004A5E52 /* OneLineHeading.xib */,
+			);
+			path = OneLine;
+			sourceTree = "<group>";
+		};
+		BB7B3188230AB2F5004A5E52 /* OneLineBlock */ = {
+			isa = PBXGroup;
+			children = (
+				BB7B318A230AB337004A5E52 /* OneLineBlock.swift */,
+				BB7B3189230AB337004A5E52 /* OneLineBlock.xib */,
+			);
+			path = OneLineBlock;
 			sourceTree = "<group>";
 		};
 		CB026FC41F6967DB00FC5076 /* APNS Device Token */ = {
@@ -7804,6 +7863,7 @@
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
 				8D25326B22E98D8400FE4205 /* MySprintDetailsHeaderView.xib in Resources */,
 				366AFD2220BEAA6700109F29 /* Apercu-Regular.otf in Resources */,
+				BB7B317F230A9520004A5E52 /* ThreeLinesLeftColumn.xib in Resources */,
 				369353AC22984267008BBB72 /* PrepareResultsContentTableViewCell.xib in Resources */,
 				AC103E57228969EF00F426F0 /* ReactionsTableViewCell.xib in Resources */,
 				8D6E059122D7487400EC2AEF /* MyLibraryNotes.storyboard in Resources */,
@@ -7811,6 +7871,7 @@
 				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
 				36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */,
 				75423F0822CF303B008EE726 /* BeSpokeCell.xib in Resources */,
+				BB7B317B230A8C65004A5E52 /* TwoLinesAndTag.xib in Resources */,
 				36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */,
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
 				368A12622277387900866DB0 /* SF-Pro-Text-Medium.otf in Resources */,
@@ -7895,7 +7956,7 @@
 				3679A4E32175E45300DF761A /* qot_clip.gif in Resources */,
 				7F6567321FE13BFB00A6CB7F /* ScreenHelpViewController.xib in Resources */,
 				36E86D542270651A00371C67 /* ArticleRelatedTableViewCell.xib in Resources */,
-				5F78965022A929C100D2DBAD /* ThreeLines.xib in Resources */,
+				5F78965022A929C100D2DBAD /* ThreeLinesTwoColumns.xib in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
 				7F0F03061F14CE2F00007D50 /* CollapsableContentCell.xib in Resources */,
 				754EBEED22C64CA20010A663 /* TBVDataGraphHeaderView.xib in Resources */,
@@ -7984,6 +8045,7 @@
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
 				5F78964D22A929C100D2DBAD /* ThreeLinesAndImage.xib in Resources */,
+				BB7B3187230AA8BE004A5E52 /* OneLineHeading.xib in Resources */,
 				9115F70E208DFFAE00EE5D1D /* SettingsMenuHeader.xib in Resources */,
 				9C650B7622FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib in Resources */,
 				AC516C7A2282D5C9009C4D30 /* SF-Pro-Text-Semibold.otf in Resources */,
@@ -8010,6 +8072,7 @@
 				5F78965722A929C100D2DBAD /* Loader.xib in Resources */,
 				36E86D48226F45BC00371C67 /* StrategyListHeaderView.xib in Resources */,
 				36796A4520D3C49900B55429 /* SigningLoginViewController.xib in Resources */,
+				BB7B318B230AB337004A5E52 /* OneLineBlock.xib in Resources */,
 				36796A0B20D3C41F00B55429 /* SigningCreatePasswordViewController.xib in Resources */,
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
@@ -8484,6 +8547,7 @@
 				36796A3120D3C47400B55429 /* SigningProfileDetailInterface.swift in Sources */,
 				36735C7B22C60C8A0041678D /* QDMAnswer+Ext.swift in Sources */,
 				3693F6252162601000E286A9 /* AppContentIntermediary.swift in Sources */,
+				BB7B3182230A9662004A5E52 /* BaseSkeletonView.swift in Sources */,
 				5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */,
 				ACD399F5229402EC00DDE1BD /* AnswerKeys.swift in Sources */,
 				B86E744C22A9519900B0AE75 /* MyLibraryCategoryListInterface.swift in Sources */,
@@ -8712,6 +8776,7 @@
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
 				DB68059B218210E700C2FC69 /* MorningInterviewPresenter.swift in Sources */,
 				7FCF5FA41FC2E9FA00CD1E5E /* TabBarItem.swift in Sources */,
+				BB7B317A230A8C65004A5E52 /* TwoLinesAndTag.swift in Sources */,
 				5F360743228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift in Sources */,
 				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
 				91F5BE44209757C300E85A51 /* PermissionsConfigurator.swift in Sources */,
@@ -8900,6 +8965,7 @@
 				5FA66642229C207B0027EE74 /* MyVisionEditDetailsWorker.swift in Sources */,
 				9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */,
 				9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */,
+				BB7B3186230AA8BE004A5E52 /* OneLineHeading.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				ACB99E7622661F2400A73709 /* DecisionTreeQuestionnaireController.swift in Sources */,
 				CB1D5E3F1EC5E25A00BCDF8D /* ContentItemValue.swift in Sources */,
@@ -9048,6 +9114,7 @@
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				36796A3520D3C47400B55429 /* SigningProfileDetailWorker.swift in Sources */,
 				5F360737228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift in Sources */,
+				BB7B3180230A9520004A5E52 /* ThreeLinesLeftColumn.swift in Sources */,
 				3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */,
 				3637665D223AA61100C2C429 /* LevelThreeWorker.swift in Sources */,
 				CCE372FF1E8D2AE700B79352 /* MyPrepViewModel.swift in Sources */,
@@ -9253,6 +9320,7 @@
 				5F7BE79622899EDD00BA5DCF /* MyQotAboutUsInteractor.swift in Sources */,
 				8D6E058822D7466E00EC2AEF /* MyLibraryNotesPresenter.swift in Sources */,
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
+				BB7B318C230AB337004A5E52 /* OneLineBlock.swift in Sources */,
 				AC103E3222847AB500F426F0 /* Confirmation.swift in Sources */,
 				36D72ED5229C1BCC00DE1184 /* (null) in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
@@ -9284,7 +9352,7 @@
 				DB6805A0218210E700C2FC69 /* QuestionnaireViewController.swift in Sources */,
 				3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
-				5F78964F22A929C100D2DBAD /* ThreeLines.swift in Sources */,
+				5F78964F22A929C100D2DBAD /* ThreeLinesTwoColumns.swift in Sources */,
 				3633CF0A22E5ABC400D2817B /* PrepareEventModel.swift in Sources */,
 				8DECF9AB22DDF6A500451E65 /* MySprintsListSprintModel.swift in Sources */,
 				8523E9C01F1628B50000D20D /* Date+Extension.swift in Sources */,

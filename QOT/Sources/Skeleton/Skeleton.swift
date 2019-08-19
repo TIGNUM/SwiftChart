@@ -23,16 +23,19 @@ final class Skeleton: UIView {
         stackViewMain.alignment = .fill
         stackViewMain.distribution = .fill
         stackViewMain.axis = .vertical
+
         let stackViewSubOne = UIStackView()
         stackViewSubOne.alignment = .fill
         stackViewSubOne.distribution = .fillProportionally
         stackViewSubOne.axis = .vertical
-        for type in skeletonTypes {
+        for (index, type) in skeletonTypes.enumerated() {
             let view = LoadingSkeleton()
-            view.showSkeleton(with: type)
+            let delay = Double(index + 1) * 0.25
+            view.showSkeleton(with: type, delay: delay)
             stackViewSubOne.addArrangedSubview(view)
         }
         stackViewMain.addArrangedSubview(stackViewSubOne)
+
         let dummyView = UIView()
         stackViewMain.addArrangedSubview(dummyView)
         stackViewMain.tag = Skeleton.tag

@@ -385,7 +385,7 @@ extension ArticleViewController: ArticleViewControllerInterface {
     func setupView() {
         setupTableView()
         setColorMode()
-        self.view.showLoadingSkeleton(with: [.fiveLinesWithTopBroad])
+        self.view.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .oneLineBlock, .oneLineBlock, .oneLineBlock])
 
         (navigationController as? ScrollingNavigationController)?.scrollingNavbarDelegate = self
     }

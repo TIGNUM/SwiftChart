@@ -8,10 +8,10 @@
 
 import UIKit
 
-final class FiveLines: BaseSkeletonView {
+final class OneLineHeading: BaseSkeletonView {
 
-    static func instantiateFromNib() -> FiveLines {
-        guard let objectView = R.nib.fiveLines.instantiate(withOwner: self).first as? FiveLines else {
+    static func instantiateFromNib() -> OneLineHeading {
+        guard let objectView = R.nib.oneLineHeading.instantiate(withOwner: self).first as? OneLineHeading else {
             fatalError("Cannot load view")
         }
         return objectView

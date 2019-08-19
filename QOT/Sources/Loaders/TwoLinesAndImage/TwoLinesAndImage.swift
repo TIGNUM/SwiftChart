@@ -8,28 +8,12 @@
 
 import UIKit
 
-final class TwoLinesAndImage: UIView {
-
-    @IBOutlet private weak var containerView: UIView!
+final class TwoLinesAndImage: BaseSkeletonView {
 
     static func instantiateFromNib() -> TwoLinesAndImage {
-        guard let twoLinesAndImage = R.nib.twoLinesAndImage.instantiate(withOwner: self).first as? TwoLinesAndImage else {
+        guard let objectView = R.nib.twoLinesAndImage.instantiate(withOwner: self).first as? TwoLinesAndImage else {
             fatalError("Cannot load view")
         }
-        return twoLinesAndImage
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        startAnimating()
-    }
-
-    func startAnimating() {
-        UIView.animate(withDuration: 0.5,
-                       delay: 0,
-                       options: [.autoreverse, .repeat],
-                       animations: {
-                        self.containerView.alpha = 0.0 },
-                       completion: nil)
+        return objectView
     }
 }

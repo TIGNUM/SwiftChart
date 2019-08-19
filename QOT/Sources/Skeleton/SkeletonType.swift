@@ -9,16 +9,49 @@
 import Foundation
 
 enum SkeletonType {
+    case oneLineHeading
+    case oneLineBlock
+    case twoLinesAndTag
     case twoLinesAndButton
-    case threeLinesAndButton
     case twoLinesAndImage
     case threeLinesAndImage
-    case threeLines
+    case threeLinesTwoColumns
+    case threeLinesLeftColumn
+    case threeLinesAndButton
     case fiveLines
     case fiveLinesWithTopBroad
     case loader
 
     static var defaultSkeleton: SkeletonType {
         return SkeletonType.loader
+    }
+
+    var objectView: BaseSkeletonView {
+        switch self {
+        case .oneLineHeading:
+            return OneLineHeading.instantiateFromNib()
+        case .oneLineBlock:
+            return OneLineBlock.instantiateFromNib()
+        case .twoLinesAndTag:
+            return TwoLinesAndTag.instantiateFromNib()
+        case .twoLinesAndButton:
+            return TwoLinesAndButton.instantiateFromNib()
+        case .twoLinesAndImage:
+            return TwoLinesAndImage.instantiateFromNib()
+        case .threeLinesAndImage:
+            return ThreeLinesAndImage.instantiateFromNib()
+        case .threeLinesTwoColumns:
+            return ThreeLinesTwoColumns.instantiateFromNib()
+        case .threeLinesLeftColumn:
+            return ThreeLinesLeftColumn.instantiateFromNib()
+        case .threeLinesAndButton:
+            return ThreeLinesAndButton.instantiateFromNib()
+        case .fiveLines:
+            return FiveLines.instantiateFromNib()
+        case .fiveLinesWithTopBroad:
+            return FiveLinesWithTopBroad.instantiateFromNib()
+        default:
+            return Loader.instantiateFromNib()
+        }
     }
 }
