@@ -26,4 +26,9 @@ final class PermissionCalendarView: UIView {
             .first as? PermissionCalendarView else { fatalError("Cannot load PermissionCalendarView") }
         return view
     }
+
+    // MARK: Configuration
+    func configure() {
+        ///TODO Create CMS content
+    }
 }
