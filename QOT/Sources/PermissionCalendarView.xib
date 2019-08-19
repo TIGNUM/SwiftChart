@@ -107,6 +107,16 @@
                 <constraint firstItem="MgA-25-ccr" firstAttribute="top" secondItem="7Q2-aQ-Kgr" secondAttribute="bottom" constant="80" id="whW-Sp-WmG"/>
             </constraints>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="aboutLabel" destination="lLF-N6-DHl" id="RZC-dk-avz"/>
+                <outlet property="listLabel01" destination="eXi-By-IB3" id="B3I-UR-tmP"/>
+                <outlet property="listLabel02" destination="IrR-CW-fcs" id="9Bd-U5-nbB"/>
+                <outlet property="listLabel03" destination="qK5-i9-1aa" id="d4H-A0-Gcw"/>
+                <outlet property="listLabel04" destination="ksQ-CI-eNu" id="hVH-0p-zxM"/>
+                <outlet property="subtitleLabel" destination="7Q2-aQ-Kgr" id="4H5-Ly-nSn"/>
+                <outlet property="titleLabel" destination="6Wj-Uy-Wfn" id="6c6-zq-Xzy"/>
+                <outlet property="weekDayLabel" destination="MgA-25-ccr" id="fzV-ai-oBM"/>
+            </connections>
             <point key="canvasLocation" x="47.826086956521742" y="35.491071428571423"/>
         </view>
     </objects>

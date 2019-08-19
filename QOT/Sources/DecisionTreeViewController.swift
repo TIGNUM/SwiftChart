@@ -18,6 +18,15 @@ protocol DecisionTreeViewControllerDelegate: class {
 
 final class DecisionTreeViewController: UIViewController {
 
+    struct NextQuestion {
+        let question: QDMQuestion
+        let extraAnswer: String?
+        let filter: String?
+        let selectedAnswers: [DecisionTreeModel.SelectedAnswer]
+        let direction: UIPageViewController.NavigationDirection
+        let animated: Bool
+    }
+
     // MARK: - Properties
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
@@ -29,6 +38,8 @@ final class DecisionTreeViewController: UIViewController {
     @IBOutlet private weak var pageControllerContainer: UIView!
     @IBOutlet private weak var dotsLoadingView: DotsLoadingView!
     @IBOutlet private weak var infoView: InfoHelperView!
+    private lazy var permissionView = PermissionCalendarView.instantiateFromNib()
+    private var nextQuestion: NextQuestion?
     @IBOutlet private weak var infoEffectContainerView: UIVisualEffectView!
 
     private lazy var editEventHandler: EditEventHandler = {
@@ -167,19 +178,16 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
                       selectedAnswers: [DecisionTreeModel.SelectedAnswer],
                       direction: UIPageViewController.NavigationDirection,
                       animated: Bool) {
-        let deadline = DispatchTime.now() + (animated ? Animation.duration_1_5 : 0)
-        DispatchQueue.main.asyncAfter(deadline: deadline) { [unowned self] in
-            if let dotsLoadingView = self.dotsLoadingView {
-                dotsLoadingView.stopAnimation()
-            }
-            let controller = self.questionnaireController(for: question,
-                                                          extraAnswer: extraAnswer,
-                                                          filter: filter,
-                                                          selectedAnswers: selectedAnswers)
-            self.pageController?.setViewControllers([controller],
-                                                    direction: direction,
-                                                    animated: true,
-                                                    completion: nil)
+        nextQuestion = NextQuestion(question: question,
+                                    extraAnswer: extraAnswer,
+                                    filter: filter,
+                                    selectedAnswers: selectedAnswers,
+                                    direction: direction,
+                                    animated: animated)
+        if question.answerType == AnswerType.openCalendarEvents.rawValue {
+            checkCalendarPermissions()
+        } else {
+            loadNextQuestion(nextQuestion)
         }
     }
 
@@ -217,6 +225,24 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
 
 // MARK: - Private
 private extension DecisionTreeViewController {
+    func loadNextQuestion(_ nextQuestion: NextQuestion?) {
+        guard let next = nextQuestion else { return }
+        let deadline = DispatchTime.now() + (next.animated ? Animation.duration_1_5 : 0)
+        DispatchQueue.main.asyncAfter(deadline: deadline) { [unowned self] in
+            if let dotsLoadingView = self.dotsLoadingView {
+                dotsLoadingView.stopAnimation()
+            }
+            let controller = self.questionnaireController(for: next.question,
+                                                          extraAnswer: next.extraAnswer,
+                                                          filter: next.filter,
+                                                          selectedAnswers: next.selectedAnswers)
+            self.pageController?.setViewControllers([controller],
+                                                    direction: next.direction,
+                                                    animated: true,
+                                                    completion: nil)
+        }
+    }
+
     func questionnaireController(for question: QDMQuestion,
                                  extraAnswer: String?,
                                  filter: String?,
@@ -392,5 +418,83 @@ extension DecisionTreeViewController {
                                          action: #selector(didTapContinue))]
         }
         return interactor?.bottomNavigationRightBarItems(action: #selector(didTapContinue))
+    }
+}
+
+// MARK: - Permission Calendar
+extension DecisionTreeViewController {
+    func checkCalendarPermissions() {
+        let authStatus = EKEventStore.authorizationStatus(for: .event)
+        switch authStatus {
+        case .denied:
+            presentPermissionView(openSettings: true)
+        case .notDetermined:
+            presentPermissionView(openSettings: false)
+        default:
+            loadNextQuestion(nextQuestion)
+        }
+    }
+
+    func askCalendarPermission() {
+        CalendarPermission().askPermission { [weak self] (granted) in
+            if granted == true {
+                qot_dal.CalendarService.main.importCalendarEvents()
+                self?.hidePermissionView()
+                self?.loadNextQuestion(self?.nextQuestion)
+            } else {
+                self?.hidePermissionView()
+            }
+        }
+    }
+
+    @objc func didTapSkipPermission() {
+        hidePermissionView()
+    }
+
+    @objc func didTapAllowPermission() {
+        askCalendarPermission()
+    }
+
+    @objc func didTapOpenSettings() {
+        UIApplication.openAppSettings()
+    }
+
+    func presentPermissionView(openSettings: Bool) {
+        view.addSubview(permissionView)
+        permissionView.edges(to: view)
+        let skipButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleSkip().uppercased(),
+                                                  buttonWidth: .Done,
+                                                  action: #selector(didTapSkipPermission),
+                                                  backgroundColor: .clear,
+                                                  borderColor: .accent40)
+        let allowButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleAllow(),
+                                                   buttonWidth: .Done,
+                                                   action: #selector(didTapAllowPermission),
+                                                   backgroundColor: .clear,
+                                                   borderColor: .accent40)
+        let settingsButtonItem = roundedBarButtonItem(title: R.string.localized.alertButtonTitleOpenSettings(),
+                                                  buttonWidth: .Done * 2,
+                                                  action: #selector(didTapOpenSettings),
+                                                  backgroundColor: .clear,
+                                                  borderColor: .accent40)
+        var rightBarButtonItems = [allowButtonItem, skipButtonItem]
+        if openSettings == true {
+            rightBarButtonItems = [settingsButtonItem, skipButtonItem]
+        }
+        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
+                                                  rightBarButtonItems: rightBarButtonItems,
+                                                  backgroundColor: .clear)
+        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+    }
+
+    func hidePermissionView() {
+        let leftBaruttonItems = [dismissNavigationItem()]
+        DispatchQueue.main.async { [weak self] in
+            self?.permissionView.removeFromSuperview()
+            let navigationItem = BottomNavigationItem(leftBarButtonItems: leftBaruttonItems,
+                                                      rightBarButtonItems: [],
+                                                      backgroundColor: .clear)
+            NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        }
     }
 }
