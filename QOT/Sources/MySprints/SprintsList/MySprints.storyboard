@@ -55,7 +55,7 @@
                                                     <constraint firstAttribute="width" constant="40" id="MdT-c0-vEf"/>
                                                     <constraint firstAttribute="height" constant="40" id="a1z-wY-4To"/>
                                                 </constraints>
-                                                <state key="normal" image="edit"/>
+                                                <state key="normal" image="ic_edit"/>
                                                 <userDefinedRuntimeAttributes>
                                                     <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
                                                         <integer key="value" value="20"/>
@@ -218,6 +218,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="edit" width="16" height="16"/>
+        <image name="ic_edit" width="16" height="16"/>
     </resources>
 </document>
