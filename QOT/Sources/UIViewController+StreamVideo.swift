@@ -29,19 +29,14 @@ final class MediaPlayerViewController: AVPlayerViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.post(.init(name: .willDismissPlayerController))
         AppDelegate.appState.orientationManager.regular()
-    }
 
-    override var shouldAutorotate: Bool {
-        return true
-    }
-
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .allButUpsideDown
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        UINavigationController.attemptRotationToDeviceOrientation()
     }
 }
 
 extension UIViewController {
-
     @discardableResult
     func stream(videoURL: URL, contentItem: ContentItem?, pageName: PageName) -> MediaPlayerViewController {
         let player = AVPlayer(url: videoURL)
