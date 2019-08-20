@@ -163,6 +163,7 @@ extension DailyCheckinQuestionsViewController: DailyCheckinQuestionsViewControll
     }
 
     @objc private func doneAction() {
+        NotificationCenter.default.post(name: .didFinishDailyCheckin, object: nil)
         guard isDoneButtonEnabled else { return }
         trackUserEvent(.CONFIRM, valueType: "DailyCheckin.SaveAnswers", action: .TAP)
         interactor?.saveAnswers()

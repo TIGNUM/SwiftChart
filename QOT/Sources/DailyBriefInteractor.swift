@@ -94,6 +94,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             self.presenter.updateView(changeset)
         }
     }
+
     var rowCount: Int {
         return worker.rowCount
     }
@@ -341,7 +342,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func createImpactReadinessCell(impactReadinessBucket impactReadiness: QDMDailyBriefBucket) -> BaseDailyBriefViewModel {
         var models: [ImpactReadinessCellViewModel.ImpactDataViewModel] = []
-        var arrayOfValues: [Int] = []
+        var arrayOfValues: [Double] = []
         var readinessIntro: String? = ""
         guard let collections = impactReadiness.contentCollections else {
             return ImpactReadinessCellViewModel(title: "",
@@ -366,10 +367,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                                                            impactReadiness.dailyCheckInResult?.futureLoad ?? 0],
                                                                            targetRefValue: ""))
         }
-        arrayOfValues.append(Int(impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0))
-        arrayOfValues.append(Int(impactReadiness.dailyCheckInResult?.sleepQualityReference ?? 0))
-        arrayOfValues.append(Int(impactReadiness.dailyCheckInResult?.loadReference ?? 0))
-        arrayOfValues.append(Int(impactReadiness.dailyCheckInResult?.futureLoadReference ?? 0))
+        arrayOfValues.append(impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0)
+        arrayOfValues.append(impactReadiness.dailyCheckInResult?.sleepQualityReference ?? 0)
+        arrayOfValues.append(impactReadiness.dailyCheckInResult?.loadReference ?? 0)
+        arrayOfValues.append(impactReadiness.dailyCheckInResult?.futureLoadReference ?? 0)
         let responseIndex: Int = Int(impactReadiness.dailyCheckInResult?.impactReadiness?.rounded(.up) ?? 0)
         if impactReadiness.dailyCheckInResult?.impactReadiness == nil {
             readinessIntro = impactReadiness.bucketText?.contentItems.filter {$0.format == .paragraph}.first?.valueText
@@ -392,6 +393,11 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
     func saveUpdateGetToLevel5Selection(_ value: Int) {
         let bucketViewModel = self.viewModelOldList.filter { $0.domainModel?.bucketName == .GET_TO_LEVEL_5 }.first as? Level5CellViewModel
         bucketViewModel?.currentLevel = value
+    }
+
+    func saveUpdatedDailyCheckInSleepTarget(_ value: Double) {
+        let bucketViewModel = self.viewModelOldList.filter { $0.domainModel?.bucketName == .DAILY_CHECK_IN_1 }.first as? ImpactReadinessCellViewModel
+        bucketViewModel?.targetReferenceArray![0] = (60 + value * 30) * 5 / 60   
     }
 
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {

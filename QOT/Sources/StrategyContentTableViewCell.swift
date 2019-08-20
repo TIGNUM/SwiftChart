@@ -27,6 +27,11 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         audioView.corner(radius: 20)
+
+        selectionStyle = .gray
+        let bkView = UIView()
+        bkView.backgroundColor = .accent04
+        selectedBackgroundView = bkView
     }
 
     override func prepareForReuse() {

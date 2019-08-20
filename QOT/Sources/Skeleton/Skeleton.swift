@@ -30,7 +30,7 @@ final class Skeleton: UIView {
         stackViewSubOne.axis = .vertical
         for (index, type) in skeletonTypes.enumerated() {
             let view = LoadingSkeleton()
-            let delay = Double(index + 1) * 0.25
+            let delay = Double(index + 3) * 0.25
             view.showSkeleton(with: type, delay: delay)
             stackViewSubOne.addArrangedSubview(view)
         }

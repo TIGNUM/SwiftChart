@@ -60,6 +60,26 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         return UITableViewAutomaticDimension
     }
 
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let viewModelBucket = interactor?.bucketViewModel(at: indexPath.row)
+        switch viewModelBucket?.domainModel?.bucketName {
+        case .DAILY_CHECK_IN_1?:
+            NotificationCenter.default.addObserver(self, selector: #selector(updateTargetValue), name: .didPickTarget, object: nil)
+        default:
+            break
+        }
+    }
+
+    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        let viewModelBucket = interactor?.bucketViewModel(at: indexPath.row)
+        switch viewModelBucket?.domainModel?.bucketName {
+        case .DAILY_CHECK_IN_1?:
+            NotificationCenter.default.removeObserver(self, name: .didPickTarget, object: nil)
+        default:
+            break
+        }
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let viewModelBucket = interactor?.bucketViewModel(at: indexPath.row)
         switch viewModelBucket?.domainModel?.bucketName {
@@ -508,6 +528,14 @@ private extension DailyBriefViewController {
 // MARK: - DumViewControllerInterface
 
 extension  DailyBriefViewController: DailyBriefViewControllerInterface {
+
+    @objc func updateTargetValue(_ notification: NSNotification) {
+        guard let value = notification.object as? Double else {
+            return
+        }
+        interactor?.saveUpdatedDailyCheckInSleepTarget(value)
+        tableView.reloadData()
+    }
 
     @objc func checkAction(sender: UITapGestureRecognizer) {
         interactor?.createLatestWhatsHotModel(completion: { [weak self] (model) in

@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueable, UITableViewDataSource {
+class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueable, UITableViewDataSource {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var dailyCheckImageView: UIImageView!
@@ -24,13 +24,19 @@ final class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueab
     @IBOutlet private weak var asteriskText: UILabel!
     @IBOutlet private weak var readinessIntro: UILabel!
     @IBOutlet private weak var topGradientView: UIView!
-    private var referenceValues: [Int]?
-    var score: Int = 0
-    var delegate: DailyBriefViewControllerDelegate?
+    private var referenceValues: [Double]?
+    private var score: Int = 0
+    weak var delegate: DailyBriefViewControllerDelegate?
     private var impactDataModels: [ImpactReadinessCellViewModel.ImpactDataViewModel]? = []
+    @IBOutlet private weak var moreData: UIButton!
+    @IBOutlet private weak var readinessViewHeight: NSLayoutConstraint!
+    @IBOutlet private weak var viewHeight: NSLayoutConstraint!
+
     @IBAction func readinessExploreButton(_ sender: Any) {
+        viewHeight.constant = 1400
+        readinessViewHeight.constant = 650
         if score != 0 {
-        readinessDetailsView.isHidden = false
+            readinessDetailsView.isHidden = false
         } else {
             delegate?.showDailyCheckIn()
         }
@@ -38,31 +44,21 @@ final class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueab
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        readinessViewHeight.constant = 0
+        viewHeight.constant = 650
         backgroundColor = .carbon
         tableView.registerDequeueable(ImpactDataTableViewCell.self)
         setUp()
     }
 
     func setUp() {
-        //tableView.tableFooterView = UIView(frame: .zero)
         readinessDetailsView.isHidden = true
-        //TODO fade in top and bottom are not working
-        dailyCheckImageView.addFadeView(at: .top,
-                                       height: 70,
-                                       primaryColor: .carbon,
-                                       fadeColor: colorMode.fade)
-        dailyCheckImageView.addFadeView(at: .bottom,
-                                        height: 70,
-                                        primaryColor: .carbon,
-                                        fadeColor: colorMode.fade)
-        topGradientView.setFadeMask(at: .topAndBottom, primaryColor: UIColor.green.cgColor)
-        dailyCheckImageView.setFadeMask(at: .top, primaryColor: UIColor.green.cgColor)
+        dailyCheckImageView.setFadeMask(at: .topAndBottom, primaryColor: UIColor.green.cgColor)
         tableView?.delegate = self
         tableView?.dataSource = self
         readinessExploreButton.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
-    //    placeholder will be different and readiness score heck datatype
     func configure( with viewModel: ImpactReadinessCellViewModel?) {
         dailyCheckImageView.kf.setImage(with: viewModel?.dailyCheckImageView, placeholder: R.image.tbvPlaceholder())
         readinessScoreLabel.text = String(viewModel?.readinessScore ?? 0)
@@ -89,7 +85,14 @@ final class ImpactReadinessCell: UITableViewCell, UITableViewDelegate, Dequeueab
         cell.backgroundColor = .carbon
         if indexPath.row != 0 {
             cell.setTargetRefLabelText("Ref")
+            cell.button.isHidden = true
         }
         return cell
+    }
+}
+
+extension ImpactReadinessCell {
+    @objc func updateButtonTitle() {
+        readinessExploreButton.setTitle("Explore your score", for: .normal)
     }
 }

@@ -40,5 +40,9 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
         super.awakeFromNib()
         contentView.backgroundColor = .clear
         backgroundColor = .clear
+
+        let bkView = UIView()
+        bkView.backgroundColor = .accent04
+        selectedBackgroundView = bkView
     }
 }

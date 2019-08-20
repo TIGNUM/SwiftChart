@@ -120,6 +120,7 @@ extension ArticleInteractor: ArticleInteractorInterface {
         presenter.setupArticleHeader(header: worker.articleHeader)
         presenter.reloadData()
         presenter.updateBookmark(worker.bookmark != nil)
+        presenter.dataUpdated()
     }
 
     func toggleBookmark() {
