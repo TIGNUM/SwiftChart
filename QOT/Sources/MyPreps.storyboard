@@ -48,7 +48,7 @@
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="singleLineEtched" allowsMultipleSelection="YES" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="200" translatesAutoresizingMaskIntoConstraints="NO" id="hvU-ex-T62">
                                 <rect key="frame" x="0.0" y="246" width="414" height="461"/>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <color key="separatorColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="0.41077161815068491" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <connections>
@@ -58,7 +58,7 @@
                             </tableView>
                             <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="C6u-Gz-PnI">
                                 <rect key="frame" x="0.0" y="218" width="414" height="29"/>
-                                <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <segments>
                                     <segment title="My preps"/>
                                     <segment title="Mindset shifter"/>
@@ -101,7 +101,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803921568626" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="7BQ-4U-u9M" firstAttribute="top" secondItem="tod-5A-b5r" secondAttribute="bottom" constant="-27" id="D6j-lk-FFs"/>
                                     <constraint firstItem="ljU-hM-8eE" firstAttribute="top" secondItem="FQX-We-ykg" secondAttribute="top" constant="40" id="Tiu-UP-YsI"/>
@@ -172,7 +172,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803921568626" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="Sew-Ix-s4G" firstAttribute="leading" secondItem="9aH-l5-mKn" secondAttribute="leading" constant="45" id="41N-Nv-xmR"/>
                                     <constraint firstItem="Sew-Ix-s4G" firstAttribute="centerY" secondItem="TRr-vx-lp0" secondAttribute="centerY" id="8zo-In-GNA"/>
@@ -219,7 +219,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803921568626" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="GHy-11-mG8" firstAttribute="centerY" secondItem="tkq-ad-4io" secondAttribute="centerY" id="42u-Jc-pvt"/>
                                     <constraint firstItem="XtY-LP-eBW" firstAttribute="leading" secondItem="dEq-o1-iv8" secondAttribute="leading" constant="30" id="AQB-S9-0KB"/>
@@ -267,7 +267,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803921568626" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="7fL-9S-tVD" firstAttribute="top" secondItem="RIe-hX-AO4" secondAttribute="top" constant="60" id="04m-1r-8H7"/>
                                     <constraint firstItem="7fL-9S-tVD" firstAttribute="leading" secondItem="RIe-hX-AO4" secondAttribute="leading" constant="30" id="0en-cB-Q7n"/>
@@ -340,7 +340,7 @@
                                         </constraints>
                                     </imageView>
                                 </subviews>
-                                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <color key="backgroundColor" red="0.078431372550000003" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstItem="NcN-uZ-qgu" firstAttribute="top" secondItem="sDB-8s-m35" secondAttribute="bottom" constant="40" id="4NW-Bg-XYr"/>
                                     <constraint firstItem="u7j-nf-kpA" firstAttribute="top" secondItem="q6d-4k-BJY" secondAttribute="bottom" constant="31" id="Ahs-mk-dee"/>
@@ -358,7 +358,7 @@
                                 </constraints>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="9aH-l5-mKn" firstAttribute="trailing" secondItem="izd-Ti-FEs" secondAttribute="trailing" id="0bg-ud-0tp"/>
                             <constraint firstItem="FQX-We-ykg" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="2D8-q1-Kcn"/>

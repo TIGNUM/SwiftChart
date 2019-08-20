@@ -18,6 +18,7 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     func configure(title: String, subtitle: String) {
         titleLabel.text = title.uppercased()
         subtitleLabel.text = subtitle
+        subtitleLabel.textColor = UIColor.sand
     }
 
     override func prepareForReuse() {
@@ -30,7 +31,6 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .clear
         layer.borderColor = UIColor.sand40.cgColor
         layer.cornerRadius = 15
         layer.borderWidth = 1

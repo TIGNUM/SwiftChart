@@ -35,7 +35,7 @@ final class AudioFullScreenViewController: UIViewController {
         notificationCenter.addObserver(self, selector: #selector(didUpdateDownloadStatus(_:)),
                                        name: .didUpdateDownloadStatus, object: nil)
 
-        view.backgroundColor = .carbonDark
+        view.backgroundColor = .carbon
         setupButtons()
         updateLabel()
     }

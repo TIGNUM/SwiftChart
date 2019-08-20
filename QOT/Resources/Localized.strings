@@ -550,6 +550,7 @@
 "MyQot.Vision.MonthsSince" = " months since your last edit";
 "MyQot.Vision.LessThan" = "Less than a month since your last edit";
 "MyQot.Vision.NoVision" = "You have not created your To Be Vision yet";
+"MyQot.Data.Impact" = "/100 your impact readiness";
 
 "Button.Title.Pick" = "Pick %d to continue";
 "Button.Title.Add.Event" = "Add new event";

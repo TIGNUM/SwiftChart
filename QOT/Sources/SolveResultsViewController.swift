@@ -205,6 +205,6 @@ extension SolveResultsViewController {
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
                                       buttonWidth: .DecisionTree,
                                       action: #selector(didTapDone),
-                                      backgroundColor: .carbonDark)]
+                                      backgroundColor: .carbon)]
     }
 }

@@ -75,6 +75,9 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
             completion(toBeVisionDate)
         }
     }
+    func getImpactReadinessScore(completion: @escaping(Double?) -> Void) {
+        worker.getImpactReadinessScore(completion: completion)
+    }
 
    func getSubtitles(completion: @escaping ([String?]) -> Void) {
     worker.getSubtitles(completion: completion)
