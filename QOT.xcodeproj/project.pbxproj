@@ -38,9 +38,9 @@
 		3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */; };
 		3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539922983AB9008BBB72 /* PrepareResultsPresenter.swift */; };
 		3609938223048B20008CB854 /* PrepareResultsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3693539C22983AB9008BBB72 /* PrepareResultsInterface.swift */; };
-		360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */; };
 		360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */; };
 		360B106E230A9E82006B1F2D /* PermissionCalendarView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */; };
+		360B1070230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */; };
 		360CC3C222686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */; };
 		360CC3C322686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */; };
 		360CC3C62268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */; };
@@ -1100,6 +1100,8 @@
 		B8BCE59E22AF98D90012AAAC /* AppDelegate+ShareExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */; };
 		B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */; };
 		BB4061622302F3A600E5AB19 /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4061612302F3A600E5AB19 /* OrientationManager.swift */; };
+		BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */; };
+		BB5E76B7230C04B30054AF17 /* CustomSeguePush.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B5230C04B30054AF17 /* CustomSeguePush.swift */; };
 		BB7B317A230A8C65004A5E52 /* TwoLinesAndTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3178230A8C65004A5E52 /* TwoLinesAndTag.swift */; };
 		BB7B317B230A8C65004A5E52 /* TwoLinesAndTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3179230A8C65004A5E52 /* TwoLinesAndTag.xib */; };
 		BB7B317F230A9520004A5E52 /* ThreeLinesLeftColumn.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B317D230A9520004A5E52 /* ThreeLinesLeftColumn.xib */; };
@@ -1692,9 +1694,9 @@
 		36083825225F3ED000664B9B /* ArticleConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleConfigurator.swift; sourceTree = "<group>"; };
 		36085C5822CA48E600C703BA /* PreparationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PreparationManager.swift; sourceTree = "<group>"; };
 		360947A21FB5E684003AF3E9 /* PageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageControl.swift; sourceTree = "<group>"; };
-		360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserEventTracking+Ext.swift"; sourceTree = "<group>"; };
 		360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionCalendarView.swift; sourceTree = "<group>"; };
 		360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PermissionCalendarView.xib; sourceTree = "<group>"; };
+		360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserEventTracking+Ext.swift"; sourceTree = "<group>"; };
 		360CC3C022686E3F0064A991 /* ArticleTextHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleTextHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		360CC3C122686E3F0064A991 /* ArticleTextHeaderTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ArticleTextHeaderTableViewCell.xib; sourceTree = "<group>"; };
 		360CC3C42268BAC00064A991 /* ArticleImageHeaderTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleImageHeaderTableViewCell.swift; sourceTree = "<group>"; };
@@ -2737,6 +2739,8 @@
 		B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkImporter.swift; sourceTree = "<group>"; };
 		BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.appstore.xcconfig"; sourceTree = "<group>"; };
 		BB4061612302F3A600E5AB19 /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
+		BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegueModal.swift; sourceTree = "<group>"; };
+		BB5E76B5230C04B30054AF17 /* CustomSeguePush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSeguePush.swift; sourceTree = "<group>"; };
 		BB7B3178230A8C65004A5E52 /* TwoLinesAndTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLinesAndTag.swift; sourceTree = "<group>"; };
 		BB7B3179230A8C65004A5E52 /* TwoLinesAndTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoLinesAndTag.xib; sourceTree = "<group>"; };
 		BB7B317D230A9520004A5E52 /* ThreeLinesLeftColumn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesLeftColumn.xib; sourceTree = "<group>"; };
@@ -5935,6 +5939,15 @@
 			path = ExternalLinkImporter;
 			sourceTree = "<group>";
 		};
+		BB5E76B3230C048C0054AF17 /* CustomSegue */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */,
+				BB5E76B5230C04B30054AF17 /* CustomSeguePush.swift */,
+			);
+			name = CustomSegue;
+			sourceTree = "<group>";
+		};
 		BB7B3177230A8C3A004A5E52 /* TwoLinesAndTag */ = {
 			isa = PBXGroup;
 			children = (
@@ -7116,6 +7129,7 @@
 		CCA834E51F17663800FAAA2B /* Animation */ = {
 			isa = PBXGroup;
 			children = (
+				BB5E76B3230C048C0054AF17 /* CustomSegue */,
 				7F4B98AC1FA226C4000B402C /* Chart */,
 				7F4B98A91FA21FD7000B402C /* WeeklyChoices */,
 				7F8DB4AD1FA2048000DFE006 /* QOTPartners */,
@@ -9323,6 +9337,7 @@
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				BB7B318C230AB337004A5E52 /* OneLineBlock.swift in Sources */,
 				AC103E3222847AB500F426F0 /* Confirmation.swift in Sources */,
+				BB5E76B7230C04B30054AF17 /* CustomSeguePush.swift in Sources */,
 				36D72ED5229C1BCC00DE1184 /* (null) in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
@@ -9353,7 +9368,7 @@
 				DB6805A0218210E700C2FC69 /* QuestionnaireViewController.swift in Sources */,
 				3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
-				5F78964F22A929C100D2DBAD /* ThreeLines.swift in Sources */,
+				5F78964F22A929C100D2DBAD /* ThreeLinesTwoColumns.swift in Sources */,
 				5F78964F22A929C100D2DBAD /* ThreeLinesTwoColumns.swift in Sources */,
 				3633CF0A22E5ABC400D2817B /* PrepareEventModel.swift in Sources */,
 				8DECF9AB22DDF6A500451E65 /* MySprintsListSprintModel.swift in Sources */,
@@ -9493,6 +9508,7 @@
 				36D2F2FC229E88FF004BA110 /* CalendarEventsTableViewCell.swift in Sources */,
 				CB8A154C1E7A8AD30023B2F9 /* CalendarImportTask.swift in Sources */,
 				DB985D59215BAB3B0000D2DD /* UIView+Autolayout.swift in Sources */,
+				BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */,
 				F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */,
 				CB3437671EFE74C700D89D4F /* ContentCollection+Convenience.swift in Sources */,
 				CBD4BEAA2018E7D4008A0E9E /* GuideConfigurator.swift in Sources */,

@@ -39,4 +39,8 @@ extension ArticlePresenter: ArticlePresenterInterface {
     func updateBookmark(_ hasBookmark: Bool) {
         viewController?.hasBookmark(hasBookmark)
     }
+
+    func dataUpdated() {
+        viewController?.dataUpdated()
+    }
 }

@@ -394,6 +394,31 @@ extension ArticleViewController: ArticleViewControllerInterface {
     }
 }
 
+// MARK: - Transition
+
+extension ArticleViewController {
+    func transitionArticle(remoteID: Int) {
+        if let image = view.screenshot() {
+            let shot = UIImageView(image: image)
+            shot.tag = 871234
+            view.addSubview(shot)
+        }
+
+        interactor?.showRelatedArticle(remoteID: remoteID)
+        reloadData()
+    }
+
+    func dataUpdated() {
+        if let imageViewShot = self.view.viewWithTag(871234) {
+            UIView.animate(withDuration: 0.5, animations: {
+                imageViewShot.alpha = 0.0
+            }, completion: { (_) in
+                imageViewShot.removeFromSuperview()
+            })
+        }
+    }
+}
+
 // MARK: - Cells
 
 extension ArticleViewController {
@@ -656,11 +681,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             didTapPDFLink(title, itemID, pdfURL)
             trackUserEvent(.OPEN, value: itemID, valueType: .CONTENT_ITEM, action: .TAP)
         case .articleRelatedWhatsHot(let relatedArticle):
-            interactor?.showRelatedArticle(remoteID: relatedArticle.remoteID)
+            transitionArticle(remoteID: relatedArticle.remoteID)
             trackUserEvent(.OPEN, value: relatedArticle.remoteID, valueType: .CONTENT, action: .TAP)
         case .articleRelatedStrategy(_, _, let remoteID),
              .articleNextUp(_, _, let remoteID):
-            interactor?.showRelatedArticle(remoteID: remoteID)
+            transitionArticle(remoteID: remoteID)
             trackUserEvent(.OPEN, value: remoteID, valueType: .CONTENT, action: .TAP)
         default: return
         }

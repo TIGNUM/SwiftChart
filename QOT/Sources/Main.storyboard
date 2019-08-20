@@ -50,8 +50,8 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <segue destination="zMF-70-Y2W" kind="show" identifier="know.article.segue.identifier" id="fOE-9g-Xpx"/>
-                        <segue destination="Pvj-WC-qnD" kind="show" identifier="know.strategy.list.segue.identifier" id="PvS-nB-a28"/>
+                        <segue destination="zMF-70-Y2W" kind="custom" identifier="know.article.segue.identifier" customClass="CustomSegueModal" customModule="QOT" customModuleProvider="target" id="fOE-9g-Xpx"/>
+                        <segue destination="Pvj-WC-qnD" kind="custom" identifier="know.strategy.list.segue.identifier" customClass="CustomSeguePush" customModule="QOT" customModuleProvider="target" id="PvS-nB-a28"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PeH-8r-sFw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -449,7 +449,7 @@
                     <navigationItem key="navigationItem" id="dzz-tC-J7n"/>
                     <connections>
                         <outlet property="tableView" destination="cge-Eh-dWl" id="tCA-ZG-st1"/>
-                        <segue destination="zMF-70-Y2W" kind="show" identifier="know.strategy.article.segue.identifier" id="9IF-6c-jgj"/>
+                        <segue destination="zMF-70-Y2W" kind="custom" identifier="know.strategy.article.segue.identifier" customClass="CustomSegueModal" customModule="QOT" customModuleProvider="target" id="9IF-6c-jgj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hR8-eA-w9R" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -590,6 +590,6 @@
         <image name="img1.png" width="16" height="16"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="fOE-9g-Xpx"/>
+        <segue reference="9IF-6c-jgj"/>
     </inferredMetricsTieBreakers>
 </document>

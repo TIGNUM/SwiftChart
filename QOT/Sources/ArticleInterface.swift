@@ -13,6 +13,7 @@ protocol ArticleViewControllerInterface: class {
     func setupArticleHeader(header: Article.Header)
     func reloadData()
     func hasBookmark(_ hasBookmark: Bool)
+    func dataUpdated()
 }
 
 protocol ArticlePresenterInterface {
@@ -20,6 +21,7 @@ protocol ArticlePresenterInterface {
     func setupArticleHeader(header: Article.Header)
     func reloadData()
     func updateBookmark(_ hasBookmark: Bool)
+    func dataUpdated()
 }
 
 protocol ArticleInteractorInterface: class, Interactor {
