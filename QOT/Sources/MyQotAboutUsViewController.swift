@@ -58,7 +58,6 @@ extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleSubtitleTableViewCell.Config()
-        cell.selectionStyle = .none
         interactor?.title(at: indexPath, { (text) in
             cell.title = text
         })

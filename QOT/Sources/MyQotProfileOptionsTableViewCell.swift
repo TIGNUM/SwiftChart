@@ -17,6 +17,8 @@ final class MyQotProfileOptionsTableViewCell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .carbon
+        self.selectedBackgroundView = UIView(frame: self.bounds)
+        self.selectedBackgroundView?.backgroundColor = .accent10
     }
 
     func configure(_ data: MyQotProfileModel.TableViewPresentationData) {

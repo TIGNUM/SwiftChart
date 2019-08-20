@@ -58,7 +58,6 @@ extension MyQotSupportFaqViewController: UITableViewDelegate, UITableViewDataSou
         let cell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.config = TitleTableViewCell.Config(backgroundColor: .carbon, isArrowHidden: true)
         cell.title = interactor?.title(at: indexPath) ?? ""
-        cell.selectionStyle = .none
         return cell
     }
 

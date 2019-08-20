@@ -12,4 +12,10 @@ class MyLibraryCategoryTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var iconView: UIImageView!
     @IBOutlet weak var categoryName: UILabel!
     @IBOutlet weak var infoText: UILabel!
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectedBackgroundView = UIView(frame: self.bounds)
+        self.selectedBackgroundView?.backgroundColor = .accent10
+    }
 }

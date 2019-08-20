@@ -92,7 +92,6 @@ extension MyQotProfileViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyQotProfileOptionsTableViewCell = tableView.dequeueCell(for: indexPath)
         cell.configure(menuItems[indexPath.row])
-        cell.selectionStyle = .none
         return cell
     }
 

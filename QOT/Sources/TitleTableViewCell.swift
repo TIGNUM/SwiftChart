@@ -16,6 +16,12 @@ class TitleTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var bottomMargin: NSLayoutConstraint!
     @IBOutlet weak var separator: UIView!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectedBackgroundView = UIView(frame: self.bounds)
+        self.selectedBackgroundView?.backgroundColor = .accent10
+    }
+
     struct Config {
         var backgroundColor: UIColor
         var titlefont: UIFont

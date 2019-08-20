@@ -13,6 +13,12 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
 
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        self.selectedBackgroundView = UIView(frame: self.bounds)
+        self.selectedBackgroundView?.backgroundColor = .accent10
+    }
+
     var title: String = "" {
         willSet {
             titleLabel.text = newValue
