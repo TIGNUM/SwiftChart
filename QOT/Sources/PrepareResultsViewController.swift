@@ -328,11 +328,11 @@ extension PrepareResultsViewController {
             return [roundedBarButtonItem(title: R.string.localized.morningControllerDoneButton().capitalized,
                                           buttonWidth: .Done,
                                           action: #selector(dismissView),
-                                          backgroundColor: .carbonDark)]
+                                          backgroundColor: .carbon)]
         }
         return [roundedBarButtonItem(title: R.string.localized.buttonTitleSaveContinue(),
                                       buttonWidth: .SaveAndContinue,
                                       action: #selector(saveAndContinue),
-                                      backgroundColor: .carbonDark)]
+                                      backgroundColor: .carbon)]
     }
 }

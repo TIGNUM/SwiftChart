@@ -9365,6 +9365,7 @@
 				DB6805A0218210E700C2FC69 /* QuestionnaireViewController.swift in Sources */,
 				3649C03B1FE41B84001F4249 /* GuideWorker.swift in Sources */,
 				360256E82051839F00862B0E /* SearchInteractor.swift in Sources */,
+				5F78964F22A929C100D2DBAD /* ThreeLines.swift in Sources */,
 				5F78964F22A929C100D2DBAD /* ThreeLinesTwoColumns.swift in Sources */,
 				3633CF0A22E5ABC400D2817B /* PrepareEventModel.swift in Sources */,
 				8DECF9AB22DDF6A500451E65 /* MySprintsListSprintModel.swift in Sources */,

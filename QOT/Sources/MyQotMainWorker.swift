@@ -55,6 +55,13 @@ final class MyQotMainWorker {
         }
     }
 
+    func getImpactReadinessScore(completion: @escaping(Double?) -> Void) {
+        qot_dal.MyDataService.main.getDailyCheckInResults(from: nil, to: nil, {(result, initialized, error) in
+            let score = result?.last?.impactReadiness
+            completion(score)
+        })
+    }
+
     func toBeVisionDate(completion: @escaping (Date?) -> Void) {
         userService.getMyToBeVision {(toBeVision, initialized, error) in
             completion(toBeVision?.modifiedAt ?? toBeVision?.createdAt)

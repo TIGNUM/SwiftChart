@@ -91,7 +91,8 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     @IBAction func confirmDeleteButton(_ sender: Any) {
         hideAllViews()
         if let selectedRows = tableView.indexPathsForSelectedRows {
-            for indexPath in selectedRows {
+        let sortedArray = selectedRows.sorted { $1.row < $0.row }
+            for indexPath in sortedArray {
                 interactor?.remove(segmentedControl: segmentedControl.selectedSegmentIndex, at: indexPath)
             }
             showEmptyStateViewIfNeeded(segmentedControl)
@@ -190,7 +191,7 @@ extension MyPrepsViewController: MyPrepsViewControllerInterface {
     }
 
     func setupView() {
-        view.backgroundColor = .carbonDark
+        view.backgroundColor = .carbon
         headerTitle.text = R.string.localized.myQotHeaderTitle()
         setupTableView()
         hideAllViews()
@@ -224,12 +225,12 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
         let backgroundView = UIView()
         backgroundView.backgroundColor = UIColor.carbon
         cell.selectedBackgroundView = backgroundView
-        cell.backgroundColor = .carbonDark
-
+        cell.setSelectedColor(.accent, alphaComponent: 0.1)
+        cell.backgroundColor = .carbon
         switch segmentedControl.selectedSegmentIndex {
         case SegmentView.myPreps.rawValue:
             let item = interactor?.itemPrep(at: indexPath)
-            cell.configure(title: item?.title ?? "", subtitle: item?.date ?? "" + " | " + (item?.eventType ?? ""))
+            cell.configure(title: item?.title ?? "", subtitle: (item?.date ?? "") + " | " + (item?.eventType ?? ""))
         case SegmentView.mindsetShifter.rawValue:
             let item = interactor?.itemMind(at: indexPath)
             cell.configure(title: item?.title ?? "", subtitle: item?.date ?? "")

@@ -51,8 +51,8 @@ final class DailyCheckinQuestionsViewController: UIViewController {
         guard isDoneButtonEnabled else {
             return []
         }
-        var backgroundColor = UIColor.carbonDark.withAlphaComponent(0.5)
-            backgroundColor = .carbonDark
+        var backgroundColor = UIColor.carbon.withAlphaComponent(0.5)
+            backgroundColor = .carbon
         return [roundedBarButtonItem(title: R.string.localized.questionnaireViewControllerDoneButton(),
                                      buttonWidth: .Done,
                                      action: #selector(doneAction),

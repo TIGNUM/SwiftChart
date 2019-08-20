@@ -44,7 +44,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
 
     lazy var dailyBriefNavigationController: DailyBriefNavigationController? = {
         let navController = R.storyboard.main().instantiateViewController(withIdentifier: DailyBriefNavigationController.storyboardID) as? DailyBriefNavigationController
-        guard let dailyBriefViewController = navController?.viewControllers.first  as? DailyBriefViewController else {
+        guard let dailyBriefViewController = navController?.viewControllers.first as? DailyBriefViewController else {
             return nil
         }
         DailyBriefConfigurator.configure(delegate: self, viewController: dailyBriefViewController)
@@ -84,7 +84,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
             searchViewController.view.alpha = 0
         }
         view.addSubview(collectionView)
-        view.backgroundColor = .carbonDark
+        view.backgroundColor = .carbon
     }
 
     override func viewWillAppear(_ animated: Bool) {

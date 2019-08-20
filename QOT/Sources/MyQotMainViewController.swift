@@ -27,6 +27,7 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
     private var toBeVisionModified: Date?
     private var timeSinceMonth: Int?
     private var subtitleVision: String?
+    private var impactReadinessScore: Int?
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return ColorMode.dark.statusBarStyle
@@ -37,13 +38,15 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        getImpactReadinessScore(completion: { (score) in
+            self.impactReadinessScore = Int(score ?? 0)
+            self.collectionView.reloadData()
+        })
         nextPrepDate(completion: { (dateString) in
             self.dateOfPrep = dateString
-//            self.collectionView.reloadData()
         })
         nextPrepType(completion: { (eventType) in
             self.eventType = eventType
-//            self.collectionView.reloadData()
         })
         toBeVisionDate(completion: { (date) in
             self.toBeVisionModified = date
@@ -55,7 +58,6 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
                     self.subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
                 } else { self.subtitleVision = R.string.localized.myQotVisionLessThan()}
             }
-//            self.collectionView.reloadData()
         })
     }
 
@@ -76,8 +78,6 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
 
         func setupView() {
             view.addFadeView(at: .bottom, height: 120, primaryColor: .carbonDark)
-            view.backgroundColor = .carbonDark
-            collectionView.backgroundColor = .carbonDark
             collectionView.bounces = false
             collectionView.alwaysBounceVertical = false
             collectionView.registerDequeueable(MyQotMainCollectionViewCell.self)
@@ -111,7 +111,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
                     }
                 })
             })
-            cell.subtitleLabel.textColor = UIColor.sand
+
         case .library:
             cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
         case .preps:
@@ -126,7 +126,8 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
                 }
             })
         case .data:
-            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
+            let subtitle = R.string.localized.myQotDataImpact()
+            cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: String(impactReadinessScore ?? 0) + subtitle)
         case .toBeVision:
             interactor?.getSubtitles(completion: {(subtitles) in
                  if subtitles.count > 0 {
@@ -169,6 +170,10 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
 }
 
 extension MyQotMainViewController {
+
+    func getImpactReadinessScore(completion: @escaping(Double?) -> Void) {
+        interactor?.getImpactReadinessScore(completion: completion)
+    }
 
     func nextPrepDate(completion: @escaping (String?) -> Void) {
         interactor?.nextPrep(completion: completion)

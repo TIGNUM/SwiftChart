@@ -37,6 +37,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
     private var selectedToolID: Int?
+    private var impactReadinessScore: Int?
 
     // MARK: - Life Cycle
 
