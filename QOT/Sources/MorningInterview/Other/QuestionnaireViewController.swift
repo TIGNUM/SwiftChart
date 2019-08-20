@@ -118,9 +118,11 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel1 {
     private var controllerType: ControllerType = .vision
     private var showAnimated: Bool = false
     weak var answerDelegate: QuestionnaireAnswer?
+    weak var dailyCheckinDelegate: DailyBriefViewControllerDelegate?
 
     static func viewController<T>(with questionnaire: T,
                                   delegate: QuestionnaireAnswer? = nil,
+                                  dailyCheckinDelegate: DailyBriefViewControllerDelegate? = nil,
                                   presentationType: QuestionnairePresentationType = .fill,
                                   controllerType: ControllerType = .vision) -> QuestionnaireViewController?
         where T: RatingQuestionnaire {
@@ -139,6 +141,7 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel1 {
             viewController.presentationType = presentationType
             viewController.controllerType = controllerType
             viewController.answerDelegate = delegate
+            viewController.dailyCheckinDelegate = dailyCheckinDelegate
             return viewController
     }
 
@@ -612,9 +615,11 @@ extension QuestionnaireViewController {
 
     @objc func didTapSave() {
         guard let count = answers?.count else { return }
+        let value = (count  - 1 - currentIndex)
         // WARNING: This is valid only for daily brief check in Set Sleep Target
-        self.answerDelegate?.saveTargetValue(value: (count  - 1 - currentIndex))
+        self.answerDelegate?.saveTargetValue(value: value)
         navigationController?.popViewController(animated: true)
+        NotificationCenter.default.post(name: .didPickTarget, object: Double(value))
     }
 }
 
