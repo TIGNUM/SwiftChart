@@ -226,8 +226,7 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
         case .audio:
             prepareAndPlay(at: indexPath)
         case .video(_, _, _, _, let videoURL, _):
-            let contentItem = viewModel.learnContentItem(at: indexPath, tabType: tabType)
-            let playerViewController = stream(videoURL: videoURL, contentItem: contentItem, pageName: pageName)
+            let playerViewController = stream(videoURL: videoURL, contentItem: nil, pageName)
             if let playerItem = playerViewController.player?.currentItem {
                 avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
                 avPlayerObserver?.onStatusUpdate { (player) in

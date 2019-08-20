@@ -14,87 +14,6 @@ protocol Predicatable {
 }
 
 final class ContentService {
-
-    enum Tags: String, CaseIterable, Predicatable {
-        case myQotProfileSectionTitle = "myqot_profile_section_title"
-        case myQotLibrarySectionTitle = "myqot_library_section_title"
-        case myQotPrepsSectionTitle = "myqot_preps_section_title"
-        case myQotSprintsSectionTitle = "myqot_sprints_section_title"
-        case myQotDataSectionTitle = "myqot_data_section_title"
-        case myQotToBeVisionSectionTitle = "myqot_tobevision_section_title"
-        case toolsHeaderTitle = "tools_header_title"
-        case toolsHeaderSubtitle = "tools_header_subtitle"
-        case toolsMindsetSectionTitle = "tools_mindset_section_title"
-        case toolsNutritionSectionTitle = "tools_nutrition_section_title"
-        case toolsMovementSectionTitle = "tools_movement_section_title"
-        case toolsRecoverySectionTitle = "tools_recovery_section_title"
-        case toolsHabituationSectionTitle = "tools_habituation_section_title"
-        case coachHeaderTitle = "coach_header_title"
-        case coachHeaderSubtitle = "coach_header_subtitle"
-        case coachSearchSectionTitle = "coach_search_section_title"
-        case coachApplyToolsSectionTitle = "coach_apply_tools_section_title"
-        case coachPlanSprintSectionTitle = "coach_plan_sprint_section_title"
-        case coachPrepareEventSectionTitle = "coach_prepare_event_section_title"
-        case coachSolveChallengeSectionTitle = "coach_solve_challenge_section_title"
-        case coachSearchSectionSubtitle = "coach_search_section_subtitle"
-        case coachApplyToolsSectionSubtitle = "coach_apply_tools_section_subtitle"
-        case coachPlanSprintSectionSubtitle = "coach_plan_sprint_section_subtitle"
-        case coachPrepareEventSectionSubtitle = "coach_prepare_event_section_subtitle"
-        case coachSolveChallengeSectionSubtitle = "coach_solve_challenge_section_subtitle"
-        case paymentHeaderTitle = "payment_header_title"
-        case paymentHeaderSubtitle = "payment_header_subtitle"
-        case paymentPrepareSectionTitle = "payment_prepared_section_title"
-        case paymentImpactSectionTitle = "payment_impact_section_title"
-        case paymentGrowSectionTitle = "payment_grow_section_title"
-        case paymentDataSectionTitle = "payment_data_section_title"
-        case paymentPrepareSectionSubtitle = "payment_prepared_section_subtitle"
-        case paymentImpactSectionSubtitle = "payment_impact_section_subtitle"
-        case paymentGrowSectionSubtitle = "payment_grow_section_subtitle"
-        case paymentDataSectionSubtitle = "payment_data_section_subtitle"
-        case tbvGeneratorAlertNotSavedTitle = "tbv_generator_alert_not_saved_title"
-        case tbvGeneratorAlertNotSavedMessage = "tbv_generator_alert_not_saved_message"
-        case tbvGeneratorAlertNotSavedButtonTitleCancel = "tbv_generator_alert_not_saved_button_title_cancel"
-        case tbvGeneratorAlertNotSavedButtonTitleDefault = "tbv_generator_alert_not_saved_button_title_default"
-        case tbvGeneratorAlertNotSavedButtonTitleDestructive = "tbv_generator_alert_not_saved_button_title_destructive"
-        case tbvSharing = "tbv_sharing"
-        case searchSuggestionSelfImage = "search_suggestion_self_image"
-        case searchSuggestionDailyPrep = "search_suggestion_daily_prep"
-        case searchSuggestionNoExcuse = "search_suggestion_no_excuse"
-        case searchSuggestionBuildCapacity = "search_suggestion_build_capacity"
-        case searchSuggestionSleepRitual = "search_suggestion_sleep_ritual"
-        case searchSuggestionPowerNap = "search_suggestion_power_nap"
-        case searchSuggestionMindsetShifter = "search_suggestion_mindset_shifter"
-        case searchSuggestionReframe = "search_suggestion_reframe"
-        case searchSuggestionBreathing = "search_suggestion_breathing"
-        case searchSuggestionHPSnacks = "search_suggestion_hp_snacks"
-        case searchSuggestionBrainPerformance = "search_suggestion_brain_performance"
-        case searchSuggestionWorkToHome = "search_suggestion_work_to_home"
-        case searchSuggestionTravel = "search_suggestion_travel"
-        case searchSuggestionHeader = "search_header_suggestion"
-        case learnStrategiesFoundation = "learn_strategies_foundation"
-
-        struct Navigation {
-            enum FirstLevel: String, CaseIterable, Predicatable {
-                case knowPageTitle = "know-feed-level-01-page-title"
-                case knowSectionTitleStrategies = "know-feed-level-01-section-title-strategies"
-                case knowSectionSubtitleStrategies = "know-feed-level-01-section-subtitle-strategies"
-                case knowSectionTitleWhatsHot = "know-feed-level-01-section-title-whats-hot"
-                case knowSectionSubtitleWhatsHot = "know-feed-level-01-section-subtitle-whats-hot"
-
-                var predicate: NSPredicate {
-                    return NSPredicate(tag: rawValue)
-                }
-            }
-        }
-
-        var predicate: NSPredicate {
-            switch self {
-            case .learnStrategiesFoundation: return NSPredicate(searchTag: rawValue)
-            default: return NSPredicate(tag: rawValue)
-            }
-        }
-    }
-
     // MARK: - Properties
 
     private let mainRealm: Realm
@@ -165,19 +84,6 @@ final class ContentService {
                                                                       textFormat))
     }
 
-    func learnStrategiesFoundation() -> [ContentCollection] {
-        let predicate = Tags.learnStrategiesFoundation.predicate
-        return Array(mainRealm.objects(ContentCollection.self).filter(predicate))
-    }
-
-    func contentItem(for predicate: NSPredicate) -> ContentItem? {
-        return mainRealm.objects(ContentItem.self).filter(predicate).first
-    }
-
-    func localizedString(for predicate: NSPredicate) -> String? {
-        return contentItem(for: predicate)?.valueText
-    }
-
     func libraryCategories() -> AnyRealmCollection<ContentCategory> {
         return mainRealm.contentCategories(section: .library)
     }
@@ -186,7 +92,6 @@ final class ContentService {
         let library = Database.Section.library.rawValue
         let predicate = NSPredicate(format: "ANY contentCollections.section == %@ AND remoteID != %d", library, 100037)
         return AnyRealmCollection(mainRealm.objects(ContentCategory.self).filter(predicate))
-//        return sortedResults(for: predicate)
     }
 
     func learnContentCategories() -> AnyRealmCollection<ContentCategory> {
@@ -374,179 +279,6 @@ extension SortDescriptor {
     }
 }
 
-private extension ContentService {
-
-//    func sortedResults<T>(for predicate: NSPredicate) -> AnyRealmCollection<T> {
-//        return AnyRealmCollection(mainRealm.objects(T.Type).filter(predicate).sorted(by: .sortOrder()))
-//        return mainRealm.anyCollection(.sortOrder(), predicates: predicate)
-//    }
-}
-
-// MARK: - To Be Vision Tooling
-
-extension ContentService {
-
-    func toBeVisionToolingHeadlinePlaceholder() -> String? {
-        return contentCollection(id: 101080)?.contentItems[1].valueText
-    }
-
-    func toBeVisionHeadlinePlaceholder() -> String? {
-        return contentCollection(id: 101080)?.contentItems.first?.valueText
-    }
-
-    func toBeVisionMessagePlaceholder() -> String? {
-        return contentCollection(id: 101079)?.contentItems.first?.valueText
-    }
-
-    func visionGeneratorAlertModelNotSaved() -> VisionGeneratorAlertModel? {
-        let title = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedTitle.predicate)?.valueText
-        guard
-            let message = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedMessage.predicate)?.valueText,
-            let buttonTitleCancel = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleCancel.predicate)?.valueText,
-            let buttonTitleDefault = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleDefault.predicate)?.valueText,
-            let buttonTitleDestructive = contentItem(for: ContentService.Tags.tbvGeneratorAlertNotSavedButtonTitleDestructive.predicate)?.valueText else {
-                return nil
-        }
-        return VisionGeneratorAlertModel(title: title,
-                                         message: message,
-                                         buttonTitleCancel: buttonTitleCancel,
-                                         buttonTitleDefault: buttonTitleDefault,
-                                         buttonTitleDestructive: buttonTitleDestructive)
-    }
-}
-
-// MARK: - My Qot
-
-extension ContentService {
-
-    func myQotSectionTitles(for myQotItem: MyQotSection) -> String? {
-        switch myQotItem {
-        case .profile:
-             return contentItem(for: ContentService.Tags.myQotProfileSectionTitle.predicate)?.valueText
-        case .library:
-            return contentItem(for: ContentService.Tags.myQotLibrarySectionTitle.predicate)?.valueText
-        case .preps:
-            return contentItem(for: ContentService.Tags.myQotPrepsSectionTitle.predicate)?.valueText
-        case .sprints:
-            return contentItem(for: ContentService.Tags.myQotSprintsSectionTitle.predicate)?.valueText
-        case .data:
-            return contentItem(for: ContentService.Tags.myQotDataSectionTitle.predicate)?.valueText
-        case .toBeVision:
-            return contentItem(for: ContentService.Tags.myQotToBeVisionSectionTitle.predicate)?.valueText
-        }
-    }
-}
-
-// MARK: - Payment
-
-extension ContentService {
-
-    func paymentSectionTitles(for paymentItem: PaymentSection) -> String? {
-        switch paymentItem {
-        case .prepared:
-            return contentItem(for: ContentService.Tags.paymentPrepareSectionTitle.predicate)?.valueText
-        case .impact:
-            return contentItem(for: ContentService.Tags.paymentImpactSectionTitle.predicate)?.valueText
-        case .grow:
-            return contentItem(for: ContentService.Tags.paymentGrowSectionTitle.predicate)?.valueText
-        case .data:
-            return contentItem(for: ContentService.Tags.paymentDataSectionTitle.predicate)?.valueText
-        }
-    }
-
-    func paymentSectionSubtitles(for paymentItem: PaymentSection) -> String? {
-        switch paymentItem {
-        case .prepared:
-            return contentItem(for: ContentService.Tags.paymentPrepareSectionSubtitle.predicate)?.valueText
-        case .impact:
-            return contentItem(for: ContentService.Tags.paymentImpactSectionSubtitle.predicate)?.valueText
-        case .grow:
-            return contentItem(for: ContentService.Tags.paymentGrowSectionSubtitle.predicate)?.valueText
-        case .data:
-            return contentItem(for: ContentService.Tags.paymentDataSectionSubtitle.predicate)?.valueText
-        }
-    }
-
-    func paymentHeaderTitle() -> String? {
-        return contentItem(for: ContentService.Tags.paymentHeaderTitle.predicate)?.valueText
-    }
-
-    func paymentHeaderSubtitle() -> String? {
-        return contentItem(for: ContentService.Tags.paymentHeaderSubtitle.predicate)?.valueText
-    }
-}
-
-// MARK: - Coach
-
-extension ContentService {
-
-    func coachSectionTitles(for coachItem: CoachSection) -> String? {
-        switch coachItem {
-        case .search:
-            return contentItem(for: ContentService.Tags.coachSearchSectionTitle.predicate)?.valueText
-        case .tools:
-            return contentItem(for: ContentService.Tags.coachApplyToolsSectionTitle.predicate)?.valueText
-        case .sprint:
-            return contentItem(for: ContentService.Tags.coachPlanSprintSectionTitle.predicate)?.valueText
-        case .event:
-            return contentItem(for: ContentService.Tags.coachPrepareEventSectionTitle.predicate)?.valueText
-        case .challenge:
-            return contentItem(for: ContentService.Tags.coachSolveChallengeSectionTitle.predicate)?.valueText
-        }
-    }
-
-    func coachSectionSubtitles(for coachItem: CoachSection) -> String? {
-        switch coachItem {
-        case .search:
-            return contentItem(for: ContentService.Tags.coachSearchSectionSubtitle.predicate)?.valueText
-        case .tools:
-            return contentItem(for: ContentService.Tags.coachApplyToolsSectionSubtitle.predicate)?.valueText
-        case .sprint:
-            return contentItem(for: ContentService.Tags.coachPlanSprintSectionSubtitle.predicate)?.valueText
-        case .event:
-            return contentItem(for: ContentService.Tags.coachPrepareEventSectionSubtitle.predicate)?.valueText
-        case .challenge:
-            return contentItem(for: ContentService.Tags.coachSolveChallengeSectionSubtitle.predicate)?.valueText
-        }
-    }
-
-   func coachHeaderTitle() -> String? {
-        return contentItem(for: ContentService.Tags.coachHeaderTitle.predicate)?.valueText
-    }
-
-    func coachHeaderSubtitle() -> String? {
-        return contentItem(for: ContentService.Tags.coachHeaderSubtitle.predicate)?.valueText
-    }
-}
-
-// MARK: - Tools
-
-extension ContentService {
-
-    func toolSectionTitles(for toolItem: ToolSection) -> String? {
-        switch toolItem {
-        case .mindset:
-            return contentItem(for: ContentService.Tags.toolsMindsetSectionTitle.predicate)?.valueText
-        case .nutrition:
-            return contentItem(for: ContentService.Tags.toolsNutritionSectionTitle.predicate)?.valueText
-        case .movement:
-            return contentItem(for: ContentService.Tags.toolsMovementSectionTitle.predicate)?.valueText
-        case .recovery:
-            return contentItem(for: ContentService.Tags.toolsRecoverySectionTitle.predicate)?.valueText
-        case .habituation:
-            return contentItem(for: ContentService.Tags.toolsHabituationSectionTitle.predicate)?.valueText
-        }
-    }
-
-    func toolsHeaderTitle() -> String? {
-        return contentItem(for: ContentService.Tags.toolsHeaderTitle.predicate)?.valueText
-    }
-
-    func toolsHeaderSubtitle() -> String? {
-        return contentItem(for: ContentService.Tags.toolsHeaderSubtitle.predicate)?.valueText
-    }
-}
-
 // MARK: - Release Manager
 
 extension ContentService {
@@ -594,22 +326,5 @@ extension ContentService {
                                    message: message,
                                    buttonTitle: buttonTitle,
                                    defaultProfilePicture: R.image.partnerPlaceholder())
-    }
-}
-
-// MARK: - Search Suggestions
-
-extension ContentService {
-
-    func searchSuggestionsHeader() -> String {
-        return contentItem(for: Tags.searchSuggestionHeader.predicate)?.valueText ?? ""
-    }
-
-    func searchSuggestions() -> [String] {
-        var suggestions: [String] = []
-        for tag in Tags.allCases where tag.rawValue.contains("search_suggestion") {
-            suggestions.append(contentItem(for: tag.predicate)?.valueText ?? "")
-        }
-        return suggestions
     }
 }

@@ -10,10 +10,12 @@ import Foundation
 
 protocol ToolsItemsViewControllerInterface: class {
     func setupView()
+    func reload()
 }
 
 protocol ToolsItemsPresenterInterface {
     func setupView()
+    func reload()
 }
 
 protocol ToolsItemsInteractorInterface: Interactor {

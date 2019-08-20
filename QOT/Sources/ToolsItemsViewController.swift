@@ -98,6 +98,10 @@ extension ToolsItemsViewController: ToolsItemsViewControllerInterface {
         setupTableView()
         setCustomBackButton()
     }
+
+    func reload() {
+        tableView.reloadData()
+    }
 }
 
 extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -165,7 +169,7 @@ extension ToolsItemsViewController: UITableViewDelegate, UITableViewDataSource {
             guard
                 let videoTool = interactor?.tools[indexPath.row],
                 let videoURL = videoTool.mediaURL else { return }
-            stream(videoURL: videoURL, contentItem: nil, pageName: PageName.learnContentItemFull) // TODO Set correct pageName
+            stream(videoURL: videoURL, contentItem: nil) // TODO Set correct pageName
         case ToolType.audio.rawValue:
             let media = MediaPlayerModel(title: tool?.title ?? "",
                                          subtitle: tool?.categoryTitle ?? "",

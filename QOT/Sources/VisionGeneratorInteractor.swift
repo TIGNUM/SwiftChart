@@ -131,7 +131,7 @@ private extension VisionGeneratorInteractor {
 
     func showContentItem(_ choice: VisionGeneratorChoice, contentItemID: Int) {
         guard let url = worker.fetchMediaURL(contentItemID: contentItemID) else { return }
-        presenter.showMedia(url, choice: choice, contentItem: worker.contentItem(for: contentItemID))
+        presenter.showMedia(url, choice: choice, contentItem: nil)
     }
 }
 

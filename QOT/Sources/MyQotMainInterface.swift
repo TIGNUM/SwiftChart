@@ -24,7 +24,7 @@ protocol MyQotMainInteractorInterface: Interactor {
     func presentMySprints()
     func presentMyToBeVision()
     func presentMyLibrary()
-    func getImpactReadinessScore(completion: @escaping(Double?) -> Void) 
+    func getImpactReadinessScore(completion: @escaping(Double?) -> Void)
     func nextPrep(completion: @escaping (String?) -> Void)
     func nextPrepType(completion: @escaping (String?) -> Void)
     func toBeVisionDate(completion: @escaping (Date?) -> Void)

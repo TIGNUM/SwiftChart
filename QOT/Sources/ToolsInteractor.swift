@@ -16,6 +16,7 @@ final class ToolsInteractor {
     private let presenter: ToolsPresenterInterface
     private let router: ToolsRouterInterface
 
+    private var toolItems = [ToolItem]()
     // MARK: - Init
 
     init(worker: ToolsWorker,
@@ -31,6 +32,10 @@ final class ToolsInteractor {
     func viewDidLoad() {
         presenter.present(for: worker.toolsSections())
         presenter.setupView()
+        worker.tools { [weak self] (items) in
+            self?.toolItems = items
+            self?.presenter.reload()
+        }
     }
 }
 
@@ -39,7 +44,7 @@ final class ToolsInteractor {
 extension ToolsInteractor: ToolsInteractorInterface {
 
     func tools() -> [ToolItem] {
-        return worker.tools
+        return toolItems
     }
 
     func presentToolsCollections(selectedToolID: Int?) {

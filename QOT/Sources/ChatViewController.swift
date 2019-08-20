@@ -560,7 +560,7 @@ extension ChatViewController: ChatViewControllerInterface {
 
     func showMedia(_ mediaURL: URL, choice: VisionGeneratorChoice, contentItem: ContentItem?) {
         visionChoice = choice
-        stream(videoURL: mediaURL, contentItem: contentItem, pageName: pageName)
+        stream(videoURL: mediaURL, contentItem: nil, pageName)
     }
 
     func showContent(_ contentID: Int, choice: VisionGeneratorChoice) {

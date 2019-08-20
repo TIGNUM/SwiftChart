@@ -59,7 +59,7 @@ extension UINavigationController {
     @objc func pushViewControllerSwizzled(viewController: UIViewController, animated: Bool) {
         viewController.refreshBottomNavigationItems()
         let viewControllerName = NSStringFromClass(type(of: self))
-        log("swizzled pushViewController: \(viewControllerName)", level: .info)
+        log("swizzled pushViewController: \(viewControllerName)", level: .verbose)
         guard let navigationController = baseRootViewController?.navigationController else {
             pushViewControllerSwizzled(viewController: viewController, animated: animated)
             return
@@ -98,7 +98,7 @@ extension UINavigationController {
         let last = popViewControllerSwizzeld(animated: true)
         if last != nil {
             let viewControllerName = NSStringFromClass(type(of: last!))
-            log("swizzled popViewController: \(viewControllerName)", level: .info)
+            log("swizzled popViewController: \(viewControllerName)", level: .verbose)
             viewControllers.last?.refreshBottomNavigationItems()
         }
         return last

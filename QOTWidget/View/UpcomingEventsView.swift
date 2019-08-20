@@ -37,10 +37,11 @@ final class UpcomingEventsView: UIView {
             eventNameLabel.text = eventName
             eventTimeLabel.text = dateDescription(for: event.startDate ?? nil)
             addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(showLatestEvent)))
-            if let tasks = event.numberOfTasks, let tasksCompleted = event.tasksCompleted, tasks > 0 {
-                tasksCompletedLabel.text = "\(tasksCompleted)/\(tasks) Tasks Completed"
-                tasksCompletedLabel.textColor = tasksCompleted == tasks ? .green : .red
-            }
+            // FIXME: set other sentence
+//            if let tasks = event.numberOfTasks, let tasksCompleted = event.tasksCompleted, tasks > 0 {
+//                tasksCompletedLabel.text = "\(tasksCompleted)/\(tasks) Tasks Completed"
+//                tasksCompletedLabel.textColor = tasksCompleted == tasks ? .green : .red
+//            }
         }
     }
 

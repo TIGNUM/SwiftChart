@@ -40,8 +40,8 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
         }
     }
 
-    func openVideo(from url: URL) {
-        viewController.stream(videoURL: url, contentItem: nil, pageName: .about)
+    func openVideo(from url: URL, item: QDMContentItem?) {
+        viewController.stream(videoURL: url, contentItem: item, .about)
         viewController.updateBottomNavigation(leftItems: [], rightItems: [])
     }
 

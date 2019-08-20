@@ -7,22 +7,19 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ToolsItemsWorker {
 
     // MARK: - Properties
-
-    private let services: Services
     private let selectedToolID: Int?
 
-    private lazy var selectedTool: ContentCollection? = {
-        return services.contentService.contentCollection(id: selectedToolID ?? 0)
-    }()
+    private var selectedTool: QDMContentCollection?
 
+    var toolItems = [Tool.Item]()
     // MARK: - Init
 
-    init(services: Services, selectedToolID: Int?) {
-        self.services = services
+    init(selectedToolID: Int?) {
         self.selectedToolID = selectedToolID
     }
 }
@@ -35,31 +32,40 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
     }
 
     var headerSubtitle: String {
-        guard
-            let selectedID = selectedToolID,
-            let category = services.contentService.contentCollection(id: selectedID)?.categoryIDs.first,
-            let categoryTitle = services.contentService.contentCategory(id: category.value)?.title else { return "" }
+        guard let categoryTitle = self.selectedTool?.contentCategoryTitle else { return "" }
         let headerSubtitle = categoryTitle.replacingOccurrences(of: "Performance ", with: "")
         return headerSubtitle.uppercased() + " TOOLS"
     }
 
     var tools: [Tool.Item] {
-        guard
-            let selectedID = selectedToolID,
-            let list = services.contentService.contentCollection(id: selectedID)?.articleItems else { return [] }
-        var items = [Tool.Item]()
-        list.forEach { (articleItem) in
-            items.append(Tool.Item(remoteID: articleItem.remoteID.value ?? 0,
-                                   categoryTitle: "",
-                                   title: articleItem.valueText ?? "",
-                                   durationString: articleItem.durationString,
-                                   imageURL: URL(string: list.first?.valueImageURL ?? ""),
-                                   mediaURL: URL(string: (articleItem.valueMediaURL ?? "")),
-                                   duration: articleItem.valueDuration.value ?? 0,
-                                   isCollection: false,
-                                   numberOfItems: list.count,
-                                   type: list.first?.format ?? ""))
+        return toolItems
+    }
+
+    func load(_ completion: @escaping () -> Void) {
+        guard let contentCollectionId = self.selectedToolID else {
+            DispatchQueue.main.async {
+                completion()
+            }
+            return
         }
-        return items
+        qot_dal.ContentService.main.getContentCollectionById(contentCollectionId) { [weak self] (contentCollection) in
+            self?.selectedTool = contentCollection
+            let count = contentCollection?.contentItems.count ?? 0
+            let firstItemFormat = contentCollection?.contentItems.first?.format.rawValue ?? ""
+            let imageURL = URL(string: contentCollection?.contentItems.first?.valueImageURL ?? "")
+            self?.toolItems = contentCollection?.contentItems.compactMap({ (contentItem) -> Tool.Item? in
+                Tool.Item(remoteID: contentItem.remoteID ?? 0,
+                          categoryTitle: "",
+                          title: contentItem.valueText,
+                          durationString: contentItem.durationString,
+                          imageURL: imageURL,
+                          mediaURL: URL(string: (contentItem.valueMediaURL ?? "")),
+                          duration: contentItem.valueDuration ?? 0,
+                          isCollection: false,
+                          numberOfItems: count,
+                          type: firstItemFormat)
+            }) ?? []
+            completion()
+        }
     }
 }

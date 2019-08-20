@@ -424,7 +424,6 @@
 		5F544FD122967FE500616626 /* ContentService+EditAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F544FD022967FE500616626 /* ContentService+EditAccount.swift */; };
 		5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */; };
 		5F57F9E42282E65B003A9EDF /* ContentService+MyQotProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9E32282E65B003A9EDF /* ContentService+MyQotProfile.swift */; };
-		5F57F9E62282E741003A9EDF /* ContentService+Knowing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9E52282E741003A9EDF /* ContentService+Knowing.swift */; };
 		5F57F9EB228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9EA228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift */; };
 		5F57F9ED22831711003A9EDF /* MyQotAccountSettingsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9EC22831711003A9EDF /* MyQotAccountSettingsWorker.swift */; };
 		5F57F9EF22831728003A9EDF /* MyQotAccountSettingsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9EE22831727003A9EDF /* MyQotAccountSettingsPresenter.swift */; };
@@ -445,7 +444,6 @@
 		5F62BEA8228AE75400852F7E /* MyQotSiriShortcutsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA7228AE75400852F7E /* MyQotSiriShortcutsWorker.swift */; };
 		5F62BEAA228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEA9228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift */; };
 		5F62BEAC228AE77000852F7E /* MyQotSiriShortcutsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F62BEAB228AE77000852F7E /* MyQotSiriShortcutsRouter.swift */; };
-		5F6B38572284074200704676 /* UserProfileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B38562284074200704676 /* UserProfileManager.swift */; };
 		5F6B38592284079800704676 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B38582284079800704676 /* UserProfileModel.swift */; };
 		5F6B385B228414F700704676 /* ContentService+AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B385A228414F700704676 /* ContentService+AccountSettings.swift */; };
 		5F78964A22A929C100D2DBAD /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78962F22A929C100D2DBAD /* UIView+Constraints.swift */; };
@@ -1065,6 +1063,7 @@
 		B83B33EA22C21D6E002AFED7 /* BaseRootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E222C21D6E002AFED7 /* BaseRootViewController.swift */; };
 		B83B33EB22C21D6E002AFED7 /* BottomNavigationBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E422C21D6E002AFED7 /* BottomNavigationBar.swift */; };
 		B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33E522C21D6E002AFED7 /* BottomNavigationContainer.swift */; };
+		B854ACF1230AA02D00FD007C /* ScreenTitleService+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = B854ACF0230AA02D00FD007C /* ScreenTitleService+Ext.swift */; };
 		B856B47822B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856B47022B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift */; };
 		B856B47922B0E29D0017A249 /* MyLibraryUserStorageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856B47122B0E29D0017A249 /* MyLibraryUserStorageWorker.swift */; };
 		B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B856B47222B0E29D0017A249 /* MyLibraryUserStorageRouter.swift */; };
@@ -2084,7 +2083,6 @@
 		5F544FD022967FE500616626 /* ContentService+EditAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+EditAccount.swift"; sourceTree = "<group>"; };
 		5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsViewController.xib; sourceTree = "<group>"; };
 		5F57F9E32282E65B003A9EDF /* ContentService+MyQotProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+MyQotProfile.swift"; sourceTree = "<group>"; };
-		5F57F9E52282E741003A9EDF /* ContentService+Knowing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Knowing.swift"; sourceTree = "<group>"; };
 		5F57F9EA228316F2003A9EDF /* MyQotAccountSettingsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsConfigurator.swift; sourceTree = "<group>"; };
 		5F57F9EC22831711003A9EDF /* MyQotAccountSettingsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsWorker.swift; sourceTree = "<group>"; };
 		5F57F9EE22831727003A9EDF /* MyQotAccountSettingsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotAccountSettingsPresenter.swift; sourceTree = "<group>"; };
@@ -2106,7 +2104,6 @@
 		5F62BEA7228AE75400852F7E /* MyQotSiriShortcutsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsWorker.swift; sourceTree = "<group>"; };
 		5F62BEA9228AE76400852F7E /* MyQotSiriShortcutsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsConfigurator.swift; sourceTree = "<group>"; };
 		5F62BEAB228AE77000852F7E /* MyQotSiriShortcutsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSiriShortcutsRouter.swift; sourceTree = "<group>"; };
-		5F6B38562284074200704676 /* UserProfileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileManager.swift; sourceTree = "<group>"; };
 		5F6B38582284079800704676 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		5F6B385A228414F700704676 /* ContentService+AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AccountSettings.swift"; sourceTree = "<group>"; };
 		5F78962F22A929C100D2DBAD /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
@@ -2704,6 +2701,7 @@
 		B83B33E222C21D6E002AFED7 /* BaseRootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseRootViewController.swift; sourceTree = "<group>"; };
 		B83B33E422C21D6E002AFED7 /* BottomNavigationBar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomNavigationBar.swift; sourceTree = "<group>"; };
 		B83B33E522C21D6E002AFED7 /* BottomNavigationContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BottomNavigationContainer.swift; sourceTree = "<group>"; };
+		B854ACF0230AA02D00FD007C /* ScreenTitleService+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScreenTitleService+Ext.swift"; sourceTree = "<group>"; };
 		B856B47022B0E29D0017A249 /* MyLibraryUserStoragePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStoragePresenter.swift; sourceTree = "<group>"; };
 		B856B47122B0E29D0017A249 /* MyLibraryUserStorageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageWorker.swift; sourceTree = "<group>"; };
 		B856B47222B0E29D0017A249 /* MyLibraryUserStorageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageRouter.swift; sourceTree = "<group>"; };
@@ -3368,7 +3366,6 @@
 		363765F0223A4B9B00C2C429 /* knowing */ = {
 			isa = PBXGroup;
 			children = (
-				5F57F9E52282E741003A9EDF /* ContentService+Knowing.swift */,
 				363765FA223A4BD200C2C429 /* KnowingConfigurator.swift */,
 				363765F8223A4BD200C2C429 /* KnowingInteractor.swift */,
 				363765F6223A4BD200C2C429 /* KnowingInterface.swift */,
@@ -3926,6 +3923,7 @@
 				36C8F173230896C300CD718F /* QDMUserCalendarSetting+Ext.swift */,
 				360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */,
 				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
+				B854ACF0230AA02D00FD007C /* ScreenTitleService+Ext.swift */,
 			);
 			name = qot_dal;
 			sourceTree = "<group>";
@@ -4337,7 +4335,6 @@
 			isa = PBXGroup;
 			children = (
 				5F6B38582284079800704676 /* UserProfileModel.swift */,
-				5F6B38562284074200704676 /* UserProfileManager.swift */,
 			);
 			name = Others;
 			sourceTree = "<group>";
@@ -8688,7 +8685,6 @@
 				ACF0B947225FC41F008CFAEC /* DecisionTreeInterface.swift in Sources */,
 				91086E44209202400035DA1F /* SettingsConfigurator.swift in Sources */,
 				CCF0F4C01ECDC57000E8D9C1 /* NSPredicate+Convenience.swift in Sources */,
-				5F6B38572284074200704676 /* UserProfileManager.swift in Sources */,
 				7FE38DD51F2B2E760061E98F /* UIBarButtonItem+Convenience.swift in Sources */,
 				F99DF5FE2292D77000341DAB /* ToolsCollectionsModel.swift in Sources */,
 				8D25327722EA0FF300FE4205 /* CtaItemDetailsItemCell.swift in Sources */,
@@ -8929,7 +8925,6 @@
 				CBFECCAD1F388B500076ACE6 /* TimeZone+Convenience.swift in Sources */,
 				CC7D21B01EFC1348007A062E /* WeeklyChoicesCell.swift in Sources */,
 				CBD791471E7172390006C590 /* LearnContentListCoordinator.swift in Sources */,
-				5F57F9E62282E741003A9EDF /* ContentService+Knowing.swift in Sources */,
 				7F2B77D11FC5C33700203D90 /* ToolsViewModel.swift in Sources */,
 				369353A622983AB9008BBB72 /* PrepareResultInteractor.swift in Sources */,
 				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,
@@ -9588,6 +9583,7 @@
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
 				7F0F45B81FE922D400293942 /* MeetingsAverageNumberChart.swift in Sources */,
 				F9D2BC1922D48DBB00DBF2CC /* GoodToKnowCell.swift in Sources */,
+				B854ACF1230AA02D00FD007C /* ScreenTitleService+Ext.swift in Sources */,
 				9150413520FDF40A00D43D18 /* SensorRouter.swift in Sources */,
 				3674FF2F20AADE7D008EEB6C /* PartnersOverviewConfigurator.swift in Sources */,
 				F9D2BC2222D4969A00DBF2CC /* FromTignumCellViewModel.swift in Sources */,

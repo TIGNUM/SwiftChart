@@ -17,6 +17,8 @@ final class ToolsCollectionsInteractor {
     private let router: ToolsCollectionsRouterInterface
 
     // MARK: - Init
+    private var toolItems = [Tool.Item]()
+    private var videoToolItems = [Tool.Item]()
 
     init(worker: ToolsCollectionsWorker,
          presenter: ToolsCollectionsPresenterInterface,
@@ -30,6 +32,13 @@ final class ToolsCollectionsInteractor {
 
     func viewDidLoad() {
         presenter.setupView()
+        worker.tools { [weak self] tools in
+            self?.toolItems = tools
+            self?.worker.videoTools({ (videos) in
+                self?.videoToolItems = videos
+                self?.presenter.reload()
+            })
+        }
     }
 }
 
@@ -41,15 +50,15 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
     }
 
     var tools: [Tool.Item] {
-        return worker.tools
+        return toolItems
     }
 
     var videoTools: [Tool.Item] {
-        return worker.videoTools
+        return videoToolItems
     }
 
     var rowCount: Int {
-        return worker.tools.count
+        return toolItems.count
     }
 
     func presentToolsItems(selectedToolID: Int?) {

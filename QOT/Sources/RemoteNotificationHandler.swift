@@ -32,9 +32,6 @@ final class RemoteNotificationHandler: NSObject, UAPushNotificationDelegate {
         if let deepLinkURL = notificationContent.deepLinkURL {
             appDelegate.appCoordinator.handleIncommingNotificationDeepLinkURL(url: deepLinkURL)
         }
-        appDelegate.appCoordinator.syncUserDependentData {
-            completionHandler(.newData)
-        }
     }
 
     func receivedNotificationResponse(_ notificationResponse: UANotificationResponse, completionHandler: @escaping () -> Void) {

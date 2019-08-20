@@ -85,6 +85,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             #endif
             return true
         #else
+            ScreenTitleService.main.load()
             swizzleUIViewController()
             swizzleUINavigationController()
             importCalendarEventsIfAuthorized()

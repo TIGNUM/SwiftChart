@@ -8,12 +8,12 @@
 
 import Foundation
 
-final class CoachConfigurator: AppStateAccess {
+final class CoachConfigurator {
 
     static func make(viewController: CoachViewController?) {
         guard let viewController = viewController else { return }
         let router = CoachRouter(viewController: viewController)
-        let worker = CoachWorker(services: appState.services)
+        let worker = CoachWorker()
         let presenter = CoachPresenter(viewController: viewController)
         let interactor = CoachInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

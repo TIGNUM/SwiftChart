@@ -11,11 +11,13 @@ import Foundation
 protocol ToolsViewControllerInterface: class {
     func setupView()
     func setup(for toolSection: ToolModel)
+    func reload()
 }
 
 protocol ToolsPresenterInterface {
     func setupView()
     func present(for toolSection: ToolModel)
+    func reload()
 }
 
 protocol ToolsInteractorInterface: Interactor {
@@ -29,6 +31,6 @@ protocol ToolsRouterInterface {
 }
 
 protocol ToolsWorkerInterface {
-    var tools: [ToolItem] { get }
     func toolsSections() -> ToolModel
+    func tools(_ completion: @escaping ([ToolItem]) -> Void)
 }

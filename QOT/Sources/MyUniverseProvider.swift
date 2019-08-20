@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import qot_dal
 
 final class MyUniverseProvider {
 
@@ -57,7 +58,7 @@ final class MyUniverseProvider {
 
     private func fetchViewData() -> MyUniverseViewData {
         let myToBeVision = services.userService.myToBeVision()
-        let myToBeVisionText = myToBeVision?.text ?? services.contentService.toBeVisionMessagePlaceholder()
+        let myToBeVisionText = myToBeVision?.text ?? ScreenTitleService.main.toBeVisionMessagePlaceholder()
         let realmPartners =
             services.partnerService.lastModifiedPartnersSortedByCreatedAtAscending(maxCount: 3).filter { $0.isValid }
         let dataPartners = realmPartners.map { (realmPartner) -> MyUniverseViewData.Partner in

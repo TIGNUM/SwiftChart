@@ -13,13 +13,11 @@ final class ToolsRouter {
     // MARK: - Properties
 
     private let viewController: ToolsViewController
-    private let services: Services
 
     // MARK: - Init
 
-    init(viewController: ToolsViewController, services: Services) {
+    init(viewController: ToolsViewController) {
         self.viewController = viewController
-        self.services = services
     }
 }
 

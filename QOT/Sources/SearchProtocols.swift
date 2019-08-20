@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 protocol SearchViewControllerInterface: class {
     func load(_ searchSuggestions: SearchSuggestions)
@@ -24,7 +25,7 @@ protocol SearchInteractorInterface: Interactor {
     func didChangeSearchText(searchText: String, searchFilter: Search.Filter)
     func handleSelection(searchResult: Search.Result)
     func sendUserSearchResult(contentId: Int?, contentItemId: Int?, filter: Search.Filter, query: String)
-    func contentItem(for searchResult: Search.Result) -> ContentItem?
+    func contentItem(for searchResult: Search.Result, _ completion: @escaping (QDMContentItem?) -> Void)
 }
 
 protocol SearchRouterInterface {

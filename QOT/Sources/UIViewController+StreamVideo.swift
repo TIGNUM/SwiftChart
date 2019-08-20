@@ -10,14 +10,11 @@ import UIKit
 import Anchorage
 import AVFoundation
 import AVKit
+import qot_dal
 
 final class MediaPlayerViewController: AVPlayerViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
-                                                  rightBarButtonItems: [],
-                                                  backgroundColor: .clear)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
         AppDelegate.appState.orientationManager.videos()
     }
 
@@ -29,23 +26,26 @@ final class MediaPlayerViewController: AVPlayerViewController {
         super.viewWillDisappear(animated)
         NotificationCenter.default.post(.init(name: .willDismissPlayerController))
         AppDelegate.appState.orientationManager.regular()
+
+        let value = UIInterfaceOrientation.portrait.rawValue
+        UIDevice.current.setValue(value, forKey: "orientation")
+        UINavigationController.attemptRotationToDeviceOrientation()
     }
 
-    override var shouldAutorotate: Bool {
-        return true
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        return .allButUpsideDown
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 }
 
 extension UIViewController {
-
     @discardableResult
-    func stream(videoURL: URL, contentItem: ContentItem?, pageName: PageName) -> MediaPlayerViewController {
+    func stream(videoURL: URL, contentItem: QDMContentItem?, _ pageName: PageName? = nil) -> MediaPlayerViewController {
         let player = AVPlayer(url: videoURL)
-        let playerController = MediaPlayerViewController(pageName: pageName, contentItem: contentItem)
+        let playerController = MediaPlayerViewController(contentItem: contentItem)
         playerController.player = player
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)

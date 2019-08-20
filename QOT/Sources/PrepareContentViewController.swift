@@ -324,8 +324,8 @@ extension PrepareContentViewController: PrepareContentMainHeaderTableViewCellDel
     func didTapVideo(videoURL: URL?, cell: UITableViewCell) {
         if let videoURL = videoURL {
             let playerViewController = stream(videoURL: videoURL,
-                                              contentItem: viewModel.contentItemHeaderVideo(),
-                                              pageName: PrepareContentViewController.pageName)
+                                              contentItem: nil,
+                                              PrepareContentViewController.pageName)
             if let playerItem = playerViewController.player?.currentItem {
                 avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
                 avPlayerObserver?.onStatusUpdate { (player) in

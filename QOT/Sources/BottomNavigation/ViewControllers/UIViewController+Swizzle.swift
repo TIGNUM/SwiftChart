@@ -95,7 +95,7 @@ extension UIViewController {
 
     @objc func viewWillAppearSwizzled(animated: Bool) {
         let viewControllerName = NSStringFromClass(type(of: self))
-        log("swizzled viewWillAppear: \(viewControllerName), animated: \(animated)", level: .info)
+        log("swizzled viewWillAppear: \(viewControllerName), animated: \(animated)", level: .verbose)
 
         if animated {
             refreshBottomNavigationItems()
@@ -107,7 +107,7 @@ extension UIViewController {
 
     @objc func viewDidAppearSwizzled(animated: Bool) {
         let viewControllerName = NSStringFromClass(type(of: self))
-        log("swizzled viewDidAppear: \(viewControllerName), animated: \(animated)", level: .info)
+        log("swizzled viewDidAppear: \(viewControllerName), animated: \(animated)", level: .verbose)
 
         if animated {
             refreshBottomNavigationItems()
@@ -145,7 +145,7 @@ extension UIViewController {
 
     @objc func presentSwizzled(viewControllerToPresent: UIViewController, animated: Bool, completion: (() -> Void)?) {
         let viewControllerName = NSStringFromClass(type(of: viewControllerToPresent))
-        log("swizzled   present: \(viewControllerName)", level: .info)
+        log("swizzled   present: \(viewControllerName)", level: .verbose)
         viewControllerToPresent.refreshBottomNavigationItems()
         if viewControllerToPresent is UIActivityViewController || viewControllerToPresent is UIAlertController {
             presentSwizzled(viewControllerToPresent: viewControllerToPresent, animated: animated, completion: completion)
@@ -168,7 +168,7 @@ extension UIViewController {
 
     @objc func dismissSwizzled(animated flag: Bool, completion: (() -> Void)? = nil) {
         let viewControllerName = NSStringFromClass(type(of: self))
-        log("swizzled   dismiss: \(viewControllerName)", level: .info)
+        log("swizzled   dismiss: \(viewControllerName)", level: .verbose)
         dismissSwizzled(animated: flag, completion: completion)
         // get presenting.
         self.presentingViewController?.QOTVisibleViewController()?.refreshBottomNavigationItems()

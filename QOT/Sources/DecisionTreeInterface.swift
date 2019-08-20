@@ -109,7 +109,7 @@ protocol DecisionTreeRouterInterface {
                             _ answers: [DecisionTreeModel.SelectedAnswer])
     func openMindsetShifterResult(resultItem: ShifterResult.Item, completion: @escaping () -> Void)
     func openArticle(with contentID: Int)
-    func openVideo(from url: URL)
+    func openVideo(from url: URL, item: QDMContentItem?)
     func openShortTBVGenerator(completion: (() -> Void)?)
     func openImagePicker()
     func openSolveResults(from selectedAnswer: QDMAnswer, type: ResultType)

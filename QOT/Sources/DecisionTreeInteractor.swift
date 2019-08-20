@@ -78,9 +78,9 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     }
 
     func streamContentItem(with id: Int) {
-        worker.mediaURL(from: id) { [weak self] (url) in
+        worker.mediaURL(from: id) { [weak self] (url, item) in
             if let url = url {
-                self?.router.openVideo(from: url)
+                self?.router.openVideo(from: url, item: item)
             }
         }
     }

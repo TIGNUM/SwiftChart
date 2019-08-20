@@ -31,4 +31,8 @@ extension ToolsPresenter: ToolsPresenterInterface {
     func present(for toolSection: ToolModel) {
         viewController?.setup(for: toolSection)
     }
+
+    func reload() {
+        viewController?.reload()
+    }
 }

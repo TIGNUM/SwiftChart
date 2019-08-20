@@ -182,8 +182,8 @@ extension ArticleContentItemCoordinator: ArticleItemViewControllerDelegate {
 
         let currentPage = ArticleItemViewController.page
         let playerViewController = viewController.stream(videoURL: url,
-                                                         contentItem: viewModel.articleItemVideo(for: url),
-                                                         pageName: currentPage)
+                                                         contentItem: nil,
+                                                         currentPage)
         if let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
             avPlayerObserver?.onStatusUpdate { (player) in

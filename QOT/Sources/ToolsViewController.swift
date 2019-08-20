@@ -87,12 +87,16 @@ extension ToolsViewController: ToolsViewControllerInterface {
     func setup(for toolSection: ToolModel) {
         toolModel = toolSection
     }
+
+    func reload() {
+        tableView.reloadData()
+    }
 }
 
 extension ToolsViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return interactor?.tools().count ?? 0
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {

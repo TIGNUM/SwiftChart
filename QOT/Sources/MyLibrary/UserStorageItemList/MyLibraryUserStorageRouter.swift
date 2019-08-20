@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyLibraryUserStorageRouter {
 
@@ -35,9 +36,9 @@ extension MyLibraryUserStorageRouter: MyLibraryUserStorageRouterInterface {
         viewController.present(articleNavigationController, animated: true, completion: nil)
     }
 
-    func presentVideo(url: URL) {
+    func presentVideo(url: URL, item: QDMContentItem?) {
         // FIXME: Set correct pageName
-        viewController.stream(videoURL: url, contentItem: nil, pageName: PageName.myPreparations)
+        viewController.stream(videoURL: url, contentItem: item)
     }
 
     func presentExternalUrl(_ url: URL) {

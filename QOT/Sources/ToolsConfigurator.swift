@@ -8,12 +8,12 @@
 
 import Foundation
 
-final class ToolsConfigurator: AppStateAccess {
+final class ToolsConfigurator {
 
     static func make(viewController: ToolsViewController?) {
         guard let viewController = viewController else { return }
-        let router = ToolsRouter(viewController: viewController, services: appState.services)
-        let worker = ToolsWorker(services: appState.services)
+        let router = ToolsRouter(viewController: viewController)
+        let worker = ToolsWorker()
         let presenter = ToolsPresenter(viewController: viewController)
         let interactor = ToolsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

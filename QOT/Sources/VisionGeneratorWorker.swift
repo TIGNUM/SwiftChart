@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 import RealmSwift
 
 final class VisionGeneratorWorker {
@@ -45,8 +46,8 @@ final class VisionGeneratorWorker {
         updateViewModel(with: allChatItems[.intro] ?? [])
     }
 
-    func contentItem(for contentItemID: Int) -> ContentItem? {
-        return services.contentService.contentItem(id: contentItemID)
+    func contentItem(for contentItemID: Int) -> QDMContentItem? {
+        return nil
     }
 
     func visionSelectionCount(for questionType: VisionGeneratorChoice.QuestionType) -> Int {
@@ -70,14 +71,14 @@ final class VisionGeneratorWorker {
     }
 
     var alertModel: VisionGeneratorAlertModel? {
-        return services.contentService.visionGeneratorAlertModelNotSaved()
+        return ScreenTitleService.main.visionGeneratorAlertModelNotSaved()
     }
 
     private var headline: String? {
 		let currentHeadline = services.userService.myToBeVision()?.headline
-		let initialHeadlinePlaceholder = services.contentService.toBeVisionHeadlinePlaceholder()
+		let initialHeadlinePlaceholder = ScreenTitleService.main.toBeVisionHeadlinePlaceholder()
         if currentHeadline == nil || currentHeadline == initialHeadlinePlaceholder {
-            return services.contentService.toBeVisionToolingHeadlinePlaceholder()?.uppercased()
+            return ScreenTitleService.main.toBeVisionToolingHeadlinePlaceholder()?.uppercased()
         }
         return services.userService.myToBeVision()?.headline?.uppercased()
     }
@@ -98,7 +99,7 @@ extension VisionGeneratorWorker {
             currentVisionModel?.lastUpdated = Date()
             visionModel?.imageURL = imageURL
         } catch {
-            log("Error while saving TBV image: \(error.localizedDescription)")
+            qot_dal.log("Error while saving TBV image: \(error.localizedDescription)")
         }
     }
 

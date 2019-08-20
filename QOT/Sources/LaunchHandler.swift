@@ -164,7 +164,6 @@ extension LaunchHandler {
                 switch result {
                 case .success:
                     self.showTemporaryHUD(type: .fitbitSuccess)
-                    self.appDelegate.appCoordinator.syncManager.syncUserDependentData()
                 case .failure(let error):
                     self.handleFitbitFailure(error)
                 }
@@ -240,12 +239,11 @@ extension LaunchHandler {
         guard
             let contentIDString = scheme.queryParameter(url: url),
             let contentID = Int(contentIDString) else { return }
-        if guideItem?.identifier == "learn#103423" || guideItem?.link?.description == "qot://random-content?contentID=100101" {
-            appDelegate.appCoordinator.presentFeatureArticelContentItems(contentID: contentID,
-                                                                         guideItem: guideItem,
-                                                                         showHeader: false)
-        } else {
-            appDelegate.appCoordinator.presentLearnContentItems(contentID: contentID, guideItem: guideItem)
+        let identifier = R.storyboard.main.qotArticleViewController.identifier
+        if let controller = R.storyboard
+            .main().instantiateViewController(withIdentifier: identifier) as? ArticleViewController {
+            ArticleConfigurator.configure(selectedID: contentID, viewController: controller)
+            baseRootViewController?.present(controller, animated: true, completion: nil)
         }
     }
 }

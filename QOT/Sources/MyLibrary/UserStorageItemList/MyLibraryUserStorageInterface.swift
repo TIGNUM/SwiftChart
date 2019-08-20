@@ -41,7 +41,7 @@ protocol MyLibraryUserStorageInteractorInterface: Interactor {
 
 protocol MyLibraryUserStorageRouterInterface {
     func presentArticle(id: Int)
-    func presentVideo(url: URL)
+    func presentVideo(url: URL, item: QDMContentItem?)
     func presentExternalUrl(_ url: URL)
     func presentCreateNote(noteId: String?)
 }

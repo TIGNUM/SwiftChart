@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyToBeVisionWorker {
 
@@ -50,7 +51,7 @@ final class MyToBeVisionWorker {
         do {
             try FileManager.default.createDirectory(at: URL.imageDirectory, withIntermediateDirectories: true)
         } catch {
-            log("failed to create image directory", level: .debug)
+            qot_dal.log("failed to create image directory", level: .debug)
         }
     }
 
@@ -67,11 +68,11 @@ final class MyToBeVisionWorker {
     }
 
     var headlinePlaceholder: String? {
-        return services.contentService.toBeVisionHeadlinePlaceholder()?.uppercased()
+        return ScreenTitleService.main.toBeVisionHeadlinePlaceholder()?.uppercased()
     }
 
     var messagePlaceholder: String? {
-        return services.contentService.toBeVisionMessagePlaceholder()
+        return ScreenTitleService.main.toBeVisionMessagePlaceholder()
     }
 
     func myToBeVision() -> MyToBeVisionModel.Model? {
@@ -83,8 +84,8 @@ final class MyToBeVisionWorker {
         if
             let tbvText = myToBeVision()?.text,
             let user = services.userService.user(),
-            let gender = Gender.init(rawValue: user.gender),
-            let tbvTemplate = services.contentService.contentItem(for: ContentService.Tags.tbvSharing.predicate)?.valueText {
+            let gender = Gender.init(rawValue: user.gender) {
+            let tbvTemplate = ScreenTitleService.main.localizedString(for: .tbvSharing)
             tbvToSahre = tbvTemplate.replacingOccurrences(of: SharingKeys.firstName.rawValue,
                                                           with: user.givenName)
                 .replacingOccurrences(of: SharingKeys.genderHerHim.rawValue,

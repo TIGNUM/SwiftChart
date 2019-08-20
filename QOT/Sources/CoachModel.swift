@@ -19,7 +19,7 @@ enum CoachSection: Int, CaseIterable {
         return [.search, .tools, .sprint, .event, .challenge]
     }
 
-    func trackingKeys(for services: Services) -> String {
+    func trackingKeys() -> String {
         switch self {
         case .search:
             return ContentService.Coach.search.rawValue

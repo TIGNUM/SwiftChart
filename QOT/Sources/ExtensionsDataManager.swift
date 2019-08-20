@@ -62,18 +62,23 @@ private extension ExtensionsDataManager {
     }
 
     func updateUpcomingEvents() {
-        let events = Array(services.preparationService
-            .preparations()
-            .filter { $0.eventStartDate?.isPast == false })
-            .sorted { $0.eventStartDate ?? Date() < $1.eventStartDate ?? Date() }
-            .map { preparation in
-                return ExtensionModel.UpcomingEvent(localID: preparation.localID,
-                                                    eventName: preparation.name,
-                                                    startDate: preparation.eventStartDate,
-                                                    endDate: preparation.eventEndDate,
-                                                    numberOfTasks: preparation.checkableItems.count,
-                                                    tasksCompleted: preparation.coveredChecks.count) }
-        ExtensionUserDefaults.set(events, for: .upcomingEvents)
+        qot_dal.UserService.main.getUserPreparations { (preparations, initiated, error) in
+            guard let preparations = preparations, error == nil else {
+                return
+            }
+
+            let events = preparations.filter { $0.eventDate != nil && $0.eventDate?.isPast() == false }
+                .sorted { $0.eventDate ?? Date() < $1.eventDate ?? Date() }
+                .map { preparation in
+                    return ExtensionModel.UpcomingEvent(localID: preparation.qotId!,
+                                                        eventName: preparation.eventTitle!,
+                                                        startDate: preparation.eventDate ?? Date(),
+                                                        endDate: Date(),
+                                                        numberOfTasks: 0,
+                                                        tasksCompleted: 0) }
+            ExtensionUserDefaults.set(events, for: .upcomingEvents)
+
+        }
     }
 
     func updateDailyPrep(items: [Guide.DailyPrepItem], feedback: String?, displayDate: Date) {

@@ -286,7 +286,10 @@ extension MyLibraryUserStorageInteractor {
                 assertionFailure("Cannot play video; missing URL")
                 return false
             }
-            router.presentVideo(url: url)
+            qot_dal.ContentService.main.getContentItemById(item.remoteId) { (item) in
+                self.router.presentVideo(url: url, item: item)
+            }
+
         case .AUDIO:
             guard let index = items.index(of: item) else {
                 return false

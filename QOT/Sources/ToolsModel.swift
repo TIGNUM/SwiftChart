@@ -19,7 +19,7 @@ enum ToolSection: Int, CaseIterable {
         return [.mindset, .nutrition, .movement, .recovery, .habituation]
     }
 
-    func trackingKeys(for services: Services) -> String {
+    func trackingKeys() -> String {
         switch self {
         case .mindset:
             return ContentService.Tools.mindset.rawValue

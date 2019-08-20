@@ -8,6 +8,7 @@
 
 import UIKit
 import Anchorage
+import qot_dal
 
 protocol CoachCollectionViewControllerDelegate: class {
     func didTapCancel()
@@ -29,8 +30,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
     @IBOutlet weak var collectionViewTopConstraint: NSLayoutConstraint!
 
     lazy var pageTitle: String? = {
-        let predicate = ContentService.Navigation.FirstLevel.knowPageTitle.predicate
-        return services?.contentService.contentItem(for: predicate)?.valueText
+        return ScreenTitleService.main.localizedString(for: .knowPageTitle)
     }()
 
     lazy var knowingNavigationController: KnowingNavigationController? = {
@@ -77,14 +77,15 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
         let swipeDown = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
         view.isUserInteractionEnabled = true
         view.addGestureRecognizer(swipeDown)
+        view.addSubview(collectionView)
+        view.backgroundColor = .carbon
         if let searchViewController = searchViewController {
             self.addChildViewController(searchViewController)
             searchViewController.view.translatesAutoresizingMaskIntoConstraints = false
             setupConstraints(searchViewController.view, parentView: view)
             searchViewController.view.alpha = 0
+            searchViewController.view.isUserInteractionEnabled = false
         }
-        view.addSubview(collectionView)
-        view.backgroundColor = .carbon
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -115,6 +116,7 @@ extension CoachCollectionViewController {
             if let searchViewController = searchViewController {
                 searchViewController.view.isUserInteractionEnabled = true
                 searchViewController.view.alpha = 0.8
+                searchViewController.interactor?.showSuggestions()
             }
         }
 
@@ -148,10 +150,13 @@ extension CoachCollectionViewController {
     }
 
     func display(contentController content: UIViewController, cell: UICollectionViewCell) {
-        self.addChildViewController(content)
+        if content.parent != self {
+            self.addChildViewController(content)
+        }
+        cell.contentView.removeSubViews()
         cell.contentView.addSubview(content.view)
-        content.didMove(toParentViewController: self)
         content.view.edges(to: cell.contentView)
+        content.didMove(toParentViewController: self)
     }
 }
 
@@ -214,5 +219,22 @@ extension CoachCollectionViewController: UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer,
                            shouldRecognizeSimultaneouslyWith otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
+    }
+}
+
+// MARK: - Bottom Navigation
+extension CoachCollectionViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        if searchViewController?.view.isUserInteractionEnabled == true {
+            return nil
+        }
+        return super.bottomNavigationLeftBarItems()
+    }
+
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        if searchViewController?.view.isUserInteractionEnabled == true {
+            return nil
+        }
+        return super.bottomNavigationRightBarItems()
     }
 }

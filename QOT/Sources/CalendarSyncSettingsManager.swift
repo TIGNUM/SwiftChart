@@ -127,8 +127,6 @@ private extension CalendarSyncSettingsManager {
                 realm.addObject(new)
             }
             result = new
-            syncManager.syncCalendarSyncSettings()
-//            syncManager.syncCalendarEvents()
         }
         return result
     }
