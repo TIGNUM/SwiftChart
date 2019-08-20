@@ -63,21 +63,21 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
-        setupSearchBar()
-        setupSegementedControl()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
         segmentedControl.alpha = 1
-        if searchQuery.isEmpty == false {
+        let hasUserInput = mySearchBar.text?.isEmpty == false
+        if hasUserInput {
             mySearchBar.becomeFirstResponder()
-            updateViewsState(true)
-        } else {
-            updateViewsState(false)
         }
+        updateViewsState(hasUserInput)
         updateIndicator()
+        if self.view.alpha == 1 {
+            refreshBottomNavigationItems()
+        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -104,6 +104,10 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
 // MARK: - Bottom Navigation
 extension SearchViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return nil
     }
 }
@@ -160,7 +164,9 @@ extension SearchViewController {
         trackUserEvent(.SELECT, valueType: searchFilter.userEvent, action: .TAP)
         updateSearchResults()
         updateIndicator()
-        tableView.scrollToTop(animated: true)
+        if searchResults.isEmpty == false {
+            tableView.scrollToTop(animated: true)
+        }
     }
 }
 
@@ -289,8 +295,8 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
 
 private extension SearchViewController {
 
-    func handleMediaSelection(mediaURL: URL, contentItem: ContentItem?) {
-        let playerViewController = stream(videoURL: mediaURL, contentItem: contentItem, pageName: pageName)
+    func handleMediaSelection(mediaURL: URL, contentItem: QDMContentItem?) {
+        let playerViewController = stream(videoURL: mediaURL, contentItem: contentItem, pageName)
         if let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
             avPlayerObserver?.onStatusUpdate { (player) in
@@ -329,7 +335,9 @@ private extension SearchViewController {
             interactor?.handleSelection(searchResult: selectedSearchResult)
         case .watch, .listen:
             if let url = selectedSearchResult.mediaURL {
-                handleMediaSelection(mediaURL: url, contentItem: interactor?.contentItem(for: selectedSearchResult))
+                interactor?.contentItem(for: selectedSearchResult) { item in
+                    self.handleMediaSelection(mediaURL: url, contentItem: item)
+                }
             }
         }
     }

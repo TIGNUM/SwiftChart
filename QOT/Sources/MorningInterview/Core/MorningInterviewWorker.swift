@@ -92,8 +92,6 @@ final class MorningInterviewWorker {
                 realm.add(userAnswers)
                 realm.add(result)
             }
-            self.syncManager.syncUserAnswers()
-            self.syncManager.syncUserDependentData()
         } catch {
             log("Saving morning interview answers failed: \(error)", level: .error)
         }

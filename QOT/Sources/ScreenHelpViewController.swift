@@ -81,7 +81,7 @@ extension ScreenHelpViewController: ScreenHelpViewControllerInterface {
 
     func streamVideo(videoURL: URL?, contentItem: ContentItem?) {
         guard let videoURL = videoURL else { return }
-        let playerViewController = stream(videoURL: videoURL, contentItem: contentItem, pageName: pageName)
+        let playerViewController = stream(videoURL: videoURL, contentItem: nil, pageName)
         if let playerItem = playerViewController.player?.currentItem {
             avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
             avPlayerObserver?.onStatusUpdate { (player) in

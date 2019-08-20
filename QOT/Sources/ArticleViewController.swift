@@ -9,6 +9,7 @@
 import UIKit
 import Anchorage
 import AMScrollingNavbar
+import qot_dal
 
 protocol ArticleDelegate: class {
     func didTapMarkAsRead(_ read: Bool)
@@ -667,13 +668,16 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         case .audio(_, _, _, _, let remoteURL, _, _):
             let url = item.bundledAudioURL ?? remoteURL
             delegate?.didTapMedia(withURL: url, in: self)
-        case .video(_, _, _, _, let videoURL, _):
-            let playerViewController = stream(videoURL: videoURL, contentItem: nil, pageName: PageName.search)
-            if let playerItem = playerViewController.player?.currentItem {
-                let avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
-                avPlayerObserver.onStatusUpdate { (player) in
-                    if playerItem.status == .failed {
-                        playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
+        case .video(let remoteID, _, _, _, let videoURL, _):
+            qot_dal.ContentService.main.getContentItemById(remoteID) { (contentItem) in
+                guard let item = contentItem else { return }
+                let playerViewController = self.stream(videoURL: videoURL, contentItem: item, PageName.search)
+                if let playerItem = playerViewController.player?.currentItem {
+                    let avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
+                    avPlayerObserver.onStatusUpdate { (player) in
+                        if playerItem.status == .failed {
+                            playerViewController.presentNoInternetConnectionAlert(in: playerViewController)
+                        }
                     }
                 }
             }

@@ -27,4 +27,8 @@ extension ToolsItemsPresenter: ToolsItemsPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func reload() {
+        viewController?.reload()
+    }
 }

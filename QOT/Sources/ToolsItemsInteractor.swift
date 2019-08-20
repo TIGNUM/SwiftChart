@@ -27,6 +27,9 @@ final class ToolsItemsInteractor {
 
     func viewDidLoad() {
         presenter.setupView()
+        worker.load { [weak self] in
+            self?.presenter.reload()
+        }
     }
 }
 

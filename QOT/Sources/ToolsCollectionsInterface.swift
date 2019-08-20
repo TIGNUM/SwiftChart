@@ -10,10 +10,12 @@ import Foundation
 
 protocol ToolsCollectionsViewControllerInterface: class {
     func setupView()
+    func reload()
 }
 
 protocol ToolsCollectionsPresenterInterface {
     func setupView()
+    func reload()
 }
 
 protocol ToolsCollectionsInteractorInterface: Interactor {
@@ -30,6 +32,6 @@ protocol ToolsCollectionsRouterInterface {
 
 protocol ToolsCollectionsWorkerInterface {
     var headerTitle: String { get }
-    var tools: [Tool.Item] { get }
-    var videoTools: [Tool.Item] { get }
+    func tools(_ completion: @escaping ([Tool.Item]) -> Void)
+    func videoTools(_ completion: @escaping ([Tool.Item]) -> Void)
 }

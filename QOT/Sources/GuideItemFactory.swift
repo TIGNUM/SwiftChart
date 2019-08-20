@@ -8,6 +8,7 @@
 
 import UIKit
 import Rswift
+import qot_dal
 
 struct GuideItemFactory: GuideItemFactoryProtocol {
     enum contentID: Int {
@@ -116,7 +117,7 @@ struct GuideItemFactory: GuideItemFactoryProtocol {
             body == nil ||
             title?.isTrimmedTextEmpty == true ||
 			body?.isTrimmedTextEmpty == true ||
-			body == services.contentService.toBeVisionMessagePlaceholder() {
+			body == ScreenTitleService.main.toBeVisionMessagePlaceholder() {
                 title = R.string.localized.guideToBeVisionNotFisishedTitle()
                 body = R.string.localized.guideToBeVisionNotFisishedMessage()
                 isToBeVisionDone = false

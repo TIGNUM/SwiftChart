@@ -99,6 +99,10 @@ extension ToolsCollectionsViewController: ToolsCollectionsViewControllerInterfac
         setupTableView()
         setCustomBackButton()
     }
+
+    func reload() {
+        tableView.reloadData()
+    }
 }
 
 extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSource {
@@ -112,6 +116,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
         switch cellType {
         case .header:
             let headerTitle = interactor?.headerTitle ?? ""
+            guard headerTitle.count > 0 else { return nil }
             let title = headerTitle.replacingOccurrences(of: "Performance ", with: "") + " TOOLS"
             return ToolsTableHeaderView.instantiateFromNib(title: title, subtitle: "Introduction for section")
         default: return nil
@@ -182,7 +187,7 @@ extension ToolsCollectionsViewController: UITableViewDelegate, UITableViewDataSo
                 guard
                     let videoTool = interactor?.videoTools[indexPath.row],
                     let videoURL = videoTool.mediaURL else { return }
-                stream(videoURL: videoURL, contentItem: nil, pageName: PageName.learnContentItemFull) // TODO Set correct pageName
+                stream(videoURL: videoURL, contentItem: nil) // TODO Set correct pageName
             } else if tool?.type == "pdf" {
                 if let pdfURL = tool?.mediaURL {
                     didTapPDFLink(tool?.title ?? "", tool?.remoteID ?? 0, pdfURL)

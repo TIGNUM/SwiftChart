@@ -20,7 +20,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) // Save Get To Level 5 Answer Value
     func changedGetToLevel5Value(_ value: Int, from cell: UITableViewCell) // Update Selection of Get To Level 5 Answer Value
     func saveTargetValue(value: Int?) //save sleep target
-    func videoAction(_ sender: Any, videoURL: URL?, contentItem: ContentItem?, pageName: PageName)
+    func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?, pageName: PageName)
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation)
 }
 
@@ -620,8 +620,8 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
         interactor?.customzieSleepQuestion(completion: completion)
     }
     // TODO Set correct pageName
-    func videoAction(_ sender: Any, videoURL: URL?, contentItem: ContentItem?, pageName: PageName) {
-        stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem, pageName: pageName)
+    func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?, pageName: PageName) {
+        stream(videoURL: videoURL ?? URL(string: "")!, contentItem: contentItem, pageName)
     }
 
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation) {

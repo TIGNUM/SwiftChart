@@ -153,7 +153,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             UserDefault.firstInstallationTimestamp.setObject(Date())
         }
         pageTracker.start()
-        observeTimeZoneChange()
         let dispatchGroup = DispatchGroup()
         dispatchGroup.enter()
         var setupError: Error?
@@ -175,8 +174,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 self.handleSetupError(error: error)
             } else if self.authenticator.hasLoginCredentials() {
                 self.showApp()
-                RestartHelper().checkRestartURLAndRoute()
-                self.isReadyToProcessURL = true
                 completion()
             } else {
                 UserDefault.clearAllDataLogOut()
@@ -248,6 +245,9 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             self.showOnboarding()
             return
         }
+        RestartHelper().checkRestartURLAndRoute()
+        self.isReadyToProcessURL = true
+
         if self.isRestart == false {
             guard let coachCollectionViewController = R.storyboard.main().instantiateViewController(withIdentifier: "CoachCollectionViewController") as? CoachCollectionViewController,
             let rootViewController = R.storyboard.bottomNavigation().instantiateInitialViewController(),
@@ -283,8 +283,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
         do {
             if services.userService.myToBeVision() == nil {
-                let headline = services.contentService.toBeVisionHeadlinePlaceholder()?.uppercased()
-                let text = services.contentService.toBeVisionMessagePlaceholder()
+                let headline = ScreenTitleService.main.toBeVisionHeadlinePlaceholder()?.uppercased()
+                let text = ScreenTitleService.main.toBeVisionMessagePlaceholder()
                 let realm = try RealmProvider().realm()
                 try realm.write {
                     realm.add(MyToBeVision(headline: headline, text: text))
@@ -316,7 +316,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func sendLocationUpdate(location: CLLocation) {
-        timeZoneDidChange()
         guard authenticator.hasLoginCredentials() else { return }
         networkManager.performUserLocationUpdateRequest(location: location) { (error: NetworkError?) in
             if let error = error {
@@ -350,16 +349,6 @@ private extension AppCoordinator {
             }
         } else {
             completion?()
-        }
-    }
-
-    func observeTimeZoneChange() {
-        NotificationCenter.default.addObserver(self, selector: #selector(timeZoneDidChange), name: .NSSystemTimeZoneDidChange, object: nil)
-    }
-
-    @objc func timeZoneDidChange() {
-        services?.userService.updateTimeZone { [unowned self] in
-            self.syncManager.syncUserDependentData()
         }
     }
 
@@ -554,13 +543,6 @@ extension AppCoordinator: RemoteNotificationHandlerDelegate {
 // MARK: - Handle incomming RemoteNotification
 
 extension AppCoordinator {
-    func syncUserDependentData(completionHandler: (() -> Void)?) {
-        calendarImportManager.importEvents()
-        syncManager.syncUserDependentData(syncContext: nil) { (error) in
-            completionHandler?()
-        }
-    }
-
     func handleIncommingNotificationDeepLinkURL(url: URL) {
         guard let host = url.host, let scheme = URLScheme(rawValue: host) else {
             return

@@ -68,3 +68,20 @@ extension BaseRootViewController {
         view.fill(subview: viewController.view)
     }
 }
+
+// MARK: - Bottom Navigation
+extension BaseRootViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        if let contentViewController = self.childViewControllers.first {
+            return contentViewController.bottomNavigationLeftBarItems()
+        }
+        return nil
+    }
+
+    @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        if let contentViewController = self.childViewControllers.first {
+            return contentViewController.bottomNavigationRightBarItems()
+        }
+        return nil
+    }
+}

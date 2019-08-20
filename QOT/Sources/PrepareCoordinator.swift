@@ -526,17 +526,6 @@ extension PrepareCoordinator {
                 self.showPrepareCheckList(preparationID: id,
                                           chatDecisionManager: self.chatDecisionManager,
                                           progressHUD: hud)
-//                AppCoordinator.appState.syncManager.syncCalendarEvents { (error) in
-//                    if let createdPreparation = realm.syncableObject(ofType: Preparation.self, localID: id),
-//                        let createdEvent = realm.syncableObject(ofType: CalendarEvent.self, localID: event.localID) {
-//                        do {
-//                            try realm.transactionSafeWrite {
-//                                createdPreparation.calendarEventRemoteID.value = createdEvent.remoteID.value
-//                                createdPreparation.dirty = true
-//                            }
-//                        } catch {}
-//                    }
-//                }
             }
         }
     }

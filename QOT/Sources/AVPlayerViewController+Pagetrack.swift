@@ -8,28 +8,14 @@
 
 import Foundation
 import AVKit
+import qot_dal
 
 private struct PagePlayVideo {
-    static var name = PageName.infoGuide
-    static var contentItem: ContentItem?
+    static var contentItem: QDMContentItem?
 }
 
 extension AVPlayerViewController {
-
-    var pageType: PageName {
-        get {
-            return PagePlayVideo.name
-        }
-        set {
-            PagePlayVideo.name = newValue
-            objc_setAssociatedObject(self,
-                                     &PagePlayVideo.name,
-                                     newValue,
-                                     objc_AssociationPolicy.OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-        }
-    }
-
-    var contentItem: ContentItem? {
+    var contentItem: QDMContentItem? {
         get {
             return PagePlayVideo.contentItem
         }
@@ -42,9 +28,8 @@ extension AVPlayerViewController {
         }
     }
 
-    convenience init(pageName: PageName, contentItem: ContentItem?) {
+    convenience init(contentItem: QDMContentItem?) {
         self.init()
-        self.pageType = pageName
         self.contentItem = contentItem
     }
 }

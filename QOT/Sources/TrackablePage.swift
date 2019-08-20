@@ -507,13 +507,3 @@ extension PrepareNotesViewController: TrackablePage {
         return nil
     }
 }
-
-extension AVPlayerViewController: TrackablePage {
-    var pageName: PageName {
-        return pageType
-    }
-    var pageAssociatedObject: PageObject? {
-        guard let contentItem = contentItem else { return nil }
-        return PageObject(object: contentItem, identifier: .contentItem)
-    }
-}

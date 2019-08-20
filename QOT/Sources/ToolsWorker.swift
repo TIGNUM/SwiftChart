@@ -7,52 +7,55 @@
 //
 
 import UIKit
+import qot_dal
 
 final class ToolsWorker {
 
-    // MARK: - Properties
-
-    private let services: Services?
-
     // MARK: - Init
 
-    init(services: Services?) {
-        self.services = services
+    init() {
     }
 }
 
 // MARK: - ToolsWorkerInterface
 
 extension ToolsWorker: ToolsWorkerInterface {
-    var tools: [ToolItem] {
-        guard let tools = services?.contentService.toolsCategories() else { return [] }
-        var toolItems: [ToolItem] = []
-        for tool in tools {
-            let itemCount = tool.itemCount(section: .library)
-            toolItems.append(ToolItem(title: tool.title,
-                                      remoteID: tool.remoteID.value ?? 0,
-                                      itemCount: itemCount,
-                                      sortOrder: tool.sortOrder))
-        }
-        return toolItems.sorted(by: { (lhs, rhs) -> Bool in
-            lhs.sortOrder < rhs.sortOrder
-        }).reversed()
+    func tools(_ completion: @escaping ([ToolItem]) -> Void) {
+        qot_dal.ContentService.main.getContentCollectionBySection(.QOTLibrary, { (contentCollections) in
+            guard let collections = contentCollections else {
+                completion([])
+                return
+            }
+            let categoryIds = Array(Set(collections.compactMap({ $0.categoryIDs.first })))
+            qot_dal.ContentService.main.getContentCategoriesByIds(categoryIds, { (categories) in
+                guard let categories = categories else {
+                    completion([])
+                    return
+                }
+                let tools = categories.compactMap({ (category) -> ToolItem? in
+                    guard category.remoteID != 100037 else { return nil }
+                    let itemCount = category.contentCollections.filter({ $0.section == .QOTLibrary }).count
+                    return ToolItem(title: category.title,
+                                    remoteID: category.remoteID ?? 0,
+                                    itemCount: itemCount,
+                                    sortOrder: category.sortOrder)
+                })
+                completion(tools.sorted(by: { $0.sortOrder > $1.sortOrder }))
+            })
+        })
     }
 
     func toolsSections() -> ToolModel {
-        return ToolModel(headerTitle: services?.contentService.toolsHeaderTitle(),
-                         headerSubtitle: services?.contentService.toolsHeaderSubtitle(),
+        return ToolModel(headerTitle: ScreenTitleService.main.toolsHeaderTitle(),
+                         headerSubtitle: ScreenTitleService.main.toolsHeaderSubtitle(),
                          toolItems: ToolSection.allCases.map {
                             return ToolModel.Item(toolSections: $0,
-                                                  title: services?.contentService.toolSectionTitles(for: $0),
+                                                  title: ScreenTitleService.main.toolSectionTitles(for: $0),
                                                   subtitle: "Number of Tools") })
     }
 
     func trackingKeys(at indexPath: IndexPath) -> String {
         let item = ToolSection.sectionValues.item(at: indexPath.row)
-        guard let services = services else {
-        return ""
-        }
-        return item.trackingKeys(for: services)
+        return item.trackingKeys()
     }
 }

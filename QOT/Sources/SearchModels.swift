@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 struct Search {
 
@@ -60,6 +61,36 @@ struct Search {
         static func == (lhs: Search.Result, rhs: Search.Result) -> Bool {
             return lhs.title == rhs.title && lhs.displayType == rhs.displayType
         }
+    }
+
+    static func resultFrom(_ contentCollections: [QDMContentCollection],
+                           filter: Filter,
+                           displayType: DisplayType) -> [Search.Result] {
+        return contentCollections.compactMap({
+            Search.Result(filter: filter,
+                          title: $0.title,
+                          contentID: $0.remoteID ?? 0,
+                          contentItemID: nil,
+                          createdAt: $0.createdAt ?? Date(),
+                          searchTags: "",
+                          section: Database.Section(rawValue: $0.section.rawValue),
+                          mediaURL: nil,
+                          displayType: displayType,
+                          duration: $0.durationString)
+        })
+    }
+
+    static func resultFrom(_ contentItem: QDMContentItem, filter: Filter, displayType: DisplayType) -> Search.Result {
+        return Search.Result(filter: filter,
+                             title: contentItem.valueText,
+                             contentID: nil,
+                             contentItemID: contentItem.remoteID ?? 0,
+                             createdAt: contentItem.createdAt ?? Date(),
+                             searchTags: "",
+                             section: nil,
+                             mediaURL: URL(string: contentItem.valueMediaURL ?? ""),
+                             displayType: displayType,
+                             duration: contentItem.durationString)
     }
 }
 

@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 struct SubsriptionReminderModel {
 
@@ -22,6 +23,22 @@ struct SubsriptionReminderModel {
         case benefitsSubtitleThird = "subscription_reminder_benefit_subtitle_03"
         case benefitsTitleFourth = "subscription_reminder_benefit_title_04"
         case benefitsSubtitleFourth = "subscription_reminder_benefit_subtitle_04"
+
+        private var tag: Tags {
+            switch self {
+            case .title: return .subscriptionReminderTitle
+            case .subtitle: return .subscriptionReminderSubtitle
+            case .subtitleExpired: return .subscriptionReminderSubtitleExpired
+            case .benefitsTitleFirst: return .subscriptionReminderBenefitsTitleFirst
+            case .benefitsTitleSecond: return .subscriptionReminderBenefitsTitleSecond
+            case .benefitsTitleThird: return .subscriptionReminderBenefitsTitleThird
+            case .benefitsTitleFourth: return .subscriptionReminderBenefitsTitleFourth
+            case .benefitsSubtitleFirst: return .subscriptionReminderBenefitsSubtitleFirst
+            case .benefitsSubtitleSecond: return .subscriptionReminderBenefitsSubtitleSecond
+            case .benefitsSubtitleThird: return .subscriptionReminderBenefitsSubtitleThird
+            case .benefitsSubtitleFourth: return .subscriptionReminderBenefitsSubtitleFourth
+            }
+        }
 
         private var predicate: NSPredicate {
             return NSPredicate(tag: rawValue)
@@ -76,7 +93,7 @@ struct SubsriptionReminderModel {
         }
 
         func attributedText(contentSerice: ContentService) -> NSAttributedString? {
-            guard let text = contentSerice.contentItem(for: self.predicate)?.valueText else { return nil }
+            let text = ScreenTitleService.main.localizedString(for: self.tag)
             return NSMutableAttributedString(string: text,
                                              letterSpacing: 0,
                                              font: font,

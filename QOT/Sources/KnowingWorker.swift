@@ -8,6 +8,7 @@
 
 import UIKit
 import qot_dal
+
 final class KnowingWorker {
 
     // MARK: - Properties
@@ -85,8 +86,8 @@ final class KnowingWorker {
     var whatsHotItems = [Knowing.WhatsHotItem]()
 
     func header(for section: Knowing.Section) -> (title: String?, subtitle: String?) {
-        let title = services?.contentService.contentItem(for: section.titlePredicate)?.valueText
-        let subtitle = services?.contentService.contentItem(for: section.subtitlePredicate)?.valueText
+        let title = ScreenTitleService.main.localizedString(for: section.titlePredicate)
+        let subtitle = ScreenTitleService.main.localizedString(for: section.subtitlePredicate)
         return (title: title, subtitle: subtitle)
     }
 }

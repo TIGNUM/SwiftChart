@@ -384,8 +384,8 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                 delegate?.didTapMedia(withURL: url, in: self)
             case .video(_, _, _, _, let videoURL, _):
                 let playerViewController = stream(videoURL: videoURL,
-                                                  contentItem: viewModel.articleItem(at: indexPath),
-                                                  pageName: pageName)
+                                                  contentItem: nil,
+                                                  pageName)
                 if let playerItem = playerViewController.player?.currentItem {
                     avPlayerObserver = AVPlayerObserver(playerItem: playerItem)
                     avPlayerObserver?.onStatusUpdate { (player) in

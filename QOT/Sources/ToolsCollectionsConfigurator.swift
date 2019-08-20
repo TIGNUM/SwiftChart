@@ -8,11 +8,11 @@
 
 import Foundation
 
-final class ToolsCollectionsConfigurator: AppStateAccess {
+final class ToolsCollectionsConfigurator {
 
     static func make(viewController: ToolsCollectionsViewController, selectedToolID: Int?) {
         let router = ToolsCollectionsRouter(viewController: viewController)
-        let worker = ToolsCollectionsWorker(services: appState.services, selectedToolID: selectedToolID)
+        let worker = ToolsCollectionsWorker(selectedToolID: selectedToolID)
         let presenter = ToolsCollectionsPresenter(viewController: viewController)
         let interactor = ToolsCollectionsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor

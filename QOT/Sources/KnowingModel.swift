@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 struct Knowing {
 
@@ -14,17 +15,17 @@ struct Knowing {
         case strategies = 0
         case whatsHot
 
-        var titlePredicate: NSPredicate {
+        var titlePredicate: Tags {
             switch self {
-            case .strategies: return ContentService.Navigation.FirstLevel.knowSectionTitleStrategies.predicate
-            case .whatsHot: return ContentService.Navigation.FirstLevel.knowSectionTitleWhatsHot.predicate
+            case .strategies: return .knowSectionTitleStrategies
+            case .whatsHot: return .knowSectionTitleWhatsHot
             }
         }
 
-        var subtitlePredicate: NSPredicate {
+        var subtitlePredicate: Tags {
             switch self {
-            case .strategies: return ContentService.Navigation.FirstLevel.knowSectionSubtitleStrategies.predicate
-            case .whatsHot: return ContentService.Navigation.FirstLevel.knowSectionSubtitleWhatsHot.predicate
+            case .strategies: return  .knowSectionSubtitleStrategies
+            case .whatsHot: return .knowSectionSubtitleWhatsHot
             }
         }
     }

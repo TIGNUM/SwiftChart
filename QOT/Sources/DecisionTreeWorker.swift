@@ -274,13 +274,13 @@ extension DecisionTreeWorker {
     }
 
     /// Returns the media url for a specific content item
-    func mediaURL(from contentItemID: Int, completion: @escaping (URL?) -> Void) {
+    func mediaURL(from contentItemID: Int, completion: @escaping (URL?, QDMContentItem?) -> Void) {
         qot_dal.ContentService.main.getContentItemById(contentItemID) { (item) in
             guard let urlString = item?.valueMediaURL else {
-                completion(nil)
+                completion(nil, nil)
                 return
             }
-            completion(URL(string: urlString))
+            completion(URL(string: urlString), item)
         }
     }
 

@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import qot_dal
 
 final class SearchInteractor {
 
@@ -27,6 +28,7 @@ extension SearchInteractor: SearchInteractorInterface {
 
     func showSuggestions() {
         let suggestions = worker.suggestions()
+        // FIXME: Use Completion Block
         presenter.load(suggestions)
     }
 
@@ -43,11 +45,14 @@ extension SearchInteractor: SearchInteractorInterface {
     }
 
     func didChangeSearchText(searchText: String, searchFilter: Search.Filter) {
-        let searchResults = worker.search(searchText, searchFilter: searchFilter)
-        presenter.reload(searchResults)
+        worker.search(searchText, searchFilter: searchFilter) { results in
+            self.presenter.reload(results)
+        }
     }
 
-    func contentItem(for searchResult: Search.Result) -> ContentItem? {
-        return worker.contentItem(for: searchResult)
+    func contentItem(for searchResult: Search.Result, _ completion: @escaping (QDMContentItem?) -> Void) {
+        return worker.contentItem(for: searchResult) { item in
+            completion(item)
+        }
     }
 }

@@ -30,7 +30,7 @@ final class MyQotMainWorker {
     func myQotSections() -> MyQotViewModel {
         let myQotItems =  MyQotSection.allCases.map {
             return MyQotViewModel.Item(myQotSections: $0,
-                                   title: services.contentService.myQotSectionTitles(for: $0),
+                                   title: ScreenTitleService.main.myQotSectionTitles(for: $0),
                                    subtitle: "temp")}
         return MyQotViewModel(myQotItems: myQotItems)
     }
