@@ -15,7 +15,6 @@ final class MyPeakPerformanceTableCell: UITableViewCell, UITableViewDelegate, De
     var peakPerformanceList = [MyPerformanceModelItem]()
     var delegate: DailyBriefViewControllerDelegate?
 
-
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = .clear

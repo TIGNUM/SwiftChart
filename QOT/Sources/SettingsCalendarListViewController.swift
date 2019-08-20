@@ -18,7 +18,7 @@ final class SettingsCalendarListViewController: UIViewController {
 
     // MARK: - Properties
 
-    private var tableView = UITableView(frame: CGRect.zero, style: .grouped)
+    private var tableView = UITableView(frame: .zero, style: .grouped)
     private var noPermissionLabel: UILabel = UILabel()
     private var openSettingButton: UIButton = UIButton()
     private let viewModel: SettingsCalendarListViewModel
@@ -214,8 +214,7 @@ extension SettingsCalendarListViewController: UITableViewDelegate, UITableViewDa
         guard let headerCell = tableView.dequeueReusableCell(withIdentifier: identifier) as? SettingsTableViewCell else {
             fatalError("SettingsHeaderCell does not exist!")
         }
-
-        headerCell.setupHeaderCell(title: viewModel.headerTitle(in: section))
+        headerCell.setupHeaderCell(title: CalendarLocation(rawValue: section)?.headerTitle ?? "")
         return headerCell.contentView
     }
 
@@ -233,15 +232,7 @@ extension SettingsCalendarListViewController: UITableViewDelegate, UITableViewDa
         let calendarIdentifier = viewModel.calendarIdentifier(at: indexPath)
         let calendarSource = viewModel.calendarSource(at: indexPath)
         let syncStatus = viewModel.calendarSyncStatus(at: indexPath)
-        let settingsType: SettingsType
-
-        switch CalendarLocation(rawValue: indexPath.section)! {
-        case .onThisDevice :
-            settingsType = .calendar
-        default:
-            settingsType = .calendarOnOtherDevices
-        }
-
+        let settingsType = CalendarLocation(rawValue: indexPath.section)?.settingsType ?? .calendar
         let settingsRow = SettingsRow.control(title: title,
                                               isOn: syncStatus,
                                               settingsType: settingsType,

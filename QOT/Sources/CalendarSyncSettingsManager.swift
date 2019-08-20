@@ -10,10 +10,10 @@ import Foundation
 import RealmSwift
 
 struct CalendarSyncSetting {
-
     let identifier: String
     let title: String
     let syncEnabled: Bool
+
     func source() -> String? {
         let elements = identifier.components(separatedBy: Toggle.seperator)
         return elements.last

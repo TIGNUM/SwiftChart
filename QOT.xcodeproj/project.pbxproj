@@ -317,6 +317,9 @@
 		36BD8F481FE0052000DBD9B4 /* GuideService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36BD8F471FE0052000DBD9B4 /* GuideService.swift */; };
 		36C854D5200619CD00AB1D59 /* NotificationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */; };
 		36C854D7200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */; };
+		36C8F172230864BD00CD718F /* SyncedCalendarsModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C8F171230864BD00CD718F /* SyncedCalendarsModels.swift */; };
+		36C8F174230896C300CD718F /* QDMUserCalendarSetting+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C8F173230896C300CD718F /* QDMUserCalendarSetting+Ext.swift */; };
+		36C8F17623089F0500CD718F /* EKEventStore+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36C8F17523089F0500CD718F /* EKEventStore+Ext.swift */; };
 		36CB720622B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720522B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift */; };
 		36CB720822B86CF900C99AFC /* QDMContentCollection+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */; };
 		36CB720B22B8775B00C99AFC /* QDMContentItem+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */; };
@@ -410,15 +413,14 @@
 		5F36072C228BEDA20074FEC4 /* MyQotSensorsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36072B228BEDA20074FEC4 /* MyQotSensorsInterface.swift */; };
 		5F36072E228BEEB90074FEC4 /* MyQotSensorsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36072D228BEEB90074FEC4 /* MyQotSensorsModel.swift */; };
 		5F360730228C021F0074FEC4 /* ContentService+Sensors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36072F228C021F0074FEC4 /* ContentService+Sensors.swift */; };
-		5F360733228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360732228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift */; };
-		5F360735228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360734228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift */; };
-		5F360737228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360736228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift */; };
-		5F36073B228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36073A228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift */; };
-		5F36073F228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36073E228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift */; };
-		5F360743228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360742228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift */; };
-		5F360749228C42570074FEC4 /* MyQotSyncedCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360747228C42570074FEC4 /* MyQotSyncedCalendarCell.swift */; };
-		5F36074A228C42570074FEC4 /* MyQotSyncedCalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F360748228C42570074FEC4 /* MyQotSyncedCalendarCell.xib */; };
-		5F36074C228C520F0074FEC4 /* ContentService+SyncedCalendars.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36074B228C520F0074FEC4 /* ContentService+SyncedCalendars.swift */; };
+		5F360733228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360732228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift */; };
+		5F360735228C1EF10074FEC4 /* SyncedCalendarsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360734228C1EF10074FEC4 /* SyncedCalendarsInterface.swift */; };
+		5F360737228C1F030074FEC4 /* SyncedCalendarsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360736228C1F030074FEC4 /* SyncedCalendarsWorker.swift */; };
+		5F36073B228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36073A228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift */; };
+		5F36073F228C1F970074FEC4 /* SyncedCalendarsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F36073E228C1F970074FEC4 /* SyncedCalendarsViewController.swift */; };
+		5F360743228C20120074FEC4 /* SyncedCalendarsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360742228C20120074FEC4 /* SyncedCalendarsConfigurator.swift */; };
+		5F360749228C42570074FEC4 /* SyncedCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */; };
+		5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */; };
 		5F544FD122967FE500616626 /* ContentService+EditAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F544FD022967FE500616626 /* ContentService+EditAccount.swift */; };
 		5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */; };
 		5F57F9E42282E65B003A9EDF /* ContentService+MyQotProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F57F9E32282E65B003A9EDF /* ContentService+MyQotProfile.swift */; };
@@ -1974,6 +1976,9 @@
 		36BD8F471FE0052000DBD9B4 /* GuideService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideService.swift; sourceTree = "<group>"; };
 		36C854D4200619CD00AB1D59 /* NotificationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsViewController.swift; sourceTree = "<group>"; };
 		36C854D6200622A100AB1D59 /* ScheduledNotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScheduledNotificationTableViewCell.swift; sourceTree = "<group>"; };
+		36C8F171230864BD00CD718F /* SyncedCalendarsModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarsModels.swift; sourceTree = "<group>"; };
+		36C8F173230896C300CD718F /* QDMUserCalendarSetting+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMUserCalendarSetting+Ext.swift"; sourceTree = "<group>"; };
+		36C8F17523089F0500CD718F /* EKEventStore+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EKEventStore+Ext.swift"; sourceTree = "<group>"; };
 		36CB720522B8654E00C99AFC /* PrepareResultsWorker+ItemMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PrepareResultsWorker+ItemMaker.swift"; sourceTree = "<group>"; };
 		36CB720722B86CF900C99AFC /* QDMContentCollection+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentCollection+Ext.swift"; sourceTree = "<group>"; };
 		36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMContentItem+Ext.swift"; sourceTree = "<group>"; };
@@ -2065,15 +2070,14 @@
 		5F36072B228BEDA20074FEC4 /* MyQotSensorsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsInterface.swift; sourceTree = "<group>"; };
 		5F36072D228BEEB90074FEC4 /* MyQotSensorsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSensorsModel.swift; sourceTree = "<group>"; };
 		5F36072F228C021F0074FEC4 /* ContentService+Sensors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+Sensors.swift"; sourceTree = "<group>"; };
-		5F360732228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsInteractor.swift; sourceTree = "<group>"; };
-		5F360734228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsInterface.swift; sourceTree = "<group>"; };
-		5F360736228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsWorker.swift; sourceTree = "<group>"; };
-		5F36073A228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsPresenter.swift; sourceTree = "<group>"; };
-		5F36073E228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsViewController.swift; sourceTree = "<group>"; };
-		5F360742228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarsConfigurator.swift; sourceTree = "<group>"; };
-		5F360747228C42570074FEC4 /* MyQotSyncedCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyQotSyncedCalendarCell.swift; sourceTree = "<group>"; };
-		5F360748228C42570074FEC4 /* MyQotSyncedCalendarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyQotSyncedCalendarCell.xib; sourceTree = "<group>"; };
-		5F36074B228C520F0074FEC4 /* ContentService+SyncedCalendars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+SyncedCalendars.swift"; sourceTree = "<group>"; };
+		5F360732228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarsInteractor.swift; sourceTree = "<group>"; };
+		5F360734228C1EF10074FEC4 /* SyncedCalendarsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarsInterface.swift; sourceTree = "<group>"; };
+		5F360736228C1F030074FEC4 /* SyncedCalendarsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarsWorker.swift; sourceTree = "<group>"; };
+		5F36073A228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarsPresenter.swift; sourceTree = "<group>"; };
+		5F36073E228C1F970074FEC4 /* SyncedCalendarsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarsViewController.swift; sourceTree = "<group>"; };
+		5F360742228C20120074FEC4 /* SyncedCalendarsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarsConfigurator.swift; sourceTree = "<group>"; };
+		5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncedCalendarCell.swift; sourceTree = "<group>"; };
+		5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SyncedCalendarCell.xib; sourceTree = "<group>"; };
 		5F544FD022967FE500616626 /* ContentService+EditAccount.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+EditAccount.swift"; sourceTree = "<group>"; };
 		5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileSettingsViewController.xib; sourceTree = "<group>"; };
 		5F57F9E32282E65B003A9EDF /* ContentService+MyQotProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+MyQotProfile.swift"; sourceTree = "<group>"; };
@@ -3913,6 +3917,7 @@
 				36CB720A22B8775B00C99AFC /* QDMContentItem+Ext.swift */,
 				366B6D2D23018980003FA63E /* QDMTermData+Ext.swift */,
 				36CB721722B907FF00C99AFC /* QDMUserCalendarEvent+Ext.swift */,
+				36C8F173230896C300CD718F /* QDMUserCalendarSetting+Ext.swift */,
 				360B106F230AEF8A006B1F2D /* QDMUserEventTracking+Ext.swift */,
 				F9A66BA622CD0C690094EA46 /* RoundedButton.swift */,
 			);
@@ -4053,44 +4058,20 @@
 			name = Others;
 			sourceTree = "<group>";
 		};
-		5F360731228C1EBA0074FEC4 /* MyQotSyncedCalendars */ = {
+		5F360731228C1EBA0074FEC4 /* SyncedCalendars */ = {
 			isa = PBXGroup;
 			children = (
-				5F360745228C42140074FEC4 /* Core */,
-				5F360744228C420C0074FEC4 /* Others */,
+				5F360747228C42570074FEC4 /* SyncedCalendarCell.swift */,
+				5F360742228C20120074FEC4 /* SyncedCalendarsConfigurator.swift */,
+				5F360732228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift */,
+				5F360734228C1EF10074FEC4 /* SyncedCalendarsInterface.swift */,
+				36C8F171230864BD00CD718F /* SyncedCalendarsModels.swift */,
+				5F36073A228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift */,
+				5F36073E228C1F970074FEC4 /* SyncedCalendarsViewController.swift */,
+				5F360736228C1F030074FEC4 /* SyncedCalendarsWorker.swift */,
+				5F360748228C42570074FEC4 /* SyncedCalendarCell.xib */,
 			);
-			name = MyQotSyncedCalendars;
-			sourceTree = "<group>";
-		};
-		5F360744228C420C0074FEC4 /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				5F360746228C42220074FEC4 /* Components */,
-				5F36074B228C520F0074FEC4 /* ContentService+SyncedCalendars.swift */,
-			);
-			name = Others;
-			sourceTree = "<group>";
-		};
-		5F360745228C42140074FEC4 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				5F360732228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift */,
-				5F360734228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift */,
-				5F360736228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift */,
-				5F36073A228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift */,
-				5F36073E228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift */,
-				5F360742228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift */,
-			);
-			name = Core;
-			sourceTree = "<group>";
-		};
-		5F360746228C42220074FEC4 /* Components */ = {
-			isa = PBXGroup;
-			children = (
-				5F360747228C42570074FEC4 /* MyQotSyncedCalendarCell.swift */,
-				5F360748228C42570074FEC4 /* MyQotSyncedCalendarCell.xib */,
-			);
-			name = Components;
+			name = SyncedCalendars;
 			sourceTree = "<group>";
 		};
 		5F544FCF22967FBC00616626 /* MyQotEditAccount */ = {
@@ -4360,7 +4341,7 @@
 			children = (
 				F9838F3922AFFE93003F9394 /* myQotMain */,
 				5F544FCF22967FBC00616626 /* MyQotEditAccount */,
-				5F360731228C1EBA0074FEC4 /* MyQotSyncedCalendars */,
+				5F360731228C1EBA0074FEC4 /* SyncedCalendars */,
 				5F62BEAF228B0AA700852F7E /* MyQotSensors */,
 				5F62BE9D228AE6EF00852F7E /* MyQotSiriShortcuts */,
 				5F62BE8A228AB57F00852F7E /* MyQotSupportFaq */,
@@ -6542,6 +6523,7 @@
 				CBB303411ECEE3E70011303A /* DateFormatter+Convenience.swift */,
 				CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */,
 				36F2333022B7D1A500CB8267 /* EKEvent+Convenience.swift */,
+				36C8F17523089F0500CD718F /* EKEventStore+Ext.swift */,
 				CCC0C4BD1E82730E002A8362 /* Extensions.swift */,
 				7FB0886D1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift */,
 				AC981A4621A3F73B0093E187 /* MFMailComposeViewController+Convenience.swift */,
@@ -8042,7 +8024,7 @@
 				9C24237222F081A400B911E6 /* AboutMeCell.xib in Resources */,
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
-				5F36074A228C42570074FEC4 /* MyQotSyncedCalendarCell.xib in Resources */,
+				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
 				F9D6381422D62BAD0092C482 /* DepartureInfoCell.xib in Resources */,
 				F9D2BC2422D496AF00DBF2CC /* FromTignumCell.xib in Resources */,
@@ -8523,6 +8505,7 @@
 				91086E4A209202800035DA1F /* SettingsProtocols.swift in Sources */,
 				36796A4620D3C49900B55429 /* SigningLoginInteractor.swift in Sources */,
 				F9838F4922AFFF95003F9394 /* MyQotMainViewController.swift in Sources */,
+				36C8F17623089F0500CD718F /* EKEventStore+Ext.swift in Sources */,
 				CB9B07671EF953D80017F6C3 /* JSONKey.swift in Sources */,
 				7582615B22D77531000094DE /* MyToBeVisionDataNullStateViewController.swift in Sources */,
 				B83B33EB22C21D6E002AFED7 /* BottomNavigationBar.swift in Sources */,
@@ -8643,6 +8626,7 @@
 				36796A0820D3C41F00B55429 /* SigningCreatePasswordWorker.swift in Sources */,
 				CB2880221E7050EB0067890A /* Coordinator.swift in Sources */,
 				75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */,
+				36C8F174230896C300CD718F /* QDMUserCalendarSetting+Ext.swift in Sources */,
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
 				9CF3BE4122FC69D40027D111 /* MyPeakPerformanceRowModel.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
@@ -8788,8 +8772,8 @@
 				360256E62051838600862B0E /* SearchPresenter.swift in Sources */,
 				DB68059B218210E700C2FC69 /* MorningInterviewPresenter.swift in Sources */,
 				7FCF5FA41FC2E9FA00CD1E5E /* TabBarItem.swift in Sources */,
+				5F360743228C20120074FEC4 /* SyncedCalendarsConfigurator.swift in Sources */,
 				BB7B317A230A8C65004A5E52 /* TwoLinesAndTag.swift in Sources */,
-				5F360743228C20120074FEC4 /* MyQotSyncedCalendarsConfigurator.swift in Sources */,
 				F9A5C93722B2843000AB2E94 /* MyPrepsTableViewCell.swift in Sources */,
 				91F5BE44209757C300E85A51 /* PermissionsConfigurator.swift in Sources */,
 				AC103E462285B27200F426F0 /* ShifterResult.swift in Sources */,
@@ -8800,7 +8784,7 @@
 				CB34375B1EFD652800D89D4F /* Question.swift in Sources */,
 				CBD4BEA42018CDA7008A0E9E /* GuideInteractor.swift in Sources */,
 				7F42767D1F58665100AEE3D7 /* URLScheme.swift in Sources */,
-				5F360735228C1EF10074FEC4 /* MyQotSyncedCalendarsInterface.swift in Sources */,
+				5F360735228C1EF10074FEC4 /* SyncedCalendarsInterface.swift in Sources */,
 				3637665F223AA61100C2C429 /* LevelThreeInterface.swift in Sources */,
 				8D32CFC322EB0AC900B2C4E8 /* MySprintStatus.swift in Sources */,
 				CB7F046E1F8E0999001F4DE6 /* SyncOperation.swift in Sources */,
@@ -8933,7 +8917,6 @@
 				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,
 				3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */,
 				F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */,
-				5F36074C228C520F0074FEC4 /* ContentService+SyncedCalendars.swift in Sources */,
 				CCE6CD881F15357600B66DA3 /* StatisticsPeriodIntermediary.swift in Sources */,
 				754EBEE922C6470A0010A663 /* MYTBVDataViewModel.swift in Sources */,
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,
@@ -9003,6 +8986,7 @@
 				CBD4BE9E2018BE25008A0E9E /* GuideProtocols.swift in Sources */,
 				7FB0886E1FAB6DB600835D06 /* MBProgressHUD+Convenience.swift in Sources */,
 				D50D6C241EB8E504009FFDBE /* ImageSubtitleTableViewCell.swift in Sources */,
+				36C8F172230864BD00CD718F /* SyncedCalendarsModels.swift in Sources */,
 				AC1A40E122A54EB70022156C /* SolveResultsConfigurator.swift in Sources */,
 				CC335EE91EBC84B10085F5C5 /* ContentItemTextTableViewCell.swift in Sources */,
 				F9A5C95022B7D0E000AB2E94 /* PaymentReminderWorker.swift in Sources */,
@@ -9044,7 +9028,7 @@
 				7582618022DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift in Sources */,
 				5FF1A10522859B8E00D76D55 /* MyQotAppSettingsConfigurator.swift in Sources */,
 				DB68059C218210E700C2FC69 /* MorningInterviewProtocols.swift in Sources */,
-				5F360749228C42570074FEC4 /* MyQotSyncedCalendarCell.swift in Sources */,
+				5F360749228C42570074FEC4 /* SyncedCalendarCell.swift in Sources */,
 				3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */,
 				F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */,
 				B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */,
@@ -9126,7 +9110,7 @@
 				75DC686822C11CFF00FF183D /* MyToBeVisionRateRouter.swift in Sources */,
 				CB14676E1EF2AB7000A60E31 /* DeviceIdentifier.swift in Sources */,
 				36796A3520D3C47400B55429 /* SigningProfileDetailWorker.swift in Sources */,
-				5F360737228C1F030074FEC4 /* MyQotSyncedCalendarsWorker.swift in Sources */,
+				5F360737228C1F030074FEC4 /* SyncedCalendarsWorker.swift in Sources */,
 				BB7B3180230A9520004A5E52 /* ThreeLinesLeftColumn.swift in Sources */,
 				3649C0351FE32506001F4249 /* GuideTimeIntermediary.swift in Sources */,
 				3637665D223AA61100C2C429 /* LevelThreeWorker.swift in Sources */,
@@ -9203,7 +9187,7 @@
 				9C650B8022FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift in Sources */,
 				36376662223AA61100C2C429 /* LevelThreeModel.swift in Sources */,
 				366D04F522C65EE30081258E /* FatigueTableViewCell.swift in Sources */,
-				5F36073B228C1F6E0074FEC4 /* MyQotSyncedCalendarsPresenter.swift in Sources */,
+				5F36073B228C1F6E0074FEC4 /* SyncedCalendarsPresenter.swift in Sources */,
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
 				F9A5C95422B7DFD900AB2E94 /* PaymentHeaderView.swift in Sources */,
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
@@ -9552,7 +9536,7 @@
 				CBFD47CA200E0E6100A91899 /* RealmCalendarSyncSetting.swift in Sources */,
 				7F1D3D251F8E29050071D322 /* RemoteLogDestination.swift in Sources */,
 				75DC686E22C11D4800FF183D /* MyToBeVisionRatePresenter.swift in Sources */,
-				5F360733228C1EE50074FEC4 /* MyQotSyncedCalendarsInteractor.swift in Sources */,
+				5F360733228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift in Sources */,
 				AC103E3122847AB500F426F0 /* ConfirmationInteractor.swift in Sources */,
 				F9D6381B22D745FA0092C482 /* ExploreCell.swift in Sources */,
 				366183EB2162793700634560 /* SupportFAQViewController.swift in Sources */,
@@ -9638,7 +9622,7 @@
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				5F78965322A929C100D2DBAD /* FiveLinesWithTopBroad.swift in Sources */,
 				8D25327122E9D80700FE4205 /* BaseMySprintDetailsItemCellInterface.swift in Sources */,
-				5F36073F228C1F970074FEC4 /* MyQotSyncedCalendarsViewController.swift in Sources */,
+				5F36073F228C1F970074FEC4 /* SyncedCalendarsViewController.swift in Sources */,
 				F9D6381222D62B9A0092C482 /* DepartureInfoCellViewModel.swift in Sources */,
 				CC7D21A81EFC051B007A062E /* ArticleItemViewController.swift in Sources */,
 				CB1D5E3B1EC5E25A00BCDF8D /* ContentCollection.swift in Sources */,

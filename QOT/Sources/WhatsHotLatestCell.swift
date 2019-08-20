@@ -23,7 +23,6 @@ final class WhatsHotLatestCell: UITableViewCell, Dequeueable {
         backgroundColor = .carbon
     }
 
-
     func configure(with: WhatsHotLatestCellViewModel?) {
         whatsHotTitle.text = with?.title.uppercased()
         whatsHotImage.kf.setImage(with: with?.image, placeholder: R.image.preloading())

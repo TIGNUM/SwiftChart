@@ -16,7 +16,7 @@ final class DailyCheckIn2TBVModel {
     let tbvSentence: String?
     let adviceText: String?
 
-    //MARK: - Init
+    // MARK: - Init
     init(title: String?, introText: String?, tbvSentence: String?, adviceText: String?) {
         self.title = title
         self.introText = introText

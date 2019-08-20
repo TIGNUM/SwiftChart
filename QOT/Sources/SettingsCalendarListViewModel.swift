@@ -11,10 +11,30 @@ import Foundation
 enum CalendarLocation: Int {
     case onThisDevice = 0
     case onOtherDevices
+
+    var settingsType: SettingsType {
+        switch self {
+        case .onThisDevice:
+            return .calendar
+        case .onOtherDevices:
+            return .calendarOnOtherDevices
+        }
+    }
+
+    var headerTitle: String {
+        switch self {
+        case .onThisDevice :
+            return R.string.localized.settingsCalendarSectionOnThisDeviceHeader()
+        case .onOtherDevices:
+            return R.string.localized.settingsCalendarSectionOnOtherDevicesHeader()
+        }
+    }
 }
 
 final class SettingsCalendarListViewModel {
 
+    let cellHeight = CGFloat(68)
+    let headerHeight = CGFloat(60)
     private let manager: CalendarSyncSettingsManager
     let syncStateObserver: SyncStateObserver
     var calendarsOnThisDevice: [CalendarSyncSetting] = []
@@ -37,10 +57,6 @@ final class SettingsCalendarListViewModel {
 
     var calendarCountOnOtherDevices: Int {
         return calendarsOnOtherDevices.count
-    }
-
-    var cellHeight: CGFloat {
-        return 60
     }
 
     func update() {
@@ -83,16 +99,6 @@ final class SettingsCalendarListViewModel {
 
     func calendarSource(at indexPath: IndexPath) -> String? {
         return calendarSyncSetting(at: indexPath).source()
-    }
-
-    func headerTitle(in section: Int) -> String {
-        let type = CalendarLocation(rawValue: section) ?? .onOtherDevices
-        switch type {
-        case .onThisDevice :
-            return R.string.localized.settingsCalendarSectionOnThisDeviceHeader()
-        default:
-            return R.string.localized.settingsCalendarSectionOnOtherDevicesHeader()
-        }
     }
 
     func updateCalendarSyncStatus(canSync: Bool, calendarIdentifier: String) {
