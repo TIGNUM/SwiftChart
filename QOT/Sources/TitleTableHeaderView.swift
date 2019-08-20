@@ -8,15 +8,17 @@
 
 import UIKit
 
-class TitleTableHeaderView: UITableViewHeaderFooterView, Dequeueable {
+final class TitleTableHeaderView: UITableViewHeaderFooterView, Dequeueable {
 
+    // MARK: - Properties
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var containerView: UIView!
 
+    // MARK: - Config Data
     struct Config {
-        var backgroundColor: UIColor
-        var font: UIFont
-        var textColor: UIColor
+        let backgroundColor: UIColor
+        let font: UIFont
+        let textColor: UIColor
 
         init(backgroundColor: UIColor = UIColor.carbon,
              font: UIFont = UIFont.sfProtextMedium(ofSize: FontSize.fontSize14),
@@ -27,12 +29,22 @@ class TitleTableHeaderView: UITableViewHeaderFooterView, Dequeueable {
         }
     }
 
+    // MARK: Configuration
+    func configure(title: String?, config: Config?) {
+        titleLabel.text = title
+        titleLabel.textColor = config?.textColor
+        titleLabel.font = config?.font
+        containerView.backgroundColor = config?.backgroundColor
+    }
+
+    /// TODO: Search & Replace with func configure(_:)
     var title: String = "" {
         willSet {
             titleLabel.text = newValue
         }
     }
 
+    /// TODO: Search & Replace with func configure(_:)
     var config: Config? {
         willSet {
             titleLabel.textColor = newValue?.textColor

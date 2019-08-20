@@ -44,8 +44,8 @@ final class MyQotAppSettingsViewController: UIViewController {
             MyQotSiriShortcutsConfigurator.configure(viewController: siriShortcutsVC)
         } else if let activityTrackerVC = segue.destination as? MyQotSensorsViewController {
             MyQotSensorsConfigurator.configure(viewController: activityTrackerVC)
-        } else if let syncedCalendarVC = segue.destination as? MyQotSyncedCalendarsViewController {
-            MyQotSyncedCalendarsConfigurator.configure(viewController: syncedCalendarVC)
+        } else if let syncedCalendarVC = segue.destination as? SyncedCalendarsViewController {
+            SyncedCalendarsConfigurator.configure(viewController: syncedCalendarVC)
         }
     }
 }

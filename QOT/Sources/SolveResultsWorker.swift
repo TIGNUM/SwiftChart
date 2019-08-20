@@ -71,7 +71,7 @@ extension SolveResultsWorker {
             }
         }
     }
-    
+
     func deleteModel() {
         switch type {
         case .recovery:

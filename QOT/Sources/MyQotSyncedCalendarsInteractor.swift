@@ -8,24 +8,25 @@
 
 import Foundation
 
-final class MyQotSyncedCalendarsInteractor {
-    // MARK: - Properties
+final class SyncedCalendarsInteractor {
 
-    private let worker: MyQotSyncedCalendarsWorker
+    // MARK: - Properties
+    private let worker: SyncedCalendarsWorker
     private let presenter: MyQotSyncedCalendarsPresenterInterface
 
     // MARK: - Init
-
-    init(worker: MyQotSyncedCalendarsWorker, presenter: MyQotSyncedCalendarsPresenterInterface) {
+    init(worker: SyncedCalendarsWorker, presenter: MyQotSyncedCalendarsPresenterInterface) {
         self.worker = worker
         self.presenter = presenter
     }
 }
 
-extension MyQotSyncedCalendarsInteractor: MyQotSyncedCalendarsInteractorInterface {
-
+// MARK: - MyQotSyncedCalendarsInteractorInterface
+extension SyncedCalendarsInteractor: MyQotSyncedCalendarsInteractorInterface {
     func viewDidLoad() {
-        presenter.setupView(with: worker.headerTitle)
+        worker.headerTitle { [unowned self] (header) in
+            self.presenter.setupView(with: header)
+        }
     }
 
     var viewModel: SettingsCalendarListViewModel {

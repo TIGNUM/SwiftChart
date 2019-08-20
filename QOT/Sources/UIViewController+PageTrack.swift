@@ -49,7 +49,7 @@ private extension UIViewController {
         case is MyQotAppSettingsViewController: return "myprofile.appsettings"
         case is MyQotAboutUsViewController: return "myprofile.aboutus"
         case is MyQotSupportViewController: return "myprofile.support"
-        case is MyQotSyncedCalendarsViewController: return "myprofile.appsettings.syncedcalendars"
+        case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedcalendars"
         case is MyQotSensorsViewController: return "myprofile.appsettings.activitytrackers"
         case is MyQotSiriShortcutsViewController: return "myprofile.appsettings.sirishortcuts"
         case is MyQotSupportFaqViewController: return "myprofile.support.faq"

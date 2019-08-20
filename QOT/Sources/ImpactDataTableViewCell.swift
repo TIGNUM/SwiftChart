@@ -21,7 +21,6 @@ final class ImpactDataTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var customAsteriskView: UIView!
     @IBOutlet private weak var button: UIButton!
 
-
     func configure(title: String, subTitle: String, averageValue: String, targetRefValue: Int) {
         self.title.text = title.uppercased()
         self.subTitle.text = subTitle
