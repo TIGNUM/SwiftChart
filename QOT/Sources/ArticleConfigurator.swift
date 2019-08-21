@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class ArticleConfigurator: AppStateAccess {
+final class ArticleConfigurator {
     static func configure(selectedID: Int, viewController: ArticleViewController) {
         let router = ArticleRouter(viewController: viewController)
         let worker = ArticleWorker(selectedID: selectedID)

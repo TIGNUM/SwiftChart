@@ -18,7 +18,7 @@ final class MyQotAboutUsWorker {
     }
 
     func itemCount() -> Int {
-        return MyQotAboutUsModel.MyQotAboutUsModelItem.aboutValues.count
+        return MyQotAboutUsModel.MyQotAboutUsModelItem.allCases.count
     }
 
     func item(at indexPath: IndexPath) -> MyQotAboutUsModel.MyQotAboutUsModelItem? {

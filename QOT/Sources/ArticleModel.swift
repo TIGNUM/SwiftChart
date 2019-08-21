@@ -10,7 +10,7 @@ import UIKit
 
 struct Article {
 
-    struct Item {
+    struct Item: Equatable {
         let remoteID: Int
         let type: ContentItemValue
         let content: String
@@ -57,6 +57,14 @@ struct Article {
             format = ""
             bundledAudioURL = nil
             thumbnailURL = nil
+        }
+
+        static func == (lhs: Article.Item, rhs: Article.Item) -> Bool {
+            return  lhs.remoteID == rhs.remoteID &&
+                    lhs.content == rhs.content &&
+                    lhs.format == rhs.format &&
+                    lhs.bundledAudioURL == rhs.bundledAudioURL &&
+                    lhs.thumbnailURL == rhs.thumbnailURL
         }
     }
 

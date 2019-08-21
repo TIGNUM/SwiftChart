@@ -143,7 +143,14 @@ final class ArticleWorker {
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format != .pdf && $0.format != .video }.forEach { item in
             items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
         }
-        items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: ""))
+        if MyQotAboutUsModel.MyQotAboutUsModelItem.allKeys.contains(selectedID) == false {
+            items.append(Article.Item(type: ContentItemValue.button(selected: content?.viewedAt != nil), content: ""))
+        }
+        if content?.section == .About {
+            content?.contentItems.forEach { item in
+                items.append(Article.Item(type: ContentItemValue(item: item), content: item.valueText))
+            }
+        }
         content?.contentItems.filter { $0.tabs.first == "FULL" && $0.format == .pdf && $0.format != .video }.forEach { item in
             if let pdfURL = URL(string: item.valueMediaURL ?? "") {
                 let date = Date().addingTimeInterval(TimeInterval(item.valueDuration ?? 0))
@@ -175,7 +182,7 @@ final class ArticleWorker {
 //                                                                                    description: relatedArticle.durationString,
 //                                                                                    itemID: relatedArticle.remoteID)))
 //        }
-        learnStrategyItems = items
+        learnStrategyItems = items.unique
         learnStrategyNextItems = itemsNextUp
         learnStrategyRelatedItems = itemsRelated
     }
@@ -251,6 +258,8 @@ final class ArticleWorker {
         switch content?.section {
         case .WhatsHot?:
             return relatedArticlesWhatsHot.isEmpty ? 1 : 2
+        case .About?:
+            return 1
         default:
             return 3
         }

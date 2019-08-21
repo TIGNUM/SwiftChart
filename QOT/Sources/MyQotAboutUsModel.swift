@@ -11,16 +11,12 @@ import qot_dal
 
 struct MyQotAboutUsModel {
 
-    enum MyQotAboutUsModelItem: Int {
-        case benefits
+    enum MyQotAboutUsModelItem: Int, CaseIterable {
+        case benefits = 0
         case about
         case privacy
         case terms
         case copyright
-
-        static var aboutValues: [MyQotAboutUsModelItem] {
-            return [.copyright, .about, .privacy, .terms, .benefits ]
-        }
 
         var primaryKey: Int {
             switch self {
@@ -30,6 +26,14 @@ struct MyQotAboutUsModel {
             case .terms: return 100102
             case .copyright: return 100105
             }
+        }
+
+        static var allKeys: [Int] {
+            return [MyQotAboutUsModelItem.benefits.primaryKey,
+                    MyQotAboutUsModelItem.about.primaryKey,
+                    MyQotAboutUsModelItem.privacy.primaryKey,
+                    MyQotAboutUsModelItem.terms.primaryKey,
+                    MyQotAboutUsModelItem.copyright.primaryKey]
         }
 
         func trackingKeys() -> String {
@@ -50,9 +54,9 @@ struct MyQotAboutUsModel {
         func title(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
             switch self {
             case .benefits:
-                contentService.getContentItemByPredicate(
-                qot_dal.ContentService.AboutUs.qotBenefits.predicate) {(contentItem) in
-                    completion(contentItem?.valueText ?? "")
+                contentService.getContentItemsByPredicate(
+                qot_dal.ContentService.AboutUs.qotBenefits.predicate) {(contentItems) in
+                    completion(contentItems?.last?.valueText ?? "")
                 }
             case .about:
                 contentService.getContentItemByPredicate(
