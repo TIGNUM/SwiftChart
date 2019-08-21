@@ -47,7 +47,15 @@ extension UIColor {
     public class var accent: UIColor {
         return UIColor(red: 182/255, green: 155/255, blue: 134/255, alpha: 1)
     }
+    
+    public class var sand08: UIColor {
+        return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.08)
+    }
 
+    public class var sand10: UIColor {
+        return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.1)
+    }
+    
     public class var sand20: UIColor {
         return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.2)
     }
@@ -64,16 +72,12 @@ extension UIColor {
         return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.6)
     }
 
-    public class var sand08: UIColor {
-        return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.08)
-    }
-
-    public class var sand: UIColor {
-        return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 1)
-    }
-
     public class var sand70: UIColor {
         return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 0.7)
+    }
+    
+    public class var sand: UIColor {
+        return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 1)
     }
 
     public class var carbonDark20: UIColor {
@@ -88,6 +92,10 @@ extension UIColor {
         return UIColor(red: 10/255, green: 10/255, blue: 9/255, alpha: 1)
     }
 
+    public class var carbon05: UIColor {
+        return UIColor.carbon.withAlphaComponent(0.05)
+    }
+    
     public class var carbon30: UIColor {
         return UIColor.carbon.withAlphaComponent(0.3)
     }
@@ -110,10 +118,6 @@ extension UIColor {
 
     public class var carbon: UIColor {
         return UIColor(red: 20/255, green: 19/255, blue: 18/255, alpha: 1)
-    }
-
-    public class var carbon05: UIColor {
-        return UIColor.carbon.withAlphaComponent(0.05)
     }
 
     /// UIColor(white: 255/255, alpha: 0.1)

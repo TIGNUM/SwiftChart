@@ -2,7 +2,7 @@
 //  MyDataInfoTableViewCell.swift
 //  QOT
 //
-//  Created by Voicu on 02.04.19.
+//  Created by Voicu on 20.08.19.
 //  Copyright © 2019 Tignum. All rights reserved.
 //
 
@@ -22,20 +22,19 @@ class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(title: String?, subtitle: String?) {
         guard let title = title, let subtitle = subtitle else {
-            addInfoLink()
             return
         }
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.3,
-                                                       font: .apercuRegular(ofSize: 15),
-                                                       lineSpacing: 8,
+                                                       letterSpacing: 0,
+                                                       font: .apercuRegular(ofSize: 20),
+                                                       lineSpacing: 0,
                                                        textColor: .sand,
                                                        alignment: .left)
         subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          letterSpacing: 0.2,
-                                                          font: .apercuRegular(ofSize: 14),
-                                                          lineSpacing: 8,
-                                                          textColor: .sand60,
+                                                          letterSpacing: 0,
+                                                          font: .sfProtextRegular(ofSize: 14),
+                                                          lineSpacing: 9,
+                                                          textColor: .sand70,
                                                           alignment: .left)
         addInfoLink()
     }
@@ -54,7 +53,7 @@ class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
                                                                                letterSpacing: 0.3,
                                                                                font: .apercuRegular(ofSize: 15),
                                                                                lineSpacing: 8,
-                                                                               textColor: .sand,
+                                                                               textColor: .accent,
                                                                                alignment: .left)
         subtitleMutable.append(infoLinkAttributtedString)
         subtitleLabel.attributedText = subtitleMutable

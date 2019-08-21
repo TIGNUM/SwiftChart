@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="Sg4-P2-IFa" customClass="MyDataAddButtonTableViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="400" height="94"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YMX-o9-qlX">
+                    <rect key="frame" x="334" y="27" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="40" id="3fn-JS-S5f"/>
+                        <constraint firstAttribute="width" constant="40" id="6GY-8V-xZR"/>
+                    </constraints>
+                    <state key="normal" image="plus"/>
+                    <connections>
+                        <action selector="didTapAddButton:" destination="Sg4-P2-IFa" eventType="touchUpInside" id="n9l-TV-y3M"/>
+                    </connections>
+                </button>
+            </subviews>
+            <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <constraints>
+                <constraint firstItem="YMX-o9-qlX" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" constant="27" id="4xI-jH-2Rm"/>
+                <constraint firstItem="34z-T8-JFN" firstAttribute="bottom" secondItem="YMX-o9-qlX" secondAttribute="bottom" constant="27" id="90H-qD-E9y"/>
+                <constraint firstItem="34z-T8-JFN" firstAttribute="trailing" secondItem="YMX-o9-qlX" secondAttribute="trailing" constant="26" id="umJ-Xf-mfy"/>
+                <constraint firstItem="YMX-o9-qlX" firstAttribute="centerY" secondItem="34z-T8-JFN" secondAttribute="centerY" id="vxq-Ns-CUM"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="34z-T8-JFN"/>
+            <connections>
+                <outlet property="addButton" destination="YMX-o9-qlX" id="DvH-d7-yB1"/>
+            </connections>
+            <point key="canvasLocation" x="137.59999999999999" y="157.42128935532236"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="plus" width="16" height="16"/>
+    </resources>
+</document>

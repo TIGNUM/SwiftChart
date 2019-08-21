@@ -3,7 +3,7 @@
 //  
 //
 //  Created by Simu Voicu-Mircea on 19/08/2019.
-//  Copyright (c) 2019 ___ORGANIZATIONNAME___. All rights reserved.
+//  Copyright (c) 2019 TIGNUM GmbH. All rights reserved.
 //
 
 import UIKit

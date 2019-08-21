@@ -1072,6 +1072,8 @@
 		B47953B8230AD512006EFE0F /* MyDataScreenWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */; };
 		B47953B9230AD512006EFE0F /* MyDataScreenViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */; };
 		B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */; };
+		B4A075B0230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */; };
+		B4A075B1230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */; };
 		B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48A9230BF6E6003B3C1F /* MyDataScreen.storyboard */; };
 		B4AB48B5230BF890003B3C1F /* MyDataSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48AD230BF890003B3C1F /* MyDataSelectionPresenter.swift */; };
 		B4AB48B6230BF891003B3C1F /* MyDataSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48AE230BF890003B3C1F /* MyDataSelectionWorker.swift */; };
@@ -1091,6 +1093,14 @@
 		B4AB48CD230BF982003B3C1F /* MyDataExplanationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48C5230BF982003B3C1F /* MyDataExplanationConfigurator.swift */; };
 		B4AB48D0230C0002003B3C1F /* MyDataInfoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */; };
 		B4AB48D1230C0002003B3C1F /* MyDataInfoTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48CF230C0002003B3C1F /* MyDataInfoTableViewCell.xib */; };
+		B4AB48D4230D3A9B003B3C1F /* MyDataCharTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48D2230D3A9B003B3C1F /* MyDataCharTableViewCell.xib */; };
+		B4AB48D5230D3A9B003B3C1F /* MyDataChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48D3230D3A9B003B3C1F /* MyDataChartTableViewCell.swift */; };
+		B4AB48D8230D3C78003B3C1F /* MyDataHeatMapTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */; };
+		B4AB48D9230D3C78003B3C1F /* MyDataHeatMapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */; };
+		B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */; };
+		B4AB48DD230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */; };
+		B4AB48E0230D4609003B3C1F /* MyDataAddButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48DE230D4608003B3C1F /* MyDataAddButtonTableViewCell.swift */; };
+		B4AB48E1230D4609003B3C1F /* MyDataAddButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48DF230D4608003B3C1F /* MyDataAddButtonTableViewCell.xib */; };
 		B812D94422BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */; };
 		B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */; };
 		B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */; };
@@ -2758,6 +2768,8 @@
 		B47953B0230AD512006EFE0F /* MyDataScreenWorker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenWorker.swift; sourceTree = "<group>"; };
 		B47953B1230AD512006EFE0F /* MyDataScreenViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenViewController.swift; sourceTree = "<group>"; };
 		B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenRouter.swift; sourceTree = "<group>"; };
+		B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapButtonsTableViewCell.swift; sourceTree = "<group>"; };
+		B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapButtonsTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48A9230BF6E6003B3C1F /* MyDataScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyDataScreen.storyboard; sourceTree = "<group>"; };
 		B4AB48AD230BF890003B3C1F /* MyDataSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionPresenter.swift; sourceTree = "<group>"; };
 		B4AB48AE230BF890003B3C1F /* MyDataSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionWorker.swift; sourceTree = "<group>"; };
@@ -2777,6 +2789,14 @@
 		B4AB48C5230BF982003B3C1F /* MyDataExplanationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataExplanationConfigurator.swift; sourceTree = "<group>"; };
 		B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataInfoTableViewCell.swift; sourceTree = "<group>"; };
 		B4AB48CF230C0002003B3C1F /* MyDataInfoTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataInfoTableViewCell.xib; sourceTree = "<group>"; };
+		B4AB48D2230D3A9B003B3C1F /* MyDataCharTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataCharTableViewCell.xib; sourceTree = "<group>"; };
+		B4AB48D3230D3A9B003B3C1F /* MyDataChartTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartTableViewCell.swift; sourceTree = "<group>"; };
+		B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapTableViewCell.swift; sourceTree = "<group>"; };
+		B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapTableViewCell.xib; sourceTree = "<group>"; };
+		B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartLegendTableViewCell.xib; sourceTree = "<group>"; };
+		B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartLegendTableViewCell.swift; sourceTree = "<group>"; };
+		B4AB48DE230D4608003B3C1F /* MyDataAddButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataAddButtonTableViewCell.swift; sourceTree = "<group>"; };
+		B4AB48DF230D4608003B3C1F /* MyDataAddButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataAddButtonTableViewCell.xib; sourceTree = "<group>"; };
 		B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.unittest.xcconfig"; sourceTree = "<group>"; };
 		B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMyLibraryTableViewCellInterface.swift; sourceTree = "<group>"; };
 		B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTNavigationController.swift; sourceTree = "<group>"; };
@@ -3528,6 +3548,16 @@
 			children = (
 				B4AB48CE230C0001003B3C1F /* MyDataInfoTableViewCell.swift */,
 				B4AB48CF230C0002003B3C1F /* MyDataInfoTableViewCell.xib */,
+				B4AB48D3230D3A9B003B3C1F /* MyDataChartTableViewCell.swift */,
+				B4AB48D2230D3A9B003B3C1F /* MyDataCharTableViewCell.xib */,
+				B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */,
+				B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */,
+				B4AB48DE230D4608003B3C1F /* MyDataAddButtonTableViewCell.swift */,
+				B4AB48DF230D4608003B3C1F /* MyDataAddButtonTableViewCell.xib */,
+				B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */,
+				B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */,
+				B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */,
+				B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */,
 				36376639223A6F3B00C2C429 /* AbstractTableViewCell.swift */,
 				3637663B223A6F8500C2C429 /* AbstractTableViewCell.xib */,
 				36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */,
@@ -8187,6 +8217,7 @@
 				5F8A89912296DC270011A05C /* MyToBeVision.storyboard in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
 				CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */,
+				B4A075B1230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib in Resources */,
 				36A5E75722786014006A522C /* MediaPlayerOverlay.xib in Resources */,
 				3632D0C6225347DD00A4F234 /* ComponentHeaderView.xib in Resources */,
 				0BEE8AC01EA600A7008077B8 /* PrepareEventsUpcomingTripTableViewCell.xib in Resources */,
@@ -8219,6 +8250,7 @@
 				E813F0A4213005AE00C0723E /* PDFReaderViewController.storyboard in Resources */,
 				5F78965622A929C100D2DBAD /* TwoLinesAndImage.xib in Resources */,
 				7F3A9CD21FCF019B000F1744 /* MyUniverseViewController.xib in Resources */,
+				B4AB48D9230D3C78003B3C1F /* MyDataHeatMapTableViewCell.xib in Resources */,
 				F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */,
 				F9C1D8C4220DDBB200B40DD2 /* SiriShortcutsViewController.xib in Resources */,
 				36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */,
@@ -8264,6 +8296,7 @@
 				F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
 				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
+				B4AB48E1230D4609003B3C1F /* MyDataAddButtonTableViewCell.xib in Resources */,
 				36B515CA21638CA800A7B405 /* SupportFAQViewController.xib in Resources */,
 				36D348EE216BAA86006C8D10 /* PrepareNotesHeaderView.xib in Resources */,
 				3698428A20C91F10007A8C8F /* SigningDigitViewController.xib in Resources */,
@@ -8275,6 +8308,7 @@
 				36927FC41FA7960400EC9B88 /* SettingsAdmin.storyboard in Resources */,
 				75B9DCB822CB605C00692A60 /* LeaderWisdomTableViewCell.xib in Resources */,
 				F9A5C93922B2844200AB2E94 /* MyPrepsTableViewCell.xib in Resources */,
+				B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */,
 				75496E9A22BA702C00150C78 /* PopUpViewController.xib in Resources */,
 				36796A3420D3C47400B55429 /* SigningProfileDetailViewController.xib in Resources */,
 				5F78965722A929C100D2DBAD /* Loader.xib in Resources */,
@@ -8315,6 +8349,7 @@
 				F9D2BC1D22D48DE600DBF2CC /* GoodToKnowCell.xib in Resources */,
 				36A7B9442166455C006C18F0 /* PrepareSectionHeaderView.xib in Resources */,
 				DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */,
+				B4AB48D4230D3A9B003B3C1F /* MyDataCharTableViewCell.xib in Resources */,
 				369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
 				F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */,
@@ -8801,6 +8836,7 @@
 				7F4276771F570DB600AEE3D7 /* WindowManager.swift in Sources */,
 				ACD399F3229402C500DDE1BD /* QuestionKey.swift in Sources */,
 				7FE38DD71F2B636F0061E98F /* UINavigationBar+Style.swift in Sources */,
+				B4A075B0230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.swift in Sources */,
 				36E4CF0E22BC51BD009A2DF7 /* ChoiceInteractor.swift in Sources */,
 				75496E9922BA702C00150C78 /* PopUpViewController.swift in Sources */,
 				D57ACCB21F15122300906573 /* AnimatedLaunchScreenViewController.swift in Sources */,
@@ -9404,6 +9440,7 @@
 				36E4CF0A22BC51BD009A2DF7 /* ChoiceWorker.swift in Sources */,
 				CB810E611EEFC0D70043E3E5 /* ErrorCell.swift in Sources */,
 				CB9442251FD80B5700E2B122 /* AppState.swift in Sources */,
+				B4AB48D8230D3C78003B3C1F /* MyDataHeatMapTableViewCell.swift in Sources */,
 				CB9BB0C21F0CD13E009067D7 /* TimeInterval+Convenience.swift in Sources */,
 				CCC1B6A71E8B9B7300D1461F /* LearnCategoryCell.swift in Sources */,
 				5F7BE78F22896E0700BA5DCF /* ContentService+Support.swift in Sources */,
@@ -9540,6 +9577,7 @@
 				7F4B98A71FA21FD3000B402C /* WeeklyChoicesAnimator.swift in Sources */,
 				B856B47A22B0E29D0017A249 /* MyLibraryUserStorageRouter.swift in Sources */,
 				9CF3BE4D22FDC0070027D111 /* DailyCheckIn2ModelItemType.swift in Sources */,
+				B4AB48D5230D3A9B003B3C1F /* MyDataChartTableViewCell.swift in Sources */,
 				CB9AFD0F1F012A2800D067F2 /* QuestionsService.swift in Sources */,
 				36796A3620D3C47400B55429 /* SigningProfileDetailConfigurator.swift in Sources */,
 				360CC3CA2268C7B40064A991 /* ArticleRelatedWhatsHotTableViewCell.swift in Sources */,
@@ -9831,6 +9869,7 @@
 				5F360730228C021F0074FEC4 /* ContentService+Sensors.swift in Sources */,
 				36376620223A4C0400C2C429 /* MyQotProfileInteractor.swift in Sources */,
 				CBC1DC1F1F0F9BA100F6D056 /* SystemSetting+Convenience.swift in Sources */,
+				B4AB48DD230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift in Sources */,
 				91F5BE4A209757F900E85A51 /* PermissionsModel.swift in Sources */,
 				3698428120C91EF3007A8C8F /* SigningDigitPresenter.swift in Sources */,
 				7F1D3D221F8E24620071D322 /* Log.swift in Sources */,
@@ -9903,6 +9942,7 @@
 				F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */,
 				AC103E442285B27200F426F0 /* ShifterResultViewController.swift in Sources */,
 				8D204C2222F06F1000DF6A76 /* MySprintNotesInteractor.swift in Sources */,
+				B4AB48E0230D4609003B3C1F /* MyDataAddButtonTableViewCell.swift in Sources */,
 				9CF3BE4522FC6A610027D111 /* MyPeakPerformanceSectionModel.swift in Sources */,
 				36796A2420D3C45200B55429 /* SigningCountryViewController.swift in Sources */,
 				F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */,

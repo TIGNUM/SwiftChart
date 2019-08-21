@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="K8d-Oz-j85">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="K8d-Oz-j85">
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -39,8 +39,8 @@
                     <navigationItem key="navigationItem" id="fVa-z6-HhY"/>
                     <connections>
                         <outlet property="tableView" destination="K8d-Oz-j85" id="DFp-Xm-Ult"/>
-                        <segue destination="t5Z-7w-Qad" kind="show" identifier="mydata.selection.segue.identifier" id="q19-ud-90q"/>
-                        <segue destination="txY-qR-zaF" kind="show" id="al5-ve-zdW"/>
+                        <segue destination="t5Z-7w-Qad" kind="presentation" identifier="mydata.selection.segue.identifier" id="q19-ud-90q"/>
+                        <segue destination="txY-qR-zaF" kind="presentation" identifier="mydata.explanation.segue.identifier" id="al5-ve-zdW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hDH-o0-a0M" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -55,7 +55,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="xRI-V9-qF2">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="xRI-V9-qF2">
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -82,15 +82,15 @@
             </objects>
             <point key="canvasLocation" x="1058" y="-276"/>
         </scene>
-        <!--Tools Items View Controller-->
+        <!--My Data Explanation View Controller-->
         <scene sceneID="2sh-7z-uGz">
             <objects>
-                <viewController storyboardIdentifier="MyDataExplanationViewControllerID" id="txY-qR-zaF" customClass="ToolsItemsViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MyDataExplanationViewControllerID" id="txY-qR-zaF" customClass="MyDataExplanationViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="za4-kD-DTN">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-IU-eEH">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-IU-eEH">
                                 <rect key="frame" x="0.0" y="80" width="375" height="587"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
