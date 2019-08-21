@@ -14,9 +14,22 @@ import qot_dal
 protocol DecisionTreeViewControllerDelegate: class {
     func toBeVisionDidChange()
     func didDismiss()
+
+    func dismissOnMoveBackwards()
+    func createToBeVision(text: String, workAnswers: [String], homeAnswers: [String])
 }
 
-final class DecisionTreeViewController: UIViewController {
+extension DecisionTreeViewControllerDelegate {
+    func dismissOnMoveBackwards() {
+        // noop: Making this method optional as not all TBV screens are using it
+    }
+
+    func createToBeVision(text: String, workAnswers: [String], homeAnswers: [String]) {
+        // noop: Making this method optional as not all TBV screens are using it
+    }
+}
+
+final class DecisionTreeViewController: UIViewController, ScreenZLevelBottom {
 
     struct NextQuestion {
         let question: QDMQuestion
@@ -64,6 +77,18 @@ final class DecisionTreeViewController: UIViewController {
         return delegate
     }()
 
+    private lazy var isOnboardingDecisionTree: Bool = {
+        if case .mindsetShifterTBVOnboarding? = interactor?.type {
+            return true
+        }
+        return false
+    }()
+
+    private lazy var leftNavigationItems: [UIBarButtonItem] = {
+        let noDismissButton = isOnboardingDecisionTree || isMindsetShifterLastQuestion
+        return noDismissButton ? [] : [dismissNavigationItem()]
+    }()
+
     // MARK: - Init
     init(configure: Configurator<DecisionTreeViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -103,7 +128,7 @@ private extension DecisionTreeViewController {
 
     func setupPageViewController() {
         pageController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical)
-        pageController?.view.backgroundColor = .sand
+        pageController?.view.backgroundColor = interactor?.type.backgroundColor ?? .sand
         if let pageController = pageController {
             addChildViewController(pageController)
             view.insertSubview(pageController.view, aboveSubview: pageControllerContainer)
@@ -116,20 +141,20 @@ private extension DecisionTreeViewController {
         let attributedTitle = NSAttributedString(string: "",
                                                  letterSpacing: 0.2,
                                                  font: .sfProtextSemibold(ofSize: 14),
-                                                 textColor: .carbon30,
-                                                 alignment: .center)
+                                                 lineSpacing: 8)
         continueButton.configure(with: "",
                                  attributedTitle: attributedTitle,
                                  selectedBackgroundColor: .carbonDark,
-                                 defaultBackgroundColor: .carbon05,
+                                 defaultBackgroundColor: interactor?.type.navigationButtonBackgroundColor ?? .carbon,
                                  borderColor: .clear,
-                                 titleColor: .accent)
+                                 titleColor: interactor?.type.navigationButtonTextColor ?? .accent)
+        continueButton.titleEdgeInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
         continueButton.addTarget(self, action: #selector(didTapContinue), for: .touchUpInside)
-        updateBottomNavigation(leftItems: [dismissNavigationItem()], rightItems: [continueButton.toBarButtonItem()])
+        updateBottomNavigation(leftItems: leftNavigationItems, rightItems: [continueButton.toBarButtonItem()])
     }
 
     func setupTypingAnimation() {
-        dotsLoadingView.configure(dotsColor: .carbonDark)
+        dotsLoadingView.configure(dotsColor: interactor?.type.dotsColor)
         dotsLoadingView.startAnimation()
     }
 }
@@ -137,12 +162,19 @@ private extension DecisionTreeViewController {
 // MARK: - Actions
 private extension DecisionTreeViewController {
     @IBAction func didTapPrevious(_ sender: UIButton) {
+        if isOnboardingDecisionTree, let page = interactor?.pageDisplayed, page == 0 {
+            delegate?.dismissOnMoveBackwards()
+            return
+        }
         trackUserEvent(.PREVIOUS, action: .TAP)
         moveBackward()
     }
 
     @objc func didTapContinue() {
         interactor?.didTapContinue()
+        if isOnboardingDecisionTree, let tbv = interactor?.createdToBeVision {
+            delegate?.createToBeVision(text: tbv.text, workAnswers: tbv.workSelections, homeAnswers: tbv.homeSelections)
+        }
     }
 
     @objc func didTapStartSprint() {
@@ -166,7 +198,7 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
     }
 
     func setupView() {
-        view.backgroundColor = .sand
+        view.backgroundColor = interactor?.type.backgroundColor
         setupTypingAnimation()
         setupContinueButton()
         setupPageViewController()
@@ -192,19 +224,20 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
     }
 
     func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor) {
-        previousButton.isHidden = previousButtonIsHidden
+        previousButton.isHidden = previousButtonIsHidden && !isOnboardingDecisionTree
         continueButton.isHidden = continueButtonIsHidden
         continueButton.isUserInteractionEnabled = !continueButtonIsHidden
-        continueButton.backgroundColor = backgroundColor
-        updateBottomNavigation(leftItems: [dismissNavigationItem()], rightItems: [continueButton.toBarButtonItem()])
+        continueButton.backgroundColor = .sand
+        updateBottomNavigation(leftItems: leftNavigationItems, rightItems: [continueButton.toBarButtonItem()])
     }
 
     func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?) {
         continueButton.update(with: counter,
                               defaultTitle: defaultTitle ?? "",
                               confirmationTitle: confirmTitle ?? "",
-                              maxSelections: maxSelections)
-        updateBottomNavigation(leftItems: [dismissNavigationItem()], rightItems: [continueButton.toBarButtonItem()])
+                              maxSelections: maxSelections,
+                              titleColor: interactor?.type.navigationButtonTextColor)
+        updateBottomNavigation(leftItems: leftNavigationItems, rightItems: [continueButton.toBarButtonItem()])
     }
 
     func toBeVisionDidChange() {
@@ -218,8 +251,9 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
     func updateBottomNavigation(leftItems: [UIBarButtonItem], rightItems: [UIBarButtonItem]) {
         let navigationItem = BottomNavigationItem(leftBarButtonItems: leftItems,
                                                   rightBarButtonItems: rightItems,
-                                                  backgroundColor: .clear)
+                                                  backgroundColor: interactor?.type.backgroundColor ?? .clear)
         NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+        baseRootViewController?.audioPlayerContainer.isHidden = true
     }
 }
 
@@ -256,7 +290,8 @@ private extension DecisionTreeViewController {
                                                                      maxPossibleSelections: question.maxPossibleSelections ?? 0,
                                                                      answersFilter: filter,
                                                                      questionTitleUpdate: answerKey.replacement,
-                                                                     preparations: interactor?.preparations())
+                                                                     preparations: interactor?.preparations(),
+                                                                     isOnboarding: isOnboardingDecisionTree)
             controller.delegate = self
             controller.interactor = interactor
             return controller
@@ -407,8 +442,9 @@ extension DecisionTreeViewController: SolveResultsViewControllerDelegate {
 
 // MARK: - Bottom Navigation Items
 extension DecisionTreeViewController {
+
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return isMindsetShifterLastQuestion ? nil : [dismissNavigationItem()]
+        return leftNavigationItems
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {

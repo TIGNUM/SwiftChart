@@ -43,8 +43,8 @@ extension MultipleSelectionCollectionViewCell {
         self.isAnswered = isSelected
         self.selectionCounter = selectionCounter
         answerButton.configure(with: answer.subtitle ?? "",
-                               selectedBackgroundColor: isSelected ? .sand : .accent30,
-                               defaultBackgroundColor: isSelected ? .accent30 : .sand,
+                               selectedBackgroundColor: isSelected ? .clear : .accent30,
+                               defaultBackgroundColor: isSelected ? .accent30 : .clear,
                                borderColor: .accent30,
                                titleColor: .accent)
     }

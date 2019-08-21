@@ -13,6 +13,7 @@ import RealmSwift
 import Buglife
 import Alamofire
 import Kingfisher
+import SVProgressHUD
 import qot_dal
 
 protocol LocalNotificationHandlerDelegate: class {
@@ -86,6 +87,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             return true
         #else
             ScreenTitleService.main.load()
+            setupProgressHud()
             swizzleUIViewController()
             swizzleUINavigationController()
             importHealthKitDataIfAuthorized()
@@ -444,6 +446,16 @@ extension AppDelegate {
         default:
             return
         }
+    }
+}
+
+// MARK: - SVProgressHUD
+
+extension AppDelegate {
+    private func setupProgressHud() {
+        SVProgressHUD.setGraceTimeInterval(0.2)
+        SVProgressHUD.setMinimumDismissTimeInterval(0.5)
+        SVProgressHUD.setDefaultStyle(.dark)
     }
 }
 

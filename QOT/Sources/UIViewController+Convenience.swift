@@ -9,6 +9,7 @@
 import UIKit
 
 extension UIViewController {
+    typealias keyboardAnimationParameters = (endFrameY: CGFloat, height: CGFloat, duration: TimeInterval, animationCurve: UIViewAnimationOptions)
 
     func hideKeyboardWhenTappedAround() {
         let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
@@ -35,6 +36,20 @@ extension UIViewController {
 
     @objc func keyboardWillDisappear(notification: NSNotification) {
         fatalError("keyboardWillDisappear: must be overriden")
+    }
+
+    func keyboardParameters(from notification: NSNotification) -> keyboardAnimationParameters? {
+        guard let userInfo = notification.userInfo else { return nil }
+
+        let endFrame = (userInfo[UIKeyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue
+        let endFrameHeight = endFrame?.size.height ?? 0
+        let endFrameY = endFrame?.origin.y ?? 0
+        let duration: TimeInterval = (userInfo[UIKeyboardAnimationDurationUserInfoKey] as? NSNumber)?.doubleValue ?? 0
+        let animationCurveRawNSN = userInfo[UIKeyboardAnimationCurveUserInfoKey] as? NSNumber
+        let animationCurveRaw = animationCurveRawNSN?.uintValue ?? UIViewAnimationOptions.curveEaseInOut.rawValue
+        let animationCurve: UIViewAnimationOptions = UIViewAnimationOptions(rawValue: animationCurveRaw)
+
+        return (endFrameY: endFrameY, height: endFrameHeight, duration: duration, animationCurve: animationCurve)
     }
 
     func pushToStart(childViewController: UIViewController, enableInteractivePop: Bool = true) {

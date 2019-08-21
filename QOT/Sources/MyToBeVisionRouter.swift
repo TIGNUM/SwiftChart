@@ -8,7 +8,7 @@
 
 import UIKit
 import MessageUI
-import MBProgressHUD
+import SVProgressHUD
 
 final class MyToBeVisionRouter: NSObject {
 
@@ -23,13 +23,11 @@ final class MyToBeVisionRouter: NSObject {
     }
 
     func showProgressHUD(_ message: String?) {
-        guard let window = AppDelegate.current.window else { return }
-        MBProgressHUD.showAdded(to: window, animated: true)
+        SVProgressHUD.show()
     }
 
     func hideProgressHUD() {
-        guard let window = AppDelegate.current.window else { return }
-        MBProgressHUD.hide(for: window, animated: true)
+        SVProgressHUD.dismiss()
     }
 }
 

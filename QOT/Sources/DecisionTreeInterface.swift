@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-protocol DecisionTreeViewControllerInterface: class {
+protocol DecisionTreeViewControllerInterface: UIViewController {
     func setupView()
     func showQuestion(_ question: QDMQuestion,
                       extraAnswer: String?,
@@ -55,6 +55,8 @@ protocol DecisionTreeInteractorInterface: Interactor {
     var extraAnswer: String? { get }
     var selectedSprintTitle: String { get }
     var selectedSprint: QDMAnswer? { get }
+    var pageDisplayed: Int { get }
+    var createdToBeVision: CreatedToBeVision? { get }
     func preparations() -> [QDMUserPreparation]
     func displayContent(with id: Int)
     func streamContentItem(with id: Int)

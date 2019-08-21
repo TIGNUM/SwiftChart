@@ -16,7 +16,8 @@ final class TextTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: - Configuration
 extension TextTableViewCell {
-    func configure(with text: String) {
+    func configure(with text: String, textColor: UIColor?) {
+        visionTextLabel.textColor = textColor
         visionTextLabel.text = text
         visionTextLabel.addCharacterSpacing(0.5)
     }

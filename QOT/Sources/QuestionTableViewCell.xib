@@ -48,7 +48,7 @@
                         </userDefinedRuntimeAttributes>
                     </label>
                 </subviews>
-                <color key="backgroundColor" red="0.91723662614822388" green="0.90605789422988892" blue="0.89410656690597534" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="pbh-FF-z5j" firstAttribute="top" secondItem="1dN-A5-6PZ" secondAttribute="bottom" constant="14" id="GUY-SK-yWn"/>
                     <constraint firstItem="pbh-FF-z5j" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottom" constant="-24" id="Mi3-5b-Sip"/>
@@ -58,6 +58,7 @@
                     <constraint firstAttribute="right" secondItem="pbh-FF-z5j" secondAttribute="right" constant="24" id="fdt-MV-yAq"/>
                 </constraints>
             </tableViewCellContentView>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="1dN-A5-6PZ" firstAttribute="width" secondItem="njF-e1-oar" secondAttribute="width" multiplier="0.06" id="cGB-0F-Nkc"/>
             </constraints>

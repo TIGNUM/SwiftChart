@@ -14,6 +14,7 @@ enum DecisionTreeType {
     case toBeVisionGenerator
     case mindsetShifter
     case mindsetShifterTBV
+    case mindsetShifterTBVOnboarding
     case prepare
     case prepareIntentions([DecisionTreeModel.SelectedAnswer], String?, Prepare.Key, PrepareResultsDelegatge?)
     case prepareBenefits(benefits: String?, questionID: Int, PrepareResultsDelegatge?)
@@ -28,7 +29,8 @@ enum DecisionTreeType {
             return QuestionKey.ToBeVision.Intro
         case .mindsetShifter:
             return QuestionKey.MindsetShifter.Intro
-        case .mindsetShifterTBV:
+        case .mindsetShifterTBV,
+             .mindsetShifterTBVOnboarding:
             return QuestionKey.MindsetShifterTBV.Intro
         case .prepare:
             return QuestionKey.Prepare.Intro
@@ -53,7 +55,8 @@ enum DecisionTreeType {
             return .ToBeVision_3_0
         case .mindsetShifter:
             return .MindsetShifter
-        case .mindsetShifterTBV:
+        case .mindsetShifterTBV,
+             .mindsetShifterTBVOnboarding:
             return .MindsetShifterToBeVision
         case .prepare,
              .prepareIntentions,
@@ -67,6 +70,69 @@ enum DecisionTreeType {
             return .Sprint
         case .sprintReflection:
             return .SprintPostReflection
+        }
+    }
+
+    var backgroundColor: UIColor {
+        switch self {
+        case .mindsetShifterTBVOnboarding:
+            return .carbon
+        default:
+            return .sand
+        }
+    }
+
+    var textColor: UIColor {
+        switch self {
+        case .mindsetShifterTBVOnboarding:
+            return .sand
+        default:
+            return .carbon
+        }
+    }
+
+    var dotsColor: UIColor {
+        switch self {
+        case .mindsetShifterTBVOnboarding:
+            return .sand
+        default:
+            return .carbonDark
+        }
+    }
+
+    var navigationButtonTextColor: UIColor {
+        switch self {
+        case .mindsetShifterTBVOnboarding:
+            return .sand30
+        default:
+            return .carbon30
+        }
+    }
+
+    var navigationButtonBackgroundColor: UIColor {
+        switch self {
+        case .mindsetShifterTBVOnboarding:
+            return .sand08
+        default:
+            return .carbonNew08
+        }
+    }
+
+    func selectedBackgroundColor(_ selected: Bool) -> UIColor {
+        switch self {
+        case .mindsetShifterTBVOnboarding:
+            return .carbon30
+        default:
+            return selected ? .sand : .accent30
+        }
+    }
+
+    var buttonDefaultBackgroundColor: UIColor {
+        switch self {
+        case .mindsetShifterTBVOnboarding:
+            return .carbon05
+        default:
+            return .carbon05
         }
     }
 }

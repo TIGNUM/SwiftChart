@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MBProgressHUD
+import SVProgressHUD
 
 final class SigningLoginInteractor {
 
@@ -40,18 +40,15 @@ extension SigningLoginInteractor: SigningLoginInteractorInterface {
 
     func didTapbedForgettPasswordButton() {
         let email = worker.email
-        guard let window = AppDelegate.current.window else { return }
-        let hud = MBProgressHUD.showAdded(to: window, animated: true)
+        SVProgressHUD.show()
         worker.sendResetPassword { [weak self] (error) in
-            hud.hide(animated: true)
+            SVProgressHUD.dismiss()
             if let error = error {
                 self?.router.handleResetPasswordError(error)
             } else {
-                MBProgressHUD.showAdded(to: window,
-                                        animated: true,
-                                        title: R.string.localized.signingLoginHudTitlePasswordReset(),
-                                        message: R.string.localized.signingLoginHudMessagePasswordReset(email)
-                    ).hide(animated: true, afterDelay: 3)
+                let fullMessage = R.string.localized.signingLoginHudTitlePasswordReset() + "\n" +
+                    R.string.localized.signingLoginHudMessagePasswordReset(email)
+                SVProgressHUD.showSuccess(withStatus: fullMessage)
                 self?.presenter.didResendPassword()
             }
         }
@@ -71,11 +68,10 @@ extension SigningLoginInteractor: SigningLoginInteractorInterface {
     }
 
 	func didTapNext() {
-		guard let window = AppDelegate.current.window else { return }
-		let hud = MBProgressHUD.showAdded(to: window, animated: true)
+		SVProgressHUD.show()
 		worker.sendLoginRequest(email: worker.email,
 								password: worker.password) { [weak self] (error) in
-									hud.hide(animated: true)
+									SVProgressHUD.dismiss()
 									if let error = error {
 										self?.router.handleLoginError(error)
 									} else {

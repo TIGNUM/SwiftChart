@@ -34,7 +34,8 @@ final class SingleSelectionTableViewCell: UITableViewCell, Dequeueable {
 
 // MARK: - Configuration
 extension SingleSelectionTableViewCell {
-    func configure(for question: QDMQuestion, selectedAnswers: [DecisionTreeModel.SelectedAnswer]) {
+    func configure(for question: QDMQuestion,
+                   selectedAnswers: [DecisionTreeModel.SelectedAnswer]) {
         self.question = question
         self.selectedAnswers = selectedAnswers
         let rightOption = question.answers[0]
@@ -42,13 +43,13 @@ extension SingleSelectionTableViewCell {
         let rightIsSelected = selectedAnswers.filter { $0.answer.remoteID == rightOption.remoteID }.count > 0
         let leftIsSelected = selectedAnswers.filter { $0.answer.remoteID == leftOption.remoteID }.count > 0
         rightOptionButton.configure(with: rightOption.subtitle ?? "",
-                                    selectedBackgroundColor: rightIsSelected ? .sand : .accent30,
-                                    defaultBackgroundColor: rightIsSelected ? .accent30 : .sand,
+                                    selectedBackgroundColor: rightIsSelected ? .clear : .accent30,
+                                    defaultBackgroundColor: rightIsSelected ? .accent30 : .clear,
                                     borderColor: .accent30,
                                     titleColor: .accent)
         leftOptionButton.configure(with: leftOption.subtitle ?? "",
-                                   selectedBackgroundColor: leftIsSelected ? .sand : .accent30,
-                                   defaultBackgroundColor: leftIsSelected ? .accent30 : .sand,
+                                   selectedBackgroundColor: leftIsSelected ? .clear : .accent30,
+                                   defaultBackgroundColor: leftIsSelected ? .accent30 : .clear,
                                    borderColor: .accent30,
                                    titleColor: .accent)
         rightOptionButton.isUserInteractionEnabled = (rightIsSelected || leftIsSelected) == false

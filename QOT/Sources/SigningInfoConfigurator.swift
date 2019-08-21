@@ -7,15 +7,15 @@
 //
 
 import Foundation
+import qot_dal
 
-final class SigningInfoConfigurator: AppStateAccess {
-
-    static func make() -> (SigningInfoViewController) -> Void {
-        return { (viewController) in
+final class SigningInfoConfigurator {
+    static func make(contentCategory: QDMContentCategory?) -> (SigningInfoViewController, SigningInfoDelegate) -> Void {
+        return { (viewController, delegate) in
             let router = SigningInfoRouter(viewController: viewController)
-            let worker = SigningInfoWorker(model: SigningInfoModel(), services: appState.services)
+            let worker = SigningInfoWorker(model: SigningInfoModel(), contentCategory: contentCategory)
             let presenter = SigningInfoPresenter(viewController: viewController)
-            let interactor = SigningInfoInteractor(worker: worker, presenter: presenter, router: router)
+            let interactor = SigningInfoInteractor(worker: worker, presenter: presenter, router: router, delegate: delegate)
             viewController.interactor = interactor
         }
     }

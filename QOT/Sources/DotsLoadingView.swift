@@ -12,11 +12,11 @@ final class DotsLoadingView: UIView {
 
     // MARK: - Properties
 
-    private var dotsColor: UIColor = .black
+    private var dotsColor: UIColor? = .carbonDark
     private var size: CGSize? = nil
 
     // MARK: - Configuration
-    func configure(dotsColor: UIColor, size: CGSize? = nil) {
+    func configure(dotsColor: UIColor?, size: CGSize? = nil) {
         self.dotsColor = dotsColor
         if let size = size {
             self.size = size
@@ -52,7 +52,7 @@ final class DotsLoadingView: UIView {
 
 // MARK: - Animation
 private extension DotsLoadingView {
-    func setupAnimation(size: CGSize, color: UIColor) {
+    func setupAnimation(size: CGSize, color: UIColor?) {
         let dotSpacing: CGFloat = 2
         let dotSize: CGFloat = (size.width - 2 * dotSpacing) / 3
         let x: CGFloat = (layer.bounds.size.width - size.width) / 2
@@ -82,7 +82,7 @@ private extension DotsLoadingView {
 
 // MARK: - Layer
 private extension DotsLoadingView {
-    func dotLayer(size: CGSize, color: UIColor) -> CAShapeLayer {
+    func dotLayer(size: CGSize, color: UIColor?) -> CAShapeLayer {
         let layer: CAShapeLayer = CAShapeLayer()
         let path: UIBezierPath = UIBezierPath(arcCenter: CGPoint(x: size.width / 2, y: size.height / 2),
                                               radius: size.width / 2,
@@ -91,7 +91,7 @@ private extension DotsLoadingView {
                                               clockwise: false)
         layer.path = path.cgPath
         layer.backgroundColor = nil
-        layer.fillColor = color.cgColor
+        layer.fillColor = color?.cgColor
         layer.frame = CGRect(x: 0, y: 0, width: size.width, height: size.height)
         return layer
     }

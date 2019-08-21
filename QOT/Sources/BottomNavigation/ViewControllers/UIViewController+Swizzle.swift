@@ -200,6 +200,7 @@ extension UIViewController {
         if (self as? UINavigationController) == nil,
             (self as? UIPageViewController) == nil,
             (self as? ScreenZLevelOverlay) == nil,
+            (self as? ScreenZLevelBottom) == nil,
             let notificationBlock = navigationNotificationBlock() {
             notificationBlock()
         }

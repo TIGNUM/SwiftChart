@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Registration View Controller-->
+        <scene sceneID="UaT-zA-J0I">
+            <objects>
+                <viewController storyboardIdentifier="RegistrationViewController" id="Nol-3I-OSk" customClass="RegistrationViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="xUf-tc-ZbG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Pac-Ve-UBL" userLabel="Page Indicator View">
+                                <rect key="frame" x="24" y="69" width="90" height="2"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="J5F-6u-LFe"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" id="k6Z-sz-uPr"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XVQ-bk-7z3" userLabel="Dash View">
+                                <rect key="frame" x="24" y="112" width="16" height="1"/>
+                                <color key="backgroundColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="ZTP-v3-gkd"/>
+                                    <constraint firstAttribute="width" constant="16" id="kRc-1k-tdw"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="l0v-gi-e74" userLabel="Page Container View">
+                                <rect key="frame" x="0.0" y="126" width="414" height="636"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Pac-Ve-UBL" firstAttribute="top" secondItem="3PL-jb-Sso" secondAttribute="top" constant="25" id="4DR-a7-9k4"/>
+                            <constraint firstItem="Pac-Ve-UBL" firstAttribute="leading" secondItem="3PL-jb-Sso" secondAttribute="leading" constant="24" id="5bY-s1-3di"/>
+                            <constraint firstItem="l0v-gi-e74" firstAttribute="leading" secondItem="xUf-tc-ZbG" secondAttribute="leading" id="7pH-Dx-CQ1"/>
+                            <constraint firstItem="XVQ-bk-7z3" firstAttribute="bottom" secondItem="Pac-Ve-UBL" secondAttribute="top" constant="44" id="9kc-Rs-U2D"/>
+                            <constraint firstItem="3PL-jb-Sso" firstAttribute="bottom" secondItem="l0v-gi-e74" secondAttribute="bottom" constant="100" id="CVy-D6-Hjm"/>
+                            <constraint firstItem="XVQ-bk-7z3" firstAttribute="leading" secondItem="xUf-tc-ZbG" secondAttribute="leading" constant="24" id="ISS-KD-JlC"/>
+                            <constraint firstAttribute="trailing" secondItem="l0v-gi-e74" secondAttribute="trailing" id="kxi-dw-zAL"/>
+                            <constraint firstItem="l0v-gi-e74" firstAttribute="top" secondItem="XVQ-bk-7z3" secondAttribute="bottom" constant="13" id="xqJ-MM-zVd"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="3PL-jb-Sso"/>
+                    </view>
+                    <connections>
+                        <outlet property="pageContainerView" destination="l0v-gi-e74" id="CfC-9k-009"/>
+                        <outlet property="pageIndicatorView" destination="Pac-Ve-UBL" id="KrM-XM-RSJ"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="BDu-dM-vXV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="130" y="127"/>
+        </scene>
+    </scenes>
+</document>

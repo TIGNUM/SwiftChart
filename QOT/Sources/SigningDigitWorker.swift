@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MBProgressHUD
+import SVProgressHUD
 
 final class SigningDigitWorker {
 
@@ -33,15 +33,11 @@ final class SigningDigitWorker {
 extension SigningDigitWorker {
 
     func verify(code: String, completion: ((UserRegistrationCheck?) -> Void)?) {
-        guard let window = AppDelegate.current.window else {
-                completion?(nil)
-                return
-        }
         self.code = code
-        let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
+        SVProgressHUD.show()
         networkManager.performUserDigitCodeCheckRequest(email: email,
                                                         code: code) { (result) in
-                                                            progressHUD.hide(animated: true)
+                                                            SVProgressHUD.dismiss()
                                                             completion?(result.value)
         }
     }

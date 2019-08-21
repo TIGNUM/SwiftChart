@@ -11,6 +11,9 @@ import qot_dal
 
 typealias DecisionTreeNode = (question: QDMQuestion?, generatedAnswer: String?)
 
+// Used during onboarding
+typealias CreatedToBeVision = (text: String, workSelections: [String], homeSelections: [String])
+
 final class DecisionTreeWorker {
 
     // MARK: - Properties
@@ -39,6 +42,7 @@ final class DecisionTreeWorker {
     internal var lastSprintQuestionId: Int?
     internal var targetContentID: Int = 0
     internal var nextQuestionId: Int = 0
+    internal var createdTBV: CreatedToBeVision?
     weak var prepareDelegate: PrepareResultsDelegatge?
     weak var delegate: DecisionTreeViewControllerDelegate?
     var interactor: DecisionTreeInteractorInterface?
@@ -287,7 +291,7 @@ extension DecisionTreeWorker {
     /// Saves `ImageResource`
     func save(_ image: UIImage) {
         switch type {
-        case .toBeVisionGenerator, .mindsetShifterTBV:
+        case .toBeVisionGenerator, .mindsetShifterTBV, .mindsetShifterTBVOnboarding:
             saveToBeVision(image, completion: { (error) in
                 if let error = error {
                     qot_dal.log(error.localizedDescription, level: .error)
@@ -442,7 +446,7 @@ internal extension DecisionTreeWorker {
         }
         interactor?.syncButtons(previousButtonIsHidden: previousButtonIsHidden,
                                 continueButtonIsHidden: continueButtonIsHidden,
-                                backgroundColor: backgroundColor)
+                                backgroundColor: type.backgroundColor)
         updateBottomButtonTitle()
     }
 
@@ -456,12 +460,12 @@ internal extension DecisionTreeWorker {
     func roundedDarkButtonItem(title: String, image: UIImage? = nil, buttonWidth: CGFloat, action: Selector) -> UIBarButtonItem {
         let button = UIButton(type: .custom)
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: buttonWidth, height: .Default))
-        button.backgroundColor = .carbonDark
+        button.backgroundColor = type.backgroundColor
         let attributedTitle = NSAttributedString(string: title,
                                                  letterSpacing: 0.2,
                                                  font: .sfProtextSemibold(ofSize: 14),
-                                                 textColor: .accent,
-                                                 alignment: .center)
+                                                 lineSpacing: 8,
+                                                 textColor: .sand)
         button.setAttributedTitle(attributedTitle, for: .normal)
         if let image = image {
             button.setImage(image, for: .normal)

@@ -9,7 +9,7 @@
 import UIKit
 import EventKit
 import EventKitUI
-import MBProgressHUD
+import SVProgressHUD
 import RealmSwift
 
 final class PrepareCoordinator: ParentCoordinator {
@@ -163,14 +163,12 @@ extension PrepareCoordinator {
     }
 
     func showPrepareCheckList(preparationID: String,
-                              chatDecisionManager: PrepareChatDecisionManager? = nil,
-                              progressHUD: MBProgressHUD? = nil) {
+                              chatDecisionManager: PrepareChatDecisionManager? = nil) {
         guard let preparation = services.preparationService.preparation(localID: preparationID) else { return }
         self.preparationID = preparationID
         if let viewModel = prepareChecklistViewModel(preparation: preparation) {
             let prepareController = PrepareContentViewController(viewModel: viewModel,
-                                                                 chatDecisionManager: chatDecisionManager,
-                                                                 progressHUD: progressHUD)
+                                                                 chatDecisionManager: chatDecisionManager)
             PrepareContentViewController.pageName = .prepareCheckList
             prepareController.delegate = self
             prepareController.title = R.string.localized.topTabBarItemTitlePerparePreparation()
@@ -520,12 +518,11 @@ extension PrepareCoordinator {
     func createEventWithCreatedCalendar(event: CalendarEvent, realm: Realm) {
         self.createPreparation(name: event.title, event: event) { (preparationID) in
             self.tabBarController.dismiss(animated: true)
-            let hud = MBProgressHUD.showAdded(to: self.tabBarController.view, animated: true)
+            SVProgressHUD.show()
             NotificationCenter.default.post(Notification(name: .startSyncPreparationRelatedData))
             if let id = preparationID {
                 self.showPrepareCheckList(preparationID: id,
-                                          chatDecisionManager: self.chatDecisionManager,
-                                          progressHUD: hud)
+                                          chatDecisionManager: self.chatDecisionManager)
             }
         }
     }

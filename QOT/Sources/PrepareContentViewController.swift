@@ -8,7 +8,7 @@
 
 import UIKit
 import Anchorage
-import MBProgressHUD
+import SVProgressHUD
 
 protocol PrepareContentViewControllerDelegate: class {
     func didTapClose(in viewController: PrepareContentViewController)
@@ -25,7 +25,6 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     var viewModel: PrepareContentViewModel
     private var avPlayerObserver: AVPlayerObserver?
     private var sectionHeaderView: PrepareSectionHeaderView?
-    private var progressHUD: MBProgressHUD?
     private weak var chatDecisionManager: PrepareChatDecisionManager?
     weak var delegate: PrepareContentViewControllerDelegate?
     static var pageName: PageName = .prepareCheckList
@@ -59,11 +58,9 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
     // MARK: - Life Cycle
 
     init(viewModel: PrepareContentViewModel,
-         chatDecisionManager: PrepareChatDecisionManager? = nil,
-         progressHUD: MBProgressHUD? = nil) {
+         chatDecisionManager: PrepareChatDecisionManager? = nil) {
         self.viewModel = viewModel
         self.chatDecisionManager = chatDecisionManager
-        self.progressHUD = progressHUD
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -80,7 +77,7 @@ final class PrepareContentViewController: UIViewController, PageViewControllerNo
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        progressHUD?.hide(animated: true)
+        SVProgressHUD.dismiss()
         tableView.reloadData()
     }
 

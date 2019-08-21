@@ -20,7 +20,8 @@ extension DecisionTreeWorker {
         switch type {
         case .toBeVisionGenerator:
             return questions.filter { $0.key == QuestionKey.ToBeVision.Work }.first
-        case .mindsetShifterTBV:
+        case .mindsetShifterTBV,
+             .mindsetShifterTBVOnboarding:
             return questions.filter { $0.key == QuestionKey.MindsetShifterTBV.Work }.first
         default: return nil
         }
@@ -30,7 +31,8 @@ extension DecisionTreeWorker {
         switch type {
         case .toBeVisionGenerator:
             return questions.filter { $0.key == QuestionKey.ToBeVision.Home }.first
-        case .mindsetShifterTBV:
+        case .mindsetShifterTBV,
+             .mindsetShifterTBVOnboarding:
             return questions.filter { $0.key == QuestionKey.MindsetShifterTBV.Home }.first
         default: return nil
         }
@@ -56,6 +58,7 @@ extension DecisionTreeWorker {
             self.string(from: homeSelections) { (homeVision) in
                 let vision = [workVision, homeVision].joined(separator: "\n\n")
                 self.updateVisionText(vision)
+                self.createdTBV = (vision, workSelections.compactMap { $0.subtitle }, homeSelections.compactMap { $0.subtitle })
                 completion(vision)
             }
         }

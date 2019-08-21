@@ -67,11 +67,17 @@ enum FontName: String {
 }
 
 extension CGFloat {
+    public typealias Radius = CGFloat
     public typealias Button = CGFloat
     public typealias View = CGFloat
     public typealias Width = CGFloat
     public typealias Height = CGFloat
     public typealias Corner = CGFloat
+}
+
+extension CGFloat.Radius {
+    static let Three: CGFloat = 3
+    static let Nine: CGFloat = 9
 }
 
 extension CGFloat.View.Height {
@@ -165,6 +171,7 @@ struct Layout {
 
     enum CornerRadius: CGFloat {
         case eight = 8
+        case nine = 9
         case cornerRadius12 = 12
         case cornerRadius20 = 20
         case chatLabelOptionNavigation = 5

@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MBProgressHUD
+import SVProgressHUD
 
 final class PartnerEditRouter {
 
@@ -52,16 +52,10 @@ extension PartnerEditRouter: PartnerEditRouterInterface {
     }
 
     func showProgressHUD(_ message: String?) {
-        guard let window = AppDelegate.current.window else {
-            return
-        }
-        MBProgressHUD.showAdded(to: window, animated: true)
+        SVProgressHUD.show()
     }
 
     func hideProgressHUD() {
-        guard let window = AppDelegate.current.window else {
-            return
-        }
-        MBProgressHUD.hide(for: window, animated: true)
+        SVProgressHUD.dismiss()
     }
 }

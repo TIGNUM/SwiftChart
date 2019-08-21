@@ -21,7 +21,7 @@
                 <subviews>
                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="right" semanticContentAttribute="forceLeftToRight" scrollEnabled="NO" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="eDj-Zs-ro4">
                         <rect key="frame" x="23" y="24" width="467" height="85.5"/>
-                        <color key="backgroundColor" red="0.91723662610000001" green="0.90605789420000005" blue="0.89410656690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="50" id="xz5-Yz-4T6"/>
                         </constraints>
@@ -33,7 +33,7 @@
                         </collectionViewFlowLayout>
                     </collectionView>
                 </subviews>
-                <color key="backgroundColor" red="0.91723662614822388" green="0.90605789422988892" blue="0.89410656690597534" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstItem="eDj-Zs-ro4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="RKL-HO-RLx"/>
                     <constraint firstAttribute="trailing" secondItem="eDj-Zs-ro4" secondAttribute="trailing" constant="23" id="UGG-ui-qex"/>
@@ -41,7 +41,7 @@
                     <constraint firstAttribute="bottom" secondItem="eDj-Zs-ro4" secondAttribute="bottom" id="zHY-FE-Qbu"/>
                 </constraints>
             </tableViewCellContentView>
-            <color key="backgroundColor" red="0.91723662610000001" green="0.90605789420000005" blue="0.89410656690000001" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
                 <outlet property="collectionView" destination="eDj-Zs-ro4" id="Gep-4W-Vjc"/>

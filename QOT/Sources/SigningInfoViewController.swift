@@ -11,20 +11,20 @@ import UIKit
 final class SigningInfoViewController: UIViewController {
 
     // MARK: - Properties
-
     var interactor: SigningInfoInteractorInterface?
     private var timer: Timer?
     @IBOutlet private weak var webView: UIWebView!
     @IBOutlet private weak var bottomButton: UIButton!
+    @IBOutlet private weak var loginButton: UIButton!
+    @IBOutlet private weak var startButton: UIButton!
     @IBOutlet private weak var pageControl: PageControl!
     @IBOutlet private weak var collectionView: UICollectionView!
     @IBOutlet private weak var headerBackgroundView: UIView!
+    var delegate: SigningInfoDelegate?
 
     // MARK: - Init
-
-    init(configure: Configurator<SigningInfoViewController>) {
+    init() {
         super.init(nibName: nil, bundle: nil)
-        configure(self)
     }
 
     required init?(coder aDecoder: NSCoder) {
@@ -32,29 +32,49 @@ final class SigningInfoViewController: UIViewController {
     }
 
     // MARK: - Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         NotificationHandler.postNotification(withName: .showSigningInfoView)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.navigationBar.isHidden = true
         setupAutoScroll()
+        refreshBottomNavigationItems()
     }
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         timer?.invalidate()
+
+        UIView.animate(withDuration: Animation.duration_03) {
+            self.view.alpha = 0
+        }
+    }
+
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        view.alpha = 1
+    }
+
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
+    }
+
+    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 }
 
 // MARK: - Private
-
 private extension SigningInfoViewController {
-
     func setupButtons() {
         let attributedTitle = NSMutableAttributedString(string: "Sign In",
                                                         letterSpacing: 0.8,
@@ -65,6 +85,13 @@ private extension SigningInfoViewController {
         bottomButton.corner(radius: Layout.CornerRadius.eight.rawValue)
         bottomButton.setAttributedTitle(attributedTitle, for: .normal)
         bottomButton.setAttributedTitle(attributedTitle, for: .selected)
+
+        loginButton.cornerDefault()
+        startButton.cornerDefault()
+        loginButton.layer.borderColor = UIColor.accent.cgColor
+        startButton.layer.borderColor = UIColor.accent.cgColor
+        loginButton.layer.borderWidth = 1
+        startButton.layer.borderWidth = 1
     }
 
     func setupCollectionView() {
@@ -115,18 +142,23 @@ private extension SigningInfoViewController {
 }
 
 // MARK: - Actions
-
 private extension SigningInfoViewController {
-
     @IBAction func didTapBottomButton() {
         interactor?.didTapBottomButton()
+    }
+
+    @IBAction func didTapLogin() {
+        interactor?.didTapLoginButton()
+    }
+
+    @IBAction func didTapStart() {
+        //TODO: https://tignum.atlassian.net/browse/QOT-1625
+        interactor?.didTapStartButton()
     }
 }
 
 // MARK: - SigningInfoViewControllerInterface
-
 extension SigningInfoViewController: SigningInfoViewControllerInterface {
-
     func setup() {
         setupWebViewBackground()
         setupButtons()
@@ -135,9 +167,7 @@ extension SigningInfoViewController: SigningInfoViewControllerInterface {
 }
 
 // MARK: - UICollectionViewDelegate, UICollectionViewDataSource
-
 extension SigningInfoViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return SigningInfoModel.Slide.allSlides.count
     }
@@ -156,7 +186,6 @@ extension SigningInfoViewController: UICollectionViewDelegate, UICollectionViewD
 }
 
 extension SigningInfoViewController: UIScrollViewDelegate {
-
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         syncControlsForCurrentPage()
     }

@@ -34,7 +34,7 @@
                     </button>
                 </subviews>
             </view>
-            <color key="backgroundColor" red="0.91723662614822388" green="0.90605789422988892" blue="0.89410656690597534" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="VRc-Sd-raG" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="2nO-2y-5oO"/>
                 <constraint firstAttribute="trailing" secondItem="VRc-Sd-raG" secondAttribute="trailing" id="B04-Y5-Y9n"/>

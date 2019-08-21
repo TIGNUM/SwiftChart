@@ -8,7 +8,7 @@
 
 import UIKit
 import SwiftyBeaver
-import MBProgressHUD
+import SVProgressHUD
 
 var guideMaxDays = 3
 
@@ -107,10 +107,7 @@ private extension SettingsAdminViewController {
     }
 
     @objc private func syncAllDidFinishNotification(_ notification: Notification) {
-        guard let window = AppDelegate.current.window else {
-            return
-        }
-        MBProgressHUD.hide(for: window, animated: true)
+        SVProgressHUD.dismiss()
     }
 
     @IBAction private func updateBaseURLTapped(sender: UIButton) {
@@ -206,8 +203,8 @@ private extension SettingsAdminViewController {
     func reloginUser(completion: @escaping () -> Void) {
         guard let userName = userName, let password = password else { return }
         CredentialsManager.shared.clear()
-        guard let window = AppDelegate.current.window, let networkManager = networkManager else { return }
-        let hud = MBProgressHUD.showAdded(to: window, animated: true)
+        guard let networkManager = networkManager else { return }
+        SVProgressHUD.show()
         networkManager.cancelAllRequests()
 
         do {
@@ -220,7 +217,7 @@ private extension SettingsAdminViewController {
         }
 
         networkManager.performAuthenticationRequest(username: userName, password: password) { error in
-            hud.hide(animated: true)
+            SVProgressHUD.dismiss()
             if error == nil {
                 self.syncManager?.start()
                 completion()
@@ -256,10 +253,7 @@ private extension SettingsAdminViewController {
     }
 
     func syncData(shouldDownload: Bool) {
-        guard let window = AppDelegate.current.window else {
-            return
-        }
-        _ = MBProgressHUD.showAdded(to: window, animated: true)
+        SVProgressHUD.show()
         syncManager?.syncAll(shouldDownload: shouldDownload)
     }
 

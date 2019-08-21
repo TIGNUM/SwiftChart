@@ -10,7 +10,7 @@ import UIKit
 import ReactiveKit
 import Bond
 import Anchorage
-import MBProgressHUD
+import SVProgressHUD
 
 protocol ChatViewControllerDelegate: class {
 
@@ -513,11 +513,11 @@ extension ChatViewController: ChatViewControllerInterface {
     }
 
     func showLoadingIndicator() {
-        _ = MBProgressHUD.showAdded(to: view, animated: true)
+        SVProgressHUD.show()
     }
 
     func hideLoadingIndicator() {
-        MBProgressHUD.hide(for: view, animated: true)
+        SVProgressHUD.dismiss()
     }
 
     func dismiss() {

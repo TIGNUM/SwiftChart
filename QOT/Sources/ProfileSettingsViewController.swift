@@ -9,7 +9,7 @@
 import UIKit
 import Anchorage
 import ActionSheetPicker_3_0
-import MBProgressHUD
+import SVProgressHUD
 import qot_dal
 
 protocol SettingsViewControllerDelegate: class {
@@ -304,11 +304,10 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 extension ProfileSettingsViewController {
 
     func didTapResetPassword(completion: @escaping (NetworkError?) -> Void) {
-        guard let window = AppDelegate.current.window else { return }
-        let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
+        SVProgressHUD.show()
         let userEmail = interactor?.profile?.email ?? ""
         networkManager.performResetPasswordRequest(username: userEmail, completion: { error in
-            progressHUD.hide(animated: true)
+            SVProgressHUD.dismiss()
             completion(error)
         })
     }

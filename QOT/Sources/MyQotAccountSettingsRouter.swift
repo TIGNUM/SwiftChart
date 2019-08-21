@@ -7,7 +7,7 @@
 //
 
 import Foundation
-import MBProgressHUD
+import SVProgressHUD
 
 final class MyQotAccountSettingsRouter {
 
@@ -30,13 +30,11 @@ extension MyQotAccountSettingsRouter: MyQotAccountSettingsRouterInterface {
     }
 
     func showProgressHUD() {
-        guard let window = AppDelegate.current.window else { return }
-        MBProgressHUD.showAdded(to: window, animated: true)
+        SVProgressHUD.show()
     }
 
     func hideProgressHUD() {
-        guard let window = AppDelegate.current.window else { return }
-        MBProgressHUD.hide(for: window, animated: true)
+        SVProgressHUD.dismiss()
     }
 
     func presentEditAccountSettings() {

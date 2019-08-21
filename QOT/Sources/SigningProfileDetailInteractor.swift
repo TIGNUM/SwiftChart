@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MBProgressHUD
+import SVProgressHUD
 
 final class SigningProfileDetailInteractor {
 
@@ -105,10 +105,9 @@ extension SigningProfileDetailInteractor: SigningProfileDetailInteractorInterfac
 
     func didTapNext() {
         guard worker.activateButton() == true else { return }
-        guard let window = AppDelegate.current.window else { return }
-        let hud = MBProgressHUD.showAdded(to: window, animated: true, title: nil, message: nil)
+        SVProgressHUD.show()
         worker.createAccount { (userRegistrationCheck, error) in
-            hud.hide(animated: true)
+            SVProgressHUD.dismiss()
             self.handleResponse(registrationCheck: userRegistrationCheck, error: error)
         }
     }
@@ -147,13 +146,8 @@ private extension SigningProfileDetailInteractor {
     }
 
     func handleRegistrationSuccess(registrationCheck: UserRegistrationCheck) {
-        if let window = AppDelegate.current.window {
-            MBProgressHUD.showAdded(to: window,
-                                    animated: true,
-                                    title: R.string.localized.signingProfileHudTitleUserCreated(),
-                                    message: registrationCheck.message
-                ).hide(animated: true, afterDelay: 3)
-        }
+        let fullMessage = R.string.localized.signingProfileHudTitleUserCreated() + "\n" + registrationCheck.message
+        SVProgressHUD.showSuccess(withStatus: fullMessage)
         router.add3DTouchShortcuts()
         UserDefault.clearAllDataRegistration()
         UserDefault.lastInstaledAppVersion.setStringValue(value: Bundle.main.versionNumber)

@@ -145,6 +145,10 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func start(completion: @escaping (() -> Void)) {
+        if UIApplication.shared.delegate?.window??.rootViewController as? BaseRootViewController == nil {
+            UIApplication.shared.delegate?.window??.rootViewController =
+                R.storyboard.bottomNavigation().instantiateInitialViewController()
+        }
         if Bundle.main.isFirstVersion == true {
             SessionService.main.logout()
         }
@@ -160,15 +164,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
             setupError = error
             dispatchGroup.leave()
         }
-        dispatchGroup.enter()
-        let viewController = AnimatedLaunchScreenViewController()
-        windowManager.show(viewController, duration: Animation.duration_01, animated: false, completion: {
-            viewController.startAnimatingImages {
-                self.showIpadSupportViewIfNeeded {
-                    dispatchGroup.leave()
-                }
-            }
-        })
         dispatchGroup.notify(queue: .main) {
             if let error = setupError {
                 self.handleSetupError(error: error)
@@ -415,13 +410,19 @@ extension AppCoordinator {
     func showSigning() {
         guard userIsLoggingIn.value == false else { return }
         userIsLoggingIn.value = true
-        let configurator = SigningInfoConfigurator.make()
-        let signingController = SigningInfoViewController(configure: configurator)
-        let navigationController = UINavigationController(rootViewController: signingController)
-        navigationController.navigationBar.applyDefaultStyle()
-        navigationController.modalTransitionStyle = .crossDissolve
-        navigationController.modalPresentationStyle = .overFullScreen
-        windowManager.show(navigationController, animated: true, completion: nil)
+
+        // FIXME: Content category needs to be .Onboarding_3_0
+        qot_dal.ContentService.main.getContentCategory(.Onboarding) { (contentCategory) in
+            let landingConfigurator = OnboardingLandingPageConfigurator.make()
+            let landingController = OnboardingLandingPageViewController()
+            landingConfigurator(landingController, contentCategory)
+
+            let navigationController = UINavigationController(rootViewController: landingController)
+            navigationController.navigationBar.applyDefaultStyle()
+            navigationController.modalTransitionStyle = .crossDissolve
+            navigationController.modalPresentationStyle = .overFullScreen
+            UIApplication.shared.delegate?.window??.rootViewController?.present(navigationController, animated: false, completion: nil)
+        }
     }
 
     func logout() {

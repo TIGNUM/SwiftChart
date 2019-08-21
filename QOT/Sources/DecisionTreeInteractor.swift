@@ -73,6 +73,14 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         return worker.selectedSprint
     }
 
+    var pageDisplayed: Int {
+        return worker.pageIndex
+    }
+
+    var createdToBeVision: CreatedToBeVision? {
+        return worker.createdTBV
+    }
+
     func displayContent(with id: Int) {
         router.openArticle(with: id)
     }

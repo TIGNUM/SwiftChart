@@ -27,7 +27,7 @@ target 'QOT' do
   pod 'ActionSheetPicker-3.0'
   pod 'RSKImageCropper'
   pod 'BonMot'
-  pod 'MBProgressHUD'
+  pod 'SVProgressHUD'
   pod 'UrbanAirship-iOS-SDK'
   pod 'Buglife'
   pod 'SwiftyBeaver'

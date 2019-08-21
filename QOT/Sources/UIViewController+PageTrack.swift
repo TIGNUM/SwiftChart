@@ -42,6 +42,7 @@ private extension UIViewController {
         case is DecisionTreeViewController: return decisionTreePageKey
         case is MyLibraryUserStorageViewController: return userStoragePageKey
         case is MyLibraryNotesViewController: return myLibraryNoteKey
+        case is DecisionTreeQuestionnaireViewController: return decisionTreeQuestionnaireKeys
         case is ShifterResultViewController: return "decisiontree.mindsetshifter.results"
         case is MyQotProfileViewController: return "myprofile.home"
         case is MyQotAccountSettingsViewController: return "myprofile.accountsettings"
@@ -49,7 +50,6 @@ private extension UIViewController {
         case is MyQotAppSettingsViewController: return "myprofile.appsettings"
         case is MyQotAboutUsViewController: return "myprofile.aboutus"
         case is MyQotSupportViewController: return "myprofile.support"
-        case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedcalendars"
         case is MyQotSensorsViewController: return "myprofile.appsettings.activitytrackers"
         case is MyQotSiriShortcutsViewController: return "myprofile.appsettings.sirishortcuts"
         case is MyQotSupportFaqViewController: return "myprofile.support.faq"
@@ -73,6 +73,14 @@ private extension UIViewController {
         case is DailyCheckinQuestionsViewController: return "dailyCheckin.questions"
         case is MySprintsListViewController: return "myqot.mysprints"
         case is MySprintDetailsViewController: return "myqot.mysprints.sprint.detail"
+        case is SigningInfoViewController: return "landingpage"
+        case is CreateAccountInfoViewController: return "onboarding.createaccount"
+        case is RegistrationEmailViewController: return "onboarding.createaccount.email"
+        case is RegistrationCodeViewController: return "onboarding.createaccount.activationcode"
+        case is RegistrationNamesViewController: return "onboarding.createaccount.name"
+        case is RegistrationAgeViewController: return "onboarding.createaccount.birthdate"
+        case is LocationPermissionViewController: return "onboarding.createaccount.permissions"
+        case is TrackSelectionViewController: return "onboarding.createaccount.welcome"
         default: preconditionFailure()
         }
     }
@@ -86,6 +94,7 @@ private extension UIViewController {
         case .toBeVisionGenerator?: return "decisiontree.tobevisiongenerator"
         case .mindsetShifter?: return "decisiontree.mindsetshifter"
         case .mindsetShifterTBV?: return "decisiontree.mindsetshifter.tobevisiongenerator"
+        case .mindsetShifterTBVOnboarding?: return "decisiontree.onboarding.tobevisiongenerator"
         case .prepare?: return "decisiontree.mindsetshifter.prepare"
         case .solve?: return "decisiontree.solve"
         case .prepareIntentions?: return "decisiontree.prepare.edit.intentions"
@@ -120,5 +129,15 @@ private extension UIViewController {
             return "mylibrary.notes.newnote"
         }
         return "mylibrary.notes.savednote"
+    }
+}
+
+// MARK: - DecisionTreeQuestionnaire IDs
+private extension UIViewController {
+    var decisionTreeQuestionnaireKeys: String {
+        if let onboarding = (self as? DecisionTreeQuestionnaireViewController)?.isOnboarding, onboarding == true {
+            return "onboarding.mytobevision"
+        }
+        return "tobevision"
     }
 }

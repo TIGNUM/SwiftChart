@@ -17,6 +17,7 @@ extension BaseRootViewController {
                                                   backgroundColor: color)
         return lastBottomItem
     }
+
     func setupBottomNavigationContainer() {
         if UIApplication.shared.windows.first?.subviews.contains(bottomNavigationContainer) == true {
             bringBottomNavigationBarToFront()

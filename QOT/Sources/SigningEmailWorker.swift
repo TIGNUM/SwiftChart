@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MBProgressHUD
+import SVProgressHUD
 
 final class SigningEmailWorker {
 
@@ -34,15 +34,13 @@ extension SigningEmailWorker {
     }
 
     func userEmailCheck(completion: ((UserRegistrationCheck?) -> Void)?) {
-        guard
-            let window = AppDelegate.current.window,
-            let email = email else {
+        guard let email = email else {
                 completion?(nil)
                 return
         }
-        let progressHUD = MBProgressHUD.showAdded(to: window, animated: true)
+        SVProgressHUD.show()
         networkManager.performUserEmailCheckRequest(email: email) { (result) in
-            progressHUD.hide(animated: true)
+            SVProgressHUD.dismiss()
             completion?(result.value)
         }
     }

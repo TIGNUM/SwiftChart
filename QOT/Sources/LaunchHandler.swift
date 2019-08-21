@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MBProgressHUD
+import SVProgressHUD
 import os.log
 
 enum LaunchOption: String {
@@ -148,19 +148,19 @@ extension LaunchHandler {
     }
 
     private func sendAccessToken(accessToken: String?) {
-        guard let window = appDelegate.window, let accessToken = accessToken else {
+        guard let accessToken = accessToken else {
             showTemporaryHUD(type: .fitbitFailure)
             return
         }
 
-        let hud = MBProgressHUD.showAdded(to: window, animated: true)
+        SVProgressHUD.show()
         do {
             let body = try ["accessToken": accessToken].toJSON().serialize()
             let request = FitbitTokenRequest(endpoint: .fitbitToken, body: body)
 
             let networkManager = appDelegate.appCoordinator.networkManager
             networkManager.request(request, parser: GenericParser.parse) { (result: (Result<(), NetworkError>)) in
-                hud.hide(animated: true)
+                SVProgressHUD.dismiss()
                 switch result {
                 case .success:
                     self.showTemporaryHUD(type: .fitbitSuccess)
@@ -169,7 +169,7 @@ extension LaunchHandler {
                 }
             }
         } catch let error {
-            hud.hide(animated: true)
+            SVProgressHUD.dismiss()
             self.showTemporaryHUD(type: .custom(title: R.string.localized.alertTitleCustom(),
                                                 message: error.localizedDescription))
         }
@@ -189,11 +189,19 @@ extension LaunchHandler {
     }
 
     private func showTemporaryHUD(type: AlertType) {
-        guard let window = appDelegate.window else {
-            return
+        var fullMessage: String = ""
+        if let title = type.title {
+            fullMessage = title
+            if type.message != nil {
+                fullMessage += "\n"
+            }
         }
-        let hud = MBProgressHUD.showAdded(to: window, animated: true, title: type.title, message: type.message)
-        hud.hide(animated: true, afterDelay: 3.0)
+        if let message = type.message {
+            fullMessage.append(message)
+        }
+        if !fullMessage.isEmpty {
+            SVProgressHUD.showInfo(withStatus: fullMessage)
+        }
     }
 
     private func notificationIsCompleted(remotID: Int) throws -> Bool {

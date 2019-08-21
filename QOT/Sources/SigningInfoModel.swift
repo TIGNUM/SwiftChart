@@ -15,13 +15,15 @@ struct SigningInfoModel {
         case second(title: String, body: String)
         case third(title: String, body: String)
         case fourth(title: String, body: String)
+        case fifth(title: String, body: String)
 
         var contentID: Int {
             switch self {
-            case .first: return  101159
-            case .second: return  101160
-            case .third: return  101161
-            case .fourth: return  101162
+            case .first: return 101663
+            case .second: return 101662
+            case .third: return 101664
+            case .fourth: return 101665
+            case .fifth: return 101666
             }
         }
 
@@ -29,7 +31,8 @@ struct SigningInfoModel {
             return [.first(title: "", body: ""),
                     .second(title: "", body: ""),
                     .third(title: "", body: ""),
-                    .fourth(title: "", body: "")]
+                    .fourth(title: "", body: ""),
+                    .fifth(title: "", body: "")]
         }
     }
 }

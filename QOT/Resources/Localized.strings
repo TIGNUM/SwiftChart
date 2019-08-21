@@ -622,3 +622,59 @@
 
 "DailyBrief.Customize.Sleep.Intro" = "Customize your benchmark value for your sleep quantity here accroding to the time amount you want to reach.";
 "DailyBrief.Customize.Sleep.Question" = "Insert the ideal amount of sleep per day";
+
+"Onboarding.Error.General" = "An error occurred, please try again";
+"Onboarding.Login.Email.Description" = "We will send an email with your code";
+"Onboarding.Login.Email.Error" = "Enter email first, then tap “Send code” button";
+"Onboarding.Login.Email.UserDoesntExistError" = "User doesn't exist, please register first";
+"Onboarding.Login.Email.GenericError" = "An error occurred, please try to “Send code” again";
+"Onboarding.Login.Code.Description" = "Didn’t receive your code? Change email or";
+"Onboarding.Login.Code.Error" = "Wrong code! please ";
+"Onboarding.Login.Button.GetHelp" = "Get help";
+"Onboarding.Login.Button.ResendCode" = "Resend code";
+
+"Onboarding.CreateInfo.Button.CreateAccount" = "Create account";
+"Onboarding.CreateInfo.Text.Description" = "To get the QOT version best suited for you and save your To Be Vision, please create an account";
+
+"Onboarding.Registration.Email.Title" = "CREATE ACCOUNT";
+"Onboarding.Registration.Email.Button.Next" = "Next";
+"Onboarding.Registration.Email.Error" = "Enter email first, then tap “Next” button";
+"Onboarding.Registration.Email.Error.ExistingEmail.Title" = "Account already exists";
+"Onboarding.Registration.Email.Error.ExistingEmail" = "You just created a new TO BE VISION, do you want to use it as your new TO BE VISION?";
+"Onboarding.Registration.Email.Error.UnableToRegister" = "Check your email";
+"Onboarding.Registration.Email.Button.Yes" = "Yes";
+"Onboarding.Registration.Email.Button.No" = "No";
+
+"Onboarding.Registration.Code.Title" = "CREATE ACCOUNT";
+"Onboarding.Registration.Code.Description" = "We just sent an activation code to ";
+"Onboarding.Registration.Code.Disclaimer" = "By creating an account, you agree to our Terms of use and Privacy policy";
+"Onboarding.Registration.Code.DisclaimerTermsPlaceholder" = "Terms of use";
+"Onboarding.Registration.Code.DisclaimerPrivacyPlaceholder" = "Privacy policy";
+"Onboarding.Registration.Code.CodeInfo" = "Didn’t receive your code?";
+"Onboarding.Registration.Code.ChangeEmail" = "Change email";
+"Onboarding.Registration.Code.SendAgain" = "Send again";
+"Onboarding.Registration.Code.Help" = "Help";
+"Onboarding.Registration.Code.CodeError" = "Wrong code!";
+"Onboarding.Registration.Code.SendCodeError" = "An error occurred while sending code";
+
+"Onboarding.Registration.Names.Title" = "CREATE ACCOUNT";
+"Onboarding.Registration.Names.Name" = "First Name*";
+"Onboarding.Registration.Names.Surname" = "Last Name";
+"Onboarding.Registration.Names.Mandatory" = "Mandatory*";
+"Onboarding.Registration.Names.NextTitle" = "Next";
+
+"Onboarding.Registration.Age.Title" = "CREATE ACCOUNT";
+"Onboarding.Registration.Age.Description" = "You’ve read about the importance of being courageous, rebellious and imaginative. These are all vital ingredients in an effective advertising campaign.";
+"Onboarding.Registration.Age.Restriction" = "You need to be 18 years of age to use the app";
+"Onboarding.Registration.Age.NextTitle" = "Create account";
+"Onboarding.Registration.CreateAccountError" = "An error occurred.\nPlease try again.";
+"Onboarding.Registration.LocationPermission.Title" = "PERMISSION LOCATION";
+"Onboarding.Registration.LocationPermission.Description" = "You’ve read about the importance of being courageous, rebellious and imaginative.";
+"Onboarding.Registration.LocationPermission.Button.Skip" = "Skip";
+"Onboarding.Registration.LocationPermission.Button.Allow" = "Allow";
+"Onboarding.Registration.LocationPermission.Alert.Message" = "For best performance share your location";
+"Onboarding.Registration.LocationPermission.Alert.Settings" = "Settings";
+"Onboarding.Registration.LocationPermission.Alert.Skip" = "Skip";
+
+"Onboarding.Registration.TrackSelection.Button.FastTrack" = "Fast track";
+"Onboarding.Registration.TrackSelection.Button.GuidedTrack" = "Guided track";

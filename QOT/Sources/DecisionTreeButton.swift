@@ -46,16 +46,20 @@ extension DecisionTreeButton {
         backgroundColor = (backgroundColor == defaultBackgroundColor) ? selectedBackgroundColor : defaultBackgroundColor
     }
 
-    func update(with value: Int, defaultTitle: String, confirmationTitle: String, maxSelections: Int) {
+    func update(with value: Int,
+                defaultTitle: String,
+                confirmationTitle: String,
+                maxSelections: Int,
+                titleColor: UIColor?) {
         let result = maxSelections - value
         let title = value == maxSelections ? confirmationTitle : R.string.localized.buttonTitlePick(result)
         backgroundColor = value == maxSelections ? selectedBackgroundColor : defaultBackgroundColor
-        let titleColor: UIColor = value == maxSelections ? .accent : .carbon30
+        let textColor: UIColor = value == maxSelections ? .accent : titleColor ?? .carbon30
         setAttributedTitle(NSAttributedString(string: title,
                                               letterSpacing: 0.2,
                                               font: .sfProtextSemibold(ofSize: 14),
                                               lineSpacing: 8,
-                                              textColor: titleColor),
+                                              textColor: textColor),
                            for: .normal)
         if value == 4 {
             layer.shadowOffset = CGSize(width: 0, height: 1)
@@ -79,6 +83,6 @@ private extension DecisionTreeButton {
     func setupView() {
         layer.borderWidth = 1.4
         titleLabel?.numberOfLines = 0
-        titleEdgeInsets = UIEdgeInsets(top: 4, left: 8, bottom: 4, right: 8)
+        titleEdgeInsets = UIEdgeInsets(top: 4, left: 16, bottom: 4, right: 16)
     }
 }

@@ -10,12 +10,12 @@ import Foundation
 
 #if DEBUG
 #if BUILD_DATABASE
-var environment = Environment.production
+var environment = Environment.development
 #else
 var environment = Environment.development
 #endif
 #else
-var environment = Environment.production
+var environment = Environment.development
 #endif
 
 struct Environment {

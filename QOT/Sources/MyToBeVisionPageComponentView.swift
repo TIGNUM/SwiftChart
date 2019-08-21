@@ -66,6 +66,6 @@ private extension UIView {
                 $0.firstAttribute == .width && $0.relation == .equal
             })
         }
-        set { setNeedsLayout() }
+        set { _ = newValue; setNeedsLayout() }
     }
 }

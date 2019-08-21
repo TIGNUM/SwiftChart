@@ -8,8 +8,9 @@
 
 import Foundation
 
-protocol SigningInfoViewControllerInterface: class {
+protocol SigningInfoViewControllerInterface: UIViewController {
     func setup()
+    var delegate: SigningInfoDelegate? { get set }
 }
 
 protocol SigningInfoPresenterInterface {
@@ -20,8 +21,15 @@ protocol SigningInfoInteractorInterface: Interactor {
     func didTapBottomButton()
     func title(at item: Int) -> String?
     func body(at item: Int) -> String?
+    func didTapLoginButton()
+    func didTapStartButton()
 }
 
 protocol SigningInfoRouterInterface {
     func presentSigningEmailView()
+}
+
+protocol SigningInfoDelegate {
+    func didTapLogin()
+    func didTapStart()
 }

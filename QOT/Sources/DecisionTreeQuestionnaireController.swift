@@ -41,6 +41,8 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
     private let answersFilter: String?
     private let questionTitleUpdate: String?
     private let preparations: [QDMUserPreparation]?
+    let isOnboarding: Bool
+    private var reportedTracking: Bool = false // Tracking is reported in `cellForRow` which is called multiple times
     private lazy var typingAnimation = DotsLoadingView(frame: CGRect(x: 24, y: 20, width: 20, height: 20))
     private lazy var tableView = UITableView(estimatedRowHeight: 100,
                                              delegate: self,
@@ -73,7 +75,8 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
          maxPossibleSelections: Int,
          answersFilter: String?,
          questionTitleUpdate: String?,
-         preparations: [QDMUserPreparation]? = nil) {
+         preparations: [QDMUserPreparation]? = nil,
+         isOnboarding: Bool = false) {
         self.question = question
         self.selectedAnswers = selectedAnswers
         self.extraAnswer = extraAnswer
@@ -81,6 +84,7 @@ final class DecisionTreeQuestionnaireViewController: UIViewController {
         self.answersFilter = answersFilter
         self.questionTitleUpdate = questionTitleUpdate
         self.preparations = preparations
+        self.isOnboarding = isOnboarding
         super.init(nibName: nil, bundle: nil)
     }
 
@@ -112,7 +116,7 @@ private extension DecisionTreeQuestionnaireViewController {
 
     func setupView() {
         attachToEdge(tableView, bottomConstant: -.BottomNavBar)
-        tableView.backgroundColor = .sand
+        tableView.backgroundColor = interactor?.type.backgroundColor ?? .sand
         tableView.allowsSelection = false
         tableView.separatorStyle = .none
     }
@@ -170,6 +174,12 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // Tracking
+        if QuestionKey.MindsetShifterTBV.Review == question.key && !reportedTracking {
+            reportedTracking = true
+            trackPage()
+        }
+        // Display data
         let type = CellType.allCases[indexPath.section]
         switch type {
         case .question:
@@ -181,7 +191,9 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
             default:
                 break
             }
-            cell.configure(with: question.title, questionTitleUpdate: update)
+            cell.configure(with: question.title,
+                           questionTitleUpdate: update,
+                           textColor: interactor?.type.textColor ?? .carbon)
             return cell
         case .answer:
             switch question.answerType {
@@ -230,7 +242,7 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                  AnswerType.text.rawValue,
                  AnswerType.lastQuestion.rawValue:
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(with: extraAnswer ?? "")
+                cell.configure(with: extraAnswer ?? "", textColor: interactor?.type.textColor)
                 switch question.key {
                 case QuestionKey.SprintReflection.Intro,
                      QuestionKey.Prepare.ShowTBV,
@@ -310,6 +322,9 @@ extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate
 // MARK: - Bottom Navigation Items
 extension DecisionTreeQuestionnaireViewController {
     @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        if isOnboarding {
+            return nil
+        }
         switch question.key {
         case QuestionKey.Sprint.Last,
              QuestionKey.SprintReflection.Review,

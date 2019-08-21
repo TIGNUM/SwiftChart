@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Create Account Info View Controller-->
+        <scene sceneID="xLU-Xb-E83">
+            <objects>
+                <viewController storyboardIdentifier="CreateAccountInfoViewController" id="1Xa-jK-Y0g" customClass="CreateAccountInfoViewController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="E69-46-gKz">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Lyc-QH-DMB" userLabel="Back Button">
+                                <rect key="frame" x="374" y="61" width="16" height="22"/>
+                                <state key="normal" image="ic_arrow_up"/>
+                                <connections>
+                                    <action selector="didTapBack" destination="1Xa-jK-Y0g" eventType="touchUpInside" id="qVU-P6-oll"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BsN-fZ-PWz">
+                                <rect key="frame" x="24" y="730.5" width="366" height="20.5"/>
+                                <fontDescription key="fontDescription" name=".AppleSystemUIFont" family=".AppleSystemUIFont" pointSize="17"/>
+                                <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.69999999999999996" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="letterSpace">
+                                        <real key="value" value="0.0"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstItem="Lyc-QH-DMB" firstAttribute="top" secondItem="rZD-TO-pQ0" secondAttribute="top" constant="17" id="Ifg-At-8ot"/>
+                            <constraint firstItem="rZD-TO-pQ0" firstAttribute="bottom" secondItem="BsN-fZ-PWz" secondAttribute="bottom" constant="111" id="SMq-eg-qaQ"/>
+                            <constraint firstItem="rZD-TO-pQ0" firstAttribute="trailing" secondItem="Lyc-QH-DMB" secondAttribute="trailing" constant="24" id="W0i-1F-0Jk"/>
+                            <constraint firstItem="rZD-TO-pQ0" firstAttribute="trailing" secondItem="BsN-fZ-PWz" secondAttribute="trailing" constant="24" id="bh7-r7-EmE"/>
+                            <constraint firstItem="BsN-fZ-PWz" firstAttribute="leading" secondItem="rZD-TO-pQ0" secondAttribute="leading" constant="24" id="eHy-PZ-T94"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="rZD-TO-pQ0"/>
+                    </view>
+                    <connections>
+                        <outlet property="textLabel" destination="BsN-fZ-PWz" id="DNQ-Rv-yqR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tAr-Bo-4Jr" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="122" y="143"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="ic_arrow_up" width="16" height="16"/>
+    </resources>
+</document>

@@ -39,7 +39,8 @@ extension DecisionTreeWorker {
         case .mindsetShifter:
             handleSelectionMindsetShifter(answer)
 
-        case .mindsetShifterTBV:
+        case .mindsetShifterTBV,
+             .mindsetShifterTBVOnboarding:
             handleSelectionTBVGeneratorShort(answer)
 
         case .prepare,
