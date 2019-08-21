@@ -2,7 +2,7 @@
 UserInterfaceState.xcuserstate
 xcuserdata/
 Pods/
-*.generated.swift
+*.generated*.swift
 
 # appcode
 .idea
