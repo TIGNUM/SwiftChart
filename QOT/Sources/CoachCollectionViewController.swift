@@ -102,7 +102,6 @@ extension CoachCollectionViewController {
         let translation = sender.translation(in: self.view)
         let maxDistance = view.frame.height * 0.075
         let distance = translation.y >= 0 ? translation.y : 0
-
         collectionViewTopConstraint.constant = distance
         searchViewController?.view.isUserInteractionEnabled = false
         searchViewController?.view.alpha = distance/maxDistance * 0.8
@@ -115,11 +114,9 @@ extension CoachCollectionViewController {
             NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
             if let searchViewController = searchViewController {
                 searchViewController.view.isUserInteractionEnabled = true
-                searchViewController.view.alpha = 0.8
-                searchViewController.interactor?.showSuggestions()
+                searchViewController.view.alpha = 0.92
             }
         }
-
         switch sender.state {
         case .ended:
             if distance >= maxDistance {
@@ -132,7 +129,6 @@ extension CoachCollectionViewController {
             didTapCancel()
         default: break
         }
-
         self.view.setNeedsUpdateConstraints()
     }
 
