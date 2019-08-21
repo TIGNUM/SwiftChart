@@ -126,8 +126,6 @@ enum TextScale {
     }
 }
 
-final class ArticleNavigationController: ScrollingNavigationController {}
-
 final class ArticleViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
@@ -140,7 +138,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var topTitleNavigationItem: UINavigationItem!
     @IBOutlet private weak var moreBarButtonItem: UIBarButtonItem!
-//    @IBOutlet private weak var closeButton: UIButton!
 
     private lazy var customMoreButton: UIButton = {
         let button = UIButton(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
@@ -210,6 +207,9 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
                 textScaleBarButtonItem]
     }()
 
+    private var lastScrollViewOffsetY: CGFloat = 0.0
+    private var lastScrollViewActionOffsetY: CGFloat = 0.0
+
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return colorMode.statusBarStyle
     }
@@ -224,9 +224,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        if let navigationController = navigationController as? ScrollingNavigationController {
-            navigationController.followScrollView(tableView, delay: 50)
-        }
         setColorMode()
         tableView.reloadData()
     }
@@ -372,7 +369,7 @@ private extension ArticleViewController {
 extension ArticleViewController: ArticleViewControllerInterface {
     func reloadData() {
         self.view.removeLoadingSkeleton()
-        (navigationController as? ScrollingNavigationController)?.showNavbar(animated: true, duration: 0.3)
+        navigationBar(show: true)
         tableView.reloadData()
         tableView.scrollRectToVisible(CGRect(x: 0, y: 0, width: 10, height: 1), animated: true)
         setupAudioItem()
@@ -387,7 +384,6 @@ extension ArticleViewController: ArticleViewControllerInterface {
         setupTableView()
         setColorMode()
         self.view.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .oneLineBlock, .oneLineBlock, .oneLineBlock])
-        (navigationController as? ScrollingNavigationController)?.scrollingNavbarDelegate = self
     }
 
     func hasBookmark(_ hasBookmark: Bool) {
@@ -744,6 +740,59 @@ extension ArticleViewController: UIScrollViewDelegate {
                 tableView.reloadRows(at: [indexPath], with: .none)
             }
         }
+
+        navigationBarAutoShowHide(scrollView)
+    }
+}
+
+// MARK: - NavigationBar Show Hide
+
+extension ArticleViewController {
+    func navigationBarAutoShowHide(_ scrollView: UIScrollView) {
+        guard let navBar = navigationController?.navigationBar else {
+            return
+        }
+
+        let pixelBuffer: CGFloat = 50
+        let scrollViewOffsetY = scrollView.contentOffset.y
+        let movingUp = lastScrollViewOffsetY < scrollViewOffsetY
+
+        if movingUp {
+            if !navBar.isHidden && scrollViewOffsetY > 0 {
+                let offset = scrollViewOffsetY - lastScrollViewActionOffsetY
+                if offset > pixelBuffer {
+                    navigationBar(show: false)
+                    lastScrollViewActionOffsetY = scrollViewOffsetY
+                }
+            } else {
+                lastScrollViewActionOffsetY = scrollViewOffsetY
+            }
+        } else {
+            if navBar.isHidden {
+                let offset = lastScrollViewActionOffsetY - scrollViewOffsetY
+                if offset > pixelBuffer || scrollViewOffsetY <= 0 {
+                    navigationBar(show: true)
+                    lastScrollViewActionOffsetY = scrollViewOffsetY <= 0.0 ? 0.0 : scrollViewOffsetY
+                }
+            } else {
+                lastScrollViewActionOffsetY = scrollViewOffsetY
+            }
+        }
+        lastScrollViewOffsetY = scrollViewOffsetY
+    }
+
+    func navigationBar(show: Bool) {
+        guard let nav = navigationController else {
+            return
+        }
+        nav.setNavigationBarHidden(!show, animated: true)
+        let height = nav.navigationBar.frame.size.height
+        UIView.animate(withDuration: Double(UINavigationControllerHideShowBarDuration)) {
+            self.tableView.contentInset = UIEdgeInsets(top: -height, left: 0.0, bottom: 0.0, right: 0.0)
+        }
+        if !show {
+            moreTopNavRemove()
+        }
     }
 }
 
@@ -758,13 +807,5 @@ extension ArticleViewController: ArticleDelegate {
 extension ArticleViewController {
     @objc func didEndAudio(_ notification: Notification) {
         tableView.reloadData()
-    }
-}
-
-extension ArticleViewController: ScrollingNavigationControllerDelegate {
-    @objc func scrollingNavigationController(_ controller: ScrollingNavigationController, willChangeState state: NavigationBarState) {
-        if state != .expanded {
-            moreTopNavRemove()
-        }
     }
 }

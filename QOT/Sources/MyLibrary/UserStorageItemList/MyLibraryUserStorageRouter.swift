@@ -31,7 +31,7 @@ extension MyLibraryUserStorageRouter: MyLibraryUserStorageRouterInterface {
             return
         }
         ArticleConfigurator.configure(selectedID: id, viewController: articleViewController)
-        let articleNavigationController = ArticleNavigationController(rootViewController: articleViewController)
+        let articleNavigationController = UINavigationController(rootViewController: articleViewController)
         articleNavigationController.navigationBar.isTranslucent = false
         viewController.present(articleNavigationController, animated: true, completion: nil)
     }
