@@ -38,9 +38,12 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        self.showLoadingSkeleton(with: [.padHeading, .myQOT, .myQOT, .myQOT])
+
         getImpactReadinessScore(completion: { (score) in
             self.impactReadinessScore = Int(score ?? 0)
             self.collectionView.reloadData()
+            self.removeLoadingSkeleton()
         })
         nextPrepDate(completion: { (dateString) in
             self.dateOfPrep = dateString

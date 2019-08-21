@@ -27,6 +27,7 @@ final class MyQotProfileViewController: AbstractLevelTwoViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor?.viewDidLoad()
+        self.showLoadingSkeleton(with: [.oneLineHeading, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell])
         UIApplication.shared.statusBarView?.backgroundColor = .carbonDark
     }
 
@@ -79,6 +80,7 @@ extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
         self.menuItems = menuItems
         headerLabel.text = interactor?.myProfileText()
         setupTableView()
+        self.removeLoadingSkeleton()
     }
 }
 

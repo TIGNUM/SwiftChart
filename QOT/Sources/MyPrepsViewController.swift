@@ -49,7 +49,9 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
         editButton.corner(radius: editButton.bounds.size.width/2, borderColor: .accent)
         confirmDeleteView.isHidden = true
         self.tableView.tableFooterView = UIView()
+        setupView()
         interactor?.viewDidLoad()
+        self.showLoadingSkeleton(with: [.oneLineHeading, .myPrepsHeader, .myPrepsCell])
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -59,8 +61,6 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        setupView()
-        tableView.reloadData()
         trackPage()
     }
 
@@ -153,9 +153,14 @@ private extension MyPrepsViewController {
         }
     }
 
-    func setupTableView() {
+    func setupView() {
+        view.backgroundColor = .carbon
+        headerTitle.text = R.string.localized.myQotHeaderTitle()
         tableView.registerDequeueable(MyPrepsTableViewCell.self)
+        hideAllViews()
         tableView.reloadData()
+        setupSegementedControl()
+        showEmptyStateViewIfNeeded(segmentedControl)
     }
 
     func updateEditButton(hidden: Bool) {
@@ -185,19 +190,10 @@ private extension MyPrepsViewController {
 
 // MARK: - MyPrepsViewControllerInterface
 extension MyPrepsViewController: MyPrepsViewControllerInterface {
-    func updateView() {
+    func dataUpdated() {
         tableView.reloadData()
         showEmptyStateViewIfNeeded(segmentedControl)
-    }
-
-    func setupView() {
-        view.backgroundColor = .carbon
-        headerTitle.text = R.string.localized.myQotHeaderTitle()
-        setupTableView()
-        hideAllViews()
-        tableView.reloadData()
-        setupSegementedControl()
-        showEmptyStateViewIfNeeded(segmentedControl)
+        self.removeLoadingSkeleton()
     }
 }
 

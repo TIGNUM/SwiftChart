@@ -56,6 +56,7 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .myPrepsCell])
         NotificationCenter.default.addObserver(self,
                                                selector: #selector(didFinishSynchronization(_:)),
                                                name: .didFinishSynchronization,
@@ -197,6 +198,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
 
     func hideScreenLoader() {
         loaderView.isHidden = true
+        self.removeLoadingSkeleton()
     }
 
     func showNullState(with title: String, message: String) {

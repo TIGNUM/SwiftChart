@@ -26,11 +26,7 @@ final class MyPrepsPresenter {
 
 extension MyPrepsPresenter: MyPrepsPresenterInterface {
 
-    func setupView() {
-        viewController?.setupView()
-    }
-
-    func updateView() {
-        viewController?.updateView()
+    func dataUpdated() {
+        viewController?.dataUpdated()
     }
 }

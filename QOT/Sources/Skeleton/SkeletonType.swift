@@ -12,15 +12,17 @@ enum SkeletonType {
     case oneLineHeading
     case oneLineBlock
     case twoLinesAndTag
-    case twoLinesAndButton
     case twoLinesAndImage
-    case threeLinesAndImage
     case threeLinesTwoColumns
     case threeLinesLeftColumn
-    case threeLinesAndButton
-    case fiveLines
     case fiveLinesWithTopBroad
     case loader
+    case dailyBrief
+    case myQOT
+    case padHeading
+    case myQOTCell
+    case myPrepsHeader
+    case myPrepsCell
 
     static var defaultSkeleton: SkeletonType {
         return SkeletonType.loader
@@ -34,22 +36,27 @@ enum SkeletonType {
             return OneLineBlock.instantiateFromNib()
         case .twoLinesAndTag:
             return TwoLinesAndTag.instantiateFromNib()
-        case .twoLinesAndButton:
-            return TwoLinesAndButton.instantiateFromNib()
         case .twoLinesAndImage:
             return TwoLinesAndImage.instantiateFromNib()
-        case .threeLinesAndImage:
-            return ThreeLinesAndImage.instantiateFromNib()
         case .threeLinesTwoColumns:
             return ThreeLinesTwoColumns.instantiateFromNib()
         case .threeLinesLeftColumn:
             return ThreeLinesLeftColumn.instantiateFromNib()
-        case .threeLinesAndButton:
-            return ThreeLinesAndButton.instantiateFromNib()
-        case .fiveLines:
-            return FiveLines.instantiateFromNib()
         case .fiveLinesWithTopBroad:
             return FiveLinesWithTopBroad.instantiateFromNib()
+        case .dailyBrief:
+            return DailyBrief.instantiateFromNib()
+        case .myQOT:
+            return MyQOT.instantiateFromNib()
+        case .padHeading:
+            return PadHeading.instantiateFromNib()
+        case .myQOTCell:
+            return MyQOTCell.instantiateFromNib()
+        case .myPrepsHeader:
+            return MyPrepsHeader.instantiateFromNib()
+        case .myPrepsCell:
+            return MyPrepsCell.instantiateFromNib()
+
         default:
             return Loader.instantiateFromNib()
         }

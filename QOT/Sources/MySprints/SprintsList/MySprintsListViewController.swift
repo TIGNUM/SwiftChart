@@ -44,6 +44,7 @@ final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         tableView.addHeader(with: .carbonNew)
         interactor?.viewDidLoad()
+        self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .padHeading, .padHeading, .myPrepsCell])
 
         editButton.tintColor = .accent
         editButton.setImage(R.image.ic_edit()?.withRenderingMode(.alwaysTemplate), for: .normal)
@@ -136,6 +137,7 @@ extension MySprintsListViewController: MySprintsListViewControllerInterface {
 
     func reloadData() {
         tableView.reloadData()
+        self.removeLoadingSkeleton()
     }
 }
 

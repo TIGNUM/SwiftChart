@@ -447,22 +447,14 @@
 		5F6B38592284079800704676 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B38582284079800704676 /* UserProfileModel.swift */; };
 		5F6B385B228414F700704676 /* ContentService+AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B385A228414F700704676 /* ContentService+AccountSettings.swift */; };
 		5F78964A22A929C100D2DBAD /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78962F22A929C100D2DBAD /* UIView+Constraints.swift */; };
-		5F78964B22A929C100D2DBAD /* FiveLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963222A929C100D2DBAD /* FiveLines.swift */; };
-		5F78964C22A929C100D2DBAD /* FiveLines.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963322A929C100D2DBAD /* FiveLines.xib */; };
-		5F78964D22A929C100D2DBAD /* ThreeLinesAndImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963522A929C100D2DBAD /* ThreeLinesAndImage.xib */; };
-		5F78964E22A929C100D2DBAD /* ThreeLinesAndImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963622A929C100D2DBAD /* ThreeLinesAndImage.swift */; };
 		5F78964F22A929C100D2DBAD /* ThreeLinesTwoColumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963822A929C100D2DBAD /* ThreeLinesTwoColumns.swift */; };
 		5F78965022A929C100D2DBAD /* ThreeLinesTwoColumns.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963922A929C100D2DBAD /* ThreeLinesTwoColumns.xib */; };
-		5F78965122A929C100D2DBAD /* ThreeLinesAndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963B22A929C100D2DBAD /* ThreeLinesAndButton.swift */; };
-		5F78965222A929C100D2DBAD /* ThreeLinesAndButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963C22A929C100D2DBAD /* ThreeLinesAndButton.xib */; };
 		5F78965322A929C100D2DBAD /* FiveLinesWithTopBroad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963E22A929C100D2DBAD /* FiveLinesWithTopBroad.swift */; };
 		5F78965422A929C100D2DBAD /* FiveLinesWithTopBroad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963F22A929C100D2DBAD /* FiveLinesWithTopBroad.xib */; };
 		5F78965522A929C100D2DBAD /* TwoLinesAndImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78964122A929C100D2DBAD /* TwoLinesAndImage.swift */; };
 		5F78965622A929C100D2DBAD /* TwoLinesAndImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78964222A929C100D2DBAD /* TwoLinesAndImage.xib */; };
 		5F78965722A929C100D2DBAD /* Loader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78964422A929C100D2DBAD /* Loader.xib */; };
 		5F78965822A929C100D2DBAD /* Loader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78964522A929C100D2DBAD /* Loader.swift */; };
-		5F78965922A929C100D2DBAD /* TwoLinesAndButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78964722A929C100D2DBAD /* TwoLinesAndButton.xib */; };
-		5F78965A22A929C100D2DBAD /* TwoLinesAndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78964822A929C100D2DBAD /* TwoLinesAndButton.swift */; };
 		5F78966122A929E300D2DBAD /* LoadingSkeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78965D22A929E200D2DBAD /* LoadingSkeleton.swift */; };
 		5F78966222A929E300D2DBAD /* Skeleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78965E22A929E200D2DBAD /* Skeleton.swift */; };
 		5F78966522A929F800D2DBAD /* SkeletonType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78966422A929F800D2DBAD /* SkeletonType.swift */; };
@@ -1128,6 +1120,18 @@
 		BB4061622302F3A600E5AB19 /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4061612302F3A600E5AB19 /* OrientationManager.swift */; };
 		BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */; };
 		BB5E76B7230C04B30054AF17 /* CustomSeguePush.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B5230C04B30054AF17 /* CustomSeguePush.swift */; };
+		BB5E76BB230C29A10054AF17 /* DailyBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B9230C29A10054AF17 /* DailyBrief.swift */; };
+		BB5E76BC230C29A10054AF17 /* DailyBrief.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76BA230C29A10054AF17 /* DailyBrief.xib */; };
+		BB5E76C0230C393D0054AF17 /* MyQOT.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76BE230C393D0054AF17 /* MyQOT.xib */; };
+		BB5E76C1230C393D0054AF17 /* MyQOT.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76BF230C393D0054AF17 /* MyQOT.swift */; };
+		BB5E76C5230C401C0054AF17 /* PadHeading.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76C3230C401C0054AF17 /* PadHeading.xib */; };
+		BB5E76C6230C401C0054AF17 /* PadHeading.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76C4230C401C0054AF17 /* PadHeading.swift */; };
+		BB5E76D1230C4A690054AF17 /* MyQOTCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76CF230C4A690054AF17 /* MyQOTCell.xib */; };
+		BB5E76D2230C4A690054AF17 /* MyQOTCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76D0230C4A690054AF17 /* MyQOTCell.swift */; };
+		BB5E76D5230D29A30054AF17 /* MyPrepsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76D3230D29A30054AF17 /* MyPrepsCell.xib */; };
+		BB5E76D6230D29A30054AF17 /* MyPrepsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76D4230D29A30054AF17 /* MyPrepsCell.swift */; };
+		BB5E76D9230D29AC0054AF17 /* MyPrepsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76D7230D29AC0054AF17 /* MyPrepsHeader.xib */; };
+		BB5E76DA230D29AC0054AF17 /* MyPrepsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76D8230D29AC0054AF17 /* MyPrepsHeader.swift */; };
 		BB7B317A230A8C65004A5E52 /* TwoLinesAndTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3178230A8C65004A5E52 /* TwoLinesAndTag.swift */; };
 		BB7B317B230A8C65004A5E52 /* TwoLinesAndTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3179230A8C65004A5E52 /* TwoLinesAndTag.xib */; };
 		BB7B317F230A9520004A5E52 /* ThreeLinesLeftColumn.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B317D230A9520004A5E52 /* ThreeLinesLeftColumn.xib */; };
@@ -2134,22 +2138,14 @@
 		5F6B38582284079800704676 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		5F6B385A228414F700704676 /* ContentService+AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AccountSettings.swift"; sourceTree = "<group>"; };
 		5F78962F22A929C100D2DBAD /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
-		5F78963222A929C100D2DBAD /* FiveLines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveLines.swift; sourceTree = "<group>"; };
-		5F78963322A929C100D2DBAD /* FiveLines.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiveLines.xib; sourceTree = "<group>"; };
-		5F78963522A929C100D2DBAD /* ThreeLinesAndImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesAndImage.xib; sourceTree = "<group>"; };
-		5F78963622A929C100D2DBAD /* ThreeLinesAndImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLinesAndImage.swift; sourceTree = "<group>"; };
 		5F78963822A929C100D2DBAD /* ThreeLinesTwoColumns.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLinesTwoColumns.swift; sourceTree = "<group>"; };
 		5F78963922A929C100D2DBAD /* ThreeLinesTwoColumns.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesTwoColumns.xib; sourceTree = "<group>"; };
-		5F78963B22A929C100D2DBAD /* ThreeLinesAndButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLinesAndButton.swift; sourceTree = "<group>"; };
-		5F78963C22A929C100D2DBAD /* ThreeLinesAndButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesAndButton.xib; sourceTree = "<group>"; };
 		5F78963E22A929C100D2DBAD /* FiveLinesWithTopBroad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveLinesWithTopBroad.swift; sourceTree = "<group>"; };
 		5F78963F22A929C100D2DBAD /* FiveLinesWithTopBroad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiveLinesWithTopBroad.xib; sourceTree = "<group>"; };
 		5F78964122A929C100D2DBAD /* TwoLinesAndImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLinesAndImage.swift; sourceTree = "<group>"; };
 		5F78964222A929C100D2DBAD /* TwoLinesAndImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoLinesAndImage.xib; sourceTree = "<group>"; };
 		5F78964422A929C100D2DBAD /* Loader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = Loader.xib; sourceTree = "<group>"; };
 		5F78964522A929C100D2DBAD /* Loader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loader.swift; sourceTree = "<group>"; };
-		5F78964722A929C100D2DBAD /* TwoLinesAndButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoLinesAndButton.xib; sourceTree = "<group>"; };
-		5F78964822A929C100D2DBAD /* TwoLinesAndButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLinesAndButton.swift; sourceTree = "<group>"; };
 		5F78965D22A929E200D2DBAD /* LoadingSkeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingSkeleton.swift; sourceTree = "<group>"; };
 		5F78965E22A929E200D2DBAD /* Skeleton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Skeleton.swift; sourceTree = "<group>"; };
 		5F78966422A929F800D2DBAD /* SkeletonType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SkeletonType.swift; sourceTree = "<group>"; };
@@ -2793,6 +2789,18 @@
 		BB4061612302F3A600E5AB19 /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
 		BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegueModal.swift; sourceTree = "<group>"; };
 		BB5E76B5230C04B30054AF17 /* CustomSeguePush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSeguePush.swift; sourceTree = "<group>"; };
+		BB5E76B9230C29A10054AF17 /* DailyBrief.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyBrief.swift; sourceTree = "<group>"; };
+		BB5E76BA230C29A10054AF17 /* DailyBrief.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyBrief.xib; sourceTree = "<group>"; };
+		BB5E76BE230C393D0054AF17 /* MyQOT.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyQOT.xib; sourceTree = "<group>"; };
+		BB5E76BF230C393D0054AF17 /* MyQOT.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQOT.swift; sourceTree = "<group>"; };
+		BB5E76C3230C401C0054AF17 /* PadHeading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PadHeading.xib; sourceTree = "<group>"; };
+		BB5E76C4230C401C0054AF17 /* PadHeading.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PadHeading.swift; sourceTree = "<group>"; };
+		BB5E76CF230C4A690054AF17 /* MyQOTCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyQOTCell.xib; sourceTree = "<group>"; };
+		BB5E76D0230C4A690054AF17 /* MyQOTCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyQOTCell.swift; sourceTree = "<group>"; };
+		BB5E76D3230D29A30054AF17 /* MyPrepsCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepsCell.xib; sourceTree = "<group>"; };
+		BB5E76D4230D29A30054AF17 /* MyPrepsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepsCell.swift; sourceTree = "<group>"; };
+		BB5E76D7230D29AC0054AF17 /* MyPrepsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepsHeader.xib; sourceTree = "<group>"; };
+		BB5E76D8230D29AC0054AF17 /* MyPrepsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepsHeader.swift; sourceTree = "<group>"; };
 		BB7B3178230A8C65004A5E52 /* TwoLinesAndTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLinesAndTag.swift; sourceTree = "<group>"; };
 		BB7B3179230A8C65004A5E52 /* TwoLinesAndTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoLinesAndTag.xib; sourceTree = "<group>"; };
 		BB7B317D230A9520004A5E52 /* ThreeLinesLeftColumn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesLeftColumn.xib; sourceTree = "<group>"; };
@@ -4282,38 +4290,22 @@
 			isa = PBXGroup;
 			children = (
 				BB7B3181230A9662004A5E52 /* BaseSkeletonView.swift */,
-				BB7B3183230AA88F004A5E52 /* OneLine */,
+				BB7B3183230AA88F004A5E52 /* OneLineHeading */,
 				BB7B3188230AB2F5004A5E52 /* OneLineBlock */,
 				BB7B3177230A8C3A004A5E52 /* TwoLinesAndTag */,
-				5F78964622A929C100D2DBAD /* TwoLinesAndButton */,
 				5F78964022A929C100D2DBAD /* TwoLinesAndImage */,
-				5F78963422A929C100D2DBAD /* ThreeLinesAndImage */,
 				5F78963722A929C100D2DBAD /* ThreeLinesTwoColumns */,
 				BB7B317C230A94E1004A5E52 /* ThreeLinesLeftColumn */,
-				5F78963A22A929C100D2DBAD /* ThreeLinesAndButton */,
-				5F78963122A929C100D2DBAD /* FiveLines */,
 				5F78963D22A929C100D2DBAD /* FiveLinesWithTopBroad */,
 				5F78964322A929C100D2DBAD /* Loader */,
+				BB5E76B8230C29580054AF17 /* DailyBrief */,
+				BB5E76BD230C39100054AF17 /* MyQOT */,
+				BB5E76C2230C3FDA0054AF17 /* PadHeading */,
+				BB5E76CD230C49C50054AF17 /* MyQOTCell */,
+				BB5E76CB230C49A80054AF17 /* MyPrepsHeader */,
+				BB5E76CA230C499C0054AF17 /* MyPrepsCell */,
 			);
 			path = Loaders;
-			sourceTree = "<group>";
-		};
-		5F78963122A929C100D2DBAD /* FiveLines */ = {
-			isa = PBXGroup;
-			children = (
-				5F78963222A929C100D2DBAD /* FiveLines.swift */,
-				5F78963322A929C100D2DBAD /* FiveLines.xib */,
-			);
-			path = FiveLines;
-			sourceTree = "<group>";
-		};
-		5F78963422A929C100D2DBAD /* ThreeLinesAndImage */ = {
-			isa = PBXGroup;
-			children = (
-				5F78963622A929C100D2DBAD /* ThreeLinesAndImage.swift */,
-				5F78963522A929C100D2DBAD /* ThreeLinesAndImage.xib */,
-			);
-			path = ThreeLinesAndImage;
 			sourceTree = "<group>";
 		};
 		5F78963722A929C100D2DBAD /* ThreeLinesTwoColumns */ = {
@@ -4323,15 +4315,6 @@
 				5F78963922A929C100D2DBAD /* ThreeLinesTwoColumns.xib */,
 			);
 			path = ThreeLinesTwoColumns;
-			sourceTree = "<group>";
-		};
-		5F78963A22A929C100D2DBAD /* ThreeLinesAndButton */ = {
-			isa = PBXGroup;
-			children = (
-				5F78963B22A929C100D2DBAD /* ThreeLinesAndButton.swift */,
-				5F78963C22A929C100D2DBAD /* ThreeLinesAndButton.xib */,
-			);
-			path = ThreeLinesAndButton;
 			sourceTree = "<group>";
 		};
 		5F78963D22A929C100D2DBAD /* FiveLinesWithTopBroad */ = {
@@ -4359,15 +4342,6 @@
 				5F78964422A929C100D2DBAD /* Loader.xib */,
 			);
 			path = Loader;
-			sourceTree = "<group>";
-		};
-		5F78964622A929C100D2DBAD /* TwoLinesAndButton */ = {
-			isa = PBXGroup;
-			children = (
-				5F78964822A929C100D2DBAD /* TwoLinesAndButton.swift */,
-				5F78964722A929C100D2DBAD /* TwoLinesAndButton.xib */,
-			);
-			path = TwoLinesAndButton;
 			sourceTree = "<group>";
 		};
 		5F78965B22A929D100D2DBAD /* Skeleton */ = {
@@ -6058,6 +6032,60 @@
 			name = CustomSegue;
 			sourceTree = "<group>";
 		};
+		BB5E76B8230C29580054AF17 /* DailyBrief */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E76B9230C29A10054AF17 /* DailyBrief.swift */,
+				BB5E76BA230C29A10054AF17 /* DailyBrief.xib */,
+			);
+			path = DailyBrief;
+			sourceTree = "<group>";
+		};
+		BB5E76BD230C39100054AF17 /* MyQOT */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E76BF230C393D0054AF17 /* MyQOT.swift */,
+				BB5E76BE230C393D0054AF17 /* MyQOT.xib */,
+			);
+			path = MyQOT;
+			sourceTree = "<group>";
+		};
+		BB5E76C2230C3FDA0054AF17 /* PadHeading */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E76C4230C401C0054AF17 /* PadHeading.swift */,
+				BB5E76C3230C401C0054AF17 /* PadHeading.xib */,
+			);
+			path = PadHeading;
+			sourceTree = "<group>";
+		};
+		BB5E76CA230C499C0054AF17 /* MyPrepsCell */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E76D4230D29A30054AF17 /* MyPrepsCell.swift */,
+				BB5E76D3230D29A30054AF17 /* MyPrepsCell.xib */,
+			);
+			path = MyPrepsCell;
+			sourceTree = "<group>";
+		};
+		BB5E76CB230C49A80054AF17 /* MyPrepsHeader */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E76D8230D29AC0054AF17 /* MyPrepsHeader.swift */,
+				BB5E76D7230D29AC0054AF17 /* MyPrepsHeader.xib */,
+			);
+			path = MyPrepsHeader;
+			sourceTree = "<group>";
+		};
+		BB5E76CD230C49C50054AF17 /* MyQOTCell */ = {
+			isa = PBXGroup;
+			children = (
+				BB5E76D0230C4A690054AF17 /* MyQOTCell.swift */,
+				BB5E76CF230C4A690054AF17 /* MyQOTCell.xib */,
+			);
+			path = MyQOTCell;
+			sourceTree = "<group>";
+		};
 		BB7B3177230A8C3A004A5E52 /* TwoLinesAndTag */ = {
 			isa = PBXGroup;
 			children = (
@@ -6076,13 +6104,13 @@
 			path = ThreeLinesLeftColumn;
 			sourceTree = "<group>";
 		};
-		BB7B3183230AA88F004A5E52 /* OneLine */ = {
+		BB7B3183230AA88F004A5E52 /* OneLineHeading */ = {
 			isa = PBXGroup;
 			children = (
 				BB7B3184230AA8BD004A5E52 /* OneLineHeading.swift */,
 				BB7B3185230AA8BD004A5E52 /* OneLineHeading.xib */,
 			);
-			path = OneLine;
+			path = OneLineHeading;
 			sourceTree = "<group>";
 		};
 		BB7B3188230AB2F5004A5E52 /* OneLineBlock */ = {
@@ -7973,11 +8001,9 @@
 				3679A4E12175E3BA00DF761A /* WebViewContent.html in Resources */,
 				366AFD1F20BEAA6700109F29 /* Apercu-Bold.otf in Resources */,
 				AC103E5F2289942100F426F0 /* NegativeToPositiveTableViewCell.xib in Resources */,
-				5F78964C22A929C100D2DBAD /* FiveLines.xib in Resources */,
 				754EBEE722C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib in Resources */,
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
 				9C9E33B722DCCA1700214ED6 /* ImpactDataTableViewCell.xib in Resources */,
-				5F78965222A929C100D2DBAD /* ThreeLinesAndButton.xib in Resources */,
 				AC103E492285BAFD00F426F0 /* ShifterResultViewController.xib in Resources */,
 				F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
@@ -8073,8 +8099,10 @@
 				CC3E5D4C1F0109B700B9E11F /* ArticleRelatedCell.xib in Resources */,
 				3631232E20C7CC5C00D97D01 /* SigningEmailViewController.xib in Resources */,
 				5FF1A0EB228561FE00D76D55 /* TitleTableHeaderView.xib in Resources */,
+				BB5E76D9230D29AC0054AF17 /* MyPrepsHeader.xib in Resources */,
 				3679A4E32175E45300DF761A /* qot_clip.gif in Resources */,
 				7F6567321FE13BFB00A6CB7F /* ScreenHelpViewController.xib in Resources */,
+				BB5E76C0230C393D0054AF17 /* MyQOT.xib in Resources */,
 				36E86D542270651A00371C67 /* ArticleRelatedTableViewCell.xib in Resources */,
 				5F78965022A929C100D2DBAD /* ThreeLinesTwoColumns.xib in Resources */,
 				CC311A271EAF434F0020C869 /* SettingsLabelTableViewCell.xib in Resources */,
@@ -8088,6 +8116,7 @@
 				36E86D4C2270511100371C67 /* ArticleBulletPointTableViewCell.xib in Resources */,
 				5F78965422A929C100D2DBAD /* FiveLinesWithTopBroad.xib in Resources */,
 				3632D0CC2253699600A4F234 /* StrategyCategoryCollectionViewCell.xib in Resources */,
+				BB5E76BC230C29A10054AF17 /* DailyBrief.xib in Resources */,
 				F9FA08F122805D0900A917A4 /* CoachTableViewCell.xib in Resources */,
 				F95B9248228EE700000DEAEC /* ToolsTableHeaderView.xib in Resources */,
 				AC1A40ED22A561330022156C /* SolveStrategyTableViewCell.xib in Resources */,
@@ -8137,10 +8166,10 @@
 				F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */,
 				F9C1D8C4220DDBB200B40DD2 /* SiriShortcutsViewController.xib in Resources */,
 				36E4B7B8219EC6EE00049EE8 /* TutorialCollectionViewCell.xib in Resources */,
+				BB5E76D1230C4A690054AF17 /* MyQOTCell.xib in Resources */,
 				5F548B9E228F07CB00ED6543 /* ProfileSettingsViewController.xib in Resources */,
 				ACB99E7A22687D2000A73709 /* MultipleSelectionCollectionViewCell.xib in Resources */,
 				8D204C2722F06F1000DF6A76 /* MySprintNotes.storyboard in Resources */,
-				5F78965922A929C100D2DBAD /* TwoLinesAndButton.xib in Resources */,
 				9C2FDA9422E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib in Resources */,
 				369ADFE422A681CE00DE4FA0 /* RelatedStrategyTableViewCell.xib in Resources */,
 				DB6805A1218210E700C2FC69 /* QuestionnaireViewController.storyboard in Resources */,
@@ -8149,6 +8178,7 @@
 				8D5668BF22DCC53100AA172F /* MySprints.storyboard in Resources */,
 				CC311A2D1EAF43B70020C869 /* SettingsTextFieldTableViewCell.xib in Resources */,
 				AC1A40F122A56FB90022156C /* SolveTriggerTableViewCell.xib in Resources */,
+				BB5E76C5230C401C0054AF17 /* PadHeading.xib in Resources */,
 				9C24237222F081A400B911E6 /* AboutMeCell.xib in Resources */,
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
 				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
@@ -8165,7 +8195,6 @@
 				36D2F2FD229E88FF004BA110 /* CalendarEventsTableViewCell.xib in Resources */,
 				F9A5C93522B27D7E00AB2E94 /* MyPreps.storyboard in Resources */,
 				368A12612277387900866DB0 /* SF-Pro-Text-Light.otf in Resources */,
-				5F78964D22A929C100D2DBAD /* ThreeLinesAndImage.xib in Resources */,
 				BB7B3187230AA8BE004A5E52 /* OneLineHeading.xib in Resources */,
 				9115F70E208DFFAE00EE5D1D /* SettingsMenuHeader.xib in Resources */,
 				9C650B7622FB1A7800DF2D6B /* MyPeakPerformanceTableCell.xib in Resources */,
@@ -8200,6 +8229,7 @@
 				F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */,
 				AC1A40E322A550350022156C /* SolveResultsViewController.xib in Resources */,
 				CB3333F120480E50009480DF /* ShareViewController.xib in Resources */,
+				BB5E76D5230D29A30054AF17 /* MyPrepsCell.xib in Resources */,
 				9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */,
 				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
@@ -8678,6 +8708,7 @@
 				BB7B3182230A9662004A5E52 /* BaseSkeletonView.swift in Sources */,
 				5FF1A10022857BC500D76D55 /* MyQotAppSettingsModel.swift in Sources */,
 				ACD399F5229402EC00DDE1BD /* AnswerKeys.swift in Sources */,
+				BB5E76D6230D29A30054AF17 /* MyPrepsCell.swift in Sources */,
 				B86E744C22A9519900B0AE75 /* MyLibraryCategoryListInterface.swift in Sources */,
 				36E86D57227091CB00371C67 /* StrategyContentTableViewCell.swift in Sources */,
 				36796A4820D3C49900B55429 /* SigningLoginRouter.swift in Sources */,
@@ -8879,7 +8910,6 @@
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
 				36796A5E20D3C4B800B55429 /* SigningInfoCollectionViewCell.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
-				5F78965122A929C100D2DBAD /* ThreeLinesAndButton.swift in Sources */,
 				36E4B7AE219EBFED00049EE8 /* TutorialInterface.swift in Sources */,
 				912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */,
 				912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */,
@@ -8958,6 +8988,7 @@
 				B47953B7230AD512006EFE0F /* MyDataScreenInteractor.swift in Sources */,
 				75DC685B22BD182600FF183D /* MyToBeVisionCountDownWorker.swift in Sources */,
 				75DC685722BD180A00FF183D /* MyToBeVisionCountDownInteractor.swift in Sources */,
+				BB5E76C6230C401C0054AF17 /* PadHeading.swift in Sources */,
 				3686678420D3835900B400FE /* AbstractFormViewController.swift in Sources */,
 				5F7BE7842289589B00BA5DCF /* MyQotSupportPresenter.swift in Sources */,
 				F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */,
@@ -9061,6 +9092,7 @@
 				36718B4D224D20030042881E /* SubsriptionReminderRouter.swift in Sources */,
 				CBD097371F72646000F71D91 /* ChatViewLayout.swift in Sources */,
 				CC6B3A311E81713200E7FDFD /* Constants.swift in Sources */,
+				BB5E76D2230C4A690054AF17 /* MyQOTCell.swift in Sources */,
 				CB810E641EF00DB70043E3E5 /* User.swift in Sources */,
 				852DADD21EF04DEA00A10882 /* MeetingsLengthChart.swift in Sources */,
 				B856B47922B0E29D0017A249 /* MyLibraryUserStorageWorker.swift in Sources */,
@@ -9071,7 +9103,6 @@
 				ACF0B944225FC41F008CFAEC /* DecisionTreePresenter.swift in Sources */,
 				CB1D5E3D1EC5E25A00BCDF8D /* ContentItem.swift in Sources */,
 				36376663223AA61100C2C429 /* LevelThreeConfigurator.swift in Sources */,
-				5F78965A22A929C100D2DBAD /* TwoLinesAndButton.swift in Sources */,
 				36E6E3EB22491224001BE9C7 /* ComponentContentView.swift in Sources */,
 				369AE00422A7A6FC00DE4FA0 /* EditHeaderView.swift in Sources */,
 				CBB4DCFD1EDC27550071494A /* SyncManager.swift in Sources */,
@@ -9098,6 +9129,7 @@
 				9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */,
 				9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */,
 				BB7B3186230AA8BE004A5E52 /* OneLineHeading.swift in Sources */,
+				BB5E76C1230C393D0054AF17 /* MyQOT.swift in Sources */,
 				7F507BA31F3B4DEC0091742D /* UserAnswer.swift in Sources */,
 				ACB99E7622661F2400A73709 /* DecisionTreeQuestionnaireController.swift in Sources */,
 				360B106C230A9E4B006B1F2D /* PermissionCalendarView.swift in Sources */,
@@ -9420,7 +9452,6 @@
 				CCC1B6AF1E8B9B7F00D1461F /* LearnContentCollectionViewModel.swift in Sources */,
 				36D0C18C22B01567004BB8B8 /* UserInputTableViewCell.swift in Sources */,
 				CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */,
-				5F78964B22A929C100D2DBAD /* FiveLines.swift in Sources */,
 				5F360726228BECCC0074FEC4 /* MyQotSensorsWorker.swift in Sources */,
 				B4AB48C7230BF982003B3C1F /* MyDataExplanationWorker.swift in Sources */,
 				91F5BE3E2097576800E85A51 /* PermissionsViewController.swift in Sources */,
@@ -9558,7 +9589,6 @@
 				36D72ED6229C1BCC00DE1184 /* PrepareEventSelectionConfigurator.swift in Sources */,
 				7F4B98AD1FA22850000B402C /* ChartAnimator.swift in Sources */,
 				36845A5C20A196E400AC2F1B /* AppDelegate+Siren.swift in Sources */,
-				5F78964E22A929C100D2DBAD /* ThreeLinesAndImage.swift in Sources */,
 				CC7682C81F28A85600F852A0 /* Array+Convenience.swift in Sources */,
 				7FBC3E7E1F34AB8D005BD772 /* MediaResource.swift in Sources */,
 				854708E31F306628007AB971 /* ContentItemAnimator.swift in Sources */,
@@ -9607,9 +9637,11 @@
 				ACF0B97C2260BDCA008CFAEC /* MultipleSelectionTableViewCell.swift in Sources */,
 				367BB0162239570B00282AB6 /* CoachCollectionViewController.swift in Sources */,
 				AC103E402285B27200F426F0 /* ShifterResultPresenter.swift in Sources */,
+				BB5E76BB230C29A10054AF17 /* DailyBrief.swift in Sources */,
 				F92A76E322F2E8EC000BB378 /* Level5CellViewModel.swift in Sources */,
 				CC0FF8DA1EA790750028D64F /* PartnersCoordinator.swift in Sources */,
 				E813F0AE2135283800C0723E /* PDFReaderPresenter.swift in Sources */,
+				BB5E76DA230D29AC0054AF17 /* MyPrepsHeader.swift in Sources */,
 				5FA66640229C206D0027EE74 /* MyVisionEditDetailsInteractor.swift in Sources */,
 				F9FA08EF22805CEE00A917A4 /* CoachTableViewCell.swift in Sources */,
 				CB1D5E411EC5E25A00BCDF8D /* JSONDecodable.swift in Sources */,

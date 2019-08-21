@@ -12,23 +12,34 @@ class BaseSkeletonView: UIView {
 
     @IBOutlet private weak var containerView: UIView!
 
+    private let maxTags = 10
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        alpha = 0.0
+    }
+
     func startAnimating(_ delay: Double) {
         DispatchQueue.main.asyncAfter(deadline: .now() + delay) { [weak self] in
             self?.doAnimation()
         }
     }
 
-    func doAnimation() {
-        for index in 1..<10 {
+    private func doAnimation() {
+        UIView.animate(withDuration: 1.0,
+                       animations: {
+                        self.alpha = 1.0
+        }, completion: nil )
+
+        for index in 1..<maxTags {
             if let tagView = self.viewWithTag(index) {
                 UIView.animate(withDuration: 2.0,
                                delay: Double(index) * 0.25,
                                options: [.autoreverse, .repeat, .curveEaseInOut],
                                animations: {
                                 tagView.alpha = 0.0
-                }, completion: { (_) in
-
-                })
+                }, completion: nil)
             }
         }
     }

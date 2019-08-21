@@ -10,13 +10,11 @@ import Foundation
 import qot_dal
 
 protocol MyPrepsViewControllerInterface: class {
-    func setupView()
-    func updateView()
+    func dataUpdated()
 }
 
 protocol MyPrepsPresenterInterface {
-    func setupView()
-    func updateView()
+    func dataUpdated()
 }
 
 protocol MyPrepsInteractorInterface: Interactor {

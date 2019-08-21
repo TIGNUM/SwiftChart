@@ -28,7 +28,7 @@ final class MyPrepsInteractor {
     // MARK: - Interactor
     func viewDidLoad() {
         worker.createModels {
-            self.presenter.setupView()
+            self.presenter.dataUpdated()
         }
     }
 }
@@ -79,7 +79,7 @@ extension MyPrepsInteractor: MyPrepsInteractorInterface {
 
     func remove(segmentedControl: Int, at indexPath: IndexPath) {
         worker.remove(segmentedControl: segmentedControl, at: indexPath) { [weak self] in
-            self?.presenter.updateView()
+            self?.presenter.dataUpdated()
         }
     }
 

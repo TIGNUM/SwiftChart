@@ -37,6 +37,7 @@ final class MyLibraryCategoryListViewController: AbstractLevelTwoViewController 
         super.viewDidLoad()
         tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: BottomNavigationContainer.height, right: 0)
         interactor?.viewDidLoad()
+        self.showLoadingSkeleton(with: [.oneLineHeading, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell])
     }
 }
 
@@ -56,6 +57,7 @@ private extension MyLibraryCategoryListViewController {
 extension MyLibraryCategoryListViewController: MyLibraryCategoryListViewControllerInterface {
     func update() {
         tableView.reloadData()
+        self.removeLoadingSkeleton()
     }
 
 }

@@ -46,7 +46,9 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 900
         interactor?.viewDidLoad()
+        self.showLoadingSkeleton(with: [.dailyBrief])
     }
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         interactor?.getDailyBriefBucketsForViewModel()
@@ -552,10 +554,12 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
     }
 
     func updateView(_ differenceList: StagedChangeset<[BaseDailyBriefViewModel]>) {
+        self.removeLoadingSkeleton()
         tableView.reload(using: differenceList, with: .fade) { data in
             interactor?.updateViewModelList(data)
         }
     }
+
     func setupView() {
         tableView.tableFooterView = UIView(frame: .zero)
         tableView.registerDequeueable(WhatsHotLatestCell.self)

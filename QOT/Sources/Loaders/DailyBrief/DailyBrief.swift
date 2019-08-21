@@ -1,5 +1,5 @@
 //
-//  JustLinesSkeleton.swift
+//  DailyBrief.swift
 //  LoadingSkeleton
 //
 //  Created by Ashish Maheshwari on 05.06.19.
@@ -8,10 +8,10 @@
 
 import UIKit
 
-final class FiveLines: BaseSkeletonView {
+final class DailyBrief: BaseSkeletonView {
 
-    static func instantiateFromNib() -> FiveLines {
-        guard let objectView = R.nib.fiveLines.instantiate(withOwner: self).first as? FiveLines else {
+    static func instantiateFromNib() -> DailyBrief {
+        guard let objectView = R.nib.dailyBrief.instantiate(withOwner: self).first as? DailyBrief else {
             fatalError("Cannot load view")
         }
         return objectView

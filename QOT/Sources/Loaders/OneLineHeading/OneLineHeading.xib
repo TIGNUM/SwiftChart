@@ -37,24 +37,14 @@
                                         <constraint firstAttribute="height" constant="1" id="Ryt-Z0-cUV"/>
                                     </constraints>
                                 </view>
-                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bfT-Y2-jm2">
-                                    <rect key="frame" x="0.0" y="115" width="571" height="1"/>
-                                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.10000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
-                                    <constraints>
-                                        <constraint firstAttribute="height" constant="1" id="8PW-RI-4mi"/>
-                                    </constraints>
-                                </view>
                             </subviews>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <constraints>
                                 <constraint firstAttribute="trailing" secondItem="KA9-V9-pHW" secondAttribute="trailing" constant="24" id="7XA-qe-wlV"/>
                                 <constraint firstItem="xUE-Yg-UcR" firstAttribute="leading" secondItem="KA9-V9-pHW" secondAttribute="leading" id="8zu-AZ-fXT"/>
-                                <constraint firstAttribute="trailing" secondItem="bfT-Y2-jm2" secondAttribute="trailing" id="OHW-r2-tqL"/>
                                 <constraint firstAttribute="bottom" secondItem="KA9-V9-pHW" secondAttribute="bottom" constant="24" id="Rfi-J3-Ogg"/>
-                                <constraint firstItem="bfT-Y2-jm2" firstAttribute="leading" secondItem="n1p-xK-5bn" secondAttribute="leading" id="YQR-X5-56G"/>
                                 <constraint firstItem="KA9-V9-pHW" firstAttribute="leading" secondItem="n1p-xK-5bn" secondAttribute="leading" constant="24" id="alc-zh-TiW"/>
                                 <constraint firstItem="KA9-V9-pHW" firstAttribute="top" secondItem="xUE-Yg-UcR" secondAttribute="bottom" constant="15" id="dbK-vu-Q9V"/>
-                                <constraint firstAttribute="bottom" secondItem="bfT-Y2-jm2" secondAttribute="bottom" id="jWQ-G6-xO9"/>
                                 <constraint firstItem="KA9-V9-pHW" firstAttribute="top" secondItem="n1p-xK-5bn" secondAttribute="top" constant="80" id="tzd-I2-g8Q"/>
                             </constraints>
                         </view>
