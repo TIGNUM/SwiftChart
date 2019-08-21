@@ -16,6 +16,7 @@ final class AudioPlayerBar: UIView {
         case progress
     }
 
+    private var colorModeLocal = ColorMode.dark
     private let audioPlayer = AudioPlayer.current
     @IBOutlet weak var contentView: UIView!
     @IBOutlet private weak var progressView: UIProgressView!
@@ -53,9 +54,8 @@ final class AudioPlayerBar: UIView {
         let thumbImageWidth: CGFloat = progressModeSlider.thumbImage(for: .normal)?.size.width ?? 0
         sliderLeading.constant = -(thumbImageWidth/2)
         sliderTrailing.constant = -(thumbImageWidth/2)
-        progressModeContentView.backgroundColor = colorMode.audioBackground
-        contentView.backgroundColor = colorMode.background
         progressModeContentView.corner(radius: 20)
+        setColorMode()
     }
 
     static func instantiateFromNib() -> AudioPlayerBar {
@@ -75,7 +75,6 @@ final class AudioPlayerBar: UIView {
             titleLabel.textColor = titleColor.withAlphaComponent(0.7)
         }
 
-        verticalDivider.backgroundColor = colorMode.audioText
         progressModeSlider.setThumbImage(R.image.ic_audio_slider(), for: .normal)
     }
 
@@ -84,10 +83,14 @@ final class AudioPlayerBar: UIView {
         playPauseButton.setImage(audioPlayer.isPlaying ? R.image.ic_pause_sand() : R.image.ic_play_sand(), for: .normal)
     }
 
-    func setColorMode() {
-        contentView.backgroundColor = colorMode.audioBackground
+    func setColorMode(_ newColorMode: ColorMode? = nil) {
+        if let newColorMode = newColorMode {
+            colorModeLocal = newColorMode
+        }
         setTitleLabel(title: titleLabel.text ?? "")
-        progressModeContentView.backgroundColor = colorMode.audioBackground
+        contentView.backgroundColor = colorModeLocal.audioBackground
+        progressModeContentView.backgroundColor = colorModeLocal.audioBackground
+        verticalDivider.backgroundColor = colorModeLocal.audioText
     }
 }
 
@@ -98,7 +101,7 @@ private extension AudioPlayerBar {
         titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
                                                        letterSpacing: 0.4,
                                                        font: .apercuMedium(ofSize: 12),
-                                                       textColor: colorMode.audioText.withAlphaComponent(0.8),
+                                                       textColor: colorModeLocal.audioText.withAlphaComponent(0.8),
                                                        alignment: .left)
     }
 }
@@ -160,12 +163,12 @@ extension AudioPlayerBar {
         currentTimeLabel.attributedText = NSAttributedString(string: timeString(for: currentTime),
                                                              letterSpacing: 0.4,
                                                              font: .apercuMedium(ofSize: 12),
-                                                             textColor: colorMode.audioText,
+                                                             textColor: colorModeLocal.audioText,
                                                              alignment: .right)
         totalTimeLabel.attributedText = NSAttributedString(string: timeString(for: totalTime),
                                                            letterSpacing: 0.4,
                                                            font: .apercuMedium(ofSize: 12),
-                                                           textColor: colorMode.audioText,
+                                                           textColor: colorModeLocal.audioText,
                                                            alignment: .left)
     }
 

@@ -9,7 +9,7 @@
 import UIKit
 
 class CustomSeguePush: UIStoryboardSegue {
-    private let duration: TimeInterval = 0.25
+    private let duration: TimeInterval = 0.5
 
     override func perform() {
         let transition = CATransition()

@@ -33,8 +33,7 @@ extension BaseRootViewController {
             notificationCenter.addObserver(self, selector: #selector(didStopAudio(_:)), name: .didStopAudio, object: nil)
             notificationCenter.addObserver(self, selector: #selector(playPauseAudio(_:)), name: .playPauseAudio, object: nil)
             notificationCenter.addObserver(self, selector: #selector(stopAudio(_:)), name: .stopAudio, object: nil)
-            notificationCenter.addObserver(self, selector: #selector(showAudioFullScreen(_:)),
-                                           name: .showAudioFullScreen, object: nil)
+            notificationCenter.addObserver(self, selector: #selector(showAudioFullScreen(_:)), name: .showAudioFullScreen, object: nil)
             notificationCenter.addObserver(self, selector: #selector(hideAudioFullScreen(_:)), name: .hideAudioFullScreen, object: nil)
 
         }
@@ -95,6 +94,11 @@ extension BaseRootViewController {
             self.bottomNavigationContainer.isUserInteractionEnabled = true
         })
         bringBottomNavigationBarToFront()
+
+        if let barColor = naviBackground.tintColor {
+            let lightMode = barColor.isEqual(UIColor.sand)
+            audioPlayerBar.setColorMode(lightMode ? ColorMode.darkNot : ColorMode.dark)
+        }
     }
 }
 
