@@ -18,4 +18,6 @@ extension Notification.Name {
     static let updateBottomNavigation = Notification.Name("updateBottomNavigation")
     static let didTabDismissBottomNavigation = Notification.Name("didTabDismissBottomNavigation")
     static let didDismissMindsetResultView = Notification.Name("didDismissMindsetResultView")
+    static let displayGuidedTrackCells = Notification.Name("didGuidedTrackCellDisplayed")
+
 }

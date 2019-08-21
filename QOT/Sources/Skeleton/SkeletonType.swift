@@ -13,7 +13,7 @@ enum SkeletonType {
     case oneLineBlock
     case twoLinesAndTag
     case twoLinesAndImage
-    case threeLinesTwoColumns
+    case threeLinesAndTwoColumns
     case threeLinesLeftColumn
     case fiveLinesWithTopBroad
     case loader
@@ -38,8 +38,8 @@ enum SkeletonType {
             return TwoLinesAndTag.instantiateFromNib()
         case .twoLinesAndImage:
             return TwoLinesAndImage.instantiateFromNib()
-        case .threeLinesTwoColumns:
-            return ThreeLinesTwoColumns.instantiateFromNib()
+        case .threeLinesAndTwoColumns:
+            return ThreeLinesAndTwoColumns.instantiateFromNib()
         case .threeLinesLeftColumn:
             return ThreeLinesLeftColumn.instantiateFromNib()
         case .fiveLinesWithTopBroad:

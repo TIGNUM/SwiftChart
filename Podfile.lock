@@ -31,7 +31,7 @@ PODS:
   - R.swift (5.0.3):
     - R.swift.Library (~> 5.0.0)
   - R.swift.Library (5.0.1)
-  - ReactiveKit (3.13.0)
+  - ReactiveKit (3.13.2)
   - RSKImageCropper (2.2.3)
   - SwiftyBeaver (1.7.0)
   - UrbanAirship-iOS-SDK (11.1.1)
@@ -113,7 +113,7 @@ SPEC CHECKSUMS:
   qot_dal: 967c0df783c6fcc0205102e8e4a689220113adfa
   R.swift: f5a87643b91ea569d23d6afb3eee9c743edde239
   R.swift.Library: cfe85d569d9bae6cb262922db130e7c3a7a5fad1
-  ReactiveKit: 4a938b0671b0b068232926a443da19d535a03023
+  ReactiveKit: db560c8a9883447798b449c49346f292cbb54f4c
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   SwiftyBeaver: 4cc0080d2e23f980652e28978db11a5c9da39165
   UrbanAirship-iOS-SDK: d745d59447b2dd9a0941738e090f025036cbf433

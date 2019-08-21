@@ -30,7 +30,7 @@ final class KnowingViewController: HomeViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .twoLinesAndTag, .threeLinesTwoColumns, .threeLinesTwoColumns, .threeLinesLeftColumn])
+        self.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .twoLinesAndTag, .threeLinesAndTwoColumns, .threeLinesAndTwoColumns, .threeLinesLeftColumn])
         self.view.backgroundColor = .carbon
     }
 
