@@ -3,6 +3,7 @@ UserInterfaceState.xcuserstate
 xcuserdata/
 Pods/
 *.generated*.swift
+*.orig
 
 # appcode
 .idea
