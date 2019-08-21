@@ -9,6 +9,11 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--My Data Screen View Controller-->
         <scene sceneID="lVa-S7-H4l">
@@ -90,8 +95,49 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-IU-eEH">
-                                <rect key="frame" x="0.0" y="80" width="375" height="587"/>
+                            <view opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="W6B-zE-vKC" userLabel="Header View">
+                                <rect key="frame" x="0.0" y="20" width="375" height="98"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ea4-YG-XxS">
+                                        <rect key="frame" x="24" y="36" width="327" height="38"/>
+                                        <subviews>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e2H-Ij-zXM">
+                                                <rect key="frame" x="0.0" y="0.0" width="16" height="2"/>
+                                                <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69647337149999999" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="2" id="V1F-L9-heC"/>
+                                                    <constraint firstAttribute="width" constant="16" id="ver-eX-5il"/>
+                                                </constraints>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILY IMPACT READINESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t2V-yf-NRU">
+                                                <rect key="frame" x="0.0" y="18" width="327" height="24"/>
+                                                <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
+                                                <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="e2H-Ij-zXM" firstAttribute="leading" secondItem="ea4-YG-XxS" secondAttribute="leading" id="578-4B-ho3"/>
+                                            <constraint firstItem="t2V-yf-NRU" firstAttribute="leading" secondItem="ea4-YG-XxS" secondAttribute="leading" id="8UV-Lg-UVO"/>
+                                            <constraint firstItem="t2V-yf-NRU" firstAttribute="top" secondItem="e2H-Ij-zXM" secondAttribute="bottom" constant="16" id="DYO-Wk-gyk"/>
+                                            <constraint firstAttribute="trailing" secondItem="t2V-yf-NRU" secondAttribute="trailing" id="NMj-bk-MHF"/>
+                                            <constraint firstItem="e2H-Ij-zXM" firstAttribute="top" secondItem="ea4-YG-XxS" secondAttribute="top" id="v6r-3A-o39"/>
+                                        </constraints>
+                                    </view>
+                                </subviews>
+                                <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="ea4-YG-XxS" firstAttribute="top" secondItem="W6B-zE-vKC" secondAttribute="top" constant="36" id="392-p7-cq5"/>
+                                    <constraint firstAttribute="height" constant="98" id="4bi-UI-MYM"/>
+                                    <constraint firstAttribute="trailing" secondItem="ea4-YG-XxS" secondAttribute="trailing" constant="24" id="CoK-ZL-ItM"/>
+                                    <constraint firstAttribute="bottom" secondItem="ea4-YG-XxS" secondAttribute="bottom" constant="24" id="q3d-7b-DRx"/>
+                                    <constraint firstItem="ea4-YG-XxS" firstAttribute="leading" secondItem="W6B-zE-vKC" secondAttribute="leading" constant="24" id="xjA-wI-ZD2"/>
+                                </constraints>
+                                <viewLayoutGuide key="safeArea" id="eKA-Lt-oCf"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="Asb-IU-eEH">
+                                <rect key="frame" x="0.0" y="118" width="375" height="549"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
                                     <outlet property="dataSource" destination="txY-qR-zaF" id="AjP-73-NKS"/>
@@ -101,10 +147,13 @@
                         </subviews>
                         <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
-                            <constraint firstItem="Asb-IU-eEH" firstAttribute="top" secondItem="LOp-pi-FKS" secondAttribute="top" constant="60" id="7qO-D8-YLl"/>
+                            <constraint firstItem="Asb-IU-eEH" firstAttribute="top" secondItem="W6B-zE-vKC" secondAttribute="bottom" id="7lO-Ts-Ejf"/>
+                            <constraint firstItem="LOp-pi-FKS" firstAttribute="leading" secondItem="W6B-zE-vKC" secondAttribute="leading" id="9kj-a9-PDi"/>
+                            <constraint firstItem="W6B-zE-vKC" firstAttribute="top" secondItem="LOp-pi-FKS" secondAttribute="top" id="G7l-gT-sDH"/>
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="bottom" secondItem="Asb-IU-eEH" secondAttribute="bottom" id="dri-GA-252"/>
                             <constraint firstItem="Asb-IU-eEH" firstAttribute="leading" secondItem="LOp-pi-FKS" secondAttribute="leading" id="hWr-ng-tNx"/>
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="trailing" secondItem="Asb-IU-eEH" secondAttribute="trailing" id="iA6-Mb-3Bz"/>
+                            <constraint firstItem="W6B-zE-vKC" firstAttribute="trailing" secondItem="LOp-pi-FKS" secondAttribute="trailing" id="pu5-Qe-z9M"/>
                             <constraint firstItem="LOp-pi-FKS" firstAttribute="bottom" secondItem="Asb-IU-eEH" secondAttribute="bottom" id="wIm-eq-nab"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="LOp-pi-FKS"/>

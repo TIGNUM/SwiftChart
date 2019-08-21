@@ -19,3 +19,14 @@ final class MyDataExplanationWorker {
         self.contentService = contentService
     }
 }
+
+extension MyDataExplanationWorker: MyDataExplanationWorkerInterface {
+    func myDataExplanationSections() -> MyDataExplanationModel {
+        return MyDataExplanationModel(myDataExplanationItems: MyDataExplanationSection.allCases.map {
+            return MyDataExplanationModel.ExplanationItem(myDataExplanationSection: $0,
+                                                          title: ScreenTitleService.main.myDataExplanationSectionTitles(for: $0),
+                                                          subtitle: ScreenTitleService.main.myDataExplanationSectionSubtitles(for: $0))
+        })
+    }
+}
+

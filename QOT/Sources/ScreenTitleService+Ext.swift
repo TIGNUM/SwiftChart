@@ -210,3 +210,44 @@ extension ScreenTitleService {
         }
     }
 }
+
+extension ScreenTitleService {
+    
+    func myDataExplanationSectionTitles(for myDataExplanationItem: MyDataExplanationSection) -> String? {
+        switch myDataExplanationItem {
+        case .SQL:
+            return localizedString(for: .myDataExplanationSQLSectionTitle)
+        case .SQN:
+            return localizedString(for: .myDataExplanationSQNSectionTitle)
+        case .tenDL:
+            return localizedString(for: .myDataExplanationTenDLSectionTitle)
+        case .fiveDRR:
+            return localizedString(for: .myDataExplanationFiveDRRSectionTitle)
+        case .fiveDRL:
+            return localizedString(for: .myDataExplanationFiveDRLSectionTitle)
+        case .fiveDIR:
+            return localizedString(for: .myDataExplanationFiveDIRSectionTitle)
+        case .IR:
+            return localizedString(for: .myDataExplanationIRSectionTitle)
+        }
+    }
+    
+    func myDataExplanationSectionSubtitles(for myDataExplanationItem: MyDataExplanationSection) -> String? {
+        switch myDataExplanationItem {
+        case .SQL:
+            return localizedString(for: .myDataExplanationSQLSectionSubtitle)
+        case .SQN:
+            return localizedString(for: .myDataExplanationSQNSectionSubtitle)
+        case .tenDL:
+            return localizedString(for: .myDataExplanationTenDLSectionSubtitle)
+        case .fiveDRR:
+            return localizedString(for: .myDataExplanationFiveDRRSectionSubtitle)
+        case .fiveDRL:
+            return localizedString(for: .myDataExplanationFiveDRLSectionSubtitle)
+        case .fiveDIR:
+            return localizedString(for: .myDataExplanationFiveDIRSectionSubtitle)
+        case .IR:
+            return localizedString(for: .myDataExplanationIRSectionSubtitle)
+        }
+    }
+}

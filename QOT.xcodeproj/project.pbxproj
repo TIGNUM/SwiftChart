@@ -447,12 +447,6 @@
 		5F6B38592284079800704676 /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B38582284079800704676 /* UserProfileModel.swift */; };
 		5F6B385B228414F700704676 /* ContentService+AccountSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F6B385A228414F700704676 /* ContentService+AccountSettings.swift */; };
 		5F78964A22A929C100D2DBAD /* UIView+Constraints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78962F22A929C100D2DBAD /* UIView+Constraints.swift */; };
-		5F78964B22A929C100D2DBAD /* FiveLines.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963222A929C100D2DBAD /* FiveLines.swift */; };
-		5F78964C22A929C100D2DBAD /* FiveLines.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963322A929C100D2DBAD /* FiveLines.xib */; };
-		5F78964D22A929C100D2DBAD /* ThreeLinesAndImage.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963522A929C100D2DBAD /* ThreeLinesAndImage.xib */; };
-		5F78964E22A929C100D2DBAD /* ThreeLinesAndImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963622A929C100D2DBAD /* ThreeLinesAndImage.swift */; };
-		5F78965122A929C100D2DBAD /* ThreeLinesAndButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963B22A929C100D2DBAD /* ThreeLinesAndButton.swift */; };
-		5F78965222A929C100D2DBAD /* ThreeLinesAndButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963C22A929C100D2DBAD /* ThreeLinesAndButton.xib */; };
 		5F78965322A929C100D2DBAD /* FiveLinesWithTopBroad.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78963E22A929C100D2DBAD /* FiveLinesWithTopBroad.swift */; };
 		5F78965422A929C100D2DBAD /* FiveLinesWithTopBroad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5F78963F22A929C100D2DBAD /* FiveLinesWithTopBroad.xib */; };
 		5F78965522A929C100D2DBAD /* TwoLinesAndImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F78964122A929C100D2DBAD /* TwoLinesAndImage.swift */; };
@@ -1074,6 +1068,8 @@
 		B47953BA230AD512006EFE0F /* MyDataScreenRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */; };
 		B4A075B0230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */; };
 		B4A075B1230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */; };
+		B4A075B4230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */; };
+		B4A075B5230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */; };
 		B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48A9230BF6E6003B3C1F /* MyDataScreen.storyboard */; };
 		B4AB48B5230BF890003B3C1F /* MyDataSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48AD230BF890003B3C1F /* MyDataSelectionPresenter.swift */; };
 		B4AB48B6230BF891003B3C1F /* MyDataSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48AE230BF890003B3C1F /* MyDataSelectionWorker.swift */; };
@@ -2165,13 +2161,6 @@
 		5F6B38582284079800704676 /* UserProfileModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		5F6B385A228414F700704676 /* ContentService+AccountSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ContentService+AccountSettings.swift"; sourceTree = "<group>"; };
 		5F78962F22A929C100D2DBAD /* UIView+Constraints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Constraints.swift"; sourceTree = "<group>"; };
-		5F78963222A929C100D2DBAD /* FiveLines.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveLines.swift; sourceTree = "<group>"; };
-		5F78963322A929C100D2DBAD /* FiveLines.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiveLines.xib; sourceTree = "<group>"; };
-		5F78963522A929C100D2DBAD /* ThreeLinesAndImage.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesAndImage.xib; sourceTree = "<group>"; };
-		5F78963622A929C100D2DBAD /* ThreeLinesAndImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLinesAndImage.swift; sourceTree = "<group>"; };
-		5F78963B22A929C100D2DBAD /* ThreeLinesAndButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThreeLinesAndButton.swift; sourceTree = "<group>"; };
-		5F78963C22A929C100D2DBAD /* ThreeLinesAndButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesAndButton.xib; sourceTree = "<group>"; };
-		5F78963922A929C100D2DBAD /* ThreeLinesTwoColumns.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesTwoColumns.xib; sourceTree = "<group>"; };
 		5F78963E22A929C100D2DBAD /* FiveLinesWithTopBroad.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FiveLinesWithTopBroad.swift; sourceTree = "<group>"; };
 		5F78963F22A929C100D2DBAD /* FiveLinesWithTopBroad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FiveLinesWithTopBroad.xib; sourceTree = "<group>"; };
 		5F78964122A929C100D2DBAD /* TwoLinesAndImage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLinesAndImage.swift; sourceTree = "<group>"; };
@@ -2770,6 +2759,8 @@
 		B47953B2230AD512006EFE0F /* MyDataScreenRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenRouter.swift; sourceTree = "<group>"; };
 		B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapButtonsTableViewCell.swift; sourceTree = "<group>"; };
 		B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapButtonsTableViewCell.xib; sourceTree = "<group>"; };
+		B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataExplanationScreenTableViewCell.xib; sourceTree = "<group>"; };
+		B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataExplanationScreenTableViewCell.swift; sourceTree = "<group>"; };
 		B4AB48A9230BF6E6003B3C1F /* MyDataScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyDataScreen.storyboard; sourceTree = "<group>"; };
 		B4AB48AD230BF890003B3C1F /* MyDataSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionPresenter.swift; sourceTree = "<group>"; };
 		B4AB48AE230BF890003B3C1F /* MyDataSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionWorker.swift; sourceTree = "<group>"; };
@@ -3558,6 +3549,8 @@
 				B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */,
 				B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */,
 				B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */,
+				B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */,
+				B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */,
 				36376639223A6F3B00C2C429 /* AbstractTableViewCell.swift */,
 				3637663B223A6F8500C2C429 /* AbstractTableViewCell.xib */,
 				36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */,
@@ -7983,7 +7976,7 @@
 					};
 					CBB237EB1E6FFF1200AB5AEF = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = M5AQ4P32MK;
+						DevelopmentTeam = 4FQQH349R5;
 						LastSwiftMigration = 0910;
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
@@ -8102,6 +8095,7 @@
 				36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */,
 				75423F0822CF303B008EE726 /* BeSpokeCell.xib in Resources */,
 				BB7B317B230A8C65004A5E52 /* TwoLinesAndTag.xib in Resources */,
+				B4A075B4230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib in Resources */,
 				36FEA86420A5FCBE00AFE254 /* GuideWhatsHotTableViewCell.xib in Resources */,
 				CC7D21B11EFC1348007A062E /* WeeklyChoicesCell.xib in Resources */,
 				368A12622277387900866DB0 /* SF-Pro-Text-Medium.otf in Resources */,
@@ -9153,6 +9147,7 @@
 				CC8018231F026BDA0040B03F /* LibraryTableViewCell.swift in Sources */,
 				CB3333E120480DDF009480DF /* ShareConfigurator.swift in Sources */,
 				5F8A899F2296DF520011A05C /* MyVisionRouter.swift in Sources */,
+				B4A075B5230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift in Sources */,
 				CB1D5E401EC5E25A00BCDF8D /* Error.swift in Sources */,
 				5F7BE79422899EA100BA5DCF /* MyQotAboutUsInterface.swift in Sources */,
 				85DC6F891EF40B36004F4B4D /* TravelTripsChart.swift in Sources */,
