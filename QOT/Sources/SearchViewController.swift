@@ -164,8 +164,13 @@ extension SearchViewController {
         trackUserEvent(.SELECT, valueType: searchFilter.userEvent, action: .TAP)
         updateSearchResults()
         updateIndicator()
-        if searchResults.isEmpty == false {
-            tableView.scrollToTop(animated: true)
+
+        switch tableView {
+        case self.tableView:
+            if searchResults.isEmpty == false {
+                tableView.scrollToTop(animated: true) }
+        default:
+            break
         }
     }
 }
@@ -203,6 +208,11 @@ extension SearchViewController: UISearchBarDelegate {
             }
         } else {
             delegate?.didTapCancel()
+            if searchResults.isEmpty == true {
+            segmentedControl.selectedSegmentIndex = 0
+            mySearchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0)
+            updateViewsState(false)
+            }
         }
     }
 
@@ -243,14 +253,14 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
                                      contentType: result.displayType.rawValue,
                                      duration: result.duration)            }
             let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+            backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
             searchCell.selectedBackgroundView = backgroundView
             return searchCell
         case self.suggestionsTableView:
             let suggestionCell: SuggestionSearchTableViewCell = tableView.dequeueCell(for: indexPath)
             suggestionCell.configrue(suggestion: searchSuggestions?.suggestions[indexPath.row] ?? "")
             let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+            backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.8)
             suggestionCell.selectedBackgroundView = backgroundView
             return suggestionCell
         default:
