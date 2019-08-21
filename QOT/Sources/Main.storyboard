@@ -518,10 +518,10 @@
             </objects>
             <point key="canvasLocation" x="-1313" y="2166"/>
         </scene>
-        <!--Article Navigation Controller-->
+        <!--Navigation Controller-->
         <scene sceneID="WTe-i6-lS6">
             <objects>
-                <navigationController id="zMF-70-Y2W" customClass="ArticleNavigationController" customModule="QOT" customModuleProvider="target" sceneMemberID="viewController">
+                <navigationController id="zMF-70-Y2W" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="GE7-sb-8mM"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="1dG-Ql-ehs">
                         <rect key="frame" x="0.0" y="20" width="375" height="44"/>
