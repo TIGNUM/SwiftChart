@@ -44,6 +44,7 @@ final class MyQotSupportViewController: UIViewController {
 
 extension MyQotSupportViewController: MyQotSupportViewControllerInterface {
     func setupView() {
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         view.backgroundColor = .carbon
         interactor?.supportText({[weak self] (text) in
             self?.headerLabel.text = text

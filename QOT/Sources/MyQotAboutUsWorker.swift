@@ -53,14 +53,15 @@ final class MyQotAboutUsWorker {
         }
     }
 
-    func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem, _ completion: @escaping(QDMContentCollection?) -> Void) {
+    func contentCollection(item: MyQotAboutUsModel.MyQotAboutUsModelItem,
+                           _ completion: @escaping(QDMContentCollection?) -> Void) {
         item.contentCollection(for: contentService) { (collection) in
             completion(collection)
         }
     }
 
     func aboutUsText(_ completion: @escaping(String) -> Void) {
-        contentService.getContentItemByPredicate(ContentService.AboutUs.aboutTignum.predicate) {(contentItem) in
+        contentService.getContentItemByPredicate(qot_dal.ContentService.AboutUs.aboutTignum.predicate) {(contentItem) in
             completion(contentItem?.valueText ?? "")
         }
     }

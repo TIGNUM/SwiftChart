@@ -36,6 +36,7 @@ final class SyncedCalendarsViewController: UIViewController {
 // MARK: - SyncedCalendarsViewControllerInterface
 extension SyncedCalendarsViewController: SyncedCalendarsViewControllerInterface {
     func setupView(_ viewModel: SyncedCalendarsViewModel?) {
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         self.viewModel = viewModel
         headerLabel.text = viewModel?.viewTitle
         tableView.reloadDataWithAnimation()

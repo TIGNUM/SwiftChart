@@ -35,6 +35,7 @@ final class MyQotSiriShortcutsViewController: UIViewController {
 extension MyQotSiriShortcutsViewController: MyQotSiriShortcutsViewControllerInterface {
 
     func setupView() {
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         tableView.delegate = self
         tableView.dataSource = self
         interactor?.siriShortcutsHeaderText({[weak self] (text) in

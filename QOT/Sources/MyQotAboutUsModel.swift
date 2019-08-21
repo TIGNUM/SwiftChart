@@ -35,38 +35,43 @@ struct MyQotAboutUsModel {
         func trackingKeys() -> String {
             switch self {
             case .benefits:
-                return ContentService.AboutUs.qotBenefits.rawValue
+                return qot_dal.ContentService.AboutUs.qotBenefits.rawValue
             case .about:
-                return ContentService.AboutUs.aboutTignum.rawValue
+                return qot_dal.ContentService.AboutUs.aboutTignum.rawValue
             case .privacy:
-                return ContentService.AboutUs.privacy.rawValue
+                return qot_dal.ContentService.AboutUs.privacy.rawValue
             case .terms:
-                return ContentService.AboutUs.termsAndConditions.rawValue
+                return qot_dal.ContentService.AboutUs.termsAndConditions.rawValue
             case .copyright:
-                return ContentService.AboutUs.copyright.rawValue
+                return qot_dal.ContentService.AboutUs.copyright.rawValue
             }
         }
 
         func title(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
             switch self {
             case .benefits:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.qotBenefits.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.qotBenefits.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             case .about:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.aboutTignum.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.aboutTignum.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             case .privacy:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.privacy.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.privacy.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             case .terms:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.termsAndConditions.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.termsAndConditions.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             case .copyright:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.copyright.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.copyright.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             }
@@ -75,23 +80,28 @@ struct MyQotAboutUsModel {
         func subtitle(for contentService: qot_dal.ContentService, _ completion: @escaping(String) -> Void) {
             switch self {
             case .benefits:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.qotBenefitsSubtitle.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.qotBenefitsSubtitle.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             case .about:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.aboutTignumSubtitle.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.aboutTignumSubtitle.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             case .privacy:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.privacySubtitle.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.privacySubtitle.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             case .terms:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.termsAndCOnditionSubtitle.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.termsAndCOnditionSubtitle.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             case .copyright:
-                contentService.getContentItemByPredicate(ContentService.AboutUs.contentAndCopyrightSubtitle.predicate) {(contentItem) in
+                contentService.getContentItemByPredicate(
+                qot_dal.ContentService.AboutUs.contentAndCopyrightSubtitle.predicate) {(contentItem) in
                     completion(contentItem?.valueText ?? "")
                 }
             }
@@ -107,7 +117,8 @@ struct MyQotAboutUsModel {
             }
         }
 
-        func contentCollection(for contentService: qot_dal.ContentService, _ completion: @escaping(QDMContentCollection?) -> Void) {
+        func contentCollection(for contentService: qot_dal.ContentService,
+                               _ completion: @escaping(QDMContentCollection?) -> Void) {
             switch self {
             case .benefits:
                 contentService.getContentCollectionById(primaryKey) { (collection) in

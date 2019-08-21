@@ -54,6 +54,7 @@ extension MyQotSensorsViewController {
 
 extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
     func setupView() {
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         view.backgroundColor = .carbon
         healthKitStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent30)
         ouraRingStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent30)

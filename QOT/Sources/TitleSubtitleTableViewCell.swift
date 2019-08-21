@@ -12,6 +12,7 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subTitleLabel: UILabel!
+    @IBOutlet private weak var arrowRight: UIImageView!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -27,6 +28,12 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
     var subTitle: String = ""{
         willSet {
             subTitleLabel.text = newValue
+        }
+    }
+
+    var hideArrow: Bool = false {
+        willSet {
+            arrowRight.isHidden = newValue
         }
     }
 

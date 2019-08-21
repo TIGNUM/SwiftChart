@@ -43,6 +43,7 @@ final class MyQotAboutUsViewController: UIViewController {
 
 extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
     func setupView(with title: String) {
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         headerLabel.text = title
     }
 }
@@ -64,6 +65,7 @@ extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource
         interactor?.subtitle(at: indexPath, { (text) in
             cell.subTitle = text
         })
+        cell.hideArrow = true
         return cell
     }
 

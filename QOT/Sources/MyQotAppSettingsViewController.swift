@@ -54,6 +54,7 @@ final class MyQotAppSettingsViewController: UIViewController {
 
 extension MyQotAppSettingsViewController: MyQotAppSettingsViewControllerInterface {
     func setup(_ settings: MyQotAppSettingsModel) {
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         view.backgroundColor = .carbon
         settingsModel = settings
         interactor?.appSettingsText({[weak self] (text) in

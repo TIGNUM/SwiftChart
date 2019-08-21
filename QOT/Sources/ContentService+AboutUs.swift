@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import qot_dal
 
-extension ContentService {
+extension qot_dal.ContentService {
 
     enum AboutUs: String, CaseIterable, Predicatable {
         case aboutTignumSubtitle = "about_tignum_subtitle"

@@ -76,6 +76,7 @@ extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
     }
 
     func setupView(profile: UserProfileModel, menuItems: [MyQotProfileModel.TableViewPresentationData]) {
+        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         self.profile = profile
         self.menuItems = menuItems
         headerLabel.text = interactor?.myProfileText()
