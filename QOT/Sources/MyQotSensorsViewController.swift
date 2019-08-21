@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class MyQotSensorsViewController: UIViewController {
 
@@ -21,8 +22,8 @@ final class MyQotSensorsViewController: UIViewController {
     @IBOutlet private weak var sensorDescriptionHeaderabel: UILabel!
     @IBOutlet private weak var requestActivityTrackerLabel: UILabel!
     @IBOutlet private weak var sensorHeaderLabel: UILabel!
-
     var interactor: MyQotSensorsInteractorInterface?
+    var ouraRingAuthConfiguration: QDMOuraRingConfig?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,19 +39,24 @@ final class MyQotSensorsViewController: UIViewController {
 extension MyQotSensorsViewController {
     @IBAction func ouraRingStatusButtonAction(_ sender: UIButton) {
         trackUserEvent(.SELECT, valueType: sender.titleLabel?.text, action: .TAP)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(handleOpenURL),
+                                               name: .requestOpenUrl,
+                                               object: nil)
+        interactor?.requestAuraAuthorization()
     }
 
     @IBAction func healthKitStatusButtonAction(_ sender: UIButton) {
         trackUserEvent(.SELECT, valueType: sender.titleLabel?.text, action: .TAP)
+        interactor?.requestHealthKitAuthorization()
     }
 }
 
 extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
-
     func setupView() {
         view.backgroundColor = .carbon
-        healthKitStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: UIColor.accent30)
-        ouraRingStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: UIColor.accent30)
+        healthKitStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent30)
+        ouraRingStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent30)
     }
 
     func set(headerTitle: String, sensorTitle: String) {
@@ -58,7 +64,8 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
         sensorHeaderLabel.text = sensorTitle
     }
 
-    func setHealthKit(title: String, status: String, labelStatus: String) {
+    func setHealthKit(title: String, status: String, labelStatus: String, buttonEnabled: Bool) {
+        healthKitStatusButton.isEnabled = buttonEnabled
         healthKitStatusButton.setTitle(status, for: .normal)
         healthKitLabel.text = title
         healthKitStatusLabel.text = labelStatus
@@ -73,5 +80,18 @@ extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
     func setSensor(title: String, description: String) {
         sensorDescriptionHeaderabel.text = title
         sensorDescriptionLabel.setAttrText(text: description, font: .sfProtextRegular(ofSize: FontSize.fontSize14))
+    }
+}
+
+// MARK: - Private
+private extension MyQotSensorsViewController {
+    @objc func handleOpenURL(_ notification: Notification) {
+        guard let url = notification.object as? URL, url.host == "oura-integration" else {
+            presentedViewController?.dismiss(animated: true, completion: nil)
+            return
+        }
+        interactor?.handleOuraRingAuthResultURL(url: url, ouraRingAuthConfiguration: ouraRingAuthConfiguration)
+        NotificationCenter.default.removeObserver(self)
+        presentedViewController?.dismiss(animated: true, completion: nil)
     }
 }

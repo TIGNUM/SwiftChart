@@ -4042,14 +4042,14 @@
 		5F36071D228BEC660074FEC4 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */,
-				5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */,
-				5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */,
-				5F360725228BECCC0074FEC4 /* MyQotSensorsWorker.swift */,
-				5F360727228BECD70074FEC4 /* MyQotSensorsRouter.swift */,
 				5F360729228BECE40074FEC4 /* MyQotSensorsConfigurator.swift */,
+				5F360723228BECAD0074FEC4 /* MyQotSensorsInteractor.swift */,
 				5F36072B228BEDA20074FEC4 /* MyQotSensorsInterface.swift */,
 				5F36072D228BEEB90074FEC4 /* MyQotSensorsModel.swift */,
+				5F360721228BEC960074FEC4 /* MyQotSensorsPresenter.swift */,
+				5F360727228BECD70074FEC4 /* MyQotSensorsRouter.swift */,
+				5F36071F228BEC7F0074FEC4 /* MyQotSensorsViewController.swift */,
+				5F360725228BECCC0074FEC4 /* MyQotSensorsWorker.swift */,
 			);
 			name = Core;
 			sourceTree = "<group>";
