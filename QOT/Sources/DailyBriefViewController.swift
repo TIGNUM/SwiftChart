@@ -37,6 +37,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
     private var selectedToolID: Int?
+    private var showSteps = false
     private var impactReadinessScore: Int?
 
     // MARK: - Life Cycle
@@ -46,6 +47,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 900
         interactor?.viewDidLoad()
+        NotificationCenter.default.addObserver(self, selector: #selector(hideDisplayGuidedTrackCells(_:)), name: .displayGuidedTrackCells, object: nil)
         self.showLoadingSkeleton(with: [.dailyBrief])
     }
 
@@ -162,6 +164,9 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         case .MY_PEAK_PERFORMANCE?:
             let myPeakPerformanceViewModel = viewModelBucket as? MyPeakPerformanceCellViewModel
             return getMyPeakPerformance(tableView, indexPath, myPeakPerformanceViewModel)
+//        case .GUIDED_TRACK:
+//            let guidedTrackViewModel = viewModelBucket as? GuidedTrackViewModel
+//            return getGuidedTrack(tableView, indexPath, guidedTrackViewModel)
         case .WEATHER?:
             return UITableViewCell()
         default:
@@ -525,6 +530,31 @@ private extension DailyBriefViewController {
         cell.backgroundColor = .carbon
         return cell
     }
+
+    /**
+     * Method name: getGuidedTrack.
+     * Description: Placeholder to display the Guided Track Information.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getGuidedTrack(_ tableView: UITableView,
+                        _ indexPath: IndexPath,
+                        _ guidedtrackModel: GuidedTrackViewModel?) -> UITableViewCell {
+        let cell: GuidedTrackTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.guidedTrackList = guidedtrackModel?.guidedTrackList ?? []
+        cell.configure(with: guidedtrackModel)
+        cell.showSteps = showSteps
+        cell.tableView.reloadData()
+        cell.backgroundColor = .carbon
+        return cell
+    }
+
+    /**
+     * Based on the button click on guided track information expand-collpase the tabelview.
+     */
+    @objc func hideDisplayGuidedTrackCells(_ notification: Notification) {
+        showSteps = !showSteps
+        tableView.reloadData()
+    }
 }
 
 // MARK: - DumViewControllerInterface
@@ -585,6 +615,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(MeAtMyBestCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
+        tableView.registerDequeueable(GuidedTrackTableViewCell.self)
     }
 }
 

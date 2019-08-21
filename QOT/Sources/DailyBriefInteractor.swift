@@ -86,6 +86,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                     viewModelNewList.append(self.createAboutMe(aboutMeBucket: bucket))
                 case .SOLVE_REFLECTION?:
                     viewModelNewList.append(self.createSolveViewModel(bucket: bucket))
+//                case .GUIDED_TRACK?:
+//                    viewModelNewList.append(self.createGuidedTrack(guidedTrackBucket: bucket))
                 default:
                     print("Default")
                 }
@@ -629,6 +631,44 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         //        TODO About me additional text should be part of content collection for testing purpose we are sending * value for now
         let aboutMeAdditionalContent = "*"
         return AboutMeViewModel(title: aboutMeBucketTitle, aboutMeContent: aboutMeContent, aboutMeMoreInfo: aboutMeAdditionalContent, domainModel: aboutMe)
+    }
+
+//    TODO the values are hard coded and will changed once the database returns the relevant bucket information
+    /**
+     * Method name: createGuidedTrack.
+     * Description: Method which returns the GuidedTrack Model required for the tableview.
+     * Parameters: [guidedTrackBucket]
+     */
+
+    func createGuidedTrack(guidedTrackBucket guidedTrack: QDMDailyBriefBucket) -> GuidedTrackViewModel {
+        let guidedtrackViewModel = GuidedTrackViewModel(domainModel: guidedTrack)
+        var guidedBucketList = [GuideTrackModelItem]()
+        guidedBucketList.append(GuidedTrackSectionViewModel(bucketTitle: "Guided Track Bucket",
+                                                            content: "You’ve read about the importance of being courageous, rebellious and imaginative.You’ve read about the importance of being courageous, rebellious and imaginative.",
+                                                            buttonText: "Create your To Be Vision"))
+        guidedBucketList.append(GuidedTrackRowViewModel(heading: "step: 1",
+                                                        title: "Watch foundational videos",
+                                                        content: "Vides about read about the importance of courageous, rebellious and imaginative.",
+                                                        buttonText: "Watch"))
+        guidedBucketList.append(GuidedTrackRowViewModel(heading: "step: 2",
+                                                        title: "Explore 5 strategies",
+                                                        content: "Your To Be Vision is about read about the importa nce of courageous, rebelli ous and imaginative.",
+                                                        buttonText: "Explore"))
+        guidedBucketList.append(GuidedTrackRowViewModel(heading: "step: 3",
+                                                        title: "Explore the coach mode",
+                                                        content: "Event is about read about the importa nce of courageous, rebelli ous and imaginative.",
+                                                        buttonText: "Watch"))
+        guidedBucketList.append(GuidedTrackRowViewModel(heading: "step: 4",
+                                                        title: "Make your To Be Vision more meaningful",
+                                                        content: "Event is about read about the importa nce of courageous, rebelli ous and imaginative.",
+                                                        buttonText: "Fine Tune"))
+        guidedBucketList.append(GuidedTrackRowViewModel(heading: "step: 5",
+                                                        title: "Prepare for one event",
+                                                        content: "Event is about read about the importa nce of courageous, rebelli ous and imaginative.",
+                                                        buttonText: "Prepare"))
+        guidedtrackViewModel.guidedTrackList = guidedBucketList
+        return guidedtrackViewModel
+
     }
 
     func showDailyCheckIn() {
