@@ -9,12 +9,11 @@
 import Foundation
 
 final class MyQotSensorsPresenter {
-    // MARK: - Properties
 
+    // MARK: - Properties
     private weak var viewController: MyQotSensorsViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: MyQotSensorsViewControllerInterface) {
         self.viewController = viewController
     }
@@ -29,8 +28,11 @@ extension MyQotSensorsPresenter: MyQotSensorsPresenterInterface {
         viewController?.set(headerTitle: headerTitle, sensorTitle: sensorTitle)
     }
 
-    func setHealthKit(title: String, status: String, labelStatus: String) {
-        viewController?.setHealthKit(title: title, status: status, labelStatus: labelStatus)
+    func setHealthKit(title: String, status: String, labelStatus: String, buttonEnabled: Bool) {
+        viewController?.setHealthKit(title: title,
+                                     status: status,
+                                     labelStatus: labelStatus,
+                                     buttonEnabled: buttonEnabled)
     }
 
     func setOuraRing(title: String, status: String, labelStatus: String) {

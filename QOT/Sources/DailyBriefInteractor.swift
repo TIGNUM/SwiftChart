@@ -397,7 +397,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func saveUpdatedDailyCheckInSleepTarget(_ value: Double) {
         let bucketViewModel = self.viewModelOldList.filter { $0.domainModel?.bucketName == .DAILY_CHECK_IN_1 }.first as? ImpactReadinessCellViewModel
-        bucketViewModel?.targetReferenceArray![0] = (60 + value * 30) * 5 / 60   
+        bucketViewModel?.targetReferenceArray![0] = (60 + value * 30) * 5 / 60
     }
 
     func customzieSleepQuestion(completion: @escaping (RatingQuestionViewModel.Question?) -> Void) {

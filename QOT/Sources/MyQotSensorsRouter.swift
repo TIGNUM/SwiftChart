@@ -7,14 +7,15 @@
 //
 
 import Foundation
+import qot_dal
+import SafariServices
 
 final class MyQotSensorsRouter {
-    // MARK: - Properties
 
-    private let viewController: MyQotSensorsViewController
+    // MARK: - Properties
+    private weak var viewController: MyQotSensorsViewController?
 
     // MARK: - Init
-
     init(viewController: MyQotSensorsViewController) {
         self.viewController = viewController
     }
@@ -28,14 +29,19 @@ extension MyQotSensorsRouter: MyQotSensorsRouterInterface {
         case .requestTracker:
             presentAddSensorAlert(completion: {[weak self] text in
                 completion(text)
-                self?.viewController.showAlert(type: .addSensorCompletion)
+                self?.viewController?.showAlert(type: .addSensorCompletion)
             })
         }
+    }
+
+    func startOuraAuth(requestURL: URL, config: QDMOuraRingConfig) {
+        let safariVC = SFSafariViewController(url: requestURL)
+        viewController?.present(safariVC, animated: true, completion: nil)
+        viewController?.ouraRingAuthConfiguration = config
     }
 }
 
 // MARK: - Private
-
 private extension MyQotSensorsRouter {
     func presentAddSensorAlert(completion: @escaping (String) -> Void) {
         let alert = UIViewController.alert(forType: .addSensor)
@@ -47,6 +53,6 @@ private extension MyQotSensorsRouter {
         alert.addTextField(configurationHandler: { textField in
             textField.placeholder = R.string.localized.addSensorViewAlertPlaceholder()
         })
-        viewController.present(alert, animated: true)
+        viewController?.present(alert, animated: true)
     }
 }

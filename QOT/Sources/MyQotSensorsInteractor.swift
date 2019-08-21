@@ -7,16 +7,17 @@
 //
 
 import Foundation
+import qot_dal
+import HealthKit
 
 final class MyQotSensorsInteractor {
-    // MARK: - Properties
 
+    // MARK: - Properties
     private let worker: MyQotSensorsWorker
     private let presenter: MyQotSensorsPresenterInterface
     private let router: MyQotSensorsRouterInterface
 
     // MARK: - Init
-
     init(worker: MyQotSensorsWorker, presenter: MyQotSensorsPresenterInterface, router: MyQotSensorsRouterInterface) {
         self.worker = worker
         self.presenter = presenter
@@ -29,18 +30,35 @@ final class MyQotSensorsInteractor {
 }
 
 // MARK: - Interactor
-
 extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
+    func handleOuraRingAuthResultURL(url: URL, ouraRingAuthConfiguration: QDMOuraRingConfig?) {
+        worker.handleOuraRingAuthResultURL(url: url,
+                                           ouraRingAuthConfiguration: ouraRingAuthConfiguration) { [weak self] (tracker) in
+                                            self?.updateOuraStatus()
+        }
+    }
+
+    func requestHealthKitAuthorization() {
+        worker.requestHealthKitAuthorization { [weak self] (authorized) in
+            if authorized == true {
+                self?.updateHealthKitStatus()
+                self?.worker.importHealthKitData()
+            }
+        }
+    }
+
+    func requestAuraAuthorization() {
+        worker.requestAuraAuthorization { [weak self] (tracker, config) in
+            if let oauthConfig = config, let requestURL = oauthConfig.authRequestURL() {
+                self?.router.startOuraAuth(requestURL: requestURL, config: oauthConfig)
+            }
+        }
+    }
 
     func viewDidLoad() {
         presenter.setupView()
-        presenter.setOuraRing(title: worker.ouraSensor.sensor.title,
-                              status: worker.ouraSensor.sensor.status,
-                              labelStatus: worker.ouraSensor.sensor.labelStatus)
-        presenter.setHealthKit(title: worker.healthKitSensor.sensor.title,
-                               status: worker.healthKitSensor.sensor.status,
-                               labelStatus: worker.healthKitSensor.sensor.labelStatus)
-
+        updateOuraStatus()
+        updateHealthKitStatus()
         worker.headline {[weak self] (headline) in
             self?.worker.content({[weak self]  (content) in
                 self?.presenter.setSensor(title: headline ?? "", description: content ?? "")
@@ -51,6 +69,48 @@ extension MyQotSensorsInteractor: MyQotSensorsInteractorInterface {
             self?.worker.sensorTitle({[weak self]  (sensorText) in
                 self?.presenter.set(headerTitle: workerText, sensorTitle: sensorText)
             })
+        }
+    }
+}
+
+private extension MyQotSensorsInteractor {
+    func updateHealthKitStatus() {
+        var status: String = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
+        var buttonEnabled = false
+        switch worker.getHealthKitAuthStatus() {
+        case .notDetermined:
+            status = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
+            buttonEnabled = true
+        case .sharingAuthorized:
+            status = R.string.localized.sidebarSensorsMenuSensorsConnected()
+        case .sharingDenied:
+            HealthService.main.healthTrackerDataForToday { [weak self] (trackerData) in
+                if trackerData != nil {
+                    status = R.string.localized.sidebarSensorsMenuSensorsConnected()
+                } else {
+                    status = R.string.localized.sidebarSensorsMenuSensorsDenied()
+                }
+                self?.presenter.setHealthKit(title: self?.worker.healthKitSensor.sensor.title ?? "",
+                                       status: status,
+                                       labelStatus: self?.worker.healthKitSensor.sensor.labelStatus ?? "",
+                                       buttonEnabled: buttonEnabled)
+            }
+        }
+        presenter.setHealthKit(title: worker.healthKitSensor.sensor.title,
+                               status: status,
+                               labelStatus: worker.healthKitSensor.sensor.labelStatus,
+                               buttonEnabled: buttonEnabled)
+    }
+
+    func updateOuraStatus() {
+        worker.getOuraRingAuthStatus { [weak self] (authorized) in
+            var status = R.string.localized.sidebarSensorsMenuSensorsDisconnected()
+            if authorized == true {
+                status = R.string.localized.sidebarSensorsMenuSensorsConnected()
+            }
+            self?.presenter.setOuraRing(title: self?.worker.ouraSensor.sensor.title ?? "",
+                                        status: status,
+                                        labelStatus: self?.worker.ouraSensor.sensor.labelStatus ?? "")
         }
     }
 }

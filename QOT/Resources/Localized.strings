@@ -280,8 +280,10 @@
 "Sidebar.SettingsMenu.SecurityButton" = "SECURITY AND LEGAL";
 "Sidebar.SettingsMenu.LogoutButton" = "Logout";
 
+
 "Sidebar.SensorsMenu.Sensors" = "ACTIVITY TRACKERS";
 "Sidebar.SensorsMenu.Fitbit" = "FITBIT";
+"Sidebar.SensorsMenu.Sensors.Denied" = "Denied";
 "Sidebar.SensorsMenu.Sensors.Disconnected" = "Disconnected";
 "Sidebar.SensorsMenu.Sensors.Connected" = "Connected";
 "Sidebar.SensorsMenu.Sensors.Syncing" = "Syncing...";

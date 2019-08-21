@@ -88,6 +88,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             ScreenTitleService.main.load()
             swizzleUIViewController()
             swizzleUINavigationController()
+            importHealthKitDataIfAuthorized()
             importCalendarEventsIfAuthorized()
             ExternalLinkImporter.main.importLink()
             if isRunning {
@@ -181,6 +182,9 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
                      options: [UIApplicationOpenURLOptionsKey: Any] = [:]) -> Bool {
         if launchHandler.canLaunch(url: url) == true && URLScheme.isLaunchableHost(host: url.host) == true {
             launchHandler.process(url: url)
+        }
+        if url.host == "oura-integration" {
+            NotificationCenter.default.post(name: .requestOpenUrl, object: url)
         }
         return launchHandler.canLaunch(url: url)
     }
@@ -439,6 +443,15 @@ extension AppDelegate {
             qot_dal.CalendarService.main.importCalendarEvents()
         default:
             return
+        }
+    }
+}
+
+// MARK: - HealthKit Import Data
+private extension AppDelegate {
+    func importHealthKitDataIfAuthorized() {
+        if qot_dal.HealthService.main.isHealthDataAvailable() == true {
+            qot_dal.HealthService.main.importHealthKitSleepAnalysisData()
         }
     }
 }
