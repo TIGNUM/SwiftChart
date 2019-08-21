@@ -187,3 +187,26 @@ extension ScreenTitleService {
                                          buttonTitleDestructive: buttonTitleDestructive)
     }
 }
+
+// MARK: - My Data
+
+extension ScreenTitleService {
+    
+    func myDataSectionTitles(for myDataItem: MyDataSection) -> String? {
+        switch myDataItem {
+        case .dailyImpact:
+            return localizedString(for: .myDataDailyImpactSectionTitle)
+        case .heatMap:
+            return localizedString(for: .myDataHeatmapSectionTitle)
+        }
+    }
+    
+    func myDataSectionSubtitles(for myDataItem: MyDataSection) -> String? {
+        switch myDataItem {
+        case .dailyImpact:
+            return localizedString(for: .myDataDailyImpactSectionSubtitle)
+        case .heatMap:
+            return localizedString(for: .myDataHeatmapSectionSubtitle)
+        }
+    }
+}

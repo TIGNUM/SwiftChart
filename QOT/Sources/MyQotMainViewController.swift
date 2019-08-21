@@ -159,8 +159,12 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             interactor?.presentMyProfile()
         case .library:
             interactor?.presentMyLibrary()
+        case .preps:
+            interactor?.presentMyPreps()
         case .sprints:
             interactor?.presentMySprints()
+        case .data:
+            interactor?.presentMyDataScreen()
         case .toBeVision:
             interactor?.presentMyToBeVision()
         default:
