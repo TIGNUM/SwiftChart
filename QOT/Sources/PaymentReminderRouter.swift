@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class PaymentReminderRouter {
 
@@ -38,9 +39,9 @@ extension PaymentReminderRouter: PaymentReminderRouterInterface {
 
     func showLogoutDialog() {
         viewController?.showAlert(type: .logout, handlerDestructive: {
+            SessionService.main.logout()
             ExtensionsDataManager.didUserLogIn(false)
             UIApplication.shared.shortcutItems?.removeAll()
-            NotificationHandler.postNotification(withName: .logoutNotification)
         })
     }
 }

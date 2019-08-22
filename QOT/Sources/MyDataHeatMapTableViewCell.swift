@@ -9,16 +9,16 @@
 import UIKit
 
 protocol MyDataHeatMapTableViewCellDelegate: class {
-    
+
 }
 
 class MyDataHeatMapTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
-    
+
     weak var delegate: MyDataHeatMapTableViewCellDelegate?
     @IBOutlet weak var tempImageView: UIImageView!
-    
+
     func configure() {
-        
+
     }
 }

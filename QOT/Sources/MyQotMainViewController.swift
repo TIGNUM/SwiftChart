@@ -170,8 +170,6 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             interactor?.presentMyDataScreen()
         case .toBeVision:
             interactor?.presentMyToBeVision()
-        default:
-            interactor?.presentMyPreps()
         }
     }
 }

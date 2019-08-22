@@ -36,7 +36,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
-    lazy var logoutNotificationHandler = NotificationHandler(name: .logoutNotification)
+    lazy var userLogoutNotificationHandler = NotificationHandler(name: .userLogout)
+    lazy var automaticLogoutNotificationHandler = NotificationHandler(name: .automaticLogout)
     lazy var apnsDeviceTokenRegistrar = APNSDeviceTokenRegistrar()
     lazy var tabBarCoordinator: TabBarCoordinator? = {
         guard let services = services else { return nil }
@@ -125,10 +126,11 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         AppDelegate.current.shortcutHandlerDelegate = self
         AppCoordinator.appState.appCoordinator = self
         remoteNotificationHandler.delegate = self
-        logoutNotificationHandler.handler = { [weak self] (_: Notification) in
+        userLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
             self?.restart()
-            SessionService.main.logout()
-
+        }
+        automaticLogoutNotificationHandler.handler = { [weak self] (_: Notification) in
+            self?.restart()
         }
         locationManager.startSignificantLocationMonitoring(didUpdateLocations: sendLocationUpdate)
     }
@@ -137,7 +139,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         do {
             let services = try Services()
             self.services = services
-            guideMaxDays = services.settingsService.guideDays ?? 3
             AppCoordinator.appState.services = services
         } catch {
 
@@ -145,7 +146,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func start(completion: @escaping (() -> Void)) {
-        if UIApplication.shared.delegate?.window??.rootViewController as? BaseRootViewController == nil {
+        if UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController == nil {
             UIApplication.shared.delegate?.window??.rootViewController =
                 R.storyboard.bottomNavigation().instantiateInitialViewController()
         }
@@ -167,7 +168,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         dispatchGroup.notify(queue: .main) {
             if let error = setupError {
                 self.handleSetupError(error: error)
-            } else if self.authenticator.hasLoginCredentials() {
+            } else if qot_dal.SessionService.main.getCurrentSession() != nil {
                 self.showApp()
                 completion()
             } else {
@@ -178,10 +179,8 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func restart() {
-        sendAppEvent(.logout)
-        networkManager.cancelAllRequests()
-        navigate(to: AppCoordinator.Router.Destination(tabBar: .guide, topTabBar: .guide))
         logout()
+        UIApplication.shared.shortcutItems?.removeAll()
         showSigning()
     }
 
@@ -205,7 +204,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 do {
                     let services = try Services()
                     self.services = services
-                    guideMaxDays = services.settingsService.guideDays ?? 3
                     self.syncManager.userNotificationsManager = services.userNotificationsManager
                     AppCoordinator.appState.services = services
                     QOTUsageTimer.sharedInstance.userService = services.userService
@@ -236,10 +234,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func showApp() {
-        guard OnboardingCoordinator.isOnboardingComplete == true else {
-            self.showOnboarding()
-            return
-        }
         RestartHelper().checkRestartURLAndRoute()
         self.isReadyToProcessURL = true
 
@@ -442,16 +436,7 @@ extension AppCoordinator {
     }
 
     func didLogin() {
-        addMissingRealmObjectsAfterLogin()
-        startSync()
-        QOTUsageTimer.sharedInstance.startTimer()
-        if UserDefault.hasShownOnbordingSlideShowInAppBuild.stringValue == nil {
-            showTutorial()
-        } else {
-            showApp()
-        }
-        sendAppEvent(.login)
-        networkManager.performDeviceRequest()
+        showApp()
         userIsLoggingIn.value = false
     }
 }

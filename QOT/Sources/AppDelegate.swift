@@ -76,7 +76,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
 
     func application(_ application: UIApplication,
                      didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        AppDelegate.appState.orientationManager = OrientationManager()
 
         #if UNIT_TEST || BUILD_DATABASE
             Logger.shared.setup()
@@ -86,6 +85,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             #endif
             return true
         #else
+            if isRunning {
+                return true
+            }
+            isRunning = true
             ScreenTitleService.main.load()
             setupProgressHud()
             swizzleUIViewController()
@@ -93,10 +96,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             importHealthKitDataIfAuthorized()
             importCalendarEventsIfAuthorized()
             ExternalLinkImporter.main.importLink()
-            if isRunning {
-                return true
-            }
-            isRunning = true
             Logger.shared.setup()
             window = UIWindow(frame: UIScreen.main.bounds)
             addBadgeObserver()

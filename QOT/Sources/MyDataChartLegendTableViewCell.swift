@@ -10,7 +10,7 @@ import UIKit
 
 class MyDataChartLegendTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
-    
+
     @IBOutlet private weak var label: UILabel!
 
     func configure(labelString: String?) {
@@ -23,6 +23,6 @@ class MyDataChartLegendTableViewCell: UITableViewCell, Dequeueable {
                                                        lineSpacing: 9,
                                                        textColor: .sand60,
                                                        alignment: .left)
-        
+
     }
 }

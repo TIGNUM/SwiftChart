@@ -68,10 +68,10 @@ extension MyUniverseViewController {
 
 final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
-	@IBOutlet private weak var navBarTopConstraint: NSLayoutConstraint!
-	@IBOutlet private weak var scrollViewTopConstrain: NSLayoutConstraint!
-	@IBOutlet private weak var scrollViewBottomConstraint: NSLayoutConstraint!
-	@IBOutlet private weak var navBar: UINavigationBar! // FIXME: Remove nav bar from xib and place self in UINavigationController
+    @IBOutlet private weak var navBarTopConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var scrollViewTopConstrain: NSLayoutConstraint!
+    @IBOutlet private weak var scrollViewBottomConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var navBar: UINavigationBar! // FIXME: Remove nav bar from xib and place self in UINavigationController
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet weak var navItem: NavigationItem!
     private var config: Config
@@ -173,21 +173,24 @@ final class MyUniverseViewController: UIViewController, FullScreenLoadable {
 
 private extension MyUniverseViewController {
 
-	func reload() {
-		navItem.showTabMenuView(titles: config.pages.map { $0.pageTitle })
-		isLoading = viewData.isLoading
-		contentView.profileButton.kf.setBackgroundImage(
-			with: viewData.profileImageURL,
-			for: .normal,
-			placeholder: config.profileImagePlaceholder) { [weak self] (image, _, _, _) in
-				guard let `self` = self, let image = image else { return }
-				DispatchQueue.global(qos: .userInitiated).async {
-					let processed = UIImage.makeGrayscale(image)
-					DispatchQueue.main.async {
-						self.contentView.profileButtonOverlay.image = processed
-					}
-				}
-		}
+    func reload() {
+        navItem.showTabMenuView(titles: config.pages.map { $0.pageTitle })
+        isLoading = viewData.isLoading
+        contentView.profileButton.kf.setBackgroundImage(
+            with: viewData.profileImageURL,
+            for: .normal,
+            placeholder: config.profileImagePlaceholder) { [weak self] (result) in
+                switch result {
+                case .success(let value):
+                    DispatchQueue.global(qos: .userInitiated).async {
+                        let processed = UIImage.makeGrayscale(value.image)
+                        DispatchQueue.main.async {
+                            self?.contentView.profileButtonOverlay.image = processed
+                        }
+                    }
+                default: break
+                }
+        }
 
         // reset partner buttons first
         for partnerButton in contentView.partnerButtons {
@@ -211,13 +214,13 @@ private extension MyUniverseViewController {
         // scroll view
         automaticallyAdjustsScrollViewInsets = false
         scrollView.addSubview(contentView)
-		if #available(iOS 11.0, *) {
+        if #available(iOS 11.0, *) {
 
-		} else {
-			navBarTopConstraint.constant = navBarTopConstraint.constant + Layout.padding_24
-			scrollViewTopConstrain.constant = navBarTopConstraint.constant
-			scrollViewBottomConstraint.constant = Layout.statusBarHeight
-		}
+        } else {
+            navBarTopConstraint.constant = navBarTopConstraint.constant + Layout.padding_24
+            scrollViewTopConstrain.constant = navBarTopConstraint.constant
+            scrollViewBottomConstraint.constant = Layout.statusBarHeight
+        }
         // content view
         contentView.delegate = self
         contentView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(contentViewTapped(_:))))
@@ -242,7 +245,7 @@ private extension MyUniverseViewController {
     func setupScrollViewContent() {
         // set scrollView content size
         let contentSize = CGSize(width: config.pages.reduce(0.0, { $0 + scrollView.bounds.width * $1.widthPercentage }),
-								 height: scrollView.bounds.height)
+                                 height: scrollView.bounds.height)
         if scrollView.contentSize != contentSize {
             scrollView.contentSize = contentSize
         }

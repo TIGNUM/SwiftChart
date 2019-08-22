@@ -15,7 +15,7 @@ final class MyDataExplanationViewController: UIViewController {
     var router: MyDataExplanationRouterInterface?
     @IBOutlet private weak var tableView: UITableView!
     private var myDataExplanationModel: MyDataExplanationModel?
-    
+
     // MARK: - Init
     init(configure: Configurator<MyDataExplanationViewController>) {
         super.init(nibName: nil, bundle: nil)
@@ -39,7 +39,7 @@ extension MyDataExplanationViewController: UITableViewDelegate, UITableViewDataS
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return myDataExplanationModel?.myDataExplanationItems.count ?? 0
     }
-    
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyDataExplanationScreenTableViewCell = tableView.dequeueCell(for: indexPath)
         let backgroundView = UIView()
@@ -48,13 +48,13 @@ extension MyDataExplanationViewController: UITableViewDelegate, UITableViewDataS
         cell.backgroundColor = .carbonNew
         cell.layoutMargins = .zero
         cell.preservesSuperviewLayoutMargins = false
-        
+
         cell.configure(title: myDataExplanationModel?.myDataExplanationItems[indexPath.row].title,
                        subtitle: myDataExplanationModel?.myDataExplanationItems[indexPath.row].subtitle)
-        
+
         return cell
     }
-    
+
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return UIView.init(frame: CGRect.init(x: 0, y: 0, width: tableView.frame.size.width, height: 80))
     }
@@ -79,8 +79,7 @@ extension MyDataExplanationViewController: MyDataExplanationViewControllerInterf
     func setupView() {
         setupTableView()
     }
-    
-    
+
     func setup(for myDataExplanationSection: MyDataExplanationModel) {
         myDataExplanationModel = myDataExplanationSection
     }

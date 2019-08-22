@@ -191,7 +191,7 @@ extension ScreenTitleService {
 // MARK: - My Data
 
 extension ScreenTitleService {
-    
+
     func myDataSectionTitles(for myDataItem: MyDataSection) -> String? {
         switch myDataItem {
         case .dailyImpact:
@@ -200,7 +200,7 @@ extension ScreenTitleService {
             return localizedString(for: .myDataHeatmapSectionTitle)
         }
     }
-    
+
     func myDataSectionSubtitles(for myDataItem: MyDataSection) -> String? {
         switch myDataItem {
         case .dailyImpact:
@@ -212,7 +212,7 @@ extension ScreenTitleService {
 }
 
 extension ScreenTitleService {
-    
+
     func myDataExplanationSectionTitles(for myDataExplanationItem: MyDataExplanationSection) -> String? {
         switch myDataExplanationItem {
         case .SQL:
@@ -231,7 +231,7 @@ extension ScreenTitleService {
             return localizedString(for: .myDataExplanationIRSectionTitle)
         }
     }
-    
+
     func myDataExplanationSectionSubtitles(for myDataExplanationItem: MyDataExplanationSection) -> String? {
         switch myDataExplanationItem {
         case .SQL:

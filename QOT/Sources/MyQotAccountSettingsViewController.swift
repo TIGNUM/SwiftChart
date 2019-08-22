@@ -94,6 +94,7 @@ extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewController
         showAlert(type: .logout, handlerDestructive: { [weak self] in
             let key = self?.interactor?.logoutQOTKey
             self?.trackUserEvent(.SELECT, valueType: key, action: .TAP)
+            self?.dismiss(animated: false, completion: nil)
             self?.interactor?.logout()
         })
     }

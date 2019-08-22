@@ -48,10 +48,7 @@ extension BaseRootViewController {
             hideBottomNavigation()
             return
         }
-
-        UIView.animate(withDuration: 0.1) {
-            self.naviBackground.tintColor = navigationItem.backgroundColor
-        }
+        self.naviBackground.tintColor = navigationItem.backgroundColor
 
         handleNavigationItems(leftItems: navigationItem.leftBarButtonItems,
                               rightItems: navigationItem.rightBarButtonItems)
@@ -83,13 +80,13 @@ extension BaseRootViewController {
 
     func hideBottomNavigation() {
         self.bottomNavigationContainer.isUserInteractionEnabled = false
-        UIView.animate(withDuration: 0.1) {
+        UIView.animate(withDuration: 0.05) {
             self.bottomNavigationContainer.alpha = 0
         }
     }
 
     func showButtomNavigation() {
-        UIView.animate(withDuration: 0.1, animations: {
+        UIView.animate(withDuration: 0.05, animations: {
             self.bottomNavigationContainer.alpha = 1
         }, completion: { (finished) in
             self.bottomNavigationContainer.isUserInteractionEnabled = true

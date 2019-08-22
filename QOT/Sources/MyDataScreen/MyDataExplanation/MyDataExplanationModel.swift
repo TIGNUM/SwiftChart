@@ -16,7 +16,7 @@ enum MyDataExplanationSection: Int, CaseIterable {
     case fiveDRL
     case fiveDIR
     case IR
-    
+
     static var sectionValues: [MyDataExplanationSection] {
         return [.SQL, .SQN, .tenDL, .fiveDRR, .fiveDRL, .fiveDIR, .IR]
     }
@@ -24,7 +24,7 @@ enum MyDataExplanationSection: Int, CaseIterable {
 
 struct MyDataExplanationModel {
     let myDataExplanationItems: [ExplanationItem]
-    
+
     struct ExplanationItem {
         let myDataExplanationSection: MyDataExplanationSection
         let title: String?

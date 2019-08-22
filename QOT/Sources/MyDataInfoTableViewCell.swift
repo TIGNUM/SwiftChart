@@ -15,7 +15,7 @@ protocol MyDataInfoTableViewCellDelegate: class {
 class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
     let infoText = " ⓘ"
     // MARK: - Properties
-    
+
     weak var delegate: MyDataInfoTableViewCellDelegate?
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
@@ -38,9 +38,9 @@ class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
                                                           alignment: .left)
         addInfoLink()
     }
-    
+
     // MARK: Add the circle info charcter with tap action
-    
+
     func addInfoLink() {
         guard let subtitle = subtitleLabel.attributedText else {
             return
@@ -58,7 +58,7 @@ class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
         subtitleMutable.append(infoLinkAttributtedString)
         subtitleLabel.attributedText = subtitleMutable
     }
-    
+
     @objc func handleInfoTapped(gesture: UITapGestureRecognizer) {
         guard let subtitleString = subtitleLabel.text else {
             return
@@ -67,13 +67,13 @@ class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
         let infoRange = subtitle.range(of: infoText)
         let tapLocation = gesture.location(in: subtitleLabel)
         let index = subtitleLabel.indexOfAttributedTextCharacterAtPoint(point: tapLocation)
-        
+
         if checkRange(infoRange, contain: index) == true {
             delegate?.didTapInfoButton()
             return
         }
     }
-    
+
     func checkRange(_ range: NSRange, contain index: Int) -> Bool {
         return index > range.location && index < range.location + range.length
     }

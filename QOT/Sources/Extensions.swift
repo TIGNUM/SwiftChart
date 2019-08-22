@@ -616,8 +616,13 @@ extension UIImageView {
                 kf.setImage(with: url,
                             placeholder: defaultImage,
                             options: options,
-                            progressBlock: nil) { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
-                                completion?(image, error)
+                            progressBlock: nil) { (result) in
+                                switch result {
+                                case .success(let value):
+                                    completion?(value.image, nil)
+                                case .failure(let error):
+                                    completion?(nil, error)
+                                }
                 }
             }
         } else if let defaultImage = defaultImage {
@@ -651,8 +656,14 @@ extension UIButton {
                 completion?(image, nil)
             } else {
                 let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
-                kf.setImage(with: url, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
-                    completion?(image, error)
+                kf.setImage(with: url, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil,
+                            completionHandler: { (result) in
+                                switch result {
+                                case .success(let value):
+                                    completion?(value.image, nil)
+                                case .failure(let error):
+                                    completion?(nil, error)
+                                }
                 })
             }
         } else if let defaultImage = defaultImage {
@@ -671,8 +682,14 @@ extension UIButton {
                 completion?(image, nil)
             } else {
                 let options: [KingfisherOptionsInfoItem] = [.targetCache(KingfisherManager.shared.cache)]
-                kf.setBackgroundImage(with: url, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil, completionHandler: { (image: Image?, error: NSError?, cacheType: CacheType, url: URL?) in
-                    completion?(image, error)
+                kf.setBackgroundImage(with: url, for: .normal, placeholder: defaultImage, options: options, progressBlock: nil,
+                                      completionHandler: { (result) in
+                                        switch result {
+                                        case .success(let value):
+                                            completion?(value.image, nil)
+                                        case .failure(let error):
+                                            completion?(nil, error)
+                                        }
                 })
             }
         } else if let defaultImage = defaultImage {

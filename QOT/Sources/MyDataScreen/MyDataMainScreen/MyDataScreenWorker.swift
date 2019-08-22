@@ -15,11 +15,11 @@ final class MyDataScreenWorker {
     private let dataService: qot_dal.MyDataService
 
     // MARK: - Init
-    
+
     init(dataService: qot_dal.MyDataService) {
         self.dataService = dataService
     }
-    
+
 //    func getMyDataResults() {
 //        MyDataService.main.getDailyCheckInResults(from: Date().dateAfterDays(-10),
 //                                                  to: Date(),
@@ -27,7 +27,6 @@ final class MyDataScreenWorker {
 //        })
 //    }
 }
-
 
 extension MyDataScreenWorker: MyDataWorkerInterface {
     func myDataSections() -> MyDataScreenModel {

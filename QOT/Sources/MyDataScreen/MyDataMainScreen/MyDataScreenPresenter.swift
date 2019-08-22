@@ -24,7 +24,7 @@ extension MyDataScreenPresenter: MyDataScreenPresenterInterface {
     func present(for myDataSection: MyDataScreenModel) {
         viewController?.setup(for: myDataSection)
     }
-    
+
     func setupView() {
         viewController?.setupView()
     }

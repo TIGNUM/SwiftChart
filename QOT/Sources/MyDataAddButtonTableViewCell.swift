@@ -16,18 +16,18 @@ class MyDataAddButtonTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
     @IBOutlet weak var addButton: UIButton!
     weak var delegate: MyDataAddButtonTableViewCellDelegate?
-    
+
     // MARK: Lifecycle
-    
+
     override func awakeFromNib() {
         super.awakeFromNib()
         addButton.layer.cornerRadius = 20.0
         addButton.layer.borderWidth = 1.0
         addButton.layer.borderColor = UIColor.accent40.cgColor
     }
-    
+
     // MARK: Actions
-    
+
     @IBAction func didTapAddButton(_ sender: Any) {
         delegate?.didTapAddButton()
     }

@@ -9,16 +9,16 @@
 import UIKit
 
 protocol MyDataCharTableViewCellDelegate: class {
-    
+
 }
 
 class MyDataCharTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
-    
+
     weak var delegate: MyDataCharTableViewCellDelegate?
     @IBOutlet weak var tempImageView: UIImageView!
-    
+
     func configure() {
-        
+
     }
 }

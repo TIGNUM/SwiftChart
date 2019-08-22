@@ -105,16 +105,16 @@
 	</dict>
 	<key>NSCalendarsUsageDescription</key>
 	<string>QOT needs access to calendar to prepare events and to create calendar events.</string>
-    <key>NSHealthShareUsageDescription</key>
-    <string>HEALTH KIT ACCESS REQUEST</string>
-    <key>NSHealthUpdateUsageDescription</key>
-    <string>HEALTH KIT ACCESS REQUEST</string>
-	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
-	<string>QOT needs HealthKit access to measure your sleep quantity.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>QOT needs camera access for changing images.</string>
 	<key>NSContactsUsageDescription</key>
 	<string>QOT needs access to contacts to create calendar events.</string>
+	<key>NSHealthClinicalHealthRecordsShareUsageDescription</key>
+	<string>QOT needs HealthKit access to measure your sleep quantity.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>HEALTH KIT ACCESS REQUEST</string>
+	<key>NSHealthUpdateUsageDescription</key>
+	<string>HEALTH KIT ACCESS REQUEST</string>
 	<key>NSHumanReadableCopyright</key>
 	<false/>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>

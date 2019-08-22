@@ -17,7 +17,7 @@ final class MyDataSelectionInteractor {
     // MARK: - Init
     init(worker: MyDataSelectionWorker, presenter: MyDataSelectionPresenterInterface) {
         self.worker = worker
-        self.presenter = presenter        
+        self.presenter = presenter
     }
 
     // MARK: - Interactor

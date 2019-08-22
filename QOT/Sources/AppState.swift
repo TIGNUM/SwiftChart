@@ -23,7 +23,7 @@ final class AppState {
     var networkManager: NetworkManager!
     var permissionsManager: PermissionsManager!
     var syncManager: SyncManager!
-    var orientationManager: OrientationManager!
+    var orientationManager: OrientationManager = OrientationManager()
 
     private init() {}
 }

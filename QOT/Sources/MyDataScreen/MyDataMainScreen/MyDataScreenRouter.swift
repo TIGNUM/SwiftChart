@@ -24,11 +24,11 @@ extension MyDataScreenRouter: MyDataScreenRouterInterface {
     func dismiss() {
         viewController?.dismiss(animated: true, completion: nil)
     }
-    
+
     func presentMyDataExplanation() {
         viewController?.performSegue(withIdentifier: R.segue.myDataScreenViewController.mydataExplanationSegueIdentifier, sender: nil)
     }
-    
+
     func presentMyDataSelection() {
         viewController?.performSegue(withIdentifier: R.segue.myDataScreenViewController.mydataSelectionSegueIdentifier, sender: nil)
     }

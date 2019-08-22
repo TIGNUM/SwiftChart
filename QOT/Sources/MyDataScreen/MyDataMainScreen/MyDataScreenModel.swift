@@ -17,16 +17,16 @@ struct MyDataModel {
     var fiveDayRollingRecovery: Double?
     var fiveDayRollingLoad: Double?
     var fiveDayImpactReadiness: Double?
-    
+
     init(withDailyCheckInResult: QDMDailyCheckInResult) {
-        
+
     }
 }
 
 enum MyDataSection: Int, CaseIterable {
     case dailyImpact = 0
     case heatMap
-    
+
     static var sectionValues: [MyDataSection] {
         return [.dailyImpact, .heatMap]
     }
@@ -34,15 +34,15 @@ enum MyDataSection: Int, CaseIterable {
 
 struct MyDataScreenModel {
     let myDataItems: [Item]
-    
+
     struct Item {
         let myDataSection: MyDataSection
         let title: String?
         let subtitle: String?
     }
-    
+
     // MARK: - Properties
-    
+
     func sectionItem(at index: Int) -> MyDataSection {
         return MyDataSection.sectionValues.item(at: index)
     }

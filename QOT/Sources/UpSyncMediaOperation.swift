@@ -134,7 +134,9 @@ final class UpSyncMediaOperation: ConcurrentOperation {
             throw SimpleError(localizedDescription: "couldn't load image with url \(url)")
         }
         log("caching image with key \(key)")
-        KingfisherManager.shared.cache.store(image, forKey: key, completionHandler: completion)
+        KingfisherManager.shared.cache.store(image, forKey: key, completionHandler: { (result) in
+            completion()
+        })
     }
 
     private func uncacheImage(withKey key: String, completion: @escaping () -> Void) {

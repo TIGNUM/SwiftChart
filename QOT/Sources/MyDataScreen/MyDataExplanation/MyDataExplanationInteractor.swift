@@ -17,7 +17,7 @@ final class MyDataExplanationInteractor {
     // MARK: - Init
     init(worker: MyDataExplanationWorker, presenter: MyDataExplanationPresenterInterface) {
         self.worker = worker
-        self.presenter = presenter        
+        self.presenter = presenter
     }
 
     // MARK: - Interactor

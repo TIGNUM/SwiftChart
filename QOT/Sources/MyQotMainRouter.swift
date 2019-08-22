@@ -78,7 +78,7 @@ extension MyQotMainRouter: MyQotMainRouterInterface {
             viewController.pushToStart(childViewController: myLibraryController)
         }
     }
-    
+
     func presentMyDataScreen() {
         let storyboardID = R.storyboard.myDataScreen.myDataScreenViewControllerID.identifier
         let myDataScreenViewController = R.storyboard

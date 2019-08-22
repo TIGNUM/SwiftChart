@@ -27,9 +27,8 @@ final class MyQotAccountSettingsWorker {
     }
 
     func logout() {
+        qot_dal.SessionService.main.logout()
         ExtensionsDataManager.didUserLogIn(false)
-        UIApplication.shared.shortcutItems?.removeAll()
-        NotificationHandler.postNotification(withName: .logoutNotification)
     }
 
     func resetPassword(completion: @escaping (NetworkError?) -> Void) {

@@ -57,7 +57,7 @@ extension MyQotMainInteractor: MyQotMainInteractorInterface {
     func presentMyLibrary() {
         router.presentMyLibrary()
     }
-    
+
     func presentMyDataScreen() {
         router.presentMyDataScreen()
     }

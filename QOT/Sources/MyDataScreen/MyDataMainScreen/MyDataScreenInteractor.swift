@@ -34,7 +34,7 @@ extension MyDataScreenInteractor: MyDataScreenInteractorInterface {
     func presentMyDataExplanation() {
         router.presentMyDataExplanation()
     }
-    
+
     func presentMyDataSelection() {
         router.presentMyDataSelection()
     }
