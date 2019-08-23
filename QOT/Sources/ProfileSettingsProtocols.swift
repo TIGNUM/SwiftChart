@@ -25,5 +25,12 @@ protocol ProfileSettingsInteractorInterface: Interactor {
     func row(at indexPath: IndexPath) -> SettingsRow
     func headerTitle(in section: Int) -> String
     func updateUser(_ profile: QDMUser)
+    func showUpdateConfirmationScreen()
+    func closeUpdateConfirmationScreen(completion: (() -> Void)?)
     var profile: QDMUser? { get set }
+}
+
+protocol ProfileSettingsRouterInterface {
+    func closeUpdateConfirmationScreen(completion: (() -> Void)?)
+    func showUpdateConfirmationScreen()
 }

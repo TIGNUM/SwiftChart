@@ -19,12 +19,9 @@ protocol SettingsViewControllerDelegate: class {
     func didTapResetPassword(completion: @escaping (NetworkError?) -> Void)
 }
 
-final class ProfileSettingsViewController: UIViewController {
+final class ProfileSettingsViewController: UITableViewController {
 
     // MARK: - Properties
-
-    @IBOutlet private weak var infoView: InfoHelperView!
-    @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerTitle: UILabel!
     @IBOutlet private weak var keyboardInputView: MyQotProfileSettingsKeybaordInputView!
 
@@ -40,34 +37,20 @@ final class ProfileSettingsViewController: UIViewController {
     private var pickerViewHeight: NSLayoutConstraint?
     private var pickerInitialSelection = [Index]()
     private var pickerIndexPath = IndexPath(item: 0, section: 0)
-    private let keyboardListener = KeyboardListener()
-    private var scrollViewContentHeightConstraint = NSLayoutConstraint()
 
     var interactor: ProfileSettingsInteractorInterface?
     var networkManager: NetworkManager!
     var launchOptions: [LaunchOption: String?]?
 
     // MARK: - Life Cycle
-
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         setupView()
-        scrollViewContentHeightConstraint.constant = tableView.contentInset.bottom
-        keyboardListener.onStateChange { [unowned self] (state) in
-            self.handleKeyboardChange(state: state)
-        }
-    }
-
-    @available(iOS 11.0, *)
-    override func viewSafeAreaInsetsDidChange() {
-        super.viewSafeAreaInsetsDidChange()
-        syncScrollViewLayout()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        keyboardListener.startObserving()
         UIApplication.shared.statusBarView?.backgroundColor = .carbon
     }
 
@@ -75,87 +58,29 @@ final class ProfileSettingsViewController: UIViewController {
         super.viewDidAppear(animated)
         trackPage()
     }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        keyboardListener.stopObserving()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        registerCells()
-        syncScrollViewLayout()
-    }
 }
 
 // MARK: - SettingsMenuViewController Interface
-
 extension ProfileSettingsViewController: ProfileSettingsViewControllerInterface {
-
     func setup(profile: QDMUser) {
         tableView.reloadData()
     }
 }
 
 // MARK: - Private
-
 private extension ProfileSettingsViewController {
-
-    @objc func didPressCancel() {
-        trackUserEvent(.CANCEL, action: .TAP)
-        hideInfoView(bottomNavigationRightBarItems() ?? [])
-    }
-
-    @objc func didPressLeave() {
+    func didPressLeave() {
         trackUserEvent(.YES_LEAVE, action: .TAP)
         dismiss()
     }
 
-    private func hideInfoView(_ rightBarButtonItems: [UIBarButtonItem]) {
-        infoView.isHidden = true
-        updateBottomNavigation([], rightBarButtonItems)
-    }
-
-    private func showInfoView() {
-        infoView.setBottomContentInset(BottomNavigationContainer.height)
-        infoView.backgroundColor = .carbonDark
-        infoView.set(icon: R.image.ic_warning(), title: R.string.localized.profileConfirmationHeader().uppercased(), text: R.string.localized.profileConfirmationDescription())
-        infoView.isHidden = false
-        let cancelItem = cancelButtonItem(#selector(didPressCancel))
-        let continueItem = continueButtonItem(#selector(didPressLeave))
-        updateBottomNavigation([], [continueItem, cancelItem])
-    }
-
     func setupView() {
+        registerCells()
         interactor?.editAccountTitle({[weak self] (text) in
             self?.headerTitle.text = text
         })
         view.backgroundColor = .carbon
         keyboardInputView.delegate = self
-    }
-
-    func syncScrollViewLayout() {
-        let contentHeight = view.bounds.height - safeAreaInsets.top - safeAreaInsets.bottom
-        scrollViewContentHeightConstraint.constant = contentHeight
-        let spaceBellowCollectionView = contentHeight - tableView.frame.maxY
-        let bottomInset = max(keyboardListener.state.height - spaceBellowCollectionView, safeAreaInsets.bottom)
-        tableView.contentInset.bottom = bottomInset
-    }
-
-    func handleKeyboardChange(state: KeyboardListener.State) {
-        switch state {
-        case .idle:
-            break
-        case .willChange(_, _, let duration, let curve):
-            syncScrollViewLayout()
-            let options = UIViewAnimationOptions(curve: curve)
-            let contentHeight = scrollViewContentHeightConstraint.constant
-            let minY = tableView.contentInset.top
-            let yPos = max(contentHeight - tableView.bounds.height + tableView.contentInset.bottom, -minY)
-            UIView.animate(withDuration: duration, delay: 0, options: options, animations: {
-                self.tableView.contentOffset.y = yPos
-            })
-        }
     }
 
     func registerCells() {
@@ -172,9 +97,7 @@ private extension ProfileSettingsViewController {
 }
 
 // MARK: - Private PickerView
-
 extension ProfileSettingsViewController {
-
     @objc func dateChanged(_ sender: UIDatePicker) {
         shouldAllowSave = true
         let dateOfBirth = DateFormatter.settingsUser.string(from: sender.date)
@@ -232,29 +155,27 @@ extension ProfileSettingsViewController {
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
-
-extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDelegate {
-
-    func numberOfSections(in tableView: UITableView) -> Int {
+extension ProfileSettingsViewController {
+    override func numberOfSections(in tableView: UITableView) -> Int {
         return interactor?.numberOfSections() ?? 0
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return interactor?.numberOfItemsInSection(in: section) ?? 0
     }
 
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 52
     }
 
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
         headerView.config = TitleTableHeaderView.Config(backgroundColor: .carbon)
         headerView.title = interactor?.headerTitle(in: section) ?? ""
         return headerView
     }
 
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let interactor = self.interactor else {
             fatalError("Interactor does not exist")
         }
@@ -269,7 +190,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
         return settingsCell
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let interactor = self.interactor else { return }
         tableView.deselectRow(at: indexPath, animated: true)
         switch interactor.row(at: indexPath) {
@@ -300,9 +221,7 @@ extension ProfileSettingsViewController: UITableViewDataSource, UITableViewDeleg
 }
 
 // MARK: - Reset password
-
 extension ProfileSettingsViewController {
-
     func didTapResetPassword(completion: @escaping (NetworkError?) -> Void) {
         SVProgressHUD.show()
         let userEmail = interactor?.profile?.email ?? ""
@@ -332,7 +251,6 @@ extension ProfileSettingsViewController {
 }
 
 extension ProfileSettingsViewController: SettingsViewControllerDelegate {
-
     func didChangeNotificationValue(sender: UISwitch, settingsCell: SettingsTableViewCell, key: String?) {
 
     }
@@ -390,9 +308,7 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
 }
 
 // MARK: - UIPickerViewDelegate, UIPickerViewDataSource
-
 extension ProfileSettingsViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }
@@ -419,7 +335,7 @@ extension ProfileSettingsViewController: MyQotProfileSettingsKeybaordInputViewPr
     @objc func didCancel() {
         view.endEditing(true)
         if shouldAllowSave {
-            showInfoView()
+            interactor?.showUpdateConfirmationScreen()
         } else {
             dismiss()
         }
@@ -435,6 +351,28 @@ extension ProfileSettingsViewController: MyQotProfileSettingsKeybaordInputViewPr
     func dismiss() {
         guard let navController = self.navigationController else { return }
         navController.dismiss(animated: true, completion: nil)
+    }
+}
+
+// MARK: - PopUpViewControllerProtocol
+extension ProfileSettingsViewController: PopUpViewControllerProtocol {
+    func leftButtonAction() {
+        interactor?.closeUpdateConfirmationScreen(completion: { [weak self] in
+            self?.trackUserEvent(.CANCEL, action: .TAP)
+        })
+    }
+
+    func rightButtonAction() {
+        trackUserEvent(.YES_LEAVE, action: .TAP)
+        interactor?.closeUpdateConfirmationScreen(completion: { [weak self] in
+            self?.didPressLeave()
+        })
+    }
+
+    func cancelAction() {
+        interactor?.closeUpdateConfirmationScreen(completion: { [weak self] in
+            self?.trackUserEvent(.CANCEL, action: .TAP)
+        })
     }
 }
 

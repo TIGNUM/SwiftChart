@@ -10,7 +10,6 @@ import UIKit
 import qot_dal
 
 enum ProfileField {
-
 	case telephone
 	case jobTitle
     case givenName
@@ -23,12 +22,16 @@ enum ProfileField {
 
 final class ProfileSettingsInteractor {
 
-    let worker: ProfileSettingsWorker
-    let presenter: ProfileSettingsPresenterInterface
+    private let worker: ProfileSettingsWorker
+    private let presenter: ProfileSettingsPresenterInterface
+    private let router: ProfileSettingsRouterInterface
 
-    init(worker: ProfileSettingsWorker, presenter: ProfileSettingsPresenterInterface) {
+    init(worker: ProfileSettingsWorker,
+         presenter: ProfileSettingsPresenterInterface,
+         router: ProfileSettingsRouterInterface) {
         self.worker = worker
         self.presenter = presenter
+        self.router = router
     }
 
     func viewDidLoad() {
@@ -40,8 +43,14 @@ final class ProfileSettingsInteractor {
 }
 
 // MARK: - SettingsMenuInteractor Interface
-
 extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
+    func closeUpdateConfirmationScreen(completion: (() -> Void)?) {
+        router.closeUpdateConfirmationScreen(completion: completion)
+    }
+
+    func showUpdateConfirmationScreen() {
+        router.showUpdateConfirmationScreen()
+    }
 
     func editAccountTitle(_ completion: @escaping (_ userData: String) -> Void) {
         worker.editAccountTitle { (text) in

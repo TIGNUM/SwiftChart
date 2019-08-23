@@ -617,7 +617,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             let peakPerformanceIntroText  = dailyCheckIn2.contentCollections?.filter {$0.searchTags.contains("intro")}.first?.contentItems.first?.valueText
             let performanceCount = dailyCheckIn2.dailyCheckInAnswers?.first?.PeakPerformanceCount ?? 0
             let performanceTag = "\(performanceCount)_performances"
-            let performanceContentItem = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first
+            _ = dailyCheckIn2.contentCollections?.filter { $0.searchTags.contains(performanceTag) }.first?.contentItems.first
             let model = DailyCheckIn2PeakPerformanceModel(title: peakPerformanceTitle, intro: peakPerformanceIntroText)
             dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel = model
         }

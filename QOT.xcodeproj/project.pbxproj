@@ -5737,8 +5737,8 @@
 				9115F709208DE05100EE5D1D /* ProfileSettingsProtocols.swift */,
 				9115F6FE208DDFD700EE5D1D /* ProfileSettingsRouter.swift */,
 				91086E38208F0BE50035DA1F /* ProfileSettingsViewController.swift */,
-				5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */,
 				9115F700208DDFEB00EE5D1D /* ProfileSettingsWorker.swift */,
+				5F548B9D228F07CB00ED6543 /* ProfileSettingsViewController.xib */,
 			);
 			name = Core;
 			sourceTree = "<group>";

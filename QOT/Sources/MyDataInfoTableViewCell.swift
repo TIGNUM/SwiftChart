@@ -12,13 +12,13 @@ protocol MyDataInfoTableViewCellDelegate: class {
     func didTapInfoButton()
 }
 
-class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
-    let infoText = " ⓘ"
-    // MARK: - Properties
+final class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
 
+    // MARK: - Properties
     weak var delegate: MyDataInfoTableViewCellDelegate?
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
+    let infoText = " ⓘ"
 
     func configure(title: String?, subtitle: String?) {
         guard let title = title, let subtitle = subtitle else {
@@ -40,7 +40,6 @@ class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
     }
 
     // MARK: Add the circle info charcter with tap action
-
     func addInfoLink() {
         guard let subtitle = subtitleLabel.attributedText else {
             return

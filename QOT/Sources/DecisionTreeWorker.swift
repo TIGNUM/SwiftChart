@@ -444,9 +444,15 @@ internal extension DecisionTreeWorker {
             continueButtonIsHidden = false
         default: return
         }
+        switch type {
+        case .mindsetShifterTBVOnboarding:
+            backgroundColor = type.backgroundColor
+        default:
+            break
+        }
         interactor?.syncButtons(previousButtonIsHidden: previousButtonIsHidden,
                                 continueButtonIsHidden: continueButtonIsHidden,
-                                backgroundColor: type.backgroundColor)
+                                backgroundColor: backgroundColor)
         updateBottomButtonTitle()
     }
 
