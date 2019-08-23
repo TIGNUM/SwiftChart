@@ -204,7 +204,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
                 do {
                     let services = try Services()
                     self.services = services
-                    self.syncManager.userNotificationsManager = services.userNotificationsManager
                     AppCoordinator.appState.services = services
                     QOTUsageTimer.sharedInstance.userService = services.userService
                     _ = self.tabBarCoordinator

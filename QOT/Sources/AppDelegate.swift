@@ -90,6 +90,7 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             }
             isRunning = true
             ScreenTitleService.main.load()
+            _ = UserNotificationsManager.main
             setupProgressHud()
             swizzleUIViewController()
             swizzleUINavigationController()
@@ -136,7 +137,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
             reachabilityOfSinging()
             importShareExtensionLink()
             appCoordinator.checkVersionIfNeeded()
-            appCoordinator.sendAppEvent(.foreground)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -160,11 +160,10 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
             return
         #else
-            QOTUsageTimer.sharedInstance.startTimer()
-            appCoordinator.appDidBecomeActive()
             appCoordinator.checkVersionIfNeeded()
             sendSiriEventsIfNeeded()
             appCoordinator.sendAppEvent(.didBecomeActive)
+            NotificationCenter.default.post(name: .requestSynchronization, object: nil)
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }
 
@@ -172,8 +171,6 @@ final class AppDelegate: UIResponder, UIApplicationDelegate, AppStateAccess {
         #if UNIT_TEST || BUILD_DATABASE
             return
         #else
-            QOTUsageTimer.sharedInstance.stopTimer()
-            appCoordinator.sendAppEvent(.willResignActive)
             updateBadgeNumber()
         #endif //#if UNIT_TEST || BUILD_DATABASE
     }

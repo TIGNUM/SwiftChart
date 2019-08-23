@@ -8,6 +8,12 @@
 
 import UserNotifications
 
+extension UNNotificationContent {
+    func link() -> String? {
+        return self.userInfo["link"] as? String
+    }
+}
+
 extension UNMutableNotificationContent {
 
     convenience init(title: String?, body: String, soundName: String?, link: String) {

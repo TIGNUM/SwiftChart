@@ -1302,7 +1302,7 @@
 		CB55A2E11E9FDF1D00D721CE /* SettingsMenuModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */; };
 		CB57589E205FD22E00EDC028 /* FadeContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB57589D205FD22E00EDC028 /* FadeContainerView.swift */; };
 		CB58917B1F7B95B200D63C5E /* ChatViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB5891791F7B95B200D63C5E /* ChatViewCell.swift */; };
-		CB6637AD201A323200A995D6 /* UserNotificationsScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637AC201A323200A995D6 /* UserNotificationsScheduler.swift */; };
+		CB6637AD201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637AC201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift */; };
 		CB6637AF201A415500A995D6 /* UserNotificationsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */; };
 		CB6637B1201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB6637B0201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift */; };
 		CB694E09205C1C3600D29B3E /* DailyPrepResultIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB694E08205C1C3600D29B3E /* DailyPrepResultIntermediary.swift */; };
@@ -1586,6 +1586,9 @@
 		DBBE5AB522B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */; };
 		DBF9D64E21835F270025D6C9 /* QuestionnaireTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */; };
 		DBFA002722FC68A800B28647 /* HealthKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBFA002622FC68A700B28647 /* HealthKit.framework */; };
+		DBFD7EE9230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD7EE8230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift */; };
+		DBFD7EEB230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD7EEA230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift */; };
+		DBFD7EED230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFD7EEC230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift */; };
 		DBFDCE0422B2354C00C94C86 /* VideoBookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDCE0322B2354C00C94C86 /* VideoBookmarkTableViewCell.swift */; };
 		DBFDCE0622B2357B00C94C86 /* AudioBookmarkTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DBFDCE0522B2357B00C94C86 /* AudioBookmarkTableViewCell.swift */; };
 		E813F0A22130055700C0723E /* PDFReaderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E813F0A12130055700C0723E /* PDFReaderViewController.swift */; };
@@ -3079,7 +3082,7 @@
 		CB55A2E01E9FDF1D00D721CE /* SettingsMenuModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsMenuModel.swift; sourceTree = "<group>"; };
 		CB57589D205FD22E00EDC028 /* FadeContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FadeContainerView.swift; sourceTree = "<group>"; };
 		CB5891791F7B95B200D63C5E /* ChatViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatViewCell.swift; sourceTree = "<group>"; };
-		CB6637AC201A323200A995D6 /* UserNotificationsScheduler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsScheduler.swift; sourceTree = "<group>"; };
+		CB6637AC201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UNUserNotificationCenter+Convenience.swift"; sourceTree = "<group>"; };
 		CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserNotificationsManager.swift; sourceTree = "<group>"; };
 		CB6637B0201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GuideLearnItemTodayBlockCalculator.swift; sourceTree = "<group>"; };
 		CB694E08205C1C3600D29B3E /* DailyPrepResultIntermediary.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyPrepResultIntermediary.swift; sourceTree = "<group>"; };
@@ -3372,6 +3375,9 @@
 		DBBE5AB422B004EC0006A3DA /* MyLibraryCategoryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryCategoryTableViewCell.swift; sourceTree = "<group>"; };
 		DBF9D64D21835F270025D6C9 /* QuestionnaireTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionnaireTableViewCell.swift; sourceTree = "<group>"; };
 		DBFA002622FC68A700B28647 /* HealthKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = HealthKit.framework; path = System/Library/Frameworks/HealthKit.framework; sourceTree = SDKROOT; };
+		DBFD7EE8230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMGuideItemNotfication+UserNotifications.swift"; sourceTree = "<group>"; };
+		DBFD7EEA230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMGuideItemTime+UserNotifications.swift"; sourceTree = "<group>"; };
+		DBFD7EEC230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "QDMSprintNotificationsSchedule+UserNotifications.swift"; sourceTree = "<group>"; };
 		DBFDCE0322B2354C00C94C86 /* VideoBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoBookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		DBFDCE0522B2357B00C94C86 /* AudioBookmarkTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AudioBookmarkTableViewCell.swift; sourceTree = "<group>"; };
 		E813F0A12130055700C0723E /* PDFReaderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PDFReaderViewController.swift; sourceTree = "<group>"; };
@@ -6646,9 +6652,12 @@
 		CB6637A7201A24E200A995D6 /* UserNotifications */ = {
 			isa = PBXGroup;
 			children = (
-				CB6637AC201A323200A995D6 /* UserNotificationsScheduler.swift */,
+				CB6637AC201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift */,
 				CB6637AE201A415500A995D6 /* UserNotificationsManager.swift */,
 				CB8AA2C8205AB6A10033F573 /* NotificationID.swift */,
+				DBFD7EE8230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift */,
+				DBFD7EEA230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift */,
+				DBFD7EEC230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift */,
 			);
 			name = UserNotifications;
 			sourceTree = "<group>";
@@ -9230,6 +9239,7 @@
 				75496EA122BB9E9100150C78 /* MyVisionNullStateView.swift in Sources */,
 				36C8F174230896C300CD718F /* QDMUserCalendarSetting+Ext.swift in Sources */,
 				36A5E75522785FEF006A522C /* MediaPlayerOverlay.swift in Sources */,
+				DBFD7EE9230EC03500BFF29F /* QDMGuideItemNotfication+UserNotifications.swift in Sources */,
 				B4AB48B8230BF891003B3C1F /* MyDataSelectionInterface.swift in Sources */,
 				9CF3BE4122FC69D40027D111 /* MyPeakPerformanceRowModel.swift in Sources */,
 				CB1D5E3C1EC5E25A00BCDF8D /* ContentCollectionData.swift in Sources */,
@@ -9297,6 +9307,7 @@
 				8D6E058F22D7466E00EC2AEF /* MyLibraryNotesConfigurator.swift in Sources */,
 				3637667C223BFF3800C2C429 /* StrategyListConfigurator.swift in Sources */,
 				CC309C071F73ADED00A32759 /* UserAnswerFeedback.swift in Sources */,
+				DBFD7EED230EE1C100BFF29F /* QDMSprintNotificationsSchedule+UserNotifications.swift in Sources */,
 				8DBE1ED822F46B7400BB1086 /* OnboardingLandingPageWorker.swift in Sources */,
 				5F78966122A929E300D2DBAD /* LoadingSkeleton.swift in Sources */,
 				8DECF9B322DE277400451E65 /* MySprintsListDataViewModel.swift in Sources */,
@@ -9742,7 +9753,7 @@
 				CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */,
 				5FF1A0E22285618E00D76D55 /* TitleSubtitleTableViewCell.swift in Sources */,
 				CBCB55602069386C00B422BE /* StringResource+Convenience.swift in Sources */,
-				CB6637AD201A323200A995D6 /* UserNotificationsScheduler.swift in Sources */,
+				CB6637AD201A323200A995D6 /* UNUserNotificationCenter+Convenience.swift in Sources */,
 				36718B4C224D20030042881E /* SubsriptionReminderWorker.swift in Sources */,
 				F9A8A01F2296821400DE3A9C /* ToolsItemsInteractor.swift in Sources */,
 				CBE8808D1FE4369200670C10 /* GuideModels.swift in Sources */,
@@ -10280,6 +10291,7 @@
 				B856B47B22B0E29D0017A249 /* MyLibraryUserStorageInterface.swift in Sources */,
 				5FF1A0E6228561A000D76D55 /* TitleTableViewCell.swift in Sources */,
 				9CF3BE3D22FC5FF80027D111 /* MyPerformanceModelItem.swift in Sources */,
+				DBFD7EEB230EC18E00BFF29F /* QDMGuideItemTime+UserNotifications.swift in Sources */,
 				5F78966222A929E300D2DBAD /* Skeleton.swift in Sources */,
 				7F42767B1F585D1F00AEE3D7 /* RemoteNotificationHandler.swift in Sources */,
 				F90BD4292301669A00008702 /* SolveReminderCellViewModel.swift in Sources */,

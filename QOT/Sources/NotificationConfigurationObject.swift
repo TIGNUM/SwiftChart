@@ -59,13 +59,13 @@ extension NotificationConfigurationObject {
     // FIXME: These should be defined on the server. For now we hard code them.
     static func all() -> [NotificationConfigurationObject] {
         return [
-            weekendInterview(localID: "sunday", weekday: 1),
+            morningInterview(localID: "sunday", weekday: 1),
             morningInterview(localID: "monday", weekday: 2),
             morningInterview(localID: "tuesday", weekday: 3),
             morningInterview(localID: "wednesday", weekday: 4),
             morningInterview(localID: "thursday", weekday: 5),
             morningInterview(localID: "friday", weekday: 6),
-            weekendInterview(localID: "saturday", weekday: 7)
+            morningInterview(localID: "saturday", weekday: 7)
         ]
     }
 
@@ -77,19 +77,7 @@ extension NotificationConfigurationObject {
             weekday: weekday,
             title: "DAILY PREP MINUTE",
             body: "Let's start the morning with a quick check in, so I can help support you today.",
-            link: "qot://morning-interview?groupID=100002"
-        )
-    }
-
-    private static func weekendInterview(localID: String, weekday: Int) -> NotificationConfigurationObject {
-        return NotificationConfigurationObject(
-            localID: localID,
-            minute: 0,
-            hour: 5,
-            weekday: weekday,
-            title: "DAILY PREP MINUTE",
-            body: "Let's start the morning with a quick check in, so I can help support you today.",
-            link: "qot://morning-interview?groupID=100010"
+            link: "qot://morning-interview"
         )
     }
 }

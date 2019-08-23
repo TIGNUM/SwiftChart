@@ -41,7 +41,6 @@ final class SyncManager {
     private var nextAllSyncTime: Date = Date(timeIntervalSince1970: 0)
     private let allSyncOperationQueue: OperationQueue
     private let operationQueue: OperationQueue
-    var userNotificationsManager: UserNotificationsManager?
     var isSynchronsingPreparation = false
 
     // MARK: - Init
