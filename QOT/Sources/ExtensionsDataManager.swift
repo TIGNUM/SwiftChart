@@ -45,6 +45,12 @@ final class ExtensionsDataManager {
 
     static func didUserLogIn(_ isLogedIn: Bool) {
         ExtensionUserDefaults.setIsUserSignedIn(value: isLogedIn)
+        if UserDefault.myDataSelectedItems.object as? [MyDataParameter] == nil {
+            let rawValues = MyDataSelectionModel.sectionValues.map { (parameter) -> Int in
+                return parameter.rawValue
+            }
+            UserDefault.myDataSelectedItems.setObject(rawValues)
+        }
     }
 }
 

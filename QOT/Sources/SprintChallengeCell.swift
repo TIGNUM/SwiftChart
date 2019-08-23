@@ -8,8 +8,6 @@
 
 import UIKit
 
-import UIKit
-
 final class SprintChallengeCell: UITableViewCell, UITableViewDelegate, Dequeueable, UITableViewDataSource {
     var delegate: DailyBriefViewControllerDelegate?
     @IBOutlet private weak var bucketTitle: UILabel!

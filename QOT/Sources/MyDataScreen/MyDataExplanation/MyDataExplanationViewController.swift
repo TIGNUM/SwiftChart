@@ -13,6 +13,7 @@ final class MyDataExplanationViewController: UIViewController {
     // MARK: - Properties
     var interactor: MyDataExplanationInteractorInterface?
     var router: MyDataExplanationRouterInterface?
+    @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
     private var myDataExplanationModel: MyDataExplanationModel?
 
@@ -65,7 +66,7 @@ private extension MyDataExplanationViewController {
     func setupTableView() {
         tableView.registerDequeueable(MyDataExplanationScreenTableViewCell.self)
         tableView.separatorInset = .zero
-        tableView.separatorColor = .sand20
+        tableView.separatorColor = .sand30
     }
 }
 
@@ -80,7 +81,8 @@ extension MyDataExplanationViewController: MyDataExplanationViewControllerInterf
         setupTableView()
     }
 
-    func setup(for myDataExplanationSection: MyDataExplanationModel) {
+    func setup(for myDataExplanationSection: MyDataExplanationModel, myDataExplanationHeaderTitle: String) {
         myDataExplanationModel = myDataExplanationSection
+        headerTitleLabel.text = myDataExplanationHeaderTitle.uppercased()
     }
 }

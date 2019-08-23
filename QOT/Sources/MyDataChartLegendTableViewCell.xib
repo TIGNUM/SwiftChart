@@ -22,21 +22,32 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ikd-4e-jYi">
-                    <rect key="frame" x="24" y="17" width="323" height="36"/>
+                    <rect key="frame" x="24" y="17" width="293" height="36"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
                     <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nl1-M7-SAR">
+                    <rect key="frame" x="317" y="13" width="40" height="40"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="40" id="76n-13-lYd"/>
+                        <constraint firstAttribute="height" constant="40" id="kNh-vV-cFJ"/>
+                    </constraints>
+                    <state key="normal" image="plus"/>
+                    <connections>
+                        <action selector="didTapAddButton:" destination="Sg4-P2-IFa" eventType="touchUpInside" id="SRo-7j-0hi"/>
+                    </connections>
+                </button>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JMl-X8-LOa" userLabel="Top separator view">
                     <rect key="frame" x="0.0" y="0.0" width="371" height="1"/>
-                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="OTh-WZ-VL1"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="we3-ME-URI" userLabel="Bottom separator view">
                     <rect key="frame" x="0.0" y="71" width="371" height="1"/>
-                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="vwi-rQ-AF2"/>
                     </constraints>
@@ -45,13 +56,15 @@
             </subviews>
             <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="34z-T8-JFN" firstAttribute="trailing" secondItem="ikd-4e-jYi" secondAttribute="trailing" constant="24" id="1N3-mK-Zhn"/>
+                <constraint firstItem="Nl1-M7-SAR" firstAttribute="bottom" secondItem="ikd-4e-jYi" secondAttribute="bottom" id="AQU-Dm-Tr4"/>
                 <constraint firstItem="we3-ME-URI" firstAttribute="bottom" secondItem="34z-T8-JFN" secondAttribute="bottom" id="Dac-Wi-5Zg"/>
                 <constraint firstItem="JMl-X8-LOa" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" id="Kvn-WZ-9Zn"/>
                 <constraint firstItem="we3-ME-URI" firstAttribute="width" secondItem="Sg4-P2-IFa" secondAttribute="width" id="OeZ-1s-MUB"/>
                 <constraint firstItem="ikd-4e-jYi" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="24" id="YGO-Ow-KQD"/>
                 <constraint firstItem="ikd-4e-jYi" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" constant="17" id="YMx-2L-Gmg"/>
                 <constraint firstItem="34z-T8-JFN" firstAttribute="leading" secondItem="we3-ME-URI" secondAttribute="leading" id="bXG-kN-YoY"/>
+                <constraint firstItem="Nl1-M7-SAR" firstAttribute="leading" secondItem="ikd-4e-jYi" secondAttribute="trailing" id="l8x-Lh-a0w"/>
+                <constraint firstItem="34z-T8-JFN" firstAttribute="trailing" secondItem="Nl1-M7-SAR" secondAttribute="trailing" constant="14" id="mCD-zN-keM"/>
                 <constraint firstItem="34z-T8-JFN" firstAttribute="bottom" secondItem="ikd-4e-jYi" secondAttribute="bottom" constant="19" id="q8i-xJ-EKT"/>
                 <constraint firstItem="JMl-X8-LOa" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" id="rZO-dK-Y4k"/>
                 <constraint firstItem="JMl-X8-LOa" firstAttribute="width" secondItem="Sg4-P2-IFa" secondAttribute="width" id="vBY-87-pB4"/>
@@ -59,9 +72,13 @@
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="34z-T8-JFN"/>
             <connections>
+                <outlet property="addButton" destination="Nl1-M7-SAR" id="frz-up-FkJ"/>
                 <outlet property="label" destination="ikd-4e-jYi" id="9VH-nx-azF"/>
             </connections>
             <point key="canvasLocation" x="114.40000000000001" y="111.54422788605699"/>
         </view>
     </objects>
+    <resources>
+        <image name="plus" width="16" height="16"/>
+    </resources>
 </document>

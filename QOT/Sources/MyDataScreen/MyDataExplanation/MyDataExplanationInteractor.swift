@@ -22,7 +22,7 @@ final class MyDataExplanationInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
-        presenter.present(for: worker.myDataExplanationSections())
+        presenter.present(for: worker.myDataExplanationSections(), myDataExplanationHeaderTitle: worker.myDataExplanationHeaderTitle())
         presenter.setupView()
     }
 }

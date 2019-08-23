@@ -21,6 +21,8 @@ protocol MyDataScreenPresenterInterface {
 protocol MyDataScreenInteractorInterface: Interactor {
     func presentMyDataExplanation()
     func presentMyDataSelection()
+    func myDataSelectionSections() -> MyDataSelectionModel
+    func initialDataSelectionSections() -> MyDataSelectionModel
 }
 
 protocol MyDataScreenRouterInterface {
@@ -31,4 +33,5 @@ protocol MyDataScreenRouterInterface {
 
 protocol MyDataWorkerInterface {
     func myDataSections() -> MyDataScreenModel
+    func myDataSelectionSections() -> MyDataSelectionModel
 }

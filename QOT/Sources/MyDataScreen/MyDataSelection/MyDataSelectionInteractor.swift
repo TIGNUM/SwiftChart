@@ -22,11 +22,21 @@ final class MyDataSelectionInteractor {
 
     // MARK: - Interactor
     func viewDidLoad() {
+        presenter.present(for: worker.myDataSelectionSections(),
+                          myDataSelectionHeaderTitle: worker.myDataSelectionHeaderTitle(),
+                          myDataSelectionHeaderSubtitle: worker.myDataSelectionHeaderSubtitle())
         presenter.setupView()
     }
 }
 
 // MARK: - MyDataSelectionInteractorInterface
 extension MyDataSelectionInteractor: MyDataSelectionInteractorInterface {
-
+    func saveMyDataSelections(_ selections: [MyDataSelectionModel.SelectionItem]) {
+        let selectedParameters = selections.filter({ (selection) -> Bool in
+            selection.selected == true
+        }).map { (selection) -> MyDataParameter in
+            return selection.myDataExplanationSection
+        }
+        worker.saveMyDataSelections(selectedParameters)
+    }
 }

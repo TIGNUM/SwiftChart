@@ -213,7 +213,7 @@ extension ScreenTitleService {
 
 extension ScreenTitleService {
 
-    func myDataExplanationSectionTitles(for myDataExplanationItem: MyDataExplanationSection) -> String? {
+    func myDataExplanationSectionTitles(for myDataExplanationItem: MyDataParameter) -> String? {
         switch myDataExplanationItem {
         case .SQL:
             return localizedString(for: .myDataExplanationSQLSectionTitle)
@@ -232,7 +232,7 @@ extension ScreenTitleService {
         }
     }
 
-    func myDataExplanationSectionSubtitles(for myDataExplanationItem: MyDataExplanationSection) -> String? {
+    func myDataExplanationSectionSubtitles(for myDataExplanationItem: MyDataParameter) -> String? {
         switch myDataExplanationItem {
         case .SQL:
             return localizedString(for: .myDataExplanationSQLSectionSubtitle)
@@ -249,5 +249,16 @@ extension ScreenTitleService {
         case .IR:
             return localizedString(for: .myDataExplanationIRSectionSubtitle)
         }
+    }
+}
+
+extension ScreenTitleService {
+
+    func myDataSelectionTitle() -> String? {
+        return localizedString(for: .myDataDailyImpactSectionTitle)
+    }
+
+    func myDataSelectionSubtitle() -> String? {
+        return localizedString(for: .myDataDailyImpactSectionTitle)
     }
 }

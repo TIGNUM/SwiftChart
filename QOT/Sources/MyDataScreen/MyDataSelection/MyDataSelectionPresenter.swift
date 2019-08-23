@@ -24,4 +24,12 @@ extension MyDataSelectionPresenter: MyDataSelectionPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func present(for myDataSelectionSection: MyDataSelectionModel,
+                 myDataSelectionHeaderTitle: String,
+                 myDataSelectionHeaderSubtitle: String) {
+        viewController?.setup(for: myDataSelectionSection,
+                              myDataSelectionHeaderTitle: myDataSelectionHeaderTitle,
+                              myDataSelectionHeaderSubtitle: myDataSelectionHeaderSubtitle)
+    }
 }

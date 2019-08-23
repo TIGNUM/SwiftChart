@@ -1149,6 +1149,8 @@
 		B4A075B1230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */; };
 		B4A075B4230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */; };
 		B4A075B5230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */; };
+		B4A075B8230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */; };
+		B4A075B9230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */; };
 		B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48A9230BF6E6003B3C1F /* MyDataScreen.storyboard */; };
 		B4AB48B5230BF890003B3C1F /* MyDataSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48AD230BF890003B3C1F /* MyDataSelectionPresenter.swift */; };
 		B4AB48B6230BF891003B3C1F /* MyDataSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48AE230BF890003B3C1F /* MyDataSelectionWorker.swift */; };
@@ -1174,8 +1176,6 @@
 		B4AB48D9230D3C78003B3C1F /* MyDataHeatMapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */; };
 		B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */; };
 		B4AB48DD230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */; };
-		B4AB48E0230D4609003B3C1F /* MyDataAddButtonTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48DE230D4608003B3C1F /* MyDataAddButtonTableViewCell.swift */; };
-		B4AB48E1230D4609003B3C1F /* MyDataAddButtonTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48DF230D4608003B3C1F /* MyDataAddButtonTableViewCell.xib */; };
 		B812D94422BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */; };
 		B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */; };
 		B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */; };
@@ -2925,6 +2925,8 @@
 		B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapButtonsTableViewCell.xib; sourceTree = "<group>"; };
 		B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataExplanationScreenTableViewCell.xib; sourceTree = "<group>"; };
 		B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataExplanationScreenTableViewCell.swift; sourceTree = "<group>"; };
+		B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataSelectionScreenTableViewCell.swift; sourceTree = "<group>"; };
+		B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataSelectionScreenTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48A9230BF6E6003B3C1F /* MyDataScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyDataScreen.storyboard; sourceTree = "<group>"; };
 		B4AB48AD230BF890003B3C1F /* MyDataSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionPresenter.swift; sourceTree = "<group>"; };
 		B4AB48AE230BF890003B3C1F /* MyDataSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionWorker.swift; sourceTree = "<group>"; };
@@ -2950,8 +2952,6 @@
 		B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartLegendTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartLegendTableViewCell.swift; sourceTree = "<group>"; };
-		B4AB48DE230D4608003B3C1F /* MyDataAddButtonTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataAddButtonTableViewCell.swift; sourceTree = "<group>"; };
-		B4AB48DF230D4608003B3C1F /* MyDataAddButtonTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataAddButtonTableViewCell.xib; sourceTree = "<group>"; };
 		B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.unittest.xcconfig"; sourceTree = "<group>"; };
 		B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMyLibraryTableViewCellInterface.swift; sourceTree = "<group>"; };
 		B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTNavigationController.swift; sourceTree = "<group>"; };
@@ -3710,14 +3710,14 @@
 				B4AB48D2230D3A9B003B3C1F /* MyDataCharTableViewCell.xib */,
 				B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */,
 				B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */,
-				B4AB48DE230D4608003B3C1F /* MyDataAddButtonTableViewCell.swift */,
-				B4AB48DF230D4608003B3C1F /* MyDataAddButtonTableViewCell.xib */,
 				B4A075AE230D4C7500DDB922 /* MyDataHeatMapButtonsTableViewCell.swift */,
 				B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */,
 				B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */,
 				B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */,
 				B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */,
 				B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */,
+				B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */,
+				B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */,
 				36376639223A6F3B00C2C429 /* AbstractTableViewCell.swift */,
 				3637663B223A6F8500C2C429 /* AbstractTableViewCell.xib */,
 				36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */,
@@ -8464,6 +8464,7 @@
 				ACF0B9712260B905008CFAEC /* QuestionTableViewCell.xib in Resources */,
 				369AE00622A7AC6F00DE4FA0 /* EditHeaderView.xib in Resources */,
 				CC8813EC1EF2EA33000FB85F /* LearnContentItemRecommendedCell.xib in Resources */,
+				B4A075B9230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.xib in Resources */,
 				8514A48E1EE966C30086C70E /* PrepareContentMainHeaderTableViewCell.xib in Resources */,
 				365EC0BB224A6FE80019AFF9 /* WhatsHotCollectionViewCell.xib in Resources */,
 				9171647B2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
@@ -8633,7 +8634,6 @@
 				F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */,
 				CC335EE71EBC84780085F5C5 /* ContentItemTextTableViewCell.xib in Resources */,
 				5FF1A0E32285618E00D76D55 /* TitleSubtitleTableViewCell.xib in Resources */,
-				B4AB48E1230D4609003B3C1F /* MyDataAddButtonTableViewCell.xib in Resources */,
 				36B515CA21638CA800A7B405 /* SupportFAQViewController.xib in Resources */,
 				36D348EE216BAA86006C8D10 /* PrepareNotesHeaderView.xib in Resources */,
 				3698428A20C91F10007A8C8F /* SigningDigitViewController.xib in Resources */,
@@ -9669,6 +9669,7 @@
 				8D8AA75E22FDCB6700B59A81 /* RegistrationInteractor.swift in Sources */,
 				CBB4DD141EDEBDA80071494A /* URLRequestBuildable.swift in Sources */,
 				CB3333E920480E05009480DF /* ShareInteractor.swift in Sources */,
+				B4A075B8230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.swift in Sources */,
 				F9838F3D22AFFF2E003F9394 /* MyQotMainInteractor.swift in Sources */,
 				8D66E89F2305A0E500BE78C7 /* TrackSelectionInterface.swift in Sources */,
 				7582618022DDA8EC000094DE /* DailyCheckinQuestionsViewController.swift in Sources */,
@@ -10351,7 +10352,6 @@
 				F99DF5F62292D71B00341DAB /* ToolsCollectionsWorker.swift in Sources */,
 				AC103E442285B27200F426F0 /* ShifterResultViewController.swift in Sources */,
 				8D204C2222F06F1000DF6A76 /* MySprintNotesInteractor.swift in Sources */,
-				B4AB48E0230D4609003B3C1F /* MyDataAddButtonTableViewCell.swift in Sources */,
 				9CF3BE4522FC6A610027D111 /* MyPeakPerformanceSectionModel.swift in Sources */,
 				36796A2420D3C45200B55429 /* SigningCountryViewController.swift in Sources */,
 				F95B9246228EE67B000DEAEC /* ToolsTableHeaderView.swift in Sources */,

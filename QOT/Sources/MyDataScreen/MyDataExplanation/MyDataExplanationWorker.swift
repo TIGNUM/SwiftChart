@@ -22,10 +22,14 @@ final class MyDataExplanationWorker {
 
 extension MyDataExplanationWorker: MyDataExplanationWorkerInterface {
     func myDataExplanationSections() -> MyDataExplanationModel {
-        return MyDataExplanationModel(myDataExplanationItems: MyDataExplanationSection.allCases.map {
+        return MyDataExplanationModel(myDataExplanationItems: MyDataParameter.allCases.map {
             return MyDataExplanationModel.ExplanationItem(myDataExplanationSection: $0,
                                                           title: ScreenTitleService.main.myDataExplanationSectionTitles(for: $0),
                                                           subtitle: ScreenTitleService.main.myDataExplanationSectionSubtitles(for: $0))
         })
+    }
+
+    func myDataExplanationHeaderTitle() -> String {
+        return ScreenTitleService.main.myDataSectionTitles(for: .dailyImpact) ?? ""
     }
 }

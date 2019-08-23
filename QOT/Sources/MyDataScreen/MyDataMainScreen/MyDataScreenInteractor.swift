@@ -38,4 +38,12 @@ extension MyDataScreenInteractor: MyDataScreenInteractorInterface {
     func presentMyDataSelection() {
         router.presentMyDataSelection()
     }
+
+    func myDataSelectionSections() -> MyDataSelectionModel {
+        return worker.myDataSelectionSections()
+    }
+
+    func initialDataSelectionSections() -> MyDataSelectionModel {
+        return worker.initialDataSelectionSections
+    }
 }

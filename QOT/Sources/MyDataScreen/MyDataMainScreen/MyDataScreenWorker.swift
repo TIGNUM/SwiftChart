@@ -13,6 +13,7 @@ final class MyDataScreenWorker {
 
     // MARK: - Properties
     private let dataService: qot_dal.MyDataService
+    var initialDataSelectionSections = MyDataSelectionModel(myDataSelectionItems: [])
 
     // MARK: - Init
 
@@ -35,5 +36,23 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
                                                       title: ScreenTitleService.main.myDataSectionTitles(for: $0),
                                                       subtitle: ScreenTitleService.main.myDataSectionSubtitles(for: $0))
         })
+    }
+
+    func myDataSelectionSections() -> MyDataSelectionModel {
+        var sectionModel = MyDataSelectionModel(myDataSelectionItems: [])
+        guard let selectedValues = UserDefault.myDataSelectedItems.object as? [Int] else {
+            return sectionModel
+        }
+
+        for rawValue in selectedValues {
+            if let parameterValue = MyDataParameter(rawValue: rawValue) {
+                sectionModel.myDataSelectionItems.append(MyDataSelectionModel.SelectionItem(myDataExplanationSection: parameterValue,
+                                                                                            title: ScreenTitleService.main.myDataExplanationSectionTitles(for: parameterValue),
+                                                                                            selected: true))
+            }
+
+        }
+        initialDataSelectionSections = sectionModel
+        return sectionModel
     }
 }

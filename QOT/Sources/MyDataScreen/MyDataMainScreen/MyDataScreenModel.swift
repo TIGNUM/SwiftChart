@@ -9,6 +9,16 @@
 import UIKit
 import qot_dal
 
+enum MyDataParameter: Int, CaseIterable {
+    case SQL = 0
+    case SQN
+    case tenDL
+    case fiveDRR
+    case fiveDRL
+    case fiveDIR
+    case IR
+}
+
 struct MyDataModel {
     var date: Date?
     var sleepQuality: Double?

@@ -8,12 +8,21 @@
 
 import UIKit
 
+protocol MyDataSelectionViewControllerDelegate: class {
+    func didChangeSelected(options: [MyDataSelectionModel.SelectionItem])
+}
+
 final class MyDataSelectionViewController: UIViewController {
 
     // MARK: - Properties
     var interactor: MyDataSelectionInteractorInterface?
     var router: MyDataSelectionRouterInterface?
+
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var tableView: UITableView!
+    private var myDataSelectionModel: MyDataSelectionModel?
+    weak var delegate: MyDataSelectionViewControllerDelegate?
 
     // MARK: - Init
     init(configure: Configurator<MyDataSelectionViewController>) {
@@ -31,22 +40,62 @@ final class MyDataSelectionViewController: UIViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
+
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        guard let selectionItems = myDataSelectionModel?.myDataSelectionItems else { return }
+        interactor?.saveMyDataSelections(selectionItems)
+        delegate?.didChangeSelected(options: selectedSections())
+    }
+
+    // MARK: - Helpers
+
+    func selectedSections() -> [MyDataSelectionModel.SelectionItem] {
+        guard let selectionItems = myDataSelectionModel?.myDataSelectionItems else { return [] }
+        return selectionItems.filter({ (item) -> Bool in
+            return item.selected
+        })
+    }
 }
 
 // MARK: - UITableView Delegate and Datasource
 extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return myDataSelectionModel?.myDataSelectionItems.count ?? 0
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        return UITableViewCell.init()
+        let cell: MyDataSelectionScreenTableViewCell = tableView.dequeueCell(for: indexPath)
+        let backgroundView = UIView()
+        backgroundView.backgroundColor = UIColor.carbon
+        cell.selectedBackgroundView = backgroundView
+        cell.backgroundColor = .carbonNew
+        cell.layoutMargins = .zero
+        cell.preservesSuperviewLayoutMargins = false
+
+        cell.configure(title: myDataSelectionModel?.myDataSelectionItems[indexPath.row].title,
+                       selected: myDataSelectionModel?.myDataSelectionItems[indexPath.row].selected ?? false)
+
+        return cell
+    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        let currentSelectedState = myDataSelectionModel?.myDataSelectionItems[indexPath.row].selected ?? false
+        if let cell = tableView.cellForRow(at: indexPath) as? MyDataSelectionScreenTableViewCell {
+            cell.showSelected = !currentSelectedState
+            myDataSelectionModel?.myDataSelectionItems[indexPath.row].selected = !currentSelectedState
+        }
     }
 }
 
 // MARK: - Private
 private extension MyDataSelectionViewController {
-
+    func setupTableView() {
+        tableView.registerDequeueable(MyDataSelectionScreenTableViewCell.self)
+        tableView.separatorInset = .zero
+        tableView.separatorColor = .sand30
+    }
 }
 
 // MARK: - Actions
@@ -57,6 +106,14 @@ private extension MyDataSelectionViewController {
 // MARK: - MyDataSelectionViewControllerInterface
 extension MyDataSelectionViewController: MyDataSelectionViewControllerInterface {
     func setupView() {
-        // Do any additional setup after loading the view.
+        setupTableView()
+    }
+
+    func setup(for myDataSelectionSection: MyDataSelectionModel,
+               myDataSelectionHeaderTitle: String,
+               myDataSelectionHeaderSubtitle: String) {
+        myDataSelectionModel = myDataSelectionSection
+        titleLabel.text = myDataSelectionHeaderTitle
+        subtitleLabel.text = myDataSelectionHeaderSubtitle
     }
 }

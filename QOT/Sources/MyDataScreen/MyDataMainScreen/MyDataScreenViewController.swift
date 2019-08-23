@@ -12,7 +12,6 @@ enum MyDataRowType: Int, CaseIterable {
     case dailyImpactInfo = 0
     case dailyImpactChart
     case dailyImpactChartLegend
-    case dailyImpactAddButton
     case heatMapInfo
     case heatMapButtons
     case heatMap
@@ -42,6 +41,13 @@ final class MyDataScreenViewController: UIViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
     }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let myDataSelectionViewController  = segue.destination as? MyDataSelectionViewController else {
+            return
+        }
+        myDataSelectionViewController.delegate = self
+    }
 }
 
 // MARK: - Private
@@ -50,7 +56,6 @@ private extension MyDataScreenViewController {
         tableView.registerDequeueable(MyDataInfoTableViewCell.self)
         tableView.registerDequeueable(MyDataCharTableViewCell.self)
         tableView.registerDequeueable(MyDataChartLegendTableViewCell.self)
-        tableView.registerDequeueable(MyDataAddButtonTableViewCell.self)
         tableView.registerDequeueable(MyDataHeatMapButtonsTableViewCell.self)
         tableView.registerDequeueable(MyDataHeatMapTableViewCell.self)
     }
@@ -104,18 +109,10 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
             backgroundView.backgroundColor = UIColor.carbon
             chartLegendCell.selectedBackgroundView = backgroundView
             chartLegendCell.backgroundColor = .carbonNew
-            chartLegendCell.configure(labelString: "(DRR) 5 Day Rolling Recovery\n(DRL) 5 Day Rolling load")
+            chartLegendCell.configure(selectionModel: interactor?.myDataSelectionSections())
+            chartLegendCell.delegate = self
 
             return chartLegendCell
-        case MyDataRowType.dailyImpactAddButton.rawValue:
-            let addButtonCell: MyDataAddButtonTableViewCell = tableView.dequeueCell(for: indexPath)
-            let backgroundView = UIView()
-            backgroundView.backgroundColor = UIColor.carbon
-            addButtonCell.selectedBackgroundView = backgroundView
-            addButtonCell.backgroundColor = .carbonNew
-            addButtonCell.delegate = self
-
-            return addButtonCell
         case MyDataRowType.heatMapInfo.rawValue:
             let heatMapInfoCell: MyDataInfoTableViewCell = tableView.dequeueCell(for: indexPath)
             let backgroundView = UIView()
@@ -149,7 +146,7 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
     }
 }
 
-extension MyDataScreenViewController: MyDataInfoTableViewCellDelegate, MyDataAddButtonTableViewCellDelegate, MyDataHeatMapButtonsTableViewCellDelegate {
+extension MyDataScreenViewController: MyDataInfoTableViewCellDelegate, MyDataChartLegendTableViewCellDelegate, MyDataHeatMapButtonsTableViewCellDelegate {
     func didTapAddButton() {
         router?.presentMyDataSelection()
     }
@@ -160,5 +157,16 @@ extension MyDataScreenViewController: MyDataInfoTableViewCellDelegate, MyDataAdd
 
     func didTapInfoButton() {
         router?.presentMyDataExplanation()
+    }
+}
+
+extension MyDataScreenViewController: MyDataSelectionViewControllerDelegate {
+    func didChangeSelected(options: [MyDataSelectionModel.SelectionItem]) {
+        if let sections = interactor?.initialDataSelectionSections().myDataSelectionItems, sections != options {
+            tableView.reloadData()
+            tableView.scrollToRow(at: IndexPath(row: MyDataRowType.dailyImpactChart.rawValue, section: 0),
+                                  at: .middle,
+                                  animated: false)
+        }
     }
 }

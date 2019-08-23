@@ -10,12 +10,12 @@ import Foundation
 
 protocol MyDataExplanationViewControllerInterface: class {
     func setupView()
-    func setup(for myDataExplanationSection: MyDataExplanationModel)
+    func setup(for myDataExplanationSection: MyDataExplanationModel, myDataExplanationHeaderTitle: String)
 }
 
 protocol MyDataExplanationPresenterInterface {
     func setupView()
-    func present(for myDataExplanationSection: MyDataExplanationModel)
+    func present(for myDataExplanationSection: MyDataExplanationModel, myDataExplanationHeaderTitle: String)
 }
 
 protocol MyDataExplanationInteractorInterface: Interactor {}

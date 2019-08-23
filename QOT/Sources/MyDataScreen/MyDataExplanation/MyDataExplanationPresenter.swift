@@ -25,7 +25,7 @@ extension MyDataExplanationPresenter: MyDataExplanationPresenterInterface {
         viewController?.setupView()
     }
 
-    func present(for myDataExplanationSection: MyDataExplanationModel) {
-        viewController?.setup(for: myDataExplanationSection)
+    func present(for myDataExplanationSection: MyDataExplanationModel, myDataExplanationHeaderTitle: String) {
+        viewController?.setup(for: myDataExplanationSection, myDataExplanationHeaderTitle: myDataExplanationHeaderTitle)
     }
 }
