@@ -53,22 +53,17 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         setAudioAsCompleteIfNeeded(remoteID: mediaItemId)
         titleLabel.attributedText = NSAttributedString(string: title,
                                                        letterSpacing: 0.5,
-                                                       font: .apercuLight(ofSize: 16),
+                                                       font: .sfProtextLight(ofSize: 16),
                                                        lineSpacing: 8,
                                                        textColor: .sand,
                                                        alignment: .left)
         detailLabel.attributedText = NSAttributedString(string: timeToWatch,
                                                         letterSpacing: 0.4,
-                                                        font: .apercuMedium(ofSize: 12),
-                                                        textColor: .sand30,
+                                                        font: .sfProtextMedium(ofSize: 12),
+                                                        textColor: .sand40,
                                                         alignment: .left)
         mediaIconImageView.image = R.image.ic_seen_of()
-        let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
-        audioLabel.attributedText = NSAttributedString(string: mediaDescription,
-                                                       letterSpacing: 0.4,
-                                                       font: .apercuMedium(ofSize: 12),
-                                                       textColor: .sand,
-                                                       alignment: .center)
+        showDuration(duration)
     }
 }
 
@@ -88,6 +83,14 @@ extension StrategyContentTableViewCell {
 // MARK: - Private
 
 private extension StrategyContentTableViewCell {
+    func showDuration(_ duration: Double) {
+        let text = String(format: "%i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
+        audioLabel.attributedText = NSAttributedString(string: text,
+                                                       letterSpacing: 0.2,
+                                                       font: .sfProtextSemibold(ofSize: 14),
+                                                       textColor: colorMode.tint,
+                                                       alignment: .center)
+    }
 
     func setAudioAsCompleteIfNeeded(remoteID: Int) {
         audioView.backgroundColor = .carbon

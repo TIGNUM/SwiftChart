@@ -43,8 +43,7 @@ final class AudioButton: UIView {
         self.audioURL = audioURL
         self.audioRemoteID = remoteID
         self.duration = duration
-        let mediaDescription = String(format: "%02i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
-        setDutationLabel(text: mediaDescription)
+        showDuration(duration)
         setColorMode()
     }
 
@@ -56,10 +55,11 @@ final class AudioButton: UIView {
 // MARK: - Private
 
 private extension AudioButton {
-    func setDutationLabel(text: String) {
+    func showDuration(_ duration: Int) {
+        let text = String(format: "%i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
         durationLabel.attributedText = NSAttributedString(string: text,
-                                                          letterSpacing: 0.4,
-                                                          font: .apercuMedium(ofSize: 12),
+                                                          letterSpacing: 0.2,
+                                                          font: .sfProtextSemibold(ofSize: 14),
                                                           textColor: colorMode.tint,
                                                           alignment: .center)
     }
@@ -68,7 +68,7 @@ private extension AudioButton {
 // MARK: - Actions
 
 private extension AudioButton {
-    @IBAction func didTapAudiButton() {
+    @IBAction func didTapAudioButton() {
         let media = MediaPlayerModel(title: title,
                                      subtitle: categoryTitle,
                                      url: audioURL,
