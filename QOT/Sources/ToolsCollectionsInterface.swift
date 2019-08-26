@@ -24,6 +24,7 @@ protocol ToolsCollectionsInteractorInterface: Interactor {
     var rowCount: Int { get }
     var headerTitle: String { get }
     func presentToolsItems(selectedToolID: Int?)
+    func selectedCategoryId() -> Int
 }
 
 protocol ToolsCollectionsRouterInterface {
@@ -34,4 +35,5 @@ protocol ToolsCollectionsWorkerInterface {
     var headerTitle: String { get }
     func tools(_ completion: @escaping ([Tool.Item]) -> Void)
     func videoTools(_ completion: @escaping ([Tool.Item]) -> Void)
+    func selectedCategoryId() -> Int
 }

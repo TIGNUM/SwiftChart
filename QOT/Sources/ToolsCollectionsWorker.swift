@@ -87,4 +87,8 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
             completion(items)
         }
     }
+
+    func selectedCategoryId() -> Int {
+        return selectedToolID ?? 0
+    }
 }

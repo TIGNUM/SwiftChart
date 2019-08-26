@@ -102,7 +102,6 @@ extension MyPrepsWorker {
         })
     }
 
-
     func createMindModel() {
     }
 

@@ -56,9 +56,7 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
         guard let myQotViewController = navController?.viewControllers.first  as? MyQotMainViewController else {
             return nil
         }
-        if let services = services {
-            MyQotMainConfigurator.configure(delegate: self, services: services, viewController: myQotViewController)
-        }
+        MyQotMainConfigurator.configure(delegate: self, viewController: myQotViewController)
         return navController
     }()
 

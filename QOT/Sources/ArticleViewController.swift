@@ -228,9 +228,23 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
         tableView.reloadData()
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         setStatusBar(colorMode: ColorMode.darkNot)
+    }
+
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        pageTrack.associatedValueType = .CONTENT_COLLECTION
+        pageTrack.associatedValueId = interactor?.remoteID
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 }
 

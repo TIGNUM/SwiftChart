@@ -64,4 +64,8 @@ extension ToolsCollectionsInteractor: ToolsCollectionsInteractorInterface {
     func presentToolsItems(selectedToolID: Int?) {
         return router.presentToolsItems(selectedToolID: selectedToolID)
     }
+
+    func selectedCategoryId() -> Int {
+        return worker.selectedCategoryId()
+    }
 }

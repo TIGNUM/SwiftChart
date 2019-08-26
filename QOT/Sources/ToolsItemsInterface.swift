@@ -23,10 +23,12 @@ protocol ToolsItemsInteractorInterface: Interactor {
     var rowCount: Int { get }
     var headerTitle: String { get }
     var headerSubtitle: String { get }
+    func selectedContentId() -> Int
 }
 
 protocol ToolsItemsWorkerInterface {
     var headerTitle: String { get }
     var headerSubtitle: String { get }
     var tools: [Tool.Item] { get }
+    func selectedContentId() -> Int
 }

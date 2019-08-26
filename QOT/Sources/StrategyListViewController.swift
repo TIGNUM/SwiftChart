@@ -30,12 +30,26 @@ final class StrategyListViewController: UIViewController, ScreenZLevel2 {
         setStatusBar(colorMode: ColorMode.dark)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if
             let controller = (segue.destination as? UINavigationController)?.viewControllers.first as? ArticleViewController,
             let selectedID = sender as? Int {
             ArticleConfigurator.configure(selectedID: selectedID, viewController: controller)
         }
+    }
+
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        pageTrack.associatedValueType = .CONTENT_CATEGORY
+        pageTrack.associatedValueId = interactor?.selectedStrategyId()
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 }
 

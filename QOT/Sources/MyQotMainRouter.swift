@@ -13,14 +13,12 @@ final class MyQotMainRouter {
     // MARK: - Properties
 
     private let viewController: MyQotMainViewController
-    private let services: Services
     weak var delegate: CoachCollectionViewControllerDelegate?
 
     // MARK: - Init
 
-    init(viewController: MyQotMainViewController, services: Services, delegate: CoachCollectionViewControllerDelegate) {
+    init(viewController: MyQotMainViewController, delegate: CoachCollectionViewControllerDelegate) {
         self.viewController = viewController
-        self.services = services
         self.delegate = delegate
     }
 }

@@ -47,7 +47,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func saveTargetValue(value: Int?)
     func showSolveResults(solve: QDMSolve)
     func showDailyCheckIn()
-    func presentCopyRight(copyrightURL: String?) 
+    func presentCopyRight(copyrightURL: String?)
 }
 
 protocol DailyBriefRouterInterface {

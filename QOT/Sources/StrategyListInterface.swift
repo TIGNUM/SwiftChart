@@ -25,6 +25,7 @@ protocol StrategyListInteractorInterface: class, Interactor {
     var rowCount: Int { get }
     var headerTitle: String { get }
     func presentArticle(selectedID: Int?)
+    func selectedStrategyId() -> Int
     func reloadData()
 }
 

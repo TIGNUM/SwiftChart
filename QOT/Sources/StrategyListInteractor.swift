@@ -36,6 +36,7 @@ final class StrategyListInteractor {
 // MARK: - StrategyListInteractorInterface
 
 extension StrategyListInteractor: StrategyListInteractorInterface {
+
     var headerTitle: String {
         return worker.headerTitle()
     }
@@ -62,5 +63,9 @@ extension StrategyListInteractor: StrategyListInteractorInterface {
 
     func reloadData() {
         presenter.reload()
+    }
+
+    func selectedStrategyId() -> Int {
+        return worker.selectedStrategyId()
     }
 }

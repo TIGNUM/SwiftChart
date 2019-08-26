@@ -75,11 +75,9 @@ private extension SolveResultsViewController {
     }
 
     @objc func didTapDismiss() {
-    switch interactor?.resultType {
-        case .recovery?:
-           didTapDismissButton()
-        default:
-            interactor?.dismiss()
+        switch interactor?.resultType {
+        case .recovery?: didTapDismissButton()
+        default: interactor?.dismiss()
         }
     }
 

@@ -225,7 +225,7 @@ extension UIViewController {
     }
 
     @objc open func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if self is ScreenZLevel1 || self is ScreenZLevel2 || self is ScreenZLevelBottom {
+        if self is ScreenZLevel1 || self is ScreenZLevelBottom {
             return [coachNavigationItem()]
         }
         return nil

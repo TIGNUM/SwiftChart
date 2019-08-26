@@ -132,9 +132,8 @@ final class UserNotificationsManager {
                 continue
             }
 
-            var excludeNotificationTags = ["RANDOM_CONTENT_SLEEP"]
-//            guard let excludeNotificationTags = notificationSchedule.excludedNotification,
-            guard let sprintContentTags = notificationSchedule.contentTags else {
+            guard let excludeNotificationTags = notificationSchedule.excludedNotification,
+                let sprintContentTags = notificationSchedule.contentTags else {
                     continue
             }
 

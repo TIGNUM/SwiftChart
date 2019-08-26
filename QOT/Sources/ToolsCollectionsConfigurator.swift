@@ -13,7 +13,7 @@ final class ToolsCollectionsConfigurator {
     static func make(viewController: ToolsCollectionsViewController, selectedToolID: Int?) {
         let router = ToolsCollectionsRouter(viewController: viewController)
         let worker = ToolsCollectionsWorker(selectedToolID: selectedToolID)
-        let presenter = ToolsCollectionsPresenter(viewController: viewController)
+        let presenter = ToolsCollectionsPresenter(viewController: viewController, selectedToolID: selectedToolID ?? 0)
         let interactor = ToolsCollectionsInteractor(worker: worker, presenter: presenter, router: router)
         viewController.interactor = interactor
     }

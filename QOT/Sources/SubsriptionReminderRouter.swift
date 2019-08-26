@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import qot_dal
 
 final class SubsriptionReminderRouter {
 
@@ -38,9 +39,7 @@ extension SubsriptionReminderRouter: SubsriptionReminderRouterInterface {
 
     func showLogoutDialog() {
         viewController?.showAlert(type: .logout, handlerDestructive: {
-            ExtensionsDataManager.didUserLogIn(false)
-            UIApplication.shared.shortcutItems?.removeAll()
-            NotificationHandler.postNotification(withName: .logoutNotification)
+            qot_dal.SessionService.main.logout()
         })
     }
 }

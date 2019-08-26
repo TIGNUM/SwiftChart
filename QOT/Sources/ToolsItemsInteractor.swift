@@ -52,4 +52,8 @@ extension ToolsItemsInteractor: ToolsItemsInteractorInterface {
     var rowCount: Int {
         return worker.tools.count
     }
+
+    func selectedContentId() -> Int {
+        return worker.selectedContentId()
+    }
 }

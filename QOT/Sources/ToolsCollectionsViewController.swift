@@ -41,14 +41,17 @@ final class ToolsCollectionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .sand
-//        setCustomBackButton()
         setStatusBar(colorMode: ColorMode.darkNot)
         interactor?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        setCustomBackButton()
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
     }
 
     @objc func pop() {
@@ -60,6 +63,15 @@ final class ToolsCollectionsViewController: UIViewController {
             ToolsItemsConfigurator.make(viewController: controller,
                                               selectedToolID: sender as? Int)
         }
+    }
+
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        pageTrack.associatedValueType = .CONTENT_CATEGORY
+        pageTrack.associatedValueId = interactor?.selectedCategoryId()
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 }
 

@@ -109,6 +109,15 @@ final class AudioFullScreenViewController: UIViewController {
         case .DOWNLOADED: return .DONE
         }
     }
+
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        pageTrack.associatedValueType = .CONTENT_ITEM
+        pageTrack.associatedValueId = media?.mediaRemoteId
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
+    }
 }
 
 // MARK: - Actions

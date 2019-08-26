@@ -68,4 +68,8 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
             completion()
         }
     }
+
+    func selectedContentId() -> Int {
+        return selectedToolID ?? 0
+    }
 }

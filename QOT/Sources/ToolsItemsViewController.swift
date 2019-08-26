@@ -58,8 +58,22 @@ final class ToolsItemsViewController: UIViewController {
         setStatusBar(colorMode: ColorMode.darkNot)
     }
 
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        trackPage()
+    }
+
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
+    }
+
+    @objc override func trackPage() {
+        var pageTrack = QDMPageTracking()
+        pageTrack.pageId = 0
+        pageTrack.pageKey = pageKey
+        pageTrack.associatedValueType = .CONTENT_COLLECTION
+        pageTrack.associatedValueId = interactor?.selectedContentId()
+        NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
 }
 

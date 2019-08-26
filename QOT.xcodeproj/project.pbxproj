@@ -1424,12 +1424,6 @@
 		CBC1DC3D1F14DA1200F6D056 /* UserSettingIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */; };
 		CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */; };
 		CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */; };
-		CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5761FA07F11007B9A5B /* 15_min_power_nap_with_voice.m4a */; };
-		CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5751FA07F11007B9A5B /* 90_min_power_nap.m4a */; };
-		CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5721FA07F10007B9A5B /* 15_min_power_nap_no_voice.m4a */; };
-		CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5731FA07F10007B9A5B /* 20_min_power_nap_with_voice_A.m4a */; };
-		CBC5A57C1FA08077007B9A5B /* 20_min_power_nap_with_voice_B.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5741FA07F11007B9A5B /* 20_min_power_nap_with_voice_B.m4a */; };
-		CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */ = {isa = PBXBuildFile; fileRef = CBC5A5771FA07F11007B9A5B /* 10_min_power_nap_with_voice.m4a */; };
 		CBC5ACBF1F162A9C007E1E9C /* UserChoice.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */; };
 		CBC5ACC11F162AAE007E1E9C /* UserChoiceIntermediary.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */; };
 		CBC5ACC61F17C58F007E1E9C /* UpdateRelationsOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = CBC5ACC51F17C58F007E1E9C /* UpdateRelationsOperation.swift */; };
@@ -3247,12 +3241,6 @@
 		CBC1DC3C1F14DA1200F6D056 /* UserSettingIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserSettingIntermediary.swift; sourceTree = "<group>"; };
 		CBC1DC3E1F16067900F6D056 /* DownSyncIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownSyncIntermediary.swift; sourceTree = "<group>"; };
 		CBC5A5701F9FA01D007B9A5B /* Animations.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Animations.xcassets; sourceTree = "<group>"; };
-		CBC5A5721FA07F10007B9A5B /* 15_min_power_nap_no_voice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 15_min_power_nap_no_voice.m4a; path = Media/15_min_power_nap_no_voice.m4a; sourceTree = "<group>"; };
-		CBC5A5731FA07F10007B9A5B /* 20_min_power_nap_with_voice_A.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 20_min_power_nap_with_voice_A.m4a; path = Media/20_min_power_nap_with_voice_A.m4a; sourceTree = "<group>"; };
-		CBC5A5741FA07F11007B9A5B /* 20_min_power_nap_with_voice_B.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 20_min_power_nap_with_voice_B.m4a; path = Media/20_min_power_nap_with_voice_B.m4a; sourceTree = "<group>"; };
-		CBC5A5751FA07F11007B9A5B /* 90_min_power_nap.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 90_min_power_nap.m4a; path = Media/90_min_power_nap.m4a; sourceTree = "<group>"; };
-		CBC5A5761FA07F11007B9A5B /* 15_min_power_nap_with_voice.m4a */ = {isa = PBXFileReference; lastKnownFileType = text; name = 15_min_power_nap_with_voice.m4a; path = Media/15_min_power_nap_with_voice.m4a; sourceTree = "<group>"; };
-		CBC5A5771FA07F11007B9A5B /* 10_min_power_nap_with_voice.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; name = 10_min_power_nap_with_voice.m4a; path = Media/10_min_power_nap_with_voice.m4a; sourceTree = "<group>"; };
 		CBC5ACBE1F162A9C007E1E9C /* UserChoice.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoice.swift; sourceTree = "<group>"; };
 		CBC5ACC01F162AAE007E1E9C /* UserChoiceIntermediary.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserChoiceIntermediary.swift; sourceTree = "<group>"; };
 		CBC5ACC51F17C58F007E1E9C /* UpdateRelationsOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UpdateRelationsOperation.swift; sourceTree = "<group>"; };
@@ -6826,12 +6814,6 @@
 			isa = PBXGroup;
 			children = (
 				3679A4E22175E45200DF761A /* qot_clip.gif */,
-				CBC5A5761FA07F11007B9A5B /* 15_min_power_nap_with_voice.m4a */,
-				CBC5A5751FA07F11007B9A5B /* 90_min_power_nap.m4a */,
-				CBC5A5721FA07F10007B9A5B /* 15_min_power_nap_no_voice.m4a */,
-				CBC5A5731FA07F10007B9A5B /* 20_min_power_nap_with_voice_A.m4a */,
-				CBC5A5741FA07F11007B9A5B /* 20_min_power_nap_with_voice_B.m4a */,
-				CBC5A5771FA07F11007B9A5B /* 10_min_power_nap_with_voice.m4a */,
 			);
 			name = "Bundled Media";
 			sourceTree = "<group>";
@@ -8585,7 +8567,6 @@
 				8DF7870F22FEB53D00CDE0A9 /* RegistrationCode.storyboard in Resources */,
 				8D6E059122D7487400EC2AEF /* MyLibraryNotes.storyboard in Resources */,
 				F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */,
-				CBC5A57D1FA0807B007B9A5B /* 10_min_power_nap_with_voice.m4a in Resources */,
 				36D72EDA229C35CB00DE1184 /* PrepareEventTableViewCell.xib in Resources */,
 				75423F0822CF303B008EE726 /* BeSpokeCell.xib in Resources */,
 				BB7B317B230A8C65004A5E52 /* TwoLinesAndTag.xib in Resources */,
@@ -8708,12 +8689,10 @@
 				B856B48322B0E2D80017A249 /* MyLibraryUserStorage.storyboard in Resources */,
 				AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */,
 				8D8AA76222FDCB6700B59A81 /* Registration.storyboard in Resources */,
-				CBC5A57A1FA08071007B9A5B /* 15_min_power_nap_no_voice.m4a in Resources */,
 				ACF0B9792260BC80008CFAEC /* TextTableViewCell.xib in Resources */,
 				75423F1B22CF4ABB008EE726 /* FromMyCoachMessageView.xib in Resources */,
 				5F8A89912296DC270011A05C /* MyToBeVision.storyboard in Resources */,
 				CC59A88D1F41C0E100D22353 /* LibraryCategoryCollectionViewCell.xib in Resources */,
-				CBC5A5791FA0806E007B9A5B /* 90_min_power_nap.m4a in Resources */,
 				B4A075B1230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib in Resources */,
 				36A5E75722786014006A522C /* MediaPlayerOverlay.xib in Resources */,
 				3632D0C6225347DD00A4F234 /* ComponentHeaderView.xib in Resources */,
@@ -8722,7 +8701,6 @@
 				7F0F03041F14CE2300007D50 /* CollapsableCell.xib in Resources */,
 				F9FA08F522806C7A00A917A4 /* CoachTableHeaderView.xib in Resources */,
 				8D008F0B230EFA63006D7263 /* WalkthroughSearch.storyboard in Resources */,
-				CBC5A5781FA0806B007B9A5B /* 15_min_power_nap_with_voice.m4a in Resources */,
 				3637663C223A6F8500C2C429 /* AbstractTableViewCell.xib in Resources */,
 				8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */,
 				9C9E33B522DCA3DB00214ED6 /* ImpactReadinessCell.xib in Resources */,
@@ -8770,7 +8748,6 @@
 				9C24237222F081A400B911E6 /* AboutMeCell.xib in Resources */,
 				3632D0D02253949300A4F234 /* StrategyFoundationCollectionViewCell.xib in Resources */,
 				367CD18822EF4F0800AF2187 /* OnboardingLoginViewController.xib in Resources */,
-				CBC5A57B1FA08075007B9A5B /* 20_min_power_nap_with_voice_A.m4a in Resources */,
 				5F36074A228C42570074FEC4 /* SyncedCalendarCell.xib in Resources */,
 				360256F220528E9F00862B0E /* SearchTableViewCell.xib in Resources */,
 				F9D6381422D62BAD0092C482 /* DepartureInfoCell.xib in Resources */,
@@ -8843,7 +8820,6 @@
 				7FCF0EF71FD9774C00138D77 /* MyUniverseContentView.xib in Resources */,
 				F9A5C95622B7DFEF00AB2E94 /* PaymentHeaderView.xib in Resources */,
 				CC41A54B1EFD5A1400B9AE8E /* ArticleItemHeaderView.xib in Resources */,
-				CBC5A57C1FA08077007B9A5B /* 20_min_power_nap_with_voice_B.m4a in Resources */,
 				851676D91F3C55C8007A1DD6 /* LearnPDFCell.xib in Resources */,
 				AC1A40E922A55C870022156C /* SolveHeaderTableViewCell.xib in Resources */,
 				36B515CC216395B600A7B405 /* SupportFAQTableViewCell.xib in Resources */,

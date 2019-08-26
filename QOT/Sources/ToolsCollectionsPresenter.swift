@@ -13,11 +13,13 @@ final class ToolsCollectionsPresenter {
     // MARK: - Properties
 
     private weak var viewController: ToolsCollectionsViewControllerInterface?
+    private let selectedToolID: Int
 
     // MARK: - Init
 
-    init(viewController: ToolsCollectionsViewControllerInterface) {
+    init(viewController: ToolsCollectionsViewControllerInterface, selectedToolID: Int) {
         self.viewController = viewController
+        self.selectedToolID = selectedToolID
     }
 }
 
@@ -30,5 +32,9 @@ extension ToolsCollectionsPresenter: ToolsCollectionsPresenterInterface {
 
     func reload() {
         viewController?.reload()
+    }
+
+    func selectedCategoryId() -> Int {
+        return self.selectedToolID
     }
 }

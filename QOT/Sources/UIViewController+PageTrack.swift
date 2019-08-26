@@ -12,9 +12,9 @@ import qot_dal
 // MARK: - Actions
 
 extension UIViewController {
-    func trackPage() {
+    @objc func trackPage() {
         var pageTrack = QDMPageTracking()
-        pageTrack.pageId = 100013
+        pageTrack.pageId = 0
         pageTrack.pageKey = pageKey
         NotificationCenter.default.post(name: .reportPageTracking, object: pageTrack)
     }
@@ -36,7 +36,7 @@ extension UIViewController {
 
 // MARK: - Keys
 
-private extension UIViewController {
+extension UIViewController {
     var pageKey: String {
         switch self {
         case is DecisionTreeViewController: return decisionTreePageKey
@@ -62,6 +62,8 @@ private extension UIViewController {
         case is CoachViewController: return "coach.main"
         case is SearchViewController: return "search.main"
         case is ToolsViewController: return "coach.tools"
+        case is ToolsCollectionsViewController: return "coach.tools.list"
+        case is ToolsItemsViewController: return "coach.tools.item.detail"
         case is KnowingViewController: return "know.feed"
         case is SolveResultsViewController: return "solve.results"
         case is MyQotMainViewController: return "myqot.main"
@@ -81,6 +83,8 @@ private extension UIViewController {
         case is RegistrationAgeViewController: return "onboarding.createaccount.birthdate"
         case is LocationPermissionViewController: return "onboarding.createaccount.permissions"
         case is TrackSelectionViewController: return "onboarding.createaccount.welcome"
+        case is StrategyListViewController: return "knowing.feed.strategy"
+        case is ArticleViewController: return "article.detail"
         default: preconditionFailure()
         }
     }

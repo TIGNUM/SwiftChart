@@ -48,12 +48,11 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 900
         interactor?.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(hideDisplayGuidedTrackCells(_:)), name: .displayGuidedTrackCells, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(hideDisplayGuidedTrackCells(_:)),
+                                               name: .displayGuidedTrackCells, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(updateDailyBriefFromNotification(_:)),
+                                               name: .didUpdateDailyBriefBuckets, object: nil)
         self.showLoadingSkeleton(with: [.dailyBrief])
-    }
-
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         interactor?.getDailyBriefBucketsForViewModel()
     }
 
@@ -173,6 +172,13 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         default:
             return UITableViewCell()
         }
+    }
+}
+
+// MARK: Daily Brief Update Notification
+private extension DailyBriefViewController {
+    @objc func updateDailyBriefFromNotification(_ notification: NSNotification) {
+        interactor?.getDailyBriefBucketsForViewModel()
     }
 }
 

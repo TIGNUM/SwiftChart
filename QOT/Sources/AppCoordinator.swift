@@ -32,7 +32,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private var onDismiss: (() -> Void)?
     private var destination: AppCoordinator.Router.Destination?
     private var iPadAdviceCompletion: (() -> Void)?
-    private let userIsLoggingIn = Atomic(false)
     private weak var topTabBarController: UINavigationController?
     private weak var currentPresentedController: UIViewController?
     private weak var currentPresentedNavigationController: UINavigationController?
@@ -146,10 +145,16 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     }
 
     func start(completion: @escaping (() -> Void)) {
-        if UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController == nil {
+        if let navigationController = UIApplication.shared.delegate?.window??.rootViewController as? UINavigationController {
+            if navigationController.viewControllers.first as? BaseRootViewController == nil {
+                UIApplication.shared.delegate?.window??.rootViewController =
+                    R.storyboard.bottomNavigation().instantiateInitialViewController()
+            }
+        } else {
             UIApplication.shared.delegate?.window??.rootViewController =
                 R.storyboard.bottomNavigation().instantiateInitialViewController()
         }
+
         if Bundle.main.isFirstVersion == true {
             SessionService.main.logout()
         }
@@ -180,13 +185,14 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
     func restart() {
         logout()
+        ExtensionsDataManager.didUserLogIn(false)
         UIApplication.shared.shortcutItems?.removeAll()
         showSigning()
     }
 
     func setupBugLife() {
         guard authenticator.hasLoginCredentials() else { return }
-        if AppCoordinator.appState.services.userService.user()?.email.lowercased().contains("@tignum.com") == true {
+        if qot_dal.SessionService.main.getCurrentSession()?.useremail?.lowercased().contains("@tignum.com") == true {
             Buglife.shared().start(withAPIKey: "fj62sZjDnl3g0dLuXJHUzAtt") // FIXME: obfuscate
             Buglife.shared().delegate = AppDelegate.current
             Buglife.shared().invocationOptions = [.shake]
@@ -235,6 +241,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     func showApp() {
         RestartHelper().checkRestartURLAndRoute()
         self.isReadyToProcessURL = true
+        ExtensionsDataManager.didUserLogIn(true)
 
         // Show coach marks on first launch (of v3.0 app)
         if !UserDefault.didShowCoachMarks.boolValue {
@@ -415,9 +422,6 @@ extension AppCoordinator {
     }
 
     func showSigning() {
-        guard userIsLoggingIn.value == false else { return }
-        userIsLoggingIn.value = true
-
         qot_dal.ContentService.main.getContentCategory(.Onboarding_3_0) { (contentCategory) in
             let landingConfigurator = OnboardingLandingPageConfigurator.make()
             let landingController = OnboardingLandingPageViewController()
@@ -449,7 +453,6 @@ extension AppCoordinator {
 
     func didLogin() {
         showApp()
-        userIsLoggingIn.value = false
     }
 }
 

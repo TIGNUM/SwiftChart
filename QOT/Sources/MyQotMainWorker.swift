@@ -14,15 +14,13 @@ final class MyQotMainWorker {
     // MARK: - Properties
 
     private let userService = qot_dal.UserService.main
-    private let services: Services
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
     }()
 
     // MARK: - Init
 
-    init(services: Services) {
-        self.services = services
+    init() {
     }
 
 // MARK: - functions

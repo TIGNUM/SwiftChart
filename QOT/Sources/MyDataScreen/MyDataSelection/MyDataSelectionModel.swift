@@ -16,7 +16,7 @@ struct MyDataSelectionModel {
         let title: String?
         var selected: Bool
 
-        static func ==(lhs: SelectionItem, rhs: SelectionItem) -> Bool {
+        static func == (lhs: SelectionItem, rhs: SelectionItem) -> Bool {
             return lhs.myDataExplanationSection == rhs.myDataExplanationSection &&
                    lhs.title == rhs.title &&
                    lhs.selected == rhs.selected
