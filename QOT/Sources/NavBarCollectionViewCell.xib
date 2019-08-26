@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="9QY-hO-wsc" customClass="NavBarCollectionViewCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="477" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
+                <rect key="frame" x="0.0" y="0.0" width="477" height="100"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Cm-9L-ifl">
+                        <rect key="frame" x="0.0" y="0.0" width="477" height="100"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iUb-TA-1WW">
+                                <rect key="frame" x="10" y="39" width="16" height="22"/>
+                                <state key="normal" image="ic_navbar_arrow_left"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Jz-mK-e5w">
+                                <rect key="frame" x="222" y="39.5" width="33.5" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jRt-aW-Sjs">
+                                <rect key="frame" x="451" y="39" width="16" height="22"/>
+                                <state key="normal" image="ic_navbar_arrow_right"/>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="iUb-TA-1WW" firstAttribute="leading" secondItem="5Cm-9L-ifl" secondAttribute="leading" constant="10" id="7QF-k0-jsW"/>
+                            <constraint firstItem="jRt-aW-Sjs" firstAttribute="centerY" secondItem="7Jz-mK-e5w" secondAttribute="centerY" id="IcF-z5-3XM"/>
+                            <constraint firstAttribute="trailing" secondItem="jRt-aW-Sjs" secondAttribute="trailing" constant="10" id="NeX-8c-Ho8"/>
+                            <constraint firstItem="iUb-TA-1WW" firstAttribute="centerY" secondItem="7Jz-mK-e5w" secondAttribute="centerY" id="YQA-1E-oUU"/>
+                            <constraint firstItem="7Jz-mK-e5w" firstAttribute="centerY" secondItem="5Cm-9L-ifl" secondAttribute="centerY" id="g7b-Ax-cLg"/>
+                            <constraint firstItem="7Jz-mK-e5w" firstAttribute="centerX" secondItem="5Cm-9L-ifl" secondAttribute="centerX" id="jAJ-6b-f9E"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <constraints>
+                <constraint firstItem="5Cm-9L-ifl" firstAttribute="top" secondItem="9QY-hO-wsc" secondAttribute="top" id="AjU-5L-iCf"/>
+                <constraint firstAttribute="trailing" secondItem="5Cm-9L-ifl" secondAttribute="trailing" id="RXw-mF-1sE"/>
+                <constraint firstItem="5Cm-9L-ifl" firstAttribute="leading" secondItem="9QY-hO-wsc" secondAttribute="leading" id="TcT-zk-83d"/>
+                <constraint firstAttribute="bottom" secondItem="5Cm-9L-ifl" secondAttribute="bottom" id="nwv-RS-aes"/>
+            </constraints>
+            <viewLayoutGuide key="safeArea" id="jZg-eO-s9H"/>
+            <size key="customSize" width="477" height="100"/>
+            <connections>
+                <outlet property="buttonLeft" destination="iUb-TA-1WW" id="ehe-QL-DDD"/>
+                <outlet property="buttonRight" destination="jRt-aW-Sjs" id="9s6-Pa-FYs"/>
+                <outlet property="container" destination="5Cm-9L-ifl" id="Qtp-qP-6y2"/>
+                <outlet property="titleLabel" destination="7Jz-mK-e5w" id="zO6-rC-1rH"/>
+            </connections>
+            <point key="canvasLocation" x="-203.62318840579712" y="127.90178571428571"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <image name="ic_navbar_arrow_left" width="24" height="24"/>
+        <image name="ic_navbar_arrow_right" width="24" height="24"/>
+    </resources>
+</document>

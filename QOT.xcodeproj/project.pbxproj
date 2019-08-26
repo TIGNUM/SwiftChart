@@ -1259,7 +1259,6 @@
 		B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */; };
 		BB4061622302F3A600E5AB19 /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4061612302F3A600E5AB19 /* OrientationManager.swift */; };
 		BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */; };
-		BB5E76B7230C04B30054AF17 /* CustomSeguePush.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B5230C04B30054AF17 /* CustomSeguePush.swift */; };
 		BB5E76BB230C29A10054AF17 /* DailyBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B9230C29A10054AF17 /* DailyBrief.swift */; };
 		BB5E76BC230C29A10054AF17 /* DailyBrief.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76BA230C29A10054AF17 /* DailyBrief.xib */; };
 		BB5E76C0230C393D0054AF17 /* MyQOT.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76BE230C393D0054AF17 /* MyQOT.xib */; };
@@ -1281,6 +1280,10 @@
 		BB7B3187230AA8BE004A5E52 /* OneLineHeading.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3185230AA8BD004A5E52 /* OneLineHeading.xib */; };
 		BB7B318B230AB337004A5E52 /* OneLineBlock.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3189230AB337004A5E52 /* OneLineBlock.xib */; };
 		BB7B318C230AB337004A5E52 /* OneLineBlock.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B318A230AB337004A5E52 /* OneLineBlock.swift */; };
+		BB8990DE230EF16800FEDF5B /* NavBarCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */; };
+		BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */; };
+		BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */; };
+		BB8990E3230EF18300FEDF5B /* NavBarTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */; };
 		CB026FC61F69681300FC5076 /* APNSDeviceTokenRegistrar.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */; };
 		CB142B732010CC65002DF8FB /* GuideGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB142B722010CC65002DF8FB /* GuideGenerator.swift */; };
 		CB14675E1EF18F5F00A60E31 /* Dictionary+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB14675D1EF18F5F00A60E31 /* Dictionary+Convenience.swift */; };
@@ -3071,7 +3074,6 @@
 		BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.appstore.xcconfig"; sourceTree = "<group>"; };
 		BB4061612302F3A600E5AB19 /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
 		BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegueModal.swift; sourceTree = "<group>"; };
-		BB5E76B5230C04B30054AF17 /* CustomSeguePush.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSeguePush.swift; sourceTree = "<group>"; };
 		BB5E76B9230C29A10054AF17 /* DailyBrief.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyBrief.swift; sourceTree = "<group>"; };
 		BB5E76BA230C29A10054AF17 /* DailyBrief.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DailyBrief.xib; sourceTree = "<group>"; };
 		BB5E76BE230C393D0054AF17 /* MyQOT.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyQOT.xib; sourceTree = "<group>"; };
@@ -3093,6 +3095,10 @@
 		BB7B3185230AA8BD004A5E52 /* OneLineHeading.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneLineHeading.xib; sourceTree = "<group>"; };
 		BB7B3189230AB337004A5E52 /* OneLineBlock.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = OneLineBlock.xib; sourceTree = "<group>"; };
 		BB7B318A230AB337004A5E52 /* OneLineBlock.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OneLineBlock.swift; sourceTree = "<group>"; };
+		BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarCollectionViewCell.swift; sourceTree = "<group>"; };
+		BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarCollectionViewCell.xib; sourceTree = "<group>"; };
+		BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarTableViewCell.swift; sourceTree = "<group>"; };
+		BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = NavBarTableViewCell.xib; sourceTree = "<group>"; };
 		BEED5E92AE6C14AEF0F605A5 /* Pods-QOTTests.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.unittest.xcconfig"; sourceTree = "<group>"; };
 		C18DB768AC204FC05E0EFE96 /* Pods-DatabaseBuilder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DatabaseBuilder.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DatabaseBuilder/Pods-DatabaseBuilder.debug.xcconfig"; sourceTree = "<group>"; };
 		CB026FC51F69681300FC5076 /* APNSDeviceTokenRegistrar.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APNSDeviceTokenRegistrar.swift; sourceTree = "<group>"; };
@@ -3863,6 +3869,10 @@
 				8D08065223029FF1004576A9 /* QotPlaceholderTextField.xib */,
 				360B106B230A9E4B006B1F2D /* PermissionCalendarView.swift */,
 				360B106D230A9E82006B1F2D /* PermissionCalendarView.xib */,
+				BB8990DC230EF16800FEDF5B /* NavBarCollectionViewCell.swift */,
+				BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */,
+				BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */,
+				BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -6583,7 +6593,6 @@
 			isa = PBXGroup;
 			children = (
 				BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */,
-				BB5E76B5230C04B30054AF17 /* CustomSeguePush.swift */,
 			);
 			name = CustomSegue;
 			sourceTree = "<group>";
@@ -8700,6 +8709,7 @@
 				B856B48322B0E2D80017A249 /* MyLibraryUserStorage.storyboard in Resources */,
 				AC7F3DB52177407D0058B343 /* GuidePreparationTableViewCell.xib in Resources */,
 				8D8AA76222FDCB6700B59A81 /* Registration.storyboard in Resources */,
+				BB8990E3230EF18300FEDF5B /* NavBarTableViewCell.xib in Resources */,
 				ACF0B9792260BC80008CFAEC /* TextTableViewCell.xib in Resources */,
 				75423F1B22CF4ABB008EE726 /* FromMyCoachMessageView.xib in Resources */,
 				5F8A89912296DC270011A05C /* MyToBeVision.storyboard in Resources */,
@@ -8767,6 +8777,7 @@
 				CB8C34561EAF7F200003AB65 /* styles.css in Resources */,
 				36F5E30A22DCC58B000A213A /* Database in Resources */,
 				362632451FD6A2710024C626 /* GuideTableViewCell.xib in Resources */,
+				BB8990DF230EF16800FEDF5B /* NavBarCollectionViewCell.xib in Resources */,
 				36624340227C570200FFED3A /* AudioButton.xib in Resources */,
 				369AE00222A6CA7500DE4FA0 /* PrepareResultsInfoView.xib in Resources */,
 				CBC5A5711F9FA01D007B9A5B /* Animations.xcassets in Resources */,
@@ -9334,6 +9345,7 @@
 				ACB99E8C226F3A4600A73709 /* DotsLoadingView.swift in Sources */,
 				75711E0122E5EF65002CDCC9 /* MyQotProfileSettingsKeybaordInputView.swift in Sources */,
 				36FC8D491FDEF63200B5E062 /* GuideItemNotificationIntermediary.swift in Sources */,
+				BB8990E2230EF18300FEDF5B /* NavBarTableViewCell.swift in Sources */,
 				F9838F4F22B1184C003F9394 /* MyQotMainCollectionViewCell.swift in Sources */,
 				5F62BEA4228AE73E00852F7E /* MyQotSiriShortcutsInterface.swift in Sources */,
 				5F57F9F3228317AA003A9EDF /* MyQotAccountSettingsInterface.swift in Sources */,
@@ -9533,6 +9545,7 @@
 				8D204C2422F06F1000DF6A76 /* MySprintNotesWorker.swift in Sources */,
 				36796A5E20D3C4B800B55429 /* SigningInfoCollectionViewCell.swift in Sources */,
 				F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */,
+				BB8990DE230EF16800FEDF5B /* NavBarCollectionViewCell.swift in Sources */,
 				36E4B7AE219EBFED00049EE8 /* TutorialInterface.swift in Sources */,
 				912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */,
 				912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */,
@@ -10170,7 +10183,6 @@
 				BB7B318C230AB337004A5E52 /* OneLineBlock.swift in Sources */,
 				8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */,
 				AC103E3222847AB500F426F0 /* Confirmation.swift in Sources */,
-				BB5E76B7230C04B30054AF17 /* CustomSeguePush.swift in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,

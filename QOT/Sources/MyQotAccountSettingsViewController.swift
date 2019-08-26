@@ -84,7 +84,6 @@ final class MyQotAccountSettingsViewController: UIViewController {
 
 extension MyQotAccountSettingsViewController: MyQotAccountSettingsViewControllerInterface {
     func setupView() {
-        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         headerView.addHeader(with: .carbonDark)
         editButton.corner(radius: editButton.frame.width/2, borderColor: UIColor.accent30)
         setContentForView()

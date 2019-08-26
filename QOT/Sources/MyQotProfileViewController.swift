@@ -23,11 +23,14 @@ final class MyQotProfileViewController: AbstractLevelTwoViewController {
     var menuItems: [MyQotProfileModel.TableViewPresentationData] = []
 
     // MARK: - Life Cycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        interactor?.viewDidLoad()
+        self.showLoadingSkeleton(with: [.oneLineHeading, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell])
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        interactor?.viewDidLoad()
-        self.showLoadingSkeleton(with: [.oneLineHeading, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell, .myQOTCell])
         UIApplication.shared.statusBarView?.backgroundColor = .carbonDark
     }
 
@@ -76,7 +79,6 @@ extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
     }
 
     func setupView(profile: UserProfileModel, menuItems: [MyQotProfileModel.TableViewPresentationData]) {
-        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         self.profile = profile
         self.menuItems = menuItems
         headerLabel.text = interactor?.myProfileText()

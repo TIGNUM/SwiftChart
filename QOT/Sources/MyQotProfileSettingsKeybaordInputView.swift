@@ -34,7 +34,6 @@ final class MyQotProfileSettingsKeybaordInputView: UIView {
         saveButton.corner(radius: Layout.cornerRadius20, borderColor: .clear)
         closeButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
         shouldAllowSave = false
-        fadeView.addFadeView(at: .bottom, height: frame.size.height, primaryColor: .carbon, fadeColor: colorMode.fade)
     }
 
     @IBAction func closeButtonAction(_ sender: Any) {

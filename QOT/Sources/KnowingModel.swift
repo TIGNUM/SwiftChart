@@ -12,18 +12,21 @@ import qot_dal
 struct Knowing {
 
     enum Section: Int, CaseIterable {
-        case strategies = 0
+        case header = 0
+        case strategies
         case whatsHot
 
-        var titlePredicate: Tags {
+        var titlePredicate: Tags? {
             switch self {
+            case .header: return nil
             case .strategies: return .knowSectionTitleStrategies
             case .whatsHot: return .knowSectionTitleWhatsHot
             }
         }
 
-        var subtitlePredicate: Tags {
+        var subtitlePredicate: Tags? {
             switch self {
+            case .header: return nil
             case .strategies: return  .knowSectionSubtitleStrategies
             case .whatsHot: return .knowSectionSubtitleWhatsHot
             }

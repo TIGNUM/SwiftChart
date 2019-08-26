@@ -98,7 +98,7 @@ private extension HomeViewController {
         if let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout {
             layout.minimumLineSpacing = 0
             layout.minimumInteritemSpacing = 0
-            layout.sectionInset = .init(top: 0, left: 0, bottom: 64, right: 0)
+            layout.sectionInset = .zero
         }
         collectionView.clipsToBounds = false
     }

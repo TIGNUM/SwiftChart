@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -27,21 +27,11 @@
                     <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.52418664383561642" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CYG-Bu-BeL">
-                    <rect key="frame" x="24" y="19" width="375" height="1"/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="1" id="wM3-YD-E7Q"/>
-                    </constraints>
-                </view>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="JRu-ni-qRj" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="Kuh-SW-YcK"/>
                 <constraint firstItem="JRu-ni-qRj" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" id="M3j-3c-FCb"/>
-                <constraint firstItem="CYG-Bu-BeL" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="VOa-e3-zNs"/>
-                <constraint firstItem="CYG-Bu-BeL" firstAttribute="top" secondItem="JRu-ni-qRj" secondAttribute="bottom" constant="7" id="eEG-UY-XNt"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="CYG-Bu-BeL" secondAttribute="trailing" constant="24" id="her-F9-qsZ"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="JRu-ni-qRj" secondAttribute="trailing" constant="24" id="kLw-Yj-oyx"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

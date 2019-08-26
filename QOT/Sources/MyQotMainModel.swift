@@ -31,4 +31,10 @@ struct MyQotViewModel {
     func sectionItem(at indexPath: IndexPath) -> MyQotSection {
         return MyQotSection.allCases.item(at: indexPath.row)
     }
+
+    enum Section: Int, CaseIterable {
+        case header = 0
+        case body
+
+    }
 }

@@ -65,7 +65,7 @@ private extension CoachViewController {
 
 private extension CoachViewController {
 
-    @IBAction func closeButton() {
+    @objc func closeButton() {
          dismiss(animated: true, completion: nil)
          trackUserEvent(.CLOSE, action: .TAP)
     }

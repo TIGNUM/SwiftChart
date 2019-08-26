@@ -44,6 +44,7 @@ final class MyLibraryCategoryListViewController: AbstractLevelTwoViewController 
 // MARK: - Private
 
 private extension MyLibraryCategoryListViewController {
+
 }
 
 // MARK: - Actions

@@ -15,8 +15,6 @@ extension UIViewController {
                                                            style: .plain,
                                                            target: self,
                                                            action: #selector(backToPreviousViewController))
-        backButton.tintColor = .accent
-
         navigationItem.leftBarButtonItem = backButton
     }
 

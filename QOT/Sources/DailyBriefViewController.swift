@@ -45,6 +45,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.isHidden = true
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 900
         interactor?.viewDidLoad()

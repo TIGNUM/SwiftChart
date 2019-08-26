@@ -63,7 +63,6 @@ final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
 // MARK: - Private
 
 private extension MySprintsListViewController {
-
     private func showDefaultBottomButtons() {
         // Do not reload if not displayed
         if self.viewIfLoaded?.window == nil {

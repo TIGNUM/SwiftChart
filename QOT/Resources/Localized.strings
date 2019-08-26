@@ -682,3 +682,7 @@
 "Walkthrough.Search.Text" = "SWIPE DOWN\n\nTo access the SEARCH function";
 "Walkthrough.Coach.Text" = "TAP the Q button\n\nTo access the “Coach” area\nwhere you can prepare...";
 "Walkthrough.Swipe.Text" = "SWIPE LEFT\nTo access KNOW\n\n\nSWIPE RIGHT\nTo access the MY QOT";
+
+"Know.Title" = "KNOW";
+"DailyBrief.Title" = "DAILY BRIEF";
+"MyQOT.Title" = "MY QOT";

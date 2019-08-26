@@ -17,10 +17,15 @@ protocol ArticleDelegate: class {
 
 var colorMode = ColorMode.dark
 var textScale = TextScale.scaleNot
+var colorModeIsActive = false
 
 enum ColorMode {
     case dark
     case darkNot
+
+    var isLightMode: Bool {
+        return colorModeIsActive && self == .darkNot
+    }
 
     var background: UIColor {
         switch self {
@@ -133,7 +138,6 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     weak var delegate: ArticleItemViewControllerDelegate?
     private var header: Article.Header?
     private var audioButton = AudioButton()
-    private var currentFadeView = GradientView(colors: [], locations: [])
     private var readButtonIndexPath: IndexPath?
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var topTitleNavigationItem: UINavigationItem!
@@ -236,6 +240,7 @@ final class ArticleViewController: UIViewController, ScreenZLevel3 {
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
         setStatusBar(colorMode: ColorMode.darkNot)
+        colorModeIsActive = false
     }
 
     @objc override func trackPage() {
@@ -283,17 +288,13 @@ private extension ArticleViewController {
     }
 
     func setColorMode() {
+        colorModeIsActive = true
         UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.apercuMedium(ofSize: 20),
                                                             .foregroundColor: colorMode.text]
         setStatusBar(colorMode: colorMode)
         navigationController?.navigationBar.barTintColor = colorMode.background
         view.backgroundColor = colorMode.background
         tableView.backgroundColor = colorMode.background
-        currentFadeView.removeFromSuperview()
-        currentFadeView = view.addFadeView(at: .bottom,
-                                           height: 120,
-                                           primaryColor: colorMode.background,
-                                           fadeColor: colorMode.fade)
         audioButton.setColorMode()
         view.bringSubview(toFront: audioButton)
         refreshBottomNavigationItems()

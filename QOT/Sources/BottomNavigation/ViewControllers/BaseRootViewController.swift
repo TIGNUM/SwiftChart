@@ -20,7 +20,6 @@ final class BaseRootViewController: UIViewController, ScreenZLevelBottom {
     @IBOutlet weak var bottomNavigationPlaceholder: UIView!
 
     @IBOutlet var bottomNavigationContainer: UIView!
-    @IBOutlet weak var naviBackground: UIImageView!
     @IBOutlet weak var bottomNavigationBar: UINavigationBar!
     @IBOutlet weak var audioPlayerContainer: UIView!
 

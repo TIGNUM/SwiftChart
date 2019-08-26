@@ -11,10 +11,9 @@ import UIKit
 extension BaseRootViewController {
     func currentBottomNavigationItem() -> BottomNavigationItem? {
         let lastItem = bottomNavigationBar.items?.last
-        let color = naviBackground.tintColor ?? .clear
         let lastBottomItem = BottomNavigationItem(leftBarButtonItems: lastItem?.leftBarButtonItems ?? [],
                                                   rightBarButtonItems: lastItem?.rightBarButtonItems ?? [],
-                                                  backgroundColor: color)
+                                                  backgroundColor: .clear)
         return lastBottomItem
     }
 
@@ -48,8 +47,6 @@ extension BaseRootViewController {
             hideBottomNavigation()
             return
         }
-        self.naviBackground.tintColor = navigationItem.backgroundColor
-
         handleNavigationItems(leftItems: navigationItem.leftBarButtonItems,
                               rightItems: navigationItem.rightBarButtonItems)
     }
@@ -93,10 +90,7 @@ extension BaseRootViewController {
         })
         bringBottomNavigationBarToFront()
 
-        if let barColor = naviBackground.tintColor {
-            let lightMode = barColor.isEqual(UIColor.sand)
-            audioPlayerBar.setColorMode(lightMode ? ColorMode.darkNot : ColorMode.dark)
-        }
+        audioPlayerBar.setColorMode(colorMode.isLightMode ? ColorMode.darkNot : ColorMode.dark)
     }
 }
 

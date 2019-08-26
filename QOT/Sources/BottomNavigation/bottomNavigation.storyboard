@@ -56,7 +56,6 @@
                         <outlet property="bottomNavigationBar" destination="WaZ-yl-3vk" id="vly-rT-P3n"/>
                         <outlet property="bottomNavigationContainer" destination="u0O-GE-XGq" id="jde-R3-IsT"/>
                         <outlet property="bottomNavigationPlaceholder" destination="Gv7-dO-NxS" id="SJl-vn-GB9"/>
-                        <outlet property="naviBackground" destination="aoY-kS-tU6" id="54K-e1-Buz"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -64,19 +63,14 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <imageView clipsSubviews="YES" clearsContextBeforeDrawing="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="bottomNavigatorBG" translatesAutoresizingMaskIntoConstraints="NO" id="aoY-kS-tU6">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
-                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                            <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                        </imageView>
                         <navigationBar contentMode="scaleToFill" placeholderIntrinsicWidth="366" placeholderIntrinsicHeight="50" translatesAutoresizingMaskIntoConstraints="NO" id="WaZ-yl-3vk" customClass="BottomNavigationBar" customModule="QOT" customModuleProvider="target">
-                            <rect key="frame" x="24" y="30" width="366" height="40"/>
+                            <rect key="frame" x="10" y="20" width="394" height="40"/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="40" id="3je-AM-LZd"/>
                             </constraints>
                         </navigationBar>
                         <view userInteractionEnabled="NO" alpha="0.0" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="H3j-t6-QRW">
-                            <rect key="frame" x="24" y="30" width="366" height="40"/>
+                            <rect key="frame" x="10" y="20" width="394" height="40"/>
                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         </view>
                     </subviews>
@@ -85,15 +79,12 @@
                     <constraints>
                         <constraint firstItem="WaZ-yl-3vk" firstAttribute="centerX" secondItem="u0O-GE-XGq" secondAttribute="centerX" id="2ZL-eR-j6H"/>
                         <constraint firstItem="H3j-t6-QRW" firstAttribute="centerY" secondItem="WaZ-yl-3vk" secondAttribute="centerY" id="4cA-V4-aEi"/>
-                        <constraint firstItem="WaZ-yl-3vk" firstAttribute="centerY" secondItem="u0O-GE-XGq" secondAttribute="centerY" id="DhX-h6-9Ke"/>
+                        <constraint firstItem="V9l-Ym-XgG" firstAttribute="trailing" secondItem="WaZ-yl-3vk" secondAttribute="trailing" constant="10" id="Ieq-l6-0am"/>
                         <constraint firstItem="H3j-t6-QRW" firstAttribute="centerX" secondItem="WaZ-yl-3vk" secondAttribute="centerX" id="QU1-X3-sfn"/>
                         <constraint firstItem="H3j-t6-QRW" firstAttribute="height" secondItem="WaZ-yl-3vk" secondAttribute="height" id="QsJ-yf-zyG"/>
-                        <constraint firstItem="aoY-kS-tU6" firstAttribute="bottom" secondItem="u0O-GE-XGq" secondAttribute="bottom" id="USq-wK-BFU"/>
-                        <constraint firstItem="aoY-kS-tU6" firstAttribute="leading" secondItem="u0O-GE-XGq" secondAttribute="leading" id="ayK-Vi-j6x"/>
-                        <constraint firstItem="WaZ-yl-3vk" firstAttribute="width" secondItem="u0O-GE-XGq" secondAttribute="width" multiplier="366:414" id="bEh-Rh-XTA"/>
-                        <constraint firstItem="aoY-kS-tU6" firstAttribute="top" secondItem="u0O-GE-XGq" secondAttribute="top" id="hBU-yd-pqJ"/>
+                        <constraint firstItem="WaZ-yl-3vk" firstAttribute="bottom" secondItem="u0O-GE-XGq" secondAttribute="bottom" constant="-40" id="XOh-vp-sAU"/>
                         <constraint firstItem="H3j-t6-QRW" firstAttribute="width" secondItem="WaZ-yl-3vk" secondAttribute="width" id="j93-4V-vwF"/>
-                        <constraint firstItem="aoY-kS-tU6" firstAttribute="trailing" secondItem="u0O-GE-XGq" secondAttribute="trailing" id="xda-Lm-Aft"/>
+                        <constraint firstItem="WaZ-yl-3vk" firstAttribute="leading" secondItem="V9l-Ym-XgG" secondAttribute="leading" constant="10" id="yKU-B7-yHR"/>
                     </constraints>
                     <viewLayoutGuide key="safeArea" id="V9l-Ym-XgG"/>
                 </view>
@@ -101,7 +92,4 @@
             <point key="canvasLocation" x="-859.4202898550725" y="-46.205357142857139"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="bottomNavigatorBG" width="375" height="100"/>
-    </resources>
 </document>

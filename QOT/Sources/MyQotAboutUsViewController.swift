@@ -43,7 +43,6 @@ final class MyQotAboutUsViewController: UIViewController {
 
 extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
     func setupView(with title: String) {
-        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         headerLabel.text = title
     }
 }

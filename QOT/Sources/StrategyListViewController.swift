@@ -63,6 +63,13 @@ private extension StrategyListViewController {
     }
 }
 
+// MARK: - Bottom Navigation
+extension StrategyListViewController {
+    @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return [backNavigationItem()]
+    }
+}
+
 // MARK: - StrategyListViewControllerInterface
 
 extension StrategyListViewController: StrategyListViewControllerInterface {

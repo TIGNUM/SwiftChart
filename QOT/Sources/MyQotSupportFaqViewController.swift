@@ -36,7 +36,6 @@ final class MyQotSupportFaqViewController: UIViewController {
 
 extension MyQotSupportFaqViewController: MyQotSupportFaqViewControllerInterface {
     func setupView() {
-        view.addFadeView(at: .bottom, height: 120, primaryColor: .carbon)
         tableView.registerDequeueable(TitleTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
