@@ -60,6 +60,10 @@ extension UIFont {
         return (UIFont(name: FontName.sfProDisplayRegular.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }
 
+    class func sfProDisplayHeavy(ofSize: CGFloat) -> UIFont {
+        return (UIFont(name: FontName.sfProDisplayHeavy.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
+    }
+
     class func sfProDisplayLight(ofSize: CGFloat) -> UIFont {
         return (UIFont(name: FontName.sfProDisplayLight.rawValue, size: ofSize) ?? UIFont.systemFont(ofSize: ofSize))
     }

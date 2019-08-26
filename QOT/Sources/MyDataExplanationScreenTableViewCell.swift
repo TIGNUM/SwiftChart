@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyDataExplanationScreenTableViewCell: UITableViewCell, Dequeueable {
+class MyDataExplanationScreenTableViewCell: MyDataBaseTableViewCell {
 
     // MARK: - Properties
 

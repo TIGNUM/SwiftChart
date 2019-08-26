@@ -64,6 +64,7 @@ final class BaseRootViewController: UIViewController, ScreenZLevelBottom {
     }
 
     override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
         let frame = bottomNavigationPlaceholder.frame
         bottomNavigationContainer.frame = frame
     }

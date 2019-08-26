@@ -84,6 +84,10 @@ extension Date {
         return false
     }
 
+    func isBetween(date: Date, andDate: Date) -> Bool {
+        return (date <= self && self <= andDate) || (andDate <= self && self <= date)
+    }
+
     var minutesSinceMidnight: Int {
         let components = Calendar.current.dateComponents([.hour, .minute], from: self)
         return 60 * (components.hour ?? 0) + (components.minute ?? 0)
@@ -190,5 +194,11 @@ extension Date {
             return String(format: "%@ at %@", self.weekDayName, self.time)
         }
         return DateFormatter.mediumDate.string(from: self)
+    }
+
+    static func weekdayNameFrom(weekdayNumber: Int, short: Bool) -> String {
+        let calendar = Calendar.current
+        let dayIndex = ((weekdayNumber - 1) + (calendar.firstWeekday - 1)) % 7
+        return short ? calendar.shortWeekdaySymbols[dayIndex] : calendar.weekdaySymbols[dayIndex]
     }
 }

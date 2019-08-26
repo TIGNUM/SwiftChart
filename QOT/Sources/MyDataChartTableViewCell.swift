@@ -12,7 +12,7 @@ protocol MyDataCharTableViewCellDelegate: class {
 
 }
 
-class MyDataCharTableViewCell: UITableViewCell, Dequeueable {
+class MyDataCharTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
 
     weak var delegate: MyDataCharTableViewCellDelegate?

@@ -37,6 +37,7 @@ target 'QOT' do
   pod 'Bond', :git => 'git@github.com:SanggeonPark/Bond.git'
   pod 'qot_dal', :git => 'git@github.com:TIGNUM/qot_dal.git'
   pod 'DifferenceKit'
+  pod 'JTAppleCalendar', '7.1.6' 
 
   target 'QOTTests' do
     inherit! :search_paths

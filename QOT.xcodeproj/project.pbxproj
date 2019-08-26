@@ -1186,6 +1186,8 @@
 		B4A075B5230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */; };
 		B4A075B8230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */; };
 		B4A075B9230E76A000DDB922 /* MyDataSelectionScreenTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */; };
+		B4A075BB230EF13B00DDB922 /* MyDataHeatMapDateCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4A075BA230EF13B00DDB922 /* MyDataHeatMapDateCell.xib */; };
+		B4A075BD230EF14900DDB922 /* MyDataHeatMapDateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4A075BC230EF14900DDB922 /* MyDataHeatMapDateCell.swift */; };
 		B4AB48AA230BF6E7003B3C1F /* MyDataScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48A9230BF6E6003B3C1F /* MyDataScreen.storyboard */; };
 		B4AB48B5230BF890003B3C1F /* MyDataSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48AD230BF890003B3C1F /* MyDataSelectionPresenter.swift */; };
 		B4AB48B6230BF891003B3C1F /* MyDataSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48AE230BF890003B3C1F /* MyDataSelectionWorker.swift */; };
@@ -1211,6 +1213,7 @@
 		B4AB48D9230D3C78003B3C1F /* MyDataHeatMapTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */; };
 		B4AB48DC230D44C0003B3C1F /* MyDataChartLegendTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */; };
 		B4AB48DD230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */; };
+		B4EEF425231138A200911632 /* MyDataBaseTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */; };
 		B812D94422BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */; };
 		B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */; };
 		B83B33E722C21D6E002AFED7 /* Notification+Navigation.swift in Sources */ = {isa = PBXBuildFile; fileRef = B83B33DE22C21D6E002AFED7 /* Notification+Navigation.swift */; };
@@ -2979,6 +2982,7 @@
 		ACFB725022BB8126003D0BA3 /* CauseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CauseTableViewCell.swift; sourceTree = "<group>"; };
 		ACFB725122BB8126003D0BA3 /* CauseTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CauseTableViewCell.xib; sourceTree = "<group>"; };
 		B3EE7DF60C9A17B5F331C145 /* Pods-QOTTests.database.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.database.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.database.xcconfig"; sourceTree = "<group>"; };
+		B45502E8230FD7800030A303 /* SF-Pro-Display-Heavy.otf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "SF-Pro-Display-Heavy.otf"; path = "../../../Downloads/SF-Pro-Display-Heavy.otf"; sourceTree = "<group>"; };
 		B47953AB230AD512006EFE0F /* MyDataScreenInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenInterface.swift; sourceTree = "<group>"; };
 		B47953AC230AD512006EFE0F /* MyDataScreenPresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenPresenter.swift; sourceTree = "<group>"; };
 		B47953AD230AD512006EFE0F /* MyDataScreenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataScreenModel.swift; sourceTree = "<group>"; };
@@ -2993,6 +2997,8 @@
 		B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataExplanationScreenTableViewCell.swift; sourceTree = "<group>"; };
 		B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataSelectionScreenTableViewCell.swift; sourceTree = "<group>"; };
 		B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataSelectionScreenTableViewCell.xib; sourceTree = "<group>"; };
+		B4A075BA230EF13B00DDB922 /* MyDataHeatMapDateCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyDataHeatMapDateCell.xib; sourceTree = "<group>"; };
+		B4A075BC230EF14900DDB922 /* MyDataHeatMapDateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataHeatMapDateCell.swift; sourceTree = "<group>"; };
 		B4AB48A9230BF6E6003B3C1F /* MyDataScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = MyDataScreen.storyboard; sourceTree = "<group>"; };
 		B4AB48AD230BF890003B3C1F /* MyDataSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionPresenter.swift; sourceTree = "<group>"; };
 		B4AB48AE230BF890003B3C1F /* MyDataSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataSelectionWorker.swift; sourceTree = "<group>"; };
@@ -3018,6 +3024,7 @@
 		B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataHeatMapTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48DA230D44BF003B3C1F /* MyDataChartLegendTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyDataChartLegendTableViewCell.xib; sourceTree = "<group>"; };
 		B4AB48DB230D44C0003B3C1F /* MyDataChartLegendTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyDataChartLegendTableViewCell.swift; sourceTree = "<group>"; };
+		B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyDataBaseTableViewCell.swift; sourceTree = "<group>"; };
 		B50488E3814725BA21111945 /* Pods-QOTWidget.unittest.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.unittest.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.unittest.xcconfig"; sourceTree = "<group>"; };
 		B812D94322BA4674002E4647 /* BaseMyLibraryTableViewCellInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseMyLibraryTableViewCellInterface.swift; sourceTree = "<group>"; };
 		B83B33DC22C21D6E002AFED7 /* QOTNavigationController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = QOTNavigationController.swift; sourceTree = "<group>"; };
@@ -3777,10 +3784,13 @@
 				B4A075AF230D4C7600DDB922 /* MyDataHeatMapButtonsTableViewCell.xib */,
 				B4AB48D6230D3C77003B3C1F /* MyDataHeatMapTableViewCell.swift */,
 				B4AB48D7230D3C77003B3C1F /* MyDataHeatMapTableViewCell.xib */,
+				B4A075BC230EF14900DDB922 /* MyDataHeatMapDateCell.swift */,
+				B4A075BA230EF13B00DDB922 /* MyDataHeatMapDateCell.xib */,
 				B4A075B3230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.swift */,
 				B4A075B2230D86F600DDB922 /* MyDataExplanationScreenTableViewCell.xib */,
 				B4A075B6230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.swift */,
 				B4A075B7230E769E00DDB922 /* MyDataSelectionScreenTableViewCell.xib */,
+				B4EEF424231138A200911632 /* MyDataBaseTableViewCell.swift */,
 				36376639223A6F3B00C2C429 /* AbstractTableViewCell.swift */,
 				3637663B223A6F8500C2C429 /* AbstractTableViewCell.xib */,
 				36E6E3E7224911CF001BE9C7 /* ComponentCollectionViewCell.xib */,
@@ -7430,6 +7440,7 @@
 				366AFD1E20BEA2F200109F29 /* Apercu-Light.otf */,
 				366AFD1C20BEA2F100109F29 /* Apercu-Medium.otf */,
 				366AFD1D20BEA2F200109F29 /* Apercu-Regular.otf */,
+				B45502E8230FD7800030A303 /* SF-Pro-Display-Heavy.otf */,
 				368A125B2277386200866DB0 /* SF-Pro-Display-Light.otf */,
 				368A12572277386100866DB0 /* SF-Pro-Display-Regular.otf */,
 				368A12592277386200866DB0 /* SF-Pro-Display-Thin.otf */,
@@ -8705,6 +8716,7 @@
 				8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */,
 				9C9E33B522DCA3DB00214ED6 /* ImpactReadinessCell.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */,
+				B4A075BB230EF13B00DDB922 /* MyDataHeatMapDateCell.xib in Resources */,
 				36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */,
 				367564AD206A4420008D1F71 /* PrepareContentNotesViewController.storyboard in Resources */,
 				36376669223ABB2D00C2C429 /* StrategyTableViewCell.xib in Resources */,
@@ -8896,6 +8908,7 @@
 				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
 				"${BUILT_PRODUCTS_DIR}/DifferenceKit/DifferenceKit.framework",
 				"${BUILT_PRODUCTS_DIR}/Freddy/Freddy.framework",
+				"${BUILT_PRODUCTS_DIR}/JTAppleCalendar/JTAppleCalendar.framework",
 				"${BUILT_PRODUCTS_DIR}/KeychainAccess/KeychainAccess.framework",
 				"${BUILT_PRODUCTS_DIR}/Kingfisher/Kingfisher.framework",
 				"${BUILT_PRODUCTS_DIR}/R.swift.Library/Rswift.framework",
@@ -8920,6 +8933,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/DifferenceKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Freddy.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JTAppleCalendar.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KeychainAccess.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Kingfisher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Rswift.framework",
@@ -9651,6 +9665,7 @@
 				8D0B4D232301CC4000A1AC47 /* RegistrationNamesWorker.swift in Sources */,
 				F9838F4722AFFF82003F9394 /* MyQotMainWorker.swift in Sources */,
 				360E99522167A93D0084CEFB /* PrepareNotesViewController.swift in Sources */,
+				B4A075BD230EF14900DDB922 /* MyDataHeatMapDateCell.swift in Sources */,
 				3608382B225F3ED000664B9B /* ArticleInteractor.swift in Sources */,
 				7F9217BD1FD01C5D00CAE9E0 /* PhotosPermission.swift in Sources */,
 				CBB4DD0D1EDEAA610071494A /* URLRequestBuilder.swift in Sources */,
@@ -9705,6 +9720,7 @@
 				3637660D223A4BEC00C2C429 /* DailyBriefRouter.swift in Sources */,
 				3632D0CB2253699600A4F234 /* StrategyCategoryCollectionViewCell.swift in Sources */,
 				F9C1D8BC220DD9E100B40DD2 /* SiriShortcutsModel.swift in Sources */,
+				B4EEF425231138A200911632 /* MyDataBaseTableViewCell.swift in Sources */,
 				CCE6CD881F15357600B66DA3 /* StatisticsPeriodIntermediary.swift in Sources */,
 				754EBEE922C6470A0010A663 /* MYTBVDataViewModel.swift in Sources */,
 				91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */,

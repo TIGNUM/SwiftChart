@@ -9,37 +9,189 @@
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
+        <array key="SF-Pro-Text-Regular.otf">
+            <string>SFProText-Regular</string>
+        </array>
+        <array key="SF-Pro-Text-Semibold.otf">
+            <string>SFProText-Semibold</string>
+        </array>
+    </customFonts>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="Sg4-P2-IFa" customClass="MyDataHeatMapTableViewCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="562" height="819"/>
+            <rect key="frame" x="0.0" y="0.0" width="465" height="596"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="tempHeatMap" translatesAutoresizingMaskIntoConstraints="NO" id="ADk-TA-l22">
-                    <rect key="frame" x="0.0" y="-80" width="562" height="1089"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="none" translatesAutoresizingMaskIntoConstraints="NO" id="NtS-fl-p3m" customClass="JTAppleCalendarView" customModule="JTAppleCalendar">
+                    <rect key="frame" x="27" y="99" width="411" height="236"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="562" id="SlG-RD-0i3"/>
-                        <constraint firstAttribute="height" constant="799" id="csJ-Vl-u2W"/>
+                        <constraint firstAttribute="height" constant="236" id="4jL-jR-IuQ"/>
                     </constraints>
-                </imageView>
+                    <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="0.0" id="dZY-rk-zDZ">
+                        <size key="itemSize" width="46" height="39"/>
+                        <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                        <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                    </collectionViewFlowLayout>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="number" keyPath="cellSize">
+                            <real key="value" value="0.0"/>
+                        </userDefinedRuntimeAttribute>
+                    </userDefinedRuntimeAttributes>
+                </collectionView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="July 2019" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qdi-2R-1ta">
+                    <rect key="frame" x="24" y="60" width="73" height="19"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="19" id="ewP-pq-Zvq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="gRh-aV-HLV">
+                    <rect key="frame" x="27" y="335" width="411" height="75"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mon" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bAc-mh-Zcr">
+                            <rect key="frame" x="0.0" y="0.0" width="58.5" height="75"/>
+                            <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="14"/>
+                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="1" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tue" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dxP-A2-i7I">
+                            <rect key="frame" x="58.5" y="0.0" width="59" height="75"/>
+                            <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="14"/>
+                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="2" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Wed" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ydn-od-dH8">
+                            <rect key="frame" x="117.5" y="0.0" width="58.5" height="75"/>
+                            <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="14"/>
+                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="3" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thu" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uZg-dY-wo2">
+                            <rect key="frame" x="176" y="0.0" width="59" height="75"/>
+                            <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="14"/>
+                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="4" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Fri" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2o6-AC-hku">
+                            <rect key="frame" x="235" y="0.0" width="58.5" height="75"/>
+                            <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="14"/>
+                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sat" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zwt-gB-kuB">
+                            <rect key="frame" x="293.5" y="0.0" width="59" height="75"/>
+                            <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="14"/>
+                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695210000005" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <label opaque="NO" userInteractionEnabled="NO" tag="6" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sun" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="faB-hb-7y3">
+                            <rect key="frame" x="352.5" y="0.0" width="58.5" height="75"/>
+                            <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="14"/>
+                            <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.70391695205479443" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="75" id="DdM-KX-1ih"/>
+                    </constraints>
+                </stackView>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5nu-cJ-OJv" userLabel="Top Separator View">
+                    <rect key="frame" x="0.0" y="420" width="465" height="1"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="hBt-j1-DLP"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rZr-j2-OIR" userLabel="Bottom Separator View">
+                    <rect key="frame" x="0.0" y="495" width="465" height="1"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.20000000000000001" colorSpace="custom" customColorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="not-bL-OUU"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4cv-Am-tbG">
+                    <rect key="frame" x="24" y="461" width="16" height="16"/>
+                    <color key="backgroundColor" red="0.11190234869718552" green="0.20612666010856628" blue="0.29805028438568115" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="16" id="XUU-59-ZLP"/>
+                        <constraint firstAttribute="height" constant="16" id="k3F-Nw-Q0W"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="uxL-FE-mYe">
+                    <rect key="frame" x="24" y="440" width="16" height="16"/>
+                    <color key="backgroundColor" red="0.5945209264755249" green="0.17396673560142517" blue="0.097994796931743622" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="Inf-xx-PNg"/>
+                        <constraint firstAttribute="width" constant="16" id="gA1-0g-Ni1"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddN-hi-ItL">
+                    <rect key="frame" x="50" y="441.5" width="56" height="13.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Color label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="54F-bc-hvi">
+                    <rect key="frame" x="50" y="462.5" width="56" height="13.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="11"/>
+                    <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="calibratedRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.039215686274509803" green="0.039215686274509803" blue="0.035294117647058823" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="34z-T8-JFN" firstAttribute="leading" secondItem="ADk-TA-l22" secondAttribute="leading" id="D2k-jt-7pi"/>
-                <constraint firstItem="34z-T8-JFN" firstAttribute="top" secondItem="ADk-TA-l22" secondAttribute="top" constant="100" id="JCS-kt-2IO"/>
-                <constraint firstItem="ADk-TA-l22" firstAttribute="bottom" secondItem="34z-T8-JFN" secondAttribute="bottom" id="caF-Ma-hiQ"/>
-                <constraint firstItem="ADk-TA-l22" firstAttribute="trailing" secondItem="34z-T8-JFN" secondAttribute="trailing" id="tD4-Ch-Nbh"/>
+                <constraint firstItem="4cv-Am-tbG" firstAttribute="top" secondItem="uxL-FE-mYe" secondAttribute="bottom" constant="5" id="2Us-LS-5HP"/>
+                <constraint firstItem="gRh-aV-HLV" firstAttribute="top" secondItem="NtS-fl-p3m" secondAttribute="bottom" id="3gy-Ac-BGw"/>
+                <constraint firstItem="rZr-j2-OIR" firstAttribute="trailing" secondItem="5nu-cJ-OJv" secondAttribute="trailing" id="3sT-Su-f2u"/>
+                <constraint firstItem="NtS-fl-p3m" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="27" id="EXb-8K-pm0"/>
+                <constraint firstItem="rZr-j2-OIR" firstAttribute="top" secondItem="4cv-Am-tbG" secondAttribute="bottom" constant="18" id="HIk-os-Y7O"/>
+                <constraint firstItem="5nu-cJ-OJv" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" id="IYT-mQ-aUu"/>
+                <constraint firstItem="34z-T8-JFN" firstAttribute="trailing" secondItem="5nu-cJ-OJv" secondAttribute="trailing" id="KH2-sj-VVn"/>
+                <constraint firstItem="Qdi-2R-1ta" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="24" id="Krd-aj-4TN"/>
+                <constraint firstItem="rZr-j2-OIR" firstAttribute="leading" secondItem="5nu-cJ-OJv" secondAttribute="leading" id="KwT-Go-WUt"/>
+                <constraint firstItem="gRh-aV-HLV" firstAttribute="leading" secondItem="NtS-fl-p3m" secondAttribute="leading" id="L52-hO-VBZ"/>
+                <constraint firstItem="ddN-hi-ItL" firstAttribute="leading" secondItem="uxL-FE-mYe" secondAttribute="trailing" constant="10" id="OiM-Kh-DWY"/>
+                <constraint firstItem="ddN-hi-ItL" firstAttribute="centerY" secondItem="uxL-FE-mYe" secondAttribute="centerY" id="Uid-YM-fqg"/>
+                <constraint firstItem="NtS-fl-p3m" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" constant="79" id="Zpu-ef-rRL"/>
+                <constraint firstItem="4cv-Am-tbG" firstAttribute="leading" secondItem="34z-T8-JFN" secondAttribute="leading" constant="24" id="ddK-xW-g2x"/>
+                <constraint firstItem="54F-bc-hvi" firstAttribute="centerY" secondItem="4cv-Am-tbG" secondAttribute="centerY" id="eTi-x1-aJ5"/>
+                <constraint firstItem="5nu-cJ-OJv" firstAttribute="top" secondItem="gRh-aV-HLV" secondAttribute="bottom" constant="10" id="gA1-zI-c7u"/>
+                <constraint firstItem="gRh-aV-HLV" firstAttribute="trailing" secondItem="NtS-fl-p3m" secondAttribute="trailing" id="jf7-Hm-iRz"/>
+                <constraint firstItem="54F-bc-hvi" firstAttribute="leading" secondItem="ddN-hi-ItL" secondAttribute="leading" id="oW8-D0-Opl"/>
+                <constraint firstItem="4cv-Am-tbG" firstAttribute="leading" secondItem="uxL-FE-mYe" secondAttribute="leading" id="pUq-cc-WaP"/>
+                <constraint firstItem="34z-T8-JFN" firstAttribute="bottom" secondItem="rZr-j2-OIR" secondAttribute="bottom" constant="100" id="qOS-Dw-8jC"/>
+                <constraint firstItem="34z-T8-JFN" firstAttribute="trailing" secondItem="NtS-fl-p3m" secondAttribute="trailing" constant="27" id="vqB-5n-zae"/>
+                <constraint firstItem="Qdi-2R-1ta" firstAttribute="top" secondItem="34z-T8-JFN" secondAttribute="top" constant="40" id="vuy-5V-3Ih"/>
+                <constraint firstItem="uxL-FE-mYe" firstAttribute="top" secondItem="5nu-cJ-OJv" secondAttribute="bottom" constant="19" id="wKv-4r-7rN"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="34z-T8-JFN"/>
             <connections>
-                <outlet property="tempImageView" destination="ADk-TA-l22" id="3vq-Y1-J03"/>
+                <outlet property="bottomColorLabel" destination="54F-bc-hvi" id="uzz-fl-ikC"/>
+                <outlet property="bottomColorView" destination="4cv-Am-tbG" id="Oij-sf-B6h"/>
+                <outlet property="calendarView" destination="NtS-fl-p3m" id="Htx-9L-YE4"/>
+                <outlet property="monthYearLabel" destination="Qdi-2R-1ta" id="LuI-Mk-OI3"/>
+                <outlet property="topColorLabel" destination="ddN-hi-ItL" id="SDI-4w-zWB"/>
+                <outlet property="topColorView" destination="uxL-FE-mYe" id="trB-gy-Mol"/>
+                <outletCollection property="weekDaysLabelsCollection" destination="faB-hb-7y3" collectionClass="NSMutableArray" id="jmb-54-g9n"/>
+                <outletCollection property="weekDaysLabelsCollection" destination="bAc-mh-Zcr" collectionClass="NSMutableArray" id="imF-n0-QCl"/>
+                <outletCollection property="weekDaysLabelsCollection" destination="dxP-A2-i7I" collectionClass="NSMutableArray" id="zmY-13-84D"/>
+                <outletCollection property="weekDaysLabelsCollection" destination="ydn-od-dH8" collectionClass="NSMutableArray" id="6iv-1N-z9Q"/>
+                <outletCollection property="weekDaysLabelsCollection" destination="uZg-dY-wo2" collectionClass="NSMutableArray" id="NNp-th-5fz"/>
+                <outletCollection property="weekDaysLabelsCollection" destination="2o6-AC-hku" collectionClass="NSMutableArray" id="lsk-jQ-Lwz"/>
+                <outletCollection property="weekDaysLabelsCollection" destination="zwt-gB-kuB" collectionClass="NSMutableArray" id="NgZ-eo-6hE"/>
             </connections>
-            <point key="canvasLocation" x="127.2" y="552.77361319340332"/>
+            <point key="canvasLocation" x="45.600000000000001" y="424.13793103448279"/>
         </view>
     </objects>
-    <resources>
-        <image name="tempHeatMap" width="746.66668701171875" height="1088.6666259765625"/>
-    </resources>
 </document>

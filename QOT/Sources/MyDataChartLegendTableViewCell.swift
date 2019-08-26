@@ -12,7 +12,7 @@ protocol MyDataChartLegendTableViewCellDelegate: class {
     func didTapAddButton()
 }
 
-class MyDataChartLegendTableViewCell: UITableViewCell, Dequeueable {
+class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
 
     @IBOutlet private weak var label: UILabel!

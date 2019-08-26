@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyDataSelectionScreenTableViewCell: UITableViewCell, Dequeueable {
+class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
 
     @IBOutlet private weak var titleLabel: UILabel!

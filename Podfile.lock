@@ -22,6 +22,7 @@ PODS:
   - JPSimulatorHacks (1.4.2):
     - JPSimulatorHacks/standard (= 1.4.2)
   - JPSimulatorHacks/standard (1.4.2)
+  - JTAppleCalendar (7.1.6)
   - KeychainAccess (3.2.0)
   - Kingfisher (5.7.1)
   - qot_dal (1.0):
@@ -48,6 +49,7 @@ DEPENDENCIES:
   - Freddy
   - HockeySDK
   - JPSimulatorHacks
+  - JTAppleCalendar (= 7.1.6)
   - KeychainAccess
   - Kingfisher
   - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
@@ -70,6 +72,7 @@ SPEC REPOS:
     - Freddy
     - HockeySDK
     - JPSimulatorHacks
+    - JTAppleCalendar
     - KeychainAccess
     - Kingfisher
     - R.swift
@@ -107,6 +110,7 @@ SPEC CHECKSUMS:
   Freddy: 7c62db262a0d0e3b3e2b8b40f2c0cc51e122fbc4
   HockeySDK: 15afe6bc0a5bfe3a531fd73dbf082095f37dac3b
   JPSimulatorHacks: 28428b30259eb93ad558ac3f2c608acd2133a14b
+  JTAppleCalendar: abb30678f42a4ef8a340a932b1dcb8c85a33dac2
   KeychainAccess: 3b1bf8a77eb4c6ea1ce9404c292e48f948954c6b
   Kingfisher: 176d377ad339113c99ad4980cbae687f807e20fe
   qot_dal: 967c0df783c6fcc0205102e8e4a689220113adfa
@@ -118,6 +122,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: 357bc0b71384c08d8b6b532b81e84917d2f59402
+PODFILE CHECKSUM: f8dc5fecab5346ecd41c3f57ce7f316ce9eb11aa
 
 COCOAPODS: 1.7.5

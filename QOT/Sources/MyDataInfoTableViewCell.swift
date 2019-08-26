@@ -12,7 +12,7 @@ protocol MyDataInfoTableViewCellDelegate: class {
     func didTapInfoButton()
 }
 
-final class MyDataInfoTableViewCell: UITableViewCell, Dequeueable {
+final class MyDataInfoTableViewCell: MyDataBaseTableViewCell {
 
     // MARK: - Properties
     weak var delegate: MyDataInfoTableViewCellDelegate?
