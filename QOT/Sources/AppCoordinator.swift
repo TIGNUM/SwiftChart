@@ -236,6 +236,13 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         RestartHelper().checkRestartURLAndRoute()
         self.isReadyToProcessURL = true
 
+        // Show coach marks on first launch (of v3.0 app)
+        if !UserDefault.didShowCoachMarks.boolValue {
+            UserDefault.didShowCoachMarks.setBoolValue(value: true)
+            showCoachMarks()
+            return
+        }
+
         if self.isRestart == false {
             guard let coachCollectionViewController = R.storyboard.main().instantiateViewController(withIdentifier: "CoachCollectionViewController") as? CoachCollectionViewController,
             let rootViewController = R.storyboard.bottomNavigation().instantiateInitialViewController(),
@@ -400,12 +407,18 @@ extension AppCoordinator {
         startChild(child: coordinator)
     }
 
+    func showCoachMarks() {
+        guard let controller = R.storyboard.walkthrough.walkthroughViewController() else { return }
+        let configurator = WalkthroughConfigurator.make()
+        configurator(controller)
+        UIApplication.shared.delegate?.window??.rootViewController?.present(controller, animated: false, completion: nil)
+    }
+
     func showSigning() {
         guard userIsLoggingIn.value == false else { return }
         userIsLoggingIn.value = true
 
-        // FIXME: Content category needs to be .Onboarding_3_0
-        qot_dal.ContentService.main.getContentCategory(.Onboarding) { (contentCategory) in
+        qot_dal.ContentService.main.getContentCategory(.Onboarding_3_0) { (contentCategory) in
             let landingConfigurator = OnboardingLandingPageConfigurator.make()
             let landingController = OnboardingLandingPageViewController()
             landingConfigurator(landingController, contentCategory)

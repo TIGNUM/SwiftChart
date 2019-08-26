@@ -678,3 +678,7 @@
 
 "Onboarding.Registration.TrackSelection.Button.FastTrack" = "Fast track";
 "Onboarding.Registration.TrackSelection.Button.GuidedTrack" = "Guided track";
+
+"Walkthrough.Search.Text" = "SWIPE DOWN\n\nTo access the SEARCH function";
+"Walkthrough.Coach.Text" = "TAP the Q button\n\nTo access the “Coach” area\nwhere you can prepare...";
+"Walkthrough.Swipe.Text" = "SWIPE LEFT\nTo access KNOW\n\n\nSWIPE RIGHT\nTo access the MY QOT";

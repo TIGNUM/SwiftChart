@@ -25,8 +25,7 @@ final class OnboardingLoginRouter {
 
 extension OnboardingLoginRouter: OnboardingLoginRouterInterface {
     func showHomeScreen() {
-        guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController() else { return }
-        baseRootViewController?.setContent(viewController: coachCollectionViewController)
-        baseRootViewController?.dismiss(animated: true, completion: nil)
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+        appDelegate.appCoordinator.showApp()
     }
 }
