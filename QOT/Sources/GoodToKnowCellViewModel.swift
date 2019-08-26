@@ -15,12 +15,14 @@ final class GoodToKnowCellViewModel: BaseDailyBriefViewModel {
     var fact: String?
     var image: URL?
     var title: String?
+    var copyright: String?
 
     // MARK: - Init
-    init(title: String?, fact: String?, image: URL?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, fact: String?, image: URL?, copyright: String?, domainModel: QDMDailyBriefBucket?) {
         self.fact = fact
         self.image = image
         self.title = title
+        self.copyright = copyright
         super.init(domainModel)
     }
 }

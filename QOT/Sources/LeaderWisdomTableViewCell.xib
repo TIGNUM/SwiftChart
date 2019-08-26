@@ -34,15 +34,15 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="08X-1T-E7p">
-                        <rect key="frame" x="24" y="24" width="16" height="1"/>
-                        <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                        <rect key="frame" x="24" y="24" width="15" height="1"/>
+                        <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="1" id="0Jh-10-II1"/>
-                            <constraint firstAttribute="width" constant="16" id="gSD-Qo-dBP"/>
+                            <constraint firstAttribute="width" constant="15" id="gSD-Qo-dBP"/>
                         </constraints>
                     </view>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="hmT-BL-JoE">
-                        <rect key="frame" x="24" y="40" width="620" height="317"/>
+                        <rect key="frame" x="24" y="45" width="620" height="317"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Leader Wisdom" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AnE-V6-dK4">
                                 <rect key="frame" x="0.0" y="0.0" width="620" height="24"/>
@@ -162,7 +162,7 @@
                 <constraints>
                     <constraint firstAttribute="bottom" secondItem="hmT-BL-JoE" secondAttribute="bottom" constant="20" id="75u-En-EPO"/>
                     <constraint firstItem="hmT-BL-JoE" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="Oqg-lX-Yef"/>
-                    <constraint firstItem="hmT-BL-JoE" firstAttribute="top" secondItem="08X-1T-E7p" secondAttribute="bottom" constant="15" id="jHr-KU-1b3"/>
+                    <constraint firstItem="hmT-BL-JoE" firstAttribute="top" secondItem="08X-1T-E7p" secondAttribute="bottom" constant="20" id="jHr-KU-1b3"/>
                     <constraint firstItem="08X-1T-E7p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="l4h-uZ-x8P"/>
                     <constraint firstAttribute="trailing" secondItem="hmT-BL-JoE" secondAttribute="trailing" constant="24" id="lNa-6A-5It"/>
                     <constraint firstItem="08X-1T-E7p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="24" id="lTR-vh-fTm"/>

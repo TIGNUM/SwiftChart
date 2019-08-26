@@ -35,6 +35,14 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
         }
     }
 
+    func presentCopyRight(copyrightURL: String?) {
+        let copyrightViewController = CopyRightBucketsViewController(nibName: "CopyRightBucketsViewController", bundle: nil)
+        copyrightViewController.modalPresentationStyle = .overCurrentContext
+        copyrightViewController.view.backgroundColor = UIColor.carbon
+        copyrightViewController.copyrightURL = copyrightURL
+        viewController.present(copyrightViewController, animated: true, completion: nil)
+    }
+
     func presentMyToBeVision() {
 
         let identifier = R.storyboard.myToBeVision.myVisionViewController.identifier

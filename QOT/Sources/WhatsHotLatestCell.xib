@@ -34,19 +34,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WHAT'S HOT" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4GX-rG-vxI">
-                    <rect key="frame" x="20" y="165" width="103" height="21.5"/>
+                    <rect key="frame" x="24" y="165" width="103" height="21.5"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="18"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5jM-NN-SAe">
-                    <rect key="frame" x="20" y="432" width="374" height="19.5"/>
+                    <rect key="frame" x="24" y="432" width="370" height="19.5"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Y3-PB-8Ao">
-                    <rect key="frame" x="20" y="144" width="15" height="1"/>
+                    <rect key="frame" x="24" y="144" width="15" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="T7S-tA-ZKk"/>
@@ -54,32 +54,32 @@
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="owJ-Y4-wnU">
-                    <rect key="frame" x="20" y="244" width="374" height="168"/>
+                    <rect key="frame" x="24" y="244" width="366" height="168"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="374" id="PML-9d-sq9"/>
+                        <constraint firstAttribute="width" constant="366" id="FVH-sA-gKZ"/>
                         <constraint firstAttribute="height" constant="168" id="hMa-4E-kwJ"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Curated information that impacts your day" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3gq-d2-29A">
-                    <rect key="frame" x="20" y="204.5" width="374" height="19.5"/>
+                    <rect key="frame" x="24" y="204.5" width="366" height="19.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s9c-fG-btF">
-                    <rect key="frame" x="20" y="466.5" width="42" height="20"/>
+                    <rect key="frame" x="24" y="466.5" width="42" height="20"/>
                     <fontDescription key="fontDescription" name="SFProText-Medium" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.55000001192092896" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date and duration" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="C7t-wy-J8N">
-                    <rect key="frame" x="259" y="466.5" width="135" height="20"/>
+                    <rect key="frame" x="255" y="466.5" width="135" height="20"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="New" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s88-AK-sjm">
-                    <rect key="frame" x="20" y="397.5" width="26" height="14.5"/>
+                    <rect key="frame" x="24" y="397.5" width="26" height="14.5"/>
                     <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <fontDescription key="fontDescription" name="SFProText-Semibold" family="SF Pro Text" pointSize="12"/>
                     <nil key="textColor"/>
@@ -89,25 +89,25 @@
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
             <constraints>
                 <constraint firstItem="6Y3-PB-8Ao" firstAttribute="top" secondItem="KIo-zQ-xRX" secondAttribute="top" constant="100" id="0IJ-ro-rHx"/>
-                <constraint firstItem="5jM-NN-SAe" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="20" id="1mg-NQ-tIa"/>
-                <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="owJ-Y4-wnU" secondAttribute="trailing" constant="20" id="5HJ-0x-GUG"/>
-                <constraint firstItem="s88-AK-sjm" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="20" id="ECR-8c-ES6"/>
-                <constraint firstItem="3gq-d2-29A" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="20" id="GIG-sr-eYQ"/>
+                <constraint firstItem="5jM-NN-SAe" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="24" id="1mg-NQ-tIa"/>
+                <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="owJ-Y4-wnU" secondAttribute="trailing" constant="24" id="5HJ-0x-GUG"/>
+                <constraint firstItem="s88-AK-sjm" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="24" id="ECR-8c-ES6"/>
+                <constraint firstItem="3gq-d2-29A" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="24" id="GIG-sr-eYQ"/>
+                <constraint firstItem="owJ-Y4-wnU" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="24" id="Kzw-OO-inh"/>
                 <constraint firstItem="4GX-rG-vxI" firstAttribute="top" secondItem="6Y3-PB-8Ao" secondAttribute="bottom" constant="20" id="QGv-hP-jtK"/>
-                <constraint firstItem="s9c-fG-btF" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="20" id="TT0-f6-hHJ"/>
                 <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="5jM-NN-SAe" secondAttribute="trailing" constant="20" id="Yjm-mo-3Hl"/>
                 <constraint firstItem="3gq-d2-29A" firstAttribute="top" secondItem="4GX-rG-vxI" secondAttribute="bottom" constant="18" id="Yso-XO-SQs"/>
                 <constraint firstItem="KIo-zQ-xRX" firstAttribute="bottom" secondItem="s9c-fG-btF" secondAttribute="bottom" constant="65.5" id="YvL-1h-fzF"/>
-                <constraint firstItem="6Y3-PB-8Ao" firstAttribute="leading" secondItem="7pE-gw-D1r" secondAttribute="leading" constant="20" id="ZDf-az-HhR"/>
-                <constraint firstItem="owJ-Y4-wnU" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="20" id="axf-Pf-tJL"/>
+                <constraint firstItem="6Y3-PB-8Ao" firstAttribute="leading" secondItem="7pE-gw-D1r" secondAttribute="leading" constant="24" id="ZDf-az-HhR"/>
                 <constraint firstItem="5jM-NN-SAe" firstAttribute="top" secondItem="owJ-Y4-wnU" secondAttribute="bottom" constant="20" id="cPC-Yk-off"/>
                 <constraint firstItem="5jM-NN-SAe" firstAttribute="top" secondItem="s88-AK-sjm" secondAttribute="bottom" constant="20" id="eCg-JM-Vaq"/>
                 <constraint firstItem="owJ-Y4-wnU" firstAttribute="top" secondItem="3gq-d2-29A" secondAttribute="bottom" constant="20" id="gcG-Su-Hio"/>
-                <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="C7t-wy-J8N" secondAttribute="trailing" constant="20" id="j6Q-dK-cK9"/>
-                <constraint firstItem="4GX-rG-vxI" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="20" id="lNS-sv-lha"/>
+                <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="C7t-wy-J8N" secondAttribute="trailing" constant="24" id="j6Q-dK-cK9"/>
+                <constraint firstItem="4GX-rG-vxI" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="24" id="lNS-sv-lha"/>
                 <constraint firstItem="C7t-wy-J8N" firstAttribute="top" secondItem="5jM-NN-SAe" secondAttribute="bottom" constant="15" id="lqt-KX-rsN"/>
                 <constraint firstItem="s9c-fG-btF" firstAttribute="top" secondItem="5jM-NN-SAe" secondAttribute="bottom" constant="15" id="nkd-aq-WrR"/>
-                <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="3gq-d2-29A" secondAttribute="trailing" constant="20" id="xvg-cQ-aEi"/>
+                <constraint firstItem="s9c-fG-btF" firstAttribute="leading" secondItem="KIo-zQ-xRX" secondAttribute="leading" constant="24" id="sjb-cE-bWy"/>
+                <constraint firstItem="KIo-zQ-xRX" firstAttribute="trailing" secondItem="3gq-d2-29A" secondAttribute="trailing" constant="24" id="xvg-cQ-aEi"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="KIo-zQ-xRX"/>

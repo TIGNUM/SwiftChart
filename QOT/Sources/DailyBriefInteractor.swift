@@ -71,7 +71,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .BESPOKE?:
                     viewModelNewList.append(self.createBeSpokeModel(beSpokeModelBucket: bucket))
                 case .DEPARTURE_INFO?:
-                    viewModelNewList.append(self.createDepatureInfo(depatureInfoBucket: bucket))
+                    viewModelNewList.append(self.createDepatureInfo(departureInfoBucket: bucket))
                 case .LEADERS_WISDOM?:
                     viewModelNewList.append(self.createLeaderWisdom(createLeadersWisdom: bucket))
                 case .FEAST_OF_YOUR_EYES?:
@@ -95,6 +95,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
             let changeset = StagedChangeset(source: self.viewModelOldList, target: viewModelNewList)
             self.presenter.updateView(changeset)
         }
+    }
+
+    func presentCopyRight(copyrightURL: String?) {
+        router.presentCopyRight(copyrightURL: copyrightURL)
     }
 
     var rowCount: Int {
@@ -273,10 +277,12 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         guard let collection = createGoodToKnow.contentCollections?.first else { return GoodToKnowCellViewModel(title: "",
                                                                                                                 fact: "",
                                                                                                                 image: URL(string: ""),
+                                                                                                                copyright: "",
                                                                                                                 domainModel: createGoodToKnow)}
         return GoodToKnowCellViewModel(title: createGoodToKnow.bucketText?.contentItems.first?.valueText,
                                        fact: collection.contentItems.first?.valueText,
                                        image: URL(string: (collection.thumbnailURLString ?? "")),
+                                       copyright: collection.contentItems.filter {$0.format == .subtitle }.first?.valueText,
                                        domainModel: createGoodToKnow)
     }
 
@@ -455,21 +461,23 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         )
     }
 
-    func createDepatureInfo(depatureInfoBucket depatureInfo: QDMDailyBriefBucket) -> BaseDailyBriefViewModel {
-        guard let collection = depatureInfo.contentCollections?.first else {
+    func createDepatureInfo(departureInfoBucket departureInfo: QDMDailyBriefBucket) -> BaseDailyBriefViewModel {
+        guard let collection = departureInfo.contentCollections?.first else {
             return DepartureInfoCellViewModel(title: "",
                                               subtitle: "",
                                               text: "",
                                               image: "",
                                               link: "",
-                                              domainModel: depatureInfo)
+                                              copyright: "",
+                                              domainModel: departureInfo)
         }
-        return DepartureInfoCellViewModel(title: depatureInfo.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
-                                          subtitle: depatureInfo.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
+        return DepartureInfoCellViewModel(title: departureInfo.bucketText?.contentItems.filter { $0.format == .title }.first?.valueText,
+                                          subtitle: departureInfo.bucketText?.contentItems.filter { $0.format == .paragraph }.first?.valueText,
                                           text: collection.contentItems.first?.valueText,
                                           image: collection.thumbnailURLString ?? "",
                                           link: collection.shareableLink,
-                                          domainModel: depatureInfo)
+                                          copyright: collection.contentItems.filter {$0.format == .subtitle}.first?.valueText,
+                                          domainModel: departureInfo)
     }
 
     func createSolveViewModel(bucket solveBucket: QDMDailyBriefBucket) -> SolveReminderCellViewModel {

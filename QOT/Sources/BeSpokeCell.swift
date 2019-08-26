@@ -17,6 +17,12 @@ final class BeSpokeCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var imageContainerView: UIView!
     @IBOutlet private weak var tilteContainerView: UIView!
     @IBOutlet private weak var descriptionContainerView: UIView!
+    weak var delegate: DailyBriefViewControllerDelegate?
+    private var copyrightURL: String?
+
+    @IBAction func copyrighPressed(_ sender: Any) {
+       delegate?.presentCopyRight(copyrightURL: copyrightURL)
+    }
 
     func configure(with viewModel: BeSpokeCellViewModel?) {
         headingLabel.text = viewModel?.bucketTitle

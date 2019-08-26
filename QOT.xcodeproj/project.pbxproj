@@ -1667,6 +1667,8 @@
 		F92A76E122F2E8D8000BB378 /* Level5Cell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E022F2E8D8000BB378 /* Level5Cell.swift */; };
 		F92A76E322F2E8EC000BB378 /* Level5CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F92A76E222F2E8EC000BB378 /* Level5CellViewModel.swift */; };
 		F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F92A76E622F2E916000BB378 /* Level5Cell.xib */; };
+		F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */; };
+		F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */; };
 		F95B9230228EAE27000DEAEC /* ToolsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */; };
 		F95B9232228EAE46000DEAEC /* ToolsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9231228EAE46000DEAEC /* ToolsWorker.swift */; };
 		F95B9234228EAE5A000DEAEC /* ToolsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */; };
@@ -3490,6 +3492,8 @@
 		F92A76E022F2E8D8000BB378 /* Level5Cell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5Cell.swift; sourceTree = "<group>"; };
 		F92A76E222F2E8EC000BB378 /* Level5CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Level5CellViewModel.swift; sourceTree = "<group>"; };
 		F92A76E622F2E916000BB378 /* Level5Cell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = Level5Cell.xib; sourceTree = "<group>"; };
+		F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CopyRightBucketsViewController.swift; sourceTree = "<group>"; };
+		F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CopyRightBucketsViewController.xib; sourceTree = "<group>"; };
 		F95B922F228EAE27000DEAEC /* ToolsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsPresenter.swift; sourceTree = "<group>"; };
 		F95B9231228EAE46000DEAEC /* ToolsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsWorker.swift; sourceTree = "<group>"; };
 		F95B9233228EAE5A000DEAEC /* ToolsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsRouter.swift; sourceTree = "<group>"; };
@@ -3726,6 +3730,7 @@
 		363765F1223A4BA400C2C429 /* daily brief */ = {
 			isa = PBXGroup;
 			children = (
+				F9462248230C2C21000A3B42 /* Copyright */,
 				9CC426142306A41E00F8072E /* Guided Track */,
 				F9F70C1222F9A24000E85BF3 /* Sprint Challenge */,
 				9C24237A22F093E700B911E6 /* Solve Reminder  */,
@@ -8036,6 +8041,15 @@
 			name = Level5;
 			sourceTree = "<group>";
 		};
+		F9462248230C2C21000A3B42 /* Copyright */ = {
+			isa = PBXGroup;
+			children = (
+				F9462249230C3D69000A3B42 /* CopyRightBucketsViewController.swift */,
+				F946224A230C3D69000A3B42 /* CopyRightBucketsViewController.xib */,
+			);
+			name = Copyright;
+			sourceTree = "<group>";
+		};
 		F95B922E228EADF4000DEAEC /* tools */ = {
 			isa = PBXGroup;
 			children = (
@@ -8595,6 +8609,7 @@
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
 				B86E742822A94D0700B0AE75 /* MyLibrary.storyboard in Resources */,
+				F946224C230C3D69000A3B42 /* CopyRightBucketsViewController.xib in Resources */,
 				F92A76E722F2E916000BB378 /* Level5Cell.xib in Resources */,
 				9CC426162306A46000F8072E /* GuidedTrackSectionCell.xib in Resources */,
 				367564B1206A56B7008D1F71 /* ReviewNotesViewController.storyboard in Resources */,
@@ -9421,6 +9436,7 @@
 				852988951F2F3E15003A36DF /* Bundle+Extensions.swift in Sources */,
 				ACF0B94A225FC41F008CFAEC /* DecisionTreeModel.swift in Sources */,
 				AC103E5A2289725C00F426F0 /* MindsetVisionTableViewCell.swift in Sources */,
+				F946224B230C3D69000A3B42 /* CopyRightBucketsViewController.swift in Sources */,
 				CCCDF2AF1F8B9346009CE6A4 /* Calendar+Convenience.swift in Sources */,
 				CB27D59B1ECCB67300F2B76C /* Result.swift in Sources */,
 				B4AB48C9230BF982003B3C1F /* MyDataExplanationInterface.swift in Sources */,

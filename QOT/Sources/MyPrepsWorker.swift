@@ -102,46 +102,10 @@ extension MyPrepsWorker {
         })
     }
 
-    //TODO: Remove createMindModel and createRecModel
+
     func createMindModel() {
-        let homeAnswerIds = [100036, 100037, 100038]
-        let workAnswerIds = [100036, 100037, 100038]
-        let lowPerformanceAnswerIds = [100036, 100037, 100038]
-        let reactionsAnswerIds = [100036, 100037, 100038]
-        let highPerformanceContentItemIds = [100034, 100035, 100037]
-        let toBeVisionText = "Unit Tests have always nice benefits"
-        let triggerAnswerId = 100036
-        let title = "Pointless Meetings"
-        qot_dal.UserService.main.createMindsetShifter(triggerAnswerId: triggerAnswerId,
-                                                      toBeVisionText: toBeVisionText,
-                                                      reactionsAnswerIds: reactionsAnswerIds,
-                                                      lowPerformanceAnswerIds: lowPerformanceAnswerIds,
-                                                      workAnswerIds: workAnswerIds,
-                                                      homeAnswerIds: homeAnswerIds,
-                                                      highPerformanceContentItemIds: highPerformanceContentItemIds) { (mindsetShifter, error) in
-                                                      let dateString = mindsetShifter?.createdAt != nil ? DateFormatter.myPrepsTime.string(from: (mindsetShifter?.createdAt!)!) : ""
-                                                      let items = MindsetShiftersModel.Items(title: title, date: dateString, qdmMind: mindsetShifter! )
-                                                      let myModel = MindsetShiftersModel(prepItems: [items])
-                                                      self.mindModel = myModel
-        }
     }
 
     func createRecModel() {
-        let fatigueAnswerId = 100036
-        let causeAnwserId = 100037
-        let causeContentItemId = 100034
-        let exclusiveContentCollectionIds = [100025, 100026, 100028]
-        let suggestedSolutionsContentCollectionIds = [100029, 100030, 100031]
-        let title = "Lack of Coordination"
-         qot_dal.UserService.main.createRecovery3D(fatigueAnswerId: fatigueAnswerId,
-                                                   causeAnwserId: causeAnwserId,
-                                                   causeContentItemId: causeContentItemId,
-                                                   exclusiveContentCollectionIds: exclusiveContentCollectionIds,
-                                                   suggestedSolutionsContentCollectionIds: suggestedSolutionsContentCollectionIds) { (recovery3D, error) in
-                                                    let dateString = recovery3D?.createdAt != nil ? DateFormatter.myPrepsTime.string(from: (recovery3D?.createdAt!)!) : ""
-                                                    let items = RecoveriesModel.Items(title: title, date: dateString, qdmRec: recovery3D!)
-                                                    let myModel = RecoveriesModel(prepItems: [items])
-                                                    self.recModel = myModel
-        }
     }
 }

@@ -22,6 +22,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func saveTargetValue(value: Int?) //save sleep target
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?, pageName: PageName)
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation)
+    func presentCopyRight(copyrightURL: String?)
 }
 
 final class DailyBriefNavigationController: UINavigationController {
@@ -236,6 +237,7 @@ private extension DailyBriefViewController {
         let cell: GoodToKnowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: goodToKnowCellViewModel)
         cell.backgroundColor = .carbon
+        cell.delegate = self
         return cell
     }
 
@@ -265,6 +267,7 @@ private extension DailyBriefViewController {
         let cell: DepartureInfoCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: departureInfoViewModel)
         cell.backgroundColor = .carbon
+        cell.delegate = self
         return cell
     }
 
@@ -293,6 +296,7 @@ private extension DailyBriefViewController {
         let cell: FeastCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: feastForEyesViewModel)
         cell.backgroundColor = .carbon
+        cell.delegate = self
         return cell
     }
 
@@ -307,6 +311,7 @@ private extension DailyBriefViewController {
         let cell: BeSpokeCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: beSpokeViewModel)
         cell.backgroundColor = .carbon
+        cell.delegate = self
         return cell
     }
 
@@ -667,6 +672,10 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func showDailyCheckIn() {
         interactor?.showDailyCheckIn()
+    }
+
+    func presentCopyRight(copyrightURL: String?) {
+        interactor?.presentCopyRight(copyrightURL: copyrightURL)
     }
 }
 

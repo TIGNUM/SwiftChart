@@ -62,7 +62,7 @@ private extension SolveResultsViewController {
     @objc func didTapDone() {
         switch interactor?.resultType {
         case .recovery?:
-            interactor?.dismiss()
+            didTapDismissButton()
         case .solve?:
             if isFollowUpActive == true {
                 interactor?.save()
@@ -71,6 +71,15 @@ private extension SolveResultsViewController {
             }
         case .none:
             return
+        }
+    }
+
+    @objc func didTapDismiss() {
+    switch interactor?.resultType {
+        case .recovery?:
+           didTapDismissButton()
+        default:
+            interactor?.dismiss()
         }
     }
 
@@ -195,7 +204,7 @@ extension SolveResultsViewController: ConfirmationViewControllerDelegate {
 extension SolveResultsViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         if interactor?.isPresentingExistingSolve() == true {
-            return [dismissNavigationItem(action: #selector(didTapDismissButton))]
+            return [dismissNavigationItem(action: #selector(didTapDismiss))]
         } else {
             return [dismissNavigationItem(action: #selector(openConfirmationView))]
         }

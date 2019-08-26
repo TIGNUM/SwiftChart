@@ -25,21 +25,21 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="tmM-Ni-UAe">
-                        <rect key="frame" x="0.0" y="0.0" width="740" height="360.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="740" height="371"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dGk-1S-kAp">
-                                <rect key="frame" x="0.0" y="0.0" width="740" height="57"/>
+                                <rect key="frame" x="0.0" y="0.0" width="740" height="63.5"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lVc-js-Szw">
-                                        <rect key="frame" x="24" y="24" width="10" height="1"/>
-                                        <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="24" y="18.5" width="15" height="1"/>
+                                        <color key="backgroundColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="1" id="u7w-CA-2jp"/>
-                                            <constraint firstAttribute="width" constant="10" id="vna-Hw-qLz"/>
+                                            <constraint firstAttribute="width" constant="15" id="vna-Hw-qLz"/>
                                         </constraints>
                                     </view>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="BESPOKE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MJM-he-tep">
-                                        <rect key="frame" x="24" y="33" width="91.5" height="24"/>
+                                        <rect key="frame" x="24" y="39.5" width="91.5" height="24"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="20"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -48,14 +48,15 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="MJM-he-tep" secondAttribute="bottom" id="4TY-yP-xRP"/>
+                                    <constraint firstItem="MJM-he-tep" firstAttribute="top" secondItem="lVc-js-Szw" secondAttribute="bottom" constant="20" id="PNQ-lL-W2z"/>
                                     <constraint firstItem="lVc-js-Szw" firstAttribute="leading" secondItem="dGk-1S-kAp" secondAttribute="leading" constant="24" id="Ppu-Gs-NLI"/>
                                     <constraint firstItem="MJM-he-tep" firstAttribute="leading" secondItem="dGk-1S-kAp" secondAttribute="leading" constant="24" id="S2S-Vg-ZwG"/>
-                                    <constraint firstItem="MJM-he-tep" firstAttribute="top" secondItem="lVc-js-Szw" secondAttribute="bottom" constant="8" id="jIb-qu-t3c"/>
-                                    <constraint firstItem="lVc-js-Szw" firstAttribute="top" secondItem="dGk-1S-kAp" secondAttribute="top" constant="24" id="nIB-bS-ZmZ"/>
+                                    <constraint firstItem="lVc-js-Szw" firstAttribute="top" secondItem="dGk-1S-kAp" secondAttribute="top" constant="18.5" id="Tb8-3a-6SA"/>
+                                    <constraint firstAttribute="bottom" secondItem="MJM-he-tep" secondAttribute="bottom" id="Wms-e6-oAF"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="afw-wz-Q4p">
-                                <rect key="frame" x="0.0" y="57" width="740" height="184"/>
+                                <rect key="frame" x="0.0" y="63.5" width="740" height="184"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="OIS-sI-2Lk">
                                         <rect key="frame" x="24" y="24" width="692" height="160"/>
@@ -65,6 +66,7 @@
                                             </imageView>
                                         </subviews>
                                         <constraints>
+                                            <constraint firstItem="PTR-3c-Sm1" firstAttribute="top" secondItem="OIS-sI-2Lk" secondAttribute="top" id="TaA-45-SlN"/>
                                             <constraint firstAttribute="height" constant="160" id="pW8-QG-saT"/>
                                         </constraints>
                                     </stackView>
@@ -72,34 +74,44 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="OIS-sI-2Lk" secondAttribute="bottom" id="6KK-UZ-Tso"/>
-                                    <constraint firstItem="OIS-sI-2Lk" firstAttribute="top" secondItem="afw-wz-Q4p" secondAttribute="top" constant="24" id="7hy-ed-VEH"/>
                                     <constraint firstItem="OIS-sI-2Lk" firstAttribute="leading" secondItem="afw-wz-Q4p" secondAttribute="leading" constant="24" id="Pll-WD-QM5"/>
+                                    <constraint firstItem="OIS-sI-2Lk" firstAttribute="top" secondItem="afw-wz-Q4p" secondAttribute="top" constant="24" id="VBb-RO-ouK"/>
                                     <constraint firstAttribute="trailing" secondItem="OIS-sI-2Lk" secondAttribute="trailing" constant="24" id="b8i-Un-ZGk"/>
+                                    <constraint firstAttribute="bottom" secondItem="OIS-sI-2Lk" secondAttribute="bottom" id="wRy-lu-NPz"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qut-nf-87k">
-                                <rect key="frame" x="0.0" y="241" width="740" height="50"/>
+                                <rect key="frame" x="0.0" y="247.5" width="740" height="56"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yzX-Z0-wC7">
+                                        <rect key="frame" x="25" y="10" width="30" height="36"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="©">
+                                            <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="copyrighPressed:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="I5x-bs-Fpg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="yzX-Z0-wC7" secondAttribute="bottom" constant="10" id="2JB-nW-ygy"/>
+                                    <constraint firstItem="yzX-Z0-wC7" firstAttribute="top" secondItem="qut-nf-87k" secondAttribute="top" constant="10" id="Jd8-9b-ihh"/>
+                                    <constraint firstItem="yzX-Z0-wC7" firstAttribute="leading" secondItem="qut-nf-87k" secondAttribute="leading" constant="25" id="qgb-Mq-47c"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPS-2W-ZcR">
+                                <rect key="frame" x="0.0" y="303.5" width="740" height="67.5"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2y-h3-G3R">
-                                        <rect key="frame" x="24" y="24" width="692" height="26"/>
+                                        <rect key="frame" x="30" y="0.0" width="692" height="21.5"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="18"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstItem="J2y-h3-G3R" firstAttribute="leading" secondItem="qut-nf-87k" secondAttribute="leading" constant="24" id="Fv6-xR-BE0"/>
-                                    <constraint firstAttribute="trailing" secondItem="J2y-h3-G3R" secondAttribute="trailing" constant="24" id="pRX-qv-cjh"/>
-                                    <constraint firstItem="J2y-h3-G3R" firstAttribute="top" secondItem="qut-nf-87k" secondAttribute="top" constant="24" id="qPP-cY-MDf"/>
-                                    <constraint firstAttribute="bottom" secondItem="J2y-h3-G3R" secondAttribute="bottom" id="vzI-In-L4F"/>
-                                </constraints>
-                            </view>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JPS-2W-ZcR">
-                                <rect key="frame" x="0.0" y="291" width="740" height="69.5"/>
-                                <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VN7-Lf-srl">
-                                        <rect key="frame" x="24" y="24" width="692" height="21.5"/>
+                                        <rect key="frame" x="30" y="40" width="686" height="19.5"/>
                                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
@@ -107,19 +119,28 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="bottom" secondItem="VN7-Lf-srl" secondAttribute="bottom" constant="24" id="FCf-0d-vgw"/>
+                                    <constraint firstAttribute="trailing" secondItem="J2y-h3-G3R" secondAttribute="trailing" constant="18" id="84A-cv-ymE"/>
                                     <constraint firstAttribute="trailing" secondItem="VN7-Lf-srl" secondAttribute="trailing" constant="24" id="LXS-b0-8O5"/>
-                                    <constraint firstItem="VN7-Lf-srl" firstAttribute="top" secondItem="JPS-2W-ZcR" secondAttribute="top" constant="24" id="RsL-Ql-kBy"/>
-                                    <constraint firstItem="VN7-Lf-srl" firstAttribute="leading" secondItem="JPS-2W-ZcR" secondAttribute="leading" constant="24" id="hPB-4O-gHX"/>
+                                    <constraint firstItem="VN7-Lf-srl" firstAttribute="top" secondItem="J2y-h3-G3R" secondAttribute="bottom" constant="18.5" id="S8M-W9-o8X"/>
+                                    <constraint firstAttribute="bottom" secondItem="VN7-Lf-srl" secondAttribute="bottom" constant="8" id="dXy-J3-AcW"/>
+                                    <constraint firstItem="J2y-h3-G3R" firstAttribute="leading" secondItem="JPS-2W-ZcR" secondAttribute="leading" constant="30" id="i0N-Bf-a00"/>
+                                    <constraint firstItem="J2y-h3-G3R" firstAttribute="leading" secondItem="JPS-2W-ZcR" secondAttribute="leading" constant="30" id="jOK-ur-xpG"/>
+                                    <constraint firstItem="J2y-h3-G3R" firstAttribute="top" secondItem="JPS-2W-ZcR" secondAttribute="top" id="kgy-fd-m7Z"/>
+                                    <constraint firstItem="VN7-Lf-srl" firstAttribute="leading" secondItem="JPS-2W-ZcR" secondAttribute="leading" constant="30" id="rLD-pM-V8D"/>
                                 </constraints>
                             </view>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="afw-wz-Q4p" firstAttribute="top" secondItem="dGk-1S-kAp" secondAttribute="bottom" id="LD3-4p-cda"/>
+                            <constraint firstAttribute="bottom" secondItem="JPS-2W-ZcR" secondAttribute="bottom" id="qB9-MF-AbI"/>
+                            <constraint firstItem="JPS-2W-ZcR" firstAttribute="top" secondItem="qut-nf-87k" secondAttribute="bottom" id="zhf-Wo-DdO"/>
+                        </constraints>
                     </stackView>
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
                     <constraint firstAttribute="trailing" secondItem="tmM-Ni-UAe" secondAttribute="trailing" id="1uV-Ds-dpR"/>
-                    <constraint firstAttribute="bottom" secondItem="VN7-Lf-srl" secondAttribute="bottom" constant="69" id="gQZ-s8-VHw"/>
+                    <constraint firstAttribute="bottom" secondItem="tmM-Ni-UAe" secondAttribute="bottom" constant="34.5" id="XqA-bs-uZZ"/>
                     <constraint firstItem="tmM-Ni-UAe" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" id="uVv-4M-U0C"/>
                     <constraint firstItem="tmM-Ni-UAe" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" id="vps-rh-JRC"/>
                 </constraints>

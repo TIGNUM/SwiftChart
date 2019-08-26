@@ -41,6 +41,16 @@
                         <constraint firstAttribute="height" constant="231" id="Vh0-tF-596"/>
                     </constraints>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Bgt-tp-HhS">
+                    <rect key="frame" x="24" y="449" width="30" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="©">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="copyrightPressed:" destination="axe-l6-9r4" eventType="touchUpInside" id="aaj-B2-qf3"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
@@ -48,10 +58,12 @@
                 <constraint firstItem="UKN-Gn-3Pf" firstAttribute="bottom" secondItem="38T-gA-UaZ" secondAttribute="bottom" constant="38" id="3ij-zX-1bA"/>
                 <constraint firstItem="38T-gA-UaZ" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" constant="20" id="YCD-PX-VFc"/>
                 <constraint firstItem="rjY-Qr-wDb" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" constant="20" id="g0V-Tw-c5X"/>
+                <constraint firstItem="Bgt-tp-HhS" firstAttribute="top" secondItem="38T-gA-UaZ" secondAttribute="bottom" constant="14" id="g8y-sq-jkY"/>
                 <constraint firstItem="38T-gA-UaZ" firstAttribute="top" secondItem="rjY-Qr-wDb" secondAttribute="bottom" constant="15" id="haV-1Q-knJ"/>
                 <constraint firstItem="M30-VM-Zxo" firstAttribute="leading" secondItem="axe-l6-9r4" secondAttribute="leading" constant="20" id="iwi-wN-bjo"/>
                 <constraint firstItem="rjY-Qr-wDb" firstAttribute="top" secondItem="M30-VM-Zxo" secondAttribute="bottom" constant="20" id="kXT-Yd-4oW"/>
                 <constraint firstItem="M30-VM-Zxo" firstAttribute="top" secondItem="UKN-Gn-3Pf" secondAttribute="top" constant="100" id="pCf-PH-wjB"/>
+                <constraint firstItem="Bgt-tp-HhS" firstAttribute="leading" secondItem="UKN-Gn-3Pf" secondAttribute="leading" constant="24" id="suX-jU-j73"/>
                 <constraint firstItem="UKN-Gn-3Pf" firstAttribute="trailing" secondItem="rjY-Qr-wDb" secondAttribute="trailing" constant="20" id="xac-ys-J9w"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>

@@ -25,19 +25,19 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="QUESTIONS WITHOUT ANSWER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="eeN-DG-4oj">
-                    <rect key="frame" x="20" y="115" width="374" height="24"/>
+                    <rect key="frame" x="24" y="115" width="370" height="24"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w2H-89-MDX">
-                    <rect key="frame" x="20" y="159" width="374" height="41"/>
+                    <rect key="frame" x="24" y="159" width="370" height="41"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="34"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KWO-U6-xiN">
-                    <rect key="frame" x="20" y="94" width="15" height="1"/>
+                    <rect key="frame" x="24" y="94" width="15" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="5H3-mo-n6g"/>
@@ -49,11 +49,11 @@
             <constraints>
                 <constraint firstItem="eeN-DG-4oj" firstAttribute="top" secondItem="KWO-U6-xiN" secondAttribute="bottom" constant="20" id="2Y9-bB-khS"/>
                 <constraint firstItem="XsG-tt-CRb" firstAttribute="trailing" secondItem="w2H-89-MDX" secondAttribute="trailing" constant="20" id="TFL-12-lDH"/>
-                <constraint firstItem="eeN-DG-4oj" firstAttribute="leading" secondItem="XsG-tt-CRb" secondAttribute="leading" constant="20" id="bks-Fm-BYZ"/>
+                <constraint firstItem="eeN-DG-4oj" firstAttribute="leading" secondItem="XsG-tt-CRb" secondAttribute="leading" constant="24" id="bks-Fm-BYZ"/>
                 <constraint firstItem="w2H-89-MDX" firstAttribute="top" secondItem="eeN-DG-4oj" secondAttribute="bottom" constant="20" id="dbI-MB-FHr"/>
                 <constraint firstItem="XsG-tt-CRb" firstAttribute="trailing" secondItem="eeN-DG-4oj" secondAttribute="trailing" constant="20" id="sbf-V5-dQ4"/>
-                <constraint firstItem="KWO-U6-xiN" firstAttribute="leading" secondItem="caC-7R-XQG" secondAttribute="leading" constant="20" id="tI0-eT-ciB"/>
-                <constraint firstItem="w2H-89-MDX" firstAttribute="leading" secondItem="XsG-tt-CRb" secondAttribute="leading" constant="20" id="wcB-Fo-62N"/>
+                <constraint firstItem="KWO-U6-xiN" firstAttribute="leading" secondItem="caC-7R-XQG" secondAttribute="leading" constant="24" id="tI0-eT-ciB"/>
+                <constraint firstItem="w2H-89-MDX" firstAttribute="leading" secondItem="XsG-tt-CRb" secondAttribute="leading" constant="24" id="wcB-Fo-62N"/>
                 <constraint firstItem="KWO-U6-xiN" firstAttribute="top" secondItem="XsG-tt-CRb" secondAttribute="top" constant="50" id="yLa-uY-uQU"/>
                 <constraint firstItem="XsG-tt-CRb" firstAttribute="bottom" secondItem="w2H-89-MDX" secondAttribute="bottom" constant="53" id="zju-0U-qdW"/>
             </constraints>

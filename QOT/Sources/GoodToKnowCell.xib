@@ -30,12 +30,6 @@
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRN-tE-jmj">
-                    <rect key="frame" x="20" y="239" width="374" height="41"/>
-                    <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="34"/>
-                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="MOJ-hc-tEU">
                     <rect key="frame" x="20" y="74" width="15" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -45,24 +39,42 @@
                     </constraints>
                 </view>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="1Bo-K3-SlV">
-                    <rect key="frame" x="20" y="134" width="374" height="90"/>
+                    <rect key="frame" x="20" y="134" width="374" height="49"/>
                 </imageView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AFB-g8-dHm">
+                    <rect key="frame" x="20" y="193" width="30" height="36"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <state key="normal" title="©">
+                        <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                    </state>
+                    <connections>
+                        <action selector="CopyrightPressed:" destination="Jio-Dk-Pbb" eventType="touchUpInside" id="ux2-3K-RkO"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tRN-tE-jmj">
+                    <rect key="frame" x="20" y="239" width="374" height="41"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="34"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
                 <constraint firstItem="tRN-tE-jmj" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="1ID-7x-NKs"/>
+                <constraint firstItem="AFB-g8-dHm" firstAttribute="top" secondItem="1Bo-K3-SlV" secondAttribute="bottom" constant="10" id="6Lx-uG-wb9"/>
                 <constraint firstItem="1Bo-K3-SlV" firstAttribute="top" secondItem="Hhk-xi-QDD" secondAttribute="bottom" constant="15" id="7IT-L2-kf5"/>
                 <constraint firstItem="MOJ-hc-tEU" firstAttribute="top" secondItem="hgy-la-JSN" secondAttribute="top" constant="30" id="J6G-5d-LGu"/>
                 <constraint firstItem="tRN-tE-jmj" firstAttribute="top" secondItem="Hhk-xi-QDD" secondAttribute="bottom" constant="120" id="LUw-th-lYU"/>
-                <constraint firstItem="hgy-la-JSN" firstAttribute="bottom" secondItem="tRN-tE-jmj" secondAttribute="bottom" constant="53" id="MiX-zu-fYo"/>
                 <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="Hhk-xi-QDD" secondAttribute="trailing" constant="20" id="PLI-hr-kgF"/>
                 <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="1Bo-K3-SlV" secondAttribute="trailing" constant="20" id="PjG-I9-zmc"/>
                 <constraint firstItem="MOJ-hc-tEU" firstAttribute="leading" secondItem="Jio-Dk-Pbb" secondAttribute="leading" constant="20" id="RUB-dT-bEY"/>
                 <constraint firstItem="hgy-la-JSN" firstAttribute="trailing" secondItem="tRN-tE-jmj" secondAttribute="trailing" constant="20" id="Y9s-cs-U60"/>
-                <constraint firstItem="tRN-tE-jmj" firstAttribute="top" secondItem="1Bo-K3-SlV" secondAttribute="bottom" constant="15" id="jgn-nj-mqA"/>
+                <constraint firstItem="tRN-tE-jmj" firstAttribute="top" secondItem="AFB-g8-dHm" secondAttribute="bottom" constant="10" id="fIg-zV-H3Y"/>
+                <constraint firstItem="hgy-la-JSN" firstAttribute="bottom" secondItem="tRN-tE-jmj" secondAttribute="bottom" constant="53" id="g0M-Gn-Ozn"/>
                 <constraint firstItem="Hhk-xi-QDD" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="mc2-wh-3w2"/>
                 <constraint firstItem="Hhk-xi-QDD" firstAttribute="top" secondItem="MOJ-hc-tEU" secondAttribute="bottom" constant="20" id="sms-6l-d2t"/>
                 <constraint firstItem="1Bo-K3-SlV" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="tAy-SS-y4V"/>
+                <constraint firstItem="AFB-g8-dHm" firstAttribute="leading" secondItem="hgy-la-JSN" secondAttribute="leading" constant="20" id="zKA-k0-5yQ"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="hgy-la-JSN"/>
