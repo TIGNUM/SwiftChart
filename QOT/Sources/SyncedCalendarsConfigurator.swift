@@ -8,7 +8,7 @@
 
 import Foundation
 
-final class SyncedCalendarsConfigurator: AppStateAccess {
+final class SyncedCalendarsConfigurator {
     static func configure(viewController: SyncedCalendarsViewController) {
         let presenter = SyncedCalendarsPresenter(viewController)
         let interactor = SyncedCalendarsInteractor(presenter)

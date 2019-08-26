@@ -85,6 +85,7 @@ extension UIViewController {
         case is TrackSelectionViewController: return "onboarding.createaccount.welcome"
         case is StrategyListViewController: return "knowing.feed.strategy"
         case is ArticleViewController: return "article.detail"
+        case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedCalendars"
         default: preconditionFailure()
         }
     }
