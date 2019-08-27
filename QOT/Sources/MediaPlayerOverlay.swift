@@ -9,12 +9,14 @@
 import UIKit
 
 protocol MediaPlayerOverlayDelegate: class {
-    func showAlert()
+    func downloadMedia()
+    func bookmarkMedia()
 }
 
 final class MediaPlayerOverlay: UIView {
 
     // MARK: - Properties
+    static let height: CGFloat = 40
 
     @IBOutlet private weak var downloadButton: UIButton!
     @IBOutlet private weak var bookmarkButton: UIButton!
@@ -41,20 +43,9 @@ final class MediaPlayerOverlay: UIView {
                                                object: nil)
     }
 
-    func configure() {
-
-    }
-
-    @objc func didChangeOrientation() {
-        UIView.animate(withDuration: 0.1) {
-            self.buttonsShowHide()
-        }
-    }
-
-    private func buttonsShowHide() {
-        let alpha: CGFloat = UIDevice.current.orientation.isLandscape ? 0.0 : 1.0
-        downloadButton.alpha = alpha
-        bookmarkButton.alpha = alpha
+    func configure(downloadTitle: String, isBokmarked: Bool) {
+        downloadButton.setTitle(downloadTitle, for: .normal)
+        bookmarkButton.isSelected = isBokmarked
     }
 }
 
@@ -67,16 +58,28 @@ private extension MediaPlayerOverlay {
         bookmarkButton.layer.borderWidth = 1
         bookmarkButton.layer.borderColor = UIColor.accent30.cgColor
     }
+
+    @objc func didChangeOrientation() {
+        UIView.animate(withDuration: 0.1) {
+            self.buttonsShowHide()
+        }
+    }
+
+    func buttonsShowHide() {
+        let alpha: CGFloat = UIDevice.current.orientation.isLandscape ? 0.0 : 1.0
+        downloadButton.alpha = alpha
+        bookmarkButton.alpha = alpha
+    }
 }
 
 // MARK: - Actions
 
 private extension MediaPlayerOverlay {
     @IBAction func didTapDownloadButton() {
-        delegate?.showAlert()
+        delegate?.downloadMedia()
     }
 
     @IBAction func didTapBookmarkButton() {
-        delegate?.showAlert()
+        delegate?.bookmarkMedia()
     }
 }

@@ -54,6 +54,7 @@ final class RegistrationWorker: BaseSigningWorker {
         service.createUser(request: userObject) { [weak self] (response, error) in
             guard let strongSelf = self else { return }
             completion(strongSelf.apiCodeFromResponse(response?.returnCode()), error)
+            requestSynchronization(.USER, .DOWN_SYNC)
         }
     }
 }

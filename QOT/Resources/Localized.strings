@@ -359,6 +359,8 @@
 "Alert.Title.Settings.Change.Notifications" = "Change Notifications";
 "Alert.Message.Settings.Change.Notifications" = "Go to System Settings to edit your notification settings.";
 "Alert.Message.signinMissingConnection" = "Turn on mobile data or use Wi-Fi to access data.";
+"Alert.Title.UseMobileData" = "USE MOBILE DATA";
+"Alert.Message.UseMobileData" = "No wi-fi found. Are you sure you want to download the file using mobile data?";
 "Alert.Button.Title.Ok" = "OK";
 
 "ImagePicker.Options.Message" = "A short description of the action goes here";
@@ -567,6 +569,10 @@
 "Audio.FullScreen.Button.Waiting" = "Waiting";
 "Audio.FullScreen.Button.Downloading" = "Downloading";
 "Audio.FullScreen.Button.Downloaded" = "Downloaded";
+
+"Video.FullScreen.Button.Download" = "Download";
+"Video.FullScreen.Button.Downloading" = "Downloading";
+"Video.FullScreen.Button.Downloaded" = "Downloaded";
 
 "RateViewController.doneButton" = "Done";
 "RateViewController.skipButton" = "Skip";

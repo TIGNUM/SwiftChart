@@ -13,6 +13,13 @@ import AVKit
 import qot_dal
 
 final class MediaPlayerViewController: AVPlayerViewController {
+    var overlayControls: MediaPlayerOverlay?
+    var interactor: StreamVideoInteractorInterface? {
+        didSet {
+            interactor?.delegate = self
+        }
+    }
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         AppDelegate.appState.orientationManager.videos()
@@ -39,6 +46,41 @@ final class MediaPlayerViewController: AVPlayerViewController {
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         return nil
     }
+
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        if let controls = overlayControls {
+            self.view.bringSubview(toFront: controls)
+        }
+    }
+}
+
+extension MediaPlayerViewController: StreamVideoInteractorDelegate {
+
+    func didUpdateData(interactor: StreamVideoInteractorInterface) {
+        overlayControls?.configure(downloadTitle: interactor.downloadButtonTitle, isBokmarked: interactor.isBookmarked)
+    }
+
+    func askUserToDownloadWithoutWiFi(interactor: StreamVideoInteractorInterface) {
+        // TODO: Replace with QOT alert: https://tignum.atlassian.net/browse/QOT-1748
+        let alert = UIAlertController(title: interactor.noWifiTitle, message: interactor.noWifiMessage, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: interactor.cancelButtonTitle, style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: interactor.yesContinueButtonTitle, style: .default, handler: { (_) in
+            interactor.didTapDownloadWithoutWiFi()
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
+}
+
+extension MediaPlayerViewController: MediaPlayerOverlayDelegate {
+
+    func downloadMedia() {
+        interactor?.didTapDownload()
+    }
+
+    func bookmarkMedia() {
+        interactor?.didTapBookmark()
+    }
 }
 
 extension UIViewController {
@@ -46,6 +88,8 @@ extension UIViewController {
     func stream(videoURL: URL, contentItem: QDMContentItem?, _ pageName: PageName? = nil) -> MediaPlayerViewController {
         let player = AVPlayer(url: videoURL)
         let playerController = MediaPlayerViewController(contentItem: contentItem)
+        let interactor = StreamVideoInteractor(content: contentItem)
+        playerController.interactor = interactor
         playerController.player = player
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -57,7 +101,9 @@ extension UIViewController {
             player.volume = 1
             player.play()
         }
-        addOverlay(to: playerController)
+        if interactor.isLoggedIn {
+            addOverlay(to: playerController)
+        }
         return playerController
     }
 
@@ -67,21 +113,20 @@ extension UIViewController {
         })
     }
 
-    private func addOverlay(to playerController: AVPlayerViewController) {
+    private func addOverlay(to playerController: MediaPlayerViewController) {
         let overlay = MediaPlayerOverlay.instantiateFromNib()
-        overlay.delegate = self
-        if let contentView = playerController.contentOverlayView {
-            playerController.contentOverlayView?.addSubview(overlay)
+        overlay.delegate = playerController
+        playerController.overlayControls = overlay
+        if let contentView = playerController.view {
+            contentView.addSubview(overlay)
             overlay.bottomAnchor == contentView.safeBottomAnchor - playerController.view.frame.height / 6
             overlay.trailingAnchor == contentView.trailingAnchor
             overlay.leadingAnchor == contentView.leadingAnchor
+            overlay.heightAnchor.constraint(equalToConstant: MediaPlayerOverlay.height).isActive = true
         }
-    }
-}
-
-extension UIViewController: MediaPlayerOverlayDelegate {
-    func showAlert() {
-        showAlert(type: .comingSoon)
+        if let interactor = playerController.interactor {
+            overlay.configure(downloadTitle: interactor.downloadButtonTitle, isBokmarked: interactor.isBookmarked)
+        }
     }
 }
 
