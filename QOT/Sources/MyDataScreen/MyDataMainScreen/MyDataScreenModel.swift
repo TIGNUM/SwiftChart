@@ -53,7 +53,7 @@ enum MyDataSection: Int, CaseIterable {
 struct MyDataScreenModel {
     let myDataItems: [Item]
     var selectedHeatMapMode: HeatMapMode = .dailyIR
-    
+
     struct Item {
         let myDataSection: MyDataSection
         let title: String?
