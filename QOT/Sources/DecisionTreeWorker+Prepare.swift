@@ -70,3 +70,17 @@ private extension DecisionTreeWorker {
         }
     }
 }
+
+extension DecisionTreeWorker {
+    func getCalendarPermissionType() -> AskPermission.Kind? {
+        let authStatus = EKEventStore.authorizationStatus(for: .event)
+        switch authStatus {
+        case .denied:
+            return .calendarOpenSettings
+        case .notDetermined:
+            return .calendar
+        default:
+            return nil
+        }
+    }
+}

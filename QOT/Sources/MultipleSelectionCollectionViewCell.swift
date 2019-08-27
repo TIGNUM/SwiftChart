@@ -56,11 +56,15 @@ extension MultipleSelectionCollectionViewCell {
         guard let answer = answer else { return }
         if isAnswered == true {
             delegate?.didDeSelectAnswer(answer)
-            answerButton.update()
-            isAnswered = false
+            if answer.canUpdateAnswerButton == true {
+                answerButton.update()
+                isAnswered = false
+            }
         } else if (selectionCounter < maxSelections) || (selectionCounter == 0 && maxSelections == 0) {
-            answerButton.update()
-            isAnswered = true
+            if answer.canUpdateAnswerButton == true {
+                answerButton.update()
+                isAnswered = true
+            }
             delegate?.didSelectAnswer(answer)
         }
     }

@@ -236,6 +236,14 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
     func dismissAndGoToMyQot() {
        router.dismissAndGoToMyQot()
     }
+
+    func getCalendarPermissionType() -> AskPermission.Kind? {
+        return worker.getCalendarPermissionType()
+    }
+
+    func presentPermissionView(_ permissionType: AskPermission.Kind) {
+        router.presentPermissionView(permissionType)
+    }
 }
 
 // MARK: - Prepare

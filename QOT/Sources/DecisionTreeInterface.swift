@@ -26,6 +26,7 @@ protocol DecisionTreeViewControllerInterface: UIViewController {
     func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor)
     func updateBottomButtonTitle(counter: Int, maxSelections: Int, defaultTitle: String?, confirmTitle: String?)
     func toBeVisionDidChange()
+    func presentPermissionView(_ permissionType: AskPermission.Kind)
 }
 
 protocol DecisionTreePresenterInterface {
@@ -103,6 +104,8 @@ protocol DecisionTreeInteractorInterface: Interactor {
     func updateMultiSelectionCounter()
     func toBeVisionDidChange()
     func dismiss()
+    func getCalendarPermissionType() -> AskPermission.Kind?
+    func presentPermissionView(_ permissionType: AskPermission.Kind)
 }
 
 protocol DecisionTreeRouterInterface {
@@ -118,6 +121,7 @@ protocol DecisionTreeRouterInterface {
     func openToBeVisionPage()
     func openRecoveryResults(_ recovery: QDMRecovery3D?)
     func dismissAndGoToMyQot()
+    func presentPermissionView(_ permissionType: AskPermission.Kind)
 }
 
 protocol DecisionTreeModelInterface {

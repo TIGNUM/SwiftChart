@@ -42,7 +42,6 @@ final class LocationPermissionWorker {
     }()
 
     // MARK: - Init
-
     init(permissionManager: PermissionsManager = AppCoordinator.appState.permissionsManager) {
         self.permissionManager = permissionManager
     }

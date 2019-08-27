@@ -83,6 +83,10 @@ extension DecisionTreeRouter: DecisionTreeRouterInterface {
             self.viewController.delegate?.didDismiss()
         })
     }
+
+    func presentPermissionView(_ permissionType: AskPermission.Kind) {
+        viewController.presentPermissionView(permissionType)
+    }
 }
 
 // MARK: - Prepare

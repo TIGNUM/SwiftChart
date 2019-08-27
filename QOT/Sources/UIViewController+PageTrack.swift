@@ -10,7 +10,6 @@ import Foundation
 import qot_dal
 
 // MARK: - Actions
-
 extension UIViewController {
     @objc func trackPage() {
         var pageTrack = QDMPageTracking()
@@ -35,7 +34,6 @@ extension UIViewController {
 }
 
 // MARK: - Keys
-
 extension UIViewController {
     var pageKey: String {
         switch self {
@@ -86,13 +84,13 @@ extension UIViewController {
         case is StrategyListViewController: return "knowing.feed.strategy"
         case is ArticleViewController: return "article.detail"
         case is SyncedCalendarsViewController: return "myprofile.appsettings.syncedCalendars"
+        case is AskPermissionViewController: return askPermissionPageKey
         default: preconditionFailure()
         }
     }
 }
 
 // MARK: - DecisionTree IDs
-
 private extension UIViewController {
     var decisionTreePageKey: String {
         switch (self as? DecisionTreeViewController)?.interactor?.type {
@@ -113,7 +111,6 @@ private extension UIViewController {
 }
 
 // MARK: - MyLibraryUserStorage IDs
-
 private extension UIViewController {
     var userStoragePageKey: String {
         switch (self as? MyLibraryUserStorageViewController)?.interactor?.contentType {
@@ -122,6 +119,19 @@ private extension UIViewController {
         case .downloads?: return "mylibrary.downloads"
         case .links?: return "mylibrary.links"
         case .notes?: return "mylibrary.notes"
+        default: preconditionFailure()
+        }
+    }
+}
+
+// MARK: AskPermission IDs
+private extension UIViewController {
+    var askPermissionPageKey: String {
+        switch (self as? AskPermissionViewController)?.interactor?.permissionType {
+        case .location?: return "askPermission.location"
+        case .notification?: return "askPermission.notification"
+        case .calendar?: return "askPermission.calendar"
+        case .calendarOpenSettings?: return "askPermission.calendar.settings"
         default: preconditionFailure()
         }
     }

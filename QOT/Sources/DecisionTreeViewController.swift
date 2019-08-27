@@ -216,8 +216,9 @@ extension DecisionTreeViewController: DecisionTreeViewControllerInterface {
                                     selectedAnswers: selectedAnswers,
                                     direction: direction,
                                     animated: animated)
-        if question.answerType == AnswerType.openCalendarEvents.rawValue {
-            checkCalendarPermissions()
+        if question.answerType == AnswerType.openCalendarEvents.rawValue,
+            let permissionType = interactor?.getCalendarPermissionType() {
+            presentPermissionView(permissionType)
         } else {
             loadNextQuestion(nextQuestion)
         }
@@ -422,6 +423,13 @@ extension DecisionTreeViewController: DecisionTreeQuestionnaireDelegate {
                                                   backgroundColor: .clear)
         NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
     }
+
+    func presentPermissionView(_ permissionType: AskPermission.Kind) {
+        if let controller = R.storyboard.askPermission().instantiateInitialViewController() as? AskPermissionViewController {
+            AskPermissionConfigurator.make(viewController: controller, type: permissionType)
+            present(controller, animated: true, completion: nil)
+        }
+    }
 }
 
 private class EditEventHandler: NSObject, EKEventEditViewDelegate {
@@ -442,7 +450,6 @@ extension DecisionTreeViewController: SolveResultsViewControllerDelegate {
 
 // MARK: - Bottom Navigation Items
 extension DecisionTreeViewController {
-
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return leftNavigationItems
     }
@@ -454,83 +461,5 @@ extension DecisionTreeViewController {
                                          action: #selector(didTapContinue))]
         }
         return interactor?.bottomNavigationRightBarItems(action: #selector(didTapContinue))
-    }
-}
-
-// MARK: - Permission Calendar
-extension DecisionTreeViewController {
-    func checkCalendarPermissions() {
-        let authStatus = EKEventStore.authorizationStatus(for: .event)
-        switch authStatus {
-        case .denied:
-            presentPermissionView(openSettings: true)
-        case .notDetermined:
-            presentPermissionView(openSettings: false)
-        default:
-            loadNextQuestion(nextQuestion)
-        }
-    }
-
-    func askCalendarPermission() {
-        CalendarPermission().askPermission { [weak self] (granted) in
-            if granted == true {
-                qot_dal.CalendarService.main.importCalendarEvents()
-                self?.hidePermissionView()
-                self?.loadNextQuestion(self?.nextQuestion)
-            } else {
-                self?.hidePermissionView()
-            }
-        }
-    }
-
-    @objc func didTapSkipPermission() {
-        hidePermissionView()
-    }
-
-    @objc func didTapAllowPermission() {
-        askCalendarPermission()
-    }
-
-    @objc func didTapOpenSettings() {
-        UIApplication.openAppSettings()
-    }
-
-    func presentPermissionView(openSettings: Bool) {
-        view.addSubview(permissionView)
-        permissionView.edges(to: view)
-        let skipButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleSkip().uppercased(),
-                                                  buttonWidth: .Done,
-                                                  action: #selector(didTapSkipPermission),
-                                                  backgroundColor: .clear,
-                                                  borderColor: .accent40)
-        let allowButtonItem = roundedBarButtonItem(title: R.string.localized.buttonTitleAllow(),
-                                                   buttonWidth: .Done,
-                                                   action: #selector(didTapAllowPermission),
-                                                   backgroundColor: .clear,
-                                                   borderColor: .accent40)
-        let settingsButtonItem = roundedBarButtonItem(title: R.string.localized.alertButtonTitleOpenSettings(),
-                                                  buttonWidth: .Done * 2,
-                                                  action: #selector(didTapOpenSettings),
-                                                  backgroundColor: .clear,
-                                                  borderColor: .accent40)
-        var rightBarButtonItems = [allowButtonItem, skipButtonItem]
-        if openSettings == true {
-            rightBarButtonItems = [settingsButtonItem, skipButtonItem]
-        }
-        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
-                                                  rightBarButtonItems: rightBarButtonItems,
-                                                  backgroundColor: .clear)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
-    }
-
-    func hidePermissionView() {
-        let leftBaruttonItems = [dismissNavigationItem()]
-        DispatchQueue.main.async { [weak self] in
-            self?.permissionView.removeFromSuperview()
-            let navigationItem = BottomNavigationItem(leftBarButtonItems: leftBaruttonItems,
-                                                      rightBarButtonItems: [],
-                                                      backgroundColor: .clear)
-            NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
-        }
     }
 }

@@ -329,6 +329,11 @@ private extension DecisionTreeWorker {
                 if let contentId = answer.targetId(.content) {
                     showResultView(for: answer, contentID: contentId)
                 }
+            } else if
+                (answer.keys.contains(AnswerKey.Prepare.EventTypeSelectionDaily)
+                || answer.keys.contains(AnswerKey.Prepare.EventTypeSelectionCritical)),
+                let permissionType = getCalendarPermissionType() {
+                    interactor?.presentPermissionView(permissionType)
             } else {
                 showNextQuestionIfExist(answer)
             }

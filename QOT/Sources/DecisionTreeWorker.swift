@@ -474,7 +474,7 @@ internal extension DecisionTreeWorker {
                                                  textColor: .sand)
         button.setAttributedTitle(attributedTitle, for: .normal)
         if let image = image {
-            button.setImage(image, for: .normal)
+        button.setImage(image, for: .normal)
             button.imageEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 4)
         }
         button.addTarget(self, action: action, for: .touchUpInside)
