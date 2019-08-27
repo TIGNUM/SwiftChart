@@ -15,10 +15,11 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var subtitleLabel: UILabel!
     @IBOutlet weak var titleLabel: UILabel!
 
-    func configure(title: String, subtitle: String) {
-        titleLabel.text = title.uppercased()
-        subtitleLabel.text = subtitle
-        subtitleLabel.textColor = UIColor.sand
+    func configure(title: String, subtitle: String, isRed: Bool = false) {
+        ThemeText.myQOTBoxTitle.apply(title, to: titleLabel)
+
+        let theme = isRed ? ThemeText.linkMenuCommentRed : ThemeText.linkMenuComment
+        theme.apply(subtitle, to: subtitleLabel)
     }
 
     override func prepareForReuse() {

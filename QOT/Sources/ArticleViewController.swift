@@ -41,13 +41,6 @@ enum ColorMode {
         }
     }
 
-    var audioVissualEffect: UIBlurEffect.Style {
-        switch self {
-        case .dark: return .dark
-        case .darkNot: return .light
-        }
-    }
-
     var audioText: UIColor {
         switch self {
         case .dark: return UIColor.carbon.withAlphaComponent(0.6)
@@ -437,10 +430,9 @@ extension ArticleViewController {
 extension ArticleViewController {
     func articleItemTextViewCell(tableView: UITableView,
                                  indexPath: IndexPath,
-                                 topText: NSAttributedString,
-                                 bottomText: NSAttributedString?) -> ContentItemTextTableViewCell {
+                                 topText: NSAttributedString) -> ContentItemTextTableViewCell {
         let itemTextCell: ContentItemTextTableViewCell = tableView.dequeueCell(for: indexPath)
-        itemTextCell.setup(topText: topText, bottomText: bottomText, delegate: self)
+        itemTextCell.setup(topText: topText, bottomText: nil, delegate: self)
         itemTextCell.backgroundColor = .clear
         itemTextCell.contentView.backgroundColor = .clear
         return itemTextCell
@@ -613,8 +605,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
             }
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
-                                           topText: attributedTopText,
-                                           bottomText: nil)
+                                           topText: attributedTopText)
         case .video(_, let title, _, let placeholderURL, _, let duration):
             let mediaDescription = String(format: "%@ (%02i:%02i)", title, Int(duration) / 60 % 60, Int(duration) % 60)
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)

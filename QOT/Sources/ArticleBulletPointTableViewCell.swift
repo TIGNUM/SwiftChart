@@ -13,11 +13,6 @@ final class ArticleBulletPointTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var bulletLabel: UILabel!
 
     func configure(bullet: String) {
-        bulletLabel.attributedText = NSAttributedString(string: bullet,
-                                                       letterSpacing: 0.5,
-                                                       font: textScale.bullet,
-                                                       lineSpacing: 8,
-                                                       textColor: colorMode.text.withAlphaComponent(0.6),
-                                                       alignment: .left)
+        ThemeText.articleBullet.apply(bullet, to: bulletLabel)
     }
 }

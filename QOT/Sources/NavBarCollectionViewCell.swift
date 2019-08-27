@@ -22,12 +22,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     func configure(title: String, leftArrow: Bool, rightArrow: Bool) {
         container.alpha = 1.0
-        titleLabel.attributedText = NSAttributedString(string: title,
-                                                       letterSpacing: 0.4,
-                                                       font: .sfProtextRegular(ofSize: 20),
-                                                       lineSpacing: 5,
-                                                       textColor: .sand,
-                                                       alignment: .left)
+        ThemeText.navigationBarHeader.apply(title, to: titleLabel)
         buttonLeft.isHidden = !leftArrow
         buttonRight.isHidden = !rightArrow
     }

@@ -10,7 +10,6 @@ import Foundation
 
 struct SyncedCalendarsViewModel {
     let viewTitle: String
-    let headerConfig = TitleTableHeaderView.Config(backgroundColor: .clear)
     let headerHeight: CGFloat = 60
     var sections: [Section: [Row]]
 

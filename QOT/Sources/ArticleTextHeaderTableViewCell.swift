@@ -21,17 +21,8 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
 
     func configure(articleHeader: Article.Header?) {
         guard let articleHeader = articleHeader else { return }
-        categoryTitleLabel.attributedText = NSAttributedString(string: articleHeader.categoryTitle,
-                                                               letterSpacing: 0.4,
-                                                               font: textScale.categoryHeadline,
-                                                               textColor: colorMode.text.withAlphaComponent(0.3),
-                                                               alignment: .left)
-        titleLabel.attributedText = NSAttributedString(string: articleHeader.title.uppercased(),
-                                                       letterSpacing: 0.2,
-                                                       font: textScale.contentHeadline,
-                                                       lineSpacing: 4,
-                                                       textColor: colorMode.text,
-                                                       alignment: .left)
+        ThemeText.articleCategory.apply(articleHeader.categoryTitle, to: categoryTitleLabel)
+        ThemeText.articleTitle.apply(articleHeader.title, to: titleLabel)
         setAuthor(author: articleHeader.author)
         setDetails(publishDate: articleHeader.publishDate, timeToRead: articleHeader.timeToRead)
     }
@@ -42,11 +33,7 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
 private extension ArticleTextHeaderTableViewCell {
     func setAuthor(author: String?) {
         if let author = author {
-            authorLabel.attributedText = NSAttributedString(string: author,
-                                                            letterSpacing: 0.2,
-                                                            font: textScale.details,
-                                                            textColor: colorMode.text.withAlphaComponent(0.6),
-                                                            alignment: .left)
+            ThemeText.articleAuthor.apply(author, to: authorLabel)
         } else {
             authorLabel.isHidden = true
         }
@@ -57,11 +44,7 @@ private extension ArticleTextHeaderTableViewCell {
             let dateFormatter = DateFormatter.whatsHot
             let displayDate = dateFormatter.string(from: publishDate)
             let detailText = String(format: "%@ | %d min read", displayDate, timeToRead)
-            detailLabel.attributedText = NSAttributedString(string: detailText,
-                                                            letterSpacing: 0.4,
-                                                            font: textScale.details,
-                                                            textColor: colorMode.text.withAlphaComponent(0.3),
-                                                            alignment: .left)
+            ThemeText.articleDatestamp.apply(detailText, to: detailLabel)
         } else {
             detailLabel.isHidden = true
         }

@@ -18,20 +18,13 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
     @IBOutlet private weak var bottomSeperator: UIView!
 
     func configure(categoryTitle: String, viewCount: Int, itemCount: Int) {
+        ThemeText.performanceStaticTitle.apply("PERFORMANCE", to: performanceLabel)
+
         let title = categoryTitle.replacingOccurrences(of: "Performance ", with: "")
-        categoryTitleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                               letterSpacing: 0,
-                                                               font: .apercuLight(ofSize: 20),
-                                                               lineSpacing: 0,
-                                                               textColor: .accent,
-                                                               alignment: .left)
+        ThemeText.linkMenuItem.apply(title, to: categoryTitleLabel)
+        
         let progress = String(format: "%d Seen of %d", viewCount, itemCount)
-        progressLabel.attributedText = NSAttributedString(string: progress,
-                                                          letterSpacing: 0,
-                                                          font: .apercuRegular(ofSize: 12),
-                                                          lineSpacing: 0,
-                                                          textColor: .sand30,
-                                                          alignment: .left)
+        ThemeText.datestamp.apply(progress, to: progressLabel)
     }
 
     // MARK: - Life Cycle

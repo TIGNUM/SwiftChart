@@ -26,7 +26,7 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        audioView.corner(radius: 20)
+        ThemeView.audioBar.apply(audioView)
 
         selectionStyle = .gray
         let bkView = UIView()
@@ -51,17 +51,8 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         self.remoteID = mediaItemId
         self.duration = duration
         setAudioAsCompleteIfNeeded(remoteID: mediaItemId)
-        titleLabel.attributedText = NSAttributedString(string: title,
-                                                       letterSpacing: 0.5,
-                                                       font: .sfProtextLight(ofSize: 16),
-                                                       lineSpacing: 8,
-                                                       textColor: .sand,
-                                                       alignment: .left)
-        detailLabel.attributedText = NSAttributedString(string: timeToWatch,
-                                                        letterSpacing: 0.4,
-                                                        font: .sfProtextMedium(ofSize: 12),
-                                                        textColor: .sand40,
-                                                        alignment: .left)
+        ThemeText.articleRelatedTitle.apply(title, to: titleLabel)
+        ThemeText.articleRelatedDetail.apply(timeToWatch, to: detailLabel)
         mediaIconImageView.image = R.image.ic_seen_of()
         showDuration(duration)
     }
@@ -85,11 +76,7 @@ extension StrategyContentTableViewCell {
 private extension StrategyContentTableViewCell {
     func showDuration(_ duration: Double) {
         let text = String(format: "%i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
-        audioLabel.attributedText = NSAttributedString(string: text,
-                                                       letterSpacing: 0.2,
-                                                       font: .sfProtextSemibold(ofSize: 14),
-                                                       textColor: colorMode.tint,
-                                                       alignment: .center)
+        ThemeText.audioBar.apply(text, to: audioLabel)
     }
 
     func setAudioAsCompleteIfNeeded(remoteID: Int) {

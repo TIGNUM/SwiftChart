@@ -17,17 +17,8 @@ class ArticleRelatedTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var iconImageView: UIImageView!
 
     func configure(title: String, durationString: String, icon: UIImage?) {
-        titleLabel.attributedText = NSAttributedString(string: title,
-                                                       letterSpacing: 0.5,
-                                                       font: .sfProtextLight(ofSize: 16),
-                                                       lineSpacing: 1,
-                                                       textColor: colorMode.text,
-                                                       alignment: .left)
-        detailLabel.attributedText = NSAttributedString(string: durationString,
-                                                        letterSpacing: 0.5,
-                                                        font: .sfProtextMedium(ofSize: 12),
-                                                        textColor: colorMode.text.withAlphaComponent(0.3),
-                                                        alignment: .left)
+        ThemeText.articleRelatedTitle.apply(title, to: titleLabel)
+        ThemeText.articleRelatedDetail.apply(durationString, to: detailLabel)
         iconImageView.image = icon
         contentView.backgroundColor = colorMode.background
     }
@@ -41,11 +32,6 @@ final class ArticleNextUpTableViewCell: ArticleRelatedTableViewCell {
 
     func configure(header: String, title: String, durationString: String, icon: UIImage?) {
         super.configure(title: title, durationString: durationString, icon: icon)
-        headerLabel.attributedText = NSAttributedString(string: header,
-                                                       letterSpacing: 0.5,
-                                                       font: .sfProtextMedium(ofSize: 14),
-                                                       lineSpacing: 1,
-                                                       textColor: colorMode.text.withAlphaComponent(0.4),
-                                                       alignment: .left)
+        ThemeText.articleNextTitle.apply(header, to: headerLabel)
     }
 }

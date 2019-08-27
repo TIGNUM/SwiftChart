@@ -23,11 +23,6 @@ final class StrategyListHeaderView: UIView {
     }
 
     func configure(title: String) {
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.3,
-                                                       font: .apercuRegular(ofSize: 15),
-                                                       lineSpacing: 8,
-                                                       textColor: .sand,
-                                                       alignment: .left)
+        ThemeText.strategyHeader.apply(title, to: titleLabel)
     }
 }

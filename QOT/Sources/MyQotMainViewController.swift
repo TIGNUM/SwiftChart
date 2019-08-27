@@ -28,7 +28,21 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
     private var timeSinceMonth: Int?
     private var subtitleVision: String?
     private var impactReadinessScore: Int?
-    private var qotBoxSize: CGSize = .zero
+
+    private var qotBoxSize: CGSize {
+        guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return .zero
+        }
+
+        let widthAvailbleForAllItems =  (collectionView.frame.width - layout.minimumInteritemSpacing - layout.sectionInset.left - layout.sectionInset.right)
+        let widthForOneItem = widthAvailbleForAllItems / 2
+        let heightAvailableForAllItems = (collectionView.frame.height -
+                                            (layout.minimumLineSpacing + layout.sectionInset.top + layout.sectionInset.bottom) * 2 -
+                                            ThemeView.level1.headerBarHeight)
+        let heightForOneItem = heightAvailableForAllItems / 3
+
+        return CGSize(width: widthForOneItem, height: heightForOneItem)
+    }
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return ColorMode.dark.statusBarStyle
@@ -67,7 +81,7 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
     }
 
     override func viewWillAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
+        super.viewWillAppear(animated)
         setStatusBar(colorMode: ColorMode.dark)
     }
 
@@ -89,15 +103,9 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
             return
         }
 
-        layout.minimumLineSpacing = 15
-        layout.minimumInteritemSpacing = 15
+        layout.minimumLineSpacing = 16
+        layout.minimumInteritemSpacing = 16
         layout.sectionInset = .init(top: 10, left: 24, bottom: 0, right: 24)
-
-        let widthAvailbleForAllItems =  (collectionView.frame.width - layout.minimumInteritemSpacing - layout.sectionInset.left - layout.sectionInset.right)
-        let widthForOneItem = widthAvailbleForAllItems / 2
-        let heightAvailableForAllItems = (collectionView.frame.height - layout.minimumLineSpacing - layout.sectionInset.top - layout.sectionInset.right)
-        let heightForOneItem = heightAvailableForAllItems / 3
-        qotBoxSize = CGSize(width: widthForOneItem, height: heightForOneItem)
     }
 
     func setup(for myQotSection: MyQotViewModel) {
@@ -160,8 +168,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
             case .toBeVision:
                 interactor?.getSubtitles(completion: {(subtitles) in
                      if subtitles.count > 0 {
-                    cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: self.subtitleVision ?? subtitles[indexPath.row] ?? "")
-                    cell.subtitleLabel.textColor = .redOrange
+                        cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: self.subtitleVision ?? subtitles[indexPath.row] ?? "", isRed: true)
                     }
                 })
             }
@@ -174,7 +181,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
                                  sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case MyQotViewModel.Section.header.rawValue:
-            return CGSize(width: view.frame.width, height: 44)
+            return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
         default:
             return qotBoxSize
         }

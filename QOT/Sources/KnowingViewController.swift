@@ -143,7 +143,7 @@ extension KnowingViewController {
                                  sizeForItemAt indexPath: IndexPath) -> CGSize {
         switch indexPath.section {
         case Knowing.Section.header.rawValue:
-            return CGSize(width: view.frame.width, height: 44)
+            return CGSize(width: view.frame.width, height: ThemeView.level1.headerBarHeight)
         case Knowing.Section.strategies.rawValue:
             if indexPath.item == 0 {
                 return CGSize(width: view.frame.width, height: 80)
@@ -164,7 +164,7 @@ extension KnowingViewController {
         case Knowing.Section.strategies.rawValue:
             return CGSize(width: view.frame.width, height: 155)
         default:
-            return CGSize(width: view.frame.width, height: 10)
+            return CGSize(width: view.frame.width, height: 140)
         }
     }
 
@@ -188,7 +188,6 @@ extension KnowingViewController {
                                                                                     for: indexPath as IndexPath) as? ComponentHeaderView {
                     let header = interactor?.header(for: Knowing.Section.strategies)
                     headerView.configure(title: header?.title, subtitle: header?.subtitle)
-                    headerView.backgroundColor = .clear
                     return headerView
                 }
             default:
@@ -197,7 +196,6 @@ extension KnowingViewController {
                                                                                     for: indexPath as IndexPath) as? ComponentHeaderView {
                     let header = interactor?.header(for: Knowing.Section.whatsHot)
                     headerView.configure(title: header?.title, subtitle: header?.subtitle)
-                    headerView.backgroundColor = .carbon
                     return headerView
                 }
             }
@@ -210,6 +208,7 @@ extension KnowingViewController {
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        collectionView.deselectItem(at: indexPath, animated: false)
         switch indexPath.section {
         case Knowing.Section.header.rawValue:
             break

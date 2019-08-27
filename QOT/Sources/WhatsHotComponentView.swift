@@ -48,25 +48,13 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
                    colorMode: ColorMode) {
         newIndicatorView.isHidden = (isNew == false)
         whatsHotImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
-        titleLabel.attributedText = NSAttributedString(string: title ?? "",
-                                                       letterSpacing: 0.5,
-                                                       font: .apercuRegular(ofSize: 16),
-                                                       lineSpacing: 8,
-                                                       textColor: colorMode.text,
-                                                       alignment: .left)
+
+        ThemeText.whatsHotHeader.apply(title ?? "", to: titleLabel)
         let dateFormatter = DateFormatter.whatsHot
         let displayDate = dateFormatter.string(from: publishDate ?? Date())
         let detailText = String(format: "%@ | %@", displayDate, timeToRead ?? "")
-        detailLabel.attributedText = NSAttributedString(string: detailText,
-                                                        letterSpacing: 0.4,
-                                                        font: .apercuMedium(ofSize: 12),
-                                                        textColor: colorMode.text.withAlphaComponent(0.3),
-                                                        alignment: .right)
-        authorLabel.attributedText = NSAttributedString(string: author ?? "",
-                                                        letterSpacing: 0.4,
-                                                        font: .apercuMedium(ofSize: 12),
-                                                        textColor: colorMode.text.withAlphaComponent(0.6),
-                                                        alignment: .left)
+        ThemeText.datestamp.apply(detailText, to: detailLabel)
+        ThemeText.author.apply(author ?? "", to: authorLabel)
         backgroundColor = colorMode.background
         seperator.backgroundColor = colorMode.seperator
     }

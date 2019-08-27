@@ -16,54 +16,26 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        self.backgroundView = UIView(frame: self.bounds)
         self.selectedBackgroundView = UIView(frame: self.bounds)
+
+        ThemeView.level2.apply(backgroundView!)
+        ThemeView.level2Selected.apply(selectedBackgroundView!)
+
         self.selectedBackgroundView?.backgroundColor = .accent10
     }
 
-    var title: String = "" {
-        willSet {
-            titleLabel.text = newValue
-        }
+    func configure(title: String){
+        ThemeText.linkMenuItem.apply(title, to: titleLabel)
     }
-    var subTitle: String = ""{
-        willSet {
-            subTitleLabel.text = newValue
-        }
+
+    func configure(subTitle: String) {
+        ThemeText.linkMenuComment.apply(subTitle, to: subTitleLabel)
     }
 
     var hideArrow: Bool = false {
         willSet {
             arrowRight.isHidden = newValue
-        }
-    }
-
-    struct Config {
-        var backgroundColor: UIColor
-        var subTitlefont: UIFont
-        var titlefont: UIFont
-        var titleTextColor: UIColor
-        var subTitleTextColor: UIColor
-
-        init(backgroundColor: UIColor = UIColor.carbon,
-             subTitlefont: UIFont = UIFont.sfProtextMedium(ofSize: FontSize.fontSize12),
-             titlefont: UIFont = UIFont.sfProtextLight(ofSize: FontSize.fontSize16),
-             titleTextColor: UIColor = UIColor.sand,
-             subTitleTextColor: UIColor = UIColor.sand30) {
-            self.backgroundColor = backgroundColor
-            self.subTitlefont = subTitlefont
-            self.titlefont = titlefont
-            self.titleTextColor = titleTextColor
-            self.subTitleTextColor = subTitleTextColor
-        }
-    }
-
-    var config: Config? {
-        didSet {
-            subTitleLabel.textColor = config?.subTitleTextColor
-            subTitleLabel.font = config?.subTitlefont
-            titleLabel.textColor = config?.titleTextColor
-            titleLabel.font = config?.titlefont
-            contentView.backgroundColor = config?.backgroundColor
         }
     }
 }

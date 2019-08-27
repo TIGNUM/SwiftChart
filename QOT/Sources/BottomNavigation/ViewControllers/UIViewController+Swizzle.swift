@@ -97,6 +97,7 @@ extension UIViewController {
         let viewControllerName = NSStringFromClass(type(of: self))
         log("swizzled viewWillAppear: \(viewControllerName), animated: \(animated)", level: .verbose)
 
+        self.applyTheme()
         if animated {
             refreshBottomNavigationItems()
             setStatusBar(color: view.backgroundColor)
@@ -331,5 +332,84 @@ extension UIViewController {
         dismiss(animated: true, completion: nil)
         navigationController?.popViewController(animated: true)
         trackUserEvent(.CLOSE, action: .TAP)
+    }
+}
+
+// MARK: Theme Factory
+extension UIViewController {
+    func applyTheme() {
+        view.applyTheme(view)
+    }
+}
+
+extension UICollectionViewCell {
+    override open func awakeFromNib() {
+        super.awakeFromNib()
+        applyTheme(contentView)
+    }
+}
+
+extension UITableViewCell {
+    override open func awakeFromNib() {
+        super.awakeFromNib()
+        applyTheme(contentView)
+    }
+}
+
+extension UIView {
+    override open func value(forUndefinedKey key: String) -> Any? {
+        return nil
+    }
+
+    func applyTheme(_ targetView: UIView) {
+        if let theme = targetView.themeView {
+            theme.apply(targetView)
+        }
+
+        for subView in targetView.subviews {
+            if let label = subView as? UILabel {
+                if let text = label.text,
+                    let theme = label.themeText {
+                    theme.apply(text, to: label)
+                } else {
+//                    label.backgroundColor = UIColor.yellow   //use this to show unthemed componenets
+                }
+            } else if !subView.subviews.isEmpty {
+                applyTheme(subView)
+            }
+        }
+    }
+
+    var themeView: ThemeView? {
+        get {
+            if let themeKey = self.value(forKeyPath: "ThemeView") as? String,
+                let theme = ThemeView(rawValue: themeKey) {
+                return theme
+            }
+            return nil
+        }
+        set {
+            if let value = newValue?.rawValue {
+                self.setValue(value, forKeyPath: "ThemeView")
+            }
+        }
+    }
+
+}
+
+extension UILabel {
+    var themeText: ThemeText? {
+        get {
+            if let themeKey = self.value(forKeyPath: "ThemeText") as? String,
+                let theme = ThemeText(rawValue: themeKey) {
+                return theme
+            }
+            return nil
+        }
+        set {
+            if let value = newValue?.rawValue {
+                self.setValue(value, forKeyPath: "ThemeText")
+            }
+        }
     }
 }

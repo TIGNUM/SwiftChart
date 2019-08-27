@@ -170,8 +170,7 @@ extension ProfileSettingsViewController {
 
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
-        headerView.config = TitleTableHeaderView.Config(backgroundColor: .carbon)
-        headerView.title = interactor?.headerTitle(in: section) ?? ""
+        headerView.configure(title: interactor?.headerTitle(in: section) ?? "")
         return headerView
     }
 

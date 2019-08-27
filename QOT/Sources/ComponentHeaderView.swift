@@ -17,17 +17,8 @@ class ComponentHeaderView: UICollectionReusableView {
 
     func configure(title: String?, subtitle: String?) {
         guard let title = title, let subtitle = subtitle else { return }
-        titleLabel.attributedText = NSAttributedString(string: title.uppercased(),
-                                                       letterSpacing: 0.3,
-                                                       font: .apercuRegular(ofSize: 15),
-                                                       lineSpacing: 8,
-                                                       textColor: .sand,
-                                                       alignment: .left)
-        subtitleLabel.attributedText = NSAttributedString(string: subtitle,
-                                                          letterSpacing: 0.2,
-                                                          font: .apercuRegular(ofSize: 14),
-                                                          lineSpacing: 8,
-                                                          textColor: .sand60,
-                                                          alignment: .left)
+        ThemeText.strategyHeader.apply(title, to: titleLabel)
+        ThemeText.strategySubHeader.apply(subtitle, to: subtitleLabel)
+        ThemeView.level1.apply(self) 
     }
 }

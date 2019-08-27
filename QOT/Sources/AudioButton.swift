@@ -31,6 +31,7 @@ final class AudioButton: UIView {
     override func awakeFromNib() {
         super.awakeFromNib()
         corner(radius: 20)
+        ThemeView.articleAudioBar.apply(self)
     }
 
     func configure(categoryTitle: String,
@@ -57,11 +58,7 @@ final class AudioButton: UIView {
 private extension AudioButton {
     func showDuration(_ duration: Int) {
         let text = String(format: "%i:%02i", Int(duration) / 60 % 60, Int(duration) % 60)
-        durationLabel.attributedText = NSAttributedString(string: text,
-                                                          letterSpacing: 0.2,
-                                                          font: .sfProtextSemibold(ofSize: 14),
-                                                          textColor: colorMode.tint,
-                                                          alignment: .center)
+        ThemeText.articleAudioBar.apply(text, to: durationLabel)
     }
 }
 

@@ -1273,6 +1273,7 @@
 		BB5E76D6230D29A30054AF17 /* MyPrepsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76D4230D29A30054AF17 /* MyPrepsCell.swift */; };
 		BB5E76D9230D29AC0054AF17 /* MyPrepsHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB5E76D7230D29AC0054AF17 /* MyPrepsHeader.xib */; };
 		BB5E76DA230D29AC0054AF17 /* MyPrepsHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76D8230D29AC0054AF17 /* MyPrepsHeader.swift */; };
+		BB667EF82313D76A007C2AC8 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB667EF72313D76A007C2AC8 /* Theme.swift */; };
 		BB7B317A230A8C65004A5E52 /* TwoLinesAndTag.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB7B3178230A8C65004A5E52 /* TwoLinesAndTag.swift */; };
 		BB7B317B230A8C65004A5E52 /* TwoLinesAndTag.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B3179230A8C65004A5E52 /* TwoLinesAndTag.xib */; };
 		BB7B317F230A9520004A5E52 /* ThreeLinesLeftColumn.xib in Resources */ = {isa = PBXBuildFile; fileRef = BB7B317D230A9520004A5E52 /* ThreeLinesLeftColumn.xib */; };
@@ -3090,6 +3091,7 @@
 		BB5E76D4230D29A30054AF17 /* MyPrepsCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepsCell.swift; sourceTree = "<group>"; };
 		BB5E76D7230D29AC0054AF17 /* MyPrepsHeader.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MyPrepsHeader.xib; sourceTree = "<group>"; };
 		BB5E76D8230D29AC0054AF17 /* MyPrepsHeader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MyPrepsHeader.swift; sourceTree = "<group>"; };
+		BB667EF72313D76A007C2AC8 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
 		BB7B3178230A8C65004A5E52 /* TwoLinesAndTag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwoLinesAndTag.swift; sourceTree = "<group>"; };
 		BB7B3179230A8C65004A5E52 /* TwoLinesAndTag.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TwoLinesAndTag.xib; sourceTree = "<group>"; };
 		BB7B317D230A9520004A5E52 /* ThreeLinesLeftColumn.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ThreeLinesLeftColumn.xib; sourceTree = "<group>"; };
@@ -4189,6 +4191,7 @@
 				365EC0B2224A33E60019AFF9 /* HomeViewController.swift */,
 				3637666A223BC4D300C2C429 /* Model.swift */,
 				365EC0C0224A8CB10019AFF9 /* WhatsHotDetailViewController.swift */,
+				BB667EF72313D76A007C2AC8 /* Theme.swift */,
 				B47953AA230AD512006EFE0F /* MyDataScreen */,
 				3608381D225F3E9E00664B9B /* article */,
 				B83B33DA22C21D6E002AFED7 /* BottomNavigation */,
@@ -9397,6 +9400,7 @@
 				8D8AA76422FDCB6700B59A81 /* RegistrationViewController.swift in Sources */,
 				F909961C22B23FA900EAEAC6 /* MyPrepsInterface.swift in Sources */,
 				85945C731F27760500F090C8 /* LearnListAnimator.swift in Sources */,
+				BB667EF82313D76A007C2AC8 /* Theme.swift in Sources */,
 				7F6738AF1FE2BB70004DDAE1 /* ScreenHelpDataWorker.swift in Sources */,
 				3637663A223A6F3B00C2C429 /* AbstractTableViewCell.swift in Sources */,
 				3604C9242272176F00A681B3 /* AudioPlayer.swift in Sources */,
