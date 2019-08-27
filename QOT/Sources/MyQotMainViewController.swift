@@ -95,7 +95,6 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
 
 extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func setupView() {
-        collectionView.isScrollEnabled = false
         collectionView.registerDequeueable(MyQotMainCollectionViewCell.self)
         collectionView.registerDequeueable(NavBarCollectionViewCell.self)
 
@@ -148,14 +147,12 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
                         }
                     })
                 })
-
             case .library:
                 cell.configure(title: (myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: "")
             case .preps:
                 nextPrepDate(completion: { (dateString) in
                     cell.configure(title: (self.myQotModel?.myQotItems[indexPath.row].title) ?? "", subtitle: (dateString ?? "") + " " + (self.eventType ?? ""))
                 })
-
             case .sprints:
                 interactor?.getSubtitles(completion: {(subtitles) in
                      if subtitles.count > 0 {
@@ -214,6 +211,7 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
         if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? NavBarCollectionViewCell {
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
+        delegate?.handlePan(offsetY: scrollView.contentOffset.y)
     }
 }
 

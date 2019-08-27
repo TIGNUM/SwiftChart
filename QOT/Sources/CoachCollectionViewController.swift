@@ -12,6 +12,7 @@ import qot_dal
 
 protocol CoachCollectionViewControllerDelegate: class {
     func didTapCancel()
+    func handlePan(offsetY: CGFloat) 
 }
 
 final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom {
@@ -27,7 +28,9 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
     var services: Services?
     private var currentPage = Pages.dailyBrief
     @IBOutlet private weak var collectionView: UICollectionView!
-    @IBOutlet weak var collectionViewTopConstraint: NSLayoutConstraint!
+    private var bottomSearchViewConstraint: NSLayoutConstraint!
+    private var panActive = false
+    private var panSearchShowing = false
 
     lazy var pageTitle: String? = {
         return ScreenTitleService.main.localizedString(for: .knowPageTitle)
@@ -72,17 +75,13 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let swipeDown = UIPanGestureRecognizer(target: self, action: #selector(handlePan(_:)))
-        view.isUserInteractionEnabled = true
-        view.addGestureRecognizer(swipeDown)
         view.addSubview(collectionView)
         view.backgroundColor = .carbon
+
         if let searchViewController = searchViewController {
             self.addChildViewController(searchViewController)
             searchViewController.view.translatesAutoresizingMaskIntoConstraints = false
-            setupConstraints(searchViewController.view, parentView: view)
-            searchViewController.view.alpha = 0
-            searchViewController.view.isUserInteractionEnabled = false
+            setupSearchConstraints(searchViewController.view, parentView: view)
         }
     }
 
@@ -92,54 +91,29 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
     }
 }
 
-// MARK: - Private
+// MARK: - handlepan
 
 extension CoachCollectionViewController {
 
-    @objc func handlePan(_ sender: UIPanGestureRecognizer) {
-        let translation = sender.translation(in: self.view)
-        let maxDistance = view.frame.height * 0.075
-        let distance = translation.y >= 0 ? translation.y : 0
-        collectionViewTopConstraint.constant = distance
-        searchViewController?.view.isUserInteractionEnabled = false
-        searchViewController?.view.alpha = distance/maxDistance * 0.8
-        view.sendSubview(toBack: collectionView)
-
-        if distance >= maxDistance {
-            let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
-                                                      rightBarButtonItems: [],
-                                                      backgroundColor: view.backgroundColor ?? .clear)
-            NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
-            if let searchViewController = searchViewController {
-                searchViewController.view.isUserInteractionEnabled = true
-                searchViewController.view.alpha = 0.92
-            }
+    private func updatePan(currentY: CGFloat) {
+        bottomSearchViewConstraint.constant = panActive ? -currentY : 0.0
+        let duration: Double = panSearchShowing ? 0.25 : 0.0
+        UIView.animate(withDuration: duration) {
+            self.searchViewController?.view.superview?.layoutIfNeeded()
         }
-        switch sender.state {
-        case .ended:
-            if distance >= maxDistance {
-                collectionViewTopConstraint.constant = 0
-            } else {
-                didTapCancel()
-            }
-        case .cancelled,
-             .failed:
-            didTapCancel()
-        default: break
-        }
-        self.view.setNeedsUpdateConstraints()
     }
 
-    private func setupConstraints(_ targetView: UIView, parentView: UIView) {
+    private func setupSearchConstraints(_ targetView: UIView, parentView: UIView) {
         if targetView.superview != parentView {
             parentView.addSubview(targetView)
         }
+        bottomSearchViewConstraint = targetView.bottomAnchor.constraint(equalTo: parentView.topAnchor, constant: 0)
         NSLayoutConstraint.activate([
-            targetView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            targetView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            targetView.topAnchor.constraint(equalTo: view.topAnchor, constant: 0),
-            targetView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: 0),
-            targetView.rightAnchor.constraint(equalTo: view.rightAnchor, constant: 0)
+            targetView.leadingAnchor.constraint(equalTo: parentView.leadingAnchor, constant: 0),
+            targetView.trailingAnchor.constraint(equalTo: parentView.trailingAnchor, constant: 0),
+            targetView.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.height),
+            bottomSearchViewConstraint,
+            targetView.rightAnchor.constraint(equalTo: parentView.rightAnchor, constant: 0)
             ])
     }
 
@@ -195,16 +169,39 @@ extension CoachCollectionViewController: UICollectionViewDataSource, UICollectio
 extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
 
     func didTapCancel() {
+        panSearchShowing = false
         if let searchViewController = searchViewController {
-            view.sendSubview(toBack: searchViewController.view)
-            searchViewController.view.isUserInteractionEnabled = false
-            searchViewController.view.alpha = 0
+            bottomSearchViewConstraint.constant = 0
+            UIView.animate(withDuration: 0.25) {
+                searchViewController.view.superview?.layoutIfNeeded()
+            }
         }
-        collectionViewTopConstraint.constant = 0
         let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
                                                   rightBarButtonItems: [coachNavigationItem()],
                                                   backgroundColor: view.backgroundColor ?? .clear)
         NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
+    }
+
+    func handlePan(offsetY: CGFloat) {
+        if panSearchShowing { return }
+
+        let maxDistance = view.frame.height * 0.15
+        var newY: CGFloat = offsetY
+
+        if panActive {
+            if offsetY >= 0 {
+                panActive = false
+            }
+        } else {
+            if offsetY < 0 {
+                panActive = true
+            }
+        }
+        if offsetY <= -maxDistance {
+            panSearchShowing = true
+            newY = -view.frame.height
+        }
+        updatePan(currentY: newY)
     }
 }
 

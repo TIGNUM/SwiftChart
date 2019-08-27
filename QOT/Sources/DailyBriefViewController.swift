@@ -174,6 +174,10 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
             return UITableViewCell()
         }
     }
+
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        delegate?.handlePan(offsetY: scrollView.contentOffset.y)
+    }
 }
 
 // MARK: Daily Brief Update Notification

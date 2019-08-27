@@ -67,8 +67,6 @@ extension KnowingViewController: KnowingViewControllerInterface {
         navigationController?.navigationBar.isHidden = true
         view.backgroundColor = .carbon
         collectionView.backgroundColor = .carbon
-        collectionView.bounces = false
-        collectionView.alwaysBounceVertical = false
         collectionView.registerDequeueable(NavBarCollectionViewCell.self)
         collectionView.registerDequeueable(WhatsHotCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyCategoryCollectionViewCell.self)
@@ -233,5 +231,6 @@ extension KnowingViewController {
         if let cell = collectionView.cellForItem(at: IndexPath(item: 0, section: 0)) as? NavBarCollectionViewCell {
             cell.updateAlpha(basedOn: scrollView.contentOffset.y)
         }
+        delegate?.handlePan(offsetY: scrollView.contentOffset.y)
     }
 }
