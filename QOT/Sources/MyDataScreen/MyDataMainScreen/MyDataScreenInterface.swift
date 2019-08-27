@@ -23,6 +23,10 @@ protocol MyDataScreenInteractorInterface: Interactor {
     func presentMyDataSelection()
     func myDataSelectionSections() -> MyDataSelectionModel
     func initialDataSelectionSections() -> MyDataSelectionModel
+    func getDailyResults(around date: Date,
+                         withMonthsBefore: Int,
+                         monthsAfter: Int,
+                         _ completion: @escaping([Date: MyDataDailyCheckInModel]?, Error?) -> Void)
 }
 
 protocol MyDataScreenRouterInterface {
@@ -34,4 +38,8 @@ protocol MyDataScreenRouterInterface {
 protocol MyDataWorkerInterface {
     func myDataSections() -> MyDataScreenModel
     func myDataSelectionSections() -> MyDataSelectionModel
+    func getDailyResults(around date: Date,
+                         withMonthsBefore: Int,
+                         monthsAfter: Int,
+                         _ completion: @escaping([Date: MyDataDailyCheckInModel]?, Error?) -> Void)
 }

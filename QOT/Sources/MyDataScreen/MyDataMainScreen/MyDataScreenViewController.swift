@@ -25,8 +25,23 @@ final class MyDataScreenViewController: UIViewController {
     var router: MyDataScreenRouterInterface?
     @IBOutlet private weak var tableView: UITableView!
     private var myDataScreenModel: MyDataScreenModel?
-    // MARK: - Init
+    private var firstDayOfVisibleMonth: Date = Date().firstDayOfMonth() {
+        didSet {
+             self.requestNewResults()
+        }
+    }
+    private lazy var heatMapDetailView = R.nib.myDataHeatMapDetailView.firstView(owner: self)
+    private var lastDayOfVisibleMonth: Date = Date().lastDayOfMonth()
+    private var impactReadinessResultsDict: [Date: MyDataDailyCheckInModel] = [:] {
+        didSet {
+            guard let cell = getHeatMapCell() else { return }
+            cell.reloadCalendarData()
+        }
+    }
+    let calendarPanGestureRecognizer = UIPanGestureRecognizer.init(target: self,
+                                                                   action: #selector(didPanOrLongPressCalendarView(gesture:)))
 
+    // MARK: - Init
     init(configure: Configurator<MyDataScreenViewController>) {
         super.init(nibName: nil, bundle: nil)
         configure(self)
@@ -41,6 +56,8 @@ final class MyDataScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        firstDayOfVisibleMonth = Date().firstDayOfMonth()
+        initialSetupForHeatMapDetailView()
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,7 +81,22 @@ private extension MyDataScreenViewController {
 
 // MARK: - Actions
 private extension MyDataScreenViewController {
+    @objc func didTapDetailView() {
+        guard let heatMapCell = getHeatMapCell() else { return }
+        heatMapCell.calendarView.deselectAllDates()
+    }
 
+    @objc func didPanOrLongPressCalendarView(gesture: UIGestureRecognizer) {
+        guard let heatMapCell = getHeatMapCell() else { return }
+        let calendarView = heatMapCell.calendarView
+        let longPressPoint = gesture.location(in: calendarView)
+        if let indexPath = calendarView?.indexPathForItem(at: longPressPoint),
+           let dateCell = calendarView?.cellForItem(at: indexPath) as? MyDataHeatMapDateCell,
+           calendarView?.selectedDates.first != dateCell.date {
+            heatMapCell.calendarView.selectDates([dateCell.date], triggerSelectionDelegate: true, keepSelectionIfMultiSelectionAllowed: false)
+        }
+
+    }
 }
 
 // MARK: - MyDataScreenViewControllerInterface
@@ -115,6 +147,11 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
             return heatMapButtonsCell
         case MyDataRowType.heatMap.rawValue:
             let heatMapCell: MyDataHeatMapTableViewCell = tableView.dequeueCell(for: indexPath)
+            let longTapRecognizer = UILongPressGestureRecognizer.init(target: self,
+                                                                      action: #selector(didPanOrLongPressCalendarView(gesture:)))
+            longTapRecognizer.minimumPressDuration = 0.25
+            heatMapCell.calendarView.addGestureRecognizer(longTapRecognizer)
+
             heatMapCell.setCalendarDelegate(self)
             heatMapCell.setCalendarDatasource(self)
 
@@ -130,8 +167,10 @@ extension MyDataScreenViewController: MyDataInfoTableViewCellDelegate, MyDataCha
         router?.presentMyDataSelection()
     }
 
-    func didChangeSelection(to: HeatMapMode) {
-        //update heat map
+    func didChangeSelection(toMode: HeatMapMode) {
+        myDataScreenModel?.selectedHeatMapMode = toMode
+        guard let heatMapCell = getHeatMapCell() else { return }
+        heatMapCell.reloadCalendarData()
     }
 
     func didTapInfoButton() {
@@ -181,11 +220,50 @@ extension MyDataScreenViewController: JTAppleCalendarViewDelegate {
         }
     }
 
-    // MRAK: Helpers
+    func calendar(_ calendar: JTAppleCalendarView, willScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
+        let firstDay = JTAppleCalendarView.correctedCalendarDateFor(date: visibleDates.monthDates.first?.date ?? Date())
+        let lastDay = JTAppleCalendarView.correctedCalendarDateFor(date: visibleDates.monthDates.last?.date ?? Date())
+        if let heatMapCell = getHeatMapCell() {
+            heatMapCell.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: lastDay))
+            heatMapCell.showTodaysWeekdayLabel(asHighlighted: Date().isBetween(date: firstDay, andDate: lastDay))
+        }
+        if firstDay != firstDayOfVisibleMonth {
+            firstDayOfVisibleMonth = firstDay
+        }
+        if lastDay != lastDayOfVisibleMonth {
+            lastDayOfVisibleMonth = lastDay
+        }
+    }
+
+    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        let dailySelected = myDataScreenModel?.selectedHeatMapMode == .dailyIR
+        if let result = impactReadinessResultsDict[cellState.date],
+           let impactReadiness = dailySelected ? result.impactReadiness : result.fiveDayImpactReadiness,
+           let cell = cell as? MyDataHeatMapDateCell,
+           cellState.dateBelongsTo == .thisMonth {
+            showImpactReadinessView(calendar: calendar, withValue: impactReadiness, forCellState: cellState, forCell: cell)
+        }
+    }
+
+    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
+        if let cell = cell as? MyDataHeatMapDateCell,
+            cellState.dateBelongsTo == .thisMonth {
+            hideImpactReadinessView(calendar: calendar, forCell: cell)
+        }
+    }
+}
+
+extension MyDataScreenViewController: UICollectionViewDelegate {
+
+}
+
+// MARK: Helpers
+extension MyDataScreenViewController {
 
     func configureCell(view: JTAppleCell?, cellState: CellState, date: Date) {
         guard let cell = view as? MyDataHeatMapDateCell  else { return }
         cell.dateLabel.text = cellState.text
+        cell.date = date
         handleCellVisibility(cell: cell, cellState: cellState)
     }
 
@@ -202,15 +280,138 @@ extension MyDataScreenViewController: JTAppleCalendarViewDelegate {
             cell.dateLabel.font = .sfProDisplayRegular(ofSize: 16)
             cell.dateLabel.textColor = .sand70
         }
+
+        let dailySelected = myDataScreenModel?.selectedHeatMapMode == .dailyIR
+
+        guard let result = impactReadinessResultsDict[cellState.date] else {
+            setNoDataUI(forCell: cell)
+            return
+        }
+
+        if dailySelected {
+            guard let impactReadiness = result.impactReadiness else {
+                setNoDataUI(forCell: cell)
+                return
+            }
+            cell.backgroundColor = MyDataScreenWorker.heatMapColor(forImpactReadiness: impactReadiness)
+            cell.noDataImageView.isHidden = true
+        } else {
+            guard let fiveDaysRollingIR = result.fiveDayImpactReadiness else {
+                setNoDataUI(forCell: cell)
+                return
+            }
+            cell.backgroundColor = MyDataScreenWorker.heatMapColor(forImpactReadiness: fiveDaysRollingIR)
+            cell.noDataImageView.isHidden = true
+        }
     }
 
-    func calendar(_ calendar: JTAppleCalendarView, willScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        let firstDay = JTAppleCalendarView.correctedCalendarDateFor(date: visibleDates.monthDates.first?.date ?? Date())
-        let lastDay = JTAppleCalendarView.correctedCalendarDateFor(date: visibleDates.monthDates.last?.date ?? Date())
-        if let heatMapCell = tableView.cellForRow(at: IndexPath(row: MyDataRowType.heatMap.rawValue, section: 0)) as? MyDataHeatMapTableViewCell {
-            heatMapCell.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: lastDay))
-            heatMapCell.showTodaysWeekdayLabel(asHighlighted: Date().isBetween(date: firstDay, andDate: lastDay))
+    func setNoDataUI(forCell: MyDataHeatMapDateCell) {
+        forCell.backgroundColor = .clear
+        forCell.noDataImageView.isHidden = false
+    }
+
+    func requestNewResults() {
+        interactor?.getDailyResults(around: firstDayOfVisibleMonth, withMonthsBefore: 1, monthsAfter: 1, { [weak self] (resultsDict, error) in
+            guard let dict = resultsDict, let s = self else {
+                return
+            }
+            s.impactReadinessResultsDict = dict
+        })
+    }
+
+    func showImpactReadinessView(calendar: JTAppleCalendarView, withValue: Double, forCellState: CellState, forCell: MyDataHeatMapDateCell) {
+        guard let detailView = heatMapDetailView else {
+            return
         }
+        calendar.addSubview(detailView)
+        calendar.bringSubview(toFront: detailView)
+        createConstraintsForDetailsView(calendar: calendar, cellState: forCellState, cell: forCell)
+        calendar.addGestureRecognizer(calendarPanGestureRecognizer)
+        addGestureRecognizerOnDetailView()
+        calendar.isScrollEnabled = false
+        detailView.setValue(withValue, forDate: forCellState.date)
+    }
+
+    func hideImpactReadinessView(calendar: JTAppleCalendarView, forCell: MyDataHeatMapDateCell) {
+        guard let detailView = heatMapDetailView else {
+            return
+        }
+        calendar.isScrollEnabled = true
+        calendar.removeGestureRecognizer(calendarPanGestureRecognizer)
+        detailView.removeFromSuperview()
+    }
+
+    func createConstraintsForDetailsView(calendar: JTAppleCalendarView, cellState: CellState, cell: MyDataHeatMapDateCell) {
+        guard let detailView = heatMapDetailView else {
+            return
+        }
+        let centerConstraint = NSLayoutConstraint(item: detailView,
+                                                  attribute: NSLayoutConstraint.Attribute.centerX,
+                                                  relatedBy: NSLayoutConstraint.Relation.equal,
+                                                  toItem: cell,
+                                                  attribute: NSLayoutConstraint.Attribute.centerX,
+                                                  multiplier: 1,
+                                                  constant: 0)
+        let leadingConstraint = NSLayoutConstraint(item: detailView,
+                                                  attribute: NSLayoutConstraint.Attribute.leading,
+                                                  relatedBy: NSLayoutConstraint.Relation.equal,
+                                                  toItem: cell,
+                                                  attribute: NSLayoutConstraint.Attribute.leading,
+                                                  multiplier: 1,
+                                                  constant: 0)
+        let trailingConstraint = NSLayoutConstraint(item: detailView,
+                                                   attribute: NSLayoutConstraint.Attribute.trailing,
+                                                   relatedBy: NSLayoutConstraint.Relation.equal,
+                                                   toItem: cell,
+                                                   attribute: NSLayoutConstraint.Attribute.trailing,
+                                                   multiplier: 1,
+                                                   constant: 0)
+        let bottomConstraint = NSLayoutConstraint(item: detailView,
+                                                  attribute: NSLayoutConstraint.Attribute.bottom,
+                                                  relatedBy: NSLayoutConstraint.Relation.equal,
+                                                  toItem: cell,
+                                                  attribute: NSLayoutConstraint.Attribute.bottom,
+                                                  multiplier: 1,
+                                                  constant: 0)
+        let heightConstraint = NSLayoutConstraint(item: detailView,
+                                                  attribute: .height,
+                                                  relatedBy: .equal,
+                                                  toItem: cell,
+                                                  attribute: .height,
+                                                  multiplier: 3,
+                                                  constant: 0)
+        let widthConstraint = NSLayoutConstraint(item: detailView,
+                                                  attribute: .width,
+                                                  relatedBy: .equal,
+                                                  toItem: cell,
+                                                  attribute: .width,
+                                                  multiplier: 3,
+                                                  constant: 0)
+            switch cellState.column() {
+            case 0:
+                calendar.addConstraints([leadingConstraint, bottomConstraint, heightConstraint, widthConstraint])
+            case 6:
+                calendar.addConstraints([trailingConstraint, bottomConstraint, heightConstraint, widthConstraint])
+            default:
+                calendar.addConstraints([centerConstraint, bottomConstraint, heightConstraint, widthConstraint])
+            }
+    }
+
+    func addGestureRecognizerOnDetailView() {
+        if heatMapDetailView?.gestureRecognizers == nil {
+            let tapRecognizer = UITapGestureRecognizer.init(target: self, action: #selector(didTapDetailView))
+            heatMapDetailView?.addGestureRecognizer(tapRecognizer)
+        }
+    }
+
+    func initialSetupForHeatMapDetailView() {
+        heatMapDetailView?.translatesAutoresizingMaskIntoConstraints = false
+        heatMapDetailView?.alpha = 0.0
+    }
+
+    func getHeatMapCell() -> MyDataHeatMapTableViewCell? {
+        guard let cell = tableView.cellForRow(at: IndexPath(row: MyDataRowType.heatMap.rawValue, section: 0)) as? MyDataHeatMapTableViewCell else { return nil }
+        return cell
     }
 }
 

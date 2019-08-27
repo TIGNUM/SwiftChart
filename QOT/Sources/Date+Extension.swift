@@ -72,6 +72,20 @@ extension Date {
         return Calendar.sharedUTC.date(byAdding: .day, value: days, to: self) ?? self
     }
 
+    func dayAfter(months: Int) -> Date {
+        return Calendar.sharedUTC.date(byAdding: .month, value: months, to: self) ?? self
+    }
+
+    func firstDayOfMonth() -> Date {
+        guard let interval = Calendar.sharedUTC.dateInterval(of: .month, for: self) else { return self }
+        return interval.start
+    }
+
+    func lastDayOfMonth() -> Date {
+        guard let interval = Calendar.sharedUTC.dateInterval(of: .month, for: self) else { return self }
+        return interval.end
+    }
+
     func isSameDay(_ date: Date?) -> Bool {
         if let date = date {
             let componentsFirst = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: date)

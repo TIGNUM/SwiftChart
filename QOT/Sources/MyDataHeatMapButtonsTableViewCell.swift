@@ -14,7 +14,7 @@ enum HeatMapMode: Int {
 }
 
 protocol MyDataHeatMapButtonsTableViewCellDelegate: class {
-    func didChangeSelection(to: HeatMapMode)
+    func didChangeSelection(toMode: HeatMapMode)
 }
 
 class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
@@ -57,7 +57,7 @@ class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
             return
         }
         selectButton(sender.tag)
-        delegate?.didChangeSelection(to: .dailyIR)
+        delegate?.didChangeSelection(toMode: .dailyIR)
     }
 
     @IBAction func didFiveDaysRollingIRButton(_ sender: UIButton) {
@@ -65,7 +65,7 @@ class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
             return
         }
         selectButton(sender.tag)
-        delegate?.didChangeSelection(to: .fiveDaysRollingIR)
+        delegate?.didChangeSelection(toMode: .fiveDaysRollingIR)
     }
 
     func selectButton(_ forTag: Int) {

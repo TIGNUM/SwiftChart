@@ -46,4 +46,14 @@ extension MyDataScreenInteractor: MyDataScreenInteractorInterface {
     func initialDataSelectionSections() -> MyDataSelectionModel {
         return worker.initialDataSelectionSections
     }
+
+    func getDailyResults(around date: Date,
+                         withMonthsBefore: Int,
+                         monthsAfter: Int,
+                         _ completion: @escaping([Date: MyDataDailyCheckInModel]?, Error?) -> Void) {
+        worker.getDailyResults(around: date,
+                               withMonthsBefore: withMonthsBefore,
+                               monthsAfter: monthsAfter,
+                               completion)
+    }
 }

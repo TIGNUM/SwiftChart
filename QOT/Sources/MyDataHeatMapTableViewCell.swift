@@ -9,15 +9,10 @@
 import UIKit
 import JTAppleCalendar
 
-protocol MyDataHeatMapTableViewCellDelegate: class {
-
-}
-
 final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCell {
     static let dateCellIdentifier = "dateCell"
     // MARK: - Properties
-    weak var delegate: MyDataHeatMapTableViewCellDelegate?
-    @IBOutlet private weak var calendarView: JTAppleCalendarView!
+    @IBOutlet weak var calendarView: JTAppleCalendarView!
     @IBOutlet private weak var monthYearLabel: UILabel!
     @IBOutlet private var weekDaysLabelsCollection: [UILabel]!
     @IBOutlet private weak var topColorView: UIView!
@@ -52,17 +47,19 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCell {
 
     // MARK: Helpers
     func setupCalendarView() {
+        let startDateForCalendar = Date()
         //general setup of CalendarView
         self.calendarView.register(R.nib.myDataHeatMapDateCell)
         self.calendarView.scrollDirection = .horizontal
         self.calendarView.scrollingMode = .stopAtEachCalendarFrame
         self.calendarView.showsHorizontalScrollIndicator = false
+        self.calendarView.clipsToBounds = false
 
         //setup CalendarView for currentDate
-        let today = Date()
+
         self.populateWeekdaysLables()
-        self.calendarView.scrollToDate(today)
-        self.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: today))
+        self.calendarView.scrollToDate(startDateForCalendar)
+        self.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: startDateForCalendar))
         showTodaysWeekdayLabel(asHighlighted: true)
     }
 

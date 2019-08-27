@@ -10,6 +10,7 @@ import JTAppleCalendar
 import UIKit
 
 final class MyDataHeatMapDateCell: JTAppleCell {
+    public var date: Date = Date()
     @IBOutlet var dateLabel: UILabel!
     @IBOutlet weak var noDataImageView: UIImageView!
 }

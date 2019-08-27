@@ -486,6 +486,26 @@ extension UIColor {
         return UIColor(red: 244.0 / 255.0, green: 96.0 / 255.0, blue: 96.0 / 255.0, alpha: 1.0)
     }
 
+    public class var heatMapBrightRed: UIColor {
+        return UIColor(red: 223.0 / 255.0, green: 80.0 / 255.0, blue: 56.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var heatMapRed: UIColor {
+        return UIColor(red: 203.0 / 255.0, green: 42.0 / 255.0, blue: 15.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var heatMapDarkRed: UIColor {
+        return UIColor(red: 165.0 / 255.0, green: 30.0 / 255.0, blue: 8.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var heatMapBlue: UIColor {
+        return UIColor(red: 56.0 / 255.0, green: 81.0 / 255.0, blue: 99.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var heatMapDarkBlue: UIColor {
+        return UIColor(red: 20.0 / 255.0, green: 54.0 / 255.0, blue: 79.0 / 255.0, alpha: 1.0)
+    }
+
     static var random: UIColor {
         return UIColor(red: randomNumber, green: randomNumber, blue: randomNumber, alpha: 1.0)
     }

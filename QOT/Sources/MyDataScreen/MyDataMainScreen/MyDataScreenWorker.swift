@@ -20,13 +20,6 @@ final class MyDataScreenWorker {
     init(dataService: qot_dal.MyDataService) {
         self.dataService = dataService
     }
-
-//    func getMyDataResults() {
-//        MyDataService.main.getDailyCheckInResults(from: Date().dateAfterDays(-10),
-//                                                  to: Date(),
-//                                                  { (result, initiated, error) in
-//        })
-//    }
 }
 
 extension MyDataScreenWorker: MyDataWorkerInterface {
@@ -35,7 +28,7 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
                         return MyDataScreenModel.Item(myDataSection: $0,
                                                       title: ScreenTitleService.main.myDataSectionTitles(for: $0),
                                                       subtitle: ScreenTitleService.main.myDataSectionSubtitles(for: $0))
-        })
+                                               }, selectedHeatMapMode: .dailyIR)
     }
 
     func myDataSelectionSections() -> MyDataSelectionModel {
@@ -54,5 +47,41 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
         }
         initialDataSelectionSections = sectionModel
         return sectionModel
+    }
+
+    func getDailyResults(around date: Date,
+                         withMonthsBefore: Int,
+                         monthsAfter: Int,
+                         _ completion: @escaping([Date: MyDataDailyCheckInModel]?, Error?) -> Void) {
+            let beginDate = date.dayAfter(months: -withMonthsBefore).firstDayOfMonth()
+            let endDate = date.dayAfter(months: monthsAfter).lastDayOfMonth()
+        MyDataService.main.getDailyCheckInResults(from: beginDate, to: endDate) { (results, initialized, error) in
+            guard let results = results else {
+                completion(nil, error)
+                return
+            }
+            let convertedResults = results.map({ (result) -> MyDataDailyCheckInModel in
+                return MyDataDailyCheckInModel.init(withDailyCheckInResult: result)
+            })
+            var resultsDict: [Date: MyDataDailyCheckInModel] = [:]
+            for result in convertedResults {
+                resultsDict[result.date.beginingOfDate()] = result
+            }
+            completion(resultsDict, error)
+        }
+    }
+
+    static func heatMapColor(forImpactReadiness ir: Double) -> UIColor {
+        if ir <= 50 {
+            return .heatMapDarkBlue
+        } else if ir <= 64 {
+            return .heatMapBlue
+        } else if ir <= 74 {
+            return .heatMapDarkRed
+        } else if ir < 85 {
+            return .heatMapRed
+        } else {
+            return .heatMapBrightRed
+        }
     }
 }
