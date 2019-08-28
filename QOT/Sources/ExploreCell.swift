@@ -14,7 +14,7 @@ final class ExploreCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var introTextLabel: UILabel!
     @IBOutlet weak var strategyView: UIView!
-    
+
     func configure(title: String?, introText: String?, labelPosition: CGFloat?) {
         titleLabel.text = title?.uppercased()
         introTextLabel.text = introText

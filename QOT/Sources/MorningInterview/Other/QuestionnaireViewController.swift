@@ -581,7 +581,7 @@ extension QuestionnaireViewController: UIGestureRecognizerDelegate {
             touchDownYPosition = yPosition
             saveShouldShow = true
             refreshBottomNavigationItems()
-        } 
+        }
         return true
     }
 

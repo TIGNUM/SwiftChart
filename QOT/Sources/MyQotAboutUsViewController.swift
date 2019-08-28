@@ -61,7 +61,7 @@ extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource
             cell.configure(title: text)
         })
         interactor?.subtitle(at: indexPath, { (text) in
-            cell.configure(subTitle: text)
+            cell.configure(subTitle: text, isHidden: true)
         })
         cell.hideArrow = true
         return cell

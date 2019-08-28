@@ -29,8 +29,9 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
         ThemeText.linkMenuItem.apply(title.uppercased(), to: titleLabel)
     }
 
-    func configure(subTitle: String) {
+    func configure(subTitle: String, isHidden: Bool = false) {
         ThemeText.linkMenuComment.apply(subTitle, to: subTitleLabel)
+        subTitleLabel.isHidden = isHidden
     }
 
     var hideArrow: Bool = false {

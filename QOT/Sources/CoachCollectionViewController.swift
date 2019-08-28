@@ -12,7 +12,7 @@ import qot_dal
 
 protocol CoachCollectionViewControllerDelegate: class {
     func didTapCancel()
-    func handlePan(offsetY: CGFloat) 
+    func handlePan(offsetY: CGFloat)
 }
 
 final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom {
