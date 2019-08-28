@@ -2,12 +2,11 @@
 //  SolveReminderCell.swift
 //  QOT
 //
-//  Created by Anais Plancoulaine on 28.08.19.
+//  Created by Anais Plancoulaine on 12.08.19.
 //  Copyright © 2019 Tignum. All rights reserved.
 //
 
 import UIKit
-import qot_dal
 
 final class SolveReminderCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var bucketTitle: UILabel!
@@ -17,9 +16,11 @@ final class SolveReminderCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var question3: UILabel!
     private var solveViewModels: [SolveReminderCellViewModel.SolveViewModel]? = []
     var delegate: DailyBriefViewControllerDelegate?
+
     override func awakeFromNib() {
         super.awakeFromNib()
     }
+
     func configure(with viewModel: SolveReminderCellViewModel?) {
         self.bucketTitle.text = viewModel?.bucketTitle
         self.twoDayAgo.text = viewModel?.twoDayAgo

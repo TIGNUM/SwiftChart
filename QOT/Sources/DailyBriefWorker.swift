@@ -87,8 +87,8 @@ extension DailyBriefWorker {
         settingService.getSettingsWith(keys: [.DailyCheckInFutureSleepTarget], {(settings, initialized, error) in
             if let setting = settings?.first {
                 var updatedSetting = setting
-                //                    turning sleep target from an answer index to a number of hours/day * 5 = 5 days sleep
-                updatedSetting.longValue = (60 + (Int64(value ?? 0) * 30)) * 5
+                //                    turning sleep target from an answer index to a number of hours per day
+                updatedSetting.longValue = (60 + (Int64(value ?? 0) * 30))
                 self.settingService.updateSetting(updatedSetting, {(error) in
                     if let error = error {
                         qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)

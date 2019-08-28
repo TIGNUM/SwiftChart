@@ -14,11 +14,13 @@ final class FromTignumCellViewModel: BaseDailyBriefViewModel {
     // MARK: - Properties
     var text: String?
     var title: String?
+    var subtitle: String?
 
     // MARK: - Init
-    init(title: String?, text: String?, domainModel: QDMDailyBriefBucket?) {
+    init(title: String?, text: String?, subtitle: String?, domainModel: QDMDailyBriefBucket?) {
         self.text = text
         self.title = title
+        self.subtitle = subtitle
         super.init(domainModel)
     }
 }

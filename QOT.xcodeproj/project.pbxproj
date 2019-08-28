@@ -1014,6 +1014,7 @@
 		9C85A20922DCD45300E9383C /* ImpactDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */; };
 		9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */; };
 		9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */; };
+		9CAD9FC0231FE5E4001DA2DC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */; };
 		9CB9B7A1230C433700DA9938 /* ThreeLinesAndTwoColumns.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B7A0230C433700DA9938 /* ThreeLinesAndTwoColumns.xib */; };
 		9CB9B7A3230C436400DA9938 /* ThreeLinesAndTwoColumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB9B7A2230C436400DA9938 /* ThreeLinesAndTwoColumns.swift */; };
 		9CC426162306A46000F8072E /* GuidedTrackSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */; };
@@ -1662,7 +1663,6 @@
 		F902CF5722DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */; };
 		F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */; };
 		F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */; };
-		F906A4DC23168A3D00351CAC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F906A4DB23168A3D00351CAC /* SolveReminderCell.swift */; };
 		F907153D230190CA00AC5A9B /* SprintChallengeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */; };
 		F907153F230190FA00AC5A9B /* SprintChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */; };
 		F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */; };
@@ -2869,6 +2869,7 @@
 		9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactDataTableViewCell.swift; sourceTree = "<group>"; };
 		9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCellViewModel.swift; sourceTree = "<group>"; };
 		9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderTableCellViewModel.swift; sourceTree = "<group>"; };
+		9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
 		9CB9B7A0230C433700DA9938 /* ThreeLinesAndTwoColumns.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeLinesAndTwoColumns.xib; sourceTree = "<group>"; };
 		9CB9B7A2230C436400DA9938 /* ThreeLinesAndTwoColumns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeLinesAndTwoColumns.swift; sourceTree = "<group>"; };
 		9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidedTrackSectionCell.xib; sourceTree = "<group>"; };
@@ -6106,12 +6107,12 @@
 		9C24237A22F093E700B911E6 /* Solve Reminder  */ = {
 			isa = PBXGroup;
 			children = (
+				9CAD9FBF231FE5E3001DA2DC /* SolveReminderCell.swift */,
 				9C24237B22F0941D00B911E6 /* SolveReminderCell.xib */,
 				F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */,
 				F90BD422230164B100008702 /* SolveTableViewCell.xib */,
 				F90BD424230164CA00008702 /* SolveTableViewCelll.swift */,
 				9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */,
-				F906A4DB23168A3D00351CAC /* SolveReminderCell.swift */,
 			);
 			name = "Solve Reminder ";
 			sourceTree = "<group>";
@@ -6153,6 +6154,14 @@
 				9CFA1066231418380023E11E /* ImpactReadinessType.swift */,
 			);
 			name = ImpactReadiness;
+			sourceTree = "<group>";
+		};
+		9CAD9FBE231FE3F2001DA2DC /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				F906A4DB23168A3D00351CAC /* SolveReminderCell.swift */,
+			);
+			name = "Recovered References";
 			sourceTree = "<group>";
 		};
 		9CC426142306A41E00F8072E /* Guided Track */ = {
@@ -7011,6 +7020,7 @@
 				CBB237ED1E6FFF1200AB5AEF /* Products */,
 				CBB237EE1E6FFF1200AB5AEF /* QOT */,
 				CBB238031E6FFF1200AB5AEF /* QOTTests */,
+				9CAD9FBE231FE3F2001DA2DC /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -9927,6 +9937,7 @@
 				5F360749228C42570074FEC4 /* SyncedCalendarCell.swift in Sources */,
 				3698428820C91EF3007A8C8F /* SigningDigitConfigurator.swift in Sources */,
 				8DC2F7262313F4470002F29F /* StreamVideoWorker.swift in Sources */,
+				9CAD9FC0231FE5E4001DA2DC /* SolveReminderCell.swift in Sources */,
 				F9A5C94E22B7D0B100AB2E94 /* PaymentReminderViewController.swift in Sources */,
 				B83B33EC22C21D6E002AFED7 /* BottomNavigationContainer.swift in Sources */,
 				5F62BE98228AB64E00852F7E /* MyQotSupportFaqRouter.swift in Sources */,
@@ -9945,7 +9956,6 @@
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
 				B856B47D22B0E29D0017A249 /* MyLibraryUserStorageInteractor.swift in Sources */,
 				5FA6663A229C1DB30027EE74 /* MyVisionEditDetailsViewController.swift in Sources */,
-				F906A4DC23168A3D00351CAC /* SolveReminderCell.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChart.swift in Sources */,
 				AC84FFC122293BEB0056F9EA /* SiriEventsModel.swift in Sources */,
 				F9A5C94222B7CD8100AB2E94 /* PaymentReminderConfigurator.swift in Sources */,

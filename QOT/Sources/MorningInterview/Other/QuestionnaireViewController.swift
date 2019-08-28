@@ -73,7 +73,7 @@ enum ControllerType {
     }
 }
 
-final class QuestionnaireViewController: UIViewController, ScreenZLevel1 {
+final class QuestionnaireViewController: UIViewController, ScreenZLevel3 {
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet weak var topConstraint: NSLayoutConstraint!
     @IBOutlet weak var customizeTargetTitle: UILabel!

@@ -45,16 +45,36 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
 
         self.howYouFeelToday = howYouFeelToday
         self.asteriskText = asteriskText
+
         self.sleepQuantityValue = sleepQuantityValue
         self.sleepQualityValue = sleepQualityValue
-        self.loadValue = loadValue
-        self.futureLoadValue = futureLoadValue
+
         self.targetSleepQuality = targetSleepQuality
         self.sleepQualityReference = sleepQualityReference
+
+        self.loadValue = loadValue
+        self.futureLoadValue = futureLoadValue
+
         self.loadReference = loadReference
         self.futureLoadReference = futureLoadReference
+        
         self.impactDataModels = impactDataModels
         super.init(domainModel, subIdentifier)
+    }
 
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? ImpactReadinessScoreViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+            howYouFeelToday == source.howYouFeelToday &&
+            sleepQuantityValue == source.sleepQuantityValue &&
+            sleepQualityValue == source.sleepQualityValue &&
+            loadValue == source.loadValue &&
+            futureLoadValue == source.futureLoadValue &&
+            targetSleepQuality == source.targetSleepQuality &&
+            sleepQualityReference == source.sleepQualityReference &&
+            loadReference == source.loadReference &&
+            futureLoadReference == source.futureLoadReference
     }
 }

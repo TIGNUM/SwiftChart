@@ -30,4 +30,13 @@ final class ImpactReadinessCellViewModel: BaseDailyBriefViewModel {
         self.readinessIntro = readinessIntro
         super.init(domainModel)
     }
+
+    override func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {
+        guard let source = source as? ImpactReadinessCellViewModel else {
+            return false
+        }
+        return super.isContentEqual(to: source) &&
+            readinessScore == source.readinessScore &&
+            domainModel?.dailyCheckInResult?.targetSleepQuantity == source.domainModel?.dailyCheckInResult?.targetSleepQuantity
+    }
 }

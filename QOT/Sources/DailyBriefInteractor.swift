@@ -246,14 +246,18 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createFromTignumList: [BaseDailyBriefViewModel] = []
-        guard let collection = fromTignum.contentCollections?.first else {
-            createFromTignumList.append( FromTignumCellViewModel(title: "", text: "", domainModel: fromTignum))
+        let bucketTitle = fromTignum.bucketText?.contentItems.first?.valueText ?? ""
+        guard (fromTignum.contentCollections?.first) != nil else {
+            createFromTignumList.append( FromTignumCellViewModel(title: "", text: "", subtitle: "", domainModel: fromTignum))
             return createFromTignumList
 
         }
-        createFromTignumList.append(FromTignumCellViewModel(title: fromTignum.bucketText?.contentItems.first?.valueText ?? "",
-                                                            text: collection.contentItems.first?.valueText ?? "",
-                                                            domainModel: fromTignum))
+        fromTignum.contentCollections?.forEach {(fromTignumModel) in
+            createFromTignumList.append(FromTignumCellViewModel(title: bucketTitle,
+                                                                text: fromTignumModel.contentItems.first?.valueText ?? "",
+                                                                subtitle : fromTignumModel.title,
+                                                                domainModel: fromTignum))
+        }
         return createFromTignumList
     }
 
@@ -446,7 +450,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 //If the daily check in completed update the ImpactReadinessCellViewModel
         let bucketTitle = impactReadiness.bucketText?.contentItems.first?.valueText
         let impactReadinessImage = URL(string: impactReadiness.toBeVision?.profileImageResource?.remoteURLString ?? "")
-        let readinessscore = Int(round(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0))
+        let readinessscore = Int(round(impactReadiness.dailyCheckInResult?.impactReadiness ?? 0) * 10)
 
         impactReadinessList.append(ImpactReadinessCellViewModel.init(title: bucketTitle, dailyCheckImageView: impactReadinessImage, readinessScore: readinessscore, readinessIntro: readinessIntro, domainModel: impactReadiness))
 
@@ -457,10 +461,10 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
         let howYouFeelToday = impactReadiness.contentCollections?.filter {$0.searchTags.contains("rolling_data_intro")}.first?.contentItems.first?.valueText
         let asteriskText = impactReadiness.contentCollections?.filter {$0.searchTags.contains("additional")}.first?.contentItems.first?.valueText
-        let sleepQuantity = impactReadiness.dailyCheckInResult?.sleepQuantity ?? 0
-        let sleepQuality = impactReadiness.dailyCheckInResult?.sleepQuality ?? 0
-        let load = impactReadiness.dailyCheckInResult?.load ?? 0
-        let futureLoad = impactReadiness.dailyCheckInResult?.futureLoad ?? 0
+        let sleepQuantity = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuantity ?? 0
+        let sleepQuality = impactReadiness.dailyCheckInResult?.fiveDaysSleepQuality ?? 0
+        let load = impactReadiness.dailyCheckInResult?.fiveDaysload ?? 0
+        let futureLoad = impactReadiness.dailyCheckInResult?.tenDaysFutureLoad ?? 0
         let targetSleepQuantity = impactReadiness.dailyCheckInResult?.targetSleepQuantity ?? 0
         let sleepQualityReference = impactReadiness.dailyCheckInResult?.sleepQualityReference ?? 0
         let loadReference = impactReadiness.dailyCheckInResult?.loadReference ?? 0

@@ -107,7 +107,7 @@
                 <outlet property="subtitleLabel" destination="V1v-dK-bS8" id="pfk-Cj-qcn"/>
                 <outlet property="websiteLabel" destination="MQR-BB-Gyn" id="szY-xv-L2I"/>
             </connections>
-            <point key="canvasLocation" x="630.43478260869574" y="-9.7098214285714288"/>
+            <point key="canvasLocation" x="638.40579710144937" y="-8.0357142857142847"/>
         </view>
     </objects>
 </document>

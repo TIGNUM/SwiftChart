@@ -47,7 +47,7 @@ final class ImpactReadinessCell2: UITableViewCell, Dequeueable {
         self.sleepQuantityTitle.text = viewModel?.impactDataModels?.at(index: 0)?.title
         self.sleepQuantitySubtitle.text = viewModel?.impactDataModels?.at(index: 0)?.subTitle
         self.sleepQuantity.text = String(viewModel?.sleepQuantityValue ?? 0)
-        self.sleepQuantityTarget.text = String(viewModel?.sleepQualityReference ?? 0)
+        self.sleepQuantityTarget.text = String((viewModel?.targetSleepQuality ?? 0) * 5)
 
         self.sleepQualityTitle.text = viewModel?.impactDataModels?.at(index: 1)?.title
         self.sleepQualitySubtitle.text = viewModel?.impactDataModels?.at(index: 1)?.subTitle

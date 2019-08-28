@@ -26,18 +26,18 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="393" id="jbC-tc-Nav" customClass="MeAtMyBestCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="551" height="393"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="422" id="jbC-tc-Nav" customClass="MeAtMyBestCell" customModule="QOT" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="551" height="422"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="jbC-tc-Nav" id="rYi-FS-C8c">
-                <rect key="frame" x="0.0" y="0.0" width="551" height="392.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="551" height="421.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iN0-l3-epB">
-                        <rect key="frame" x="0.0" y="0.0" width="551" height="392.5"/>
+                        <rect key="frame" x="0.0" y="0.0" width="551" height="421.5"/>
                         <subviews>
                             <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mfO-wv-Fpb">
-                                <rect key="frame" x="24" y="48" width="16" height="1"/>
+                                <rect key="frame" x="24" y="48" width="10" height="1"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="OGS-Jr-1Ub"/>
@@ -63,34 +63,23 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="752" text="“I am a great listener in high pressure meetings” " textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Tcg-bf-cKP">
-                                <rect key="frame" x="24" y="172" width="503" height="29"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="29" id="Lws-id-ger"/>
-                                </constraints>
+                                <rect key="frame" x="24" y="180" width="503" height="29"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Light" family="SF Pro Display" pointSize="24"/>
                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URP-Fj-vXg">
-                                <rect key="frame" x="24" y="229" width="503" height="19.5"/>
-                                <string key="text">What could you do today to become 
-that statement statement?</string>
-                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
-                                <color key="textColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gTs-2a-VLY">
-                                <rect key="frame" x="24" y="276.5" width="527" height="1"/>
+                                <rect key="frame" x="24" y="305.5" width="527" height="1"/>
                                 <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="JY6-rb-UNQ"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rhA-xn-lOn">
-                                <rect key="frame" x="440" y="304.5" width="87" height="40"/>
+                                <rect key="frame" x="320" y="333.5" width="207" height="40"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="87" id="1MM-Bl-wae"/>
                                     <constraint firstAttribute="height" constant="40" id="dvw-lH-XlC"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="207" id="g91-DN-g0D"/>
                                 </constraints>
                                 <state key="normal" title="Rate">
                                     <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -99,10 +88,17 @@ that statement statement?</string>
                                     <action selector="presentTBV:" destination="jbC-tc-Nav" eventType="touchUpInside" id="zTz-9D-Xsf"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="753" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="URP-Fj-vXg">
+                                <rect key="frame" x="24" y="243" width="503" height="38.5"/>
+                                <string key="text">What could you do today to become 
+that statement statement?</string>
+                                <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                                <color key="textColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="URP-Fj-vXg" firstAttribute="top" secondItem="Tcg-bf-cKP" secondAttribute="bottom" constant="28" id="0CV-DI-g6w"/>
                             <constraint firstItem="Ee8-gE-gfd" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="1Z6-Hh-nZE"/>
                             <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gTs-2a-VLY" secondAttribute="trailing" id="3js-lU-fep"/>
                             <constraint firstAttribute="bottom" secondItem="rhA-xn-lOn" secondAttribute="bottom" constant="48" id="5VC-L5-usE"/>
@@ -110,13 +106,14 @@ that statement statement?</string>
                             <constraint firstItem="Vi4-ue-UZu" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="BrN-SV-ZKL"/>
                             <constraint firstItem="Vi4-ue-UZu" firstAttribute="top" secondItem="mfO-wv-Fpb" secondAttribute="bottom" constant="20" id="KHE-BF-J7W"/>
                             <constraint firstItem="Ee8-gE-gfd" firstAttribute="top" secondItem="Vi4-ue-UZu" secondAttribute="bottom" constant="24" id="N1Z-Ry-REs"/>
-                            <constraint firstItem="Tcg-bf-cKP" firstAttribute="top" secondItem="Ee8-gE-gfd" secondAttribute="bottom" constant="16" id="Ncv-uD-1Bw"/>
+                            <constraint firstItem="gTs-2a-VLY" firstAttribute="top" secondItem="URP-Fj-vXg" secondAttribute="bottom" constant="24" id="OT3-Mo-mZJ"/>
                             <constraint firstAttribute="trailing" secondItem="Ee8-gE-gfd" secondAttribute="trailing" constant="24" id="Q6Z-ln-rpH"/>
+                            <constraint firstItem="Tcg-bf-cKP" firstAttribute="top" secondItem="Ee8-gE-gfd" secondAttribute="bottom" constant="24" id="Vki-UD-o2S"/>
                             <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="URP-Fj-vXg" secondAttribute="trailing" constant="24" id="ZaK-Cg-RRX"/>
                             <constraint firstItem="rhA-xn-lOn" firstAttribute="top" secondItem="gTs-2a-VLY" secondAttribute="bottom" constant="27" id="aK1-zS-dca"/>
                             <constraint firstItem="mfO-wv-Fpb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="48" id="baN-wQ-8Y3"/>
-                            <constraint firstItem="gTs-2a-VLY" firstAttribute="top" secondItem="URP-Fj-vXg" secondAttribute="bottom" constant="28" id="f72-t5-Vve"/>
                             <constraint firstItem="Tcg-bf-cKP" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="g1C-VP-4fm"/>
+                            <constraint firstAttribute="trailing" secondItem="URP-Fj-vXg" secondAttribute="trailing" constant="24" id="gFl-eJ-rm1"/>
                             <constraint firstItem="URP-Fj-vXg" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="24" id="hDW-CJ-eb5"/>
                             <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Vi4-ue-UZu" secondAttribute="trailing" constant="24" id="i0t-Mq-4q8"/>
                             <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="Tcg-bf-cKP" secondAttribute="trailing" constant="24" id="j8d-tD-JEz"/>
@@ -144,7 +141,7 @@ that statement statement?</string>
                 <outlet property="meAtMyBestLabel" destination="Ee8-gE-gfd" id="1tR-79-cxy"/>
                 <outlet property="meAtMyBestTitle" destination="Vi4-ue-UZu" id="3JE-Q8-zbd"/>
             </connections>
-            <point key="canvasLocation" x="1036.9565217391305" y="-283.59375"/>
+            <point key="canvasLocation" x="1036.9565217391305" y="-273.88392857142856"/>
         </tableViewCell>
     </objects>
 </document>

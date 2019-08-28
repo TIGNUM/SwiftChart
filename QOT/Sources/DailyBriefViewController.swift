@@ -57,6 +57,10 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         NotificationCenter.default.addObserver(self, selector: #selector(updateDailyBriefFromNotification(_:)),
                                                name: .didUpdateDailyBriefBuckets, object: nil)
         self.showLoadingSkeleton(with: [.dailyBrief])
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         interactor?.getDailyBriefBucketsForViewModel()
     }
 
@@ -80,9 +84,21 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         return sections.elements.count
     }
 
-//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 1000
-//    }
+    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 1000
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        // UIView with sand40 background for section-separators as Section Footer
+        let sectionColor = UIView(frame: CGRect(x: 0, y:0, width: tableView.frame.width, height: 1))
+        sectionColor.backgroundColor = .sand40
+        return sectionColor
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        // Section Footer height
+        return 1.0
+    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension

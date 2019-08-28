@@ -99,7 +99,6 @@
                             <constraints>
                                 <constraint firstItem="Gas-m7-mZP" firstAttribute="top" secondItem="sOf-AK-R1Z" secondAttribute="bottom" constant="10" id="dXM-PS-P7e"/>
                                 <constraint firstAttribute="bottom" secondItem="Gas-m7-mZP" secondAttribute="bottom" id="gFB-0Q-6U2"/>
-                                <constraint firstItem="pzn-6C-vwT" firstAttribute="top" secondItem="yyc-S3-GWD" secondAttribute="bottom" constant="20" id="m8b-It-ZHI"/>
                             </constraints>
                         </stackView>
                     </subviews>

@@ -90,6 +90,7 @@
             <connections>
                 <outlet property="button" destination="tPp-g6-1KN" id="gUn-Zg-Isa"/>
                 <outlet property="fromTignumText" destination="AAj-YT-2Ob" id="1aj-V0-pVZ"/>
+                <outlet property="fromTignumTitle" destination="60g-L9-P8T" id="nac-km-bzp"/>
                 <outlet property="titleLabel" destination="09f-xt-X6f" id="JXt-uR-yuz"/>
             </connections>
             <point key="canvasLocation" x="260.86956521739131" y="-332.14285714285711"/>

@@ -11,10 +11,12 @@ import UIKit
 final class FromTignumCell: UITableViewCell, Dequeueable {
 
     @IBOutlet private weak var titleLabel: UILabel!
+//    add the height constraint to the label in the cell.
     @IBOutlet private weak var heightOfText: NSLayoutConstraint!
     @IBOutlet private weak var fromTignumText: UILabel!
     private var isLabelAtMaxHeight = false
     @IBOutlet private weak var button: UIButton!
+    @IBOutlet weak var fromTignumTitle: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -24,16 +26,18 @@ final class FromTignumCell: UITableViewCell, Dequeueable {
     @IBAction func discoverButton(_ sender: Any) {
         if isLabelAtMaxHeight {
             isLabelAtMaxHeight = false
-            heightOfText.constant = 100
+//            heightOfText.constant = 100
         } else {
-//             link to more details
+//          link to more details
             isLabelAtMaxHeight = true
-            heightOfText.constant = 400
+//          Right now we are not displaying the more button in from tignum
+//          heightOfText.constant = 400
         }
     }
 
     func configure(with viewModel: FromTignumCellViewModel?) {
         fromTignumText.text = viewModel?.text
         titleLabel.text = viewModel?.title
+        fromTignumTitle.text = viewModel?.subtitle
     }
 }

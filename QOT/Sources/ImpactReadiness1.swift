@@ -38,7 +38,7 @@ final class ImpactReadiness1: UITableViewCell, Dequeueable {
 
     func configure(viewModel: ImpactReadinessCellViewModel?) {
         toBeVisionImage.kf.setImage(with: viewModel?.dailyCheckImageView, placeholder: R.image.tbvPlaceholder())
-        impactReadinessScore.text = String(viewModel?.readinessScore ?? 0)
+        impactReadinessScore.text = String((viewModel?.readinessScore ?? 0))
         self.score = viewModel?.readinessScore ?? 0
         content.text = viewModel?.readinessIntro
     }
