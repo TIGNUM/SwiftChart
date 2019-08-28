@@ -28,9 +28,12 @@ final class StrategyContentTableViewCell: UITableViewCell, Dequeueable {
         super.awakeFromNib()
         ThemeView.audioBar.apply(audioView)
 
+        ThemeView.level2.apply(self)
+        contentView.backgroundColor = .clear
+
         selectionStyle = .gray
         let bkView = UIView()
-        bkView.backgroundColor = .accent04
+        ThemeView.level2Selected.apply(bkView)
         selectedBackgroundView = bkView
     }
 

@@ -16,7 +16,10 @@ class ComponentCollectionViewCell: UICollectionViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         componentContentView.layer.masksToBounds = true
-        backgroundColor = .carbon
+
+        contentView.backgroundColor = .clear
+        ThemeView.level1.apply(self)
+
         layer.shadowColor = UIColor.black.cgColor
         layer.shadowOpacity = 0.2
         layer.shadowOffset = .init(width: 0, height: 4)

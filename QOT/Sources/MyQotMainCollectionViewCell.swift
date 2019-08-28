@@ -16,7 +16,7 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
 
     func configure(title: String, subtitle: String, isRed: Bool = false) {
-        ThemeText.myQOTBoxTitle.apply(title, to: titleLabel)
+        ThemeText.myQOTBoxTitle.apply(title.uppercased(), to: titleLabel)
 
         let theme = isRed ? ThemeText.linkMenuCommentRed : ThemeText.linkMenuComment
         theme.apply(subtitle, to: subtitleLabel)

@@ -132,8 +132,7 @@ private extension SettingsCalendarListViewController {
 
     func setupOpenSettingForCalendar(fadeContainerView: UIView) {
         noPermissionLabel = UILabel()
-        noPermissionLabel.attributedText = Style.navigationTitle(R.string.localized.alertMessageCalendarNoAccess(),
-                                                                 .white80).attributedString()
+        ThemeText.calendarNoAccess.apply(R.string.localized.alertMessageCalendarNoAccess(), to: noPermissionLabel)
         noPermissionLabel.numberOfLines = 0
         fadeContainerView.addSubview(noPermissionLabel)
         noPermissionLabel.translatesAutoresizingMaskIntoConstraints = false

@@ -219,10 +219,6 @@ extension UIFont {
     /// SIMPLE REGULAR 36 // main post title
     static let H1MainTitle = UIFont.apercuRegular(ofSize: 36)
 
-    static let H1TitleLight = UIFont.apercuLight(ofSize: 25)
-
-    static let H1TitleBold = UIFont.apercuBold(ofSize: 25)
-
     static let H1TitleRegular = UIFont.apercuRegular(ofSize: 25)
 
     static let H2SubtitleLight = UIFont.apercuLight(ofSize: 24)
@@ -247,8 +243,6 @@ extension UIFont {
 
     /// SIMPLE REGULAR 11 // MyUniverse sector title
     static let H7SectorTitle = UIFont.apercuRegular(ofSize: 11)
-
-    static let H10Tag = UIFont.apercuRegular(ofSize: 10)
 
     /// BENTON SANS 11 // subtitles, tags
     static let H7Tag = UIFont.apercuRegular(ofSize: 11)
@@ -297,9 +291,6 @@ extension UIFont {
 
     /// BENTON SAN BOOK 14 // text
     static let DPText3 = UIFont.apercuLight(ofSize: 14)
-
-    /// BENTON SANS Condensed Light // QOUTES
-    static let Qoute = UIFont.apercuLight(ofSize: 28)
 
     /// apercu Medium 10
     static let TabBar = UIFont.apercuMedium(ofSize: 10)

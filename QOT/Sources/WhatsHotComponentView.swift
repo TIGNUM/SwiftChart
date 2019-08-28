@@ -45,17 +45,17 @@ final class WhatsHotComponentView: ComponentContentView, NibLoadable {
                    timeToRead: String?,
                    imageURL: URL?,
                    isNew: Bool,
-                   colorMode: ColorMode) {
+                   forcedColorMode: ThemeColorMode?) {
         newIndicatorView.isHidden = (isNew == false)
         whatsHotImageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())
 
-        ThemeText.whatsHotHeader.apply(title ?? "", to: titleLabel)
+        ThemeText.whatsHotHeader(forcedColorMode).apply(title ?? "", to: titleLabel)
         let dateFormatter = DateFormatter.whatsHot
         let displayDate = dateFormatter.string(from: publishDate ?? Date())
         let detailText = String(format: "%@ | %@", displayDate, timeToRead ?? "")
-        ThemeText.datestamp.apply(detailText, to: detailLabel)
-        ThemeText.author.apply(author ?? "", to: authorLabel)
-        backgroundColor = colorMode.background
-        seperator.backgroundColor = colorMode.seperator
+        ThemeText.articleDatestamp(forcedColorMode).apply(detailText, to: detailLabel)
+        ThemeText.articleAuthor(forcedColorMode).apply(author ?? "", to: authorLabel)
+        ThemeView.articleBackground(forcedColorMode).apply(self)
+        ThemeView.articleSeparator(forcedColorMode).apply(seperator)
     }
 }

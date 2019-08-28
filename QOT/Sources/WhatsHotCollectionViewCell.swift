@@ -22,13 +22,13 @@ final class WhatsHotCollectionViewCell: ComponentCollectionViewCell {
                    timeToRead: String?,
                    imageURL: URL?,
                    isNew: Bool,
-                   colorMode: ColorMode) {
+                   forcedColorMode: ThemeColorMode) {
         whatsHotComponentView.configure(title: title?.uppercased(),
                                         publishDate: publishDate,
                                         author: author,
                                         timeToRead: timeToRead,
                                         imageURL: imageURL,
                                         isNew: isNew,
-                                        colorMode: colorMode)
+                                        forcedColorMode: forcedColorMode)
     }
 }

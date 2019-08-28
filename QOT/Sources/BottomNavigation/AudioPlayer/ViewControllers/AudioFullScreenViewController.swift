@@ -47,24 +47,14 @@ final class AudioFullScreenViewController: UIViewController {
 
     func setupButtons() {
         downloadButton.backgroundColor = .clear
-        downloadButton.layer.borderWidth = 1
-        downloadButton.layer.borderColor = UIColor.accent30.cgColor
-        bookmarkButton.backgroundColor = .accent30
+        ThemeBorder.accentBackground.apply(downloadButton)
+        ThemeView.accentBackground.apply(bookmarkButton)
         downloadButton.corner(radius: 20)
-        bookmarkButton.corner(radius: 20)
     }
 
     func updateLabel() {
-        categorytitleLabel.attributedText = NSAttributedString(string: media?.subtitle ?? "",
-                                                               letterSpacing: 0.4,
-                                                               font: .apercuMedium(ofSize: 12),
-                                                               textColor: colorMode.text.withAlphaComponent(0.3),
-                                                               alignment: .left)
-        titleLabel.attributedText = NSAttributedString(string: media?.title ?? "",
-                                                       letterSpacing: 0.2,
-                                                       font: .apercuLight(ofSize: 34),
-                                                       textColor: colorMode.text,
-                                                       alignment: .left)
+        ThemeText.articleCategoryNotScaled.apply(media?.subtitle, to: categorytitleLabel)
+        ThemeText.articleTitleNotScaled.apply(media?.title, to: titleLabel)
     }
 
     func updatePlayButton(_ isPlaying: Bool) {

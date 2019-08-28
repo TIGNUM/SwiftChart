@@ -57,7 +57,7 @@ final class ArticleCollectionCell: UICollectionViewCell, Dequeueable {
         sortTag.attributedText = attributedSortTag
         sortTag.textAlignment = .right
         authorLabel.attributedText = attributedTitle(text: author)
-        textLabel.attributedText = Style.subTitle(description.uppercased(), .white).attributedString(lineSpacing: 8)
+        textLabel.attributedText = Style.subTitle(description.uppercased()).attributedString(lineSpacing: 8)
         mediaInformation.attributedText = attributedTitle(text: duration)
         imageView.kf.indicatorType = .activity
         imageView.kf.setImage(with: imageURL, placeholder: R.image.preloading())

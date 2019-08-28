@@ -86,12 +86,8 @@ private extension SigningInfoViewController {
         bottomButton.setAttributedTitle(attributedTitle, for: .normal)
         bottomButton.setAttributedTitle(attributedTitle, for: .selected)
 
-        loginButton.cornerDefault()
-        startButton.cornerDefault()
-        loginButton.layer.borderColor = UIColor.accent.cgColor
-        startButton.layer.borderColor = UIColor.accent.cgColor
-        loginButton.layer.borderWidth = 1
-        startButton.layer.borderWidth = 1
+        ThemeBorder.accent.apply(loginButton)
+        ThemeBorder.accent.apply(startButton)
     }
 
     func setupCollectionView() {

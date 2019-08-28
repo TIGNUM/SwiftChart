@@ -24,9 +24,7 @@ final class SprintChallengeCell: UITableViewCell, UITableViewDelegate, Dequeueab
         tableView.registerDequeueable(SprintChallengeTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
-        gotItButton.layer.borderWidth = 1
-        gotItButton.layer.borderColor = UIColor.accent.cgColor
-        gotItButton.corner(radius: 20)
+        ThemeBorder.accent.apply(gotItButton)
     }
 
     func configure(with viewModel: SprintChallengeViewModel?) {

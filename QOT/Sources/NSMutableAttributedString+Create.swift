@@ -70,90 +70,57 @@ func Attributes(letterSpacing: CGFloat = 1,
 }
 
 enum Style {
-    case postTitle(String, UIColor)
-    case secondaryTitle(String, UIColor)
-    case subTitle(String, UIColor)
-    case headline(String, UIColor)
-    case headlineSmall(String, UIColor)
-    case navigationTitle(String, UIColor)
-    case tag(String, UIColor)
-    case tagTitle(String, UIColor)
-    case paragraph(String, UIColor)
-    case qoute(String, UIColor)
-    case article(String, UIColor)
-    case mediaDescription(String, UIColor)
-    case question(String, UIColor)
-    case sub(String, UIColor)
-    case num(String, UIColor)
-    case sector(String, UIColor)
+    case postTitle(String)
+    case secondaryTitle(String)
+    case subTitle(String)
+    case headline(String)
+    case headlineSmall(String)
+    case navigationTitle(String)
+    case tag(String)
+    case tagTitle(String)
+    case paragraph(String)
+    case quote(String)
+    case article(String)
+    case mediaDescription(String)
+    case question(String)
+    case sub(String)
+    case num(String)
+    case sector(String)
 
-    private var font: UIFont {
+    func attributedString(lineSpacing: CGFloat? = nil, lineHeight: CGFloat? = nil) -> NSAttributedString {
         switch self {
-        case .postTitle: return .H1MainTitle
-        case .secondaryTitle: return .H2SecondaryTitle
-        case .subTitle: return .H3Subtitle
-        case .headline: return .H4Headline
-        case .headlineSmall: return .H5SecondaryHeadline
-        case .navigationTitle: return .H6NavigationTitle
-        case .tag: return .H7Tag
-        case .tagTitle: return .H8Title
-        case .paragraph: return .H7Title
-        case .qoute: return textScale.bullet
-        case .article: return textScale.content
-        case .mediaDescription: return .DPText
-        case .question: return .H9Title
-        case .sub: return .H8Subtitle
-        case .num: return .H0Number
-        case .sector: return .H7SectorTitle
-        }
-    }
-
-    private func stringStyle(color: UIColor, lineSpacing: CGFloat, lineHeight: CGFloat, alignment: NSTextAlignment = .left) -> StringStyle {
-        return StringStyle(
-            .font(self.font),
-            .color(color),
-            .lineSpacing(lineSpacing),
-            .alignment(alignment),
-            .lineHeightMultiple(lineHeight),
-            .numberSpacing(.proportional),
-            .hyphenationFactor(0.3)
-        )
-    }
-
-    func attributedString(lineSpacing: CGFloat = 1, lineHeight: CGFloat = 1, alignment: NSTextAlignment = .left) -> NSAttributedString {
-        switch self {
-        case .postTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .secondaryTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .subTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .headline(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .headlineSmall(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .navigationTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .tag(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .tagTitle(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .paragraph(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .qoute(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .right))
-        case .article(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
-        case .mediaDescription(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .left))
-        case .question(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .center))
-        case .sub(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .center))
-        case .num(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: .center))
-        case .sector(let string, let color):
-            return string.styled(with: stringStyle(color: color, lineSpacing: lineSpacing, lineHeight: lineHeight, alignment: alignment))
+        case .postTitle(let string):
+            return ThemeText.articlePostTitle.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .secondaryTitle(let string):
+            return ThemeText.articleSecondaryTitle.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .subTitle(let string):
+            return ThemeText.articleSubTitle.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .headline(let string):
+            return ThemeText.articleHeadline.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .headlineSmall(let string):
+            return ThemeText.articleHeadlineSmall.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .navigationTitle(let string):
+            return ThemeText.articleNavigationTitle.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .tag(let string):
+            return ThemeText.articleTag.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .tagTitle(let string):
+            return ThemeText.articleTagTitle.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .paragraph(let string):
+            return ThemeText.articleParagraph.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .quote(let string):
+            return ThemeText.articleQuote.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .article(let string):
+            return ThemeText.article.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .mediaDescription(let string):
+            return ThemeText.articleMediaDescription.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .question(let string):
+            return ThemeText.articleQuestion.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .sub(let string):
+            return ThemeText.articleSub.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .num(let string):
+            return ThemeText.articleNum.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .sector(let string):
+            return ThemeText.articleSector.attributedString(string, lineSpacing: lineSpacing, lineHeight: lineHeight)
         }
     }
 }

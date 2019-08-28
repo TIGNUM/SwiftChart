@@ -203,7 +203,7 @@ extension GuideViewController: UITableViewDelegate, UITableViewDataSource {
         let headline = DateFormatter.mediumDate.string(from: days[section].localStartOfDay)
         view.addSubview(label)
         label.backgroundColor = UIColor.pineGreen.withAlphaComponent(0.6)
-        label.attributedText = Style.navigationTitle(headline, .white40).attributedString()
+        ThemeText.guideNavigationTitle.apply(headline, to: label)
         label.sizeToFit()
         return view
     }

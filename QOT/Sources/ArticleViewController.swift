@@ -55,13 +55,6 @@ enum ColorMode {
         }
     }
 
-    var seperator: UIColor {
-        switch self {
-        case .dark: return UIColor.sand.withAlphaComponent(0.1)
-        case .darkNot: return UIColor.carbon.withAlphaComponent(0.1)
-        }
-    }
-
     var tint: UIColor {
         switch self {
         case .dark: return .accent
@@ -69,57 +62,10 @@ enum ColorMode {
         }
     }
 
-    var text: UIColor {
-        switch self {
-        case .dark: return .sand
-        case .darkNot: return .carbonDark
-        }
-    }
-
     var statusBarStyle: UIStatusBarStyle {
         switch self {
         case .dark: return .lightContent
         case .darkNot: return .default
-        }
-    }
-}
-
-enum TextScale {
-    case scale
-    case scaleNot
-
-    var categoryHeadline: UIFont {
-        switch self {
-        case .scale: return .sfProtextMedium(ofSize: 14)
-        case .scaleNot: return .sfProtextMedium(ofSize: 12)
-        }
-    }
-
-    var contentHeadline: UIFont {
-        switch self {
-        case .scale: return .sfProDisplayLight(ofSize: 40)
-        case .scaleNot: return .sfProDisplayLight(ofSize: 34)
-        }
-    }
-
-    var details: UIFont {
-        switch self {
-        case .scale: return .sfProtextMedium(ofSize: 14)
-        case .scaleNot: return .sfProtextMedium(ofSize: 12)
-        }
-    }
-
-    var bullet: UIFont {
-        switch self {
-        case .scale: return .sfProtextLight(ofSize: 24)
-        case .scaleNot: return .sfProtextLight(ofSize: 16)
-        }
-    }
-
-    var content: UIFont {
-        switch self {
-        case .scale: return .sfProtextRegular(ofSize: 24)
-        case .scaleNot: return .sfProtextRegular(ofSize: 16)
         }
     }
 }
@@ -282,12 +228,13 @@ private extension ArticleViewController {
 
     func setColorMode() {
         colorModeIsActive = true
-        UINavigationBar.appearance().titleTextAttributes = [.font: UIFont.apercuMedium(ofSize: 20),
-                                                            .foregroundColor: colorMode.text]
+        ThemeAppearance.setNavigationBar()
         setStatusBar(colorMode: colorMode)
-        navigationController?.navigationBar.barTintColor = colorMode.background
-        view.backgroundColor = colorMode.background
-        tableView.backgroundColor = colorMode.background
+        ThemeAppearance.setNavigation(bar: navigationController?.navigationBar, theme: .articleBackground(nil))
+
+        ThemeView.articleBackground(nil).apply(view)
+        ThemeView.articleBackground(nil).apply(tableView)
+
         audioButton.setColorMode()
         view.bringSubview(toFront: audioButton)
         refreshBottomNavigationItems()
@@ -454,7 +401,7 @@ extension ArticleViewController {
         return imageCell
     }
 
-    func imageTableViweCell(tableView: UITableView,
+    func imageTableViewCell(tableView: UITableView,
                             indexPath: IndexPath,
                             attributeString: NSAttributedString,
                             url: URL) -> ImageSubtitleTableViewCell {
@@ -496,7 +443,7 @@ extension ArticleViewController {
                                      timeToRead: relatedArticle?.timeToRead,
                                      imageURL: relatedArticle?.imageURL,
                                      isNew: relatedArticle?.isNew ?? false,
-                                     colorMode: colorMode)
+                                     forcedColorMode: nil)
         return relatedArticleCell
     }
 
@@ -575,33 +522,26 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                 title: title,
                 imageURL: imageURL,
                 placeholderImage: R.image.audioPlaceholder(),
-                attributedString: Style.mediaDescription(title,
-                                                         colorMode.text.withAlphaComponent(0.6)).attributedString(lineHeight: 2),
+                attributedString: Style.mediaDescription(title).attributedString(),
                 canStream: true)
         case .image(let title, _, let url):
-            return imageTableViweCell(
+            return imageTableViewCell(
                 tableView: tableView,
                 indexPath: indexPath,
-                attributeString: Style.mediaDescription(title,
-                                                        colorMode.text.withAlphaComponent(0.6)).attributedString(lineHeight: 2),
+                attributeString: Style.mediaDescription(title).attributedString(),
                 url: url)
         case .listItem(let bullet):
             let cell: ArticleBulletPointTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(bullet: bullet)
             return cell
         case .text(let text, let style):
-            var attributedTopText = item.type.style(textStyle: style,
-                                                    text: text,
-                                                    textColor: colorMode.text)
+            var attributedTopText = ThemeText.articleBody.attributedString(text)
             if style.headline == true {
-                attributedTopText = item.type.style(textStyle: style,
-                                                    text: text.uppercased(),
-                                                    textColor: colorMode.text)
+                attributedTopText = ThemeText.articleBody.attributedString(text.uppercased())
             } else if style == .paragraph {
-                attributedTopText = Style.article(text, colorMode.text).attributedString(lineHeight: 1.8)
+                attributedTopText = ThemeText.articleBody.attributedString(text, lineHeight: 1.8)
             } else if style == .quote {
-                attributedTopText = Style.qoute(text,
-                                                colorMode.text.withAlphaComponent(0.6)).attributedString(lineHeight: 1.8)
+                attributedTopText = ThemeText.articleQuote.attributedString(text, lineHeight: 1.8)
             }
             return articleItemTextViewCell(tableView: tableView,
                                            indexPath: indexPath,
@@ -625,7 +565,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                            timeToRead: relatedArticle.timeToRead,
                            imageURL: relatedArticle.imageURL,
                            isNew: relatedArticle.isNew,
-                           colorMode: colorMode)
+                           forcedColorMode: nil)
             return cell
         case .button(let selected):
             let cell: MarkAsReadTableViewCell = tableView.dequeueCell(for: indexPath)
@@ -707,15 +647,11 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
         headerView.backgroundColor = .clear
         if interactor?.sectionNeedsLine ?? false {
             let lineView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 1.0))
-            lineView.backgroundColor = colorMode.text.withAlphaComponent(0.1)
+            ThemeView.articleSeparator(nil).apply(lineView)
             headerView.addSubview(lineView)
         }
         let titleLabel = UILabel(frame: CGRect(x: 28, y: headerView.frame.size.height - 18.0, width: view.frame.width, height: 18))
-        titleLabel.attributedText = NSAttributedString(string: headerTitle,
-                                                       letterSpacing: 1.5,
-                                                       font: .sfProtextMedium(ofSize: 14),
-                                                       textColor: colorMode.text.withAlphaComponent(0.4),
-                                                       alignment: .left)
+        ThemeText.articleNextTitle.apply(headerTitle, to: titleLabel)
         headerView.addSubview(titleLabel)
         return headerView
     }

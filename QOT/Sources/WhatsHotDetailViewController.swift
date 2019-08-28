@@ -22,13 +22,13 @@ final class WhatsHotDetailViewController: ComponentDetailViewController {
                    timeToRead: String?,
                    imageURL: URL?,
                    isNew: Bool,
-                   colorMode: ColorMode) {
+                   forcedColorMode: ThemeColorMode) {
         whatsHotComponentView.configure(title: title,
                                         publishDate: publishDate,
                                         author: author,
                                         timeToRead: timeToRead,
                                         imageURL: imageURL,
                                         isNew: isNew,
-                                        colorMode: colorMode)
+                                        forcedColorMode: forcedColorMode)
     }
 }

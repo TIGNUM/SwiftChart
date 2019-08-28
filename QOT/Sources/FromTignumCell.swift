@@ -18,9 +18,7 @@ final class FromTignumCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.accent.cgColor
-        button.corner(radius: 20)
+        ThemeBorder.accent.apply(button)
     }
 
     @IBAction func discoverButton(_ sender: Any) {

@@ -40,7 +40,7 @@ final class SidebarViewController: UIViewController {
     private lazy var versionLabel: UILabel = {
         let label = UILabel()
         let text = Bundle.main.versionAndBuildNumber
-        label.attributedText = Style.tag(text, .white20).attributedString(alignment: .center)
+        ThemeText.version.apply(text, to: label)
         return label
     }()
 

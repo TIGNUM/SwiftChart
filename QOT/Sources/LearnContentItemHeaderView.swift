@@ -43,8 +43,8 @@ final class LearnContentItemHeaderView: UIView {
     }
 
     func setupView(title: String, subtitle: String) {
-        titleLabel.attributedText = Style.postTitle(title.uppercased(), .nightModeMainFont).attributedString()
-        subTitleLabel.attributedText = Style.tag(subtitle.uppercased(), .nightModeSubFont).attributedString()
+        ThemeText.articlePostTitleNight.apply(title.uppercased(), to: titleLabel)
+        ThemeText.articleTagNight.apply(subtitle.uppercased(), to: subTitleLabel)
         backgroundColor = .clear
         layoutIfNeeded()
     }

@@ -18,9 +18,7 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
         isRead = selected
         markAsReadButton.setAttributedTitle(attributed(selected: selected), for: .normal)
         markAsReadButton.backgroundColor = selected == true ? colorMode.tint.withAlphaComponent(0.3) : .clear
-        markAsReadButton.corner(radius: 20)
-        markAsReadButton.layer.borderColor = colorMode.tint.withAlphaComponent(0.3).cgColor
-        markAsReadButton.layer.borderWidth = 1
+        ThemeBorder.accentBackground.apply(markAsReadButton)
     }
 
     func setMarkAsReadStatus(read: Bool) {
@@ -34,11 +32,8 @@ final class MarkAsReadTableViewCell: UITableViewCell, Dequeueable {
 
 extension MarkAsReadTableViewCell {
     func attributed(selected: Bool) -> NSAttributedString {
-        return NSAttributedString(string: selected == true ? "Mark as unread" : "Mark as read",
-                                  letterSpacing: 0.4,
-                                  font: .apercuMedium(ofSize: 12),
-                                  textColor: colorMode.text.withAlphaComponent(0.6),
-                                  alignment: .left)
+        let text  = selected ? "Mark as unread" : "Mark as read"
+        return ThemeText.articleMarkRead.attributedString(text)
     }
 }
 

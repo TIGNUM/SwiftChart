@@ -364,54 +364,54 @@ extension UIView {
     }
 
     func applyTheme(_ targetView: UIView) {
-        if let theme = targetView.themeView {
-            theme.apply(targetView)
-        }
+//        if let theme = targetView.themeView {
+//            theme.apply(targetView)
+//        }
 
-        for subView in targetView.subviews {
-            if let label = subView as? UILabel {
-                if let text = label.text,
-                    let theme = label.themeText {
-                    theme.apply(text, to: label)
-                } else {
+//        for subView in targetView.subviews {
+//            if let label = subView as? UILabel {
+//                if let text = label.text,
+//                    let theme = label.themeText {
+//                    theme.apply(text, to: label)
+//                } else {
 //                    label.backgroundColor = UIColor.yellow   //use this to show unthemed componenets
-                }
-            } else if !subView.subviews.isEmpty {
-                applyTheme(subView)
-            }
-        }
+//                }
+//            } else if !subView.subviews.isEmpty {
+//                applyTheme(subView)
+//            }
+//        }
     }
 
-    var themeView: ThemeView? {
-        get {
-            if let themeKey = self.value(forKeyPath: "ThemeView") as? String,
-                let theme = ThemeView(rawValue: themeKey) {
-                return theme
-            }
-            return nil
-        }
-        set {
-            if let value = newValue?.rawValue {
-                self.setValue(value, forKeyPath: "ThemeView")
-            }
-        }
-    }
+//    var themeView: ThemeView? {
+//        get {
+//            if let themeKey = self.value(forKeyPath: "ThemeView") as? String,
+//                let theme = ThemeView(rawValue: themeKey) {
+//                return theme
+//            }
+//            return nil
+//        }
+//        set {
+//            if let value = newValue?.rawValue {
+//                self.setValue(value, forKeyPath: "ThemeView")
+//            }
+//        }
+//    }
 
 }
 
-extension UILabel {
-    var themeText: ThemeText? {
-        get {
-            if let themeKey = self.value(forKeyPath: "ThemeText") as? String,
-                let theme = ThemeText(rawValue: themeKey) {
-                return theme
-            }
-            return nil
-        }
-        set {
-            if let value = newValue?.rawValue {
-                self.setValue(value, forKeyPath: "ThemeText")
-            }
-        }
-    }
-}
+//extension UILabel {
+//    var themeText: ThemeText? {
+//        get {
+//            if let themeKey = self.value(forKeyPath: "ThemeText") as? String,
+//                let theme = ThemeText(rawValue: themeKey) {
+//                return theme
+//            }
+//            return nil
+//        }
+//        set {
+//            if let value = newValue?.rawValue {
+//                self.setValue(value, forKeyPath: "ThemeText")
+//            }
+//        }
+//    }
+//}

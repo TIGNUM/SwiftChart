@@ -33,7 +33,7 @@ final class ArticleTextHeaderTableViewCell: UITableViewCell, Dequeueable {
 private extension ArticleTextHeaderTableViewCell {
     func setAuthor(author: String?) {
         if let author = author {
-            ThemeText.articleAuthor.apply(author, to: authorLabel)
+            ThemeText.articleAuthor(nil).apply(author, to: authorLabel)
         } else {
             authorLabel.isHidden = true
         }
@@ -44,7 +44,7 @@ private extension ArticleTextHeaderTableViewCell {
             let dateFormatter = DateFormatter.whatsHot
             let displayDate = dateFormatter.string(from: publishDate)
             let detailText = String(format: "%@ | %d min read", displayDate, timeToRead)
-            ThemeText.articleDatestamp.apply(detailText, to: detailLabel)
+            ThemeText.articleDatestamp(nil).apply(detailText, to: detailLabel)
         } else {
             detailLabel.isHidden = true
         }

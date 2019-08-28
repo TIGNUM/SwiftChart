@@ -54,9 +54,7 @@ final class MediaPlayerOverlay: UIView {
 private extension MediaPlayerOverlay {
     func setupView() {
         downloadButton.corner(radius: 20)
-        bookmarkButton.corner(radius: 20)
-        bookmarkButton.layer.borderWidth = 1
-        bookmarkButton.layer.borderColor = UIColor.accent30.cgColor
+        ThemeBorder.accentBackground.apply(bookmarkButton)
     }
 
     @objc func didChangeOrientation() {

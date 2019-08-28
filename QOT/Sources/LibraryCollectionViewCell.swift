@@ -31,7 +31,7 @@ final class LibraryCollectionViewCell: UICollectionViewCell, Dequeueable {
             mediaTypeLabel.textColor = .white60
         }
 
-        headlineLabel.attributedText = Style.headlineSmall(headline.makingTwoLines().uppercased(), .white).attributedString()
+        headlineLabel.attributedText = Style.headlineSmall(headline.makingTwoLines().uppercased()).attributedString()
         latestPostImageView.kf.setImage(
             with: previewImageURL,
             placeholder: R.image.preloading(),

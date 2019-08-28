@@ -34,7 +34,7 @@ extension LibraryViewModel {
 
     func titleForSection(_ section: Int) -> NSAttributedString {
         let title = categories[section].title.uppercased()
-        return Style.subTitle(title, .white).attributedString()
+        return Style.subTitle(title).attributedString()
     }
 
     func contentCollection(at indexPath: IndexPath) -> [ContentCollection] {

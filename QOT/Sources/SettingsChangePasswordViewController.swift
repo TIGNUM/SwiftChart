@@ -66,15 +66,17 @@ extension SettingsChangePasswordViewController {
         let headerLabel = (view as? UITableViewHeaderFooterView)?.textLabel
 
         if let headerTitle = headerLabel?.text {
-            headerLabel?.attributedText = Style.navigationTitle(headerTitle.uppercased(), .white).attributedString(lineSpacing: 2)
+            ThemeText.articleNavigationTitle.apply(headerTitle.uppercased(), to: headerLabel!)
             (view as? UITableViewHeaderFooterView)?.backgroundView?.backgroundColor = .clear
             (view as? UITableViewHeaderFooterView)?.contentView.backgroundColor = .clear
         }
 
         if section == 0 {
-            let color: UIColor = statusText == nil ? .clear : .cherryRed
-            let attributedText = Style.headlineSmall(statusText ?? "ALL GOOD", color).attributedString(lineSpacing: 2)
-            headerLabel?.attributedText = attributedText
+            if let text = statusText {
+                ThemeText.articleHeadlineSmallRed.apply(text, to: headerLabel!, lineSpacing: 2) //todo - ALL GOOD?
+            } else {
+                headerLabel?.textColor = .clear
+            }
         }
     }
 }
@@ -107,9 +109,9 @@ extension SettingsChangePasswordViewController {
         }
 
         if sender.titleLabel?.text == R.string.localized.loginViewToggleShow() {
-            setButtonTitle(button: sender, title: R.string.localized.loginViewToggleHide(), color: .white)
+            setButtonTitle(button: sender, title: R.string.localized.loginViewToggleHide())
         } else if sender.titleLabel?.text == R.string.localized.loginViewToggleHide() {
-            setButtonTitle(button: sender, title: R.string.localized.loginViewToggleShow(), color: .white)
+            setButtonTitle(button: sender, title: R.string.localized.loginViewToggleShow())
         }
     }
 
@@ -151,26 +153,27 @@ private extension SettingsChangePasswordViewController {
         setButtonTitle(button: confirmNewPasswordShowHideButton, title: confirmNewPasswordShowHideButton.titleLabel?.text)
     }
 
-    func setButtonTitle(button: UIButton, title: String?, color: UIColor = .white) {
-        let style = Style.headlineSmall(title ?? "", color).attributedString(lineSpacing: 2)
+    func setButtonTitle(button: UIButton, title: String?, faded: Bool = false) {
+        let theme = faded ? ThemeText.articleHeadlineSmallLight : ThemeText.articleHeadlineSmall
+        let style = theme.attributedString(title ?? "", lineSpacing: 2)
         button.setAttributedTitle(style, for: .normal)
     }
 
     func setOldPasswordCellActive() {
         oldPasswordBottomView.backgroundColor = .white
-        setButtonTitle(button: oldPasswordShowHideButton, title: oldPasswordShowHideButton.titleLabel?.text, color: .white)
+        setButtonTitle(button: oldPasswordShowHideButton, title: oldPasswordShowHideButton.titleLabel?.text)
         oldPasswordTextField.becomeFirstResponder()
     }
 
     func setNewPasswordCellActive() {
         newPasswordBottomView.backgroundColor = .white
-        setButtonTitle(button: newPasswordShowHideButton, title: newPasswordShowHideButton.titleLabel?.text, color: .white)
+        setButtonTitle(button: newPasswordShowHideButton, title: newPasswordShowHideButton.titleLabel?.text)
         newPasswordTextField.becomeFirstResponder()
     }
 
     func setConfirmNewPasswordFieldActive() {
         confirmNewPasswordBottomView.backgroundColor = .white
-        setButtonTitle(button: confirmNewPasswordShowHideButton, title: confirmNewPasswordShowHideButton.titleLabel?.text, color: .white)
+        setButtonTitle(button: confirmNewPasswordShowHideButton, title: confirmNewPasswordShowHideButton.titleLabel?.text)
         confirmNewPasswordTextField.becomeFirstResponder()
     }
 
@@ -181,9 +184,9 @@ private extension SettingsChangePasswordViewController {
     }
 
     func resetShowHideButtons() {
-        setButtonTitle(button: oldPasswordShowHideButton, title: oldPasswordShowHideButton.titleLabel?.text, color: .whiteLight)
-        setButtonTitle(button: newPasswordShowHideButton, title: newPasswordShowHideButton.titleLabel?.text, color: .whiteLight)
-        setButtonTitle(button: confirmNewPasswordShowHideButton, title: confirmNewPasswordShowHideButton.titleLabel?.text, color: .whiteLight)
+        setButtonTitle(button: oldPasswordShowHideButton, title: oldPasswordShowHideButton.titleLabel?.text, faded: true)
+        setButtonTitle(button: newPasswordShowHideButton, title: newPasswordShowHideButton.titleLabel?.text, faded: true)
+        setButtonTitle(button: confirmNewPasswordShowHideButton, title: confirmNewPasswordShowHideButton.titleLabel?.text, faded: true)
     }
 
     func clearAllTextFields() {
@@ -235,7 +238,7 @@ private extension SettingsChangePasswordViewController {
     }
 
     private func setPlaceholder(textField: UITextField) {
-        textField.attributedPlaceholder = Style.tag(textField.placeholder ?? "", .whiteLight).attributedString(lineSpacing: 2)
+        textField.attributedPlaceholder = ThemeText.placeholder.attributedString(textField.placeholder ?? "")
     }
 }
 

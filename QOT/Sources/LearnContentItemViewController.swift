@@ -167,9 +167,9 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
             case .listItem(let itemText):
                 return contentItemBulletTableViewCell(tableView: tableView, indexPath: indexPath, bulletText: itemText)
             case .text(let itemText, let style):
-                var attributedTopText = item.contentItemValue.style(textStyle: style, text: itemText, textColor: .nightModeBlack)
+                var attributedTopText = item.contentItemValue.theme(textStyle: style).attributedString(itemText) //todo - nightmodeblack
                 if style == .paragraph {
-                    attributedTopText = Style.article(itemText, .nightModeBlack).attributedString(lineHeight: 2)
+                    attributedTopText = ThemeText.articleBody.attributedString(itemText) //todo - nightmodeblack
                 }
                 return contentItemTextTableViewCell(tableView: tableView,
                                                     indexPath: indexPath,
@@ -186,23 +186,17 @@ extension LearnContentItemViewController: UITableViewDelegate, UITableViewDataSo
                                        indexPath: indexPath,
                                        title: title,
                                        placeholderURL: placeholderURL,
-                                       attributedString: item.contentItemValue.style(textStyle: .paragraph,
-                                                                                     text: mediaDescription,
-                                                                                     textColor: .nightModeBlack40).attributedString(),
-                                                                                     canStream: true)
+                                       attributedString: ThemeText.learnVideo.attributedString(mediaDescription),
+                                       canStream: true)
             case .image(let title, _, let url):
                 return imageTableViewCell(tableView: tableView,
                                           indexPath: indexPath,
-                                          attributeString: item.contentItemValue.style(textStyle: .paragraph,
-                                                                                       text: title,
-                                                                                       textColor: .nightModeBlackTwo).attributedString(),
-                                                                                       url: url)
+                                          attributeString: ThemeText.learnImage.attributedString(title),
+                                          url: url)
             case .pdf(let title, _, _, _):
                 return PDFTableViewCell(tableView: tableView,
                                         indexPath: indexPath,
-                                        attributedString: item.contentItemValue.style(textStyle: .h4,
-                                                                                      text: title,
-                                                                                      textColor: .nightModeBlackTwo).attributedString(),
+                                        attributedString: ThemeText.learnPDF.attributedString(title),
                                         timeToReadSeconds: item.secondsRequired)
             case .guide,
                  .guideButton:

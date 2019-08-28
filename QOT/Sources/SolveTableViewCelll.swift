@@ -21,9 +21,7 @@ final class SolveTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor.accent.cgColor
-        button.corner(radius: 20)
+        ThemeBorder.accent.apply(button)
     }
 
     func configure(title: String?, date: String?, solve: QDMSolve?) {

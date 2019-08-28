@@ -26,7 +26,7 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String) {
-        ThemeText.linkMenuItem.apply(title, to: titleLabel)
+        ThemeText.linkMenuItem.apply(title.uppercased(), to: titleLabel)
     }
 
     func configure(subTitle: String) {

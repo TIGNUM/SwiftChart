@@ -17,7 +17,7 @@ final class NavBarCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .carbon
+        ThemeView.level1.apply(self)
     }
 
     func configure(title: String, leftArrow: Bool, rightArrow: Bool) {

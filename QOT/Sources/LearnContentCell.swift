@@ -49,7 +49,7 @@ final class LearnContentCell: UICollectionViewCell, Dequeueable {
     // MARK: - Configure
 
     func configure(with content: ContentCollection, index: Int) {
-        let attributedIndex = Style.headlineSmall((String(format: "#%02d", index + 1)), .white50).attributedString()
+        let attributedIndex = ThemeText.articleHeadlineSmallFade.attributedString(String(format: "#%02d", index + 1))
         let attributedTitle = NSMutableAttributedString(string: content.title.uppercased(),
                                                         letterSpacing: 1,
                                                         font: contentView.bounds.width < 150 ? .H7Tag : .H5SecondaryHeadline,

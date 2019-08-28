@@ -18,9 +18,19 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var previewPlayImageView: UIImageView!
     @IBOutlet private weak var mediaIconImageView: UIImageView!
 
-    func configure(title: String, timeToWatch: String, imageURL: URL?, alwaysDark: Bool = false) {
-        let requiredMode: ColorMode = alwaysDark ? ColorMode.dark : colorMode
+    override func awakeFromNib() {
+        super.awakeFromNib()
 
+        ThemeView.level2.apply(self)
+        contentView.backgroundColor = .clear
+
+        selectionStyle = .gray
+        let bkView = UIView()
+        ThemeView.level2Selected.apply(bkView)
+        selectedBackgroundView = bkView
+    }
+
+    func configure(title: String, timeToWatch: String, imageURL: URL?) {
         let editedTitle = title.replacingOccurrences(of: "PERFORMANCE ", with: "")
 
         ThemeText.articleRelatedTitle.apply(editedTitle, to: titleLabel)
@@ -29,7 +39,6 @@ final class FoundationTableViewCell: UITableViewCell, Dequeueable {
         previewPlayImageView.backgroundColor = UIColor.sand08
         previewPlayImageView.layer.cornerRadius = previewPlayImageView.frame.size.width / 2
         mediaIconImageView.image = R.image.ic_camera_sand()?.withRenderingMode(.alwaysTemplate)
-        mediaIconImageView.tintColor = requiredMode.tint
-        contentView.backgroundColor = requiredMode.background
+        ThemeTint.accent.apply(mediaIconImageView)
     }
 }

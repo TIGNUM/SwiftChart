@@ -99,8 +99,7 @@ final class ChatViewController<T: ChatChoice>: UIViewController, UICollectionVie
 
     private lazy var bottomButton: UIButton = {
         let button = UIButton()
-        button.setTitleColor(.white60, for: .normal)
-        let style = Style.headlineSmall("Pick 4 to continue", .white60).attributedString(lineSpacing: 2)
+        let style = ThemeText.chatButton.attributedString("Pick 4 to continue")
         button.setAttributedTitle(style, for: .normal)
         button.backgroundColor = .clear
         button.layer.borderWidth = 1
@@ -545,8 +544,8 @@ extension ChatViewController: ChatViewControllerInterface {
         let itemCount = visionGeneratorInteractor?.visionSelectionCount(for: questionType) ?? 0
         let enableButton = itemCount == VisionGeneratorChoice.expectedChoiceCount
         let title = visionGeneratorInteractor?.bottomButtonTitle(choice) ?? ""
-        let textColor: UIColor = enableButton ? .white : .white60
-        let style = Style.headlineSmall(title, textColor).attributedString(lineSpacing: 2)
+        let theme = enableButton ? ThemeText.chatButtonEnabled : ThemeText.chatButton
+        let style = theme.attributedString(title)
         bottomButton.setAttributedTitle(style, for: .normal)
         bottomButton.isEnabled = enableButton
         bottomButton.backgroundColor = enableButton ? UIColor.azure : UIColor.clear

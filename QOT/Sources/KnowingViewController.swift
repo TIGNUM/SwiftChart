@@ -31,7 +31,7 @@ final class KnowingViewController: HomeViewController {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         self.showLoadingSkeleton(with: [.fiveLinesWithTopBroad, .twoLinesAndTag, .threeLinesAndTwoColumns, .threeLinesAndTwoColumns, .threeLinesLeftColumn])
-        self.view.backgroundColor = .carbon
+        ThemeView.level1.apply(self.view)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -65,8 +65,8 @@ private extension KnowingViewController {}
 extension KnowingViewController: KnowingViewControllerInterface {
     func setupView() {
         navigationController?.navigationBar.isHidden = true
-        view.backgroundColor = .carbon
-        collectionView.backgroundColor = .carbon
+        ThemeView.level1.apply(view)
+        collectionView.backgroundColor = .clear
         collectionView.registerDequeueable(NavBarCollectionViewCell.self)
         collectionView.registerDequeueable(WhatsHotCollectionViewCell.self)
         collectionView.registerDequeueable(StrategyCategoryCollectionViewCell.self)
@@ -131,7 +131,7 @@ extension KnowingViewController {
                            timeToRead: whatsHotArticle?.timeToRead,
                            imageURL: whatsHotArticle?.image,
                            isNew: whatsHotArticle?.isNew ?? false,
-                           colorMode: ColorMode.dark)
+                           forcedColorMode: .dark)
             return cell
         }
     }
@@ -185,7 +185,7 @@ extension KnowingViewController {
                                                                                     withReuseIdentifier: headerViewID,
                                                                                     for: indexPath as IndexPath) as? ComponentHeaderView {
                     let header = interactor?.header(for: Knowing.Section.strategies)
-                    headerView.configure(title: header?.title, subtitle: header?.subtitle)
+                    headerView.configure(title: header?.title, subtitle: header?.subtitle, secondary: false)
                     return headerView
                 }
             default:
@@ -193,16 +193,14 @@ extension KnowingViewController {
                                                                                     withReuseIdentifier: headerViewID,
                                                                                     for: indexPath as IndexPath) as? ComponentHeaderView {
                     let header = interactor?.header(for: Knowing.Section.whatsHot)
-                    headerView.configure(title: header?.title, subtitle: header?.subtitle)
+                    headerView.configure(title: header?.title, subtitle: header?.subtitle, secondary: true)
                     return headerView
                 }
             }
         default:
             break
         }
-        let cell = UICollectionReusableView()
-        cell.backgroundColor = .blue
-        return cell
+        return UICollectionReusableView()
     }
 
     override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

@@ -10,9 +10,4 @@ import UIKit
 
 class StrategyFoundationCollectionViewCell: StrategyCategoryCollectionViewCell {
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        contentView.backgroundColor = .clear
-        backgroundColor = .clear
-    }
 }

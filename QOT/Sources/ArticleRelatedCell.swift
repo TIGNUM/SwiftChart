@@ -41,7 +41,7 @@ final class ArticleRelatedCell: UITableViewCell, Dequeueable {
         previewImageView.kf.setImage(with: previewImageURL, placeholder: R.image.preloading())
         previewImageView.layer.cornerRadius = 8
         previewImageView.layer.masksToBounds = true
-        titleLabel.attributedText = Style.headline(title.uppercased(), .white).attributedString()
+        titleLabel.attributedText = Style.headline(title.uppercased()).attributedString()
         subTitleLabel.attributedText = NSMutableAttributedString(string: subTitle.uppercased(),
                                                                  letterSpacing: 2,
                                                                  font: .H7Title,

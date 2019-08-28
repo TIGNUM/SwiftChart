@@ -186,9 +186,9 @@ final class ChartCell: UICollectionViewCell, Dequeueable {
         infoVieNavigationButton.isHidden = true
         leftSegmentedButton.setAttributedTitle(R.string.localized.chartInitialStateWeek().attrString(true), for: .normal)
         rightSegmentedButton.setAttributedTitle(R.string.localized.chartInitialStateMonth().attrString(false), for: .normal)
-        infoViewCloseButton.setAttributedTitle(Style.tag(R.string.localized.chartInitialStateClose(), .white30).attributedString(lineSpacing: 2),
+        infoViewCloseButton.setAttributedTitle(ThemeText.articleTag.attributedString(R.string.localized.chartInitialStateClose()),
                                                for: .normal)
-        infoViewCloseButton.setAttributedTitle(Style.tag(R.string.localized.chartInitialStateClose(), .white50).attributedString(lineSpacing: 2),
+        infoViewCloseButton.setAttributedTitle(ThemeText.articleTagSelected.attributedString(R.string.localized.chartInitialStateClose()),
                                                for: .selected)
     }
 
@@ -547,9 +547,9 @@ private extension ChartCell {
                                       lineSpacing: lineSpacing,
                                       characterSpacing: characterSpacing,
                                       color: .white)
-        infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white30).attributedString(lineSpacing: 2),
+        infoViewCloseButton.setAttributedTitle(ThemeText.articleTag.attributedString("CLOSE"),
                                                for: .normal)
-        infoViewCloseButton.setAttributedTitle(Style.tag("CLOSE", .white50).attributedString(lineSpacing: 2),
+        infoViewCloseButton.setAttributedTitle(ThemeText.articleTagSelected.attributedString("CLOSE"),
                                                for: .selected)
         infoScrollBottomFadeView.setFadeMask(at: .top, height: infoScrollBottomFadeView.bounds.height/3)
         if UIDevice.isVersion10 == true {
@@ -563,9 +563,9 @@ private extension ChartCell {
             let destination = statistics?.chartType.infoViewNavigation,
             let buttonTitle = statistics?.chartType.infoViewNavigationButtonTitle?.uppercased() else { return }
         infoVieNavigationButton.isHidden = false
-        infoVieNavigationButton.setAttributedTitle(Style.tag(buttonTitle, .white30).attributedString(lineSpacing: 2),
+        infoVieNavigationButton.setAttributedTitle(ThemeText.articleTag.attributedString(buttonTitle),
                                                    for: .normal)
-        infoVieNavigationButton.setAttributedTitle(Style.tag(buttonTitle, .white50).attributedString(lineSpacing: 2),
+        infoVieNavigationButton.setAttributedTitle(ThemeText.articleTagSelected.attributedString(buttonTitle),
                                                    for: .selected)
         infoViewDestination = destination
     }

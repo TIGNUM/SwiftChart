@@ -305,28 +305,28 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     title: title,
                     imageURL: imageURL,
                     placeholderImage: R.image.audioPlaceholder(),
-                    attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
+                    attributedString: Style.mediaDescription(title).attributedString(lineHeight: 2),
                     canStream: true)
             case .image(let title, _, let url):
                 return imageTableViweCell(
                     tableView: tableView,
                     indexPath: indexPath,
-                    attributeString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
+                    attributeString: Style.mediaDescription(title).attributedString(lineHeight: 2),
                     url: url)
             case .listItem(let text):
                 return contentItemTextTableViewCell(
                     tableView: tableView,
                     indexPath: indexPath,
-                    topText: item.contentItemValue.style(textStyle: .paragraph, text: text, textColor: .white),
+                    topText: item.contentItemValue.theme(textStyle: .paragraph).attributedString(text),
                     bottomText: nil)
             case .text(let text, let style):
-                var attributedTopText = item.contentItemValue.style(textStyle: style, text: text, textColor: .white)
+                var attributedTopText = item.contentItemValue.theme(textStyle: style).attributedString(text)
                 if style.headline == true {
-                    attributedTopText = item.contentItemValue.style(textStyle: style, text: text.uppercased(), textColor: .white)
+                    attributedTopText = item.contentItemValue.theme(textStyle: style).attributedString(text.uppercased())
                 } else if style == .paragraph {
-                    attributedTopText = Style.article(text, .white).attributedString(lineHeight: 1.8)
+                    attributedTopText = Style.article(text).attributedString(lineHeight: 1.8)
                 } else if style == .quote {
-                    attributedTopText = Style.qoute(text, .white60).attributedString(lineHeight: 1.8)
+                    attributedTopText = Style.quote(text).attributedString(lineHeight: 1.8)
                 }
 
                 return contentItemTextTableViewCell(tableView: tableView,
@@ -339,12 +339,12 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
                     indexPath: indexPath,
                     title: title,
                     imageURL: placeholderURL,
-                    attributedString: Style.mediaDescription(title, .white60).attributedString(lineHeight: 2),
+                    attributedString: Style.mediaDescription(title).attributedString(lineHeight: 2),
                     canStream: true)
             case .pdf(let title, _, _, _):
                 return PDFTableViewCell(tableView: tableView,
                                         indexPath: indexPath,
-                                        attributedString: item.contentItemValue.style(textStyle: .h4, text: title, textColor: .white).attributedString(),
+                                        attributedString: item.contentItemValue.theme(textStyle: .h4).attributedString(title),
                                         timeToReadSeconds: item.secondsRequired)
             case .guide,
                  .guideButton:
@@ -363,7 +363,7 @@ extension ArticleItemViewController: UITableViewDelegate, UITableViewDataSource 
             let headerView = UIView(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: tableView.estimatedSectionHeaderHeight))
             headerView.backgroundColor = .clear
             let titleLabel = UILabel(frame: CGRect(x: 28, y: 60, width: view.frame.width, height: 18))
-            titleLabel.attributedText = Style.headlineSmall(R.string.localized.learnContentItemTitleRelatedArticles(), .white).attributedString(lineSpacing: 1.5)
+            titleLabel.attributedText = Style.headlineSmall(R.string.localized.learnContentItemTitleRelatedArticles()).attributedString(lineSpacing: 1.5)
             headerView.addSubview(titleLabel)
             return headerView
         }

@@ -145,7 +145,7 @@ extension ChartViewController: UITableViewDelegate, UITableViewDataSource {
         let label = UILabel(frame: view.frame)
         let headline = viewModel.sectionTitle(in: section).uppercased()
         view.addSubview(label)
-        label.attributedText = Style.subTitle(headline, .white).attributedString()
+        label.attributedText = Style.subTitle(headline).attributedString()
         return view
     }
 

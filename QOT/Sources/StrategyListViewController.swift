@@ -23,6 +23,7 @@ final class StrategyListViewController: UIViewController, ScreenZLevel2 {
         super.viewDidLoad()
         interactor?.viewDidLoad()
         NotificationCenter.default.addObserver(self, selector: #selector(didEndAudio(_:)), name: .didEndAudio, object: nil)
+        ThemeView.level2.apply(self.view)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -57,6 +58,7 @@ final class StrategyListViewController: UIViewController, ScreenZLevel2 {
 
 private extension StrategyListViewController {
     func setupTableView() {
+        tableView.backgroundColor = .clear
         tableView.registerDequeueable(FoundationTableViewCell.self)
         tableView.registerDequeueable(StrategyContentTableViewCell.self)
         tableView.tableFooterView = UIView()
@@ -74,7 +76,6 @@ extension StrategyListViewController {
 
 extension StrategyListViewController: StrategyListViewControllerInterface {
     func setupView() {
-        view.backgroundColor = .carbon
         setupTableView()
         self.showLoadingSkeleton(with: [.oneLineHeading, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage, .twoLinesAndImage])
     }
@@ -96,7 +97,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
             let cell: FoundationTableViewCell = tableView.dequeueCell(for: indexPath)
             cell.configure(title: strategy?.title ?? "",
                            timeToWatch: strategy?.durationString ?? "",
-                           imageURL: strategy?.imageURL, alwaysDark: true)
+                           imageURL: strategy?.imageURL)
             return cell
         } else {
             let strategy = interactor?.strategies[indexPath.item]
@@ -117,7 +118,7 @@ extension StrategyListViewController: UITableViewDelegate, UITableViewDataSource
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section == 0 {
-            return StrategyListHeaderView.instantiateFromNib(title: interactor?.headerTitle ?? "")
+            return StrategyListHeaderView.instantiateFromNib(title: interactor?.headerTitle ?? "", theme: .level2)
         }
         return nil
     }

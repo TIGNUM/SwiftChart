@@ -102,16 +102,16 @@ enum ContentItemValue {
         }
     }
 
-    func style(textStyle: ContentItemTextStyle, text: String, textColor: UIColor, lineSpacing: CGFloat = 1, lineHeight: CGFloat = 1) -> NSAttributedString {
+    func theme(textStyle: ContentItemTextStyle) -> ThemeText {
         switch textStyle {
-        case .h1: return Style.postTitle(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
-        case .h2: return Style.secondaryTitle(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
-        case .h3: return Style.subTitle(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
-        case .h4: return Style.headline(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
-        case .h5: return Style.headlineSmall(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
-        case .h6: return Style.navigationTitle(text, textColor).attributedString(lineSpacing: 2, lineHeight: lineHeight)
-        case .paragraph: return Style.paragraph(text, textColor).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
-        case .quote: return Style.qoute(text, .white60).attributedString(lineSpacing: lineSpacing, lineHeight: lineHeight)
+        case .h1: return .articlePostTitle
+        case .h2: return .articleSecondaryTitle
+        case .h3: return .articleSubTitle
+        case .h4: return .articleHeadline
+        case .h5: return .articleHeadlineSmall
+        case .h6: return .articleNavigationTitle
+        case .paragraph: return .articleParagraph
+        case .quote: return .articleQuote
         }
     }
 

@@ -126,7 +126,7 @@ final class SettingsTableViewCell: UITableViewCell, Dequeueable {
 private extension SettingsTableViewCell {
 
     func setupButtonCell(title: String, value: String) {
-        button.setAttributedTitle(Style.headlineSmall(title.uppercased(), .white).attributedString(lineSpacing: 2), for: .normal)
+        button.setAttributedTitle(Style.headlineSmall(title.uppercased()).attributedString(), for: .normal) //todo - lineSpacing: 2
         setValue(value: value)
     }
 
@@ -202,11 +202,14 @@ private extension SettingsTableViewCell {
             valueLabel.text = nil
             return
         }
-        valueLabel.attributedText = Style.tagTitle(value,
-                                                   settingsType.valueTextColor).attributedString(lineSpacing: 2,
-                                                                                                 alignment: alignment)
-        valueLabel.font = .PText
-        valueLabel.lineBreakMode = .byTruncatingTail
+        let theme: ThemeText
+        switch settingsType {
+        case .calendar, .calendarOnOtherDevices:
+            theme = .settingsTitleFade
+        default:
+            theme = .settingsTitle
+        }
+        theme.apply(value, to: valueLabel)
     }
 }
 

@@ -39,9 +39,7 @@ extension SupportFAQWorker {
         let cotent = item(at: indexPath)
         let contentItem = cotent.articleItems.filter { $0.format == "text.h3" }.first
         let text = contentItem?.valueText ?? ""
-        return contentItem?.contentItemValue.style(textStyle: .h5,
-                                                   text: text.uppercased(),
-                                                   textColor: .white)
+        return contentItem?.contentItemValue.theme(textStyle: .h5).attributedString(text.uppercased())
     }
 }
 

@@ -21,7 +21,7 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
         ThemeText.performanceStaticTitle.apply("PERFORMANCE", to: performanceLabel)
 
         let title = categoryTitle.replacingOccurrences(of: "Performance ", with: "")
-        ThemeText.linkMenuItem.apply(title, to: categoryTitleLabel)
+        ThemeText.linkMenuItem.apply(title.uppercased(), to: categoryTitleLabel)
 
         let progress = String(format: "%d Seen of %d", viewCount, itemCount)
         ThemeText.datestamp.apply(progress, to: progressLabel)
@@ -31,11 +31,9 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = .clear
-        backgroundColor = .clear
 
         let bkView = UIView()
-        bkView.backgroundColor = .accent04
+        ThemeView.level1Selected.apply(bkView)
         selectedBackgroundView = bkView
     }
 }

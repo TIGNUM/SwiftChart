@@ -14,15 +14,16 @@ final class StrategyListHeaderView: UIView {
 
     @IBOutlet private weak var titleLabel: UILabel!
 
-    static func instantiateFromNib(title: String) -> StrategyListHeaderView {
+    static func instantiateFromNib(title: String, theme: ThemeView) -> StrategyListHeaderView {
         guard let headerView = R.nib.strategyListHeaderView.instantiate(withOwner: self).first as? StrategyListHeaderView else {
             fatalError("Cannot load header view")
         }
-        headerView.configure(title: title)
+        headerView.configure(title: title, theme: theme)
         return headerView
     }
 
-    func configure(title: String) {
+    func configure(title: String, theme: ThemeView) {
+        theme.apply(self)
         ThemeText.strategyHeader.apply(title, to: titleLabel)
     }
 }

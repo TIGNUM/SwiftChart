@@ -17,7 +17,7 @@ final class NavBarTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .carbon
+        ThemeView.level1.apply(self)
         selectionStyle = .none
     }
 

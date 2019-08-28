@@ -38,7 +38,7 @@ extension ToolsViewModel {
 
     func titleForSection(_ section: Int) -> NSAttributedString {
         let title = categories[section].title.uppercased()
-        let headline = Style.subTitle(title, .white).attributedString()
+        let headline = Style.subTitle(title).attributedString()
         return headline
     }
 
