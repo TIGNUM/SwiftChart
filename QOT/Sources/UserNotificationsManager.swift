@@ -131,7 +131,6 @@ final class UserNotificationsManager {
             guard let notificationSchedule = sprintConfig.notificationSchedule?.filter({ $0.day == dayForSprintConfig }).first else {
                 continue
             }
-
             guard let excludeNotificationTags = notificationSchedule.excludedNotification,
                 let sprintContentTags = notificationSchedule.contentTags else {
                     continue

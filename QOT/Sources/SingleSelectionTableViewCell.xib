@@ -37,7 +37,7 @@
                         </connections>
                     </button>
                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RVR-md-gAZ" customClass="DecisionTreeButton" customModule="QOT" customModuleProvider="target">
-                        <rect key="frame" x="156" y="24" width="75" height="40"/>
+                        <rect key="frame" x="171" y="24" width="75" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Odc-ig-eIh"/>
                             <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="75" id="y2U-7L-wdh"/>
@@ -51,9 +51,9 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
+                    <constraint firstItem="b56-4f-yRy" firstAttribute="leading" secondItem="RVR-md-gAZ" secondAttribute="trailing" constant="8" id="7ve-SM-TiC"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="RVR-md-gAZ" secondAttribute="bottom" constant="10" id="AFq-Hg-uHa"/>
                     <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="b56-4f-yRy" secondAttribute="bottom" constant="10" id="Frb-sO-22n"/>
-                    <constraint firstItem="b56-4f-yRy" firstAttribute="leading" secondItem="RVR-md-gAZ" secondAttribute="trailing" multiplier="1.1" id="Odi-e8-58e"/>
                     <constraint firstItem="b56-4f-yRy" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="Tv7-Y3-SPy"/>
                     <constraint firstAttribute="right" secondItem="b56-4f-yRy" secondAttribute="right" multiplier="1.1" id="mqD-oW-Vww"/>
                     <constraint firstItem="RVR-md-gAZ" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="24" id="q5A-Xb-7jo"/>

@@ -92,7 +92,7 @@ extension DailyCheckinStartViewController: DailyCheckinStartViewControllerInterf
                        animations: {
                         self.view.layoutIfNeeded()
         }, completion: {[weak self] (value: Bool) in
-            self?.dotsLoadingView.stopAnimation()
+            self?.dotsLoadingView.stopAnimation(nil)
             self?.lineView.isHidden = false
             self?.dotsLoadingView.isHidden = true
             self?.refreshBottomNavigationItems()

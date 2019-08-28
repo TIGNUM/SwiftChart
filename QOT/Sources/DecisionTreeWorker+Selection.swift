@@ -110,6 +110,15 @@ extension DecisionTreeWorker {
 
     func didTapContinue() {
         switch type {
+        case .toBeVisionGenerator:
+            switch currentQuestion?.key {
+            case QuestionKey.ToBeVision.Instructions,
+                 QuestionKey.ToBeVision.Create:
+                nextQuestion()
+                return
+            default:
+                break
+            }
         case .recovery:
             if currentQuestion?.key == QuestionKey.Recovery.intro.rawValue {
                 recoveryFatigueType = AnswerKey.Recovery.identifyFatigueSympton(decisionTreeAnswers)
@@ -233,6 +242,7 @@ private extension DecisionTreeWorker {
                 showNextQuestionIfExist(answer)
             }
         } else if let question = node.question {
+            syncButtons()
             interactor?.showQuestion(question,
                                      extraAnswer: node.generatedAnswer,
                                      filter: answersFilter(),
@@ -442,22 +452,16 @@ private extension DecisionTreeWorker {
 private extension DecisionTreeWorker {
     func handleSelectionTBVGenerator(_ answer: QDMAnswer) {
         switch currentQuestion?.key {
-        case QuestionKey.ToBeVision.Intro:
-            showNextQuestionIfExist(answer)
         case QuestionKey.ToBeVision.Instructions:
             if let contentItemID = answer.targetId(.contentItem) {
                 interactor?.streamContentItem(with: contentItemID)
-                if let targetQuestionId = answer.targetId(.question) {
-                    nextQuestionId = targetQuestionId
-                }
             } else if let contentId = answer.targetId(.content) {
                 showResultView(for: answer, contentID: contentId)
-                if let targetQuestionId = answer.targetId(.question) {
-                    showNextQuestion(targetId: targetQuestionId)
-                }
             }
-
         default:
+            if answer.keys.contains(AnswerKey.ToBeVision.UploadImage) {
+                interactor?.openImagePicker()
+            }
             showNextQuestionIfExist(answer)
         }
     }

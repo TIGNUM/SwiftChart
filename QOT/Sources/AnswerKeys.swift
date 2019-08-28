@@ -12,8 +12,8 @@ import qot_dal
 // MARK: - AnswerKey
 
 enum AnswerKey {
-    enum ToBeVision: String {
-        case uploadImage = "tbv-answer-key-upload-image"
+    struct ToBeVision {
+        static let UploadImage = "tbv-answer-key-upload-image"
     }
 
     struct Prepare {

@@ -288,6 +288,7 @@ extension UIViewController {
                                          image: UIImage? = nil,
                                          buttonWidth: CGFloat.Button.Width,
                                          action: Selector,
+                                         textColor: UIColor = .accent,
                                          backgroundColor: UIColor = .carbonDark,
                                          borderColor: UIColor = .clear) -> UIBarButtonItem {
         let button = UIButton(frame: CGRect(origin: .zero, size: CGSize(width: buttonWidth, height: .Default)))
@@ -295,7 +296,7 @@ extension UIViewController {
         button.setAttributedTitle(NSAttributedString(string: title,
                                                      letterSpacing: 0.2,
                                                      font: .sfProtextSemibold(ofSize: 14),
-                                                     textColor: .accent,
+                                                     textColor: textColor,
                                                      alignment: .center),
                                   for: .normal)
         if let image = image {

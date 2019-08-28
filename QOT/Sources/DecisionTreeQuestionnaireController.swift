@@ -242,13 +242,17 @@ extension DecisionTreeQuestionnaireViewController: UITableViewDataSource {
                  AnswerType.text.rawValue,
                  AnswerType.lastQuestion.rawValue:
                 let cell: TextTableViewCell = tableView.dequeueCell(for: indexPath)
-                cell.configure(with: extraAnswer ?? "", textColor: interactor?.type.textColor)
+                cell.configure(with: extraAnswer ?? "",
+                               textColor: interactor?.type.textColor,
+                               showTypingAnimation: question.key != QuestionKey.ToBeVision.Review)
                 switch question.key {
                 case QuestionKey.SprintReflection.Intro,
                      QuestionKey.Prepare.ShowTBV,
+                     QuestionKey.ToBeVision.Create,
                      QuestionKey.MindsetShifter.OpenTBV,
                      QuestionKey.MindsetShifter.ShowTBV,
-                     QuestionKey.MindsetShifter.Check:
+                     QuestionKey.MindsetShifter.Check,
+                     QuestionKey.ToBeVision.Review:
                     break
                 default:
                     delegate?.textCellDidAppear(targetID: question.answers.first?.decisions.first?.targetTypeId ?? 0,
@@ -321,68 +325,11 @@ extension DecisionTreeQuestionnaireViewController: MultipleSelectionCellDelegate
 
 // MARK: - Bottom Navigation Items
 extension DecisionTreeQuestionnaireViewController {
-    @objc override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if isOnboarding {
-            return nil
-        }
-        switch question.key {
-        case QuestionKey.Sprint.Last,
-             QuestionKey.SprintReflection.Review,
-             QuestionKey.MindsetShifter.Last:
-            return nil
-        default:
-            return [dismissNavigationItem()]
-        }
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        return nil
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        switch question.key {
-        case QuestionKey.Prepare.CalendarEventSelectionDaily,
-             QuestionKey.Prepare.CalendarEventSelectionCritical:
-            let title = question.defaultButtonText ?? R.string.localized.buttonTitleAddEvent()
-            return [roundedBarButtonItem(title: title,
-                                         image: R.image.ic_event(),
-                                         buttonWidth: .DecisionTree,
-                                         action: #selector(presentAddEventController),
-                                         backgroundColor: .carbonDark)]
-        case QuestionKey.Recovery.loading.rawValue,
-             QuestionKey.Sprint.IntroContinue,
-             QuestionKey.MindsetShifterTBV.Review,
-             QuestionKey.MindsetShifter.ShowTBV,
-             QuestionKey.MindsetShifter.Check,
-             QuestionKey.Sprint.Last,
-             QuestionKey.SprintReflection.Intro,
-             QuestionKey.Prepare.ShowTBV:
-            let title = question.defaultButtonText ?? R.string.localized.morningControllerDoneButton()
-            return [roundedBarButtonItem(title: title,
-                                         buttonWidth: .DecisionTree,
-                                         action: #selector(didTapContinue),
-                                         backgroundColor: .carbonDark)]
-        case QuestionKey.SprintReflection.Review:
-            let titleLeft = question.answers.filter {
-                $0.keys.contains(obj: AnswerKey.SprintReflection.DoItLater)
-                }.first?.subtitle ?? ""
-            let titleRight = question.answers.filter {
-                $0.keys.contains(obj: AnswerKey.SprintReflection.TrackTBV)
-                }.first?.subtitle ?? ""
-            let leftButtomItem = roundedBarButtonItem(title: titleLeft,
-                                                      buttonWidth: .DoItLater,
-                                                      action: #selector(didTapDoItLater),
-                                                      backgroundColor: .clear,
-                                                      borderColor: .accent)
-            let rightButtomItem = roundedBarButtonItem(title: titleRight,
-                                                       buttonWidth: .TrackTBV,
-                                                       action: #selector(didTapTrackTBV),
-                                                       backgroundColor: .carbonDark)
-            return [rightButtomItem, leftButtomItem]
-        case QuestionKey.MindsetShifter.OpenTBV:
-            let title = question.confirmationButtonText
-            return [roundedBarButtonItem(title: title ?? "",
-                                         buttonWidth: .DecisionTree,
-                                         action: #selector(didTapContinue),
-                                         backgroundColor: .carbonDark)]
-        default:
-            return []
-        }
+        return nil
     }
 }

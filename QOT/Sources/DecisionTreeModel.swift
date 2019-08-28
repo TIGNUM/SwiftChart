@@ -26,7 +26,7 @@ enum DecisionTreeType {
     var introKey: String {
         switch self {
         case .toBeVisionGenerator:
-            return QuestionKey.ToBeVision.Intro
+            return QuestionKey.ToBeVision.Instructions
         case .mindsetShifter:
             return QuestionKey.MindsetShifter.Intro
         case .mindsetShifterTBV,
@@ -170,7 +170,6 @@ extension QDMQuestion {
         get {
             switch key {
             case QuestionKey.Sprint.Intro,
-                 QuestionKey.ToBeVision.Create,
                  QuestionKey.MindsetShifter.LowSelfTalk:
                 return true
             default:
@@ -186,9 +185,18 @@ struct DecisionTreeModel {
     var extendedQuestions: [ExtendedQuestion] = []
     var selectedAnswers: [SelectedAnswer] = []
 
-    struct SelectedAnswer {
+    struct SelectedAnswer: Equatable {
         let questionID: Int
         let answer: QDMAnswer
+
+        static func == (lhs: DecisionTreeModel.SelectedAnswer, rhs: DecisionTreeModel.SelectedAnswer) -> Bool {
+            return
+                lhs.questionID == rhs.questionID &&
+                lhs.answer.remoteID == rhs.answer.remoteID &&
+                lhs.answer.title == rhs.answer.title &&
+                lhs.answer.subtitle == rhs.answer.subtitle &&
+                lhs.answer.sortOrder == rhs.answer.sortOrder
+        }
     }
 
     struct ExtendedQuestion {
@@ -245,7 +253,12 @@ extension DecisionTreeModel: DecisionTreeModelInterface {
 
     mutating func removeLastQuestion() {
         if !extendedQuestions.isEmpty {
+            let lastQuestionId = extendedQuestions.last?.question.remoteID
             extendedQuestions.removeLast()
+            let lastSelectedAnswers = selectedAnswers.filter { $0.questionID == lastQuestionId }
+            lastSelectedAnswers.forEach { (answer) in
+                selectedAnswers.remove(object: answer)
+            }
         }
     }
 

@@ -69,7 +69,8 @@ struct VisionGeneratorChoice: ChatChoice {
         var bottomButtonIsHidden: Bool {
             switch self {
             case .work,
-                 .home: return false
+                 .home,
+                 .review: return false
             default: return true
             }
         }

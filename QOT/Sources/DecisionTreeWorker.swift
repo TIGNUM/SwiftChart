@@ -161,6 +161,8 @@ extension DecisionTreeWorker {
         guard pageIndex > 0 else { return nil }
         if pageIndex.advanced(by: -1) >= 0 {
             pageIndex.minus(1)
+            decisionTree?.removeLastQuestion()
+            multiSelectionCounter = 0
             return decisionTree?.extendedQuestions[pageIndex].question
         }
         return nil
@@ -329,6 +331,10 @@ extension DecisionTreeWorker {
              QuestionKey.MindsetShifter.Check:
             let title = defaultButtonText.isEmpty ? confirmationButtonText : defaultButtonText
             return [roundedDarkButtonItem(title: title, buttonWidth: .DecisionTree, action: action)]
+        case QuestionKey.ToBeVision.Work,
+             QuestionKey.ToBeVision.Home:
+            let title = R.string.localized.buttonTitlePick(multiSelectionCounter)
+            return [roundedDarkButtonItem(title: title, buttonWidth: .DecisionTree, action: action)]
         default:
             return []
         }
@@ -348,6 +354,7 @@ extension DecisionTreeWorker {
             if decisionTree?.extendedQuestions.filter({ $0.question.remoteID == question.remoteID }).isEmpty == true {
                 decisionTree?.add(question)
                 pageIndex.plus(1)
+                syncButtons()
             }
         }
         if let answer = answer {
@@ -450,15 +457,23 @@ internal extension DecisionTreeWorker {
         default:
             break
         }
+        switch currentQuestion?.key {
+        case QuestionKey.ToBeVision.Instructions,
+             QuestionKey.ToBeVision.Review:
+            continueButtonIsHidden = false
+        case QuestionKey.ToBeVision.Picture:
+            continueButtonIsHidden = true
+        default:
+            break
+        }
+        let maxSelections = maxPossibleSelections == 1 ? 0 : maxPossibleSelections
+        let isEnabled = maxSelections == 0 || maxSelections == multiSelectionCounter
         interactor?.syncButtons(previousButtonIsHidden: previousButtonIsHidden,
                                 continueButtonIsHidden: continueButtonIsHidden,
+                                isEnabled: isEnabled,
                                 backgroundColor: backgroundColor)
-        updateBottomButtonTitle()
-    }
-
-    func updateBottomButtonTitle() {
         interactor?.updateBottomButtonTitle(counter: multiSelectionCounter,
-                                            maxSelections: maxPossibleSelections,
+                                            maxSelections: maxPossibleSelections <= 1 ? 0 : maxPossibleSelections,
                                             defaultTitle: defaultButtonText,
                                             confirmTitle: confirmationButtonText)
     }

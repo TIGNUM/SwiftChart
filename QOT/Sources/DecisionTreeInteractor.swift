@@ -81,6 +81,21 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         return worker.createdTBV
     }
 
+    var multiSelectionCounter: Int {
+        return worker.multiSelectionCounter
+    }
+
+    var multiSectionButtonArguments: (title: String, textColor: UIColor, bgColor: UIColor, enabled: Bool) {
+        let selectedAnswersCount = worker.multiSelectionCounter
+        let maxSelections = worker.maxPossibleSelections
+        let currentValue = maxSelections - selectedAnswersCount
+        let title = R.string.localized.buttonTitlePick(currentValue)
+        let textColor: UIColor = selectedAnswersCount < maxSelections ? .carbonDark30 : .accent
+        let backgroundColor: UIColor = selectedAnswersCount < maxSelections ? .carbonDark08 : .carbon
+        let enabled = selectedAnswersCount == maxSelections
+        return (title, textColor, backgroundColor, enabled)
+    }
+
     func displayContent(with id: Int) {
         router.openArticle(with: id)
     }
@@ -203,9 +218,13 @@ extension DecisionTreeInteractor: DecisionTreeInteractorInterface {
         presenter.presentInfoView(icon: icon, title: title, text: text)
     }
 
-    func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor) {
+    func syncButtons(previousButtonIsHidden: Bool,
+                     continueButtonIsHidden: Bool,
+                     isEnabled: Bool,
+                     backgroundColor: UIColor) {
         presenter.syncButtons(previousButtonIsHidden: previousButtonIsHidden,
                               continueButtonIsHidden: continueButtonIsHidden,
+                              isEnabled: isEnabled,
                               backgroundColor: backgroundColor)
     }
 

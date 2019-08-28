@@ -9,7 +9,6 @@
 import Foundation
 
 // MARK: - Question Key
-
 enum QuestionKey {
     static func maxCharacter(_ key: String?) -> Int {
         switch key {
@@ -24,12 +23,20 @@ enum QuestionKey {
         }
     }
 
+    static func continueButtonIsHidden(_ key: String?) -> Bool {
+        switch key {
+        case QuestionKey.ToBeVision.Review,
+             QuestionKey.ToBeVision.Create:
+            return false
+        default:
+            return true
+        }
+    }
+
     struct ToBeVision {
-        static let Intro = "tbv-generator-key-intro"
         static let Instructions = "tbv-generator-key-instructions"
         static let Home = "tbv-generator-key-home"
         static let Work = "tbv-generator-key-work"
-        static let Next = "tbv-generator-key-next"
         static let Create = "tbv-generator-key-create"
         static let Picture = "tbv-generator-key-picture"
         static let Review = "tbv-generator-key-review"

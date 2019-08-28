@@ -10,7 +10,7 @@ import Foundation
 
 final class MyVisionRouter {
 
-    private let viewController: MyVisionViewController
+    private weak var viewController: MyVisionViewController?
     private var popUpController: PopUpViewController?
 
     init(viewController: MyVisionViewController) {
@@ -23,17 +23,19 @@ extension MyVisionRouter: MyVisionRouterInterface {
     func showTracker() {
         guard let vieController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
         MyToBeVisionTrackerConfigurator.configure(viewController: vieController, controllerType: .tracker)
-        viewController.present(vieController, animated: true, completion: nil)
+        viewController?.present(vieController, animated: true, completion: nil)
     }
 
     func showEditVision(title: String, vision: String, isFromNullState: Bool) {
-        guard let vieController = R.storyboard.myToBeVision.myVisionEditDetailsViewController() else { return }
-        MyVisionEditDetailsConfigurator.configure(originViewController: viewController,
-                                                  viewController: vieController,
+        guard
+            let controller = R.storyboard.myToBeVision.myVisionEditDetailsViewController(),
+            let visionController = self.viewController else { return }
+        MyVisionEditDetailsConfigurator.configure(originViewController: visionController,
+                                                  viewController: controller,
                                                   title: title,
                                                   vision: vision,
                                                   isFromNullState: isFromNullState)
-        viewController.present(vieController, animated: true, completion: nil)
+        viewController?.present(controller, animated: true, completion: nil)
     }
 
     func showTBVData(shouldShowNullState: Bool, visionId: Int?) {
@@ -41,22 +43,24 @@ extension MyVisionRouter: MyVisionRouterInterface {
             guard let vieController = R.storyboard.myToBeVisionRate.myToBeVisionDataNullStateViewController() else { return }
             vieController.delegate = viewController
             vieController.visionId = visionId
-            viewController.present(vieController, animated: true, completion: nil)
+            viewController?.present(vieController, animated: true, completion: nil)
             return
         }
         guard let vieController = R.storyboard.myToBeVisionRate.myToBeVisionTrackerViewController() else { return }
         MyToBeVisionTrackerConfigurator.configure(viewController: vieController, controllerType: .data)
-        viewController.present(vieController, animated: true, completion: nil)
+        viewController?.present(vieController, animated: true, completion: nil)
     }
 
     func showRateScreen(with id: Int) {
-        guard let vieController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController() else { return }
-        MyToBeVisionRateConfigurator.configure(previousController: viewController, viewController: vieController, visionId: id)
-        viewController.present(vieController, animated: true, completion: nil)
+        guard
+            let vieController = R.storyboard.myToBeVisionRate.myToBeVisionRateViewController(),
+            let visionController = self.viewController else { return }
+        MyToBeVisionRateConfigurator.configure(previousController: visionController, viewController: vieController, visionId: id)
+        viewController?.present(vieController, animated: true, completion: nil)
     }
 
     func presentViewController(viewController: UIViewController, completion: (() -> Void)?) {
-        self.viewController.present(viewController, animated: true, completion: completion)
+        self.viewController?.present(viewController, animated: true, completion: completion)
     }
 
     func closeUpdateConfirmationScreen(completion: (() -> Void)?) {
@@ -71,13 +75,13 @@ extension MyVisionRouter: MyVisionRouterInterface {
         let popUpController = PopUpViewController(with: config, delegate: viewController)
         popUpController.modalPresentationStyle = .overCurrentContext
         self.popUpController = popUpController
-        viewController.present(popUpController, animated: true, completion: nil)
+        viewController?.present(popUpController, animated: true, completion: nil)
     }
 
     func openToBeVisionGenerator() {
         let configurator = DecisionTreeConfigurator.make(for: .toBeVisionGenerator)
         let decisonTreeViewController = DecisionTreeViewController(configure: configurator)
         decisonTreeViewController.delegate = viewController
-        viewController.present(decisonTreeViewController, animated: true, completion: nil)
+        viewController?.present(decisonTreeViewController, animated: true, completion: nil)
     }
 }

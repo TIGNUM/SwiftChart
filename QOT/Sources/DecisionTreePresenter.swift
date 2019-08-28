@@ -12,18 +12,15 @@ import qot_dal
 final class DecisionTreePresenter {
 
     // MARK: - Properties
-
     private weak var viewController: DecisionTreeViewControllerInterface?
 
     // MARK: - Init
-
     init(viewController: DecisionTreeViewControllerInterface) {
         self.viewController = viewController
     }
 }
 
 // MARK: - DecisionTreeInterface
-
 extension DecisionTreePresenter: DecisionTreePresenterInterface {
     func setupView() {
         viewController?.setupView()
@@ -48,6 +45,7 @@ extension DecisionTreePresenter: DecisionTreePresenterInterface {
                         _ valueType: QDMUserEventTracking.ValueType?) {
         viewController?.trackUserEvent(answer, name, valueType)
     }
+
     func dismiss() {
         viewController?.dismiss()
     }
@@ -60,9 +58,13 @@ extension DecisionTreePresenter: DecisionTreePresenterInterface {
         viewController?.presentInfoView(icon: icon, title: title, text: text)
     }
 
-    func syncButtons(previousButtonIsHidden: Bool, continueButtonIsHidden: Bool, backgroundColor: UIColor) {
+    func syncButtons(previousButtonIsHidden: Bool,
+                     continueButtonIsHidden: Bool,
+                     isEnabled: Bool,
+                     backgroundColor: UIColor) {
         viewController?.syncButtons(previousButtonIsHidden: previousButtonIsHidden,
                                     continueButtonIsHidden: continueButtonIsHidden,
+                                    isEnabled: isEnabled,
                                     backgroundColor: backgroundColor)
     }
 

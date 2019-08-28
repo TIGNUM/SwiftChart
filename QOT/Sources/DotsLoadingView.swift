@@ -34,18 +34,23 @@ final class DotsLoadingView: UIView {
         setupAnimation(size: size ?? frame.size, color: dotsColor)
     }
 
-    func startAnimation(withDuration duration: TimeInterval) {
+    func startAnimation(withDuration duration: TimeInterval, _ completion: (() -> Void)? = nil) {
         startAnimation()
         DispatchQueue.main.asyncAfter(deadline: .now() + duration) { [weak self] in
-            self?.stopAnimation()
+            self?.stopAnimation(completion)
         }
     }
 
-    func stopAnimation() {
+    func stopAnimation(_ completion: (() -> Void)? = nil) {
         if alpha > 0 {
             UIView.animate(withDuration: Animation.duration_03) {
                 self.alpha = 0
             }
+            UIView.animate(withDuration: Animation.duration_03, animations: {
+                self.alpha = 0
+            }, completion: { (finished) in
+                completion?()
+            })
         }
     }
 }

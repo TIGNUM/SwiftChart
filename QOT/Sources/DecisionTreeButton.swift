@@ -58,7 +58,6 @@ extension DecisionTreeButton {
         setAttributedTitle(NSAttributedString(string: title,
                                               letterSpacing: 0.2,
                                               font: .sfProtextSemibold(ofSize: 14),
-                                              lineSpacing: 8,
                                               textColor: textColor),
                            for: .normal)
         if value == 4 {
