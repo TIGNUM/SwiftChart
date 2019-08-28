@@ -25,7 +25,7 @@ class TitleSubtitleTableViewCell: UITableViewCell, Dequeueable {
         self.selectedBackgroundView?.backgroundColor = .accent10
     }
 
-    func configure(title: String){
+    func configure(title: String) {
         ThemeText.linkMenuItem.apply(title, to: titleLabel)
     }
 

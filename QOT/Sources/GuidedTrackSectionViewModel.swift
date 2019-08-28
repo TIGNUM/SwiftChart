@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class GuidedTrackSectionViewModel: GuideTrackModelItem {
+final class GuidedTrackSectionViewModel: BaseDailyBriefViewModel, GuideTrackModelItem {
 
     // MARK: - Properties
     var bucketTitle: String?
@@ -20,9 +20,18 @@ final class GuidedTrackSectionViewModel: GuideTrackModelItem {
     }
 
     // MARK: - Init
-    internal init(bucketTitle: String?, content: String?, buttonText: String?) {
+    internal init(bucketTitle: String?, content: String?, buttonText: String?, domain: QDMDailyBriefBucket) {
         self.bucketTitle = bucketTitle
         self.content = content
         self.buttonText = buttonText
+        super.init(domain)
+    }
+
+//    // MARK: - Properties
+//    var guidedTrackList = [GuideTrackModelItem]()
+
+    // MARK: - Init
+    init(domainModel: QDMDailyBriefBucket?) {
+        super.init(domainModel)
     }
 }

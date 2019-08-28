@@ -14,17 +14,19 @@ class BaseDailyBriefViewModel: Differentiable {
     // MARK: - Properties
     typealias DifferenceIdentifier = String
     var domainModel: QDMDailyBriefBucket? = nil
+    var subIdentifier = ""
 
     // MARK: - Init
-    init(_ domainModel: QDMDailyBriefBucket?) {
+    init(_ domainModel: QDMDailyBriefBucket?, _ subIdentifier: String? = "") {
         self.domainModel = domainModel
+        self.subIdentifier = subIdentifier ?? ""
     }
 }
 
     // MARK: - Public
 extension BaseDailyBriefViewModel {
     var differenceIdentifier: DifferenceIdentifier {
-        return "-"
+        return (self.domainModel?.bucketName ?? "") + subIdentifier
     }
 
     func isContentEqual(to source: BaseDailyBriefViewModel) -> Bool {

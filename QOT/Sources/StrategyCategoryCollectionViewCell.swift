@@ -22,7 +22,7 @@ class StrategyCategoryCollectionViewCell: ComponentCollectionViewCell {
 
         let title = categoryTitle.replacingOccurrences(of: "Performance ", with: "")
         ThemeText.linkMenuItem.apply(title, to: categoryTitleLabel)
-        
+
         let progress = String(format: "%d Seen of %d", viewCount, itemCount)
         ThemeText.datestamp.apply(progress, to: progressLabel)
     }

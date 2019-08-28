@@ -17,13 +17,12 @@ final class GuidedTrackRowCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .carbon
         button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
-    func configure(with: GuidedTrackRowViewModel?) {
-        title.text = with?.heading
-        subtitle.text = with?.title
+    func configure(with: GuidedTrackViewModel?) {
+//        title.text = with?.heading
+        subtitle.text = with?.bucketTitle
         content.text = with?.content
         button.setTitle(with?.buttonText, for: .normal)
     }

@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-final class GuidedTrackRowViewModel: GuideTrackModelItem {
+final class GuidedTrackRowViewModel: BaseDailyBriefViewModel, GuideTrackModelItem {
 
     // MARK: - Properties
     var heading: String?
@@ -22,10 +22,12 @@ final class GuidedTrackRowViewModel: GuideTrackModelItem {
     }
 
     // MARK: - Init
-    internal init(heading: String?, title: String?, content: String?, buttonText: String?) {
+    internal init(heading: String?, title: String?, content: String?, buttonText: String?, domain: QDMDailyBriefBucket) {
         self.heading = heading
         self.title = title
         self.content = content
         self.buttonText = buttonText
+        super.init(domain)
     }
+
 }

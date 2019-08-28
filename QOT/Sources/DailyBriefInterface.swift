@@ -13,22 +13,27 @@ import DifferenceKit
 protocol DailyBriefViewControllerInterface: class {
     func setupView()
     func updateView(_ differenceList: StagedChangeset<[BaseDailyBriefViewModel]>)
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
 }
 
 protocol DailyBriefPresenterInterface {
     func setupView()
     func updateView(_ differenceList: StagedChangeset<[BaseDailyBriefViewModel]>)
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>)
 }
 
 protocol DailyBriefInteractorInterface: Interactor {
+    func updateViewModelListNew(_ list: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>])
     func updateViewModelList(_ list: [BaseDailyBriefViewModel])
     var rowCount: Int { get }
     var rowViewModelCount: Int { get }
+    var rowViewSectionCount: Int { get }
     var shpiAnswer: QDMDailyCheckInAnswer? { get }
     var peakPerformanceCount: Int? { get }
     var lastEstimatedLevel: Int? { get }
     func bucket(at row: Int) -> QDMDailyBriefBucket?
     func bucketViewModel(at row: Int) -> BaseDailyBriefViewModel?
+    func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]?
     func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void))
     func latestWhatsHotContent(completion: @escaping ((QDMContentItem?) -> Void))
     func getContentCollection(completion: @escaping ((QDMContentCollection?) -> Void))
@@ -47,6 +52,7 @@ protocol DailyBriefInteractorInterface: Interactor {
     func saveTargetValue(value: Int?)
     func showSolveResults(solve: QDMSolve)
     func showDailyCheckIn()
+    func showPrepareScreen()
     func presentCopyRight(copyrightURL: String?)
 }
 

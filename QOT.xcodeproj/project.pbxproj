@@ -987,6 +987,10 @@
 		91F5BE502097585900E85A51 /* PermissionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 91F5BE4F2097585900E85A51 /* PermissionsCell.xib */; };
 		91F5BE5220975E1300E85A51 /* PermissionsInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91F5BE5120975E1300E85A51 /* PermissionsInteractor.swift */; };
 		91FF8FA9207E190900FCD999 /* UIViewController+MFMailCompose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */; };
+		9C20083C2313D3B50035CAF0 /* ImpactReadinessCell2.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C20083B2313D3B50035CAF0 /* ImpactReadinessCell2.xib */; };
+		9C20083E2313ED5A0035CAF0 /* ImpactReadinessCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C20083D2313ED5A0035CAF0 /* ImpactReadinessCell2.swift */; };
+		9C2008402313F0BE0035CAF0 /* ImpactReadiness1.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C20083F2313F0BE0035CAF0 /* ImpactReadiness1.xib */; };
+		9C2008422313F88A0035CAF0 /* ImpactReadiness1.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2008412313F88A0035CAF0 /* ImpactReadiness1.swift */; };
 		9C24237222F081A400B911E6 /* AboutMeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C24237122F081A400B911E6 /* AboutMeCell.xib */; };
 		9C24237422F0868300B911E6 /* AboutMeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24237322F0868300B911E6 /* AboutMeCell.swift */; };
 		9C24237622F0869700B911E6 /* AboutMeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24237522F0869700B911E6 /* AboutMeViewModel.swift */; };
@@ -998,9 +1002,6 @@
 		9C24238A22F4631C00B911E6 /* DailyCheck2SHPIModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238922F4631C00B911E6 /* DailyCheck2SHPIModel.swift */; };
 		9C24238C22F4633A00B911E6 /* DailyCheckin2TBVModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */; };
 		9C24239022F487DA00B911E6 /* MyPeakPerformanceViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */; };
-		9C2FDA8622E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8522E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib */; };
-		9C2FDA8822E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8722E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift */; };
-		9C2FDA8B22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8A22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib */; };
 		9C2FDA8E22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */; };
 		9C2FDA9422E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */; };
 		9C650B7022FB0BC200DF2D6B /* MyPeakPerformanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B6F22FB0BC100DF2D6B /* MyPeakPerformanceTableViewCell.swift */; };
@@ -1010,12 +1011,10 @@
 		9C650B7A22FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */; };
 		9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */; };
 		9C650B8022FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C650B7F22FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift */; };
-		9C6E47F522F9B70100AD66C3 /* ImpactReadinessItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C6E47F422F9B70100AD66C3 /* ImpactReadinessItem.swift */; };
 		9C85A20922DCD45300E9383C /* ImpactDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */; };
-		9C9E33B122DCA3B600214ED6 /* ImpactReadinessCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E33B022DCA3B600214ED6 /* ImpactReadinessCell.swift */; };
 		9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */; };
-		9C9E33B522DCA3DB00214ED6 /* ImpactReadinessCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9E33B422DCA3DB00214ED6 /* ImpactReadinessCell.xib */; };
-		9C9E33B722DCCA1700214ED6 /* ImpactDataTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9C9E33B622DCCA1700214ED6 /* ImpactDataTableViewCell.xib */; };
+		9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */; };
+		9CAD9FBD231673BD001DA2DC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FBC231673BC001DA2DC /* SolveReminderCell.swift */; };
 		9CB9B7A1230C433700DA9938 /* ThreeLinesAndTwoColumns.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B7A0230C433700DA9938 /* ThreeLinesAndTwoColumns.xib */; };
 		9CB9B7A3230C436400DA9938 /* ThreeLinesAndTwoColumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB9B7A2230C436400DA9938 /* ThreeLinesAndTwoColumns.swift */; };
 		9CC426162306A46000F8072E /* GuidedTrackSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */; };
@@ -1041,6 +1040,8 @@
 		9CF3BE5123018DDC0027D111 /* MeAtMyBestEmptyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */; };
 		9CF3BE5323018EED0027D111 /* MeAtMyBestEmptyViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */; };
 		9CF3BE55230190D40027D111 /* MeAtMyBestModelType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CF3BE54230190D40027D111 /* MeAtMyBestModelType.swift */; };
+		9CFA10652314082D0023E11E /* ImpactReadinessScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */; };
+		9CFA1067231418380023E11E /* ImpactReadinessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA1066231418380023E11E /* ImpactReadinessType.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
 		AC103E2C22847AB500F426F0 /* ConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */; };
 		AC103E2D22847AB500F426F0 /* ConfirmationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */; };
@@ -1669,7 +1670,6 @@
 		F909961C22B23FA900EAEAC6 /* MyPrepsInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961B22B23FA900EAEAC6 /* MyPrepsInterface.swift */; };
 		F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961D22B23FBA00EAEAC6 /* MyPrepsModel.swift */; };
 		F909962022B23FCC00EAEAC6 /* MyPrepsPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961F22B23FCC00EAEAC6 /* MyPrepsPresenter.swift */; };
-		F90BD4212301633B00008702 /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BD4202301633B00008702 /* SolveReminderCell.swift */; };
 		F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F90BD422230164B100008702 /* SolveTableViewCell.xib */; };
 		F90BD425230164CA00008702 /* SolveTableViewCelll.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BD424230164CA00008702 /* SolveTableViewCelll.swift */; };
 		F90BD4292301669A00008702 /* SolveReminderCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */; };
@@ -2838,6 +2838,10 @@
 		91FF8FA8207E190900FCD999 /* UIViewController+MFMailCompose.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+MFMailCompose.swift"; sourceTree = "<group>"; };
 		9416F4220C89536119D5B4AB /* Pods_QOTWidget.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QOTWidget.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		97F1D8A9256524F33CBB9303 /* Pods-QOTTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QOTTests/Pods-QOTTests.debug.xcconfig"; sourceTree = "<group>"; };
+		9C20083B2313D3B50035CAF0 /* ImpactReadinessCell2.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpactReadinessCell2.xib; sourceTree = "<group>"; };
+		9C20083D2313ED5A0035CAF0 /* ImpactReadinessCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCell2.swift; sourceTree = "<group>"; };
+		9C20083F2313F0BE0035CAF0 /* ImpactReadiness1.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpactReadiness1.xib; sourceTree = "<group>"; };
+		9C2008412313F88A0035CAF0 /* ImpactReadiness1.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadiness1.swift; sourceTree = "<group>"; };
 		9C24237122F081A400B911E6 /* AboutMeCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AboutMeCell.xib; sourceTree = "<group>"; };
 		9C24237322F0868300B911E6 /* AboutMeCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeCell.swift; sourceTree = "<group>"; };
 		9C24237522F0869700B911E6 /* AboutMeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutMeViewModel.swift; sourceTree = "<group>"; };
@@ -2850,9 +2854,6 @@
 		9C24238B22F4633A00B911E6 /* DailyCheckin2TBVModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2TBVModel.swift; sourceTree = "<group>"; };
 		9C24238D22F4635700B911E6 /* DailyCheckin2PeakPerformanceModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckin2PeakPerformanceModel.swift; sourceTree = "<group>"; };
 		9C24238F22F487DA00B911E6 /* MyPeakPerformanceViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceViewModel.swift; sourceTree = "<group>"; };
-		9C2FDA8522E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckInInsights2TBV.xib; sourceTree = "<group>"; };
-		9C2FDA8722E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DailyCheckInSights2TBVCell.swift; sourceTree = "<group>"; };
-		9C2FDA8A22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyBriefForwardEdge.xib; sourceTree = "<group>"; };
 		9C2FDA8D22E20086007AE7F0 /* MyPeakPerformanceSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceSectionCell.xib; sourceTree = "<group>"; };
 		9C2FDA9322E20F4F007AE7F0 /* MyPeakPerformanceRowCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MyPeakPerformanceRowCell.xib; sourceTree = "<group>"; };
 		9C650B6B22FAC2E800DF2D6B /* MyPeakPerformanceRowModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceRowModel.swift; sourceTree = "<group>"; };
@@ -2863,12 +2864,10 @@
 		9C650B7922FB1F4700DF2D6B /* MyPeakPerformanceSectionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceSectionCell.swift; sourceTree = "<group>"; };
 		9C650B7B22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceRowCell.swift; sourceTree = "<group>"; };
 		9C650B7F22FC1CEB00DF2D6B /* MyPeakPerformanceTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPeakPerformanceTableCell.swift; sourceTree = "<group>"; };
-		9C6E47F422F9B70100AD66C3 /* ImpactReadinessItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessItem.swift; sourceTree = "<group>"; };
 		9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactDataTableViewCell.swift; sourceTree = "<group>"; };
-		9C9E33B022DCA3B600214ED6 /* ImpactReadinessCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCell.swift; sourceTree = "<group>"; };
 		9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCellViewModel.swift; sourceTree = "<group>"; };
-		9C9E33B422DCA3DB00214ED6 /* ImpactReadinessCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpactReadinessCell.xib; sourceTree = "<group>"; };
-		9C9E33B622DCCA1700214ED6 /* ImpactDataTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImpactDataTableViewCell.xib; sourceTree = "<group>"; };
+		9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderTableCellViewModel.swift; sourceTree = "<group>"; };
+		9CAD9FBC231673BC001DA2DC /* SolveReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SolveReminderCell.swift; path = ../../../../Desktop/SolveReminderCell.swift; sourceTree = "<group>"; };
 		9CB9B7A0230C433700DA9938 /* ThreeLinesAndTwoColumns.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeLinesAndTwoColumns.xib; sourceTree = "<group>"; };
 		9CB9B7A2230C436400DA9938 /* ThreeLinesAndTwoColumns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeLinesAndTwoColumns.swift; sourceTree = "<group>"; };
 		9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidedTrackSectionCell.xib; sourceTree = "<group>"; };
@@ -2894,6 +2893,8 @@
 		9CF3BE5023018DDC0027D111 /* MeAtMyBestEmptyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestEmptyCell.swift; sourceTree = "<group>"; };
 		9CF3BE5223018EED0027D111 /* MeAtMyBestEmptyViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestEmptyViewModel.swift; sourceTree = "<group>"; };
 		9CF3BE54230190D40027D111 /* MeAtMyBestModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestModelType.swift; sourceTree = "<group>"; };
+		9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessScoreViewModel.swift; sourceTree = "<group>"; };
+		9CFA1066231418380023E11E /* ImpactReadinessType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessType.swift; sourceTree = "<group>"; };
 		AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationPresenter.swift; sourceTree = "<group>"; };
 		AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationWorker.swift; sourceTree = "<group>"; };
 		AC103E2622847AB500F426F0 /* ConfirmationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationRouter.swift; sourceTree = "<group>"; };
@@ -3511,7 +3512,6 @@
 		F909961B22B23FA900EAEAC6 /* MyPrepsInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsInterface.swift; sourceTree = "<group>"; };
 		F909961D22B23FBA00EAEAC6 /* MyPrepsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsModel.swift; sourceTree = "<group>"; };
 		F909961F22B23FCC00EAEAC6 /* MyPrepsPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsPresenter.swift; sourceTree = "<group>"; };
-		F90BD4202301633B00008702 /* SolveReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
 		F90BD422230164B100008702 /* SolveTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SolveTableViewCell.xib; sourceTree = "<group>"; };
 		F90BD424230164CA00008702 /* SolveTableViewCelll.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveTableViewCelll.swift; sourceTree = "<group>"; };
 		F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCellViewModel.swift; sourceTree = "<group>"; };
@@ -3767,8 +3767,6 @@
 				9C24237022F0817F00B911E6 /* About Me */,
 				F92A76DF22F2E8C0000BB378 /* Level5 */,
 				9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */,
-				9C2FDA8922E1F8D5007AE7F0 /* DailyBriefForwardEdge */,
-				9C2FDA8422E1F191007AE7F0 /* DailyCheckInInsights2TBV */,
 				F902CF4D22DE0F8F00FFC836 /* Daily Checkin II */,
 				75423F0422CF2FF9008EE726 /* BeSpoke */,
 				75B9DCB422CB5FEC00692A60 /* LeaderWisdom */,
@@ -6103,30 +6101,14 @@
 		9C24237A22F093E700B911E6 /* Solve Reminder  */ = {
 			isa = PBXGroup;
 			children = (
+				9CAD9FBC231673BC001DA2DC /* SolveReminderCell.swift */,
 				9C24237B22F0941D00B911E6 /* SolveReminderCell.xib */,
-				F90BD4202301633B00008702 /* SolveReminderCell.swift */,
 				F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */,
 				F90BD422230164B100008702 /* SolveTableViewCell.xib */,
 				F90BD424230164CA00008702 /* SolveTableViewCelll.swift */,
+				9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */,
 			);
 			name = "Solve Reminder ";
-			sourceTree = "<group>";
-		};
-		9C2FDA8422E1F191007AE7F0 /* DailyCheckInInsights2TBV */ = {
-			isa = PBXGroup;
-			children = (
-				9C2FDA8522E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib */,
-				9C2FDA8722E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift */,
-			);
-			name = DailyCheckInInsights2TBV;
-			sourceTree = "<group>";
-		};
-		9C2FDA8922E1F8D5007AE7F0 /* DailyBriefForwardEdge */ = {
-			isa = PBXGroup;
-			children = (
-				9C2FDA8A22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib */,
-			);
-			name = DailyBriefForwardEdge;
 			sourceTree = "<group>";
 		};
 		9C2FDA8C22E20062007AE7F0 /* DailyBriefPeakPerformance */ = {
@@ -6155,13 +6137,15 @@
 		9C9E33AF22DCA36300214ED6 /* ImpactReadiness */ = {
 			isa = PBXGroup;
 			children = (
-				9C9E33B022DCA3B600214ED6 /* ImpactReadinessCell.swift */,
 				9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */,
-				9C9E33B422DCA3DB00214ED6 /* ImpactReadinessCell.xib */,
-				9C9E33B622DCCA1700214ED6 /* ImpactDataTableViewCell.xib */,
 				9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */,
-				9C6E47F422F9B70100AD66C3 /* ImpactReadinessItem.swift */,
 				F9638C482306A47D00B8E543 /* Notification+Ext.swift */,
+				9C20083B2313D3B50035CAF0 /* ImpactReadinessCell2.xib */,
+				9C20083D2313ED5A0035CAF0 /* ImpactReadinessCell2.swift */,
+				9C20083F2313F0BE0035CAF0 /* ImpactReadiness1.xib */,
+				9C2008412313F88A0035CAF0 /* ImpactReadiness1.swift */,
+				9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */,
+				9CFA1066231418380023E11E /* ImpactReadinessType.swift */,
 			);
 			name = ImpactReadiness;
 			sourceTree = "<group>";
@@ -8633,7 +8617,6 @@
 				AC103E5F2289942100F426F0 /* NegativeToPositiveTableViewCell.xib in Resources */,
 				754EBEE722C62A4C0010A663 /* TBVDataGraphSubHeadingTableViewCell.xib in Resources */,
 				366AFD2020BEAA6700109F29 /* Apercu-Light.otf in Resources */,
-				9C9E33B722DCCA1700214ED6 /* ImpactDataTableViewCell.xib in Resources */,
 				AC103E492285BAFD00F426F0 /* ShifterResultViewController.xib in Resources */,
 				F90BD423230164B100008702 /* SolveTableViewCell.xib in Resources */,
 				366AFD2120BEAA6700109F29 /* Apercu-Medium.otf in Resources */,
@@ -8690,7 +8673,6 @@
 				9171647B2101E43B00F42D8F /* RequestDeviceSensorCollectionViewCell.xib in Resources */,
 				3674FF3120AADEC5008EEB6C /* PartnersOverviewViewController.xib in Resources */,
 				F98D8ED222D374DB0072FC73 /* QuestionCell.xib in Resources */,
-				9C2FDA8B22E1F9EF007AE7F0 /* DailyBriefForwardEdge.xib in Resources */,
 				AC108C5222A677C00035C3AF /* SolveFollowUpTableViewCell.xib in Resources */,
 				367BB014223956A700282AB6 /* Main.storyboard in Resources */,
 				7582617122DC6A57000094DE /* DailyCheckin.storyboard in Resources */,
@@ -8720,7 +8702,6 @@
 				ACF0B950225FC4D6008CFAEC /* DecisionTreeViewController.xib in Resources */,
 				36B5BD3523142BB300439A64 /* AskPermission.storyboard in Resources */,
 				367EA0F121776921003025CE /* Assets.xcassets in Resources */,
-				9C2FDA8622E1F1DF007AE7F0 /* DailyCheckInInsights2TBV.xib in Resources */,
 				850A50BD1F0A97FF00350097 /* PrepareContentTopTabBarView.xib in Resources */,
 				5FD890AF22807CC900B1CE7F /* MyQotProfileHeaderView.xib in Resources */,
 				ACF0B9752260BAD2008CFAEC /* SingleSelectionTableViewCell.xib in Resources */,
@@ -8783,13 +8764,13 @@
 				8D008F0B230EFA63006D7263 /* WalkthroughSearch.storyboard in Resources */,
 				3637663C223A6F8500C2C429 /* AbstractTableViewCell.xib in Resources */,
 				8D0B4D192301CC2400A1AC47 /* RegistrationNames.storyboard in Resources */,
-				9C9E33B522DCA3DB00214ED6 /* ImpactReadinessCell.xib in Resources */,
 				CC13E2411EB1D72400C3CE46 /* LibraryLatestPostCollectionViewCell.xib in Resources */,
 				B4A075BB230EF13B00DDB922 /* MyDataHeatMapDateCell.xib in Resources */,
 				36B8F2511FE2FDD400AD6A17 /* GuideGreetingView.xib in Resources */,
 				367564AD206A4420008D1F71 /* PrepareContentNotesViewController.storyboard in Resources */,
 				36376669223ABB2D00C2C429 /* StrategyTableViewCell.xib in Resources */,
 				CC6251DB1EE00DD800C6F546 /* Localized.strings in Resources */,
+				9C20083C2313D3B50035CAF0 /* ImpactReadinessCell2.xib in Resources */,
 				F902CF4C22D87C4700FFC836 /* FeastCell.xib in Resources */,
 				368F2AF52296D74D0008A36D /* ArticleNextUpTableViewCell.xib in Resources */,
 				3636A86122382AEF004B32BB /* WhatsHotArticleHeaderView.xib in Resources */,
@@ -8883,6 +8864,7 @@
 				9CF3BE4F230189650027D111 /* MeAtMyBestEmptyCell.xib in Resources */,
 				8D9F6D29230E869C00DCC241 /* WalkthroughAnimatedArrows.xib in Resources */,
 				CCA2DC6D1EF290DF00D1DF6A /* LearnContentItemBulletCell.xib in Resources */,
+				9C2008402313F0BE0035CAF0 /* ImpactReadiness1.xib in Resources */,
 				D5EC34B31EB0D35300F86B09 /* LearnStrategyPlaylistAudioCell.xib in Resources */,
 				9CC4261E2306A4AE00F8072E /* GuidedTrackRowCell.xib in Resources */,
 				8DECF9B122DE07A800451E65 /* MySprintsListHeaderView.xib in Resources */,
@@ -9248,6 +9230,7 @@
 				3609938123048ACB008CB854 /* PrepareResultsPresenter.swift in Sources */,
 				8D008F09230EFA45006D7263 /* WalkthroughSearchConfigurator.swift in Sources */,
 				3609938023048A57008CB854 /* DailyCheckin2PeakPerformanceModel.swift in Sources */,
+				9C2008422313F88A0035CAF0 /* ImpactReadiness1.swift in Sources */,
 				36CB721222B8ECF300C99AFC /* MyQotSupportFaqPresenter.swift in Sources */,
 				36CB721122B8EC4E00C99AFC /* MyQotProfileWorker.swift in Sources */,
 				36CB721022B8EC3400C99AFC /* MyQotProfileViewController.swift in Sources */,
@@ -9263,6 +9246,7 @@
 				36796A6120D3C4B800B55429 /* SigningInfoPresenter.swift in Sources */,
 				36E3AD562073783400FB27F1 /* PreparationAnswer.swift in Sources */,
 				AC1A40DB22A54EB70022156C /* SolveResultsWorker.swift in Sources */,
+				9CFA10652314082D0023E11E /* ImpactReadinessScoreViewModel.swift in Sources */,
 				3637660C223A4BEC00C2C429 /* DailyBriefWorker.swift in Sources */,
 				CC05CB791EDEC73C00D15ABC /* UITableView+Create.swift in Sources */,
 				5F6B38592284079800704676 /* UserProfileModel.swift in Sources */,
@@ -9298,7 +9282,6 @@
 				B86E745022A9519900B0AE75 /* MyLibraryCategoryListConfigurator.swift in Sources */,
 				7F9217BB1FD01C4700CAE9E0 /* LocationPermission.swift in Sources */,
 				8D110D08230FDA41000181BA /* WalkthroughCoachConfigurator.swift in Sources */,
-				9C6E47F522F9B70100AD66C3 /* ImpactReadinessItem.swift in Sources */,
 				F9A8A01722967FE600DE3A9C /* ToolsItemsPresenter.swift in Sources */,
 				9CF3BE4922FD70990027D111 /* DailyCheckin2ViewModel.swift in Sources */,
 				7F9217C31FD0828600CAE9E0 /* PermissionInterface.swift in Sources */,
@@ -9522,7 +9505,6 @@
 				CCCC42DF1ED5799D00E73905 /* UIViewController+Transition.swift in Sources */,
 				36376679223BFF3800C2C429 /* StrategyListViewController.swift in Sources */,
 				CB27D59F1ECDE96F00F2B76C /* DownSyncResultParser.swift in Sources */,
-				F90BD4212301633B00008702 /* SolveReminderCell.swift in Sources */,
 				360256EA205183B300862B0E /* SearchProtocols.swift in Sources */,
 				DB680595218210E700C2FC69 /* MorningInterviewRouter.swift in Sources */,
 				ACF0B947225FC41F008CFAEC /* DecisionTreeInterface.swift in Sources */,
@@ -9682,7 +9664,6 @@
 				367CD17F22EF4EDE00AF2187 /* OnboardingLoginPresenter.swift in Sources */,
 				366183EE2162793800634560 /* SupportFAQConfigurator.swift in Sources */,
 				B4AB48CC230BF982003B3C1F /* MyDataExplanationModel.swift in Sources */,
-				9C2FDA8822E1F7CC007AE7F0 /* DailyCheckInSights2TBVCell.swift in Sources */,
 				759AB42822C4DE810091BFB8 /* TBVGraphCollectionViewModels.swift in Sources */,
 				8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */,
 				E871E8562136F17F005E787C /* PDFReaderInterface.swift in Sources */,
@@ -9948,6 +9929,7 @@
 				75EFB63222C51C6F00E8C64F /* TBVDataGraphTableViewCell.swift in Sources */,
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
 				B856B47D22B0E29D0017A249 /* MyLibraryUserStorageInteractor.swift in Sources */,
+				9CAD9FBD231673BD001DA2DC /* SolveReminderCell.swift in Sources */,
 				5FA6663A229C1DB30027EE74 /* MyVisionEditDetailsViewController.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChart.swift in Sources */,
 				AC84FFC122293BEB0056F9EA /* SiriEventsModel.swift in Sources */,
@@ -9993,6 +9975,7 @@
 				CBC1DC3F1F16067900F6D056 /* DownSyncIntermediary.swift in Sources */,
 				360256E22051836200862B0E /* SearchRouter.swift in Sources */,
 				DB12013C219AC99400BE0E81 /* QuestionaireCellIndicator.swift in Sources */,
+				9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */,
 				B856B47F22B0E29D0017A249 /* MyLibraryUserStorageConfigurator.swift in Sources */,
 				91F5BE422097578F00E85A51 /* PermissionsWorker.swift in Sources */,
 				9CC426182306A47500F8072E /* GuidedTrackSectionCell.swift in Sources */,
@@ -10103,6 +10086,7 @@
 				36796A1A20D3C45200B55429 /* SigningCountryTableViewCell.swift in Sources */,
 				9CC4262A2306D83B00F8072E /* GuidedTrackTableViewCell.swift in Sources */,
 				CBB98B082020A4AF00B8EAD7 /* Authenticator.swift in Sources */,
+				9C20083E2313ED5A0035CAF0 /* ImpactReadinessCell2.swift in Sources */,
 				9C650B7C22FB1F6500DF2D6B /* MyPeakPerformanceRowCell.swift in Sources */,
 				CB9AFD171F014BF800D067F2 /* PreparationIntermediary.swift in Sources */,
 				F9C1D8C3220DDBB200B40DD2 /* SiriShortcutsViewController.swift in Sources */,
@@ -10184,6 +10168,7 @@
 				DB680596218210E700C2FC69 /* MorningInterviewWorker.swift in Sources */,
 				8D60A20E22CF9D0C0034F33F /* DownloadTableViewCell.swift in Sources */,
 				5F8A89972296DEEC0011A05C /* MyVisionInteractor.swift in Sources */,
+				9CFA1067231418380023E11E /* ImpactReadinessType.swift in Sources */,
 				CB5134141FAB735E00FBDD66 /* ContentReadIntermediary.swift in Sources */,
 				CB35504020597A6A000ECAFA /* DailyPrepResultObject.swift in Sources */,
 				9115F703208DDFFC00EE5D1D /* ProfileSettingsConfigurator.swift in Sources */,
@@ -10552,7 +10537,6 @@
 				CCEFCFB01E8D3D7500E9FC72 /* SidebarViewController.swift in Sources */,
 				CBFD47CC200E0FE200A91899 /* RealmCalendarSyncSettingIntermediary.swift in Sources */,
 				7F708EA01FBAFAF8008A3856 /* FullScreenLoadable.swift in Sources */,
-				9C9E33B122DCA3B600214ED6 /* ImpactReadinessCell.swift in Sources */,
 				F99DF6002292D78900341DAB /* ToolsCollectionsConfigurator.swift in Sources */,
 				36E86D46226F452C00371C67 /* StrategyListHeaderView.swift in Sources */,
 				367CD18122EF4EDE00AF2187 /* OnboardingLoginRouter.swift in Sources */,

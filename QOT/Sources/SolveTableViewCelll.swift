@@ -30,7 +30,6 @@ final class SolveTableViewCell: UITableViewCell, Dequeueable {
         titleLabel.text = title?.uppercased()
         dateLabel.text = date
         self.solve = solve
-
     }
 
     @IBAction func checkIt(_ sender: Any) {

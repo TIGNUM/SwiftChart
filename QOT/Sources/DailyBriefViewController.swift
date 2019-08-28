@@ -12,6 +12,7 @@ import qot_dal
 import DifferenceKit
 
 protocol DailyBriefViewControllerDelegate: class {
+    func openPrepareScreen()
     func showDailyCheckIn()
     func showSolveResults(solve: QDMSolve)
     func presentMyToBeVision()
@@ -40,6 +41,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
     private var selectedToolID: Int?
     private var showSteps = false
     private var impactReadinessScore: Int?
+    var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
 
     // MARK: - Life Cycle
 
@@ -47,131 +49,137 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         super.viewDidLoad()
         navigationController?.navigationBar.isHidden = true
         tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 900
         interactor?.viewDidLoad()
-        NotificationCenter.default.addObserver(self, selector: #selector(hideDisplayGuidedTrackCells(_:)),
-                                               name: .displayGuidedTrackCells, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(updateDailyBriefFromNotification(_:)),
                                                name: .didUpdateDailyBriefBuckets, object: nil)
         self.showLoadingSkeleton(with: [.dailyBrief])
         interactor?.getDailyBriefBucketsForViewModel()
     }
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return interactor?.rowViewModelCount ?? 0
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.removeLoadingSkeleton()
     }
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return interactor?.rowViewSectionCount ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        guard let sections = interactor?.bucketViewModelNew()?.at(index: section) else {
+            return 0
+        }
+        if sections.model == DailyBriefViewModel.Bucket.guidedTrack {
+            return showSteps ? sections.elements.count : 1
+        }
+
+        return sections.elements.count
+    }
+
+//    func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 1000
+//    }
 
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return UITableViewAutomaticDimension
     }
 
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let viewModelBucket = interactor?.bucketViewModel(at: indexPath.row)
-        switch viewModelBucket?.domainModel?.bucketName {
-        case .DAILY_CHECK_IN_1?:
-            NotificationCenter.default.addObserver(self, selector: #selector(updateTargetValue), name: .didPickTarget, object: nil)
-            NotificationCenter.default.addObserver(self, selector: #selector(didFinishDailyCheckin), name: .didFinishDailyCheckin, object: nil)
-        default:
-            break
-        }
-    }
-
-    func tableView(_ tableView: UITableView, didEndDisplaying cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let viewModelBucket = interactor?.bucketViewModel(at: indexPath.row)
-        switch viewModelBucket?.domainModel?.bucketName {
-        case .DAILY_CHECK_IN_1?:
-            NotificationCenter.default.removeObserver(self, name: .didPickTarget, object: nil)
-            NotificationCenter.default.removeObserver(self, name: .didFinishDailyCheckin, object: nil)
-        default:
-            break
-        }
-    }
-
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let viewModelBucket = interactor?.bucketViewModel(at: indexPath.row)
-        switch viewModelBucket?.domainModel?.bucketName {
+        let bucketModel = interactor?.bucketViewModelNew()?.at(index: indexPath.section)
+        let bucketList = bucketModel?.elements
+        let bucketItem = bucketList?[indexPath.row]
+        switch bucketItem?.domainModel?.bucketName {
         case .DAILY_CHECK_IN_1?:
-            let impactReadinessCellViewModel = viewModelBucket as? ImpactReadinessCellViewModel
-            return getImpactReadinessCell(tableView, indexPath, impactReadinessCellViewModel)
+            if (bucketItem as? ImpactReadinessCellViewModel) != nil {
+                guard let impactReadinessCellViewModel = bucketItem as? ImpactReadinessCellViewModel else { return UITableViewCell()}
+                return getImpactReadinessCell(tableView, indexPath, impactReadinessCellViewModel)
+            } else if (bucketItem as? ImpactReadinessScoreViewModel) != nil {
+                guard let impactReadinessScoreViewModel = bucketItem as? ImpactReadinessScoreViewModel else { return UITableViewCell()}
+                return getImpactReadinessScoreCell(tableView, indexPath, impactReadinessScoreViewModel)
+            }
+            return UITableViewCell()
         case .DAILY_CHECK_IN_2?:
-            let dailyCheckIn2ViewModel = viewModelBucket as? DailyCheckin2ViewModel
-            switch dailyCheckIn2ViewModel?.type {
+            guard let dailyCheckIn2ViewModel = bucketItem as? DailyCheckin2ViewModel else {
+                return UITableViewCell()}
+            switch dailyCheckIn2ViewModel.type {
             case .TBV?:
                 return getDailyCheckIn2TBVCell(tableView,
                                                indexPath,
-                                               dailyCheckIn2ViewModel?.dailyCheckIn2TBVModel)
+                                               dailyCheckIn2ViewModel.dailyCheckIn2TBVModel)
             case .PEAKPERFORMANCE?:
                 return getDailyCheckIn2PeakPerformanceCell(tableView,
                                                            indexPath,
-                                                           dailyCheckIn2ViewModel?.dailyCheckIn2PeakPerformanceModel)
+                                                           dailyCheckIn2ViewModel.dailyCheckIn2PeakPerformanceModel)
             case .SHPI?:
                 return getDailyCheckinInsightsSHPICell(tableView,
-                                                       indexPath, dailyCheckIn2ViewModel?.dailyCheck2SHPIModel)
-            default:
+                                                       indexPath, dailyCheckIn2ViewModel.dailyCheck2SHPIModel)
+            case .none:
                 return UITableViewCell()
             }
         case .EXPLORE?:
-            let exploreViewModel = viewModelBucket as? ExploreCellViewModel
+            guard let exploreViewModel = bucketItem as? ExploreCellViewModel else {return UITableViewCell()}
             return getExploreCell(tableView, indexPath, exploreViewModel)
         case .SPRINT_CHALLENGE?:
-            let sprintChallengeModel = viewModelBucket as? SprintChallengeViewModel
+            guard let sprintChallengeModel = bucketItem as? SprintChallengeViewModel else {return UITableViewCell()}
             return getSprints(tableView, indexPath, sprintChallengeModel)
         case .ME_AT_MY_BEST?:
-            if viewModelBucket?.domainModel?.toBeVision == nil {
-                let meAtMyBestCellEmptyViewModel = viewModelBucket as? MeAtMyBestCellEmptyViewModel
+            if bucketItem?.domainModel?.toBeVision == nil {
+                guard  let meAtMyBestCellEmptyViewModel = bucketItem as? MeAtMyBestCellEmptyViewModel else {return UITableViewCell() }
                 return getMeAtMyBestEmpty(tableView, indexPath, meAtMyBestCellEmptyViewModel)
             } else {
-                let meAtMyBestCellViewModel = viewModelBucket as? MeAtMyBestCellViewModel
+                guard let meAtMyBestCellViewModel = bucketItem as? MeAtMyBestCellViewModel else {return UITableViewCell()}
                 return getMeAtMyBest(tableView, indexPath, meAtMyBestCellViewModel)
             }
         case .ABOUT_ME?:
-            let aboutMeModel = viewModelBucket as? AboutMeViewModel
+            guard let aboutMeModel = bucketItem as? AboutMeViewModel else {return UITableViewCell()}
             return getAboutMeCell(tableView, indexPath, aboutMeModel)
         case .SOLVE_REFLECTION?:
-            let solveReminderViewModel = viewModelBucket as? SolveReminderCellViewModel
-            return getSolveReminder(tableView, indexPath, solveReminderViewModel)
+            if (bucketItem as? SolveReminderCellViewModel) != nil {
+                guard let solveReminderCellViewModel = bucketItem as? SolveReminderCellViewModel else { return UITableViewCell()}
+                return getSolveReminder(tableView, indexPath, solveReminderCellViewModel)
+            } else if (bucketItem as? SolveReminderTableCellViewModel) != nil {
+                guard let solveReminderTableCellViewModel = bucketItem as? SolveReminderTableCellViewModel else { return UITableViewCell()}
+                return getSolveReminderTableCell(tableView, indexPath, solveReminderTableCellViewModel)
+            }
+            return UITableViewCell()
         case .GET_TO_LEVEL_5?:
-            let level5ViewModel = viewModelBucket as? Level5CellViewModel
+            guard let level5ViewModel = bucketItem as? Level5CellViewModel else { return UITableViewCell()}
             return getlevel5(tableView, indexPath, level5ViewModel)
         case .QUESTION_WITHOUT_ANSWER?:
-            let questionCellViewModel = viewModelBucket as? QuestionCellViewModel
+            guard let questionCellViewModel = bucketItem as? QuestionCellViewModel else {return UITableViewCell()}
             return getRandomQuestionCell(tableView, indexPath, questionCellViewModel)
         case .LATEST_WHATS_HOT?:
-            let whatsHotCellViewModel = viewModelBucket as? WhatsHotLatestCellViewModel
+            guard let whatsHotCellViewModel = bucketItem as? WhatsHotLatestCellViewModel else {return UITableViewCell()}
             return getWhatsHot(tableView, indexPath, whatsHotCellViewModel)
         case .THOUGHTS_TO_PONDER?:
-            let thoughtCellViewModel = viewModelBucket as? ThoughtsCellViewModel
+            guard let thoughtCellViewModel = bucketItem as? ThoughtsCellViewModel else { return UITableViewCell()}
             return getThoughtsCell(tableView, indexPath, thoughtCellViewModel)
         case .GOOD_TO_KNOW?:
-            let goodToKnowCellViewModel = viewModelBucket as? GoodToKnowCellViewModel
-            return getGoodToKnowCell(tableView, indexPath, goodToKnowCellViewModel!)
+            guard let goodToKnow = bucketItem as? GoodToKnowCellViewModel else { return UITableViewCell() }
+            return getGoodToKnowCell(tableView, indexPath, goodToKnow)
         case .FROM_MY_COACH?:
-            // TODO remove the !
-            let coachMessageCellViewModel = viewModelBucket as? FromMyCoachCellViewModel
-            return getCoachMessageCell(tableView, indexPath, coachMessageCellViewModel!)
+            guard let coachMessageCellViewModel = bucketItem as? FromMyCoachCellViewModel else { return UITableViewCell() }
+            return getCoachMessageCell(tableView, indexPath, coachMessageCellViewModel)
         case .FROM_TIGNUM?:
-            let fromTignumMessageViewModel = viewModelBucket as? FromTignumCellViewModel
-            return getFromTignumMessageCell(tableView, indexPath, fromTignumMessageViewModel)
+            guard let fromTignum = bucketItem as? FromTignumCellViewModel else { return UITableViewCell()}
+            return getFromTignumMessageCell(tableView, indexPath, fromTignum)
         case .BESPOKE?:
-            let beSpokeViewModel = viewModelBucket as? BeSpokeCellViewModel
+            guard let beSpokeViewModel = bucketItem as? BeSpokeCellViewModel else { return UITableViewCell() }
             return getBeSpokeCell(tableView, indexPath, beSpokeViewModel)
         case .DEPARTURE_INFO?:
-            let departureInfoViewModel = viewModelBucket as? DepartureInfoCellViewModel
+            guard let departureInfoViewModel = bucketItem as? DepartureInfoCellViewModel else { return UITableViewCell()}
             return getDepartureInfoCell(tableView, indexPath, departureInfoViewModel)
         case .LEADERS_WISDOM?:
-            let leadersWisdomViewModel = viewModelBucket as? LeaderWisdomCellViewModel
+            guard let leadersWisdomViewModel = bucketItem as? LeaderWisdomCellViewModel else { return UITableViewCell()}
             return getLeadersWisdom(tableView, indexPath, leadersWisdomViewModel)
         case .FEAST_OF_YOUR_EYES?:
-            let feastForEyesViewModel = viewModelBucket as? FeastCellViewModel
-            return getFeastForEyesCell(tableView, indexPath, feastForEyesViewModel)
+            guard let guidedTrackModel = bucketItem as? GuidedTrackViewModel else { return UITableViewCell()}
+            return getGuidedTrack(tableView, indexPath, guidedTrackModel)
+//            guard let feastForEyesViewModel = bucketItem as? FeastCellViewModel else { return UITableViewCell()}
+//            return getFeastForEyesCell(tableView, indexPath, feastForEyesViewModel)
         case .MY_PEAK_PERFORMANCE?:
-            let myPeakPerformanceViewModel = viewModelBucket as? MyPeakPerformanceCellViewModel
+            guard let myPeakPerformanceViewModel = bucketItem as? MyPeakPerformanceCellViewModel else { return UITableViewCell()}
             return getMyPeakPerformance(tableView, indexPath, myPeakPerformanceViewModel)
-//        case .GUIDED_TRACK:
-//            let guidedTrackViewModel = viewModelBucket as? GuidedTrackViewModel
-//            return getGuidedTrack(tableView, indexPath, guidedTrackViewModel)
-        case .WEATHER?:
-            return UITableViewCell()
         default:
             return UITableViewCell()
         }
@@ -200,15 +208,27 @@ private extension DailyBriefViewController {
     func getImpactReadinessCell(_ tableView: UITableView,
                                 _ indexPath: IndexPath,
                                 _ impactReadinessCellViewModel: ImpactReadinessCellViewModel?) -> UITableViewCell {
-        let cell: ImpactReadinessCell = tableView.dequeueCell(for: indexPath)
-        cell.configure(with: impactReadinessCellViewModel)
+        let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
+        cell.configure(viewModel: impactReadinessCellViewModel)
         if impactReadinessCellViewModel?.readinessScore == 0 {
-            cell.readinessExploreButton.setTitle("Start your Daily check-in", for: .normal)
-        } else { cell.readinessExploreButton.setTitle("Explore your score", for: .normal)
+            cell.impactReadinessButton.setTitle("Start your Daily check-in", for: .normal)
+        } else {
+            cell.impactReadinessButton.setTitle("Explore your score", for: .normal)
+            cell.impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
         }
         cell.backgroundColor = .carbon
-        cell.tableView.reloadData()
         cell.delegate = self
+        return cell
+    }
+
+    func getImpactReadinessScoreCell(_ tableView: UITableView,
+                                _ indexPath: IndexPath,
+                                _ impactReadinessScoreViewModel: ImpactReadinessScoreViewModel?) -> UITableViewCell {
+        let cell: ImpactReadinessCell2 = tableView.dequeueCell(for: indexPath)
+        cell.configure(viewModel: impactReadinessScoreViewModel)
+        cell.delegate = self
+        cell.backgroundColor = .carbon
+
         return cell
     }
 
@@ -420,6 +440,21 @@ private extension DailyBriefViewController {
     }
 
     /**
+     * Method name: getSolveReminderTableCell.
+     * Description: Placeholder to display the Solve Reminder Table Cell.
+     * Parameters: [tableView], [IndexPath]
+     */
+    func getSolveReminderTableCell(_ tableView: UITableView,
+                          _ indexPath: IndexPath,
+                          _ solveReminderTableCellViewModel: SolveReminderTableCellViewModel?) -> UITableViewCell {
+        let cell: SolveTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: solveReminderTableCellViewModel?.title, date: solveReminderTableCellViewModel?.date, solve: solveReminderTableCellViewModel?.solve)
+        cell.delegate = self
+        cell.backgroundColor = .carbon
+        return cell
+    }
+
+    /**
      * Method name: getLevel 5.
      * Description: Placeholder to display the Level 5 Information.
      * Parameters: [tableView], [IndexPath]
@@ -557,21 +592,15 @@ private extension DailyBriefViewController {
     func getGuidedTrack(_ tableView: UITableView,
                         _ indexPath: IndexPath,
                         _ guidedtrackModel: GuidedTrackViewModel?) -> UITableViewCell {
-        let cell: GuidedTrackTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.guidedTrackList = guidedtrackModel?.guidedTrackList ?? []
+        if guidedtrackModel?.type == GuidedTrackItemType.SECTION {
+            let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
+            cell.configure(with: guidedtrackModel)
+            cell.backgroundColor = .carbon
+            return cell
+        }
+        let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
         cell.configure(with: guidedtrackModel)
-        cell.showSteps = showSteps
-        cell.tableView.reloadData()
-        cell.backgroundColor = .carbon
         return cell
-    }
-
-    /**
-     * Based on the button click on guided track information expand-collpase the tabelview.
-     */
-    @objc func hideDisplayGuidedTrackCells(_ notification: Notification) {
-        showSteps = !showSteps
-        tableView.reloadData()
     }
 }
 
@@ -579,15 +608,17 @@ private extension DailyBriefViewController {
 
 extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
+    func updateViewNew(_ differenceList: StagedChangeset<[ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]>) {
+        tableView.reload(using: differenceList, with: .middle) { data in
+            self.interactor?.updateViewModelListNew(data)
+        }
+    }
+
     @objc func updateTargetValue(_ notification: NSNotification) {
         guard let value = notification.object as? Double else {
             return
         }
         interactor?.saveUpdatedDailyCheckInSleepTarget(value)
-        tableView.reloadData()
-    }
-
-    @objc func didFinishDailyCheckin(_ notification: NSNotification) {
         tableView.reloadData()
     }
 
@@ -610,6 +641,7 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.reload(using: differenceList, with: .fade) { data in
             interactor?.updateViewModelList(data)
         }
+        self.removeLoadingSkeleton()
     }
 
     func setupView() {
@@ -621,7 +653,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(FromTignumCell.self)
         tableView.registerDequeueable(DepartureInfoCell.self)
         tableView.registerDequeueable(FeastCell.self)
-        tableView.registerDequeueable(ImpactReadinessCell.self)
         tableView.registerDequeueable(BeSpokeCell.self)
         tableView.registerDequeueable(DailyCheckinInsightsTBVCell.self)
         tableView.registerDequeueable(DailyCheckinInsightsSHPICell.self)
@@ -638,10 +669,19 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
         tableView.registerDequeueable(GuidedTrackTableViewCell.self)
+        tableView.registerDequeueable(GuidedTrackSectionCell.self)
+        tableView.registerDequeueable(GuidedTrackRowCell.self)
+        tableView.registerDequeueable(ImpactReadiness1.self)
+        tableView.registerDequeueable(ImpactReadinessCell2.self)
+        tableView.registerDequeueable(SolveTableViewCell.self)
     }
 }
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
+
+    func openPrepareScreen() {
+        interactor?.showPrepareScreen()
+    }
 
     func showSolveResults(solve: QDMSolve) {
         interactor?.showSolveResults(solve: solve)

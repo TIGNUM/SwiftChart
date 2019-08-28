@@ -7,17 +7,32 @@
 //
 
 import UIKit
+import DifferenceKit
 
 struct DailyBriefViewModel {
 
-    enum Bucket: CaseIterable {
+    enum Bucket: CaseIterable, Differentiable {
+        case dailyCheckIn1
+        case dailyCheckIn2
+        case explore
         case whatsHotLatest
         case question
         case thoughts
         case goodToKnow
         case fromTignum
         case departureInfo
-        case feast
+        case feastForYourEyes
         case impactReadiness
+        case leaderswisdom
+        case fromMyCoach
+        case aboutMe
+        case bespoke
+        case thoughtsToPonder
+        case meAtMyBest
+        case getToLevel5
+        case questionWithoutAnswer
+        case guidedTrack
+        case myPeakPerformance
+        case solveReflection
     }
 }

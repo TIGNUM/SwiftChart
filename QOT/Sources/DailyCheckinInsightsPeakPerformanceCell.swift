@@ -21,4 +21,8 @@ final class DailyCheckinInsightsPeakPerformanceCell: UITableViewCell, Dequeueabl
     func configure(with: DailyCheckIn2PeakPerformanceModel?) {
         peakEventsLabel.text = with?.intro
     }
+
+    @IBAction func preparations(_ sender: Any) {
+    }
+
 }

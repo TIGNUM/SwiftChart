@@ -21,50 +21,54 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="kj8-nb-NRI" customClass="DepartureInfoCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="477"/>
+            <rect key="frame" x="0.0" y="0.0" width="425" height="472"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gex-9p-hZg">
-                    <rect key="frame" x="20" y="88.5" width="15" height="1"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <rect key="frame" x="20" y="48" width="15" height="1"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="15" id="LER-Nw-Kk8"/>
                         <constraint firstAttribute="height" constant="1" id="vs6-MB-MIR"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DEPARTURE INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldI-hy-OZt">
-                    <rect key="frame" x="20" y="109.5" width="374" height="24"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="253" verticalCompressionResistancePriority="753" text="DEPARTURE INFO" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ldI-hy-OZt">
+                    <rect key="frame" x="20" y="69" width="385" height="24"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rzr-sH-xjU">
-                    <rect key="frame" x="20" y="406" width="374" height="19.5"/>
+                    <rect key="frame" x="24" y="368.5" width="381" height="26"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" adjustsImageSizeForAccessibilityContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="y6D-ng-z8U">
-                    <rect key="frame" x="24" y="173" width="366" height="180"/>
+                    <rect key="frame" x="24" y="132.5" width="377" height="180"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="180" id="QFu-cS-FhW"/>
                     </constraints>
                 </imageView>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.84999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Things we like on the road" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1v-dK-bS8">
-                    <rect key="frame" x="20" y="138.5" width="374" height="19.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="752" text="Things we like on the road" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="V1v-dK-bS8">
+                    <rect key="frame" x="20" y="98" width="385" height="19.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQR-BB-Gyn">
-                    <rect key="frame" x="20" y="435.5" width="369" height="19.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999998807907104" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MQR-BB-Gyn">
+                    <rect key="frame" x="24" y="404.5" width="376" height="19.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1u-qi-Jr7">
-                    <rect key="frame" x="24" y="363" width="30" height="33"/>
+                <button opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="N1u-qi-Jr7">
+                    <rect key="frame" x="24" y="312.5" width="33" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="32" id="RtX-r3-f1u"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="18" maxY="0.0"/>
                     <state key="normal" title="©">
                         <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </state>
@@ -75,6 +79,7 @@
             </subviews>
             <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="rzr-sH-xjU" firstAttribute="top" secondItem="N1u-qi-Jr7" secondAttribute="bottom" constant="24" id="1JX-UC-riU"/>
                 <constraint firstItem="y6D-ng-z8U" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="24" id="1qc-ea-buc"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="rzr-sH-xjU" secondAttribute="trailing" constant="20" id="2hF-Hl-nGW"/>
                 <constraint firstItem="N1u-qi-Jr7" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="24" id="78P-a5-q8D"/>
@@ -82,15 +87,14 @@
                 <constraint firstItem="gex-9p-hZg" firstAttribute="leading" secondItem="kj8-nb-NRI" secondAttribute="leading" constant="20" id="FKL-Pn-Go6"/>
                 <constraint firstItem="MQR-BB-Gyn" firstAttribute="top" secondItem="rzr-sH-xjU" secondAttribute="bottom" constant="10" id="Gh1-19-XpE"/>
                 <constraint firstItem="V1v-dK-bS8" firstAttribute="top" secondItem="ldI-hy-OZt" secondAttribute="bottom" constant="5" id="H0W-1r-zuI"/>
-                <constraint firstAttribute="bottom" secondItem="MQR-BB-Gyn" secondAttribute="bottom" constant="22" id="JLT-4h-dHA"/>
-                <constraint firstItem="gex-9p-hZg" firstAttribute="top" secondItem="E4y-S7-qPw" secondAttribute="top" constant="44.5" id="S5O-Bq-xV5"/>
-                <constraint firstItem="rzr-sH-xjU" firstAttribute="top" secondItem="N1u-qi-Jr7" secondAttribute="bottom" constant="10" id="Wri-5p-E6N"/>
+                <constraint firstAttribute="bottom" secondItem="MQR-BB-Gyn" secondAttribute="bottom" constant="48" id="JLT-4h-dHA"/>
+                <constraint firstItem="MQR-BB-Gyn" firstAttribute="leading" secondItem="kj8-nb-NRI" secondAttribute="leading" constant="24" id="UEm-0h-TjU"/>
+                <constraint firstItem="gex-9p-hZg" firstAttribute="top" secondItem="kj8-nb-NRI" secondAttribute="top" constant="48" id="WIk-pY-clW"/>
                 <constraint firstItem="ldI-hy-OZt" firstAttribute="top" secondItem="gex-9p-hZg" secondAttribute="bottom" constant="20" id="a0f-Ke-bfU"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="y6D-ng-z8U" secondAttribute="trailing" constant="24" id="cD9-AS-IZf"/>
-                <constraint firstItem="rzr-sH-xjU" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="20" id="dXS-td-mbk"/>
                 <constraint firstItem="V1v-dK-bS8" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="20" id="hNf-ce-WI5"/>
-                <constraint firstItem="MQR-BB-Gyn" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="20" id="kKo-Pj-5nS"/>
-                <constraint firstItem="N1u-qi-Jr7" firstAttribute="top" secondItem="y6D-ng-z8U" secondAttribute="bottom" constant="10" id="mPW-BH-DMY"/>
+                <constraint firstItem="N1u-qi-Jr7" firstAttribute="top" secondItem="y6D-ng-z8U" secondAttribute="bottom" id="mPW-BH-DMY"/>
+                <constraint firstItem="rzr-sH-xjU" firstAttribute="leading" secondItem="kj8-nb-NRI" secondAttribute="leading" constant="24" id="mtU-Xq-R2V"/>
                 <constraint firstItem="ldI-hy-OZt" firstAttribute="leading" secondItem="E4y-S7-qPw" secondAttribute="leading" constant="20" id="qro-we-kBb"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="MQR-BB-Gyn" secondAttribute="trailing" constant="25" id="wwQ-c8-T3J"/>
                 <constraint firstItem="E4y-S7-qPw" firstAttribute="trailing" secondItem="V1v-dK-bS8" secondAttribute="trailing" constant="20" id="yZb-Iy-LVn"/>
@@ -105,7 +109,7 @@
                 <outlet property="subtitleLabel" destination="V1v-dK-bS8" id="pfk-Cj-qcn"/>
                 <outlet property="websiteLabel" destination="MQR-BB-Gyn" id="szY-xv-L2I"/>
             </connections>
-            <point key="canvasLocation" x="630.43478260869574" y="-6.3616071428571423"/>
+            <point key="canvasLocation" x="638.40579710144937" y="-8.0357142857142847"/>
         </view>
     </objects>
 </document>

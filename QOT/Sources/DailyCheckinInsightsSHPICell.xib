@@ -13,6 +13,9 @@
         <array key="SF-Pro-Display-Regular.otf">
             <string>SFProDisplay-Regular</string>
         </array>
+        <array key="SF-Pro-Text-Light.otf">
+            <string>SFProText-Light</string>
+        </array>
         <array key="SF-Pro-Text-Regular.otf">
             <string>SFProText-Regular</string>
         </array>
@@ -21,37 +24,32 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="wJy-1e-xiI" customClass="DailyCheckinInsightsSHPICell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="384" height="495"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILY CHECKIN INSIGHTS II" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TO5-Eb-gYz">
-                    <rect key="frame" x="20" y="165" width="374" height="24"/>
+                    <rect key="frame" x="20" y="69" width="344" height="24"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Text about the user's answered questions" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpy-5Z-NhN">
-                    <rect key="frame" x="20" y="209" width="374" height="19.5"/>
-                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.69999999999999996" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qpy-5Z-NhN">
+                    <rect key="frame" x="20" y="113" width="344" height="58.5"/>
+                    <string key="text">Text about the user's answered 15% of busines professionals say they do specific movements to improve their performance during the day.</string>
+                    <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t73-F8-bfQ">
-                    <rect key="frame" x="20" y="144" width="15" height="1"/>
+                    <rect key="frame" x="20" y="48" width="15" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="7hU-1h-8fN"/>
                         <constraint firstAttribute="width" constant="15" id="Eol-id-5KL"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU RATED YOURSELF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJT-M6-zbd">
-                    <rect key="frame" x="20" y="258.5" width="153" height="17"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KlM-92-Q2Z">
-                    <rect key="frame" x="0.0" y="300.5" width="414" height="128"/>
+                    <rect key="frame" x="0.0" y="319" width="384" height="128"/>
                     <subviews>
                         <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8dn-JA-6fQ" userLabel="bar1">
                             <rect key="frame" x="20" y="20" width="1" height="35"/>
@@ -231,7 +229,7 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Never" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ePv-YV-hTs">
-                            <rect key="frame" x="348" y="99" width="46" height="21"/>
+                            <rect key="frame" x="318" y="99" width="46" height="21"/>
                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                             <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <nil key="highlightedColor"/>
@@ -286,22 +284,39 @@
                         <constraint firstItem="Fds-VQ-7ob" firstAttribute="leading" secondItem="8dn-JA-6fQ" secondAttribute="trailing" constant="36" id="xc1-0z-QY0"/>
                     </constraints>
                 </view>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="YOU RATED YOURSELF" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jJT-M6-zbd">
+                    <rect key="frame" x="24" y="258" width="336" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moving your body during a working day is helpful to keep you awake and foused." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pe-fg-5q9">
+                    <rect key="frame" x="20" y="179" width="336" height="38.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
             </subviews>
             <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstItem="jJT-M6-zbd" firstAttribute="leading" secondItem="7xF-YF-QuK" secondAttribute="leading" constant="24" id="35j-N7-YaJ"/>
+                <constraint firstItem="3pe-fg-5q9" firstAttribute="top" secondItem="Qpy-5Z-NhN" secondAttribute="bottom" constant="8" id="46f-yb-N9t"/>
                 <constraint firstItem="KlM-92-Q2Z" firstAttribute="leading" secondItem="7xF-YF-QuK" secondAttribute="leading" id="8dE-lK-2vq"/>
-                <constraint firstItem="KlM-92-Q2Z" firstAttribute="top" secondItem="jJT-M6-zbd" secondAttribute="bottom" constant="25" id="9QI-94-uqb"/>
+                <constraint firstItem="3pe-fg-5q9" firstAttribute="leading" secondItem="wJy-1e-xiI" secondAttribute="leading" constant="20" id="GPq-uc-9Wv"/>
+                <constraint firstItem="jJT-M6-zbd" firstAttribute="top" secondItem="3pe-fg-5q9" secondAttribute="bottom" constant="40" id="HGg-bc-vaQ"/>
                 <constraint firstItem="7xF-YF-QuK" firstAttribute="trailing" secondItem="TO5-Eb-gYz" secondAttribute="trailing" constant="20" id="Jeu-lf-9E7"/>
-                <constraint firstItem="jJT-M6-zbd" firstAttribute="top" secondItem="Qpy-5Z-NhN" secondAttribute="bottom" constant="30" id="O0Z-2V-bJl"/>
-                <constraint firstItem="jJT-M6-zbd" firstAttribute="leading" secondItem="7xF-YF-QuK" secondAttribute="leading" constant="20" id="UxZ-Nh-zt8"/>
-                <constraint firstItem="t73-F8-bfQ" firstAttribute="top" secondItem="7xF-YF-QuK" secondAttribute="top" constant="100" id="bOl-dI-F7b"/>
+                <constraint firstAttribute="bottom" secondItem="KlM-92-Q2Z" secondAttribute="bottom" constant="48" id="SzR-kK-uwd"/>
                 <constraint firstItem="TO5-Eb-gYz" firstAttribute="leading" secondItem="7xF-YF-QuK" secondAttribute="leading" constant="20" id="c0v-w6-9QD"/>
                 <constraint firstItem="Qpy-5Z-NhN" firstAttribute="top" secondItem="TO5-Eb-gYz" secondAttribute="bottom" constant="20" id="cfG-6o-0Y9"/>
                 <constraint firstItem="TO5-Eb-gYz" firstAttribute="top" secondItem="t73-F8-bfQ" secondAttribute="bottom" constant="20" id="dQ9-FC-Zdj"/>
+                <constraint firstItem="KlM-92-Q2Z" firstAttribute="top" secondItem="jJT-M6-zbd" secondAttribute="bottom" constant="44" id="jWh-Yp-lv9"/>
+                <constraint firstItem="t73-F8-bfQ" firstAttribute="top" secondItem="wJy-1e-xiI" secondAttribute="top" constant="48" id="leI-Tc-YK7"/>
+                <constraint firstAttribute="trailing" secondItem="jJT-M6-zbd" secondAttribute="trailing" constant="24" id="o7N-A2-f8S"/>
                 <constraint firstItem="t73-F8-bfQ" firstAttribute="leading" secondItem="wJy-1e-xiI" secondAttribute="leading" constant="20" id="qCy-wh-Hzq"/>
                 <constraint firstItem="7xF-YF-QuK" firstAttribute="trailing" secondItem="KlM-92-Q2Z" secondAttribute="trailing" id="qOH-dK-fGS"/>
                 <constraint firstItem="Qpy-5Z-NhN" firstAttribute="leading" secondItem="7xF-YF-QuK" secondAttribute="leading" constant="20" id="vQ4-f4-hap"/>
                 <constraint firstItem="7xF-YF-QuK" firstAttribute="trailing" secondItem="Qpy-5Z-NhN" secondAttribute="trailing" constant="20" id="vxE-4g-xyh"/>
+                <constraint firstAttribute="trailing" secondItem="3pe-fg-5q9" secondAttribute="trailing" constant="28" id="zR8-2z-Rq5"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="7xF-YF-QuK"/>
@@ -338,6 +353,7 @@
                 <outletCollection property="heights" destination="Png-Av-YWK" collectionClass="NSMutableArray" id="QMq-en-2ms"/>
                 <outletCollection property="heights" destination="ckT-og-87w" collectionClass="NSMutableArray" id="kqP-dz-VSp"/>
             </connections>
+            <point key="canvasLocation" x="114.49275362318842" y="26.450892857142858"/>
         </view>
     </objects>
 </document>

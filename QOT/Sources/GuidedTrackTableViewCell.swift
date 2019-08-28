@@ -8,6 +8,7 @@
 
 import Foundation
 
+//TODO after further testing please remove this class.
 final class GuidedTrackTableViewCell: UITableViewCell, UITableViewDelegate, Dequeueable, UITableViewDataSource {
 
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
@@ -22,7 +23,6 @@ final class GuidedTrackTableViewCell: UITableViewCell, UITableViewDelegate, Dequ
         tableView.dataSource = self
         tableView.registerDequeueable(GuidedTrackSectionCell.self)
         tableView.registerDequeueable(GuidedTrackRowCell.self)
-        NotificationCenter.default.addObserver(self, selector: #selector(updateTableViewHeight), name: .displayGuidedTrackCells, object: nil)
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -34,27 +34,10 @@ final class GuidedTrackTableViewCell: UITableViewCell, UITableViewDelegate, Dequ
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let item = guidedTrackList[indexPath.row]
-        switch item.type {
-        case GuidedTrackItemType.SECTION:
-            let cell: GuidedTrackSectionCell = tableView.dequeueCell(for: indexPath)
-            let model = item as? GuidedTrackSectionViewModel
-            cell.configure(with: model)
-            return cell
-        case GuidedTrackItemType.ROW:
-            let cell: GuidedTrackRowCell = tableView.dequeueCell(for: indexPath)
-            let model = item as? GuidedTrackRowViewModel
-            cell.configure(with: model)
-            return cell
-        }
+        return UITableViewCell()
     }
 
     func configure(with: GuidedTrackViewModel?) {
-        if let list = with?.guidedTrackList, list.isEmpty == false {
-            self.guidedTrackList.removeAll()
-            self.guidedTrackList = list
-            tableView.reloadData()
-        }
     }
 
     @objc func updateTableViewHeight() {

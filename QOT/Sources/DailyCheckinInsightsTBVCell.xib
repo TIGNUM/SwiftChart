@@ -24,23 +24,23 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="k0H-1I-Uwk" customClass="DailyCheckinInsightsTBVCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+            <rect key="frame" x="0.0" y="0.0" width="414" height="306"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILY CHECKIN INSIGHTS II" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXs-bw-HDl">
-                    <rect key="frame" x="20" y="165" width="374" height="24"/>
+                    <rect key="frame" x="20" y="69" width="374" height="30"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="You gave yourself a X on the rating of" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nj4-u2-Kz0">
-                    <rect key="frame" x="20" y="209" width="374" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="You gave yourself a X on the rating of" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nj4-u2-Kz0">
+                    <rect key="frame" x="20" y="119" width="374" height="17"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snW-CA-C1f">
-                    <rect key="frame" x="20" y="144" width="15" height="1"/>
+                    <rect key="frame" x="20" y="48" width="15" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="if5-lR-GMd"/>
@@ -48,7 +48,7 @@
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkR-EF-LfG">
-                    <rect key="frame" x="254" y="313" width="130" height="35"/>
+                    <rect key="frame" x="254" y="223" width="130" height="35"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="35" id="AIl-tL-vfC"/>
                         <constraint firstAttribute="width" constant="130" id="fU6-h7-CMi"/>
@@ -60,14 +60,14 @@
                         <action selector="toBeVisionButton:" destination="k0H-1I-Uwk" eventType="touchUpInside" id="KeZ-IP-OvA"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot; I am a great listener in high pressure meetings&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a5-dW-Fuu">
-                    <rect key="frame" x="20" y="241" width="374" height="19.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="&quot; I am a great listener in high pressure meetings&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a5-dW-Fuu">
+                    <rect key="frame" x="20" y="151" width="374" height="19.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What could you do today to become that statement?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XV-ES-B1T">
-                    <rect key="frame" x="20" y="276" width="374" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="What could you do today to become that statement?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XV-ES-B1T">
+                    <rect key="frame" x="20" y="186" width="374" height="17"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
@@ -75,15 +75,16 @@
             </subviews>
             <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="snW-CA-C1f" firstAttribute="top" secondItem="War-05-zvi" secondAttribute="top" constant="100" id="5Sg-jy-7ug"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="3XV-ES-B1T" secondAttribute="trailing" constant="20" id="KHR-98-YFv"/>
                 <constraint firstItem="5a5-dW-Fuu" firstAttribute="top" secondItem="Nj4-u2-Kz0" secondAttribute="bottom" constant="15" id="M4z-bs-aNA"/>
                 <constraint firstItem="5a5-dW-Fuu" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="NIO-xE-au6"/>
+                <constraint firstItem="snW-CA-C1f" firstAttribute="top" secondItem="k0H-1I-Uwk" secondAttribute="top" constant="48" id="OwI-HJ-ok5"/>
                 <constraint firstItem="TXs-bw-HDl" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="XGW-Rf-loC"/>
                 <constraint firstItem="TXs-bw-HDl" firstAttribute="top" secondItem="snW-CA-C1f" secondAttribute="bottom" constant="20" id="Z2t-xZ-2jR"/>
                 <constraint firstItem="snW-CA-C1f" firstAttribute="leading" secondItem="k0H-1I-Uwk" secondAttribute="leading" constant="20" id="aPJ-bB-Lcp"/>
                 <constraint firstItem="3XV-ES-B1T" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="dOG-bI-uJE"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="nkR-EF-LfG" secondAttribute="trailing" constant="30" id="dls-V0-vi4"/>
+                <constraint firstAttribute="bottom" secondItem="nkR-EF-LfG" secondAttribute="bottom" constant="48" id="fdg-5E-Io4"/>
                 <constraint firstItem="Nj4-u2-Kz0" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="n0w-pC-FJX"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="TXs-bw-HDl" secondAttribute="trailing" constant="20" id="pWj-MU-7q6"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="5a5-dW-Fuu" secondAttribute="trailing" constant="20" id="pc0-YU-t0W"/>
@@ -101,6 +102,7 @@
                 <outlet property="tbvSentence" destination="5a5-dW-Fuu" id="XPy-sv-RtY"/>
                 <outlet property="tbvText" destination="Nj4-u2-Kz0" id="KQz-dg-XB9"/>
             </connections>
+            <point key="canvasLocation" x="137.68115942028987" y="-34.151785714285715"/>
         </view>
     </objects>
 </document>

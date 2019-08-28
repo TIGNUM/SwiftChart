@@ -26,6 +26,7 @@ final class MeAtMyBestCell: UITableViewCell, Dequeueable {
     }
 
     func setUp() {
+
         meAtMyBestButtonText.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 

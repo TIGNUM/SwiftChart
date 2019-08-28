@@ -52,7 +52,7 @@ DEPENDENCIES:
   - JTAppleCalendar (= 7.1.6)
   - KeychainAccess
   - Kingfisher
-  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`)"
+  - "qot_dal (from `git@github.com:TIGNUM/qot_dal.git`, branch `feature/dummy-links-added-to-copyrights`)"
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
@@ -87,6 +87,7 @@ EXTERNAL SOURCES:
   Bond:
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
+    :branch: feature/dummy-links-added-to-copyrights
     :git: "git@github.com:TIGNUM/qot_dal.git"
 
 CHECKOUT OPTIONS:
@@ -94,7 +95,7 @@ CHECKOUT OPTIONS:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: 12c0d4552b3474e24c7c34191abda34c723f27ea
+    :commit: 659bbf841203bc420c70c354f71e4dcb16d3bd59
     :git: "git@github.com:TIGNUM/qot_dal.git"
 
 SPEC CHECKSUMS:
@@ -122,6 +123,6 @@ SPEC CHECKSUMS:
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: f8dc5fecab5346ecd41c3f57ce7f316ce9eb11aa
+PODFILE CHECKSUM: 27adcf205d6d2e73a0a6d834e8159a6ecfdba3f6
 
 COCOAPODS: 1.7.5
