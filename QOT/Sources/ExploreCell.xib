@@ -10,9 +10,6 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="SF-Pro-Display-Regular.otf">
-            <string>SFProDisplay-Regular</string>
-        </array>
         <array key="SF-Pro-Display-Thin.otf">
             <string>SFProDisplay-Thin</string>
         </array>
@@ -242,8 +239,8 @@
                     <rect key="frame" x="24" y="48" width="15" height="1"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="15" id="7KP-Wv-RqM"/>
-                        <constraint firstAttribute="height" constant="1" id="iQ4-TL-bjY"/>
+                        <constraint firstAttribute="width" constant="10" id="7KP-Wv-RqM"/>
+                        <constraint firstAttribute="height" constant="1" id="cG9-2j-1Yh"/>
                     </constraints>
                 </view>
             </subviews>
@@ -264,6 +261,7 @@
                 <constraint firstItem="LQZ-mi-O7G" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="UEo-vI-13t"/>
                 <constraint firstItem="Jaw-QJ-rkp" firstAttribute="top" secondItem="Z4w-dz-0cs" secondAttribute="bottom" constant="10" id="Uf1-Nt-BmI"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="b9g-0f-hVY" secondAttribute="trailing" constant="10" id="V1L-Nw-7T8"/>
+                <constraint firstItem="Z4w-dz-0cs" firstAttribute="top" secondItem="kwg-sH-z29" secondAttribute="bottom" constant="15" id="V38-YK-h4v"/>
                 <constraint firstItem="kwg-sH-z29" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="24" id="Xnd-GR-YNw"/>
                 <constraint firstItem="3MZ-wO-T5F" firstAttribute="top" secondItem="bCs-Zr-GWx" secondAttribute="bottom" constant="38" id="YZP-PQ-95c"/>
                 <constraint firstItem="3MZ-wO-T5F" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="25" id="a5u-yy-2lm"/>
@@ -277,6 +275,7 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <connections>
                 <outlet property="introTextLabel" destination="Jaw-QJ-rkp" id="mH2-py-VWH"/>
+                <outlet property="strategyView" destination="b9g-0f-hVY" id="PNO-h9-Wgr"/>
                 <outlet property="timeOfDayPosition" destination="jkY-i1-kc7" id="G0t-fj-8y8"/>
                 <outlet property="titleLabel" destination="rv0-qA-dHX" id="1J9-Fo-e2l"/>
             </connections>

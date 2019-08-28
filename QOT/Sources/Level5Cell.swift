@@ -34,17 +34,20 @@ final class Level5Cell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var viewHeight: NSLayoutConstraint!
 
     @IBAction func save(_ sender: UIButton) {
-        hideAllViews()
-        viewHeight.constant = 350
         delegate?.saveAnswerValue(sender.tag, from: self)
-        comeBackView.isHidden = false
+        self.comeBackView.isHidden = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_6) {
+           self.comeBackView.isHidden = true
+        }
+        saveButtons.forEach {(button) in
+            button.setTitle(R.string.localized.level5ButtonSaved(), for: .normal)
+        }
     }
 
     @IBAction func selectNumber(_ sender: UIButton) {
         hideAllViews()
         setUpButtons()
         sender.backgroundColor = .accent40
-//        let views = [view1, view2, view3, view4, view5]
         views[sender.tag].isHidden = false
         delegate?.changedGetToLevel5Value(sender.tag + 1, from: self)
     }
@@ -55,13 +58,16 @@ final class Level5Cell: UITableViewCell, Dequeueable {
         setUpButtons()
         contentView.backgroundColor = .carbon
         saveButtons.forEach {(button) in saveButtonsUI(button: button)}
-        viewHeight.constant = 300
+        viewHeight.constant = UIScreen.main.bounds.height / 2.5
         comeBackView.isHidden = true
     }
 
     func setUpButtons() {
         buttons.forEach {(button) in button.backgroundColor = .clear }
-        buttons.forEach {(button) in button.corner(radius: 20)}
+        buttons.forEach {(button) in
+            button.circle()
+            button.layer.borderWidth = 1
+            button.layer.borderColor = UIColor.accent.cgColor }
     }
 
     func saveButtonsUI(button: UIButton) {
@@ -93,7 +99,7 @@ final class Level5Cell: UITableViewCell, Dequeueable {
             let valueIndex = selectedValue - 1
             buttons[valueIndex].backgroundColor = UIColor.accent.withAlphaComponent(0.4)
             views[valueIndex].isHidden = false
-            viewHeight.constant = 750
+            viewHeight.constant = UIScreen.main.bounds.height * 1.25
         }
     }
 }

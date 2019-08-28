@@ -44,7 +44,7 @@
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="if5-lR-GMd"/>
-                        <constraint firstAttribute="width" constant="15" id="yKN-zo-rPT"/>
+                        <constraint firstAttribute="width" constant="10" id="yKN-zo-rPT"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkR-EF-LfG">
@@ -80,7 +80,7 @@
                 <constraint firstItem="5a5-dW-Fuu" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="NIO-xE-au6"/>
                 <constraint firstItem="snW-CA-C1f" firstAttribute="top" secondItem="k0H-1I-Uwk" secondAttribute="top" constant="48" id="OwI-HJ-ok5"/>
                 <constraint firstItem="TXs-bw-HDl" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="XGW-Rf-loC"/>
-                <constraint firstItem="TXs-bw-HDl" firstAttribute="top" secondItem="snW-CA-C1f" secondAttribute="bottom" constant="20" id="Z2t-xZ-2jR"/>
+                <constraint firstItem="TXs-bw-HDl" firstAttribute="top" secondItem="snW-CA-C1f" secondAttribute="bottom" constant="15" id="Z2t-xZ-2jR"/>
                 <constraint firstItem="snW-CA-C1f" firstAttribute="leading" secondItem="k0H-1I-Uwk" secondAttribute="leading" constant="20" id="aPJ-bB-Lcp"/>
                 <constraint firstItem="3XV-ES-B1T" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="dOG-bI-uJE"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="nkR-EF-LfG" secondAttribute="trailing" constant="30" id="dls-V0-vi4"/>

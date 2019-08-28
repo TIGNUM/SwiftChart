@@ -320,6 +320,8 @@
 "Alert.Button.Title.Cancel" = "Cancel";
 "Alert.Button.Title.Continue" = "Continue";
 "Alert.Button.Title.Save" = "Save";
+"Level5.Button.Saved" = "Saved";
+"Copyright.Text" = "Content Copyright \n";
 "Alert.Button.Title.Save.and.Continue" = "Save & Continue";
 "Alert.Button.Title.Settings" = "Settings";
 "Alert.Button.Title.Open.Settings" = "Open Settings";

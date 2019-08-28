@@ -15,7 +15,7 @@ var environment = Environment.production
 var environment = Environment.development
 #endif
 #else
-var environment = Environment.development
+var environment = Environment.production
 #endif
 
 struct Environment {

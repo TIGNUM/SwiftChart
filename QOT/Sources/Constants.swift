@@ -113,6 +113,7 @@ struct Layout {
     static let cornerRadius08: CGFloat = 8
     static let cornerRadius12: CGFloat = 12
     static let cornerRadius20: CGFloat = 20
+    static let cornerRadius40: CGFloat = 40
     static let articleImageHeight: CGFloat = 200
     static let statusBarHeight: CGFloat = 64
     static let padding_1: CGFloat = 1

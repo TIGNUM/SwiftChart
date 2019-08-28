@@ -46,7 +46,7 @@
                     <rect key="frame" x="24" y="48" width="15" height="1"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="15" id="T7S-tA-ZKk"/>
+                        <constraint firstAttribute="width" constant="10" id="T7S-tA-ZKk"/>
                         <constraint firstAttribute="height" constant="1" id="xit-nY-35G"/>
                     </constraints>
                 </view>

@@ -14,6 +14,7 @@ final class DailyBriefRouter {
     // MARK: - Properties
 
     private let viewController: DailyBriefViewController
+    private var popUpController: PopUpViewController?
 
     // MARK: - Init
 
@@ -36,11 +37,9 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
     }
 
     func presentCopyRight(copyrightURL: String?) {
-        let copyrightViewController = CopyRightBucketsViewController(nibName: "CopyRightBucketsViewController", bundle: nil)
-        copyrightViewController.modalPresentationStyle = .overCurrentContext
-        copyrightViewController.view.backgroundColor = UIColor.carbon
-        copyrightViewController.copyrightURL = copyrightURL
-        viewController.present(copyrightViewController, animated: true, completion: nil)
+        let popUpController = PopUpCopyrightViewController(delegate: viewController, copyrightURL: copyrightURL)
+        popUpController.modalPresentationStyle = .overCurrentContext
+        viewController.present(popUpController, animated: true, completion: nil)
     }
 
     func presentMyToBeVision() {

@@ -182,21 +182,16 @@ extension DailyBriefWorker {
     // MARK: - Get to level 5
     extension DailyBriefWorker {
         func saveAnswerValue(_ value: Int) {
-            var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
-            level5Bucket?.answerIds = [value]
-            if let level5Bucket = level5Bucket {
-                qot_dal.DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
-                    if let error = error {
-                        qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
-                    }
-                })
-            }
-        }
-
-        var lastEstimatedLevel: Int? {
-            var lastEstimatedLevel: Int?
-            let bucket5 = buckets.filter {$0.bucketName == DailyBriefBucketName.GET_TO_LEVEL_5}.first
-            lastEstimatedLevel = bucket5?.latestGetToLevel5Value
-            return lastEstimatedLevel
+            getDailyBriefBucketsForViewModel(completion: {(buckets) in
+                var level5Bucket = buckets.filter {$0.bucketName == .GET_TO_LEVEL_5}.first
+                level5Bucket?.latestGetToLevel5Value = value
+                if let level5Bucket = level5Bucket {
+                    qot_dal.DailyBriefService.main.updateDailyBriefBucket(level5Bucket, {(error) in
+                        if let error = error {
+                            qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+                        }
+                    })
+                }
+            })
         }
     }

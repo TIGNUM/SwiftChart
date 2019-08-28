@@ -1014,7 +1014,6 @@
 		9C85A20922DCD45300E9383C /* ImpactDataTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */; };
 		9C9E33B322DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */; };
 		9CAD9FB92316634E001DA2DC /* SolveReminderTableCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */; };
-		9CAD9FBD231673BD001DA2DC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CAD9FBC231673BC001DA2DC /* SolveReminderCell.swift */; };
 		9CB9B7A1230C433700DA9938 /* ThreeLinesAndTwoColumns.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CB9B7A0230C433700DA9938 /* ThreeLinesAndTwoColumns.xib */; };
 		9CB9B7A3230C436400DA9938 /* ThreeLinesAndTwoColumns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CB9B7A2230C436400DA9938 /* ThreeLinesAndTwoColumns.swift */; };
 		9CC426162306A46000F8072E /* GuidedTrackSectionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */; };
@@ -1663,6 +1662,7 @@
 		F902CF5722DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */; };
 		F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */; };
 		F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */; };
+		F906A4DC23168A3D00351CAC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F906A4DB23168A3D00351CAC /* SolveReminderCell.swift */; };
 		F907153D230190CA00AC5A9B /* SprintChallengeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */; };
 		F907153F230190FA00AC5A9B /* SprintChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */; };
 		F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */; };
@@ -1725,6 +1725,8 @@
 		F99DF6112292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */; };
 		F99DF6132295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99DF6122295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib */; };
 		F99DF615229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99DF614229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift */; };
+		F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F99F5BE223140529007367CF /* PopUpCopyrightViewController.swift */; };
+		F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */; };
 		F9A5C92F22B23FF800AB2E94 /* MyPrepsRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */; };
 		F9A5C93122B2401000AB2E94 /* MyPrepsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */; };
 		F9A5C93322B2402600AB2E94 /* MyPrepsWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */; };
@@ -2867,7 +2869,6 @@
 		9C85A20822DCD45300E9383C /* ImpactDataTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactDataTableViewCell.swift; sourceTree = "<group>"; };
 		9C9E33B222DCA3C700214ED6 /* ImpactReadinessCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessCellViewModel.swift; sourceTree = "<group>"; };
 		9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderTableCellViewModel.swift; sourceTree = "<group>"; };
-		9CAD9FBC231673BC001DA2DC /* SolveReminderCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SolveReminderCell.swift; path = ../../../../Desktop/SolveReminderCell.swift; sourceTree = "<group>"; };
 		9CB9B7A0230C433700DA9938 /* ThreeLinesAndTwoColumns.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ThreeLinesAndTwoColumns.xib; sourceTree = "<group>"; };
 		9CB9B7A2230C436400DA9938 /* ThreeLinesAndTwoColumns.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreeLinesAndTwoColumns.swift; sourceTree = "<group>"; };
 		9CC426152306A46000F8072E /* GuidedTrackSectionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GuidedTrackSectionCell.xib; sourceTree = "<group>"; };
@@ -3505,6 +3506,7 @@
 		F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsSHPICell.xib; sourceTree = "<group>"; };
 		F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsTBVCell.xib; sourceTree = "<group>"; };
 		F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsPeakPerformanceCell.xib; sourceTree = "<group>"; };
+		F906A4DB23168A3D00351CAC /* SolveReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
 		F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeTableViewCell.xib; sourceTree = "<group>"; };
 		F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeTableViewCell.swift; sourceTree = "<group>"; };
 		F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsConfigurator.swift; sourceTree = "<group>"; };
@@ -3565,6 +3567,8 @@
 		F99DF6102292F43B00341DAB /* ToolsCollectionsAudioTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsCollectionsAudioTableViewCell.xib; sourceTree = "<group>"; };
 		F99DF6122295769400341DAB /* ToolsCollectionsGroupTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ToolsCollectionsGroupTableViewCell.xib; sourceTree = "<group>"; };
 		F99DF614229576B500341DAB /* ToolsCollectionsGroupTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ToolsCollectionsGroupTableViewCell.swift; sourceTree = "<group>"; };
+		F99F5BE223140529007367CF /* PopUpCopyrightViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCopyrightViewController.swift; sourceTree = "<group>"; };
+		F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PopUpCopyrightViewController.xib; sourceTree = "<group>"; };
 		F9A5C92E22B23FF800AB2E94 /* MyPrepsRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsRouter.swift; sourceTree = "<group>"; };
 		F9A5C93022B2401000AB2E94 /* MyPrepsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsViewController.swift; sourceTree = "<group>"; };
 		F9A5C93222B2402600AB2E94 /* MyPrepsWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsWorker.swift; sourceTree = "<group>"; };
@@ -5092,6 +5096,7 @@
 		75496E9622BA700D00150C78 /* PopUpView */ = {
 			isa = PBXGroup;
 			children = (
+				F99F5BE1231404F4007367CF /* PopUpView Copyright */,
 				75496E9722BA702C00150C78 /* PopUpViewController.swift */,
 				75496E9822BA702C00150C78 /* PopUpViewController.xib */,
 			);
@@ -6101,12 +6106,12 @@
 		9C24237A22F093E700B911E6 /* Solve Reminder  */ = {
 			isa = PBXGroup;
 			children = (
-				9CAD9FBC231673BC001DA2DC /* SolveReminderCell.swift */,
 				9C24237B22F0941D00B911E6 /* SolveReminderCell.xib */,
 				F90BD4282301669A00008702 /* SolveReminderCellViewModel.swift */,
 				F90BD422230164B100008702 /* SolveTableViewCell.xib */,
 				F90BD424230164CA00008702 /* SolveTableViewCelll.swift */,
 				9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */,
+				F906A4DB23168A3D00351CAC /* SolveReminderCell.swift */,
 			);
 			name = "Solve Reminder ";
 			sourceTree = "<group>";
@@ -8233,6 +8238,15 @@
 			name = toolsItems;
 			sourceTree = "<group>";
 		};
+		F99F5BE1231404F4007367CF /* PopUpView Copyright */ = {
+			isa = PBXGroup;
+			children = (
+				F99F5BE223140529007367CF /* PopUpCopyrightViewController.swift */,
+				F99F5BE323140529007367CF /* PopUpCopyrightViewController.xib */,
+			);
+			name = "PopUpView Copyright";
+			sourceTree = "<group>";
+		};
 		F9A5C93E22B7CD1C00AB2E94 /* Payment  */ = {
 			isa = PBXGroup;
 			children = (
@@ -8894,6 +8908,7 @@
 				DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */,
 				B4AB48D4230D3A9B003B3C1F /* MyDataCharTableViewCell.xib in Resources */,
 				369ADFE822A6ABE700DE4FA0 /* ReminderTableViewCell.xib in Resources */,
+				F99F5BE523140529007367CF /* PopUpCopyrightViewController.xib in Resources */,
 				CC8018241F026BDA0040B03F /* LibraryTableViewCell.xib in Resources */,
 				F91A2D1F22D3865D00C35121 /* ThoughtsCell.xib in Resources */,
 				D58BD8781E9F65F7005676DE /* ArticleCollectionCell.xib in Resources */,
@@ -9929,8 +9944,8 @@
 				75EFB63222C51C6F00E8C64F /* TBVDataGraphTableViewCell.swift in Sources */,
 				CBC1DC221F0FB36400F6D056 /* QuestionGroup.swift in Sources */,
 				B856B47D22B0E29D0017A249 /* MyLibraryUserStorageInteractor.swift in Sources */,
-				9CAD9FBD231673BD001DA2DC /* SolveReminderCell.swift in Sources */,
 				5FA6663A229C1DB30027EE74 /* MyVisionEditDetailsViewController.swift in Sources */,
+				F906A4DC23168A3D00351CAC /* SolveReminderCell.swift in Sources */,
 				D52DAF9B1EC1E87D00C63156 /* ActivityChart.swift in Sources */,
 				AC84FFC122293BEB0056F9EA /* SiriEventsModel.swift in Sources */,
 				F9A5C94222B7CD8100AB2E94 /* PaymentReminderConfigurator.swift in Sources */,
@@ -10137,6 +10152,7 @@
 				CBAF6FD81F2B88E500E57426 /* UpSyncData.swift in Sources */,
 				DB6805A3218210E700C2FC69 /* MorningQuestion.swift in Sources */,
 				362614AC20CFC1C300AB3659 /* UserCountryList.swift in Sources */,
+				F99F5BE423140529007367CF /* PopUpCopyrightViewController.swift in Sources */,
 				8D6E058922D7466E00EC2AEF /* MyLibraryNotesWorker.swift in Sources */,
 				8D55119A22F2D92800D1A78D /* BaseMyLibraryTableViewCell.swift in Sources */,
 				36E86D4B2270511100371C67 /* ArticleBulletPointTableViewCell.swift in Sources */,

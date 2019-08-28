@@ -30,7 +30,6 @@ protocol DailyBriefInteractorInterface: Interactor {
     var rowViewSectionCount: Int { get }
     var shpiAnswer: QDMDailyCheckInAnswer? { get }
     var peakPerformanceCount: Int? { get }
-    var lastEstimatedLevel: Int? { get }
     func bucket(at row: Int) -> QDMDailyBriefBucket?
     func bucketViewModel(at row: Int) -> BaseDailyBriefViewModel?
     func bucketViewModelNew() -> [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>]?

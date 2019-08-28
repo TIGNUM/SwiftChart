@@ -40,6 +40,7 @@ final class LeaderWisdomTableViewCell: UITableViewCell, Dequeueable {
         duration = viewModel?.audioDuration ?? viewModel?.videoDuration
         remoteID = viewModel?.remoteID
         mediaURL = viewModel?.videoThumbnail
+        videoDurationButton.isHidden = viewModel?.format != .video
         videoDurationButton.setTitle(viewModel?.durationString, for: .normal)
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)

@@ -147,10 +147,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         return worker.peakPerformanceCount
     }
 
-    var lastEstimatedLevel: Int? {
-        return worker.lastEstimatedLevel
-    }
-
     func bucket(at row: Int) -> QDMDailyBriefBucket? {
         return worker.bucket(at: row)
     }

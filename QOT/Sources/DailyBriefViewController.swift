@@ -26,6 +26,10 @@ protocol DailyBriefViewControllerDelegate: class {
     func presentCopyRight(copyrightURL: String?)
 }
 
+protocol PopUpCopyRightViewControllerProtocol: class {
+     func cancelAction()
+}
+
 final class DailyBriefNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(DailyBriefNavigationController.classForCoder())
 }
@@ -568,14 +572,14 @@ private extension DailyBriefViewController {
         if exploreViewModel?.section == .LearnStrategies {
             self.selectedStrategyID = exploreViewModel?.remoteID
             let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openStrategy))
-            cell.addGestureRecognizer(gesture)
+            cell.strategyView.addGestureRecognizer(gesture)
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
                            labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0))
         } else if exploreViewModel?.section == .QOTLibrary {
             self.selectedToolID = exploreViewModel?.remoteID
             let gesture = UITapGestureRecognizer(target: self, action: #selector(self.openTool))
-            cell.addGestureRecognizer(gesture)
+            cell.strategyView.addGestureRecognizer(gesture)
             cell.configure(title: exploreViewModel?.title,
                            introText: exploreViewModel?.introText ?? "",
                            labelPosition: CGFloat(exploreViewModel?.labelPosition ?? 0) )
@@ -697,9 +701,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func saveAnswerValue(_ value: Int, from cell: UITableViewCell) {
         interactor?.saveAnswerValue(value)
-        if let cellIndexPath = tableView.indexPath(for: cell) {
-            self.tableView.reloadRows(at: [cellIndexPath], with: .automatic)
-        }
     }
 
     func changedGetToLevel5Value(_ value: Int, from cell: UITableViewCell) {
@@ -751,5 +752,12 @@ extension DailyBriefViewController: QuestionnaireAnswer {
             let answers = question?.answers?.count ?? 0
             question?.selectedAnswerIndex = (answers - 1) - answer
         })
+    }
+}
+
+extension DailyBriefViewController: PopUpCopyrightViewControllerProtocol {
+
+    func cancelAction() {
+         self.dismiss(animated: true, completion: nil)
     }
 }

@@ -31,7 +31,7 @@
                             <rect key="frame" x="24" y="48" width="16" height="1"/>
                             <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="16" id="Vpi-8f-cJz"/>
+                                <constraint firstAttribute="width" constant="10" id="Vpi-8f-cJz"/>
                                 <constraint firstAttribute="height" constant="1" id="f4J-ev-JZY"/>
                             </constraints>
                         </view>
