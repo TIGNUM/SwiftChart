@@ -358,7 +358,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" bouncesZoom="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2oW-W3-A3h">
-                                <rect key="frame" x="0.0" y="64" width="375" height="375"/>
+                                <rect key="frame" x="0.0" y="64" width="375" height="439"/>
                                 <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="20" minimumInteritemSpacing="20" id="c5t-Ic-3zu">
                                     <size key="itemSize" width="50" height="50"/>
@@ -386,7 +386,7 @@
                         <constraints>
                             <constraint firstItem="2oW-W3-A3h" firstAttribute="top" secondItem="CJv-VQ-YrZ" secondAttribute="top" id="Ear-6N-hv0"/>
                             <constraint firstItem="CJv-VQ-YrZ" firstAttribute="trailing" secondItem="2oW-W3-A3h" secondAttribute="trailing" id="JbM-A4-X4h"/>
-                            <constraint firstItem="CJv-VQ-YrZ" firstAttribute="bottom" secondItem="2oW-W3-A3h" secondAttribute="bottom" constant="184" id="YYe-c3-oAr"/>
+                            <constraint firstItem="CJv-VQ-YrZ" firstAttribute="bottom" secondItem="2oW-W3-A3h" secondAttribute="bottom" constant="120" id="YYe-c3-oAr"/>
                             <constraint firstItem="2oW-W3-A3h" firstAttribute="leading" secondItem="CJv-VQ-YrZ" secondAttribute="leading" id="d8n-a1-pMX"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="CJv-VQ-YrZ"/>
