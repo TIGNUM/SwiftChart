@@ -266,6 +266,7 @@ extension UIViewController {
         button.addTarget(self, action: #selector(didTapBackButton), for: .touchUpInside)
         button.setImage(R.image.ic_back_rounded(), for: .normal)
         button.imageView?.contentMode = .center
+        button.backgroundColor = .clear
         button.frame = CGRect(origin: CGPoint(x: 0, y: 0), size: CGSize(width: .Default, height: .Default))
         return UIBarButtonItem(customView: button)
     }

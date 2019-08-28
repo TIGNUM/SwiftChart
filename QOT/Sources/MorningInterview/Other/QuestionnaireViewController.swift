@@ -117,6 +117,7 @@ final class QuestionnaireViewController: UIViewController, ScreenZLevel1 {
     private var presentationType: QuestionnairePresentationType = .selection
     private var controllerType: ControllerType = .vision
     private var showAnimated: Bool = false
+    private var saveShouldShow: Bool = false
     weak var answerDelegate: QuestionnaireAnswer?
     weak var dailyCheckinDelegate: DailyBriefViewControllerDelegate?
 
@@ -578,7 +579,9 @@ extension QuestionnaireViewController: UIGestureRecognizerDelegate {
         let yPosition = touch.location(in: piece).y
         if touch.phase == .began {
             touchDownYPosition = yPosition
-        }
+            saveShouldShow = true
+            refreshBottomNavigationItems()
+        } 
         return true
     }
 
@@ -596,7 +599,6 @@ extension QuestionnaireViewController {
         guard gestureRecognizer.view != nil else {return}
         let piece = gestureRecognizer.view!
         let yPosition = gestureRecognizer.location(in: piece).y
-
         switch gestureRecognizer.state {
         case .began:
             touchDownYPosition = yPosition
@@ -627,7 +629,7 @@ extension QuestionnaireViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         switch controllerType {
         case .customize:
-            return [dismissNavigationItem()]
+            return [backNavigationItem()]
         default:
             return nil
         }
@@ -636,7 +638,16 @@ extension QuestionnaireViewController {
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         switch controllerType {
         case .customize:
-            return [roundedBarButtonItem(title: "Save", buttonWidth: 65, action: #selector(didTapSave))]
+            if saveShouldShow {
+                    return [roundedBarButtonItem(title: R.string.localized.mySprintDetailsNotesButtonSave(),
+                                                 buttonWidth: .Done,
+                                                 action: #selector(didTapSave),
+                                                 backgroundColor: .clear,
+                                                 borderColor: .accent)]
+            } else {
+                return nil
+            }
+            return nil
         default:
             return nil
         }

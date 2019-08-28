@@ -204,8 +204,9 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Prp-lO-wdT">
-                                <rect key="frame" x="34" y="274.33333333333331" width="317" height="25"/>
+                                <rect key="frame" x="142" y="274.33333333333331" width="200" height="25"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" constant="200" id="Z5x-ir-Grp"/>
                                     <constraint firstAttribute="height" constant="25" id="wwj-F1-R6M"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
@@ -244,11 +245,9 @@
                             <constraint firstItem="viv-L5-UrG" firstAttribute="height" secondItem="7th-Xx-vP4" secondAttribute="height" multiplier="2" id="J3T-n2-X3d"/>
                             <constraint firstAttribute="trailing" secondItem="6EH-Fy-axJ" secondAttribute="trailing" id="JMp-39-dEc"/>
                             <constraint firstItem="6EH-Fy-axJ" firstAttribute="top" secondItem="ZSG-Sa-kqJ" secondAttribute="bottom" id="LnO-P8-Apy"/>
-                            <constraint firstItem="Prp-lO-wdT" firstAttribute="leading" secondItem="rNb-KL-Z8H" secondAttribute="trailing" constant="10" id="OxR-q1-bg5"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ija-7r-kOP" secondAttribute="trailing" constant="24" id="QKv-T6-h9I"/>
                             <constraint firstItem="Tzc-Ic-cPM" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="Sb6-Du-kXI"/>
                             <constraint firstItem="irz-At-l75" firstAttribute="centerX" secondItem="7th-Xx-vP4" secondAttribute="centerX" id="VWp-Kf-JBp"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Prp-lO-wdT" secondAttribute="trailing" constant="24" id="VfI-BB-AG1"/>
                             <constraint firstItem="Tzc-Ic-cPM" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.0800493" id="VoF-7g-Mee"/>
                             <constraint firstItem="6EH-Fy-axJ" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="W3f-06-wpL"/>
                             <constraint firstItem="eLZ-Ck-Uiv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="XRx-Fk-Qtv"/>
@@ -258,6 +257,7 @@
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="ZSG-Sa-kqJ" secondAttribute="trailing" constant="24" id="bnv-wh-LgL"/>
                             <constraint firstItem="viv-L5-UrG" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="cbd-gl-cyY"/>
                             <constraint firstItem="Ija-7r-kOP" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="cii-ai-5Eq"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Prp-lO-wdT" secondAttribute="trailing" constant="33" id="fZc-we-g1f"/>
                             <constraint firstItem="Tzc-Ic-cPM" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="fuZ-oK-SPl"/>
                             <constraint firstItem="IvG-bf-DRU" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="irR-BR-UiV"/>
                             <constraint firstItem="Prp-lO-wdT" firstAttribute="bottom" secondItem="rNb-KL-Z8H" secondAttribute="bottom" constant="-5" id="jGf-gt-tND"/>

@@ -70,6 +70,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         switch viewModelBucket?.domainModel?.bucketName {
         case .DAILY_CHECK_IN_1?:
             NotificationCenter.default.addObserver(self, selector: #selector(updateTargetValue), name: .didPickTarget, object: nil)
+            NotificationCenter.default.addObserver(self, selector: #selector(didFinishDailyCheckin), name: .didFinishDailyCheckin, object: nil)
         default:
             break
         }
@@ -80,6 +81,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
         switch viewModelBucket?.domainModel?.bucketName {
         case .DAILY_CHECK_IN_1?:
             NotificationCenter.default.removeObserver(self, name: .didPickTarget, object: nil)
+            NotificationCenter.default.removeObserver(self, name: .didFinishDailyCheckin, object: nil)
         default:
             break
         }
@@ -582,6 +584,10 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
             return
         }
         interactor?.saveUpdatedDailyCheckInSleepTarget(value)
+        tableView.reloadData()
+    }
+
+    @objc func didFinishDailyCheckin(_ notification: NSNotification) {
         tableView.reloadData()
     }
 

@@ -25,6 +25,7 @@ final class ImpactDataTableViewCell: UITableViewCell, Dequeueable {
         self.subTitle.text = subTitle
         self.averageValue.text = averageValue
         self.targetRefValue.text = String(targetRefValue)
+        self.targetRefValue.textColor = .accent
         self.bringSubview(toFront: button)
     }
 
