@@ -44,6 +44,8 @@ enum ThemeView {
     case fade
     case separator
     case accentBackground
+    case headerLine
+    case prepsSegmentSelected
     case qotAlert
 
     var color: UIColor {
@@ -68,13 +70,13 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10, forcedColorMode: mode)
         case .articleAudioBar:
             return Palette.light(Palette.carbon, or: Palette.sand)
-        case .audioBar:
+        case .audioBar, .headerLine:
             return Palette.sand
         case .fade:
             return Palette.light(Palette.sand10, or: Palette.carbon10)
         case .separator:
             return Palette.light(Palette.carbon10, or: Palette.sand10)
-        case .accentBackground:
+        case .accentBackground, .prepsSegmentSelected:
             return Palette.accent30
         case .qotAlert:
             return Palette.carbonDark80
@@ -130,6 +132,33 @@ enum ThemeTint {
         }
         if let color = color {
             view.tintColor = color
+        }
+    }
+}
+
+enum ThemeSegment {
+    case accent
+
+    func apply(_ view: UISegmentedControl) {
+        var normal: [NSAttributedString.Key: Any]?
+        var selected: [NSAttributedString.Key: Any]?
+
+        switch self {
+        case .accent:
+            normal = [NSAttributedStringKey.font: Fonts.fontRegular14,
+                      NSAttributedStringKey.foregroundColor: Palette.accent60]
+            selected = [NSAttributedStringKey.font: Fonts.fontRegular14,
+                        NSAttributedStringKey.foregroundColor: Palette.sand]
+            view.tintColor = .clear
+            view.backgroundColor = .clear
+        }
+
+        if let normal = normal,
+            let selected = selected {
+            view.setTitleTextAttributes(normal, for: .normal)
+            view.setTitleTextAttributes(selected, for: .selected)
+        } else {
+            view.backgroundColor = .red
         }
     }
 }
@@ -217,6 +246,13 @@ enum ThemeText {
     case strategySubHeader
     case myQOTBoxTitle
     case myQOTTitle
+    case myQOTProfileName
+    case myQOTPrepCellTitle
+    case myQOTPrepTitle
+    case myQOTPrepComment
+    case myQOTSectionHeader
+    case accountHeader
+    case accountDetail
     case quotation
     case dailyBriefTitle
     case sprintName
@@ -252,15 +288,18 @@ enum ThemeText {
         switch self {
         case .asterix:
             return Fonts.fontRegular13
-        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle:
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText:
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
+             .leaderText:
             return Fonts.fontRegular16
-        case .performanceStaticTitle, .performanceTitle, .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader, .performanceSubtitle, .quoteAuthor, .sleepReference, .reference:
+        case .performanceStaticTitle, .performanceTitle, .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader,
+             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference:
             return Fonts.fontRegular14
-        case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .durationString, .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead:
+        case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .durationString,
+             .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead:
             return Fonts.fontMedium12
-        case .linkMenuItem, .myQOTBoxTitle:
+        case .linkMenuItem, .myQOTBoxTitle, .myQOTPrepTitle:
             return Fonts.fontLight20
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
@@ -297,9 +336,10 @@ enum ThemeText {
             case .scaleNot: return Fonts.fontRegular16
             }
         case .articleRelatedTitle, .myQOTTitle, .whatsHotHeader, .sprintText, .sprintTitle, .solveQuestions, .impactBucket,
-             .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed, .articleHeadlineSmallFade, .articleHeadlineSmallLight:
+             .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
+             .articleHeadlineSmallFade, .articleHeadlineSmallLight, .accountDetail, .myQOTPrepCellTitle, .myQOTPrepComment:
             return Fonts.fontLight16
-        case .articleNextTitle, .performanceSections:
+        case .articleNextTitle, .performanceSections, .accountHeader:
             return Fonts.fontMedium14
         case .strategyHeader:
             return Fonts.fontRegular15
@@ -313,7 +353,7 @@ enum ThemeText {
             return Fonts.fontLight36
         case .articleSecondaryTitle:
             return Fonts.fontLight32
-        case .articleSubTitle:
+        case .articleSubTitle, .myQOTProfileName:
             return Fonts.fontLight24
         case .articleHeadline, .learnPDF:
             return Fonts.fontLight20
@@ -350,13 +390,16 @@ enum ThemeText {
 
     private var color: UIColor {
         switch self {
-        case .navigationBarHeader, .quotation, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket, .articleRelatedTitle,
-             .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle, .chatButtonEnabled, .settingsTitle,
-             .strategyHeader, .myQOTBoxTitle, .sprintName, .sprintTitle, .solveQuestions, .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle:
+        case .navigationBarHeader, .quotation, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket,
+             .articleRelatedTitle, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
+             .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .sprintTitle, .solveQuestions,
+             .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle, .accountDetail,
+             .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle:
             return Palette.sand
         case .author, .quoteAuthor, .chatButton:
             return Palette.sand60
-        case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference, .settingsTitleFade:
+        case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
+             .settingsTitleFade:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -366,7 +409,8 @@ enum ThemeText {
             return Palette.carbon40
         case .fromCoachTitle:
             return Palette.carbon
-        case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore:
+        case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore, .accountHeader,
+             .myQOTPrepComment:
             return Palette.sand70
         case .performanceSectionText:
             return Palette.carbon70
@@ -376,7 +420,7 @@ enum ThemeText {
             return Palette.light(Palette.sand60, or: Palette.carbon60)
         case .articleCategory, .articleCategoryNotScaled:
              return Palette.light(Palette.carbon30, or: Palette.sand30)
-        case .articleTitle, .articleTitleNotScaled, .articleBody, .myQOTTitle:
+        case .articleTitle, .articleTitleNotScaled, .articleBody:
             return Palette.light(Palette.carbon, or: Palette.sand)
         case .articleDatestamp:
             return Palette.light(Palette.carbon30, or: Palette.sand30)
@@ -435,7 +479,8 @@ enum ThemeText {
 
         switch self {
         case .navigationBarHeader, .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
-             .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle:
+             .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle,
+             .myQOTPrepTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
         case .articleTitle, .articleTitleNotScaled, .performanceSections, .bespokeTitle:
             string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
@@ -451,7 +496,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText, .sleepReference, .asterix, .bespokeText, .leaderText:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
-        case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader:
+        case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)
         case .articleBullet, .sectionHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
@@ -481,7 +526,7 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: lSpace, font: self.font, lineSpacing: lHeight, textColor: self.color, alignment: .center)
         case .chatButton, .chatButtonEnabled:
             string = NSAttributedString(string: text, font: self.font, lineSpacing: 2.0, textColor: self.color, alignment: .left)
-        case .settingsTitle, .settingsTitleFade:
+        case .settingsTitle, .settingsTitleFade, .myQOTProfileName, .accountDetail, .accountHeader, .myQOTPrepCellTitle, .myQOTSectionHeader:
             string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
         case .qotAlertTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left, lineBreakMode: nil)
@@ -493,7 +538,10 @@ enum ThemeText {
         return string
     }
 
-    func apply(_ text: String?, to view: UILabel, lineSpacing: CGFloat? = nil, lineHeight: CGFloat? = nil) {
+    func apply(_ text: String?, to view: UILabel?, lineSpacing: CGFloat? = nil,
+        lineHeight: CGFloat? = nil) {
+        guard let view = view else { return }
+
         let string = attributedString(text, lineSpacing: lineSpacing, lineHeight: lineHeight)
         if string.string.contains("<NO THEME") {
             view.backgroundColor = .red
@@ -562,6 +610,10 @@ private struct Palette {
 
     static var accent30: UIColor {
         return UIColor.accent.withAlphaComponent(0.3)
+    }
+
+    static var accent60: UIColor {
+        return UIColor.accent.withAlphaComponent(0.6)
     }
 
     static var carbonDark: UIColor {

@@ -16,13 +16,14 @@ final class MyQotProfileOptionsTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        backgroundColor = .carbon
-        self.selectedBackgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView?.backgroundColor = .accent10
+        ThemeView.level2.apply(self)
+        let bkgdView = UIView(frame: self.bounds)
+        ThemeView.level2Selected.apply(bkgdView)
+        selectedBackgroundView = bkgdView
     }
 
     func configure(_ data: MyQotProfileModel.TableViewPresentationData) {
-        headingLabel.text = data.heading.uppercased()
-        subHeadingLabel.text = data.subHeading
+        ThemeText.linkMenuItem.apply(data.heading.uppercased(), to: headingLabel)
+        ThemeText.linkMenuComment.apply(data.subHeading, to: subHeadingLabel)
     }
 }

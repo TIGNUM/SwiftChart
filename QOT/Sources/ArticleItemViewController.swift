@@ -193,11 +193,11 @@ private extension ArticleItemViewController {
     func topBarTextTableViewCell(tableView: UITableView,
                                       indexPath: IndexPath,
                                       title: String) -> TitleTableViewCell {
-        let itemTextCell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        let config = TitleTableViewCell.Config(backgroundColor: .carbon, titlefont: .sfProtextMedium(ofSize: 12), titleTextColor: .sand30, isArrowHidden: true, isSeparatorHidden: true, bottomMargin: 16, topMargin: 20)
-        itemTextCell.config = config
-        itemTextCell.title = title
-        return itemTextCell
+        let cell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
+        cell.configure(title: title,
+                       bkgdTheme: .articleBackground(nil), titleTheme: .articleRelatedDetail,
+                       arrowHidden: true, separatorHidden: true, topMargin: 20, bottomMargin: 16)
+        return cell
     }
 
     func contentItemTextTableViewCell(tableView: UITableView,

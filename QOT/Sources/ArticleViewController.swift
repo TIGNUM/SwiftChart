@@ -522,13 +522,13 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
                 title: title,
                 imageURL: imageURL,
                 placeholderImage: R.image.audioPlaceholder(),
-                attributedString: Style.mediaDescription(title).attributedString(),
+                attributedString: ThemeText.articleMediaDescription.attributedString(title),
                 canStream: true)
         case .image(let title, _, let url):
             return imageTableViewCell(
                 tableView: tableView,
                 indexPath: indexPath,
-                attributeString: Style.mediaDescription(title).attributedString(),
+                attributeString: ThemeText.articleMediaDescription.attributedString(title),
                 url: url)
         case .listItem(let bullet):
             let cell: ArticleBulletPointTableViewCell = tableView.dequeueCell(for: indexPath)

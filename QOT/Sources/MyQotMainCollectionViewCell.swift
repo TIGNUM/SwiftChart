@@ -32,6 +32,9 @@ class MyQotMainCollectionViewCell: UICollectionViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
+        ThemeView.level1.apply(self)
+        contentView.backgroundColor = .clear
+
         layer.borderColor = UIColor.sand40.cgColor
         layer.cornerRadius = 15
         layer.borderWidth = 1

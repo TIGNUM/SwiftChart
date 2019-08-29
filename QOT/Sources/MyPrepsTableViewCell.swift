@@ -20,7 +20,7 @@ final class MyPrepsTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Lifecycle
 
     func configure(title: String, subtitle: String) {
-        titleLabel.text = title.uppercased()
-        subtitleLabel.text = subtitle
+        ThemeText.myQOTPrepCellTitle.apply(title.uppercased(), to: titleLabel)
+        ThemeText.datestamp.apply(subtitle, to: subtitleLabel)
     }
 }

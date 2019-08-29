@@ -25,6 +25,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     var interactor: MyPrepsInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
     @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var headerLine: UIView!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var headerTitle: UILabel!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
@@ -38,6 +39,13 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var cancelDeleteButton: UIButton!
     private var editPressed: Bool = false
     @IBOutlet private weak var confirmDeleteButton: UIButton!
+
+    @IBOutlet weak var noPrepsTitle: UILabel!
+    @IBOutlet weak var noPrepsComment: UILabel!
+    @IBOutlet weak var noMindsetTitle: UILabel!
+    @IBOutlet weak var noMindsetComment: UILabel!
+    @IBOutlet weak var noRecoveryTitle: UILabel!
+    @IBOutlet weak var noRecoveryComment: UILabel!
 
     // MARK: - LifeCycle
 
@@ -154,8 +162,19 @@ private extension MyPrepsViewController {
     }
 
     func setupView() {
-        view.backgroundColor = .carbon
-        headerTitle.text = R.string.localized.myQotHeaderTitle()
+        ThemeView.level3.apply(view)
+        ThemeView.level3.apply(headerView)
+        ThemeText.sectionHeader.apply(R.string.localized.myQotHeaderTitle(), to: headerTitle)
+        ThemeView.headerLine.apply(headerLine)
+
+        ThemeText.myQOTPrepTitle.apply(R.string.localized.myPrepNoPrepTitle(), to: noPrepsTitle)
+        ThemeText.myQOTPrepComment.apply(R.string.localized.myPrepNoPrepComment(), to: noPrepsComment)
+        ThemeText.myQOTPrepTitle.apply(R.string.localized.myPrepNoMindsetTitle(), to: noMindsetTitle)
+        ThemeText.myQOTPrepComment.apply(R.string.localized.myPrepNoMindsetComment(), to: noMindsetComment)
+        ThemeText.myQOTPrepTitle.apply(R.string.localized.myPrepNoRecoveryTitle(), to: noRecoveryTitle)
+        ThemeText.myQOTPrepComment.apply(R.string.localized.myPrepNoRecoveryComment(), to: noRecoveryComment)
+
+        ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(MyPrepsTableViewCell.self)
         hideAllViews()
         tableView.reloadData()
@@ -177,14 +196,7 @@ private extension MyPrepsViewController {
 // MARK: - Actions
 private extension MyPrepsViewController {
     func setupSegementedControl() {
-        segmentedControl.tintColor = .clear
-        segmentedControl.backgroundColor = .clear
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.apercuRegular(ofSize: 14),
-                                                 NSAttributedStringKey.foregroundColor: UIColor.accent.withAlphaComponent(0.4)],
-                                                for: .normal)
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.apercuRegular(ofSize: 14),
-                                                 NSAttributedStringKey.foregroundColor: UIColor.sand],
-                                                for: .selected)
+        ThemeSegment.accent.apply(segmentedControl)
     }
 }
 

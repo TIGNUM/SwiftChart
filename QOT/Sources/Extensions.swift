@@ -325,14 +325,14 @@ extension UIView {
         case bottom
     }
 
-    func addHeader(with color: UIColor) {
-        self.addSubview(UIView.headerView(with: color))
+    func addHeader(with theme: ThemeView) {
+        self.addSubview(UIView.headerView(with: theme))
     }
 
-    static func headerView(with color: UIColor) -> UIView {
+    static func headerView(with theme: ThemeView) -> UIView {
         let screenSize = UIScreen.main.bounds.size
         let content = UIView(frame: CGRect(x: 0, y: -screenSize.height, width: screenSize.width, height: screenSize.height))
-        content.backgroundColor = color
+        theme.apply(content)
         let header = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.size.width, height: 0.1))
         header.addSubview(content)
         return header

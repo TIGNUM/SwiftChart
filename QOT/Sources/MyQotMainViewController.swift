@@ -95,13 +95,14 @@ final class MyQotMainViewController: UIViewController, ScreenZLevel1 {
 
 extension MyQotMainViewController: MyQotMainViewControllerInterface {
     func setupView() {
+        ThemeView.level1.apply(self.view)
+        ThemeView.level1.apply(collectionView)
         collectionView.registerDequeueable(MyQotMainCollectionViewCell.self)
         collectionView.registerDequeueable(NavBarCollectionViewCell.self)
 
         guard let layout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
             return
         }
-
         layout.minimumLineSpacing = 16
         layout.minimumInteritemSpacing = 16
         layout.sectionInset = .init(top: 10, left: 24, bottom: 0, right: 24)

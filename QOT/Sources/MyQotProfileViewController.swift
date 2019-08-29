@@ -14,6 +14,7 @@ final class MyQotProfileViewController: AbstractLevelTwoViewController {
 
     @IBOutlet private weak var tableView: UITableView!
     @IBOutlet private weak var headerLabel: UILabel!
+    @IBOutlet private weak var headerLine: UIView!
     @IBOutlet private weak var headerView: UIView!
     @IBOutlet private weak var loaderView: UIView!
 
@@ -56,12 +57,14 @@ final class MyQotProfileViewController: AbstractLevelTwoViewController {
 
 private extension MyQotProfileViewController {
     func setupTableView() {
+        ThemeView.level2.apply(view)
+        ThemeView.level2.apply(tableView)
+        ThemeView.level2.apply(headerView)
         tableView.registerDequeueable(MyQotProfileOptionsTableViewCell.self)
         tableView.registerDequeueable(MyQotProfileHeaderView.self)
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.tableHeaderView = UIView.headerView(with: .carbonDark)
-        tableView.backgroundColor = .carbon
+        tableView.tableHeaderView = UIView.headerView(with: .level2)
         tableView.reloadData()
     }
 }
@@ -79,9 +82,11 @@ extension MyQotProfileViewController: MyQotProfileViewControllerInterface {
     }
 
     func setupView(profile: UserProfileModel, menuItems: [MyQotProfileModel.TableViewPresentationData]) {
+        ThemeView.level2.apply(self.view)
         self.profile = profile
         self.menuItems = menuItems
-        headerLabel.text = interactor?.myProfileText()
+        ThemeText.sectionHeader.apply(interactor?.myProfileText(), to: headerLabel)
+        ThemeView.headerLine.apply(headerLine)
         setupTableView()
         self.removeLoadingSkeleton()
     }

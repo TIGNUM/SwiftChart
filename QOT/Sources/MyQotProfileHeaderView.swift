@@ -15,11 +15,11 @@ final class MyQotProfileHeaderView: UITableViewHeaderFooterView, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        contentView.backgroundColor = .carbonDark
+        ThemeView.level2.apply(self)
     }
 
     func configure(data: MyQotProfileModel.HeaderViewModel) {
-        nameLabel.text = data.name
-        memberSinceLabel.text = data.memberSince
+        ThemeText.myQOTProfileName.apply(data.name, to: nameLabel)
+        ThemeText.datestamp.apply(data.memberSince, to: memberSinceLabel)
     }
 }

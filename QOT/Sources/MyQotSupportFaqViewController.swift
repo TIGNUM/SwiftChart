@@ -19,7 +19,7 @@ final class MyQotSupportFaqViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .carbon
+        ThemeView.level3.apply(view)
         interactor?.viewDidLoad()
     }
 
@@ -36,11 +36,12 @@ final class MyQotSupportFaqViewController: UIViewController {
 
 extension MyQotSupportFaqViewController: MyQotSupportFaqViewControllerInterface {
     func setupView() {
+        ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TitleTableViewCell.self)
         tableView.delegate = self
         tableView.dataSource = self
         interactor?.faqHeaderText({[weak self] (text) in
-            self?.headerLabel.text = text
+            ThemeText.myQOTSectionHeader.apply(text, to: self?.headerLabel)
         })
         tableView.reloadData()
     }
@@ -56,8 +57,8 @@ extension MyQotSupportFaqViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleTableViewCell = tableView.dequeueCell(for: indexPath)
-        cell.config = TitleTableViewCell.Config(backgroundColor: .carbon, isArrowHidden: true)
-        cell.title = interactor?.title(at: indexPath) ?? ""
+        cell.configure(title: interactor?.title(at: indexPath) ?? "",
+                       bkgdTheme: .level3, titleTheme: .myQOTTitle, arrowHidden: true)
         return cell
     }
 

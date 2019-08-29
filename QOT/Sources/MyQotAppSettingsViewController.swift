@@ -24,6 +24,7 @@ final class MyQotAppSettingsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
+        ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TitleSubtitleTableViewCell.self)
         tableView.registerDequeueable(TitleTableHeaderView.self)
         tableView.registerDequeueable(AppSettingsFooterView.self)
@@ -54,10 +55,10 @@ final class MyQotAppSettingsViewController: UIViewController {
 
 extension MyQotAppSettingsViewController: MyQotAppSettingsViewControllerInterface {
     func setup(_ settings: MyQotAppSettingsModel) {
-        view.backgroundColor = .carbon
+        ThemeView.level3.apply(view)
         settingsModel = settings
         interactor?.appSettingsText({[weak self] (text) in
-            self?.appSettingsHeaderLabel.text = text
+            ThemeText.myQOTSectionHeader.apply(text, to: self?.appSettingsHeaderLabel)
         })
     }
 }
@@ -101,7 +102,7 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
         settingsModel.headerTitleForItem(at: section, completion: {(text) in
-            headerView.configure(title: text)
+            headerView.configure(title: text, theme: .level3)
         })
         return headerView
     }
@@ -109,7 +110,7 @@ extension MyQotAppSettingsViewController: UITableViewDelegate, UITableViewDataSo
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         settingsModel.titleForItem(at: indexPath) { (text) in
-            cell.configure(title: text)
+            cell.configure(title: text, themeCell: .level3)
         }
         settingsModel.subtitleForItem(at: indexPath) { (text) in
             cell.configure(subTitle: text)

@@ -18,52 +18,23 @@ class TitleTableViewCell: UITableViewCell, Dequeueable {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        self.selectedBackgroundView = UIView(frame: self.bounds)
-        self.selectedBackgroundView?.backgroundColor = .accent10
+
+        let bkgdView = UIView(frame: self.bounds)
+        ThemeView.level2Selected.apply(bkgdView)
+        selectedBackgroundView = bkgdView
     }
 
-    struct Config {
-        var backgroundColor: UIColor
-        var titlefont: UIFont
-        var titleTextColor: UIColor
-        var isArrowHidden: Bool
-        var isSeparatorHidden: Bool
-        var topMargin: CGFloat
-        var bottomMargin: CGFloat
+    func configure(title: String,
+                   bkgdTheme: ThemeView, titleTheme: ThemeText,
+                   arrowHidden: Bool = false, separatorHidden: Bool = false,
+                   topMargin: CGFloat = 23.0, bottomMargin: CGFloat = 24.0) {
 
-        init(backgroundColor: UIColor = UIColor.carbonDark,
-             titlefont: UIFont = UIFont.sfProtextLight(ofSize: FontSize.fontSize16),
-             titleTextColor: UIColor = UIColor.sand,
-             isArrowHidden: Bool = false,
-             isSeparatorHidden: Bool = false,
-             bottomMargin: CGFloat = 23,
-             topMargin: CGFloat = 24) {
-            self.backgroundColor = backgroundColor
-            self.titlefont = titlefont
-            self.titleTextColor = titleTextColor
-            self.isArrowHidden = isArrowHidden
-            self.isSeparatorHidden = isSeparatorHidden
-            self.topMargin = topMargin
-            self.bottomMargin = bottomMargin
-        }
-    }
+        bkgdTheme.apply(contentView)
+        titleTheme.apply(title, to: titleLabel)
 
-    var title: String = "" {
-        willSet {
-            titleLabel.text = newValue
-        }
-    }
-
-    var config: Config? {
-        didSet {
-            titleLabel.textColor = config?.titleTextColor
-            titleLabel.font = config?.titlefont
-            contentView.backgroundColor = config?.backgroundColor
-            arrowImageView.isHidden = config?.isArrowHidden ?? false
-            topMargin.constant = config?.topMargin ?? 24
-            bottomMargin.constant = config?.bottomMargin ?? 23
-            separator.isHidden = config?.isSeparatorHidden ?? false
-            layoutIfNeeded()
-        }
+        arrowImageView.isHidden = arrowHidden
+        separator.isHidden = separatorHidden
+        self.topMargin.constant = topMargin
+        self.bottomMargin.constant = bottomMargin
     }
 }

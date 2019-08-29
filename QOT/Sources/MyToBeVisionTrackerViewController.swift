@@ -134,7 +134,7 @@ extension MyToBeVisionTrackerViewController: UITableViewDelegate, UITableViewDat
             return headerView
         case .sentence:
             let headerView: TitleTableHeaderView = tableView.dequeueHeaderFooter()
-            headerView.configure(title: viewModel?.graph?.heading?.uppercased() ?? "")
+            headerView.configure(title: viewModel?.graph?.heading?.uppercased() ?? "", theme: .level3)
             return headerView
         default:
             return nil

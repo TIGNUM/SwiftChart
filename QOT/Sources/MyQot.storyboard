@@ -117,6 +117,7 @@
                     </view>
                     <connections>
                         <outlet property="headerLabel" destination="yqD-Kt-DJl" id="P7G-Y0-Yp8"/>
+                        <outlet property="headerLine" destination="83O-E9-gK2" id="VWM-8C-wYg"/>
                         <outlet property="headerView" destination="8F6-JV-u3a" id="AfZ-7j-zs4"/>
                         <outlet property="loaderView" destination="RO2-DT-6qg" id="zzL-2g-FFl"/>
                         <outlet property="tableView" destination="vYv-fI-E11" id="hdY-rh-YKR"/>
@@ -865,7 +866,7 @@
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                 </subviews>
-                                                <color key="backgroundColor" red="0.031372549019607843" green="0.031372549019607843" blue="0.027450980392156862" alpha="1" colorSpace="calibratedRGB"/>
+                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="bottom" secondItem="iYd-Ab-nCR" secondAttribute="bottom" constant="28" id="8uz-61-XsP"/>
                                                     <constraint firstItem="iYd-Ab-nCR" firstAttribute="top" secondItem="tY0-lG-Fzz" secondAttribute="top" constant="24" id="uO4-oO-79A"/>
@@ -1221,7 +1222,7 @@
                                         </constraints>
                                     </view>
                                 </subviews>
-                                <color key="backgroundColor" red="0.031372549020000001" green="0.031372549020000001" blue="0.027450980390000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="5j2-kS-Doh" secondAttribute="trailing" constant="24" id="1aA-Xq-MXv"/>
                                     <constraint firstItem="5j2-kS-Doh" firstAttribute="top" secondItem="bz7-sK-FQx" secondAttribute="top" constant="36" id="Hgg-76-tlH"/>
@@ -1255,6 +1256,7 @@
                         <outlet property="editButton" destination="F3h-dp-pkH" id="427-7j-d4e"/>
                         <outlet property="emailHeaderLabel" destination="vKs-Fs-oSu" id="sfa-nn-htg"/>
                         <outlet property="genderHeaderLabel" destination="kt9-5E-zls" id="Lu5-aT-Cn1"/>
+                        <outlet property="headerLine" destination="FWv-L7-rss" id="g6U-iQ-qlI"/>
                         <outlet property="headerTitle" destination="So5-o3-CGf" id="sA9-cu-osF"/>
                         <outlet property="headerView" destination="Pih-zv-4AU" id="pLU-JM-KBV"/>
                         <outlet property="logoutQotHeaderLabel" destination="PAJ-7f-Eci" id="gcC-uC-8yu"/>

@@ -694,3 +694,10 @@
 "Know.Title" = "KNOW";
 "DailyBrief.Title" = "DAILY BRIEF";
 "MyQOT.Title" = "MY QOT";
+
+"MyPrep.NoPrep.Title" = "YOUR CREATED PREPS\nWILL APPEAR HERE";
+"MyPrep.NoPrep.Comment" = "In the Coach area, \"Prepare for an event\". Your saved ones will appear here.";
+"MyPrep.NoMindset.Title" = "YOUR CREATED MINDSET\nSHIFTERS WILL APPEAR HERE";
+"MyPrep.NoMindset.Comment" = "In the Coach area, \"Solve a Challenge\". Your saved ones will appear here.";
+"MyPrep.NoRecovery.Title" = "YOUR CREATED 3D RECOVERY\naWILL APPEAR HERE";
+"MyPrep.NoRecovery.Comment" = "In the Coach area, \"Solve a Challenge\". Your saved ones will appear here.";

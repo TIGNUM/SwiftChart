@@ -54,13 +54,13 @@ extension MyQotSensorsViewController {
 
 extension MyQotSensorsViewController: MyQotSensorsViewControllerInterface {
     func setupView() {
-        view.backgroundColor = .carbon
+        ThemeView.level3.apply(view)
         healthKitStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent30)
         ouraRingStatusButton.corner(radius: Layout.CornerRadius.cornerRadius20.rawValue, borderColor: .accent30)
     }
 
     func set(headerTitle: String, sensorTitle: String) {
-        headerLabel.text = headerTitle
+        ThemeText.myQOTSectionHeader.apply(headerTitle, to: headerLabel)
         sensorHeaderLabel.text = sensorTitle
     }
 

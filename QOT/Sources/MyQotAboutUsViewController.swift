@@ -21,7 +21,7 @@ final class MyQotAboutUsViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .carbon
+        ThemeView.level3.apply(view)
         setUpTableView()
         interactor?.viewDidLoad()
     }
@@ -37,13 +37,14 @@ final class MyQotAboutUsViewController: UIViewController {
     }
 
     private func setUpTableView() {
+        ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TitleSubtitleTableViewCell.self)
     }
 }
 
 extension MyQotAboutUsViewController: MyQotAboutUsViewControllerInterface {
     func setupView(with title: String) {
-        headerLabel.text = title
+        ThemeText.myQOTSectionHeader.apply(title, to: headerLabel)
     }
 }
 
@@ -58,7 +59,7 @@ extension MyQotAboutUsViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         interactor?.title(at: indexPath, { (text) in
-            cell.configure(title: text)
+            cell.configure(title: text, themeCell: .level3)
         })
         interactor?.subtitle(at: indexPath, { (text) in
             cell.configure(subTitle: text, isHidden: true)

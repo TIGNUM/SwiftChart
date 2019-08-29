@@ -44,14 +44,15 @@ final class MyQotSupportViewController: UIViewController {
 
 extension MyQotSupportViewController: MyQotSupportViewControllerInterface {
     func setupView() {
-        view.backgroundColor = .carbon
+        ThemeView.level3.apply(view)
         interactor?.supportText({[weak self] (text) in
-            self?.headerLabel.text = text
+            ThemeText.myQOTSectionHeader.apply(text.uppercased(), to: self?.headerLabel)
         })
         setUpTableView()
     }
 
     func setUpTableView() {
+        ThemeView.level3.apply(tableView)
         tableView.registerDequeueable(TitleSubtitleTableViewCell.self)
     }
 }
@@ -67,7 +68,7 @@ extension MyQotSupportViewController: UITableViewDelegate, UITableViewDataSource
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: TitleSubtitleTableViewCell = tableView.dequeueCell(for: indexPath)
         interactor?.title(at: indexPath, { (text) in
-            cell.configure(title: text)
+            cell.configure(title: text, themeCell: .level3)
         })
         interactor?.subtitle(at: indexPath, { (text) in
             cell.configure(subTitle: text)

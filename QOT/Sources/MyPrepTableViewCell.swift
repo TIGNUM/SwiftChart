@@ -68,7 +68,7 @@ private extension MyPrepTableViewCell {
     func setupCell() {
         backgroundColor = .clear
         let selectedBackground = UIView()
-        selectedBackground.backgroundColor = .black15
+        ThemeView.prepsSegmentSelected.apply(selectedBackground)
         self.selectedBackgroundView = selectedBackground
     }
 }
