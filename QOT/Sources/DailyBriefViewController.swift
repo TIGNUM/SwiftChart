@@ -193,10 +193,8 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
             guard let leadersWisdomViewModel = bucketItem as? LeaderWisdomCellViewModel else { return UITableViewCell()}
             return getLeadersWisdom(tableView, indexPath, leadersWisdomViewModel)
         case .FEAST_OF_YOUR_EYES?:
-            guard let guidedTrackModel = bucketItem as? GuidedTrackViewModel else { return UITableViewCell()}
-            return getGuidedTrack(tableView, indexPath, guidedTrackModel)
-//            guard let feastForEyesViewModel = bucketItem as? FeastCellViewModel else { return UITableViewCell()}
-//            return getFeastForEyesCell(tableView, indexPath, feastForEyesViewModel)
+            guard let feastForEyesViewModel = bucketItem as? FeastCellViewModel else { return UITableViewCell()}
+            return getFeastForEyesCell(tableView, indexPath, feastForEyesViewModel)
         case .MY_PEAK_PERFORMANCE?:
             guard let myPeakPerformanceViewModel = bucketItem as? MyPeakPerformanceCellViewModel else { return UITableViewCell()}
             return getMyPeakPerformance(tableView, indexPath, myPeakPerformanceViewModel)
@@ -721,9 +719,9 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func changedGetToLevel5Value(_ value: Int, from cell: UITableViewCell) {
         interactor?.saveUpdateGetToLevel5Selection(value)
-        if let cellIndexPath = tableView.indexPath(for: cell) {
-            self.tableView.reloadRows(at: [cellIndexPath], with: .none)
-        }
+//        if let cellIndexPath = tableView.indexPath(for: cell) {
+//            self.tableView.reloadRows(at: [cellIndexPath], with: .none)
+//        }
     }
 
     func saveTargetValue(value: Int?) {

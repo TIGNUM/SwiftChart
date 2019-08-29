@@ -31,7 +31,6 @@ final class Level5Cell: UITableViewCell, Dequeueable {
     @IBOutlet private var views: [UIView]!
     @IBOutlet private var saveButtons: [UIButton]!
     var delegate: DailyBriefViewControllerDelegate?
-    @IBOutlet private weak var viewHeight: NSLayoutConstraint!
 
     @IBAction func save(_ sender: UIButton) {
         delegate?.saveAnswerValue(sender.tag, from: self)
@@ -55,10 +54,10 @@ final class Level5Cell: UITableViewCell, Dequeueable {
     override func awakeFromNib() {
         super.awakeFromNib()
         hideAllViews()
+        views.first?.isHidden = false
         setUpButtons()
         contentView.backgroundColor = .carbon
         saveButtons.forEach {(button) in saveButtonsUI(button: button)}
-        viewHeight.constant = UIScreen.main.bounds.height / 2.5
         comeBackView.isHidden = true
     }
 
@@ -71,7 +70,7 @@ final class Level5Cell: UITableViewCell, Dequeueable {
     }
 
     func saveButtonsUI(button: UIButton) {
-     button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
+        button.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
     public func hideAllViews() {
@@ -99,7 +98,6 @@ final class Level5Cell: UITableViewCell, Dequeueable {
             let valueIndex = selectedValue - 1
             buttons[valueIndex].backgroundColor = UIColor.accent.withAlphaComponent(0.4)
             views[valueIndex].isHidden = false
-            viewHeight.constant = UIScreen.main.bounds.height * 1.25
         }
     }
 }
