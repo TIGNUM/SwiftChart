@@ -24,35 +24,54 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="k0H-1I-Uwk" customClass="DailyCheckinInsightsTBVCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="414" height="306"/>
+            <rect key="frame" x="0.0" y="0.0" width="407" height="336"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="DAILY CHECKIN INSIGHTS II" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TXs-bw-HDl">
-                    <rect key="frame" x="20" y="69" width="374" height="30"/>
+                    <rect key="frame" x="20" y="57" width="367" height="16.5"/>
                     <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="You gave yourself a X on the rating of" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nj4-u2-Kz0">
-                    <rect key="frame" x="20" y="119" width="374" height="17"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="You gave yourself a X on the rating of" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nj4-u2-Kz0">
+                    <rect key="frame" x="20" y="97.5" width="367" height="17"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snW-CA-C1f">
-                    <rect key="frame" x="20" y="48" width="15" height="1"/>
+                <view alpha="0.69999999999999996" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="snW-CA-C1f">
+                    <rect key="frame" x="20" y="48" width="16" height="1"/>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="if5-lR-GMd"/>
-                        <constraint firstAttribute="width" constant="10" id="yKN-zo-rPT"/>
+                        <constraint firstAttribute="width" constant="16" id="yKN-zo-rPT"/>
+                    </constraints>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="&quot; I am a great listener in high pressure meetings&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a5-dW-Fuu">
+                    <rect key="frame" x="20" y="130.5" width="367" height="19.5"/>
+                    <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="751" text="What could you do today to become that statement?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XV-ES-B1T">
+                    <rect key="frame" x="20" y="178" width="367" height="17"/>
+                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
+                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view alpha="0.10000000000000001" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="T8b-56-ED5">
+                    <rect key="frame" x="24" y="219" width="383" height="1"/>
+                    <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" id="pZl-5F-3q5"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nkR-EF-LfG">
-                    <rect key="frame" x="254" y="223" width="130" height="35"/>
+                    <rect key="frame" x="242" y="248" width="141" height="40"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="35" id="AIl-tL-vfC"/>
-                        <constraint firstAttribute="width" constant="130" id="fU6-h7-CMi"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Sux-yG-yCB"/>
                     </constraints>
+                    <inset key="contentEdgeInsets" minX="16" minY="10" maxX="16" maxY="10"/>
                     <state key="normal" title="My To Be Vision">
                         <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     </state>
@@ -60,37 +79,28 @@
                         <action selector="toBeVisionButton:" destination="k0H-1I-Uwk" eventType="touchUpInside" id="KeZ-IP-OvA"/>
                     </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="&quot; I am a great listener in high pressure meetings&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5a5-dW-Fuu">
-                    <rect key="frame" x="20" y="151" width="374" height="19.5"/>
-                    <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
-                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="What could you do today to become that statement?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3XV-ES-B1T">
-                    <rect key="frame" x="20" y="186" width="374" height="17"/>
-                    <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
-                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    <nil key="highlightedColor"/>
-                </label>
             </subviews>
             <color key="backgroundColor" red="0.039215686270000001" green="0.039215686270000001" blue="0.035294117649999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
+                <constraint firstAttribute="trailing" secondItem="T8b-56-ED5" secondAttribute="trailing" id="5V9-Lf-D9d"/>
+                <constraint firstItem="TXs-bw-HDl" firstAttribute="top" secondItem="snW-CA-C1f" secondAttribute="bottom" constant="8" id="BjN-P4-GlZ"/>
+                <constraint firstItem="3XV-ES-B1T" firstAttribute="top" secondItem="5a5-dW-Fuu" secondAttribute="bottom" constant="28" id="EPl-ag-ag3"/>
+                <constraint firstItem="nkR-EF-LfG" firstAttribute="top" secondItem="T8b-56-ED5" secondAttribute="bottom" constant="28" id="HPN-Zd-YrU"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="3XV-ES-B1T" secondAttribute="trailing" constant="20" id="KHR-98-YFv"/>
-                <constraint firstItem="5a5-dW-Fuu" firstAttribute="top" secondItem="Nj4-u2-Kz0" secondAttribute="bottom" constant="15" id="M4z-bs-aNA"/>
                 <constraint firstItem="5a5-dW-Fuu" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="NIO-xE-au6"/>
                 <constraint firstItem="snW-CA-C1f" firstAttribute="top" secondItem="k0H-1I-Uwk" secondAttribute="top" constant="48" id="OwI-HJ-ok5"/>
+                <constraint firstItem="5a5-dW-Fuu" firstAttribute="top" secondItem="Nj4-u2-Kz0" secondAttribute="bottom" constant="16" id="Vcn-Uf-1ee"/>
                 <constraint firstItem="TXs-bw-HDl" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="XGW-Rf-loC"/>
-                <constraint firstItem="TXs-bw-HDl" firstAttribute="top" secondItem="snW-CA-C1f" secondAttribute="bottom" constant="15" id="Z2t-xZ-2jR"/>
+                <constraint firstItem="T8b-56-ED5" firstAttribute="top" secondItem="3XV-ES-B1T" secondAttribute="bottom" constant="24" id="Xfl-fs-iVI"/>
                 <constraint firstItem="snW-CA-C1f" firstAttribute="leading" secondItem="k0H-1I-Uwk" secondAttribute="leading" constant="20" id="aPJ-bB-Lcp"/>
                 <constraint firstItem="3XV-ES-B1T" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="dOG-bI-uJE"/>
-                <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="nkR-EF-LfG" secondAttribute="trailing" constant="30" id="dls-V0-vi4"/>
                 <constraint firstAttribute="bottom" secondItem="nkR-EF-LfG" secondAttribute="bottom" constant="48" id="fdg-5E-Io4"/>
+                <constraint firstItem="Nj4-u2-Kz0" firstAttribute="top" secondItem="TXs-bw-HDl" secondAttribute="bottom" constant="24" id="hlV-qO-41K"/>
                 <constraint firstItem="Nj4-u2-Kz0" firstAttribute="leading" secondItem="War-05-zvi" secondAttribute="leading" constant="20" id="n0w-pC-FJX"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="TXs-bw-HDl" secondAttribute="trailing" constant="20" id="pWj-MU-7q6"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="5a5-dW-Fuu" secondAttribute="trailing" constant="20" id="pc0-YU-t0W"/>
-                <constraint firstItem="3XV-ES-B1T" firstAttribute="top" secondItem="5a5-dW-Fuu" secondAttribute="bottom" constant="15.5" id="pp2-Vj-Ujz"/>
-                <constraint firstItem="Nj4-u2-Kz0" firstAttribute="top" secondItem="TXs-bw-HDl" secondAttribute="bottom" constant="20" id="rs6-ry-fM8"/>
-                <constraint firstItem="nkR-EF-LfG" firstAttribute="top" secondItem="3XV-ES-B1T" secondAttribute="bottom" constant="20" id="sd1-cy-f88"/>
+                <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="nkR-EF-LfG" secondAttribute="trailing" constant="24" id="rOJ-3A-QmN"/>
+                <constraint firstItem="T8b-56-ED5" firstAttribute="leading" secondItem="k0H-1I-Uwk" secondAttribute="leading" constant="24" id="rxY-Me-0GU"/>
                 <constraint firstItem="War-05-zvi" firstAttribute="trailing" secondItem="Nj4-u2-Kz0" secondAttribute="trailing" constant="20" id="yNm-Ig-BLm"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
@@ -102,7 +112,7 @@
                 <outlet property="tbvSentence" destination="5a5-dW-Fuu" id="XPy-sv-RtY"/>
                 <outlet property="tbvText" destination="Nj4-u2-Kz0" id="KQz-dg-XB9"/>
             </connections>
-            <point key="canvasLocation" x="137.68115942028987" y="-34.151785714285715"/>
+            <point key="canvasLocation" x="132.60869565217394" y="-24.107142857142858"/>
         </view>
     </objects>
 </document>
