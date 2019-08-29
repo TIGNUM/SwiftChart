@@ -13,6 +13,7 @@ import qot_dal
 protocol CoachCollectionViewControllerDelegate: class {
     func didTapCancel()
     func handlePan(offsetY: CGFloat)
+    func moveToCell(item: Int)
 }
 
 final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom {
@@ -206,6 +207,10 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
             newY = -view.frame.height
         }
         updatePan(currentY: newY)
+    }
+
+    func moveToCell(item: Int) {
+        collectionView.scrollToItem(at: IndexPath(item: item, section: 0), at: .centeredHorizontally, animated: true)
     }
 }
 

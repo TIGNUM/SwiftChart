@@ -134,7 +134,9 @@ extension MyQotMainViewController: UICollectionViewDataSource, UICollectionViewD
         case MyQotViewModel.Section.header.rawValue:
             let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             let title = R.string.localized.myQOTTitle()
-            cell.configure(title: title, leftArrow: true, rightArrow: false)
+            cell.configure(title: title, tapLeft: { [weak self] in
+                self?.delegate?.moveToCell(item: 1)
+            })
             return cell
         default:
             let qotSection = MyQotSection.allCases[indexPath.row]

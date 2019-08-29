@@ -104,7 +104,9 @@ extension KnowingViewController {
         case Knowing.Section.header.rawValue:
             let cell: NavBarCollectionViewCell = collectionView.dequeueCell(for: indexPath)
             let title = R.string.localized.knowTitle()
-            cell.configure(title: title, leftArrow: false, rightArrow: true)
+            cell.configure(title: title, tapRight: { [weak self] in
+                self?.delegate?.moveToCell(item: 1)
+            })
             return cell
         case Knowing.Section.strategies.rawValue:
             if indexPath.item == 0 {
