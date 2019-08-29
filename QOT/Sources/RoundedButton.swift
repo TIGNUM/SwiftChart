@@ -14,6 +14,9 @@ class RoundedButton: UIButton {
     private let activeColor = UIColor.accent
     private let inactiveColor = UIColor.sand08
 
+    /// Closure used in specific cases (see `QOTAlert` implementation)
+    var handler: ((UIButton) -> Void)?
+
     override var isEnabled: Bool {
         didSet {
             self.layer.borderColor = self.isEnabled ? borderColorActive.cgColor : borderColorInactive.cgColor

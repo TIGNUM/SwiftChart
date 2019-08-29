@@ -826,6 +826,7 @@
 		8D6048E522D8E2530005BB29 /* MyLibraryUserStorageContentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D6048E422D8E2530005BB29 /* MyLibraryUserStorageContentType.swift */; };
 		8D60A20C22CF7CBF0034F33F /* NoteTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60A20B22CF7CBF0034F33F /* NoteTableViewCell.swift */; };
 		8D60A20E22CF9D0C0034F33F /* DownloadTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D60A20D22CF9D0C0034F33F /* DownloadTableViewCell.swift */; };
+		8D6270AD23153D1B00B68DB1 /* QOTAlert.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8D6270AC23153D1B00B68DB1 /* QOTAlert.storyboard */; };
 		8D635A7C22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D635A7B22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift */; };
 		8D66E89C2305A0E500BE78C7 /* TrackSelectionPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66E8942305A0E500BE78C7 /* TrackSelectionPresenter.swift */; };
 		8D66E89D2305A0E500BE78C7 /* TrackSelectionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8D66E8952305A0E500BE78C7 /* TrackSelectionWorker.swift */; };
@@ -872,6 +873,7 @@
 		8D9F6D29230E869C00DCC241 /* WalkthroughAnimatedArrows.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9F6D28230E869C00DCC241 /* WalkthroughAnimatedArrows.xib */; };
 		8DA4D23E22E5E3670087B5AA /* InfoAlertView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */; };
 		8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */; };
+		8DAE106B231526D400A247A5 /* QOTAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DAE106A231526D400A247A5 /* QOTAlert.swift */; };
 		8DBE1ED722F46B7400BB1086 /* OnboardingLandingPagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ECF22F46B7400BB1086 /* OnboardingLandingPagePresenter.swift */; };
 		8DBE1ED822F46B7400BB1086 /* OnboardingLandingPageWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ED022F46B7400BB1086 /* OnboardingLandingPageWorker.swift */; };
 		8DBE1ED922F46B7400BB1086 /* OnboardingLandingPageRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8DBE1ED122F46B7400BB1086 /* OnboardingLandingPageRouter.swift */; };
@@ -2682,6 +2684,7 @@
 		8D6048E422D8E2530005BB29 /* MyLibraryUserStorageContentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageContentType.swift; sourceTree = "<group>"; };
 		8D60A20B22CF7CBF0034F33F /* NoteTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteTableViewCell.swift; sourceTree = "<group>"; };
 		8D60A20D22CF9D0C0034F33F /* DownloadTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadTableViewCell.swift; sourceTree = "<group>"; };
+		8D6270AC23153D1B00B68DB1 /* QOTAlert.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = QOTAlert.storyboard; sourceTree = "<group>"; };
 		8D635A7B22CCB62500B871AF /* MyLibraryUserStorageInfoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyLibraryUserStorageInfoViewModel.swift; sourceTree = "<group>"; };
 		8D66E8942305A0E500BE78C7 /* TrackSelectionPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSelectionPresenter.swift; sourceTree = "<group>"; };
 		8D66E8952305A0E500BE78C7 /* TrackSelectionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackSelectionWorker.swift; sourceTree = "<group>"; };
@@ -2728,6 +2731,7 @@
 		8D9F6D28230E869C00DCC241 /* WalkthroughAnimatedArrows.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WalkthroughAnimatedArrows.xib; sourceTree = "<group>"; };
 		8DA4D23D22E5E3670087B5AA /* InfoAlertView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoAlertView.swift; sourceTree = "<group>"; };
 		8DA4D23F22E5E3870087B5AA /* InfoAlertView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = InfoAlertView.xib; sourceTree = "<group>"; };
+		8DAE106A231526D400A247A5 /* QOTAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QOTAlert.swift; sourceTree = "<group>"; };
 		8DBE1ECF22F46B7400BB1086 /* OnboardingLandingPagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPagePresenter.swift; sourceTree = "<group>"; };
 		8DBE1ED022F46B7400BB1086 /* OnboardingLandingPageWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPageWorker.swift; sourceTree = "<group>"; };
 		8DBE1ED122F46B7400BB1086 /* OnboardingLandingPageRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingLandingPageRouter.swift; sourceTree = "<group>"; };
@@ -3907,6 +3911,8 @@
 				BB8990DD230EF16800FEDF5B /* NavBarCollectionViewCell.xib */,
 				BB8990E0230EF18300FEDF5B /* NavBarTableViewCell.swift */,
 				BB8990E1230EF18300FEDF5B /* NavBarTableViewCell.xib */,
+				8DAE106A231526D400A247A5 /* QOTAlert.swift */,
+				8D6270AC23153D1B00B68DB1 /* QOTAlert.storyboard */,
 			);
 			name = components;
 			sourceTree = "<group>";
@@ -8915,6 +8921,7 @@
 				36B515CC216395B600A7B405 /* SupportFAQTableViewCell.xib in Resources */,
 				366D04F622C65EE30081258E /* FatigueTableViewCell.xib in Resources */,
 				ACF0B97D2260BDCA008CFAEC /* MultipleSelectionTableViewCell.xib in Resources */,
+				8D6270AD23153D1B00B68DB1 /* QOTAlert.storyboard in Resources */,
 				F9D2BC1D22D48DE600DBF2CC /* GoodToKnowCell.xib in Resources */,
 				36A7B9442166455C006C18F0 /* PrepareSectionHeaderView.xib in Resources */,
 				DB2969EC22C611B500B8A590 /* AudioFullScreenViewController.storyboard in Resources */,
@@ -9338,6 +9345,7 @@
 				F909961E22B23FBA00EAEAC6 /* MyPrepsModel.swift in Sources */,
 				363178E71FDEECDE00833958 /* RealmGuideItemNotification.swift in Sources */,
 				914A5E23207FB3A200092121 /* SettingsBubblesModels.swift in Sources */,
+				8DAE106B231526D400A247A5 /* QOTAlert.swift in Sources */,
 				91086E4A209202800035DA1F /* SettingsProtocols.swift in Sources */,
 				36796A4620D3C49900B55429 /* SigningLoginInteractor.swift in Sources */,
 				F9838F4922AFFF95003F9394 /* MyQotMainViewController.swift in Sources */,

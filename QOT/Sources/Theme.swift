@@ -44,6 +44,7 @@ enum ThemeView {
     case fade
     case separator
     case accentBackground
+    case qotAlert
 
     var color: UIColor {
         switch self {
@@ -75,6 +76,8 @@ enum ThemeView {
             return Palette.light(Palette.carbon10, or: Palette.sand10)
         case .accentBackground:
             return Palette.accent30
+        case .qotAlert:
+            return Palette.carbonDark80
         }
     }
 
@@ -241,6 +244,9 @@ enum ThemeText {
     case impactBucket
     case sleepReference
     case reference
+    
+    case qotAlertTitle
+    case qotAlertMessage
 
     private var font: UIFont {
         switch self {
@@ -332,6 +338,11 @@ enum ThemeText {
             return Fonts.fontLight18
         case .articleNum:
             return Fonts.fontLight72
+        case .qotAlertTitle:
+            return Fonts.fontLight20
+        case .qotAlertMessage:
+            return Fonts.fontRegular14
+
         default:
             return Fonts.fontRegular20
         }
@@ -410,6 +421,11 @@ enum ThemeText {
             return Palette.sand80
         case .guideNavigationTitle:
             return Palette.sand40
+
+        case .qotAlertTitle:
+            return Palette.sand
+        case .qotAlertMessage:
+            return Palette.sand70
         }
     }
 
@@ -467,6 +483,10 @@ enum ThemeText {
             string = NSAttributedString(string: text, font: self.font, lineSpacing: 2.0, textColor: self.color, alignment: .left)
         case .settingsTitle, .settingsTitleFade:
             string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
+        case .qotAlertTitle:
+            string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .qotAlertMessage:
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }
@@ -554,6 +574,10 @@ private struct Palette {
 
     static var sand: UIColor {
         return UIColor(red: 235/255, green: 231/255, blue: 228/255, alpha: 1)
+    }
+
+    static var carbonDark80: UIColor {
+        return UIColor.carbonDark.withAlphaComponent(0.8)
     }
 
     static var sand10: UIColor {
