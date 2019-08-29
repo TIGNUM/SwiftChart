@@ -66,15 +66,8 @@ extension MyDataSelectionViewController: UITableViewDelegate, UITableViewDataSou
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell: MyDataSelectionScreenTableViewCell = tableView.dequeueCell(for: indexPath)
-        let backgroundView = UIView()
-        backgroundView.backgroundColor = UIColor.carbon
-        cell.selectedBackgroundView = backgroundView
-        cell.backgroundColor = .carbonNew
-        cell.layoutMargins = .zero
-        cell.preservesSuperviewLayoutMargins = false
 
-        cell.configure(title: myDataSelectionModel?.myDataSelectionItems[indexPath.row].title,
-                       selected: myDataSelectionModel?.myDataSelectionItems[indexPath.row].selected ?? false)
+        cell.configure(forSelectionItem: myDataSelectionModel?.myDataSelectionItems[indexPath.row])
 
         return cell
     }

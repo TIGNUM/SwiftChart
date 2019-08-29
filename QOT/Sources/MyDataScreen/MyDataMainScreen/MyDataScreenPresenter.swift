@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import JTAppleCalendar
 
 final class MyDataScreenPresenter {
 
@@ -27,5 +28,21 @@ extension MyDataScreenPresenter: MyDataScreenPresenterInterface {
 
     func setupView() {
         viewController?.setupView()
+    }
+
+    func showImpactReadinessView(calendar: JTAppleCalendarView, withValue: Double, forCellState: CellState, forCell: MyDataHeatMapDateCell) {
+        viewController?.showImpactReadinessView(calendar: calendar, withValue: withValue, forCellState: forCellState, forCell: forCell)
+    }
+
+    func hideImpactReadinessView(calendar: JTAppleCalendarView, forCell: MyDataHeatMapDateCell) {
+        viewController?.hideImpactReadinessView(calendar: calendar, forCell: forCell)
+    }
+
+    func updateHeaderDateLabel(forSection: MyDataSection, withFirstDay: Date, andLastDay: Date) {
+        viewController?.updateHeaderDateLabel(forSection: forSection, withFirstDay: withFirstDay, andLastDay: andLastDay)
+    }
+
+    func dataSourceFinished(firstLoad: Bool) {
+        viewController?.dataSourceFinished(firstLoad: firstLoad)
     }
 }

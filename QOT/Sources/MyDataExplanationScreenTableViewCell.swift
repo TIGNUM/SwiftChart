@@ -8,20 +8,22 @@
 
 import UIKit
 
-class MyDataExplanationScreenTableViewCell: MyDataBaseTableViewCell {
+final class MyDataExplanationScreenTableViewCell: MyDataBaseTableViewCell {
 
     // MARK: - Properties
 
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
 
-    func configure(title: String?, subtitle: String?) {
-        guard let title = title, let subtitle = subtitle else { return }
+    func configure(forExplanationItem: MyDataExplanationModel.ExplanationItem?) {
+        guard let explanationItem = forExplanationItem,
+              let title = explanationItem.title,
+              let subtitle = explanationItem.subtitle else { return }
         titleLabel.attributedText = NSAttributedString(string: title,
                                                        letterSpacing: 0.2,
                                                        font: .sfProtextSemibold(ofSize: 14),
                                                        lineSpacing: 6,
-                                                       textColor: .sand,
+                                                       textColor: MyDataExplanationModel.color(for: explanationItem.myDataExplanationSection),
                                                        alignment: .left)
         subtitleLabel.attributedText = NSAttributedString(string: subtitle,
                                                           letterSpacing: 0,

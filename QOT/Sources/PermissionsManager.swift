@@ -146,6 +146,7 @@ final class PermissionsManager {
             group.enter()
             guard let permission = self.data[key] else { return }
             permission.interface.authorizationStatusDescription(completion: { description in
+
                 authorizationStatusDescriptions[key] = description
                 group.leave()
             })

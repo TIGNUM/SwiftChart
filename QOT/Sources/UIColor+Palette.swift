@@ -514,6 +514,30 @@ extension UIColor {
         return UIColor(red: 20.0 / 255.0, green: 54.0 / 255.0, blue: 79.0 / 255.0, alpha: 1.0)
     }
 
+    public class var sleepQuality: UIColor {
+        return UIColor(red: 90.0 / 255.0, green: 123.0 / 255.0, blue: 255.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var sleepQuantity: UIColor {
+        return UIColor(red: 157.0 / 255.0, green: 117.0 / 255.0, blue: 244.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var tenDayLoad: UIColor {
+        return UIColor(red: 0.0 / 255.0, green: 123.0 / 255.0, blue: 127.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var fiveDayRecovery: UIColor {
+        return UIColor(red: 41.0 / 255.0, green: 200.0 / 255.0, blue: 156.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var fiveDayLoad: UIColor {
+        return UIColor(red: 60.0 / 255.0, green: 208.0 / 255.0, blue: 237.0 / 255.0, alpha: 1.0)
+    }
+
+    public class var fiveDayImpactReadiness: UIColor {
+        return UIColor(red: 180.0 / 255.0, green: 201.0 / 255.0, blue: 206.0 / 255.0, alpha: 1.0)
+    }
+
     static var random: UIColor {
         return UIColor(red: randomNumber, green: randomNumber, blue: randomNumber, alpha: 1.0)
     }

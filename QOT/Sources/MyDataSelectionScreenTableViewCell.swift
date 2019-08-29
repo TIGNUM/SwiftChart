@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
+final class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
 
     @IBOutlet private weak var titleLabel: UILabel!
@@ -18,17 +18,20 @@ class MyDataSelectionScreenTableViewCell: MyDataBaseTableViewCell {
             self.setupForSelected(selected: showSelected)
         }
     }
-
-    func configure(title: String?, selected: Bool) {
-        guard let title = title else {
+/*
+func configure(forExplanationItem: MyDataExplanationModel.ExplanationItem?) {
+ */
+    func configure(forSelectionItem: MyDataSelectionModel.SelectionItem?) {
+        guard let selectionItem = forSelectionItem,
+              let title = selectionItem.title else {
             return
         }
-        showSelected = selected
+        showSelected = selectionItem.selected
         titleLabel.attributedText = NSAttributedString(string: title,
                                                        letterSpacing: 0.2,
                                                        font: .sfProtextRegular(ofSize: 14),
                                                        lineSpacing: 6,
-                                                       textColor: .sand,
+                                                       textColor: MyDataExplanationModel.color(for: selectionItem.myDataExplanationSection),
                                                        alignment: .left)
         self.setupForSelected(selected: showSelected)
     }

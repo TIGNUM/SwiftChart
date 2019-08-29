@@ -123,6 +123,5 @@ extension UIViewController {
         view.addSubview(skeleton)
         skeleton.layer.zPosition = 10000
         skeleton.addConstraints(to: view)
-        view.layoutIfNeeded()
     }
 }

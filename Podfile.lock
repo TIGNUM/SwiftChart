@@ -34,6 +34,7 @@ PODS:
   - ReactiveKit (3.13.2)
   - RSKImageCropper (2.2.3)
   - SVProgressHUD (2.2.5)
+  - SwiftChart (1.0.1)
   - SwiftyBeaver (1.7.1)
   - UrbanAirship-iOS-SDK (11.1.2)
 
@@ -56,6 +57,7 @@ DEPENDENCIES:
   - R.swift
   - RSKImageCropper
   - SVProgressHUD
+  - "SwiftChart (from `git@github.com:voicusimu/SwiftChart.git`)"
   - SwiftyBeaver
   - UrbanAirship-iOS-SDK
 
@@ -88,14 +90,19 @@ EXTERNAL SOURCES:
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
     :git: "git@github.com:TIGNUM/qot_dal.git"
+  SwiftChart:
+    :git: "git@github.com:voicusimu/SwiftChart.git"
 
 CHECKOUT OPTIONS:
   Bond:
     :commit: 957a9cda9ca279b874d4677ec9b4afb4ba668fd4
     :git: "git@github.com:SanggeonPark/Bond.git"
   qot_dal:
-    :commit: 68a5bc8d42ffedc11612ab925505503b15aa35b7
+    :commit: 058b8786c12ecd41747adf8f418f12d876709050
     :git: "git@github.com:TIGNUM/qot_dal.git"
+  SwiftChart:
+    :commit: 74be1bf61d50fb62c968b144236655e1b56754c0
+    :git: "git@github.com:voicusimu/SwiftChart.git"
 
 SPEC CHECKSUMS:
   ActionSheetPicker-3.0: eef157d75e151f255c5333d26656c7fbfe905a51
@@ -119,9 +126,10 @@ SPEC CHECKSUMS:
   ReactiveKit: db560c8a9883447798b449c49346f292cbb54f4c
   RSKImageCropper: a446db0e8444a036b34f3c43db01b2373baa4b2a
   SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftChart: 6ed8c61f3731cc32e3cb92858dba339d08ddac87
   SwiftyBeaver: da5e573ad583586c18236324c36900990afe1733
   UrbanAirship-iOS-SDK: bd236d9bc00e3c1c5e1682d8ed780d615a115811
 
-PODFILE CHECKSUM: f8dc5fecab5346ecd41c3f57ce7f316ce9eb11aa
+PODFILE CHECKSUM: 1aacae8b30c51be596fc21214a1aecfc97df8b47
 
 COCOAPODS: 1.7.5

@@ -32,11 +32,11 @@ struct MyDataDailyCheckInModel: Codable {
 
     init(withDailyCheckInResult: QDMDailyCheckInResult) {
         date = withDailyCheckInResult.date
-        impactReadiness = withDailyCheckInResult.impactReadiness
-        sleepQuality = withDailyCheckInResult.sleepQuality
-        sleepQuantity = withDailyCheckInResult.sleepQuantity
-        tenDayLoad = withDailyCheckInResult.load
-        fiveDayRecovery = ((withDailyCheckInResult.sleepQuantity ?? 0) + (withDailyCheckInResult.sleepQuality ?? 0))/2
+        impactReadiness = (withDailyCheckInResult.impactReadiness ?? 0) * 100
+        sleepQuality = (withDailyCheckInResult.sleepQuality ?? 0) * 10
+        sleepQuantity = (withDailyCheckInResult.sleepQuantity ?? 0) * 10
+        tenDayLoad = (withDailyCheckInResult.load ?? 0) * 100
+        fiveDayRecovery = ((withDailyCheckInResult.sleepQuantity ?? 0) + (withDailyCheckInResult.sleepQuality ?? 0))/2  * 100
         averageUsersImpactReadiness = 70
     }
 }
@@ -52,8 +52,6 @@ enum MyDataSection: Int, CaseIterable {
 
 struct MyDataScreenModel {
     let myDataItems: [Item]
-    var selectedHeatMapMode: HeatMapMode = .dailyIR
-
     struct Item {
         let myDataSection: MyDataSection
         let title: String?

@@ -23,6 +23,7 @@ enum SkeletonType {
     case myQOTCell
     case myPrepsHeader
     case myPrepsCell
+    case myDataGraph
 
     static var defaultSkeleton: SkeletonType {
         return SkeletonType.loader
@@ -56,6 +57,8 @@ enum SkeletonType {
             return MyPrepsHeader.instantiateFromNib()
         case .myPrepsCell:
             return MyPrepsCell.instantiateFromNib()
+        case .myDataGraph:
+            return MyDataGraph.instantiateFromNib()
 
         default:
             return Loader.instantiateFromNib()

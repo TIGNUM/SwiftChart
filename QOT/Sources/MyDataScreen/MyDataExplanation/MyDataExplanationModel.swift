@@ -16,4 +16,23 @@ struct MyDataExplanationModel {
         let title: String?
         let subtitle: String?
     }
+
+    static func color(for parameter: MyDataParameter) -> UIColor {
+        switch parameter {
+        case .fiveDIR:
+            return .fiveDayImpactReadiness
+        case .fiveDRL:
+            return .fiveDayLoad
+        case .fiveDRR:
+            return .fiveDayRecovery
+        case .tenDL:
+            return .tenDayLoad
+        case .SQL:
+            return .sleepQuality
+        case .SQN:
+            return .sleepQuantity
+        case .IR:
+            return .sand
+        }
+    }
 }

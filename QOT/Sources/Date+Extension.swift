@@ -29,23 +29,23 @@ extension Date {
     }
 
     var twentyOneYearsAgo: Date {
-        return Calendar.sharedUTC.date(byAdding: .year, value: -21, to: self) ?? self
+        return Calendar.current.date(byAdding: .year, value: -21, to: self) ?? self
     }
 
     var minimumDateOfBirth: Date {
-        return Calendar.sharedUTC.date(byAdding: .year, value: -130, to: self) ?? self
+        return Calendar.current.date(byAdding: .year, value: -130, to: self) ?? self
     }
 
     var maximumDateOfBirth: Date {
-        return Calendar.sharedUTC.date(byAdding: .year, value: -16, to: self) ?? self
+        return Calendar.current.date(byAdding: .year, value: -16, to: self) ?? self
     }
 
     var startOfDay: Date {
-        return Calendar.sharedUTC.startOfDay(for: self)
+        return Calendar.current.startOfDay(for: self)
     }
 
     var endOfDay: Date {
-        return Calendar.sharedUTC.date(byAdding: .minute, value: -1, to: self.nextDay.startOfDay) ?? self
+        return Calendar.current.date(byAdding: .minute, value: -1, to: self.nextDay.startOfDay) ?? self
     }
 
     var nextHour: Date {
@@ -57,7 +57,7 @@ extension Date {
     }
 
     var nextDay: Date {
-        return Calendar.sharedUTC.date(byAdding: .day, value: 1, to: self) ?? self
+        return Calendar.current.date(byAdding: .day, value: 1, to: self) ?? self
     }
 
     func isNextDay(date: Date) -> Bool {
@@ -65,31 +65,41 @@ extension Date {
     }
 
     func dayBefore(days: Int) -> Date {
-        return Calendar.sharedUTC.date(byAdding: .day, value: (-days), to: self) ?? self
+        return Calendar.current.date(byAdding: .day, value: (-days), to: self) ?? self
     }
 
     func dayAfter(days: Int) -> Date {
-        return Calendar.sharedUTC.date(byAdding: .day, value: days, to: self) ?? self
+        return Calendar.current.date(byAdding: .day, value: days, to: self) ?? self
     }
 
     func dayAfter(months: Int) -> Date {
-        return Calendar.sharedUTC.date(byAdding: .month, value: months, to: self) ?? self
+        return Calendar.current.date(byAdding: .month, value: months, to: self) ?? self
     }
 
     func firstDayOfMonth() -> Date {
-        guard let interval = Calendar.sharedUTC.dateInterval(of: .month, for: self) else { return self }
+        guard let interval = Calendar.current.dateInterval(of: .month, for: self) else { return self }
+        return interval.start
+    }
+
+    func firstDayOfWeek() -> Date {
+        guard let interval = Calendar.current.dateInterval(of: .weekOfYear, for: self) else { return self }
         return interval.start
     }
 
     func lastDayOfMonth() -> Date {
-        guard let interval = Calendar.sharedUTC.dateInterval(of: .month, for: self) else { return self }
+        guard let interval = Calendar.current.dateInterval(of: .month, for: self) else { return self }
+        return interval.end
+    }
+
+    func lastDayOfWeek() -> Date {
+        guard let interval = Calendar.current.dateInterval(of: .weekOfYear, for: self) else { return self }
         return interval.end
     }
 
     func isSameDay(_ date: Date?) -> Bool {
         if let date = date {
-            let componentsFirst = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: date)
-            let componentsSecond = Calendar.sharedUTC.dateComponents([.year, .month, .day], from: self)
+            let componentsFirst = Calendar.current.dateComponents([.year, .month, .day], from: date)
+            let componentsSecond = Calendar.current.dateComponents([.year, .month, .day], from: self)
             let sameYear = componentsFirst.year == componentsSecond.year
             let sameMonth = componentsFirst.month == componentsSecond.month
             let sameDay = componentsFirst.day == componentsSecond.day
@@ -108,19 +118,19 @@ extension Date {
     }
 
     var dayOfMonth: Int {
-        return Calendar.sharedUTC.component(.day, from: self)
+        return Calendar.current.component(.day, from: self)
     }
 
     var dayOfWeek: Int {
-        return Calendar.sharedUTC.component(.weekday, from: self)
+        return Calendar.current.component(.weekday, from: self)
     }
 
     var weekOfYear: Int {
-        return Calendar.sharedUTC.component(.weekOfYear, from: self)
+        return Calendar.current.component(.weekOfYear, from: self)
     }
 
     var monthOfYear: Int {
-        return Calendar.sharedUTC.component(.month, from: self)
+        return Calendar.current.component(.month, from: self)
     }
 
     var monthDescription: String {
@@ -142,27 +152,27 @@ extension Date {
     }
 
     func years(to date: Date) -> Int {
-        return Calendar.sharedUTC.dateComponents([.year], from: self, to: date).year ?? 0
+        return Calendar.current.dateComponents([.year], from: self, to: date).year ?? 0
     }
 
     func months(to date: Date) -> Int {
-        return Calendar.sharedUTC.dateComponents([.month], from: self, to: date).month ?? 0
+        return Calendar.current.dateComponents([.month], from: self, to: date).month ?? 0
     }
 
     func weeks(to date: Date) -> Int {
-        return Calendar.sharedUTC.dateComponents([.weekOfMonth], from: self, to: date).weekOfMonth ?? 0
+        return Calendar.current.dateComponents([.weekOfMonth], from: self, to: date).weekOfMonth ?? 0
     }
 
     func days(to date: Date) -> Int {
-        return Calendar.sharedUTC.dateComponents([.day], from: self, to: date).day ?? 0
+        return Calendar.current.dateComponents([.day], from: self, to: date).day ?? 0
     }
 
     func hours(to date: Date) -> Int {
-        return Calendar.sharedUTC.dateComponents([.hour], from: self, to: date).hour ?? 0
+        return Calendar.current.dateComponents([.hour], from: self, to: date).hour ?? 0
     }
 
     func minutes(to date: Date) -> Int {
-        return Calendar.sharedUTC.dateComponents([.minute], from: self, to: date).minute ?? 0
+        return Calendar.current.dateComponents([.minute], from: self, to: date).minute ?? 0
     }
 
     var timeIntervalToNow: TimeInterval {
@@ -214,5 +224,10 @@ extension Date {
         let calendar = Calendar.current
         let dayIndex = ((weekdayNumber - 1) + (calendar.firstWeekday - 1)) % 7
         return short ? calendar.shortWeekdaySymbols[dayIndex] : calendar.weekdaySymbols[dayIndex]
+    }
+
+    static func numerOfWeeksBetween(firstDate: Date, andSecondDate: Date) -> Int {
+        let theComponents = Calendar.current.dateComponents([.weekOfYear], from: firstDate, to: andSecondDate)
+        return theComponents.weekOfYear ?? 0
     }
 }

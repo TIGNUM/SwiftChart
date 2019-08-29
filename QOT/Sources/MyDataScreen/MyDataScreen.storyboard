@@ -69,6 +69,7 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="100" sectionFooterHeight="130" translatesAutoresizingMaskIntoConstraints="NO" id="xRI-V9-qF2">
                                 <rect key="frame" x="0.0" y="145" width="375" height="522"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <sections/>
                                 <connections>
                                     <outlet property="dataSource" destination="t5Z-7w-Qad" id="Qm9-gd-3uE"/>
                                     <outlet property="delegate" destination="t5Z-7w-Qad" id="Fxe-wP-CaZ"/>

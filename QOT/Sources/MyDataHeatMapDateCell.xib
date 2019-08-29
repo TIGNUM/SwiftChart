@@ -17,14 +17,14 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dateCell" id="XBd-Hg-XQ8" customClass="MyDataHeatMapDateCell" customModule="QOT" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MyDataHeatMapDateCell" id="XBd-Hg-XQ8" customClass="MyDataHeatMapDateCell" customModule="QOT" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="46" height="39"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO">
                 <rect key="frame" x="0.0" y="0.0" width="46" height="39"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="dateCellNoData" translatesAutoresizingMaskIntoConstraints="NO" id="HWp-5F-X5g">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="calendarCellNoDataBackground" translatesAutoresizingMaskIntoConstraints="NO" id="HWp-5F-X5g">
                         <rect key="frame" x="0.0" y="0.0" width="46" height="39"/>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="31" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DWV-JE-bRC">
@@ -56,6 +56,6 @@
         </collectionViewCell>
     </objects>
     <resources>
-        <image name="dateCellNoData" width="69" height="58.5"/>
+        <image name="calendarCellNoDataBackground" width="69" height="58.5"/>
     </resources>
 </document>

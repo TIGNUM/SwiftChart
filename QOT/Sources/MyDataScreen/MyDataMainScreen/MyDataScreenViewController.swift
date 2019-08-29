@@ -25,19 +25,7 @@ final class MyDataScreenViewController: UIViewController {
     var router: MyDataScreenRouterInterface?
     @IBOutlet private weak var tableView: UITableView!
     private var myDataScreenModel: MyDataScreenModel?
-    private var firstDayOfVisibleMonth: Date = Date().firstDayOfMonth() {
-        didSet {
-             self.requestNewResults()
-        }
-    }
     private lazy var heatMapDetailView = R.nib.myDataHeatMapDetailView.firstView(owner: self)
-    private var lastDayOfVisibleMonth: Date = Date().lastDayOfMonth()
-    private var impactReadinessResultsDict: [Date: MyDataDailyCheckInModel] = [:] {
-        didSet {
-            guard let cell = getHeatMapCell() else { return }
-            cell.reloadCalendarData()
-        }
-    }
     let calendarPanGestureRecognizer = UIPanGestureRecognizer.init(target: self,
                                                                    action: #selector(didPanOrLongPressCalendarView(gesture:)))
 
@@ -56,8 +44,8 @@ final class MyDataScreenViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         interactor?.viewDidLoad()
-        firstDayOfVisibleMonth = Date().firstDayOfMonth()
         initialSetupForHeatMapDetailView()
+        self.showLoadingSkeleton(with: [.oneLineHeading, .myDataGraph, .twoLinesAndTag])
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -72,7 +60,7 @@ final class MyDataScreenViewController: UIViewController {
 private extension MyDataScreenViewController {
     func setupTableView() {
         tableView.registerDequeueable(MyDataInfoTableViewCell.self)
-        tableView.registerDequeueable(MyDataCharTableViewCell.self)
+        tableView.registerDequeueable(MyDataChartTableViewCell.self)
         tableView.registerDequeueable(MyDataChartLegendTableViewCell.self)
         tableView.registerDequeueable(MyDataHeatMapButtonsTableViewCell.self)
         tableView.registerDequeueable(MyDataHeatMapTableViewCell.self)
@@ -99,17 +87,6 @@ private extension MyDataScreenViewController {
     }
 }
 
-// MARK: - MyDataScreenViewControllerInterface
-extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
-    func setupView() {
-        setupTableView()
-    }
-
-    func setup(for myDataSection: MyDataScreenModel) {
-        myDataScreenModel = myDataSection
-    }
-}
-
 extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -125,9 +102,13 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
 
             return dailyImpactInfoCell
         case MyDataRowType.dailyImpactChart.rawValue:
-            let dailyImpactCell: MyDataCharTableViewCell = tableView.dequeueCell(for: indexPath)
+            let dailyImpactChartCell: MyDataChartTableViewCell = tableView.dequeueCell(for: indexPath)
+            if let strongInteractor = interactor {
+                dailyImpactChartCell.setGraphCollectionViewDelegate(strongInteractor)
+                dailyImpactChartCell.setGraphCollectionViewDatasource(strongInteractor)
+            }
 
-            return dailyImpactCell
+            return dailyImpactChartCell
         case MyDataRowType.dailyImpactChartLegend.rawValue:
             let chartLegendCell: MyDataChartLegendTableViewCell = tableView.dequeueCell(for: indexPath)
             chartLegendCell.configure(selectionModel: interactor?.myDataSelectionSections())
@@ -152,8 +133,13 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
             longTapRecognizer.minimumPressDuration = 0.25
             heatMapCell.calendarView.addGestureRecognizer(longTapRecognizer)
 
-            heatMapCell.setCalendarDelegate(self)
-            heatMapCell.setCalendarDatasource(self)
+            if let strongInteractor = interactor {
+                heatMapCell.setCalendarDelegate(strongInteractor)
+                heatMapCell.setCalendarDatasource(strongInteractor)
+                if interactor?.getFirstLoad() ?? false {
+                    heatMapCell.calendarView.scrollToDate(Date())
+                }
+            }
 
             return heatMapCell
         default:
@@ -161,14 +147,14 @@ extension MyDataScreenViewController: UITableViewDelegate, UITableViewDataSource
         }
     }
 }
-
+// MARK: Custom Delegates
 extension MyDataScreenViewController: MyDataInfoTableViewCellDelegate, MyDataChartLegendTableViewCellDelegate, MyDataHeatMapButtonsTableViewCellDelegate {
     func didTapAddButton() {
         router?.presentMyDataSelection()
     }
 
     func didChangeSelection(toMode: HeatMapMode) {
-        myDataScreenModel?.selectedHeatMapMode = toMode
+        interactor?.setDailySelected(toMode)
         guard let heatMapCell = getHeatMapCell() else { return }
         heatMapCell.reloadCalendarData()
     }
@@ -189,134 +175,14 @@ extension MyDataScreenViewController: MyDataSelectionViewControllerDelegate {
     }
 }
 
-extension MyDataScreenViewController: JTAppleCalendarViewDataSource {
-    func configureCalendar(_ calendar: JTAppleCalendarView) -> ConfigurationParameters {
-        let startDate = Date().dateAfterYears(-1)
-         let endDate = Date()
-        let config = ConfigurationParameters(startDate: startDate,
-                                             endDate: endDate,
-                                             numberOfRows: 6,
-                                             generateInDates: .forAllMonths,
-                                             generateOutDates: .tillEndOfRow,
-                                             firstDayOfWeek: DaysOfWeek(rawValue: Calendar.current.firstWeekday) ?? .monday,
-                                             hasStrictBoundaries: true)
-        return config
-    }
-}
-
-extension MyDataScreenViewController: JTAppleCalendarViewDelegate {
-
-    func calendar(_ calendar: JTAppleCalendarView, cellForItemAt date: Date, cellState: CellState, indexPath: IndexPath) -> JTAppleCell {
-        if let cell = calendar.dequeueReusableJTAppleCell(withReuseIdentifier: MyDataHeatMapTableViewCell.dateCellIdentifier, for: indexPath) as? MyDataHeatMapDateCell {
-            self.calendar(calendar, willDisplay: cell, forItemAt: date, cellState: cellState, indexPath: indexPath)
-            return cell
-        }
-        return JTAppleCell.init()
+// MARK: MyDataScreenViewControllerInterface
+extension MyDataScreenViewController: MyDataScreenViewControllerInterface {
+    func setupView() {
+        setupTableView()
     }
 
-    func calendar(_ calendar: JTAppleCalendarView, willDisplay cell: JTAppleCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
-        if let cell = cell as? MyDataHeatMapDateCell {
-            configureCell(view: cell, cellState: cellState, date: date)
-        }
-    }
-
-    func calendar(_ calendar: JTAppleCalendarView, willScrollToDateSegmentWith visibleDates: DateSegmentInfo) {
-        let firstDay = JTAppleCalendarView.correctedCalendarDateFor(date: visibleDates.monthDates.first?.date ?? Date())
-        let lastDay = JTAppleCalendarView.correctedCalendarDateFor(date: visibleDates.monthDates.last?.date ?? Date())
-        if let heatMapCell = getHeatMapCell() {
-            heatMapCell.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: lastDay))
-            heatMapCell.showTodaysWeekdayLabel(asHighlighted: Date().isBetween(date: firstDay, andDate: lastDay))
-        }
-        if firstDay != firstDayOfVisibleMonth {
-            firstDayOfVisibleMonth = firstDay
-        }
-        if lastDay != lastDayOfVisibleMonth {
-            lastDayOfVisibleMonth = lastDay
-        }
-    }
-
-    func calendar(_ calendar: JTAppleCalendarView, didSelectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        let dailySelected = myDataScreenModel?.selectedHeatMapMode == .dailyIR
-        if let result = impactReadinessResultsDict[cellState.date],
-           let impactReadiness = dailySelected ? result.impactReadiness : result.fiveDayImpactReadiness,
-           let cell = cell as? MyDataHeatMapDateCell,
-           cellState.dateBelongsTo == .thisMonth {
-            showImpactReadinessView(calendar: calendar, withValue: impactReadiness, forCellState: cellState, forCell: cell)
-        }
-    }
-
-    func calendar(_ calendar: JTAppleCalendarView, didDeselectDate date: Date, cell: JTAppleCell?, cellState: CellState) {
-        if let cell = cell as? MyDataHeatMapDateCell,
-            cellState.dateBelongsTo == .thisMonth {
-            hideImpactReadinessView(calendar: calendar, forCell: cell)
-        }
-    }
-}
-
-extension MyDataScreenViewController: UICollectionViewDelegate {
-
-}
-
-// MARK: Helpers
-extension MyDataScreenViewController {
-
-    func configureCell(view: JTAppleCell?, cellState: CellState, date: Date) {
-        guard let cell = view as? MyDataHeatMapDateCell  else { return }
-        cell.dateLabel.text = cellState.text
-        cell.date = date
-        handleCellVisibility(cell: cell, cellState: cellState)
-    }
-
-    func handleCellVisibility(cell: MyDataHeatMapDateCell, cellState: CellState) {
-        if cellState.dateBelongsTo == .thisMonth {
-            cell.isHidden = false
-        } else {
-            cell.isHidden = true
-        }
-        if Date().isSameDay(JTAppleCalendarView.correctedCalendarDateFor(date: cellState.date)) {
-            cell.dateLabel.font = .sfProtextSemibold(ofSize: 16)
-            cell.dateLabel.textColor = .sand
-        } else {
-            cell.dateLabel.font = .sfProDisplayRegular(ofSize: 16)
-            cell.dateLabel.textColor = .sand70
-        }
-
-        let dailySelected = myDataScreenModel?.selectedHeatMapMode == .dailyIR
-
-        guard let result = impactReadinessResultsDict[cellState.date] else {
-            setNoDataUI(forCell: cell)
-            return
-        }
-
-        if dailySelected {
-            guard let impactReadiness = result.impactReadiness else {
-                setNoDataUI(forCell: cell)
-                return
-            }
-            cell.backgroundColor = MyDataScreenWorker.heatMapColor(forImpactReadiness: impactReadiness)
-            cell.noDataImageView.isHidden = true
-        } else {
-            guard let fiveDaysRollingIR = result.fiveDayImpactReadiness else {
-                setNoDataUI(forCell: cell)
-                return
-            }
-            cell.backgroundColor = MyDataScreenWorker.heatMapColor(forImpactReadiness: fiveDaysRollingIR)
-            cell.noDataImageView.isHidden = true
-        }
-    }
-
-    func setNoDataUI(forCell: MyDataHeatMapDateCell) {
-        forCell.backgroundColor = .clear
-        forCell.noDataImageView.isHidden = false
-    }
-
-    func requestNewResults() {
-        interactor?.getDailyResults(around: firstDayOfVisibleMonth, withMonthsBefore: 1, monthsAfter: 1, { [weak self] (resultsDict, error) in
-            guard let dict = resultsDict, let s = self else {
-                return
-            }
-            s.impactReadinessResultsDict = dict
-        })
+    func setup(for myDataSection: MyDataScreenModel) {
+        myDataScreenModel = myDataSection
     }
 
     func showImpactReadinessView(calendar: JTAppleCalendarView, withValue: Double, forCellState: CellState, forCell: MyDataHeatMapDateCell) {
@@ -341,6 +207,40 @@ extension MyDataScreenViewController {
         detailView.removeFromSuperview()
     }
 
+    func updateHeaderDateLabel(forSection: MyDataSection, withFirstDay: Date, andLastDay: Date) {
+        if forSection == .heatMap, let heatMapCell = getHeatMapCell() {
+            heatMapCell.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: andLastDay))
+            heatMapCell.showTodaysWeekdayLabel(asHighlighted: Date().isBetween(date: withFirstDay, andDate: andLastDay))
+        } else if forSection == .dailyImpact, let graphCell = getChartCell() {
+            let mideWeekDay = andLastDay.dateAfterDays(-3)
+            graphCell.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: mideWeekDay))
+            graphCell.showTodaysWeekdayLabel(asHighlighted: Date().isBetween(date: withFirstDay, andDate: andLastDay))
+            graphCell.populateWeekdaysLabels(withFirstDay)
+        }
+    }
+
+    func dataSourceFinished(firstLoad: Bool) {
+        removeLoadingSkeleton()
+        if let heatMapCell = getHeatMapCell() {
+            heatMapCell.reloadCalendarData()
+            if firstLoad {
+                heatMapCell.calendarView.scrollToDate(Date())
+            }
+        }
+        if let chartCell = getChartCell() {
+            chartCell.graphCollectionView.reloadData()
+            if firstLoad {
+                chartCell.graphCollectionView.scrollToItem(at: IndexPath(row: (interactor?.getFirstWeekdaysDatasource().count ?? 1) - 1,
+                                                                         section: 0),
+                                                           at: .right,
+                                                           animated: false)
+            }
+        }
+    }
+}
+
+// MARK: Helpers
+extension MyDataScreenViewController {
     func createConstraintsForDetailsView(calendar: JTAppleCalendarView, cellState: CellState, cell: MyDataHeatMapDateCell) {
         guard let detailView = heatMapDetailView else {
             return
@@ -410,13 +310,10 @@ extension MyDataScreenViewController {
     }
 
     func getHeatMapCell() -> MyDataHeatMapTableViewCell? {
-        guard let cell = tableView.cellForRow(at: IndexPath(row: MyDataRowType.heatMap.rawValue, section: 0)) as? MyDataHeatMapTableViewCell else { return nil }
-        return cell
+        return tableView.cellForRow(at: IndexPath(row: MyDataRowType.heatMap.rawValue, section: 0)) as? MyDataHeatMapTableViewCell
     }
-}
 
-extension JTAppleCalendarView {
-    static func correctedCalendarDateFor(date: Date) -> Date {
-        return date.dateAfterSeconds(Calendar.current.timeZone.secondsFromGMT())
+    func getChartCell() -> MyDataChartTableViewCell? {
+        return tableView.cellForRow(at: IndexPath(row: MyDataRowType.dailyImpactChart.rawValue, section: 0)) as? MyDataChartTableViewCell
     }
 }

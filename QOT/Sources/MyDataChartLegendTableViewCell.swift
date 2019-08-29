@@ -12,7 +12,7 @@ protocol MyDataChartLegendTableViewCellDelegate: class {
     func didTapAddButton()
 }
 
-class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
+final class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
 
     @IBOutlet private weak var label: UILabel!
@@ -29,23 +29,25 @@ class MyDataChartLegendTableViewCell: MyDataBaseTableViewCell {
     }
 
     func configure(selectionModel: MyDataSelectionModel?) {
-        var labelString = ""
+        var attributedString: NSMutableAttributedString = NSMutableAttributedString()
         guard let model = selectionModel else {
-            label.text = labelString
+            label.attributedText = attributedString
             return
         }
         for sectionModel in  model.myDataSelectionItems {
             if let title = sectionModel.title {
-                let newLine = labelString.isEmpty ? "" : "\n"
-                labelString = labelString + newLine + title
+                let attributtedTitle = NSAttributedString(string: title,
+                                                          letterSpacing: 0.16,
+                                                          font: .sfProtextRegular(ofSize: 11),
+                                                          lineSpacing: 9,
+                                                          textColor: MyDataExplanationModel.color(for: sectionModel.myDataExplanationSection),
+                                                          alignment: .left)
+                let newLine = attributedString.string.isEmpty ? NSAttributedString() : NSAttributedString.init(string: "\n")
+                attributedString.append(newLine)
+                attributedString.append(attributtedTitle)
             }
         }
-        label.attributedText = NSAttributedString(string: labelString,
-                                                       letterSpacing: 0.16,
-                                                       font: .sfProtextRegular(ofSize: 11),
-                                                       lineSpacing: 9,
-                                                       textColor: .sand60,
-                                                       alignment: .left)
+        label.attributedText = attributedString
     }
 
     // MARK: Actions

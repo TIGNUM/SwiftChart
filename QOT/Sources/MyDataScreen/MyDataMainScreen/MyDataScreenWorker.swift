@@ -14,11 +14,19 @@ final class MyDataScreenWorker {
     // MARK: - Properties
     private let dataService: qot_dal.MyDataService
     var initialDataSelectionSections = MyDataSelectionModel(myDataSelectionItems: [])
+    var firstLoad: Bool = true
+    var oldestAvailableDate: Date = Date().dateAfterYears(-1)
+    var heatMapFirstDayOfVisibleMonth: Date = Date().firstDayOfMonth()
+    var heatMapLastDayOfVisibleMonth: Date = Date().lastDayOfMonth()
+    var selectedHeatMapMode: HeatMapMode = .dailyIR
+    var graphFirstWeekdaysDatasource: [Date] = []
+    var impactReadinessDatasource: [Date: MyDataDailyCheckInModel] = [:]
 
     // MARK: - Init
 
     init(dataService: qot_dal.MyDataService) {
         self.dataService = dataService
+        self.graphFirstWeekdaysDatasource = firstWeekdays(between: oldestAvailableDate, and: Date())
     }
 }
 
@@ -28,7 +36,7 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
                         return MyDataScreenModel.Item(myDataSection: $0,
                                                       title: ScreenTitleService.main.myDataSectionTitles(for: $0),
                                                       subtitle: ScreenTitleService.main.myDataSectionSubtitles(for: $0))
-                                               }, selectedHeatMapMode: .dailyIR)
+                                               })
     }
 
     func myDataSelectionSections() -> MyDataSelectionModel {
@@ -55,8 +63,8 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
                          _ completion: @escaping([Date: MyDataDailyCheckInModel]?, Error?) -> Void) {
             let beginDate = date.dayAfter(months: -withMonthsBefore).firstDayOfMonth()
             let endDate = date.dayAfter(months: monthsAfter).lastDayOfMonth()
-        MyDataService.main.getDailyCheckInResults(from: beginDate, to: endDate) { (results, initialized, error) in
-            guard let results = results else {
+        MyDataService.main.getDailyCheckInResults(from: beginDate, to: endDate) { [weak self] (results, initialized, error) in
+            guard let results = results, let s = self else {
                 completion(nil, error)
                 return
             }
@@ -67,6 +75,7 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
             for result in convertedResults {
                 resultsDict[result.date.beginingOfDate()] = result
             }
+            s.impactReadinessDatasource = resultsDict
             completion(resultsDict, error)
         }
     }
@@ -83,5 +92,15 @@ extension MyDataScreenWorker: MyDataWorkerInterface {
         } else {
             return .heatMapBrightRed
         }
+    }
+
+    func firstWeekdays(between firstDate: Date, and secondDate: Date) -> [Date] {
+        var weekdays: [Date] = []
+        var date = firstDate.firstDayOfMonth().firstDayOfWeek()
+        while date < secondDate {
+            weekdays.append(date)
+            date = date.dateAfterDays(7)
+        }
+        return weekdays
     }
 }

@@ -9,12 +9,9 @@
 import UIKit
 import JTAppleCalendar
 
-final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCell {
-    static let dateCellIdentifier = "dateCell"
+final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCollectionViewCell {
     // MARK: - Properties
     @IBOutlet weak var calendarView: JTAppleCalendarView!
-    @IBOutlet private weak var monthYearLabel: UILabel!
-    @IBOutlet private var weekDaysLabelsCollection: [UILabel]!
     @IBOutlet private weak var topColorView: UIView!
     @IBOutlet private weak var bottomColorView: UIView!
     @IBOutlet private weak var topColorLabel: UILabel!
@@ -35,10 +32,6 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCell {
         self.calendarView.calendarDelegate = delegate
     }
 
-    func setMonthAndYear(text: String) {
-        self.monthYearLabel.text = text
-    }
-
     func reloadCalendarData() {
         self.calendarView.reloadData()
     }
@@ -49,50 +42,21 @@ final class MyDataHeatMapTableViewCell: MyDataBaseTableViewCell {
     func setupCalendarView() {
         let startDateForCalendar = Date()
         //general setup of CalendarView
-        self.calendarView.register(R.nib.myDataHeatMapDateCell)
+        self.calendarView.registerDequeueable(MyDataHeatMapDateCell.self)
         self.calendarView.scrollDirection = .horizontal
         self.calendarView.scrollingMode = .stopAtEachCalendarFrame
         self.calendarView.showsHorizontalScrollIndicator = false
         self.calendarView.clipsToBounds = false
 
         //setup CalendarView for currentDate
-
-        self.populateWeekdaysLables()
-        self.calendarView.scrollToDate(startDateForCalendar)
+        self.populateWeekdaysLabels()
         self.setMonthAndYear(text: DateFormatter.MMMyyyy.string(from: startDateForCalendar))
         showTodaysWeekdayLabel(asHighlighted: true)
     }
+}
 
-    private func populateWeekdaysLables() {
-        var daysOfTheWeekSymbols: [String] = []
-        for index in 1...7 {
-            daysOfTheWeekSymbols.append(Date.weekdayNameFrom(weekdayNumber: index, short: true))
-        }
-        for label in self.weekDaysLabelsCollection where daysOfTheWeekSymbols.count > label.tag {
-            label.text = daysOfTheWeekSymbols[label.tag]
-        }
-    }
-
-    public func showTodaysWeekdayLabel(asHighlighted: Bool) {
-        if asHighlighted {
-            let weekday = (Calendar.current.component(.weekday, from: Date()) - (Calendar.current.firstWeekday - 1))
-            for label in self.weekDaysLabelsCollection {
-                self.setupLabel(label, asHighlighted: label.tag == (weekday - 1))
-            }
-        } else {
-            for label in self.weekDaysLabelsCollection {
-                self.setupLabel(label, asHighlighted: false)
-            }
-        }
-    }
-
-    func setupLabel(_ label: UILabel, asHighlighted: Bool) {
-        if asHighlighted {
-            label.font = .sfProtextSemibold(ofSize: 14)
-            label.textColor = .sand
-        } else {
-            label.font = .sfProtextLight(ofSize: 14)
-            label.textColor = .sand70
-        }
+extension JTAppleCalendarView {
+    static func correctedCalendarDateFor(date: Date) -> Date {
+        return date.dateAfterSeconds(Calendar.current.timeZone.secondsFromGMT())
     }
 }

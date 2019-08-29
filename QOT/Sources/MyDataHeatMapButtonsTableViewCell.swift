@@ -17,7 +17,7 @@ protocol MyDataHeatMapButtonsTableViewCellDelegate: class {
     func didChangeSelection(toMode: HeatMapMode)
 }
 
-class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
+final class MyDataHeatMapButtonsTableViewCell: MyDataBaseTableViewCell {
     // MARK: - Properties
     @IBOutlet weak var dailyIRButton: UIButton!
     @IBOutlet weak var fiveDaysRollingIRButton: UIButton!
