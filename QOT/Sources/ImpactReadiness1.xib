@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
-    <device id="retina6_1" orientation="portrait">
+    <device id="retina6_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -29,7 +29,7 @@
             <rect key="frame" x="0.0" y="0.0" width="441" height="593"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="8bY-dH-XWY" id="Auc-IE-jDT">
-                <rect key="frame" x="0.0" y="0.0" width="441" height="592.5"/>
+                <rect key="frame" x="0.0" y="0.0" width="441" height="592.66666666666663"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ml6-kf-324">
@@ -50,7 +50,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="IMPACT READINESS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IAV-Ov-hU9">
-                                <rect key="frame" x="24" y="79.5" width="175.5" height="24"/>
+                                <rect key="frame" x="24" y="79.666666666666686" width="175.66666666666666" height="24"/>
                                 <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                                 <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -66,33 +66,33 @@
                             <constraint firstItem="IAV-Ov-hU9" firstAttribute="leading" secondItem="13j-PD-rak" secondAttribute="leading" constant="24" id="yki-tr-XGH"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DM5-PW-enG">
-                        <rect key="frame" x="24" y="351" width="73.5" height="77"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="85" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DM5-PW-enG">
+                        <rect key="frame" x="24" y="351" width="73.666666666666671" height="77"/>
                         <fontDescription key="fontDescription" name="SFProDisplay-Ultralight" family="SF Pro Display" pointSize="64"/>
                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bhX-cm-XO0">
-                        <rect key="frame" x="98" y="401" width="6" height="21"/>
+                        <rect key="frame" x="98.333333333333329" y="401" width="6" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="out of 100" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="R2j-t5-POi">
-                        <rect key="frame" x="109" y="403" width="57.5" height="14.5"/>
+                        <rect key="frame" x="109.33333333333331" y="403" width="57" height="14.666666666666686"/>
                         <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="12"/>
                         <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w4g-tE-UTh">
-                        <rect key="frame" x="24" y="444" width="393" height="76.5"/>
+                        <rect key="frame" x="24" y="444" width="393" height="56.666666666666686"/>
                         <string key="text">On days that you don't feel your best let your High Performance Mindset take over. Spend some time visualizing, in detail, what it will look like to Rule Your Impact today.</string>
                         <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="16"/>
                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vjm-ra-cbt">
-                        <rect key="frame" x="24" y="544.5" width="211" height="40"/>
+                        <rect key="frame" x="24" y="524.66666666666663" width="211" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="Bs0-gv-xpB"/>
                             <constraint firstAttribute="width" constant="211" id="Ucr-oS-1ZK"/>
@@ -122,10 +122,10 @@
                     <constraint firstAttribute="trailingMargin" secondItem="Ml6-kf-324" secondAttribute="trailing" constant="-20" id="aVR-Ea-8fM"/>
                     <constraint firstItem="R2j-t5-POi" firstAttribute="top" secondItem="13j-PD-rak" secondAttribute="bottom" constant="56" id="bv5-as-IPc"/>
                     <constraint firstItem="w4g-tE-UTh" firstAttribute="top" secondItem="DM5-PW-enG" secondAttribute="bottom" constant="16" id="cqd-fI-YXq"/>
+                    <constraint firstAttribute="bottom" secondItem="Vjm-ra-cbt" secondAttribute="bottom" constant="28" id="elm-az-MtF"/>
                     <constraint firstItem="Ml6-kf-324" firstAttribute="top" secondItem="Auc-IE-jDT" secondAttribute="topMargin" constant="-55" id="gsc-tb-nkn"/>
                     <constraint firstAttribute="trailing" secondItem="w4g-tE-UTh" secondAttribute="trailing" constant="24" id="hbs-Wz-fES"/>
                     <constraint firstItem="w4g-tE-UTh" firstAttribute="leading" secondItem="Auc-IE-jDT" secondAttribute="leading" constant="24" id="iof-DH-iCq"/>
-                    <constraint firstAttribute="bottom" secondItem="Vjm-ra-cbt" secondAttribute="bottom" constant="8" id="vy4-X4-L0v"/>
                     <constraint firstAttribute="trailing" secondItem="13j-PD-rak" secondAttribute="trailing" id="yUX-bg-IxT"/>
                 </constraints>
             </tableViewCellContentView>

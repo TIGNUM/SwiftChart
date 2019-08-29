@@ -13,7 +13,7 @@ final class GuidedTrackSectionCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var content: UILabel!
     @IBOutlet private weak var button: UIButton!
     @IBAction func clickAction(_ sender: Any) {
-
+        NotificationCenter.default.post(name: .displayGuidedTrackRows, object: nil)
     }
 
     func configure(with: GuidedTrackViewModel?) {

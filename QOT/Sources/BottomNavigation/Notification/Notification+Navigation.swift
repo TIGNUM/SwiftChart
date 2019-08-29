@@ -18,6 +18,8 @@ extension Notification.Name {
     static let updateBottomNavigation = Notification.Name("updateBottomNavigation")
     static let didTabDismissBottomNavigation = Notification.Name("didTabDismissBottomNavigation")
     static let didDismissMindsetResultView = Notification.Name("didDismissMindsetResultView")
-//    Notification to hide/display the ImpactReadinessScore
+//  Notification to hide/display the ImpactReadinessScore
     static let dispayDailyCheckInScore = Notification.Name("showDailyCheckInScore")
+    //  Notification to hide/display the GuidedTrack Bucket
+    static let displayGuidedTrackRows = Notification.Name("showGuidedTrack")
 }

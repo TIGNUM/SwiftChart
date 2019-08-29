@@ -683,7 +683,6 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
         tableView.registerDequeueable(LeaderWisdomTableViewCell.self)
         tableView.registerDequeueable(MyPeakPerformanceTableCell.self)
         tableView.registerDequeueable(MeAtMyBestEmptyCell.self)
-        tableView.registerDequeueable(MeAtMyBestCell.self)
         tableView.registerDequeueable(SolveReminderCell.self)
         tableView.registerDequeueable(SprintChallengeCell.self)
         tableView.registerDequeueable(GuidedTrackTableViewCell.self)

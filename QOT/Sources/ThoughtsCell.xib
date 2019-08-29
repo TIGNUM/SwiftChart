@@ -10,11 +10,11 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="SF-Pro-Display-Regular.otf">
+            <string>SFProDisplay-Regular</string>
+        </array>
         <array key="SF-Pro-Display-Thin.otf">
             <string>SFProDisplay-Thin</string>
-        </array>
-        <array key="SF-Pro-Text-Light.otf">
-            <string>SFProText-Light</string>
         </array>
         <array key="SF-Pro-Text-Regular.otf">
             <string>SFProText-Regular</string>
@@ -24,31 +24,31 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <view contentMode="scaleToFill" id="FJ3-uG-AOK" customClass="ThoughtsCell" customModule="QOT" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="397" height="317"/>
+            <rect key="frame" x="0.0" y="0.0" width="450" height="280"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="THOUGHTS TO PONDER" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9HJ-G0-3xl">
-                    <rect key="frame" x="20" y="57" width="357" height="21.5"/>
-                    <fontDescription key="fontDescription" name="SFProText-Light" family="SF Pro Text" pointSize="18"/>
+                    <rect key="frame" x="24" y="57" width="402" height="24"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Regular" family="SF Pro Display" pointSize="20"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="sa" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AG0-ro-yG9">
-                    <rect key="frame" x="20" y="94.5" width="357" height="48"/>
-                    <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="40"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="&quot;The Best questions are the ones you can't google&quot;" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AG0-ro-yG9">
+                    <rect key="frame" x="24" y="105" width="402" height="81.5"/>
+                    <fontDescription key="fontDescription" name="SFProDisplay-Thin" family="SF Pro Display" pointSize="34"/>
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
                 <view alpha="0.59999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="AQi-ZR-HGz">
-                    <rect key="frame" x="20" y="48" width="15" height="1"/>
+                    <rect key="frame" x="24" y="48" width="16" height="1"/>
                     <color key="backgroundColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="1" id="6WA-CK-9NQ"/>
-                        <constraint firstAttribute="width" constant="10" id="Zi6-7D-e2l"/>
+                        <constraint firstAttribute="width" constant="16" id="Zi6-7D-e2l"/>
                     </constraints>
                 </view>
-                <label opaque="NO" userInteractionEnabled="NO" alpha="0.59999999999999998" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mph-4x-epZ">
-                    <rect key="frame" x="20" y="162.5" width="357" height="106.5"/>
+                <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000000000002" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mph-4x-epZ">
+                    <rect key="frame" x="24" y="202.5" width="402" height="29.5"/>
                     <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="14"/>
                     <color key="textColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                     <nil key="highlightedColor"/>
@@ -56,18 +56,18 @@
             </subviews>
             <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
             <constraints>
-                <constraint firstItem="AQi-ZR-HGz" firstAttribute="leading" secondItem="FJ3-uG-AOK" secondAttribute="leading" constant="20" id="9J1-u9-eKG"/>
-                <constraint firstItem="XgD-xk-por" firstAttribute="trailing" secondItem="mph-4x-epZ" secondAttribute="trailing" constant="20" id="FVV-Gb-fEH"/>
-                <constraint firstItem="XgD-xk-por" firstAttribute="trailing" secondItem="AG0-ro-yG9" secondAttribute="trailing" constant="20" id="Fvy-Os-17a"/>
-                <constraint firstItem="AG0-ro-yG9" firstAttribute="leading" secondItem="XgD-xk-por" secondAttribute="leading" constant="20" id="Njm-2p-k68"/>
-                <constraint firstItem="9HJ-G0-3xl" firstAttribute="leading" secondItem="XgD-xk-por" secondAttribute="leading" constant="20" id="Pd8-UE-iNX"/>
-                <constraint firstItem="AG0-ro-yG9" firstAttribute="top" secondItem="9HJ-G0-3xl" secondAttribute="bottom" constant="16" id="QPo-m9-kX1"/>
+                <constraint firstItem="9HJ-G0-3xl" firstAttribute="leading" secondItem="FJ3-uG-AOK" secondAttribute="leading" constant="24" id="4iC-kT-tpK"/>
+                <constraint firstItem="AQi-ZR-HGz" firstAttribute="leading" secondItem="FJ3-uG-AOK" secondAttribute="leading" constant="24" id="5h6-8V-mjX"/>
+                <constraint firstItem="AG0-ro-yG9" firstAttribute="top" secondItem="9HJ-G0-3xl" secondAttribute="bottom" constant="24" id="BLo-o6-nQh"/>
+                <constraint firstItem="XgD-xk-por" firstAttribute="trailing" secondItem="mph-4x-epZ" secondAttribute="trailing" constant="24" id="FVV-Gb-fEH"/>
+                <constraint firstItem="AG0-ro-yG9" firstAttribute="leading" secondItem="FJ3-uG-AOK" secondAttribute="leading" constant="24" id="Jp7-sK-1U2"/>
+                <constraint firstAttribute="trailing" secondItem="9HJ-G0-3xl" secondAttribute="trailing" constant="24" id="McV-dX-gfz"/>
                 <constraint firstItem="AQi-ZR-HGz" firstAttribute="top" secondItem="FJ3-uG-AOK" secondAttribute="top" constant="48" id="WaK-uJ-VdK"/>
+                <constraint firstItem="mph-4x-epZ" firstAttribute="leading" secondItem="XgD-xk-por" secondAttribute="leading" constant="24" id="asT-0d-VlZ"/>
                 <constraint firstItem="9HJ-G0-3xl" firstAttribute="top" secondItem="AQi-ZR-HGz" secondAttribute="bottom" constant="8" id="bcT-EU-SV7"/>
-                <constraint firstItem="mph-4x-epZ" firstAttribute="leading" secondItem="XgD-xk-por" secondAttribute="leading" constant="20" id="i6g-qp-9mh"/>
-                <constraint firstItem="XgD-xk-por" firstAttribute="trailing" secondItem="9HJ-G0-3xl" secondAttribute="trailing" constant="20" id="nU1-ER-seu"/>
                 <constraint firstAttribute="bottom" secondItem="mph-4x-epZ" secondAttribute="bottom" constant="48" id="pVG-2T-niE"/>
-                <constraint firstItem="mph-4x-epZ" firstAttribute="top" secondItem="AG0-ro-yG9" secondAttribute="bottom" constant="20" id="qNu-UT-683"/>
+                <constraint firstItem="mph-4x-epZ" firstAttribute="top" secondItem="AG0-ro-yG9" secondAttribute="bottom" constant="16" id="qNu-UT-683"/>
+                <constraint firstAttribute="trailing" secondItem="AG0-ro-yG9" secondAttribute="trailing" constant="24" id="yX9-bJ-cfv"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="XgD-xk-por"/>
@@ -76,7 +76,7 @@
                 <outlet property="thoughtLabel" destination="AG0-ro-yG9" id="21h-AU-f8K"/>
                 <outlet property="titleLabel" destination="9HJ-G0-3xl" id="I9Q-h0-3Sh"/>
             </connections>
-            <point key="canvasLocation" x="35.507246376811594" y="-158.37053571428569"/>
+            <point key="canvasLocation" x="73.913043478260875" y="-170.75892857142856"/>
         </view>
     </objects>
 </document>

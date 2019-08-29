@@ -19,6 +19,8 @@ final class DailyBriefInteractor {
     private var viewModelOldList: [BaseDailyBriefViewModel] = []
     private var viewModelOldListModels: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
     private var expendImpactReadiness: Bool = false
+// Boolean to keep track of the guided closed track.
+    private var guidedClosedTrack: Bool = false
 
     private lazy var firstInstallTimeStamp: Date? = {
         return UserDefault.firstInstallationTimestamp.object as? Date
@@ -37,6 +39,10 @@ final class DailyBriefInteractor {
         NotificationCenter.default.addObserver(self, selector: #selector(didGetImpactReadinessCellSizeChanges(_ :)),
                                                name: .dispayDailyCheckInScore, object: nil)
 
+        // Listen about Expend/Collapse of Closed Guided Track
+        NotificationCenter.default.addObserver(self, selector: #selector(didGuidedClosedCellSizeChanges(_ :)),
+                                               name: .displayGuidedTrackRows, object: nil)
+
     }
     func viewDidLoad() {
         presenter.setupView()
@@ -47,6 +53,13 @@ final class DailyBriefInteractor {
 extension DailyBriefInteractor {
     @objc func didGetImpactReadinessCellSizeChanges(_ notification: Notification) {
         expendImpactReadiness = !expendImpactReadiness
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
+        }
+    }
+//  Display the expand/collapse of the guided close track
+    @objc func didGuidedClosedCellSizeChanges(_ notification: Notification) {
+        guidedClosedTrack = !guidedClosedTrack
         DispatchQueue.main.async {
             NotificationCenter.default.post(name: .didUpdateDailyBriefBuckets, object: nil)
         }
@@ -73,7 +86,6 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
         worker.getDailyBriefBucketsForViewModel { (bucketsList) in
             bucketsList.forEach { (bucket) in
-                print(bucket.bucketName)
                 switch bucket.bucketName {
                 case .DAILY_CHECK_IN_1?:
                     sectionDataList.append(ArraySection(model: .dailyCheckIn1, elements: self.createImpactReadinessCell(impactReadinessBucket: bucket)))
@@ -102,7 +114,8 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .LEADERS_WISDOM?:
                     sectionDataList.append(ArraySection(model: .leaderswisdom, elements: self.createLeaderWisdom(createLeadersWisdom: bucket)))
                 case .FEAST_OF_YOUR_EYES?:
-                    sectionDataList.append(ArraySection(model: .feastForYourEyes, elements: self.createFeastForEyesModel(feastForEyesBucket: bucket)))
+//                    sectionDataList.append(ArraySection(model: .feastForYourEyes, elements: self.createFeastForEyesModel(feastForEyesBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .guidedTrack, elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
                 case .FROM_MY_COACH?:
                     sectionDataList.append(ArraySection(model: .fromMyCoach, elements: self.createFromMyCoachModel(fromCoachBucket: bucket)))
                 case .MY_PEAK_PERFORMANCE?:
@@ -116,6 +129,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 //               case .GUIDED_TRACK?:
 //                    sectionDataList.append(ArraySection(model: .guidedTrack, elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
                 default:
+                    print(bucket.bucketName)
                     print("Default")
                 }
             }
@@ -747,7 +761,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var aboutMeList: [BaseDailyBriefViewModel] = []
         let aboutMeBucketTitle = aboutMeModel.bucketText?.contentItems.first?.valueText ?? ""
         let aboutMeContent = aboutMeModel.stringValue ?? ""
-        let aboutMeAdditionalContent = "*"
+        let aboutMeAdditionalContent = "*QOT doesn't have enough data to show a correct average. Make sure to do the Daily Check-in in daily basis"
         aboutMeList.append(AboutMeViewModel(title: aboutMeBucketTitle, aboutMeContent: aboutMeContent, aboutMeMoreInfo: aboutMeAdditionalContent, domainModel: aboutMeModel))
         return aboutMeList
     }
@@ -766,6 +780,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                     buttonText: "Create your To Be Vision",
                                                     type: GuidedTrackItemType.SECTION,
                                                     domain: guidedTrack))
+        guard guidedClosedTrack == true else {
+            return guidedtrackList
+        }
         guidedtrackList.append(GuidedTrackViewModel(bucketTitle: "step: 1",
                                                     content: "Vides about read about the importance of courageous, rebellious and imaginative.",
                                                     buttonText: "Watch",
