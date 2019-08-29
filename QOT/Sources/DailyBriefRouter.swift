@@ -14,7 +14,6 @@ final class DailyBriefRouter {
     // MARK: - Properties
 
     private let viewController: DailyBriefViewController
-    private var popUpController: PopUpViewController?
 
     // MARK: - Init
 

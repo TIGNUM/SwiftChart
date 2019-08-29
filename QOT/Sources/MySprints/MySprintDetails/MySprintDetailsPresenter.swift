@@ -38,4 +38,8 @@ extension MySprintDetailsPresenter: MySprintDetailsPresenterInterface {
     func trackSprintStart() {
         viewController?.trackSprintStart()
     }
+
+    func presentAlert(title: String, message: String, buttons: [UIBarButtonItem]) {
+        viewController?.presentAlert(title: title, message: message, buttons: buttons)
+    }
 }

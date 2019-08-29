@@ -11,7 +11,6 @@ import Foundation
 final class MyVisionRouter {
 
     private weak var viewController: MyVisionViewController?
-    private var popUpController: PopUpViewController?
 
     init(viewController: MyVisionViewController) {
         self.viewController = viewController
@@ -61,21 +60,6 @@ extension MyVisionRouter: MyVisionRouterInterface {
 
     func presentViewController(viewController: UIViewController, completion: (() -> Void)?) {
         self.viewController?.present(viewController, animated: true, completion: completion)
-    }
-
-    func closeUpdateConfirmationScreen(completion: (() -> Void)?) {
-        self.popUpController?.dismiss(animated: true, completion: completion)
-    }
-
-    ///FIXME Actually we are not showing the confirmation view.
-    func showUpdateConfirmationScreen() {
-        let config = PopUpViewController.Config(title: "UPDATE TO BE VISION",
-                                                description: "Do you wanna create a new To Be Vision or edit your current one?",
-                                                rightButtonTitle: "Edit", leftButtonTitle: "Create new")
-        let popUpController = PopUpViewController(with: config, delegate: viewController)
-        popUpController.modalPresentationStyle = .overCurrentContext
-        self.popUpController = popUpController
-        viewController?.present(popUpController, animated: true, completion: nil)
     }
 
     func openToBeVisionGenerator() {

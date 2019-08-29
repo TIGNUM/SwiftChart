@@ -10,15 +10,15 @@ import Foundation
 
 protocol RegistrationViewControllerInterface: UIViewController {
     func setupView()
-    func updateView()
     func update(controller: UIViewController, direction: UIPageViewController.NavigationDirection)
     func showAlert(message: String)
+    func show(alert: RegistrationExistingUserAlertViewModel)
 }
 
 protocol RegistrationPresenterInterface {
     var navigationController: UINavigationController { get }
     func setupView()
-    func presentView()
+    func present(alert: RegistrationExistingUserAlertViewModel)
     func present(controller: UIViewController, direction: UIPageViewController.NavigationDirection)
     func presentActivity(state: ActivityState?)
     func presentAlert(message: String)
@@ -28,7 +28,6 @@ protocol RegistrationInteractorInterface: Interactor {
     var currentController: UIViewController? { get }
     var totalPageCount: Int { get }
     var currentPage: Int { get }
-    var existingUserAlertViewModel: RegistrationExistingUserAlertViewModel? { get }
     func navigateToLogin(shouldSaveToBeVision: Bool)
 }
 

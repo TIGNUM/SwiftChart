@@ -38,8 +38,10 @@ extension SubsriptionReminderRouter: SubsriptionReminderRouterInterface {
     }
 
     func showLogoutDialog() {
-        viewController?.showAlert(type: .logout, handlerDestructive: {
+        let cancel = QOTAlertAction(title: R.string.localized.alertButtonTitleCancel())
+        let logout = QOTAlertAction(title: R.string.localized.sidebarTitleLogout()) { (_) in
             qot_dal.SessionService.main.logout()
-        })
+        }
+        QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
     }
 }

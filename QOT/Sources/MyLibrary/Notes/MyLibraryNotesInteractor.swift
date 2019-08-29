@@ -107,8 +107,7 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
         infoViewModel = MyLibraryUserStorageInfoViewModel(isFullscreen: true,
                                                           icon: R.image.my_library_warning() ?? UIImage(),
                                                           title: worker.dismissAlertTitle,
-                                                          message: worker.dismissAlertMessage,
-                                                          userParameter: nil)
+                                                          message: worker.dismissAlertMessage)
         bottomButtons = dismissButtons
         presenter.present()
     }
@@ -117,8 +116,7 @@ extension MyLibraryNotesInteractor: MyLibraryNotesInteractorInterface {
         infoViewModel = MyLibraryUserStorageInfoViewModel(isFullscreen: true,
                                                           icon: R.image.my_library_warning() ?? UIImage(),
                                                           title: worker.removeAlertTitle,
-                                                          message: worker.removeAlertMessage,
-                                                          userParameter: nil)
+                                                          message: worker.removeAlertMessage)
         bottomButtons = removeButtons
         presenter.present()
     }

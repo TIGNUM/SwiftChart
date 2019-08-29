@@ -11,10 +11,12 @@ import qot_dal
 
 protocol ProfileSettingsViewControllerInterface: class {
     func setup(profile: QDMUser)
+    func presentAlert(title: String, message: String, cancelTitle: String, doneTitle: String)
 }
 
 protocol ProfileSettingsPresenterInterface {
     func loadSettingsMenu(_ profile: QDMUser)
+    func presentAlert(title: String, message: String, cancelTitle: String, doneTitle: String)
 }
 
 protocol ProfileSettingsInteractorInterface: Interactor {
@@ -26,11 +28,7 @@ protocol ProfileSettingsInteractorInterface: Interactor {
     func headerTitle(in section: Int) -> String
     func updateUser(_ profile: QDMUser)
     func showUpdateConfirmationScreen()
-    func closeUpdateConfirmationScreen(completion: (() -> Void)?)
     var profile: QDMUser? { get set }
 }
 
-protocol ProfileSettingsRouterInterface {
-    func closeUpdateConfirmationScreen(completion: (() -> Void)?)
-    func showUpdateConfirmationScreen()
-}
+protocol ProfileSettingsRouterInterface { }

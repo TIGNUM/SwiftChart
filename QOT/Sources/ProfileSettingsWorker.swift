@@ -27,6 +27,22 @@ final class ProfileSettingsWorker {
     private var companyTxt = ""
     private var emailTxt = ""
 
+    lazy var confirmationAlertTitle: String = {
+        return R.string.localized.profileConfirmationHeader().uppercased()
+    }()
+
+    lazy var confirmationAlertMessage: String = {
+        return R.string.localized.profileConfirmationDescription()
+    }()
+
+    lazy var confirmationAlertDone: String = {
+        return R.string.localized.profileConfirmationDoneButton()
+    }()
+
+    lazy var confirmationAlertCancel: String = {
+        return R.string.localized.buttonTitleCancel()
+    }()
+
     init(contentService: qot_dal.ContentService) {
         self.contentService = contentService
     }

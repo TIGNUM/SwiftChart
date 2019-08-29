@@ -34,10 +34,7 @@ final class Level5Cell: UITableViewCell, Dequeueable {
 
     @IBAction func save(_ sender: UIButton) {
         delegate?.saveAnswerValue(sender.tag, from: self)
-        self.comeBackView.isHidden = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + Animation.duration_6) {
-           self.comeBackView.isHidden = true
-        }
+        QOTAlert.show(title: R.string.localized.level5AlertTitle(), message: R.string.localized.level5AlertMessage())
         saveButtons.forEach {(button) in
             button.setTitle(R.string.localized.level5ButtonSaved(), for: .normal)
         }

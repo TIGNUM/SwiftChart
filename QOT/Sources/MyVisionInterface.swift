@@ -16,6 +16,7 @@ protocol MyVisionViewControllerInterface: class {
     func hideNullState()
     func setupView()
     func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessage: Bool)
+    func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String)
 }
 
 protocol MyVisionPresenterInterface {
@@ -25,12 +26,12 @@ protocol MyVisionPresenterInterface {
     func hideNullState()
     func setupView()
     func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessage: Bool)
+    func presentTBVUpdateAlert(title: String, message: String, editTitle: String, crateNewTitle: String)
 }
 
 protocol MyVisionInteractorInterface: Interactor {
     func shouldShowWarningIcon() -> Bool
     func showTracker()
-    func closeUpdateConfirmationScreen(completion: (() -> Void)?)
     func showUpdateConfirmationScreen()
     func showNullState(with title: String, message: String)
     func hideNullState()
@@ -51,9 +52,7 @@ protocol MyVisionRouterInterface {
     func showTracker()
     func showTBVData(shouldShowNullState: Bool, visionId: Int?)
     func showEditVision(title: String, vision: String, isFromNullState: Bool)
-    func closeUpdateConfirmationScreen(completion: (() -> Void)?)
     func showRateScreen(with id: Int)
-    func showUpdateConfirmationScreen()
     func presentViewController(viewController: UIViewController, completion: (() -> Void)?)
     func openToBeVisionGenerator()
 }

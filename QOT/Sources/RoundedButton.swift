@@ -9,6 +9,10 @@ import UIKit
 
 class RoundedButton: UIButton {
 
+    static func barButton(title: String, target: Any, action: Selector) -> UIBarButtonItem {
+        return UIBarButtonItem(customView: RoundedButton(title: title, target: target, action: action))
+    }
+
     private let borderColorActive = UIColor.accent40
     private let borderColorInactive = UIColor.sand08
     private let activeColor = UIColor.accent

@@ -47,6 +47,14 @@ extension ShifterResultViewController: ShifterResultViewControllerInterface {
     func setupView() {
         registerCells()
     }
+
+    func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String) {
+        let cancel = QOTAlertAction(title: cancelTitle)
+        let leave = QOTAlertAction(title: leaveTitle) { [weak self] (_) in
+            self?.interactor?.didTapClose()
+        }
+        QOTAlert.show(title: title, message: message, bottomItems: [cancel, leave])
+    }
 }
 
 // MARK: - Private
@@ -72,17 +80,6 @@ private extension ShifterResultViewController {
     @objc func openConfirmationView() {
         trackUserEvent(.CONFIRM, action: .TAP)
         interactor?.openConfirmationView()
-    }
-}
-
-// MARK: - ConfirmationViewControllerDelegate
-extension ShifterResultViewController: ConfirmationViewControllerDelegate {
-    func didTapLeave() {
-        interactor?.didTapClose()
-    }
-
-    func didTapStay() {
-        // Do nothing.
     }
 }
 

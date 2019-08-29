@@ -28,16 +28,29 @@ final class SolveResultsWorker {
         self.recovery = recovery
         self.type = .recovery
     }
+
+    // Texts
+    lazy var leaveAlertTitle: String = {
+        return R.string.localized.profileConfirmationHeader()
+    }()
+
+    lazy var leaveAlertMessage: String = {
+        return R.string.localized.profileConfirmationDescription()
+    }()
+
+    lazy var leaveAlertLeaveButton: String = {
+        return R.string.localized.profileConfirmationDoneButton()
+    }()
+
+    lazy var leaveAlertStayButton: String = {
+        return R.string.localized.buttonTitleCancel()
+    }()
 }
 
 // MARK: - Public
 extension SolveResultsWorker {
     var hideShowMoreButton: Bool {
         return type == .recovery
-    }
-
-    var confirmationKind: Confirmation.Kind {
-        return type.confirmationKind
     }
 
     var resultType: ResultType {

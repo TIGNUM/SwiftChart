@@ -24,4 +24,8 @@ extension ProfileSettingsPresenter: ProfileSettingsPresenterInterface {
     func loadSettingsMenu(_ profile: QDMUser) {
         viewController?.setup(profile: profile)
     }
+
+    func presentAlert(title: String, message: String, cancelTitle: String, doneTitle: String) {
+        viewController?.presentAlert(title: title, message: message, cancelTitle: cancelTitle, doneTitle: doneTitle)
+    }
 }

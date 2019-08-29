@@ -13,5 +13,4 @@ struct MyLibraryUserStorageInfoViewModel {
     let icon: UIImage
     let title: String
     let message: NSAttributedString
-    let userParameter: Any?
 }

@@ -26,15 +26,6 @@ enum ResultType {
             return 0
         }
     }
-
-    var confirmationKind: Confirmation.Kind {
-        switch self {
-        case .recovery:
-            return .recovery
-        case .solve:
-            return .solve
-        }
-    }
 }
 
 struct SolveResults {

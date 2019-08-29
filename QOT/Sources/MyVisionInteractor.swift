@@ -65,12 +65,11 @@ final class MyVisionInteractor {
 
 extension MyVisionInteractor: MyVisionInteractorInterface {
 
-    func closeUpdateConfirmationScreen(completion: (() -> Void)?) {
-        router.closeUpdateConfirmationScreen(completion: completion)
-    }
-
     func showUpdateConfirmationScreen() {
-        router.showUpdateConfirmationScreen()
+        presenter.presentTBVUpdateAlert(title: worker.updateAlertTitle,
+                                        message: worker.updateAlertMessage,
+                                        editTitle: worker.updateAlertEditTitle,
+                                        crateNewTitle: worker.updateAlertCreateTitle)
     }
 
     func showNullState(with title: String, message: String) {

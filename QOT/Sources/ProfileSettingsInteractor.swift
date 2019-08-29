@@ -44,12 +44,12 @@ final class ProfileSettingsInteractor {
 
 // MARK: - SettingsMenuInteractor Interface
 extension ProfileSettingsInteractor: ProfileSettingsInteractorInterface {
-    func closeUpdateConfirmationScreen(completion: (() -> Void)?) {
-        router.closeUpdateConfirmationScreen(completion: completion)
-    }
 
     func showUpdateConfirmationScreen() {
-        router.showUpdateConfirmationScreen()
+        presenter.presentAlert(title: worker.confirmationAlertTitle,
+                               message: worker.confirmationAlertMessage,
+                               cancelTitle: worker.confirmationAlertCancel,
+                               doneTitle: worker.confirmationAlertDone)
     }
 
     func editAccountTitle(_ completion: @escaping (_ userData: String) -> Void) {

@@ -137,6 +137,10 @@ extension MySprintDetailsViewController: MySprintDetailsViewControllerInterface 
     func trackSprintStart() {
         trackUserEvent(QDMUserEventTracking.Name.START, action: QDMUserEventTracking.Action.TAP)
     }
+
+    func presentAlert(title: String, message: String, buttons: [UIBarButtonItem]) {
+        QOTAlert.show(title: title, message: message, bottomItems: buttons)
+    }
 }
 
 // MARK: - UITableView datasource

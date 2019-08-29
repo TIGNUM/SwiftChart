@@ -42,9 +42,9 @@ final class RegistrationAgeViewController: UIViewController {
     }()
 
     private lazy var createAccountButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(customView: RoundedButton(title: interactor?.createButtonTitle ?? "",
-                                                               target: self,
-                                                               action: #selector(didTapCreateAccountButton)))
+        let button = RoundedButton.barButton(title: interactor?.createButtonTitle ?? "",
+                                             target: self,
+                                             action: #selector(didTapCreateAccountButton))
         return button
     }()
 

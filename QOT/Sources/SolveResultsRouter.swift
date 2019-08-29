@@ -47,13 +47,6 @@ extension SolveResultsRouter: SolveResultsRouterInterface {
     func openRecovery() {
         presentDecisionTree(type: .recovery)
     }
-
-    func openConfirmationView(_ kind: Confirmation.Kind) {
-        let configurator = ConfirmationConfigurator.make(for: kind)
-        let confirmationVC = ConfirmationViewController(configure: configurator)
-        confirmationVC.delegate = viewController
-        viewController.present(confirmationVC, animated: true)
-    }
 }
 
 // MARK: - Private

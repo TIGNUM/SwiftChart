@@ -24,6 +24,7 @@ final class MyLibraryUserStorageInteractor {
 
     var items = [MyLibraryCellViewModel]()
     private var identifiersForCheck = Set<String>()
+    private var itemForDownload: MyLibraryCellViewModel?
 
     // Cannot be lazy as "Remove" state depends on selected items count
     private var editingButtons: [ButtonParameters] {
@@ -33,13 +34,21 @@ final class MyLibraryUserStorageInteractor {
                                  isEnabled: !(identifiersForCheck.count == 0)),
                 ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
     }
-    private lazy var removeButtons: [ButtonParameters] = {
-        return [ButtonParameters(title: worker.continueTitle, target: self, action: #selector(continueRemovingTapped)),
-                ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped))]
+    private lazy var removeButtons: [UIBarButtonItem] = {
+        return [RoundedButton.barButton(title: worker.cancelTitle,
+                                        target: self,
+                                        action: #selector(cancelRemovingTapped)),
+                RoundedButton.barButton(title: worker.continueTitle,
+                                        target: self,
+                                        action: #selector(continueRemovingTapped))]
     }()
-    private lazy var cellularDownloadButtons: [ButtonParameters] = {
-        return [ButtonParameters(title: worker.continueTitle, target: self, action: #selector(continueCellularDownload)),
-                ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelCellularDownload))]
+    private lazy var cellularDownloadButtons: [UIBarButtonItem] = {
+        return [RoundedButton.barButton(title: worker.cancelTitle,
+                                        target: self,
+                                        action: #selector(cancelCellularDownload)),
+                RoundedButton.barButton(title: worker.continueTitle,
+                                        target: self,
+                                        action: #selector(continueCellularDownload))]
     }()
 
     // MARK: - Init
@@ -167,19 +176,13 @@ extension MyLibraryUserStorageInteractor {
     }
 
     @objc private func removeItemsTapped() {
-        infoViewModel = MyLibraryUserStorageInfoViewModel(isFullscreen: true,
-                                                          icon: R.image.my_library_warning() ?? UIImage(),
-                                                          title: worker.removeItemsAlertTitle,
-                                                          message: worker.removeItemsAlertMessage,
-                                                          userParameter: nil)
-        bottomButtons = removeButtons
-        presenter.present()
+        presenter.presentAlert(title: worker.removeItemsAlertTitle,
+                               message: worker.removeItemsAlertMessage,
+                               buttons: removeButtons)
     }
 
     @objc private func cancelRemovingTapped() {
-        bottomButtons = editingButtons
-        infoViewModel = nil
-        presenter.present()
+        // nop
     }
 
     @objc private func continueRemovingTapped() {
@@ -190,25 +193,19 @@ extension MyLibraryUserStorageInteractor {
                 strongSelf.successfullyDeleted(identifier: update)
             }
         }
-        infoViewModel = nil
         cancelEditingTapped()
         presenter.present()
     }
 
     @objc private func cancelCellularDownload() {
-        infoViewModel = nil
-        bottomButtons = nil
-        presenter.present()
+        itemForDownload = nil
     }
 
     @objc private func continueCellularDownload() {
-        let item = infoViewModel?.userParameter as? MyLibraryCellViewModel
-        infoViewModel = nil
-        bottomButtons = nil
-        presenter.present()
-        if let item = item {
+        if let item = itemForDownload {
             resumeDownload(for: item)
         }
+        itemForDownload = nil
     }
 }
 
@@ -221,8 +218,7 @@ extension MyLibraryUserStorageInteractor {
             isFullscreen: false,
             icon: self.worker.contentIcon,
             title: self.worker.emtptyContentAlertTitle,
-            message: self.worker.emtptyContentAlertMessage,
-            userParameter: nil)
+            message: self.worker.emtptyContentAlertMessage)
         presenter.present()
     }
 
@@ -330,13 +326,10 @@ extension MyLibraryUserStorageInteractor {
             return
         }
 
-        infoViewModel = MyLibraryUserStorageInfoViewModel(isFullscreen: false,
-                                                          icon: R.image.my_library_warning() ?? UIImage(),
-                                                          title: worker.cellullarDownloadTitle,
-                                                          message: worker.cellullarDownloadMessage,
-                                                          userParameter: item)
-        bottomButtons = cellularDownloadButtons
-        presenter.present()
+        itemForDownload = item
+        presenter.presentAlert(title: worker.cellullarDownloadTitle,
+                               message: worker.cellullarDownloadMessage,
+                               buttons: cellularDownloadButtons)
     }
 
     private func resumeDownload(for item: MyLibraryCellViewModel) {

@@ -44,6 +44,9 @@ extension ShifterResultInteractor: ShifterResultInteractorInterface {
     }
 
     func openConfirmationView() {
-        router.openConfirmationView(.mindsetShifter)
+        presenter.presentAlert(title: worker.leaveAlertTitle,
+                               message: worker.leaveAlertMessage,
+                               cancelTitle: worker.cancelButtonTitle,
+                               leaveTitle: worker.leaveButtonTitle)
     }
 }

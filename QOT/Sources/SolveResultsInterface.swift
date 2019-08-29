@@ -11,11 +11,13 @@ import Foundation
 protocol SolveResultsViewControllerInterface: class {
     func load(_ results: SolveResults)
     func setupView()
+    func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String)
 }
 
 protocol SolveResultsPresenterInterface {
     func present(_ results: SolveResults)
     func setupView()
+    func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String)
 }
 
 protocol SolveResultsInteractorInterface: Interactor {
@@ -36,5 +38,4 @@ protocol SolveResultsRouterInterface {
     func openVisionGenerator()
     func openMindsetShifter()
     func openRecovery()
-    func openConfirmationView(_ kind: Confirmation.Kind)
 }

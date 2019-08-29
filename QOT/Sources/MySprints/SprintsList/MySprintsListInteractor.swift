@@ -39,10 +39,15 @@ final class MySprintsListInteractor {
                                  isEnabled: !(identifiersForCheck.count == 0)),
                 ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
     }
-    private lazy var removeButtons: [ButtonParameters] = {
-        return [ButtonParameters(title: worker.continueTitle, target: self, action: #selector(continueRemovingTapped)),
-                ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelRemovingTapped))]
+    private lazy var removeButtons: [UIBarButtonItem] = {
+        return [RoundedButton.barButton(title: worker.cancelTitle,
+                                        target: self,
+                                        action: #selector(cancelRemovingTapped)),
+                RoundedButton.barButton(title: worker.continueTitle,
+                                        target: self,
+                                        action: #selector(continueRemovingTapped))]
     }()
+
     private lazy var reorderingButtons: [ButtonParameters] = {
         return [ButtonParameters(title: worker.saveTitle, target: self, action: #selector(saveReorderingTapped(_:))),
                 ButtonParameters(title: worker.cancelTitle, target: self, action: #selector(cancelEditingTapped))]
@@ -54,15 +59,6 @@ final class MySprintsListInteractor {
                                            icon: R.image.my_sprints_completed() ?? UIImage(),
                                            title: self.worker.emptyContentAlertTitle,
                                            message: self.worker.emptyContentAlertMessage,
-                                           transparent: false)
-    }()
-
-    private lazy var removingDataAlert: MySprintsInfoAlertViewModel = {
-        return MySprintsInfoAlertViewModel(isFullscreen: true,
-                                           style: .regular,
-                                           icon: R.image.my_library_warning() ?? UIImage(),
-                                           title: worker.removeItemsAlertTitle,
-                                           message: worker.removeItemsAlertMessage,
                                            transparent: false)
     }()
 
@@ -340,15 +336,13 @@ extension MySprintsListInteractor {
     }
 
     @objc private func removeItemsTapped() {
-        viewModel.infoViewModel = removingDataAlert
-        viewModel.bottomButtons = removeButtons
-        presenter.present()
+        presenter.presentAlert(title: worker.removeItemsAlertTitle,
+                               message: worker.removeItemsAlertMessage,
+                               buttons: removeButtons)
     }
 
     @objc private func cancelRemovingTapped() {
-        viewModel.bottomButtons = preRemoveButtons
-        viewModel.infoViewModel = nil
-        presenter.present()
+        // nop
     }
 
     @objc private func continueRemovingTapped() {

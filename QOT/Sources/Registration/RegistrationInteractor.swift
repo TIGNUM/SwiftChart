@@ -69,8 +69,6 @@ final class RegistrationInteractor {
         return presentedControllers.last
     }
 
-    var existingUserAlertViewModel: RegistrationExistingUserAlertViewModel?
-
     // MARK: - Init
 
     init(worker: RegistrationWorker,
@@ -162,11 +160,11 @@ extension RegistrationInteractor: RegistrationDelegate {
 
     func handleExistingUser(email: String) {
         registrationData.email = email
-        existingUserAlertViewModel = RegistrationExistingUserAlertViewModel(alertTitle: worker.existingAccountAlertTitle,
+        let existingUserAlertViewModel = RegistrationExistingUserAlertViewModel(alertTitle: worker.existingAccountAlertTitle,
                                                                             alertMessage: worker.existingAccountAlertMessage,
-                                                                            bottomLeftButtonTitle: worker.noButtonTitle,
-                                                                            bottomRightButtonTitle: worker.yesButtonTitle)
-        presenter.presentView()
+                                                                            discardTBVTitle: worker.noButtonTitle,
+                                                                            saveTBVTitle: worker.yesButtonTitle)
+        presenter.present(alert: existingUserAlertViewModel)
     }
 }
 

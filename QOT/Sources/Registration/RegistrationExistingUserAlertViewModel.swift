@@ -11,6 +11,6 @@ import UIKit
 struct RegistrationExistingUserAlertViewModel {
     let alertTitle: String
     let alertMessage: String
-    let bottomLeftButtonTitle: String
-    let bottomRightButtonTitle: String
+    let discardTBVTitle: String
+    let saveTBVTitle: String
 }

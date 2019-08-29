@@ -1045,15 +1045,6 @@
 		9CFA10652314082D0023E11E /* ImpactReadinessScoreViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */; };
 		9CFA1067231418380023E11E /* ImpactReadinessType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CFA1066231418380023E11E /* ImpactReadinessType.swift */; };
 		A29C0C8591D20568D6B8EB3E /* Pods_QOTTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CFD7A18F9C99304947181CD0 /* Pods_QOTTests.framework */; };
-		AC103E2C22847AB500F426F0 /* ConfirmationPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */; };
-		AC103E2D22847AB500F426F0 /* ConfirmationWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */; };
-		AC103E2E22847AB500F426F0 /* ConfirmationRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2622847AB500F426F0 /* ConfirmationRouter.swift */; };
-		AC103E2F22847AB500F426F0 /* ConfirmationInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */; };
-		AC103E3022847AB500F426F0 /* ConfirmationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */; };
-		AC103E3122847AB500F426F0 /* ConfirmationInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */; };
-		AC103E3222847AB500F426F0 /* Confirmation.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2A22847AB500F426F0 /* Confirmation.swift */; };
-		AC103E3322847AB500F426F0 /* ConfirmationConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */; };
-		AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */; };
 		AC103E402285B27200F426F0 /* ShifterResultPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E382285B27200F426F0 /* ShifterResultPresenter.swift */; };
 		AC103E412285B27200F426F0 /* ShifterResultWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E392285B27200F426F0 /* ShifterResultWorker.swift */; };
 		AC103E422285B27200F426F0 /* ShifterResultRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC103E3A2285B27200F426F0 /* ShifterResultRouter.swift */; };
@@ -2908,15 +2899,6 @@
 		9CF3BE54230190D40027D111 /* MeAtMyBestModelType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeAtMyBestModelType.swift; sourceTree = "<group>"; };
 		9CFA10642314082D0023E11E /* ImpactReadinessScoreViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessScoreViewModel.swift; sourceTree = "<group>"; };
 		9CFA1066231418380023E11E /* ImpactReadinessType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImpactReadinessType.swift; sourceTree = "<group>"; };
-		AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationPresenter.swift; sourceTree = "<group>"; };
-		AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationWorker.swift; sourceTree = "<group>"; };
-		AC103E2622847AB500F426F0 /* ConfirmationRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationRouter.swift; sourceTree = "<group>"; };
-		AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationInterface.swift; sourceTree = "<group>"; };
-		AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationViewController.swift; sourceTree = "<group>"; };
-		AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationInteractor.swift; sourceTree = "<group>"; };
-		AC103E2A22847AB500F426F0 /* Confirmation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Confirmation.swift; sourceTree = "<group>"; };
-		AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationConfigurator.swift; sourceTree = "<group>"; };
-		AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ConfirmationViewController.xib; sourceTree = "<group>"; };
 		AC103E382285B27200F426F0 /* ShifterResultPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultPresenter.swift; sourceTree = "<group>"; };
 		AC103E392285B27200F426F0 /* ShifterResultWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultWorker.swift; sourceTree = "<group>"; };
 		AC103E3A2285B27200F426F0 /* ShifterResultRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShifterResultRouter.swift; sourceTree = "<group>"; };
@@ -4244,7 +4226,6 @@
 				B83B33DA22C21D6E002AFED7 /* BottomNavigation */,
 				36376625223A668F00C2C429 /* coach */,
 				36376638223A6F0E00C2C429 /* components */,
-				AC103E2322847A9A00F426F0 /* Confirmation */,
 				363765F1223A4BA400C2C429 /* daily brief */,
 				7582615C22D8DB8B000094DE /* DailyCheckin */,
 				ACB0ED4B225FC28500BBF243 /* Decision Tree */,
@@ -6203,22 +6184,6 @@
 				9CC426212306A54400F8072E /* GuidedTrackTableViewCell.xib */,
 			);
 			name = "Guided Track";
-			sourceTree = "<group>";
-		};
-		AC103E2322847A9A00F426F0 /* Confirmation */ = {
-			isa = PBXGroup;
-			children = (
-				AC103E2B22847AB500F426F0 /* ConfirmationConfigurator.swift */,
-				AC103E2922847AB500F426F0 /* ConfirmationInteractor.swift */,
-				AC103E2722847AB500F426F0 /* ConfirmationInterface.swift */,
-				AC103E2A22847AB500F426F0 /* Confirmation.swift */,
-				AC103E2422847AB500F426F0 /* ConfirmationPresenter.swift */,
-				AC103E2622847AB500F426F0 /* ConfirmationRouter.swift */,
-				AC103E2822847AB500F426F0 /* ConfirmationViewController.swift */,
-				AC103E2522847AB500F426F0 /* ConfirmationWorker.swift */,
-				AC103E3422847CAC00F426F0 /* ConfirmationViewController.xib */,
-			);
-			name = Confirmation;
 			sourceTree = "<group>";
 		};
 		AC103E362285AF4700F426F0 /* Mindset Shifter Result */ = {
@@ -8704,7 +8669,6 @@
 				AC1A40F522A573F80022156C /* SolveDayPlanTableViewCell.xib in Resources */,
 				75423F1722CF492B008EE726 /* FromMyCoachHeaderView.xib in Resources */,
 				8DA4D24022E5E3870087B5AA /* InfoAlertView.xib in Resources */,
-				AC103E3522847CAC00F426F0 /* ConfirmationViewController.xib in Resources */,
 				36796A5B20D3C4B800B55429 /* SigningInfoCollectionViewCell.xib in Resources */,
 				759AB42422C4D8850091BFB8 /* TBVDataGraphBarNextDurationViewCell.xib in Resources */,
 				B86E742822A94D0700B0AE75 /* MyLibrary.storyboard in Resources */,
@@ -9664,7 +9628,6 @@
 				912C9E43203C724500C1AA76 /* MyToBeVisionWorker.swift in Sources */,
 				912C9E41203C722F00C1AA76 /* MyToBeVisionRouter.swift in Sources */,
 				DB12025A219C55E000BE0E81 /* MediaResourceIntermediary.swift in Sources */,
-				AC103E3022847AB500F426F0 /* ConfirmationViewController.swift in Sources */,
 				8D110CF5230FCEDE000181BA /* WalkthroughSwipeConfigurator.swift in Sources */,
 				CB6637B1201F16FB00A995D6 /* GuideLearnItemTodayBlockCalculator.swift in Sources */,
 				CB35503E20592C61000ECAFA /* NotificationConfigurationObject.swift in Sources */,
@@ -10047,7 +10010,6 @@
 				91F5BE422097578F00E85A51 /* PermissionsWorker.swift in Sources */,
 				9CC426182306A47500F8072E /* GuidedTrackSectionCell.swift in Sources */,
 				AC103E56228969EF00F426F0 /* ReactionsTableViewCell.swift in Sources */,
-				AC103E3322847AB500F426F0 /* ConfirmationConfigurator.swift in Sources */,
 				8DD6B5942308190800C582A4 /* UIViewController+ActivityIndicator.swift in Sources */,
 				75423EEE22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift in Sources */,
 				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
@@ -10168,7 +10130,6 @@
 				36796A6020D3C4B800B55429 /* SigningInfoConfigurator.swift in Sources */,
 				F9A5C95422B7DFD900AB2E94 /* PaymentHeaderView.swift in Sources */,
 				8D40768B22E5A5AA0027864D /* MySprintDetailsWorker.swift in Sources */,
-				AC103E2E22847AB500F426F0 /* ConfirmationRouter.swift in Sources */,
 				B83B33E622C21D6E002AFED7 /* QOTNavigationController.swift in Sources */,
 				8D110CF3230FCEDE000181BA /* WalkthroughSwipeInteractor.swift in Sources */,
 				8D0983CA230D3E7C00B0028A /* LocationPermissionViewController.swift in Sources */,
@@ -10305,7 +10266,6 @@
 				F9838F4322AFFF62003F9394 /* MyQotMainPresenter.swift in Sources */,
 				BB7B318C230AB337004A5E52 /* OneLineBlock.swift in Sources */,
 				8D008F06230EFA45006D7263 /* WalkthroughSearchViewController.swift in Sources */,
-				AC103E3222847AB500F426F0 /* Confirmation.swift in Sources */,
 				CBC1DC271F0FB55D00F6D056 /* QuestionGroupIntermediary.swift in Sources */,
 				3698428320C91EF3007A8C8F /* SigningDigitRouter.swift in Sources */,
 				CC1E2A5F1EDF1DE100B9EFD3 /* UICollectionView+Create.swift in Sources */,
@@ -10530,7 +10490,6 @@
 				F9A66BA322CB7FCD0094EA46 /* Recovery3DManager.swift in Sources */,
 				CB9AFD141F014BAA00D067F2 /* PreparationCheck.swift in Sources */,
 				9100195720F8A0E200049118 /* ExtensionsDataManager.swift in Sources */,
-				AC103E2F22847AB500F426F0 /* ConfirmationInterface.swift in Sources */,
 				36E5DD9A22D4E13700910E0D /* QuestionManager.swift in Sources */,
 				CBC933081F052DDA00C00007 /* PrepareCoordinator.swift in Sources */,
 				75DC685022BCDA4300FF183D /* ImagePickerControllerAdapter.swift in Sources */,
@@ -10543,7 +10502,6 @@
 				7F1D3D251F8E29050071D322 /* RemoteLogDestination.swift in Sources */,
 				75DC686E22C11D4800FF183D /* MyToBeVisionRatePresenter.swift in Sources */,
 				5F360733228C1EE50074FEC4 /* SyncedCalendarsInteractor.swift in Sources */,
-				AC103E3122847AB500F426F0 /* ConfirmationInteractor.swift in Sources */,
 				F9D6381B22D745FA0092C482 /* ExploreCell.swift in Sources */,
 				366183EB2162793700634560 /* SupportFAQViewController.swift in Sources */,
 				CC9A2E4E1F1647D500CEB487 /* StatisticsService.swift in Sources */,
@@ -10574,7 +10532,6 @@
 				36085C5922CA48E600C703BA /* PreparationManager.swift in Sources */,
 				CC02E14B1F279E6700134574 /* SettingsCalendarListViewController.swift in Sources */,
 				91CCC996206938EE00E0C251 /* EventDate.swift in Sources */,
-				AC103E2D22847AB500F426F0 /* ConfirmationWorker.swift in Sources */,
 				CC7D21B31EFC1348007A062E /* WeeklyChoicesViewController.swift in Sources */,
 				7F0F45B81FE922D400293942 /* MeetingsAverageNumberChart.swift in Sources */,
 				F9D2BC1922D48DBB00DBF2CC /* GoodToKnowCell.swift in Sources */,
@@ -10629,7 +10586,6 @@
 				CBB017B61F9662DD00CC1048 /* UpSyncTask.swift in Sources */,
 				8D0983C7230D3E7C00B0028A /* LocationPermissionPresenter.swift in Sources */,
 				914A5E21207FB38500092121 /* SettingsBubblesInteractor.swift in Sources */,
-				AC103E2C22847AB500F426F0 /* ConfirmationPresenter.swift in Sources */,
 				CB1467671EF277AA00A60E31 /* PageIntermediary.swift in Sources */,
 				CB873294202AEDA80081F522 /* GradientView.swift in Sources */,
 				CB2880341E7144E60067890A /* CollectionUpdate.swift in Sources */,

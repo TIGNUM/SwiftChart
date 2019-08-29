@@ -23,53 +23,39 @@ final class MyLibraryUserStorageWorker {
     // FIXME: Translate strings
     // MARK: Texts
     lazy var title: String = {
-        let title: String
         switch type {
-        case .UNKOWN:
-            title = "ALL"
-        case .BOOKMARK:
-            title = "BOOKMARKS"
-        case .DOWNLOAD:
-            title = "DOWNLOADS"
-        case .EXTERNAL_LINK:
-            title = "LINKS"
-        case .NOTE:
-            title = "NOTES"
+        case .UNKOWN: return R.string.localized.myLibraryItemsTitleAll()
+        case .BOOKMARK: return R.string.localized.myLibraryItemsTitleBookmarks()
+        case .DOWNLOAD: return R.string.localized.myLibraryItemsTitleDownloads()
+        case .EXTERNAL_LINK: return R.string.localized.myLibraryItemsTitleLinks()
+        case .NOTE: return R.string.localized.myLibraryItemsTitleNotes()
         }
-        return title
     }()
 
     lazy var addTitle: String = {
-        return "Add"
+        return R.string.localized.myLibraryItemsButtonAdd()
     }()
 
     lazy var editingTitle: String = {
-        let title: String
         switch type {
-        case .UNKOWN:
-            title = "EDIT ALL"
-        case .BOOKMARK:
-            title = "EDIT BOOKMARKS"
-        case .DOWNLOAD:
-            title = "EDIT DOWNLOADS"
-        case .EXTERNAL_LINK:
-            title = "EDIT LINKS"
-        case .NOTE:
-            title = "EDIT NOTES"
+        case .UNKOWN: return R.string.localized.myLibraryItemsEditTitleAll()
+        case .BOOKMARK: return R.string.localized.myLibraryItemsEditTitleBookmarks()
+        case .DOWNLOAD: return R.string.localized.myLibraryItemsEditTitleDownloads()
+        case .EXTERNAL_LINK: return R.string.localized.myLibraryItemsEditTitleLinks()
+        case .NOTE: return R.string.localized.myLibraryItemsEditTitleNotes()
         }
-        return title
     }()
 
     lazy var cancelTitle: String = {
-        return "Cancel"
+        return R.string.localized.buttonTitleCancel()
     }()
 
     lazy var removeTitle: String = {
-        return "Remove"
+        return R.string.localized.buttonTitleRemove()
     }()
 
     lazy var continueTitle: String = {
-        return "Yes, continue"
+        return R.string.localized.buttonTitleYesContinue()
     }()
 
     lazy var showAddButton: Bool = {
@@ -77,57 +63,43 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var removeItemsAlertTitle: String = {
-        return "REMOVE SELECTED ITEMS"
+        return R.string.localized.myLibraryItemsAlertRemoveTitle()
     }()
 
-    lazy var removeItemsAlertMessage: NSAttributedString = {
-        return NSAttributedString(string:
-            "Are you sure you want to remove the selected items from your \(title.lowercased())?")
+    lazy var removeItemsAlertMessage: String = {
+        return R.string.localized.myLibraryItemsAlertRemoveMessage(title.lowercased())
     }()
 
     lazy var cellullarDownloadTitle: String = {
-        return "USE MOBILE DATA"
+        return R.string.localized.alertTitleUseMobileData()
     }()
 
-    lazy var cellullarDownloadMessage: NSAttributedString = {
-        return NSAttributedString(string:
-            "No wi-fi found. Are you sure you want to download the file using mobile data?")
+    lazy var cellullarDownloadMessage: String = {
+        return R.string.localized.alertMessageUseMobileData()
     }()
 
     lazy var tapToDownload: String = {
-        return "Tap to download"
+        return R.string.localized.myLibraryItemsTapToDownload()
     }()
 
     lazy var emtptyContentAlertTitle: String = {
-        let title: String
         switch type {
-        case .UNKOWN:
-            title = "ALL ITEMS WILL APPEAR HERE"
-        case .BOOKMARK:
-            title = "YOUR BOOKMARKED ITEMS WILL APPEAR HERE"
-        case .DOWNLOAD:
-            title = "YOUR DOWNLOADED ITEMS WILL APPEAR HERE"
-        case .EXTERNAL_LINK:
-            title = "YOUR WEBSITE LINKS WILL APPEAR HERE"
-        case .NOTE:
-            title = "YOUR NOTES WILL APPEAR HERE"
+        case .UNKOWN: return R.string.localized.myLibraryItemsAlertEmptyTitleAll()
+        case .BOOKMARK: return R.string.localized.myLibraryItemsAlertEmptyTitleBookmarks()
+        case .DOWNLOAD: return R.string.localized.myLibraryItemsAlertEmptyTitleDownloads()
+        case .EXTERNAL_LINK: return R.string.localized.myLibraryItemsAlertEmptyTitleLinks()
+        case .NOTE: return R.string.localized.myLibraryItemsAlertEmptyTitleNotes()
         }
-        return title
     }()
 
     lazy var contentIcon: UIImage = {
         let image: UIImage?
         switch type {
-        case .UNKOWN:
-            image = R.image.my_library_group()
-        case .BOOKMARK:
-            image = R.image.my_library_bookmark()
-        case .DOWNLOAD:
-            image = R.image.my_library_download()
-        case .EXTERNAL_LINK:
-            image = R.image.my_library_link()
-        case .NOTE:
-            image = R.image.my_library_note_light()
+        case .UNKOWN: image = R.image.my_library_group()
+        case .BOOKMARK: image = R.image.my_library_bookmark()
+        case .DOWNLOAD: image = R.image.my_library_download()
+        case .EXTERNAL_LINK: image = R.image.my_library_link()
+        case .NOTE:  image = R.image.my_library_note_light()
         }
         return image ?? UIImage()
     }()
@@ -138,16 +110,16 @@ final class MyLibraryUserStorageWorker {
 
         switch type {
         case .UNKOWN:
-            text = "Access the full list of items you bookmarked, downloaded, or wrote."
+            text = R.string.localized.myLibraryItemsAlertEmptyMessageAll()
             icon = nil
         case .BOOKMARK:
-            text = "Look for  {icon}  across QOT and select it to access content offline."
+            text = R.string.localized.myLibraryItemsAlertEmptyMessageBookmarks()
         case .DOWNLOAD:
-            text = "Look for  {icon}  across QOT and select it to access content offline."
+            text = R.string.localized.myLibraryItemsAlertEmptyMessageDownloads()
         case .EXTERNAL_LINK:
-            text = "Look for  {icon}  in the browser page and select the QOT app to save it here."
+            text = R.string.localized.myLibraryItemsAlertEmptyMessageLinks()
         case .NOTE:
-            text = "Click on  {icon}  at the top of the page and create your own notes."
+            text = R.string.localized.myLibraryItemsAlertEmptyMessageNotes()
             icon = nil
         }
 
@@ -175,27 +147,27 @@ final class MyLibraryUserStorageWorker {
     }()
 
     lazy var personalNote: String = {
-        return "Personal note"
+        return R.string.localized.myLibraryItemsPersonalNote()
     }()
 
     lazy var downloading: String = {
-        return "Downloading..."
+        return R.string.localized.myLibraryItemsDownloading()
     }()
 
     lazy var waitingForDownload: String = {
-        return "Waiting for download..."
+        return R.string.localized.myLibraryItemsWaitingDownload()
     }()
 
     lazy var read: String = {
-        return "to read"
+        return R.string.localized.myLibraryItemsToRead()
     }()
 
     lazy var watch: String = {
-        return "to watch"
+        return R.string.localized.myLibraryItemsToWatch()
     }()
 
     lazy var listen: String = {
-        return "to listen"
+        return R.string.localized.myLibraryItemsToListen()
     }()
 
     lazy var contentType: MyLibraryUserStorageContentType = {

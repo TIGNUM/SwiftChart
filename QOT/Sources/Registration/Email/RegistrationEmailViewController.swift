@@ -21,9 +21,9 @@ final class RegistrationEmailViewController: UIViewController {
     private let textFieldOffset: CGFloat = 180 // Textfield shuoldn't move the whole keyboard height
 
     private lazy var buttonNext: UIBarButtonItem = {
-        let button = UIBarButtonItem(customView: RoundedButton(title: interactor?.nextButtonTitle ?? "",
-                                                               target: self,
-                                                               action: #selector(didTapNextButton)))
+        let button = RoundedButton.barButton(title: interactor?.nextButtonTitle ?? "",
+                                             target: self,
+                                             action: #selector(didTapNextButton))
         button.isEnabled = false
         return button
     }()

@@ -66,6 +66,10 @@
 "Sidebar.Title.Calendars" = "SYNCED CALENDARS";
 
 "MyQOT.ToBeVision.Title" = "TO BE VISION";
+"MyQOT.ToBeVision.UpdateAlert.Title" = "UPDATE TO BE VISION";
+"MyQOT.ToBeVision.UpdateAlert.Message" = "Do you wanna create a new To Be Vision or edit your current one?";
+"MyQOT.ToBeVision.UpdateAlert.EditButton" = "Edit";
+"MyQOT.ToBeVision.UpdateAlert.CreateButton" = "Create new";
 "Sidebar.Title.Logout" = "Logout";
 "Sidebar.Title.FAQ" = "FAQ";
 "Sidebar.Title.ContactSupport" = "CONTACT\nSUPPORT";
@@ -321,6 +325,8 @@
 "Alert.Button.Title.Continue" = "Continue";
 "Alert.Button.Title.Save" = "Save";
 "Level5.Button.Saved" = "Saved";
+"Level5.Alert.Title" = "KNOWLEDGE";
+"Level5.Alert.Message" = "Knowledge is highly aware of your daily and weekly load and the link of your Recovery to your performance. You regularly identify and prepare for your Peak Performances.";
 "Copyright.Text" = "Content Copyright \n";
 "Alert.Button.Title.Save.and.Continue" = "Save & Continue";
 "Alert.Button.Title.Settings" = "Settings";
@@ -701,3 +707,53 @@
 "MyPrep.NoMindset.Comment" = "In the Coach area, \"Solve a Challenge\". Your saved ones will appear here.";
 "MyPrep.NoRecovery.Title" = "YOUR CREATED 3D RECOVERY\naWILL APPEAR HERE";
 "MyPrep.NoRecovery.Comment" = "In the Coach area, \"Solve a Challenge\". Your saved ones will appear here.";
+"MyPreps.DeleteItemsAlert.Title" = "REMOVE SELECTED ITEMS?";
+"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to remove the selected items from your Preps?";
+
+"MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
+"MindsetShifter.LeaveAlert.Title" = "Leave without saving";
+"MindsetShifter.LeaveAlert.Message" = "Are you sure you want to leave without saving? The changes will not be applied.";
+
+"MyLibrary.Items.Button.Add" = "Add";
+"MyLibrary.Items.Title.All" = "ALL";
+"MyLibrary.Items.Title.Bookmarks" = "BOOKMARKS";
+"MyLibrary.Items.Title.Downloads" = "DOWNLOADS";
+"MyLibrary.Items.Title.Links" = "LINKS";
+"MyLibrary.Items.Title.Notes" = "NOTES";
+"MyLibrary.Items.EditTitle.All" = "EDIT ALL";
+"MyLibrary.Items.EditTitle.Bookmarks" = "EDIT BOOKMARKS";
+"MyLibrary.Items.EditTitle.Downloads" = "EDIT DOWNLOADS";
+"MyLibrary.Items.EditTitle.Links" = "EDIT LINKS";
+"MyLibrary.Items.EditTitle.Notes" = "EDIT NOTES";
+"MyLibrary.Items.Alert.Remove.Title" = "REMOVE SELECTED ITEMS";
+"MyLibrary.Items.Alert.Remove.Message" = "Are you sure you want to remove the selected items from your %@?";
+"MyLibrary.Items.TapToDownload" = "Tap to download";
+"MyLibrary.Items.Alert.Empty.Title.All" = "ALL ITEMS WILL APPEAR HERE";
+"MyLibrary.Items.Alert.Empty.Title.Bookmarks" = "YOUR BOOKMARKED ITEMS WILL APPEAR HERE";
+"MyLibrary.Items.Alert.Empty.Title.Downloads" = "YOUR DOWNLOADED ITEMS WILL APPEAR HERE";
+"MyLibrary.Items.Alert.Empty.Title.Links" = "YOUR WEBSITE LINKS WILL APPEAR HERE";
+"MyLibrary.Items.Alert.Empty.Title.Notes" = "YOUR NOTES WILL APPEAR HERE";
+"MyLibrary.Items.Alert.Empty.Message.All" = "Access the full list of items you bookmarked, downloaded, or wrote.";
+"MyLibrary.Items.Alert.Empty.Message.Bookmarks" = "Look for  {icon}  across QOT and select it to access content offline.";
+"MyLibrary.Items.Alert.Empty.Message.Downloads" = "Look for  {icon}  across QOT and select it to access content offline.";
+"MyLibrary.Items.Alert.Empty.Message.Links" = "Look for  {icon}  in the browser page and select the QOT app to save it here.";
+"MyLibrary.Items.Alert.Empty.Message.Notes" = "Click on  {icon}  at the top of the page and create your own notes.";
+"MyLibrary.Items.PersonalNote" = "Personal note";
+"MyLibrary.Items.Downloading" = "Downloading...";
+"MyLibrary.Items.WaitingDownload" = "Waiting for download...";
+"MyLibrary.Items.ToRead" = "to read";
+"MyLibrary.Items.ToWatch" = "to watch";
+"MyLibrary.Items.ToListen" = "to listen";
+
+"MySprints.Title" = "MY SPRINTS";
+"MySprints.EditTitle" = "EDIT SPRINTS";
+"MySprints.SprintPlan" = "SPRINT PLAN";
+"MySprints.Complete" = "COMPLETE";
+"MySprints.Alert.Remove.Title" = "REMOVE SELECTED ITEMS";
+"MySprints.Alert.Remove.Message" = "Are you sure you want to remove the selected items from your Sprints?";
+"MySprints.Alert.Empty.Title" = "YOUR CREATED SPRINTS WILL APPEAR HERE";
+"MySprints.Alert.Empty.Message" = "In the Coach area, “Plan a Sprint”. Your saved ones will appear here.";
+"MySprints.Status.Active" = "Active";
+"MySprints.Status.Upcoming" = "Upcoming";
+"MySprints.Status.Paused" = "Paused";
+"MySprints.Status.Completed" = "Completed at";

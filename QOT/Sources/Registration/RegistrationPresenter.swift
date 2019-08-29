@@ -31,8 +31,8 @@ extension RegistrationPresenter: RegistrationPresenterInterface {
         viewController?.setupView()
     }
 
-    func presentView() {
-        viewController?.updateView()
+    func present(alert: RegistrationExistingUserAlertViewModel) {
+        viewController?.show(alert: alert)
     }
 
     func present(controller: UIViewController, direction: UIPageViewController.NavigationDirection) {

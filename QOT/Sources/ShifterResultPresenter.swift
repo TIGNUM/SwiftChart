@@ -28,4 +28,8 @@ extension ShifterResultPresenter: ShifterResultPresenterInterface {
     func setupView() {
         viewController?.setupView()
     }
+
+    func presentAlert(title: String, message: String, cancelTitle: String, leaveTitle: String) {
+        viewController?.showAlert(title: title, message: message, cancelTitle: cancelTitle, leaveTitle: leaveTitle)
+    }
 }

@@ -33,6 +33,23 @@ final class ShifterResultWorker {
     init(_ resultItem: ShifterResult.Item) {
         self.resultItem = resultItem
     }
+
+    // Texts
+    lazy var leaveAlertTitle: String = {
+        return R.string.localized.mindsetShifterLeaveAlertTitle()
+    }()
+
+    lazy var leaveAlertMessage: String = {
+        return R.string.localized.mindsetShifterLeaveAlertMessage()
+    }()
+
+    lazy var leaveButtonTitle: String = {
+        return R.string.localized.mindsetShifterLeaveAlertLeaveButton()
+    }()
+
+    lazy var cancelButtonTitle: String = {
+        return R.string.localized.buttonTitleCancel()
+    }()
 }
 
 // MARK: - Public

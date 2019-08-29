@@ -13,12 +13,14 @@ protocol MyLibraryUserStorageViewControllerInterface: class {
     func update()
     func reloadData()
     func deleteRow(at indexPath: IndexPath)
+    func presentAlert(title: String, message: String, buttons: [UIBarButtonItem])
 }
 
 protocol MyLibraryUserStoragePresenterInterface {
     func present()
     func presentData()
     func deleteRow(at index: Int)
+    func presentAlert(title: String, message: String, buttons: [UIBarButtonItem])
 }
 
 protocol MyLibraryUserStorageInteractorInterface: Interactor {

@@ -14,6 +14,7 @@ protocol MySprintDetailsViewControllerInterface: class {
     func trackSprintPause()
     func trackSprintContinue()
     func trackSprintStart()
+    func presentAlert(title: String, message: String, buttons: [UIBarButtonItem])
 }
 
 protocol MySprintDetailsPresenterInterface {
@@ -21,6 +22,7 @@ protocol MySprintDetailsPresenterInterface {
     func trackSprintPause()
     func trackSprintContinue()
     func trackSprintStart()
+    func presentAlert(title: String, message: String, buttons: [UIBarButtonItem])
 }
 
 protocol MySprintDetailsInteractorInterface: Interactor {

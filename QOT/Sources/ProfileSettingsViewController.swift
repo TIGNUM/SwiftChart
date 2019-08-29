@@ -196,15 +196,19 @@ extension ProfileSettingsViewController {
         case .label(_, _, let settingsType):
             switch settingsType {
             case .logout:
-                showAlert(type: .logout, handlerDestructive: {
+                let cancel = QOTAlertAction(title: R.string.localized.alertButtonTitleCancel())
+                let logout = QOTAlertAction(title: R.string.localized.sidebarTitleLogout()) { (_) in
                     ExtensionsDataManager.didUserLogIn(false)
                     UIApplication.shared.shortcutItems?.removeAll()
                     NotificationHandler.postNotification(withName: .logoutNotification)
-                })
+                }
+                QOTAlert.show(title: nil, message: R.string.localized.alertMessageLogout(), bottomItems: [cancel, logout])
             case .password:
-                showAlert(type: .changePassword, handlerDestructive: {
-                    self.resetPassword()
-                })
+                let cancel = QOTAlertAction(title: R.string.localized.alertButtonTitleCancel())
+                let change = QOTAlertAction(title: R.string.localized.settingsChangePasswordButton()) { [weak self] (_) in
+                    self?.resetPassword()
+                }
+                QOTAlert.show(title: nil, message: R.string.localized.settingsChangePasswordTitle(), bottomItems: [cancel, change])
             default: return
             }
         case .datePicker(let title, let selectedDate, _):
@@ -304,6 +308,21 @@ extension ProfileSettingsViewController: SettingsViewControllerDelegate {
         default: return
         }
     }
+
+    func presentAlert(title: String, message: String, cancelTitle: String, doneTitle: String) {
+
+        let cancelHandler: (() -> Void) = { [weak self] in
+            self?.trackUserEvent(.CANCEL, action: .TAP)
+        }
+        let cancel = QOTAlertAction(title: cancelTitle) { (_) in
+            cancelHandler()
+        }
+        let done = QOTAlertAction(title: doneTitle) { [weak self] (_) in
+            self?.trackUserEvent(.YES_LEAVE, action: .TAP)
+            self?.didPressLeave()
+        }
+        QOTAlert.show(title: title, message: message, bottomItems: [cancel, done], cancelHandler: cancelHandler)
+    }
 }
 
 // MARK: - UIPickerViewDelegate, UIPickerViewDataSource
@@ -350,28 +369,6 @@ extension ProfileSettingsViewController: MyQotProfileSettingsKeybaordInputViewPr
     func dismiss() {
         guard let navController = self.navigationController else { return }
         navController.dismiss(animated: true, completion: nil)
-    }
-}
-
-// MARK: - PopUpViewControllerProtocol
-extension ProfileSettingsViewController: PopUpViewControllerProtocol {
-    func leftButtonAction() {
-        interactor?.closeUpdateConfirmationScreen(completion: { [weak self] in
-            self?.trackUserEvent(.CANCEL, action: .TAP)
-        })
-    }
-
-    func rightButtonAction() {
-        trackUserEvent(.YES_LEAVE, action: .TAP)
-        interactor?.closeUpdateConfirmationScreen(completion: { [weak self] in
-            self?.didPressLeave()
-        })
-    }
-
-    func cancelAction() {
-        interactor?.closeUpdateConfirmationScreen(completion: { [weak self] in
-            self?.trackUserEvent(.CANCEL, action: .TAP)
-        })
     }
 }
 

@@ -28,4 +28,8 @@ extension SolveResultsPresenter: SolveResultsPresenterInterface {
     func present(_ results: SolveResults) {
         viewController?.load(results)
     }
+
+    func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String) {
+        viewController?.presentAlert(title: title, message: message, stayTitle: stayTitle, leaveTitle: leaveTitle)
+    }
 }

@@ -24,68 +24,67 @@ final class MySprintsListWorker {
     // FIXME: Translate strings
     // MARK: Texts
     lazy var title: String = {
-        return "MY SPRINTS"
+        return R.string.localized.mySprintsTitle()
     }()
 
     lazy var editingTitle: String = {
-        return "EDIT SPRINTS"
+        return R.string.localized.mySprintsEditTitle()
     }()
 
     lazy var sprintPlanHeader: String = {
-        return "SPRINT PLAN"
+        return R.string.localized.mySprintsSprintPlan()
     }()
 
     lazy var completeHeader: String = {
-       return "COMPLETE"
+       return R.string.localized.mySprintsComplete()
     }()
 
     lazy var cancelTitle: String = {
-        return "Cancel"
+        return R.string.localized.buttonTitleCancel()
     }()
 
     lazy var removeTitle: String = {
-        return "Remove"
+        return R.string.localized.buttonTitleRemove()
     }()
 
     lazy var continueTitle: String = {
-        return "Yes, continue"
+        return R.string.localized.buttonTitleYesContinue()
     }()
 
     lazy var saveTitle: String = {
-        return "Done"
+        return R.string.localized.alertButtonTitleSave()
     }()
 
     lazy var removeItemsAlertTitle: String = {
-        return "REMOVE SELECTED ITEMS"
+        return R.string.localized.mySprintsAlertRemoveTitle()
     }()
 
-    lazy var removeItemsAlertMessage: NSAttributedString = {
-        return NSAttributedString(string:
-            "Are you sure you want to remove the selected items from your Sprints?")
+    lazy var removeItemsAlertMessage: String = {
+        return R.string.localized.mySprintsAlertRemoveMessage()
     }()
 
     lazy var emptyContentAlertTitle: String = {
-        return "YOUR CREATED SPRINTS WILL APPEAR HERE"
+        return R.string.localized.mySprintsAlertEmptyTitle()
     }()
 
     lazy var emptyContentAlertMessage: NSAttributedString = {
-        return NSAttributedString(string: "In the Coach area, “Plan a Sprint”. Your saved ones will appear here.")
+        return NSAttributedString(string: R.string.localized.mySprintsAlertEmptyMessage())
     }()
 
     lazy var statusActive: String = {
-        return "Active"
+        return R.string.localized.mySprintsStatusActive()
     }()
 
     lazy var statusUpcoming: String = {
-        return "Upcoming"
+        return R.string.localized.mySprintsStatusUpcoming()
     }()
 
     lazy var statusPaused: String = {
-        return "Paused"
+        return R.string.localized.mySprintsStatusPaused()
     }()
 
     lazy var statusCompleted: String = {
-        return "Completed at"
+        return R.string.localized.mySprintsStatusCompleted()
     }()
 
     func loadData(_ completion: @escaping (_ initiated: Bool, _ sprints: [QDMSprint]) -> Void) {

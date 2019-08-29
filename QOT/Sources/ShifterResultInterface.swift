@@ -11,11 +11,13 @@ import Foundation
 protocol ShifterResultViewControllerInterface: class {
     func load(_ model: ShifterResult)
     func setupView()
+    func showAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }
 
 protocol ShifterResultPresenterInterface {
     func load(_ model: ShifterResult)
     func setupView()
+    func presentAlert(title: String, message: String, cancelTitle: String, leaveTitle: String)
 }
 
 protocol ShifterResultInteractorInterface: Interactor {
@@ -26,5 +28,4 @@ protocol ShifterResultInteractorInterface: Interactor {
 
 protocol ShifterResultRouterInterface {
     func dismiss()
-    func openConfirmationView(_ kind: Confirmation.Kind)
 }

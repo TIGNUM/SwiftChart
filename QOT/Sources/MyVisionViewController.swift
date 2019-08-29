@@ -262,6 +262,12 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         guard let shouldShowWarningIcon = interactor?.shouldShowWarningIcon() else { return }
         warningImageView.isHidden = !shouldShowWarningIcon
     }
+
+    func presentTBVUpdateAlert(title: String, message: String, editTitle: String, createNewTitle: String) {
+        let createNew = RoundedButton.barButton(title: createNewTitle, target: self, action: #selector(continueUpdatingTBV))
+        let edit = RoundedButton.barButton(title: editTitle, target: self, action: #selector(editTBV))
+        QOTAlert.show(title: title, message: message, bottomItems: [createNew, edit])
+    }
 }
 
 // MARK: - UIScrollViewDelegate
@@ -350,25 +356,15 @@ extension MyVisionViewController: MyVisionNullStateViewProtocol {
     }
 }
 
-extension MyVisionViewController: PopUpViewControllerProtocol {
-    func leftButtonAction() {
+extension MyVisionViewController {
+    @objc func continueUpdatingTBV() {
         trackUserEvent(.OPEN, valueType: "ToBeVisionGeneratorFromUpdateModal", action: .TAP)
-        interactor?.closeUpdateConfirmationScreen(completion: {[weak self] in
-            self?.interactor?.openToBeVisionGenerator()
-        })
+        interactor?.openToBeVisionGenerator()
     }
 
-    func rightButtonAction() {
+    @objc func editTBV() {
         trackUserEvent(.OPEN, valueType: "EditToBeVision", action: .TAP)
-        interactor?.closeUpdateConfirmationScreen(completion: {[weak self] in
-            self?.interactor?.showEditVision(isFromNullState: false)
-        })
-    }
-
-    func cancelAction() {
-        interactor?.closeUpdateConfirmationScreen(completion: {[weak self] in
-            self?.refreshBottomNavigationItems()
-        })
+        interactor?.showEditVision(isFromNullState: false)
     }
 }
 

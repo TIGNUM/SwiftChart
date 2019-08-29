@@ -114,17 +114,10 @@ extension RegistrationViewController: RegistrationViewControllerInterface {
         refreshBottomNavigationItems()
     }
 
-    func updateView() {
-        if let title = interactor?.existingUserAlertViewModel?.alertTitle, let message = interactor?.existingUserAlertViewModel?.alertMessage {
-            showExistingAccountAlert(title: title, message: message)
-        }
-        if let leftTitle = interactor?.existingUserAlertViewModel?.bottomLeftButtonTitle {
-            bottomItems.leftBarButtonItems = [bottomButton(with: leftTitle, selector: #selector(loginWithoutTBV))]
-        }
-        if let rightTitle = interactor?.existingUserAlertViewModel?.bottomRightButtonTitle {
-            bottomItems.rightBarButtonItems = [bottomButton(with: rightTitle, selector: #selector(loginWithTBV))]
-        }
-        refreshBottomNavigationItems()
+    func show(alert: RegistrationExistingUserAlertViewModel) {
+        let withoutTBV = QOTAlertAction(title: alert.discardTBVTitle, target: self, action: #selector(loginWithoutTBV))
+        let saveTBV = QOTAlertAction(title: alert.saveTBVTitle, target: self, action: #selector(loginWithTBV))
+        QOTAlert.show(title: alert.alertTitle, message: alert.alertMessage, bottomItems: [withoutTBV, saveTBV])
     }
 
     func update(controller: UIViewController, direction: UIPageViewController.NavigationDirection) {

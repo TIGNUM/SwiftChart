@@ -77,7 +77,7 @@ private extension MyLibraryNotesViewController {
     private func showBottomButtons(_ buttons: [ButtonParameters]) {
         bottomNavigationItems.leftBarButtonItems = nil
         bottomNavigationItems.rightBarButtonItems = buttons.map {
-            let button = UIBarButtonItem(customView: RoundedButton(title: $0.title, target: $0.target, action: $0.action))
+            let button = RoundedButton.barButton(title: $0.title, target: $0.target, action: $0.action)
             button.isEnabled = $0.isEnabled
             return button
         }

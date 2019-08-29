@@ -31,4 +31,8 @@ extension MySprintsListPresenter: MySprintsListPresenterInterface {
     func presentData() {
         viewController?.reloadData()
     }
+
+    func presentAlert(title: String, message: String, buttons: [UIBarButtonItem]) {
+        viewController?.presentAlert(title: title, message: message, buttons: buttons)
+    }
 }

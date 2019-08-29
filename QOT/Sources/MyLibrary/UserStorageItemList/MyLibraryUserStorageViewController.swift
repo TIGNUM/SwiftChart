@@ -80,7 +80,7 @@ private extension MyLibraryUserStorageViewController {
     private func showBottomButtons(_ buttons: [ButtonParameters]) {
         bottomNavigationItems.leftBarButtonItems = nil
         bottomNavigationItems.rightBarButtonItems = buttons.map {
-            let button = UIBarButtonItem(customView: RoundedButton(title: $0.title, target: $0.target, action: $0.action))
+            let button = RoundedButton.barButton(title: $0.title, target: $0.target, action: $0.action)
             button.isEnabled = $0.isEnabled
             return button
         }
@@ -158,8 +158,13 @@ extension MyLibraryUserStorageViewController: MyLibraryUserStorageViewController
     func deleteRow(at indexPath: IndexPath) {
         tableView.deleteRows(at: [indexPath], with: .fade)
     }
+
+    func presentAlert(title: String, message: String, buttons: [UIBarButtonItem]) {
+        QOTAlert.show(title: title, message: message, bottomItems: buttons)
+    }
 }
 
+// MARK: - UITableViewDataSource
 extension MyLibraryUserStorageViewController: UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -203,6 +208,7 @@ extension MyLibraryUserStorageViewController: UITableViewDataSource {
     }
 }
 
+// MARK: - UITableViewDelegate
 extension MyLibraryUserStorageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         _ = interactor?.handleSelectedItem(at: indexPath.row)

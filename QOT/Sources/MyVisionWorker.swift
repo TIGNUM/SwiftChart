@@ -67,6 +67,22 @@ final class MyVisionWorker {
         return report
     }
 
+    lazy var updateAlertTitle: String = {
+        return R.string.localized.myQOTToBeVisionUpdateAlertTitle()
+    }()
+
+    lazy var updateAlertMessage: String = {
+        return R.string.localized.myQOTToBeVisionUpdateAlertMessage()
+    }()
+
+    lazy var updateAlertEditTitle: String = {
+        return R.string.localized.myQOTToBeVisionUpdateAlertEditButton()
+    }()
+
+    lazy var updateAlertCreateTitle: String = {
+        return R.string.localized.myQOTToBeVisionUpdateAlertCreateButton()
+    }()
+
     private func getNullStateSubtitle() {
         contentService.getContentItemByPredicate(ContentService.MyVision.nullStateSubtitle.predicate) {[weak self] (contentItem) in
             self?.nullStateSubtitle = contentItem?.valueText ?? ""

@@ -65,7 +65,10 @@ extension SolveResultsInteractor: SolveResultsInteractorInterface {
     }
 
     func openConfirmationView() {
-        router.openConfirmationView(worker.confirmationKind)
+        presenter.presentAlert(title: worker.leaveAlertTitle,
+                               message: worker.leaveAlertMessage,
+                               stayTitle: worker.leaveAlertStayButton,
+                               leaveTitle: worker.leaveAlertLeaveButton)
     }
 
     func deleteModelAndDismiss() {

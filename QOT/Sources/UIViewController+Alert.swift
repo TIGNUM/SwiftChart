@@ -46,14 +46,12 @@ enum AlertType {
     case toBeVisionActionSheet
     case partnerIncomplete
     case canNotDeletePartner
-    case logout
     case noWeeklyChoice
     case noMyToBeVision
     case calendarNotSynced
     case eventDateNotAvailable
     case photosPermissionNotAuthorized
     case cameraPermissionNotAuthorized
-    case changePassword
 
     var title: String? {
         switch self {
@@ -124,14 +122,12 @@ enum AlertType {
         case .changePermissions: return R.string.localized.alertMessageSettingsChangePermission()
         case .partnerIncomplete: return R.string.localized.partnersAlertImcompleteMessage()
         case .canNotDeletePartner: return R.string.localized.partnersAlertDeleteErrorMessage()
-        case .logout: return R.string.localized.alertMessageLogout()
         case .noMyToBeVision: return R.string.localized.meSectorMyWhyPartnersShareMissingMyToBeVisionAlert()
         case .noWeeklyChoice: return R.string.localized.meSectorMyWhyPartnersShareMissingWeeklyChoiceAlert()
         case .addSensor: return R.string.localized.addSensorViewAlertMessage()
         case .calendarNotSynced: return R.string.localized.alertMessageCalendarNotSynced()
         case .eventDateNotAvailable: return R.string.localized.alertMessageEventDateNotAvailable()
         case .changeNotifications: return R.string.localized.alertMessageSettingsChangeNotifications()
-        case .changePassword: return R.string.localized.settingsChangePasswordTitle()
         default: return nil
         }
     }
@@ -146,11 +142,9 @@ enum AlertType {
              .changeNotifications,
              .toBeVisionActionSheet,
              .prepareEditStrategy,
-             .logout,
              .photosPermissionNotAuthorized,
              .cameraPermissionNotAuthorized,
-             .addSensor,
-             .changePassword: return R.string.localized.alertButtonTitleCancel()
+             .addSensor: return R.string.localized.alertButtonTitleCancel()
         default: return nil
         }
     }
@@ -166,8 +160,6 @@ enum AlertType {
              .cameraPermissionNotAuthorized: return R.string.localized.alertButtonTitleSettings()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonPhoto()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationAddStrategy()
-        case .logout,
-             .changePassword: return R.string.localized.alertButtonTitleCancel()
         case .addSensorCompletion: return R.string.localized.addSensorViewAlertFeedbackSuccessOK()
         default: return R.string.localized.alertButtonTitleOk()
         }
@@ -182,8 +174,6 @@ enum AlertType {
              .changeNotifications: return R.string.localized.alertButtonTitleCancel()
         case .imagePicker: return R.string.localized.imagePickerOptionsButtonCamera()
         case .prepareEditStrategy: return R.string.localized.alertTitlePreparationRemoveStrategy()
-        case .logout: return R.string.localized.sidebarTitleLogout()
-        case .changePassword: return R.string.localized.settingsChangePasswordButton()
         default: return nil
         }
     }
@@ -195,8 +185,6 @@ enum AlertType {
              .addSensor: return [.cancel]
         case .imagePicker,
              .toBeVisionActionSheet: return [.cancel]
-        case .logout,
-             .changePassword: return [.destructive, .cancel]
         case .prepareEditStrategy: return [.default, .destructive, .cancel]
         case .changePermissions,
              .settingsCalendars,
@@ -211,9 +199,7 @@ enum AlertType {
         switch self {
         case .imagePicker,
              .prepareEditStrategy,
-             .toBeVisionActionSheet,
-             .logout,
-             .changePassword: return .actionSheet
+             .toBeVisionActionSheet: return .actionSheet
         default: return .alert
         }
     }

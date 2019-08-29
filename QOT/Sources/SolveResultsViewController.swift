@@ -84,6 +84,10 @@ private extension SolveResultsViewController {
     @objc func openConfirmationView() {
         interactor?.openConfirmationView()
     }
+
+    @objc func didTapLeave() {
+        interactor?.deleteModelAndDismiss()
+    }
 }
 
 // MARK: - SolveResultsViewControllerInterface
@@ -96,6 +100,12 @@ extension SolveResultsViewController: SolveResultsViewControllerInterface {
     func load(_ results: SolveResults) {
         self.results = results
         tableView.reloadData()
+    }
+
+    func presentAlert(title: String, message: String, stayTitle: String, leaveTitle: String) {
+        let stay = QOTAlertAction(title: stayTitle)
+        let leave = QOTAlertAction(title: leaveTitle, target: self, action: #selector(didTapLeave))
+        QOTAlert.show(title: title, message: message, bottomItems: [stay, leave])
     }
 }
 
@@ -185,17 +195,6 @@ extension SolveResultsViewController: SolveFollowUpTableViewCellDelegate {
     func didTapFollowUp(isOn: Bool) {
         trackUserEvent(isOn == true ? .ENABLE : .DISABLE, action: .TAP)
         isFollowUpActive = isOn
-    }
-}
-
-// MARK: - ConfirmationViewControllerDelegate
-extension SolveResultsViewController: ConfirmationViewControllerDelegate {
-    func didTapLeave() {
-        interactor?.deleteModelAndDismiss()
-    }
-
-    func didTapStay() {
-        // Do nothing.
     }
 }
 

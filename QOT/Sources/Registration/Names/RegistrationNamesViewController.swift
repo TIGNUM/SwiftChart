@@ -19,9 +19,9 @@ final class RegistrationNamesViewController: UIViewController {
     private var keyboardNotification: NSNotification?
 
     private lazy var buttonNext: UIBarButtonItem = {
-        let button = UIBarButtonItem(customView: RoundedButton(title: interactor?.nextButtonTitle ?? "",
-                                                               target: self,
-                                                               action: #selector(didTapNextButton)))
+        let button = RoundedButton.barButton(title: interactor?.nextButtonTitle ?? "",
+                                             target: self,
+                                             action: #selector(didTapNextButton))
         return button
     }()
 

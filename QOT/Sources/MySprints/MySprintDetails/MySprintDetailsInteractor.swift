@@ -26,8 +26,8 @@ final class MySprintDetailsInteractor {
     private var actionToContinueOnActiveSprint: (() -> Void)?
 
     /// Continues previous action
-    private lazy var continuePreviousActionButton: SprintButtonParameters = {
-        return SprintButtonParameters(title: worker.buttonContinue, target: self, action: #selector(continueAction))
+    private lazy var continuePreviousActionButton: UIBarButtonItem = {
+        return RoundedButton.barButton(title: worker.buttonContinue, target: self, action: #selector(continueAction))
     }()
 
     /// Starts the sprint
@@ -47,10 +47,8 @@ final class MySprintDetailsInteractor {
     }()
 
     /// Pauses the sprint
-    private lazy var yesPauseButton: SprintButtonParameters = {
-        return SprintButtonParameters(title: worker.buttonYesPause,
-                                      target: self,
-                                      action: #selector(pauseSprint))
+    private lazy var yesPauseButton: UIBarButtonItem = {
+        return RoundedButton.barButton(title: worker.buttonYesPause, target: self, action: #selector(pauseSprint))
     }()
 
     /// Shows continue paused sprint alert
@@ -62,22 +60,18 @@ final class MySprintDetailsInteractor {
     }()
 
     /// Restarts paused sprint
-    private lazy var restartPausedButton: SprintButtonParameters = {
-        return SprintButtonParameters(title: worker.buttonRestartSprint,
-                                      target: self,
-                                      action: #selector(restartPausedSprint))
+    private lazy var restartPausedButton: UIBarButtonItem = {
+        return RoundedButton.barButton(title: worker.buttonRestartSprint, target: self, action: #selector(restartPausedSprint))
     }()
 
     /// Continues paused sprint
-    private lazy var continuePausedButton: SprintButtonParameters = {
-        return SprintButtonParameters(title: worker.buttonContinueSprint,
-                                      target: self,
-                                      action: #selector(continuePausedSprint))
+    private lazy var continuePausedButton: UIBarButtonItem = {
+        return RoundedButton.barButton(title: worker.buttonContinueSprint, target: self, action: #selector(continuePausedSprint))
     }()
 
     /// Cancels the action
-    private lazy var cancelButton: SprintButtonParameters = {
-        return SprintButtonParameters(title: worker.buttonCancel, target: self, action: #selector(cancelAction))
+    private lazy var cancelBarButton: UIBarButtonItem = {
+        return RoundedButton.barButton(title: worker.buttonCancel, target: self, action: #selector(cancelAction))
     }()
 
     // MARK: - Init
@@ -320,45 +314,23 @@ extension MySprintDetailsInteractor {
 
     private func showSprintInProgressAlert(with endDate: Date) {
         let text = worker.infoSprintInProgressMessage(endDate: endDate)
-        let infoViewModel = MySprintsInfoAlertViewModel(isFullscreen: true,
-                                                        style: .regular,
-                                                        icon: R.image.my_library_warning() ?? UIImage(),
-                                                        title: worker.infoSprintInProgressTitle,
-                                                        message: NSAttributedString(string: text),
-                                                        transparent: true)
-        let rightButtons = [continuePreviousActionButton, cancelButton]
-        show(infoViewModel, rightButtons)
+        presenter.presentAlert(title: worker.infoSprintInProgressTitle,
+                               message: text,
+                               buttons: [cancelBarButton, continuePreviousActionButton])
     }
 
     private func showPauseSprintAlert() {
         let text = worker.infoPauseSprintMessage
-        let infoViewModel = MySprintsInfoAlertViewModel(isFullscreen: true,
-                                                        style: .regular,
-                                                        icon: R.image.my_library_warning() ?? UIImage(),
-                                                        title: worker.infoPauseSprintTitle,
-                                                        message: NSAttributedString(string: text),
-                                                        transparent: false)
-        let rightButtons = [yesPauseButton, cancelButton]
-        show(infoViewModel, rightButtons)
+        presenter.presentAlert(title: worker.infoPauseSprintTitle,
+                               message: text,
+                               buttons: [cancelBarButton, yesPauseButton])
     }
 
     private func showContinueSprintAlert() {
         let text = worker.infoReplanSprintMessage
-        let infoViewModel = MySprintsInfoAlertViewModel(isFullscreen: true,
-                                                        style: .halfScreenBlur,
-                                                        icon: R.image.my_library_warning() ?? UIImage(),
-                                                        title: worker.infoReplanSprintTitle,
-                                                        message: NSAttributedString(string: text),
-                                                        transparent: false)
-        let rightButtons = [restartPausedButton, continuePausedButton]
-        show(infoViewModel, rightButtons)
-    }
-
-    private func show(_ infoViewModel: MySprintsInfoAlertViewModel, _ rightButtons: [SprintButtonParameters]) {
-        viewModel.infoViewModel = infoViewModel
-        viewModel.showDismissButton = false
-        viewModel.rightButtons = rightButtons
-        presenter.present()
+        presenter.presentAlert(title: worker.infoReplanSprintTitle,
+                               message: text,
+                               buttons: [continuePausedButton, restartPausedButton])
     }
 
     private func checkSprintInProgress(with action: @escaping () -> Void) {

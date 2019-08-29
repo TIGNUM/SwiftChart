@@ -35,7 +35,6 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet private weak var noPreparationsView: UIView!
     @IBOutlet private weak var noRecoveriesView: UIView!
     @IBOutlet private weak var noMIndsetShiftersView: UIView!
-    @IBOutlet private weak var confirmDeleteView: UIView!
     @IBOutlet private weak var cancelDeleteButton: UIButton!
     private var editPressed: Bool = false
     @IBOutlet private weak var confirmDeleteButton: UIButton!
@@ -55,7 +54,6 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
         removeButton.isHidden = true
         tableView.allowsMultipleSelectionDuringEditing = true
         editButton.corner(radius: editButton.bounds.size.width/2, borderColor: .accent)
-        confirmDeleteView.isHidden = true
         self.tableView.tableFooterView = UIView()
         setupView()
         interactor?.viewDidLoad()
@@ -96,10 +94,30 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
         }
     }
 
-    @IBAction func confirmDeleteButton(_ sender: Any) {
+    @IBAction func removeRows(_ sender: Any) {
+        guard tableView.indexPathForSelectedRow != nil else { return }
+        let cancel = QOTAlertAction(title: R.string.localized.buttonTitleCancel(),
+                                    target: self,
+                                    action: #selector(cancelDeleteTapped(_:)),
+                                    handler: nil)
+        let remove = QOTAlertAction(title: R.string.localized.buttonTitleYesContinue(),
+                                    target: self,
+                                    action: #selector(confirmDeleteTapped(_:)),
+                                    handler: nil)
+        let title = R.string.localized.myPrepsDeleteItemsAlertTitle()
+        let message = R.string.localized.myPrepsDeleteItemsAlertMessage()
+        QOTAlert.show(title: title, message: message, bottomItems: [cancel, remove])
+    }
+
+    @IBAction func didChangeSegmentedControl(_ sender: UISegmentedControl) {
+        hideAllViews()
+        showEmptyStateViewIfNeeded(sender)
+    }
+
+    @objc func confirmDeleteTapped(_ sender: Any) {
         hideAllViews()
         if let selectedRows = tableView.indexPathsForSelectedRows {
-        let sortedArray = selectedRows.sorted { $1.row < $0.row }
+            let sortedArray = selectedRows.sorted { $1.row < $0.row }
             for indexPath in sortedArray {
                 interactor?.remove(segmentedControl: segmentedControl.selectedSegmentIndex, at: indexPath)
             }
@@ -110,20 +128,8 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
         showEmptyStateViewIfNeeded(segmentedControl)
     }
 
-    @IBAction func cancelDeleteButton(_ sender: Any) {
+    @objc func cancelDeleteTapped(_ sender: Any) {
         updateControls()
-    }
-
-    @IBAction func removeRows(_ sender: Any) {
-        if tableView.indexPathForSelectedRow != nil {
-            confirmDeleteView.isHidden = false
-            refreshBottomNavigationItems()
-        }
-    }
-
-    @IBAction func didChangeSegmentedControl(_ sender: UISegmentedControl) {
-        hideAllViews()
-        showEmptyStateViewIfNeeded(sender)
     }
 }
 
@@ -131,7 +137,6 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 private extension MyPrepsViewController {
     func updateControls() {
         refreshBottomNavigationItems()
-        confirmDeleteView.isHidden = true
         segmentedControl.isHidden = false
         tableView.setEditing(false, animated: true)
         tableView.reloadData()
@@ -267,13 +272,11 @@ extension MyPrepsViewController: UITableViewDelegate, UITableViewDataSource {
 extension MyPrepsViewController {
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if confirmDeleteView.isHidden == false {
-            return [roundedBarBurtonItem(title: R.string.localized.buttonTitleYesContinue(), action: #selector(confirmDeleteButton(_:))),
-                    roundedBarBurtonItem(title: R.string.localized.buttonTitleCancel(), action: #selector(cancelDeleteButton(_:)))]
-        } else if editPressed == true {
-            return [roundedBarBurtonItem(title: R.string.localized.buttonTitleRemove(), action: #selector(removeRows(_:))),
-                    roundedBarBurtonItem(title: R.string.localized.buttonTitleCancel(), action: #selector(cancelButton(_:)))]
-        } else { return [] }
+        guard editPressed else { return nil }
+
+        return [roundedBarBurtonItem(title: R.string.localized.buttonTitleRemove(), action: #selector(removeRows(_:))),
+                roundedBarBurtonItem(title: R.string.localized.buttonTitleCancel(), action: #selector(cancelButton(_:)))]
+
     }
 
     @objc public func roundedBarBurtonItem(title: String, action: Selector) -> UIBarButtonItem {
