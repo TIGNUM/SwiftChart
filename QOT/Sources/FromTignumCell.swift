@@ -36,8 +36,8 @@ final class FromTignumCell: UITableViewCell, Dequeueable {
     }
 
     func configure(with viewModel: FromTignumCellViewModel?) {
-        fromTignumText.text = viewModel?.text
-        titleLabel.text = viewModel?.title
-        fromTignumTitle.text = viewModel?.subtitle
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
+        ThemeText.bespokeText.apply(viewModel?.text, to: fromTignumText)
     }
 }

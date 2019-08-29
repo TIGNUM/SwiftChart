@@ -14,7 +14,8 @@ final class QuestionCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var questionLabel: UILabel!
 
     func configure(with viewModel: QuestionCellViewModel?) {
-        questionLabel.text = viewModel?.text
-        titleLabel.text = viewModel?.title
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
+        ThemeText.quotation.apply(viewModel?.text, to: questionLabel)
     }
 }

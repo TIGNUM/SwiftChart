@@ -42,32 +42,31 @@ final class ImpactReadinessCell2: UITableViewCell, Dequeueable {
     }
 
     func configure(viewModel: ImpactReadinessScoreViewModel?) {
-        self.howYouFeelToday.text = viewModel?.howYouFeelToday
-        self.asterickText.text = viewModel?.asteriskText
-        self.sleepQuantityTitle.text = viewModel?.impactDataModels?.at(index: 0)?.title
-        self.sleepQuantitySubtitle.text = viewModel?.impactDataModels?.at(index: 0)?.subTitle
-        self.sleepQuantity.text = String(viewModel?.sleepQuantityValue ?? 0)
-        self.sleepQuantityTarget.text = String((viewModel?.targetSleepQuality ?? 0) * 5)
+        ThemeView.level2.apply(self)
+        ThemeText.sprintText.apply(viewModel?.howYouFeelToday, to: howYouFeelToday)
+        ThemeText.asterix.apply(viewModel?.asteriskText, to: asterickText)
+        ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 0)?.title ?? "").uppercased(), to: sleepQuantityTitle)
+        ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 0)?.subTitle, to: sleepQuantitySubtitle)
+        ThemeText.quotation.apply(String(viewModel?.sleepQuantityValue ?? 0), to: sleepQuantity)
+        ThemeText.sleepReference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQuantityTarget)
 
-        self.sleepQualityTitle.text = viewModel?.impactDataModels?.at(index: 1)?.title
-        self.sleepQualitySubtitle.text = viewModel?.impactDataModels?.at(index: 1)?.subTitle
-        self.sleepQuality.text = String(viewModel?.sleepQualityValue ?? 0)
-        self.sleepQualityRefrence.text = String(viewModel?.sleepQualityReference ?? 0)
+        ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 1)?.title ?? "").uppercased(), to: sleepQualityTitle)
+        ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 1)?.subTitle, to: sleepQualitySubtitle)
+        ThemeText.quotation.apply(String(viewModel?.sleepQualityValue ?? 0), to: sleepQuality)
+        ThemeText.reference.apply(String(viewModel?.sleepQualityReference ?? 0), to: sleepQualityRefrence)
 
-        self.loadTitle.text = viewModel?.impactDataModels?.at(index: 2)?.title
-        self.loadSubtitle.text = viewModel?.impactDataModels?.at(index: 2)?.subTitle
-        self.load.text = String(viewModel?.loadValue ?? 0)
-        self.loadRefrence.text = String(viewModel?.loadReference ?? 0)
+        ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 2)?.title ?? "").uppercased(), to: loadTitle)
+        ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 2)?.subTitle, to: loadSubtitle)
+        ThemeText.quotation.apply(String(viewModel?.loadValue ?? 0), to: load)
+        ThemeText.reference.apply(String(viewModel?.loadReference ?? 0), to: loadRefrence)
 
-        self.futureLoadTitle.text = viewModel?.impactDataModels?.at(index: 3)?.title
-        self.futureLoadSubtitle.text = viewModel?.impactDataModels?.at(index: 3)?.subTitle
-        self.futureLoad.text = String(viewModel?.futureLoadValue ?? 0)
-        self.futureLoadRefrence.text = String(viewModel?.futureLoadReference ?? 0)
-
+        ThemeText.sprintTitle.apply((viewModel?.impactDataModels?.at(index: 3)?.title ?? "").uppercased(), to: futureLoadTitle)
+        ThemeText.durationString.apply(viewModel?.impactDataModels?.at(index: 3)?.subTitle, to: futureLoadSubtitle)
+        ThemeText.quotation.apply(String(viewModel?.futureLoadValue ?? 0), to: futureLoad)
+        ThemeText.reference.apply(String(viewModel?.futureLoadReference ?? 0), to: futureLoadRefrence)
     }
 
     @IBAction func targetReference(_ sender: Any) {
         delegate?.showCustomizeTarget()
-
     }
 }

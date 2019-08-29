@@ -14,8 +14,9 @@ final class ThoughtsCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var titleLabel: UILabel!
 
     func configure(with viewModel: ThoughtsCellViewModel?) {
-        thoughtLabel.text = viewModel?.thought
-        authorLabel.text = viewModel?.author
-        titleLabel.text = viewModel?.title
+        ThemeView.level2.apply(self)
+        ThemeText.quotation.apply(viewModel?.thought, to: thoughtLabel)
+        ThemeText.quoteAuthor.apply(viewModel?.author, to: authorLabel)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
     }
 }

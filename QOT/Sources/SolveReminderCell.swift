@@ -22,10 +22,11 @@ final class SolveReminderCell: UITableViewCell, Dequeueable {
     }
 
     func configure(with viewModel: SolveReminderCellViewModel?) {
-        self.bucketTitle.text = viewModel?.bucketTitle
-        self.twoDayAgo.text = viewModel?.twoDayAgo
-        self.question1.text = viewModel?.question1
-        self.question2.text = viewModel?.question2
-        self.question3.text = viewModel?.question3
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
+        ThemeText.solveQuestions.apply(viewModel?.question1, to: question1)
+        ThemeText.solveQuestions.apply(viewModel?.question2, to: question2)
+        ThemeText.solveQuestions.apply(viewModel?.question3, to: question3)
+        ThemeText.sprintText.apply(viewModel?.twoDayAgo, to: twoDayAgo)
     }
 }

@@ -15,7 +15,8 @@ final class AboutMeCell: UITableViewCell, Dequeueable {
     @IBOutlet private weak var aboutMeMoreInfo: UILabel!
 
     func configure(with viewModel: AboutMeViewModel?) {
-        self.title.text = viewModel?.title
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: title)
         self.aboutMeContent.text = viewModel?.aboutMeContent
         self.aboutMeMoreInfo.text = viewModel?.aboutMeMoreInfo
     }

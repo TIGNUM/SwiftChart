@@ -28,10 +28,11 @@ final class SprintChallengeCell: UITableViewCell, UITableViewDelegate, Dequeueab
     }
 
     func configure(with viewModel: SprintChallengeViewModel?) {
-        self.bucketTitle.text = viewModel?.bucketTitle
-        self.sprintTitle.text = viewModel?.sprintTitle
-        self.sprintInfo.text = viewModel?.sprintInfo
-        self.sprintStepNumber.text = String(viewModel?.sprintStepNumber ?? 0)
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: bucketTitle)
+        ThemeText.sprintName.apply(viewModel?.sprintTitle, to: sprintTitle)
+        ThemeText.sprintText.apply(viewModel?.sprintInfo, to: sprintInfo)
+        ThemeText.quotation.apply(String(viewModel?.sprintStepNumber ?? 0), to: sprintStepNumber)
         self.relatedStrategiesModels = viewModel?.relatedStrategiesModels
     }
 

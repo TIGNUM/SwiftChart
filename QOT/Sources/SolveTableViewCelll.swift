@@ -25,14 +25,15 @@ final class SolveTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, date: String?, solve: QDMSolve?) {
-        titleLabel.text = title?.uppercased()
-        dateLabel.text = date
+        ThemeView.level2.apply(self)
+        ThemeText.durationString.apply(date, to: dateLabel)
+        ThemeText.sprintTitle.apply((title ?? "").uppercased(), to: titleLabel)
         self.solve = solve
     }
 
     @IBAction func checkIt(_ sender: Any) {
         if let solve = solve {
-        delegate?.showSolveResults(solve: solve)
+            delegate?.showSolveResults(solve: solve)
         }
     }
 }

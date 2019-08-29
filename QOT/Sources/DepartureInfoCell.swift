@@ -20,12 +20,13 @@ final class DepartureInfoCell: UITableViewCell, Dequeueable {
     private var departureModel: DepartureInfoCellViewModel?
 
     func configure(with viewModel: DepartureInfoCellViewModel?) {
-        self.subtitleLabel.text = viewModel?.subtitle
-        self.bucketTitle.text = viewModel?.title
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
+        ThemeText.bespokeText.apply(viewModel?.subtitle, to: subtitleLabel)
         self.departureModel = viewModel
         departureImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
-        departureText.text = viewModel?.text
-        websiteLabel.text = viewModel?.link
+        ThemeText.bespokeText.apply(viewModel?.text, to: departureText)
+        ThemeText.bespokeText.apply(viewModel?.link, to: websiteLabel)
     }
     @IBAction func copyrightButtonPressed(_ sender: Any) {
         delegate?.presentCopyRight(copyrightURL: departureModel?.copyright)

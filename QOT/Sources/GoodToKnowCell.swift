@@ -22,8 +22,9 @@ final class GoodToKnowCell: UITableViewCell, Dequeueable {
 
     func configure(with viewModel: GoodToKnowCellViewModel?) {
         goodToKnowImage.kf.setImage(with: viewModel?.image, placeholder: R.image.preloading())
-        goodToKnowFact.text = viewModel?.fact
-        titleLabel.text = viewModel?.title
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
+        ThemeText.goodToKnow.apply(viewModel?.fact, to: goodToKnowFact)
         self.goodToKnowModel = viewModel
     }
 }

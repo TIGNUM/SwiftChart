@@ -26,15 +26,15 @@ final class MeAtMyBestCell: UITableViewCell, Dequeueable {
     }
 
     func setUp() {
-
         meAtMyBestButtonText.corner(radius: Layout.cornerRadius20, borderColor: .accent)
     }
 
     func configure(with viewModel: MeAtMyBestCellViewModel?) {
-        meAtMyBestTitle.text = viewModel?.title
-        meAtMyBestLabel.text = viewModel?.intro
-        meAtMyBestContent.text = viewModel?.tbvStatement
-        meAtMyBestFuture.text = viewModel?.intro2
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: meAtMyBestTitle)
+        ThemeText.sprintText.apply(viewModel?.intro, to: meAtMyBestLabel)
+        ThemeText.tbvStatement.apply(viewModel?.tbvStatement, to: meAtMyBestContent)
+        ThemeText.solveFuture.apply(viewModel?.intro2, to: meAtMyBestFuture)
         meAtMyBestButtonText.setTitle(viewModel?.buttonText, for: .normal)
     }
 }

@@ -25,9 +25,10 @@ final class BeSpokeCell: UITableViewCell, Dequeueable {
     }
 
     func configure(with viewModel: BeSpokeCellViewModel?) {
-        headingLabel.text = viewModel?.bucketTitle
-        titleLabel.text = viewModel?.title
-        descriptionLabel.text = viewModel?.description
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.bucketTitle ?? "").uppercased(), to: headingLabel)
+        ThemeText.bespokeTitle.apply(viewModel?.title, to: titleLabel)
+        ThemeText.bespokeText.apply(viewModel?.description, to: descriptionLabel)
         firstImageView.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
     }
 }

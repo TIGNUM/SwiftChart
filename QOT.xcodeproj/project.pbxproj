@@ -1663,6 +1663,7 @@
 		F902CF5722DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */; };
 		F902CF5922DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */; };
 		F902CF5B22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */; };
+		F906A4DE2316B0F500351CAC /* SolveReminderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F906A4DD2316B0F500351CAC /* SolveReminderCell.swift */; };
 		F907153D230190CA00AC5A9B /* SprintChallengeTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */; };
 		F907153F230190FA00AC5A9B /* SprintChallengeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */; };
 		F909961622B23F5100EAEAC6 /* MyPrepsConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */; };
@@ -3507,7 +3508,7 @@
 		F902CF5622DE10B800FFC836 /* DailyCheckinInsightsSHPICell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsSHPICell.xib; sourceTree = "<group>"; };
 		F902CF5822DE10E300FFC836 /* DailyCheckinInsightsTBVCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsTBVCell.xib; sourceTree = "<group>"; };
 		F902CF5A22DE10FA00FFC836 /* DailyCheckinInsightsPeakPerformanceCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DailyCheckinInsightsPeakPerformanceCell.xib; sourceTree = "<group>"; };
-		F906A4DB23168A3D00351CAC /* SolveReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
+		F906A4DD2316B0F500351CAC /* SolveReminderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SolveReminderCell.swift; sourceTree = "<group>"; };
 		F907153C230190CA00AC5A9B /* SprintChallengeTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SprintChallengeTableViewCell.xib; sourceTree = "<group>"; };
 		F907153E230190FA00AC5A9B /* SprintChallengeTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SprintChallengeTableViewCell.swift; sourceTree = "<group>"; };
 		F909961522B23F5100EAEAC6 /* MyPrepsConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyPrepsConfigurator.swift; sourceTree = "<group>"; };
@@ -6113,6 +6114,7 @@
 				F90BD422230164B100008702 /* SolveTableViewCell.xib */,
 				F90BD424230164CA00008702 /* SolveTableViewCelll.swift */,
 				9CAD9FB82316634E001DA2DC /* SolveReminderTableCellViewModel.swift */,
+				F906A4DD2316B0F500351CAC /* SolveReminderCell.swift */,
 			);
 			name = "Solve Reminder ";
 			sourceTree = "<group>";
@@ -10595,6 +10597,7 @@
 				5F8A899B2296DF000011A05C /* MyVisionWorker.swift in Sources */,
 				AC516C6B228059CC009C4D30 /* CellAnimator.swift in Sources */,
 				3637660F223A4BEC00C2C429 /* DailyBriefViewController.swift in Sources */,
+				F906A4DE2316B0F500351CAC /* SolveReminderCell.swift in Sources */,
 				D58BD8771E9F65F7005676DE /* ArticleCollectionCell.swift in Sources */,
 				5F78965322A929C100D2DBAD /* FiveLinesWithTopBroad.swift in Sources */,
 				8D110D04230FDA41000181BA /* WalkthroughCoachInterface.swift in Sources */,

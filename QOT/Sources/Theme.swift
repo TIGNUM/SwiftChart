@@ -53,14 +53,12 @@ enum ThemeView {
             return Palette.carbon
         case .level3:
             return Palette.carbon
-
         case .level1Secondary:
             return Palette.carbon
         case .level1Selected:
             return Palette.accent04
         case .level2Selected:
             return Palette.accent10
-
         case .article:
             return Palette.light(Palette.sand, or: Palette.carbon)
         case .articleBackground(let mode):
@@ -89,7 +87,6 @@ enum ThemeView {
         default:
             break
         }
-
         view.backgroundColor = color
     }
 
@@ -217,20 +214,50 @@ enum ThemeText {
     case strategySubHeader
     case myQOTBoxTitle
     case myQOTTitle
+    case quotation
+    case dailyBriefTitle
+    case sprintName
+    case quoteAuthor
+    case sprintText
+    case sprintTitle
+    case durationString
+    case solveQuestions
+    case tbvStatement
+    case solveFuture
+    case level5Question
+    case performanceBucketTitle
+    case performanceSubtitle
+    case performanceSections
+    case performanceSectionText
+    case bespokeTitle
+    case bespokeText
+    case leaderText
+    case leaderVideoTitle
+    case strategyTitle
+    case fromCoachTitle
+    case goodToKnow
+    case readinessScore
+    case asterix
+    case impactBucket
+    case sleepReference
+    case reference
 
     private var font: UIFont {
         switch self {
-        case .navigationBarHeader, .sectionHeader, .categoryHeader:
+        case .asterix:
+            return Fonts.fontRegular13
+        case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle:
             return Fonts.fontRegular20
-        case .categorySubHeader, .searchTopic:
+        case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText, .leaderText:
             return Fonts.fontRegular16
-        case .performanceStaticTitle, .performanceTitle, .searchExploreTopic, .searchBar, .strategySubHeader:
+        case .performanceStaticTitle, .performanceTitle, .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader, .performanceSubtitle, .quoteAuthor, .sleepReference, .reference:
             return Fonts.fontRegular14
-        case .author, .articleAuthor, .datestamp, .linkMenuComment, .linkMenuCommentRed,
-             .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead:
+        case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .durationString, .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead:
             return Fonts.fontMedium12
         case .linkMenuItem, .myQOTBoxTitle:
             return Fonts.fontLight20
+        case .readinessScore:
+            return Fonts.fontDisplayUltralight64
         case .audioBar, .articleAudioBar, .segmentHeading:
             return Fonts.fontSemiBold14
         case .articleCategory, .articleDatestamp:
@@ -238,6 +265,12 @@ enum ThemeText {
             case .scale: return Fonts.fontMedium14
             case .scaleNot: return Fonts.fontMedium12
             }
+        case .strategyTitle:
+            return Fonts.fontDisplayThin30
+        case .bespokeTitle:
+            return Fonts.fontRegular18
+        case .sprintName, .performanceBucketTitle:
+            return Fonts.fontMedium16
         case .articleCategoryNotScaled:
             return Fonts.fontMedium12
         case .articleTitle:
@@ -257,17 +290,19 @@ enum ThemeText {
             case .scale: return Fonts.fontRegular24
             case .scaleNot: return Fonts.fontRegular16
             }
-        case .articleRelatedTitle, .myQOTTitle, .whatsHotHeader,
-             .articleHeadlineSmall, .articleHeadlineSmallRed, .articleHeadlineSmallFade, .articleHeadlineSmallLight,
-             .chatButton, .chatButtonEnabled, .articleMediaDescription:
+        case .articleRelatedTitle, .myQOTTitle, .whatsHotHeader, .sprintText, .sprintTitle, .solveQuestions, .impactBucket,
+             .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed, .articleHeadlineSmallFade, .articleHeadlineSmallLight:
             return Fonts.fontLight16
-        case .articleRelatedDetail:
-            return Fonts.fontMedium12
-        case .articleNextTitle:
+        case .articleNextTitle, .performanceSections:
             return Fonts.fontMedium14
         case .strategyHeader:
             return Fonts.fontRegular15
-
+        case .quotation:
+            return Fonts.fontDisplayThin34
+        case .dailyBriefTitle:
+            return Fonts.fontDisplayRegular20
+        case .tbvStatement:
+            return Fonts.fontDisplayLight24
         case .articlePostTitle, .articlePostTitleNight:
             return Fonts.fontLight36
         case .articleSecondaryTitle:
@@ -297,7 +332,6 @@ enum ThemeText {
             return Fonts.fontLight18
         case .articleNum:
             return Fonts.fontLight72
-
         default:
             return Fonts.fontRegular20
         }
@@ -305,44 +339,42 @@ enum ThemeText {
 
     private var color: UIColor {
         switch self {
-        case .navigationBarHeader,
-             .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle,
-             .strategyHeader, .myQOTBoxTitle, .chatButtonEnabled, .settingsTitle,
-             .searchTopic, .articleRelatedTitle:
+        case .navigationBarHeader, .quotation, .dailyBriefTitle, .segmentHeading, .searchTopic, .asterix, .impactBucket, .articleRelatedTitle,
+             .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle, .chatButtonEnabled, .settingsTitle,
+             .strategyHeader, .myQOTBoxTitle, .sprintName, .sprintTitle, .solveQuestions, .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle:
             return Palette.sand
-        case .author, .chatButton:
+        case .author, .quoteAuthor, .chatButton:
             return Palette.sand60
-        case .datestamp, .performanceStaticTitle:
+        case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference, .settingsTitleFade:
             return Palette.sand40
-        case .linkMenuItem:
+        case .performanceSubtitle:
+            return Palette.carbonDark40
+        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference:
             return Palette.accent
-        case .linkMenuComment, .strategySubHeader:
+        case .performanceSections:
+            return Palette.carbon40
+        case .fromCoachTitle:
+            return Palette.carbon
+        case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore:
             return Palette.sand70
+        case .performanceSectionText:
+            return Palette.carbon70
         case .linkMenuCommentRed:
             return Palette.redOrange
-        case .searchExploreTopic, .settingsTitleFade, .searchBar:
-            return Palette.sand40
-        case .audioBar:
-            return Palette.accent
-        case .segmentHeading:
-            return Palette.sand
-        case .articleToolBarTint:
-            return Palette.accent
-
         case .articleAudioBar, .articleMarkRead:
             return Palette.light(Palette.sand60, or: Palette.carbon60)
         case .articleCategory, .articleCategoryNotScaled:
-            return Palette.light(Palette.carbon30, or: Palette.sand30)
+             return Palette.light(Palette.carbon30, or: Palette.sand30)
         case .articleTitle, .articleTitleNotScaled, .articleBody, .myQOTTitle:
             return Palette.light(Palette.carbon, or: Palette.sand)
+        case .articleDatestamp:
+            return Palette.light(Palette.carbon30, or: Palette.sand30)
+        case .articleNextTitle:
+            return Palette.light(Palette.carbon40, or: Palette.sand40)
         case .whatsHotHeader(let mode):
             return Palette.light(Palette.carbon, or: Palette.sand, forcedColorMode: mode)
         case .articleAuthor(let mode):
             return Palette.light(Palette.carbon60, or: Palette.sand60, forcedColorMode: mode)
-        case .articleDatestamp(let mode):
-            return Palette.light(Palette.carbon30, or: Palette.sand30, forcedColorMode: mode)
-        case .articleNextTitle:
-            return Palette.light(Palette.carbon40, or: Palette.sand40)
         case .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline, .articleHeadlineSmall,
              .articleNavigationTitle, .articleTagTitle, .articleParagraph, .article,
              .articleQuestion, .articleSub, .articleNum, .articleSector:
@@ -351,27 +383,22 @@ enum ThemeText {
             return Palette.light(Palette.carbon60, or: Palette.sand60)
         case .articleBullet:
             return Palette.light(Palette.carbon70, or: Palette.sand70)
-
         case .version, .articleRelatedDetail:
             return Palette.sand30
-
         case .articleHeadlineSmallRed:
             return Palette.cherryRed
         case .articleHeadlineSmallFade:
             return Palette.sand50
         case .articleHeadlineSmallLight:
             return Palette.sand10
-
         case .articleTag:
             return Palette.sand30
         case .articleTagSelected:
             return Palette.sand50
-
         case .articleTagNight:
             return Palette.nightModeSubFont
         case .articlePostTitleNight:
             return Palette.nightModeMainFont
-
         case .learnVideo:
             return Palette.nightModeBlack40
         case .learnImage, .learnPDF:
@@ -392,29 +419,28 @@ enum ThemeText {
 
         switch self {
         case .navigationBarHeader, .articleCategory, .articleCategoryNotScaled, .articleAuthor, .articleDatestamp,
-             .author, .articleMarkRead, .myQOTBoxTitle:
+             .author, .articleMarkRead, .myQOTBoxTitle, .durationString, .tbvStatement, .dailyBriefTitle, .strategyTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, textColor: self.color, alignment: .left)
-        case .performanceStaticTitle:
-            string = NSAttributedString(string: text, letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
-        case .linkMenuItem, .linkMenuComment, .linkMenuCommentRed:
-            string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
-        case .articleTitle, .articleTitleNotScaled:
+        case .articleTitle, .articleTitleNotScaled, .performanceSections, .bespokeTitle:
             string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.2, font: self.font, lineSpacing: 4, textColor: self.color, alignment: .left)
         case .strategyHeader:
             string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
+        case .performanceStaticTitle, .fromCoachTitle:
+            string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
+        case .sprintTitle, .leaderVideoTitle:
+             string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
+        case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore:
+            string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
         case .strategySubHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
+        case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText, .sleepReference, .asterix, .bespokeText, .leaderText:
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
         case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)
         case .articleBullet, .sectionHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
-        case .articleRelatedDetail:
+        case .articleRelatedDetail, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
-        case .articleAudioBar, .audioBar:
-            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
-        case .datestamp:
-            string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
-
         case .articleBody, .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline,
              .articleParagraph, .articleSector, .articlePostTitleNight:
             let lSpace = lineSpacing != nil ? lineSpacing! : 1.0
@@ -466,14 +492,17 @@ enum ThemeText {
 }
 
 private struct Fonts {
+    static let fontRegular13 = UIFont.sfProtextRegular(ofSize: 13.0)
     static let fontRegular14 = UIFont.sfProtextRegular(ofSize: 14.0)
     static let fontRegular15 = UIFont.sfProtextRegular(ofSize: 15.0)
     static let fontRegular16 = UIFont.sfProtextRegular(ofSize: 16.0)
+    static let fontRegular18 = UIFont.sfProtextRegular(ofSize: 18.0)
     static let fontRegular20 = UIFont.sfProtextRegular(ofSize: 20.0)
     static let fontRegular24 = UIFont.sfProtextRegular(ofSize: 24.0)
 
     static let fontMedium12 = UIFont.sfProtextMedium(ofSize: 12.0)
     static let fontMedium14 = UIFont.sfProtextMedium(ofSize: 14.0)
+    static let fontMedium16 = UIFont.sfProtextMedium(ofSize: 16.0)
     static let fontMedium20 = UIFont.sfProtextMedium(ofSize: 20.0)
 
     static let fontLight11 = UIFont.sfProtextLight(ofSize: 11.0)
@@ -490,6 +519,12 @@ private struct Fonts {
     static let fontLight72 = UIFont.sfProtextLight(ofSize: 72.0)
 
     static let fontSemiBold14 = UIFont.sfProtextSemibold(ofSize: 14.0)
+
+    static let fontDisplayLight24 = UIFont.sfProDisplayLight(ofSize: 24)
+    static let fontDisplayRegular20 = UIFont.sfProDisplayRegular(ofSize: 20.0)
+    static let fontDisplayThin30 = UIFont.sfProDisplayThin(ofSize: 30.0)
+    static let fontDisplayThin34 = UIFont.sfProDisplayThin(ofSize: 34.0)
+    static let fontDisplayUltralight64 = UIFont.sfProDisplayUltralight(ofSize: 64.0)
 }
 
 private struct Palette {
@@ -511,6 +546,10 @@ private struct Palette {
 
     static var carbonDark: UIColor {
         return UIColor(red: 8/255, green: 8/255, blue: 7/255, alpha: 1)
+    }
+
+    static var carbonDark40: UIColor {
+         return UIColor.carbonDark.withAlphaComponent(0.4)
     }
 
     static var sand: UIColor {

@@ -37,9 +37,11 @@ final class ImpactReadiness1: UITableViewCell, Dequeueable {
     }
 
     func configure(viewModel: ImpactReadinessCellViewModel?) {
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
+        ThemeText.sprintText.apply(viewModel?.readinessIntro, to: content)
+        ThemeText.readinessScore.apply(String(viewModel?.readinessScore ?? 0), to: impactReadinessScore)
         toBeVisionImage.kf.setImage(with: viewModel?.dailyCheckImageView, placeholder: R.image.tbvPlaceholder())
-        impactReadinessScore.text = String((viewModel?.readinessScore ?? 0))
         self.score = viewModel?.readinessScore ?? 0
-        content.text = viewModel?.readinessIntro
     }
 }

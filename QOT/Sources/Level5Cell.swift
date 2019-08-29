@@ -67,7 +67,7 @@ final class Level5Cell: UITableViewCell, Dequeueable {
         buttons.forEach {(button) in
             button.circle()
             button.layer.borderWidth = 1
-            button.layer.borderColor = UIColor.accent.cgColor }
+            button.layer.borderColor = UIColor.accent40.cgColor }
     }
 
     func saveButtonsUI(button: UIButton) {
@@ -79,19 +79,19 @@ final class Level5Cell: UITableViewCell, Dequeueable {
     }
 
     func configure(with: Level5CellViewModel?) {
-        introLabel.text = with?.intro
-        titleLabel.text = with?.title
-        questionLabel.text = with?.question
-        self.level1Title.text = with?.level1Title?.uppercased()
-        self.level2Title.text = with?.level2Title?.uppercased()
-        self.level3Title.text = with?.level3Title?.uppercased()
-        self.level4Title.text = with?.level4Title?.uppercased()
-        self.level5Title.text = with?.level5Title?.uppercased()
-        self.level1Text.text = with?.level1Text
-        self.level2Text.text = with?.level2Text
-        self.level3Text.text = with?.level3Text
-        self.level4Text.text = with?.level4Text
-        self.level5Text.text = with?.level5Text
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((with?.title ?? "").uppercased(), to: titleLabel)
+        ThemeText.level5Question.apply(with?.question, to: questionLabel)
+        ThemeText.sprintTitle.apply(with?.level1Title, to: level1Title)
+        ThemeText.sprintTitle.apply(with?.level2Title, to: level2Title)
+        ThemeText.sprintTitle.apply(with?.level3Title, to: level3Title)
+        ThemeText.sprintTitle.apply(with?.level4Title, to: level4Title)
+        ThemeText.sprintTitle.apply(with?.level5Title, to: level5Title)
+        ThemeText.sprintText.apply(with?.level1Text, to: level1Text)
+        ThemeText.sprintText.apply(with?.level2Text, to: level2Text)
+        ThemeText.sprintText.apply(with?.level3Text, to: level3Text)
+        ThemeText.sprintText.apply(with?.level4Text, to: level4Text)
+        ThemeText.sprintText.apply(with?.level5Text, to: level5Text)
 
         if let selectedValue = with?.currentLevel {
             hideAllViews()

@@ -30,12 +30,15 @@ final class LeaderWisdomTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(with viewModel: LeaderWisdomCellViewModel?) {
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: titleLabel)
+        ThemeText.bespokeText.apply(viewModel?.subtitle, to: subtitleLabel)
+        ThemeText.leaderText.apply(viewModel?.description, to: descriptionLabel)
         videoView.isHidden = viewModel?.format != .video
         audioView.isHidden = viewModel?.format != .audio
         titleLabel.isHidden = viewModel?.title == nil
         subtitleLabel.isHidden = viewModel?.subtitle == nil
         descriptionLabel.isHidden = viewModel?.description == nil
-        videoTitle.isHidden = viewModel?.format != .video
         videoTitle.text = viewModel?.videoTitle?.uppercased()
         duration = viewModel?.audioDuration ?? viewModel?.videoDuration
         remoteID = viewModel?.remoteID
@@ -45,9 +48,6 @@ final class LeaderWisdomTableViewCell: UITableViewCell, Dequeueable {
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)
         videoThumbnailImageView.kf.setImage(with: mediaURL, placeholder: R.image.preloading())
-        subtitleLabel.text = viewModel?.subtitle
-        titleLabel.text = viewModel?.title
-        descriptionLabel.text = viewModel?.description
     }
 
     @IBAction func audioAction(_ sender: Any) {

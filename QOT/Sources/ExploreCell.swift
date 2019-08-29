@@ -16,8 +16,9 @@ final class ExploreCell: UITableViewCell, Dequeueable {
     @IBOutlet weak var strategyView: UIView!
 
     func configure(title: String?, introText: String?, labelPosition: CGFloat?) {
-        titleLabel.text = title?.uppercased()
-        introTextLabel.text = introText
+        ThemeView.level2.apply(self)
+        ThemeText.bespokeText.apply(introText, to: introTextLabel)
+        ThemeText.strategyTitle.apply((title ?? "").uppercased(), to: titleLabel)
         timeOfDayPosition.constant = labelPosition ?? 0
     }
 }

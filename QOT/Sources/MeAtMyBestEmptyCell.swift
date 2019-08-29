@@ -28,8 +28,9 @@ final class MeAtMyBestEmptyCell: UITableViewCell, Dequeueable {
     }
 
     func configure(with: MeAtMyBestCellEmptyViewModel?) {
-        title.text = with?.title
-        intro.text = with?.intro
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((with?.title ?? "").uppercased(), to: title)
+        ThemeText.sprintText.apply(with?.intro, to: intro)
         buttonText.setTitle(with?.buttonText, for: .normal)
         contentView.setNeedsLayout()
     }

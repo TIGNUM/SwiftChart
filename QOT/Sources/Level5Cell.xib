@@ -68,7 +68,7 @@
                                 <constraint firstAttribute="height" constant="40" id="KY2-YZ-bMV"/>
                                 <constraint firstAttribute="width" constant="40" id="bU3-Z8-CNi"/>
                             </constraints>
-                            <state key="normal" title="1">
+                            <state key="normal" title="01">
                                 <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>
@@ -81,7 +81,7 @@
                                 <constraint firstAttribute="width" constant="40" id="Vyd-A6-V35"/>
                                 <constraint firstAttribute="height" constant="40" id="jXY-WW-ch0"/>
                             </constraints>
-                            <state key="normal" title="2">
+                            <state key="normal" title="02">
                                 <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>
@@ -94,7 +94,7 @@
                                 <constraint firstAttribute="width" constant="40" id="ff5-Oi-tcV"/>
                                 <constraint firstAttribute="height" constant="40" id="uKF-AN-Mgf"/>
                             </constraints>
-                            <state key="normal" title="3">
+                            <state key="normal" title="03">
                                 <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>
@@ -107,7 +107,7 @@
                                 <constraint firstAttribute="height" constant="40" id="FTb-JG-7CJ"/>
                                 <constraint firstAttribute="width" constant="40" id="u3a-nG-XDw"/>
                             </constraints>
-                            <state key="normal" title="4">
+                            <state key="normal" title="04">
                                 <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>
@@ -120,7 +120,7 @@
                                 <constraint firstAttribute="width" constant="40" id="HSt-oN-uOS"/>
                                 <constraint firstAttribute="height" constant="40" id="N3v-7k-JFC"/>
                             </constraints>
-                            <state key="normal" title="5">
+                            <state key="normal" title="05">
                                 <color key="titleColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                             </state>
                             <connections>

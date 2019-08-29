@@ -20,7 +20,8 @@ final class SprintChallengeTableViewCell: UITableViewCell, Dequeueable {
     }
 
     func configure(title: String?, durationString: String?, remoteID: Int?) {
-        titleLabel.text = title
-        durationLabel.text = durationString
+        ThemeView.level2.apply(self)
+        ThemeText.sprintTitle.apply((title ?? "").uppercased(), to: titleLabel)
+        ThemeText.durationString.apply(durationString, to: durationLabel)
     }
 }

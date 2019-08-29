@@ -20,7 +20,8 @@ final class FeastCell: UITableViewCell, Dequeueable {
     }
 
     func configure(with viewModel: FeastCellViewModel?) {
+        ThemeView.level2.apply(self)
+        ThemeText.dailyBriefTitle.apply((viewModel?.title ?? "").uppercased(), to: bucketTitle)
         feastImage.kf.setImage(with: URL(string: viewModel?.image ?? ""), placeholder: R.image.preloading())
-        self.bucketTitle.text = viewModel?.title
     }
 }

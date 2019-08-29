@@ -43,17 +43,8 @@ final class FromMyCoachMessageView: UIView {
     func configure(with data: FromMyCoachCellViewModel.FromMyCoachMessage) {
         topViewHeightConstraint.constant = isFirstView == true ? Spacing.defaultSpacing.rawValue : Spacing.fromSecondViewSpacing.rawValue
         topSeparatorView.isHidden = isFirstView == true
-        dateLabel.text = data.date
-        textLabel.attributedText = formatted(text: data.text)
-    }
-}
-
-private extension FromMyCoachMessageView {
-    func formatted(text: String) -> NSAttributedString? {
-        return NSAttributedString(string: text,
-                                  letterSpacing: 0.3,
-                                  font: .sfProtextRegular(ofSize: 16) ,
-                                  lineSpacing: 3,
-                                  textColor: .carbon60)
+        ThemeView.level2.apply(self)
+        ThemeText.performanceSubtitle.apply(data.date, to: dateLabel)
+        ThemeText.performanceSectionText.apply(data.text, to: textLabel)
     }
 }
