@@ -100,7 +100,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view userInteractionEnabled="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mrd-Db-UF7">
-                                <rect key="frame" x="0.0" y="94" width="414" height="668"/>
+                                <rect key="frame" x="0.0" y="94" width="414" height="768"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="N9B-Tj-3Yw">
@@ -142,7 +142,7 @@
                             <constraint firstItem="N9B-Tj-3Yw" firstAttribute="leading" secondItem="KqO-dp-4Nq" secondAttribute="leading" id="Csw-rL-RSX"/>
                             <constraint firstItem="mrd-Db-UF7" firstAttribute="leading" secondItem="KqO-dp-4Nq" secondAttribute="leading" id="L1Z-N7-dwF"/>
                             <constraint firstItem="N9B-Tj-3Yw" firstAttribute="trailing" secondItem="KqO-dp-4Nq" secondAttribute="trailing" id="Nvz-DY-fSg"/>
-                            <constraint firstItem="KqO-dp-4Nq" firstAttribute="bottom" secondItem="mrd-Db-UF7" secondAttribute="bottom" constant="100" id="Vx9-VY-4b3"/>
+                            <constraint firstItem="KqO-dp-4Nq" firstAttribute="bottom" secondItem="mrd-Db-UF7" secondAttribute="bottom" id="Vx9-VY-4b3"/>
                             <constraint firstItem="N9B-Tj-3Yw" firstAttribute="top" secondItem="KqO-dp-4Nq" secondAttribute="top" id="fkS-jc-UJg"/>
                             <constraint firstItem="KqO-dp-4Nq" firstAttribute="trailing" secondItem="mrd-Db-UF7" secondAttribute="trailing" id="tjZ-ei-Nm8"/>
                         </constraints>

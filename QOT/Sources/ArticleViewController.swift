@@ -467,6 +467,12 @@ extension ArticleViewController {
         pdfReaderConfigurator(readerViewController)
         present(navigationController, animated: true, completion: nil)
     }
+
+    func sectionHasContent(_ section: Int) -> Bool {
+        let numRows = interactor?.itemCount(in: section) ?? 0
+        let title = interactor?.headerTitle(for: section) ?? ""
+        return !title.isEmpty && numRows > 0
+    }
 }
 
 // MARK: - UITableViewDelegate, UITableViewDataSource
@@ -639,6 +645,10 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if !sectionHasContent(section) {
+            return nil
+        }
+
         guard let headerTitle = interactor?.headerTitle(for: section) else {
             return nil
         }
@@ -657,7 +667,7 @@ extension ArticleViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return (interactor?.headerTitle(for: section) ?? "").isEmpty ? 0 : tableView.estimatedSectionHeaderHeight
+        return sectionHasContent(section) ? tableView.estimatedSectionHeaderHeight : 0
     }
 }
 
