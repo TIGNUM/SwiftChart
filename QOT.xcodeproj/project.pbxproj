@@ -1273,6 +1273,7 @@
 		B8BCE59C22AF95B20012AAAC /* ShareExtentionData.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE59A22AF8FEA0012AAAC /* ShareExtentionData.swift */; };
 		B8BCE59E22AF98D90012AAAC /* AppDelegate+ShareExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */; };
 		B8F7277822D4CFCD006FDD7A /* ExternalLinkImporter.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */; };
+		BB0ED0982317FF7B006A0476 /* UISegmentedControl+Underline.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */; };
 		BB4061622302F3A600E5AB19 /* OrientationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB4061612302F3A600E5AB19 /* OrientationManager.swift */; };
 		BB5E76B6230C04B30054AF17 /* CustomSegueModal.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */; };
 		BB5E76BB230C29A10054AF17 /* DailyBrief.swift in Sources */ = {isa = PBXBuildFile; fileRef = BB5E76B9230C29A10054AF17 /* DailyBrief.swift */; };
@@ -3107,6 +3108,7 @@
 		B8BCE59D22AF98D90012AAAC /* AppDelegate+ShareExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+ShareExtension.swift"; sourceTree = "<group>"; };
 		B8F7277722D4CFCD006FDD7A /* ExternalLinkImporter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExternalLinkImporter.swift; sourceTree = "<group>"; };
 		BA4812BE3359B46A897B197D /* Pods-QOTWidget.appstore.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QOTWidget.appstore.xcconfig"; path = "Pods/Target Support Files/Pods-QOTWidget/Pods-QOTWidget.appstore.xcconfig"; sourceTree = "<group>"; };
+		BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl+Underline.swift"; sourceTree = "<group>"; };
 		BB4061612302F3A600E5AB19 /* OrientationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrientationManager.swift; sourceTree = "<group>"; };
 		BB5E76B4230C04B20054AF17 /* CustomSegueModal.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CustomSegueModal.swift; sourceTree = "<group>"; };
 		BB5E76B9230C29A10054AF17 /* DailyBrief.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DailyBrief.swift; sourceTree = "<group>"; };
@@ -6167,7 +6169,6 @@
 		9CAD9FBE231FE3F2001DA2DC /* Recovered References */ = {
 			isa = PBXGroup;
 			children = (
-				F906A4DB23168A3D00351CAC /* SolveReminderCell.swift */,
 			);
 			name = "Recovered References";
 			sourceTree = "<group>";
@@ -7326,6 +7327,7 @@
 				8514A4911EEAA2AE0086C70E /* UILabel+AttributedText.swift */,
 				7FE38DD61F2B636F0061E98F /* UINavigationBar+Style.swift */,
 				7FE38DD21F2B2E230061E98F /* UINavigationController+Convenience.swift */,
+				BB0ED0972317FF7B006A0476 /* UISegmentedControl+Underline.swift */,
 				CC05CB781EDEC73C00D15ABC /* UITableView+Create.swift */,
 				AC8F208A2190411400517A05 /* UITableViewCell+Extensions.swift */,
 				DB82EEC32152859C002322B7 /* UIView+Animation.swift */,
@@ -10020,6 +10022,7 @@
 				75423EEE22CBAE53008EE726 /* MyToBeVisionRateViewModel.swift in Sources */,
 				7F01A6261F98D5E3002C7B72 /* ImageQuality.swift in Sources */,
 				CC311A1D1EAF39DF0020C869 /* SettingsTableViewCell.swift in Sources */,
+				BB0ED0982317FF7B006A0476 /* UISegmentedControl+Underline.swift in Sources */,
 				7F5A25B01F3C4BC700A11466 /* PageTracker.swift in Sources */,
 				F9D2BC1B22D48DCF00DBF2CC /* GoodToKnowCellViewModel.swift in Sources */,
 				8548BBE01F0D4BF900AC7C06 /* LaunchHandler.swift in Sources */,

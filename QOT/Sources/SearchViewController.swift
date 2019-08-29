@@ -17,14 +17,15 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     @IBOutlet private weak var suggestionsTableView: UITableView!
     @IBOutlet private weak var segmentedControl: UISegmentedControl!
     @IBOutlet private weak var indicatorView: UIView!
-    @IBOutlet private weak var topConstraint: NSLayoutConstraint!
     @IBOutlet private weak var indicatorWidthConstraint: NSLayoutConstraint!
     @IBOutlet private weak var mySearchBar: UISearchBar!
-    @IBOutlet private weak var indicatorViewLeadingConstraing: NSLayoutConstraint!
+    @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var activeView: UIView!
+    @IBOutlet private weak var constraintSearch: NSLayoutConstraint!
+
     let pageName: PageName
     private let suggestionsHeader = SuggestionsHeaderView.instantiateFromNib()
     private var avPlayerObserver: AVPlayerObserver?
-    private var searchBar = UISearchBar()
     private var searchResults = [Search.Result]()
     private var searchSuggestions: SearchSuggestions?
     private var searchFilter = Search.Filter.all
@@ -46,7 +47,9 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        searchBar.tintColor = .accent
+        ThemeView.level2.apply(self.view)
+
+        mySearchBar.tintColor = .accent
         view.backgroundColor = UIColor.carbonNew
         self.navigationItem.hidesBackButton = true
         self.navigationController?.view.backgroundColor = UIColor.carbonNew
@@ -101,7 +104,31 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
     }
 }
 
+// MARK: - animation from parent
+
+extension SearchViewController {
+    func activate(_ duration: Double) {
+        constraintSearch.constant = activeView.frame.size.height - mySearchBar.frame.size.height
+        UIView.animate(withDuration: duration) {
+            self.view.layoutIfNeeded()
+        }
+        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
+            cancelButton.isEnabled = true
+        }
+    }
+
+    private func deactivate() {
+        updateViewsState(false)
+        mySearchBar.text = ""
+        constraintSearch.constant = 0
+        UIView.animate(withDuration: 0.25) {
+            self.view.layoutIfNeeded()
+        }
+    }
+}
+
 // MARK: - Bottom Navigation
+
 extension SearchViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         return nil
@@ -117,6 +144,7 @@ extension SearchViewController {
 private extension SearchViewController {
 
     func setupSegementedControl() {
+        segmentedControl.alpha = 0.0
         segmentedControl.tintColor = .clear
         segmentedControl.backgroundColor = .clear
         segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.H8Title,
@@ -128,18 +156,19 @@ private extension SearchViewController {
     }
 
     func setupSearchBar() {
+        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).isEnabled = true
+
+        constraintSearch.constant = 0.0
+        mySearchBar.setNeedsUpdateConstraints()
+
         UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .accent
         mySearchBar.keyboardAppearance = .dark
         mySearchBar.placeholder = R.string.localized.searchPlaceholder()
-        mySearchBar.showsCancelButton = true
         mySearchBar.setShowsCancelButton(true, animated: false)
         if let txfSearchField = mySearchBar.value(forKey: "_searchField") as? UITextField {
             txfSearchField.corner(radius: 20)
             txfSearchField.backgroundColor = .carbon
             txfSearchField.textColor = .sand
-        }
-        if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
-            cancelButton.isEnabled = true
         }
         mySearchBar.delegate = self
     }
@@ -179,24 +208,16 @@ extension SearchViewController {
 
 extension SearchViewController: UISearchBarDelegate {
 
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        if searchQuery.isEmpty == true {
-            segmentedControl.selectedSegmentIndex = 0
-        }
-        updateIndicator()
-        updateViewsState(true)
-        return true
-    }
-
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        self.searchQuery = searchText
+        searchQuery = searchText
         updateSearchResults()
-        updateViewsState(true)
         updateIndicator()
         if searchText.isEmpty == true {
             segmentedControl.selectedSegmentIndex = 0
             searchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0)
             updateViewsState(false)
+        } else {
+            updateViewsState(true)
         }
     }
 
@@ -207,11 +228,11 @@ extension SearchViewController: UISearchBarDelegate {
                 navigationController?.popToViewController(previousVC, animated: true)
             }
         } else {
+            deactivate()
             delegate?.didTapCancel()
             if searchResults.isEmpty == true {
-            segmentedControl.selectedSegmentIndex = 0
-            mySearchBar.perform(#selector(self.resignFirstResponder), with: nil, afterDelay: 0)
-            updateViewsState(false)
+                segmentedControl.selectedSegmentIndex = 0
+                updateViewsState(false)
             }
         }
     }
@@ -289,9 +310,9 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
         case self.suggestionsTableView:
             let suggestion = searchSuggestions?.suggestions[indexPath.row] ?? ""
             sendSearchResult(for: suggestion)
-            searchBar.text = suggestion
+            mySearchBar.text = suggestion
             searchQuery = suggestion
-            searchBar.becomeFirstResponder()
+            mySearchBar.becomeFirstResponder()
             updateSearchResults()
         default:
             preconditionFailure()
@@ -318,20 +339,37 @@ private extension SearchViewController {
     }
 
     func updateIndicator() {
-        let width = segmentedControl.bounds.width / CGFloat(segmentedControl.numberOfSegments)
-        let xPosition = CGFloat(segmentedControl.selectedSegmentIndex * Int(width))
-        indicatorViewLeadingConstraing.constant = xPosition
-        indicatorWidthConstraint.constant = width
-        UIView.animate(withDuration: Animation.duration_00) { [weak self] in
+        let location = segmentedControl.underline()
+        indicatorViewLeadingConstraint.constant = location.xCentre - location.width / 2
+        indicatorWidthConstraint.constant = location.width
+        UIView.animate(withDuration: 0.1) { [weak self] in
             self?.view.layoutIfNeeded()
         }
     }
 
     func updateViewsState(_ suggestionShouldHide: Bool) {
-        suggestionsTableView.isHidden = suggestionShouldHide
-        indicatorView.isHidden = suggestionsTableView.isHidden == false
-        segmentedControl.isHidden = suggestionsTableView.isHidden == false
-        tableView.isHidden = suggestionsTableView.isHidden == false
+        let alpha: CGFloat = suggestionShouldHide ? 0.0 : 1.0
+
+        suggestionsTableView.alpha = 1 - alpha
+        tableView.alpha = alpha
+        indicatorView.alpha = alpha
+        segmentedControl.alpha = alpha
+        suggestionsTableView.isHidden = false
+        tableView.isHidden = false
+        indicatorView.isHidden = false
+        segmentedControl.isHidden = false
+
+        UIView.animate(withDuration: 0.25, animations: {
+            self.suggestionsTableView.alpha = alpha
+            self.tableView.alpha = 1 - alpha
+            self.indicatorView.alpha = 1 - alpha
+            self.segmentedControl.alpha = 1 - alpha
+        }, completion: { (_) in
+            self.suggestionsTableView.isHidden = suggestionShouldHide
+            self.tableView.isHidden = !suggestionShouldHide
+            self.indicatorView.isHidden = !suggestionShouldHide
+            self.segmentedControl.isHidden = !suggestionShouldHide
+        })
     }
 
     func handleSelection(for indexPath: IndexPath) {

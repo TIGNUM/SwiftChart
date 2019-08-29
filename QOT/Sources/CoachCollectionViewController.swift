@@ -99,7 +99,11 @@ extension CoachCollectionViewController {
         bottomSearchViewConstraint.constant = panActive ? -currentY : 0.0
         let duration: Double = panSearchShowing ? 0.25 : 0.0
         UIView.animate(withDuration: duration) {
-            self.searchViewController?.view.superview?.layoutIfNeeded()
+            self.view.layoutIfNeeded()
+        }
+
+        if panSearchShowing {
+            searchViewController?.activate(duration)
         }
     }
 
@@ -185,7 +189,7 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
     func handlePan(offsetY: CGFloat) {
         if panSearchShowing { return }
 
-        let maxDistance = view.frame.height * 0.15
+        let maxDistance = view.frame.height * 0.25
         var newY: CGFloat = offsetY
 
         if panActive {
