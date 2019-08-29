@@ -163,6 +163,27 @@ enum ThemeSegment {
     }
 }
 
+enum ThemeSearchBar {
+    case accent
+
+    func apply(_ view: UISearchBar) {
+        switch self {
+        case .accent:
+            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).isEnabled = true
+            UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = Palette.accent
+
+            view.tintColor = Palette.accent
+            view.keyboardAppearance = .dark
+            if let searchField = view.value(forKey: "_searchField") as? UITextField {
+                searchField.corner(radius: 20)
+                searchField.backgroundColor = Palette.carbon
+                searchField.textColor = Palette.sand
+            }
+            view.setShowsCancelButton(true, animated: false)
+        }
+    }
+}
+
 enum ThemeText {
     case navigationBarHeader
     case sectionHeader
@@ -280,9 +301,12 @@ enum ThemeText {
     case impactBucket
     case sleepReference
     case reference
-    
     case qotAlertTitle
     case qotAlertMessage
+    case searchResult
+    case searchContent
+    case searchSuggestionHeader
+    case searchSuggestion
 
     private var font: UIFont {
         switch self {
@@ -294,7 +318,7 @@ enum ThemeText {
              .leaderText:
             return Fonts.fontRegular16
         case .performanceStaticTitle, .performanceTitle, .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader,
-             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference:
+             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion:
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .durationString,
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead:
@@ -339,7 +363,7 @@ enum ThemeText {
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
              .articleHeadlineSmallFade, .articleHeadlineSmallLight, .accountDetail, .myQOTPrepCellTitle, .myQOTPrepComment:
             return Fonts.fontLight16
-        case .articleNextTitle, .performanceSections, .accountHeader:
+        case .articleNextTitle, .performanceSections, .accountHeader, .searchSuggestionHeader:
             return Fonts.fontMedium14
         case .strategyHeader:
             return Fonts.fontRegular15
@@ -360,7 +384,7 @@ enum ThemeText {
         case .articleNavigationTitle, .guideNavigationTitle, .calendarNoAccess:
             return Fonts.fontLight14
         case .articleTag, .articleTagSelected, .articleTagNight, .version, .placeholder,
-             .articleParagraph, .learnVideo, .learnImage, .articleSector:
+             .articleParagraph, .learnVideo, .learnImage, .articleSector, .searchContent:
             return Fonts.fontLight11
         case .articleQuote:
             switch textScale {
@@ -394,12 +418,12 @@ enum ThemeText {
              .articleRelatedTitle, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .sprintTitle, .solveQuestions,
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle, .accountDetail,
-             .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle:
+             .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult:
             return Palette.sand
-        case .author, .quoteAuthor, .chatButton:
+        case .author, .quoteAuthor, .chatButton, .searchSuggestion:
             return Palette.sand60
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
-             .settingsTitleFade:
+             .settingsTitleFade, .searchContent, .searchSuggestionHeader:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
@@ -488,7 +512,7 @@ enum ThemeText {
             string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .performanceStaticTitle, .fromCoachTitle:
             string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
-        case .sprintTitle, .leaderVideoTitle:
+        case .sprintTitle, .leaderVideoTitle, .searchSuggestion:
              string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore:
             string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
@@ -496,14 +520,14 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText, .sleepReference, .asterix, .bespokeText, .leaderText:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
-        case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment:
+        case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)
         case .articleBullet, .sectionHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .articleRelatedDetail, .sprintName, .sprintText, .solveQuestions, .solveFuture, .level5Question:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .articleBody, .articlePostTitle, .articleSecondaryTitle, .articleSubTitle, .articleHeadline,
-             .articleParagraph, .articleSector, .articlePostTitleNight:
+             .articleParagraph, .articleSector, .articlePostTitleNight, .searchContent:
             let lSpace = lineSpacing != nil ? lineSpacing! : 1.0
             let lHeight = lineHeight != nil ? lineHeight! : 1.0
             string = NSAttributedString(string: text, letterSpacing: lSpace, font: self.font, lineSpacing: lHeight, textColor: self.color, alignment: .left)
@@ -532,6 +556,8 @@ enum ThemeText {
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left, lineBreakMode: nil)
         case .qotAlertMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .searchSuggestionHeader:
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
         }

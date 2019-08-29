@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -25,17 +25,15 @@
                         <color key="textColor" red="0.92156862745098034" green="0.90588235294117647" blue="0.89411764705882346" alpha="0.9120023544520548" colorSpace="custom" customColorSpace="displayP3"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2iE-P1-0HC">
-                        <rect key="frame" x="20" y="53.5" width="80" height="21"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="tit-ir-iSA">
+                        <rect key="frame" x="20" y="54" width="16" height="16"/>
                         <constraints>
-                            <constraint firstAttribute="width" constant="80" id="Ngm-D8-n1b"/>
+                            <constraint firstAttribute="height" constant="16" id="9HL-gt-mb8"/>
+                            <constraint firstAttribute="width" constant="16" id="Iyx-ZL-wSP"/>
                         </constraints>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
+                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kR8-dA-x8Y">
-                        <rect key="frame" x="102" y="53.5" width="253" height="21"/>
+                        <rect key="frame" x="44" y="51.5" width="42" height="21"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -43,20 +41,20 @@
                 </subviews>
                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                 <constraints>
-                    <constraint firstItem="2iE-P1-0HC" firstAttribute="leading" secondItem="RNj-m0-ykG" secondAttribute="leading" constant="20" id="A6I-LO-MeJ"/>
+                    <constraint firstItem="kR8-dA-x8Y" firstAttribute="leading" secondItem="tit-ir-iSA" secondAttribute="trailing" constant="8" id="0TC-t7-dYS"/>
+                    <constraint firstItem="tit-ir-iSA" firstAttribute="top" secondItem="9Da-lQ-OEi" secondAttribute="bottom" constant="8" id="8bE-e4-4in"/>
                     <constraint firstItem="9Da-lQ-OEi" firstAttribute="top" secondItem="RNj-m0-ykG" secondAttribute="top" constant="25.5" id="Dt6-hr-NL1"/>
-                    <constraint firstItem="kR8-dA-x8Y" firstAttribute="leading" secondItem="2iE-P1-0HC" secondAttribute="trailing" constant="2" id="FhZ-Ga-daE"/>
                     <constraint firstItem="9Da-lQ-OEi" firstAttribute="leading" secondItem="RNj-m0-ykG" secondAttribute="leading" constant="20" id="LaJ-Ki-xqg"/>
-                    <constraint firstAttribute="bottom" secondItem="2iE-P1-0HC" secondAttribute="bottom" constant="5" id="Pdn-WT-h4d"/>
                     <constraint firstAttribute="trailing" secondItem="9Da-lQ-OEi" secondAttribute="trailing" constant="20" id="UIn-Wm-sa4"/>
-                    <constraint firstAttribute="bottom" secondItem="kR8-dA-x8Y" secondAttribute="bottom" constant="5" id="hAk-jv-GSc"/>
-                    <constraint firstAttribute="trailing" secondItem="kR8-dA-x8Y" secondAttribute="trailing" constant="20" id="lOm-il-B92"/>
+                    <constraint firstItem="tit-ir-iSA" firstAttribute="leading" secondItem="9Da-lQ-OEi" secondAttribute="leading" id="hgN-md-a6F"/>
+                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kR8-dA-x8Y" secondAttribute="trailing" constant="20" id="lOm-il-B92"/>
+                    <constraint firstItem="kR8-dA-x8Y" firstAttribute="centerY" secondItem="tit-ir-iSA" secondAttribute="centerY" id="tqu-Jh-0ph"/>
                 </constraints>
             </tableViewCellContentView>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <connections>
-                <outlet property="contentTypeLabel" destination="2iE-P1-0HC" id="67Z-cb-iIc"/>
                 <outlet property="durationLabel" destination="kR8-dA-x8Y" id="xPj-0r-Ofc"/>
+                <outlet property="iconImage" destination="tit-ir-iSA" id="beB-zq-MkY"/>
                 <outlet property="titleLabel" destination="9Da-lQ-OEi" id="iXQ-7n-73c"/>
             </connections>
             <point key="canvasLocation" x="-55" y="33"/>

@@ -49,8 +49,7 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         super.viewDidLoad()
         ThemeView.level2.apply(self.view)
 
-        mySearchBar.tintColor = .accent
-        view.backgroundColor = UIColor.carbonNew
+        ThemeView.level2.apply(view)
         self.navigationItem.hidesBackButton = true
         self.navigationController?.view.backgroundColor = UIColor.carbonNew
         setupSegementedControl()
@@ -118,6 +117,7 @@ extension SearchViewController {
     }
 
     private func deactivate() {
+        mySearchBar.resignFirstResponder()
         updateViewsState(false)
         mySearchBar.text = ""
         constraintSearch.constant = 0
@@ -144,32 +144,16 @@ extension SearchViewController {
 private extension SearchViewController {
 
     func setupSegementedControl() {
-        segmentedControl.alpha = 0.0
-        segmentedControl.tintColor = .clear
-        segmentedControl.backgroundColor = .clear
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.H8Title,
-                                                 NSAttributedStringKey.foregroundColor: UIColor.white60],
-                                                for: .normal)
-        segmentedControl.setTitleTextAttributes([NSAttributedStringKey.font: UIFont.H8Title,
-                                                 NSAttributedStringKey.foregroundColor: UIColor.white90],
-                                                for: .selected)
+        ThemeSegment.accent.apply(segmentedControl)
     }
 
     func setupSearchBar() {
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).isEnabled = true
+        ThemeSearchBar.accent.apply(mySearchBar)
 
         constraintSearch.constant = 0.0
         mySearchBar.setNeedsUpdateConstraints()
 
-        UIBarButtonItem.appearance(whenContainedInInstancesOf: [UISearchBar.self]).tintColor = .accent
-        mySearchBar.keyboardAppearance = .dark
         mySearchBar.placeholder = R.string.localized.searchPlaceholder()
-        mySearchBar.setShowsCancelButton(true, animated: false)
-        if let txfSearchField = mySearchBar.value(forKey: "_searchField") as? UITextField {
-            txfSearchField.corner(radius: 20)
-            txfSearchField.backgroundColor = .carbon
-            txfSearchField.textColor = .sand
-        }
         mySearchBar.delegate = self
     }
 
@@ -222,7 +206,6 @@ extension SearchViewController: UISearchBarDelegate {
     }
 
     func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchBar.resignFirstResponder()
         if let previousVC = navigationController?.viewControllers.dropLast().last {
             if previousVC is CoachViewController {
                 navigationController?.popToViewController(previousVC, animated: true)
@@ -271,7 +254,7 @@ extension SearchViewController: UITableViewDelegate, UITableViewDataSource {
             } else {
                 let result = searchResults[indexPath.row]
                 searchCell.configure(title: result.title,
-                                     contentType: result.displayType.rawValue,
+                                     contentType: result.displayType,
                                      duration: result.duration)            }
             let backgroundView = UIView()
             backgroundView.backgroundColor = UIColor.gray.withAlphaComponent(0.8)

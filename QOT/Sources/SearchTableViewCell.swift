@@ -14,7 +14,7 @@ final class SearchTableViewCell: UITableViewCell, Dequeueable {
     // MARK: - Properties
 
     @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var contentTypeLabel: UILabel!
+    @IBOutlet private weak var iconImage: UIImageView!
     @IBOutlet private weak var durationLabel: UILabel!
 
     override func prepareForReuse() {
@@ -24,14 +24,13 @@ final class SearchTableViewCell: UITableViewCell, Dequeueable {
 
     // MARK: - Public
 
-    func configure(title: String, contentType: String?, duration: String?) {
-        titleLabel.attributedText = Style.headline(title.uppercased()).attributedString()
-        titleLabel.lineBreakMode = .byTruncatingTail
+    func configure(title: String, contentType: Search.DisplayType?, duration: String?) {
+        ThemeText.searchResult.apply(title.uppercased(), to: titleLabel)
         if let contentType = contentType {
-            contentTypeLabel.attributedText = Style.paragraph(contentType.uppercased()).attributedString()
+            iconImage.image = contentType.mediaIcon()
         }
         if let duration = duration {
-            durationLabel.attributedText = Style.paragraph(duration).attributedString()
+            ThemeText.datestamp.apply(duration, to: durationLabel)
         }
     }
 }
@@ -42,7 +41,7 @@ private extension SearchTableViewCell {
 
     func resetLabels() {
         titleLabel.text = nil
-        contentTypeLabel.text = nil
+        iconImage.image = nil
         durationLabel.text = nil
     }
 }

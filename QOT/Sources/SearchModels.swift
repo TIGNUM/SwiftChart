@@ -44,6 +44,20 @@ struct Search {
         case video
         case pdf
         case tool
+
+        func mediaIcon() -> UIImage? {
+            switch self {
+            case .video:
+                return R.image.my_library_camera()
+            case .audio:
+                return R.image.my_library_listen()
+            case .pdf, .article:
+                return R.image.my_library_read()
+            case .tool:
+                return R.image.ic_group_sand()
+            }
+        }
+
     }
 
     struct Result: Equatable {
