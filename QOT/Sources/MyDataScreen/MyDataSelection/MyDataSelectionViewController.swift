@@ -12,7 +12,7 @@ protocol MyDataSelectionViewControllerDelegate: class {
     func didChangeSelected(options: [MyDataSelectionModel.SelectionItem])
 }
 
-final class MyDataSelectionViewController: UIViewController {
+final class MyDataSelectionViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: MyDataSelectionInteractorInterface?

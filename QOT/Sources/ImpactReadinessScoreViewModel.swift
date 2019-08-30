@@ -57,7 +57,7 @@ class ImpactReadinessScoreViewModel: BaseDailyBriefViewModel {
 
         self.loadReference = loadReference
         self.futureLoadReference = futureLoadReference
-        
+
         self.impactDataModels = impactDataModels
         super.init(domainModel, subIdentifier)
     }

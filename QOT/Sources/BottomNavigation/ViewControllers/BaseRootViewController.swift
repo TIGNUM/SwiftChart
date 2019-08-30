@@ -15,7 +15,7 @@ protocol ScreenZLevel3: ScreenZLevel {}
 protocol ScreenZLevelCoach: ScreenZLevel3 {}
 protocol ScreenZLevelOverlay: ScreenZLevel {}
 
-final class BaseRootViewController: UIViewController, ScreenZLevelBottom {
+final class BaseRootViewController: UIViewController, ScreenZLevel1 {
 
     @IBOutlet weak var bottomNavigationPlaceholder: UIView!
 
@@ -55,7 +55,6 @@ final class BaseRootViewController: UIViewController, ScreenZLevelBottom {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setupBottomNavigationContainer()
-        setupAudioPlayerBar()
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -101,16 +100,18 @@ extension BaseRootViewController {
 // MARK: - Bottom Navigation
 extension BaseRootViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if let contentViewController = self.childViewControllers.first {
-            return contentViewController.bottomNavigationLeftBarItems()
+        guard self.navigationController?.presentedViewController == nil,
+            let contentViewController = self.childViewControllers.first else {
+                return nil
         }
-        return nil
+        return contentViewController.bottomNavigationLeftBarItems()
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if let contentViewController = self.childViewControllers.first {
-            return contentViewController.bottomNavigationRightBarItems()
+        guard self.navigationController?.presentedViewController == nil,
+            let contentViewController = self.childViewControllers.first else {
+                return nil
         }
-        return super.bottomNavigationRightBarItems()
+        return contentViewController.bottomNavigationRightBarItems()
     }
 }

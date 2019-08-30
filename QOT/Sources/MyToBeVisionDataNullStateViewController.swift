@@ -13,7 +13,7 @@ protocol MyToBeVisionDataNullStateViewControllerProtocol: class {
     func didRateTBV()
 }
 
-final class MyToBeVisionDataNullStateViewController: UIViewController {
+final class MyToBeVisionDataNullStateViewController: UIViewController, ScreenZLevel3 {
 
     @IBOutlet private weak var headingLabel: UILabel!
     @IBOutlet private weak var HeadingDescriptionLabel: UILabel!

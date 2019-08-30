@@ -16,7 +16,7 @@ protocol CoachCollectionViewControllerDelegate: class {
     func moveToCell(item: Int)
 }
 
-final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom {
+final class CoachCollectionViewController: UIViewController, ScreenZLevel1 {
 
     enum Pages: Int, CaseIterable {
         case know = 0
@@ -31,7 +31,11 @@ final class CoachCollectionViewController: UIViewController, ScreenZLevelBottom 
     @IBOutlet private weak var collectionView: UICollectionView!
     private var bottomSearchViewConstraint: NSLayoutConstraint!
     private var panActive = false
-    private var panSearchShowing = false
+    private var panSearchShowing: Bool = false {
+        didSet {
+            refreshBottomNavigationItems()
+        }
+    }
 
     lazy var pageTitle: String? = {
         return ScreenTitleService.main.localizedString(for: .knowPageTitle)
@@ -181,10 +185,6 @@ extension CoachCollectionViewController: CoachCollectionViewControllerDelegate {
                 searchViewController.view.superview?.layoutIfNeeded()
             }
         }
-        let navigationItem = BottomNavigationItem(leftBarButtonItems: [],
-                                                  rightBarButtonItems: [coachNavigationItem()],
-                                                  backgroundColor: view.backgroundColor ?? .clear)
-        NotificationCenter.default.post(name: .updateBottomNavigation, object: navigationItem)
     }
 
     func handlePan(offsetY: CGFloat) {
@@ -225,14 +225,14 @@ extension CoachCollectionViewController: UIGestureRecognizerDelegate {
 // MARK: - Bottom Navigation
 extension CoachCollectionViewController {
     @objc override public func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        if searchViewController?.view.isUserInteractionEnabled == true {
+        if panSearchShowing {
             return nil
         }
         return super.bottomNavigationLeftBarItems()
     }
 
     @objc override public func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if searchViewController?.view.isUserInteractionEnabled == true {
+        if panSearchShowing {
             return nil
         }
         return super.bottomNavigationRightBarItems()

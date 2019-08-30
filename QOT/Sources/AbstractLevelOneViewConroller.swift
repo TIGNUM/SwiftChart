@@ -9,7 +9,7 @@
 import UIKit
 import Anchorage
 
-class AbstractLevelOneViewConroller: UIViewController, ScreenZLevel1 {
+class AbstractLevelOneViewConroller: UIViewController, ScreenZLevelBottom {
 
     // MARK: - Life Cycle
 

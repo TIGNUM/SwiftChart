@@ -9,7 +9,7 @@
 import Foundation
 import WebKit
 
-public class PDFReaderViewController: UIViewController {
+public class PDFReaderViewController: UIViewController, ScreenZLevelOverlay {
     @IBOutlet private weak var shareButton: UIBarButtonItem!
     @IBOutlet private weak var webViewContainer: UIView!
     private weak var webView: WKWebView!

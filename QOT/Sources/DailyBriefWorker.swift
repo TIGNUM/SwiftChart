@@ -132,9 +132,18 @@ extension DailyBriefWorker {
 
 // MARK: - Whats Hot
 extension DailyBriefWorker {
+
+    func didPressGotItSprint(sprint: QDMSprint) {
+        userService.markAsDoneForToday(sprint, { (sprint, error) in
+            if let error = error {
+                qot_dal.log("Error while trying to fetch buckets:\(error.localizedDescription)", level: .error)
+            }
+        })
+    }
+
     func latestWhatsHotCollectionID(completion: @escaping ((Int?) -> Void)) {
         contentService.getContentCollectionBySection(.WhatsHot, { (items) in
-            completion(items?.last?.remoteID)
+            completion(items?.first?.remoteID)
         })
     }
 

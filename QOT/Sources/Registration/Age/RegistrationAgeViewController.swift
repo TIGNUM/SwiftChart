@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RegistrationAgeViewController: UIViewController {
+final class RegistrationAgeViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var titleLabel: UILabel!

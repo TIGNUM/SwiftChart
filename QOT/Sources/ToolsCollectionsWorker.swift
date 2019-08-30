@@ -52,6 +52,7 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
                                  mediaURL: URL(string: (collection.contentItems.first?.valueMediaURL ?? "")),
                                  duration: collection.contentItems.first?.valueDuration ?? 0,
                                  isCollection: isCollection,
+                                 contentCollectionId: collection.remoteID ?? 0,
                                  numberOfItems: collection.contentItems.count,
                                  type: collection.contentItems.first?.format.rawValue ?? "")
             })
@@ -81,6 +82,7 @@ extension ToolsCollectionsWorker: ToolsCollectionsWorkerInterface {
                                  mediaURL: URL(string: (firstItem?.valueMediaURL ?? "")),
                                  duration: firstItem?.valueDuration ?? 0,
                                  isCollection: false,
+                                 contentCollectionId: collection.remoteID ?? 0,
                                  numberOfItems: 1,
                                  type: collection.contentItems.first?.format.rawValue ?? "")
             })

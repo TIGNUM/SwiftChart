@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class OnboardingLandingPageViewController: UIViewController, ScreenZLevelBottom {
+final class OnboardingLandingPageViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
 

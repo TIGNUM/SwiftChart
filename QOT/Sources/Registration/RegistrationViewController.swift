@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RegistrationViewController: UIViewController {
+final class RegistrationViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

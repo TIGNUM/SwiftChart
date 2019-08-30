@@ -14,7 +14,7 @@ protocol PopUpViewControllerProtocol: class {
     func cancelAction()
 }
 
-final class PopUpViewController: UIViewController, ScreenZLevel {
+final class PopUpViewController: UIViewController, ScreenZLevelOverlay {
 
     struct Config {
         let title: String

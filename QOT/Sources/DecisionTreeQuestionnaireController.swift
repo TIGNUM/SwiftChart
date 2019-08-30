@@ -29,7 +29,7 @@ private enum CellType: Int, CaseIterable {
     case answer
 }
 
-final class DecisionTreeQuestionnaireViewController: UIViewController {
+final class DecisionTreeQuestionnaireViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
     var interactor: DecisionTreeInteractorInterface?

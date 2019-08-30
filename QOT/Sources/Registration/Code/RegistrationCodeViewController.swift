@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-final class RegistrationCodeViewController: UIViewController {
+final class RegistrationCodeViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     private let helpEmail = Defaults.firstLevelSupportEmail

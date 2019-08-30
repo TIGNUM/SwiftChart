@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class SigningInfoViewController: UIViewController {
+final class SigningInfoViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
     var interactor: SigningInfoInteractorInterface?

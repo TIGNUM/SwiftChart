@@ -40,6 +40,8 @@ extension QDMContentCollection {
                 let durations = contentItems.compactMap { $0.valueDuration }
                 let total = Int(durations.reduce(0) { ($0/60) + ($1/60) })
                 return R.string.localized.learnContentDurationVideo(String(total))
+            } else if hasAudioItems == true {
+
             } else if isFoundation == true {
                 let videoItem = contentItems.filter { $0.format == ContentFormat.video }.first
                 return videoItem?.durationString ?? ""
@@ -58,6 +60,8 @@ extension QDMContentCollection {
             }) / 60
         }
     }
+
+
 
     var hasVideoOnly: Bool {
         get { return contentItems.filter { $0.format == ContentFormat.video }.count == contentItems.count }

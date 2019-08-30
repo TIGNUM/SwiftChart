@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class ToolsViewController: UIViewController {
+final class ToolsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

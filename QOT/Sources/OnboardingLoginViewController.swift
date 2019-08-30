@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-final class OnboardingLoginViewController: UIViewController {
+final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay {
 
     // MARK: - Properties
     private let helpEmail = Defaults.firstLevelSupportEmail
@@ -49,15 +49,6 @@ final class OnboardingLoginViewController: UIViewController {
             preSetUserEmail = nil
             didTapVerifyEmail()
         }
-    }
-
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        refreshBottomNavigationItems()
-    }
-
-    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        return nil
     }
 }
 

@@ -27,11 +27,18 @@
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_calendar" translatesAutoresizingMaskIntoConstraints="NO" id="QxY-j7-iEd">
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_camera_grey" translatesAutoresizingMaskIntoConstraints="NO" id="QxY-j7-iEd">
                     <rect key="frame" x="24" y="97.5" width="20" height="20"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="20" id="Dnn-PY-1yg"/>
                         <constraint firstAttribute="width" constant="20" id="vYK-OE-a6h"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_seen_of" translatesAutoresizingMaskIntoConstraints="NO" id="ALR-fp-pAx">
+                    <rect key="frame" x="24" y="97.5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="QBy-3I-4rB"/>
+                        <constraint firstAttribute="height" constant="20" id="UZW-NT-2HH"/>
                     </constraints>
                 </imageView>
                 <label opaque="NO" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35D-7R-mBr">
@@ -40,26 +47,53 @@
                     <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_group" translatesAutoresizingMaskIntoConstraints="NO" id="h4t-P6-cuA">
+                    <rect key="frame" x="24" y="97.5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="hG8-aF-Pfa"/>
+                        <constraint firstAttribute="height" constant="20" id="jqq-8r-KnO"/>
+                    </constraints>
+                </imageView>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.40000000596046448" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_audio_grey" translatesAutoresizingMaskIntoConstraints="NO" id="ly8-kJ-1wZ">
+                    <rect key="frame" x="24" y="97.5" width="20" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="20" id="Z2r-Ak-zuI"/>
+                        <constraint firstAttribute="height" constant="20" id="kVh-il-gLx"/>
+                    </constraints>
+                </imageView>
             </subviews>
             <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <constraints>
                 <constraint firstItem="xMv-f4-ln7" firstAttribute="top" secondItem="MsM-Gf-HYM" secondAttribute="top" constant="20" id="0Tu-Iy-3Re"/>
+                <constraint firstItem="ALR-fp-pAx" firstAttribute="leading" secondItem="MsM-Gf-HYM" secondAttribute="leading" constant="24" id="ARR-f5-vUF"/>
+                <constraint firstItem="h4t-P6-cuA" firstAttribute="centerY" secondItem="35D-7R-mBr" secondAttribute="centerY" id="Azf-hB-OK1"/>
+                <constraint firstItem="ALR-fp-pAx" firstAttribute="centerY" secondItem="35D-7R-mBr" secondAttribute="centerY" id="OgF-kj-JIy"/>
                 <constraint firstItem="QxY-j7-iEd" firstAttribute="leading" secondItem="MsM-Gf-HYM" secondAttribute="leading" constant="24" id="Ui5-fj-1n5"/>
                 <constraint firstItem="35D-7R-mBr" firstAttribute="leading" secondItem="QxY-j7-iEd" secondAttribute="trailing" constant="14" id="XQR-QU-Bfo"/>
+                <constraint firstItem="ly8-kJ-1wZ" firstAttribute="leading" secondItem="MsM-Gf-HYM" secondAttribute="leading" constant="24" id="dur-ZV-rm2"/>
                 <constraint firstItem="QxY-j7-iEd" firstAttribute="top" secondItem="xMv-f4-ln7" secondAttribute="bottom" constant="14" id="fLb-7N-CtS"/>
                 <constraint firstItem="xMv-f4-ln7" firstAttribute="leading" secondItem="MsM-Gf-HYM" secondAttribute="leading" constant="24" id="kBA-xk-Tmn"/>
+                <constraint firstItem="h4t-P6-cuA" firstAttribute="leading" secondItem="MsM-Gf-HYM" secondAttribute="leading" constant="24" id="uLX-5U-YBi"/>
+                <constraint firstItem="ly8-kJ-1wZ" firstAttribute="centerY" secondItem="35D-7R-mBr" secondAttribute="centerY" id="wY9-g9-hgv"/>
                 <constraint firstItem="QxY-j7-iEd" firstAttribute="centerY" secondItem="35D-7R-mBr" secondAttribute="centerY" id="yCU-PM-E8Q"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <viewLayoutGuide key="safeArea" id="MsM-Gf-HYM"/>
             <connections>
                 <outlet property="durationLabel" destination="35D-7R-mBr" id="qeI-Vy-LtR"/>
+                <outlet property="iconAudio" destination="ly8-kJ-1wZ" id="8rY-6L-5cY"/>
+                <outlet property="iconFiles" destination="h4t-P6-cuA" id="5cC-j3-xHg"/>
+                <outlet property="iconRead" destination="ALR-fp-pAx" id="Auf-7n-ZS9"/>
+                <outlet property="iconVideo" destination="QxY-j7-iEd" id="bG4-4R-xof"/>
                 <outlet property="titleLabel" destination="xMv-f4-ln7" id="s6p-q1-sdS"/>
             </connections>
             <point key="canvasLocation" x="140.57971014492756" y="-118.86160714285714"/>
         </view>
     </objects>
     <resources>
-        <image name="ic_calendar" width="16" height="16"/>
+        <image name="ic_audio_grey" width="16" height="16"/>
+        <image name="ic_camera_grey" width="16" height="16"/>
+        <image name="ic_group" width="16" height="16"/>
+        <image name="ic_seen_of" width="11" height="12"/>
     </resources>
 </document>

@@ -12,7 +12,7 @@ import AVFoundation
 import AVKit
 import qot_dal
 
-final class MediaPlayerViewController: AVPlayerViewController {
+final class MediaPlayerViewController: AVPlayerViewController, ScreenZLevelOverlay {
     var overlayControls: MediaPlayerOverlay?
     var interactor: StreamVideoInteractorInterface? {
         didSet {

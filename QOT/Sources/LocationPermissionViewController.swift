@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class LocationPermissionViewController: UIViewController {
+final class LocationPermissionViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var titleLabel: UILabel!

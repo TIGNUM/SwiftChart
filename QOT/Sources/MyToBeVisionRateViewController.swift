@@ -12,7 +12,7 @@ protocol MyToBeVisionRateViewControllerProtocol: class {
     func doneAction()
 }
 
-final class MyToBeVisionRateViewController: UIViewController {
+final class MyToBeVisionRateViewController: UIViewController, ScreenZLevel3 {
 
     @IBOutlet private weak var pageContainerView: UIView!
     @IBOutlet private weak var pageIndicatorView: UIView!

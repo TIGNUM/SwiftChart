@@ -19,7 +19,9 @@ class BottomNavigationContainer: UIView {
     }
 
     override func hitTest(_ point: CGPoint, with event: UIEvent?) -> UIView? {
-        let view = super.hitTest(point, with: event)
-        return view == self ? nil : view
+        guard let view = super.hitTest(point, with: event) as? UIButton ?? super.hitTest(point, with: event) as? UISlider else {
+            return nil
+        }
+        return view
     }
 }

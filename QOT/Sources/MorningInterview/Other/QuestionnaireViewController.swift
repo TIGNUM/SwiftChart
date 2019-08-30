@@ -620,8 +620,8 @@ extension QuestionnaireViewController {
         let value = (count  - 1 - currentIndex)
         // WARNING: This is valid only for daily brief check in Set Sleep Target
         self.answerDelegate?.saveTargetValue(value: value)
-        navigationController?.popViewController(animated: true)
         NotificationCenter.default.post(name: .didPickTarget, object: Double(value))
+        dismiss(animated: true)
     }
 }
 
@@ -629,7 +629,7 @@ extension QuestionnaireViewController {
     override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
         switch controllerType {
         case .customize:
-            return [backNavigationItem()]
+            return [dismissNavigationItem()]
         default:
             return nil
         }

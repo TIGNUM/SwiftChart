@@ -74,7 +74,7 @@ extension DailyBriefRouter: DailyBriefRouterInterface {
             let controller = QuestionnaireViewController.viewController(with: data,
                                                                         delegate: viewController,
                                                                         controllerType: .customize) {
-            viewController.navigationController?.pushViewController(controller, animated: true)
+            viewController.present(controller, animated: true)
         }
     }
 

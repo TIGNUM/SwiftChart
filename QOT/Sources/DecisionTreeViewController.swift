@@ -29,7 +29,7 @@ extension DecisionTreeViewControllerDelegate {
     }
 }
 
-final class DecisionTreeViewController: UIViewController, ScreenZLevelBottom {
+final class DecisionTreeViewController: UIViewController, ScreenZLevelOverlay {
 
     struct NextQuestion {
         let question: QDMQuestion

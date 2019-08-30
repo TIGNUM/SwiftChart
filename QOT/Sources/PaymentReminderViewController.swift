@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-final class PaymentReminderViewController: UIViewController {
+final class PaymentReminderViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComponentDetailViewController: UIViewController {
+class ComponentDetailViewController: UIViewController, ScreenZLevel3 {
 
     @IBOutlet weak var componentBottomToRootBottomConstraint: NSLayoutConstraint!
     @IBOutlet weak var componentContentView: ComponentContentView!

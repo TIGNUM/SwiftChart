@@ -47,7 +47,9 @@ final class LeaderWisdomTableViewCell: UITableViewCell, Dequeueable {
         videoDurationButton.setTitle(viewModel?.durationString, for: .normal)
         let mediaDescription = String(format: "%02i:%02i", Int(duration ?? 0) / 60 % 60, Int(duration ?? 0) % 60)
         audioButton.setTitle(mediaDescription, for: .normal)
+        videoThumbnailImageView.isHidden = viewModel?.format != .video
         videoThumbnailImageView.kf.setImage(with: mediaURL, placeholder: R.image.preloading())
+        videoTitle.isHidden = viewModel?.format != .video
     }
 
     @IBAction func audioAction(_ sender: Any) {

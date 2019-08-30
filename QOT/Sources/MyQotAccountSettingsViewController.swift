@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyQotAccountSettingsViewController: UIViewController {
+final class MyQotAccountSettingsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

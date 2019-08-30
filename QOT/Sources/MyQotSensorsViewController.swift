@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class MyQotSensorsViewController: UIViewController {
+final class MyQotSensorsViewController: UIViewController, ScreenZLevel3 {
 
     @IBOutlet private weak var headerLabel: UILabel!
     @IBOutlet private weak var ouraRingStatusButton: UIButton!

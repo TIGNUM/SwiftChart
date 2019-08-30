@@ -19,7 +19,7 @@ protocol SettingsViewControllerDelegate: class {
     func didTapResetPassword(completion: @escaping (NetworkError?) -> Void)
 }
 
-final class ProfileSettingsViewController: UITableViewController {
+final class ProfileSettingsViewController: UITableViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var headerTitle: UILabel!

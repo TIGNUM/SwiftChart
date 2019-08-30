@@ -9,7 +9,7 @@
 import UIKit
 import IntentsUI
 
-final class MyQotSiriShortcutsViewController: UIViewController {
+final class MyQotSiriShortcutsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

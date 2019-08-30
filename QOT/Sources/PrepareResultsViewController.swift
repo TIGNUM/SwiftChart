@@ -19,7 +19,7 @@ protocol PrepareResultsDelegatge: class {
     func didUpdateBenefits(_ benefits: String)
 }
 
-final class PrepareResultsViewController: UIViewController {
+final class PrepareResultsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: PrepareResultsInteractorInterface?

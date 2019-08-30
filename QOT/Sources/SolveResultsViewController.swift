@@ -14,7 +14,7 @@ protocol SolveResultsViewControllerDelegate: class {
 }
 
 // TODO: - Rename this scene since it's being used in Solve & 3DRecovery. Maybe somewhere else in the future..
-final class SolveResultsViewController: UIViewController {
+final class SolveResultsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: SolveResultsInteractorInterface?

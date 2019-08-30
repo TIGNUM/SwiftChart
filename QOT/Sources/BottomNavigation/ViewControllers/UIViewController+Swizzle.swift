@@ -95,7 +95,7 @@ extension UIViewController {
 
     @objc func viewWillAppearSwizzled(animated: Bool) {
         let viewControllerName = NSStringFromClass(type(of: self))
-        log("swizzled viewWillAppear: \(viewControllerName), animated: \(animated)", level: .verbose)
+        log("swizzled viewWillAppear: \(viewControllerName), animated: \(animated)", level: .info)
 
         self.applyTheme()
         if animated {
@@ -114,7 +114,7 @@ extension UIViewController {
         }
 
         let viewControllerName = NSStringFromClass(type(of: self))
-        log("swizzled viewDidAppear: \(viewControllerName), animated: \(animated)", level: .verbose)
+        log("swizzled viewDidAppear: \(viewControllerName), animated: \(animated)", level: .info)
 
         if animated {
             refreshBottomNavigationItems()
@@ -149,10 +149,11 @@ extension UIViewController {
     private func navigationNotificationBlock() -> (() -> Void)? {
         return { [weak self] in
             DispatchQueue.main.async {
-                if self?.view.window != nil {
-                    let item = BottomNavigationItem(leftBarButtonItems: self?.bottomNavigationLeftBarItems() ?? [],
-                                                    rightBarButtonItems: self?.bottomNavigationRightBarItems() ?? [],
-                                                    backgroundColor: self?.bottomNavigationBackgroundColor() ?? .clear)
+                guard let strongself = self else { return }
+                if strongself.view.window != nil {
+                    let item = BottomNavigationItem(leftBarButtonItems: strongself.bottomNavigationLeftBarItems() ?? [],
+                                                    rightBarButtonItems: strongself.bottomNavigationRightBarItems() ?? [],
+                                                    backgroundColor: strongself.bottomNavigationBackgroundColor() ?? .clear)
                     let notification = Notification(name: .updateBottomNavigation, object: item, userInfo: nil)
                     NotificationCenter.default.post(notification)
                 }
@@ -214,12 +215,22 @@ extension UIViewController {
     }
 
     @objc open func refreshBottomNavigationItems() {
-        if (self as? UINavigationController) == nil,
+        let swiftClassName = NSStringFromClass(type(of: self))
+        if (self is ScreenZLevelOverlay) || swiftClassName == "UIViewController" {
+            log("hide BottomNavigationBar for : \(swiftClassName)", level: .info)
+            DispatchQueue.main.async { [weak self] in
+                guard let strongself = self else { return }
+                if strongself.view.window != nil {
+                    NotificationCenter.default.post(name: .updateBottomNavigation, object: nil, userInfo: nil)
+                }
+            }
+        } else if (self as? UINavigationController) == nil,
             (self as? UIPageViewController) == nil,
-            (self as? ScreenZLevelOverlay) == nil,
-            (self as? ScreenZLevelBottom) == nil,
-            let notificationBlock = navigationNotificationBlock() {
-            notificationBlock()
+            ((self as? ScreenZLevel1) != nil || (self as? ScreenZLevel2) != nil || (self as? ScreenZLevel3) != nil) {
+            log("refreshBottomNavigationItems for : \(swiftClassName)", level: .info)
+            if let notificationBlock = navigationNotificationBlock() {
+                notificationBlock()
+            }
         }
     }
 
@@ -242,7 +253,11 @@ extension UIViewController {
     }
 
     @objc open func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if self is ScreenZLevel1 || self is ScreenZLevelBottom {
+        if NSStringFromClass(type(of: self)).hasPrefix("QOT.") == false {
+            return nil
+        }
+
+        if self is ScreenZLevel1 {
             return [coachNavigationItem()]
         }
         return nil

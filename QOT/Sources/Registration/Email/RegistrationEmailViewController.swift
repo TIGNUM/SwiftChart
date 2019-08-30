@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class RegistrationEmailViewController: UIViewController {
+final class RegistrationEmailViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

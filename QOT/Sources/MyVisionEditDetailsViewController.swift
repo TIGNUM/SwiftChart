@@ -13,7 +13,7 @@ protocol MyVisionEditDetailsViewControllerProtocol: class {
     func didSave(_ saved: Bool)
 }
 
-final class MyVisionEditDetailsViewController: UIViewController {
+final class MyVisionEditDetailsViewController: UIViewController, ScreenZLevelOverlay {
 
     @IBOutlet private weak var scrollView: UIScrollView!
     @IBOutlet private weak var titleTextField: UITextField!

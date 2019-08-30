@@ -77,7 +77,7 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
         return SyncRecordService(realmProvider: self.realmProvider)
     }()
     lazy var userLoggedIn: Bool = {
-        return authenticator.hasLoginCredentials()
+        return qot_dal.SessionService.main.getCurrentSession() != nil
     }()
     lazy var syncManager: SyncManager = {
         let manager = SyncManager(networkManager: self.networkManager,

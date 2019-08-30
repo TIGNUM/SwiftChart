@@ -9,7 +9,7 @@
 import Foundation
 import qot_dal
 
-protocol DecisionTreeViewControllerInterface: UIViewController {
+protocol DecisionTreeViewControllerInterface: UIViewController, ScreenZLevel3 {
     func setupView()
     func showQuestion(_ question: QDMQuestion,
                       extraAnswer: String?,

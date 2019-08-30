@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyDataExplanationViewController: UIViewController {
+final class MyDataExplanationViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: MyDataExplanationInteractorInterface?

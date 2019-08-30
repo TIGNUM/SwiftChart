@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class MyToBeVisionTrackerViewController: UIViewController {
+final class MyToBeVisionTrackerViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: MyToBeVisionTrackerInteractorInterface?

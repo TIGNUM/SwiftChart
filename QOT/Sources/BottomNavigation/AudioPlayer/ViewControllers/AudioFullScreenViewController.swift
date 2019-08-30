@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class AudioFullScreenViewController: UIViewController {
+final class AudioFullScreenViewController: UIViewController, ScreenZLevel3 {
 
     @IBOutlet private weak var closeButton: UIButton!
     @IBOutlet private weak var categorytitleLabel: UILabel!

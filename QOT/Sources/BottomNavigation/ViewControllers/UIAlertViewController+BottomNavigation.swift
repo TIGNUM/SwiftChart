@@ -7,8 +7,17 @@
 //
 
 import UIKit
+import SafariServices
 
-extension UIAlertController: ScreenZLevel {
+extension SFSafariViewController: ScreenZLevelOverlay {
+
+}
+
+extension UIActivityViewController: ScreenZLevelOverlay {
+
+}
+
+extension UIAlertController: ScreenZLevelOverlay {
 
     private static var _lastBottomNavigationItem = [String: BottomNavigationItem]()
 

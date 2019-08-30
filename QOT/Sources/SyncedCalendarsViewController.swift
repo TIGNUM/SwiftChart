@@ -12,7 +12,7 @@ protocol SyncedCalendarsViewControllerDelegate: class {
     func didChangeCalendarSyncValue(enabled: Bool, identifier: String)
 }
 
-final class SyncedCalendarsViewController: UIViewController {
+final class SyncedCalendarsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     @IBOutlet private weak var headerLabel: UILabel!

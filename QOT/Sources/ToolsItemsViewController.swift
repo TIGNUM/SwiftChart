@@ -16,7 +16,7 @@ private enum ToolType: String {
     case pdf
 }
 
-final class ToolsItemsViewController: UIViewController {
+final class ToolsItemsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

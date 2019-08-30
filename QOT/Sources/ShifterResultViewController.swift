@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class ShifterResultViewController: UIViewController {
+final class ShifterResultViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
     var interactor: ShifterResultInteractorInterface?

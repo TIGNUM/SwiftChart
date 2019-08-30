@@ -62,6 +62,7 @@ extension ToolsItemsWorker: ToolsItemsWorkerInterface {
                           mediaURL: URL(string: (contentItem.valueMediaURL ?? "")),
                           duration: contentItem.valueDuration ?? 0,
                           isCollection: false,
+                          contentCollectionId: contentCollection?.remoteID ?? 0,
                           numberOfItems: count,
                           type: firstItemFormat)
             }) ?? []

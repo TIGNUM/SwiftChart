@@ -43,6 +43,7 @@ final class DailyBriefInteractor {
         NotificationCenter.default.addObserver(self, selector: #selector(didGuidedClosedCellSizeChanges(_ :)),
                                                name: .displayGuidedTrackRows, object: nil)
 
+        getDailyBriefBucketsForViewModel()
     }
     func viewDidLoad() {
         presenter.setupView()
@@ -114,14 +115,15 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                 case .LEADERS_WISDOM?:
                     sectionDataList.append(ArraySection(model: .leaderswisdom, elements: self.createLeaderWisdom(createLeadersWisdom: bucket)))
                 case .FEAST_OF_YOUR_EYES?:
-//                    sectionDataList.append(ArraySection(model: .feastForYourEyes, elements: self.createFeastForEyesModel(feastForEyesBucket: bucket)))
-                    sectionDataList.append(ArraySection(model: .guidedTrack, elements: self.createGuidedTrack(guidedTrackBucket: bucket)))
+                    sectionDataList.append(ArraySection(model: .feastForYourEyes, elements: self.createFeastForEyesModel(feastForEyesBucket: bucket)))
                 case .FROM_MY_COACH?:
                     sectionDataList.append(ArraySection(model: .fromMyCoach, elements: self.createFromMyCoachModel(fromCoachBucket: bucket)))
                 case .MY_PEAK_PERFORMANCE?:
                     sectionDataList.append(ArraySection(model: .myPeakPerformance, elements: self.createMyPeakPerformanceModel(myPeakPerformanceBucket: bucket)))
                 case .SPRINT_CHALLENGE?:
-                    sectionDataList.append(ArraySection(model: .fromMyCoach, elements: self.createSprintChallenge(bucket: bucket)))
+                    if let sprint = bucket.sprint {
+                        sectionDataList.append(ArraySection(model: .sprint, elements: self.createSprintChallenge(bucket: bucket)))
+                    }
                 case .ABOUT_ME?:
                     sectionDataList.append(ArraySection(model: .aboutMe, elements: self.createAboutMe(aboutMeBucket: bucket)))
                 case .SOLVE_REFLECTION?:
@@ -222,41 +224,44 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         var createSprintChanllengeList: [BaseDailyBriefViewModel] = []
 
         guard sprintBucket.sprint != nil else {
-            let relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel(title: "",
-                                                                                           durationString: "",
-                                                                                        remoteID: 2)]
+            let relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel()]
             createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: "",
                                                                        sprintTitle: "",
                                                                        sprintInfo: "",
                                                                        sprintStepNumber: 0,
                                                                        relatedStrategiesModels: relatedStrategiesModels,
-                                                                       domainModel: sprintBucket))
+                                                                       domainModel: sprintBucket,
+                                                                       sprint: sprintBucket.sprint!))
             return createSprintChanllengeList
         }
-        var sprintInfo: String = ""
         let searchTag: String = "SPRINT_BUCKET_DAY_" + String(sprintBucket.sprint?.currentDay ?? 0)
-        if sprintBucket.sprint?.title == "DAILY RECOVERY PLAN" {
-            sprintInfo = getSprintInfo(sprintBucket, "SPRINT_RECOVERY_PLAN", searchTag)
-        } else if sprintBucket.sprint?.title == "LIVING YOUR TBV" {
-            sprintInfo = getSprintInfo(sprintBucket, "SPRINT_LIVING_YOUR_TBV", searchTag)
-        } else if sprintBucket.sprint?.title == "BUILDING YOUR SLEEP RITUAL" {
-            sprintInfo = getSprintInfo(sprintBucket, "SPRINT_BUILDING_YOUR_SLEEP_RITUAL", searchTag)
+        let sprintTag = sprintBucket.sprint?.sprintCollection?.searchTags.filter({ $0 != "SPRINT_REPORT"}).first ?? ""
+        let sprintInfo = getSprintInfo(sprintBucket, sprintTag, searchTag)
+        var relatedStrategiesModels: [SprintChallengeViewModel.RelatedStrategiesModel] = []
+        sprintBucket.sprint?.dailyBriefRelatedContents.forEach {(content) in
+            relatedStrategiesModels.append(SprintChallengeViewModel.RelatedStrategiesModel(content.title,
+                                                                                           content.contentItems.first?.durationString,
+                                                                                           content.remoteID ?? 0,
+                                                                                           content.section,
+                                                                                           content.contentItems.first?.format,
+                                                                                           content.contentItems.count))
         }
-        let relatedStrategiesModels = [SprintChallengeViewModel.RelatedStrategiesModel(title: "",
-                                                                                      durationString: "",
-                                                                                      remoteID: 2)]
+
         createSprintChanllengeList.append(SprintChallengeViewModel(bucketTitle: sprintBucket.bucketText?.contentItems.first?.valueText,
-                                                                   sprintTitle: sprintInfo,
-                                                                   sprintInfo: sprintBucket.sprint?.subtitle,
+                                                                   sprintTitle: sprintBucket.sprint?.title,
+                                                                   sprintInfo: sprintInfo,
                                                                    sprintStepNumber: sprintBucket.sprint?.currentDay,
                                                                    relatedStrategiesModels: relatedStrategiesModels,
-                                                                   domainModel: sprintBucket))
+                                                                   domainModel: sprintBucket,
+                                                                   sprint: sprintBucket.sprint!))
         return createSprintChanllengeList
     }
 
     func getSprintInfo(_ bucket: QDMDailyBriefBucket, _ tag1: String, _ tag2: String) -> String {
         return bucket.contentCollections?.filter {
-            $0.searchTags.contains(tag1) && $0.searchTags.contains(tag2)}.first?.contentItems.first?.valueText ?? "" }
+            $0.searchTags.contains(tag1) && $0.searchTags.contains(tag2)
+            }.first?.contentItems.first?.valueText ?? ""
+    }
 
     func createFromTignum(fromTignum: QDMDailyBriefBucket) -> [BaseDailyBriefViewModel] {
         var createFromTignumList: [BaseDailyBriefViewModel] = []
@@ -269,7 +274,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
         fromTignum.contentCollections?.forEach {(fromTignumModel) in
             createFromTignumList.append(FromTignumCellViewModel(title: bucketTitle,
                                                                 text: fromTignumModel.contentItems.first?.valueText ?? "",
-                                                                subtitle : fromTignumModel.title,
+                                                                subtitle: fromTignumModel.title,
                                                                 domainModel: fromTignum))
         }
         return createFromTignumList
@@ -814,5 +819,9 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
 
     func showDailyCheckIn() {
         router.showDailyCheckIn()
+    }
+
+    func didPressGotItSprint(sprint: QDMSprint) {
+        worker.didPressGotItSprint(sprint: sprint)
     }
 }

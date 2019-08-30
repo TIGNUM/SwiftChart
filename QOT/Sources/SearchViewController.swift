@@ -9,7 +9,7 @@
 import UIKit
 import qot_dal
 
-final class SearchViewController: UIViewController, SearchViewControllerInterface {
+final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchViewControllerInterface {
 
     var interactor: SearchInteractorInterface?
     weak var delegate: CoachCollectionViewControllerDelegate?
@@ -77,9 +77,6 @@ final class SearchViewController: UIViewController, SearchViewControllerInterfac
         }
         updateViewsState(hasUserInput)
         updateIndicator()
-        if self.view.alpha == 1 {
-            refreshBottomNavigationItems()
-        }
     }
 
     override func viewWillDisappear(_ animated: Bool) {

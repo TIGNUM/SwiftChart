@@ -12,6 +12,9 @@ import qot_dal
 import DifferenceKit
 
 protocol DailyBriefViewControllerDelegate: class {
+    func openToolFromSprint(toolID: Int?)
+    func openStrategyFromSprint(strategyID: Int?)
+    func didPressGotItSprint(sprint: QDMSprint)
     func openPrepareScreen()
     func showDailyCheckIn()
     func showSolveResults(solve: QDMSolve)
@@ -24,6 +27,7 @@ protocol DailyBriefViewControllerDelegate: class {
     func videoAction(_ sender: Any, videoURL: URL?, contentItem: QDMContentItem?, pageName: PageName)
     func openPreparation(_ qdmUserPreparation: QDMUserPreparation)
     func presentCopyRight(copyrightURL: String?)
+    func reloadSprintCell(cell: UITableViewCell)
 }
 
 protocol PopUpCopyRightViewControllerProtocol: class {
@@ -34,7 +38,7 @@ final class DailyBriefNavigationController: UINavigationController {
     static var storyboardID = NSStringFromClass(DailyBriefNavigationController.classForCoder())
 }
 
-final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableViewDelegate, UITableViewDataSource {
+final class DailyBriefViewController: UIViewController, ScreenZLevelBottom, UITableViewDelegate, UITableViewDataSource {
 
     // MARK: - Properties
     var delegate: CoachCollectionViewControllerDelegate?
@@ -43,6 +47,8 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
     private var latestWhatsHotModel: WhatsHotLatestCellViewModel?
     private var selectedStrategyID: Int?
     private var selectedToolID: Int?
+    private var selectedStrategySprintsID: Int?
+    private var selectedToolSprintsID: Int?
     private var showSteps = false
     private var impactReadinessScore: Int?
     var sectionDataList: [ArraySection<DailyBriefViewModel.Bucket, BaseDailyBriefViewModel>] = []
@@ -90,7 +96,7 @@ final class DailyBriefViewController: UIViewController, ScreenZLevel1, UITableVi
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         // UIView with sand40 background for section-separators as Section Footer
-        let sectionColor = UIView(frame: CGRect(x: 0, y:0, width: tableView.frame.width, height: 1))
+        let sectionColor = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.width, height: 1))
         sectionColor.backgroundColor = .sand40
         return sectionColor
     }
@@ -696,8 +702,18 @@ extension  DailyBriefViewController: DailyBriefViewControllerInterface {
 
 extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
+    func didPressGotItSprint(sprint: QDMSprint) {
+        interactor?.didPressGotItSprint(sprint: sprint)
+    }
+
     func openPrepareScreen() {
         interactor?.showPrepareScreen()
+    }
+
+    func reloadSprintCell(cell: UITableViewCell) {
+        if let cellIndexPath = tableView.indexPath(for: cell) {
+            self.tableView.reloadRows(at: [cellIndexPath], with: .none)
+        }
     }
 
     func showSolveResults(solve: QDMSolve) {
@@ -718,9 +734,6 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
 
     func changedGetToLevel5Value(_ value: Int, from cell: UITableViewCell) {
         interactor?.saveUpdateGetToLevel5Selection(value)
-//        if let cellIndexPath = tableView.indexPath(for: cell) {
-//            self.tableView.reloadRows(at: [cellIndexPath], with: .none)
-//        }
     }
 
     func saveTargetValue(value: Int?) {
@@ -748,6 +761,15 @@ extension DailyBriefViewController: DailyBriefViewControllerDelegate {
     func presentCopyRight(copyrightURL: String?) {
         interactor?.presentCopyRight(copyrightURL: copyrightURL)
     }
+
+    func openStrategyFromSprint(strategyID: Int?) {
+        interactor?.presentStrategyList(selectedStrategyID: strategyID ?? 0)
+    }
+
+    func openToolFromSprint(toolID: Int?) {
+        interactor?.presentToolsItems(selectedToolID: toolID ?? 0)
+    }
+
 }
 
 extension DailyBriefViewController: QuestionnaireAnswer {

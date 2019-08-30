@@ -25,7 +25,9 @@ final class WalkthroughRouter {
 
 extension WalkthroughRouter: WalkthroughRouterInterface {
     func navigateToMainApp() {
-        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-        appDelegate.appCoordinator.showApp()
+        self.viewController.dismiss(animated: true) {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            appDelegate.appCoordinator.showApp()
+        }
     }
 }

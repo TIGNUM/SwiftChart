@@ -13,7 +13,7 @@ private struct PageNameMail {
     static var value = PageName.supportContact
 }
 
-extension MFMailComposeViewController {
+extension MFMailComposeViewController: ScreenZLevelOverlay {
 
     var pageType: PageName {
         get {

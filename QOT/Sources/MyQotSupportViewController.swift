@@ -9,7 +9,7 @@
 import UIKit
 import MessageUI
 
-final class MyQotSupportViewController: UIViewController {
+final class MyQotSupportViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 

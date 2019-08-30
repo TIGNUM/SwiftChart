@@ -36,6 +36,7 @@ final class MySprintsListViewController: UIViewController, ScreenZLevel2 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        showDefaultBottomButtons()
         trackPage()
     }
 

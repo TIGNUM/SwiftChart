@@ -19,6 +19,7 @@ struct Tool {
         let mediaURL: URL?
         let duration: Double
         let isCollection: Bool
+        let contentCollectionId: Int
         let numberOfItems: Int
         let type: String
     }

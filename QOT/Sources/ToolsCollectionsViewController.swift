@@ -10,7 +10,7 @@ import UIKit
 import Anchorage
 import qot_dal
 
-final class ToolsCollectionsViewController: UIViewController {
+final class ToolsCollectionsViewController: UIViewController, ScreenZLevel3 {
 
     // MARK: - Properties
 
