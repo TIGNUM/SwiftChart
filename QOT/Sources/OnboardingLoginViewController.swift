@@ -13,10 +13,15 @@ final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay
 
     // MARK: - Properties
     private let helpEmail = Defaults.firstLevelSupportEmail
+    private var didHideEmail: Bool {
+        return sendButtonYPosition.constant != 0
+    }
 
     var interactor: OnboardingLoginInteractorInterface?
+    @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var emailField: QotPlaceholderTextField!
     @IBOutlet weak var emailInstructionsLabel: UILabel!
+    @IBOutlet weak var precodeLabel: UILabel!
     @IBOutlet var digitTextFields: [TextField]!
     @IBOutlet var digitDescriptionLabel: UILabel!
     @IBOutlet var sendButtonYPosition: NSLayoutConstraint!
@@ -48,6 +53,14 @@ final class OnboardingLoginViewController: UIViewController, ScreenZLevelOverlay
             emailField.text = email
             preSetUserEmail = nil
             didTapVerifyEmail()
+        }
+    }
+
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        // There needs to be a small delay or the textfield automatically resigns first responder
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.001) { [weak self] in
+            self?.emailField.textField.becomeFirstResponder()
         }
     }
 }
@@ -138,8 +151,7 @@ private extension OnboardingLoginViewController {
 
     func presentEmailError(_ error: String) {
         emailField.textField.layer.borderColor = UIColor.redOrange.cgColor
-        emailInstructionsLabel.attributedText = NSAttributedString(string: error,
-                                                                   attributes: [.foregroundColor: UIColor.redOrange70])
+        ThemeText.loginEmailErrorMessage.apply(error, to: emailInstructionsLabel)
     }
 
     func presentCodeError(_ error: String) {
@@ -147,8 +159,7 @@ private extension OnboardingLoginViewController {
             $0.textColor = .redOrange
             $0.layer.borderColor = UIColor.redOrange.cgColor
         }
-        digitDescriptionLabel.attributedText = NSAttributedString(string: error,
-                                                            attributes: [.foregroundColor: UIColor.redOrange])
+        ThemeText.loginEmailCodeErrorMessage.apply(error, to: digitDescriptionLabel)
 
         buttonGetHelp.setTitle(R.string.localized.onboardingLoginButtonResendCode(), for: .normal)
         buttonGetHelp.removeTarget(self, action: nil, for: .touchUpInside)
@@ -172,10 +183,11 @@ private extension OnboardingLoginViewController {
 
     @IBAction func didTapVerifyEmail() {
         emailField.textField.resignFirstResponder()
+        emailField.textField.text = emailField.text?.replacingOccurrences(of: " ", with: "")
         interactor?.didTapVerify(email: emailField.text)
     }
 
-    @IBAction func didTapSendCode() {
+    @objc func didTapSendCode() {
         interactor?.didTapSendCode(to: emailField.text)
     }
 
@@ -185,10 +197,15 @@ private extension OnboardingLoginViewController {
 
     // Superclass already has a `didTapBackButton()` method
     @IBAction func didTapBack() {
-        resetCodeInputPosition()
-        loadEmailTextFieldDefaultUI()
         loadDigitTextFieldsDefaultUI()
-        interactor?.didTapBack()
+        if didHideEmail {
+            resetCodeInputPosition()
+            emailField.textField.becomeFirstResponder()
+        } else {
+            loadEmailTextFieldDefaultUI()
+            emailField.text = nil
+            interactor?.didTapBack()
+        }
     }
 }
 
@@ -233,7 +250,7 @@ extension OnboardingLoginViewController: UITextFieldDelegate {
         if textField != emailField.textField {
             return false
         }
-        didTapSendCode()
+        didTapVerifyEmail()
         return false
     }
 
@@ -265,6 +282,11 @@ extension OnboardingLoginViewController: TextFieldDelegate {
 // MARK: - OnoardingLoginViewControllerInterface
 extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface {
     func setupView() {
+        ThemeText.loginEmailTitle.apply(interactor?.title, to: titleLabel)
+        ThemeText.loginEmailMessage.apply(interactor?.emailInstructions, to: emailInstructionsLabel)
+        ThemeText.loginEmailCode.apply(interactor?.preCode, to: precodeLabel)
+        ThemeText.loginEmailCodeMessage.apply(interactor?.digitDescription, to: digitDescriptionLabel)
+
         setupTextFields()
         setupButtons()
     }
@@ -287,6 +309,7 @@ extension OnboardingLoginViewController: OnboardingLoginViewControllerInterface 
     }
 
     func beginCodeEntry() {
+        emailField.textField.resignFirstResponder()
         digitTextFields.first?.becomeFirstResponder()
     }
 

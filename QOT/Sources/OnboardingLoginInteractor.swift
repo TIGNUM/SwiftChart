@@ -43,8 +43,16 @@ final class OnboardingLoginInteractor {
 
 extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
 
+    var title: String {
+        return worker.title
+    }
+
     var emailInstructions: String {
         return worker.emailInstructions
+    }
+
+    var preCode: String {
+        return worker.preCode
     }
 
     var digitDescription: String {

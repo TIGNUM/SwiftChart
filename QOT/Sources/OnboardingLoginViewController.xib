@@ -28,7 +28,9 @@
                 <outlet property="digitDescriptionLabel" destination="Dwk-pD-HYZ" id="VAT-hm-o1D"/>
                 <outlet property="emailField" destination="N0J-hZ-RKY" id="Jl1-Eh-iqv"/>
                 <outlet property="emailInstructionsLabel" destination="bhe-uz-mAB" id="nDL-sp-BdX"/>
+                <outlet property="precodeLabel" destination="uX7-Am-z8w" id="yLD-lZ-ls8"/>
                 <outlet property="sendButtonYPosition" destination="p3f-nO-UcU" id="URE-r7-jhK"/>
+                <outlet property="titleLabel" destination="9c0-Px-p37" id="qAI-xb-TK1"/>
                 <outlet property="view" destination="G73-uc-VGV" id="rM7-Sk-DSe"/>
                 <outletCollection property="digitTextFields" destination="OhO-lt-yI7" collectionClass="NSMutableArray" id="Xr9-hh-cdK"/>
                 <outletCollection property="digitTextFields" destination="6M7-N0-NEO" collectionClass="NSMutableArray" id="XgU-c3-PS5"/>

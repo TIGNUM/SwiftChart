@@ -26,7 +26,9 @@ protocol OnboardingLoginPresenterInterface {
 }
 
 protocol OnboardingLoginInteractorInterface: Interactor {
+    var title: String { get }
     var emailInstructions: String { get }
+    var preCode: String { get }
     var digitDescription: String { get }
     var buttonGetHelp: String { get }
     var buttonResendCode: String { get }

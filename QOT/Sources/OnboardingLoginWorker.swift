@@ -21,6 +21,10 @@ final class OnboardingLoginWorker: BaseSigningWorker {
 
     // MARK: Texts
 
+    lazy var title: String = {
+        return R.string.localized.onboardingLoginEmailTitle()
+    }()
+
     lazy var emailInstructions: String = {
         return R.string.localized.onboardingLoginEmailDescription()
     }()
@@ -39,6 +43,10 @@ final class OnboardingLoginWorker: BaseSigningWorker {
 
     lazy var digitDescription: String = {
         return R.string.localized.onboardingLoginCodeDescription()
+    }()
+
+    lazy var preCode: String = {
+        return R.string.localized.onboardingLoginCodePreCode()
     }()
 
     lazy var codeError: String = {

@@ -641,10 +641,12 @@
 "DailyBrief.Customize.Sleep.Question" = "Insert the ideal amount of sleep per day";
 
 "Onboarding.Error.General" = "An error occurred, please try again";
+"Onboarding.Login.Email.Title" = "LOGIN";
 "Onboarding.Login.Email.Description" = "We will send an email with your code";
 "Onboarding.Login.Email.Error" = "Enter email first, then tap “Send code” button";
 "Onboarding.Login.Email.UserDoesntExistError" = "User doesn't exist, please register first";
 "Onboarding.Login.Email.GenericError" = "An error occurred, please try to “Send code” again";
+"Onboarding.Login.Code.PreCode" = "Enter code";
 "Onboarding.Login.Code.Description" = "Didn’t receive your code? Change email or";
 "Onboarding.Login.Code.Error" = "Wrong code! please ";
 "Onboarding.Login.Button.GetHelp" = "Get help";

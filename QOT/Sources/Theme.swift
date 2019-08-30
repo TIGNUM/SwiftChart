@@ -307,6 +307,12 @@ enum ThemeText {
     case searchContent
     case searchSuggestionHeader
     case searchSuggestion
+    case loginEmailTitle
+    case loginEmailMessage
+    case loginEmailErrorMessage
+    case loginEmailCode
+    case loginEmailCodeMessage
+    case loginEmailCodeErrorMessage
 
     private var font: UIFont {
         switch self {
@@ -318,7 +324,8 @@ enum ThemeText {
              .leaderText:
             return Fonts.fontRegular16
         case .performanceStaticTitle, .performanceTitle, .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader,
-             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion:
+             .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .loginEmailMessage,
+             .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage:
             return Fonts.fontRegular14
         case .author, .datestamp, .articleAuthor, .linkMenuComment, .linkMenuCommentRed, .articleRelatedDetail, .durationString,
              .articleTagTitle, .settingsTitle, .settingsTitleFade, .articleMarkRead:
@@ -369,7 +376,7 @@ enum ThemeText {
             return Fonts.fontRegular15
         case .quotation:
             return Fonts.fontDisplayThin34
-        case .dailyBriefTitle:
+        case .dailyBriefTitle, .loginEmailTitle:
             return Fonts.fontDisplayRegular20
         case .tbvStatement:
             return Fonts.fontDisplayLight24
@@ -418,7 +425,7 @@ enum ThemeText {
              .articleRelatedTitle, .sectionHeader, .categoryHeader, .categorySubHeader, .performanceTitle, .bespokeTitle,
              .chatButtonEnabled, .settingsTitle, .strategyHeader, .myQOTBoxTitle, .sprintName, .sprintTitle, .solveQuestions,
              .tbvStatement, .level5Question, .leaderText, .leaderVideoTitle, .myQOTProfileName, .myQOTTitle, .accountDetail,
-             .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult:
+             .myQOTPrepCellTitle, .myQOTSectionHeader, .myQOTPrepTitle, .searchResult, .loginEmailTitle:
             return Palette.sand
         case .author, .quoteAuthor, .chatButton, .searchSuggestion:
             return Palette.sand60
@@ -434,11 +441,11 @@ enum ThemeText {
         case .fromCoachTitle:
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore, .accountHeader,
-             .myQOTPrepComment:
+             .myQOTPrepComment, .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage:
             return Palette.sand70
         case .performanceSectionText:
             return Palette.carbon70
-        case .linkMenuCommentRed:
+        case .linkMenuCommentRed, .loginEmailErrorMessage, .loginEmailCodeErrorMessage:
             return Palette.redOrange
         case .articleAudioBar, .articleMarkRead:
             return Palette.light(Palette.sand60, or: Palette.carbon60)
@@ -514,7 +521,8 @@ enum ThemeText {
             string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
         case .sprintTitle, .leaderVideoTitle, .searchSuggestion:
              string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
-        case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore:
+        case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore,
+             .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
         case .strategySubHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
