@@ -47,5 +47,6 @@ protocol OnboardingLoginRouterInterface {
 }
 
 protocol OnboardingLoginDelegate {
+    func showTrackSelection()
     func didTapBack()
 }

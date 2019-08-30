@@ -8,7 +8,7 @@
 
 import UIKit
 
-final class TrackSelectionViewController: UIViewController, ScreenZLevelOverlay {
+final class TrackSelectionViewController: UIViewController, ScreenZLevel1 {
 
     // MARK: - Properties
 

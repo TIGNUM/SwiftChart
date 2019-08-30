@@ -76,6 +76,11 @@ extension OnboardingLandingPageViewController: SigningInfoDelegate {
 // MARK: - OnboardingLoginDelegate
 
 extension OnboardingLandingPageViewController: OnboardingLoginDelegate {
+
+    func showTrackSelection() {
+        interactor?.showTrackSelection()
+    }
+
     func didTapBack() {
         interactor?.didTapBack()
     }

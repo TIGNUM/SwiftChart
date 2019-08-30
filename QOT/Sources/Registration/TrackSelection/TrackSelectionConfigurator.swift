@@ -12,11 +12,10 @@ final class TrackSelectionConfigurator: AppStateAccess {
     /// Creates configurator which sets up `TrackSelectionViewController` for presentation
     /// - Parameters:
     ///   - viewController: `TrackSelectionViewController` to be configured
-    ///   - navigationController: `UINavigationController` on which the ap will be pushed
     ///   - type: `TrackSelectionType` defines view controller's layout
-    static func make() -> (TrackSelectionViewController, UINavigationController, TrackSelectionType) -> Void {
-        return { (viewController, navigationController, type) in
-            let router = TrackSelectionRouter(viewController: viewController, navigationController: navigationController)
+    static func make() -> (TrackSelectionViewController, TrackSelectionControllerType) -> Void {
+        return { (viewController, type) in
+            let router = TrackSelectionRouter(viewController: viewController)
             let worker = TrackSelectionWorker()
             let presenter = TrackSelectionPresenter(viewController: viewController)
             let interactor = TrackSelectionInteractor(worker: worker, presenter: presenter, router: router, type: type)

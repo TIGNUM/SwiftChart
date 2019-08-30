@@ -20,9 +20,11 @@ protocol OnboardingLandingPageInteractorInterface: Interactor {
     func didTapLogin(with email: String?, cachedToBeVision: CachedToBeVision?)
     func didTapStart()
     func didTapBack()
+    func showTrackSelection()
 }
 
 protocol OnboardingLandingPageRouterInterface {
     func openRegistration(with cachedTBV: CachedToBeVision?)
     func popToRoot()
+    func showTrackSelection()
 }

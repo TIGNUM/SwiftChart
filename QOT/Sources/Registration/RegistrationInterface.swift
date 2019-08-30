@@ -16,7 +16,6 @@ protocol RegistrationViewControllerInterface: UIViewController {
 }
 
 protocol RegistrationPresenterInterface {
-    var navigationController: UINavigationController { get }
     func setupView()
     func present(alert: RegistrationExistingUserAlertViewModel)
     func present(controller: UIViewController, direction: UIPageViewController.NavigationDirection)

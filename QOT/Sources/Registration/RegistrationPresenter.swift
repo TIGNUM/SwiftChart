@@ -11,9 +11,6 @@ import UIKit
 final class RegistrationPresenter {
 
     // MARK: - Properties
-    var navigationController: UINavigationController {
-        return viewController?.navigationController ?? UINavigationController()
-    }
 
     private weak var viewController: RegistrationViewControllerInterface?
 

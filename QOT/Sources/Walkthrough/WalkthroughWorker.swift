@@ -11,10 +11,15 @@ import UIKit
 final class WalkthroughWorker {
 
     // MARK: - Properties
+    let selectedTrack: SelectedTrackType
 
     // MARK: - Init
 
-    init() {
+    init(selectedTrack: SelectedTrackType) {
+        self.selectedTrack = selectedTrack
+    }
 
+    func saveViewedWalkthrough() {
+        UserDefault.didShowCoachMarks.setBoolValue(value: true)
     }
 }

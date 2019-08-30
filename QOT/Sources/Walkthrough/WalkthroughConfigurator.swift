@@ -10,10 +10,10 @@ import Foundation
 
 final class WalkthroughConfigurator: AppStateAccess {
 
-    static func make() -> (WalkthroughViewController) -> Void {
-        return { (viewController) in
+    static func make() -> (WalkthroughViewController, SelectedTrackType) -> Void {
+        return { (viewController, trackType) in
             let router = WalkthroughRouter(viewController: viewController)
-            let worker = WalkthroughWorker()
+            let worker = WalkthroughWorker(selectedTrack: trackType)
             let presenter = WalkthroughPresenter(viewController: viewController)
             let interactor = WalkthroughInteractor(worker: worker, presenter: presenter, router: router)
             viewController.interactor = interactor

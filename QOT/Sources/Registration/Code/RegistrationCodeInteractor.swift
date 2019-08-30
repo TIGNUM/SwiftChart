@@ -160,10 +160,10 @@ extension RegistrationCodeInteractor: RegistrationCodeInteractorInterface {
         presenter.presentActivity(state: .inProgress)
         worker.validate(code: code, for: worker.email) { [weak self] (result, error) in
             self?.presenter.presentActivity(state: nil)
-            if case .codeValid = result {
+            if case .codeValid = result.code {
                 self?.delegate.didVerifyCode(code)
                 return
-            } else if case .codeInvalid = result {
+            } else if case .codeInvalid = result.code {
                 self?.errorMessage = self?.worker.codeError
             } else {
                 self?.errorMessage = self?.worker.resendCodeError

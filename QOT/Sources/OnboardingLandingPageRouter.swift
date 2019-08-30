@@ -34,4 +34,11 @@ extension OnboardingLandingPageRouter: OnboardingLandingPageRouterInterface {
     func popToRoot() {
         viewController.navigationController?.popToRootViewController(animated: true)
     }
+
+    func showTrackSelection() {
+        guard let controller = R.storyboard.trackSelection.trackSelectionViewController() else { return }
+        let configurator = TrackSelectionConfigurator.make()
+        configurator(controller, TrackSelectionControllerType.registration)
+        viewController.pushToStart(childViewController: controller)
+    }
 }

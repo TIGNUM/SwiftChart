@@ -96,6 +96,7 @@ extension WalkthroughInteractor: WalkthroughInteractorInterface {
     }
 
     func didTapGotIt() {
-        router.navigateToMainApp()
+        worker.saveViewedWalkthrough()
+        router.navigateToTrack(type: worker.selectedTrack)
     }
 }

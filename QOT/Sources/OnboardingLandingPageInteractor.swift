@@ -62,6 +62,9 @@ final class OnboardingLandingPageInteractor {
         let cachedTBV = notification.userInfo?[Notification.Name.RegistrationKeys.toBeVision] as? CachedToBeVision
         didTapLogin(with: email, cachedToBeVision: cachedTBV)
         router.popToRoot()
+        if let first = presentedControllers.first, let last = presentedControllers.last {
+            presentedControllers = [first, last]
+        }
     }
 }
 
@@ -103,6 +106,10 @@ extension OnboardingLandingPageInteractor: OnboardingLandingPageInteractorInterf
         let controller = createAccountController
         presentedControllers.append(controller)
         presenter.present(controller: controller, direction: .forward)
+    }
+
+    func showTrackSelection() {
+        router.showTrackSelection()
     }
 }
 

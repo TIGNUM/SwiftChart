@@ -13,17 +13,11 @@ final class TrackSelectionWorker {
     // MARK: - Properties
 
     lazy var title: String = {
-        return "YOUR ACCOUNT IS CREATED"
+        return R.string.localized.onboardingRegistrationTrackSelectionTitle();
     }()
 
     lazy var descriptionText: String = {
-        return """
-            Since QOT is quite rich in content and use cases we created two options for you to start:
-
-            1. Fast Track - this will lead you write into QOT so that you can explore it yourself.
-
-            2. Guided Track - we created a roadmap for you with recommended step."
-            """
+        return R.string.localized.onboardingRegistrationTrackSelectionMessage()
     }()
 
     lazy var fastTrackButton: String = {

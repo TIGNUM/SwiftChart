@@ -28,7 +28,6 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
     private var services: Services?
     private var canProcessRemoteNotifications = false
     private var canProcessLocalNotifications = false
-    private var isRestart = false
     private var onDismiss: (() -> Void)?
     private var destination: AppCoordinator.Router.Destination?
     private var iPadAdviceCompletion: (() -> Void)?
@@ -245,27 +244,21 @@ final class AppCoordinator: ParentCoordinator, AppStateAccess {
 
         // Show coach marks on first launch (of v3.0 app)
         if !UserDefault.didShowCoachMarks.boolValue {
-            UserDefault.didShowCoachMarks.setBoolValue(value: true)
-            showCoachMarks()
+            showTrackChoice()
             return
         }
 
-        if self.isRestart == false {
-            guard let coachCollectionViewController = R.storyboard.main().instantiateViewController(withIdentifier: "CoachCollectionViewController") as? CoachCollectionViewController,
+        guard let coachCollectionViewController = R.storyboard.main.coachCollectionViewController(),
             let rootViewController = R.storyboard.bottomNavigation().instantiateInitialViewController(),
             let rootNavigationController = rootViewController as? UINavigationController else {
                 return
-            }
-            coachCollectionViewController.services = services
-            if let baseVC = rootNavigationController.viewControllers.first as? BaseRootViewController {
-                 baseVC.setContent(viewController: coachCollectionViewController)
-            }
-            self.windowManager.show(rootNavigationController, animated: true, completion: nil)
-//            self.startTabBarCoordinator()
-        } else {
-            self.isRestart = false
-            self.windowManager.rootViewController(atLevel: .normal)?.dismiss(animated: true, completion: nil)
         }
+        coachCollectionViewController.services = services
+        if let baseVC = rootNavigationController.viewControllers.first as? BaseRootViewController {
+            baseVC.setContent(viewController: coachCollectionViewController)
+        }
+        self.windowManager.show(rootNavigationController, animated: true, completion: nil)
+
         self.registerRemoteNotifications()
         self.calendarImportManager.importEvents()
         self.canProcessRemoteNotifications = true
@@ -414,11 +407,18 @@ extension AppCoordinator {
         startChild(child: coordinator)
     }
 
-    func showCoachMarks() {
-        guard let controller = R.storyboard.walkthrough.walkthroughViewController() else { return }
-        let configurator = WalkthroughConfigurator.make()
-        configurator(controller)
-        UIApplication.shared.delegate?.window??.rootViewController?.present(controller, animated: false, completion: nil)
+    func showTrackChoice() {
+        guard let controller = R.storyboard.trackSelection.trackSelectionViewController() else { return }
+
+        let navigationController = UINavigationController(rootViewController: controller)
+        navigationController.navigationBar.isHidden = true
+        navigationController.navigationBar.applyDefaultStyle()
+        navigationController.modalTransitionStyle = .crossDissolve
+        navigationController.modalPresentationStyle = .overFullScreen
+
+        let configurator = TrackSelectionConfigurator.make()
+        configurator(controller, .login)
+        UIApplication.shared.delegate?.window??.rootViewController?.present(navigationController, animated: false, completion: nil)
     }
 
     func showSigning() {
@@ -428,6 +428,7 @@ extension AppCoordinator {
             landingConfigurator(landingController, contentCategory)
 
             let navigationController = UINavigationController(rootViewController: landingController)
+            navigationController.navigationBar.isHidden = true
             navigationController.navigationBar.applyDefaultStyle()
             navigationController.modalTransitionStyle = .crossDissolve
             navigationController.modalPresentationStyle = .overFullScreen

@@ -28,5 +28,5 @@ protocol WalkthroughInteractorInterface: Interactor {
 }
 
 protocol WalkthroughRouterInterface {
-    func navigateToMainApp()
+    func navigateToTrack(type: SelectedTrackType)
 }

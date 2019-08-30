@@ -24,8 +24,27 @@ final class WalkthroughRouter {
 // MARK: - WalkthroughRouterInterface
 
 extension WalkthroughRouter: WalkthroughRouterInterface {
-    func navigateToMainApp() {
-        self.viewController.dismiss(animated: true) {
+    func navigateToTrack(type: SelectedTrackType) {
+        switch type {
+        case .fast:
+            showFastTrack()
+        case .guided:
+            showGuidedTrack()
+        }
+    }
+}
+
+private extension WalkthroughRouter {
+    func showFastTrack() {
+        viewController.dismiss(animated: true) {
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            appDelegate.appCoordinator.showApp()
+        }
+    }
+
+    func showGuidedTrack() {
+        // TODO: https://tignum.atlassian.net/browse/QOT-1639
+        viewController.dismiss(animated: true) {
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             appDelegate.appCoordinator.showApp()
         }

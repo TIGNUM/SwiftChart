@@ -53,7 +53,7 @@ final class RegistrationInteractor {
     private lazy var trackSelectionController: TrackSelectionViewController = {
         let configurator = TrackSelectionConfigurator.make()
         let controller = R.storyboard.trackSelection.trackSelectionViewController() ?? TrackSelectionViewController()
-        configurator(controller, presenter.navigationController, TrackSelectionType.registration)
+        configurator(controller, TrackSelectionControllerType.registration)
         return controller
     }()
 

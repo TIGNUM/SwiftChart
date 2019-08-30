@@ -24,6 +24,7 @@ enum ApiResponseResult {
 }
 
 class BaseSigningWorker {
+    typealias ApiResponse = (code: ApiResponseResult, message: String?)
 
     // MARK: - Properties
 
@@ -42,24 +43,24 @@ class BaseSigningWorker {
 
 extension BaseSigningWorker {
 
-    func verifyEmail(_ email: String, _ completion: @escaping (_ response: ApiResponseResult, _ error: Error?) -> Void) {
+    func verifyEmail(_ email: String, _ completion: @escaping (_ response: ApiResponse, _ error: Error?) -> Void) {
         sessionService.verify(email: email) { [weak self] (response, error) in
             guard let strongSelf = self else { return }
-            completion(strongSelf.apiCodeFromResponse(response?.returnCode()), error)
+            completion(strongSelf.response(from: response), error)
         }
     }
 
-    func requestCode(for email: String, _ completion: @escaping (_ response: ApiResponseResult, _ error: Error?) -> Void) {
+    func requestCode(for email: String, _ completion: @escaping (_ response: ApiResponse, _ error: Error?) -> Void) {
         sessionService.requestVerificationCode(for: email) { [weak self] (response, error) in
             guard let strongSelf = self else { return }
-            completion(strongSelf.apiCodeFromResponse(response?.returnCode()), error)
+            completion(strongSelf.response(from: response), error)
         }
     }
 
-    func validate(code: String, for email: String, _ completion: @escaping (_ response: ApiResponseResult, _ error: Error?) -> Void) {
+    func validate(code: String, for email: String, _ completion: @escaping (_ response: ApiResponse, _ error: Error?) -> Void) {
         sessionService.verify(code: code, email: email) { [weak self] (response, error) in
             guard let strongSelf = self else { return }
-            completion(strongSelf.apiCodeFromResponse(response?.returnCode()), error)
+            completion(strongSelf.response(from: response), error)
         }
     }
 
@@ -85,6 +86,11 @@ extension BaseSigningWorker {
 // MARK: - Helper methods
 
 extension BaseSigningWorker {
+
+    func response(from response: QDMVerificationResponse?) -> ApiResponse {
+        return (code: apiCodeFromResponse(response?.returnCode()), message: response?.message)
+    }
+
     func apiCodeFromResponse(_ code: ReturnCode?) -> ApiResponseResult {
         guard let code = code else { return .invalid }
         switch code {

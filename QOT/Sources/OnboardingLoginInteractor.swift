@@ -71,13 +71,13 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         presenter.present()
         presenter.presentActivity(state: .inProgress)
         worker.verifyEmail(email) { [weak self] (result, error) in
-            if case .userExists = result {
+            if case .userExists = result.code {
                 self?.didTapSendCode(to: email)
                 return
             } else if let error = error {
                 qot_dal.log("Failed to verify email: \(error)", level: .debug)
                 self?.viewModel.emailError = self?.worker.emailError
-            } else if case .userDoesNotExist = result {
+            } else if case .userDoesNotExist = result.code {
                 self?.viewModel.emailError = self?.worker.emailUserDoesntExist
             } else {
                 self?.viewModel.emailError = self?.worker.generalEMailError
@@ -96,7 +96,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         presenter.present()
         presenter.presentActivity(state: .inProgress)
         worker.requestCode(for: email) { [weak self] (result, error) in
-            if case .codeSent = result {
+            if case .codeSent = result.code {
                 self?.presenter.presentCodeEntry()
                 self?.viewModel.sendCodeEnabled = true
             } else if let error = error {
@@ -119,7 +119,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
         presenter.presentActivity(state: .inProgress)
         worker.validate(code: code, for: email) { [weak self] (result, error) in
             self?.presenter.presentActivity(state: nil)
-            switch result {
+            switch result.code {
             case .codeValid,
                  .valid:
                 // Update ToBeVision
@@ -127,7 +127,7 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
                     self?.worker.updateToBeVision(with: tbv)
                 }
                 // Show main app
-                self?.router.showHomeScreen()
+                self?.handleSuccessfulLogin()
                 return
             default:
                 break
@@ -158,6 +158,15 @@ extension OnboardingLoginInteractor: OnboardingLoginInteractorInterface {
 // MARK: - Private methods
 
 private extension OnboardingLoginInteractor {
+
+    func handleSuccessfulLogin() {
+        if !UserDefault.didShowCoachMarks.boolValue {
+            delegate.showTrackSelection()
+        } else {
+            router.showHomeScreen()
+        }
+    }
+
     func checkAndPresentEmailVailidty(_ email: String?) -> Bool {
         if worker.isValidEmail(email) == true {
             return true

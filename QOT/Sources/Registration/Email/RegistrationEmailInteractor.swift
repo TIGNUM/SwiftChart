@@ -69,21 +69,21 @@ extension RegistrationEmailInteractor: RegistrationEmailInteractorInterface {
         worker.verifyEmail(email) { [weak self] (result, error) in
             guard let strongSelf = self else { return }
             // Existing account
-            if case .userExists = result {
+            if case .userExists = result.code {
                 strongSelf.delegate.handleExistingUser(email: email)
                 strongSelf.presenter.presentActivity(state: nil)
                 return
             }
             // User isn't part of Tignum
-            if case .unableToRegister = result {
-                strongSelf.showMessage(text: strongSelf.worker.unableToRegisterError)
+            if case .unableToRegister = result.code {
+                strongSelf.showMessage(text: result.message ?? strongSelf.worker.unableToRegisterError)
                 strongSelf.presenter.presentActivity(state: nil)
                 return
             }
             // Error
             if let error = error {
                 qot_dal.log("Failed to get code before registration. Error \(error)")
-                strongSelf.showMessage(text: strongSelf.worker.generalError, isError: true)
+                strongSelf.showMessage(text: result.message ?? strongSelf.worker.generalError, isError: true)
                 strongSelf.presenter.presentActivity(state: nil)
                 return
             }
@@ -128,7 +128,7 @@ private extension RegistrationEmailInteractor {
             guard let strongSelf = self else { return }
             strongSelf.presenter.presentActivity(state: nil)
             // Success
-            if case .codeSent = result {
+            if case .codeSent = result.code {
                 strongSelf.delegate.didVerifyEmail(email)
                 return
             }
@@ -136,7 +136,7 @@ private extension RegistrationEmailInteractor {
             if let error = error {
                 qot_dal.log("Failed to get code before registration. Error \(error)")
             }
-            strongSelf.showMessage(text: strongSelf.worker.generalError, isError: true)
+            strongSelf.showMessage(text: result.message ?? strongSelf.worker.generalError, isError: true)
         }
     }
 }

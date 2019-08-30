@@ -15,14 +15,14 @@ final class TrackSelectionInteractor {
     private let worker: TrackSelectionWorker
     private let presenter: TrackSelectionPresenterInterface
     private let router: TrackSelectionRouterInterface
-    let type: TrackSelectionType
+    let type: TrackSelectionControllerType
 
     // MARK: - Init
 
     init(worker: TrackSelectionWorker,
         presenter: TrackSelectionPresenterInterface,
         router: TrackSelectionRouterInterface,
-        type: TrackSelectionType) {
+        type: TrackSelectionControllerType) {
         self.worker = worker
         self.presenter = presenter
         self.router = router
@@ -59,10 +59,10 @@ final class TrackSelectionInteractor {
 extension TrackSelectionInteractor: TrackSelectionInteractorInterface {
 
     func didTapFastTrack() {
-        router.showFastTrask()
+        router.openWalktrough(with: .fast)
     }
 
     func didTapGuidedTrack() {
-        router.showGuidedTrack()
+        router.openWalktrough(with: .guided)
     }
 }

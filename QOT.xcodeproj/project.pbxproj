@@ -4048,17 +4048,16 @@
 				8DC59B6422FDA6BE00587EA4 /* Notification+Registration.swift */,
 				366AFD1620BDAD0800109F29 /* FormView */,
 				8DBE1EBE22F460CC00BB1086 /* OnboardingLandingPage */,
+				36796A4B20D3C4A800B55429 /* SigningInfo */,
 				367CD17622EF4EAD00AF2187 /* Login_3.0 */,
-				8D8AA74B22FDCB6700B59A81 /* Registration */,
-				8D66E8932305A04400BE78C7 /* TrackSelection */,
-				8D9F6D13230E80A200DCC241 /* Walkthrough */,
 				8D13B8DD22FB1F0300B776E8 /* CreateAccountInfo */,
+				8D8AA74B22FDCB6700B59A81 /* Registration */,
+				8D9F6D13230E80A200DCC241 /* Walkthrough */,
 				36796A3820D3C48300B55429 /* SgningLogin */,
 				36796A0E20D3C43C00B55429 /* SigningCountry */,
 				367969FB20D3C3F300B55429 /* SigningCreatePWD */,
 				3698427820C91ECF007A8C8F /* SigningDigit */,
 				366AFD0320BD9F3E00109F29 /* SigningEmail */,
-				36796A4B20D3C4A800B55429 /* SigningInfo */,
 				8D04FA3B2304673E00AE7CA0 /* LocationPermission */,
 				36796A2520D3C45800B55429 /* SigningProfileDetail */,
 			);
@@ -5755,6 +5754,7 @@
 				8DF786FD22FEB4DF00CDE0A9 /* Code */,
 				8D0B4D072301CBB000A1AC47 /* Names */,
 				8D04FA2723041DC000AE7CA0 /* Age */,
+				8D66E8932305A04400BE78C7 /* TrackSelection */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -9108,7 +9108,7 @@
 			);
 			name = "Generate R.Swift";
 			outputPaths = (
-				"$SRCROOT/QOT/Generated/R.generated.swift",
+				$SRCROOT/QOT/Generated/R.generated.swift,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
