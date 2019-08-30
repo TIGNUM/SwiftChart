@@ -35,6 +35,7 @@ final class LeaderWisdomTableViewCell: UITableViewCell, Dequeueable {
         ThemeText.bespokeText.apply(viewModel?.subtitle, to: subtitleLabel)
         ThemeText.leaderText.apply(viewModel?.description, to: descriptionLabel)
         videoView.isHidden = viewModel?.format != .video
+        videoThumbnailImageView.isHidden = viewModel?.format != .video
         audioView.isHidden = viewModel?.format != .audio
         titleLabel.isHidden = viewModel?.title == nil
         subtitleLabel.isHidden = viewModel?.subtitle == nil

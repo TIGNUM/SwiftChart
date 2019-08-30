@@ -614,7 +614,7 @@ extension DailyBriefInteractor: DailyBriefInteractorInterface {
                                                           domainModel: solveBucket))
         solveBucket.solves?.forEach {(solve) in
             createSolveList.append(SolveReminderTableCellViewModel(title: solve.solveTitle,
-                                                                   date: DateFormatter.whatsHot.string(from: solve.createdAt ?? Date()),
+                                                                   date: DateFormatter.solveDate.string(from: solve.createdAt ?? Date()),
                                                                    solve: solve,
                                                                    domainModel: solveBucket))
         }

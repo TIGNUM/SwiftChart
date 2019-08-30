@@ -102,24 +102,6 @@
                                 <action selector="selectNumber:" destination="Eq3-bn-1M6" eventType="touchUpInside" id="ygv-SP-1Lb"/>
                             </connections>
                         </button>
-                        <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VPT-3L-nOc">
-                            <rect key="frame" x="0.0" y="-44" width="414" height="744"/>
-                            <subviews>
-                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Noted! Come back in 1 month." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="689-VU-GxH">
-                                    <rect key="frame" x="40" y="657" width="231" height="21"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                    <nil key="highlightedColor"/>
-                                </label>
-                            </subviews>
-                            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            <constraints>
-                                <constraint firstAttribute="bottom" secondItem="689-VU-GxH" secondAttribute="bottom" constant="66" id="MXE-Tj-rzM"/>
-                                <constraint firstItem="689-VU-GxH" firstAttribute="leading" secondItem="5t5-2v-Yiw" secondAttribute="leading" constant="40" id="dNd-u8-rSA"/>
-                                <constraint firstItem="689-VU-GxH" firstAttribute="top" secondItem="5t5-2v-Yiw" secondAttribute="top" constant="613" id="vhE-rI-eWK"/>
-                            </constraints>
-                            <viewLayoutGuide key="safeArea" id="5t5-2v-Yiw"/>
-                        </view>
                         <button opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="biR-lQ-ITc">
                             <rect key="frame" x="264" y="217.5" width="40" height="40"/>
                             <constraints>
@@ -859,6 +841,24 @@
                                 <constraint firstItem="leh-VV-o6K" firstAttribute="leading" secondItem="nZM-cB-A7p" secondAttribute="leading" constant="55" id="wYE-nb-AFm"/>
                             </constraints>
                             <viewLayoutGuide key="safeArea" id="G9Z-0R-x3w"/>
+                        </view>
+                        <view alpha="0.84999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VPT-3L-nOc">
+                            <rect key="frame" x="0.0" y="-44" width="414" height="744"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" alpha="0.75" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Noted! Come back in 1 month." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="689-VU-GxH">
+                                    <rect key="frame" x="40" y="657" width="231" height="21"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                    <color key="textColor" red="0.92122668029999999" green="0.90475624799999999" blue="0.89374810459999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" red="0.078431372550000003" green="0.074509803920000006" blue="0.070588235289999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="689-VU-GxH" secondAttribute="bottom" constant="66" id="MXE-Tj-rzM"/>
+                                <constraint firstItem="689-VU-GxH" firstAttribute="leading" secondItem="5t5-2v-Yiw" secondAttribute="leading" constant="40" id="dNd-u8-rSA"/>
+                                <constraint firstItem="689-VU-GxH" firstAttribute="top" secondItem="5t5-2v-Yiw" secondAttribute="top" constant="613" id="vhE-rI-eWK"/>
+                            </constraints>
+                            <viewLayoutGuide key="safeArea" id="5t5-2v-Yiw"/>
                         </view>
                     </subviews>
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

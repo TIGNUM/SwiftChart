@@ -58,6 +58,13 @@ private let myPrepsFormatter: DateFormatter = {
     return formatter
 }()
 
+private let mySolvesFormatter: DateFormatter = {
+    let formatter = DateFormatter()
+    formatter.dateFormat = "dd MM yyyy"
+    formatter.timeZone = TimeZone.current
+    return formatter
+}()
+
 private let whatsHotFormatter: DateFormatter = {
     let formatter = DateFormatter()
     formatter.dateFormat = "dd. MMM" // 18. JUL    ..:: "dd. LLLL" 18. JULY ..::
@@ -115,6 +122,10 @@ extension DateFormatter {
 
     static var messageDate: DateFormatter {
         return coachMessageFormatter
+    }
+
+    static var solveDate: DateFormatter {
+        return mySolvesFormatter
     }
 
     static var memberSince: DateFormatter {

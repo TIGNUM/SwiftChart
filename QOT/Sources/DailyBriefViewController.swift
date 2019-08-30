@@ -235,9 +235,9 @@ private extension DailyBriefViewController {
         let cell: ImpactReadiness1 = tableView.dequeueCell(for: indexPath)
         cell.configure(viewModel: impactReadinessCellViewModel)
         if impactReadinessCellViewModel?.readinessScore == 0 {
-            cell.impactReadinessButton.setTitle("Start your Daily check-in", for: .normal)
+            cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonGetStarted(), for: .normal)
         } else {
-            cell.impactReadinessButton.setTitle("Explore your score", for: .normal)
+            cell.impactReadinessButton.setTitle(R.string.localized.impactReadinessCellButtonExplore(), for: .normal)
             cell.impactReadinessButton.setImage(UIImage(named: "arrowDown.png"), for: .normal)
         }
         cell.backgroundColor = .carbon
