@@ -56,33 +56,19 @@ final class MyQotMainViewController: UIViewController, ScreenZLevelBottom {
         navigationController?.navigationBar.isHidden = true
         self.showLoadingSkeleton(with: [.padHeading, .myQOT, .myQOT, .myQOT])
 
-        getImpactReadinessScore(completion: { (score) in
-            self.impactReadinessScore = Int(score ?? 0)
-            self.collectionView.reloadData()
-            self.removeLoadingSkeleton()
-        })
         nextPrepDate(completion: { (dateString) in
             self.dateOfPrep = dateString
         })
         nextPrepType(completion: { (eventType) in
             self.eventType = eventType
         })
-        toBeVisionDate(completion: { (date) in
-            self.toBeVisionModified = date
-            self.timeSinceMonth = Int(self.timeElapsed(date: date).rounded())
-            if let time = self.timeSinceMonth {
-                if time == 1 {
-                    self.subtitleVision = "One month ago"
-                } else if time  > 1 {
-                    self.subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
-                } else { self.subtitleVision = R.string.localized.myQotVisionLessThan()}
-            }
-        })
+        refreshParams(updateCell: false)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         setStatusBar(colorMode: ColorMode.dark)
+        refreshParams(updateCell: true)
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -110,6 +96,30 @@ extension MyQotMainViewController: MyQotMainViewControllerInterface {
 
     func setup(for myQotSection: MyQotViewModel) {
         myQotModel = myQotSection
+    }
+
+    func refreshParams(updateCell: Bool) {
+        getImpactReadinessScore(completion: { (score) in
+            self.impactReadinessScore = Int(score ?? 0)
+            self.removeLoadingSkeleton()
+            if updateCell {
+                self.collectionView.reloadItems(at: [IndexPath(item: MyQotSection.data.rawValue, section: 1)])
+            }
+        })
+        toBeVisionDate(completion: { (date) in
+            self.toBeVisionModified = date
+            self.timeSinceMonth = Int(self.timeElapsed(date: date).rounded())
+            if let time = self.timeSinceMonth {
+                if time == 1 {
+                    self.subtitleVision = "One month ago"
+                } else if time  > 1 {
+                    self.subtitleVision = R.string.localized.myQotVisionMorethan() + String(describing: time) + R.string.localized.myQotVisionMonthsSince()
+                } else { self.subtitleVision = R.string.localized.myQotVisionLessThan()}
+            }
+            if updateCell {
+                self.collectionView.reloadItems(at: [IndexPath(item: MyQotSection.toBeVision.rawValue, section: 1)])
+            }
+        })
     }
 }
 

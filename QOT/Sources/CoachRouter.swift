@@ -35,6 +35,7 @@ extension CoachRouter: CoachRouterInterface {
             navController.navigationBar.applyDefaultStyle()
             navController.modalTransitionStyle = .crossDissolve
             viewController.pushToStart(childViewController: searchViewController)
+            searchViewController.activate(0.0)
         case .tools:
             let storyboardID = R.storyboard.tools.toolsViewControllerID.identifier
             let toolsViewController = R.storyboard

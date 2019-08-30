@@ -16,7 +16,7 @@ protocol MyToBeVisionDataNullStateViewControllerProtocol: class {
 final class MyToBeVisionDataNullStateViewController: UIViewController, ScreenZLevel3 {
 
     @IBOutlet private weak var headingLabel: UILabel!
-    @IBOutlet private weak var HeadingDescriptionLabel: UILabel!
+    @IBOutlet private weak var headingDescriptionLabel: UILabel!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var titleDescriptionLabel: UILabel!
 
@@ -60,16 +60,16 @@ private extension MyToBeVisionDataNullStateViewController {
 private extension MyToBeVisionDataNullStateViewController {
     func setupEmptySate() {
         emptyStateHeaderTitle {[weak self] (title) in
-            self?.headingLabel.attributedText = self?.formatted(title: title.uppercased())
+            ThemeText.tbvStatement.apply(title.uppercased(), to: self?.headingLabel)
         }
         emptyStateHeaderDesc {[weak self] (title) in
-            self?.HeadingDescriptionLabel.attributedText = self?.formatted(title: title)
+            ThemeText.tbvBody.apply(title, to: self?.headingDescriptionLabel)
         }
         emptyStateTitleTitle {[weak self] (title) in
-            self?.titleLabel.attributedText = self?.formatted(title: title.uppercased())
+            ThemeText.tbvSectionHeader.apply(title.uppercased(), to: self?.titleLabel)
         }
         emptyStateTitleDesc {[weak self] (title) in
-            self?.titleDescriptionLabel.attributedText = self?.formatted(title: title)
+            ThemeText.tbvBody.apply(title, to: self?.titleDescriptionLabel)
         }
     }
 

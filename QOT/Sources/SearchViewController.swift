@@ -30,6 +30,7 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
     private var searchSuggestions: SearchSuggestions?
     private var searchFilter = Search.Filter.all
     private var searchQuery = ""
+    private var activateAnimateDuration: Double = 0.0
 
     override var preferredStatusBarStyle: UIStatusBarStyle {
         return ColorMode.dark.statusBarStyle
@@ -60,17 +61,18 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
         suggestionsTableView.registerDequeueable(SuggestionSearchTableViewCell.self)
         setupSearchBar()
         setStatusBar(colorMode: ColorMode.dark)
+        setAllControl(alpha: 1.0)
     }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        doActivate()
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         trackPage()
-        segmentedControl.alpha = 1
         let hasUserInput = mySearchBar.text?.isEmpty == false
         if hasUserInput {
             mySearchBar.becomeFirstResponder()
@@ -81,11 +83,6 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-    }
-
-    override func viewDidDisappear(_ animated: Bool) {
-        super.viewDidDisappear(animated)
-        segmentedControl.alpha = 0
     }
 
     func reload(_ searchResults: [Search.Result]) {
@@ -104,8 +101,18 @@ final class SearchViewController: UIViewController, ScreenZLevelOverlay, SearchV
 
 extension SearchViewController {
     func activate(_ duration: Double) {
-        constraintSearch.constant = activeView.frame.size.height - mySearchBar.frame.size.height
-        UIView.animate(withDuration: duration) {
+        activateAnimateDuration = duration
+        if constraintSearch != nil {
+            doActivate()
+        }
+    }
+
+    private func doActivate() {
+        let constantNew = activeView.frame.size.height - mySearchBar.frame.size.height
+        if constantNew == constraintSearch.constant { return }
+
+        constraintSearch.constant = constantNew
+        UIView.animate(withDuration: activateAnimateDuration) {
             self.view.layoutIfNeeded()
         }
         if let cancelButton = mySearchBar.value(forKey: "cancelButton") as? UIButton {
@@ -328,16 +335,10 @@ private extension SearchViewController {
     }
 
     func updateViewsState(_ suggestionShouldHide: Bool) {
-        let alpha: CGFloat = suggestionShouldHide ? 0.0 : 1.0
+        if suggestionsTableView.isHidden == suggestionShouldHide { return }
 
-        suggestionsTableView.alpha = 1 - alpha
-        tableView.alpha = alpha
-        indicatorView.alpha = alpha
-        segmentedControl.alpha = alpha
-        suggestionsTableView.isHidden = false
-        tableView.isHidden = false
-        indicatorView.isHidden = false
-        segmentedControl.isHidden = false
+        let alpha: CGFloat = suggestionShouldHide ? 0.0 : 1.0
+        setAllControl(alpha: 1 - alpha)
 
         UIView.animate(withDuration: 0.25, animations: {
             self.suggestionsTableView.alpha = alpha
@@ -350,6 +351,17 @@ private extension SearchViewController {
             self.indicatorView.isHidden = !suggestionShouldHide
             self.segmentedControl.isHidden = !suggestionShouldHide
         })
+    }
+
+    func setAllControl(alpha: CGFloat) {
+        suggestionsTableView.alpha = alpha
+        tableView.alpha = 1 - alpha
+        indicatorView.alpha = 1 - alpha
+        segmentedControl.alpha = 1 - alpha
+        suggestionsTableView.isHidden = false
+        tableView.isHidden = false
+        indicatorView.isHidden = false
+        segmentedControl.isHidden = false
     }
 
     func handleSelection(for indexPath: IndexPath) {

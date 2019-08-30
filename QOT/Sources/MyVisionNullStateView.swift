@@ -10,6 +10,7 @@ import UIKit
 
 protocol MyVisionNullStateViewProtocol: class {
     func editMyVisionAction()
+    func autogenerateMyVisionAction()
 }
 
 final class MyVisionNullStateView: UIView {
@@ -18,38 +19,30 @@ final class MyVisionNullStateView: UIView {
     @IBOutlet private weak var detailLabel: UILabel!
     @IBOutlet private weak var toBeVisionLabel: UILabel!
     @IBOutlet private weak var writeButton: UIButton!
+    @IBOutlet private weak var autoGenerateButton: UIButton!
 
     weak var delegate: MyVisionNullStateViewProtocol?
 
     func setupView(with header: String, message: String, delegate: MyVisionNullStateViewProtocol?) {
         self.delegate = delegate
-        backgroundColor = .carbon
-        toBeVisionLabel.text = R.string.localized.myQOTToBeVisionTitle()
-        writeButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        headerLabel.attributedText = formatted(headline: header)
-        detailLabel.attributedText = formatted(vision: message)
+        ThemeView.level2.apply(self)
+        ThemeText.tbvSectionHeader.apply(R.string.localized.myQOTToBeVisionTitle(), to: toBeVisionLabel)
+
+        writeButton.setAttributedTitle(ThemeText.tbvButton.attributedString(R.string.localized.tbvButtonWrite()), for: .normal)
+        autoGenerateButton.setAttributedTitle(ThemeText.tbvButton.attributedString(R.string.localized.tbvButtonAutoGenerate()), for: .normal)
+        ThemeBorder.accent40.apply(writeButton)
+        ThemeBorder.accent40.apply(autoGenerateButton)
+        ThemeText.tbvHeader.apply(header, to: headerLabel)
+        ThemeText.tbvVision.apply(message, to: detailLabel)
     }
 }
 
 private extension MyVisionNullStateView {
-    func formatted(vision: String) -> NSAttributedString? {
-        return NSAttributedString(string: vision,
-                                  letterSpacing: 0.5,
-                                  font: .sfProtextRegular(ofSize: 16) ,
-                                  lineSpacing: 10.0,
-                                  textColor: .sand)
-    }
-
-    func formatted(headline: String) -> NSAttributedString? {
-        return NSAttributedString(string: headline.uppercased(),
-                                  letterSpacing: 0.2,
-                                  font: .sfProDisplayLight(ofSize: 34) ,
-                                  lineSpacing: 3,
-                                  textColor: .sand,
-                                  lineBreakMode: .byTruncatingTail)
-    }
-
     @IBAction func editMyVisionAction(_ sender: Any) {
         delegate?.editMyVisionAction()
+    }
+
+    @IBAction func autogenerateMyVisionAction() {
+        delegate?.autogenerateMyVisionAction()
     }
 }

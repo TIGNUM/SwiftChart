@@ -55,12 +55,8 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        interactor?.viewDidLoad()
         self.showLoadingSkeleton(with: [.oneLineHeading, .padHeading, .myPrepsCell])
-        NotificationCenter.default.addObserver(self,
-                                               selector: #selector(didFinishSynchronization(_:)),
-                                               name: .didFinishSynchronization,
-                                               object: nil)
+        interactor?.viewDidLoad()
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -79,19 +75,14 @@ final class MyVisionViewController: UIViewController, ScreenZLevel2 {
     }
 
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        if didShowNullStateView {
-            return generateBottomNavigationItemForNullView()
-        } else {
+        if !didShowNullStateView {
             return generateBottomNavigationItemForMainView()
         }
+        return nil
     }
 
     func generateBottomNavigationItemForMainView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: "My TBV data", buttonWidth: 127, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
-    }
-
-    func generateBottomNavigationItemForNullView() -> [UIBarButtonItem] {
-        return [roundedBarButtonItem(title: "Auto generate", buttonWidth: 200, action: #selector(autogenerateMyVisionAction), backgroundColor: .carbon, borderColor: .accent40)]
+        return [roundedBarButtonItem(title: R.string.localized.tbvButtonMyTBVData(), buttonWidth: 127, action: #selector(myTBVData), backgroundColor: .carbon, borderColor: .accent40)]
     }
 
     @objc func myTBVData() {
@@ -215,17 +206,18 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
     }
 
     func setupView() {
+        ThemeView.level2.apply(view)
+        ThemeView.level2.apply(imageContainerView)
+        ThemeView.imageOverlap.apply(imageOverLapView)
         navigationBarView.delegate = self
-        toBeVisionLabel.text = R.string.localized.myQOTToBeVisionTitle()
-        imageOverLapView.backgroundColor = .carbon60
+        ThemeText.tbvSectionHeader.apply(R.string.localized.myQOTToBeVisionTitle(), to: toBeVisionLabel)
         scrollView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: Layout.padding_50, right: 0)
         scrollView.scrollsToTop = true
-        imageContainerView.backgroundColor = .carbon
-        view.backgroundColor = .carbon
-        cameraButton.corner(radius: cameraButton.frame.size.width/2, borderColor: .accent40)
-        rateButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        singleMessageRateButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
-        updateButton.corner(radius: Layout.cornerRadius20, borderColor: .accent40)
+        ThemeBorder.accent40.apply(cameraButton)
+        ThemeBorder.accent40.apply(rateButton)
+        ThemeBorder.accent40.apply(singleMessageRateButton)
+        ThemeBorder.accent40.apply(updateButton)
+
         let adapter = ImagePickerControllerAdapter(self)
         imagePickerController = ImagePickerController(cropShape: .square,
                                                       imageQuality: .medium,
@@ -234,6 +226,7 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
                                                       pageName: .imagePickerToBeVision,
                                                       adapter: adapter)
         imagePickerController.delegate = self
+        userImageView.image = R.image.circlesWarning()
     }
 
     func load(_ myVision: QDMToBeVision?, rateText: String?, isRateEnabled: Bool, shouldShowSingleMessage: Bool) {
@@ -246,9 +239,11 @@ extension MyVisionViewController: MyVisionViewControllerInterface {
         shareButton.isHidden = interactor?.isShareBlocked() ?? false
         headerLabel.attributedText = formatted(headline: myVision?.headline ?? "")
         detailTextView.attributedText = formatted(vision: myVision?.text ?? "")
+
         tempImageURL = myVision?.profileImageResource?.url()
         userImageView.contentMode = tempImageURL == nil ? .center : .scaleAspectFill
-        userImageView.setImage(from: tempImageURL, placeholder: R.image.circlesWarning())
+        userImageView.kf.setImage(with: tempImageURL, placeholder: R.image.circlesWarning())
+
         imageOverLapView.isHidden = tempImageURL == nil
         removeGradients()
         addGradients(for: myVision)
@@ -378,15 +373,5 @@ extension MyVisionViewController: MyToBeVisionRateViewControllerProtocol {
 extension MyVisionViewController: MyToBeVisionDataNullStateViewControllerProtocol {
     func didRateTBV() {
         showRateScreen()
-    }
-}
-
-// MARK: - TBV TRACKER DID FINISH DOWN SYNC
-extension MyVisionViewController {
-    @objc func didFinishSynchronization(_ notification: Notification) {
-        guard let syncResult = notification.object as? SyncResultContext else { return }
-        if syncResult.dataType == .MY_TO_BE_VISION, syncResult.syncRequestType == .DOWN_SYNC {
-            interactor?.viewDidLoad()
-        }
     }
 }

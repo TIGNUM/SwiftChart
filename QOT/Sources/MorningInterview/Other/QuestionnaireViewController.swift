@@ -580,7 +580,8 @@ extension QuestionnaireViewController: UIGestureRecognizerDelegate {
         if touch.phase == .began {
             touchDownYPosition = yPosition
             saveShouldShow = true
-            refreshBottomNavigationItems()
+//TODO - Removing this fixes the Done button problem but needs more testing around daily brief before removing commented code
+//            refreshBottomNavigationItems()
         }
         return true
     }
@@ -625,40 +626,47 @@ extension QuestionnaireViewController {
     }
 }
 
-extension QuestionnaireViewController {
-    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
-        switch controllerType {
-        case .customize:
-            return [dismissNavigationItem()]
-        default:
-            return nil
-        }
-    }
-
-    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        switch controllerType {
-        case .customize:
-            if saveShouldShow {
-                    return [roundedBarButtonItem(title: R.string.localized.mySprintDetailsNotesButtonSave(),
-                                                 buttonWidth: .Done,
-                                                 action: #selector(didTapSave),
-                                                 backgroundColor: .clear,
-                                                 borderColor: .accent)]
-            } else {
-                return nil
-            }
-            return nil
-        default:
-            return nil
-        }
-    }
-
-    override func bottomNavigationBackgroundColor() -> UIColor? {
-        switch controllerType {
-        case .customize:
-            return .clear
-        default:
-            return nil
-        }
-    }
-}
+//TODO - Removing this fixes the Done button problem but needs more testing around daily brief before removing commented code
+//extension QuestionnaireViewController {
+//    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+//        switch controllerType {
+//        case .customize:
+//            return [dismissNavigationItem()]
+//        default:
+//            return nil
+//        }
+//    }
+//
+//    override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
+//        switch controllerType {
+//        case .customize:
+//            if saveShouldShow {
+//                return [roundedBarButtonItem(title: R.string.localized.mySprintDetailsNotesButtonSave(),
+//                                             buttonWidth: .Done,
+//                                             action: #selector(didTapSave),
+//                                             backgroundColor: .clear,
+//                                             borderColor: .accent)]
+//            }
+//        case .vision:
+//            if saveShouldShow {
+//                return [roundedBarButtonItem(title: R.string.localized.rateViewControllerDoneButton(),
+//                                             buttonWidth: .Done,
+//                                             action: #selector(didTapSave),
+//                                             backgroundColor: .clear,
+//                                             borderColor: .accent)]
+//            }
+//        default:
+//            break
+//        }
+//        return nil
+//    }
+//
+//    override func bottomNavigationBackgroundColor() -> UIColor? {
+//        switch controllerType {
+//        case .customize, .vision:
+//            return .clear
+//        default:
+//            return nil
+//        }
+//    }
+//}

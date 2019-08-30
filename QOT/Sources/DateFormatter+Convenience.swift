@@ -81,7 +81,7 @@ private let coachMessageFormatter: DateFormatter = {
 
 private let tbvTrackerFormatter: DateFormatter = {
     let formatter = DateFormatter()
-    formatter.dateFormat = "mm.yy" // 05.19
+    formatter.dateFormat = "MM.yy" // 05.19
     formatter.timeZone = TimeZone.current
     return formatter
 }()

@@ -79,6 +79,14 @@ final class MyToBeVisionRateViewController: UIViewController, ScreenZLevel3 {
         return questionnaireViewController(with: tracks[previousIndex])
     }
 
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        if isLastPage {
+            return nil
+        } else {
+            return super.bottomNavigationLeftBarItems()
+        }
+    }
+
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
         if showCountDownPage {
             return generateBottomNavigationBarForTimerView()

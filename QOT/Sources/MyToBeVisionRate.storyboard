@@ -238,19 +238,19 @@
                                 <rect key="frame" x="0.0" y="44" width="375" height="734"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="stW-yV-Tbv">
-                                        <rect key="frame" x="0.0" y="0.0" width="375" height="184.33333333333334"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="375" height="224.33333333333334"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="50" translatesAutoresizingMaskIntoConstraints="NO" id="1CQ-Ht-DEl">
-                                                <rect key="frame" x="24" y="0.0" width="327" height="184.33333333333334"/>
+                                                <rect key="frame" x="24" y="0.0" width="327" height="224.33333333333334"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XoH-Wo-uxe">
-                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="73.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="327" height="113.66666666666667"/>
                                                         <subviews>
                                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6Om-kV-AZt">
-                                                                <rect key="frame" x="0.0" y="0.0" width="327" height="2"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="327" height="42"/>
                                                                 <subviews>
                                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ODe-8Z-Jku">
-                                                                        <rect key="frame" x="0.0" y="0.0" width="16" height="2"/>
+                                                                        <rect key="frame" x="0.0" y="40" width="16" height="2"/>
                                                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="2" id="dKp-YJ-XLU"/>
@@ -261,18 +261,18 @@
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstItem="ODe-8Z-Jku" firstAttribute="leading" secondItem="6Om-kV-AZt" secondAttribute="leading" id="d0p-jZ-uxf"/>
-                                                                    <constraint firstItem="ODe-8Z-Jku" firstAttribute="top" secondItem="6Om-kV-AZt" secondAttribute="top" id="dUD-ea-PoJ"/>
+                                                                    <constraint firstItem="ODe-8Z-Jku" firstAttribute="top" secondItem="6Om-kV-AZt" secondAttribute="top" constant="40" id="dUD-ea-PoJ"/>
                                                                     <constraint firstAttribute="bottom" secondItem="ODe-8Z-Jku" secondAttribute="bottom" id="hCZ-hs-HFu"/>
                                                                 </constraints>
                                                             </view>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3pw-s7-lKx">
-                                                                <rect key="frame" x="0.0" y="11.999999999999998" width="327" height="31.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="52.000000000000007" width="327" height="31.333333333333336"/>
                                                                 <fontDescription key="fontDescription" name="SFProText-Regular" family="SF Pro Text" pointSize="26"/>
                                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9R5-JF-j5q">
-                                                                <rect key="frame" x="0.0" y="53.333333333333329" width="327" height="20.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="93.333333333333343" width="327" height="20.333333333333329"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" red="0.92156862750000001" green="0.90588235289999997" blue="0.89411764709999997" alpha="0.69999999999999996" colorSpace="custom" customColorSpace="calibratedRGB"/>
                                                                 <nil key="highlightedColor"/>
@@ -280,7 +280,7 @@
                                                         </subviews>
                                                     </stackView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Qd0-xD-PxU">
-                                                        <rect key="frame" x="0.0" y="123.66666666666667" width="327" height="60.666666666666671"/>
+                                                        <rect key="frame" x="0.0" y="163.66666666666666" width="327" height="60.666666666666657"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="om5-ca-hzF">
                                                                 <rect key="frame" x="0.0" y="0.0" width="327" height="20.333333333333332"/>
@@ -327,7 +327,7 @@
                         <viewLayoutGuide key="safeArea" id="woT-rB-CzK"/>
                     </view>
                     <connections>
-                        <outlet property="HeadingDescriptionLabel" destination="9R5-JF-j5q" id="BKJ-lH-9MC"/>
+                        <outlet property="headingDescriptionLabel" destination="9R5-JF-j5q" id="BKJ-lH-9MC"/>
                         <outlet property="headingLabel" destination="3pw-s7-lKx" id="82s-Gh-vBZ"/>
                         <outlet property="titleDescriptionLabel" destination="suU-7j-WP6" id="1aQ-6z-nU7"/>
                         <outlet property="titleLabel" destination="om5-ca-hzF" id="aQe-9D-hs1"/>

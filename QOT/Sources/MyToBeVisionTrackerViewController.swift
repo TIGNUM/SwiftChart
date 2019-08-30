@@ -27,8 +27,24 @@ final class MyToBeVisionTrackerViewController: UIViewController, ScreenZLevel3 {
         trackPage()
     }
 
+    override func bottomNavigationLeftBarItems() -> [UIBarButtonItem]? {
+        if interactor?.controllerType == .tracker {
+            return nil
+        } else {
+            return super.bottomNavigationLeftBarItems()
+        }
+    }
+
     override func bottomNavigationRightBarItems() -> [UIBarButtonItem]? {
-        return generateBottomNavigationBarRighButtonItems()
+        if interactor?.controllerType == .tracker {
+            return [roundedBarButtonItem(title: R.string.localized.tbvTrackerViewControllerDoneButton(),
+                                         buttonWidth: .Done,
+                                         action: #selector(doneAction),
+                                         backgroundColor: .carbon,
+                                         borderColor: .accent40)]
+        } else {
+            return nil
+        }
     }
 
     @objc func doneAction() {
@@ -39,18 +55,6 @@ final class MyToBeVisionTrackerViewController: UIViewController, ScreenZLevel3 {
     func reloadSubHeadingSection() {
         let indexPath = IndexPath(item: 0, section: 0)
         tableView.reloadRows(at: [indexPath], with: .none)
-    }
-
-    private func generateBottomNavigationBarRighButtonItems() -> [UIBarButtonItem]? {
-        if interactor?.controllerType == .tracker {
-            return [roundedBarButtonItem(title: R.string.localized.tbvTrackerViewControllerDoneButton(),
-                                         buttonWidth: .Done,
-                                         action: #selector(doneAction),
-                                         backgroundColor: .carbon,
-                                         borderColor: .accent40)]
-        } else {
-            return nil
-        }
     }
 }
 

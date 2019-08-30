@@ -764,3 +764,7 @@
 "MySprints.Status.Upcoming" = "Upcoming";
 "MySprints.Status.Paused" = "Paused";
 "MySprints.Status.Completed" = "Completed at";
+
+"TBV.Button.MyTBVData" = "My TBV data";
+"TBV.Button.AutoGenerate" = "Auto generate";
+"TBV.Button.Write" = "Write";

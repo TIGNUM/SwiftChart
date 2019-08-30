@@ -47,6 +47,7 @@ enum ThemeView {
     case headerLine
     case prepsSegmentSelected
     case qotAlert
+    case imageOverlap
 
     var color: UIColor {
         switch self {
@@ -80,6 +81,8 @@ enum ThemeView {
             return Palette.accent30
         case .qotAlert:
             return Palette.carbonDark80
+        case .imageOverlap:
+            return Palette.carbon60
         }
     }
 
@@ -103,6 +106,7 @@ enum ThemeView {
 enum ThemeBorder {
     case accent
     case accentBackground
+    case accent40
 
     func apply(_ view: UIView) {
         var color: UIColor?
@@ -111,12 +115,14 @@ enum ThemeBorder {
             color = Palette.accent
         case .accentBackground:
             color = Palette.accent30
+        case .accent40:
+            color = Palette.accent40
         }
 
         if let color = color {
             view.layer.borderWidth = 1
             view.layer.borderColor = color.cgColor
-            view.corner(radius: 20)
+            view.corner(radius: view.frame.size.height / 2)
         }
     }
 }
@@ -314,6 +320,12 @@ enum ThemeText {
     case loginEmailCodeMessage
     case loginEmailCodeErrorMessage
 
+    case tbvSectionHeader
+    case tbvHeader
+    case tbvVision
+    case tbvButton
+    case tbvBody
+
     private var font: UIFont {
         switch self {
         case .asterix:
@@ -321,7 +333,7 @@ enum ThemeText {
         case .navigationBarHeader, .sectionHeader, .categoryHeader, .fromCoachTitle, .myQOTSectionHeader:
             return Fonts.fontRegular20
         case .categorySubHeader, .searchTopic, .solveFuture, .level5Question, .performanceSectionText, .goodToKnow, .bespokeText,
-             .leaderText:
+             .leaderText, .tbvVision:
             return Fonts.fontRegular16
         case .performanceStaticTitle, .performanceTitle, .leaderVideoTitle, .searchExploreTopic, .searchBar, .strategySubHeader,
              .performanceSubtitle, .quoteAuthor, .sleepReference, .reference, .searchResult, .searchSuggestion, .loginEmailMessage,
@@ -334,7 +346,7 @@ enum ThemeText {
             return Fonts.fontLight20
         case .readinessScore:
             return Fonts.fontDisplayUltralight64
-        case .audioBar, .articleAudioBar, .segmentHeading:
+        case .audioBar, .articleAudioBar, .segmentHeading, .tbvButton:
             return Fonts.fontSemiBold14
         case .articleCategory, .articleDatestamp:
             switch textScale {
@@ -354,7 +366,7 @@ enum ThemeText {
             case .scale: return Fonts.fontLight40
             case .scaleNot: return Fonts.fontLight34
             }
-        case .articleTitleNotScaled:
+        case .articleTitleNotScaled, .tbvHeader:
             return Fonts.fontLight34
         case .articleBullet:
             switch textScale {
@@ -368,9 +380,9 @@ enum ThemeText {
             }
         case .articleRelatedTitle, .myQOTTitle, .whatsHotHeader, .sprintText, .sprintTitle, .solveQuestions, .impactBucket,
              .chatButton, .chatButtonEnabled, .articleMediaDescription, .articleHeadlineSmall, .articleHeadlineSmallRed,
-             .articleHeadlineSmallFade, .articleHeadlineSmallLight, .accountDetail, .myQOTPrepCellTitle, .myQOTPrepComment:
+             .articleHeadlineSmallFade, .articleHeadlineSmallLight, .accountDetail, .myQOTPrepCellTitle, .myQOTPrepComment, .tbvBody:
             return Fonts.fontLight16
-        case .articleNextTitle, .performanceSections, .accountHeader, .searchSuggestionHeader:
+        case .articleNextTitle, .performanceSections, .accountHeader, .searchSuggestionHeader, .tbvSectionHeader:
             return Fonts.fontMedium14
         case .strategyHeader:
             return Fonts.fontRegular15
@@ -430,18 +442,19 @@ enum ThemeText {
         case .author, .quoteAuthor, .chatButton, .searchSuggestion:
             return Palette.sand60
         case .datestamp, .performanceStaticTitle, .durationString, .solveFuture, .searchExploreTopic, .searchBar, .reference,
-             .settingsTitleFade, .searchContent, .searchSuggestionHeader:
+             .settingsTitleFade, .searchContent, .searchSuggestionHeader, .tbvVision, .tbvSectionHeader:
             return Palette.sand40
         case .performanceSubtitle:
             return Palette.carbonDark40
-        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference:
+        case .linkMenuItem, .audioBar, .performanceBucketTitle, .articleToolBarTint, .strategyTitle, .sleepReference, .tbvButton:
             return Palette.accent
         case .performanceSections:
             return Palette.carbon40
         case .fromCoachTitle:
             return Palette.carbon
         case .linkMenuComment, .strategySubHeader, .sprintText, .bespokeText, .goodToKnow, .readinessScore, .accountHeader,
-             .myQOTPrepComment, .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage:
+             .myQOTPrepComment, .tbvHeader, .tbvBody,
+             .loginEmailMessage, .loginEmailCode, .loginEmailCodeMessage:
             return Palette.sand70
         case .performanceSectionText:
             return Palette.carbon70
@@ -519,14 +532,14 @@ enum ThemeText {
             string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.3, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
         case .performanceStaticTitle, .fromCoachTitle:
             string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.3, font: self.font, textColor: self.color, alignment: .left)
-        case .sprintTitle, .leaderVideoTitle, .searchSuggestion:
+        case .sprintTitle, .leaderVideoTitle, .searchSuggestion, .tbvBody:
              string = NSAttributedString(string: text.uppercased(), letterSpacing: 0.5, font: self.font, textColor: self.color, alignment: .left)
         case .datestamp, .linkMenuComment, .linkMenuItem, .linkMenuCommentRed, .performanceBucketTitle, .goodToKnow, .readinessScore,
              .loginEmailTitle, .loginEmailMessage, .loginEmailErrorMessage, .loginEmailCode, .loginEmailCodeMessage, .loginEmailCodeErrorMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.0, font: self.font, lineSpacing: 0, textColor: self.color, alignment: .left)
         case .strategySubHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left)
-        case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText, .sleepReference, .asterix, .bespokeText, .leaderText:
+        case .articleAudioBar, .audioBar, .quotation, .quoteAuthor, .performanceSubtitle, .reference, .performanceSectionText, .sleepReference, .asterix, .bespokeText, .leaderText, .tbvSectionHeader:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left)
         case .articleRelatedTitle, .articleNextTitle, .myQOTTitle, .whatsHotHeader, .myQOTPrepComment, .searchResult:
             string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 1, textColor: self.color, alignment: .left)
@@ -562,9 +575,13 @@ enum ThemeText {
             string = NSAttributedString(string: text, font: self.font, textColor: self.color, alignment: .left)
         case .qotAlertTitle:
             string = NSAttributedString(string: text, letterSpacing: 0.4, font: self.font, lineSpacing: 8, textColor: self.color, alignment: .left, lineBreakMode: nil)
+        case .tbvHeader:
+            string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 3, textColor: self.color, alignment: .left)
+        case .tbvVision:
+            string = NSAttributedString(string: text, letterSpacing: 0.5, font: self.font, lineSpacing: 10, textColor: self.color, alignment: .left)
         case .qotAlertMessage:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, lineSpacing: 6, textColor: self.color, alignment: .left, lineBreakMode: nil)
-        case .searchSuggestionHeader:
+        case .searchSuggestionHeader, .tbvButton:
             string = NSAttributedString(string: text, letterSpacing: 0.2, font: self.font, textColor: self.color, alignment: .left, lineBreakMode: nil)
         default:
             string = NSAttributedString(string: "<NO THEME - \(self)>")
@@ -644,6 +661,10 @@ private struct Palette {
 
     static var accent30: UIColor {
         return UIColor.accent.withAlphaComponent(0.3)
+    }
+
+    static var accent40: UIColor {
+        return UIColor.accent.withAlphaComponent(0.4)
     }
 
     static var accent60: UIColor {

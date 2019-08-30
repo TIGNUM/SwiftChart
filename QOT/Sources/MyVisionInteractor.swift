@@ -22,22 +22,35 @@ final class MyVisionInteractor {
         self.worker = worker
         self.presenter = presenter
         self.router = router
+        NotificationCenter.default.addObserver(forName: .didFinishSynchronization, object: nil, queue: nil) { [weak self ] (notification) in
+            guard let strongSelf = self else {
+                return
+            }
+            guard let syncResult = notification.object as? SyncResultContext else { return }
+            if syncResult.dataType == .MY_TO_BE_VISION, syncResult.syncRequestType == .DOWN_SYNC {
+                strongSelf.initialisationComplete()
+            }
+        }
     }
 
     func viewDidLoad() {
         presenter.setupView()
+        initialisationComplete()
+    }
+
+    private func initialisationComplete() {
         worker.getData {[weak self] (initialized) in
             if !initialized {
                 self?.presenter.showScreenLoader()
                 return
             }
+
             self?.presenter.hideScreenLoader()
             let (text, shouldShowSingleMessage, status) = self?.worker.updateRateButton() ?? ("", false, false)
             self?.presenter.load(self?.myVision, rateText: text, isRateEnabled: status, shouldShowSingleMessage: shouldShowSingleMessage)
             self?.worker.updateWidget()
         }
     }
-
     private func share(plainText: String) {
         let activityVC = UIActivityViewController(activityItems: [plainText], applicationActivities: nil)
         activityVC.excludedActivityTypes = [UIActivityType.openInIBooks,
