@@ -45,6 +45,9 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
     @IBOutlet weak var noMindsetComment: UILabel!
     @IBOutlet weak var noRecoveryTitle: UILabel!
     @IBOutlet weak var noRecoveryComment: UILabel!
+    @IBOutlet private weak var indicatorWidthConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var indicatorViewLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet private weak var indicatorView: UIView!
 
     // MARK: - LifeCycle
 
@@ -67,6 +70,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        updateIndicator()
         trackPage()
     }
 
@@ -111,6 +115,7 @@ final class MyPrepsViewController: UIViewController, ScreenZLevel2 {
 
     @IBAction func didChangeSegmentedControl(_ sender: UISegmentedControl) {
         hideAllViews()
+        updateIndicator()
         showEmptyStateViewIfNeeded(sender)
     }
 
@@ -285,4 +290,14 @@ extension MyPrepsViewController {
         item.tintColor = colorMode.tint
         return item
     }
+
+    func updateIndicator() {
+        let location = segmentedControl.underline()
+        indicatorViewLeadingConstraint.constant = location.xCentre - location.width / 2
+        indicatorWidthConstraint.constant = location.width
+        UIView.animate(withDuration: 0.1) { [weak self] in
+            self?.view.layoutIfNeeded()
+        }
+    }
+
 }

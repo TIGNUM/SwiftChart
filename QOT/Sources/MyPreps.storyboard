@@ -49,9 +49,9 @@
                                 <rect key="frame" x="0.0" y="218" width="414" height="29"/>
                                 <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <segments>
-                                    <segment title="My preps"/>
-                                    <segment title="Mindset shifter"/>
-                                    <segment title="3D Recovery"/>
+                                    <segment title="Event preps"/>
+                                    <segment title="Mindset shifts"/>
+                                    <segment title="Recovery plans"/>
                                 </segments>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -263,6 +263,14 @@
                                     <constraint firstItem="lmD-nE-mtw" firstAttribute="top" secondItem="keY-nR-jgg" secondAttribute="bottom" constant="60" id="oby-JR-Fmm"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b73-zI-Hri">
+                                <rect key="frame" x="20" y="246" width="80" height="2"/>
+                                <color key="backgroundColor" red="0.71372549019999998" green="0.60784313729999995" blue="0.52549019610000003" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="2" id="MrM-KQ-lAy"/>
+                                    <constraint firstAttribute="width" constant="80" id="rYf-ii-Xog"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" red="0.078431372549019607" green="0.074509803921568626" blue="0.070588235294117646" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
@@ -274,11 +282,13 @@
                             <constraint firstItem="9aH-l5-mKn" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="Lov-gf-OFw"/>
                             <constraint firstItem="dEq-o1-iv8" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="Nnq-hR-uWx"/>
                             <constraint firstItem="hvU-ex-T62" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="P1G-Ou-2hO"/>
+                            <constraint firstItem="b73-zI-Hri" firstAttribute="leading" secondItem="PdG-Uy-sIm" secondAttribute="leading" constant="20" id="PhX-jn-1Zh"/>
                             <constraint firstItem="FQX-We-ykg" firstAttribute="trailing" secondItem="izd-Ti-FEs" secondAttribute="trailing" id="Qad-fC-CC2"/>
                             <constraint firstItem="orY-pW-1WY" firstAttribute="top" secondItem="hvU-ex-T62" secondAttribute="bottom" constant="15" id="RZ8-Nk-9oS"/>
                             <constraint firstItem="RIe-hX-AO4" firstAttribute="leading" secondItem="izd-Ti-FEs" secondAttribute="leading" id="T9u-tK-OCP"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="bottom" secondItem="dEq-o1-iv8" secondAttribute="bottom" constant="150" id="aV1-7N-aGk"/>
                             <constraint firstAttribute="trailing" secondItem="RIe-hX-AO4" secondAttribute="trailing" id="bPP-fp-hGJ"/>
+                            <constraint firstItem="b73-zI-Hri" firstAttribute="top" secondItem="C6u-Gz-PnI" secondAttribute="bottom" id="eBE-3k-8HW"/>
                             <constraint firstItem="C6u-Gz-PnI" firstAttribute="top" secondItem="FQX-We-ykg" secondAttribute="bottom" id="f6K-K1-ZR6"/>
                             <constraint firstItem="izd-Ti-FEs" firstAttribute="trailing" secondItem="C6u-Gz-PnI" secondAttribute="trailing" id="ih3-83-X5p"/>
                             <constraint firstItem="sTN-qp-Myo" firstAttribute="leading" secondItem="orY-pW-1WY" secondAttribute="trailing" constant="20" id="jZA-Kl-LNq"/>
@@ -300,6 +310,9 @@
                         <outlet property="headerLine" destination="ljU-hM-8eE" id="GN1-E9-Sfo"/>
                         <outlet property="headerTitle" destination="tod-5A-b5r" id="LWs-j6-yQU"/>
                         <outlet property="headerView" destination="FQX-We-ykg" id="zKL-Sk-sc9"/>
+                        <outlet property="indicatorView" destination="b73-zI-Hri" id="7uO-wG-XIw"/>
+                        <outlet property="indicatorViewLeadingConstraint" destination="PhX-jn-1Zh" id="qKf-Ul-Epi"/>
+                        <outlet property="indicatorWidthConstraint" destination="rYf-ii-Xog" id="lUw-AB-yh9"/>
                         <outlet property="noMIndsetShiftersView" destination="dEq-o1-iv8" id="685-Y3-kCl"/>
                         <outlet property="noMindsetComment" destination="1BL-RH-wnH" id="f5s-xS-HN4"/>
                         <outlet property="noMindsetTitle" destination="XtY-LP-eBW" id="Vep-lA-2WE"/>
