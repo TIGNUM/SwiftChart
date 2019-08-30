@@ -351,9 +351,9 @@
 "Alert.Title.Partner.Invite" = "Send Notification?";
 "Alert.Message.Partner.Invite" = "Would you like to tell your partner more about QOT and how they can help you?";
 "Alert.Title.Preparation.Add.Strategy" = "Add strategy";
-"Alert.Title.Preparation.Remove.Strategy" = "Remove strategy";  
+"Alert.Title.Preparation.Remove.Strategy" = "Delete strategy";
 "Alert.Title.Preparation.Edit.Strategy" = "Customize your preparation";
-"Alert.Message.Preparation.Edit.Strategy" = "You can tailor your preparation. Add strategies that fit best or remove those you dont like.";
+"Alert.Message.Preparation.Edit.Strategy" = "You can tailor your preparation. Add strategies that fit best or delete those you dont like.";
 "Alert.Button.Title.Edit.Vision" = "Edit To Be Vision";
 "Alert.Button.Title.Create.Vision" = "Create a new To Be Vision";
 "Alert.Message.Email.Not.Setup" = "Email is not setup on your device";
@@ -548,7 +548,7 @@
 "MyQot.Sprints.Subtitle" = "Building your daily recovery plan";
 "MyQot.title" = "MY QOT";
 "MyQot.header.title" = "MY PREPARATIONS";
-"Choice.View.Header.Edit.Prepare" = "Add or remove strategies from your preparation list.";
+"Choice.View.Header.Edit.Prepare" = "Add or delete strategies from your preparation list.";
 
 "Header.Title.Exclusive.Content" = "EXCLUSIVE CONTENT";
 "Header.Title.Strategies" = "STRATEGIES";
@@ -569,7 +569,7 @@
 "Button.Title.Add.Event" = "Add new event";
 "Button.Title.Save.Continue" = "Save & Continue";
 "Button.Title.Save.Changes" = "Save changes";
-"Button.Title.Remove" = "Remove";
+"Button.Title.Remove" = "Delete";
 "Button.Title.Cancel" = "Cancel";
 "Button.Title.YesContinue" = "Yes, continue";
 "Button.Title.Done" = "Done";
@@ -714,8 +714,8 @@
 "MyPrep.NoMindset.Comment" = "In the Coach area, \"Solve a Challenge\". Your saved ones will appear here.";
 "MyPrep.NoRecovery.Title" = "YOUR CREATED 3D RECOVERY\naWILL APPEAR HERE";
 "MyPrep.NoRecovery.Comment" = "In the Coach area, \"Solve a Challenge\". Your saved ones will appear here.";
-"MyPreps.DeleteItemsAlert.Title" = "REMOVE SELECTED ITEMS?";
-"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to remove the selected items from your Preps?";
+"MyPreps.DeleteItemsAlert.Title" = "DELETE SELECTED ITEMS?";
+"MyPreps.DeleteItemsAlert.Message" = "Are you sure you want to delete the selected items from your Preps?";
 
 "MindsetShifter.LeaveAlert.LeaveButton" = "Yes, Leave";
 "MindsetShifter.LeaveAlert.Title" = "Leave without saving";
@@ -732,8 +732,8 @@
 "MyLibrary.Items.EditTitle.Downloads" = "EDIT DOWNLOADS";
 "MyLibrary.Items.EditTitle.Links" = "EDIT LINKS";
 "MyLibrary.Items.EditTitle.Notes" = "EDIT NOTES";
-"MyLibrary.Items.Alert.Remove.Title" = "REMOVE SELECTED ITEMS";
-"MyLibrary.Items.Alert.Remove.Message" = "Are you sure you want to remove the selected items from your %@?";
+"MyLibrary.Items.Alert.Remove.Title" = "DELETE SELECTED ITEMS";
+"MyLibrary.Items.Alert.Remove.Message" = "Are you sure you want to delete the selected items from your %@?";
 "MyLibrary.Items.TapToDownload" = "Tap to download";
 "MyLibrary.Items.Alert.Empty.Title.All" = "ALL ITEMS WILL APPEAR HERE";
 "MyLibrary.Items.Alert.Empty.Title.Bookmarks" = "YOUR BOOKMARKED ITEMS WILL APPEAR HERE";
@@ -756,8 +756,8 @@
 "MySprints.EditTitle" = "EDIT SPRINTS";
 "MySprints.SprintPlan" = "SPRINT PLAN";
 "MySprints.Complete" = "COMPLETE";
-"MySprints.Alert.Remove.Title" = "REMOVE SELECTED ITEMS";
-"MySprints.Alert.Remove.Message" = "Are you sure you want to remove the selected items from your Sprints?";
+"MySprints.Alert.Remove.Title" = "DELETE SELECTED ITEMS";
+"MySprints.Alert.Remove.Message" = "Are you sure you want to delete the selected items from your Sprints?";
 "MySprints.Alert.Empty.Title" = "YOUR CREATED SPRINTS WILL APPEAR HERE";
 "MySprints.Alert.Empty.Message" = "In the Coach area, “Plan a Sprint”. Your saved ones will appear here.";
 "MySprints.Status.Active" = "Active";
